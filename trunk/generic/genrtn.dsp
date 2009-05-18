@@ -239,6 +239,54 @@ SOURCE=.\_gen_wrs.c
 # Begin Group "include"
 
 # PROP Default_Filter "h"
+# Begin Source File
+
+SOURCE=.\include\__gen.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\_gencach.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\_gencube.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\_gendata.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\_genhuge.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\_genmap.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\_genmisc.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\_genmsh.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\_genos.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\_genplat.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\_genset.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\_genstr.h
+# End Source File
 # End Group
 # Begin Group "lib"
 
@@ -246,100 +294,42 @@ SOURCE=.\_gen_wrs.c
 # Begin Source File
 
 SOURCE=.\lib\genrtnmd.lib
-
-!IF  "$(CFG)" == "genrtn - Win32 Release"
-
-!ELSEIF  "$(CFG)" == "genrtn - Win32 Debug"
-
 # PROP Exclude_From_Build 1
-
-!ELSEIF  "$(CFG)" == "genrtn - Win32 Memory"
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
 SOURCE=.\lib\genrtn.lib
-
-!IF  "$(CFG)" == "genrtn - Win32 Release"
-
-!ELSEIF  "$(CFG)" == "genrtn - Win32 Debug"
-
 # PROP Exclude_From_Build 1
-
-!ELSEIF  "$(CFG)" == "genrtn - Win32 Memory"
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
 SOURCE=.\lib\genrtnd.lib
-
-!IF  "$(CFG)" == "genrtn - Win32 Release"
-
-!ELSEIF  "$(CFG)" == "genrtn - Win32 Debug"
-
 # PROP Exclude_From_Build 1
-
-!ELSEIF  "$(CFG)" == "genrtn - Win32 Memory"
-
-!ENDIF 
-
 # End Source File
 # End Group
 # Begin Group "stacktrace"
 
 # PROP Default_Filter ""
-# Begin Group "internal"
-
-# PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\stacktrace\internal\Array.h
+SOURCE=.\stacktrace\Array.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\stacktrace\internal\MapFile.cpp
+SOURCE=.\stacktrace\MapFile.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\stacktrace\internal\MapFile.h
+SOURCE=.\stacktrace\MapFile.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\stacktrace\internal\MapFileEntry.cpp
+SOURCE=.\stacktrace\MapFileEntry.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\stacktrace\internal\MapFileEntry.h
+SOURCE=.\stacktrace\MapFileEntry.h
 # End Source File
-# Begin Source File
-
-SOURCE=.\stacktrace\internal\StackTrace.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\stacktrace\internal\StackTrace.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\stacktrace\internal\TextFile.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\stacktrace\internal\TextFile.h
-# End Source File
-# End Group
-# Begin Group "doc"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\stacktrace\doc\printStackTrace.html
-# End Source File
-# End Group
 # Begin Source File
 
 SOURCE=.\stacktrace\printStackTrace.cpp
@@ -347,6 +337,22 @@ SOURCE=.\stacktrace\printStackTrace.cpp
 # Begin Source File
 
 SOURCE=.\stacktrace\printStackTrace.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\stacktrace\StackTrace.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\stacktrace\StackTrace.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\stacktrace\TextFile.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\stacktrace\TextFile.h
 # End Source File
 # End Group
 # End Target
