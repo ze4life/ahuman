@@ -3,7 +3,7 @@
 
 extern "C" 
 {
-#include "__gen.h"
+#include "generic/__gen.h"
 }
 
 #include <stdexcept>
