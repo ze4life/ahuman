@@ -25,34 +25,34 @@ See research status grouped by target
 
 PROBLEM:
 
-* Implement algorithms that learn any NV-mapping for nearly 100% cases
-* Make sure they will work limited time at a cost of precision
+  * Implement algorithms that learn any NV-mapping for nearly 100% cases
+  * Make sure they will work limited time at a cost of precision
 
 FINDINGS:
 
-* !QuickProp is good enough for batch training
-* Incremental training works, but slower
-* Auto-restart is required
+  * !QuickProp is good enough for batch training
+  * Incremental training works, but slower
+  * Auto-restart is required
 
 TODO:
-* Add constructive algorithm
+  * Add constructive algorithm
 
 ! Find best parameters for training algorithm
 
 PROBLEM:
 
-* Most algorithm are very sensitive to parameters
-* Best values of parameters depend on NV-mapping
+  * Most algorithm are very sensitive to parameters
+  * Best values of parameters depend on NV-mapping
 
 FINDINGS:
 
-* Simplified NN is created to learn from various samples
-* Samples are persisted to be reused for batch/cache algorithm
+  * Simplified NN is created to learn from various samples
+  * Samples are persisted to be reused for batch/cache algorithm
 
 TODO:
 
-* Find what meta-information can help for choosing parameters values
-* Extend parameter-selection NN to use meta-information from variables
+  * Find what meta-information can help for choosing parameters values
+  * Extend parameter-selection NN to use meta-information from variables
 
 == Useful resources ==
 
