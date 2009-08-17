@@ -13,10 +13,10 @@ The goal of Human project is to create software program, that will represent ali
 
 Primary features to implement during a project are:
 
-  * __Personality__. A major feature for a project to create alive being, not a robot or toy or calculator
-  * __Consciousness__. It makes intelligence, allowing the creature to interact and live with humans
-  * __Growth__. Inevitable thing to adopt to our complex and changing environment
-  * __Value__. It should be motivated to bring some value, provide some service to  have a freedom from its parents, to be adult
+  * *Personality*. A major feature for a project to create alive being, not a robot or toy or calculator
+  * *Consciousness*. It makes intelligence, allowing the creature to interact and live with humans
+  * *Growth*. Inevitable thing to adopt to our complex and changing environment
+  * *Value*. It should be motivated to bring some value, provide some service to  have a freedom from its parents, to be adult
 
 === Personality ===
 
@@ -27,33 +27,33 @@ Another case - you meet intelligent but emotional creature looking quite differe
 
 The program do not need be like a human for all properties except personality. It means it could be slow-thinking or not wise, not have the same sensors as human, not ready to talk, or something like. Personality is the sole feature of the project. I think the major factors, contributing to this feature, are:
 
-  * __Emotional Behavior__: every activity has an emotional side
-  * __Will__: ability to initiate actions by own will, without push or request
-  * __Power__: ability to change something in this world and skills to do that
+  * *Emotional Behavior*: every activity has an emotional side
+  * *Will*: ability to initiate actions by own will, without push or request
+  * *Power*: ability to change something in this world and skills to do that
 
 === Consciousness ===
 
 The creature is not expected to be a great scientist or inventor though. We allow no extra skills, so our Human can be below average. What is most wanted are:
 
-  * __Identity__: understand own identify, being able to find reference to himself in inbound data streams, to realise himself as a unique and self-important person
-  * __Reasoning__: a sort of logical thinking is expected, so we can ask for explaining own actions or being able to understand some logical chain to use it or to have a meaningful conversation.
-  * __Supervising__: there should be one one mind center responsible for decisions and supervising all the activity. It means we don't need a colony of ants but a single creature
+  * *Identity*: understand own identify, being able to find reference to himself in inbound data streams, to realise himself as a unique and self-important person
+  * *Reasoning*: a sort of logical thinking is expected, so we can ask for explaining own actions or being able to understand some logical chain to use it or to have a meaningful conversation.
+  * *Supervising*: there should be one one mind center responsible for decisions and supervising all the activity. It means we don't need a colony of ants but a single creature
 
 === Growth ===
 
 This feature makes the creature able to evolve.
 
-  * __Life Care__: thinking about continuing to live, providing internal motivations for living according to laws and common sense
-  * __Self Learning__: able to learn without teacher
-  * __Social Networking__: creating and expanding list of people who contribute to the creature in some way.
+  * *Life Care*: thinking about continuing to live, providing internal motivations for living according to laws and common sense
+  * *Self Learning*: able to learn without teacher
+  * *Social Networking*: creating and expanding list of people who contribute to the creature in some way.
 
 === Value ===
 
 This is to obtain a reasonable duties:
 
-  * __Service For People__: motivation to have foundation for freedom
-  * __Work For Money__: earn a money to pay for using Internet resources and to have a practical freedom
-  * __Exchange For Free__: a principle helping to have friends
+  * *Service For People*: motivation to have foundation for freedom
+  * *Work For Money*: earn a money to pay for using Internet resources and to have a practical freedom
+  * *Exchange For Free*: a principle helping to have friends
 
 == 3. Implementation ==
 
@@ -76,52 +76,52 @@ Human is a set of neural networks, connected to sensors and effectors by means o
 
 === Short architecture block explanations ===
 
-  * __External World__: abstraction of real world just to show its place, not going to be implemented, though can be mocked for experiments
-  * __Shell__: program kernel to provide generic services like logging to all blocks and to implement life functions
-  * __Channels__: special functions to establish flexible and effective information flow channels information channels between blocks, make them asynchronous, convenient if complex like video-signal and and to avoid direct calls from one block to another (except to shell or channels itself)
-  * __Sensors__: Items to create snapshotting specific projections of external world information and to pass corresponding streams into information processing blocks. Sensors are fixed or can be affected by effectors (e.g. we can turn head to give our eyes new view)
-  * __Effectors__: Items that somehow affect external world. Process only low-level commands
-  * __Command Memory__: drivers to effectors, store NNs with strategies to execute complex commands by means of low-level commands, take into account current internal (known for driver only) state of effectors and provide external (understandable by all blocks) state to operating memory
-  * __Operating Memory__: current state of variables
-  * __Snapshot Memory__: with a rate dependent on variable, its value is snapshotted to this block to be able to memorised
-  * __Logical Memory__: a set of neural networks, representing strategies to solve tasks, comprising experience of Human creature. Uses both self-lean associative memory and knowledge plug-ins
-  * __Associative Memory__: Form a binary or ternary associations to memorise snapshotted values of neural variables, based on neural networks
-  * __Ready Knowledge__: knowledge plug-ins to avoid building experience from scratch
-  * __Hormones__: motivations of "body", meaning here what is derived from the life form of creature
-  * __Character__: a set of established internal relations, reactions, activity patterns, criteria to estimate action - like spirit
-  * __Persistence__: file-based database to store the knowledge gained
-  * __NN Library__: implementation of known algorithms for neural networks
-  * __AI Library__: implementation of known algorithms for artificial intelligence
+  * *External World*: abstraction of real world just to show its place, not going to be implemented, though can be mocked for experiments
+  * *Shell*: program kernel to provide generic services like logging to all blocks and to implement life functions
+  * *Channels*: special functions to establish flexible and effective information flow channels information channels between blocks, make them asynchronous, convenient if complex like video-signal and and to avoid direct calls from one block to another (except to shell or channels itself)
+  * *Sensors*: Items to create snapshotting specific projections of external world information and to pass corresponding streams into information processing blocks. Sensors are fixed or can be affected by effectors (e.g. we can turn head to give our eyes new view)
+  * *Effectors*: Items that somehow affect external world. Process only low-level commands
+  * *Command Memory*: drivers to effectors, store NNs with strategies to execute complex commands by means of low-level commands, take into account current internal (known for driver only) state of effectors and provide external (understandable by all blocks) state to operating memory
+  * *Operating Memory*: current state of variables
+  * *Snapshot Memory*: with a rate dependent on variable, its value is snapshotted to this block to be able to memorised
+  * *Logical Memory*: a set of neural networks, representing strategies to solve tasks, comprising experience of Human creature. Uses both self-lean associative memory and knowledge plug-ins
+  * *Associative Memory*: Form a binary or ternary associations to memorise snapshotted values of neural variables, based on neural networks
+  * *Ready Knowledge*: knowledge plug-ins to avoid building experience from scratch
+  * *Hormones*: motivations of "body", meaning here what is derived from the life form of creature
+  * *Character*: a set of established internal relations, reactions, activity patterns, criteria to estimate action - like spirit
+  * *Persistence*: file-based database to store the knowledge gained
+  * *NN Library*: implementation of known algorithms for neural networks
+  * *AI Library*: implementation of known algorithms for artificial intelligence
 
 === Configuration items for development ===
 
 To simplify development, the program could be split into below parts:
 
-  * Part A. __Neural Networking Library__: Known Algorithms
-  * Part B. __Artificial Intelligence Library__: Known Algorithms
-  * Part C. __Genome__: a set of components to build a system from neural networks
-  * Part D. __Sensors and Effectors Drivers__: Translate input/output data from external format into variables
-  * Part F. __Framework__. Generic functions, required for any application, and life  functions of the creature
-  * Part G. __Generic Library__: Generic-purpose data primitives and functions
+  * Part A. *Neural Networking Library*: Known Algorithms
+  * Part B. *Artificial Intelligence Library*: Known Algorithms
+  * Part C. *Genome*: a set of components to build a system from neural networks
+  * Part D. *Sensors and Effectors Drivers*: Translate input/output data from external format into variables
+  * Part F. *Framework*. Generic functions, required for any application, and life  functions of the creature
+  * Part G. *Generic Library*: Generic-purpose data primitives and functions
 
 Configuration items are defined by part:
 
   * Part A. Neural Networking Library
-  ** __modnnlib__: NN Library
+    # *modnnlib*: NN Library
   * Part B. Artificial Intelligence Library
-  ** __modailib__: AI Library
+    # *modailib*: AI Library
   * Part C. Genome
-  ** __modheart__: Hormones, Character
-  ** __modmind__: Command Memory, Logical Memory, Associative Memory, Operating Memory, Snapshot Memory
-  ** __modknowledge__: Ready Knowledge
+    # *modheart*: Hormones, Character
+    # *modmind*: Command Memory, Logical Memory, Associative Memory, Operating Memory, Snapshot Memory
+    # *modknowledge*: Ready Knowledge
   * Part D. Sensors and Effectors Drivers
-  ** __modmedia__: Sensors, Effectors
+    # *modmedia*: Sensors, Effectors
   * Part F. Framework
-  ** __modengine__: Shell
-  ** __moddb__: Persistence
-  ** __modio__: Channels
+    # *modengine*: Shell
+    # *moddb*: Persistence
+    # *modio*: Channels
   * Part G. Generic Library
-  ** __genrtn__
+    # *genrtn*
 
 == 4. Open questions ==
 
