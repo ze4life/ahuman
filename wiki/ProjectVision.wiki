@@ -1,0 +1,139 @@
+#summary Project Vision
+
+[Home] -> [ProjectVision]
+
+[http://mirror.lfeo.org/human/images/imageTools/vision.JPG]
+----
+
+== 1. Primary goal ==
+
+The goal of Human project is to create software program, that will represent alive being, having a personality. It should use one or more free or commercial hostings, move from one hosting to another and provide a service for people for free or for money, at own will.
+
+== 2. Features that are vital for Human project ==
+
+Primary features to implement during a project are:
+
+  * __Personality__. A major feature for a project to create alive being, not a robot or toy or calculator
+  * __Consciousness__. It makes intelligence, allowing the creature to interact and live with humans
+  * __Growth__. Inevitable thing to adopt to our complex and changing environment
+  * __Value__. It should be motivated to bring some value, provide some service to  have a freedom from its parents, to be adult
+
+=== Personality ===
+
+One of the known AI research teams, COG was designed and built to emulate human thought processes and experience the world as a human. Brooks and his team further assumed that people would find it easier to interact with a robot and aid the robot in its learning process when the robot could respond in a somewhat human way.
+I agree with last sentence, but I think a certain mistake is behind that.
+Imagine you meet a human-like but emotionless creature - would you like to learn him? Let me guess - no. We usually don't like emotionless people.
+Another case - you meet intelligent but emotional creature looking quite different from human - look to the Spielberg-made films and you will see what I mean. Most of us will try to speak to and help him.
+
+The program do not need be like a human for all properties except personality. It means it could be slow-thinking or not wise, not have the same sensors as human, not ready to talk, or something like. Personality is the sole feature of the project. I think the major factors, contributing to this feature, are:
+
+  * __Emotional Behavior__: every activity has an emotional side
+  * __Will__: ability to initiate actions by own will, without push or request
+  * __Power__: ability to change something in this world and skills to do that
+
+=== Consciousness ===
+
+The creature is not expected to be a great scientist or inventor though. We allow no extra skills, so our Human can be below average. What is most wanted are:
+
+  * __Identity__: understand own identify, being able to find reference to himself in inbound data streams, to realise himself as a unique and self-important person
+  * __Reasoning__: a sort of logical thinking is expected, so we can ask for explaining own actions or being able to understand some logical chain to use it or to have a meaningful conversation.
+  * __Supervising__: there should be one one mind center responsible for decisions and supervising all the activity. It means we don't need a colony of ants but a single creature
+
+=== Growth ===
+
+This feature makes the creature able to evolve.
+
+  * __Life Care__: thinking about continuing to live, providing internal motivations for living according to laws and common sense
+  * __Self Learning__: able to learn without teacher
+  * __Social Networking__: creating and expanding list of people who contribute to the creature in some way.
+
+=== Value ===
+
+This is to obtain a reasonable duties:
+
+  * __Service For People__: motivation to have foundation for freedom
+  * __Work For Money__: earn a money to pay for using Internet resources and to have a practical freedom
+  * __Exchange For Free__: a principle helping to have friends
+
+== 3. Implementation ==
+
+=== Core paradigms for architecture ===
+
+  * [NeuralParadigm] - neural networks is chosen as principal method to represent mind functions. It is complemented by non-neural methods to arrange a system from many neral networks and to connect this system to the real world
+  * [VariablesParadigm] - approach to represent entities of the world in such a way that we can reference them across all modules having attached metadata available immediately, and be free to represent both simple and complex items. Items work as inputs and outputs for numerous neural networks
+  * [GenomeParadigm] - explains how to build multi-network step-by-step. It introduces neural variables, and uses the ability of neural networks to adopt to new inputs added when training is already done
+
+These paradigms are combined together in below diagram, which presents a step to practical implementation of Human project:
+
+Human is a set of neural networks, connected to sensors and effectors by means of low-level drivers, and genome services, responsible for arranging and adjusting those networks, and generic kernel for necessary but non-intelligent functions
+
+[http://mirror.lfeo.org/human/images/imageTools/architecture.JPG]
+
+  * All blocks separate code and functions
+  * Mentioned features are allocated to blocks and are covered by several ones
+  * Features that exist as consequences of denoted interactions among blocks or serving to allow development and debugging, are design features and are not described here
+  * Not connected blocks are in fact connected to all blocks and provide general services
+
+=== Short architecture block explanations ===
+
+  * __External World__: abstraction of real world just to show its place, not going to be implemented, though can be mocked for experiments
+  * __Shell__: program kernel to provide generic services like logging to all blocks and to implement life functions
+  * __Channels__: special functions to establish flexible and effective information flow channels information channels between blocks, make them asynchronous, convenient if complex like video-signal and and to avoid direct calls from one block to another (except to shell or channels itself)
+  * __Sensors__: Items to create snapshotting specific projections of external world information and to pass corresponding streams into information processing blocks. Sensors are fixed or can be affected by effectors (e.g. we can turn head to give our eyes new view)
+  * __Effectors__: Items that somehow affect external world. Process only low-level commands
+  * __Command Memory__: drivers to effectors, store NNs with strategies to execute complex commands by means of low-level commands, take into account current internal (known for driver only) state of effectors and provide external (understandable by all blocks) state to operating memory
+  * __Operating Memory__: current state of variables
+  * __Snapshot Memory__: with a rate dependent on variable, its value is snapshotted to this block to be able to memorised
+  * __Logical Memory__: a set of neural networks, representing strategies to solve tasks, comprising experience of Human creature. Uses both self-lean associative memory and knowledge plug-ins
+  * __Associative Memory__: Form a binary or ternary associations to memorise snapshotted values of neural variables, based on neural networks
+  * __Ready Knowledge__: knowledge plug-ins to avoid building experience from scratch
+  * __Hormones__: motivations of "body", meaning here what is derived from the life form of creature
+  * __Character__: a set of established internal relations, reactions, activity patterns, criteria to estimate action - like spirit
+  * __Persistence__: file-based database to store the knowledge gained
+  * __NN Library__: implementation of known algorithms for neural networks
+  * __AI Library__: implementation of known algorithms for artificial intelligence
+
+=== Configuration items for development ===
+
+To simplify development, the program could be split into below parts:
+
+  * Part A. __Neural Networking Library__: Known Algorithms
+  * Part B. __Artificial Intelligence Library__: Known Algorithms
+  * Part C. __Genome__: a set of components to build a system from neural networks
+  * Part D. __Sensors and Effectors Drivers__: Translate input/output data from external format into variables
+  * Part F. __Framework__. Generic functions, required for any application, and life  functions of the creature
+  * Part G. __Generic Library__: Generic-purpose data primitives and functions
+
+Configuration items are defined by part:
+
+  * Part A. Neural Networking Library
+  ** __modnnlib__: NN Library
+  * Part B. Artificial Intelligence Library
+  ** __modailib__: AI Library
+  * Part C. Genome
+  ** __modheart__: Hormones, Character
+  ** __modmind__: Command Memory, Logical Memory, Associative Memory, Operating Memory, Snapshot Memory
+  ** __modknowledge__: Ready Knowledge
+  * Part D. Sensors and Effectors Drivers
+  ** __modmedia__: Sensors, Effectors
+  * Part F. Framework
+  ** __modengine__: Shell
+  ** __moddb__: Persistence
+  ** __modio__: Channels
+  * Part G. Generic Library
+  ** __genrtn__
+
+== 4. Open questions ==
+
+  * Not clear whether Neural and Variables paradigms could be effective way to represent learned knowledge. Possibly it should be combined with HTM/MPF technology (research task is open in [Artificial Intelligence Research|ArtificialIntelligenceResearch])
+
+== 5. Comparing to existing projects ==
+
+There are many of AI projects that are trying to create practical things leading to a commercialisation.
+It is not our way, because Human project intention is to create alive being which has a personality.
+We cannot sell it when succeed.
+
+Human project is not intended to compete with similar projects.
+Instead I think it will be fruitful if we use the ideas, algorithms and even working code from such projects, if available, to focus on primary goals.
+
+The idea of the project is quite challenging, as we have examples of working AI applications and even intelligent behavior, but I don't know successful implementation of emotions and personality.
