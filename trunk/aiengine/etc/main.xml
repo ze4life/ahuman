@@ -1,2 +1,35 @@
-<document>
-</document>
+<services>
+
+	<!-- service configuration -->
+
+	<service name="Media">media.xml</service>
+	<service name="IO">io.xml</service>
+	<service name="Heart">heart.xml</service>
+	<service name="DB">database.xml</service>
+	<service name="Knowledge">knowledge.xml</service>
+	<service name="Mind">mind.xml</service>
+	<service name="Expert">expert.xml</service>
+
+	<!-- engine configuration -->
+	<!-- logging -->
+
+	<logging>
+		<filename>log/main.log</filename>
+		<format>log: %s</format>
+		
+		<objectLogLevel default="N">
+			<class name="NNFinderFactory" level="A"/>
+			<class name="NNFinder" level="A"/>
+		</objectLogLevel>
+
+		<objectInstanceLogLevel default="N">
+			<class name="NNStrategyBackPropagation" instance = "ExperFinderFactory::P1S" level="E"/>
+		</objectInstanceLogLevel>
+
+		<serviceLogLevel default="A">
+		</serviceLogLevel>
+
+		<customLogLevel default="N">
+		</customLogLevel>
+	</logging>
+</services>
