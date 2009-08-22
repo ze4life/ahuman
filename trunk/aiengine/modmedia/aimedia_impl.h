@@ -33,6 +33,28 @@
 
 class AISockServer;
 class AISocketConnection;
+class AIListener;
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class AIListener
+{
+public:
+	AIListener() {};
+	virtual ~AIListener() {};
+
+public:
+	virtual void configure( Configuration config ) = 0;
+	virtual bool startListener() = 0;
+	virtual void stopListener() = 0;
+
+	void setName( String p_name ) { name = p_name; };
+	String getName() { return( name ); };
+
+private:
+	String name;
+};
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -54,25 +76,34 @@ public:
 	virtual void closeMediaReflect( AISession *session );
 
 public:
-	AISockServer *getSockServer() { return( sockServer ); };
-	void startSocketServer();
-	void stopSocketServer();
+	AISockServer *getSockServer( String name );
 
 // internals
 private:
+	void startListeners();
+	void stopListeners();
+	AIListener *runListenerFactory( String name , String type );
+
+private:
 	AIEngine& engine;
-	AISockServer *sockServer;
+	MapStringToClass<AIListener> listeners;
 };
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-class AISockServer
+class AISockServer : public AIListener
 {
 public:
 	AISockServer();
 	~AISockServer();
 
+public:
+	virtual void configure( Configuration config );
+	virtual bool startListener();
+	virtual void stopListener();
+
+public:
 	void acceptConnectionLoop();
 	bool openListeningPort();
 	void closeListeningPort();
@@ -86,6 +117,7 @@ public:
 private:
 	AIEngine& engine;
 	Logger logger;
+	String loggerName;
 
 	bool continueConnecting;
 	bool shutdownInProgress;

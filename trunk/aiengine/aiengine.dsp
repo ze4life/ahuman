@@ -468,6 +468,10 @@ SOURCE=.\modengine\aiengine_impl.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\modengine\configuration.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\modengine\engine.cpp
 # End Source File
 # Begin Source File

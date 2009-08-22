@@ -5,6 +5,9 @@
 
 static 	unsigned		__stdcall threadConnectFunction( void *p_arg )
 {
+	AISockServer *server = ( AISockServer * )p_arg;
+
+	// register thread
 	AIEngine& engine = AIEngine::getInstance();
 	engine.workerStarted();
 
@@ -13,9 +16,6 @@ static 	unsigned		__stdcall threadConnectFunction( void *p_arg )
 	WSAStartup( MAKEWORD( 1 , 1 ) , &l_wsa );
 
 	// accept connections
-	AIMedia media;
-	AIMediaImpl *impl = static_cast<AIMediaImpl *>( media.thisPtr );
-	AISockServer *server = impl -> getSockServer();
 	server -> acceptConnectionLoop();
 
 	// cleanup sockets
@@ -31,21 +31,35 @@ static 	unsigned		__stdcall threadConnectFunction( void *p_arg )
 AISockServer::AISockServer()
 :	engine( AIEngine::getInstance() )
 {
-	continueConnecting = true;
-	shutdownInProgress = false;
-	port = 20000;
-
 	/* startup sockets */
 	WSADATA l_wsa;
 	WSAStartup( MAKEWORD( 1 , 1 ) , &l_wsa );
 
-	logger.attach( "AISockServer" );
+	continueConnecting = true;
+	shutdownInProgress = false;
 }
 
 AISockServer::~AISockServer()
 {
 	/* cleanup sockets */
 	WSACleanup();
+}
+
+void AISockServer::configure( Configuration config )
+{
+	port = atoi( config.getProperty( "port" ) );
+	loggerName = String( "AISockServer::" ) + getName();
+	logger.attach( loggerName );
+}
+
+bool AISockServer::startListener()
+{
+	return( openListeningPort() );
+}
+
+void AISockServer::stopListener()
+{
+	closeListeningPort();
 }
 
 bool AISockServer::openListeningPort()
@@ -93,7 +107,7 @@ bool AISockServer::openListeningPort()
 
 	// start listening thread
 	engine.workerCreated();
-	if( rfc_thr_process( &listenThread , NULL , threadConnectFunction ) ) {
+	if( rfc_thr_process( &listenThread , this , threadConnectFunction ) ) {
 		logger.logError( "ai_sock_init: cannot start listening thread" );
 		engine.workerExited( listenThread , -20 );
 		return( false );
@@ -138,7 +152,7 @@ void AISockServer::closeListeningPort()
 			listenSocket = INVALID_SOCKET;
 		}
 
-	// cleanup sockets
+	/* cleanup sockets */
 	WSACleanup();
 }
 

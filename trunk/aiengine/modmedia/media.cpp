@@ -19,7 +19,6 @@ AIMedia::AIMedia()
 AIMediaImpl::AIMediaImpl()
 :	engine( AIEngine::getInstance() )
 {
-	sockServer = NULL;
 }
 
 void AIMediaImpl::initService()
@@ -28,36 +27,61 @@ void AIMediaImpl::initService()
 
 void AIMediaImpl::runService()
 {
-	startSocketServer();
+	startListeners();
 }
 
 void AIMediaImpl::exitService()
 {
-	stopSocketServer();
+	stopListeners();
 }
 
 void AIMediaImpl::destroyService()
 {
-	if( sockServer != NULL )
-		delete sockServer;
-
+	listeners.destroy();
 	delete this;
 }
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-void AIMediaImpl::startSocketServer()
+void AIMediaImpl::startListeners()
 {
-	sockServer = new AISockServer();
-	if( !sockServer -> openListeningPort() )
-		throw RuntimeError( "AIMediaImpl::startSocketServer: cannot start socket server" );
+	// scan configuration
+	Configuration configListeners = config.getChildNode( "listeners" );
+	for( Configuration item = configListeners.getFirstChild( "listener" ); item.exists(); item = item.getNextChild( "listener" ) )
+		{
+			String name = item.getAttribute( "name" );
+			String type = item.getAttribute( "type" );
+
+			// create and configure
+			AIListener *listener = runListenerFactory( name , type );
+			listener -> configure( item );
+
+			// start
+			ASSERTMSG( listener -> startListener() , 
+				"AIMediaImpl::startListeners: cannot start listener " + name );
+		}
 }
 
-void AIMediaImpl::stopSocketServer()
+AIListener *AIMediaImpl::runListenerFactory( String name , String type )
 {
-	if( sockServer != NULL )
-		sockServer -> closeListeningPort();
+	ASSERT( listeners.get( name ) == NULL );
+	ASSERT( type.equals( "tcp" ) );
+
+	AIListener *listener = new AISockServer();
+	listener -> setName( name );
+	listeners.add( name , listener );
+
+	return( listener );
+}
+
+void AIMediaImpl::stopListeners()
+{
+	for( int k = 0; k < listeners.count(); k++ )
+		{
+			AIListener *listener = listeners.getClassByIndex( k );
+			listener -> stopListener();
+		}
 }
 
 void AIMediaImpl::sendMessageToUser( AIMessage *msg , AISession *session )
