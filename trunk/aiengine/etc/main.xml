@@ -1,21 +1,36 @@
-<services>
-
+<engine>
 	<!-- service configuration -->
 
-	<service name="Media">media.xml</service>
-	<service name="IO">io.xml</service>
-	<service name="Heart">heart.xml</service>
-	<service name="DB">database.xml</service>
-	<service name="Knowledge">knowledge.xml</service>
-	<service name="Mind">mind.xml</service>
-	<service name="Expert">expert.xml</service>
+	<services>
+		<service name="AIMedia">
+			<property name="file" value="media.xml"/>
+		</service>
+		<service name="AIIO">
+			<property name="file" value="io.xml"/>
+		</service>
+		<service name="AIHeart">
+			<property name="file" value="heart.xml"/>
+		</service>
+		<service name="AIDB">
+			<property name="file" value="database.xml"/>
+		</service>
+		<service name="AIKnowledge">
+			<property name="file" value="knowledge.xml"/>
+		</service>
+		<service name="AIMind">
+			<property name="file" value="mind.xml"/>
+		</service>
+		<service name="AIExpert">
+			<property name="file" value="expert.xml"/>
+		</service>
+	</services>
 
 	<!-- engine configuration -->
 	<!-- logging -->
 
 	<logging>
-		<filename>log/main.log</filename>
-		<format>log: %s</format>
+		<property name="filename" value="log/main.log"/>
+		<property name="format" value="log: %"/>
 		
 		<objectLogLevel default="N">
 			<class name="NNFinderFactory" level="A"/>
@@ -32,4 +47,4 @@
 		<customLogLevel default="N">
 		</customLogLevel>
 	</logging>
-</services>
+</engine>

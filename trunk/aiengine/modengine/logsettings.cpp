@@ -21,36 +21,28 @@ LogSettings::~LogSettings()
 	customData.destroy();
 }
 
-void LogSettings::load( const char *configName )
+void LogSettings::load( Configuration config )
 {
 	// read
-	AIEngine& engine = AIEngine::getInstance();
-	TiXmlElement *xml = engine.getRoot( configName );
-	ASSERT( xml != NULL );
-	TiXmlElement *xmlFileName = xml -> FirstChildElement( "filename" );
-	ASSERT( xmlFileName != NULL );
-	logFile = xmlFileName -> GetText();
+	logFile = config.getProperty( "filename" );
+	logFormat = config.getProperty( "format" );
 
-	TiXmlElement *xmlFormat = xml -> FirstChildElement( "format" );
-	ASSERT( xmlFormat != NULL );
-	logFormat = xmlFormat -> GetText();
-
-	readLevels( xml , "objectLogLevel" , objectData , defaultObjectLevel );
-	readLevels( xml , "objectInstanceLogLevel" , objectInstanceData , defaultObjectInstanceLevel );
-	readLevels( xml , "serviceLogLevel" , serviceData , defaultServiceLevel );
-	readLevels( xml , "customLogLevel" , customData , defaultCustomLevel );
+	readLevels( config , "objectLogLevel" , objectData , defaultObjectLevel );
+	readLevels( config , "objectInstanceLogLevel" , objectInstanceData , defaultObjectInstanceLevel );
+	readLevels( config , "serviceLogLevel" , serviceData , defaultServiceLevel );
+	readLevels( config , "customLogLevel" , customData , defaultCustomLevel );
 }
 
-void LogSettings::readLevels( TiXmlElement *root , const char *listName , MapStringToClass<LogSettingsItem>& map , int& dv )
+void LogSettings::readLevels( Configuration config , const char *listName , MapStringToClass<LogSettingsItem>& map , int& dv )
 {
 	map.destroy();
 
-	TiXmlElement *listRoot = root -> FirstChildElement( listName );
-	if( listRoot == NULL )
+	Configuration list = config.getChildNode( listName );
+	if( !list.exists() )
 		return;
 
 	// read default value
-	String defval = listRoot -> Attribute( "default" );
+	String defval = list.getAttribute( "default" );
 	if( defval.equals( "E" ) )
 		dv = Logger::LogLevelError;
 	else
@@ -63,30 +55,23 @@ void LogSettings::readLevels( TiXmlElement *root , const char *listName , MapStr
 		dv = Logger::LogLevelNone;
 
 	// read list
-	TiXmlElement *item = listRoot -> FirstChildElement( "class" );
-	if( item == NULL )
-		return;
-
-	do
+	for( Configuration item = list.getFirstChild( "class" ); item.exists(); item = item.getNextChild( "class" ) )
 		{
-			String name = item -> Attribute( "name" );
-			String level = item -> Attribute( "level" );
-			const char *instance = item -> Attribute( "instance" );
+			String name = item.getAttribute( "name" );
+			String level = item.getAttribute( "level" );
+			String instance = item.getAttribute( "instance" , "" );
 
 			LogSettingsItem *lsi = new LogSettingsItem;
 			lsi -> setLevelSymbol( *( const char * )level );
 
-			if( instance != NULL )
+			if( !instance.isEmpty() )
 				{
 					String s = name + "." + instance;
 					map.add( s , lsi );
 				}
 			else
 				map.add( name , lsi );
-
-			item = item -> NextSiblingElement( "class" );
 		}
-	while( item != NULL );
 }
 
 int LogSettings::getObjectLogLevel( const char *className , const char *instance )

@@ -2,7 +2,7 @@
 //
 
 #include <ctype.h>
-#include <aiengine_impl.h>
+#include "aiengine_impl.h"
 
 #define TB_OPEN '{'
 #define TB_CLOSE '}'

@@ -53,9 +53,9 @@ LogManager::~LogManager()
 	rfc_hnd_evdestroy( stopEvent );
 }
 
-void LogManager::configure( const char *configName )
+void LogManager::configure( Configuration config )
 {
-	logSettings.load( configName );
+	logSettings.load( config );
 }
 
 Logger::LogLevel LogManager::getObjectLogLevel( Object *o )

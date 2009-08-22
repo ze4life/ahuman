@@ -2,7 +2,7 @@
 //
 
 #include <ctype.h>
-#include <aiengine_impl.h>
+#include "aiengine_impl.h"
 
 #define TP_INTLIST		'D'
 #define TP_STRINGLIST	'S'

@@ -13,6 +13,8 @@
 #include <stdio.h>
 #include <signal.h>
 
+#include "tinyxml.h"
+
 /*#########################################################################*/
 /*#########################################################################*/
 
@@ -28,6 +30,7 @@ public:
 	// others
 	virtual void exit( int status );
 	virtual LogManager *getLogManager();
+	virtual Configuration loadConfiguration( String fileName );
 
 	// serializable objects
 	virtual void registerSerializeObject( SerializeObject *sop );
@@ -49,9 +52,6 @@ public:
 	virtual void workerExited( RFC_THREAD thread , int status );
 	virtual void addWorkerObject( const char *key , ThreadObject *to );
 	virtual ThreadObject *getWorkerObject( const char *key );
-
-	// configuration
-	virtual TiXmlElement *getRoot( const char *configName );
 
 // base class interface
 private:
@@ -79,12 +79,14 @@ private:
 	void destroyServices();
 
 	// log manager
-	void logStart();
+	void logStart( Configuration configLogging );
 	void logStop();
 
 // data
 private:
 	String configDir;
+	Configuration config;
+
 	String logLineFormat;
 	LogManager *logManager;
 	bool stoppedBySignal;
@@ -96,9 +98,8 @@ private:
 	RFC_HND eventExit;
 	int countExit;
 
-	// configuration
+	// configurations loaded
 	MapStringToClass<TiXmlDocument> configs;
-	TiXmlElement *mainConfigRoot;
 
 	// services
 	MapStringToClass<Service> services;
@@ -148,7 +149,7 @@ public:
 	LogSettings();
 	~LogSettings();
 
-	void load( const char *configName );
+	void load( Configuration config );
 
 	String getFileName();
 	String getFormat();
@@ -157,7 +158,7 @@ public:
 	int getCustomLogLevel( const char *loggerName );
 
 private:
-	void readLevels( TiXmlElement *root , const char *listName , MapStringToClass<LogSettingsItem>& map , int& dv );
+	void readLevels( Configuration config , const char *listName , MapStringToClass<LogSettingsItem>& map , int& dv );
 
 private:
 	String logFile;
@@ -196,7 +197,7 @@ public:
 	~LogManager();
 
 	// main run function
-	void configure( const char *configName );
+	void configure( Configuration config );
 	int run();
 
 	// sync/async mode

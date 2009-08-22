@@ -5,6 +5,8 @@
 
 // utility functions & classes
 #define ASSERT( x ) if( !(x) ) throw RuntimeError( String( "assertion failed: " ) + #x )
+#define ASSERTMSG( x , msg ) if( !(x) ) throw RuntimeError( String( "assertion failed: " ) + ( msg ) + " - " + #x )
+#define ASSERTFAILED( msg ) throw RuntimeError( String( "assertion failed: " ) + msg )
 
 class Logger;
 

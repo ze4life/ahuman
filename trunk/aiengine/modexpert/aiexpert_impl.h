@@ -11,10 +11,10 @@
 #include <aidb.h>
 
 // neuro networks
-#include <aiexpert_implfunc.h>
-#include <aiexpert_implnn.h>
-#include <aiexpert_implstrategy.h>
-#include <aiexpert_implnet.h>
+#include "aiexpert_implfunc.h"
+#include "aiexpert_implnn.h"
+#include "aiexpert_implstrategy.h"
+#include "aiexpert_implnet.h"
 
 class AITokenParser;
 class NNFinderFactory;

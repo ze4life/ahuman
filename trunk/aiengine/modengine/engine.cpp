@@ -96,11 +96,12 @@ void AIEngineImpl::init()
 	workerCreated();
 	workerStarted();
 
-	// configuration
-	mainConfigRoot = getRoot( "main" );
+	// engine configuration
+	config = loadConfiguration( "main.xml" );
 
 	// init logging
-	logStart();
+	Configuration configLogging = config.getChildNode( "logging" );
+	logStart( configLogging );
 
 	// register serializable classes
 	Scale::createSerializeObject();
@@ -212,6 +213,20 @@ void AIEngineImpl::createServices()
 			Service *svc = services.getClassByIndex( k );
 			Logger& logger = svc -> getLogger();
 			logger.attach( svc );
+		}
+
+	// attach configurations
+	Configuration configs = config.getChildNode( "services" );
+	for( Configuration item = configs.getFirstChild( "service" ); item.exists(); item = item.getNextChild( "service" ) )
+		{
+			String serviceName = item.getAttribute( "name" );
+			String fileName = item.getProperty( "file" );
+			
+			svc = services.get( serviceName );
+			ASSERT( svc != NULL );
+
+			Configuration configService = loadConfiguration( fileName );
+			svc -> configure( configService );
 		}
 
 	logger.logInfo( "create services - done" );
@@ -341,10 +356,10 @@ void AIEngineImpl::destroyServices()
 	logger.logInfo( "destroy services - done" );
 }
 
-void AIEngineImpl::logStart()
+void AIEngineImpl::logStart( Configuration configLogging )
 {
 	// open file
-	logManager -> configure( "logging" );
+	logManager -> configure( configLogging );
 	if( !logManager -> startWriter() )
 		throw RuntimeError( "AIEngineImpl::logStart: cannot initialize logging: unknown reason" );
 
@@ -427,14 +442,14 @@ ThreadObject *AIEngineImpl::getWorkerObject( const char *key )
 	return( threadData -> map.get( key ) );
 }
 
-TiXmlElement *AIEngineImpl::getRoot( const char *configName )
+Configuration AIEngineImpl::loadConfiguration( String fileName )
 {
 	// check whether already loaded
-	TiXmlDocument *doc = configs.get( configName );
+	TiXmlDocument *doc = configs.get( fileName );
 	if( doc == NULL )
 		{
 			// init instance
-			String path = configDir + "/" + configName + ".xml";
+			String path = configDir + "/" + fileName;
 			doc = new TiXmlDocument( path );
 			if( !doc -> LoadFile() )
 				{
@@ -443,10 +458,12 @@ TiXmlElement *AIEngineImpl::getRoot( const char *configName )
 					throw RuntimeError( err );
 				}
 
-			configs.add( configName , doc );
+			configs.add( fileName , doc );
 		}
 
-	return( doc -> FirstChildElement() );
+	Configuration config;
+	config.attach( doc , doc -> FirstChildElement() );
+	return( config );
 }
 
 // services

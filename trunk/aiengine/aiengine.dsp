@@ -23,8 +23,8 @@ CFG=aiengine - Win32 Debug
 
 # Begin Project
 # PROP AllowPerConfigDependencies 0
-# PROP Scc_ProjName ""$/ai2/server/aiengine", NFAAAAAA"
-# PROP Scc_LocalPath "."
+# PROP Scc_ProjName ""
+# PROP Scc_LocalPath ""
 CPP=cl.exe
 RSC=rc.exe
 
@@ -50,7 +50,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /machine:I386
-# ADD LINK32 kernel32.lib user32.lib genrtn.lib wsock32.lib /nologo /subsystem:console /machine:I386 /libpath:"../common/lib/genrtn"
+# ADD LINK32 kernel32.lib user32.lib genrtn.lib wsock32.lib /nologo /subsystem:console /machine:I386 /libpath:"lib/release"
 
 !ELSEIF  "$(CFG)" == "aiengine - Win32 Debug"
 
@@ -74,7 +74,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 genrtnd.lib wsock32.lib kernel32.lib /nologo /subsystem:console /profile /map /debug /machine:I386 /libpath:"../generic/lib"
+# ADD LINK32 genrtnd.lib wsock32.lib kernel32.lib /nologo /subsystem:console /profile /map /debug /machine:I386 /libpath:"lib/debug"
 # SUBTRACT LINK32 /nodefaultlib
 
 !ENDIF 
@@ -86,6 +86,58 @@ LINK32=link.exe
 # Begin Group "include"
 
 # PROP Default_Filter ""
+# Begin Group "generic"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\generic\__gen.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\generic\_gencach.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\generic\_gencube.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\generic\_gendata.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\generic\_genhuge.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\generic\_genmap.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\generic\_genmisc.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\generic\_genmsh.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\generic\_genos.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\generic\_genplat.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\generic\_genset.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\generic\_genstr.h
+# End Source File
+# End Group
 # Begin Source File
 
 SOURCE=.\include\aibasetypes.h
@@ -96,15 +148,7 @@ SOURCE=.\include\aidb.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\aidb_impl.h
-# End Source File
-# Begin Source File
-
 SOURCE=.\include\aiengine.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\aiengine_impl.h
 # End Source File
 # Begin Source File
 
@@ -112,31 +156,7 @@ SOURCE=.\include\aiexpert.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\aiexpert_impl.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\aiexpert_implfunc.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\aiexpert_implnet.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\aiexpert_implnn.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\aiexpert_implstrategy.h
-# End Source File
-# Begin Source File
-
 SOURCE=.\include\aiheart.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\aiheart_impl.h
 # End Source File
 # Begin Source File
 
@@ -144,15 +164,7 @@ SOURCE=.\include\aiio.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\aiio_impl.h
-# End Source File
-# Begin Source File
-
 SOURCE=.\include\aiknowledge.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\aiknowledge_impl.h
 # End Source File
 # Begin Source File
 
@@ -160,28 +172,20 @@ SOURCE=.\include\aimedia.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\aimedia_impl.h
-# End Source File
-# Begin Source File
-
 SOURCE=.\include\aimind.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\include\aimind_impl.h
 # End Source File
 # Begin Source File
 
 SOURCE=.\include\aiobject.h
 # End Source File
-# Begin Source File
-
-SOURCE=.\include\tinyxml.h
-# End Source File
 # End Group
 # Begin Group "moddb"
 
 # PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\moddb\aidb_impl.h
+# End Source File
 # Begin Source File
 
 SOURCE=.\moddb\db.cpp
@@ -208,6 +212,10 @@ SOURCE=.\moddb\dbrecordset.cpp
 # PROP Default_Filter ""
 # Begin Source File
 
+SOURCE=.\modheart\aiheart_impl.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\modheart\emotion.cpp
 # End Source File
 # Begin Source File
@@ -218,6 +226,10 @@ SOURCE=.\modheart\heart.cpp
 # Begin Group "modio"
 
 # PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\modio\aiio_impl.h
+# End Source File
 # Begin Source File
 
 SOURCE=.\modio\duplexchannel.cpp
@@ -242,6 +254,10 @@ SOURCE=.\modio\session.cpp
 # Begin Group "modknowledge"
 
 # PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\modknowledge\aiknowledge_impl.h
+# End Source File
 # Begin Source File
 
 SOURCE=.\modknowledge\knowledge.cpp
@@ -272,12 +288,24 @@ SOURCE=.\modknowledge\tokenlist.cpp
 # PROP Default_Filter ""
 # Begin Source File
 
+SOURCE=.\modmind\aimind_impl.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\modmind\mind.cpp
 # End Source File
 # End Group
 # Begin Group "modmedia"
 
 # PROP Default_Filter ""
+# Begin Group "connectors"
+
+# PROP Default_Filter ""
+# End Group
+# Begin Source File
+
+SOURCE=.\modmedia\aimedia_impl.h
+# End Source File
 # Begin Source File
 
 SOURCE=.\modmedia\media.cpp
@@ -294,6 +322,26 @@ SOURCE=.\modmedia\sockserver.cpp
 # Begin Group "modexpert"
 
 # PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\modexpert\aiexpert_impl.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\modexpert\aiexpert_implfunc.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\modexpert\aiexpert_implnet.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\modexpert\aiexpert_implnn.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\modexpert\aiexpert_implstrategy.h
+# End Source File
 # Begin Source File
 
 SOURCE=.\modexpert\expert.cpp
@@ -416,6 +464,10 @@ SOURCE=.\modexpert\tokenparser.cpp
 # PROP Default_Filter ""
 # Begin Source File
 
+SOURCE=.\modengine\aiengine_impl.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\modengine\engine.cpp
 # End Source File
 # Begin Source File
@@ -481,6 +533,10 @@ SOURCE=.\modengine\timer.cpp
 # Begin Source File
 
 SOURCE=.\modengine\tinyxml.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\modengine\tinyxml.h
 # End Source File
 # Begin Source File
 

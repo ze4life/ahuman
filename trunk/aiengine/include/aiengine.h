@@ -11,7 +11,6 @@ extern "C"
 
 using namespace std;
 
-#include <tinyxml.h>
 #include <aibasetypes.h>
 
 class SerializeObject;
@@ -20,6 +19,7 @@ class ObjectField;
 class Logger;
 class LogManager;
 class Service;
+class Configuration;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -28,6 +28,31 @@ class ThreadObject
 {
 public:
 	virtual ~ThreadObject() {};
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class Configuration
+{
+public:
+	Configuration();
+	void attach( void *doc , void *node );
+
+	Configuration getChildNode( String s );
+	String getAttribute( String a );
+	String getAttribute( String a , String defaultValue );
+
+	String getProperty( String name );
+	String getProperty( String name , String defaultValue );
+
+	bool exists();
+	Configuration getFirstChild( String name );
+	Configuration getNextChild( String name );
+
+private:
+	void *doc;
+	void *node;
 };
 
 /*#########################################################################*/
@@ -100,6 +125,9 @@ public:
 	virtual void exitService() = 0;
 	virtual void destroyService() = 0;
 
+	// configuration
+	virtual void configure( Configuration p_config ) { config = p_config; };
+
 	// logger
 	Logger& getLogger() { return( logger ); };
 
@@ -115,6 +143,9 @@ public:
 
 protected:
 	Logger logger;
+
+	// configuration
+	Configuration config;
 };
 
 /*#########################################################################*/
@@ -133,6 +164,7 @@ public:
 	// others
 	virtual void exit( int status ) = 0;
 	virtual LogManager *getLogManager() = 0;
+	virtual Configuration loadConfiguration( String fileName ) = 0;
 
 	// object serializations
 	virtual void registerSerializeObject( SerializeObject *sop ) = 0;
@@ -154,9 +186,6 @@ public:
 	virtual void workerExited( RFC_THREAD thread , int status ) = 0;
 	virtual void addWorkerObject( const char *key , ThreadObject *to ) = 0;
 	virtual ThreadObject *getWorkerObject( const char *key ) = 0;
-
-	// configuration
-	virtual TiXmlElement *getRoot( const char *configName ) = 0;
 };
 
 /*#########################################################################*/

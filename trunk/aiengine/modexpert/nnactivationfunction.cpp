@@ -1,5 +1,5 @@
 
-#include <aiexpert_impl.h>
+#include "aiexpert_impl.h"
 
 const char *NNActivationFunction::functionNames[ 20 ] = {
 	NULL , NULL , NULL , NULL , NULL ,

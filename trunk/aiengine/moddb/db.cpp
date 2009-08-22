@@ -1,5 +1,5 @@
 
-#include <aidb_impl.h>
+#include "aidb_impl.h"
 #include <direct.h>
 
 /*#########################################################################*/
@@ -53,11 +53,8 @@ AIDBImpl::~AIDBImpl()
 
 void AIDBImpl::openDatabase()
 {
-	TiXmlElement *el = engine.getRoot( "database" );
-	el = el -> FirstChildElement( "path" );
-	
-	// get database path
-	dbPath = el -> GetText();
+	Configuration cfg = Service::config.getChildNode( "location" );
+	dbPath = cfg.getProperty( "path" );
 }
 
 void AIDBImpl::closeDatabase()
