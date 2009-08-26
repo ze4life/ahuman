@@ -243,6 +243,11 @@ short rfc_thr_stacknamebyaddr( void *p_addr , char *p_class , char *p_func )
 	return( getModuleItemByAddr( p_addr , p_class , p_func ) );
 }
 
+int rfc_thr_increment( int *pv )
+{
+	return( ( int )InterlockedIncrement( ( LPLONG )pv ) );
+}
+
 /*#######################################################*/
 /*#######################################################*/
 /* library management */
