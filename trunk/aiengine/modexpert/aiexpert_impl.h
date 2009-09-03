@@ -16,8 +16,33 @@
 #include "aiexpert_implstrategy.h"
 #include "aiexpert_implnet.h"
 
-class AITokenParser;
 class NNFinderFactory;
+class AIExpertImpl;
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class AIExpertDebug : public AISubscriber
+{
+public:
+	AIExpertDebug();
+	~AIExpertDebug();
+
+public:
+	void init( Xml config );
+	void exit();
+
+	virtual void onMessage( AIMessage *msg );
+
+// tests
+private:
+	void testCreateBySamples( XmlCall& call );
+
+private:
+	AIPublisher *callPub;
+	AISubscription *callSub;
+	Logger logger;
+};
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -37,22 +62,15 @@ public:
 	AIExpertImpl();
 	static AIExpertImpl *getServiceImpl();
 
-	virtual void processMediaMessage( AIMessage *msg , AISession *session );
-
 	NNFinderFactory *getFinderFactory() { return( &expertFinderFactory ); };
 	NNRegressionFactory *getRegressionFactory() { return( &expertRegressionFactory ); };
 
 // internals
 private:
-	void setupTokens();
-	void processSentense( AISession *session , AISentense *st );
-
-	// tests
-	void testCreateBySamples();
 
 private:
 	AIEngine& engine;
-	AITokenParser *tokenParser;
+	AIExpertDebug debug;
 
 	NNFinderFactory expertFinderFactory;
 	NNRegressionFactory expertRegressionFactory;
@@ -60,28 +78,5 @@ private:
 
 /*#########################################################################*/
 /*#########################################################################*/
-
-class AITokenParser : public Object
-{
-public:
-	// AIObject interface
-
-public:
-	AITokenParser();
-	~AITokenParser();
-
-	void splitToSentenses( AIMessage *msg , ClassList<AISentense>& p_list );
-	
-private:
-	AIToken *findToken( const char *s );
-
-	const char *skipSpacing( const char *s );
-	bool isSpacing( char c );
-
-	AIEngine& engine;
-	AIKnowledge knowledge;
-
-	ClassList<AIToken> tokens;
-};
 
 #endif	// INCLUDE_AIEXPERT_IMPL_H
