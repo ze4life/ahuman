@@ -53,7 +53,7 @@ AIDBImpl::~AIDBImpl()
 
 void AIDBImpl::openDatabase()
 {
-	Configuration cfg = Service::config.getChildNode( "location" );
+	Xml cfg = Service::config.getChildNode( "location" );
 	dbPath = cfg.getProperty( "path" );
 }
 
