@@ -1,31 +1,29 @@
-
-#include <aiio_impl.h>
+#include "aiio_impl.h"
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-AIMessageImpl::AIMessageImpl( const String p_msg , const String p_type ) 
-{ 
-	message = p_msg; 
-	type = p_type; 
+AIMessage::AIMessage()
+{
 }
 
-const char *AIMessageImpl::getMessage()
+AIMessage::~AIMessage()
 {
-	return( message );
+	if( xml.exists() )
+		{
+			AIEngine& engine = AIEngine::getInstance();
+			engine.destroyXmlDoc( xml );
+		}
 }
 
-const char *AIMessageImpl::getType()
+Xml AIMessage::getXml( const char *contentType )
 {
-	return( type );
-}
+	if( !xml.exists() )
+		{
+			AIEngine& engine = AIEngine::getInstance();
+			xml = engine.readXml( message , contentType );
+		}
 
-const char *AIMessageImpl::getId()
-{
-	return( id );
-}
-
-void AIMessageImpl::setId( const char *p_id )
-{
-	id = p_id;
+	ASSERT( xml.getName().equals( contentType ) );
+	return( xml );
 }

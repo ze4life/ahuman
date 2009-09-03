@@ -7,14 +7,15 @@
 #include <aimedia.h>
 
 class AIIOQueue;
-
-typedef void *AI_PORT;
+class AIChannel;
+class AIPublisherImpl;
+class AISubscriptionImpl;
 
 /*#########################################################################*/
 /*#########################################################################*/
 
 // derives knowledge from io, activates mind
-class AIIOImpl : public AIIO , public Object , public Service
+class AIIOImpl : public AIIO , public Service
 {
 	// service
 	virtual void initService();
@@ -27,168 +28,114 @@ class AIIOImpl : public AIIO , public Object , public Service
 public:
 	AIIOImpl();
 
-	virtual AISession *connect( String p_user , const String p_channeltype , void *p_media );
-	virtual void lockChannels( bool p_lock );
-	virtual void disconnect( int p_session );
-	virtual AISession *getSessionById( int p_session );
+	// topics publishers and subscribers
+	virtual AIPublisher *createPublisher( String channel , String pubName , String msgtype );
+	virtual AISubscription *subscribe( String channel , String subName , AISubscriber *sub );
+	virtual bool destroyPublisher( AIPublisher *publisher );
+	virtual bool unsubscribe( AISubscription *subscription );
 
-	virtual AIMessage *createMessage( String message , String type );
-	virtual void destroyMessage( AIMessage *message );
-
-	// AIObject interface
-
-private:	
-	void closeSession( int id );
-
-	bool canUserConnect( String user );
-	void closeAllSessions();
-	void enableConnections( bool p_enable );
-
-	void on_message_to_media( AIMessage *msg , void *p_userdata );
-	void on_message_to_expert( AIMessage *msg , void *p_userdata );
+private:
+	void createChannel( Xml config );
+	AIChannel *getChannel( String name );
+	void lock();
+	void unlock();
+	void closeAllChannels();
 
 // internals
 private:
 	AIEngine& engine;
 
-	rfc_ptrmap *mapIdToSession;
-	rfc_lock *connectionDataLock;
-	int lastSessionId;
-	bool acceptConnections;
-};
-
-// #############################################################################
-// #############################################################################
-
-// session
-class AISessionImpl : public AISession
-{
-public:
-	virtual void sendMessageToExpert( AIMessage *message );
-
-	virtual int getId() { return( id ); };
-	virtual String getChannelType() { return( channeltype ); };
-	virtual String getChannelTypeUser() { return( channeltypeuser ); };
-	virtual void *getMedia() { return( media ); };
-
-	virtual AIDuplexChannel *getChannel() { return( channel ); };
-
-	virtual bool isSessionOpen() { return( sessionOpen ); };
-	virtual bool isMediaOpen() { return( mediaOpen ); };
-
-	virtual void close();
-	virtual void setMediaOpen( bool p_open );
-
-	// AIObject interface
-
-public:
-	AISessionImpl( int p_id , String p_channeltype , String p_user , void *p_media );
-	~AISessionImpl();
-
-	void setChannel( AIDuplexChannel *p_channel );
-	void closeReflect();
-
-private:
-	AIEngine& engine;
-	AIIO io;
-
-	AIDuplexChannel *channel;
-
-	int id;
-	String channeltype;
-	String channeltypeuser;
-	void *media;
-
-	bool sessionOpen;
-	bool mediaOpen;
-};
-
-// #############################################################################
-// #############################################################################
-
-// message
-class AIMessageImpl : public AIMessage
-{
-public:
-	virtual const char *getMessage();
-	virtual const char *getType();
-
-	virtual const char *getId();
-	virtual void setId( const char *id );
-
-	// AIObject interface
-
-public:
-	AIMessageImpl( const String p_msg , const String p_type );
-
-	String id;
-	String message;
-	String type;
+	rfc_lock *dataLock;
+	MapStringToClass<AIChannel> mapChannels; // channel name to class
 };
 
 // #############################################################################
 // #############################################################################
 
 // input/output messages
-class AIDuplexChannelImpl : public AIDuplexChannel
+class AIChannel : public Object
 {
 public:
-	virtual AISession *getSession();
+	AIChannel( String msgid , String name , bool sync );
+	~AIChannel();
 
-	virtual void addLeftMessage( AIMessage *p_msg );
-	virtual void addRightMessage( AIMessage *p_msg );
-
-	virtual AIMessage *getNextLeftMessage();
-	virtual AIMessage *getNextRightMessage();
-
-	virtual AIMessage *getNextLeftMessageNoLock();
-	virtual AIMessage *getNextRightMessageNoLock();
-
-	virtual void subscribeLeftMessage( AIIO::subscribeFunction p_f , bool p_sync , void *p_userdata );
-	virtual void subscribeRightMessage( AIIO::subscribeFunction p_f , bool p_sync , void *p_userdata );
-
-	virtual void open();
-	virtual void close();
-	virtual bool isOpen() { return( opened ); };
-
-	// AIObject interface
-
-// #############################################################################
-// #############################################################################
+	static const char *NAME;
+	virtual const char *getClass() { return( NAME ); };
 
 public:
-	AIDuplexChannelImpl( AISession *p_session );
-	~AIDuplexChannelImpl();
+	String getName();
+	void open();
+	void close();
+	String publish( AIPublisherImpl *pub , const char *msg );
+	String publish( AIPublisherImpl *pub , Xml xml , const char *type );
 
-	// executing in separate thread
-	void threadMainLeft();
-	void threadMainRight();
+	// subscribers and publishers
+	void addSubscription( String key , AISubscriptionImpl *sub );
+	void deleteSubscription( String key );
+	void addPublisher( String key , AIPublisherImpl *pub );
+	void deletePublisher( String key );
 
-	void closeReflect();
+	// read messages and call subscribers
+	void processMessages();
 
 private:
-	AIEngine& engine;
-	AIIO io;
-	AIMedia media;
-	AIExpert expert;
+	String getNewMessageId();
+	void subscribeEvent( AIMessage *p_msg );
+	void lock();
+	void unlock();
+	void disconnectSubscriptions();
+	void disconnectPublishers();
 
-	AISession *session;
+// #############################################################################
+// #############################################################################
 
+private:
+	String name;
 	bool opened;
+	bool sync;
+	bool run;
+	int queueMessageId;
 
-	RFC_THREAD threadIDLeft;
-	RFC_THREAD threadIDRight;
+	rfc_lock *channelLock;
+	RFC_THREAD threadID;
+	AIIOQueue *messages;
+	MapStringToClass<AISubscriptionImpl> subs;
+	MapStringToClass<AIPublisherImpl> pubs;
+};
 
-	AIIOQueue *leftMessages;
-	AIIOQueue *rightMessages;
+/*#########################################################################*/
+/*#########################################################################*/
 
-	AIIO::subscribeFunction cbSubscribeLeft;
-	AIIO::subscribeFunction cbSubscribeRight;
+class AIPublisherImpl : public AIPublisher
+{
+public:
+	AIPublisherImpl( AIChannel *p_channel , String p_name , String p_msgtype );
+	virtual ~AIPublisherImpl();
 
-	bool syncLeft;
-	bool syncRight;
-	void *userdataLeft;
-	void *userdataRight;
+	virtual String publish( String msg );
+	virtual String publish( Xml msg );
+
+	void disconnected();
+
+	AIChannel *channel;
+	String name;
+	String msgtype;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class AISubscriptionImpl : public AISubscription
+{
+public:
+	AISubscriptionImpl( AIChannel *p_channel , String p_name , AISubscriber *p_sub );
+
+	void disconnected();
+
+public:
+	AIChannel *channel;
+	String name;
+	AISubscriber *sub;
 };
 
 // #############################################################################
@@ -198,17 +145,19 @@ private:
 class AIIOQueue : public Object
 {
 public:
-	AIIOQueue( const char *p_queueId );
+	AIIOQueue( String p_queueId );
 	~AIIOQueue();
 
+	static const char *NAME;
+	virtual const char *getClass() { return( NAME ); };
+
+public:
 	void addMessage( AIMessage *p_str );
 	AIMessage *getNextMessage();
 	AIMessage *getNextMessageNoLock();
 	void makeEmptyAndWakeup();
 	bool isEmpty();
 	const char *getId() { return( queueId ); };
-
-	// AIObject interface
 
 private:
 	void clearMessages();
@@ -218,7 +167,6 @@ private:
 	AIIO io;
 
 	String queueId;
-	int queueMessageId;
 	rfc_lock *queueLock;
 	RFC_HND queueWakeupEvent;
 	rfc_list *queueMessages;

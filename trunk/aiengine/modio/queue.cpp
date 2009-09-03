@@ -1,16 +1,17 @@
 
-#include <aiio_impl.h>
+#include "aiio_impl.h"
+
+const char *AIIOQueue::NAME = "AIIOQueue";
 
 /*#########################################################################*/
 /*#########################################################################*/
 
 // sync queue
 // class AIIOQueue 
-AIIOQueue::AIIOQueue( const char *p_queueId )
+AIIOQueue::AIIOQueue( String p_queueId )
 :	engine( AIEngine::getInstance() )
 {
 	queueId = p_queueId;
-	queueMessageId = 0;
 	queueLock = rfc_lock_create();
 	queueWakeupEvent = rfc_hnd_evcreate();
 	queueMessages = rfc_lst_create( RFC_EXT_TYPEPTR );
@@ -32,16 +33,8 @@ void AIIOQueue::addMessage( AIMessage *p_str )
 {
 	rfc_lock_exclusive( queueLock );
 
-	// assign message number
-	String msgId = queueId;
-	msgId += ":";
-	char l_buf[ 10 ];
-	sprintf( l_buf , "%d" , ++queueMessageId );
-	msgId += l_buf;
-	p_str -> setId( msgId );
-
 	// log
-	logger.logInfo( String( "QUEUE: add message=" ) + p_str -> getId() );
+	logger.logInfo( String( "QUEUE: add message=" ) + p_str -> id );
 
 	// add to list
 	RFC_TYPE val;
@@ -85,7 +78,7 @@ AIMessage *AIIOQueue::getNextMessage()
 
 	// remove from queue
 	rfc_lst_remove( queueMessages , 0 );
-	logger.logInfo( String( "removed message from queue: " ) + x -> getId() );
+	logger.logInfo( String( "removed message from queue: " ) + x -> id );
 
 	// signal off if no records remained
 	if( rfc_lst_count( queueMessages ) == 0 ) {
@@ -153,7 +146,7 @@ void AIIOQueue::clearMessages()
 	for( int k = rfc_lst_count( queueMessages ) - 1; k >= 0; k-- ) 
 		{
 			AIMessage *x = ( AIMessage * )rfc_lst_get( queueMessages , k );
-			io.destroyMessage( x );
+			delete x;
 		}
 	rfc_lst_clear( queueMessages );
 }

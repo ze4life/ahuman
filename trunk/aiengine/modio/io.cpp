@@ -1,5 +1,5 @@
 
-#include <aiio_impl.h>
+#include "aiio_impl.h"
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -19,176 +19,139 @@ AIIO::AIIO()
 AIIOImpl::AIIOImpl() 
 :	engine( AIEngine::getInstance() )
 { 
-	connectionDataLock = rfc_lock_create();
-	mapIdToSession = rfc_map_ptrcreate();
-	lastSessionId = 0;
-	acceptConnections = false;
+	dataLock = rfc_lock_create();
 }
 
 void AIIOImpl::initService()
 {
+	// start all channels
+	Xml topics = config.getChildNode( "topics" );
+	for( Xml topic = topics.getFirstChild( "topic" ); topic.exists(); topic = topic.getNextChild( "topic" ) )
+		createChannel( topic );
 }
 
 void AIIOImpl::runService()
 {
-	enableConnections( true );
 }
 
 void AIIOImpl::exitService()
 {
-	closeAllSessions();
+	closeAllChannels();
 }
 
 void AIIOImpl::destroyService()
 {
-	rfc_lock_destroy( connectionDataLock );
-	rfc_map_ptrdrop( mapIdToSession );
+	rfc_lock_destroy( dataLock );
+	mapChannels.destroy();
 
 	delete this;
 }
 
-void AIIOImpl::on_message_to_media( AIMessage *msg , void *p_userdata )
-{
-	AISession *session = ( AISession * )p_userdata;
-	lockChannels( true );
-
-	AIMedia media;
-	media.sendMessageToUser( msg , session );
-	lockChannels( false );
-}
-
-void AIIOImpl::on_message_to_expert( AIMessage *msg , void *p_userdata )
-{
-	AISession *session = ( AISession * )p_userdata;
-	lockChannels( true );
-
-	AIExpert expert;
-	expert.processMediaMessage( msg , session );
-	lockChannels( false );
-}
-
 /*#########################################################################*/
 /*#########################################################################*/
 
-AISession *AIIOImpl::connect( String p_channeltype , String p_user , void *p_media )
+AIPublisher *AIIOImpl::createPublisher( String channel , String pubName , String msgtype )
 {
-	if( !canUserConnect( p_user ) )
-		return( NULL );
+	AIChannel *ch = getChannel( channel );
+	AIPublisherImpl *pub = new AIPublisherImpl( ch , pubName , msgtype );
 
-	// check already connected
-	rfc_lock_exclusive( connectionDataLock );
+	ch -> addPublisher( pubName , pub );
 
-	// create session
-	lastSessionId++;
-	AISessionImpl *session = new AISessionImpl( lastSessionId , p_channeltype , p_user , p_media );
-	rfc_map_ptradd( mapIdToSession , ( void * )session -> getId() , ( unsigned long )session );
+	AIIOImpl::logger.logInfo( String( "[" ) + pubName + "] publisher started on [" + channel + "] channel" );
 
-	// create message channel
-	AIDuplexChannelImpl *channel = new AIDuplexChannelImpl( session );
-	session -> setChannel( channel );
-
-	// subscribe and run - left=initiator, right=io
-	channel -> subscribeLeftMessage( static_cast<AIIO::subscribeFunction>( on_message_to_media ) , false , session );
-	channel -> subscribeRightMessage( static_cast<AIIO::subscribeFunction>( on_message_to_expert ) , false , session );
-	channel -> open();
-
-	rfc_lock_release( connectionDataLock );
-	return( session );
+	return( pub );
 }
 
-void AIIOImpl::disconnect( int p_session )
+AISubscription *AIIOImpl::subscribe( String channel , String subName , AISubscriber *subHandler )
 {
-	AISessionImpl *session = ( AISessionImpl * )getSessionById( p_session );
-	if( session == NULL )
-		return;
+	AIChannel *ch = getChannel( channel );
+	AISubscriptionImpl *sub = new AISubscriptionImpl( ch , subName , subHandler );
 
-	// close session
-	if( session -> isSessionOpen() )
-		session -> closeReflect();
+	ch -> addSubscription( subName , sub );
+	logger.logInfo( String( "[" ) + subName + "] subscriber started on [" + channel + "] channel" );
+	return( sub );
+}
 
-	// close channel
-	AIDuplexChannelImpl *channel = ( AIDuplexChannelImpl * )session -> getChannel();
-	if( channel -> isOpen() )
-		channel -> closeReflect();
+bool AIIOImpl::destroyPublisher( AIPublisher *publisher )
+{
+	AIPublisherImpl *pub = ( AIPublisherImpl * )publisher;
+	AIChannel *ch = pub -> channel;
 
-	// close media
-	if( session -> isMediaOpen() )
+	String name = pub -> name;
+	if( ch != NULL )
 		{
-			AIMedia media;
-			media.closeMediaReflect( session );
-			session -> setMediaOpen( false );
+			ch -> deletePublisher( name );
+			logger.logInfo( String( "[" ) + name + "] publisher stopped on [" + ch -> getName() + "] channel" );
 		}
 
-	// remove from session map
-	rfc_lock_exclusive( connectionDataLock );
-	rfc_map_ptrremove( mapIdToSession , ( void * )session -> getId() );
-	rfc_lock_release( connectionDataLock );
-
-	// delete classes
-	session -> setChannel( NULL );
-	delete channel;
-	delete session;
-}
-
-AISession *AIIOImpl::getSessionById( int p_session )
-{
-	rfc_lock_shared( connectionDataLock );
-	AISession *session = NULL;
-	rfc_map_ptrcheck( mapIdToSession , ( void * )p_session , ( unsigned long * )&session );
-	rfc_lock_release( connectionDataLock );
-
-	return( session );
-}
-
-void AIIOImpl::lockChannels( bool p_lock )
-{
-	if( p_lock )
-		rfc_lock_shared( connectionDataLock );
-	else
-		rfc_lock_release( connectionDataLock );
-}
-
-void AIIOImpl::closeAllSessions()
-{
-	rfc_lock_exclusive( connectionDataLock );
-
-	// disable connections
-	enableConnections( false );
-
-	// close all channels
-	while( rfc_map_ptrcount( mapIdToSession ) > 0 )
-		{
-			AISession *session = ( AISession * )rfc_map_ptrget( mapIdToSession , 0 );
-
-			// close given channel
-			rfc_lock_release( connectionDataLock );
-			disconnect( session -> getId() );
-			rfc_lock_exclusive( connectionDataLock );
-		}
-
-	rfc_lock_release( connectionDataLock );
-}
-
-void AIIOImpl::enableConnections( bool p_enable )
-{
-	acceptConnections = p_enable;
-}
-
-bool AIIOImpl::canUserConnect( String user )
-{
-	if( !acceptConnections )
-		return( false );
-
+	delete pub;
 	return( true );
 }
 
-AIMessage *AIIOImpl::createMessage( String message , String type )
+bool AIIOImpl::unsubscribe( AISubscription *subscription )
 {
-	return( new AIMessageImpl( message , type ) );
+	AISubscriptionImpl *sub = ( AISubscriptionImpl * )subscription;
+	AIChannel *ch = sub -> channel;
+
+	if( ch != NULL )
+		{
+			ch -> deleteSubscription( sub -> name );
+			logger.logInfo( String( "[" ) + sub -> name + "] subscriber unsubscribed from [" + ch -> getName() + "] channel" );
+		}
+	delete sub;
+	return( true );
 }
 
-void AIIOImpl::destroyMessage( AIMessage *message )
+/*#########################################################################*/
+/*#########################################################################*/
+
+void AIIOImpl::createChannel( Xml config )
 {
-	AIMessageImpl *msg = ( AIMessageImpl * )message;
+	String name = config.getAttribute( "name" );
+	String msgid = config.getProperty( "msgid" );
+	bool auth = config.getBooleanProperty( "auth" );
+	bool sync = config.getBooleanProperty( "sync" );
+
+	AIChannel *channel = new AIChannel( msgid , name , sync );
+	
+	ASSERT( auth == false );
+
+	mapChannels.add( name , channel );
+	channel -> open();
 }
 
+AIChannel *AIIOImpl::getChannel( String name )
+{
+	lock();
+	AIChannel *channel = mapChannels.get( name );
+	unlock();
+	ASSERTMSG( channel != NULL , String( "Channel does not exist: [" ) + name + "]" );
+
+	return( channel );
+}
+
+void AIIOImpl::lock()
+{
+	rfc_lock_shared( dataLock );
+}
+
+void AIIOImpl::unlock()
+{
+	rfc_lock_release( dataLock );
+}
+
+void AIIOImpl::closeAllChannels()
+{
+	lock();
+
+	// close all channels
+	for( int k = 0; k < mapChannels.count(); k++ )
+		{
+			AIChannel *channel = mapChannels.getClassByIndex( k );
+
+			// close given channel
+			channel -> close();
+		}
+
+	unlock();
+}
