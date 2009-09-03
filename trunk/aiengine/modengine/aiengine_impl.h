@@ -30,7 +30,10 @@ public:
 	// others
 	virtual void exit( int status );
 	virtual LogManager *getLogManager();
-	virtual Configuration loadConfiguration( String fileName );
+	virtual Xml loadXml( String fileName );
+	virtual Xml readXml( const char *data , const char *contentName );
+	virtual Xml createXml( const char *contentName );
+	virtual void destroyXmlDoc( Xml& xml );
 
 	// serializable objects
 	virtual void registerSerializeObject( SerializeObject *sop );
@@ -79,13 +82,13 @@ private:
 	void destroyServices();
 
 	// log manager
-	void logStart( Configuration configLogging );
+	void logStart( Xml configLogging );
 	void logStop();
 
 // data
 private:
 	String configDir;
-	Configuration config;
+	Xml config;
 
 	String logLineFormat;
 	LogManager *logManager;
@@ -149,7 +152,7 @@ public:
 	LogSettings();
 	~LogSettings();
 
-	void load( Configuration config );
+	void load( Xml config );
 
 	String getFileName();
 	String getFormat();
@@ -158,7 +161,7 @@ public:
 	int getCustomLogLevel( const char *loggerName );
 
 private:
-	void readLevels( Configuration config , const char *listName , MapStringToClass<LogSettingsItem>& map , int& dv );
+	void readLevels( Xml config , const char *listName , MapStringToClass<LogSettingsItem>& map , int& dv );
 
 private:
 	String logFile;
@@ -197,7 +200,7 @@ public:
 	~LogManager();
 
 	// main run function
-	void configure( Configuration config );
+	void configure( Xml config );
 	int run();
 
 	// sync/async mode

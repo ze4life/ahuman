@@ -20,6 +20,8 @@ must not be misrepresented as being the original software.
 
 3. This notice may not be removed or altered from any source
 distribution.
+
+  UPDATED BY VS - 2009-08
 */
 
 
@@ -212,6 +214,7 @@ public:
 		(For an unformatted stream, use the << operator.)
 	*/
 	virtual void Print( FILE* cfile, int depth ) const = 0;
+	virtual void Print( TIXML_STRING* str, int depth ) const = 0;
 
 	/**	The world does not agree on whether white space should be kept or
 		not. In order to make everyone happy, these global, static functions
@@ -869,9 +872,13 @@ public:
 
 	// Prints this Attribute to a FILE stream.
 	virtual void Print( FILE* cfile, int depth ) const {
-		Print( cfile, depth, 0 );
+		Print( cfile );
 	}
-	void Print( FILE* cfile, int depth, TIXML_STRING* str ) const;
+	virtual void Print( TIXML_STRING* str, int depth ) const {
+		Print( str );
+	}
+	void Print( FILE* cfile ) const;
+	void Print( TIXML_STRING* str ) const;
 
 	// [internal use]
 	// Set the document pointer so the attribute can report errors.
@@ -1115,6 +1122,7 @@ public:
 	virtual TiXmlNode* Clone() const;
 	// Print the Element to a FILE stream.
 	virtual void Print( FILE* cfile, int depth ) const;
+	virtual void Print( TIXML_STRING* str, int depth ) const;
 
 	/*	Attribtue parsing starts: next char past '<'
 						 returns: next char past '>'
@@ -1169,6 +1177,7 @@ public:
 	virtual TiXmlNode* Clone() const;
 	// Write this Comment to a FILE stream.
 	virtual void Print( FILE* cfile, int depth ) const;
+	virtual void Print( TIXML_STRING* str, int depth ) const;
 
 	/*	Attribtue parsing starts: at the ! of the !--
 						 returns: next char past '>'
@@ -1230,6 +1239,7 @@ public:
 
 	// Write this text object to a FILE stream.
 	virtual void Print( FILE* cfile, int depth ) const;
+	virtual void Print( TIXML_STRING* str, int depth ) const;
 
 	/// Queries whether this represents text using a CDATA section.
 	bool CDATA() const				{ return cdata; }
@@ -1307,10 +1317,8 @@ public:
 	/// Creates a copy of this Declaration and returns it.
 	virtual TiXmlNode* Clone() const;
 	// Print this declaration to a FILE stream.
-	virtual void Print( FILE* cfile, int depth, TIXML_STRING* str ) const;
-	virtual void Print( FILE* cfile, int depth ) const {
-		Print( cfile, depth, 0 );
-	}
+	virtual void Print( FILE* cfile, int depth ) const;
+	virtual void Print( TIXML_STRING* str, int depth ) const;
 
 	virtual const char* Parse( const char* p, TiXmlParsingData* data, TiXmlEncoding encoding );
 
@@ -1356,6 +1364,7 @@ public:
 	virtual TiXmlNode* Clone() const;
 	// Print this Unknown to a FILE stream.
 	virtual void Print( FILE* cfile, int depth ) const;
+	virtual void Print( TIXML_STRING* str, int depth ) const;
 
 	virtual const char* Parse( const char* p, TiXmlParsingData* data, TiXmlEncoding encoding );
 
@@ -1522,6 +1531,7 @@ public:
 
 	/// Print this Document to a FILE stream.
 	virtual void Print( FILE* cfile, int depth = 0 ) const;
+	virtual void Print( TIXML_STRING* str, int depth = 0 ) const;
 	// [internal use]
 	void SetError( int err, const char* errorLocation, TiXmlParsingData* prevData, TiXmlEncoding encoding );
 

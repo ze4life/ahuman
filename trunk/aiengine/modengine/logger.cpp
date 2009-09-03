@@ -109,6 +109,11 @@ void Logger::logError( const char *s , int mode )
 	log( s , mode , true );
 }
 
+void Logger::logDebug( const char *s , int mode )
+{
+	log( s , mode , false );
+}
+
 void Logger::logObject( const char *prompt , Object *obj )
 {
 	if( logLevel < Logger::LogLevelInfo )

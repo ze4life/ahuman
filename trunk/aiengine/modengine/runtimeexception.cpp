@@ -84,7 +84,6 @@ RuntimeException::RuntimeException( const char *p_msg , const char *p_file , int
 
 void RuntimeException::printStack( Logger& logger ) 
 { 
-	AIEngine& engine = AIEngine::getInstance();
 	if( !isSEH() )
 		{
 			logger.logError( String( "C++ Exception: " ) + msg + " (file=" + fileShort + ", line=" + line + ")" );
@@ -97,6 +96,45 @@ void RuntimeException::printStack( Logger& logger )
 	// skip system levels
 	int skipCount = getSkipCount();
 	logger.printStack( stack , skipCount );
+}
+
+String RuntimeException::printStack()
+{
+	String error;
+	if( !isSEH() )
+		error = String( "C++ Exception: " ) + msg + " (file=" + fileShort + ", line=" + line + ")";
+	else
+		error = String( "SEH Exception: " ) + className + "::" + functionName + " (" + msg + ")";
+
+	// skip system levels
+	int skipCount = getSkipCount();
+	int startItem = rfc_thr_stackfulldepth( stack ) - 1;
+	if( skipCount > 0 )
+		{
+			error += String( "\n\t...skipped..." );
+			startItem -= skipCount;
+		}
+
+	for( int k = startItem; k >= 0; k-- )
+		{
+			rfc_threadstacklevel *sl = rfc_thr_stacklevel( stack , k );
+
+			// extract short name
+			String moduleName = sl -> moduleName;
+			int from = moduleName.findLastAny( "/\\" );
+			int to = moduleName.findLast( '.' );
+
+			String moduleNameShort = moduleName;
+			if( from >= 0 && to >= 0 )
+				moduleNameShort = moduleNameShort.getMid( from + 1 , to - from - 1 );
+
+			error += String( "\n\t" ) + sl -> className + 
+				"::" + sl -> functionName + 
+				" (" + moduleNameShort + 
+				", " + sl -> message + ")";
+		}
+
+	return( error );
 }
 
 int RuntimeException::getSkipCount()

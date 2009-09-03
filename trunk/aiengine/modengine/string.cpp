@@ -58,7 +58,8 @@ String::~String()
 String::String( const char *s )
 {
 	v = NULL;
-	assign( s , strlen( s ) );
+	if( s != NULL )
+		assign( s , strlen( s ) );
 }
 
 void String::createFromString( const char *s )
@@ -69,7 +70,7 @@ void String::createFromString( const char *s )
 String::String( const String& s )
 {
 	v = NULL;
-	createFromString( s );
+	assign( s , s.length() );
 }
 
 bool String::equals( const char *s )

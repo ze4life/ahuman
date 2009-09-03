@@ -53,7 +53,7 @@ LogManager::~LogManager()
 	rfc_hnd_evdestroy( stopEvent );
 }
 
-void LogManager::configure( Configuration config )
+void LogManager::configure( Xml config )
 {
 	logSettings.load( config );
 }

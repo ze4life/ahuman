@@ -21,7 +21,7 @@ LogSettings::~LogSettings()
 	customData.destroy();
 }
 
-void LogSettings::load( Configuration config )
+void LogSettings::load( Xml config )
 {
 	// read
 	logFile = config.getProperty( "filename" );
@@ -33,11 +33,11 @@ void LogSettings::load( Configuration config )
 	readLevels( config , "customLogLevel" , customData , defaultCustomLevel );
 }
 
-void LogSettings::readLevels( Configuration config , const char *listName , MapStringToClass<LogSettingsItem>& map , int& dv )
+void LogSettings::readLevels( Xml config , const char *listName , MapStringToClass<LogSettingsItem>& map , int& dv )
 {
 	map.destroy();
 
-	Configuration list = config.getChildNode( listName );
+	Xml list = config.getChildNode( listName );
 	if( !list.exists() )
 		return;
 
@@ -55,7 +55,7 @@ void LogSettings::readLevels( Configuration config , const char *listName , MapS
 		dv = Logger::LogLevelNone;
 
 	// read list
-	for( Configuration item = list.getFirstChild( "class" ); item.exists(); item = item.getNextChild( "class" ) )
+	for( Xml item = list.getFirstChild( "class" ); item.exists(); item = item.getNextChild( "class" ) )
 		{
 			String name = item.getAttribute( "name" );
 			String level = item.getAttribute( "level" );

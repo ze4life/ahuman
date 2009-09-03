@@ -97,10 +97,10 @@ void AIEngineImpl::init()
 	workerStarted();
 
 	// engine configuration
-	config = loadConfiguration( "main.xml" );
+	config = loadXml( "main.xml" );
 
 	// init logging
-	Configuration configLogging = config.getChildNode( "logging" );
+	Xml configLogging = config.getChildNode( "logging" );
 	logStart( configLogging );
 
 	// register serializable classes
@@ -216,8 +216,8 @@ void AIEngineImpl::createServices()
 		}
 
 	// attach configurations
-	Configuration configs = config.getChildNode( "services" );
-	for( Configuration item = configs.getFirstChild( "service" ); item.exists(); item = item.getNextChild( "service" ) )
+	Xml configs = config.getChildNode( "services" );
+	for( Xml item = configs.getFirstChild( "service" ); item.exists(); item = item.getNextChild( "service" ) )
 		{
 			String serviceName = item.getAttribute( "name" );
 			String fileName = item.getProperty( "file" );
@@ -225,7 +225,7 @@ void AIEngineImpl::createServices()
 			svc = services.get( serviceName );
 			ASSERT( svc != NULL );
 
-			Configuration configService = loadConfiguration( fileName );
+			Xml configService = loadXml( fileName );
 			svc -> configure( configService );
 		}
 
@@ -356,7 +356,7 @@ void AIEngineImpl::destroyServices()
 	logger.logInfo( "destroy services - done" );
 }
 
-void AIEngineImpl::logStart( Configuration configLogging )
+void AIEngineImpl::logStart( Xml configLogging )
 {
 	// open file
 	logManager -> configure( configLogging );
@@ -442,7 +442,7 @@ ThreadObject *AIEngineImpl::getWorkerObject( const char *key )
 	return( threadData -> map.get( key ) );
 }
 
-Configuration AIEngineImpl::loadConfiguration( String fileName )
+Xml AIEngineImpl::loadXml( String fileName )
 {
 	// check whether already loaded
 	TiXmlDocument *doc = configs.get( fileName );
@@ -461,9 +461,78 @@ Configuration AIEngineImpl::loadConfiguration( String fileName )
 			configs.add( fileName , doc );
 		}
 
-	Configuration config;
+	Xml config;
 	config.attach( doc , doc -> FirstChildElement() );
 	return( config );
+}
+
+Xml AIEngineImpl::readXml( const char *data , const char *contentName )
+{
+	TiXmlDocument *doc = new TiXmlDocument();
+
+	const char *p = doc -> Parse( data );
+	if( doc -> Error() )
+		{
+			delete doc;
+			String err = "XML message cannot be read";
+			throw RuntimeError( err );
+		}
+
+	// verify trailing data are only spaces
+	if( p != NULL )
+		{
+			char c;
+			while( c = *p++ )
+				if( !( c == ' ' || c == '\t' || c == '\v' || c == '\n' || c == '\r' ) )
+					break;
+
+			if( c )
+				{
+					delete doc;
+					String err = "XML message is malformed - data found behind message";
+					throw RuntimeError( err );
+				}
+		}
+
+	// verify message has given child element
+	try {
+		TiXmlElement *item = doc -> FirstChildElement( contentName );
+		if( item != NULL )
+			{
+				Xml xml;
+				xml.attach( doc , item );
+				return( xml );
+			}
+	}
+	catch( ... ) {
+	}
+
+	delete doc;
+	String err = String( "XML message is malformed - cannot find required top item: " ) + contentName;
+	throw RuntimeError( err );
+}
+
+Xml AIEngineImpl::createXml( const char *contentName )
+{
+	TiXmlDocument *doc = new TiXmlDocument();
+	TiXmlElement *top = new TiXmlElement( contentName );
+	doc -> LinkEndChild( top );
+	
+	Xml xml;
+	xml.attach( doc , top );
+
+	String txt = xml.serialize();
+
+	return( xml );
+}
+
+void AIEngineImpl::destroyXmlDoc( Xml& xml )
+{
+	TiXmlDocument *doc = ( TiXmlDocument * )xml.doc;
+	delete doc;
+
+	xml.doc = NULL;
+	xml.node = NULL;
 }
 
 // services
