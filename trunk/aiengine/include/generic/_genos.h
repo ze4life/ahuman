@@ -268,6 +268,7 @@ extern int			rfc_thr_stackdepth( rfc_threadstack *stack );
 extern rfc_threadstacklevel *rfc_thr_stacklevel( rfc_threadstack *stack , int level );
 extern void			rfc_thr_stackfree( rfc_threadstack *stack );
 extern short		rfc_thr_stacknamebyaddr( void *p_addr , char *p_class , char *p_func );
+extern int			rfc_thr_increment( int *pv );
 
 /*#######################################################*/
 /*#######################################################*/

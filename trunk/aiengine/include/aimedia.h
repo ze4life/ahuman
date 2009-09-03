@@ -11,11 +11,6 @@
 class AIMedia
 {
 public:
-	virtual void sendMessageToUser( AIMessage *msg , AISession *session )
-		{ thisPtr -> sendMessageToUser( msg , session ); };
-
-	virtual void closeMediaReflect( AISession *session )
-		{ thisPtr -> closeMediaReflect( session ); };
 
 // engine helpers
 public:

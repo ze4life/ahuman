@@ -19,7 +19,7 @@ class ObjectField;
 class Logger;
 class LogManager;
 class Service;
-class Configuration;
+class Xml;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -33,22 +33,43 @@ public:
 /*#########################################################################*/
 /*#########################################################################*/
 
-class Configuration
+class Xml
 {
-public:
-	Configuration();
-	void attach( void *doc , void *node );
+	friend class AIEngineImpl;
 
-	Configuration getChildNode( String s );
+public:
+	Xml();
+	void attach( void *doc , void *node );
+	bool exists();
+
+	// direct data
+	String getName();
+	String getValue();
+	String serialize();
+
+	// navigation
+	Xml getChildNode( String s );
+	Xml getFirstChild( String name );
+	Xml getNextChild( String name );
+
+	// attributes
 	String getAttribute( String a );
 	String getAttribute( String a , String defaultValue );
+	bool getBooleanAttribute( String a );
+	void setAttribute( String a , String value );
+	void setBooleanAttribute( String a , bool value );
 
+	// properties
 	String getProperty( String name );
 	String getProperty( String name , String defaultValue );
+	bool getBooleanProperty( String name );
+	int getIntProperty( String name );
+	int getIntProperty( String name , int defaultValue );
+	float getFloatProperty( String name );
+	float getFloatProperty( String name , float defaultValue );
 
-	bool exists();
-	Configuration getFirstChild( String name );
-	Configuration getNextChild( String name );
+	// elements
+	Xml addTextElement( String name , String value );
 
 private:
 	void *doc;
@@ -84,6 +105,7 @@ public:
 	// log calls
 	void logInfo( const char *s , int logMode = -1 );
 	void logError( const char *s , int logMode = -1 );
+	void logDebug( const char *s , int logMode = -1 );
 	void logObject( const char *prompt , Object *obj );
 
 	// check log status
@@ -126,7 +148,7 @@ public:
 	virtual void destroyService() = 0;
 
 	// configuration
-	virtual void configure( Configuration p_config ) { config = p_config; };
+	virtual void configure( Xml p_config ) { config = p_config; };
 
 	// logger
 	Logger& getLogger() { return( logger ); };
@@ -145,7 +167,7 @@ protected:
 	Logger logger;
 
 	// configuration
-	Configuration config;
+	Xml config;
 };
 
 /*#########################################################################*/
@@ -164,7 +186,10 @@ public:
 	// others
 	virtual void exit( int status ) = 0;
 	virtual LogManager *getLogManager() = 0;
-	virtual Configuration loadConfiguration( String fileName ) = 0;
+	virtual Xml loadXml( String fileName ) = 0;
+	virtual Xml readXml( const char *data , const char *contentName ) = 0;
+	virtual Xml createXml( const char *contentName ) = 0;
+	virtual void destroyXmlDoc( Xml& xml ) = 0;
 
 	// object serializations
 	virtual void registerSerializeObject( SerializeObject *sop ) = 0;

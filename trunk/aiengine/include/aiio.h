@@ -2,8 +2,9 @@
 #define INCLUDE_AIIO_H
 
 class AIMessage;
-class AISession;
-class AIDuplexChannel;
+class AIPublisher;
+class AISubscriber;
+class AISubscription;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -11,28 +12,15 @@ class AIDuplexChannel;
 class AIIO
 {
 public:
-	typedef void ( AIIO::*subscribeFunction )( AIMessage *p_msg , void *userdata );
-
-	virtual AISession *connect( String p_user , const String p_channeltype , void *p_initiator )
-		{ return( thisPtr -> connect( p_user , p_channeltype , p_initiator ) ); };
-
-	virtual void lockChannels( bool p_lock )
-		{ thisPtr -> lockChannels( p_lock ); };
-
-	virtual void disconnect( int p_session )
-		{ thisPtr -> disconnect( p_session ); };
-
-	virtual AISession *getSessionById( int p_session )
-		{ return( thisPtr -> getSessionById( p_session ) ); };
-
-	virtual AIMessage *createMessage( String message , String type )
-		{ return( thisPtr -> createMessage( message , type ) ); };
-
-	virtual void destroyMessage( AIMessage *message )
-		{ thisPtr -> destroyMessage( message ); };
-
-	virtual void subscribeEvent( subscribeFunction pf , AIMessage *message , void *userdata )
-		{ thisPtr -> subscribeEvent( pf , message , userdata ); };
+	// topics publishers and subscribers
+	virtual AIPublisher *createPublisher( String channel , String pubName , String msgtype )
+		{ return( thisPtr -> createPublisher( channel , pubName , msgtype ) ); };
+	virtual AISubscription *subscribe( String channel , String subName , AISubscriber *sub )
+		{ return( thisPtr -> subscribe( channel , subName , sub ) ); };
+	virtual bool destroyPublisher( AIPublisher *pub )
+		{ return( thisPtr -> destroyPublisher( pub ) ); };
+	virtual bool unsubscribe( AISubscription *sub )
+		{ return( thisPtr -> unsubscribe( sub ) ); };
 
 // engine helpers
 public:
@@ -44,63 +32,90 @@ public:
 /*#########################################################################*/
 /*#########################################################################*/
 
-// session
-class AISession : public Object
+class AIPublisher
 {
 public:
-	virtual void sendMessageToExpert( AIMessage *message ) = 0;
+	virtual ~AIPublisher() {};
+	virtual String publish( String msg ) = 0;
+	virtual String publish( Xml msg ) = 0;
+};
 
-	virtual int getId() = 0;
-	virtual String getChannelType() = 0;
-	virtual String getChannelTypeUser() = 0;
-	virtual void *getMedia() = 0;
-	virtual AIDuplexChannel *getChannel() = 0;
+/*#########################################################################*/
+/*#########################################################################*/
 
-	virtual bool isSessionOpen() = 0;
-	virtual bool isMediaOpen() = 0;
+class AISubscriber
+{
+public:
+	virtual void onMessage( AIMessage *msg ) = 0;
+};
 
-	virtual void close() = 0;
+/*#########################################################################*/
+/*#########################################################################*/
+
+class AISubscription
+{
+public:
+	virtual ~AISubscription() {};
 };
 
 /*#########################################################################*/
 /*#########################################################################*/
 
 // message
-class AIMessage : public Object
+class AIMessage
 {
 public:
-	virtual const char *getMessage() = 0;
-	virtual const char *getType() = 0;
+	AIMessage();
+	~AIMessage();
 
-	virtual const char *getId() = 0;
-	virtual void setId( const char *id ) = 0;
+	Xml getXml( const char *type );
+	void setFromXml();
+
+public:
+	String id;
+	String extid;
+	String type;
+	String source;
+	String message;
+
+private:
+	Xml xml;
 };
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-// input/output messages
-class AIDuplexChannel : public Object
+class XmlCall
 {
-// interface
 public:
-	virtual AISession *getSession() = 0;
+	XmlCall();
+	~XmlCall();
 
-	virtual void open() = 0;
-	virtual void close() = 0;
-	virtual bool isOpen() = 0;
+	void attach( AIMessage *msg );
 
-	virtual void addLeftMessage( AIMessage *p_msg ) = 0;
-	virtual void addRightMessage( AIMessage *p_msg ) = 0;
+	// request
+	String getName();
+	String getParam( String paramName );
+	int getIntParam( String paramName );
+	bool getBooleanParam( String paramName );
+	float getFloatParam( String paramName );
 
-	virtual AIMessage *getNextLeftMessage() = 0;
-	virtual AIMessage *getNextRightMessage() = 0;
+	// response 
+	Xml createResponse();
+	String sendResponse( AIPublisher *pub );
+	String sendResponseException( AIPublisher *pub , RuntimeException& e );
+	String sendResponseUnknownException( AIPublisher *pub );
 
-	virtual AIMessage *getNextLeftMessageNoLock() = 0;
-	virtual AIMessage *getNextRightMessageNoLock() = 0;
+private:
+	AIMessage *msg;
 
-	virtual void subscribeLeftMessage( AIIO::subscribeFunction p_f , bool p_sync , void *p_userdata ) = 0;
-	virtual void subscribeRightMessage( AIIO::subscribeFunction p_f , bool p_sync , void *p_userdata ) = 0;
+	String id;
+	String name;
+	Xml params;
+	Xml xmlResponse;
 };
+
+/*#########################################################################*/
+/*#########################################################################*/
 
 #endif	// INCLUDE_AIIO_H

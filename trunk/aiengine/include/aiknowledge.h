@@ -14,14 +14,6 @@ class AITokenList;
 class AIKnowledge
 {
 public:
-	virtual AITokenList *getTokenList()
-		{ return( thisPtr -> getTokenList() ); };
-
-	virtual AISentense *createSentense()
-		{ return( thisPtr -> createSentense() ); };
-
-	virtual void associate( AISession *session , AIToken *leftToken , AIToken *rightToken )
-		{ thisPtr -> associate( session , leftToken , rightToken ); };
 
 // engine helpers
 public:

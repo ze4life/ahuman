@@ -11,8 +11,6 @@
 class AIExpert
 {
 public:
-	virtual void processMediaMessage( AIMessage *msg , AISession *session )
-		{ thisPtr -> processMediaMessage( msg , session ); };
 
 // engine helpers
 public:
