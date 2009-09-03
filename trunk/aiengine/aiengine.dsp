@@ -254,6 +254,10 @@ SOURCE=.\modio\queue.cpp
 
 SOURCE=.\modio\subscription.cpp
 # End Source File
+# Begin Source File
+
+SOURCE=.\modio\xmlcall.cpp
+# End Source File
 # End Group
 # Begin Group "modknowledge"
 
@@ -329,6 +333,10 @@ SOURCE=.\modexpert\aiexpert_implstrategy.h
 # Begin Source File
 
 SOURCE=.\modexpert\expert.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\modexpert\expertdebug.cpp
 # End Source File
 # Begin Source File
 
