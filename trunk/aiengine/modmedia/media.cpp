@@ -23,6 +23,7 @@ AIMediaImpl::AIMediaImpl()
 
 void AIMediaImpl::initService()
 {
+	AISockServer::initSocketLib();
 }
 
 void AIMediaImpl::runService()
@@ -37,6 +38,8 @@ void AIMediaImpl::exitService()
 
 void AIMediaImpl::destroyService()
 {
+	AISockServer::exitSocketLib();
+
 	listeners.destroy();
 	delete this;
 }
@@ -47,8 +50,8 @@ void AIMediaImpl::destroyService()
 void AIMediaImpl::startListeners()
 {
 	// scan configuration
-	Configuration configListeners = config.getChildNode( "listeners" );
-	for( Configuration item = configListeners.getFirstChild( "listener" ); item.exists(); item = item.getNextChild( "listener" ) )
+	Xml configListeners = config.getChildNode( "listeners" );
+	for( Xml item = configListeners.getFirstChild( "listener" ); item.exists(); item = item.getNextChild( "listener" ) )
 		{
 			String name = item.getAttribute( "name" );
 			String type = item.getAttribute( "type" );
@@ -81,27 +84,7 @@ void AIMediaImpl::stopListeners()
 		{
 			AIListener *listener = listeners.getClassByIndex( k );
 			listener -> stopListener();
+			listener -> stopListenerConnections();
 		}
-}
-
-void AIMediaImpl::sendMessageToUser( AIMessage *msg , AISession *session )
-{
-	if( !session -> isMediaOpen() )
-		return;
-
-	AISocketConnection *client = ( AISocketConnection * )session -> getMedia();
-	if( client == NULL )
-		return;
-
-	client -> writeMessage( msg );
-}
-
-void AIMediaImpl::closeMediaReflect( AISession *session )
-{
-	AISocketConnection *client = ( AISocketConnection * )session -> getMedia();
-	if( client == NULL )
-		return;
-
-	client -> closeReflect();
 }
 

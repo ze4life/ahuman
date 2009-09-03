@@ -12,14 +12,13 @@ static 	unsigned		__stdcall threadConnectFunction( void *p_arg )
 	engine.workerStarted();
 
 	// startup sockets
-	WSADATA l_wsa;
-	WSAStartup( MAKEWORD( 1 , 1 ) , &l_wsa );
+	AISockServer::initSocketLib();
 
 	// accept connections
 	server -> acceptConnectionLoop();
 
 	// cleanup sockets
-	WSACleanup();
+	AISockServer::exitSocketLib();
 
 	engine.workerExited( 0 );
 	return( 0 );
@@ -31,24 +30,66 @@ static 	unsigned		__stdcall threadConnectFunction( void *p_arg )
 AISockServer::AISockServer()
 :	engine( AIEngine::getInstance() )
 {
-	/* startup sockets */
-	WSADATA l_wsa;
-	WSAStartup( MAKEWORD( 1 , 1 ) , &l_wsa );
-
 	continueConnecting = true;
 	shutdownInProgress = false;
 }
 
 AISockServer::~AISockServer()
 {
+}
+
+String AISockServer::getTopicIn()
+{
+	return( topicIn );
+}
+
+String AISockServer::getTopicOut()
+{
+	return( topicOut );
+}
+
+bool AISockServer::getAuth()
+{
+	return( auth );
+}
+
+bool AISockServer::getWayIn()
+{
+	return( wayIn );
+}
+
+bool AISockServer::getWayOut()
+{
+	return( wayOut );
+}
+
+void AISockServer::initSocketLib()
+{
+	WSADATA l_wsa;
+	memset( &l_wsa, 0 , sizeof( WSADATA ) );
+	WSAStartup( MAKEWORD( 2 , 2 ) , &l_wsa );
+}
+
+void AISockServer::exitSocketLib()
+{
 	/* cleanup sockets */
 	WSACleanup();
 }
 
-void AISockServer::configure( Configuration config )
+void AISockServer::configure( Xml config )
 {
+	auth = config.getBooleanAttribute( "direction" );
+	String direction = config.getAttribute( "direction" );
+	wayIn = direction.equals( "in" ) || direction.equals( "duplex" );
+	wayOut = direction.equals( "out" ) || direction.equals( "duplex" );
+
+	if( wayIn )
+		topicIn = config.getProperty( "topic.in" );
+	if( wayOut )
+		topicOut = config.getProperty( "topic.out" );
+
 	port = atoi( config.getProperty( "port" ) );
-	loggerName = String( "AISockServer::" ) + getName();
+	loggerName = String( "AISockServer::" ) + AIListener::getName();
 	logger.attach( loggerName );
 }
 
@@ -68,20 +109,19 @@ bool AISockServer::openListeningPort()
 	short socket_port = port;
 
 	// prepare socket
-	struct sockaddr_in l_inet;
 	char l_hostname[ 256 ];
 	struct hostent *l_hostent;
 	int l_len;
 
 	l_len = sizeof( struct sockaddr_in );
-	memset( &l_inet , 0 , l_len );
-	l_inet.sin_port = htons( ( unsigned short )socket_port );
+	memset( &listen_inet , 0 , l_len );
+	listen_inet.sin_port = htons( ( unsigned short )socket_port );
 
 	/* calculate itself address */
 	gethostname( l_hostname , 255 );
 	l_hostent = gethostbyname( l_hostname );
-	l_inet.sin_family = AF_INET;
-	memcpy( &l_inet.sin_addr , l_hostent -> h_addr_list[ 0 ] , sizeof( l_inet.sin_addr ) );
+	listen_inet.sin_family = AF_INET;
+	memcpy( &listen_inet.sin_addr , l_hostent -> h_addr_list[ 0 ] , sizeof( listen_inet.sin_addr ) );
 
 	unsigned long l_ok = 1;
 	listenSocket = socket( AF_INET , SOCK_STREAM , 0 );
@@ -89,7 +129,13 @@ bool AISockServer::openListeningPort()
 		l_ok = 0;
 
 	if( l_ok )
-		if( bind( listenSocket , ( struct sockaddr * )&l_inet , l_len ) )
+		if( bind( listenSocket , ( struct sockaddr * )&listen_inet , l_len ) )
+			l_ok = 0;
+
+	// options
+	BOOL option = FALSE;
+	if( l_ok )
+		if( setsockopt( listenSocket , SOL_SOCKET , SO_KEEPALIVE , ( const char * )&option , sizeof( BOOL ) ) )
 			l_ok = 0;
 
 	/* set socket to non-blocking mode */
@@ -108,12 +154,12 @@ bool AISockServer::openListeningPort()
 	// start listening thread
 	engine.workerCreated();
 	if( rfc_thr_process( &listenThread , this , threadConnectFunction ) ) {
-		logger.logError( "ai_sock_init: cannot start listening thread" );
+		logger.logError( "openListeningPort: cannot start listening thread" );
 		engine.workerExited( listenThread , -20 );
 		return( false );
 	}
 
-	String msg = "ai_sock_init: started server on " + getAddress( &l_inet );
+	String msg = "openListeningPort: started listener on " + getAddress( &listen_inet );
 
 	logger.logInfo( msg );
 	return( true );
@@ -139,10 +185,6 @@ String AISockServer::getAddress( struct sockaddr_in *a )
 
 void AISockServer::closeListeningPort()
 {
-	// startup sockets
-	WSADATA l_wsa;
-	WSAStartup( MAKEWORD( 1 , 1 ) , &l_wsa );
-
 	shutdownInProgress = true;
 
 	// close listening socket
@@ -150,10 +192,10 @@ void AISockServer::closeListeningPort()
 		{
 			_closesocket( listenSocket );
 			listenSocket = INVALID_SOCKET;
-		}
 
-	/* cleanup sockets */
-	WSACleanup();
+			String msg = "closeListeningPort: stopped listener on " + getAddress( &listen_inet );
+			logger.logInfo( msg );
+		}
 }
 
 void AISockServer::acceptConnectionLoop()
@@ -261,7 +303,7 @@ void AISockServer::performConnect()
 	setsockopt( clientSocket , SOL_SOCKET , SO_LINGER , ( char * )&l_linger , sizeof( struct linger ) );
 
 	// start connection thread
-	if( !startConnectionThread( clientSocket , &clientAddress ) )
+	if( !startConnection( clientSocket , &clientAddress ) )
 		{
 			continueConnecting = false;
 			logger.logError( "cannot start client thread" );
@@ -269,16 +311,17 @@ void AISockServer::performConnect()
 		}
 }
 
-bool AISockServer::startConnectionThread( SOCKET clientSocket , struct sockaddr_in *clientAddress )
+bool AISockServer::startConnection( SOCKET clientSocket , struct sockaddr_in *clientAddress )
 {
 	AISocketConnection *client = new AISocketConnection( this , clientSocket , clientAddress );
-	if( !client -> startConnectionThread() )
+	if( !client -> startConnection() )
 		{
-			client -> closeReflect();
+			client -> stopConnection();
 			delete client;
 			return( false );
 		}
 
+	AIListener::addListenerConnection( client -> getID() , client );
 	return( true );
 }
 

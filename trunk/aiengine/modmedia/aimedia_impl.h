@@ -1,7 +1,7 @@
 #ifndef	INCLUDE_AIMEDIA_IMPL_H
 #define INCLUDE_AIMEDIA_IMPL_H
 
-#include <winsock.h>
+#include <winsock2.h>
 
 #include <aiengine.h>
 #include <aimedia.h>
@@ -31,9 +31,35 @@
 	(_fd_set) -> fd_array[ 0 ] = _fd_hnd; \
 	_res = select( 0 , NULL , NULL , _fd_set , _fd_time )
 
+class AIListener;
+class AIConnection;
+
 class AISockServer;
 class AISocketConnection;
-class AIListener;
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class AIConnection
+{
+public:
+	AIConnection() { listener = NULL; };
+	virtual ~AIConnection() {};
+
+	void setListener( AIListener *p_listener ) { listener = p_listener; };
+	AIListener *getListener() { return( listener ); };
+
+	void setID( String id ) { key = id; };
+	String getID() { return( key ); };
+
+public:
+	virtual bool startConnection() = 0;
+	virtual void stopConnection() = 0;
+
+private:
+	AIListener *listener;
+	String key;
+};
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -41,19 +67,25 @@ class AIListener;
 class AIListener
 {
 public:
-	AIListener() {};
-	virtual ~AIListener() {};
-
-public:
-	virtual void configure( Configuration config ) = 0;
+	// interface
+	virtual void configure( Xml config ) = 0;
 	virtual bool startListener() = 0;
 	virtual void stopListener() = 0;
 
-	void setName( String p_name ) { name = p_name; };
-	String getName() { return( name ); };
+public:
+	AIListener();
+	virtual ~AIListener();
+
+public:
+	void setName( String p_name );
+	String getName();
+
+	void addListenerConnection( String key , AIConnection *connection );
+	void stopListenerConnections();
 
 private:
 	String name;
+	MapStringToClass<AIConnection> connections;
 };
 
 /*#########################################################################*/
@@ -72,8 +104,6 @@ class AIMediaImpl : public AIMedia , public Service
 // external interface
 public:
 	AIMediaImpl();
-	virtual void sendMessageToUser( AIMessage *msg , AISession *session );
-	virtual void closeMediaReflect( AISession *session );
 
 public:
 	AISockServer *getSockServer( String name );
@@ -98,24 +128,34 @@ public:
 	AISockServer();
 	~AISockServer();
 
+	static void initSocketLib();
+	static void exitSocketLib();
+
 public:
-	virtual void configure( Configuration config );
+	virtual void configure( Xml config );
 	virtual bool startListener();
 	virtual void stopListener();
 
 public:
+	String getTopicIn();
+	String getTopicOut();
+	bool getAuth();
+	bool getWayIn();
+	bool getWayOut();
+
 	void acceptConnectionLoop();
 	bool openListeningPort();
 	void closeListeningPort();
 
 	bool waitReadSocket( SOCKET socket , int p_sec );
 	void performConnect();
-	bool startConnectionThread( SOCKET clientSocket , struct sockaddr_in *clientAddress );
+	bool startConnection( SOCKET clientSocket , struct sockaddr_in *clientAddress );
 
 	static String getAddress( struct sockaddr_in *clientAddress );
 
 private:
 	AIEngine& engine;
+
 	Logger logger;
 	String loggerName;
 
@@ -123,29 +163,42 @@ private:
 	bool shutdownInProgress;
 	int port;
 
+	bool auth;
+	bool wayIn;
+	bool wayOut;
+	String topicIn;
+	String topicOut;
+
 	RFC_THREAD listenThread;
 	SOCKET listenSocket;
+	struct sockaddr_in listen_inet;
 };
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-class AISocketConnection
+class AISocketConnection : public AIConnection , public AISubscriber
 {
 public:
 	AISocketConnection( AISockServer *server , SOCKET clientSocket , struct sockaddr_in *clientAddress );
 	~AISocketConnection();
 
-	bool startConnectionThread();
-	void readMessages();
-	String getID();
-	void closeReflect();
+	virtual bool startConnection();
+	virtual void stopConnection();
 
-	void performRead();
-	void processMessage( const char *p_msg );
-	void tryConnect( const char *p_msg );
-	void writeMessage( AIMessage *p_msg );
+	String getID();
+
+	void readMessages();
 	void sendString( const char *p_msg );
+	void writeMessage( AIMessage *p_msg );
+
+	virtual void onMessage( AIMessage *msg );
+
+private:
+	void tryLogin( const char *p_msg );
+	void performRead();
+	void processData( const char *p_msg );
+	void processMessage( const char *p_msg );
 
 private:
 	AIEngine& engine;
@@ -153,11 +206,14 @@ private:
 	Logger logger;
 
 	AISockServer *server;
-	AISession *session;
+	AIPublisher *pub;
+	AISubscription *sub;
 
+	String name;
 	SOCKET socket;
 	struct sockaddr_in addr;
 	RFC_THREAD thread;
+	String message;
 
 	bool threadStarted;
 	bool continueRead;
