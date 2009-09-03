@@ -50,7 +50,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /machine:I386
-# ADD LINK32 kernel32.lib user32.lib genrtn.lib wsock32.lib /nologo /subsystem:console /machine:I386 /libpath:"lib/release"
+# ADD LINK32 kernel32.lib user32.lib genrtn.lib ws2_32.lib /nologo /subsystem:console /machine:I386 /libpath:"lib/release"
 
 !ELSEIF  "$(CFG)" == "aiengine - Win32 Debug"
 
@@ -74,7 +74,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 genrtnd.lib wsock32.lib kernel32.lib /nologo /subsystem:console /profile /map /debug /machine:I386 /libpath:"lib/debug"
+# ADD LINK32 genrtnd.lib ws2_32.lib kernel32.lib /nologo /subsystem:console /profile /map /debug /machine:I386 /libpath:"lib/debug"
 # SUBTRACT LINK32 /nodefaultlib
 
 !ENDIF 
@@ -232,7 +232,7 @@ SOURCE=.\modio\aiio_impl.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\modio\duplexchannel.cpp
+SOURCE=.\modio\channel.cpp
 # End Source File
 # Begin Source File
 
@@ -244,11 +244,15 @@ SOURCE=.\modio\message.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\modio\publisher.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\modio\queue.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modio\session.cpp
+SOURCE=.\modio\subscription.cpp
 # End Source File
 # End Group
 # Begin Group "modknowledge"
@@ -261,26 +265,6 @@ SOURCE=.\modknowledge\aiknowledge_impl.h
 # Begin Source File
 
 SOURCE=.\modknowledge\knowledge.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\modknowledge\sentense.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\modknowledge\token.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\modknowledge\tokenassocdata.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\modknowledge\tokenassociations.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\modknowledge\tokenlist.cpp
 # End Source File
 # End Group
 # Begin Group "modmind"
@@ -298,13 +282,13 @@ SOURCE=.\modmind\mind.cpp
 # Begin Group "modmedia"
 
 # PROP Default_Filter ""
-# Begin Group "connectors"
-
-# PROP Default_Filter ""
-# End Group
 # Begin Source File
 
 SOURCE=.\modmedia\aimedia_impl.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\modmedia\listener.cpp
 # End Source File
 # Begin Source File
 
@@ -454,10 +438,6 @@ SOURCE=.\modexpert\nnvariablesimple.cpp
 
 SOURCE=.\modexpert\nnweights.cpp
 # End Source File
-# Begin Source File
-
-SOURCE=.\modexpert\tokenparser.cpp
-# End Source File
 # End Group
 # Begin Group "modengine"
 
@@ -465,10 +445,6 @@ SOURCE=.\modexpert\tokenparser.cpp
 # Begin Source File
 
 SOURCE=.\modengine\aiengine_impl.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\modengine\configuration.cpp
 # End Source File
 # Begin Source File
 
@@ -549,6 +525,10 @@ SOURCE=.\modengine\tinyxmlerror.cpp
 # Begin Source File
 
 SOURCE=.\modengine\tinyxmlparser.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\modengine\xml.cpp
 # End Source File
 # End Group
 # Begin Group "etc"
