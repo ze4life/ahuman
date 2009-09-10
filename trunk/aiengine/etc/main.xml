@@ -20,8 +20,8 @@
 		<service name="AIMind">
 			<property name="file" value="mind.xml"/>
 		</service>
-		<service name="AIExpert">
-			<property name="file" value="expert.xml"/>
+		<service name="AINNLib">
+			<property name="file" value="nnlib.xml"/>
 		</service>
 	</services>
 
@@ -38,7 +38,7 @@
 		</objectLogLevel>
 
 		<objectInstanceLogLevel default="N">
-			<class name="NNStrategyBackPropagation" instance = "ExperFinderFactory::P1S" level="E"/>
+			<class name="NNStrategyBackPropagation" instance = "NNFinderFactory::P1S" level="E"/>
 		</objectInstanceLogLevel>
 
 		<serviceLogLevel default="A">
