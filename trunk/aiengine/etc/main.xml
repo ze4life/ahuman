@@ -23,30 +23,37 @@
 		<service name="AINNLib">
 			<property name="file" value="nnlib.xml"/>
 		</service>
+		<service name="AIHtmLib">
+			<property name="file" value="htmlib.xml"/>
+		</service>
 	</services>
 
 	<!-- engine configuration -->
-	<!-- logging -->
 
 	<logging>
-		<property name="filename" value="log/main.log"/>
+		<property name="filename" value="K:\projects\ai2svn\environments\local\log\main.log"/>
 		<property name="format" value="log: %"/>
 		
-		<objectLogLevel default="N">
+		<objectLogLevel default="E">
 			<class name="NNFinderFactory" level="A"/>
 			<class name="NNFinder" level="A"/>
 		</objectLogLevel>
 
-		<objectInstanceLogLevel default="N">
+		<objectInstanceLogLevel default="E">
 			<class name="NNStrategyBackPropagation" instance = "NNFinderFactory::P1S" level="E"/>
 		</objectInstanceLogLevel>
 
 		<serviceLogLevel default="A">
 		</serviceLogLevel>
 
-		<customLogLevel default="N">
-			<class name="AISockServer::debug" level="A"/>
-			<class name="AISockServer::chat" level="A"/>
+		<customLogLevel default="E">
+			<class name="SocketServer::debug" level="A"/>
+			<class name="SocketServer::chat" level="A"/>
+			<class name="SocketConnection" level="A"/>
 		</customLogLevel>
 	</logging>
+
+	<debug>
+		<property name="debugchannel" value="debug.commands"/>
+	</debug>
 </engine>
