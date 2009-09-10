@@ -3,27 +3,17 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-AIMessage::AIMessage()
+Message::Message()
+{
+	msgBaseType = MsgType_Text;
+}
+
+Message::~Message()
 {
 }
 
-AIMessage::~AIMessage()
+XmlCall& Message::toXmlCall()
 {
-	if( xml.exists() )
-		{
-			AIEngine& engine = AIEngine::getInstance();
-			engine.destroyXmlDoc( xml );
-		}
+	return( *( XmlCall * )this );
 }
 
-Xml AIMessage::getXml( const char *contentType )
-{
-	if( !xml.exists() )
-		{
-			AIEngine& engine = AIEngine::getInstance();
-			xml = engine.readXml( message , contentType );
-		}
-
-	ASSERT( xml.getName().equals( contentType ) );
-	return( xml );
-}

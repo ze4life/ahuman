@@ -3,30 +3,54 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-AIPublisherImpl::AIPublisherImpl( AIChannel *p_channel , String p_name , String p_msgtype ) 
+PublisherImpl::PublisherImpl( Channel *p_channel , String p_name , String p_msgtype ) 
 { 
 	channel = p_channel; 
 	name = p_name; 
 	msgtype = p_msgtype; 
 }
 
-AIPublisherImpl::~AIPublisherImpl() 
+PublisherImpl::~PublisherImpl() 
 {
 }
 
-String AIPublisherImpl::publish( String msg )
+Channel *PublisherImpl::getChannel()
+{
+	return( channel );
+}
+
+const String& PublisherImpl::getMsgType()
+{
+	return( msgtype );
+}
+
+String PublisherImpl::publish( const char *msg )
 {
 	ASSERT( channel != NULL );
 	return( channel -> publish( this , msg ) ); 
 }
 
-String AIPublisherImpl::publish( Xml msg )
+String PublisherImpl::publish( Message *msg )
 {
 	ASSERT( channel != NULL );
-	return( channel -> publish( this , msg , msg.getName() ) );
+	return( channel -> publish( this , msg ) ); 
 }
 
-void AIPublisherImpl::disconnected()
+String PublisherImpl::publish( XmlMessage *msg )
+{
+	ASSERT( channel != NULL );
+	msg -> setMessageFromXml();
+	return( channel -> publish( this , msg ) );
+}
+
+String PublisherImpl::publish( XmlCall *msg )
+{
+	ASSERT( channel != NULL );
+	msg -> setMessageFromXml();
+	return( channel -> publish( this , msg ) );
+}
+
+void PublisherImpl::disconnected()
 {
 	channel = NULL;
 }

@@ -3,37 +3,50 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-AIListener::AIListener()
+Listener::Listener()
 {
+	lastConnectionId = 0;
 }
 
-AIListener::~AIListener()
+Listener::~Listener()
 {
 	connections.destroy();
 }
 
-void AIListener::setName( String p_name )
+void Listener::setMsgType( Message::MsgType p_msgType )
+{
+	msgType = p_msgType;
+}
+
+Message::MsgType Listener::getMsgType()
+{
+	return( msgType );
+}
+
+void Listener::setName( String p_name )
 { 
 	name = p_name; 
 }
 
-String AIListener::getName() 
+String Listener::getName() 
 { 
 	return( name ); 
 }
 
-void AIListener::addListenerConnection( String key , AIConnection *connection )
+void Listener::addListenerConnection( Connection *connection )
 {
+	String key = getName() + "." + (++lastConnectionId);
+
 	connections.add( key , connection );
 	connection -> setListener( this );
-	connection -> setID( key );
+	connection -> setName( key );
 }
 
-void AIListener::stopListenerConnections()
+void Listener::stopListenerConnections()
 {
 	for( int k = 0; k < connections.count(); k++ )
 		{
-			AIConnection *connection = connections.getClassByIndex( k );
+			Connection *connection = connections.getClassByIndex( k );
 			connection -> stopConnection();
 		}
 }

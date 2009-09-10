@@ -1,14 +1,14 @@
 
 #include "aiio_impl.h"
 
-const char *AIChannel::NAME = "AIChannel";
+const char *Channel::NAME = "Channel";
 
 /*#########################################################################*/
 /*#########################################################################*/
 
 static 	unsigned		__stdcall threadChannelFunction( void *p_arg )
 {
-	AIChannel *channel = ( AIChannel * )p_arg;
+	Channel *channel = ( Channel * )p_arg;
 
 	String name = channel -> getInstance();
 	Logger& logger = channel -> getLogger();
@@ -38,7 +38,7 @@ static 	unsigned		__stdcall threadChannelFunction( void *p_arg )
 
 // input/output messages
 // class AIIODuplexChannel
-AIChannel::AIChannel( String p_msgid , String p_name , bool p_sync )
+Channel::Channel( String p_msgid , String p_name , bool p_sync )
 {
 	Object::setInstance( p_msgid );
 
@@ -54,26 +54,31 @@ AIChannel::AIChannel( String p_msgid , String p_name , bool p_sync )
 	messages = NULL;
 	logger.attach( this );
 	channelLock = rfc_lock_create();
+
+	defaultPublisher = NULL;
 }
 
-AIChannel::~AIChannel()
+Channel::~Channel()
 {
 	close();
 	rfc_lock_destroy( channelLock );
 
 	if( messages != NULL )
 		delete messages;
+
+	if( defaultPublisher != NULL )
+		delete defaultPublisher;
 }
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-String AIChannel::getName()
+String Channel::getName()
 {
 	return( name );
 }
 
-void AIChannel::open()
+void Channel::open()
 {
 	lock();
 	if( opened )
@@ -82,7 +87,10 @@ void AIChannel::open()
 			return;
 		}
 
-	messages = new AIIOQueue( Object::getInstance() );
+	messages = new IOQueue( Object::getInstance() );
+	PublisherImpl *pubDefault = new PublisherImpl( this , "default" , "generic" );
+	defaultPublisher = pubDefault;
+	addPublisher( "default" , pubDefault );
 
 	// create channel thread
 	if( !sync )
@@ -92,7 +100,7 @@ void AIChannel::open()
 			if( rfc_thr_process( &threadID , ( void * )this , threadChannelFunction ) )
 				{
 					run = false;
-					logger.logError( "AIChannel::open - cannot start listening thread" );
+					logger.logError( "Channel::open - cannot start listening thread" );
 					engine.workerExited( threadID , -10 );
 					unlock();
 					return;
@@ -103,7 +111,7 @@ void AIChannel::open()
 	unlock();
 }
 
-void AIChannel::close()
+void Channel::close()
 {
 	lock();
 	if( !opened )
@@ -132,49 +140,33 @@ void AIChannel::close()
 	unlock();
 }
 
-String AIChannel::publish( AIPublisherImpl *pub , const char *msg )
+String Channel::publish( PublisherImpl *pub , const char *msg )
+{
+	Message *l_msg = new Message;
+	l_msg -> setText( msg );
+	l_msg -> setType( pub -> msgtype );
+	return( publish( pub , l_msg ) );
+}
+
+String Channel::publish( PublisherImpl *pub , Message *msg )
 {
 	ASSERT( opened );
-	AIMessage *l_msg = new AIMessage;
-	String id = l_msg -> id = getNewMessageId();
-
-	l_msg -> message = msg;
-	l_msg -> type = pub -> msgtype;
-	l_msg -> source = pub -> name;
+	String id = getNewMessageId();
+	msg -> setChannelMessageId( id ); 
+	msg -> setSourceId( pub -> name );
 
 	if( sync )
 		{
-			subscribeEvent( l_msg );
-			delete l_msg;
+			subscribeEvent( msg );
+			delete msg;
 		}
 	else
-		messages -> addMessage( l_msg );
+		messages -> addMessage( msg );
 
 	return( id );
 }
 
-String AIChannel::publish( AIPublisherImpl *pub , Xml xml , const char *type )
-{
-	ASSERT( opened );
-	AIMessage *l_msg = new AIMessage;
-	String id = l_msg -> id = getNewMessageId();
-
-	l_msg -> message = xml.serialize();
-	l_msg -> type = type;
-	l_msg -> source = pub -> name;
-
-	if( sync )
-		{
-			subscribeEvent( l_msg );
-			delete l_msg;
-		}
-	else
-		messages -> addMessage( l_msg );
-
-	return( id );
-}
-
-void AIChannel::addSubscription( String key , AISubscriptionImpl *sub )
+void Channel::addSubscription( String key , SubscriptionImpl *sub )
 {
 	lock();
 	ASSERT( subs.get( key ) == NULL );
@@ -182,19 +174,19 @@ void AIChannel::addSubscription( String key , AISubscriptionImpl *sub )
 	unlock();
 }
 
-void AIChannel::deleteSubscription( String key )
+void Channel::deleteSubscription( String key )
 {
 	lock();
-	AISubscription *sub = subs.get( key );
+	Subscription *sub = subs.get( key );
 	if( sub != NULL )
 		subs.remove( key );
 	unlock();
 }
 
-void AIChannel::addPublisher( String key , AIPublisherImpl *pub )
+void Channel::addPublisher( String key , PublisherImpl *pub )
 {
 	lock();
-	AIPublisher *tmp = pubs.get( key );
+	Publisher *tmp = pubs.get( key );
 	if( tmp != NULL )
 		{
 			unlock();
@@ -206,17 +198,22 @@ void AIChannel::addPublisher( String key , AIPublisherImpl *pub )
 	unlock();
 }
 
-void AIChannel::deletePublisher( String key )
+void Channel::deletePublisher( String key )
 {
 	lock();
-	AIPublisher *pub = pubs.get( key );
+	Publisher *pub = pubs.get( key );
 	if( pub != NULL )
 		pubs.remove( key );
 	unlock();
 }
 
+Publisher *Channel::getDefaultPublisher()
+{
+	return( defaultPublisher );
+}
+
 // executing in separate thread
-void AIChannel::processMessages()
+void Channel::processMessages()
 {
 	opened = true;
 	run = true;
@@ -225,12 +222,12 @@ void AIChannel::processMessages()
 	while( run ) 
 		{
 			// get next message
-			AIMessage *message = messages -> getNextMessage();
+			Message *message = messages -> getNextMessage();
 			if( message == NULL )
 				break;
 
 			// log
-			logger.logInfo( String( "CHANNEL ID=" ) + Object::getInstance() + ": extracted message ID=" + message -> id );
+			logger.logInfo( String( "CHANNEL ID=" ) + Object::getInstance() + ": extracted message ID=" + message -> getChannelMessageId() );
 
 			// pass message
 			subscribeEvent( message );
@@ -243,28 +240,31 @@ void AIChannel::processMessages()
 /*#########################################################################*/
 /*#########################################################################*/
 
-void AIChannel::subscribeEvent( AIMessage *p_msg )
+void Channel::subscribeEvent( Message *p_msg )
 {
 	lock();
 	for( int k = 0; k < subs.count(); k++ )
 		{
-			AISubscriptionImpl *sub = subs.getClassByIndex( k );
+			SubscriptionImpl *sub = subs.getClassByIndex( k );
 			sub -> sub -> onMessage( p_msg );
 		}
 	unlock();
+
+	// after all executions
+	p_msg -> postExecute();
 }
 
-void AIChannel::lock()
+void Channel::lock()
 {
 	rfc_lock_shared( channelLock );
 }
 
-void AIChannel::unlock()
+void Channel::unlock()
 {
 	rfc_lock_release( channelLock );
 }
 
-String AIChannel::getNewMessageId()
+String Channel::getNewMessageId()
 {
 	// assign message number
 	String msgId = Object::getInstance();
@@ -278,21 +278,21 @@ String AIChannel::getNewMessageId()
 	return( msgId );
 }
 
-void AIChannel::disconnectSubscriptions()
+void Channel::disconnectSubscriptions()
 {
 	for( int k = 0; k < subs.count(); k++ )
 		{
-			AISubscriptionImpl *sub = subs.getClassByIndex( k );
+			SubscriptionImpl *sub = subs.getClassByIndex( k );
 			sub -> disconnected();
 		}
 	subs.clear();
 }
 
-void AIChannel::disconnectPublishers()
+void Channel::disconnectPublishers()
 {
 	for( int k = 0; k < pubs.count(); k++ )
 		{
-			AIPublisherImpl *pub = pubs.getClassByIndex( k );
+			PublisherImpl *pub = pubs.getClassByIndex( k );
 			pub -> disconnected();
 		}
 	pubs.clear();

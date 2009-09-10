@@ -222,6 +222,7 @@ public:
 
 	// train factory function
 	void trainFactorySample( NNSample *fs );
+	void trainFactorySamples();
 
 	// do factory function based on previous training
 	NNFinder *create( NNSamples *trainSet );
@@ -247,7 +248,6 @@ private:
 	void save();
 
 	// training
-	void trainFactorySamples();
 	void mixFactoryStatSamples( NNSamples *stat , NNSamples *mix );
 	void convertStatToFactory( NNSamples *mix , NNSamples *fts );
 

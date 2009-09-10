@@ -6,10 +6,10 @@
 #include <aiexpert.h>
 #include <aimedia.h>
 
-class AIIOQueue;
-class AIChannel;
-class AIPublisherImpl;
-class AISubscriptionImpl;
+class IOQueue;
+class Channel;
+class PublisherImpl;
+class SubscriptionImpl;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -29,14 +29,14 @@ public:
 	AIIOImpl();
 
 	// topics publishers and subscribers
-	virtual AIPublisher *createPublisher( String channel , String pubName , String msgtype );
-	virtual AISubscription *subscribe( String channel , String subName , AISubscriber *sub );
-	virtual bool destroyPublisher( AIPublisher *publisher );
-	virtual bool unsubscribe( AISubscription *subscription );
+	virtual Publisher *createPublisher( String channel , String pubName , String msgtype );
+	virtual Subscription *subscribe( String channel , String subName , Subscriber *sub );
+	virtual bool destroyPublisher( Publisher *publisher );
+	virtual bool unsubscribe( Subscription *subscription );
 
 private:
 	void createChannel( Xml config );
-	AIChannel *getChannel( String name );
+	Channel *getChannel( String name );
 	void lock();
 	void unlock();
 	void closeAllChannels();
@@ -46,18 +46,18 @@ private:
 	AIEngine& engine;
 
 	rfc_lock *dataLock;
-	MapStringToClass<AIChannel> mapChannels; // channel name to class
+	MapStringToClass<Channel> mapChannels; // channel name to class
 };
 
 // #############################################################################
 // #############################################################################
 
 // input/output messages
-class AIChannel : public Object
+class Channel : public Object
 {
 public:
-	AIChannel( String msgid , String name , bool sync );
-	~AIChannel();
+	Channel( String msgid , String name , bool sync );
+	~Channel();
 
 	static const char *NAME;
 	virtual const char *getClass() { return( NAME ); };
@@ -66,21 +66,22 @@ public:
 	String getName();
 	void open();
 	void close();
-	String publish( AIPublisherImpl *pub , const char *msg );
-	String publish( AIPublisherImpl *pub , Xml xml , const char *type );
+	String publish( PublisherImpl *pub , const char *msg );
+	String publish( PublisherImpl *pub , Message *msg );
 
 	// subscribers and publishers
-	void addSubscription( String key , AISubscriptionImpl *sub );
+	void addSubscription( String key , SubscriptionImpl *sub );
 	void deleteSubscription( String key );
-	void addPublisher( String key , AIPublisherImpl *pub );
+	void addPublisher( String key , PublisherImpl *pub );
 	void deletePublisher( String key );
+	Publisher *getDefaultPublisher();
 
 	// read messages and call subscribers
 	void processMessages();
 
 private:
 	String getNewMessageId();
-	void subscribeEvent( AIMessage *p_msg );
+	void subscribeEvent( Message *p_msg );
 	void lock();
 	void unlock();
 	void disconnectSubscriptions();
@@ -98,26 +99,31 @@ private:
 
 	rfc_lock *channelLock;
 	RFC_THREAD threadID;
-	AIIOQueue *messages;
-	MapStringToClass<AISubscriptionImpl> subs;
-	MapStringToClass<AIPublisherImpl> pubs;
+	IOQueue *messages;
+	MapStringToClass<SubscriptionImpl> subs;
+	MapStringToClass<PublisherImpl> pubs;
+	Publisher *defaultPublisher;
 };
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-class AIPublisherImpl : public AIPublisher
+class PublisherImpl : public Publisher
 {
 public:
-	AIPublisherImpl( AIChannel *p_channel , String p_name , String p_msgtype );
-	virtual ~AIPublisherImpl();
+	PublisherImpl( Channel *p_channel , String p_name , String p_msgtype );
+	virtual ~PublisherImpl();
 
-	virtual String publish( String msg );
-	virtual String publish( Xml msg );
+	virtual String publish( const char *msg );
+	virtual String publish( Message *msg );
+	virtual String publish( XmlMessage *msg );
+	virtual String publish( XmlCall *msg );
+	virtual Channel *getChannel();
+	virtual const String& getMsgType();
 
 	void disconnected();
 
-	AIChannel *channel;
+	Channel *channel;
 	String name;
 	String msgtype;
 };
@@ -125,36 +131,37 @@ public:
 /*#########################################################################*/
 /*#########################################################################*/
 
-class AISubscriptionImpl : public AISubscription
+class SubscriptionImpl : public Subscription
 {
 public:
-	AISubscriptionImpl( AIChannel *p_channel , String p_name , AISubscriber *p_sub );
+	SubscriptionImpl( Channel *p_channel , String p_name , Subscriber *p_sub );
+	virtual Channel *getChannel();
 
 	void disconnected();
 
 public:
-	AIChannel *channel;
+	Channel *channel;
 	String name;
-	AISubscriber *sub;
+	Subscriber *sub;
 };
 
 // #############################################################################
 // #############################################################################
 
 // sync queue
-class AIIOQueue : public Object
+class IOQueue : public Object
 {
 public:
-	AIIOQueue( String p_queueId );
-	~AIIOQueue();
+	IOQueue( String p_queueId );
+	~IOQueue();
 
 	static const char *NAME;
 	virtual const char *getClass() { return( NAME ); };
 
 public:
-	void addMessage( AIMessage *p_str );
-	AIMessage *getNextMessage();
-	AIMessage *getNextMessageNoLock();
+	void addMessage( Message *p_str );
+	Message *getNextMessage();
+	Message *getNextMessageNoLock();
 	void makeEmptyAndWakeup();
 	bool isEmpty();
 	const char *getId() { return( queueId ); };

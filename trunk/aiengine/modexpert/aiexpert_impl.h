@@ -22,7 +22,7 @@ class AIExpertImpl;
 /*#########################################################################*/
 /*#########################################################################*/
 
-class AIExpertDebug : public AISubscriber
+class AIExpertDebug : public Subscriber
 {
 public:
 	AIExpertDebug();
@@ -32,15 +32,17 @@ public:
 	void init( Xml config );
 	void exit();
 
-	virtual void onMessage( AIMessage *msg );
+	virtual void onMessage( Message *msg );
 
 // tests
 private:
 	void testCreateBySamples( XmlCall& call );
+	void testFinderPlay( XmlCall& call );
+	void testFinderFactory( XmlCall& call );
 
 private:
-	AIPublisher *callPub;
-	AISubscription *callSub;
+	Publisher *callPub;
+	Subscription *callSub;
 	Logger logger;
 };
 

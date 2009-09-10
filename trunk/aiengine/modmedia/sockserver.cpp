@@ -5,20 +5,20 @@
 
 static 	unsigned		__stdcall threadConnectFunction( void *p_arg )
 {
-	AISockServer *server = ( AISockServer * )p_arg;
+	SocketServer *server = ( SocketServer * )p_arg;
 
 	// register thread
 	AIEngine& engine = AIEngine::getInstance();
 	engine.workerStarted();
 
 	// startup sockets
-	AISockServer::initSocketLib();
+	SocketServer::initSocketLib();
 
 	// accept connections
 	server -> acceptConnectionLoop();
 
 	// cleanup sockets
-	AISockServer::exitSocketLib();
+	SocketServer::exitSocketLib();
 
 	engine.workerExited( 0 );
 	return( 0 );
@@ -27,56 +27,57 @@ static 	unsigned		__stdcall threadConnectFunction( void *p_arg )
 /*#########################################################################*/
 /*#########################################################################*/
 
-AISockServer::AISockServer()
+SocketServer::SocketServer()
 :	engine( AIEngine::getInstance() )
 {
 	continueConnecting = true;
 	shutdownInProgress = false;
+	Listener::setMsgType( Message::MsgType_Unknown );
 }
 
-AISockServer::~AISockServer()
+SocketServer::~SocketServer()
 {
 }
 
-String AISockServer::getTopicIn()
+String SocketServer::getTopicIn()
 {
 	return( topicIn );
 }
 
-String AISockServer::getTopicOut()
+String SocketServer::getTopicOut()
 {
 	return( topicOut );
 }
 
-bool AISockServer::getAuth()
+bool SocketServer::getAuth()
 {
 	return( auth );
 }
 
-bool AISockServer::getWayIn()
+bool SocketServer::getWayIn()
 {
 	return( wayIn );
 }
 
-bool AISockServer::getWayOut()
+bool SocketServer::getWayOut()
 {
 	return( wayOut );
 }
 
-void AISockServer::initSocketLib()
+void SocketServer::initSocketLib()
 {
 	WSADATA l_wsa;
 	memset( &l_wsa, 0 , sizeof( WSADATA ) );
 	WSAStartup( MAKEWORD( 2 , 2 ) , &l_wsa );
 }
 
-void AISockServer::exitSocketLib()
+void SocketServer::exitSocketLib()
 {
 	/* cleanup sockets */
 	WSACleanup();
 }
 
-void AISockServer::configure( Xml config )
+void SocketServer::configure( Xml config )
 {
 	auth = config.getBooleanAttribute( "direction" );
 	String direction = config.getAttribute( "direction" );
@@ -88,22 +89,32 @@ void AISockServer::configure( Xml config )
 	if( wayOut )
 		topicOut = config.getProperty( "topic.out" );
 
+	String smsgType = config.getProperty( "msgtype" , "text" );
+	if( smsgType.equals( "text" ) )
+		Listener::setMsgType( Message::MsgType_Text );
+	else
+	if( smsgType.equals( "xml" ) )
+		Listener::setMsgType( Message::MsgType_Xml );
+	else
+	if( smsgType.equals( "xmlcall" ) )
+		Listener::setMsgType( Message::MsgType_XmlCall );
+
 	port = atoi( config.getProperty( "port" ) );
-	loggerName = String( "AISockServer::" ) + AIListener::getName();
+	loggerName = String( "SocketServer::" ) + Listener::getName();
 	logger.attach( loggerName );
 }
 
-bool AISockServer::startListener()
+bool SocketServer::startListener()
 {
 	return( openListeningPort() );
 }
 
-void AISockServer::stopListener()
+void SocketServer::stopListener()
 {
 	closeListeningPort();
 }
 
-bool AISockServer::openListeningPort()
+bool SocketServer::openListeningPort()
 {
 	// read parameters
 	short socket_port = port;
@@ -159,16 +170,16 @@ bool AISockServer::openListeningPort()
 		return( false );
 	}
 
-	String msg = "openListeningPort: started listener on " + getAddress( &listen_inet );
+	String msg = "openListeningPort: started listener [" + Listener::getName() + "] on " + getAddress( &listen_inet );
 
 	logger.logInfo( msg );
 	return( true );
 }
 
-String AISockServer::getAddress( struct sockaddr_in *a )
+String SocketServer::getAddress( struct sockaddr_in *a )
 {
 	char l_buf[ 20 ];
-	sprintf( l_buf , "%d.%d.%d.%d" , 
+	sprintf( l_buf , "[%d.%d.%d.%d" , 
 		( unsigned int )a -> sin_addr.S_un.S_un_b.s_b1 ,
 		( unsigned int )a -> sin_addr.S_un.S_un_b.s_b2 ,
 		( unsigned int )a -> sin_addr.S_un.S_un_b.s_b3 ,
@@ -177,13 +188,13 @@ String AISockServer::getAddress( struct sockaddr_in *a )
 	String s = l_buf;
 	s += ":";
 
-	sprintf( l_buf , "%d" , ( unsigned int )ntohs( a -> sin_port ) );
+	sprintf( l_buf , "%d]" , ( unsigned int )ntohs( a -> sin_port ) );
 	s += l_buf;
 
 	return( s );
 }
 
-void AISockServer::closeListeningPort()
+void SocketServer::closeListeningPort()
 {
 	shutdownInProgress = true;
 
@@ -198,7 +209,7 @@ void AISockServer::closeListeningPort()
 		}
 }
 
-void AISockServer::acceptConnectionLoop()
+void SocketServer::acceptConnectionLoop()
 {
 	try {
 		continueConnecting = true;
@@ -215,7 +226,7 @@ void AISockServer::acceptConnectionLoop()
 	}
 }
 
-bool AISockServer::waitReadSocket( SOCKET socket , int p_sec )
+bool SocketServer::waitReadSocket( SOCKET socket , int p_sec )
 {
 	struct fd_set l_set;
 	struct timeval l_t;
@@ -269,7 +280,7 @@ bool AISockServer::waitReadSocket( SOCKET socket , int p_sec )
 	return( true );
 }
 
-void AISockServer::performConnect()
+void SocketServer::performConnect()
 {
 	if( !waitReadSocket( listenSocket , 0 ) )
 		{
@@ -311,9 +322,11 @@ void AISockServer::performConnect()
 		}
 }
 
-bool AISockServer::startConnection( SOCKET clientSocket , struct sockaddr_in *clientAddress )
+bool SocketServer::startConnection( SOCKET clientSocket , struct sockaddr_in *clientAddress )
 {
-	AISocketConnection *client = new AISocketConnection( this , clientSocket , clientAddress );
+	SocketConnection *client = new SocketConnection( this , clientSocket , clientAddress , Listener::getMsgType() );
+	Listener::addListenerConnection( client );
+
 	if( !client -> startConnection() )
 		{
 			client -> stopConnection();
@@ -321,7 +334,6 @@ bool AISockServer::startConnection( SOCKET clientSocket , struct sockaddr_in *cl
 			return( false );
 		}
 
-	AIListener::addListenerConnection( client -> getID() , client );
 	return( true );
 }
 

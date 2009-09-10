@@ -521,8 +521,6 @@ Xml AIEngineImpl::createXml( const char *contentName )
 	Xml xml;
 	xml.attach( doc , top );
 
-	String txt = xml.serialize();
-
 	return( xml );
 }
 

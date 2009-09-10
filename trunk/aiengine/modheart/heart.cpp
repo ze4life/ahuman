@@ -109,5 +109,6 @@ void AIHeartImpl::stopIndependentThinking()
 
 void AIHeartImpl::doLive()
 {
+	rfc_thr_sleep( 1 );
 }
 

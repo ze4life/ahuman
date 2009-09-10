@@ -1,14 +1,14 @@
 
 #include "aiio_impl.h"
 
-const char *AIIOQueue::NAME = "AIIOQueue";
+const char *IOQueue::NAME = "IOQueue";
 
 /*#########################################################################*/
 /*#########################################################################*/
 
 // sync queue
-// class AIIOQueue 
-AIIOQueue::AIIOQueue( String p_queueId )
+// class IOQueue 
+IOQueue::IOQueue( String p_queueId )
 :	engine( AIEngine::getInstance() )
 {
 	queueId = p_queueId;
@@ -19,7 +19,7 @@ AIIOQueue::AIIOQueue( String p_queueId )
 	logger.attach( this );
 }
 
-AIIOQueue::~AIIOQueue()
+IOQueue::~IOQueue()
 {
 	// delete all pending messages
 	rfc_lock_exclusive( queueLock );
@@ -29,12 +29,12 @@ AIIOQueue::~AIIOQueue()
 	rfc_lock_destroy( queueLock );
 }
 
-void AIIOQueue::addMessage( AIMessage *p_str )
+void IOQueue::addMessage( Message *p_str )
 {
 	rfc_lock_exclusive( queueLock );
 
 	// log
-	logger.logInfo( String( "QUEUE: add message=" ) + p_str -> id );
+	logger.logInfo( String( "QUEUE: add message=" ) + p_str -> getChannelMessageId() );
 
 	// add to list
 	RFC_TYPE val;
@@ -47,7 +47,7 @@ void AIIOQueue::addMessage( AIMessage *p_str )
 	rfc_lock_release( queueLock );
 }	
 
-AIMessage *AIIOQueue::getNextMessage()
+Message *IOQueue::getNextMessage()
 {
 	rfc_lock_exclusive( queueLock );
 	
@@ -74,11 +74,11 @@ AIMessage *AIIOQueue::getNextMessage()
 
 	// get first item
 	RFC_TYPE *val = rfc_lst_get( queueMessages , 0 );
-	AIMessage *x = ( AIMessage * )val -> u_p;
+	Message *x = ( Message * )val -> u_p;
 
 	// remove from queue
 	rfc_lst_remove( queueMessages , 0 );
-	logger.logInfo( String( "removed message from queue: " ) + x -> id );
+	logger.logInfo( String( "removed message from queue: " ) + x -> getChannelMessageId() );
 
 	// signal off if no records remained
 	if( rfc_lst_count( queueMessages ) == 0 ) {
@@ -91,7 +91,7 @@ AIMessage *AIIOQueue::getNextMessage()
 	return( x );
 }
 
-AIMessage *AIIOQueue::getNextMessageNoLock()
+Message *IOQueue::getNextMessageNoLock()
 {
 	logger.logInfo( "unexpected shared lock" );
 
@@ -108,7 +108,7 @@ AIMessage *AIIOQueue::getNextMessageNoLock()
 
 	// get first item
 	RFC_TYPE *val = rfc_lst_get( queueMessages , 0 );
-	AIMessage *x = ( AIMessage * )val -> u_p;
+	Message *x = ( Message * )val -> u_p;
 
 	// remove from queue
 	rfc_lst_remove( queueMessages , 0 );
@@ -118,7 +118,7 @@ AIMessage *AIIOQueue::getNextMessageNoLock()
 	return( x );
 }
 
-void AIIOQueue::makeEmptyAndWakeup()
+void IOQueue::makeEmptyAndWakeup()
 {
 	rfc_lock_exclusive( queueLock );
 	// remove all messages
@@ -131,7 +131,7 @@ void AIIOQueue::makeEmptyAndWakeup()
 	rfc_lock_release( queueLock );
 }
 
-bool AIIOQueue::isEmpty()
+bool IOQueue::isEmpty()
 {
 	rfc_lock_shared( queueLock );
 	// signal for waiter and release lock
@@ -141,11 +141,11 @@ bool AIIOQueue::isEmpty()
 	return( retval );
 }
 
-void AIIOQueue::clearMessages()
+void IOQueue::clearMessages()
 {
 	for( int k = rfc_lst_count( queueMessages ) - 1; k >= 0; k-- ) 
 		{
-			AIMessage *x = ( AIMessage * )rfc_lst_get( queueMessages , k );
+			Message *x = ( Message * )rfc_lst_get( queueMessages , k );
 			delete x;
 		}
 	rfc_lst_clear( queueMessages );

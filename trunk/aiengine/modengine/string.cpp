@@ -62,6 +62,13 @@ String::String( const char *s )
 		assign( s , strlen( s ) );
 }
 
+String::String( const char *s , int len )
+{
+	v = NULL;
+	if( len > 0 )
+		assign( s , len );
+}
+
 void String::createFromString( const char *s )
 {
 	assign( s , strlen( s ) );
@@ -71,6 +78,14 @@ String::String( const String& s )
 {
 	v = NULL;
 	assign( s , s.length() );
+}
+
+char String::getChar( int index )
+{
+	if( v == NULL )
+		return( 0 );
+	ASSERT( index < length() );
+	return( v[ index ] );
 }
 
 bool String::equals( const char *s )

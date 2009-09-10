@@ -23,7 +23,7 @@ AIMediaImpl::AIMediaImpl()
 
 void AIMediaImpl::initService()
 {
-	AISockServer::initSocketLib();
+	SocketServer::initSocketLib();
 }
 
 void AIMediaImpl::runService()
@@ -38,7 +38,7 @@ void AIMediaImpl::exitService()
 
 void AIMediaImpl::destroyService()
 {
-	AISockServer::exitSocketLib();
+	SocketServer::exitSocketLib();
 
 	listeners.destroy();
 	delete this;
@@ -57,7 +57,7 @@ void AIMediaImpl::startListeners()
 			String type = item.getAttribute( "type" );
 
 			// create and configure
-			AIListener *listener = runListenerFactory( name , type );
+			Listener *listener = runListenerFactory( name , type );
 			listener -> configure( item );
 
 			// start
@@ -66,12 +66,12 @@ void AIMediaImpl::startListeners()
 		}
 }
 
-AIListener *AIMediaImpl::runListenerFactory( String name , String type )
+Listener *AIMediaImpl::runListenerFactory( String name , String type )
 {
 	ASSERT( listeners.get( name ) == NULL );
 	ASSERT( type.equals( "tcp" ) );
 
-	AIListener *listener = new AISockServer();
+	Listener *listener = new SocketServer();
 	listener -> setName( name );
 	listeners.add( name , listener );
 
@@ -82,7 +82,7 @@ void AIMediaImpl::stopListeners()
 {
 	for( int k = 0; k < listeners.count(); k++ )
 		{
-			AIListener *listener = listeners.getClassByIndex( k );
+			Listener *listener = listeners.getClassByIndex( k );
 			listener -> stopListener();
 			listener -> stopListenerConnections();
 		}

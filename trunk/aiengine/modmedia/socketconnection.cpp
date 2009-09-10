@@ -14,7 +14,7 @@ static 	unsigned		__stdcall threadClientFunction( void *p_arg )
 	WSAStartup( MAKEWORD( 1 , 1 ) , &l_wsa );
 
 	// read messages
-	AISocketConnection *client = ( AISocketConnection * )p_arg;
+	SocketConnection *client = ( SocketConnection * )p_arg;
 	client -> readMessages();
 
 	// cleanup sockets
@@ -27,7 +27,7 @@ static 	unsigned		__stdcall threadClientFunction( void *p_arg )
 /*#########################################################################*/
 /*#########################################################################*/
 
-AISocketConnection::AISocketConnection( AISockServer *p_server , SOCKET p_clientSocket , struct sockaddr_in *p_clientAddress )
+SocketConnection::SocketConnection( SocketServer *p_server , SOCKET p_clientSocket , struct sockaddr_in *p_clientAddress , Message::MsgType p_msgType )
 :	engine( AIEngine::getInstance() )
 {
 	server = p_server;
@@ -40,32 +40,35 @@ AISocketConnection::AISocketConnection( AISockServer *p_server , SOCKET p_client
 	connected = false;
 	logout = false;
 	continueRead = false;
+	msgType = p_msgType;
 
-	logger.attach( "AISocketConnection" );
+	logger.attach( "SocketConnection" );
 }
 
-AISocketConnection::~AISocketConnection()
+SocketConnection::~SocketConnection()
 {
 }
 
-bool AISocketConnection::startConnection()
+bool SocketConnection::startConnection()
 {
-	// configure
-	name = server -> getName() + ":" + ( int )ntohs( addr.sin_port );
+	// complete connection
+	logger.logInfo( String( "client [" ) + getName() + 
+		"] connected on listener [" + server -> getName() + 
+		"] from network address " + getClientSocketName() );
 
 	// connect to topics
 	if( server -> getWayIn() )
 		{
 			String topicIn = server -> getTopicIn();
 			AIIO io;
-			pub = io.createPublisher( topicIn , name , "generic" );
+			pub = io.createPublisher( topicIn , getName() , "generic" );
 		}
 
 	if( server -> getWayOut() )
 		{
 			String topicOut = server -> getTopicOut();
 			AIIO io;
-			sub = io.subscribe( topicOut , name , this );
+			sub = io.subscribe( topicOut , getName() , this );
 		}
 
 	// start reading thread
@@ -81,15 +84,12 @@ bool AISocketConnection::startConnection()
 		}
 
 	// log success
-	String msg = getID();
-	msg += ": connected";
-	logger.logInfo( msg );
 	connected = true;
 
 	return( true );
 }
 
-void AISocketConnection::readMessages()
+void SocketConnection::readMessages()
 {
 	try {
 		continueRead = true;
@@ -97,11 +97,11 @@ void AISocketConnection::readMessages()
 			performRead();
 	}
 	catch ( RuntimeException& e ) {
-		logger.logError( getID() + ": AISocketConnection::readMessages - exception catched:" );
+		logger.logError( getName() + ": SocketConnection::readMessages - exception catched:" );
 		e.printStack( logger );
 	}
 	catch ( ... ) {
-		logger.logError( getID() + ": AISocketConnection::readMessages - unknown exception in read" );
+		logger.logError( getName() + ": SocketConnection::readMessages - unknown exception in read" );
 		logger.printStack();
 	}
 
@@ -109,12 +109,12 @@ void AISocketConnection::readMessages()
 		stopConnection();
 	}
 	catch ( ... ) {
-		logger.logError( getID() + ": AISocketConnection::readMessages - unknown exception in stop" );
+		logger.logError( getName() + ": SocketConnection::readMessages - unknown exception in stop" );
 		logger.printStack();
 	}
 }
 
-void AISocketConnection::performRead()
+void SocketConnection::performRead()
 {
 	// wait for input
 	if( server -> getWayIn() == false && server -> getAuth() == false )
@@ -130,11 +130,11 @@ void AISocketConnection::performRead()
 	const int SIZE = 1024;
 	char buf[ SIZE + 1 ];
 	int l_recv = recv( socket , buf , SIZE , 0 );
-	if( l_recv == 0 )
+	if( l_recv == 0 || l_recv == SOCKET_ERROR )
 		{
 			continueRead = false;
 			logout = true;
-			logger.logDebug( "no content" );
+			logger.logDebug( "SocketConnection::performRead - empty message, disconnecting" );
 			return;
 		}
 
@@ -143,7 +143,7 @@ void AISocketConnection::performRead()
 	processData( buf );
 }
 
-void AISocketConnection::stopConnection()
+void SocketConnection::stopConnection()
 {
 	// do not read more
 	continueRead = false;
@@ -173,12 +173,12 @@ void AISocketConnection::stopConnection()
 
 	if( connected )
 		{
-			logger.logInfo( getID() + ": disconnected" );
+			logger.logInfo( getName() + ": disconnected" );
 			connected = false;
 		}
 }
 
-void AISocketConnection::processData( const char *p_msg )
+void SocketConnection::processData( const char *p_msg )
 {
 	// format is "message0x01", where message contains only printable characters
 	do
@@ -200,7 +200,7 @@ void AISocketConnection::processData( const char *p_msg )
 	while( *p_msg );
 }
 
-void AISocketConnection::processMessage( const char *p_msg )
+void SocketConnection::processMessage( const char *p_msg )
 {
 	if( server -> getAuth() && connected == false )
 		{
@@ -210,40 +210,58 @@ void AISocketConnection::processMessage( const char *p_msg )
 		}
 
 	// pass to channel
-	logger.logInfo( name + ": socket received message (" + p_msg + ")" );
-	pub -> publish( p_msg );
+	logger.logDebug( getName() + ": socket received message (" + p_msg + ")" );
+							    
+	if( msgType == Message::MsgType_Text )
+		{
+			pub -> publish( p_msg );
+		}
+	else
+	if( msgType == Message::MsgType_Xml )
+		{
+			XmlMessage *l_msg = new XmlMessage( p_msg );
+			l_msg -> setXmlFromMessage( pub -> getMsgType() );
+			pub -> publish( p_msg );
+		}
+	else
+	if( msgType == Message::MsgType_XmlCall )
+		{
+			XmlCall *call = new XmlCall( pub -> getChannel() , sub -> getChannel() , p_msg );
+			call -> setXmlFromMessage();
+			pub -> publish( call );
+		}
 }
 
-void AISocketConnection::tryLogin( const char *p_msg )
+void SocketConnection::tryLogin( const char *p_msg )
 {
 }
 
-void AISocketConnection::writeMessage( AIMessage *p_msg )
+void SocketConnection::writeMessage( Message *p_msg )
 {
-	sendString( p_msg -> message );
+	const String& s = p_msg -> getText();
+	sendString( ( const char * )s , s.length() );
 }
 
-void AISocketConnection::sendString( const char *p_msg )
+void SocketConnection::sendString( const char *p_msg , int p_len )
 {
+	ASSERTMSG( p_len > 0 , "SocketConnection::sendString - empty message" );
+
 	// send message
-	send( socket , p_msg , strlen( p_msg ) , 0 );
+	logger.logDebug( getName() + ": send message to socket - (" + String( p_msg , p_len ) + ")" );
+ 	send( socket , p_msg , p_len , 0 );
 
 	// send message terminator
 	char c = 0x01;
 	send( socket , &c , 1 , 0 );
 }
 
-String AISocketConnection::getID()
+String SocketConnection::getClientSocketName()
 {
-	String msg = inet_ntoa( addr.sin_addr );
-	char l_buf[ 10 ];
-	sprintf( l_buf , "[%d]" , ( int )ntohs( ( unsigned short )addr.sin_port ) );
-	msg += l_buf;
-
+	String msg = SocketServer::getAddress( &addr );
 	return( msg );
 }
 
-void AISocketConnection::onMessage( AIMessage *msg )
+void SocketConnection::onMessage( Message *msg )
 {
 	writeMessage( msg );
 }

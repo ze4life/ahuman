@@ -31,40 +31,40 @@
 	(_fd_set) -> fd_array[ 0 ] = _fd_hnd; \
 	_res = select( 0 , NULL , NULL , _fd_set , _fd_time )
 
-class AIListener;
-class AIConnection;
+class Listener;
+class Connection;
 
-class AISockServer;
-class AISocketConnection;
+class SocketServer;
+class SocketConnection;
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-class AIConnection
+class Connection
 {
 public:
-	AIConnection() { listener = NULL; };
-	virtual ~AIConnection() {};
+	Connection() { listener = NULL; };
+	virtual ~Connection() {};
 
-	void setListener( AIListener *p_listener ) { listener = p_listener; };
-	AIListener *getListener() { return( listener ); };
+	void setListener( Listener *p_listener ) { listener = p_listener; };
+	Listener *getListener() { return( listener ); };
 
-	void setID( String id ) { key = id; };
-	String getID() { return( key ); };
+	void setName( String name ) { key = name; };
+	String getName() { return( key ); };
 
 public:
 	virtual bool startConnection() = 0;
 	virtual void stopConnection() = 0;
 
 private:
-	AIListener *listener;
+	Listener *listener;
 	String key;
 };
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-class AIListener
+class Listener
 {
 public:
 	// interface
@@ -73,19 +73,23 @@ public:
 	virtual void stopListener() = 0;
 
 public:
-	AIListener();
-	virtual ~AIListener();
+	Listener();
+	virtual ~Listener();
 
 public:
+	void setMsgType( Message::MsgType msgType );
+	Message::MsgType getMsgType();
 	void setName( String p_name );
 	String getName();
 
-	void addListenerConnection( String key , AIConnection *connection );
+	void addListenerConnection( Connection *connection );
 	void stopListenerConnections();
 
 private:
+	int lastConnectionId;
+	Message::MsgType msgType;
 	String name;
-	MapStringToClass<AIConnection> connections;
+	MapStringToClass<Connection> connections;
 };
 
 /*#########################################################################*/
@@ -106,27 +110,74 @@ public:
 	AIMediaImpl();
 
 public:
-	AISockServer *getSockServer( String name );
+	Listener *getListener( String name );
 
 // internals
 private:
 	void startListeners();
 	void stopListeners();
-	AIListener *runListenerFactory( String name , String type );
+	Listener *runListenerFactory( String name , String type );
 
 private:
 	AIEngine& engine;
-	MapStringToClass<AIListener> listeners;
+	MapStringToClass<Listener> listeners;
 };
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-class AISockServer : public AIListener
+class SocketConnection : public Connection , public Subscriber
 {
 public:
-	AISockServer();
-	~AISockServer();
+	SocketConnection( SocketServer *server , SOCKET clientSocket , struct sockaddr_in *clientAddress , Message::MsgType msgType );
+	~SocketConnection();
+
+	virtual bool startConnection();
+	virtual void stopConnection();
+
+	String getClientSocketName();
+
+	void readMessages();
+	void sendString( const char *p_msg , int len );
+	void writeMessage( Message *p_msg );
+
+	virtual void onMessage( Message *msg );
+
+private:
+	void tryLogin( const char *p_msg );
+	void performRead();
+	void processData( const char *p_msg );
+	void processMessage( const char *p_msg );
+
+private:
+	AIEngine& engine;
+	AIIO io;
+	Logger logger;
+
+	SocketServer *server;
+	Publisher *pub;
+	Subscription *sub;
+	Message::MsgType msgType;
+
+	SOCKET socket;
+	struct sockaddr_in addr;
+	RFC_THREAD thread;
+	String message;
+
+	bool threadStarted;
+	bool continueRead;
+	bool connected;
+	bool logout;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class SocketServer : public Listener
+{
+public:
+	SocketServer();
+	~SocketServer();
 
 	static void initSocketLib();
 	static void exitSocketLib();
@@ -172,53 +223,6 @@ private:
 	RFC_THREAD listenThread;
 	SOCKET listenSocket;
 	struct sockaddr_in listen_inet;
-};
-
-/*#########################################################################*/
-/*#########################################################################*/
-
-class AISocketConnection : public AIConnection , public AISubscriber
-{
-public:
-	AISocketConnection( AISockServer *server , SOCKET clientSocket , struct sockaddr_in *clientAddress );
-	~AISocketConnection();
-
-	virtual bool startConnection();
-	virtual void stopConnection();
-
-	String getID();
-
-	void readMessages();
-	void sendString( const char *p_msg );
-	void writeMessage( AIMessage *p_msg );
-
-	virtual void onMessage( AIMessage *msg );
-
-private:
-	void tryLogin( const char *p_msg );
-	void performRead();
-	void processData( const char *p_msg );
-	void processMessage( const char *p_msg );
-
-private:
-	AIEngine& engine;
-	AIIO io;
-	Logger logger;
-
-	AISockServer *server;
-	AIPublisher *pub;
-	AISubscription *sub;
-
-	String name;
-	SOCKET socket;
-	struct sockaddr_in addr;
-	RFC_THREAD thread;
-	String message;
-
-	bool threadStarted;
-	bool continueRead;
-	bool connected;
-	bool logout;
 };
 
 #endif	// INCLUDE_AIMEDIA_IMPL_H

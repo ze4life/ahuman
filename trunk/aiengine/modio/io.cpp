@@ -50,10 +50,10 @@ void AIIOImpl::destroyService()
 /*#########################################################################*/
 /*#########################################################################*/
 
-AIPublisher *AIIOImpl::createPublisher( String channel , String pubName , String msgtype )
+Publisher *AIIOImpl::createPublisher( String channel , String pubName , String msgtype )
 {
-	AIChannel *ch = getChannel( channel );
-	AIPublisherImpl *pub = new AIPublisherImpl( ch , pubName , msgtype );
+	Channel *ch = getChannel( channel );
+	PublisherImpl *pub = new PublisherImpl( ch , pubName , msgtype );
 
 	ch -> addPublisher( pubName , pub );
 
@@ -62,20 +62,20 @@ AIPublisher *AIIOImpl::createPublisher( String channel , String pubName , String
 	return( pub );
 }
 
-AISubscription *AIIOImpl::subscribe( String channel , String subName , AISubscriber *subHandler )
+Subscription *AIIOImpl::subscribe( String channel , String subName , Subscriber *subHandler )
 {
-	AIChannel *ch = getChannel( channel );
-	AISubscriptionImpl *sub = new AISubscriptionImpl( ch , subName , subHandler );
+	Channel *ch = getChannel( channel );
+	SubscriptionImpl *sub = new SubscriptionImpl( ch , subName , subHandler );
 
 	ch -> addSubscription( subName , sub );
 	logger.logInfo( String( "[" ) + subName + "] subscriber started on [" + channel + "] channel" );
 	return( sub );
 }
 
-bool AIIOImpl::destroyPublisher( AIPublisher *publisher )
+bool AIIOImpl::destroyPublisher( Publisher *publisher )
 {
-	AIPublisherImpl *pub = ( AIPublisherImpl * )publisher;
-	AIChannel *ch = pub -> channel;
+	PublisherImpl *pub = ( PublisherImpl * )publisher;
+	Channel *ch = pub -> channel;
 
 	String name = pub -> name;
 	if( ch != NULL )
@@ -88,10 +88,10 @@ bool AIIOImpl::destroyPublisher( AIPublisher *publisher )
 	return( true );
 }
 
-bool AIIOImpl::unsubscribe( AISubscription *subscription )
+bool AIIOImpl::unsubscribe( Subscription *subscription )
 {
-	AISubscriptionImpl *sub = ( AISubscriptionImpl * )subscription;
-	AIChannel *ch = sub -> channel;
+	SubscriptionImpl *sub = ( SubscriptionImpl * )subscription;
+	Channel *ch = sub -> channel;
 
 	if( ch != NULL )
 		{
@@ -112,7 +112,7 @@ void AIIOImpl::createChannel( Xml config )
 	bool auth = config.getBooleanProperty( "auth" );
 	bool sync = config.getBooleanProperty( "sync" );
 
-	AIChannel *channel = new AIChannel( msgid , name , sync );
+	Channel *channel = new Channel( msgid , name , sync );
 	
 	ASSERT( auth == false );
 
@@ -120,10 +120,10 @@ void AIIOImpl::createChannel( Xml config )
 	channel -> open();
 }
 
-AIChannel *AIIOImpl::getChannel( String name )
+Channel *AIIOImpl::getChannel( String name )
 {
 	lock();
-	AIChannel *channel = mapChannels.get( name );
+	Channel *channel = mapChannels.get( name );
 	unlock();
 	ASSERTMSG( channel != NULL , String( "Channel does not exist: [" ) + name + "]" );
 
@@ -147,7 +147,7 @@ void AIIOImpl::closeAllChannels()
 	// close all channels
 	for( int k = 0; k < mapChannels.count(); k++ )
 		{
-			AIChannel *channel = mapChannels.getClassByIndex( k );
+			Channel *channel = mapChannels.getClassByIndex( k );
 
 			// close given channel
 			channel -> close();
