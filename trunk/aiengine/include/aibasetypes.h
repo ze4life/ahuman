@@ -4,8 +4,8 @@
 #define INCLUDE_AIBASETYPES_H
 
 // utility functions & classes
-#define ASSERT( x ) if( !(x) ) throw RuntimeError( String( "assertion failed: " ) + #x )
-#define ASSERTMSG( x , msg ) if( !(x) ) throw RuntimeError( String( "assertion failed: " ) + ( msg ) + " - " + #x )
+#define ASSERT( x ) if( !(x) ) throw RuntimeError( String( "assertion failed (" ) + (#x) + ")" )
+#define ASSERTMSG( x , msg ) if( !(x) ) throw RuntimeError( String( "assertion failed (" ) + (#x) + "): " + (msg) )
 #define ASSERTFAILED( msg ) throw RuntimeError( String( "assertion failed: " ) + msg )
 
 class Logger;
@@ -20,6 +20,7 @@ public:
 	~String();
 	String( const char *s );
 	String( const String& s );
+	String( const char *s , int len );
 
 	String& operator +=( const char *v );
 	String& operator +=( char v );
@@ -44,6 +45,7 @@ public:
 	int findLastAny( const char *chars );
 	int findLast( char c );
 	String getMid( int from , int n );
+	char getChar( int index );
 
 private:
 	void createFromString( const char *s );

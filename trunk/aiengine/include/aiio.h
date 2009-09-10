@@ -1,10 +1,13 @@
 #ifndef	INCLUDE_AIIO_H
 #define INCLUDE_AIIO_H
 
-class AIMessage;
-class AIPublisher;
-class AISubscriber;
-class AISubscription;
+class Message;
+class Publisher;
+class Subscriber;
+class Subscription;
+class XmlMessage;
+class XmlCall;
+class Channel;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -13,13 +16,13 @@ class AIIO
 {
 public:
 	// topics publishers and subscribers
-	virtual AIPublisher *createPublisher( String channel , String pubName , String msgtype )
+	virtual Publisher *createPublisher( String channel , String pubName , String msgtype )
 		{ return( thisPtr -> createPublisher( channel , pubName , msgtype ) ); };
-	virtual AISubscription *subscribe( String channel , String subName , AISubscriber *sub )
+	virtual Subscription *subscribe( String channel , String subName , Subscriber *sub )
 		{ return( thisPtr -> subscribe( channel , subName , sub ) ); };
-	virtual bool destroyPublisher( AIPublisher *pub )
+	virtual bool destroyPublisher( Publisher *pub )
 		{ return( thisPtr -> destroyPublisher( pub ) ); };
-	virtual bool unsubscribe( AISubscription *sub )
+	virtual bool unsubscribe( Subscription *sub )
 		{ return( thisPtr -> unsubscribe( sub ) ); };
 
 // engine helpers
@@ -32,51 +35,100 @@ public:
 /*#########################################################################*/
 /*#########################################################################*/
 
-class AIPublisher
+class Publisher
 {
 public:
-	virtual ~AIPublisher() {};
-	virtual String publish( String msg ) = 0;
-	virtual String publish( Xml msg ) = 0;
+	virtual ~Publisher() {};
+	virtual String publish( const char *msg ) = 0;
+	virtual String publish( Message *msg ) = 0;
+	virtual String publish( XmlMessage *msg ) = 0;
+	virtual String publish( XmlCall *msg ) = 0;
+	virtual Channel *getChannel() = 0;
+	virtual const String& getMsgType() = 0;
 };
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-class AISubscriber
+class Subscriber
 {
 public:
-	virtual void onMessage( AIMessage *msg ) = 0;
+	virtual void onMessage( Message *msg ) = 0;
 };
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-class AISubscription
+class Subscription
 {
 public:
-	virtual ~AISubscription() {};
+	virtual Channel *getChannel() = 0;
+
+	virtual ~Subscription() {};
 };
 
 /*#########################################################################*/
 /*#########################################################################*/
 
 // message
-class AIMessage
+class Message
 {
 public:
-	AIMessage();
-	~AIMessage();
-
-	Xml getXml( const char *type );
-	void setFromXml();
+	typedef enum {
+		MsgType_Unknown = 0 ,
+		MsgType_Text = 1 ,
+		MsgType_Xml = 2 ,
+		MsgType_XmlCall = 3
+	} MsgType;
 
 public:
+	Message();
+	virtual ~Message();
+	virtual void postExecute() {};
+
+	XmlCall& toXmlCall();
+
+	MsgType getMsgBaseType() { return( msgBaseType ); };
+
+	void setType( const char *p_type ) { type = p_type; };
+	const String& getType() { return( type ); };
+
+	void setSourceId( const char *p_id ) { source = p_id; };
+	const String& getSourceId() { return( source ); };
+
+	void setSourceMessageId( const char *p_id ) { extid = p_id; };
+	const String& getSourceMessageId() { return( extid ); };
+
+	void setChannelMessageId( const char *p_id ) { id = p_id; };
+	const String& getChannelMessageId() { return( id ); };
+
+	void setText( const char *p_txt ) { message = p_txt; };
+	const String& getText() { return( message ); };
+
+private:
+	MsgType msgBaseType;
 	String id;
 	String extid;
 	String type;
 	String source;
 	String message;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class XmlMessage : public Message
+{
+public:
+	XmlMessage( const char *txt );
+	XmlMessage( Xml xml );
+	virtual ~XmlMessage();
+	virtual void postExecute() {};
+
+public:
+	Xml getXml();
+	void setXmlFromMessage( const char *type );
+	void setMessageFromXml();
 
 private:
 	Xml xml;
@@ -85,34 +137,41 @@ private:
 /*#########################################################################*/
 /*#########################################################################*/
 
-class XmlCall
+class XmlCall : public XmlMessage
 {
 public:
-	XmlCall();
-	~XmlCall();
+	XmlCall( Channel *channelIn , Channel *channelOut , const char *txt );
+	virtual ~XmlCall();
+	virtual void postExecute();
 
-	void attach( AIMessage *msg );
+	void setXmlFromMessage();
 
 	// request
-	String getName();
+	String getFunctionName();
 	String getParam( String paramName );
+	String getParam( String paramName , String defaultValue );
 	int getIntParam( String paramName );
+	int getIntParam( String paramName , int defaultValue );
 	bool getBooleanParam( String paramName );
 	float getFloatParam( String paramName );
+	float getFloatParam( String paramName , float defaultValue );
 
 	// response 
 	Xml createResponse();
-	String sendResponse( AIPublisher *pub );
-	String sendResponseException( AIPublisher *pub , RuntimeException& e );
-	String sendResponseUnknownException( AIPublisher *pub );
+	String sendResponse( Publisher *pub );
+	String sendResponseException( Publisher *pub , RuntimeException& e );
+	String sendResponseUnknownException( Publisher *pub );
+	String sendUnknownResponse();
 
 private:
-	AIMessage *msg;
+	Channel *channelIn;
+	Channel *channelOut;
 
-	String id;
-	String name;
+	String requestId;
+	String functionName;
 	Xml params;
 	Xml xmlResponse;
+	bool responseSent;
 };
 
 /*#########################################################################*/
