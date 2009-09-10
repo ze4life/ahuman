@@ -4,7 +4,7 @@
 #include <aiengine.h>
 #include <aimedia.h>
 #include <aiio.h>
-#include <aiexpert.h>
+#include <ainnlib.h>
 #include <aiheart.h>
 #include <aimind.h>
 #include <aiknowledge.h>

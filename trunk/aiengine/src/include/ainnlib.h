@@ -1,22 +1,22 @@
 // understanding the meaning
 
-#ifndef	INCLUDE_AIEXPERT_H
-#define INCLUDE_AIEXPERT_H
+#ifndef	INCLUDE_AINNLIB_H
+#define INCLUDE_AINNLIB_H
 
 #include <aiio.h>
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-class AIExpert
+class AINNLib
 {
 public:
 
 // engine helpers
 public:
 	static Service *createService();
-	AIExpert *thisPtr;
-	AIExpert();
+	AINNLib *thisPtr;
+	AINNLib();
 };
 
-#endif	// INCLUDE_AIEXPERT_H
+#endif	// INCLUDE_AINNLIB_H

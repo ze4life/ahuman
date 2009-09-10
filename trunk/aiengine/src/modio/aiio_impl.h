@@ -3,8 +3,6 @@
 
 #include <aiengine.h>
 #include <aiio.h>
-#include <aiexpert.h>
-#include <aimedia.h>
 
 class IOQueue;
 class Channel;
