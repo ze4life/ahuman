@@ -24,6 +24,14 @@ String Xml::getName()
 	return( xml -> Value() );
 }
 
+String Xml::getValue()
+{
+	ASSERT( node != NULL );
+
+	TiXmlElement *xml = ( TiXmlElement * )node;
+	return( xml -> GetText() );
+}
+
 Xml Xml::getChildNode( String s )
 {
 	ASSERT( node != NULL );

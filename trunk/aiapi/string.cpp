@@ -62,6 +62,13 @@ String::String( const char *s )
 		assign( s , strlen( s ) );
 }
 
+String::String( const char *s , int len )
+{
+	v = NULL;
+	if( len > 0 )
+		assign( s , len );
+}
+
 void String::createFromString( const char *s )
 {
 	assign( s , strlen( s ) );

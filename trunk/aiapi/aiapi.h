@@ -14,6 +14,7 @@ public:
 	~String();
 	String( const char *s );
 	String( const String& s );
+	String( const char *s , int len );
 
 	String& operator +=( const char *v );
 	String& operator +=( char v );
