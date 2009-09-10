@@ -42,7 +42,7 @@ RSC=rc.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /YX /FD /c
-# ADD CPP /nologo /MT /W3 /GX /O2 /I "include" /I "../common/include" /D "NDEBUG" /D "WIN32" /D "_CONSOLE" /D "_MBCS" /D "TIXML_USE_STL" /YX /FD /c
+# ADD CPP /nologo /MT /W3 /GX /O2 /I "../common/include" /I "src\include" /D "NDEBUG" /D "WIN32" /D "_CONSOLE" /D "_MBCS" /D "TIXML_USE_STL" /YX /FD /c
 # ADD BASE RSC /l 0x419 /d "NDEBUG"
 # ADD RSC /l 0x419 /d "NDEBUG"
 BSC32=bscmake.exe
@@ -66,7 +66,7 @@ LINK32=link.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /YX /FD /GZ /c
-# ADD CPP /nologo /MTd /W3 /Gm /GX /ZI /Od /I "include" /I "../generic/include" /D "_DEBUG" /D "WIN32" /D "_CONSOLE" /D "_MBCS" /D "TIXML_USE_STL" /FR /YX /FD /GZ /c
+# ADD CPP /nologo /MTd /W3 /Gm /GX /ZI /Od /I "../generic/include" /I "src\include" /D "_DEBUG" /D "WIN32" /D "_CONSOLE" /D "_MBCS" /D "TIXML_USE_STL" /FR /YX /FD /GZ /c
 # ADD BASE RSC /l 0x419 /d "_DEBUG"
 # ADD RSC /l 0x419 /d "_DEBUG"
 BSC32=bscmake.exe
@@ -152,11 +152,11 @@ SOURCE=.\src\include\aiengine.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\include\aiexpert.h
+SOURCE=.\src\include\aiheart.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\include\aiheart.h
+SOURCE=.\src\include\aihtmlib.h
 # End Source File
 # Begin Source File
 
@@ -176,7 +176,27 @@ SOURCE=.\src\include\aimind.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\src\include\ainnlib.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\src\include\aiobject.h
+# End Source File
+# End Group
+# Begin Group "etc"
+
+# PROP Default_Filter "*.xml"
+# Begin Source File
+
+SOURCE=.\etc\database.xml
+# End Source File
+# Begin Source File
+
+SOURCE=.\etc\logging.xml
+# End Source File
+# Begin Source File
+
+SOURCE=.\etc\main.xml
 # End Source File
 # End Group
 # Begin Group "moddb"
@@ -205,22 +225,6 @@ SOURCE=.\src\moddb\dbrecordheader.cpp
 # Begin Source File
 
 SOURCE=.\src\moddb\dbrecordset.cpp
-# End Source File
-# End Group
-# Begin Group "modheart"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\src\modheart\aiheart_impl.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modheart\emotion.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modheart\heart.cpp
 # End Source File
 # End Group
 # Begin Group "modio"
@@ -261,194 +265,6 @@ SOURCE=.\src\modio\xmlcall.cpp
 # Begin Source File
 
 SOURCE=.\src\modio\xmlmessage.cpp
-# End Source File
-# End Group
-# Begin Group "modknowledge"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\src\modknowledge\aiknowledge_impl.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modknowledge\knowledge.cpp
-# End Source File
-# End Group
-# Begin Group "modmind"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\src\modmind\aimind_impl.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modmind\mind.cpp
-# End Source File
-# End Group
-# Begin Group "modmedia"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\src\modmedia\aimedia_impl.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modmedia\listener.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modmedia\media.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modmedia\socketconnection.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modmedia\sockserver.cpp
-# End Source File
-# End Group
-# Begin Group "modexpert"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\src\modexpert\aiexpert_impl.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modexpert\aiexpert_implfunc.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modexpert\aiexpert_implnet.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modexpert\aiexpert_implnn.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modexpert\aiexpert_implstrategy.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modexpert\expert.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modexpert\expertdebug.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modexpert\nn.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modexpert\nnactivationfunction.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modexpert\nnerrorfunction.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modexpert\nnfinder.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modexpert\nnfinderfactory.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modexpert\nnfinderfactorysample.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modexpert\nninductionfunction.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modexpert\nnlayer.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modexpert\nnneuron.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modexpert\nnregression.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modexpert\nnregressionfactory.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modexpert\nnsample.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modexpert\nnsamples.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modexpert\nnscanpoint.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modexpert\nnstopfunction.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modexpert\nnstrategy.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modexpert\nnstrategybackpropagation.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modexpert\nnstrategyhelper.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modexpert\nnstrategyscan.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modexpert\nnstrategyscaniteration.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modexpert\nnvalidatefunction.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modexpert\nnvariable.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modexpert\nnvariablecategory.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modexpert\nnvariables.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modexpert\nnvariablescontainer.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modexpert\nnvariablesimple.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\modexpert\nnweights.cpp
 # End Source File
 # End Group
 # Begin Group "modengine"
@@ -543,20 +359,228 @@ SOURCE=.\src\modengine\tinyxmlparser.cpp
 SOURCE=.\src\modengine\xml.cpp
 # End Source File
 # End Group
-# Begin Group "etc"
+# Begin Group "modnnlib"
 
-# PROP Default_Filter "*.xml"
+# PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\etc\database.xml
+SOURCE=.\src\modnnlib\_wallpaper.txt
 # End Source File
 # Begin Source File
 
-SOURCE=.\etc\logging.xml
+SOURCE=.\src\modnnlib\ainnlib_impl.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\etc\main.xml
+SOURCE=.\src\modnnlib\ainnlib_implfunc.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modnnlib\ainnlib_implnet.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modnnlib\ainnlib_implnn.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modnnlib\ainnlib_implstrategy.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modnnlib\nn.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modnnlib\nnactivationfunction.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modnnlib\nnerrorfunction.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modnnlib\nnfinder.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modnnlib\nnfinderfactory.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modnnlib\nnfinderfactorysample.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modnnlib\nninductionfunction.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modnnlib\nnlayer.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modnnlib\nnlib.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modnnlib\nnlibdebug.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modnnlib\nnneuron.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modnnlib\nnregression.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modnnlib\nnregressionfactory.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modnnlib\nnsample.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modnnlib\nnsamples.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modnnlib\nnscanpoint.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modnnlib\nnstopfunction.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modnnlib\nnstrategy.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modnnlib\nnstrategybackpropagation.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modnnlib\nnstrategyhelper.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modnnlib\nnstrategyscan.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modnnlib\nnstrategyscaniteration.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modnnlib\nnvalidatefunction.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modnnlib\nnvariable.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modnnlib\nnvariablecategory.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modnnlib\nnvariables.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modnnlib\nnvariablescontainer.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modnnlib\nnvariablesimple.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modnnlib\nnweights.cpp
+# End Source File
+# End Group
+# Begin Group "modhtmlib"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\src\modhtmlib\aihtmlib_impl.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modhtmlib\htmlib.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modhtmlib\htmlibdebug.cpp
+# End Source File
+# End Group
+# Begin Group "modmedia"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\src\modmedia\aimedia_impl.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modmedia\listener.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modmedia\media.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modmedia\socketconnection.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modmedia\sockserver.cpp
+# End Source File
+# End Group
+# Begin Group "modmind"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\src\modmind\aimind_impl.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modmind\mind.cpp
+# End Source File
+# End Group
+# Begin Group "modknowledge"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\src\modknowledge\aiknowledge_impl.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modknowledge\knowledge.cpp
+# End Source File
+# End Group
+# Begin Group "modheart"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\src\modheart\aiheart_impl.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modheart\emotion.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modheart\heart.cpp
 # End Source File
 # End Group
 # Begin Source File

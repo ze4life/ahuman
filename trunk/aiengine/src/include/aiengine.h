@@ -149,6 +149,7 @@ public:
 
 	// configuration
 	virtual void configure( Xml p_config ) { config = p_config; };
+	Xml getConfig() { return( config ); };
 
 	// logger
 	Logger& getLogger() { return( logger ); };

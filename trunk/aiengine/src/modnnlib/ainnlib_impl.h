@@ -1,5 +1,5 @@
-#ifndef	INCLUDE_AIEXPERT_IMPL_H
-#define INCLUDE_AIEXPERT_IMPL_H
+#ifndef	INCLUDE_AINNLIB_IMPL_H
+#define INCLUDE_AINNLIB_IMPL_H
 
 #include <math.h>
 
@@ -81,4 +81,4 @@ private:
 /*#########################################################################*/
 /*#########################################################################*/
 
-#endif	// INCLUDE_AIEXPERT_IMPL_H
+#endif	// INCLUDE_AINNLIB_IMPL_H

@@ -199,9 +199,10 @@ void AIEngineImpl::createServices()
 	logger.logInfo( "create services..." );
 	Service *svc;
 
-	svc = AIMedia::createService(); svc -> isCreateCompleted = true;
 	svc = AIIO::createService(); svc -> isCreateCompleted = true;
 	svc = AINNLib::createService(); svc -> isCreateCompleted = true;
+	svc = AIHtmLib::createService(); svc -> isCreateCompleted = true;
+	svc = AIMedia::createService(); svc -> isCreateCompleted = true;
 	svc = AIHeart::createService(); svc -> isCreateCompleted = true;
 	svc = AIMind::createService(); svc -> isCreateCompleted = true;
 	svc = AIKnowledge::createService(); svc -> isCreateCompleted = true;
@@ -223,10 +224,17 @@ void AIEngineImpl::createServices()
 			String fileName = item.getProperty( "file" );
 			
 			svc = services.get( serviceName );
-			ASSERT( svc != NULL );
+			ASSERTMSG( svc != NULL , String( "Service [" ) + serviceName + "] not found" );
 
 			Xml configService = loadXml( fileName );
 			svc -> configure( configService );
+		}
+
+	// check all configured
+	for( k = 0; k < services.count(); k++ )
+		{
+			Service *svc = services.getClassByIndex( k );
+			ASSERTMSG( svc -> getConfig().exists() , String( "Service [" ) + svc -> getName() + "] is not configured" );
 		}
 
 	logger.logInfo( "create services - done" );

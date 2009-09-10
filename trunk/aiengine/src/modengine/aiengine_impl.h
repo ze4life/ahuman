@@ -5,6 +5,7 @@
 #include <aimedia.h>
 #include <aiio.h>
 #include <ainnlib.h>
+#include <aihtmlib.h>
 #include <aiheart.h>
 #include <aimind.h>
 #include <aiknowledge.h>
