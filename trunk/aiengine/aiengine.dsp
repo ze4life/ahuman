@@ -91,92 +91,92 @@ LINK32=link.exe
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\include\generic\__gen.h
+SOURCE=.\src\include\generic\__gen.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\generic\_gencach.h
+SOURCE=.\src\include\generic\_gencach.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\generic\_gencube.h
+SOURCE=.\src\include\generic\_gencube.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\generic\_gendata.h
+SOURCE=.\src\include\generic\_gendata.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\generic\_genhuge.h
+SOURCE=.\src\include\generic\_genhuge.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\generic\_genmap.h
+SOURCE=.\src\include\generic\_genmap.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\generic\_genmisc.h
+SOURCE=.\src\include\generic\_genmisc.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\generic\_genmsh.h
+SOURCE=.\src\include\generic\_genmsh.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\generic\_genos.h
+SOURCE=.\src\include\generic\_genos.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\generic\_genplat.h
+SOURCE=.\src\include\generic\_genplat.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\generic\_genset.h
+SOURCE=.\src\include\generic\_genset.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\generic\_genstr.h
+SOURCE=.\src\include\generic\_genstr.h
 # End Source File
 # End Group
 # Begin Source File
 
-SOURCE=.\include\aibasetypes.h
+SOURCE=.\src\include\aibasetypes.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\aidb.h
+SOURCE=.\src\include\aidb.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\aiengine.h
+SOURCE=.\src\include\aiengine.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\aiexpert.h
+SOURCE=.\src\include\aiexpert.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\aiheart.h
+SOURCE=.\src\include\aiheart.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\aiio.h
+SOURCE=.\src\include\aiio.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\aiknowledge.h
+SOURCE=.\src\include\aiknowledge.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\aimedia.h
+SOURCE=.\src\include\aimedia.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\aimind.h
+SOURCE=.\src\include\aimind.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\aiobject.h
+SOURCE=.\src\include\aiobject.h
 # End Source File
 # End Group
 # Begin Group "moddb"
@@ -184,27 +184,27 @@ SOURCE=.\include\aiobject.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\moddb\aidb_impl.h
+SOURCE=.\src\moddb\aidb_impl.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\moddb\db.cpp
+SOURCE=.\src\moddb\db.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\moddb\dbcursor.cpp
+SOURCE=.\src\moddb\dbcursor.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\moddb\dbfile.cpp
+SOURCE=.\src\moddb\dbfile.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\moddb\dbrecordheader.cpp
+SOURCE=.\src\moddb\dbrecordheader.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\moddb\dbrecordset.cpp
+SOURCE=.\src\moddb\dbrecordset.cpp
 # End Source File
 # End Group
 # Begin Group "modheart"
@@ -212,15 +212,15 @@ SOURCE=.\moddb\dbrecordset.cpp
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\modheart\aiheart_impl.h
+SOURCE=.\src\modheart\aiheart_impl.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\modheart\emotion.cpp
+SOURCE=.\src\modheart\emotion.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modheart\heart.cpp
+SOURCE=.\src\modheart\heart.cpp
 # End Source File
 # End Group
 # Begin Group "modio"
@@ -228,39 +228,39 @@ SOURCE=.\modheart\heart.cpp
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\modio\aiio_impl.h
+SOURCE=.\src\modio\aiio_impl.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\modio\channel.cpp
+SOURCE=.\src\modio\channel.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modio\io.cpp
+SOURCE=.\src\modio\io.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modio\message.cpp
+SOURCE=.\src\modio\message.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modio\publisher.cpp
+SOURCE=.\src\modio\publisher.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modio\queue.cpp
+SOURCE=.\src\modio\queue.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modio\subscription.cpp
+SOURCE=.\src\modio\subscription.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modio\xmlcall.cpp
+SOURCE=.\src\modio\xmlcall.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modio\xmlmessage.cpp
+SOURCE=.\src\modio\xmlmessage.cpp
 # End Source File
 # End Group
 # Begin Group "modknowledge"
@@ -268,11 +268,11 @@ SOURCE=.\modio\xmlmessage.cpp
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\modknowledge\aiknowledge_impl.h
+SOURCE=.\src\modknowledge\aiknowledge_impl.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\modknowledge\knowledge.cpp
+SOURCE=.\src\modknowledge\knowledge.cpp
 # End Source File
 # End Group
 # Begin Group "modmind"
@@ -280,11 +280,11 @@ SOURCE=.\modknowledge\knowledge.cpp
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\modmind\aimind_impl.h
+SOURCE=.\src\modmind\aimind_impl.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\modmind\mind.cpp
+SOURCE=.\src\modmind\mind.cpp
 # End Source File
 # End Group
 # Begin Group "modmedia"
@@ -292,23 +292,23 @@ SOURCE=.\modmind\mind.cpp
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\modmedia\aimedia_impl.h
+SOURCE=.\src\modmedia\aimedia_impl.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\modmedia\listener.cpp
+SOURCE=.\src\modmedia\listener.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modmedia\media.cpp
+SOURCE=.\src\modmedia\media.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modmedia\socketconnection.cpp
+SOURCE=.\src\modmedia\socketconnection.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modmedia\sockserver.cpp
+SOURCE=.\src\modmedia\sockserver.cpp
 # End Source File
 # End Group
 # Begin Group "modexpert"
@@ -316,139 +316,139 @@ SOURCE=.\modmedia\sockserver.cpp
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\modexpert\aiexpert_impl.h
+SOURCE=.\src\modexpert\aiexpert_impl.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\modexpert\aiexpert_implfunc.h
+SOURCE=.\src\modexpert\aiexpert_implfunc.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\modexpert\aiexpert_implnet.h
+SOURCE=.\src\modexpert\aiexpert_implnet.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\modexpert\aiexpert_implnn.h
+SOURCE=.\src\modexpert\aiexpert_implnn.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\modexpert\aiexpert_implstrategy.h
+SOURCE=.\src\modexpert\aiexpert_implstrategy.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\modexpert\expert.cpp
+SOURCE=.\src\modexpert\expert.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modexpert\expertdebug.cpp
+SOURCE=.\src\modexpert\expertdebug.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modexpert\nn.cpp
+SOURCE=.\src\modexpert\nn.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modexpert\nnactivationfunction.cpp
+SOURCE=.\src\modexpert\nnactivationfunction.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modexpert\nnerrorfunction.cpp
+SOURCE=.\src\modexpert\nnerrorfunction.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modexpert\nnfinder.cpp
+SOURCE=.\src\modexpert\nnfinder.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modexpert\nnfinderfactory.cpp
+SOURCE=.\src\modexpert\nnfinderfactory.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modexpert\nnfinderfactorysample.cpp
+SOURCE=.\src\modexpert\nnfinderfactorysample.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modexpert\nninductionfunction.cpp
+SOURCE=.\src\modexpert\nninductionfunction.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modexpert\nnlayer.cpp
+SOURCE=.\src\modexpert\nnlayer.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modexpert\nnneuron.cpp
+SOURCE=.\src\modexpert\nnneuron.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modexpert\nnregression.cpp
+SOURCE=.\src\modexpert\nnregression.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modexpert\nnregressionfactory.cpp
+SOURCE=.\src\modexpert\nnregressionfactory.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modexpert\nnsample.cpp
+SOURCE=.\src\modexpert\nnsample.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modexpert\nnsamples.cpp
+SOURCE=.\src\modexpert\nnsamples.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modexpert\nnscanpoint.cpp
+SOURCE=.\src\modexpert\nnscanpoint.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modexpert\nnstopfunction.cpp
+SOURCE=.\src\modexpert\nnstopfunction.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modexpert\nnstrategy.cpp
+SOURCE=.\src\modexpert\nnstrategy.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modexpert\nnstrategybackpropagation.cpp
+SOURCE=.\src\modexpert\nnstrategybackpropagation.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modexpert\nnstrategyhelper.cpp
+SOURCE=.\src\modexpert\nnstrategyhelper.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modexpert\nnstrategyscan.cpp
+SOURCE=.\src\modexpert\nnstrategyscan.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modexpert\nnstrategyscaniteration.cpp
+SOURCE=.\src\modexpert\nnstrategyscaniteration.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modexpert\nnvalidatefunction.cpp
+SOURCE=.\src\modexpert\nnvalidatefunction.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modexpert\nnvariable.cpp
+SOURCE=.\src\modexpert\nnvariable.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modexpert\nnvariablecategory.cpp
+SOURCE=.\src\modexpert\nnvariablecategory.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modexpert\nnvariables.cpp
+SOURCE=.\src\modexpert\nnvariables.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modexpert\nnvariablescontainer.cpp
+SOURCE=.\src\modexpert\nnvariablescontainer.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modexpert\nnvariablesimple.cpp
+SOURCE=.\src\modexpert\nnvariablesimple.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modexpert\nnweights.cpp
+SOURCE=.\src\modexpert\nnweights.cpp
 # End Source File
 # End Group
 # Begin Group "modengine"
@@ -456,91 +456,91 @@ SOURCE=.\modexpert\nnweights.cpp
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\modengine\aiengine_impl.h
+SOURCE=.\src\modengine\aiengine_impl.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\modengine\engine.cpp
+SOURCE=.\src\modengine\engine.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modengine\fileutils.cpp
+SOURCE=.\src\modengine\fileutils.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modengine\logger.cpp
+SOURCE=.\src\modengine\logger.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modengine\logmanager.cpp
+SOURCE=.\src\modengine\logmanager.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modengine\logsettings.cpp
+SOURCE=.\src\modengine\logsettings.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modengine\logsettingsitem.cpp
+SOURCE=.\src\modengine\logsettingsitem.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modengine\math.cpp
+SOURCE=.\src\modengine\math.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modengine\multiindexiterator.cpp
+SOURCE=.\src\modengine\multiindexiterator.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modengine\object.cpp
+SOURCE=.\src\modengine\object.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modengine\objectfield.cpp
+SOURCE=.\src\modengine\objectfield.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modengine\random.cpp
+SOURCE=.\src\modengine\random.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modengine\runtimeexception.cpp
+SOURCE=.\src\modengine\runtimeexception.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modengine\scale.cpp
+SOURCE=.\src\modengine\scale.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modengine\serializeobject.cpp
+SOURCE=.\src\modengine\serializeobject.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modengine\string.cpp
+SOURCE=.\src\modengine\string.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modengine\timer.cpp
+SOURCE=.\src\modengine\timer.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modengine\tinyxml.cpp
+SOURCE=.\src\modengine\tinyxml.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modengine\tinyxml.h
+SOURCE=.\src\modengine\tinyxml.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\modengine\tinyxmlerror.cpp
+SOURCE=.\src\modengine\tinyxmlerror.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modengine\tinyxmlparser.cpp
+SOURCE=.\src\modengine\tinyxmlparser.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\modengine\xml.cpp
+SOURCE=.\src\modengine\xml.cpp
 # End Source File
 # End Group
 # Begin Group "etc"
@@ -561,11 +561,11 @@ SOURCE=.\etc\main.xml
 # End Group
 # Begin Source File
 
-SOURCE=.\_wallpaper.txt
+SOURCE=.\src\_wallpaper.txt
 # End Source File
 # Begin Source File
 
-SOURCE=.\main.cpp
+SOURCE=.\src\main.cpp
 # End Source File
 # End Target
 # End Project
