@@ -1,0 +1,157 @@
+
+#include "aiio_impl.h"
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+AIIO::AIIO() 
+{ 
+	thisPtr = static_cast<AIIOImpl *>( AIEngine::getInstance().getService( "AIIO" ) ); 
+}
+
+/* static */ Service *AIIO::createService()
+{
+	Service *svc = new AIIOImpl();
+	AIEngine::getInstance().registerService( svc , "AIIO" );
+	return( svc );
+}
+
+AIIOImpl::AIIOImpl() 
+:	engine( AIEngine::getInstance() )
+{ 
+	dataLock = rfc_lock_create();
+}
+
+void AIIOImpl::initService()
+{
+	// start all channels
+	Xml topics = config.getChildNode( "topics" );
+	for( Xml topic = topics.getFirstChild( "topic" ); topic.exists(); topic = topic.getNextChild( "topic" ) )
+		createChannel( topic );
+}
+
+void AIIOImpl::runService()
+{
+}
+
+void AIIOImpl::exitService()
+{
+	closeAllChannels();
+}
+
+void AIIOImpl::destroyService()
+{
+	rfc_lock_destroy( dataLock );
+	mapChannels.destroy();
+
+	delete this;
+}
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+Publisher *AIIOImpl::createPublisher( String channel , String pubName , String msgtype )
+{
+	Channel *ch = getChannel( channel );
+	PublisherImpl *pub = new PublisherImpl( ch , pubName , msgtype );
+
+	ch -> addPublisher( pubName , pub );
+
+	AIIOImpl::logger.logInfo( String( "[" ) + pubName + "] publisher started on [" + channel + "] channel" );
+
+	return( pub );
+}
+
+Subscription *AIIOImpl::subscribe( String channel , String subName , Subscriber *subHandler )
+{
+	Channel *ch = getChannel( channel );
+	SubscriptionImpl *sub = new SubscriptionImpl( ch , subName , subHandler );
+
+	ch -> addSubscription( subName , sub );
+	logger.logInfo( String( "[" ) + subName + "] subscriber started on [" + channel + "] channel" );
+	return( sub );
+}
+
+bool AIIOImpl::destroyPublisher( Publisher *publisher )
+{
+	PublisherImpl *pub = ( PublisherImpl * )publisher;
+	Channel *ch = pub -> channel;
+
+	String name = pub -> name;
+	if( ch != NULL )
+		{
+			ch -> deletePublisher( name );
+			logger.logInfo( String( "[" ) + name + "] publisher stopped on [" + ch -> getName() + "] channel" );
+		}
+
+	delete pub;
+	return( true );
+}
+
+bool AIIOImpl::unsubscribe( Subscription *subscription )
+{
+	SubscriptionImpl *sub = ( SubscriptionImpl * )subscription;
+	Channel *ch = sub -> channel;
+
+	if( ch != NULL )
+		{
+			ch -> deleteSubscription( sub -> name );
+			logger.logInfo( String( "[" ) + sub -> name + "] subscriber unsubscribed from [" + ch -> getName() + "] channel" );
+		}
+	delete sub;
+	return( true );
+}
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+void AIIOImpl::createChannel( Xml config )
+{
+	String name = config.getAttribute( "name" );
+	String msgid = config.getProperty( "msgid" );
+	bool auth = config.getBooleanProperty( "auth" );
+	bool sync = config.getBooleanProperty( "sync" );
+
+	Channel *channel = new Channel( msgid , name , sync );
+	
+	ASSERT( auth == false );
+
+	mapChannels.add( name , channel );
+	channel -> open();
+}
+
+Channel *AIIOImpl::getChannel( String name )
+{
+	lock();
+	Channel *channel = mapChannels.get( name );
+	unlock();
+	ASSERTMSG( channel != NULL , String( "Channel does not exist: [" ) + name + "]" );
+
+	return( channel );
+}
+
+void AIIOImpl::lock()
+{
+	rfc_lock_shared( dataLock );
+}
+
+void AIIOImpl::unlock()
+{
+	rfc_lock_release( dataLock );
+}
+
+void AIIOImpl::closeAllChannels()
+{
+	lock();
+
+	// close all channels
+	for( int k = 0; k < mapChannels.count(); k++ )
+		{
+			Channel *channel = mapChannels.getClassByIndex( k );
+
+			// close given channel
+			channel -> close();
+		}
+
+	unlock();
+}
