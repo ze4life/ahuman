@@ -86,6 +86,11 @@ Xml XmlCall::createResponse()
 	return( xmlResponse );
 }
 
+Xml XmlCall::getResponse()
+{
+	return( xmlResponse );
+}
+
 String XmlCall::sendResponse( Publisher *pub )
 {
 	ASSERT( xmlResponse.exists() );

@@ -10,6 +10,23 @@
 
 class Logger;
 
+class String;
+class RuntimeException;
+class Timer;
+class MultiIndexIterator;
+
+template<typename T> class FlatList;
+template<class T> class TwoIndexArray;
+template<class T> class TwoIndexVarArray;
+template<class T> class ClassList;
+template<typename T> class FixedPtrList;
+template<class T> class TwoIndexClassArray;
+template<class T> class MapIntToClass;
+template<class TK , class TV> class MapPtrToClass;
+template<class T> class MapStringToClass;
+template<class TA, class TC> class Sort;
+template<class T> class VectorMap;
+
 // #############################################################################
 // #############################################################################
 

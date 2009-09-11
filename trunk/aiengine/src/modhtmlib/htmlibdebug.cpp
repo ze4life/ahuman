@@ -41,8 +41,18 @@ void AIHtmLibDebug::onMessage( Message *msg )
 	String fn = call.getFunctionName();
 
 	try {
-		if( fn.equals( "nnlib::testHelloWorld" ) )
+		if( fn.equals( "htmlib::testHelloWorld" ) )
 			testHelloWorld( call );
+		else 
+			return;
+
+		Xml res = call.getResponse();
+		if( res.exists() )
+			return;
+
+		res = call.createResponse();
+		res.setAttribute( "status" , "ok" );
+		call.sendResponse( callPub );
 	}
 	catch ( RuntimeException& e ) {
 		call.sendResponseException( callPub , e );
@@ -58,4 +68,12 @@ void AIHtmLibDebug::onMessage( Message *msg )
 // tests
 void AIHtmLibDebug::testHelloWorld( XmlCall& call )
 {
+	HtmCortex ctx;
+
+	int sizeH = call.getIntParam( "sizeH" , 100 );
+	int sizeV = call.getIntParam( "sizeV" , 100 );
+	ctx.create( sizeH , sizeV );
+
+	HtmHelper helper( logger );
+	helper.showCortex( &ctx );
 }

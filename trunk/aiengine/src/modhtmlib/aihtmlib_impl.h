@@ -6,7 +6,15 @@
 #include <aiio.h>
 #include <aidb.h>
 
+class AIHtmLibDebug;
 class AIHtmLibImpl;
+
+class HtmRect;
+class HtmSequence;
+class HtmLayerMemory;
+class HtmLayer;
+class HtmCortex;
+class HtmHelper;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -56,6 +64,132 @@ private:
 private:
 	AIEngine& engine;
 	AIHtmLibDebug debug;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class HtmRect
+{
+public:
+	HtmRect( int fromH , int toH , int fromV , int toV );
+
+public:
+	int fromH;
+	int toH;
+	int fromV;
+	int toV;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+//  temporal element: {low-level patterns}
+class HtmSequence
+{
+public:
+	HtmSequence( int nTemporalCount  , int nChilds );
+	~HtmSequence();
+
+private:
+	int ID;
+	int usage;
+	TwoIndexArray<int> data; // [temporal index of pattern][child item in a pattern]
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+// learned sequences
+class HtmLayerMemory
+{
+public:
+	HtmLayerMemory();
+	~HtmLayerMemory();
+
+private:
+	ClassList<HtmSequence> sequences;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+// layer of abstraction
+class HtmLayer
+{
+public:
+	HtmLayer( int p_d1 , int p_d2 , HtmCortex *p_ctx , HtmLayer *p_source );
+	~HtmLayer();
+
+	TwoIndexArray<int>& getOutputs();
+	int getSizeH();
+	int getSizeV();
+	int getChildSizeH();
+	int getChildSizeV();
+
+	HtmRect getRect();
+	HtmRect getRectFromChild( const HtmRect& rcChild );
+
+	void recalculate( const HtmRect& rc );
+
+private:
+	static int calcMaxHistoryLength( int p_d1 , int p_d2 , HtmCortex *p_ctx , HtmLayer *p_source );
+	static int calcChildCountH( int p_d1 , int p_d2 , HtmCortex *p_ctx , HtmLayer *p_source );
+	static int calcChildCountV( int p_d1 , int p_d2 , HtmCortex *p_ctx , HtmLayer *p_source );
+
+private:
+	HtmCortex *ctx;
+	HtmLayer *childLayer;
+	TwoIndexArray<int> outputs;
+	HtmLayerMemory memory;
+
+	int maxHistoryLength;
+	int childCountH;
+	int childCountV;
+	HtmSequence currentSequence;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class HtmCortex
+{
+public:
+	HtmCortex();
+	~HtmCortex();
+
+public:
+	void create( int d1 , int d2 );
+
+	int getLayerCount();
+	HtmLayer *getLayer( int pos );
+	TwoIndexArray<int>& getInputs();
+	int getInputsSizeH();
+	int getInputsSizeV();
+
+	HtmRect getRect();
+
+	void recalculate( const HtmRect& rc );
+
+private:
+	ClassList<HtmLayer> layers;
+	TwoIndexArray<int> *inputs;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class HtmHelper
+{
+public:
+	HtmHelper( Logger& logger );
+	~HtmHelper();
+
+public:
+	void showCortex( HtmCortex *cortex );
+
+private:
+	Logger& logger;
 };
 
 /*#########################################################################*/

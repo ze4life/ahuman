@@ -156,7 +156,8 @@ public:
 	float getFloatParam( String paramName );
 	float getFloatParam( String paramName , float defaultValue );
 
-	// response 
+	// response
+	Xml getResponse();
 	Xml createResponse();
 	String sendResponse( Publisher *pub );
 	String sendResponseException( Publisher *pub , RuntimeException& e );
