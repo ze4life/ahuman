@@ -51,6 +51,11 @@ int HtmLayer::calcChildCountV( int p_d1 , int p_d2 , HtmCortex *p_ctx , HtmLayer
 	return( rate );
 }
 
+TwoIndexArray<int>& HtmLayer::getOutputs()
+{
+	return( outputs );
+}
+
 int HtmLayer::getChildSizeH()
 {
 	return( childCountH );
@@ -84,4 +89,22 @@ HtmRect HtmLayer::getRectFromChild( const HtmRect& rcChild )
 
 void HtmLayer::recalculate( const HtmRect& rc )
 {
+	int cd1 = ( childLayer != NULL )? childLayer -> getSizeH() : ctx -> getInputsSizeH();
+	int cd2 = ( childLayer != NULL )? childLayer -> getSizeV() : ctx -> getInputsSizeV();
+	int d1 = outputs.getN1();
+	int d2 = outputs.getN2();
+	TwoIndexArray<int>& inputs = ( childLayer != NULL )? childLayer -> getOutputs() : ctx -> getInputs();
+
+	for( int h = rc.fromH; h <= rc.toH; h++ )
+		for( int v = rc.fromV; h <= rc.toV; h++ )
+			{
+				int hc = ( h * cd1 ) / d1;
+				int vc = ( v * cd2 ) / d2;
+				outputs[ h ][ v ] = acceptWithoutPrediction( h , v , hc , vc , inputs );
+			}
+}
+
+int HtmLayer::acceptWithoutPrediction( int h , int v , int hc , int vc , TwoIndexArray<int>& inputs )
+{
+	return( 0 );
 }

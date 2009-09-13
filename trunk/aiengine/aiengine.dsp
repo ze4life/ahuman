@@ -512,11 +512,35 @@ SOURCE=.\src\modhtmlib\aihtmlib_impl.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\src\modhtmlib\htmcortex.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modhtmlib\htmhelper.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modhtmlib\htmlayer.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modhtmlib\htmlayermemory.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\src\modhtmlib\htmlib.cpp
 # End Source File
 # Begin Source File
 
 SOURCE=.\src\modhtmlib\htmlibdebug.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modhtmlib\htmrect.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modhtmlib\htmsequence.cpp
 # End Source File
 # End Group
 # Begin Group "modmedia"

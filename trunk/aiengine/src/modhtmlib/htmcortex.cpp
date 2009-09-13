@@ -75,6 +75,11 @@ int HtmCortex::getInputsSizeV()
 	return( inputs -> getN2() );
 }
 
+TwoIndexArray<int>& HtmCortex::getInputs()
+{
+	return( *inputs );
+}
+
 void HtmCortex::recalculate( const HtmRect& rc )
 {
 	// currently - all

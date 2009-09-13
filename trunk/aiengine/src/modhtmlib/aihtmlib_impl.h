@@ -137,6 +137,8 @@ private:
 	static int calcChildCountH( int p_d1 , int p_d2 , HtmCortex *p_ctx , HtmLayer *p_source );
 	static int calcChildCountV( int p_d1 , int p_d2 , HtmCortex *p_ctx , HtmLayer *p_source );
 
+	int acceptWithoutPrediction( int h , int v , int hc , int vc , TwoIndexArray<int>& inputs );
+
 private:
 	HtmCortex *ctx;
 	HtmLayer *childLayer;
