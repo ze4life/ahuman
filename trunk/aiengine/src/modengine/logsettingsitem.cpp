@@ -7,6 +7,7 @@
 // class LogSettingsItem
 LogSettingsItem::LogSettingsItem()
 {
+	level = Logger::LogLevelDebug;
 }
 
 LogSettingsItem::~LogSettingsItem()
@@ -58,7 +59,7 @@ void LogSettingsItem::configure( Xml xml )
 	// read instances if any
 	for( Xml instance = xml.getFirstChild( "instance" ); instance.exists(); instance = instance.getNextChild( "instance" ) )
 		{
-			String name = item.getAttribute( "name" );
+			String name = instance.getAttribute( "name" );
 
 			LogSettingsItem *lsi = new LogSettingsItem;
 			lsi -> configure( instance );
