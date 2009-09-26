@@ -11,3 +11,18 @@ HtmRect::HtmRect( int p_fromH , int p_toH , int p_fromV , int p_toV )
 	toV = p_toV;
 }
 
+int HtmRect::getSize() const
+{
+	return( ( toH - fromH + 1 ) * ( toV - fromV + 1 ) );
+}
+
+int HtmRect::getHeight() const
+{
+	return( toV - fromV + 1 );
+}
+
+int HtmRect::getWidth() const
+{
+	return( toH - fromH + 1 );
+}
+

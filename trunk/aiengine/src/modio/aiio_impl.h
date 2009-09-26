@@ -4,10 +4,11 @@
 #include <aiengine.h>
 #include <aiio.h>
 
-class IOQueue;
+class SessionImpl;
 class Channel;
 class PublisherImpl;
 class SubscriptionImpl;
+class IOQueue;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -26,9 +27,13 @@ class AIIOImpl : public AIIO , public Service
 public:
 	AIIOImpl();
 
+	// sessions
+	virtual Session *createSession();
+	virtual void closeSession( Session *session );
+
 	// topics publishers and subscribers
-	virtual Publisher *createPublisher( String channel , String pubName , String msgtype );
-	virtual Subscription *subscribe( String channel , String subName , Subscriber *sub );
+	virtual Publisher *createPublisher( Session *session , String channel , String pubName , String msgtype );
+	virtual Subscription *subscribe( Session *session , String channel , String subName , Subscriber *sub );
 	virtual bool destroyPublisher( Publisher *publisher );
 	virtual bool unsubscribe( Subscription *subscription );
 
@@ -44,7 +49,29 @@ private:
 	AIEngine& engine;
 
 	rfc_lock *dataLock;
+	int lastSessionId;
 	MapStringToClass<Channel> mapChannels; // channel name to class
+	MapIntToClass<SessionImpl> sessions;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class SessionImpl : public Session
+{
+public:
+	SessionImpl( int p_id );
+	virtual ~SessionImpl();
+
+public:
+	virtual int getSessionId();
+	virtual void setObject( Object *o , String name );
+	virtual Object *getObject( String name );
+
+private:
+	int sessionId;
+	rfc_lock *dataLock;
+	MapStringToClass<Object> objects;
 };
 
 // #############################################################################
@@ -64,15 +91,15 @@ public:
 	String getName();
 	void open();
 	void close();
-	String publish( PublisherImpl *pub , const char *msg );
-	String publish( PublisherImpl *pub , Message *msg );
+	String publish( Session *session , PublisherImpl *pub , const char *msg );
+	String publish( Session *session , PublisherImpl *pub , Message *msg );
+	String publish( Session *session , Message *msg );
 
 	// subscribers and publishers
 	void addSubscription( String key , SubscriptionImpl *sub );
 	void deleteSubscription( String key );
 	void addPublisher( String key , PublisherImpl *pub );
 	void deletePublisher( String key );
-	Publisher *getDefaultPublisher();
 
 	// read messages and call subscribers
 	void processMessages();
@@ -100,7 +127,6 @@ private:
 	IOQueue *messages;
 	MapStringToClass<SubscriptionImpl> subs;
 	MapStringToClass<PublisherImpl> pubs;
-	Publisher *defaultPublisher;
 };
 
 /*#########################################################################*/
@@ -109,18 +135,18 @@ private:
 class PublisherImpl : public Publisher
 {
 public:
-	PublisherImpl( Channel *p_channel , String p_name , String p_msgtype );
+	PublisherImpl( Session *session , Channel *p_channel , String p_name , String p_msgtype );
 	virtual ~PublisherImpl();
 
-	virtual String publish( const char *msg );
-	virtual String publish( Message *msg );
-	virtual String publish( XmlMessage *msg );
-	virtual String publish( XmlCall *msg );
+	virtual String publish( Session *session , const char *msg );
+	virtual String publish( Session *session , Message *msg );
 	virtual Channel *getChannel();
 	virtual const String& getMsgType();
 
 	void disconnected();
 
+public:
+	Session *session;
 	Channel *channel;
 	String name;
 	String msgtype;
@@ -132,12 +158,14 @@ public:
 class SubscriptionImpl : public Subscription
 {
 public:
-	SubscriptionImpl( Channel *p_channel , String p_name , Subscriber *p_sub );
+	SubscriptionImpl( Session *session , Channel *p_channel , String p_name , Subscriber *p_sub );
 	virtual Channel *getChannel();
 
 	void disconnected();
+	void processMessage( Message *msg );
 
 public:
+	Session *session;
 	Channel *channel;
 	String name;
 	Subscriber *sub;

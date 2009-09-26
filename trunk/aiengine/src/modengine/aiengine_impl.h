@@ -115,13 +115,16 @@ private:
 /*#########################################################################*/
 /*#########################################################################*/
 
-class ThreadLogTail : public ThreadObject
+class EngineThreadHelper : public ThreadObject
 {
 public:
-	ThreadLogTail() { remains = false; };
-	virtual ~ThreadLogTail() {};
+	EngineThreadHelper();
+	virtual ~EngineThreadHelper();
+
+	static EngineThreadHelper *getThreadObject();
 
 public:
+	void ( *oldAIUnhandledExceptionTranslator )(); // _se_translator_function
 	String lastMsg;
 	bool remains;
 };
@@ -137,10 +140,13 @@ public:
 
 public:
 	int getLevel();
+	Xml getSettings();
 	void setLevel( int level );
 	void setLevelSymbol( char level );
+	void setSettings( Xml xml );
 
 private:
+	Xml settings;
 	int level;
 };
 
@@ -157,12 +163,12 @@ public:
 
 	String getFileName();
 	String getFormat();
-	int getObjectLogLevel( const char *className , const char *instance = NULL );
-	int getServiceLogLevel( const char *className );
-	int getCustomLogLevel( const char *loggerName );
+	Xml getObjectLogSettings( const char *className , const char *instance , int *level );
+	Xml getServiceLogSettings( const char *className , int *level );
+	Xml getCustomLogSettings( const char *loggerName , int *level );
 
 private:
-	void readLevels( Xml config , const char *listName , MapStringToClass<LogSettingsItem>& map , int& dv );
+	void readLevels( Xml config , const char *listName , MapStringToClass<LogSettingsItem>& map , int& dv , Xml& settings );
 
 private:
 	String logFile;
@@ -173,6 +179,10 @@ private:
 	MapStringToClass<LogSettingsItem> serviceData;
 	MapStringToClass<LogSettingsItem> customData;
 
+	Xml objectSettings;
+	Xml instanceSettings;
+	Xml serviceSettings;
+	Xml customSettings;
 	int defaultObjectLevel;
 	int defaultObjectInstanceLevel;
 	int defaultServiceLevel;
@@ -192,7 +202,7 @@ class LogManager
 		int count;
 		long time;
 		long time_ms;
-		bool error;
+		Logger::LogLevel logLevel;
 		long threadId;
 		char *postfix;
 	} LogRecord;
@@ -214,17 +224,17 @@ public:
 	void waitForExit();
 
 	// add/get log records
-	void add( const char **chunkLines , int count , bool error , const char *postfix );
+	void add( const char **chunkLines , int count , Logger::LogLevel logLevel , const char *postfix );
 	bool get();
 	int getLogRecordsPending();
 
 	// log level
-	Logger::LogLevel getObjectLogLevel( Object *o );
-	Logger::LogLevel getServiceLogLevel( Service *s );
-	Logger::LogLevel getCustomLogLevel( const char *loggerName );
+	Xml getObjectLogSettings( Object *o , Logger::LogLevel *level );
+	Xml getServiceLogSettings( Service *s , Logger::LogLevel *level );
+	Xml getCustomLogSettings( const char *loggerName , Logger::LogLevel *level );
 
 private:
-	void set( LogRecord *p , bool copy , const char **chunkLines , int count , bool error , const char *postfix );
+	void set( LogRecord *p , bool copy , const char **chunkLines , int count , Logger::LogLevel logLevel , const char *postfix );
 	void clear( LogRecord *p );
 	void output( LogRecord *p );
 

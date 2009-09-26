@@ -30,9 +30,19 @@ void LogSettingsItem::setLevelSymbol( char p_level )
 			case 'N' :	level = Logger::LogLevelNone; break;
 			case 'E' :	level = Logger::LogLevelError; break;
 			case 'I' :	level = Logger::LogLevelInfo; break;
-			case 'A' :	level = Logger::LogLevelAll; break;
+			case 'A' :	level = Logger::LogLevelDebug; break;
 			default :
 				ASSERT( false );
 		}
+}
+
+Xml LogSettingsItem::getSettings()
+{
+	return( settings );
+}
+
+void LogSettingsItem::setSettings( Xml xml )
+{
+	settings = xml;
 }
 

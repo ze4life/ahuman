@@ -32,6 +32,19 @@ String Xml::getValue()
 	return( xml -> GetText() );
 }
 
+String Xml::getHeading()
+{
+	ASSERT( node != NULL );
+
+	TiXmlElement *xml = ( TiXmlElement * )node;
+
+	std::string x;
+	xml -> PrintWithoutChilds( &x , 0 );
+
+	String s = x.c_str();
+	return( s );
+}
+
 Xml Xml::getChildNode( String s )
 {
 	ASSERT( node != NULL );
@@ -254,4 +267,47 @@ Xml Xml::addTextElement( String name , String value )
 	Xml ret;
 	ret.attach( doc , xmlValue );
 	return( ret );
+}
+
+Xml Xml::addElement( String name )
+{
+	ASSERT( node != NULL );
+
+	TiXmlNode *xml = ( TiXmlNode * )node;
+	TiXmlElement *xmlProp = new TiXmlElement( name );
+	xml -> LinkEndChild( xmlProp );
+
+	Xml ret;
+	ret.attach( doc , xmlProp );
+	return( ret );
+}
+
+void Xml::setProperty( String name , String value )
+{
+	ASSERT( node != NULL );
+
+	TiXmlNode *xml = ( TiXmlNode * )node;
+	TiXmlElement *xmlProp = new TiXmlElement( "property" );
+	xmlProp -> SetAttribute( "name" , name );
+	xmlProp -> SetAttribute( "value" , value );
+	xml -> LinkEndChild( xmlProp );
+}
+
+void Xml::setBooleanProperty( String name , bool value )
+{
+	setProperty( name , ( ( value )? "true" : "false" ) );
+}
+
+void Xml::setIntProperty( String name , int value )
+{
+	char l_buf[ 12 ];
+	sprintf( l_buf , "%d" , value );
+	setProperty( name , l_buf );
+}
+
+void Xml::setFloatProperty( String name , float value )
+{
+	char l_buf[ 40 ];
+	sprintf( l_buf , "%f" , value );
+	setProperty( name , l_buf );
 }

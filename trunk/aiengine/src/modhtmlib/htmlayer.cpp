@@ -3,19 +3,39 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-HtmLayer::HtmLayer( int p_d1 , int p_d2 , HtmCortex *p_ctx , HtmLayer *p_source )
+HtmLayer::HtmLayer( int pos , int p_d1 , int p_d2 , HtmCortex *p_ctx , HtmLayer *p_source )
 :	ctx( p_ctx ) ,
 	outputs( p_d1 , p_d2 ) ,
 	childLayer( p_source ) ,
-	maxHistoryLength( calcMaxHistoryLength( p_d1 , p_d2 , p_ctx , p_source ) ) ,
+	maxHistoryLength( calcMaxHistoryLength( pos , p_d1 , p_d2 , p_ctx , p_source ) ) ,
 	childCountH( calcChildCountH( p_d1 , p_d2 , p_ctx , p_source ) ) ,
 	childCountV( calcChildCountV( p_d1 , p_d2 , p_ctx , p_source ) ) ,
-	currentSequence( maxHistoryLength , childCountH * childCountV )
+	currentSequence( p_d1 , p_d2 ) ,
+	memory( calcMemorySize( p_d1 , p_d2 , p_ctx , p_source ) )
 {
+	layerPos = pos;
+	logger.attach( "HtmLayer" );
+	int childCount = childCountH * childCountV;
+	highProbablePrecision = 80;
+
+	// create current sequences for all subregions
+	HtmRect rc = getRect();
+	for( int v = rc.fromV; v <= rc.toV; v++ )
+		for( int h = rc.fromH; h <= rc.toH; h++ )
+			{
+				HtmSequence *cs = currentSequence[ v ][ h ];
+				cs -> create( maxHistoryLength , childCount );
+			}
 }
 
 HtmLayer::~HtmLayer()
 {
+	currentSequence.destroy();
+}
+
+int HtmLayer::getLayerPos()
+{
+	return( layerPos );
 }
 
 int HtmLayer::getSizeH()
@@ -28,9 +48,17 @@ int HtmLayer::getSizeV()
 	return( outputs.getN2() );
 }
 
-int HtmLayer::calcMaxHistoryLength( int p_d1 , int p_d2 , HtmCortex *p_ctx , HtmLayer *p_source )
+int HtmLayer::getMaxHistory()
 {
-	return( 10 );
+	return( maxHistoryLength );
+}
+
+int HtmLayer::calcMaxHistoryLength( int pos , int p_d1 , int p_d2 , HtmCortex *p_ctx , HtmLayer *p_source )
+{
+	if( pos == 0 )
+		return( 1 );
+
+	return( 2 );
 }
 
 int HtmLayer::calcChildCountH( int p_d1 , int p_d2 , HtmCortex *p_ctx , HtmLayer *p_source )
@@ -49,6 +77,12 @@ int HtmLayer::calcChildCountV( int p_d1 , int p_d2 , HtmCortex *p_ctx , HtmLayer
 	if( rate * p_d2 < cd2 )
 		rate++;
 	return( rate );
+}
+
+int HtmLayer::calcMemorySize( int p_d1 , int p_d2 , HtmCortex *p_ctx , HtmLayer *p_source )
+{
+	// calculate number of sequences to store in the memory
+	return( p_d1 * p_d2 );
 }
 
 TwoIndexArray<int>& HtmLayer::getOutputs()
@@ -84,7 +118,32 @@ HtmRect HtmLayer::getRectFromChild( const HtmRect& rcChild )
 	int fromV = ( rcChild.fromV * d2 ) / cd2;
 	int toV = ( rcChild.toV * d2 ) / cd2;
 
+	if( fromH < 0 )
+		fromH = 0;
+	if( toH >= d1 )
+		toH = d1 - 1;
+	if( fromV < 0 )
+		fromV = 0;
+	if( toV >= d2 )
+		toV = d2 - 1;
 	return( HtmRect( fromH , toH , fromV , toV ) );
+}
+
+HtmRect HtmLayer::getChildRect( int h , int v )
+{
+	int cd1 = ( childLayer != NULL )? childLayer -> getSizeH() : ctx -> getInputsSizeH();
+	int cd2 = ( childLayer != NULL )? childLayer -> getSizeV() : ctx -> getInputsSizeV();
+
+	int hc = ( h * cd1 ) / outputs.getN1();
+	int vc = ( v * cd2 ) / outputs.getN2();
+
+	HtmRect rc( hc , hc + childCountH - 1 , vc , vc + childCountV - 1 );
+	if( rc.toH >= cd1 )
+		rc.toH = cd1 - 1;
+	if( rc.toV >= cd2 )
+		rc.toV = cd2 - 1;
+
+	return( rc );
 }
 
 void HtmLayer::recalculate( const HtmRect& rc )
@@ -95,16 +154,138 @@ void HtmLayer::recalculate( const HtmRect& rc )
 	int d2 = outputs.getN2();
 	TwoIndexArray<int>& inputs = ( childLayer != NULL )? childLayer -> getOutputs() : ctx -> getInputs();
 
-	for( int h = rc.fromH; h <= rc.toH; h++ )
-		for( int v = rc.fromV; h <= rc.toV; h++ )
-			{
-				int hc = ( h * cd1 ) / d1;
-				int vc = ( v * cd2 ) / d2;
-				outputs[ h ][ v ] = acceptWithoutPrediction( h , v , hc , vc , inputs );
-			}
+	HtmRect rcc( 0 , 0 , 0 , 0 );
+	HtmHelper helper( logger );
+	for( int v = rc.fromV; v <= rc.toV; v++ )
+		{
+			int *pv = outputs[ v ];
+			HtmSequence **pvh = currentSequence[ v ];
+
+			rcc.fromV = ( v * cd2 ) / d2;
+			rcc.toV = rcc.fromV + childCountV - 1;
+			if( rcc.toV >= cd2 )
+				rcc.toV = cd2 - 1;
+
+			for( int h = rc.fromH; h <= rc.toH; h++ )
+				{
+					// find sequence source subregion
+					rcc.fromH = ( h * cd1 ) / d1;
+					rcc.toH = rcc.fromH + childCountH - 1;
+					if( rcc.toH >= cd1 )
+						rcc.toH = cd1 - 1;
+
+					// generate sequence
+					HtmSequence *cs = pvh[ h ];
+
+					// ignore pattern the same as previously seen
+					if( !cs -> isNewPattern( inputs , rcc ) )
+						continue;							
+
+					// start sequence if currently maximum achieved
+					if( cs -> getHistoryCount() == maxHistoryLength )
+						cs -> clearCurrent();
+
+					// add pattern to sequence
+					cs -> addPattern( inputs , rcc );
+
+					// calculate output from current sequence
+					int action;
+					HtmSequence *csa = acceptWithoutPrediction( cs , &action );
+					helper.showAcceptWithoutPrediction( layerPos , h , v , cs , csa , action );
+
+					// ignore new pattern if cannot be assigned
+					if( csa != NULL )
+						pv[ h ] = csa -> getId();
+				}
+		}
 }
 
-int HtmLayer::acceptWithoutPrediction( int h , int v , int hc , int vc , TwoIndexArray<int>& inputs )
+HtmSequence *HtmLayer::acceptWithoutPrediction( HtmSequence *cs , int *action )
 {
-	return( 0 );
+	// find last_spatial_temporal_sequence in memory
+	int precision;
+	int probability;
+	HtmSequence *csf = memory.findLike( cs , &precision , &probability );
+
+	if( csf != NULL )
+		{
+			int historySizeDifference = csf -> getHistoryCount() - cs -> getHistoryCount();
+			// if found as a high-probable same-size sequence then
+			if( historySizeDifference == 0 && precision >= highProbablePrecision )
+				{
+					// increment found sequence usage
+					memory.incrementUsage( csf );
+					// last_returned_sequence_ID = found sequence ID, last_returned_sequence_probability = found probability, return last_returned_sequence_ID
+					cs -> setLastReturned( csf , precision );
+					*action = 1;
+					return( csf );
+				}
+
+			// else if found longer sequence where its starting part is a high-probable last_spatial_temporal_sequence then
+			if( historySizeDifference > 0 && probability >= highProbablePrecision )
+				{
+					// last_returned_sequence_ID = found sequence ID, last_returned_sequence_probability = found probability, return last_returned_sequence_ID
+					cs -> setLastReturned( csf , probability );
+					*action = 2;
+					return( csf );
+				}
+		}
+
+	// if able to store sequence
+	int lastPrecision;
+	HtmSequence *csl = cs -> getLastReturned( &lastPrecision );
+	if( memory.hasSpace() )
+		{
+			// decrement last_returned_sequence_ID if any
+			if( csl != NULL )
+				{
+					*action = 3;
+					memory.decrementUsage( csl );
+				}
+			else
+				*action = 4;
+
+			// store sequence
+			// select victim to forget
+			int pos = memory.selectLeastUsedPos();
+
+			// store new sequence in memory
+			HtmSequence *csn = memory.store( pos , cs );
+
+			// last_returned_sequence_ID = stored sequence ID, last_returned_sequence_probability = 1, return last_returned_sequence_ID
+			cs -> setLastReturned( csn , 100 );
+			return( csn );
+		}
+
+	// if last_returned_sequence_probability is high
+	if( csl != NULL && lastPrecision >= highProbablePrecision )
+		{
+			// last_spatial_temporal_sequence = new_spatial_pattern, last_returned_sequence_probability = 0
+			cs -> clearCurrentKeepLast();
+			// return acceptWithoutPrediction
+			return( acceptWithoutPrediction( cs , action ) );
+		}
+
+	// if nothing found
+	if( csf == NULL )
+		{
+			// last_returned_sequence_ID = 0, last_returned_sequence_probability = 0 
+			cs -> clearCurrent();
+			// ignore new pattern
+			*action = 5;
+			return( NULL );
+		}
+
+	// decrement random sequence - i.e. forget something
+	memory.decrementUsageRandom();
+
+	// last_returned_sequence_ID = found sequence ID, last_returned_sequence_probability = found probability, return last_returned_sequence_ID
+	cs -> setLastReturned( csf , precision );
+	*action = 6;
+	return( csf );
+}
+
+HtmLayerMemory *HtmLayer::getMemory()
+{
+	return( &memory );
 }

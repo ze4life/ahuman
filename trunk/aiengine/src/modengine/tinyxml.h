@@ -1122,7 +1122,9 @@ public:
 	virtual TiXmlNode* Clone() const;
 	// Print the Element to a FILE stream.
 	virtual void Print( FILE* cfile, int depth ) const;
+	virtual void PrintWithoutChilds( FILE* cfile, int depth ) const;
 	virtual void Print( TIXML_STRING* str, int depth ) const;
+	virtual void PrintWithoutChilds( TIXML_STRING* str, int depth ) const;
 
 	/*	Attribtue parsing starts: next char past '<'
 						 returns: next char past '>'

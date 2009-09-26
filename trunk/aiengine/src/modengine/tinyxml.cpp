@@ -769,6 +769,25 @@ void TiXmlElement::SetAttribute( const std::string& name, const std::string& _va
 }
 #endif
 
+void TiXmlElement::PrintWithoutChilds( FILE* cfile, int depth ) const
+{
+	int i;
+	assert( cfile );
+	for ( i=0; i<depth; i++ ) {
+		fprintf( cfile, "    " );
+	}
+
+	fprintf( cfile, "<%s", value.c_str() );
+
+	const TiXmlAttribute* attrib;
+	for ( attrib = attributeSet.First(); attrib; attrib = attrib->Next() )
+	{
+		fprintf( cfile, " " );
+		attrib->Print( cfile, depth );
+	}
+
+	fprintf( cfile, " />" );
+}
 
 void TiXmlElement::Print( FILE* cfile, int depth ) const
 {
@@ -877,6 +896,27 @@ void TiXmlElement::Print( TIXML_STRING* str, int depth ) const
 		(*str) += value.c_str();
 		(*str) += ">";
 	}
+}
+
+void TiXmlElement::PrintWithoutChilds( TIXML_STRING* str, int depth ) const
+{
+	int i;
+	assert( str );
+	for ( i=0; i<depth; i++ ) {
+		(*str) += "    ";
+	}
+
+	(*str) += "<";
+	(*str) += value.c_str();
+
+	const TiXmlAttribute* attrib;
+	for ( attrib = attributeSet.First(); attrib; attrib = attrib->Next() )
+	{
+		(*str) += " ";
+		attrib->Print( str, depth );
+	}
+
+	(*str) += " />";
 }
 
 void TiXmlElement::CopyTo( TiXmlElement* target ) const

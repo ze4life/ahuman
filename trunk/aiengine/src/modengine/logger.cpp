@@ -26,7 +26,7 @@ void Logger::setLogLevel( LogLevel level )
 void Logger::attach( Service *p_s )
 {
 	LogManager *logManager = AIEngine::getInstance().getLogManager();
-	logLevel = logManager -> getServiceLogLevel( p_s );
+	config = logManager -> getServiceLogSettings( p_s , &logLevel );
 	loggerName = p_s -> getName();
 	s = p_s;
 }
@@ -34,7 +34,7 @@ void Logger::attach( Service *p_s )
 void Logger::attach( Object *p_o )
 {
 	LogManager *logManager = AIEngine::getInstance().getLogManager();
-	logLevel = logManager -> getObjectLogLevel( p_o );
+	config = logManager -> getObjectLogSettings( p_o , &logLevel );
 	loggerName = p_o -> getClass();
 	o = p_o;
 }
@@ -45,7 +45,7 @@ void Logger::attach( const char *p_loggerName )
 	s = NULL;
 	loggerName = p_loggerName;
 	LogManager *logManager = AIEngine::getInstance().getLogManager();
-	logLevel = logManager -> getCustomLogLevel( loggerName );
+	config = logManager -> getCustomLogSettings( loggerName , &logLevel );
 }
 
 // stack
@@ -60,11 +60,11 @@ void Logger::printStack( rfc_threadstack *stack , int skipTop )
 {
 	int startItem = rfc_thr_stackfulldepth( stack ) - 1;
 
-	log( String( "CALL STACK:" ) , 1 , true );
+	log( String( "CALL STACK:" ) , 1 , Logger::LogLevelInfo );
 
 	if( skipTop > 0 )
 		{
-			log( String( "\t...skipped..." ) , 0 , true );
+			log( String( "\t...skipped..." ) , 0 , Logger::LogLevelInfo );
 			startItem -= skipTop;
 		}
 
@@ -88,7 +88,7 @@ void Logger::printStack( rfc_threadstack *stack , int skipTop )
 			log( String( "\t" ) + sl -> className + 
 				"::" + sl -> functionName + 
 				" (" + moduleNameShort + 
-				", " + sl -> message + ")" , mode , true );
+				", " + sl -> message + ")" , mode , Logger::LogLevelInfo );
 		}
 }
 
@@ -98,7 +98,7 @@ void Logger::logInfo( const char *s , int mode )
 	if( logLevel < Logger::LogLevelInfo )
 		return;
 
-	log( s , mode , false );
+	log( s , mode , Logger::LogLevelInfo );
 }
 
 void Logger::logError( const char *s , int mode )
@@ -106,17 +106,20 @@ void Logger::logError( const char *s , int mode )
 	if( logLevel < Logger::LogLevelError )
 		return;
 
-	log( s , mode , true );
+	log( s , mode , Logger::LogLevelError );
 }
 
 void Logger::logDebug( const char *s , int mode )
 {
-	log( s , mode , false );
+	if( logLevel < Logger::LogLevelDebug )
+		return;
+
+	log( s , mode , Logger::LogLevelDebug );
 }
 
-void Logger::logObject( const char *prompt , Object *obj )
+void Logger::logObject( const char *prompt , Object *obj , Logger::LogLevel p_logLevel )
 {
-	if( logLevel < Logger::LogLevelInfo )
+	if( p_logLevel > logLevel )
 		return;
 
 	const char *lines[2];
@@ -131,18 +134,18 @@ void Logger::logObject( const char *prompt , Object *obj )
 	lines[ 1 ] = data;
 
 	LogManager *logManager = AIEngine::getInstance().getLogManager();
-	logManager -> add( lines , 2 , false , getPostfix() );
+	logManager -> add( lines , 2 , p_logLevel , getPostfix() );
 }
 
-void Logger::log( const char *s , int mode , bool error )
+void Logger::log( const char *s , int mode , Logger::LogLevel p_logLevel )
 {
 	AIEngine& engine = AIEngine::getInstance();
-	ThreadLogTail *logTail = ( ThreadLogTail * )engine.getWorkerObject( "LogTail" );
+	EngineThreadHelper *logTail = EngineThreadHelper::getThreadObject();
 
 	LogManager *logManager = engine.getLogManager();
 	if( logTail == NULL )
 		{
-			logManager -> add( &s , 1 , error , getPostfix() );
+			logManager -> add( &s , 1 , p_logLevel , getPostfix() );
 			return;
 		}
 	
@@ -153,7 +156,7 @@ void Logger::log( const char *s , int mode , bool error )
 			if( mode == 1 || mode < 0 )
 				{
 					const char *p = logTail -> lastMsg;
-					logManager -> add( &p , 1 , error , getPostfix() );
+					logManager -> add( &p , 1 , p_logLevel , getPostfix() );
 
 					logTail -> remains = false;
 					w.clear();
@@ -167,7 +170,7 @@ void Logger::log( const char *s , int mode , bool error )
 	if( mode == 2 || mode < 0 )
 		{
 			const char *p = w;
-			logManager -> add( &p , 1 , error , getPostfix() );
+			logManager -> add( &p , 1 , p_logLevel , getPostfix() );
 			logTail -> remains = false;
 			w.clear();
 		}
@@ -184,6 +187,11 @@ const char *Logger::getPostfix()
 
 bool Logger::isLogAll()
 {
-	return( logLevel == LogLevelAll );
+	return( logLevel == LogLevelDebug );
+}
+
+Xml Logger::getLogSettings()
+{
+	return( config );
 }
 

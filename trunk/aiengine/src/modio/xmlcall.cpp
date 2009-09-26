@@ -6,6 +6,7 @@
 XmlCall::XmlCall( Channel *p_channelIn , Channel *p_channelOut , const char *txt )
 :	XmlMessage( txt )
 {
+	Message::msgBaseType = MsgType_XmlCall;
 	responseSent = false;
 	channelIn = p_channelIn;
 	channelOut = p_channelOut;
@@ -96,7 +97,7 @@ String XmlCall::sendResponse( Publisher *pub )
 	ASSERT( xmlResponse.exists() );
 	XmlMessage *msg = new XmlMessage( xmlResponse );
 	responseSent = true;
-	return( pub -> publish( msg ) );
+	return( pub -> publish( getSession() , msg ) );
 }
 
 String XmlCall::sendResponseException( Publisher *pub , RuntimeException& e )
@@ -127,8 +128,8 @@ String XmlCall::sendUnknownResponse()
 	res.setAttribute( "status" , "Unknown" );
 
 	XmlMessage *msg = new XmlMessage( xmlResponse );
-	Publisher *pubUnknown = channelOut -> getDefaultPublisher();
-	String msgId = sendResponse( pubUnknown );
+	String msgId = channelOut -> publish( getSession() , msg );
+	responseSent = true;
 
 	return( msgId );
 }

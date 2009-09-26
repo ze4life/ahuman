@@ -32,7 +32,9 @@ public:
 	void init( Xml config );
 	void exit();
 
-	virtual void onMessage( Message *msg );
+	virtual void onMessage( Message *msg ) {};
+	virtual void onXmlMessage( XmlMessage *msg ) {};
+	virtual void onXmlCall( XmlCall *msg );
 
 // tests
 private:

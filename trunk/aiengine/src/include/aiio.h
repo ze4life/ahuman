@@ -8,6 +8,7 @@ class Subscription;
 class XmlMessage;
 class XmlCall;
 class Channel;
+class Session;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -15,11 +16,17 @@ class Channel;
 class AIIO
 {
 public:
+	// sessions
+	virtual Session *createSession()
+		{ return( thisPtr -> createSession() ); };
+	virtual void closeSession( Session *session )
+		{ thisPtr -> closeSession( session ); };
+
 	// topics publishers and subscribers
-	virtual Publisher *createPublisher( String channel , String pubName , String msgtype )
-		{ return( thisPtr -> createPublisher( channel , pubName , msgtype ) ); };
-	virtual Subscription *subscribe( String channel , String subName , Subscriber *sub )
-		{ return( thisPtr -> subscribe( channel , subName , sub ) ); };
+	virtual Publisher *createPublisher( Session *session , String channel , String pubName , String msgtype )
+		{ return( thisPtr -> createPublisher( session , channel , pubName , msgtype ) ); };
+	virtual Subscription *subscribe( Session *session , String channel , String subName , Subscriber *sub )
+		{ return( thisPtr -> subscribe( session , channel , subName , sub ) ); };
 	virtual bool destroyPublisher( Publisher *pub )
 		{ return( thisPtr -> destroyPublisher( pub ) ); };
 	virtual bool unsubscribe( Subscription *sub )
@@ -35,14 +42,27 @@ public:
 /*#########################################################################*/
 /*#########################################################################*/
 
+class Session
+{
+public:
+	Session() {};
+	virtual ~Session() {};
+
+public:
+	virtual int getSessionId() = 0;
+	virtual void setObject( Object *o , String name ) = 0;
+	virtual Object *getObject( String name ) = 0;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
 class Publisher
 {
 public:
 	virtual ~Publisher() {};
-	virtual String publish( const char *msg ) = 0;
-	virtual String publish( Message *msg ) = 0;
-	virtual String publish( XmlMessage *msg ) = 0;
-	virtual String publish( XmlCall *msg ) = 0;
+	virtual String publish( Session *session , const char *msg ) = 0;
+	virtual String publish( Session *session , Message *msg ) = 0;
 	virtual Channel *getChannel() = 0;
 	virtual const String& getMsgType() = 0;
 };
@@ -54,6 +74,8 @@ class Subscriber
 {
 public:
 	virtual void onMessage( Message *msg ) = 0;
+	virtual void onXmlMessage( XmlMessage *msg ) = 0;
+	virtual void onXmlCall( XmlCall *msg ) = 0;
 };
 
 /*#########################################################################*/
@@ -105,8 +127,13 @@ public:
 	void setText( const char *p_txt ) { message = p_txt; };
 	const String& getText() { return( message ); };
 
-private:
+	void setSession( Session *p_session ) { session = p_session; };
+	Session *getSession() { return( session ); };
+
+protected:
 	MsgType msgBaseType;
+private:
+	Session *session;
 	String id;
 	String extid;
 	String type;

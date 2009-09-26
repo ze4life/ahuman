@@ -22,8 +22,8 @@ void AINNLibDebug::init( Xml config )
 	String channelOut = debug.getProperty( "channel.out" );
 
 	AIIO io;
-	callSub = io.subscribe( channelIn , "nnlib" , this );
-	callPub = io.createPublisher( channelOut , "nnlib" , "debug" );
+	callSub = io.subscribe( NULL , channelIn , "nnlib" , this );
+	callPub = io.createPublisher( NULL , channelOut , "nnlib" , "debug" );
 }
 
 void AINNLibDebug::exit()
@@ -35,9 +35,9 @@ void AINNLibDebug::exit()
 		io.unsubscribe( callSub );
 }
 
-void AINNLibDebug::onMessage( Message *msg )
+void AINNLibDebug::onXmlCall( XmlCall *msg )
 {
-	XmlCall& call = msg -> toXmlCall();
+	XmlCall& call = *msg;
 	String fn = call.getFunctionName();
 
 	try {

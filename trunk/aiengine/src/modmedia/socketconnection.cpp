@@ -17,6 +17,9 @@ static 	unsigned		__stdcall threadClientFunction( void *p_arg )
 	SocketConnection *client = ( SocketConnection * )p_arg;
 	client -> readMessages();
 
+	Listener *listener = client -> getListener();
+	listener -> destroyListenerConnection( client );
+
 	// cleanup sockets
 	WSACleanup();
 
@@ -47,6 +50,13 @@ SocketConnection::SocketConnection( SocketServer *p_server , SOCKET p_clientSock
 
 SocketConnection::~SocketConnection()
 {
+	// delete session
+	Session *session = Connection::getSession();
+	if( session != NULL )
+		{
+			AIIO io;
+			io.closeSession( session );
+		}
 }
 
 bool SocketConnection::startConnection()
@@ -57,18 +67,21 @@ bool SocketConnection::startConnection()
 		"] from network address " + getClientSocketName() );
 
 	// connect to topics
+	AIIO io;
+	Session *session = io.createSession();
+	Connection::setSession( session );
 	if( server -> getWayIn() )
 		{
 			String topicIn = server -> getTopicIn();
 			AIIO io;
-			pub = io.createPublisher( topicIn , getName() , "generic" );
+			pub = io.createPublisher( session , topicIn , getName() , "generic" );
 		}
 
 	if( server -> getWayOut() )
 		{
 			String topicOut = server -> getTopicOut();
 			AIIO io;
-			sub = io.subscribe( topicOut , getName() , this );
+			sub = io.subscribe( session , topicOut , getName() , this );
 		}
 
 	// start reading thread
@@ -214,21 +227,21 @@ void SocketConnection::processMessage( const char *p_msg )
 							    
 	if( msgType == Message::MsgType_Text )
 		{
-			pub -> publish( p_msg );
+			pub -> publish( Connection::getSession() , p_msg );
 		}
 	else
 	if( msgType == Message::MsgType_Xml )
 		{
 			XmlMessage *l_msg = new XmlMessage( p_msg );
 			l_msg -> setXmlFromMessage( pub -> getMsgType() );
-			pub -> publish( p_msg );
+			pub -> publish( Connection::getSession() , p_msg );
 		}
 	else
 	if( msgType == Message::MsgType_XmlCall )
 		{
 			XmlCall *call = new XmlCall( pub -> getChannel() , sub -> getChannel() , p_msg );
 			call -> setXmlFromMessage();
-			pub -> publish( call );
+			pub -> publish( Connection::getSession() , call );
 		}
 }
 
@@ -266,3 +279,13 @@ void SocketConnection::onMessage( Message *msg )
 	writeMessage( msg );
 }
 
+void SocketConnection::onXmlMessage( XmlMessage *msg )
+{
+	msg -> setMessageFromXml();
+	writeMessage( msg );
+}
+
+void SocketConnection::onXmlCall( XmlCall *msg )
+{
+	ASSERTMSG( false , "not implemented yet" );
+}

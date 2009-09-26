@@ -54,8 +54,6 @@ Channel::Channel( String p_msgid , String p_name , bool p_sync )
 	messages = NULL;
 	logger.attach( this );
 	channelLock = rfc_lock_create();
-
-	defaultPublisher = NULL;
 }
 
 Channel::~Channel()
@@ -65,9 +63,6 @@ Channel::~Channel()
 
 	if( messages != NULL )
 		delete messages;
-
-	if( defaultPublisher != NULL )
-		delete defaultPublisher;
 }
 
 /*#########################################################################*/
@@ -88,9 +83,6 @@ void Channel::open()
 		}
 
 	messages = new IOQueue( Object::getInstance() );
-	PublisherImpl *pubDefault = new PublisherImpl( this , "default" , "generic" );
-	defaultPublisher = pubDefault;
-	addPublisher( "default" , pubDefault );
 
 	// create channel thread
 	if( !sync )
@@ -140,20 +132,39 @@ void Channel::close()
 	unlock();
 }
 
-String Channel::publish( PublisherImpl *pub , const char *msg )
+String Channel::publish( Session *p_session , PublisherImpl *pub , const char *msg )
 {
 	Message *l_msg = new Message;
 	l_msg -> setText( msg );
 	l_msg -> setType( pub -> msgtype );
-	return( publish( pub , l_msg ) );
+	return( publish( p_session , pub , l_msg ) );
 }
 
-String Channel::publish( PublisherImpl *pub , Message *msg )
+String Channel::publish( Session *p_session , PublisherImpl *pub , Message *msg )
 {
 	ASSERT( opened );
 	String id = getNewMessageId();
 	msg -> setChannelMessageId( id ); 
 	msg -> setSourceId( pub -> name );
+	msg -> setSession( p_session );
+
+	if( sync )
+		{
+			subscribeEvent( msg );
+			delete msg;
+		}
+	else
+		messages -> addMessage( msg );
+
+	return( id );
+}
+
+String Channel::publish( Session *p_session , Message *msg )
+{
+	ASSERT( opened );
+	String id = getNewMessageId();
+	msg -> setChannelMessageId( id ); 
+	msg -> setSession( p_session );
 
 	if( sync )
 		{
@@ -207,11 +218,6 @@ void Channel::deletePublisher( String key )
 	unlock();
 }
 
-Publisher *Channel::getDefaultPublisher()
-{
-	return( defaultPublisher );
-}
-
 // executing in separate thread
 void Channel::processMessages()
 {
@@ -243,10 +249,14 @@ void Channel::processMessages()
 void Channel::subscribeEvent( Message *p_msg )
 {
 	lock();
+	Session *l_session = p_msg -> getSession();
 	for( int k = 0; k < subs.count(); k++ )
 		{
 			SubscriptionImpl *sub = subs.getClassByIndex( k );
-			sub -> sub -> onMessage( p_msg );
+			Session *l_sub_session = sub -> session;
+
+			if( l_sub_session == NULL || l_session == l_sub_session )
+				sub -> processMessage( p_msg );
 		}
 	unlock();
 

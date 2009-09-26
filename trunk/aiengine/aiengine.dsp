@@ -256,6 +256,10 @@ SOURCE=.\src\modio\queue.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\src\modio\session.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\src\modio\subscription.cpp
 # End Source File
 # Begin Source File
@@ -277,6 +281,10 @@ SOURCE=.\src\modengine\aiengine_impl.h
 # Begin Source File
 
 SOURCE=.\src\modengine\engine.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\modengine\enginethreadhelper.cpp
 # End Source File
 # Begin Source File
 

@@ -3,8 +3,9 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-PublisherImpl::PublisherImpl( Channel *p_channel , String p_name , String p_msgtype ) 
-{ 
+PublisherImpl::PublisherImpl( Session *p_session , Channel *p_channel , String p_name , String p_msgtype ) 
+{
+	session = p_session;
 	channel = p_channel; 
 	name = p_name; 
 	msgtype = p_msgtype; 
@@ -24,30 +25,16 @@ const String& PublisherImpl::getMsgType()
 	return( msgtype );
 }
 
-String PublisherImpl::publish( const char *msg )
+String PublisherImpl::publish( Session *p_session , const char *msg )
 {
 	ASSERT( channel != NULL );
-	return( channel -> publish( this , msg ) ); 
+	return( channel -> publish( p_session , this , msg ) ); 
 }
 
-String PublisherImpl::publish( Message *msg )
+String PublisherImpl::publish( Session *p_session , Message *msg )
 {
 	ASSERT( channel != NULL );
-	return( channel -> publish( this , msg ) ); 
-}
-
-String PublisherImpl::publish( XmlMessage *msg )
-{
-	ASSERT( channel != NULL );
-	msg -> setMessageFromXml();
-	return( channel -> publish( this , msg ) );
-}
-
-String PublisherImpl::publish( XmlCall *msg )
-{
-	ASSERT( channel != NULL );
-	msg -> setMessageFromXml();
-	return( channel -> publish( this , msg ) );
+	return( channel -> publish( p_session , this , msg ) ); 
 }
 
 void PublisherImpl::disconnected()

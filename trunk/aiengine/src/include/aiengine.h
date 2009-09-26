@@ -46,6 +46,7 @@ public:
 	String getName();
 	String getValue();
 	String serialize();
+	String getHeading();
 
 	// navigation
 	Xml getChildNode( String s );
@@ -67,9 +68,14 @@ public:
 	int getIntProperty( String name , int defaultValue );
 	float getFloatProperty( String name );
 	float getFloatProperty( String name , float defaultValue );
+	void setProperty( String name , String value );
+	void setBooleanProperty( String name , bool value );
+	void setIntProperty( String name , int value );
+	void setFloatProperty( String name , float value );
 
 	// elements
 	Xml addTextElement( String name , String value );
+	Xml addElement( String name );
 
 private:
 	void *doc;
@@ -86,13 +92,15 @@ public:
 		LogLevelNone = 0 ,
 		LogLevelError = 1 ,
 		LogLevelInfo = 2 ,
-		LogLevelAll = 3
+		LogLevelDebug = 3
 	} LogLevel;
 
 public:
 	// construction
 	Logger();
 	~Logger();
+
+	Xml getLogSettings();
 	void attach( Service *s );
 	void attach( Object *o );
 	void attach( const char *loggerName );
@@ -106,20 +114,21 @@ public:
 	void logInfo( const char *s , int logMode = -1 );
 	void logError( const char *s , int logMode = -1 );
 	void logDebug( const char *s , int logMode = -1 );
-	void logObject( const char *prompt , Object *obj );
+	void logObject( const char *prompt , Object *obj , Logger::LogLevel logLevel );
 
 	// check log status
 	bool isLogAll();
 
 private:
-	void log( const char *s , int logMode , bool error );
+	void log( const char *s , int logMode , Logger::LogLevel logLevel );
 	const char *Logger::getPostfix();
 	
 private:
 	Object *o;
 	Service *s;
-	int logLevel;
+	Logger::LogLevel logLevel;
 	const char *loggerName;
+	Xml config;
 };
 
 /*#########################################################################*/
@@ -169,6 +178,7 @@ protected:
 
 	// configuration
 	Xml config;
+	Xml configLogging;
 };
 
 /*#########################################################################*/

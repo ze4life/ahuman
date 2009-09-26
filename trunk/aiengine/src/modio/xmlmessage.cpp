@@ -2,11 +2,13 @@
 
 XmlMessage::XmlMessage( const char *txt )
 {
+	Message::msgBaseType = MsgType_Xml;
 	Message::setText( txt );
 }
 
 XmlMessage::XmlMessage( Xml p_xml )
 {
+	Message::msgBaseType = MsgType_Xml;
 	xml = p_xml;
 }
 

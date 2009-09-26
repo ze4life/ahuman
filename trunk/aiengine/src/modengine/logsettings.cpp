@@ -7,10 +7,10 @@
 // class LogSettings : public Object
 LogSettings::LogSettings()
 {
-	defaultObjectLevel = Logger::LogLevelAll;
-	defaultObjectInstanceLevel = Logger::LogLevelAll;
-	defaultServiceLevel = Logger::LogLevelAll;
-	defaultCustomLevel = Logger::LogLevelAll;
+	defaultObjectLevel = Logger::LogLevelDebug;
+	defaultObjectInstanceLevel = Logger::LogLevelDebug;
+	defaultServiceLevel = Logger::LogLevelDebug;
+	defaultCustomLevel = Logger::LogLevelDebug;
 }
 
 LogSettings::~LogSettings()
@@ -27,19 +27,21 @@ void LogSettings::load( Xml config )
 	logFile = config.getProperty( "filename" );
 	logFormat = config.getProperty( "format" );
 
-	readLevels( config , "objectLogLevel" , objectData , defaultObjectLevel );
-	readLevels( config , "objectInstanceLogLevel" , objectInstanceData , defaultObjectInstanceLevel );
-	readLevels( config , "serviceLogLevel" , serviceData , defaultServiceLevel );
-	readLevels( config , "customLogLevel" , customData , defaultCustomLevel );
+	readLevels( config , "objectLogLevel" , objectData , defaultObjectLevel , objectSettings );
+	readLevels( config , "objectInstanceLogLevel" , objectInstanceData , defaultObjectInstanceLevel , instanceSettings );
+	readLevels( config , "serviceLogLevel" , serviceData , defaultServiceLevel , serviceSettings );
+	readLevels( config , "customLogLevel" , customData , defaultCustomLevel , customSettings );
 }
 
-void LogSettings::readLevels( Xml config , const char *listName , MapStringToClass<LogSettingsItem>& map , int& dv )
+void LogSettings::readLevels( Xml config , const char *listName , MapStringToClass<LogSettingsItem>& map , int& dv , Xml& settings )
 {
 	map.destroy();
 
 	Xml list = config.getChildNode( listName );
 	if( !list.exists() )
 		return;
+
+	settings = list;
 
 	// read default value
 	String defval = list.getAttribute( "default" );
@@ -50,7 +52,7 @@ void LogSettings::readLevels( Xml config , const char *listName , MapStringToCla
 		dv = Logger::LogLevelInfo;
 	else
 	if( defval.equals( "A" ) )
-		dv = Logger::LogLevelAll;
+		dv = Logger::LogLevelDebug;
 	else
 		dv = Logger::LogLevelNone;
 
@@ -63,6 +65,7 @@ void LogSettings::readLevels( Xml config , const char *listName , MapStringToCla
 
 			LogSettingsItem *lsi = new LogSettingsItem;
 			lsi -> setLevelSymbol( *( const char * )level );
+			lsi -> setSettings( item );
 
 			if( !instance.isEmpty() )
 				{
@@ -74,7 +77,7 @@ void LogSettings::readLevels( Xml config , const char *listName , MapStringToCla
 		}
 }
 
-int LogSettings::getObjectLogLevel( const char *className , const char *instance )
+Xml LogSettings::getObjectLogSettings( const char *className , const char *instance , int *level )
 {
 	// get instance-based logger
 	if( instance != NULL && *instance != 0 )
@@ -84,33 +87,48 @@ int LogSettings::getObjectLogLevel( const char *className , const char *instance
 			s += instance;
 			LogSettingsItem *item = objectInstanceData.get( s );
 			if( item != NULL )
-				return( item -> getLevel() );
+				{
+					*level = item -> getLevel();
+					return( item -> getSettings() );
+				}
 		}
 
 	// get class-based logger
 	LogSettingsItem *item = objectData.get( className );
 	if( item == NULL )
-		return( defaultObjectLevel );
+		{
+			*level = defaultObjectLevel;
+			return( objectSettings );
+		}
 
-	return( item -> getLevel() );
+	*level = item -> getLevel();
+	return( item -> getSettings() );
 }
 
-int LogSettings::getServiceLogLevel( const char *className )
+Xml LogSettings::getServiceLogSettings( const char *className , int *level )
 {
 	LogSettingsItem *item = serviceData.get( className );
 	if( item == NULL )
-		return( defaultServiceLevel );
+		{
+			*level = defaultServiceLevel;
+			return( serviceSettings );
+		}
 
-	return( item -> getLevel() );
+	*level = item -> getLevel();
+	return( item -> getSettings() );
 }
 
-int LogSettings::getCustomLogLevel( const char *loggerName )
+Xml LogSettings::getCustomLogSettings( const char *loggerName , int *level )
 {
 	LogSettingsItem *item = customData.get( loggerName );
 	if( item == NULL )
-		return( defaultCustomLevel );
+		{
+			*level = defaultCustomLevel;
+			return( customSettings );
+		}
 
-	return( item -> getLevel() );
+	*level = item -> getLevel();
+	return( item -> getSettings() );
 }
 
 String LogSettings::getFileName()

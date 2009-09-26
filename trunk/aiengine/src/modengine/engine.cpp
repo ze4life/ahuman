@@ -9,7 +9,6 @@ AIEngineImpl *AIEngineImpl::instance = NULL;
 /*#########################################################################*/
 
 static LPTOP_LEVEL_EXCEPTION_FILTER oldAIUnhandledExceptionFilter;
-static _se_translator_function oldAIUnhandledExceptionTranslator;
 
 void AIUnhandledExceptionTranslator( unsigned int exceptionCode , struct _EXCEPTION_POINTERS *exceptionInfo )
 {
@@ -88,9 +87,7 @@ void AIEngineImpl::init()
 	logManager -> setSyncMode( true );
 
 	logger.attach( "root" );
-	logger.setLogLevel( Logger::LogLevelAll );
-
-	manageCallStack();
+	logger.setLogLevel( Logger::LogLevelDebug );
 
 	// register main thread
 	workerCreated();
@@ -403,8 +400,8 @@ void AIEngineImpl::workerStarted()
 	threadData -> threadId = ::GetCurrentThreadId();
 
 	// init logging
-	ThreadLogTail *logTail = new ThreadLogTail;
-	addWorkerObject( "LogTail" , logTail );
+	EngineThreadHelper *to = new EngineThreadHelper;
+	manageCallStack();
 }
 
 void AIEngineImpl::workerExited( RFC_THREAD threadId , int status )
@@ -629,5 +626,6 @@ void AIEngineImpl::destroySerializeObjectInstances()
 
 void AIEngineImpl::manageCallStack()
 {
-	oldAIUnhandledExceptionTranslator = ::_set_se_translator( AIUnhandledExceptionTranslator );
+	EngineThreadHelper *to = EngineThreadHelper::getThreadObject();
+	to -> oldAIUnhandledExceptionTranslator = ( void (*)() )::_set_se_translator( AIUnhandledExceptionTranslator );
 }

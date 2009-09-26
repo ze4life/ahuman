@@ -58,19 +58,19 @@ void LogManager::configure( Xml config )
 	logSettings.load( config );
 }
 
-Logger::LogLevel LogManager::getObjectLogLevel( Object *o )
+Xml LogManager::getObjectLogSettings( Object *o , Logger::LogLevel *level )
 {
-	return( ( Logger::LogLevel )logSettings.getObjectLogLevel( o -> getClass() , o -> getInstance() ) );
+	return( logSettings.getObjectLogSettings( o -> getClass() , o -> getInstance() , ( int * )level ) );
 }
 
-Logger::LogLevel LogManager::getServiceLogLevel( Service *s )
+Xml LogManager::getServiceLogSettings( Service *s , Logger::LogLevel *level )
 {
-	return( ( Logger::LogLevel )logSettings.getServiceLogLevel( s -> getName() ) );
+	return( logSettings.getServiceLogSettings( s -> getName() , ( int * )level ) );
 }
 
-Logger::LogLevel LogManager::getCustomLogLevel( const char *loggerName )
+Xml LogManager::getCustomLogSettings( const char *loggerName , Logger::LogLevel *level )
 {
-	return( ( Logger::LogLevel )logSettings.getCustomLogLevel( loggerName ) );
+	return( logSettings.getCustomLogSettings( loggerName , ( int * )level ) );
 }
 
 // sync/async mode
@@ -155,15 +155,22 @@ void LogManager::output( LogRecord *p )
 	if( p -> count <= 0 )
 		return;
 
+	static char *levelNames[ 4 ] = {
+		"NONE" ,
+		"ERROR" ,
+		"INFO" ,
+		"DEBUG"
+	};
+
 	char l_buf[ 100 ];
 	sprintf( l_buf , "[%s, 0x%4.4x] %2.2d:%2.2d:%2.2d,%3.3d - " , 
-		( ( p -> error )? "WARN" : "INFO" ) ,
+		levelNames[ p -> logLevel ] ,
 		p -> threadId ,
 		lt -> tm_hour , lt -> tm_min , lt -> tm_sec , 
 		p -> time_ms );
 
 	// output
-	FILE *cs = ( p -> error )? stderr : stdout;
+	FILE *cs = ( p -> logLevel == Logger::LogLevelError )? stderr : stdout;
 	if( p -> count == 1 )
 		{
 			fprintf( cs , "%s%s" , l_buf , p -> strings.one );
@@ -206,13 +213,13 @@ void LogManager::output( LogRecord *p )
 		fflush( logFileStream );
 }
 
-void LogManager::add( const char **chunkLines , int count , bool error , const char *postfix )
+void LogManager::add( const char **chunkLines , int count , Logger::LogLevel p_logLevel , const char *postfix )
 {
 	if( syncMode )
 		{
 			// print in sync
 			LogRecord lr;
-			set( &lr , false , chunkLines , count , error , postfix );
+			set( &lr , false , chunkLines , count , p_logLevel , postfix );
 			output( &lr );
 			return;
 		}
@@ -227,7 +234,7 @@ void LogManager::add( const char **chunkLines , int count , bool error , const c
 			if( n1e || n3e )
 				{
 					// has space for adding
-					set( &v[ startAdd ] , true , chunkLines , count , error , postfix );
+					set( &v[ startAdd ] , true , chunkLines , count , p_logLevel , postfix );
 					if( n4f )
 						{
 							n3e--;
@@ -274,7 +281,7 @@ void LogManager::add( const char **chunkLines , int count , bool error , const c
 		}
 
 	// write log record
-	set( &v[ startAdd ] , true , chunkLines , count , error , postfix );
+	set( &v[ startAdd ] , true , chunkLines , count , p_logLevel , postfix );
 	startAdd++;
 	n6e--;
 	n5f++;
@@ -285,7 +292,7 @@ void LogManager::add( const char **chunkLines , int count , bool error , const c
 	rfc_hnd_semunlock( lock );
 }
 
-void LogManager::set( LogRecord *p , bool copy , const char **chunkLines , int count , bool error , const char *postfix )
+void LogManager::set( LogRecord *p , bool copy , const char **chunkLines , int count , Logger::LogLevel p_logLevel , const char *postfix )
 {
 	p -> count = count;
 
@@ -293,7 +300,7 @@ void LogManager::set( LogRecord *p , bool copy , const char **chunkLines , int c
 	_ftime( &timebuffer );
 	p -> time = timebuffer.time;
 	p -> time_ms = timebuffer.millitm;
-	p -> error = error;
+	p -> logLevel = p_logLevel;
 	p -> threadId = ( engine == NULL )? 0 : engine -> getThreadId();
 
 	if( count == 0 )

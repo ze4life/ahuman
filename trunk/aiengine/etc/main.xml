@@ -47,9 +47,13 @@
 		</serviceLogLevel>
 
 		<customLogLevel default="E">
-			<class name="SocketServer::debug" level="A"/>
-			<class name="SocketServer::chat" level="A"/>
-			<class name="SocketConnection" level="A"/>
+			<class name="SocketServer::debug" level="E"/>
+			<class name="SocketServer::chat" level="E"/>
+			<class name="SocketConnection" level="E"/>
+			<class name="HtmLibDebug" level="A"/>
+			<class name="HtmLayer" level="A">
+				<property name="showAcceptActions" value="3,4"/>
+			</class>
 		</customLogLevel>
 	</logging>
 

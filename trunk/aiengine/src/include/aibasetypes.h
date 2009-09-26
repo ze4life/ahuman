@@ -158,10 +158,17 @@ public:
 	T& last() const { return( getRef( n - 1 ) ); };
 	T& operator []( int index ) const { return( getRef( index ) ); };
 
+	void add( const T *values , int p_n )
+		{
+			allocate( n + p_n );
+			for( int k = 0; k < p_n; k++ )
+				data[ n + k ] = values[ k ];
+			n += p_n;
+		};
 	int add( const T& p ) { allocate( n + 1 ); data[ n ] = p; return( n++ ); };
 	int add( int count , const T& p ) 
 		{ 
-			allocate( n + count ); 
+			allocate( n + count );
 			for( int k = 0; k < count; k++ )
 				data[ n + k ] = p; 
 
@@ -189,6 +196,14 @@ public:
 			memcpy( &tmp , &data[ p_from ] , sizeof( T ) );
 			remove( data , p_from );
 			insert( p_to , &tmp );
+		};
+	void cut( int p_from )
+		{
+			if( n > p_from )
+				{
+					memset( &data[ p_from ] , 0 , ( n - p_from ) * sizeof( T ) );
+					n = p_from;
+				}
 		};
 	void create( int p_n ) { ASSERT( p_n >= 0 ); allocate( p_n ); n = p_n; };
 	void create( int p_n , const T& value ) { ASSERT( p_n >= 0 ); allocate( p_n ); n = p_n; set( value ); };
@@ -241,11 +256,16 @@ private:
 template<class T> class TwoIndexArray
 {
 public:
+	TwoIndexArray()
+		{
+			n1 = n2 = 0;
+			data = NULL;
+		};
 	TwoIndexArray( int p_n1 , int p_n2 )
 		{
-			init( p_n1 , p_n2 );
+			create( p_n1 , p_n2 );
 		};
-	void init( int p_n1 , int p_n2 )
+	void create( int p_n1 , int p_n2 )
 		{ 
 			n1 = p_n1; 
 			n2 = p_n2;
@@ -592,11 +612,16 @@ private:
 template<class T> class TwoIndexClassArray
 {
 public:
+	TwoIndexClassArray()
+		{
+			n1 = n2 = 0;
+			data = NULL;
+		};
 	TwoIndexClassArray( int p_n1 , int p_n2 )
 		{
-			init( p_n1 , p_n2 );
+			create( p_n1 , p_n2 );
 		};
-	void init( int p_n1 , int p_n2 )
+	void create( int p_n1 , int p_n2 )
 		{ 
 			n1 = p_n1; 
 			n2 = p_n2;
@@ -614,6 +639,19 @@ public:
 			if( data != NULL )
 				free( data ); 
 		};
+
+	void destroy() 
+		{
+			for( int k = n1 * n2 - 1; k >= 0; k-- )
+				{
+					T *& p = data[ k ];
+					if( p != NULL )
+						{
+							delete p;
+							p = NULL;
+						}
+				}
+		}
 
 	T **operator []( int index ) { return( data + n2 * index ); };
 	void setAllValues( T& value ) 

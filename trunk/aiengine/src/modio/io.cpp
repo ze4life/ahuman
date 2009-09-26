@@ -6,7 +6,7 @@
 
 AIIO::AIIO() 
 { 
-	thisPtr = static_cast<AIIOImpl *>( AIEngine::getInstance().getService( "AIIO" ) ); 
+	thisPtr = static_cast<AIIOImpl *>( AIEngine::getInstance().getService( "AIIO" ) );
 }
 
 /* static */ Service *AIIO::createService()
@@ -20,6 +20,7 @@ AIIOImpl::AIIOImpl()
 :	engine( AIEngine::getInstance() )
 { 
 	dataLock = rfc_lock_create();
+	lastSessionId = 0;
 }
 
 void AIIOImpl::initService()
@@ -43,6 +44,7 @@ void AIIOImpl::destroyService()
 {
 	rfc_lock_destroy( dataLock );
 	mapChannels.destroy();
+	sessions.destroy();
 
 	delete this;
 }
@@ -50,10 +52,30 @@ void AIIOImpl::destroyService()
 /*#########################################################################*/
 /*#########################################################################*/
 
-Publisher *AIIOImpl::createPublisher( String channel , String pubName , String msgtype )
+Session *AIIOImpl::createSession()
+{
+	lock();
+	SessionImpl *session = new SessionImpl( ++lastSessionId );
+	sessions.add( session -> getSessionId() , session );
+	unlock();
+
+	return( session );
+}
+
+void AIIOImpl::closeSession( Session *session )
+{
+	lock();
+	int id = session -> getSessionId();
+	sessions.removeByKey( id );
+	unlock();
+
+	delete session;
+}
+
+Publisher *AIIOImpl::createPublisher( Session *session , String channel , String pubName , String msgtype )
 {
 	Channel *ch = getChannel( channel );
-	PublisherImpl *pub = new PublisherImpl( ch , pubName , msgtype );
+	PublisherImpl *pub = new PublisherImpl( session , ch , pubName , msgtype );
 
 	ch -> addPublisher( pubName , pub );
 
@@ -62,10 +84,10 @@ Publisher *AIIOImpl::createPublisher( String channel , String pubName , String m
 	return( pub );
 }
 
-Subscription *AIIOImpl::subscribe( String channel , String subName , Subscriber *subHandler )
+Subscription *AIIOImpl::subscribe( Session *session , String channel , String subName , Subscriber *subHandler )
 {
 	Channel *ch = getChannel( channel );
-	SubscriptionImpl *sub = new SubscriptionImpl( ch , subName , subHandler );
+	SubscriptionImpl *sub = new SubscriptionImpl( session , ch , subName , subHandler );
 
 	ch -> addSubscription( subName , sub );
 	logger.logInfo( String( "[" ) + subName + "] subscriber started on [" + channel + "] channel" );

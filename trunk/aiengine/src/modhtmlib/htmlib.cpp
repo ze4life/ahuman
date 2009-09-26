@@ -28,6 +28,7 @@ AIHtmLibImpl::AIHtmLibImpl()
 void AIHtmLibImpl::initService()
 {
 	// register serialisable classes
+	HtmCortex::createSerializeObject();
 }
 
 void AIHtmLibImpl::runService()

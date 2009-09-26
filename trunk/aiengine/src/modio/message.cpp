@@ -6,6 +6,7 @@
 Message::Message()
 {
 	msgBaseType = MsgType_Text;
+	session = NULL;
 }
 
 Message::~Message()

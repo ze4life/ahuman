@@ -43,7 +43,7 @@ class SocketConnection;
 class Connection
 {
 public:
-	Connection() { listener = NULL; };
+	Connection() { listener = NULL; session = NULL; };
 	virtual ~Connection() {};
 
 	void setListener( Listener *p_listener ) { listener = p_listener; };
@@ -52,6 +52,9 @@ public:
 	void setName( String name ) { key = name; };
 	String getName() { return( key ); };
 
+	void setSession( Session *p_session ) { session = p_session; };
+	Session *getSession() { return( session ); };
+
 public:
 	virtual bool startConnection() = 0;
 	virtual void stopConnection() = 0;
@@ -59,6 +62,7 @@ public:
 private:
 	Listener *listener;
 	String key;
+	Session *session;
 };
 
 /*#########################################################################*/
@@ -83,6 +87,7 @@ public:
 	String getName();
 
 	void addListenerConnection( Connection *connection );
+	void destroyListenerConnection( Connection *connection );
 	void stopListenerConnections();
 
 private:
@@ -141,7 +146,10 @@ public:
 	void sendString( const char *p_msg , int len );
 	void writeMessage( Message *p_msg );
 
+	// subscriber
 	virtual void onMessage( Message *msg );
+	virtual void onXmlMessage( XmlMessage *msg );
+	virtual void onXmlCall( XmlCall *msg );
 
 private:
 	void tryLogin( const char *p_msg );
