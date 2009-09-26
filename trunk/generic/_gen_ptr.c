@@ -698,3 +698,57 @@ int
 
 	return( l_from );
 }
+
+int
+	rfc_map_strfindindex( rfc_strmap *p_p , const char *ptr )
+{
+	rfc_strmapentry *l_pp;
+	char *l_d;
+	int l_from , l_to , l_mid , l_cmp;
+	char *l_p;
+
+	/* find pointer by value */
+	l_pp = p_p -> s_p;
+	l_d = ( char * )ptr;
+	l_from = 0;
+	l_to = p_p -> s_n - 1;
+
+	/* check margins */
+	/* no items */
+	if( l_to < 0 )
+		return( -1 );
+
+	/* check last */
+	l_p = ( char * )l_pp[ l_to ].s_x;
+	l_cmp = strcmp( l_d , l_p );
+	if( l_cmp > 0 )
+		return( l_to );
+
+	/* only one item */
+	if( l_to == 0 )
+		return( -1 );
+
+	/* check first */
+	l_p = ( char * )l_pp[ l_from ].s_x;
+	l_cmp = strcmp( l_d , l_p );
+	if( l_cmp == 0 )
+		return( l_from );
+	if( l_cmp < 0 )
+		return( -1 );
+
+	while( ( l_to - l_from ) > 1 )
+		{
+			l_mid = ( l_from + l_to ) / 2;
+			l_p = ( char * )l_pp[ l_mid ].s_x;
+			l_cmp = strcmp( l_d , l_p );
+			if( l_cmp == 0 )
+				return( l_mid );
+
+			if( l_cmp > 0 )
+				l_from = l_mid;
+			else
+				l_to = l_mid;
+		}
+
+	return( l_from );
+}

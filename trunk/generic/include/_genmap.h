@@ -122,6 +122,8 @@ extern void
 	rfc_map_strinit( rfc_strmap *p_p );
 extern void
 	rfc_map_strref( rfc_strmap *p_p );
+extern int
+	rfc_map_strfindindex( rfc_strmap *p_p , const char *ptr );
 
 /* item count */
 extern int
