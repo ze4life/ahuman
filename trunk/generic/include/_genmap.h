@@ -66,7 +66,7 @@ extern void
 extern void
 	rfc_map_ptrref( rfc_ptrmap *p_p );
 extern int
-	rfc_map_ptrfindindex( rfc_ptrmap *p_p , void *ptr );
+	rfc_map_ptrinsertpos( rfc_ptrmap *p_p , void *ptr );
 
 /* item count */
 extern int
@@ -123,7 +123,7 @@ extern void
 extern void
 	rfc_map_strref( rfc_strmap *p_p );
 extern int
-	rfc_map_strfindindex( rfc_strmap *p_p , const char *ptr );
+	rfc_map_strinsertpos( rfc_strmap *p_p , const char *ptr );
 
 /* item count */
 extern int

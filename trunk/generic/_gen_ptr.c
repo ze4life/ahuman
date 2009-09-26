@@ -649,7 +649,7 @@ short
 }
 
 int
-	rfc_map_ptrfindindex( rfc_ptrmap *p_p , void *ptr )
+	rfc_map_ptrinsertpos( rfc_ptrmap *p_p , void *ptr )
 {
 	rfc_ptrmapentry *l_pp;
 	char *l_d;
@@ -665,23 +665,23 @@ int
 	/* check margins */
 	/* no items */
 	if( l_to < 0 )
-		return( -1 );
+		return( 0 );
 
 	/* check last */
 	l_p = ( char * )l_pp[ l_to ].s_x;
-	if( l_d >= l_p )
+	if( l_d == l_p )
 		return( l_to );
+	if( l_d > l_p )
+		return( l_to + 1 );
 
 	/* only one item */
 	if( l_to == 0 )
-		return( -1 );
+		return( 0 );
 
 	/* check first */
 	l_p = ( char * )l_pp[ l_from ].s_x;
-	if( l_d == l_p )
+	if( l_d <= l_p )
 		return( l_from );
-	if( l_d < l_p )
-		return( -1 );
 
 	while( ( l_to - l_from ) > 1 )
 		{
@@ -696,11 +696,11 @@ int
 				l_to = l_mid;
 		}
 
-	return( l_from );
+	return( l_to );
 }
 
 int
-	rfc_map_strfindindex( rfc_strmap *p_p , const char *ptr )
+	rfc_map_strinsertpos( rfc_strmap *p_p , const char *ptr )
 {
 	rfc_strmapentry *l_pp;
 	char *l_d;
@@ -716,25 +716,25 @@ int
 	/* check margins */
 	/* no items */
 	if( l_to < 0 )
-		return( -1 );
+		return( 0 );
 
 	/* check last */
 	l_p = ( char * )l_pp[ l_to ].s_x;
 	l_cmp = strcmp( l_d , l_p );
-	if( l_cmp > 0 )
+	if( l_cmp == 0 )
 		return( l_to );
+	if( l_cmp > 0 )
+		return( l_to + 1 );
 
 	/* only one item */
 	if( l_to == 0 )
-		return( -1 );
+		return( 0 );
 
 	/* check first */
 	l_p = ( char * )l_pp[ l_from ].s_x;
 	l_cmp = strcmp( l_d , l_p );
-	if( l_cmp == 0 )
+	if( l_cmp <= 0 )
 		return( l_from );
-	if( l_cmp < 0 )
-		return( -1 );
 
 	while( ( l_to - l_from ) > 1 )
 		{
@@ -750,5 +750,5 @@ int
 				l_to = l_mid;
 		}
 
-	return( l_from );
+	return( l_to );
 }
