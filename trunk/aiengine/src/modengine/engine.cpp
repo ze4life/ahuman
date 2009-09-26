@@ -86,8 +86,7 @@ void AIEngineImpl::init()
 	logManager = new LogManager();
 	logManager -> setSyncMode( true );
 
-	logger.attach( "root" );
-	logger.setLogLevel( Logger::LogLevelDebug );
+	logger.attachRoot();
 
 	// register main thread
 	workerCreated();

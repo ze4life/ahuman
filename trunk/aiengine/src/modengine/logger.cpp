@@ -10,42 +10,46 @@ Logger::Logger()
 {
 	o = NULL;
 	s = NULL;
-	logLevel = Logger::LogLevelNone;
 	loggerName = NULL;
+	settings = NULL;
 }
 
 Logger::~Logger()
 {
 }
 
-void Logger::setLogLevel( LogLevel level )
+void Logger::attachRoot()
 {
-	logLevel = level;
+	loggerName = ".";
+
+	LogManager *logManager = AIEngine::getInstance().getLogManager();
+	settings = logManager -> getDefaultSettings();
 }
 
 void Logger::attach( Service *p_s )
 {
-	LogManager *logManager = AIEngine::getInstance().getLogManager();
-	config = logManager -> getServiceLogSettings( p_s , &logLevel );
 	loggerName = p_s -> getName();
 	s = p_s;
+
+	LogManager *logManager = AIEngine::getInstance().getLogManager();
+	settings = logManager -> getServiceLogSettings( p_s );
 }
 
 void Logger::attach( Object *p_o )
 {
-	LogManager *logManager = AIEngine::getInstance().getLogManager();
-	config = logManager -> getObjectLogSettings( p_o , &logLevel );
 	loggerName = p_o -> getClass();
 	o = p_o;
+
+	LogManager *logManager = AIEngine::getInstance().getLogManager();
+	settings = logManager -> getObjectLogSettings( p_o );
 }
 
 void Logger::attach( const char *p_loggerName )
 {
-	o = NULL;
-	s = NULL;
 	loggerName = p_loggerName;
+
 	LogManager *logManager = AIEngine::getInstance().getLogManager();
-	config = logManager -> getCustomLogSettings( loggerName , &logLevel );
+	settings = logManager -> getCustomLogSettings( loggerName );
 }
 
 // stack
@@ -95,7 +99,7 @@ void Logger::printStack( rfc_threadstack *stack , int skipTop )
 // log calls
 void Logger::logInfo( const char *s , int mode )
 {
-	if( logLevel < Logger::LogLevelInfo )
+	if( settings -> logDisabled( Logger::LogLevelInfo ) )
 		return;
 
 	log( s , mode , Logger::LogLevelInfo );
@@ -103,7 +107,7 @@ void Logger::logInfo( const char *s , int mode )
 
 void Logger::logError( const char *s , int mode )
 {
-	if( logLevel < Logger::LogLevelError )
+	if( settings -> logDisabled( Logger::LogLevelError ) )
 		return;
 
 	log( s , mode , Logger::LogLevelError );
@@ -111,7 +115,7 @@ void Logger::logError( const char *s , int mode )
 
 void Logger::logDebug( const char *s , int mode )
 {
-	if( logLevel < Logger::LogLevelDebug )
+	if( settings -> logDisabled( Logger::LogLevelDebug ) )
 		return;
 
 	log( s , mode , Logger::LogLevelDebug );
@@ -119,7 +123,7 @@ void Logger::logDebug( const char *s , int mode )
 
 void Logger::logObject( const char *prompt , Object *obj , Logger::LogLevel p_logLevel )
 {
-	if( p_logLevel > logLevel )
+	if( settings -> logDisabled( p_logLevel ) )
 		return;
 
 	const char *lines[2];
@@ -139,6 +143,10 @@ void Logger::logObject( const char *prompt , Object *obj , Logger::LogLevel p_lo
 
 void Logger::log( const char *s , int mode , Logger::LogLevel p_logLevel )
 {
+	// check needs to be excluded
+	if( settings -> isExcluded( s ) )
+		return;
+
 	AIEngine& engine = AIEngine::getInstance();
 	EngineThreadHelper *logTail = EngineThreadHelper::getThreadObject();
 
@@ -187,11 +195,11 @@ const char *Logger::getPostfix()
 
 bool Logger::isLogAll()
 {
-	return( logLevel == LogLevelDebug );
+	return( settings -> getLevel() == LogLevelDebug );
 }
 
 Xml Logger::getLogSettings()
 {
-	return( config );
+	return( settings -> getXml() );
 }
 

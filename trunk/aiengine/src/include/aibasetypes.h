@@ -783,9 +783,9 @@ public:
 				dst.add( ( T * )mapData -> s_p[ k ].s_y );
 		};
 
-	int getLikeIndexByKey( int key )
+	int getInsertPos( int key )
 		{
-			return( rfc_map_ptrfindindex( mapData , ( void * )key ) );
+			return( rfc_map_ptrinsertpos( mapData , ( void * )key ) );
 		};
 			
 private:
@@ -955,6 +955,34 @@ public:
 				return( NULL );
 
 			return( l_value );
+		};
+	// return item from which given string begins
+	T *getPartial( const char *key )
+		{
+			int n = rfc_map_strcount( mapData );
+			if( n == 0 )
+				return( NULL );
+
+			int fp = rfc_map_strinsertpos( mapData , key );
+
+			// check returned - it could be equal to required
+			if( fp < n )
+				{
+					const char *kfp = mapData -> s_p[ fp ].s_x;
+					if( !strcmp( kfp , key ) )
+						return( ( T * )mapData -> s_p[ fp ].s_y );
+				}
+
+			// check previous - it could be partially equal to returned
+			if( fp > 0 )
+				{
+					fp--;
+					const char *kfp = mapData -> s_p[ fp ].s_x;
+					if( !strncmp( kfp , key , strlen( kfp ) ) )
+						return( ( T * )mapData -> s_p[ fp ].s_y );
+				}
+
+			return( NULL );
 		};
 
 	T *remove( const char *key )

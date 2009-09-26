@@ -18,6 +18,7 @@ class Object;
 class ObjectField;
 class Logger;
 class LogManager;
+class LogSettingsItem;
 class Service;
 class Xml;
 
@@ -101,10 +102,10 @@ public:
 	~Logger();
 
 	Xml getLogSettings();
+	void attachRoot();
 	void attach( Service *s );
 	void attach( Object *o );
 	void attach( const char *loggerName );
-	void setLogLevel( LogLevel level );
 
 	// stack
 	void printStack();
@@ -126,9 +127,8 @@ private:
 private:
 	Object *o;
 	Service *s;
-	Logger::LogLevel logLevel;
 	const char *loggerName;
-	Xml config;
+	LogSettingsItem *settings;
 };
 
 /*#########################################################################*/

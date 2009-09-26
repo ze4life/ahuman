@@ -56,21 +56,27 @@ LogManager::~LogManager()
 void LogManager::configure( Xml config )
 {
 	logSettings.load( config );
+	setSyncMode( logSettings.getSyncMode() );
 }
 
-Xml LogManager::getObjectLogSettings( Object *o , Logger::LogLevel *level )
+LogSettingsItem *LogManager::getDefaultSettings()
 {
-	return( logSettings.getObjectLogSettings( o -> getClass() , o -> getInstance() , ( int * )level ) );
+	return( logSettings.getDefaultSettings() );
 }
 
-Xml LogManager::getServiceLogSettings( Service *s , Logger::LogLevel *level )
+LogSettingsItem *LogManager::getObjectLogSettings( Object *o )
 {
-	return( logSettings.getServiceLogSettings( s -> getName() , ( int * )level ) );
+	return( logSettings.getObjectSettings( o -> getClass() , o -> getInstance() ) );
 }
 
-Xml LogManager::getCustomLogSettings( const char *loggerName , Logger::LogLevel *level )
+LogSettingsItem  *LogManager::getServiceLogSettings( Service *s )
 {
-	return( logSettings.getCustomLogSettings( loggerName , ( int * )level ) );
+	return( logSettings.getServiceSettings( s -> getName() ) );
+}
+
+LogSettingsItem *LogManager::getCustomLogSettings( const char *loggerName )
+{
+	return( logSettings.getCustomSettings( loggerName ) );
 }
 
 // sync/async mode

@@ -139,15 +139,22 @@ public:
 	~LogSettingsItem();
 
 public:
-	int getLevel();
-	Xml getSettings();
-	void setLevel( int level );
+	void configure( Xml config );
+
+	bool logDisabled( Logger::LogLevel level );
+	bool isExcluded( const char *s );
+	LogSettingsItem *getSettings( const char *instance );
+
+	Logger::LogLevel getLevel();
+	Xml getXml();
+	void setLevel( Logger::LogLevel level );
 	void setLevelSymbol( char level );
-	void setSettings( Xml xml );
 
 private:
 	Xml settings;
-	int level;
+	Logger::LogLevel level;
+	MapStringToClass<LogSettingsItem> instanceSettings;
+	MapStringToClass<LogSettingsItem> excludeList;
 };
 
 /*#########################################################################*/
@@ -161,32 +168,30 @@ public:
 
 	void load( Xml config );
 
+	bool getSyncMode();
+
 	String getFileName();
 	String getFormat();
-	Xml getObjectLogSettings( const char *className , const char *instance , int *level );
-	Xml getServiceLogSettings( const char *className , int *level );
-	Xml getCustomLogSettings( const char *loggerName , int *level );
+
+	LogSettingsItem *getDefaultSettings();
+	LogSettingsItem *getObjectSettings( const char *className , const char *instance );
+	LogSettingsItem *getServiceSettings( const char *className );
+	LogSettingsItem *getCustomSettings( const char *loggerName );
+
+	static void readLevels( Xml config , const char *listName , MapStringToClass<LogSettingsItem>& map , LogSettingsItem& settings );
 
 private:
-	void readLevels( Xml config , const char *listName , MapStringToClass<LogSettingsItem>& map , int& dv , Xml& settings );
-
-private:
+	bool syncMode;
 	String logFile;
 	String logFormat;
 
+	LogSettingsItem defaultSettings;
+	LogSettingsItem defaultObjectSettings;
+	LogSettingsItem defaultServiceSettings;
+	LogSettingsItem defaultCustomSettings;
 	MapStringToClass<LogSettingsItem> objectData;
-	MapStringToClass<LogSettingsItem> objectInstanceData;
 	MapStringToClass<LogSettingsItem> serviceData;
 	MapStringToClass<LogSettingsItem> customData;
-
-	Xml objectSettings;
-	Xml instanceSettings;
-	Xml serviceSettings;
-	Xml customSettings;
-	int defaultObjectLevel;
-	int defaultObjectInstanceLevel;
-	int defaultServiceLevel;
-	int defaultCustomLevel;
 };
 
 /*#########################################################################*/
@@ -229,9 +234,10 @@ public:
 	int getLogRecordsPending();
 
 	// log level
-	Xml getObjectLogSettings( Object *o , Logger::LogLevel *level );
-	Xml getServiceLogSettings( Service *s , Logger::LogLevel *level );
-	Xml getCustomLogSettings( const char *loggerName , Logger::LogLevel *level );
+	LogSettingsItem *getDefaultSettings();
+	LogSettingsItem *getObjectLogSettings( Object *o );
+	LogSettingsItem *getServiceLogSettings( Service *s );
+	LogSettingsItem *getCustomLogSettings( const char *loggerName );
 
 private:
 	void set( LogRecord *p , bool copy , const char **chunkLines , int count , Logger::LogLevel logLevel , const char *postfix );

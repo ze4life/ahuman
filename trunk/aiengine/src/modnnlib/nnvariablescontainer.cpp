@@ -47,9 +47,25 @@ void NNVariablesContainer::unregisterVariables( NNVariables *vars )
 
 NNVariable *NNVariablesContainer::getVarById( int id )
 {
-	int index = varsMap.getLikeIndexByKey( id );
-	ASSERT( index >= 0 );
-	NNVariables *vars = varsMap.getClassByIndex( index );
+	int index = varsMap.getInsertPos( id );
+	
+	// can be equal to returned
+	NNVariables *vars = NULL;
+	if( index < varsMap.count() )
+		{
+			int value = varsMap.getKeyByIndex( index );
+			if( id == value )
+				vars = varsMap.getClassByIndex( index );
+		}
+
+	// should be greater than previous if any
+	if( vars == NULL )
+		{
+			ASSERT( index > 0 );
+			index--;
+			vars = varsMap.getClassByIndex( index );
+		}
+
 	return( vars -> getVarById( id ) );
 }
 
