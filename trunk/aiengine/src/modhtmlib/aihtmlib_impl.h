@@ -202,7 +202,7 @@ public:
 
 public:
 	HtmSequence *findLike( HtmSequence *cs , int *precision , int *probability );
-	HtmSequence *getByPos( int pos );
+	HtmSequence *getSequenceByPos( int pos );
 	float compare( HtmSequence *cs1 , HtmSequence *cs2 );
 
 	void incrementUsage( HtmSequence *cs );
@@ -290,6 +290,7 @@ public:
 	void showCortexMemorySize( HtmCortex *cortex );
 	void showSequence( const char *name , HtmSequence *cs );
 	void showAcceptWithoutPrediction( int layerPos , int h , int v , HtmSequence *cs , HtmSequence *csa , int action );
+	void showTopLayer( HtmCortex *ctx );
 
 private:
 	Logger& logger;

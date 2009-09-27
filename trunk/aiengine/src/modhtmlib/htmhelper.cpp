@@ -119,3 +119,18 @@ void HtmHelper::showAcceptWithoutPrediction( int layerPos , int h , int v , HtmS
 	showSequence( "current" , cs );
 	showSequence( "stored" , csa );
 }
+
+void HtmHelper::showTopLayer( HtmCortex *ctx )
+{
+	HtmLayer *layer = ctx -> getLayer( ctx -> getLayerCount() - 1 );
+	HtmLayerMemory *lm = layer -> getMemory();
+
+	int n = lm -> getSequenceCount();
+	logger.logDebug( "Top layer sequences:" );
+	for( int k = 0; k < n; k++ )
+		{
+			HtmSequence *seq = lm -> getSequenceByPos( k );
+			showSequence( String( "s[" ) + k + "]" , seq );
+		}
+}
+

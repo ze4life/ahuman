@@ -209,24 +209,24 @@ HtmSequence *HtmLayer::acceptWithoutPrediction( HtmSequence *cs , int *action )
 
 	if( csf != NULL )
 		{
-			int historySizeDifference = csf -> getHistoryCount() - cs -> getHistoryCount();
-			// if found as a high-probable same-size sequence then
-			if( historySizeDifference == 0 && precision >= highProbablePrecision )
+			// if found as a high-probable same-size or longer-size sequence then
+			if( precision >= highProbablePrecision )
 				{
+					// decrement last_returned_sequence_ID if any
+					int lastPrecision;
+					HtmSequence *csl = cs -> getLastReturned( &lastPrecision );
+					if( csl != NULL )
+						{
+							*action = 1;
+							memory.decrementUsage( csl );
+						}
+					else
+						*action = 2;
+
 					// increment found sequence usage
 					memory.incrementUsage( csf );
 					// last_returned_sequence_ID = found sequence ID, last_returned_sequence_probability = found probability, return last_returned_sequence_ID
 					cs -> setLastReturned( csf , precision );
-					*action = 1;
-					return( csf );
-				}
-
-			// else if found longer sequence where its starting part is a high-probable last_spatial_temporal_sequence then
-			if( historySizeDifference > 0 && probability >= highProbablePrecision )
-				{
-					// last_returned_sequence_ID = found sequence ID, last_returned_sequence_probability = found probability, return last_returned_sequence_ID
-					cs -> setLastReturned( csf , probability );
-					*action = 2;
 					return( csf );
 				}
 		}
@@ -257,8 +257,8 @@ HtmSequence *HtmLayer::acceptWithoutPrediction( HtmSequence *cs , int *action )
 			return( csn );
 		}
 
-	// if last_returned_sequence_probability is high
-	if( csl != NULL && lastPrecision >= highProbablePrecision )
+	// if has last sequence
+	if( csl != NULL )
 		{
 			// last_spatial_temporal_sequence = new_spatial_pattern, last_returned_sequence_probability = 0
 			cs -> clearCurrentKeepLast();

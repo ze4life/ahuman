@@ -203,7 +203,7 @@ void HtmLayerMemory::decrementUsageRandom()
 	cs1 -> decrementUsage();
 
 	// return if still most used
-	if( cs1 -> getUsage() >= limitLeastUsed )
+	if( cs1 -> getUsage() > limitLeastUsed )
 		return;
 
 	// increase least used group
@@ -226,7 +226,7 @@ void HtmLayerMemory::decrementUsage( HtmSequence *cs1 )
 	cs1 -> decrementUsage();
 
 	// return if non-marginal
-	if( cs1 -> getUsage() != ( limitLeastUsed - 1 ) )
+	if( cs1 -> getUsage() != limitLeastUsed )
 		return;
 
 	// increase least used group
@@ -251,7 +251,7 @@ void HtmLayerMemory::incrementUsage( HtmSequence *cs1 )
 	cs1 -> incrementUsage();
 
 	// return if non-marginal
-	if( cs1 -> getUsage() != limitLeastUsed )
+	if( cs1 -> getUsage() != ( limitLeastUsed + 1 ) )
 		return;
 
 	// exchange with first least used
@@ -278,3 +278,9 @@ int HtmLayerMemory::getMaxSize()
 {
 	return( limitCount );
 }
+
+HtmSequence *HtmLayerMemory::getSequenceByPos( int pos )
+{
+	return( sequences.get( pos ) );
+}
+

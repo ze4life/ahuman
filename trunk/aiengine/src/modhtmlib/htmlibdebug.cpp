@@ -150,4 +150,5 @@ void AIHtmLibDebug::testViewPicture( XmlCall& call )
 
 	HtmHelper helper( logger );
 	helper.showCortexMemorySize( ctx );
+	helper.showTopLayer( ctx );
 }
