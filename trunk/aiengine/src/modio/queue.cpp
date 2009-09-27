@@ -43,7 +43,7 @@ void IOQueue::addMessage( Message *p_str )
 
 	// signal for waiter and release lock
 	rfc_hnd_evsignal( queueWakeupEvent );
-	logger.logInfo( "signal on" );
+	logger.logDebug( "signal on" );
 	rfc_lock_release( queueLock );
 }	
 
@@ -54,11 +54,11 @@ Message *IOQueue::getNextMessage()
 	// check if no message
 	if( rfc_lst_count( queueMessages ) == 0 ) {
 		// wait for signal
-		logger.logInfo( "found zero records " );
+		logger.logDebug( "found zero records " );
 		rfc_lock_release( queueLock );
-		logger.logInfo( "start wait event..." );
+		logger.logDebug( "start wait event..." );
 		rfc_hnd_waitevent( queueWakeupEvent );
-		logger.logInfo( "event found" );
+		logger.logDebug( "event found" );
 
 		// lock again and reset event
 		rfc_lock_exclusive( queueLock );
@@ -78,11 +78,11 @@ Message *IOQueue::getNextMessage()
 
 	// remove from queue
 	rfc_lst_remove( queueMessages , 0 );
-	logger.logInfo( String( "removed message from queue: " ) + x -> getChannelMessageId() );
+	logger.logDebug( String( "extracted message from queue: " ) + x -> getChannelMessageId() );
 
 	// signal off if no records remained
 	if( rfc_lst_count( queueMessages ) == 0 ) {
-		logger.logInfo( "set signal off" );
+		logger.logDebug( "set signal off" );
 		rfc_hnd_evreset( queueWakeupEvent );
 	}
 
@@ -93,8 +93,6 @@ Message *IOQueue::getNextMessage()
 
 Message *IOQueue::getNextMessageNoLock()
 {
-	logger.logInfo( "unexpected shared lock" );
-
 	rfc_lock_shared( queueLock );
 	
 	// check if no message
@@ -126,7 +124,7 @@ void IOQueue::makeEmptyAndWakeup()
 	logger.logInfo( "clear messages" );
 	// signal for waiter and release lock
 	rfc_hnd_evsignal( queueWakeupEvent );
-	logger.logInfo( "signal on" );
+	logger.logDebug( "signal on" );
 
 	rfc_lock_release( queueLock );
 }
@@ -150,4 +148,3 @@ void IOQueue::clearMessages()
 		}
 	rfc_lst_clear( queueMessages );
 }
-

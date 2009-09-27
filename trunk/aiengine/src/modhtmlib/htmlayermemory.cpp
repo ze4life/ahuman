@@ -22,17 +22,19 @@ HtmSequence *HtmLayerMemory::findLike( HtmSequence *cs , int *precision , int *p
 {
 	// iterate sequences
 	int n = sequences.count();
-	float likelihood = 0;
-	float likeMax = 0;
+	float likeSumWeighted = 0;
+	float likeMaxWeighted = 0;
 	HtmSequence *likeMaxSeq = NULL;
 	int likeCount = 0;
 	int csHistory = cs -> getHistoryCount();
 	bool haveExactMatch = false;
+	int usageSum = 0;
 
 	for( int k = 0; k < n; k++ )
 		{
 			HtmSequence *seq = sequences[ k ];
 			float likeOne = compare( cs , seq );
+			int usageOne = seq -> getUsage();
 
 			if( likeOne >= thresholdOne )
 				{
@@ -40,20 +42,28 @@ HtmSequence *HtmLayerMemory::findLike( HtmSequence *cs , int *precision , int *p
 
 					if( seqHistory == csHistory )
 						{
+							float likeOneWeighted = likeOne * usageOne;
+
 							// if exact sequence
 							if( haveExactMatch )
 								{
+									likeSumWeighted += likeOneWeighted;
+									usageSum += usageOne;
+
 									// compare with another exaqct sequence
-									if( likeOne > likeMax )
+									if( likeOneWeighted > likeMaxWeighted )
 										{
-											likeMax = likeOne;
+											likeMaxWeighted = likeOneWeighted;
 											likeMaxSeq = seq;
 										}
 								}
 							else
 								{
+									likeSumWeighted = likeOneWeighted;
+									usageSum = usageOne;
+
 									// replace any longer sequences if any
-									likeMax = likeOne;
+									likeMaxWeighted = likeOneWeighted;
 									likeMaxSeq = seq;
 									haveExactMatch = true;
 									likeCount = 1;
@@ -61,17 +71,20 @@ HtmSequence *HtmLayerMemory::findLike( HtmSequence *cs , int *precision , int *p
 						}
 					else
 						{
-							// if longer sequence
+							// if longer sequence - use only if no exact sequence
 							if( haveExactMatch == false )
 								{
+									float likeOneWeighted = likeOne * usageOne;
+									likeSumWeighted += likeOne;
+									usageSum += usageOne;
+
 									// take into account how many longer sequences we have
-									likelihood += likeOne;
 									likeCount++;
 
 									// compare with most likely longer sequence
-									if( likeOne > likeMax )
+									if( likeOneWeighted > likeMaxWeighted )
 										{
-											likeMax = likeOne;
+											likeMaxWeighted = likeOneWeighted;
 											likeMaxSeq = seq;
 										}
 								}
@@ -83,26 +96,21 @@ HtmSequence *HtmLayerMemory::findLike( HtmSequence *cs , int *precision , int *p
 	if( likeCount == 0 )
 		return( NULL );
 
-	// for exact match only one is used
+	float likeMax = likeMaxWeighted / usageSum;
+	*probability = ( int )( likeMax * 100 );
+
+	// for exact match
 	if( haveExactMatch )
 		{
 			*precision = ( int )( thresholdOne * 100 );
-			*probability = ( int )( likeMax * 100 );
 			return( likeMaxSeq );
 		}
 			
-	// get average
-	likelihood /= likeCount;
-
-	// justify as many items found like given
-	likelihood /= likeCount;
-
 	// compare with threshold
-	if( likelihood < thresholdMany )
+	if( likeMax < thresholdMany )
 		return( NULL );
 
 	*precision = ( int )( thresholdMany * 100 );
-	*probability = ( int )( likelihood * 100 );
 	return( likeMaxSeq );
 }
 

@@ -28,34 +28,38 @@
 		</service>
 	</services>
 
-	<!-- engine configuration -->
+	<!-- logging configuration -->
 
-	<logging>
+	<logging level="I">
+		<property name="syncMode" value="false"/>
 		<property name="filename" value="K:\projects\ai2svn\environments\local\log\main.log"/>
 		<property name="format" value="log: %"/>
 		
-		<objectLogLevel default="E">
+		<objectLogLevel level="E">
 			<class name="NNFinderFactory" level="A"/>
 			<class name="NNFinder" level="A"/>
+			<class name="NNStrategyBackPropagation" level="A">
+				<instance name="NNFinderFactory::P1S" level="E"/>
+			</class>
 		</objectLogLevel>
 
-		<objectInstanceLogLevel default="E">
-			<class name="NNStrategyBackPropagation" instance = "NNFinderFactory::P1S" level="E"/>
-		</objectInstanceLogLevel>
-
-		<serviceLogLevel default="A">
+		<serviceLogLevel level="A">
 		</serviceLogLevel>
 
-		<customLogLevel default="E">
+		<customLogLevel level="E">
 			<class name="SocketServer::debug" level="E"/>
 			<class name="SocketServer::chat" level="E"/>
 			<class name="SocketConnection" level="E"/>
-			<class name="HtmLibDebug" level="A"/>
+			<class name="HtmLibDebug" level="A">
+				<exclude string="showAcceptActions"/>
+			</class>
 			<class name="HtmLayer" level="A">
 				<property name="showAcceptActions" value="3,4"/>
 			</class>
 		</customLogLevel>
 	</logging>
+
+	<!-- debug features -->
 
 	<debug>
 		<property name="debugchannel" value="debug.commands"/>

@@ -29,14 +29,16 @@ void LogSettings::load( Xml config )
 	readLevels( config , "customLogLevel" , customData , defaultCustomSettings );
 }
 
-void LogSettings::readLevels( Xml config , const char *listName , MapStringToClass<LogSettingsItem>& map , LogSettingsItem& defaultSettings )
+void LogSettings::readLevels( Xml config , const char *listName , MapStringToClass<LogSettingsItem>& map , LogSettingsItem& p_defaultSettings )
 {
 	map.destroy();
 
-	defaultSettings.configure( config );
 	Xml list = config.getChildNode( listName );
 	if( !list.exists() )
 		return;
+
+	// default settings
+	p_defaultSettings.configure( list );
 
 	// read list
 	for( Xml item = list.getFirstChild( "class" ); item.exists(); item = item.getNextChild( "class" ) )
