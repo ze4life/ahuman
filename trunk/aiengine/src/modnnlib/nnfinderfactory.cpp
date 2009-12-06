@@ -140,8 +140,8 @@ NN *NNFinderFactory::createDefaultPerceptron( const char *name , ClassList<NNVar
 	useBias = false;
 	NNLayer *pl2 = pp -> addLayer( nTargets , &fi , &fa , useBias );
 
-	pp -> joinLayersDirect();
 	pp -> joinSensors( sensors );
+	pp -> joinLayersDirect();
 	ClassList<NNVariable> targets;
 	targets.add( target );
 	pp -> joinTargets( targets );

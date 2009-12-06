@@ -248,7 +248,14 @@ void Random::showStatistics()
 
 int Random::getRandomIntStatic( int min , int max )
 {
-	int v = ( int )( ( ( float )rand() * ( max - min + 1 ) ) / ( RAND_MAX + 1 ) );
+	float r = ( (( float )rand()) * ( max - min ) ) / RAND_MAX;
+	int rm = ( int )r;
+	if( rm < r )
+		rm++;
+
+	int v = min + rm;
+	if( v > max )
+		v = max;
 	return( v );
 }
 

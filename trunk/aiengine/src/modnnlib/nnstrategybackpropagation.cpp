@@ -255,7 +255,7 @@ bool NNStrategyBackPropagation::learn( NNSamples *p_samples , NNWeights *pwBest 
 		}
 
 	logger.logInfo( String( "FINALLY - " ) + 
-		( ( res )? "SUCCEEDED" : "FAILED" ) );
+		( ( res )? String( "SUCCEEDED - " ) + epochCount + " epochs" : "FAILED" ) );
 	helper.showPerceptron( "end of learn" );
 	return( res );
 }

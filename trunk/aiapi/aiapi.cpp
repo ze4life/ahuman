@@ -68,6 +68,48 @@ Xml AIApi::readXmlRequest( const char *data )
 	return( lastRequest );
 }
 
+void AIApi::setFunctionName( String name )
+{
+	ASSERT( lastRequest.exists() );
+	lastRequest.setAttribute( "name" , name );
+}
+
+void AIApi::setParam( String name , String value )
+{
+	ASSERT( lastRequest.exists() );
+	Xml p = lastRequest.getFirstChild( "parameters" );
+	if( !p.exists() )
+		p = lastRequest.addElement( "parameters" );
+	p.setProperty( name , value );			
+}
+
+void AIApi::setBooleanParam( String name , bool value )
+{
+	ASSERT( lastRequest.exists() );
+	Xml p = lastRequest.getFirstChild( "parameters" );
+	if( !p.exists() )
+		p = lastRequest.addElement( "parameters" );
+	p.setBooleanProperty( name , value );			
+}
+
+void AIApi::setIntParam( String name , int value )
+{
+	ASSERT( lastRequest.exists() );
+	Xml p = lastRequest.getFirstChild( "parameters" );
+	if( !p.exists() )
+		p = lastRequest.addElement( "parameters" );
+	p.setIntProperty( name , value );			
+}
+
+void AIApi::setFloatParam( String name , float value )
+{
+	ASSERT( lastRequest.exists() );
+	Xml p = lastRequest.getFirstChild( "parameters" );
+	if( !p.exists() )
+		p = lastRequest.addElement( "parameters" );
+	p.setFloatProperty( name , value );			
+}
+
 void AIApi::initThread()
 {
 	AIApiSocket::initSocketLib();

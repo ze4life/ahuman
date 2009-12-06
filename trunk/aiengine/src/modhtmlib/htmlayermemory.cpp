@@ -142,8 +142,6 @@ HtmSequence *HtmLayerMemory::store( int pos , HtmSequence *cs )
 	if( pos < 0 )
 		{
 			csn = new HtmSequence( cs -> getHistoryCount() , cs -> getChildCount() );
-			csn -> setId( ++lastId );
-
 			pos = sequences.add( csn );
 			csn -> setMemoryPos( pos );
 		}
@@ -153,6 +151,7 @@ HtmSequence *HtmLayerMemory::store( int pos , HtmSequence *cs )
 			csn -> clearUsage();
 		}
 
+	csn -> setId( ++lastId );
 	csn -> copyPatterns( cs );
 	incrementUsage( csn );
 	return( csn );
@@ -173,18 +172,7 @@ int HtmLayerMemory::selectLeastUsedPos()
 	// random select from least used
 	int pos = Random::getRandomIntStatic( mostUsedCount , n - 1 );
 
-	// shift it to the beginning of least used
-	if( pos > mostUsedCount )
-		{
-			HtmSequence *cs1 = sequences[ pos ];
-			HtmSequence *cs2 = sequences[ mostUsedCount ];
-			sequences.set( pos , cs2 );
-			cs2 -> setMemoryPos( pos );
-			sequences.set( mostUsedCount , cs1 );
-			cs1 -> setMemoryPos( mostUsedCount );
-		}
-
-	return( mostUsedCount );
+	return( pos );
 }
 
 bool HtmLayerMemory::hasSpace()

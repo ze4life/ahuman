@@ -57,7 +57,7 @@ String operator +( const String& s1 , bool value );
 
 class Xml
 {
-	friend class AIApi;
+	friend class AIApiImpl;
 
 public:
 	Xml();
@@ -89,11 +89,16 @@ public:
 	int getIntProperty( String name , int defaultValue );
 	float getFloatProperty( String name );
 	float getFloatProperty( String name , float defaultValue );
+	void setProperty( String name , String value );
+	void setBooleanProperty( String name , bool value );
+	void setIntProperty( String name , int value );
+	void setFloatProperty( String name , float value );
 
 	// elements
 	Xml addTextElement( String name , String value );
+	Xml addElement( String name );
 
-public:
+private:
 	void *doc;
 	void *node;
 };
@@ -120,6 +125,12 @@ public:
 	Xml createXmlRequest();
 	Xml loadXmlRequest( String fileName );
 	Xml readXmlRequest( const char *data );
+
+	void setFunctionName( String name );
+	void setParam( String name , String value );
+	void setBooleanParam( String name , bool value );
+	void setIntParam( String name , int value );
+	void setFloatParam( String name , float value );
 
 private:
 	AIApiImpl *api;

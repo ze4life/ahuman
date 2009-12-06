@@ -1,11 +1,23 @@
 #include "aihtmlib_impl.h"
 
+const char *HtmLayer::NAME = "HtmLayer";
+
+const int ACCEPT_WP_EXACT_LASTDECREMENTED = 1;
+const int ACCEPT_WP_SHORT_LASTDECREMENTED = 2;
+const int ACCEPT_WP_EXACT_NOLAST = 3;
+const int ACCEPT_WP_SHORT_NOLAST = 4;
+const int ACCEPT_WP_ADDED_LASTDECREMENTED = 5;
+const int ACCEPT_WP_ADDED_NOLAST = 6;
+const int ACCEPT_WP_NEW_IGNORED = 7;
+const int ACCEPT_WP_NEW_FOUND_LOWPROBABILITY = 8;
+
 /*#########################################################################*/
 /*#########################################################################*/
 
 HtmLayer::HtmLayer( int pos , int p_d1 , int p_d2 , HtmCortex *p_ctx , HtmLayer *p_source )
 :	ctx( p_ctx ) ,
 	outputs( p_d1 , p_d2 ) ,
+	outputsPredicted( p_d1 , p_d2 ) ,
 	childLayer( p_source ) ,
 	maxHistoryLength( calcMaxHistoryLength( pos , p_d1 , p_d2 , p_ctx , p_source ) ) ,
 	childCountH( calcChildCountH( p_d1 , p_d2 , p_ctx , p_source ) ) ,
@@ -14,7 +26,7 @@ HtmLayer::HtmLayer( int pos , int p_d1 , int p_d2 , HtmCortex *p_ctx , HtmLayer 
 	memory( calcMemorySize( p_d1 , p_d2 , p_ctx , p_source ) )
 {
 	layerPos = pos;
-	logger.attach( "HtmLayer" );
+	logger.attach( this );
 	int childCount = childCountH * childCountV;
 	highProbablePrecision = 80;
 
@@ -90,6 +102,11 @@ TwoIndexArray<int>& HtmLayer::getOutputs()
 	return( outputs );
 }
 
+TwoIndexArray<int>& HtmLayer::getOutputsPredicted()
+{
+	return( outputsPredicted );
+}
+
 int HtmLayer::getChildSizeH()
 {
 	return( childCountH );
@@ -153,12 +170,13 @@ void HtmLayer::recalculate( const HtmRect& rc )
 	int d1 = outputs.getN1();
 	int d2 = outputs.getN2();
 	TwoIndexArray<int>& inputs = ( childLayer != NULL )? childLayer -> getOutputs() : ctx -> getInputs();
+	TwoIndexArray<int>& inputsPredicted = ( childLayer != NULL )? childLayer -> getOutputsPredicted() : ctx -> getInputsPredicted();
 
 	HtmRect rcc( 0 , 0 , 0 , 0 );
-	HtmHelper helper( logger );
 	for( int v = rc.fromV; v <= rc.toV; v++ )
 		{
 			int *pv = outputs[ v ];
+			int *pvPredicted = outputsPredicted[ v ];
 			HtmSequence **pvh = currentSequence[ v ];
 
 			rcc.fromV = ( v * cd2 ) / d2;
@@ -177,27 +195,43 @@ void HtmLayer::recalculate( const HtmRect& rc )
 					// generate sequence
 					HtmSequence *cs = pvh[ h ];
 
-					// ignore pattern the same as previously seen
-					if( !cs -> isNewPattern( inputs , rcc ) )
-						continue;							
+					// predicted sequence
+					int predicted = pvPredicted[ h ];
 
-					// start sequence if currently maximum achieved
-					if( cs -> getHistoryCount() == maxHistoryLength )
-						cs -> clearCurrent();
-
-					// add pattern to sequence
-					cs -> addPattern( inputs , rcc );
-
-					// calculate output from current sequence
-					int action;
-					HtmSequence *csa = acceptWithoutPrediction( cs , &action );
-					helper.showAcceptWithoutPrediction( layerPos , h , v , cs , csa , action );
-
-					// ignore new pattern if cannot be assigned
-					if( csa != NULL )
-						pv[ h ] = csa -> getId();
+					// recognise sequence
+					recalculatePoint( pv[ h ] , v , h , cs , predicted , inputs , inputsPredicted , rcc );
 				}
 		}
+
+	HtmHelper helper( logger );
+	helper.showLayer( String( "Layer " ) + layerPos , this );
+}
+
+void HtmLayer::recalculatePoint( int& rv , int v , int h , HtmSequence *cs , int predicted , TwoIndexArray<int>& inputs , TwoIndexArray<int>& inputsPredicted , HtmRect& rcc )
+{
+	// ignore pattern the same as previously seen
+	if( !cs -> isNewPattern( inputs , rcc ) )
+		return;							
+
+	// start sequence if currently maximum achieved
+	if( cs -> getHistoryCount() == maxHistoryLength )
+		cs -> clearCurrent();
+
+	// add pattern to sequence
+	cs -> addPattern( inputs , rcc );
+
+	// calculate output from current sequence
+	int action;
+	HtmSequence *csa = acceptWithoutPrediction( cs , &action );
+
+	HtmHelper helper( logger );
+	helper.showAcceptWithoutPrediction( layerPos , h , v , cs , csa , action );
+
+	// ignore new pattern if cannot be assigned
+	if( csa != NULL )
+		rv = csa -> getId();
+	else
+		rv = 0;
 }
 
 HtmSequence *HtmLayer::acceptWithoutPrediction( HtmSequence *cs , int *action )
@@ -217,11 +251,19 @@ HtmSequence *HtmLayer::acceptWithoutPrediction( HtmSequence *cs , int *action )
 					HtmSequence *csl = cs -> getLastReturned( &lastPrecision );
 					if( csl != NULL )
 						{
-							*action = 1;
+							if( csf -> getHistoryCount() == cs -> getHistoryCount() )
+								*action = ACCEPT_WP_EXACT_LASTDECREMENTED;
+							else
+								*action = ACCEPT_WP_SHORT_LASTDECREMENTED;
 							memory.decrementUsage( csl );
 						}
 					else
-						*action = 2;
+						{
+							if( csf -> getHistoryCount() == cs -> getHistoryCount() )
+								*action = ACCEPT_WP_EXACT_NOLAST;
+							else
+								*action = ACCEPT_WP_SHORT_NOLAST;
+						}
 
 					// increment found sequence usage
 					memory.incrementUsage( csf );
@@ -239,11 +281,11 @@ HtmSequence *HtmLayer::acceptWithoutPrediction( HtmSequence *cs , int *action )
 			// decrement last_returned_sequence_ID if any
 			if( csl != NULL )
 				{
-					*action = 3;
+					*action = ACCEPT_WP_ADDED_LASTDECREMENTED;
 					memory.decrementUsage( csl );
 				}
 			else
-				*action = 4;
+				*action = ACCEPT_WP_ADDED_NOLAST;
 
 			// store sequence
 			// select victim to forget
@@ -269,19 +311,19 @@ HtmSequence *HtmLayer::acceptWithoutPrediction( HtmSequence *cs , int *action )
 	// if nothing found
 	if( csf == NULL )
 		{
+			// decrement random sequence - i.e. forget something
+			memory.decrementUsageRandom();
+
 			// last_returned_sequence_ID = 0, last_returned_sequence_probability = 0 
 			cs -> clearCurrent();
 			// ignore new pattern
-			*action = 5;
+			*action = ACCEPT_WP_NEW_IGNORED;
 			return( NULL );
 		}
 
-	// decrement random sequence - i.e. forget something
-	memory.decrementUsageRandom();
-
 	// last_returned_sequence_ID = found sequence ID, last_returned_sequence_probability = found probability, return last_returned_sequence_ID
 	cs -> setLastReturned( csf , precision );
-	*action = 6;
+	*action = ACCEPT_WP_NEW_FOUND_LOWPROBABILITY;
 	return( csf );
 }
 
@@ -289,3 +331,12 @@ HtmLayerMemory *HtmLayer::getMemory()
 {
 	return( &memory );
 }
+
+void HtmLayer::serialize( SerializeObject& so )
+{
+}
+
+void HtmLayer::deserialize( Object *parent , SerializeObject& so )
+{
+}
+

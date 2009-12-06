@@ -9,11 +9,18 @@ const char *HtmCortex::NAME = "HtmCortex";
 HtmCortex::HtmCortex()
 {
 	inputs = NULL;
+	inputsPredicted = NULL;
+	logger.attach( this );
 }
 
 HtmCortex::~HtmCortex()
 {
 	layers.destroy();
+
+	if( inputs != NULL )
+		delete inputs;
+	if( inputsPredicted != NULL )
+		delete inputsPredicted;
 }
 
 void HtmCortex::create( int d1 , int d2 )
@@ -23,6 +30,7 @@ void HtmCortex::create( int d1 , int d2 )
 	int l_d1 = d1;
 	int l_d2 = d2;
 	inputs = new TwoIndexArray<int>( l_d1 , l_d2 );
+	inputsPredicted = new TwoIndexArray<int>( l_d1 , l_d2 );
 
 	// number of layers
 	int nLayers = calculateNumberOfLayers( l_d1 , l_d2 );
@@ -108,8 +116,16 @@ TwoIndexArray<int>& HtmCortex::getInputs()
 	return( *inputs );
 }
 
+TwoIndexArray<int>& HtmCortex::getInputsPredicted()
+{
+	return( *inputsPredicted );
+}
+
 void HtmCortex::recalculate( const HtmRect& rc )
 {
+	HtmHelper helper( logger );
+	helper.showCortexInputs( this );
+
 	// currently - all
 	HtmRect rcChild = rc;
 	for( int k = 0; k < layers.count(); k++ )

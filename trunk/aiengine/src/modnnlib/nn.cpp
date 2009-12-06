@@ -130,7 +130,14 @@ void NN::clearValues()
 
 void NN::clearInputValues()
 {
-	inputs.set( 0 );
+	float *x = inputs.getAt( 0 );
+
+	int n = inputs.count();
+	if( useInputsBias )
+		n--;
+
+	for( int k = 0; k < n; k++ )
+		*x++ = 0;
 }
 
 void NN::clearTargetValues()

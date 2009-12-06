@@ -30,6 +30,15 @@ void HtmHelper::showCortex( HtmCortex *cortex )
 		}
 }
 
+void HtmHelper::showCortexInputs( HtmCortex *cortex )
+{
+	TwoIndexArray<int>& ci = cortex -> getInputs();
+
+	String s = "cortex inputs = ";
+	s += getIntArrayBySegments( ci.getData() , ci.getN1() , ci.getN2() );
+	logger.logDebug( s );
+}
+
 void HtmHelper::showCortexMemorySize( HtmCortex *cortex )
 {
 	int n = cortex -> getLayerCount();
@@ -81,28 +90,58 @@ void HtmHelper::showSequence( const char *name , HtmSequence *cs )
 		}
 
 	s += "data=";
-	int cc = cs -> getChildCount();
 	int size;
-	int *pv = cs -> getData( &size );
+	s += getIntArrayBySegments( cs -> getData( &size ) , cs -> getHistoryCount() , cs -> getChildCount() );
+	logger.logDebug( s );
+}
 
-	for( int k = 0; k < cs -> getHistoryCount(); k++ )
+String HtmHelper::getIntArrayBySegments( int *pv , int segCount , int segLen )
+{
+	String s;
+	for( int k = 0; k < segCount; k++ )
 		{
 			if( k > 0 )
-				s += ";";
+				s += "; ";
 			s += k;
 			s += "=";
 
-			for( int m = 0; m < cc; m++ )
+			int px = -1;
+			int nx = 0;
+			bool ph = false;
+			for( int m = 0; m <= segLen; m++ )
 				{
-					if( m > 0 )
-						s += ", ";
+					int wx = px;
+					int nwx = nx;
+					if( m < segLen )
+						{
+							int x = *pv++;
+							if( x == px )
+								{
+									nx++;
+									continue;
+								}
+							
+							px = x;
+							nx = 1;
+							if( m == 0 )
+								continue;
+						}
 
-					char l_buf[ 10 ];
-					sprintf( l_buf , "%8.8X" , *pv++ );
+					if( ph )
+						s += ",";
+					else
+						ph = true;
+
+					char l_buf[ 20 ];
+					if( nwx > 1 )
+						sprintf( l_buf , "%dx%8.8X" , nwx , wx );
+					else
+						sprintf( l_buf , "%8.8X" , wx );
 					s += l_buf;
 				}
 		}
-	logger.logDebug( s );
+
+	return( s );
 }
 
 void HtmHelper::showAcceptWithoutPrediction( int layerPos , int h , int v , HtmSequence *cs , HtmSequence *csa , int action )
@@ -114,6 +153,10 @@ void HtmHelper::showAcceptWithoutPrediction( int layerPos , int h , int v , HtmS
 	if( strstr( s , l_buf ) == NULL )
 		return;
 
+	int layer = xml.getIntProperty( "showLayer" , -1 );
+	if( layer >= 0 && layer != layerPos )
+		return;
+
 	String area = String( "l" ) + layerPos + "-h" + h + "-v" + v;
 	logger.logDebug( area + ": action=" + action );
 	showSequence( "current" , cs );
@@ -123,10 +166,20 @@ void HtmHelper::showAcceptWithoutPrediction( int layerPos , int h , int v , HtmS
 void HtmHelper::showTopLayer( HtmCortex *ctx )
 {
 	HtmLayer *layer = ctx -> getLayer( ctx -> getLayerCount() - 1 );
+	showLayer( "Top layer" , layer );
+}
+
+void HtmHelper::showLayer( String title , HtmLayer *layer )
+{
+	Xml xml = logger.getLogSettings();
+	int layerPos = xml.getIntProperty( "showLayer" , -1 );
+	if( layerPos >= 0 && layer -> getLayerPos() != layerPos )
+		return;
+
+	logger.logDebug( title + " - sequences are:" );
 	HtmLayerMemory *lm = layer -> getMemory();
 
 	int n = lm -> getSequenceCount();
-	logger.logDebug( "Top layer sequences:" );
 	for( int k = 0; k < n; k++ )
 		{
 			HtmSequence *seq = lm -> getSequenceByPos( k );

@@ -116,6 +116,7 @@ public:
 	int getLayerCount();
 	HtmLayer *getLayer( int pos );
 	TwoIndexArray<int>& getInputs();
+	TwoIndexArray<int>& getInputsPredicted();
 	int getInputsSizeH();
 	int getInputsSizeV();
 
@@ -130,6 +131,7 @@ private:
 private:
 	ClassList<HtmLayer> layers;
 	TwoIndexArray<int> *inputs;
+	TwoIndexArray<int> *inputsPredicted;
 };
 
 /*#########################################################################*/
@@ -230,14 +232,30 @@ private:
 /*#########################################################################*/
 
 // layer of abstraction
-class HtmLayer
+class HtmLayer : public Object
 {
 public:
+	HtmLayer();
 	HtmLayer( int pos , int p_d1 , int p_d2 , HtmCortex *p_ctx , HtmLayer *p_source );
 	~HtmLayer();
 
+public:
+	// Object interface
+	static const char *NAME;
+	virtual const char *getClass() { return( NAME ); };
+	virtual void serialize( SerializeObject& so );
+	virtual void deserialize( Object *parent , SerializeObject& so );
+
+	static void createSerializeObject();
+	static SerializeObject *getSerializeObject()
+		{ return( AIEngine::getInstance().getSerializeObject( NAME ) ); };
+	static Object *onCreate( const char *className ) { return( new HtmLayer ); };
+
+public:
 	int getLayerPos();
 	TwoIndexArray<int>& getOutputs();
+	TwoIndexArray<int>& getOutputsPredicted();
+
 	int getSizeH();
 	int getSizeV();
 	int getChildSizeH();
@@ -260,6 +278,7 @@ private:
 
 	void extendSequence( HtmSequence *cs , TwoIndexArray<int>& inputs , const HtmRect& rc );
 	HtmSequence *acceptWithoutPrediction( HtmSequence *cs , int *action );
+	void recalculatePoint( int& rv , int v , int h , HtmSequence *cs , int predicted , TwoIndexArray<int>& inputs , TwoIndexArray<int>& inputsPredicted , HtmRect& rcc );
 
 private:
 	Logger logger;
@@ -267,6 +286,7 @@ private:
 	HtmLayer *childLayer;
 	TwoIndexClassArray<HtmSequence> currentSequence;
 	TwoIndexArray<int> outputs;
+	TwoIndexArray<int> outputsPredicted;
 	HtmLayerMemory memory;
 
 	int layerPos;
@@ -287,10 +307,13 @@ public:
 
 public:
 	void showCortex( HtmCortex *cortex );
+	void showCortexInputs( HtmCortex *cortex );
 	void showCortexMemorySize( HtmCortex *cortex );
 	void showSequence( const char *name , HtmSequence *cs );
 	void showAcceptWithoutPrediction( int layerPos , int h , int v , HtmSequence *cs , HtmSequence *csa , int action );
 	void showTopLayer( HtmCortex *ctx );
+	void showLayer( String title , HtmLayer *layer );
+	String getIntArrayBySegments( int *pv , int segCount , int segLen );
 
 private:
 	Logger& logger;

@@ -39,7 +39,8 @@ public:
 // tests
 private:
 	void testCreateBySamples( XmlCall& call );
-	void testFinderPlay( XmlCall& call );
+	void testFinderXOR( XmlCall& call );
+	void testFinderLearn( XmlCall& call );
 	void testFinderFactory( XmlCall& call );
 
 private:

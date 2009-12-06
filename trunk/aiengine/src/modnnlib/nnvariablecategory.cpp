@@ -69,11 +69,12 @@ void NNVariableCategory::setValueAndCalculateRepresentation( float p_value , NNV
 		*( pv[ k ] ) = ( value == (k+1) )? 1 : -1;
 }
 
-void NNVariableCategory::calculateBackRepresentation( float value , NNVariable::Mapping *vm )
+void NNVariableCategory::calculateBackRepresentation( float p_value , NNVariable::Mapping *vm )
 {
+	int x_value = ( int )p_value;
 	float **pv = ( ( NNVariableCategory::Mapping * )vm ) -> pvBack -> getAll();
 	for( int k = 0; k < categoryCount - 1; k++ )
-		*( pv[ k ] ) = ( value == (k+1) )? 1 : -1;
+		*( pv[ k ] ) = ( x_value == (k+1) )? 1 : -1;
 }
 
 void NNVariableCategory::calculateValueFromRepresentation( NNVariable::Mapping *vm )

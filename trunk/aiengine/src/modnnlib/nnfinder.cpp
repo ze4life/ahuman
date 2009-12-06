@@ -276,26 +276,26 @@ bool NNFinder::learnStatIteration( NNSamples *samplesLearn , NNSamples *samplesV
 					ASSERT( p -> validate( samplesLearn , &error ) );
 
 					// validate results using validation set
-					if( samplesValidate != NULL )
-						{
-							// find generalization success
-							float errorValidate;
-							res = p -> validate( samplesValidate , &errorValidate );
+					if( samplesValidate == NULL )
+						break;
 
-							// stop training if validation succeeded
-							if( res )
-								break;
+					// find generalization success
+					float errorValidate;
+					res = p -> validate( samplesValidate , &errorValidate );
 
-							validationFailures++;
-							logger.logInfo( String( "learnStat: validation failed - trainError=" ) + error +
-								", trainSetCount=" + samplesLearn -> count() +
-								", validateSetCount=" + samplesValidate -> count() +
-								", generalizationError=" + errorValidate );
+					// stop training if validation succeeded
+					if( res )
+						break;
 
-							// show all samples where validate failed
-							// localHelper.showValidateFailedSamples( samplesValidate );
-							// localHelper.showPerceptronClasses2();
-						}
+					validationFailures++;
+					logger.logInfo( String( "learnStat: validation failed - trainError=" ) + error +
+						", trainSetCount=" + samplesLearn -> count() +
+						", validateSetCount=" + samplesValidate -> count() +
+						", generalizationError=" + errorValidate );
+
+					// show all samples where validate failed
+					// localHelper.showValidateFailedSamples( samplesValidate );
+					// localHelper.showPerceptronClasses2();
 				}
 
 			if( k >= sp -> maxRestarts )
@@ -303,9 +303,7 @@ bool NNFinder::learnStatIteration( NNSamples *samplesLearn , NNSamples *samplesV
 
 			// do restart
 			restarts++;
-			//logger.logInfo( String( "Restart #" ) + restarts + 
-			//	": setSensors=" + pp -> getSetSensorsStat() + 
-			//	", epochCountTotal=" + epochCountTotal );
+			logger.logInfo( String( "Restart #" ) + restarts + ", epochCountTotal=" + epochCountTotal );
 		}
 	*restartsDone = restarts;
 

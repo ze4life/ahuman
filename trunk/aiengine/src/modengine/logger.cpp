@@ -99,6 +99,8 @@ void Logger::printStack( rfc_threadstack *stack , int skipTop )
 // log calls
 void Logger::logInfo( const char *s , int mode )
 {
+	if( settings == NULL )
+		attachRoot(); 
 	if( settings -> logDisabled( Logger::LogLevelInfo ) )
 		return;
 
@@ -107,6 +109,8 @@ void Logger::logInfo( const char *s , int mode )
 
 void Logger::logError( const char *s , int mode )
 {
+	if( settings == NULL )
+		attachRoot(); 
 	if( settings -> logDisabled( Logger::LogLevelError ) )
 		return;
 
@@ -115,6 +119,8 @@ void Logger::logError( const char *s , int mode )
 
 void Logger::logDebug( const char *s , int mode )
 {
+	if( settings == NULL )
+		attachRoot(); 
 	if( settings -> logDisabled( Logger::LogLevelDebug ) )
 		return;
 
@@ -123,6 +129,8 @@ void Logger::logDebug( const char *s , int mode )
 
 void Logger::logObject( const char *prompt , Object *obj , Logger::LogLevel p_logLevel )
 {
+	if( settings == NULL )
+		attachRoot(); 
 	if( settings -> logDisabled( p_logLevel ) )
 		return;
 
@@ -144,6 +152,8 @@ void Logger::logObject( const char *prompt , Object *obj , Logger::LogLevel p_lo
 void Logger::log( const char *s , int mode , Logger::LogLevel p_logLevel )
 {
 	// check needs to be excluded
+	if( settings == NULL )
+		attachRoot(); 
 	if( settings -> isExcluded( s ) )
 		return;
 
@@ -195,11 +205,14 @@ const char *Logger::getPostfix()
 
 bool Logger::isLogAll()
 {
+	if( settings == NULL )
+		attachRoot(); 
 	return( settings -> getLevel() == LogLevelDebug );
 }
 
 Xml Logger::getLogSettings()
 {
+	if( settings == NULL )
+		attachRoot(); 
 	return( settings -> getXml() );
 }
-
