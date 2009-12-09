@@ -1,0 +1,1 @@
+start bin\aiconsole.exe -s 169.254.27.205:20001

@@ -1,0 +1,35 @@
+<xmlcall name="nnlib::testFinderXOR">
+	<parameters>
+		<property name="statCount" value="10"/>
+		<property name="maxIterations" value="100"/>
+		<property name="maxRestarts" value="10"/>
+<!-- network -->
+		<property name="algorithm" value="4"/>
+		<property name="hiddenLayerSize" value="3"/>
+		<property name="errorFunctionLinear" value="false"/>
+		<property name="calculateHiddenInputRanges" value="false"/>
+<!-- core -->
+		<property name="stopBitsPrecision" value="0.1"/>
+		<property name="gradientRate" value="0.7"/>
+		<property name="momentum" value="0"/>
+		<property name="steepness" value="1"/>
+<!-- weights -->
+		<property name="initWeights" value="N"/>
+		<property name="wMin" value="-1500"/>
+		<property name="wMax" value="1500"/>
+		<property name="wRandomMin" value="-0.5"/>
+		<property name="wRandomMax" value="0.5"/>
+<!-- RPROP -->
+		<property name="increaseFactorRPROP" value="1.5"/>
+		<property name="decreaseFactorRPROP" value="0.5"/>
+		<property name="deltaMinRPROP" value="0"/>
+		<property name="deltaMaxRPROP" value="50"/>
+		<property name="deltaZeroRPROP" value="0.1"/>
+		<property name="deltaZeroMinRPROP" value="0.0001"/>
+<!-- QuickProp -->
+		<property name="quickPropDecay" value="-0.0001"/>
+		<property name="quickPropMu" value="1.75"/>
+		<property name="quickPropMinStep" value="0.001"/>
+	</parameters>
+</xmlcall>
+
