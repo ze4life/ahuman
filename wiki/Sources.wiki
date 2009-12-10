@@ -10,22 +10,37 @@ Entire Subversion repository is related to code. All the documentation is on Wik
 Top-level Subversion directories contain:
 
 *branches*
-    Stable baseline of sources. All the sub-projects are released simultaneously once per quarter and branches are named appropriately. It represents "Time Window" iterative development approach - see Development Cycle for details. Only quarterly releases branches are there. Latest branch is supported within next quarter - only critical bugfixes are implemented. Bugfixes require immediate merge into mainline (sources). 
+Stable baseline of sources. All the sub-projects are released simultaneously once per quarter and branches are named appropriately. It represents "Time Window" iterative development approach - see Development Cycle for details. Only quarterly releases branches are there. Latest branch is supported within next quarter - only critical bugfixes are implemented. Bugfixes require immediate merge into mainline (sources). 
 
 *builds*
-    All the distributives for internal libraries, opposed to third-party (external) libraries (see externals). See Development Cycle to understand how manage distributives. Complete distributives covering all the Human project are located in Files and exist for all yearly quarters, no matter how many new features have been added. 
+All the distributives for internal libraries, opposed to third-party (external) libraries (see externals). See Development Cycle to understand how manage distributives. Complete distributives covering all the Human project are located in Files and exist for all yearly quarters, no matter how many new features have been added. 
 
 *externals*
-    All third-party distributives, being used "as is", without customising. Customised distributives are regarded as internal libraries and stored in sources. Though you need to reference original distributive on Development Environment in Third Party Projects section. 
+All third-party distributives, being used "as is", without customising. Customised distributives are regarded as internal libraries and stored in sources. Though you need to reference original distributive on Development Environment in Third Party Projects section. 
 
 *research*
-    There can be both branches from mainline/stable releases or standalone development trees. Please read Research Cycle on how to arrange code in these directories. Its contents is quite non-restricted, but we need easily to identify related research activity described in Neural Networks Research or Artificial Intelligence Research. No direct merging expected from these branches to mainline. Research activity does not have the goal to create the working code. It is intended to create an algorithm or prove certain idea (i.e. prototyping), or to calculate performance characteristics or something else like that. 
+There can be both branches from mainline/stable releases or standalone development trees. Please read Research Cycle on how to arrange code in these directories. Its contents is quite non-restricted, but we need easily to identify related research activity described in Neural Networks Research or Artificial Intelligence Research. No direct merging expected from these branches to mainline. Research activity does not have the goal to create the working code. It is intended to create an algorithm or prove certain idea (i.e. prototyping), or to calculate performance characteristics or something else like that. 
 
-*sources*
-    This is the mainline (trunk, long-term development branch), where all the current feature development occurs. It does not cover research, where could be also certain coding activities for prototyping or something like that. Opposite to branches and tags, it exists in one instance over the all Human project life. See Development Cycle to see when and what activities are expected in mainline. Scope of current development is presented on Mainline Development. 
+*trunk*
+This is the mainline (long-term development branch), where all the current feature development occurs. It does not cover research, where could be also certain coding activities for prototyping or something like that. Opposite to branches and tags, it exists in one instance over the all Human project life. See Development Cycle to see when and what activities are expected in mainline. Scope of current development is presented on Mainline Development. 
+
+  * *aiapi* - API library, to be used in any client, connecting to AI server
+
+  * *aiconsole* - console client, allowing to supply text or xml commands to AI server and obtain command results
+
+  * *aiengine* - AI server, implementing all-in-one AI functionality
+
+  * *aihtmview* - test program for testing HTM with computer vision task as an example using any images you have
+
+  * *deploy* - test configuration files, overall build, packaging and deployment code
+
+  * *generic* - library with generally used data structures and algorithms, not related specifically to AI
 
 *tags*
-    Any fixed version of any application or library. Always has corresponding entry in builds. Not intended for amending, which is opposite to any branch in branches where changes are permitted and lead to new versions. Tags and branches are very cheap and fast in Subversions, so can be used intensively. 
+Any fixed version of any application or library. Always has corresponding entry in builds. Not intended for amending, which is opposite to any branch in branches where changes are permitted and lead to new versions. Tags and branches are very cheap and fast in Subversions, so can be used intensively. 
+
+*wiki*
+Standard code.google directory for all Wiki pages, including this one
 
 ==Latest Code==
 
