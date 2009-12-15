@@ -179,7 +179,7 @@ public:
 	void destroy() { free( data ); data = NULL; n = a = 0; };
 	void remove( int k ) 
 		{ 
-			ASSERT( index >= 0 && index < n ); 
+			ASSERT( k >= 0 && k < n ); 
 			n--;
 			memmove( &data[ k ] , &data[ k + 1 ] , sizeof( T ) * ( n - k ) );
 			memset( &data[ n ] , 0 , sizeof( T ) );
@@ -544,6 +544,7 @@ public:
 			if( p_from == p_to )
 				return;
 
+			int n = data.count();
 			ASSERT( p_from >= 0 && p_from < n );
 			ASSERT( p_to >= 0 && p_to < n );
 
@@ -840,7 +841,7 @@ public:
 
 	TV *set( TK *key , TV *value )
 		{
-			T *l_value;
+			TV *l_value;
 			if( rfc_map_ptrcheck( mapData , ( void * )key , ( unsigned long * )&l_value ) < 0 )
 				l_value = NULL;;
 
