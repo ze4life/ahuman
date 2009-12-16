@@ -106,6 +106,7 @@ class NNStrategy
 {
 public:
 	NNStrategy( Logger& p_logger );
+	virtual ~NNStrategy();
 
 	// Object interface
 
@@ -114,7 +115,6 @@ public:
 	virtual bool learn( NNSample *sample , NNWeights *pwBest , float *pvar ) { throw RuntimeError( "NNStrategy::learn not implemented" ); };
 
 public:
-	~NNStrategy();
 	void attach( NN *p_p );
 	NN& getNN();
 	NNStrategyHelper& getHelper();

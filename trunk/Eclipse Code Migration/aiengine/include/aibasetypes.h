@@ -318,7 +318,7 @@ public:
 			pn2 = NULL;
 			data = NULL;
 
-			allocateN1( p_n1 );
+			createN1( p_n1 );
 		};
 	~TwoIndexVarArray() 
 		{ 
@@ -532,8 +532,9 @@ public:
 	void destroy() { data.destroy(); chunks.destroy(); };
 	void remove( int k )
 		{ 
-			ASSERT( index >= 0 && index < n ); 
 			int n = data.count();
+			ASSERT( k >= 0 && k < n );
+
 			n--;
 			memmove( &data[ k ] , &data[ k + 1 ] , sizeof( T ) * ( n - k ) );
 			memset( data[ n ] , 0 , sizeof( T ) );
@@ -557,7 +558,7 @@ public:
 			data[ p_to ] = tmp;
 		};
 	void create( int p_n ) { ASSERT( p_n >= 0 ); allocate( p_n ); data.setCount( p_n ); };
-	void create( int p_n , const T& value ) { ASSERT( p_n >= 0 ); allocate( p_n ); setCount( p_n ); set( value ); };
+	void create( int p_n , const T& value ) { ASSERT( p_n >= 0 ); allocate( p_n ); data.setCount( p_n ); set( value ); };
 	void set( const T& value )
 		{
 			for( int k = 0; k < data.count(); k++ )

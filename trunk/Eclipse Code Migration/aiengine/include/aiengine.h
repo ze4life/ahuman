@@ -149,6 +149,7 @@ public:
 			isExitCompleted = false;
 			isDestroyStarted = false;
 		};
+	virtual ~Service();
 
 	virtual const char *getName() = 0;
 	virtual void initService() = 0;

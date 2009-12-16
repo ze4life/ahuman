@@ -67,7 +67,7 @@ private:
 
 	// constructor
 	AIEngineImpl();
-	~AIEngineImpl();
+	virtual ~AIEngineImpl();
 
 // internals
 private:

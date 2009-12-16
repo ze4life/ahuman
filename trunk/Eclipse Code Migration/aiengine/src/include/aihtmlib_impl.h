@@ -23,7 +23,7 @@ class AIHtmLibDebug : public Subscriber
 {
 public:
 	AIHtmLibDebug();
-	~AIHtmLibDebug();
+	virtual ~AIHtmLibDebug();
 
 public:
 	void init( Xml config );
