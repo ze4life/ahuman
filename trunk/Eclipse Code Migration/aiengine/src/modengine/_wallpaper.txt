@@ -1,0 +1,91 @@
+SOLUTION HIERARCHY AND STATUS
+----------------------------------------------
+	service management:	BETA
+	configuration management: PRE-ALPHA
+	thread management: PRE-ALPHA
+	logging: PRE-ALPHA
+	persistence: BETA
+	exception handling: BETA
+	random generator: BETA
+	timer: BETA
+	string: BETA
+	low-level file i/o: BETA
+	math helpers: BETA
+
+FEATURES
+----------------------------------------------
+service management
+	- services startup/shutdown
+
+configuration management
+	- access to configuration
+	- named configuration cache
+
+thread management
+	- thread counting, waiting for completion
+	- add/get per-thread objects, auto deleted
+
+logging
+	- console/file logging
+	- log levels
+	- sync/async logging
+	- auto add timing up to ms, thread info
+	- multi-line log records
+	- per-class logging settings based on service name or object class
+	- persist logger settings
+
+persistence
+	- forward and backward field set compatibility
+	- compound objects
+	- embedded lists of datatypes and objects
+	- persistance using ids or names
+	- serialization of runtime child class in class hierarchy
+	- object construction from serialized object
+	- serialized objects caching
+	- human readable and manually updatable format
+
+exception handling
+	- SEH to C++ Exception translation
+	- call stack logging
+	- C++ and SEH support
+	- auto skip system levels
+	- class/function reporting
+	- locating function where exception raised in SEH
+	- single class owning all the information
+	- macro to auto gather file/line of raising code location
+
+random generator
+	- int/discrete and float/continous random numbers
+	- generate numbers in given range
+	- collect and print statistics
+	- generate numbers in given two ranges
+
+timer
+	- time up to milliseconds
+
+string
+	- auto-changing
+	- common operators to make strings with variable values
+
+low-level file i/o
+	- read line from file
+
+math helpers
+	- multiindex iterator
+	- min/max of 2 values, min/max of any product of 4 values
+	- comparing floats with tolerance
+
+ALPHA ISSUES AND TODO
+----------------------------------------------
+
+FEATURES TODO
+---------------------
+
+REFACTORING
+---------------------
+
+BETA BUGS
+---------------------
+
+OTHERS
+---------------------
