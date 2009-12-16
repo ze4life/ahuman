@@ -42,8 +42,10 @@ public:
 	const char *getInstance();
 	void setInstance( const char *instance );
 
-protected:
+public:
 	Object() {};
+	virtual ~Object();
+
 	Logger logger;
 	String instance;
 };
@@ -84,7 +86,7 @@ public:
 	SerializeObject();
 	SerializeObject( Object *o );
 	SerializeObject( const char *className );
-	~SerializeObject();
+	virtual ~SerializeObject();
 
 	void setFactoryMethod( Object *( *pfnCreateObject )( const char *className ) );
 	Object *createObject();
@@ -212,7 +214,7 @@ public:
 	ObjectField();
 	ObjectField( int p_id , const char *p_name , char p_type , bool isList );
 	ObjectField( int p_id , const char *p_name , SerializeObject *p_so , bool isList );
-	~ObjectField();
+	virtual ~ObjectField();
 	void init();
 
 	bool isChar();
@@ -297,6 +299,7 @@ public:
 
 public:
 	Scale();
+	virtual ~Scale();
 
 	void set( const Scale& scale );
 	void setRangeFrom( float minValue , float maxValue );
@@ -355,7 +358,7 @@ public:
 
 public:
 	Random();
-	~Random();
+	virtual ~Random();
 
 	void createRangeRandomsFloat( float min , float max );
 	void createTwoRangeRandomsFloat( float min1 , float max1 , float min2 , float max2 );

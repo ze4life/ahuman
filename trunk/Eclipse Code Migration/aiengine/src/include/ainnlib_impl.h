@@ -26,7 +26,7 @@ class AINNLibDebug : public Subscriber
 {
 public:
 	AINNLibDebug();
-	~AINNLibDebug();
+	virtual ~AINNLibDebug();
 
 public:
 	void init( Xml config );
