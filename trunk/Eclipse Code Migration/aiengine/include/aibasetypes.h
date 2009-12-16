@@ -179,7 +179,7 @@ public:
 	void destroy() { free( data ); data = NULL; n = a = 0; };
 	void remove( int k ) 
 		{ 
-			//ASSERT( index >= 0 && index < n ); 
+			ASSERT( k >= 0 && k < n ); 
 			n--;
 			memmove( &data[ k ] , &data[ k + 1 ] , sizeof( T ) * ( n - k ) );
 			memset( &data[ n ] , 0 , sizeof( T ) );
@@ -532,7 +532,7 @@ public:
 	void destroy() { data.destroy(); chunks.destroy(); };
 	void remove( int k )
 		{ 
-			//ASSERT( index >= 0 && index < n ); 
+			ASSERT( index >= 0 && index < n ); 
 			int n = data.count();
 			n--;
 			memmove( &data[ k ] , &data[ k + 1 ] , sizeof( T ) * ( n - k ) );
@@ -544,8 +544,9 @@ public:
 			if( p_from == p_to )
 				return;
 
-			//ASSERT( p_from >= 0 && p_from < n );
-			//ASSERT( p_to >= 0 && p_to < n );
+			int n = data.count();
+			ASSERT( p_from >= 0 && p_from < n );
+			ASSERT( p_to >= 0 && p_to < n );
 
 			T *tmp = data[ p_from ];
 			if( p_from < p_to )
@@ -1076,8 +1077,6 @@ private:
 	TC *p;
 	PF pf;
 };
-
-
 
 // #############################################################################
 // #############################################################################
