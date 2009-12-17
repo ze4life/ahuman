@@ -49,6 +49,8 @@ bool NNValidateFunction::validate( NNSample *sample , float *error )
 				return( validateAvgOutputMSE( sample , error ) );
 			case FANN_VALIDATEFUNC_AVGOUTPUTBIT :
 				return( validateAvgOutputBit( sample , error ) );
+			case FANN_VALIDATEFUNC_EMPTY :
+				break;
 		}
 
 	throw RuntimeError( "Unknown function" );

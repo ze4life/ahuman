@@ -340,7 +340,7 @@ short
 			return( 1 );
 		}
 
-	for( ; l_c = *p_v; p_v++ )
+	for( ; ( l_c = *p_v ); p_v++ )
 		{
 			if( l_c <= 0x7F )
 				{
@@ -381,7 +381,7 @@ int
 		return( 0 );
 
 	l_size = 0;
-	for( ; l_c = *p_v; p_v++ )
+	for( ; ( l_c = *p_v ); p_v++ )
 		{
 			if( l_c <= 0x7F )
 				l_size++;

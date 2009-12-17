@@ -169,7 +169,8 @@ void NNSamples::getValueStat( int pos , float *vMean , float *vStddev , bool sen
 {
 	// find mean
 	float mean = 0;
-	for( int s = 0; s < count(); s++ )
+	int s;
+	for( s = 0; s < count(); s++ )
 		{
 			NNSample *sample = getByPos( s );
 

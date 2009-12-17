@@ -273,7 +273,7 @@ void rfc_lib_unload( RFC_HND p_lib )
 
 void rfc_env_gethostname( char *p_name , int p_size )
 {
-	GetComputerName( p_name , &p_size );
+	GetComputerName( p_name , ( unsigned long * )&p_size );
 }
 
 /*#######################################################*/

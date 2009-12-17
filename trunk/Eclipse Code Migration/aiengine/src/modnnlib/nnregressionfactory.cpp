@@ -68,10 +68,10 @@ NN *NNRegressionFactory::createDefaultPerceptron( const char *name , ClassList<N
 	fa.setNoScaleInput( true );
 	fa.setSteepness( 1 );
 
-	NNLayer *pl1 = pp -> addLayer( hiddenLayerSize , &fi , &fa , useBias );
+	/*NNLayer *pl1 = */pp -> addLayer( hiddenLayerSize , &fi , &fa , useBias );
 	useBias = false;
 	int nOutputs = NNVariables::getRepresentationSize( targets );
-	NNLayer *pl2 = pp -> addLayer( nOutputs , &fi , &fa , useBias );
+	/*NNLayer *pl2 = */pp -> addLayer( nOutputs , &fi , &fa , useBias );
 
 	pp -> joinSensors( sensors );
 	pp -> joinTargets( targets );
@@ -144,19 +144,20 @@ NN *NNRegressionFactory::createDerivationPerceptron( NNVariables *vars , NN *p ,
 
 	// create perceptron - sensors are the same, targets are required derivatives of target function by given sensor
 	int nSrcSensors = p -> getNSensors();
-	int nSrcTargets = p -> getNTargets();
 	int nDstTargets = nDerivationSensors;
 	int hiddenLayerSize = ( nDstTargets + nSrcSensors ) / 2;
 
 	// variables
 	// sensors are the same
 	ClassList<NNVariable> sensors;
-	for( int k = 0; k < p -> getNSensors(); k++ )
+	int k;
+	for( k = 0; k < p -> getNSensors(); k++ )
 		sensors.add( p -> getSensorVariable( k ) );
 
 	// targets are derivatives - owned by NN variables
 	ClassList<NNVariable> targets;
-	for( int k1 = sensorFrom; k1 <= sensorTo; k1++ )
+	int k1;
+	for( k1 = sensorFrom; k1 <= sensorTo; k1++ )
 		for( k = 0; k < p -> getNSensors(); k++ )
 			targets.add( vars -> addCommonNumberDerivative() );
 
@@ -211,7 +212,8 @@ void NNRegressionFactory::getDerivatives( NN *p , int sensorFrom , int sensorTo 
 void NNRegressionFactory::scaleBySamplesSimple( NNSamples *samples , NNVariables *vars , ClassList<NNVariable>& sensors , ClassList<NNVariable>& targets )
 {
 	// scale inputs
-	for( int k = 0; k < samples -> sizeIn(); k++ )
+	int k;
+	for( k = 0; k < samples -> sizeIn(); k++ )
 		{
 			float minV , maxV;
 			samples -> getSensorRange( k , &minV , &maxV );
@@ -236,7 +238,8 @@ void NNRegressionFactory::scaleBySamplesSimple( NNSamples *samples , NNVariables
 void NNRegressionFactory::scaleBySamplesStddev( NNSamples *samples , NNVariables *vars , ClassList<NNVariable>& sensors , ClassList<NNVariable>& targets )
 {
 	// scale inputs
-	for( int k = 0; k < samples -> sizeIn(); k++ )
+	int k;
+	for( k = 0; k < samples -> sizeIn(); k++ )
 		{
 			float meanV , stddevV;
 			samples -> getSensorStat( k , &meanV , &stddevV );

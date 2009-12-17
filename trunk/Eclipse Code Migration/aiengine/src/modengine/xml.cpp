@@ -91,8 +91,6 @@ String Xml::getAttribute( String a , String defaultValue )
 bool Xml::getBooleanAttribute( String a )
 {
 	ASSERT( node != NULL );
-
-	TiXmlElement *xml = ( TiXmlElement * )node;
 	return( getAttribute( a , "false" ).equals( "true" ) );
 }
 

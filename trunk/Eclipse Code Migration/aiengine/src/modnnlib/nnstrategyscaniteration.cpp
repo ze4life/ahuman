@@ -7,10 +7,10 @@
 
 NNStrategyScanIteration::NNStrategyScanIteration( NNStrategyScan *p_strategy , NN *p_p , 
 	int p_bestMax , int p_axisItems , int p_pointsToCheck )
-:	p( p_p ) ,
-	engine( AIEngine::getInstance() ) ,
-	pwc( p_p ) ,
-	helper( logger )
+:	engine( AIEngine::getInstance() ) ,
+	helper( logger ) ,
+	p( p_p ) ,
+	pwc( p_p )
 {
 	strategy = p_strategy;
 

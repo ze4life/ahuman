@@ -221,7 +221,7 @@ bool NNStrategyBackPropagation::learn( NNSamples *p_samples , NNWeights *pwBest 
 {
 	execSamples = p_samples;
 
-	NNErrorFunction *ef = NNStrategy::getErrorFunction();
+	// NNErrorFunction *ef = NNStrategy::getErrorFunction();
 	NNStopFunction *sf = NNStrategy::getStopFunction();
 
 	sf -> setModeMany( p_samples );
@@ -294,7 +294,7 @@ bool NNStrategyBackPropagation::iterateSamplesOneByOne( NNSamples *samples , flo
 {
 	float learnMaxVariance = 0;
 	bool res = false;
-	NNErrorFunction *ef = NNStrategy::getErrorFunction();
+	// NNErrorFunction *ef = NNStrategy::getErrorFunction();
 
 	for( int k = 0; k < samples -> count(); k++ )
 		{
@@ -386,7 +386,7 @@ bool NNStrategyBackPropagation::iterateOneSample( NNSample *sample , float *vari
 	NNErrorFunction *ef = NNStrategy::getErrorFunction();
 
 	// set input data
-	float startError = ef -> getErrorSampleProgress( sample );
+	// float startError = ef -> getErrorSampleProgress( sample );
 
 	// show initial state
 	// helper.showPerceptron( "===>> BEFORE adjust weights" );
@@ -655,7 +655,7 @@ bool NNStrategyBackPropagation::adjustWeights( NNSample *sample )
 			NNConnection *ic = connectionData.getKeyByIndex( k );
 			ConnectionData *wd = connectionData.getClassByIndex( k );
 
-			float errorSignalCurrent = wd -> nd -> errorSignal;
+			// float errorSignalCurrent = wd -> nd -> errorSignal;
 			float inputValue = *( ic -> inputPtr );
 			float previousChange = wd -> change;
 			float deltaCurrent = wd -> nd -> delta;

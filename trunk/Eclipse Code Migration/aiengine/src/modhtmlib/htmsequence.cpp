@@ -82,7 +82,7 @@ bool HtmSequence::isNewPattern( TwoIndexArray<int>& inputs , const HtmRect& rc )
 		return( true );
 
 	int *lc = data.getAt( data.count() - childCount );
-	int height = rc.getHeight();
+	// int height = rc.getHeight();
 	int width = rc.getWidth();
 	for( int k = rc.fromV; k <= rc.toV; k++ )
 		{

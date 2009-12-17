@@ -193,16 +193,17 @@ public:
 	bool isEOF() { return( isNoRecord ); };
 
 private:
+	SerializeObject& so;
+	AIDBRecordHeader rh;
+
 	FILE *stream;
 	long fileHeaderSize;
 
 	bool firstDone;
 	bool isNoRecord;
-	AIDBRecordHeader rh;
 	long filePos;
 
 	int currentRow;
-	SerializeObject& so;
 	String data;
 };
 

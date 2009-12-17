@@ -70,8 +70,8 @@ void AINNLibDebug::testCreateBySamples( XmlCall& call )
 	// create samples to check factory
 	float inputN = -1;
 	float inputY = 1;
-	float inputMin[2] = { inputN , inputN };
-	float inputMax[2] = { inputY , inputY };
+	//float inputMin[2] = { inputN , inputN };
+	//float inputMax[2] = { inputY , inputY };
 	int classCount = 1;
 	int sensorCount = 2;
 
@@ -101,8 +101,8 @@ void AINNLibDebug::testCreateBySamples( XmlCall& call )
 
 void AINNLibDebug::testFinderXOR( XmlCall& call )
 {
-	AINNLibImpl *nnlib = AINNLibImpl::getServiceImpl();
-	NNFinderFactory *ff = nnlib -> getFinderFactory();
+	// AINNLibImpl *nnlib = AINNLibImpl::getServiceImpl();
+	// NNFinderFactory *ff = nnlib -> getFinderFactory();
 
 	NNFinder::StatParams sp;
 	memset( &sp , 0 , sizeof( NNFinder::StatParams ) );
@@ -219,7 +219,7 @@ void AINNLibDebug::testFinderLearn( XmlCall& call )
 	sensors.add( xvars.addCommonNumber( true , -1 , true , 1 ) );
 	NNVariable *target = xvars.addCommonCategory( classCount );
 
-	int caseNum = 1;
+	// int caseNum = 1;
 	for( int kHiddenNeurons = 3; kHiddenNeurons < 4; kHiddenNeurons++ )
 		{
 			sp.hiddenLayerSize = kHiddenNeurons;
@@ -265,8 +265,8 @@ void AINNLibDebug::testFinderLearn( XmlCall& call )
 
 void AINNLibDebug::testFinderFactory( XmlCall& call )
 {
-	AINNLibImpl *nnlib = AINNLibImpl::getServiceImpl();
-	NNRegressionFactory *ff = nnlib -> getRegressionFactory();
+	// AINNLibImpl *nnlib = AINNLibImpl::getServiceImpl();
+	// NNRegressionFactory *ff = nnlib -> getRegressionFactory();
 
 	NNRegression::StatParams sp;
 	memset( &sp , 0 , sizeof( NNRegression::StatParams ) );

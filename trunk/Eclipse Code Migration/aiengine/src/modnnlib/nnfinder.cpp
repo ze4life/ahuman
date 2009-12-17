@@ -80,7 +80,7 @@ void NNFinder::learnStat( NNSamples *samplesLearn , NNSamples *samplesValidate ,
 
 	// helper.showPerceptron( "BEFORE ALL" );
 
-	AIEngine& engine = AIEngine::getInstance();
+	// AIEngine& engine = AIEngine::getInstance();
 	logger.logInfo( String( "learnStat RUN:" ) +
 		" maxIterations=" + sp -> maxIterations +
 		", nHiddenNeurons=" + p -> getFirstLayer() -> getNonBiasNeuronCount() +

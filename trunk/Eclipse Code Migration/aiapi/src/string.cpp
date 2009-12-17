@@ -109,7 +109,7 @@ String& String::append( const char *s ,  int n2 )
 	if( v == NULL )
 		return( assign( s , n2 ) );
 
-	StringData *d = ensureFreeSpace( v , n2 );
+	ensureFreeSpace( v , n2 );
 
 	int len = strlen( v );
 	memcpy( v + len , s , n2 );
@@ -171,7 +171,7 @@ String& String::assign( const char *s ,  int n2 )
 	if( v != NULL )
 		*v = 0;
 
-	StringData *d = ensureFreeSpace( v , n2 );
+	ensureFreeSpace( v , n2 );
 	memcpy( v , s , n2 );
 	v[ n2 ] = 0;
 
@@ -180,7 +180,7 @@ String& String::assign( const char *s ,  int n2 )
 
 String& String::append( int count , char c )
 {
-	StringData *d = ensureFreeSpace( v , count );
+	ensureFreeSpace( v , count );
 
 	int len = strlen( v );
 	memset( v + len , c , count );

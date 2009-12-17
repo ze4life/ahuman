@@ -11,7 +11,7 @@ NNLayer::NNLayer()
 	p = NULL;
 
 	nPos = 0;
-	outputs = NULL;
+	outputs.clear();
 	useBias = false;
 }
 
@@ -59,7 +59,7 @@ void NNLayer::clearData()
 	p = NULL;
 
 	nPos = 0;
-	outputs = NULL;
+	outputs.clear();
 	useBias = false;
 }
 

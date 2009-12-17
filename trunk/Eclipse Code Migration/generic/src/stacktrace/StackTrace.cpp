@@ -77,7 +77,6 @@ bool StackTrace::getStackTrace( MapFile** map, int maps, void *ptr , getStackTra
 		}
 
 	// output call stack
-	int needed = 0;
 	char names[ 600 ];
 	char moduleName[ 600 ];
 	for( i = 1; i < callers; i++ )
@@ -103,7 +102,7 @@ bool StackTrace::getStackTrace( MapFile** map, int maps, void *ptr , getStackTra
 			else
 				strcpy( moduleName , "unknown" );
 			char addrName[ 30 ];
-			sprintf( addrName , "0x%x", addr );
+			sprintf( addrName , "0x%x", ( unsigned int )addr );
 
 			const char *entryName = NULL;
 			if( entryMap != NULL )

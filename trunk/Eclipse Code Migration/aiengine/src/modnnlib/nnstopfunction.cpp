@@ -146,6 +146,8 @@ bool NNStopFunction::stopConditionFound( int epoch , bool *psuccess )
 		{
 			case FANN_STOPFUNC_OUTPUTMSE :	return( stopConditionFoundMSE() );
 			case FANN_STOPFUNC_OUTPUTBIT :	return( stopConditionFoundBits() );
+			case FANN_STOPFUNC_EMPTY :
+				break;
 		}
 	throw RuntimeError( "stop function not defined" );
 }
@@ -156,6 +158,8 @@ float NNStopFunction::calculateErrorValue()
 		{
 			case FANN_STOPFUNC_OUTPUTMSE :	return( calculateErrorValueMSE() );
 			case FANN_STOPFUNC_OUTPUTBIT :	return( calculateErrorValueBits() );
+			case FANN_STOPFUNC_EMPTY :
+				break;
 		}
 	throw RuntimeError( "stop function not defined" );
 }

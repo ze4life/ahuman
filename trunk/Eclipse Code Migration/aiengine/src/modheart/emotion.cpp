@@ -1,12 +1,6 @@
 
 #include "aiheart_impl.h"
 
-static AIEmotionCorr corr[] = 
-{
-	{ AIEMOTION_CALM , AIEMOTION_ACTIVE , -1 } ,
-	{ AIEMOTION_SHAMED , AIEMOTION_CALM , 2}
-};
-
 /*#########################################################################*/
 /*#########################################################################*/
 

@@ -101,6 +101,10 @@ int Random::getRandomInt()
 					}
 
 				return( v );
+			case RND_TWORANGEFLOAT :
+			case RND_RANGEFLOAT :
+			case RND_UNKNOWN :
+				break;
 		}
 
 	throw RuntimeError( "Random::getRandomInt: inappropriate type" );
@@ -159,6 +163,10 @@ float Random::getRandomFloat()
 					}
 
 				return( v );
+			case RND_UNKNOWN :
+			case RND_TWORANGEINT :
+			case RND_RANGEINT :
+				break;
 		}
 
 	throw RuntimeError( "Random::getRandomFloat: inappropriate type" );
@@ -181,6 +189,10 @@ void Random::collectStatisticsInt()
 				break;
 			case RND_TWORANGEINT :
 				statBuckets = max1.u_l - min1.u_l + 1 + max2.u_l - min2.u_l + 1;
+				break;
+			case RND_RANGEFLOAT :
+			case RND_TWORANGEFLOAT :
+			case RND_UNKNOWN :
 				break;
 		}
 
@@ -215,11 +227,9 @@ void Random::showStatistics()
 	if( !collect )
 		throw RuntimeError( "Random::showStatistics: collect turned off" );
 
-	AIEngine& engine = AIEngine::getInstance();
-
 	// calculate avg and variance
-	int sum , var;
-	bool isInt = ( type == RND_RANGEINT || type == RND_TWORANGEINT )? true : false;
+	float sum , var;
+	// bool isInt = ( type == RND_RANGEINT || type == RND_TWORANGEINT )? true : false;
 	sum = 0;
 	var = 0;
 
@@ -233,14 +243,14 @@ void Random::showStatistics()
 
 	for( int m = 0; m < statBuckets; m++ )
 		var += ( statCounts[ m ] - avg ) * ( statCounts[ m ] - avg );
-	int varAvg = ( int )sqrt( var / statBuckets );
+	// int varAvg = ( int )sqrt( var / statBuckets );
 
 	logger.logInfo( String( "STAT: bucket count=" ) + statBuckets + 
 		", avg bucket=" + avg );
 	for( int z = 0; z < statBuckets; z++ )
 		{
-			int diff = statCounts[ z ] - avg;
-			float var = ( int )sqrt( diff * diff );
+			// int diff = statCounts[ z ] - avg;
+			// float var = ( int )sqrt( diff * diff );
 			logger.logInfo( String( "BUCKET #" ) + z + 
 				": count=" + statCounts[ z ] );
 		}
@@ -264,7 +274,7 @@ int Random::getRandomFloatStatic( float min , float max )
 	float v = min + randFloat() * ( max - min );
 	if( v > max )
 		v = max;
-	return( v );
+	return( ( int )v );
 }
 
 void Random::createSerializeObject()

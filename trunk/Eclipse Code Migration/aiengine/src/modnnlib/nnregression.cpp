@@ -66,7 +66,7 @@ void NNRegression::learnStat( NNSamples *samplesLearn , NNSamples *samplesValida
 
 	// helper.showPerceptron( "BEFORE ALL" );
 
-	AIEngine& engine = AIEngine::getInstance();
+	// AIEngine& engine = AIEngine::getInstance();
 	logger.logInfo( String( "learnStat RUN:" ) +
 		" minIterations=" + sp -> minIterations +
 		", maxIterations=" + sp -> maxIterations +

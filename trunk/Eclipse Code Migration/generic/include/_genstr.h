@@ -43,8 +43,12 @@ struct _rfc_string_format
 /*#######################################################*/
 /*#######################################################*/
 /* ANSI string functions */
+#ifndef max
 #define max(a,b)    (((a) > (b)) ? (a) : (b))
+#endif
+#ifndef min
 #define min(a,b)    (((a) < (b)) ? (a) : (b))
+#endif
 /* create string */
 extern rfc_string
 	rfc_str_create( const char *p_s , int p_len , int p_allocate );

@@ -409,7 +409,7 @@ rfc_string
 					/* single characters */
 					case 'c':
 						l_len = 2;
-						va_arg( l_va , char );
+						va_arg( l_va , int /*char*/ );
 						break;
 
 					/* strings */
@@ -643,12 +643,12 @@ void
 					/* single characters */
 					case 'c':
 						l_len = 2;
-						l_fi -> s_arg_v.u_d = va_arg( l_va , short );
+						l_fi -> s_arg_v.u_d = va_arg( l_va , int /*unsigned short*/ );
 						break;
 
 					case 'C':
 						l_len = 2;
-						l_fi -> s_arg_v.u_b = va_arg( l_va , char );
+						l_fi -> s_arg_v.u_b = va_arg( l_va , int /*char*/ );
 						break;
 
 					/* strings */
