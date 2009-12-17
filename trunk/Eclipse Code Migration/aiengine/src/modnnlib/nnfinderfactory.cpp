@@ -136,9 +136,9 @@ NN *NNFinderFactory::createDefaultPerceptron( const char *name , ClassList<NNVar
 	fa.setNoScaleInput( true );
 	fa.setSteepness( 1 );
 
-	NNLayer *pl1 = pp -> addLayer( hiddenLayerSize , &fi , &fa , useBias );
+	/*NNLayer *pl1 = */pp -> addLayer( hiddenLayerSize , &fi , &fa , useBias );
 	useBias = false;
-	NNLayer *pl2 = pp -> addLayer( nTargets , &fi , &fa , useBias );
+	/*NNLayer *pl2 = */pp -> addLayer( nTargets , &fi , &fa , useBias );
 
 	pp -> joinSensors( sensors );
 	pp -> joinLayersDirect();
@@ -218,7 +218,7 @@ void NNFinderFactory::createInitialP1( NN **pp , NNStrategyBackPropagation **ps 
 	float stopBitsPrecision = 0.1f;
 	float avgFailedNeurons = 0;
 	float bitTolerance = stopBitsPrecision * 1.5f;
-	float totalFailedNeurons = 0;
+	int totalFailedNeurons = 0;
 
 	vf -> setValidateAvgOutputBits( bitTolerance , avgFailedNeurons );
 	sf -> setModeBits( stopBitsPrecision , totalFailedNeurons );
@@ -253,7 +253,7 @@ void NNFinderFactory::createInitialP2( NN **pp , NNStrategyBackPropagation **ps 
 	float stopBitsPrecision = 0.1f;
 	float avgFailedNeurons = 0;
 	float bitTolerance = stopBitsPrecision * 1.5f;
-	float totalFailedNeurons = 0;
+	int totalFailedNeurons = 0;
 
 	vf -> setValidateAvgOutputBits( bitTolerance , avgFailedNeurons );
 	sf -> setModeBits( stopBitsPrecision , totalFailedNeurons );

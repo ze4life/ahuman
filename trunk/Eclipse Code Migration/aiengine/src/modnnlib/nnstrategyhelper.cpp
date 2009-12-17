@@ -574,7 +574,8 @@ void NNStrategyHelper::showValidateFailedSamples( NNSamples *samples )
 	if( !logger.isLogAll() )
 		return;
 
-	for( int k = 0; k < samples -> count(); k++ )
+	int k;
+	for( k = 0; k < samples -> count(); k++ )
 		{
 			NNSample *sample = samples -> getByPos( k );
 			if( !sample -> isValidateFailed() )
@@ -602,7 +603,8 @@ void NNStrategyHelper::showSample( NNSample *sample )
 
 	String sensorsS;
 	const float *sensors = sample -> getSensors();
-	for( int k = 0; k < sample -> getNSensors(); k++ )
+	int k;
+	for( k = 0; k < sample -> getNSensors(); k++ )
 		{
 			if( k > 0 )
 				sensorsS += ", ";
@@ -632,7 +634,8 @@ void NNStrategyHelper::showSampleActual( NNSample *sample )
 
 	String sensorsS;
 	const float *sensors = sample -> getSensors();
-	for( int k = 0; k < sample -> getNSensors(); k++ )
+	int k;
+	for( k = 0; k < sample -> getNSensors(); k++ )
 		{
 			if( k > 0 )
 				sensorsS += ", ";

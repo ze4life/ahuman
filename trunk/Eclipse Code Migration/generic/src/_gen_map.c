@@ -188,7 +188,7 @@ rfc_map *
 
 	/* fill axis types */
 	for( k = 0; k < p_keys; k++ )
-		l_map -> s_axis_isnum[ k ] = ( va_arg( p_isnum , short ) )? 1 : 0;
+		l_map -> s_axis_isnum[ k ] = ( va_arg( p_isnum , int /*short*/ ) )? 1 : 0;
 
 	return( l_map );
 }
@@ -340,11 +340,12 @@ short
 		return( 0 );
 
 	/* get current value */
-	if( p_value != NULL )
+	if( p_value != NULL ) {
 		if( p_map -> s_type == RFC_EXT_TYPESTRING )
 			p_value -> u_s = p_map -> s_p[ p_pos ] -> s_value.u_s;
 		else
 			rfc_type_set( p_map -> s_type , p_value , &p_map -> s_p[ p_pos ] -> s_value , NULL );
+	}
 
 	/* remove by position */
 	free( p_map -> s_p[ p_pos ] );
@@ -543,11 +544,12 @@ int
 		return( -1 );
 
 	/* get data by position */
-	if( p_value != NULL )
+	if( p_value != NULL ) {
 		if( p_map -> s_type != RFC_EXT_TYPESTRING )
 			rfc_type_set( p_map -> s_type , p_value , &p_map -> s_p[ l_pos ] -> s_value , NULL );
 		else
 			p_value -> u_c = p_map -> s_p[ l_pos ] -> s_value.u_s;
+	}
 
 	return( l_pos );
 }

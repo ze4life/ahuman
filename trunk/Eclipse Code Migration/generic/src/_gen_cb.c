@@ -130,7 +130,7 @@ rfc_cube *
 
 	/* set key element numeric flags */
 	for( ; p_keyels--; l_el++ )
-		l_el -> s_isnum = va_arg( p_isnum , short );
+		l_el -> s_isnum = va_arg( p_isnum , int /*short*/ );
 
 	return( l_cb );
 }
@@ -804,13 +804,13 @@ int
 /* TODO: Changes done to support stdarg */
 /* walk from root with filter by all axes */
 int
-	rfc_cb_mfwalk( rfc_cube *p_cb , int p_el1 , const void * p_keyval1 , ...  )
+	rfc_cb_mfwalk( rfc_cube *p_cb /*, int p_el1 , const void * p_keyval1 */, ...  )
 	
 {
 	va_list l_va;
 	int l_res;
 
-	va_start( l_va, p_el1);
+	va_start( l_va, p_cb );
 		
 	l_res = rfc_cb_mfwalk_va( p_cb , l_va );
 	va_end( l_va );

@@ -1,15 +1,15 @@
-/*#########################################################################
- * This class is the implementation of the queue data structure so that all
- * the messages from various sources can be added and processed later.
-/*#########################################################################*/
+//#########################################################################
+// This class is the implementation of the queue data structure so that all
+// the messages from various sources can be added and processed later.
+//#########################################################################
 
 #include "aiio_impl.h"
 
 /* Define the name of the queue */
 const char *IOQueue::NAME = "IOQueue";
 
-/*#########################################################################
-/*#########################################################################*/
+//#########################################################################
+//#########################################################################
 
 /*
  * Constructer to create the instance of queue so that we can 

@@ -369,6 +369,8 @@ float NNActivationFunction::getOutputFunction( float x )
 				return( ( float )( 0.5+0.5*cos(x) ) );
 			case FANN_COS_SYMMETRIC :
 				return( ( float )( cos(x) ) );
+			case FANN_EMPTY :
+				break;
 		}
 
 	throw RuntimeError( "Unknown function" );
@@ -386,7 +388,7 @@ float NNActivationFunction::getReverse( float x )
 	float inputScaled = functionInput / steepness;
 
 	// raw input
-	float input = unscaleInputValue( functionInput );
+	float input = unscaleInputValue( inputScaled );
 
 	return( input );
 }
@@ -464,6 +466,8 @@ float NNActivationFunction::getReverseFunction( float x )
 				return( ( float )( 0.5+0.5*cos(x) ) );
 			case FANN_COS_SYMMETRIC :
 				return( ( float )( cos(x) ) );
+			case FANN_EMPTY :
+				break;
 		}
 
 	throw RuntimeError( "Unknown function" );
@@ -508,6 +512,8 @@ float NNActivationFunction::getDerivativeFunction( float x , float y )
 				return( ( float )( -sin(x)/2 ) );
 			case FANN_COS_SYMMETRIC :
 				return( ( float )( -sin(x) ) );
+			case FANN_EMPTY :
+				break;
 		}
 
 	throw RuntimeError( "Unknown function" );

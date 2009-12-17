@@ -111,7 +111,7 @@ void NNNeuron::getRangeS( float wMin , float wMax , float *ptrMinS , float *ptrM
 	float maxS = 0;
 
 	// iterate connections
-	NN *p = layer -> getNN();
+	// NN *p = layer -> getNN();
 	for( int k = 0; k < inputConnections.count(); k++ )
 		{
 			NNConnection& c = inputConnections[ k ];
@@ -224,7 +224,7 @@ float NNNeuron::getOutput()
 
 void NNNeuron::reflectInsertNeuron( NNLayer *p_layer , int pos , bool createConnections , Random *randoms4Weights )
 {
-	NNNeuron *pn = ( p_layer == NULL )? NULL : p_layer -> getNeuron( pos );
+	// NNNeuron *pn = ( p_layer == NULL )? NULL : p_layer -> getNeuron( pos );
 
 	// create connection if requested
 	if( createConnections )

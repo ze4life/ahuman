@@ -123,6 +123,8 @@ float NNErrorFunction::translateSignal( float primarySignal )
 				if( primarySignal > 0.9999999f )
 					return( 17.0 );
 				return( log((1+primarySignal)/(1-primarySignal)) );
+			case FANN_ERRORFUNC_EMPTY :
+				break;
 		}
 
 	throw RuntimeError( "Unknown function" );

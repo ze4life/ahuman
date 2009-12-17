@@ -10,6 +10,7 @@
 class Object;
 class SerializeObject;
 class ObjectField;
+class Scale;
 
 // object-based helper classes
 class Scale;
@@ -44,7 +45,7 @@ public:
 
 public:
 	Object() {};
-	virtual ~Object();
+	virtual ~Object() {};
 
 	Logger logger;
 	String instance;
@@ -299,7 +300,7 @@ public:
 
 public:
 	Scale();
-	virtual ~Scale();
+	virtual ~Scale() {};
 
 	void set( const Scale& scale );
 	void setRangeFrom( float minValue , float maxValue );

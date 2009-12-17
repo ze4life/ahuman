@@ -281,19 +281,20 @@ private:
 	void recalculatePoint( int& rv , int v , int h , HtmSequence *cs , int predicted , TwoIndexArray<int>& inputs , TwoIndexArray<int>& inputsPredicted , HtmRect& rcc );
 
 private:
-	Logger logger;
 	HtmCortex *ctx;
-	HtmLayer *childLayer;
-	TwoIndexClassArray<HtmSequence> currentSequence;
 	TwoIndexArray<int> outputs;
 	TwoIndexArray<int> outputsPredicted;
-	HtmLayerMemory memory;
-
-	int layerPos;
-	int highProbablePrecision;
+	HtmLayer *childLayer;
 	int maxHistoryLength;
 	int childCountH;
 	int childCountV;
+
+	TwoIndexClassArray<HtmSequence> currentSequence;
+	HtmLayerMemory memory;
+
+	Logger logger;
+	int layerPos;
+	int highProbablePrecision;
 };
 
 /*#########################################################################*/

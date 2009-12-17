@@ -454,7 +454,7 @@ void NN::initWeightsStatic( const float *pwData , int count )
 	NNWeights pw( this );
 	ASSERT( pw.getNVars() == count );
 
-	int nLayers = getNLayers();
+	// int nLayers = getNLayers();
 
 	float *pwd = pw.getData();
 	const float *pws = pwData;
@@ -521,7 +521,7 @@ void NN::joinSensors( ClassList<NNVariable>& p_sensors )
 	ASSERT( sensors.count() == p_sensors.count() );
 
 	// fill placeholders with variables - join first layer to inputs
-	NNLayer *pl = layers.first();
+	// NNLayer *pl = layers.first();
 
 	int n = NNVariables::getRepresentationSize( p_sensors );
 	int nWithBias = ( useInputsBias )? n + 1 : n;
@@ -594,7 +594,8 @@ void NN::serialize( SerializeObject& so )
 	so.setPropFloat( biasValue , "biasValue" );
 
 	int *sensorVars = ( int * )malloc( sizeof( int ) * sensors.count() );
-	for( int k = 0; k < sensors.count(); k++ )
+	int k;
+	for( k = 0; k < sensors.count(); k++ )
 		sensorVars[ k ] = sensors[ k ] -> var -> getId();
 	so.setPropIntList( sensorVars , sensors.count() , "sensorVars" , true );
 
@@ -625,7 +626,8 @@ void NN::deserialize( Object *parent , SerializeObject& so )
 	NNVariablesContainer *vc = NNVariablesContainer::getInstance();
 
 	int inputsCount = 0;
-	for( int k = 0; k < nSensors; k++ )
+	int k;
+	for( k = 0; k < nSensors; k++ )
 		{
 			NNVariable *nv = vc -> getVarById( sensorVars[ k ] );
 

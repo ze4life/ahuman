@@ -10,7 +10,7 @@ AIDBRecordHeader::AIDBRecordHeader( long p_fileHeaderSize )
 
 	recordHeaderSize = 0;
 	recordDataSize = 0;
-	char recordStatus = 'U';
+	recordStatus = 'U';
 }
 
 AIDBRecordHeader::~AIDBRecordHeader()
@@ -33,7 +33,7 @@ bool AIDBRecordHeader::read( FILE *file )
 		recordPK.resize( pkSize );
 
 	char *ptr = recordPK.getBuffer();
-	if( fread( ptr , 1 , pkSize , file ) != pkSize )
+	if( fread( ptr , 1 , pkSize , file ) != ( unsigned )pkSize )
 		return( false );
 	ptr[ pkSize ] = 0;
 
@@ -53,7 +53,7 @@ void AIDBRecordHeader::readData( String& data , FILE *file )
 		data.resize( recordDataSize );
 
 	char *ptr = data.getBuffer();
-	if( fread( ptr , 1 , recordDataSize , file ) != recordDataSize )
+	if( fread( ptr , 1 , recordDataSize , file ) != ( unsigned )recordDataSize )
 		throw RuntimeError( "AIDBRecordHeader::readData: cannot read from file required size" );
 	ptr[ recordDataSize ] = 0;
 

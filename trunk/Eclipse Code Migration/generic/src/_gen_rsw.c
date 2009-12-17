@@ -282,10 +282,9 @@ rfc_wstring
 	rfc_wstr_format( rfc_wstring p_str , const unsigned short *p_format , ...  )
 {
 	va_list l_va;
-	rfc_wstring l_str;
-	va_start(l_va, p_format);
+	va_start( l_va, p_format );
 	p_str = rfc_wstr_format_va( p_str , p_format , l_va );
-	va_end(l_va);
+	va_end( l_va );
 	return( p_str );
 }
 
@@ -410,7 +409,7 @@ rfc_wstring
 					/* single characters */
 					case L'c':
 						l_len = 2;
-						va_arg( l_va , unsigned short );
+						va_arg( l_va , int /*unsigned short*/ );
 						break;
 
 					/* strings */
@@ -684,7 +683,7 @@ int
 					case L'c':
 					case L'C':
 						l_len = 2;
-						*l_s++ = va_arg( l_va , unsigned short );
+						*l_s++ = va_arg( l_va , int /*unsigned short*/ );
 						continue;
 
 					/* strings */
@@ -851,7 +850,7 @@ short
 			return( 1 );
 		}
 
-	while( l_c = *p_v++ )
+	while( ( l_c = *p_v++ ) )
 		{
 			/* check byte number */
 			if( l_c <= 0x7F )

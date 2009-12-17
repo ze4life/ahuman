@@ -188,7 +188,7 @@ extern int
 
 /* walk from root with filter by all axes */
 extern int
-	rfc_cb_mfwalk( rfc_cube *p_cb , int p_el1 , const void* p_keyval1 , ... );
+	rfc_cb_mfwalk( rfc_cube *p_cb /*, int p_el1 , const void* p_keyval1 */, ... );
 extern int
 	rfc_cb_mfwalk_a( rfc_cube *p_cb , int *p_el , const void **p_keyval );
 extern int

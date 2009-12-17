@@ -113,7 +113,7 @@ bool LogManager::startWriter()
 		return( false );
 	}
 
-	AIEngine& engine = AIEngine::getInstance();
+	// AIEngine& engine = AIEngine::getInstance();
 	if( rfc_thr_process( &independentThreadID , ( void * )this , threadMainFunction ) ) {
 		fprintf( stderr , "LogManager::start: cannot start listening thread" );
 		return( false );
@@ -171,9 +171,9 @@ void LogManager::output( LogRecord *p )
 	char l_buf[ 100 ];
 	sprintf( l_buf , "[%s, 0x%4.4x] %2.2d:%2.2d:%2.2d,%3.3d - " , 
 		levelNames[ p -> logLevel ] ,
-		p -> threadId ,
+		( unsigned int )p -> threadId ,
 		lt -> tm_hour , lt -> tm_min , lt -> tm_sec , 
-		p -> time_ms );
+		( int )p -> time_ms );
 
 	// output
 	FILE *cs = ( p -> logLevel == Logger::LogLevelError )? stderr : stdout;
