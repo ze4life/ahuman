@@ -7,8 +7,8 @@ ProjectName:=modmedia
 ConfigurationName      :=Debug
 IntermediateDirectory  :=./aiengine/Debug
 OutDir                 := $(IntermediateDirectory)
-WorkspacePath          := "E:\trunk\Ahuman"
-ProjectPath            := "E:\trunk\Ahuman"
+WorkspacePath          := "E:\Personal\ahuman\Codelite Code migration\Ahuman"
+ProjectPath            := "E:\Personal\ahuman\Codelite Code migration\Ahuman"
 CurrentFileName        :=
 CurrentFulePath        :=
 CurrentFileFullPath    :=
@@ -38,7 +38,7 @@ CmpOptions             := -g $(Preprocessors)
 LinkOptions            :=  
 IncludePath            := "$(IncludeSwitch)." "$(IncludeSwitch)./aiengine/include" "$(IncludeSwitch)./aiengine/src/include" "$(IncludeSwitch)./generic/include" "$(IncludeSwitch)./generic/include/stacktrace"  "$(IncludeSwitch)." "$(IncludeSwitch)." "$(IncludeSwitch)./aiengine/include" "$(IncludeSwitch)./aiengine/src/include" "$(IncludeSwitch)./generic/include" "$(IncludeSwitch)./generic/include/stacktrace" "$(IncludeSwitch)./aiapi/include" 
 RcIncludePath          :=
-Libs                   :=$(LibrarySwitch)aiapi 
+Libs                   :=$(LibrarySwitch)aiapi $(LibrarySwitch)wsock32 $(LibrarySwitch)ws2_32 
 LibPath                := "$(LibraryPathSwitch)." "$(LibraryPathSwitch)./lib" 
 
 
@@ -47,13 +47,13 @@ Objects=$(IntermediateDirectory)/listener$(ObjectSuffix) $(IntermediateDirectory
 ##
 ## Main Build Tragets 
 ##
-all: $(OutputFile)
+all: $(IntermediateDirectory) $(OutputFile)
 
-$(OutputFile): makeDirStep $(Objects)
+$(OutputFile): $(Objects)
 	@makedir $(@D)
-	$(LinkerName) $(OutputSwitch)$(OutputFile) $(Objects) $(LibPath) $(Libs) $(LinkOptions)
+	$(ArchiveTool) $(ArchiveOutputSwitch)$(OutputFile) $(Objects)
 
-makeDirStep:
+./aiengine/Debug:
 	@makedir "./aiengine/Debug"
 
 PreBuild:
@@ -64,31 +64,31 @@ PreBuild:
 ##
 $(IntermediateDirectory)/listener$(ObjectSuffix): aiengine/src/modmedia/listener.cpp $(IntermediateDirectory)/listener$(DependSuffix)
 	@makedir "./aiengine/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/aiengine/src/modmedia/listener.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/listener$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/modmedia/listener.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/listener$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/listener$(DependSuffix): aiengine/src/modmedia/listener.cpp
 	@makedir "./aiengine/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/listener$(ObjectSuffix) -MF$(IntermediateDirectory)/listener$(DependSuffix) -MM "E:/trunk/Ahuman/aiengine/src/modmedia/listener.cpp"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/listener$(ObjectSuffix) -MF$(IntermediateDirectory)/listener$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/modmedia/listener.cpp"
 
 $(IntermediateDirectory)/media$(ObjectSuffix): aiengine/src/modmedia/media.cpp $(IntermediateDirectory)/media$(DependSuffix)
 	@makedir "./aiengine/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/aiengine/src/modmedia/media.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/media$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/modmedia/media.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/media$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/media$(DependSuffix): aiengine/src/modmedia/media.cpp
 	@makedir "./aiengine/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/media$(ObjectSuffix) -MF$(IntermediateDirectory)/media$(DependSuffix) -MM "E:/trunk/Ahuman/aiengine/src/modmedia/media.cpp"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/media$(ObjectSuffix) -MF$(IntermediateDirectory)/media$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/modmedia/media.cpp"
 
 $(IntermediateDirectory)/socketconnection$(ObjectSuffix): aiengine/src/modmedia/socketconnection.cpp $(IntermediateDirectory)/socketconnection$(DependSuffix)
 	@makedir "./aiengine/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/aiengine/src/modmedia/socketconnection.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/socketconnection$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/modmedia/socketconnection.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/socketconnection$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/socketconnection$(DependSuffix): aiengine/src/modmedia/socketconnection.cpp
 	@makedir "./aiengine/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/socketconnection$(ObjectSuffix) -MF$(IntermediateDirectory)/socketconnection$(DependSuffix) -MM "E:/trunk/Ahuman/aiengine/src/modmedia/socketconnection.cpp"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/socketconnection$(ObjectSuffix) -MF$(IntermediateDirectory)/socketconnection$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/modmedia/socketconnection.cpp"
 
 $(IntermediateDirectory)/sockserver$(ObjectSuffix): aiengine/src/modmedia/sockserver.cpp $(IntermediateDirectory)/sockserver$(DependSuffix)
 	@makedir "./aiengine/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/aiengine/src/modmedia/sockserver.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/sockserver$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/modmedia/sockserver.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/sockserver$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/sockserver$(DependSuffix): aiengine/src/modmedia/sockserver.cpp
 	@makedir "./aiengine/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/sockserver$(ObjectSuffix) -MF$(IntermediateDirectory)/sockserver$(DependSuffix) -MM "E:/trunk/Ahuman/aiengine/src/modmedia/sockserver.cpp"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/sockserver$(ObjectSuffix) -MF$(IntermediateDirectory)/sockserver$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/modmedia/sockserver.cpp"
 
 ##
 ## Clean
@@ -107,7 +107,7 @@ clean:
 	$(RM) $(IntermediateDirectory)/sockserver$(DependSuffix)
 	$(RM) $(IntermediateDirectory)/sockserver$(PreprocessSuffix)
 	$(RM) $(OutputFile)
-	$(RM) $(OutputFile).exe
+	$(RM) $(OutputFile)
 
 -include $(IntermediateDirectory)/*$(DependSuffix)
 

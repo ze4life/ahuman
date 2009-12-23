@@ -1,2 +1,3 @@
-./aiapi/Debug/tinyxmlerror.o: E:/trunk/Ahuman/aiapi/src/tinyxmlerror.cpp \
-  ./aiapi/include/tinyxml.h
+./aiapi/Debug/tinyxmlerror.o:  \
+ E:/Personal/ahuman/Codelite\ Code\ migration/Ahuman/aiapi/src/tinyxmlerror.cpp \
+  ./aiengine/src/include/tinyxml.h

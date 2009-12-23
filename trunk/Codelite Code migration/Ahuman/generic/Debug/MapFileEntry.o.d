@@ -1,3 +1,3 @@
 ./generic/Debug/MapFileEntry.o:  \
- E:/trunk/Ahuman/generic/src/MapFileEntry.cpp \
+ E:/Personal/ahuman/Codelite\ Code\ migration/Ahuman/generic/src/MapFileEntry.cpp \
   ./generic/include/stacktrace/MapFileEntry.h

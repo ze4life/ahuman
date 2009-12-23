@@ -7,8 +7,8 @@ ProjectName:=modmind
 ConfigurationName      :=Debug
 IntermediateDirectory  :=./aiengine/Debug
 OutDir                 := $(IntermediateDirectory)
-WorkspacePath          := "E:\trunk\Ahuman"
-ProjectPath            := "E:\trunk\Ahuman"
+WorkspacePath          := "E:\Personal\ahuman\Codelite Code migration\Ahuman"
+ProjectPath            := "E:\Personal\ahuman\Codelite Code migration\Ahuman"
 CurrentFileName        :=
 CurrentFulePath        :=
 CurrentFileFullPath    :=
@@ -64,10 +64,10 @@ PreBuild:
 ##
 $(IntermediateDirectory)/mind$(ObjectSuffix): aiengine/src/modmind/mind.cpp $(IntermediateDirectory)/mind$(DependSuffix)
 	@makedir "./aiengine/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/aiengine/src/modmind/mind.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/mind$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/modmind/mind.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/mind$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/mind$(DependSuffix): aiengine/src/modmind/mind.cpp
 	@makedir "./aiengine/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/mind$(ObjectSuffix) -MF$(IntermediateDirectory)/mind$(DependSuffix) -MM "E:/trunk/Ahuman/aiengine/src/modmind/mind.cpp"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/mind$(ObjectSuffix) -MF$(IntermediateDirectory)/mind$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/modmind/mind.cpp"
 
 ##
 ## Clean

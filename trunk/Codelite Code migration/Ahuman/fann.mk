@@ -7,8 +7,8 @@ ProjectName:=fann
 ConfigurationName      :=Debug
 IntermediateDirectory  :=./fann/Debug
 OutDir                 := $(IntermediateDirectory)
-WorkspacePath          := "E:\trunk\Ahuman"
-ProjectPath            := "E:\trunk\Ahuman"
+WorkspacePath          := "E:\Personal\ahuman\Codelite Code migration\Ahuman"
+ProjectPath            := "E:\Personal\ahuman\Codelite Code migration\Ahuman"
 CurrentFileName        :=
 CurrentFulePath        :=
 CurrentFileFullPath    :=
@@ -36,7 +36,7 @@ ArchiveOutputSwitch    :=
 PreprocessOnlySwitch   :=
 CmpOptions             := -g $(Preprocessors)
 LinkOptions            :=  
-IncludePath            :=  "$(IncludeSwitch)." "$(IncludeSwitch)." "$(IncludeSwitch)./fann/include" 
+IncludePath            := "$(IncludeSwitch)." "$(IncludeSwitch)./aiengine/include" "$(IncludeSwitch)./aiengine/src/include" "$(IncludeSwitch)./generic/include" "$(IncludeSwitch)./generic/include/stacktrace"  "$(IncludeSwitch)." "$(IncludeSwitch)." "$(IncludeSwitch)./fann/include" 
 RcIncludePath          :=
 Libs                   :=
 LibPath                := "$(LibraryPathSwitch)." 
@@ -64,66 +64,66 @@ PreBuild:
 ##
 $(IntermediateDirectory)/doublefann$(ObjectSuffix): fann/src/doublefann.c $(IntermediateDirectory)/doublefann$(DependSuffix)
 	@makedir "./fann/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/fann/src/doublefann.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/doublefann$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/fann/src/doublefann.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/doublefann$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/doublefann$(DependSuffix): fann/src/doublefann.c
 	@makedir "./fann/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/doublefann$(ObjectSuffix) -MF$(IntermediateDirectory)/doublefann$(DependSuffix) -MM "E:/trunk/Ahuman/fann/src/doublefann.c"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/doublefann$(ObjectSuffix) -MF$(IntermediateDirectory)/doublefann$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/fann/src/doublefann.c"
 
 $(IntermediateDirectory)/fann$(ObjectSuffix): fann/src/fann.c $(IntermediateDirectory)/fann$(DependSuffix)
 	@makedir "./fann/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/fann/src/fann.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/fann$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/fann/src/fann.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/fann$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/fann$(DependSuffix): fann/src/fann.c
 	@makedir "./fann/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/fann$(ObjectSuffix) -MF$(IntermediateDirectory)/fann$(DependSuffix) -MM "E:/trunk/Ahuman/fann/src/fann.c"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/fann$(ObjectSuffix) -MF$(IntermediateDirectory)/fann$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/fann/src/fann.c"
 
 $(IntermediateDirectory)/fann_cascade$(ObjectSuffix): fann/src/fann_cascade.c $(IntermediateDirectory)/fann_cascade$(DependSuffix)
 	@makedir "./fann/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/fann/src/fann_cascade.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/fann_cascade$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/fann/src/fann_cascade.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/fann_cascade$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/fann_cascade$(DependSuffix): fann/src/fann_cascade.c
 	@makedir "./fann/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/fann_cascade$(ObjectSuffix) -MF$(IntermediateDirectory)/fann_cascade$(DependSuffix) -MM "E:/trunk/Ahuman/fann/src/fann_cascade.c"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/fann_cascade$(ObjectSuffix) -MF$(IntermediateDirectory)/fann_cascade$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/fann/src/fann_cascade.c"
 
 $(IntermediateDirectory)/fann_error$(ObjectSuffix): fann/src/fann_error.c $(IntermediateDirectory)/fann_error$(DependSuffix)
 	@makedir "./fann/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/fann/src/fann_error.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/fann_error$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/fann/src/fann_error.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/fann_error$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/fann_error$(DependSuffix): fann/src/fann_error.c
 	@makedir "./fann/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/fann_error$(ObjectSuffix) -MF$(IntermediateDirectory)/fann_error$(DependSuffix) -MM "E:/trunk/Ahuman/fann/src/fann_error.c"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/fann_error$(ObjectSuffix) -MF$(IntermediateDirectory)/fann_error$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/fann/src/fann_error.c"
 
 $(IntermediateDirectory)/fann_io$(ObjectSuffix): fann/src/fann_io.c $(IntermediateDirectory)/fann_io$(DependSuffix)
 	@makedir "./fann/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/fann/src/fann_io.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/fann_io$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/fann/src/fann_io.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/fann_io$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/fann_io$(DependSuffix): fann/src/fann_io.c
 	@makedir "./fann/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/fann_io$(ObjectSuffix) -MF$(IntermediateDirectory)/fann_io$(DependSuffix) -MM "E:/trunk/Ahuman/fann/src/fann_io.c"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/fann_io$(ObjectSuffix) -MF$(IntermediateDirectory)/fann_io$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/fann/src/fann_io.c"
 
 $(IntermediateDirectory)/fann_train$(ObjectSuffix): fann/src/fann_train.c $(IntermediateDirectory)/fann_train$(DependSuffix)
 	@makedir "./fann/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/fann/src/fann_train.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/fann_train$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/fann/src/fann_train.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/fann_train$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/fann_train$(DependSuffix): fann/src/fann_train.c
 	@makedir "./fann/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/fann_train$(ObjectSuffix) -MF$(IntermediateDirectory)/fann_train$(DependSuffix) -MM "E:/trunk/Ahuman/fann/src/fann_train.c"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/fann_train$(ObjectSuffix) -MF$(IntermediateDirectory)/fann_train$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/fann/src/fann_train.c"
 
 $(IntermediateDirectory)/fann_train_data$(ObjectSuffix): fann/src/fann_train_data.c $(IntermediateDirectory)/fann_train_data$(DependSuffix)
 	@makedir "./fann/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/fann/src/fann_train_data.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/fann_train_data$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/fann/src/fann_train_data.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/fann_train_data$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/fann_train_data$(DependSuffix): fann/src/fann_train_data.c
 	@makedir "./fann/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/fann_train_data$(ObjectSuffix) -MF$(IntermediateDirectory)/fann_train_data$(DependSuffix) -MM "E:/trunk/Ahuman/fann/src/fann_train_data.c"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/fann_train_data$(ObjectSuffix) -MF$(IntermediateDirectory)/fann_train_data$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/fann/src/fann_train_data.c"
 
 $(IntermediateDirectory)/fixedfann$(ObjectSuffix): fann/src/fixedfann.c $(IntermediateDirectory)/fixedfann$(DependSuffix)
 	@makedir "./fann/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/fann/src/fixedfann.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/fixedfann$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/fann/src/fixedfann.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/fixedfann$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/fixedfann$(DependSuffix): fann/src/fixedfann.c
 	@makedir "./fann/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/fixedfann$(ObjectSuffix) -MF$(IntermediateDirectory)/fixedfann$(DependSuffix) -MM "E:/trunk/Ahuman/fann/src/fixedfann.c"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/fixedfann$(ObjectSuffix) -MF$(IntermediateDirectory)/fixedfann$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/fann/src/fixedfann.c"
 
 $(IntermediateDirectory)/floatfann$(ObjectSuffix): fann/src/floatfann.c $(IntermediateDirectory)/floatfann$(DependSuffix)
 	@makedir "./fann/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/fann/src/floatfann.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/floatfann$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/fann/src/floatfann.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/floatfann$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/floatfann$(DependSuffix): fann/src/floatfann.c
 	@makedir "./fann/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/floatfann$(ObjectSuffix) -MF$(IntermediateDirectory)/floatfann$(DependSuffix) -MM "E:/trunk/Ahuman/fann/src/floatfann.c"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/floatfann$(ObjectSuffix) -MF$(IntermediateDirectory)/floatfann$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/fann/src/floatfann.c"
 
 ##
 ## Clean
