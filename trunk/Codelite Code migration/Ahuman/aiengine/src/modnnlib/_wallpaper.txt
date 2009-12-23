@@ -1,0 +1,111 @@
+LIVE FEATURES
+----------------------------------------------
+A-service
+	- reads in async all incoming messages
+	- parses message to tokens
+
+B-finder-factory
+	- creates finder
+	- using sample storage with statistics
+	- automatically extends statistics attributes without loss of data
+
+C-finder
+	- create perceptron for generic classification/boolean functions
+	- estimate class & probability by targets
+	- helper statistics to verify NN methods
+	- restartable to ensure 100% probability
+
+D-neural-network
+	- persistable
+	- auto scaling based on sensor and target ranges
+	- per-neuron induction/activation functions and connections, activation steepness
+	- settable validation function
+	- live modifications: add sensors
+
+E-training-data
+	- persistable
+	- scale using simple min/max, stddev
+	- merge/duplicate/extract set operations
+	- self-limited size of sampleset using random/FIFO methods for wipe out
+	- live modifications: add new sensors
+
+F-back-propagation-strategy
+	- persistable
+	- init weights using Widrow + Nguyen's algorithm
+	- learning smooth/momentum
+	- settable error/stop functions
+	- train by different algorithms: incremental/batch/iRPROP/QuickProp
+
+G-scan-strategy
+	- optimize by limited subset of axes (3 by default)
+	- select best axes in subset
+	- several layers of search, by precision and area
+	- leave only 10 points in search for each layer
+	- add only points tha are minimums across given subset of axes (subset minimum)
+	- select next layer scan for minimums across all axes (absolute minimum)
+	- show 2-axes slices of scan area
+
+H-training-debug-helper
+	- show perceptron/samples
+	- show changes for back propagation
+	- show error surface using 2D slices
+	- show clustering results
+
+SOLUTION HIERARCHY AND STATUS
+----------------------------------------------
+phase 1: DONE
+basic NN library, able to create and learn neural network
+----------------------------------------------
+phase 2: 
+Solving any generic classification
+Finder factory thouroughly trained by statistics
+Using domains and category variables
+Administration for domains
+Interactive factory training
+
+status of components:
+	A-service: PRE-ALPHA
+	B-finder-factory: PRE-ALPHA
+	C-finder: PRE-ALPHA
+	D-neural-network: PRE-ALPHA
+	E-training-data: PRE-ALPHA
+	F-back-propagation-strategy: ALPHA
+	G-scan-strategy: ALPHA
+	H-training-debug-helper: PRE-ALPHA
+
+ALPHA ISSUES AND TODO
+----------------------------------------------
+D-neural-network
+	- unable to restore from file because of variables unavailable - IN PROGRESS
+
+FEATURES TODO
+---------------------
+B-finder-factory
+	- self-learning factory to create best expert finder - IN PROGRESS
+
+B-finder-factory
+	- produce derivation perceptron - DONE
+	- partial sensors reconstruction
+
+D-neural-network
+	- sparse connections
+	- shortcut connections
+	- calculate derivation in point
+	- handle categorical variables - IN PROGRESS
+
+F-back-propagation-strategy
+	- error codes
+	- cascade training
+	- customized training using callbacks
+	- regularization function
+	- early stopping
+
+FEATURE ACTIVITIES
+---------------------
+	- self-learning factory: add more parameters for optimizer, prevent from unfinished learning
+
+REFACTORING
+---------------------
+
+BETA BUGS
+---------------------
