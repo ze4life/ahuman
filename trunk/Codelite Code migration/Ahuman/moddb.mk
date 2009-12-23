@@ -7,8 +7,8 @@ ProjectName:=moddb
 ConfigurationName      :=Debug
 IntermediateDirectory  :=./aiengine/Debug
 OutDir                 := $(IntermediateDirectory)
-WorkspacePath          := "E:\trunk\Ahuman"
-ProjectPath            := "E:\trunk\Ahuman"
+WorkspacePath          := "E:\Personal\ahuman\Codelite Code migration\Ahuman"
+ProjectPath            := "E:\Personal\ahuman\Codelite Code migration\Ahuman"
 CurrentFileName        :=
 CurrentFulePath        :=
 CurrentFileFullPath    :=
@@ -64,38 +64,38 @@ PreBuild:
 ##
 $(IntermediateDirectory)/db$(ObjectSuffix): aiengine/src/moddb/db.cpp $(IntermediateDirectory)/db$(DependSuffix)
 	@makedir "./aiengine/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/aiengine/src/moddb/db.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/db$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/moddb/db.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/db$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/db$(DependSuffix): aiengine/src/moddb/db.cpp
 	@makedir "./aiengine/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/db$(ObjectSuffix) -MF$(IntermediateDirectory)/db$(DependSuffix) -MM "E:/trunk/Ahuman/aiengine/src/moddb/db.cpp"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/db$(ObjectSuffix) -MF$(IntermediateDirectory)/db$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/moddb/db.cpp"
 
 $(IntermediateDirectory)/dbcursor$(ObjectSuffix): aiengine/src/moddb/dbcursor.cpp $(IntermediateDirectory)/dbcursor$(DependSuffix)
 	@makedir "./aiengine/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/aiengine/src/moddb/dbcursor.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/dbcursor$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/moddb/dbcursor.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/dbcursor$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/dbcursor$(DependSuffix): aiengine/src/moddb/dbcursor.cpp
 	@makedir "./aiengine/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/dbcursor$(ObjectSuffix) -MF$(IntermediateDirectory)/dbcursor$(DependSuffix) -MM "E:/trunk/Ahuman/aiengine/src/moddb/dbcursor.cpp"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/dbcursor$(ObjectSuffix) -MF$(IntermediateDirectory)/dbcursor$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/moddb/dbcursor.cpp"
 
 $(IntermediateDirectory)/dbfile$(ObjectSuffix): aiengine/src/moddb/dbfile.cpp $(IntermediateDirectory)/dbfile$(DependSuffix)
 	@makedir "./aiengine/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/aiengine/src/moddb/dbfile.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/dbfile$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/moddb/dbfile.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/dbfile$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/dbfile$(DependSuffix): aiengine/src/moddb/dbfile.cpp
 	@makedir "./aiengine/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/dbfile$(ObjectSuffix) -MF$(IntermediateDirectory)/dbfile$(DependSuffix) -MM "E:/trunk/Ahuman/aiengine/src/moddb/dbfile.cpp"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/dbfile$(ObjectSuffix) -MF$(IntermediateDirectory)/dbfile$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/moddb/dbfile.cpp"
 
 $(IntermediateDirectory)/dbrecordheader$(ObjectSuffix): aiengine/src/moddb/dbrecordheader.cpp $(IntermediateDirectory)/dbrecordheader$(DependSuffix)
 	@makedir "./aiengine/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/aiengine/src/moddb/dbrecordheader.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/dbrecordheader$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/moddb/dbrecordheader.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/dbrecordheader$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/dbrecordheader$(DependSuffix): aiengine/src/moddb/dbrecordheader.cpp
 	@makedir "./aiengine/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/dbrecordheader$(ObjectSuffix) -MF$(IntermediateDirectory)/dbrecordheader$(DependSuffix) -MM "E:/trunk/Ahuman/aiengine/src/moddb/dbrecordheader.cpp"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/dbrecordheader$(ObjectSuffix) -MF$(IntermediateDirectory)/dbrecordheader$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/moddb/dbrecordheader.cpp"
 
 $(IntermediateDirectory)/dbrecordset$(ObjectSuffix): aiengine/src/moddb/dbrecordset.cpp $(IntermediateDirectory)/dbrecordset$(DependSuffix)
 	@makedir "./aiengine/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/aiengine/src/moddb/dbrecordset.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/dbrecordset$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/moddb/dbrecordset.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/dbrecordset$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/dbrecordset$(DependSuffix): aiengine/src/moddb/dbrecordset.cpp
 	@makedir "./aiengine/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/dbrecordset$(ObjectSuffix) -MF$(IntermediateDirectory)/dbrecordset$(DependSuffix) -MM "E:/trunk/Ahuman/aiengine/src/moddb/dbrecordset.cpp"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/dbrecordset$(ObjectSuffix) -MF$(IntermediateDirectory)/dbrecordset$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/moddb/dbrecordset.cpp"
 
 ##
 ## Clean

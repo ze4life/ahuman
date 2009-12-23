@@ -7,8 +7,8 @@ ProjectName:=generic
 ConfigurationName      :=Debug
 IntermediateDirectory  :=./generic/Debug
 OutDir                 := $(IntermediateDirectory)
-WorkspacePath          := "E:\trunk\Ahuman"
-ProjectPath            := "E:\trunk\Ahuman"
+WorkspacePath          := "E:\Personal\ahuman\Codelite Code migration\Ahuman"
+ProjectPath            := "E:\Personal\ahuman\Codelite Code migration\Ahuman"
 CurrentFileName        :=
 CurrentFulePath        :=
 CurrentFileFullPath    :=
@@ -36,7 +36,7 @@ ArchiveOutputSwitch    :=
 PreprocessOnlySwitch   :=
 CmpOptions             := -g $(Preprocessors)
 LinkOptions            :=  
-IncludePath            :=  "$(IncludeSwitch)." "$(IncludeSwitch)." "$(IncludeSwitch)./generic/include" "$(IncludeSwitch)./generic/include/stacktrace" 
+IncludePath            := "$(IncludeSwitch)." "$(IncludeSwitch)./aiengine/include" "$(IncludeSwitch)./aiengine/src/include" "$(IncludeSwitch)./generic/include" "$(IncludeSwitch)./generic/include/stacktrace"  "$(IncludeSwitch)." "$(IncludeSwitch)." "$(IncludeSwitch)./generic/include" "$(IncludeSwitch)./generic/include/stacktrace" 
 RcIncludePath          :=
 Libs                   :=
 LibPath                := "$(LibraryPathSwitch)." 
@@ -66,199 +66,199 @@ PreBuild:
 ##
 $(IntermediateDirectory)/_gen_blb$(ObjectSuffix): generic/src/_gen_blb.c $(IntermediateDirectory)/_gen_blb$(DependSuffix)
 	@makedir "./generic/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/generic/src/_gen_blb.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_blb$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_blb.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_blb$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/_gen_blb$(DependSuffix): generic/src/_gen_blb.c
 	@makedir "./generic/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_blb$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_blb$(DependSuffix) -MM "E:/trunk/Ahuman/generic/src/_gen_blb.c"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_blb$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_blb$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_blb.c"
 
 $(IntermediateDirectory)/_gen_cb$(ObjectSuffix): generic/src/_gen_cb.c $(IntermediateDirectory)/_gen_cb$(DependSuffix)
 	@makedir "./generic/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/generic/src/_gen_cb.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_cb$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_cb.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_cb$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/_gen_cb$(DependSuffix): generic/src/_gen_cb.c
 	@makedir "./generic/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_cb$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_cb$(DependSuffix) -MM "E:/trunk/Ahuman/generic/src/_gen_cb.c"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_cb$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_cb$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_cb.c"
 
 $(IntermediateDirectory)/_gen_cch$(ObjectSuffix): generic/src/_gen_cch.c $(IntermediateDirectory)/_gen_cch$(DependSuffix)
 	@makedir "./generic/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/generic/src/_gen_cch.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_cch$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_cch.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_cch$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/_gen_cch$(DependSuffix): generic/src/_gen_cch.c
 	@makedir "./generic/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_cch$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_cch$(DependSuffix) -MM "E:/trunk/Ahuman/generic/src/_gen_cch.c"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_cch$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_cch$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_cch.c"
 
 $(IntermediateDirectory)/_gen_cnv$(ObjectSuffix): generic/src/_gen_cnv.c $(IntermediateDirectory)/_gen_cnv$(DependSuffix)
 	@makedir "./generic/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/generic/src/_gen_cnv.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_cnv$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_cnv.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_cnv$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/_gen_cnv$(DependSuffix): generic/src/_gen_cnv.c
 	@makedir "./generic/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_cnv$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_cnv$(DependSuffix) -MM "E:/trunk/Ahuman/generic/src/_gen_cnv.c"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_cnv$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_cnv$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_cnv.c"
 
 $(IntermediateDirectory)/_gen_hm$(ObjectSuffix): generic/src/_gen_hm.c $(IntermediateDirectory)/_gen_hm$(DependSuffix)
 	@makedir "./generic/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/generic/src/_gen_hm.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_hm$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_hm.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_hm$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/_gen_hm$(DependSuffix): generic/src/_gen_hm.c
 	@makedir "./generic/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_hm$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_hm$(DependSuffix) -MM "E:/trunk/Ahuman/generic/src/_gen_hm.c"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_hm$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_hm$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_hm.c"
 
 $(IntermediateDirectory)/_gen_lst$(ObjectSuffix): generic/src/_gen_lst.c $(IntermediateDirectory)/_gen_lst$(DependSuffix)
 	@makedir "./generic/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/generic/src/_gen_lst.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_lst$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_lst.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_lst$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/_gen_lst$(DependSuffix): generic/src/_gen_lst.c
 	@makedir "./generic/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_lst$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_lst$(DependSuffix) -MM "E:/trunk/Ahuman/generic/src/_gen_lst.c"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_lst$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_lst$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_lst.c"
 
 $(IntermediateDirectory)/_gen_map$(ObjectSuffix): generic/src/_gen_map.c $(IntermediateDirectory)/_gen_map$(DependSuffix)
 	@makedir "./generic/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/generic/src/_gen_map.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_map$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_map.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_map$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/_gen_map$(DependSuffix): generic/src/_gen_map.c
 	@makedir "./generic/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_map$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_map$(DependSuffix) -MM "E:/trunk/Ahuman/generic/src/_gen_map.c"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_map$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_map$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_map.c"
 
 $(IntermediateDirectory)/_gen_mem$(ObjectSuffix): generic/src/_gen_mem.c $(IntermediateDirectory)/_gen_mem$(DependSuffix)
 	@makedir "./generic/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/generic/src/_gen_mem.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_mem$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_mem.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_mem$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/_gen_mem$(DependSuffix): generic/src/_gen_mem.c
 	@makedir "./generic/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_mem$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_mem$(DependSuffix) -MM "E:/trunk/Ahuman/generic/src/_gen_mem.c"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_mem$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_mem$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_mem.c"
 
 $(IntermediateDirectory)/_gen_msh$(ObjectSuffix): generic/src/_gen_msh.c $(IntermediateDirectory)/_gen_msh$(DependSuffix)
 	@makedir "./generic/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/generic/src/_gen_msh.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_msh$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_msh.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_msh$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/_gen_msh$(DependSuffix): generic/src/_gen_msh.c
 	@makedir "./generic/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_msh$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_msh$(DependSuffix) -MM "E:/trunk/Ahuman/generic/src/_gen_msh.c"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_msh$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_msh$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_msh.c"
 
 $(IntermediateDirectory)/_gen_opt$(ObjectSuffix): generic/src/_gen_opt.c $(IntermediateDirectory)/_gen_opt$(DependSuffix)
 	@makedir "./generic/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/generic/src/_gen_opt.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_opt$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_opt.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_opt$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/_gen_opt$(DependSuffix): generic/src/_gen_opt.c
 	@makedir "./generic/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_opt$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_opt$(DependSuffix) -MM "E:/trunk/Ahuman/generic/src/_gen_opt.c"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_opt$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_opt$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_opt.c"
 
 $(IntermediateDirectory)/_gen_ptr$(ObjectSuffix): generic/src/_gen_ptr.c $(IntermediateDirectory)/_gen_ptr$(DependSuffix)
 	@makedir "./generic/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/generic/src/_gen_ptr.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_ptr$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_ptr.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_ptr$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/_gen_ptr$(DependSuffix): generic/src/_gen_ptr.c
 	@makedir "./generic/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_ptr$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_ptr$(DependSuffix) -MM "E:/trunk/Ahuman/generic/src/_gen_ptr.c"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_ptr$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_ptr$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_ptr.c"
 
 $(IntermediateDirectory)/_gen_qs$(ObjectSuffix): generic/src/_gen_qs.c $(IntermediateDirectory)/_gen_qs$(DependSuffix)
 	@makedir "./generic/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/generic/src/_gen_qs.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_qs$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_qs.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_qs$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/_gen_qs$(DependSuffix): generic/src/_gen_qs.c
 	@makedir "./generic/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_qs$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_qs$(DependSuffix) -MM "E:/trunk/Ahuman/generic/src/_gen_qs.c"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_qs$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_qs$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_qs.c"
 
 $(IntermediateDirectory)/_gen_ra$(ObjectSuffix): generic/src/_gen_ra.c $(IntermediateDirectory)/_gen_ra$(DependSuffix)
 	@makedir "./generic/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/generic/src/_gen_ra.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_ra$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_ra.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_ra$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/_gen_ra$(DependSuffix): generic/src/_gen_ra.c
 	@makedir "./generic/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_ra$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_ra$(DependSuffix) -MM "E:/trunk/Ahuman/generic/src/_gen_ra.c"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_ra$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_ra$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_ra.c"
 
 $(IntermediateDirectory)/_gen_rai$(ObjectSuffix): generic/src/_gen_rai.c $(IntermediateDirectory)/_gen_rai$(DependSuffix)
 	@makedir "./generic/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/generic/src/_gen_rai.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_rai$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_rai.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_rai$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/_gen_rai$(DependSuffix): generic/src/_gen_rai.c
 	@makedir "./generic/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_rai$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_rai$(DependSuffix) -MM "E:/trunk/Ahuman/generic/src/_gen_rai.c"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_rai$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_rai$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_rai.c"
 
 $(IntermediateDirectory)/_gen_rd$(ObjectSuffix): generic/src/_gen_rd.c $(IntermediateDirectory)/_gen_rd$(DependSuffix)
 	@makedir "./generic/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/generic/src/_gen_rd.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_rd$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_rd.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_rd$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/_gen_rd$(DependSuffix): generic/src/_gen_rd.c
 	@makedir "./generic/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_rd$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_rd$(DependSuffix) -MM "E:/trunk/Ahuman/generic/src/_gen_rd.c"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_rd$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_rd$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_rd.c"
 
 $(IntermediateDirectory)/_gen_rl$(ObjectSuffix): generic/src/_gen_rl.c $(IntermediateDirectory)/_gen_rl$(DependSuffix)
 	@makedir "./generic/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/generic/src/_gen_rl.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_rl$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_rl.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_rl$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/_gen_rl$(DependSuffix): generic/src/_gen_rl.c
 	@makedir "./generic/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_rl$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_rl$(DependSuffix) -MM "E:/trunk/Ahuman/generic/src/_gen_rl.c"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_rl$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_rl$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_rl.c"
 
 $(IntermediateDirectory)/_gen_rmn$(ObjectSuffix): generic/src/_gen_rmn.c $(IntermediateDirectory)/_gen_rmn$(DependSuffix)
 	@makedir "./generic/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/generic/src/_gen_rmn.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_rmn$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_rmn.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_rmn$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/_gen_rmn$(DependSuffix): generic/src/_gen_rmn.c
 	@makedir "./generic/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_rmn$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_rmn$(DependSuffix) -MM "E:/trunk/Ahuman/generic/src/_gen_rmn.c"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_rmn$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_rmn$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_rmn.c"
 
 $(IntermediateDirectory)/_gen_rs$(ObjectSuffix): generic/src/_gen_rs.c $(IntermediateDirectory)/_gen_rs$(DependSuffix)
 	@makedir "./generic/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/generic/src/_gen_rs.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_rs$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_rs.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_rs$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/_gen_rs$(DependSuffix): generic/src/_gen_rs.c
 	@makedir "./generic/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_rs$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_rs$(DependSuffix) -MM "E:/trunk/Ahuman/generic/src/_gen_rs.c"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_rs$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_rs$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_rs.c"
 
 $(IntermediateDirectory)/_gen_rsu$(ObjectSuffix): generic/src/_gen_rsu.c $(IntermediateDirectory)/_gen_rsu$(DependSuffix)
 	@makedir "./generic/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/generic/src/_gen_rsu.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_rsu$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_rsu.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_rsu$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/_gen_rsu$(DependSuffix): generic/src/_gen_rsu.c
 	@makedir "./generic/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_rsu$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_rsu$(DependSuffix) -MM "E:/trunk/Ahuman/generic/src/_gen_rsu.c"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_rsu$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_rsu$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_rsu.c"
 
 $(IntermediateDirectory)/_gen_rsw$(ObjectSuffix): generic/src/_gen_rsw.c $(IntermediateDirectory)/_gen_rsw$(DependSuffix)
 	@makedir "./generic/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/generic/src/_gen_rsw.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_rsw$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_rsw.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_rsw$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/_gen_rsw$(DependSuffix): generic/src/_gen_rsw.c
 	@makedir "./generic/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_rsw$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_rsw$(DependSuffix) -MM "E:/trunk/Ahuman/generic/src/_gen_rsw.c"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_rsw$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_rsw$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_rsw.c"
 
 $(IntermediateDirectory)/_gen_set$(ObjectSuffix): generic/src/_gen_set.c $(IntermediateDirectory)/_gen_set$(DependSuffix)
 	@makedir "./generic/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/generic/src/_gen_set.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_set$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_set.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_set$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/_gen_set$(DependSuffix): generic/src/_gen_set.c
 	@makedir "./generic/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_set$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_set$(DependSuffix) -MM "E:/trunk/Ahuman/generic/src/_gen_set.c"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_set$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_set$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_set.c"
 
 $(IntermediateDirectory)/_gen_win$(ObjectSuffix): generic/src/_gen_win.c $(IntermediateDirectory)/_gen_win$(DependSuffix)
 	@makedir "./generic/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/generic/src/_gen_win.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_win$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_win.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_win$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/_gen_win$(DependSuffix): generic/src/_gen_win.c
 	@makedir "./generic/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_win$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_win$(DependSuffix) -MM "E:/trunk/Ahuman/generic/src/_gen_win.c"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_win$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_win$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_win.c"
 
 $(IntermediateDirectory)/_gen_wrs$(ObjectSuffix): generic/src/_gen_wrs.c $(IntermediateDirectory)/_gen_wrs$(DependSuffix)
 	@makedir "./generic/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/generic/src/_gen_wrs.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_wrs$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_wrs.c" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/_gen_wrs$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/_gen_wrs$(DependSuffix): generic/src/_gen_wrs.c
 	@makedir "./generic/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_wrs$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_wrs$(DependSuffix) -MM "E:/trunk/Ahuman/generic/src/_gen_wrs.c"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/_gen_wrs$(ObjectSuffix) -MF$(IntermediateDirectory)/_gen_wrs$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/_gen_wrs.c"
 
 $(IntermediateDirectory)/MapFile$(ObjectSuffix): generic/src/MapFile.cpp $(IntermediateDirectory)/MapFile$(DependSuffix)
 	@makedir "./generic/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/generic/src/MapFile.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/MapFile$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/MapFile.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/MapFile$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/MapFile$(DependSuffix): generic/src/MapFile.cpp
 	@makedir "./generic/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/MapFile$(ObjectSuffix) -MF$(IntermediateDirectory)/MapFile$(DependSuffix) -MM "E:/trunk/Ahuman/generic/src/MapFile.cpp"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/MapFile$(ObjectSuffix) -MF$(IntermediateDirectory)/MapFile$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/MapFile.cpp"
 
 $(IntermediateDirectory)/MapFileEntry$(ObjectSuffix): generic/src/MapFileEntry.cpp $(IntermediateDirectory)/MapFileEntry$(DependSuffix)
 	@makedir "./generic/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/generic/src/MapFileEntry.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/MapFileEntry$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/MapFileEntry.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/MapFileEntry$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/MapFileEntry$(DependSuffix): generic/src/MapFileEntry.cpp
 	@makedir "./generic/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/MapFileEntry$(ObjectSuffix) -MF$(IntermediateDirectory)/MapFileEntry$(DependSuffix) -MM "E:/trunk/Ahuman/generic/src/MapFileEntry.cpp"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/MapFileEntry$(ObjectSuffix) -MF$(IntermediateDirectory)/MapFileEntry$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/MapFileEntry.cpp"
 
 $(IntermediateDirectory)/printStackTrace$(ObjectSuffix): generic/src/printStackTrace.cpp $(IntermediateDirectory)/printStackTrace$(DependSuffix)
 	@makedir "./generic/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/generic/src/printStackTrace.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/printStackTrace$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/printStackTrace.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/printStackTrace$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/printStackTrace$(DependSuffix): generic/src/printStackTrace.cpp
 	@makedir "./generic/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/printStackTrace$(ObjectSuffix) -MF$(IntermediateDirectory)/printStackTrace$(DependSuffix) -MM "E:/trunk/Ahuman/generic/src/printStackTrace.cpp"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/printStackTrace$(ObjectSuffix) -MF$(IntermediateDirectory)/printStackTrace$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/printStackTrace.cpp"
 
 $(IntermediateDirectory)/StackTrace$(ObjectSuffix): generic/src/StackTrace.cpp $(IntermediateDirectory)/StackTrace$(DependSuffix)
 	@makedir "./generic/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/generic/src/StackTrace.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/StackTrace$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/StackTrace.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/StackTrace$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/StackTrace$(DependSuffix): generic/src/StackTrace.cpp
 	@makedir "./generic/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/StackTrace$(ObjectSuffix) -MF$(IntermediateDirectory)/StackTrace$(DependSuffix) -MM "E:/trunk/Ahuman/generic/src/StackTrace.cpp"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/StackTrace$(ObjectSuffix) -MF$(IntermediateDirectory)/StackTrace$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/StackTrace.cpp"
 
 $(IntermediateDirectory)/TextFile$(ObjectSuffix): generic/src/TextFile.cpp $(IntermediateDirectory)/TextFile$(DependSuffix)
 	@makedir "./generic/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/generic/src/TextFile.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/TextFile$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/TextFile.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/TextFile$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/TextFile$(DependSuffix): generic/src/TextFile.cpp
 	@makedir "./generic/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/TextFile$(ObjectSuffix) -MF$(IntermediateDirectory)/TextFile$(DependSuffix) -MM "E:/trunk/Ahuman/generic/src/TextFile.cpp"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/TextFile$(ObjectSuffix) -MF$(IntermediateDirectory)/TextFile$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/generic/src/TextFile.cpp"
 
 ##
 ## Clean

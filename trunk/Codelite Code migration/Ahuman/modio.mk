@@ -7,8 +7,8 @@ ProjectName:=modio
 ConfigurationName      :=Debug
 IntermediateDirectory  :=./aiengine/Debug
 OutDir                 := $(IntermediateDirectory)
-WorkspacePath          := "E:\trunk\Ahuman"
-ProjectPath            := "E:\trunk\Ahuman"
+WorkspacePath          := "E:\Personal\ahuman\Codelite Code migration\Ahuman"
+ProjectPath            := "E:\Personal\ahuman\Codelite Code migration\Ahuman"
 CurrentFileName        :=
 CurrentFulePath        :=
 CurrentFileFullPath    :=
@@ -64,66 +64,66 @@ PreBuild:
 ##
 $(IntermediateDirectory)/channel$(ObjectSuffix): aiengine/src/modio/channel.cpp $(IntermediateDirectory)/channel$(DependSuffix)
 	@makedir "./aiengine/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/aiengine/src/modio/channel.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/channel$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/modio/channel.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/channel$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/channel$(DependSuffix): aiengine/src/modio/channel.cpp
 	@makedir "./aiengine/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/channel$(ObjectSuffix) -MF$(IntermediateDirectory)/channel$(DependSuffix) -MM "E:/trunk/Ahuman/aiengine/src/modio/channel.cpp"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/channel$(ObjectSuffix) -MF$(IntermediateDirectory)/channel$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/modio/channel.cpp"
 
 $(IntermediateDirectory)/io$(ObjectSuffix): aiengine/src/modio/io.cpp $(IntermediateDirectory)/io$(DependSuffix)
 	@makedir "./aiengine/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/aiengine/src/modio/io.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/io$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/modio/io.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/io$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/io$(DependSuffix): aiengine/src/modio/io.cpp
 	@makedir "./aiengine/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/io$(ObjectSuffix) -MF$(IntermediateDirectory)/io$(DependSuffix) -MM "E:/trunk/Ahuman/aiengine/src/modio/io.cpp"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/io$(ObjectSuffix) -MF$(IntermediateDirectory)/io$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/modio/io.cpp"
 
 $(IntermediateDirectory)/message$(ObjectSuffix): aiengine/src/modio/message.cpp $(IntermediateDirectory)/message$(DependSuffix)
 	@makedir "./aiengine/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/aiengine/src/modio/message.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/message$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/modio/message.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/message$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/message$(DependSuffix): aiengine/src/modio/message.cpp
 	@makedir "./aiengine/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/message$(ObjectSuffix) -MF$(IntermediateDirectory)/message$(DependSuffix) -MM "E:/trunk/Ahuman/aiengine/src/modio/message.cpp"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/message$(ObjectSuffix) -MF$(IntermediateDirectory)/message$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/modio/message.cpp"
 
 $(IntermediateDirectory)/publisher$(ObjectSuffix): aiengine/src/modio/publisher.cpp $(IntermediateDirectory)/publisher$(DependSuffix)
 	@makedir "./aiengine/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/aiengine/src/modio/publisher.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/publisher$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/modio/publisher.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/publisher$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/publisher$(DependSuffix): aiengine/src/modio/publisher.cpp
 	@makedir "./aiengine/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/publisher$(ObjectSuffix) -MF$(IntermediateDirectory)/publisher$(DependSuffix) -MM "E:/trunk/Ahuman/aiengine/src/modio/publisher.cpp"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/publisher$(ObjectSuffix) -MF$(IntermediateDirectory)/publisher$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/modio/publisher.cpp"
 
 $(IntermediateDirectory)/queue$(ObjectSuffix): aiengine/src/modio/queue.cpp $(IntermediateDirectory)/queue$(DependSuffix)
 	@makedir "./aiengine/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/aiengine/src/modio/queue.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/queue$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/modio/queue.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/queue$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/queue$(DependSuffix): aiengine/src/modio/queue.cpp
 	@makedir "./aiengine/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/queue$(ObjectSuffix) -MF$(IntermediateDirectory)/queue$(DependSuffix) -MM "E:/trunk/Ahuman/aiengine/src/modio/queue.cpp"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/queue$(ObjectSuffix) -MF$(IntermediateDirectory)/queue$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/modio/queue.cpp"
 
 $(IntermediateDirectory)/session$(ObjectSuffix): aiengine/src/modio/session.cpp $(IntermediateDirectory)/session$(DependSuffix)
 	@makedir "./aiengine/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/aiengine/src/modio/session.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/session$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/modio/session.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/session$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/session$(DependSuffix): aiengine/src/modio/session.cpp
 	@makedir "./aiengine/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/session$(ObjectSuffix) -MF$(IntermediateDirectory)/session$(DependSuffix) -MM "E:/trunk/Ahuman/aiengine/src/modio/session.cpp"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/session$(ObjectSuffix) -MF$(IntermediateDirectory)/session$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/modio/session.cpp"
 
 $(IntermediateDirectory)/subscription$(ObjectSuffix): aiengine/src/modio/subscription.cpp $(IntermediateDirectory)/subscription$(DependSuffix)
 	@makedir "./aiengine/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/aiengine/src/modio/subscription.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/subscription$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/modio/subscription.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/subscription$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/subscription$(DependSuffix): aiengine/src/modio/subscription.cpp
 	@makedir "./aiengine/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/subscription$(ObjectSuffix) -MF$(IntermediateDirectory)/subscription$(DependSuffix) -MM "E:/trunk/Ahuman/aiengine/src/modio/subscription.cpp"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/subscription$(ObjectSuffix) -MF$(IntermediateDirectory)/subscription$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/modio/subscription.cpp"
 
 $(IntermediateDirectory)/xmlcall$(ObjectSuffix): aiengine/src/modio/xmlcall.cpp $(IntermediateDirectory)/xmlcall$(DependSuffix)
 	@makedir "./aiengine/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/aiengine/src/modio/xmlcall.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/xmlcall$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/modio/xmlcall.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/xmlcall$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/xmlcall$(DependSuffix): aiengine/src/modio/xmlcall.cpp
 	@makedir "./aiengine/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/xmlcall$(ObjectSuffix) -MF$(IntermediateDirectory)/xmlcall$(DependSuffix) -MM "E:/trunk/Ahuman/aiengine/src/modio/xmlcall.cpp"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/xmlcall$(ObjectSuffix) -MF$(IntermediateDirectory)/xmlcall$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/modio/xmlcall.cpp"
 
 $(IntermediateDirectory)/xmlmessage$(ObjectSuffix): aiengine/src/modio/xmlmessage.cpp $(IntermediateDirectory)/xmlmessage$(DependSuffix)
 	@makedir "./aiengine/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/aiengine/src/modio/xmlmessage.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/xmlmessage$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/modio/xmlmessage.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/xmlmessage$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/xmlmessage$(DependSuffix): aiengine/src/modio/xmlmessage.cpp
 	@makedir "./aiengine/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/xmlmessage$(ObjectSuffix) -MF$(IntermediateDirectory)/xmlmessage$(DependSuffix) -MM "E:/trunk/Ahuman/aiengine/src/modio/xmlmessage.cpp"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/xmlmessage$(ObjectSuffix) -MF$(IntermediateDirectory)/xmlmessage$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/modio/xmlmessage.cpp"
 
 ##
 ## Clean

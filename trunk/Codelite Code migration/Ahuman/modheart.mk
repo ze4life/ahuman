@@ -7,8 +7,8 @@ ProjectName:=modheart
 ConfigurationName      :=Debug
 IntermediateDirectory  :=./aiengine/Debug
 OutDir                 := $(IntermediateDirectory)
-WorkspacePath          := "E:\trunk\Ahuman"
-ProjectPath            := "E:\trunk\Ahuman"
+WorkspacePath          := "E:\Personal\ahuman\Codelite Code migration\Ahuman"
+ProjectPath            := "E:\Personal\ahuman\Codelite Code migration\Ahuman"
 CurrentFileName        :=
 CurrentFulePath        :=
 CurrentFileFullPath    :=
@@ -64,17 +64,17 @@ PreBuild:
 ##
 $(IntermediateDirectory)/emotion$(ObjectSuffix): aiengine/src/modheart/emotion.cpp $(IntermediateDirectory)/emotion$(DependSuffix)
 	@makedir "./aiengine/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/aiengine/src/modheart/emotion.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/emotion$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/modheart/emotion.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/emotion$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/emotion$(DependSuffix): aiengine/src/modheart/emotion.cpp
 	@makedir "./aiengine/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/emotion$(ObjectSuffix) -MF$(IntermediateDirectory)/emotion$(DependSuffix) -MM "E:/trunk/Ahuman/aiengine/src/modheart/emotion.cpp"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/emotion$(ObjectSuffix) -MF$(IntermediateDirectory)/emotion$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/modheart/emotion.cpp"
 
 $(IntermediateDirectory)/heart$(ObjectSuffix): aiengine/src/modheart/heart.cpp $(IntermediateDirectory)/heart$(DependSuffix)
 	@makedir "./aiengine/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/aiengine/src/modheart/heart.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/heart$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/modheart/heart.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/heart$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/heart$(DependSuffix): aiengine/src/modheart/heart.cpp
 	@makedir "./aiengine/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/heart$(ObjectSuffix) -MF$(IntermediateDirectory)/heart$(DependSuffix) -MM "E:/trunk/Ahuman/aiengine/src/modheart/heart.cpp"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/heart$(ObjectSuffix) -MF$(IntermediateDirectory)/heart$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/modheart/heart.cpp"
 
 ##
 ## Clean

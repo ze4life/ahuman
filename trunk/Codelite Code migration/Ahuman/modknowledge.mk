@@ -7,8 +7,8 @@ ProjectName:=modknowledge
 ConfigurationName      :=Debug
 IntermediateDirectory  :=./aiengine/Debug
 OutDir                 := $(IntermediateDirectory)
-WorkspacePath          := "E:\trunk\Ahuman"
-ProjectPath            := "E:\trunk\Ahuman"
+WorkspacePath          := "E:\Personal\ahuman\Codelite Code migration\Ahuman"
+ProjectPath            := "E:\Personal\ahuman\Codelite Code migration\Ahuman"
 CurrentFileName        :=
 CurrentFulePath        :=
 CurrentFileFullPath    :=
@@ -64,10 +64,10 @@ PreBuild:
 ##
 $(IntermediateDirectory)/knowledge$(ObjectSuffix): aiengine/src/modknowledge/knowledge.cpp $(IntermediateDirectory)/knowledge$(DependSuffix)
 	@makedir "./aiengine/Debug"
-	$(CompilerName) $(SourceSwitch) "E:/trunk/Ahuman/aiengine/src/modknowledge/knowledge.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/knowledge$(ObjectSuffix) $(IncludePath)
+	$(CompilerName) $(SourceSwitch) "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/modknowledge/knowledge.cpp" $(CmpOptions) $(ObjectSwitch)$(IntermediateDirectory)/knowledge$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/knowledge$(DependSuffix): aiengine/src/modknowledge/knowledge.cpp
 	@makedir "./aiengine/Debug"
-	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/knowledge$(ObjectSuffix) -MF$(IntermediateDirectory)/knowledge$(DependSuffix) -MM "E:/trunk/Ahuman/aiengine/src/modknowledge/knowledge.cpp"
+	@$(CompilerName) $(CmpOptions) $(IncludePath) -MT$(IntermediateDirectory)/knowledge$(ObjectSuffix) -MF$(IntermediateDirectory)/knowledge$(DependSuffix) -MM "E:/Personal/ahuman/Codelite Code migration/Ahuman/aiengine/src/modknowledge/knowledge.cpp"
 
 ##
 ## Clean
