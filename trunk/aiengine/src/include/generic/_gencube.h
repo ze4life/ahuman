@@ -94,7 +94,7 @@ struct _rfc_cubekeyel
 
 /* create cube */
 extern rfc_cube *
-	rfc_cb_create( RFC_VARARGS /* int p_type , int p_keyels , short p_isnum1 , ... , short p_isnum<p_keyels> */ );
+	rfc_cb_create( int p_type , int p_keyels , ... /*, short p_isnum<p_keyels> */ );
 extern rfc_cube *
 	rfc_cb_create_a( int p_type , int p_keyels , const short *p_isnum );
 extern rfc_cube *
@@ -118,19 +118,19 @@ extern void
 
 /* add item to cube */
 extern void
-	rfc_cb_add( RFC_VARARGS /* rfc_cube *p_cb , void *p_ext , const void *p_value , {const char *|int} p_keyval1 , ... , {const char *|int} p_keyval<s_keyel_n> */ );
+	rfc_cb_add( rfc_cube *p_cb , void *p_ext , const void *p_value , ... /*, {const char *|int} p_keyval1 , ... , {const char *|int} p_keyval<s_keyel_n> */ );
 extern void
-	rfc_cb_add_d( RFC_VARARGS /* rfc_cube *p_cb , void *p_ext , short p_value , {const char *|int} p_keyval1 , ... , {const char *|int} p_keyval<s_keyel_n> */ );
+	rfc_cb_add_d( rfc_cube *p_cb , void *p_ext , short p_value , ... /*, {const char *|int} p_keyval1 , ... , {const char *|int} p_keyval<s_keyel_n> */ );
 extern void
-	rfc_cb_add_l( RFC_VARARGS /* rfc_cube *p_cb , void *p_ext , int p_value , {const char *|int} p_keyval1 , ... , {const char *|int} p_keyval<s_keyel_n> */ );
+	rfc_cb_add_l( rfc_cube *p_cb , void *p_ext , int p_value , ... /*, {const char *|int} p_keyval1 , ... , {const char *|int} p_keyval<s_keyel_n> */ );
 extern void
-	rfc_cb_add_m( RFC_VARARGS /* rfc_cube *p_cb , void *p_ext , RFC_INT64 p_value , {const char *|int} p_keyval1 , ... , {const char *|int} p_keyval<s_keyel_n> */ );
+	rfc_cb_add_m( rfc_cube *p_cb , void *p_ext , RFC_INT64 p_value , ... /*, {const char *|int} p_keyval1 , ... , {const char *|int} p_keyval<s_keyel_n> */ );
 extern void
-	rfc_cb_add_f( RFC_VARARGS /* rfc_cube *p_cb , void *p_ext , double p_value , {const char *|int} p_keyval1 , ... , {const char *|int} p_keyval<s_keyel_n> */ );
+	rfc_cb_add_f( rfc_cube *p_cb , void *p_ext , double p_value , ... /*, {const char *|int} p_keyval1 , ... , {const char *|int} p_keyval<s_keyel_n> */ );
 extern void
-	rfc_cb_add_s( RFC_VARARGS /* rfc_cube *p_cb , void *p_ext , const char *p_value , {const char *|int} p_keyval1 , ... , {const char *|int} p_keyval<s_keyel_n> */ );
+	rfc_cb_add_s( rfc_cube *p_cb , void *p_ext , const char *p_value , ... /*, {const char *|int} p_keyval1 , ... , {const char *|int} p_keyval<s_keyel_n> */ );
 extern void
-	rfc_cb_add_p( RFC_VARARGS /* rfc_cube *p_cb , void *p_ext , void *p_value , {const char *|int} p_keyval1 , ... , {const char *|int} p_keyval<s_keyel_n> */ );
+	rfc_cb_add_p( rfc_cube *p_cb , void *p_ext , void *p_value , ... /*, {const char *|int} p_keyval1 , ... , {const char *|int} p_keyval<s_keyel_n> */ );
 
 extern void
 	rfc_cb_add_a( rfc_cube *p_cb , void *p_ext , const void *p_value , const void **p_keyval );
@@ -188,7 +188,7 @@ extern int
 
 /* walk from root with filter by all axes */
 extern int
-	rfc_cb_mfwalk( RFC_VARARGS /* rfc_cube *p_cb , int p_el1 , {int|const char *} p_keyval1 , ... , int p_el<n> , {int|const char *} p_keyval<n> , -1 */ );
+	rfc_cb_mfwalk( rfc_cube *p_cb , ... /*{int|const char *} p_keyval1 , ... , int p_el<n> , {int|const char *} p_keyval<n> , -1 */ );
 extern int
 	rfc_cb_mfwalk_a( rfc_cube *p_cb , int *p_el , const void **p_keyval );
 extern int

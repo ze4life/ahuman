@@ -86,7 +86,7 @@ extern char
 	( ( *p_s == 0 )? 1 : 0 )
 /* make format string */
 extern rfc_string
-	rfc_str_format( RFC_VARARGS /* rfc_string p_str , const char *p_format , ... */ );
+	rfc_str_format( rfc_string p_str , const char *p_format , ... );
 /* make format string with valist*/
 extern rfc_string
 	rfc_str_format_va( rfc_string p_str , const char *p_format , va_list p_va );
@@ -148,7 +148,7 @@ extern unsigned short
 	( ( *p_s == 0 )? 1 : 0 )
 /* make format string */
 extern rfc_wstring
-	rfc_wstr_format( RFC_VARARGS /* rfc_wstring p_str , const unsigned short *p_format , ... */ );
+	rfc_wstr_format( rfc_wstring p_str , const unsigned short *p_format , ... );
 /* make format string with valist*/
 extern rfc_wstring
 	rfc_wstr_format_va( rfc_wstring p_str , const unsigned short *p_format , va_list p_va );
@@ -171,7 +171,7 @@ extern int
 	rfc_wstr_cmp( const unsigned short *p_s1 , const unsigned short *p_s2 );
 /* format string */
 extern int
-	rfc_wstr_sprintf( RFC_VARARGS /* unsigned short *p_s , const unsigned short *p_fmt , ... */ );
+	rfc_wstr_sprintf( unsigned short *p_s , const unsigned short *p_fmt , ... );
 extern int
 	rfc_wstr_vsprintf( unsigned short *p_s , const unsigned short *p_fmt , va_list p_va );
 /* copy string */
@@ -231,7 +231,7 @@ extern rfc_ustring
 	( ( *p_s == 0 )? 1 : 0 )
 /* make format string */
 extern rfc_ustring
-	rfc_ustr_format( RFC_VARARGS /* rfc_ustring p_str , const rfc_uchar *p_format , ... */ );
+	rfc_ustr_format( rfc_ustring p_str , const rfc_uchar *p_format , ... );
 /* make format string with valist*/
 extern rfc_ustring
 	rfc_ustr_format_va( rfc_ustring p_str , const rfc_uchar *p_format , va_list p_va );
