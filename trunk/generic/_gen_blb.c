@@ -2,7 +2,7 @@
 /*#######################################################*/
 
 /* std headers */
-#include <__gen.h>
+#include "__gen.h"
 
 /*#######################################################*/
 /*#######################################################*/
@@ -96,7 +96,7 @@ void
 					/* for the future append reserve */
 					l_alloc = l_data -> s_a + ( p_size_add - l_space ) + 64;
 					l_offset = p_blob -> s_ptr - l_data -> s_mem;
-					l_p = realloc( l_data -> s_mem , SIZE_OF_RFC_BLOBDATA + l_alloc );
+					l_p = ( char * )realloc( l_data -> s_mem , SIZE_OF_RFC_BLOBDATA + l_alloc );
 
 					p_blob -> s_ptr = l_p + l_offset;
 					l_data = _rfc_blob_data( p_blob );
@@ -163,25 +163,25 @@ int
 						break;
 					case RFC_EXT_TYPEDOUBLE :
 						l_size = sizeof( double );
-						l_ptr = ( const char * )p_data;
+						l_ptr = ( const unsigned char * )p_data;
 						break;
 					case RFC_EXT_TYPEFLOAT :
 						l_size = sizeof( float );
-						l_ptr = ( const char * )p_data;
+						l_ptr = ( const unsigned char * )p_data;
 						break;
 					case RFC_EXT_TYPEWCHAR :
 						if( p_data -> u_wc == NULL )
 							l_size = 0;
 						else
 							l_size = rfc_wstr_len( p_data -> u_wc ) * 2 + 2;
-						l_ptr = ( const char * )p_data -> u_wc;
+						l_ptr = ( const unsigned char * )p_data -> u_wc;
 						break;
 					case RFC_EXT_TYPELCHAR :
 						if( p_data -> u_lc.s_ptr == NULL )
 							l_size = 0;
 						else
 							l_size = strlen( p_data -> u_lc.s_ptr ) + 1;
-						l_ptr = p_data -> u_lc.s_ptr;
+						l_ptr = ( const unsigned char * )p_data -> u_lc.s_ptr;
 						break;
 					case RFC_EXT_TYPECHAR :
 					case RFC_EXT_TYPESTRING :
@@ -189,15 +189,15 @@ int
 							l_size = 0;
 						else
 							l_size = strlen( p_data -> u_s ) + 1;
-						l_ptr = p_data -> u_s;
+						l_ptr = ( const unsigned char * )p_data -> u_s;
 						break;
 					case RFC_EXT_TYPEBLOB :
 						l_size = p_data -> u_o.s_size;
-						l_ptr = p_data -> u_o.s_ptr;
+						l_ptr = ( const unsigned char * )p_data -> u_o.s_ptr;
 						break;
 					case RFC_EXT_TYPEBYTE :
 						l_size = 1;
-						l_ptr = &p_data -> u_b;
+						l_ptr = ( const unsigned char * )&p_data -> u_b;
 						break;
 
 					default :
@@ -216,7 +216,7 @@ int
 			rfc_blob_realloc( p_blob , l_space_add );
 
 			/* fill with information */
-			l_p = p_blob -> s_ptr + p_blob -> s_size;
+			l_p = ( unsigned char * )p_blob -> s_ptr + p_blob -> s_size;
 			_RFC_SET_LONG( l_p , p_type );
 			l_p += sizeof( long );
 
@@ -242,7 +242,7 @@ int
 			rfc_blob_realloc( p_blob , l_space_add );
 
 			/* fill with information */
-			l_p = p_blob -> s_ptr + p_blob -> s_size;
+			l_p = ( unsigned char * )p_blob -> s_ptr + p_blob -> s_size;
 			_RFC_SET_LONG( l_p , p_type );
 			l_p += sizeof( long );
 			_RFC_SET_LONG( l_p , l_size );
@@ -297,7 +297,7 @@ int
 	if( *p_offset >= p_blob -> s_size )
 		return( 0 );
 
-	l_p = p_blob -> s_ptr + *p_offset;
+	l_p = ( unsigned char * )p_blob -> s_ptr + *p_offset;
 
 	/* get type */
 	_RFC_GET_LONG( l_type , l_p );
@@ -345,17 +345,17 @@ int
 				l_dp -> u_wc = ( const unsigned short * )l_p;
 				break;
 			case RFC_EXT_TYPELCHAR :
-				l_dp -> u_lc.s_ptr = l_p;
+				l_dp -> u_lc.s_ptr = ( const char * )l_p;
 				l_p += l_size - sizeof( long );
 				/* get codepage after string */
 				_RFC_GET_LONG( l_dp -> u_lc.s_cp , l_p );
 				break;
 			case RFC_EXT_TYPECHAR :
 			case RFC_EXT_TYPESTRING :
-				l_dp -> u_c = l_p;
+				l_dp -> u_c = ( const char * )l_p;
 				break;
 			case RFC_EXT_TYPEBLOB :
-				l_dp -> u_o.s_ptr = l_p;
+				l_dp -> u_o.s_ptr = ( char * )l_p;
 				l_dp -> u_o.s_size = l_size;
 				break;
 			case RFC_EXT_TYPEBYTE :

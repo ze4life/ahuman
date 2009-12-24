@@ -59,11 +59,11 @@ bool StackTrace::getStackTrace( MapFile** map, int maps, void *ptr , getStackTra
 					break;
 				}
 
-			__try
+			try
 				{
 					addr = getCaller( i );
 				}
-			__except( 1 )
+			catch( ... )
 				{
 					errorGettingStack = true;
 					break;

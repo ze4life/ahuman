@@ -517,7 +517,6 @@ static short
 			case RFC_EXT_TYPEMOMENT :
 				*p_vto = l_s = rfc_str_create( NULL , 0 , 11 );
 				rfc_dtm_moment2string ( *( int * )p_vfrom, ( rfc_fmt_date * )p_fmt , l_s);
-				if ( *(int*)p_vfrom >= 2000123100 ) l_s = "";
 				return( 1 );
 			case RFC_EXT_TYPETIMET :
 				if( !_rfc_cnv_moment( &l_m , RFC_EXT_TYPETIMET , p_vfrom , NULL ) )

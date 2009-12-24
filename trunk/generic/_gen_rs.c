@@ -278,21 +278,16 @@ rfc_string
 
 /* make format string */
 rfc_string
-	rfc_str_format( va_alist /* rfc_string p_str , const char *p_format , ... */ )
-	va_dcl
+	rfc_str_format( rfc_string p_str , const char *p_format , ... )
 {
 	va_list l_va;
-	rfc_string l_str;
-	const char *l_format;
 
-	va_start( l_va );
-	l_str = va_arg( l_va , rfc_string );
-	l_format = va_arg( l_va , const char * );
+	va_start( l_va , p_format );
 
-	l_str = rfc_str_format_va( l_str , l_format , l_va );
+	p_str = rfc_str_format_va( p_str , p_format , l_va );
 	va_end( l_va );
 
-	return( l_str );
+	return( p_str );
 }
 
 /* make format string with valist*/
@@ -416,7 +411,7 @@ rfc_string
 					/* single characters */
 					case 'c':
 						l_len = 2;
-						va_arg( l_va , char );
+						va_arg( l_va , int /*char*/ );
 						break;
 
 					/* strings */
@@ -650,12 +645,12 @@ void
 					/* single characters */
 					case 'c':
 						l_len = 2;
-						l_fi -> s_arg_v.u_d = va_arg( l_va , short );
+						l_fi -> s_arg_v.u_d = va_arg( l_va , int /*short*/ );
 						break;
 
 					case 'C':
 						l_len = 2;
-						l_fi -> s_arg_v.u_b = va_arg( l_va , char );
+						l_fi -> s_arg_v.u_b = va_arg( l_va , int /*char*/ );
 						break;
 
 					/* strings */

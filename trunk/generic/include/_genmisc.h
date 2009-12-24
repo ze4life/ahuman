@@ -186,7 +186,15 @@ struct _rfc_fmt_date
 
 /* MIN-MAX DATE */
 #define	RFC_MOMENT_MIN	0
-#define	RFC_MOMENT_MAX	2000123195
+#define	RFC_MOMENT_MAX	2100123195
+
+#ifndef max
+#define max(a,b) (((a)<(b))?(a):(b))
+#endif
+
+#ifndef min
+#define min(a,b) (((a)>(b))?(a):(b))
+#endif
 
 /*#######################################################*/
 /*#######################################################*/

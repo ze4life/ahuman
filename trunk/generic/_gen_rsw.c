@@ -278,21 +278,16 @@ rfc_wstring
 
 /* make format string */
 rfc_wstring
-	rfc_wstr_format( va_alist /* rfc_wstring p_str , const unsigned short *p_format , ... */ )
-	va_dcl
+	rfc_wstr_format( rfc_wstring p_str , const unsigned short *p_format , ... )
 {
 	va_list l_va;
-	rfc_wstring l_str;
-	const unsigned short *l_format;
 
-	va_start( l_va );
-	l_str = va_arg( l_va , rfc_wstring );
-	l_format = va_arg( l_va , const unsigned short * );
+	va_start( l_va , p_format );
 
-	l_str = rfc_wstr_format_va( l_str , l_format , l_va );
+	p_str = rfc_wstr_format_va( p_str , p_format , l_va );
 	va_end( l_va );
 
-	return( l_str );
+	return( p_str );
 }
 
 /* make format string with valist*/
@@ -382,9 +377,9 @@ rfc_wstring
 
 			/* should be on type modifier or specifier */
 			l_mod = 0;
-			if( !rfc_wstr_ncmp( l_format , RFC_WINT64FMTBASE , rfc_wstr_len( RFC_WINT64FMTBASE ) ) )
+			if( !rfc_wstr_ncmp( l_format , ( const unsigned short * )RFC_WINT64FMTBASE , rfc_wstr_len( ( const unsigned short * )RFC_WINT64FMTBASE ) ) )
 				{
-					l_format += rfc_wstr_len( RFC_WINT64FMTBASE );
+					l_format += rfc_wstr_len( ( const unsigned short * )RFC_WINT64FMTBASE );
 					l_mod = 1;
 				}
 			else
@@ -416,7 +411,7 @@ rfc_wstring
 					/* single characters */
 					case L'c':
 						l_len = 2;
-						va_arg( l_va , unsigned short );
+						va_arg( l_va , int /*unsigned short*/ );
 						break;
 
 					/* strings */
@@ -642,9 +637,9 @@ int
 
 			/* should be on type modifier or specifier */
 			l_mod = 0;
-			if( !rfc_wstr_ncmp( l_format , RFC_WINT64FMTBASE , rfc_wstr_len( RFC_WINT64FMTBASE ) ) )
+			if( !rfc_wstr_ncmp( l_format , ( const unsigned short * )RFC_WINT64FMTBASE , rfc_wstr_len( ( const unsigned short * )RFC_WINT64FMTBASE ) ) )
 				{
-					l_format += rfc_wstr_len( RFC_WINT64FMTBASE );
+					l_format += rfc_wstr_len( ( const unsigned short * )RFC_WINT64FMTBASE );
 					l_mod = 1;
 				}
 			else
@@ -690,7 +685,7 @@ int
 					case L'c':
 					case L'C':
 						l_len = 2;
-						*l_s++ = va_arg( l_va , unsigned short );
+						*l_s++ = va_arg( l_va , int /*unsigned short*/ );
 						continue;
 
 					/* strings */
@@ -805,19 +800,14 @@ unsigned short *
 
 /* format string */
 int
-	rfc_wstr_sprintf( va_alist /* unsigned short *p_s , const unsigned short *p_fmt , ... */ )
-	va_dcl
+	rfc_wstr_sprintf( unsigned short *p_s , const unsigned short *p_fmt , ... )
 {
 	va_list l_va;
-	unsigned short *l_str;
-	const unsigned short *l_format;
 	int l_n;
 
-	va_start( l_va );
-	l_str = va_arg( l_va , unsigned short * );
-	l_format = va_arg( l_va , const unsigned short * );
+	va_start( l_va , p_fmt );
 
-	l_n = rfc_wstr_vsprintf( l_str , l_format , l_va );
+	l_n = rfc_wstr_vsprintf( p_s , p_fmt , l_va );
 	va_end( l_va );
 
 	return( l_n );

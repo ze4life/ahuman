@@ -129,21 +129,16 @@ static short
 
 /* create map */
 rfc_map * 
-	rfc_map_create( va_alist /* int p_type , int p_keys , short p_isnum1 , ... , short p_isnum<p_keys> */ )
-	va_dcl
+	rfc_map_create( int p_type , int p_keys , ... /*short p_isnum1 , ... , short p_isnum<p_keys> */ )
 {
 	va_list l_va;
 	rfc_map *l_map;
-	int l_type;
-	int l_keys;
 
 	/* pass to valist version */
-	va_start( l_va );
-	l_type = va_arg( l_va , int );
-	if( l_type == RFC_EXT_TYPECHAR )
-		l_type = RFC_EXT_TYPESTRING;
-	l_keys = va_arg( l_va , int );
-	l_map = rfc_map_create_va( l_type , l_keys , l_va );
+	va_start( l_va , p_keys );
+	if( p_type == RFC_EXT_TYPECHAR )
+		p_type = RFC_EXT_TYPESTRING;
+	l_map = rfc_map_create_va( p_type , p_keys , l_va );
 	va_end( l_va );
 
 	return( l_map );			
@@ -194,7 +189,7 @@ rfc_map *
 
 	/* fill axis types */
 	for( k = 0; k < p_keys; k++ )
-		l_map -> s_axis_isnum[ k ] = ( va_arg( p_isnum , short ) )? 1 : 0;
+		l_map -> s_axis_isnum[ k ] = ( va_arg( p_isnum , int ) )? 1 : 0;
 
 	return( l_map );
 }
@@ -280,19 +275,14 @@ void
 
 /* add item to map */
 int
-	rfc_map_add( va_alist /* rfc_map *p_map , const RFC_TYPE *p_value , {const char *|int} p_keyval1 , ... , {const char *|int} p_keyval<s_keyel_n> */ )
-	va_dcl
+	rfc_map_add( rfc_map *p_map , const RFC_TYPE *p_value , ... /* {const char *|int} p_keyval1 , ... , {const char *|int} p_keyval<s_keyel_n> */ )
 {
 	va_list l_va;
-	rfc_map *l_map;
-	const RFC_TYPE *l_value;
 	int l_res;
 
 	/* pass to valist */
-	va_start( l_va );
-	l_map = va_arg( l_va , rfc_map * );
-	l_value = va_arg( l_va , const RFC_TYPE * );
-	l_res = rfc_map_add_va( l_map , l_value , l_va );
+	va_start( l_va , p_value );
+	l_res = rfc_map_add_va( p_map , p_value , l_va );
 	va_end( l_va );
 
 	return( l_res );
@@ -315,19 +305,14 @@ extern int
 
 /* find item data */
 int
-	rfc_map_check( va_alist /* rfc_map *p_map , RFC_TYPE *p_value , {const char *|int} p_keyval1 , ... , {const char *|int} p_keyval<s_keyel_n> */ )
-	va_dcl
+	rfc_map_check( rfc_map *p_map , RFC_TYPE *p_value , ... /* {const char *|int} p_keyval1 , ... , {const char *|int} p_keyval<s_keyel_n> */ )
 {
 	va_list l_va;
-	rfc_map *l_map;
-	RFC_TYPE *l_value;
 	int l_res;
 
 	/* pass to valist */
-	va_start( l_va );
-	l_map = va_arg( l_va , rfc_map * );
-	l_value = va_arg( l_va , RFC_TYPE * );
-	l_res = rfc_map_check_va( l_map , l_value , l_va );
+	va_start( l_va , p_value );
+	l_res = rfc_map_check_va( p_map , p_value , l_va );
 	va_end( l_va );
 
 	return( l_res );

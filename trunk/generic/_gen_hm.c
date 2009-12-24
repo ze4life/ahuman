@@ -509,20 +509,13 @@ rfc_huge *
 
 /* set any level array element by index parameters */
 void
-	rfc_hm_mset( va_alist /* rfc_huge *p_hm , int p_level , const void *p_value , int p_idx1 , ... , int p_idx<p_level> */ )
-	va_dcl
+	rfc_hm_mset( rfc_huge *p_hm , int p_level , const void *p_value , ... /*int p_idx1 , ... , int p_idx<p_level> */ )
 {
 	va_list l_va;
-	rfc_huge *l_hm;
-	int l_level;
-	const void *l_value;
 
-	va_start( l_va );
-	l_hm = va_arg( l_va , rfc_huge * );
-	l_level = va_arg( l_va , int );
-	l_value = va_arg( l_va , const void * );
+	va_start( l_va , p_value );
 
-	rfc_hm_mset_va( l_hm , l_level , l_value , l_va );
+	rfc_hm_mset_va( p_hm , p_level , p_value , l_va );
 	va_end( l_va );
 }
 
@@ -606,19 +599,14 @@ void
 
 /* get any level array element by index parameters */
 const rfc_hugeel *
-	rfc_hm_mget( va_alist /* rfc_huge *p_hm , int p_level , int p_idx1 , ... , int p_idx<p_level> */ )
-	va_dcl
+	rfc_hm_mget( rfc_huge *p_hm , int p_level , ... /*int p_idx1 , ... , int p_idx<p_level> */ )
 {
 	va_list l_va;
-	rfc_huge *l_hm;
-	int l_level;
 	const rfc_hugeel *l_el;
 
-	va_start( l_va );
-	l_hm = va_arg( l_va , rfc_huge * );
-	l_level = va_arg( l_va , int );
+	va_start( l_va , p_level );
 
-	l_el = rfc_hm_mget_va( l_hm , l_level , l_va );
+	l_el = rfc_hm_mget_va( p_hm , p_level , l_va );
 	va_end( l_va );
 
 	return( l_el );
@@ -696,21 +684,16 @@ const rfc_hugeel *
 
 /* get any level subarray by index parameters */
 rfc_huge *
-	rfc_hm_mgetsub( va_alist /* rfc_huge *p_hm , int p_level , int p_idx1 , ... , int p_idx<p_level> */ )
-	va_dcl
+	rfc_hm_mgetsub( rfc_huge *p_hm , int p_level , ... /*int p_idx1 , ... , int p_idx<p_level> */ )
 {
 	va_list l_va;
-	rfc_huge *l_hm;
-	int l_level;
 
-	va_start( l_va );
-	l_hm = va_arg( l_va , rfc_huge * );
-	l_level = va_arg( l_va , int );
+	va_start( l_va , p_level );
 
-	l_hm = rfc_hm_mgetsub_va( l_hm , l_level , l_va );
+	p_hm = rfc_hm_mgetsub_va( p_hm , p_level , l_va );
 	va_end( l_va );
 
-	return( l_hm );
+	return( p_hm );
 }
 
 /* get any level subarray by va_list */
