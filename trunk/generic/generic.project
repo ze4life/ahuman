@@ -5,62 +5,9 @@
       <![CDATA[00020001N0005Debug0000000000000001N0007Release000000000000]]>
     </Plugin>
   </Plugins>
-  <Description></Description>
+  <Description/>
   <Dependencies/>
-  <VirtualDirectory Name="src">
-    <File Name="_gen_wrs.c"/>
-    <File Name="_gen_blb.c"/>
-    <File Name="_gen_cb.c"/>
-    <File Name="_gen_cch.c"/>
-    <File Name="_gen_cnv.c"/>
-    <File Name="_gen_hm.c"/>
-    <File Name="_gen_lst.c"/>
-    <File Name="_gen_map.c"/>
-    <File Name="_gen_mem.c"/>
-    <File Name="_gen_msh.c"/>
-    <File Name="_gen_opt.c"/>
-    <File Name="_gen_ptr.c"/>
-    <File Name="_gen_qs.c"/>
-    <File Name="_gen_ra.c"/>
-    <File Name="_gen_rai.c"/>
-    <File Name="_gen_rd.c"/>
-    <File Name="_gen_rl.c"/>
-    <File Name="_gen_rmn.c"/>
-    <File Name="_gen_rs.c"/>
-    <File Name="_gen_rsu.c"/>
-    <File Name="_gen_rsw.c"/>
-    <File Name="_gen_set.c"/>
-    <File Name="_gen_win.c"/>
-    <VirtualDirectory Name="stackTrace">
-      <File Name="stacktrace\TextFile.cpp"/>
-      <File Name="stacktrace\Array.h"/>
-      <File Name="stacktrace\MapFile.h"/>
-      <File Name="stacktrace\MapFileEntry.h"/>
-      <File Name="stacktrace\printStackTrace.h"/>
-      <File Name="stacktrace\StackTrace.h"/>
-      <File Name="stacktrace\TextFile.h"/>
-      <File Name="stacktrace\MapFile.cpp"/>
-      <File Name="stacktrace\MapFileEntry.cpp"/>
-      <File Name="stacktrace\printStackTrace.cpp"/>
-      <File Name="stacktrace\StackTrace.cpp"/>
-    </VirtualDirectory>
-  </VirtualDirectory>
-  <VirtualDirectory Name="include">
-    <File Name="include\_genstr.h"/>
-    <File Name="include\__gen.h"/>
-    <File Name="include\_gencach.h"/>
-    <File Name="include\_gencube.h"/>
-    <File Name="include\_gendata.h"/>
-    <File Name="include\_genhuge.h"/>
-    <File Name="include\_genmap.h"/>
-    <File Name="include\_genmisc.h"/>
-    <File Name="include\_genmsh.h"/>
-    <File Name="include\_genos.h"/>
-    <File Name="include\_genplat.h"/>
-    <File Name="include\_genset.h"/>
-  </VirtualDirectory>
   <Dependencies Name="Release"/>
-  <Dependencies Name="Debug"/>
   <Settings Type="Static Library">
     <Configuration Name="Debug" CompilerType="gnu gcc" DebuggerType="GNU gdb debugger" Type="Static Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
       <Compiler Options="-g" Required="yes" PreCompiledHeader="">
@@ -70,25 +17,23 @@
       <ResourceCompiler Options="" Required="no"/>
       <General OutputFile="./bin/lib$(ProjectName).debug.a" IntermediateDirectory="./build/debug" Command="" CommandArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes"/>
       <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
-        <PostConnectCommands></PostConnectCommands>
-        <StartupCommands></StartupCommands>
+        <PostConnectCommands/>
+        <StartupCommands/>
       </Debugger>
       <PreBuild/>
       <PostBuild/>
       <CustomBuild Enabled="no">
-        <CleanCommand></CleanCommand>
-        <BuildCommand></BuildCommand>
-        <PreprocessFileCommand></PreprocessFileCommand>
-        <SingleFileCommand></SingleFileCommand>
-        <MakefileGenerationCommand></MakefileGenerationCommand>
+        <CleanCommand/>
+        <BuildCommand/>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
         <ThirdPartyToolName>None</ThirdPartyToolName>
-        <WorkingDirectory></WorkingDirectory>
+        <WorkingDirectory/>
       </CustomBuild>
       <AdditionalRules>
-        <CustomPostBuild></CustomPostBuild>
-        <CustomPreBuild>
-
-</CustomPreBuild>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
       </AdditionalRules>
     </Configuration>
     <Configuration Name="Release" CompilerType="gnu gcc" DebuggerType="GNU gdb debugger" Type="Static Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
@@ -99,31 +44,29 @@
       <ResourceCompiler Options="" Required="no"/>
       <General OutputFile="./bin/lib$(ProjectName).a" IntermediateDirectory="./build/release" Command="" CommandArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes"/>
       <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
-        <PostConnectCommands></PostConnectCommands>
-        <StartupCommands></StartupCommands>
+        <PostConnectCommands/>
+        <StartupCommands/>
       </Debugger>
       <PreBuild/>
       <PostBuild/>
       <CustomBuild Enabled="no">
-        <CleanCommand></CleanCommand>
-        <BuildCommand></BuildCommand>
-        <PreprocessFileCommand></PreprocessFileCommand>
-        <SingleFileCommand></SingleFileCommand>
-        <MakefileGenerationCommand></MakefileGenerationCommand>
+        <CleanCommand/>
+        <BuildCommand/>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
         <ThirdPartyToolName>None</ThirdPartyToolName>
-        <WorkingDirectory></WorkingDirectory>
+        <WorkingDirectory/>
       </CustomBuild>
       <AdditionalRules>
-        <CustomPostBuild></CustomPostBuild>
-        <CustomPreBuild>
-
-</CustomPreBuild>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
       </AdditionalRules>
     </Configuration>
     <GlobalSettings>
       <Compiler Options="-W">
         <IncludePath Value="."/>
-        <IncludePath Value="$(ProjectPath)/include"/>
+        <IncludePath Value="$(ProjectPath)src/include"/>
       </Compiler>
       <Linker Options="">
         <LibraryPath Value="."/>
@@ -131,4 +74,69 @@
       <ResourceCompiler Options=""/>
     </GlobalSettings>
   </Settings>
+  <VirtualDirectory Name="src">
+    <VirtualDirectory Name="include">
+      <File Name="src\include\_genstr.h"/>
+      <File Name="src\include\__gen.h"/>
+      <File Name="src\include\_gencach.h"/>
+      <File Name="src\include\_gencube.h"/>
+      <File Name="src\include\_gendata.h"/>
+      <File Name="src\include\_genhuge.h"/>
+      <File Name="src\include\_genmap.h"/>
+      <File Name="src\include\_genmisc.h"/>
+      <File Name="src\include\_genmsh.h"/>
+      <File Name="src\include\_genos.h"/>
+      <File Name="src\include\_genplat.h"/>
+      <File Name="src\include\_genset.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="modalgorithms">
+      <File Name="src\modalgorithms\_gen_qs.c"/>
+      <File Name="src\modalgorithms\_gen_blb.c"/>
+      <File Name="src\modalgorithms\_gen_msh.c"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="modbasetypes">
+      <File Name="src\modbasetypes\_gen_rmn.c"/>
+      <File Name="src\modbasetypes\_gen_cnv.c"/>
+      <File Name="src\modbasetypes\_gen_rd.c"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="modcollections">
+      <File Name="src\modcollections\_gen_set.c"/>
+      <File Name="src\modcollections\_gen_cb.c"/>
+      <File Name="src\modcollections\_gen_cch.c"/>
+      <File Name="src\modcollections\_gen_hm.c"/>
+      <File Name="src\modcollections\_gen_lst.c"/>
+      <File Name="src\modcollections\_gen_map.c"/>
+      <File Name="src\modcollections\_gen_ptr.c"/>
+      <File Name="src\modcollections\_gen_ra.c"/>
+      <File Name="src\modcollections\_gen_rai.c"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="modos">
+      <File Name="src\modos\_gen_wrs.c"/>
+      <File Name="src\modos\_gen_lock.c"/>
+      <File Name="src\modos\_gen_mem.c"/>
+      <File Name="src\modos\_gen_opt.c"/>
+      <File Name="src\modos\_gen_rl.c"/>
+      <File Name="src\modos\_gen_win.c"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="modstacktrace">
+      <File Name="src\modstacktrace\TextFile.cpp"/>
+      <File Name="src\modstacktrace\Array.h"/>
+      <File Name="src\modstacktrace\MapFile.h"/>
+      <File Name="src\modstacktrace\MapFileEntry.h"/>
+      <File Name="src\modstacktrace\printStackTrace.h"/>
+      <File Name="src\modstacktrace\StackTrace.h"/>
+      <File Name="src\modstacktrace\TextFile.h"/>
+      <File Name="src\modstacktrace\MapFile.cpp"/>
+      <File Name="src\modstacktrace\MapFileEntry.cpp"/>
+      <File Name="src\modstacktrace\printStackTrace.cpp"/>
+      <File Name="src\modstacktrace\StackTrace.cpp"/>
+      <File Name="src\modstacktrace\_gen_stacktrace.c"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="modstring">
+      <File Name="src\modstring\_gen_rsw.c"/>
+      <File Name="src\modstring\_gen_rs.c"/>
+      <File Name="src\modstring\_gen_rsu.c"/>
+    </VirtualDirectory>
+  </VirtualDirectory>
+  <Dependencies Name="Debug"/>
 </CodeLite_Project>
