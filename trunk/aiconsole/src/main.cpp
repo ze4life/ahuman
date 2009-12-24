@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include <aiapi.h>
+#include "aiapi.h"
 
 String readNextRequest( FILE *f )
 {
@@ -94,7 +94,7 @@ void logGreeting( FILE *sout )
 	logInfo( sout , "AI console" );
 }
 
-void main( int argc , char **argv )
+int main( int argc , char **argv )
 {
 	// parameters
 	String url;
@@ -122,13 +122,13 @@ void main( int argc , char **argv )
 				}
 
 			printf( "unknown option: %s\n" , argv[ k ] );
-			return;
+			return( -1 );
 		}
 
 	if( url.isEmpty() )
 		{
 			printf( "unknown server, usage: aiconsole -s <host>:<port> [-i <input file>] [-o <output file>]\n" );
-			return;
+			return( -1 );
 		}
 
 	FILE *sin = NULL;
@@ -138,7 +138,7 @@ void main( int argc , char **argv )
 			if( sin == NULL )
 				{
 					printf( "cannot open input file (%s)\n" , ( const char * )fin );
-					return;
+					return( -2 );
 				}
 		}
 
@@ -149,7 +149,7 @@ void main( int argc , char **argv )
 			if( sout == NULL )
 				{
 					printf( "cannot open output file (%s)\n" , ( const char * )fout );
-					return;
+					return( -2 );
 				}
 		}
 
@@ -167,14 +167,18 @@ void main( int argc , char **argv )
 		logError( sout , "cannot connect for unknown reason" );
 	}
 
+	int retval = 0;
 	while( api.isConnected() )
 		{
 			try {
-				if( !makeRequest( api , sin , sout ) )
+				if( !makeRequest( api , sin , sout ) ) {
+					retval = -3;
 					break;
+				}
 			}
 			catch ( String e ) {
 				logError( sout , String( "cannot execute request: " ) + e );
+				retval = -3;
 			}
 		}
 
@@ -185,4 +189,6 @@ void main( int argc , char **argv )
 		fclose( sin );
 	if( sout != NULL )
 		fclose( sout );
+		
+	return( retval );
 }
