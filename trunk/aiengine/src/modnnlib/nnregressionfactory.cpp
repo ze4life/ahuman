@@ -157,7 +157,7 @@ NN *NNRegressionFactory::createDerivationPerceptron( NNVariables *vars , NN *p ,
 	// targets are derivatives - owned by NN variables
 	ClassList<NNVariable> targets;
 	for( int k1 = sensorFrom; k1 <= sensorTo; k1++ )
-		for( k = 0; k < p -> getNSensors(); k++ )
+		for( int k = 0; k < p -> getNSensors(); k++ )
 			targets.add( vars -> addCommonNumberDerivative() );
 
 	NN *pd = createDefaultPerceptron( String( p -> getId() ) + "#D" , sensors , targets , hiddenLayerSize );
@@ -222,7 +222,7 @@ void NNRegressionFactory::scaleBySamplesSimple( NNSamples *samples , NNVariables
 		}
 
 	// scale outputs
-	for( k = 0; k < samples -> sizeOut(); k++ )
+	for( int k = 0; k < samples -> sizeOut(); k++ )
 		{
 			float minV , maxV;
 			samples -> getTargetRange( k , &minV , &maxV );
@@ -246,7 +246,7 @@ void NNRegressionFactory::scaleBySamplesStddev( NNSamples *samples , NNVariables
 		}
 
 	// scale outputs
-	for( k = 0; k < samples -> sizeOut(); k++ )
+	for( int k = 0; k < samples -> sizeOut(); k++ )
 		{
 			float meanV , stddevV;
 			samples -> getTargetStat( k , &meanV , &stddevV );

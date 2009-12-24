@@ -1,9 +1,9 @@
 
 #include "aiengine_impl.h"
 #include <windows.h>
-#include <eh.h>
 
 AIEngineImpl *AIEngineImpl::instance = NULL;
+DWORD tlsIndex = 0;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -16,12 +16,12 @@ void AIUnhandledExceptionTranslator( unsigned int exceptionCode , struct _EXCEPT
 }
 
 // thread data
-__declspec( thread ) class ThreadData
+class ThreadData
 {
 public:
 	MapStringToClass<ThreadObject> map;
 	DWORD threadId;
-} *threadData = NULL;
+};
 
 /* if termination signal catched */
 static void on_exit( int p_sig )
@@ -66,6 +66,7 @@ AIEngineImpl::AIEngineImpl()
 
 	logManager = NULL;
 	mapObjectTypeIdToSerializeObject = rfc_map_strcreate();
+	tlsIndex = TlsAlloc();
 }
 
 AIEngineImpl::~AIEngineImpl()
@@ -227,7 +228,7 @@ void AIEngineImpl::createServices()
 		}
 
 	// check all configured
-	for( k = 0; k < services.count(); k++ )
+	for( int k = 0; k < services.count(); k++ )
 		{
 			Service *svc = services.getClassByIndex( k );
 			ASSERTMSG( svc -> getConfig().exists() , String( "Service [" ) + svc -> getName() + "] is not configured" );
@@ -381,6 +382,7 @@ void AIEngineImpl::logStop()
 
 int AIEngineImpl::getThreadId()
 {
+	ThreadData *threadData = ( ThreadData * )TlsGetValue( tlsIndex );
 	return( threadData -> threadId );
 }
 
@@ -394,12 +396,14 @@ void AIEngineImpl::workerCreated()
 void AIEngineImpl::workerStarted()
 {
 	// thread-allocated data
-	ASSERT( threadData == NULL );
-	threadData = new ThreadData;
+	ThreadData *threadData = new ThreadData;
+	TlsSetValue( tlsIndex , threadData );
+
 	threadData -> threadId = ::GetCurrentThreadId();
 
 	// init logging
 	EngineThreadHelper *to = new EngineThreadHelper;
+	to -> addThreadObject();
 	manageCallStack();
 }
 
@@ -413,6 +417,7 @@ void AIEngineImpl::workerExited( int status )
 	workerDestroyed();
 
 	// thread-allocated data
+	ThreadData *threadData = ( ThreadData * )TlsGetValue( tlsIndex );
 	ASSERT( threadData != NULL );
 	threadData -> map.destroy();
 	delete threadData;
@@ -434,6 +439,7 @@ void AIEngineImpl::addWorkerObject( const char *key , ThreadObject *to )
 {
 	ASSERT( key != NULL );
 	ASSERT( to != NULL );
+	ThreadData *threadData = ( ThreadData * )TlsGetValue( tlsIndex );
 	ASSERT( threadData != NULL );
 	ASSERT( threadData -> map.get( key ) == NULL );
 
@@ -442,6 +448,7 @@ void AIEngineImpl::addWorkerObject( const char *key , ThreadObject *to )
 
 ThreadObject *AIEngineImpl::getWorkerObject( const char *key )
 {
+	ThreadData *threadData = ( ThreadData * )TlsGetValue( tlsIndex );
 	ASSERT( threadData != NULL );
 	return( threadData -> map.get( key ) );
 }
@@ -625,6 +632,6 @@ void AIEngineImpl::destroySerializeObjectInstances()
 
 void AIEngineImpl::manageCallStack()
 {
-	EngineThreadHelper *to = EngineThreadHelper::getThreadObject();
-	to -> oldAIUnhandledExceptionTranslator = ( void (*)() )::_set_se_translator( AIUnhandledExceptionTranslator );
+//	EngineThreadHelper *to = EngineThreadHelper::getThreadObject();
+//	to -> oldAIUnhandledExceptionTranslator = ( void (*)() )::_set_se_translator( AIUnhandledExceptionTranslator );
 }

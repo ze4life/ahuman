@@ -122,7 +122,7 @@ public:
 
 private:
 	void log( const char *s , int logMode , Logger::LogLevel logLevel );
-	const char *Logger::getPostfix();
+	const char *getPostfix();
 	
 private:
 	Object *o;

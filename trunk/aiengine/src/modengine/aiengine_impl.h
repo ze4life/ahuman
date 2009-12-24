@@ -121,6 +121,7 @@ public:
 	EngineThreadHelper();
 	virtual ~EngineThreadHelper();
 
+	void addThreadObject();
 	static EngineThreadHelper *getThreadObject();
 
 public:

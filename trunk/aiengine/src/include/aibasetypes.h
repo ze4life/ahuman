@@ -24,8 +24,8 @@ template<class T> class TwoIndexClassArray;
 template<class T> class MapIntToClass;
 template<class TK , class TV> class MapPtrToClass;
 template<class T> class MapStringToClass;
-template<class TA, class TC> class Sort;
 template<class T> class VectorMap;
+template<class TA, class TC> class Sort;
 
 // #############################################################################
 // #############################################################################
@@ -318,7 +318,7 @@ public:
 			pn2 = NULL;
 			data = NULL;
 
-			allocateN1( p_n1 );
+			createN1( p_n1 );
 		};
 	~TwoIndexVarArray() 
 		{ 
@@ -532,8 +532,8 @@ public:
 	void destroy() { data.destroy(); chunks.destroy(); };
 	void remove( int k )
 		{ 
-			ASSERT( index >= 0 && index < n ); 
 			int n = data.count();
+			ASSERT( k >= 0 && k < n ); 
 			n--;
 			memmove( &data[ k ] , &data[ k + 1 ] , sizeof( T ) * ( n - k ) );
 			memset( data[ n ] , 0 , sizeof( T ) );
@@ -557,7 +557,7 @@ public:
 			data[ p_to ] = tmp;
 		};
 	void create( int p_n ) { ASSERT( p_n >= 0 ); allocate( p_n ); data.setCount( p_n ); };
-	void create( int p_n , const T& value ) { ASSERT( p_n >= 0 ); allocate( p_n ); setCount( p_n ); set( value ); };
+	void create( int p_n , const T& value ) { ASSERT( p_n >= 0 ); allocate( p_n ); data.setCount( p_n ); set( value ); };
 	void set( const T& value )
 		{
 			for( int k = 0; k < data.count(); k++ )
@@ -1054,33 +1054,6 @@ private:
 // #############################################################################
 // #############################################################################
 
-template<class TA, class TC> class Sort
-{
-	typedef int (TC::*PF)( const TA& v1 , const TA& v2 );
-
-public:
-	Sort( TA *va , int n , TC *p_p , int (TC::*p_pf)( const TA& v1 , const TA& v2 ) )
-		{
-			p = p_p;
-			pf = p_pf;
-			rfc_qsort( this , va , n , sizeof( TA ) , qsortcb );
-		};
-	static int qsortcb( void *p_userdata , const void *p_el1 , const void *p_el2 )
-		{
-			Sort *cThis = ( Sort * )p_userdata;
-			TC *p = cThis -> p;
-			PF pf = cThis -> pf;
-			return( ( p ->* pf )( *( TA * )p_el1 , *( TA * )p_el2 ) );
-		};
-
-private:
-	TC *p;
-	PF pf;
-};
-
-// #############################################################################
-// #############################################################################
-
 class MultiIndexIterator
 {
 public:
@@ -1209,6 +1182,34 @@ private:
 	int nIn;
 	int nOut;
 	ClassList<VectorMapItem<T> > data;
+};
+
+// #############################################################################
+// #############################################################################
+
+template<class TA, class TC> class Sort
+{
+public:
+	typedef int (TC::*PF)( const TA& v1 , const TA& v2 );
+
+public:
+	Sort( TA *va , int n , TC *p_p , Sort::PF p_pf )
+		{
+			p = p_p;
+			pf = p_pf;
+			rfc_qsort( this , va , n , sizeof( TA ) , qsortcb );
+		};
+	static int qsortcb( void *p_userdata , const void *p_el1 , const void *p_el2 )
+		{
+			Sort *cThis = ( Sort * )p_userdata;
+			TC *p = cThis -> p;
+			PF pf = cThis -> pf;
+			return( ( p ->* pf )( *( TA * )p_el1 , *( TA * )p_el2 ) );
+		};
+
+private:
+	TC *p;
+	PF pf;
 };
 
 // #############################################################################

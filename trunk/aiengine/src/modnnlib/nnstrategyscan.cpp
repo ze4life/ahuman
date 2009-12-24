@@ -64,7 +64,8 @@ int NNStrategyScan::getIterationsPerSec( NNSample *sample )
 	// calculate iterations within 100 ms
 	Timer t;
 	NNErrorFunction *ef = NNStrategy::getErrorFunction();
-	for( int k = 0; t.timePassed() < 100; k++ )
+	int k = 0;
+	for( ; t.timePassed() < 100; k++ )
 		{
 			p -> execute();
 			ef -> getErrorSampleProgress( sample );
@@ -276,7 +277,8 @@ void NNStrategyScan::mergeBest( ClassList<NNScanPoint>& best , ClassList<NNScanP
 			NNScanPoint *psIteration = bestIteration[ k ];
 
 			// find position in best
-			for( int m = best.count() - 1; m >= 0; m-- )
+			int m = best.count() - 1;
+			for( ; m >= 0; m-- )
 				{
 					NNScanPoint *ps = best[ m ];
 					if( psIteration -> getVariance() > ps -> getVariance() )

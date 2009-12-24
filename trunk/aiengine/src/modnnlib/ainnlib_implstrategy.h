@@ -339,7 +339,7 @@ private:
 /*#########################################################################*/
 /*#########################################################################*/
 
-class NNStrategyScanIteration
+class NNStrategyScanIteration : public Object
 {
 	typedef enum {
 		PACKET_ERRFUNC_MAX = 1 ,

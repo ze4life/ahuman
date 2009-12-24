@@ -161,7 +161,7 @@ void LogManager::output( LogRecord *p )
 	if( p -> count <= 0 )
 		return;
 
-	static char *levelNames[ 4 ] = {
+	static const char *levelNames[ 4 ] = {
 		"NONE" ,
 		"ERROR" ,
 		"INFO" ,

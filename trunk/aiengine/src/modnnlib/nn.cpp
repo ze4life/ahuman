@@ -599,7 +599,7 @@ void NN::serialize( SerializeObject& so )
 	so.setPropIntList( sensorVars , sensors.count() , "sensorVars" , true );
 
 	int *targetVars = ( int * )malloc( sizeof( int ) * targets.count() );
-	for( k = 0; k < targets.count(); k++ )
+	for( int k = 0; k < targets.count(); k++ )
 		targetVars[ k ] = targets[ k ] -> var -> getId();
 	so.setPropIntList( targetVars , targets.count() , "targetVars" , true );
 
@@ -643,7 +643,7 @@ void NN::deserialize( Object *parent , SerializeObject& so )
 
 	// attach layers
 	int n = layers.count();
-	for( k = 0; k < n; k++ )
+	for( int k = 0; k < n; k++ )
 		{
 			NNLayer *pl = layers[ k ];
 			pl -> attach( this , k );
@@ -653,7 +653,7 @@ void NN::deserialize( Object *parent , SerializeObject& so )
 	NNLayer *lastLayer = layers.last();
 	outputs.clear();
 	outputs.create( lastLayer -> getNeuronCount() );
-	for( k = 0; k < lastLayer -> getNeuronCount(); k++ )
+	for( int k = 0; k < lastLayer -> getNeuronCount(); k++ )
 		outputs[ k ] = lastLayer -> getNeuron( k ) -> getOutputPtr();
 
 	// attach outputs to variables
@@ -663,7 +663,7 @@ void NN::deserialize( Object *parent , SerializeObject& so )
 	int outputsCount = 0;
 	outputsRestoredFromTargets.clear();
 	outputsRestoredFromTargets.create( outputs.count() );
-	for( k = 0; k < nTargets; k++ )
+	for( int k = 0; k < nTargets; k++ )
 		{
 			NNVariable *nv = vc -> getVarById( targetVars[ k ] );
 
