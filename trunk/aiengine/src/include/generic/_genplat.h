@@ -7,11 +7,7 @@
 /* force includes */
 
 #if !defined(_VA_LIST_DEFINED) && !defined(__VARARGS_H) && !defined(__STDARG_H)
-#ifdef __cplusplus
 #include <stdarg.h>
-#else
-#include <varargs.h>
-#endif
 #endif
 
 #include <stdio.h>
@@ -52,7 +48,7 @@ typedef void				( *RFC_PROC )();
 /* windows definitions */
 #ifdef _WIN32
 
-	typedef __int64			RFC_INT64;
+	typedef long long int			RFC_INT64;
 	typedef struct { RFC_HND s_ih; unsigned s_ip; }
 							RFC_THREAD;
 	typedef unsigned		( __stdcall *RFC_THRFUNC )( void *p_arg );

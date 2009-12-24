@@ -7,7 +7,7 @@
   </Plugins>
   <Description/>
   <Dependencies/>
-  <VirtualDirectory Name="main">
+  <VirtualDirectory Name="src">
     <File Name="src\main.cpp"/>
     <VirtualDirectory Name="include">
       <File Name="src\include\aiobject.h"/>
@@ -36,136 +36,136 @@
         <File Name="src\include\generic\_genset.h"/>
       </VirtualDirectory>
     </VirtualDirectory>
-  </VirtualDirectory>
-  <VirtualDirectory Name="moddb">
-    <VirtualDirectory Name="include">
-      <File Name="src\moddb\aidb_impl.h"/>
+    <VirtualDirectory Name="moddb">
+      <File Name="src\moddb\db.cpp"/>
+      <File Name="src\moddb\dbcursor.cpp"/>
+      <File Name="src\moddb\dbfile.cpp"/>
+      <File Name="src\moddb\dbrecordheader.cpp"/>
+      <File Name="src\moddb\dbrecordset.cpp"/>
+      <VirtualDirectory Name="include">
+        <File Name="src\moddb\aidb_impl.h"/>
+      </VirtualDirectory>
     </VirtualDirectory>
-    <File Name="src\moddb\dbrecordset.cpp"/>
-    <File Name="src\moddb\db.cpp"/>
-    <File Name="src\moddb\dbcursor.cpp"/>
-    <File Name="src\moddb\dbfile.cpp"/>
-    <File Name="src\moddb\dbrecordheader.cpp"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="modengine">
-    <File Name="src\modengine\xml.cpp"/>
-    <File Name="src\modengine\engine.cpp"/>
-    <File Name="src\modengine\enginethreadhelper.cpp"/>
-    <File Name="src\modengine\fileutils.cpp"/>
-    <File Name="src\modengine\logger.cpp"/>
-    <File Name="src\modengine\logmanager.cpp"/>
-    <File Name="src\modengine\logsettings.cpp"/>
-    <File Name="src\modengine\logsettingsitem.cpp"/>
-    <File Name="src\modengine\math.cpp"/>
-    <File Name="src\modengine\multiindexiterator.cpp"/>
-    <File Name="src\modengine\object.cpp"/>
-    <File Name="src\modengine\objectfield.cpp"/>
-    <File Name="src\modengine\random.cpp"/>
-    <File Name="src\modengine\runtimeexception.cpp"/>
-    <File Name="src\modengine\scale.cpp"/>
-    <File Name="src\modengine\serializeobject.cpp"/>
-    <File Name="src\modengine\string.cpp"/>
-    <File Name="src\modengine\timer.cpp"/>
-    <File Name="src\modengine\tinyxml.cpp"/>
-    <File Name="src\modengine\tinyxmlerror.cpp"/>
-    <File Name="src\modengine\tinyxmlparser.cpp"/>
-    <VirtualDirectory Name="include">
-      <File Name="src\modengine\tinyxml.h"/>
-      <File Name="src\modengine\aiengine_impl.h"/>
+    <VirtualDirectory Name="modengine">
+      <VirtualDirectory Name="include">
+        <File Name="src\modengine\aiengine_impl.h"/>
+        <File Name="src\modengine\tinyxml.h"/>
+      </VirtualDirectory>
+      <File Name="src\modengine\engine.cpp"/>
+      <File Name="src\modengine\enginethreadhelper.cpp"/>
+      <File Name="src\modengine\fileutils.cpp"/>
+      <File Name="src\modengine\logger.cpp"/>
+      <File Name="src\modengine\logmanager.cpp"/>
+      <File Name="src\modengine\logsettings.cpp"/>
+      <File Name="src\modengine\logsettingsitem.cpp"/>
+      <File Name="src\modengine\math.cpp"/>
+      <File Name="src\modengine\multiindexiterator.cpp"/>
+      <File Name="src\modengine\object.cpp"/>
+      <File Name="src\modengine\objectfield.cpp"/>
+      <File Name="src\modengine\random.cpp"/>
+      <File Name="src\modengine\runtimeexception.cpp"/>
+      <File Name="src\modengine\scale.cpp"/>
+      <File Name="src\modengine\serializeobject.cpp"/>
+      <File Name="src\modengine\string.cpp"/>
+      <File Name="src\modengine\timer.cpp"/>
+      <File Name="src\modengine\tinyxml.cpp"/>
+      <File Name="src\modengine\tinyxmlerror.cpp"/>
+      <File Name="src\modengine\tinyxmlparser.cpp"/>
+      <File Name="src\modengine\xml.cpp"/>
     </VirtualDirectory>
-  </VirtualDirectory>
-  <VirtualDirectory Name="modheart">
-    <VirtualDirectory Name="include">
-      <File Name="src\modheart\aiheart_impl.h"/>
+    <VirtualDirectory Name="modheart">
+      <VirtualDirectory Name="include">
+        <File Name="src\modheart\aiheart_impl.h"/>
+      </VirtualDirectory>
+      <File Name="src\modheart\emotion.cpp"/>
+      <File Name="src\modheart\heart.cpp"/>
     </VirtualDirectory>
-    <File Name="src\modheart\heart.cpp"/>
-    <File Name="src\modheart\emotion.cpp"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="modhtmlib">
-    <VirtualDirectory Name="include">
-      <File Name="src\modhtmlib\aihtmlib_impl.h"/>
+    <VirtualDirectory Name="modhtmlib">
+      <VirtualDirectory Name="include">
+        <File Name="src\modhtmlib\aihtmlib_impl.h"/>
+      </VirtualDirectory>
+      <File Name="src\modhtmlib\htmcortex.cpp"/>
+      <File Name="src\modhtmlib\htmhelper.cpp"/>
+      <File Name="src\modhtmlib\htmlayer.cpp"/>
+      <File Name="src\modhtmlib\htmlayermemory.cpp"/>
+      <File Name="src\modhtmlib\htmlib.cpp"/>
+      <File Name="src\modhtmlib\htmlibdebug.cpp"/>
+      <File Name="src\modhtmlib\htmrect.cpp"/>
+      <File Name="src\modhtmlib\htmsequence.cpp"/>
     </VirtualDirectory>
-    <File Name="src\modhtmlib\htmsequence.cpp"/>
-    <File Name="src\modhtmlib\htmcortex.cpp"/>
-    <File Name="src\modhtmlib\htmhelper.cpp"/>
-    <File Name="src\modhtmlib\htmlayer.cpp"/>
-    <File Name="src\modhtmlib\htmlayermemory.cpp"/>
-    <File Name="src\modhtmlib\htmlib.cpp"/>
-    <File Name="src\modhtmlib\htmlibdebug.cpp"/>
-    <File Name="src\modhtmlib\htmrect.cpp"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="modio">
-    <VirtualDirectory Name="include">
-      <File Name="src\modio\aiio_impl.h"/>
+    <VirtualDirectory Name="modio">
+      <VirtualDirectory Name="include">
+        <File Name="src\modio\aiio_impl.h"/>
+      </VirtualDirectory>
+      <File Name="src\modio\channel.cpp"/>
+      <File Name="src\modio\io.cpp"/>
+      <File Name="src\modio\message.cpp"/>
+      <File Name="src\modio\publisher.cpp"/>
+      <File Name="src\modio\queue.cpp"/>
+      <File Name="src\modio\session.cpp"/>
+      <File Name="src\modio\subscription.cpp"/>
+      <File Name="src\modio\xmlcall.cpp"/>
+      <File Name="src\modio\xmlmessage.cpp"/>
     </VirtualDirectory>
-    <File Name="src\modio\xmlmessage.cpp"/>
-    <File Name="src\modio\channel.cpp"/>
-    <File Name="src\modio\io.cpp"/>
-    <File Name="src\modio\message.cpp"/>
-    <File Name="src\modio\publisher.cpp"/>
-    <File Name="src\modio\queue.cpp"/>
-    <File Name="src\modio\session.cpp"/>
-    <File Name="src\modio\subscription.cpp"/>
-    <File Name="src\modio\xmlcall.cpp"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="modknowledge">
-    <VirtualDirectory Name="include">
-      <File Name="src\modknowledge\aiknowledge_impl.h"/>
+    <VirtualDirectory Name="modknowledge">
+      <VirtualDirectory Name="include">
+        <File Name="src\modknowledge\aiknowledge_impl.h"/>
+      </VirtualDirectory>
+      <File Name="src\modknowledge\knowledge.cpp"/>
     </VirtualDirectory>
-    <File Name="src\modknowledge\knowledge.cpp"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="modmedia">
-    <VirtualDirectory Name="include">
-      <File Name="src\modmedia\aimedia_impl.h"/>
+    <VirtualDirectory Name="modmedia">
+      <VirtualDirectory Name="include">
+        <File Name="src\modmedia\aimedia_impl.h"/>
+      </VirtualDirectory>
+      <File Name="src\modmedia\listener.cpp"/>
+      <File Name="src\modmedia\media.cpp"/>
+      <File Name="src\modmedia\socketconnection.cpp"/>
+      <File Name="src\modmedia\sockserver.cpp"/>
     </VirtualDirectory>
-    <File Name="src\modmedia\sockserver.cpp"/>
-    <File Name="src\modmedia\listener.cpp"/>
-    <File Name="src\modmedia\media.cpp"/>
-    <File Name="src\modmedia\socketconnection.cpp"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="modmind">
-    <VirtualDirectory Name="include">
-      <File Name="src\modmind\aimind_impl.h"/>
+    <VirtualDirectory Name="modmind">
+      <VirtualDirectory Name="include">
+        <File Name="src\modmind\aimind_impl.h"/>
+      </VirtualDirectory>
+      <File Name="src\modmind\mind.cpp"/>
     </VirtualDirectory>
-    <File Name="src\modmind\mind.cpp"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="modnnlib">
-    <VirtualDirectory Name="include">
-      <File Name="src\modnnlib\ainnlib_implstrategy.h"/>
-      <File Name="src\modnnlib\ainnlib_impl.h"/>
-      <File Name="src\modnnlib\ainnlib_implfunc.h"/>
-      <File Name="src\modnnlib\ainnlib_implnet.h"/>
-      <File Name="src\modnnlib\ainnlib_implnn.h"/>
+    <VirtualDirectory Name="modnnlib">
+      <VirtualDirectory Name="include">
+        <File Name="src\modnnlib\ainnlib_impl.h"/>
+        <File Name="src\modnnlib\ainnlib_implfunc.h"/>
+        <File Name="src\modnnlib\ainnlib_implnet.h"/>
+        <File Name="src\modnnlib\ainnlib_implnn.h"/>
+        <File Name="src\modnnlib\ainnlib_implstrategy.h"/>
+      </VirtualDirectory>
+      <File Name="src\modnnlib\nn.cpp"/>
+      <File Name="src\modnnlib\nnactivationfunction.cpp"/>
+      <File Name="src\modnnlib\nnerrorfunction.cpp"/>
+      <File Name="src\modnnlib\nnfinder.cpp"/>
+      <File Name="src\modnnlib\nnfinderfactory.cpp"/>
+      <File Name="src\modnnlib\nnfinderfactorysample.cpp"/>
+      <File Name="src\modnnlib\nninductionfunction.cpp"/>
+      <File Name="src\modnnlib\nnlayer.cpp"/>
+      <File Name="src\modnnlib\nnlib.cpp"/>
+      <File Name="src\modnnlib\nnlibdebug.cpp"/>
+      <File Name="src\modnnlib\nnneuron.cpp"/>
+      <File Name="src\modnnlib\nnregression.cpp"/>
+      <File Name="src\modnnlib\nnregressionfactory.cpp"/>
+      <File Name="src\modnnlib\nnsample.cpp"/>
+      <File Name="src\modnnlib\nnsamples.cpp"/>
+      <File Name="src\modnnlib\nnscanpoint.cpp"/>
+      <File Name="src\modnnlib\nnstopfunction.cpp"/>
+      <File Name="src\modnnlib\nnstrategy.cpp"/>
+      <File Name="src\modnnlib\nnstrategybackpropagation.cpp"/>
+      <File Name="src\modnnlib\nnstrategyhelper.cpp"/>
+      <File Name="src\modnnlib\nnstrategyscan.cpp"/>
+      <File Name="src\modnnlib\nnstrategyscaniteration.cpp"/>
+      <File Name="src\modnnlib\nnvalidatefunction.cpp"/>
+      <File Name="src\modnnlib\nnvariable.cpp"/>
+      <File Name="src\modnnlib\nnvariablecategory.cpp"/>
+      <File Name="src\modnnlib\nnvariables.cpp"/>
+      <File Name="src\modnnlib\nnvariablescontainer.cpp"/>
+      <File Name="src\modnnlib\nnvariablesimple.cpp"/>
+      <File Name="src\modnnlib\nnweights.cpp"/>
     </VirtualDirectory>
-    <File Name="src\modnnlib\nnweights.cpp"/>
-    <File Name="src\modnnlib\nn.cpp"/>
-    <File Name="src\modnnlib\nnactivationfunction.cpp"/>
-    <File Name="src\modnnlib\nnerrorfunction.cpp"/>
-    <File Name="src\modnnlib\nnfinder.cpp"/>
-    <File Name="src\modnnlib\nnfinderfactory.cpp"/>
-    <File Name="src\modnnlib\nnfinderfactorysample.cpp"/>
-    <File Name="src\modnnlib\nninductionfunction.cpp"/>
-    <File Name="src\modnnlib\nnlayer.cpp"/>
-    <File Name="src\modnnlib\nnlib.cpp"/>
-    <File Name="src\modnnlib\nnlibdebug.cpp"/>
-    <File Name="src\modnnlib\nnneuron.cpp"/>
-    <File Name="src\modnnlib\nnregression.cpp"/>
-    <File Name="src\modnnlib\nnregressionfactory.cpp"/>
-    <File Name="src\modnnlib\nnsample.cpp"/>
-    <File Name="src\modnnlib\nnsamples.cpp"/>
-    <File Name="src\modnnlib\nnscanpoint.cpp"/>
-    <File Name="src\modnnlib\nnstopfunction.cpp"/>
-    <File Name="src\modnnlib\nnstrategy.cpp"/>
-    <File Name="src\modnnlib\nnstrategybackpropagation.cpp"/>
-    <File Name="src\modnnlib\nnstrategyhelper.cpp"/>
-    <File Name="src\modnnlib\nnstrategyscan.cpp"/>
-    <File Name="src\modnnlib\nnstrategyscaniteration.cpp"/>
-    <File Name="src\modnnlib\nnvalidatefunction.cpp"/>
-    <File Name="src\modnnlib\nnvariable.cpp"/>
-    <File Name="src\modnnlib\nnvariablecategory.cpp"/>
-    <File Name="src\modnnlib\nnvariables.cpp"/>
-    <File Name="src\modnnlib\nnvariablescontainer.cpp"/>
-    <File Name="src\modnnlib\nnvariablesimple.cpp"/>
   </VirtualDirectory>
   <Dependencies Name="Release"/>
   <VirtualDirectory Name="lib">
@@ -247,4 +247,15 @@
     </GlobalSettings>
   </Settings>
   <Dependencies Name="Debug"/>
+  <VirtualDirectory Name="etc">
+    <File Name="etc\nnlib.xml"/>
+    <File Name="etc\database.xml"/>
+    <File Name="etc\heart.xml"/>
+    <File Name="etc\htmlib.xml"/>
+    <File Name="etc\io.xml"/>
+    <File Name="etc\knowledge.xml"/>
+    <File Name="etc\main.xml"/>
+    <File Name="etc\media.xml"/>
+    <File Name="etc\mind.xml"/>
+  </VirtualDirectory>
 </CodeLite_Project>
