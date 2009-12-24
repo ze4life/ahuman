@@ -2,7 +2,7 @@
 /*#######################################################*/
 
 /* std headers */
-#include <__gen.h>
+#include "__gen.h"
 
 /* prototypes for local routines */
 static void shortsort( void *p_userdata , char *lo , char *hi , unsigned width , rfc_qsortcb comp );
