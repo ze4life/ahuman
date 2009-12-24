@@ -23,7 +23,10 @@ findings:
 
 changes in the code:
   * "for( int x" - x now is inside for block, not visible outside
-  * when passing class function as argument from class method, g++ requires using "&<class>::<function>" construction
+  * when passing class function as argument from class method, g++ requires using construction:
+{{{
+"&<class>::<function>"
+}}}
   * "thread" keyword is unsupported by g++, changed to Tls function calls
   * g++ has found several errors in unused template functions
   * now commented C++ handling of SEH exceptions - TBD
@@ -34,7 +37,10 @@ changes in the code:
   * generic headers have been updated - checked in new generic version to aiengine
   * not resolved question - moment type is now stale - its calendar limit is overdue
   * found non-english constants for calendar terms - replaced with english ones
-  * L"<string>" constant is not ushort* - forced conversions, needs investigations - TBD
+  * unicode constant is not ushort* - forced conversions, needs investigations - TBD
+{{{
+L"<string>"
+}}}
   * for g++ HINSTANCE is not void*
   * min, max macros are defined in system headers - added #ifndef blocks
   * __int64 replaced with long long int
