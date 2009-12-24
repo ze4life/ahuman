@@ -149,11 +149,11 @@ bool NNStrategyScanIteration::chooseRandomAxisItems( NNScanPoint *p_spStartPoint
 				axisIndex[ k ] = randoms4Axes.getRandomInt();
 			
 			// sort by value
-			Sort<int, NNStrategyScanIteration> doSortFirst( axisIndex , axisItems , this , onSortAxisFirst );
+			Sort<int,NNStrategyScanIteration> doSortFirst( axisIndex , axisItems , this , &NNStrategyScanIteration::onSortAxisFirst );
 
 			// adjust to make different
 			for( int m = 1; m < axisItems; m++ )
-				axisIndex[ m ] += k;
+				axisIndex[ m ] += m;
 
 			// get direction ID
 			String direction = getDirection( axisIndex );
@@ -198,7 +198,7 @@ bool NNStrategyScanIteration::chooseBestAxisItems( NNScanPoint *p_spStartPoint )
 			axisIndex[ k ] = k;
 		}
 
-	Sort<int, NNStrategyScanIteration> doSort( axisIndex , nVars , this , onSortAxis );
+	Sort<int, NNStrategyScanIteration> doSort( axisIndex , nVars , this , &NNStrategyScanIteration::onSortAxis );
 
 	// show status of axis
 	// helper.showAxisError( axisIndex , axisErrorData , nVars );
@@ -215,7 +215,7 @@ bool NNStrategyScanIteration::chooseBestAxisItems( NNScanPoint *p_spStartPoint )
 			// get direction
 			for( int z = 0; z < axisItems; z++ )
 				axes[ z ] = axisIndex[ mi.getAxisIndex( z ) ];
-			Sort<int, NNStrategyScanIteration> doSortFirst( axes , axisItems , this , onSortAxisFirst );
+			Sort<int, NNStrategyScanIteration> doSortFirst( axes , axisItems , this , &NNStrategyScanIteration::onSortAxisFirst );
 
 			String direction = getDirection( axes );
 
@@ -435,7 +435,8 @@ int NNStrategyScanIteration::addMinItem( MultiIndexIterator& mp , float errorVal
 		}
 
 	// check the result - from end of best - find position to insert after
-	for( int bk = best.count() - 1; bk >= 0; bk-- )
+	int bk = best.count() - 1;
+	for( ; bk >= 0; bk-- )
 		{
 			NNScanPoint *pw = best.get( bk );
 			if( errorValue >= pw -> getVariance() )
@@ -538,7 +539,8 @@ int NNStrategyScanIteration::addMinPoint( NNScanPoint *psSrc )
 		}
 
 	// check the result - from end of best - find position to insert after
-	for( int bk = best.count() - 1; bk >= 0; bk-- )
+	int bk = best.count() - 1;
+	for( ; bk >= 0; bk-- )
 		{
 			NNScanPoint *pw = best.get( bk );
 			if( errorValue >= pw -> getVariance() )

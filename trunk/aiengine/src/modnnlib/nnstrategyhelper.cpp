@@ -584,7 +584,7 @@ void NNStrategyHelper::showValidateFailedSamples( NNSamples *samples )
 			showSample( sample );
 		}
 
-	for( k = 0; k < samples -> count(); k++ )
+	for( int k = 0; k < samples -> count(); k++ )
 		{
 			NNSample *sample = samples -> getByPos( k );
 			if( !sample -> isValidateFailed() )
@@ -611,7 +611,7 @@ void NNStrategyHelper::showSample( NNSample *sample )
 
 	String targetsS;
 	const float *targets = sample -> getTargets();
-	for( k = 0; k < sample -> getNTargets(); k++ )
+	for( int k = 0; k < sample -> getNTargets(); k++ )
 		{
 			if( k > 0 )
 				targetsS += ", ";
@@ -644,7 +644,7 @@ void NNStrategyHelper::showSampleActual( NNSample *sample )
 
 	String targetsSP;
 	const float *targets = sample -> getTargets();
-	for( k = 0; k < sample -> getNTargets(); k++ )
+	for( int k = 0; k < sample -> getNTargets(); k++ )
 		{
 			if( k > 0 )
 				targetsSP += ", ";
@@ -653,7 +653,7 @@ void NNStrategyHelper::showSampleActual( NNSample *sample )
 
 	String targetsSA;
 	ASSERT( p -> getNTargets() == sample -> getNTargets() );
-	for( k = 0; k < p -> getNTargets(); k++ )
+	for( int k = 0; k < p -> getNTargets(); k++ )
 		{
 			if( k > 0 )
 				targetsSA += ", ";

@@ -5,15 +5,18 @@
 
 EngineThreadHelper::EngineThreadHelper()
 { 
-	AIEngine& engine = AIEngine::getInstance();
-	engine.addWorkerObject( "engineThreadHelper" , this );
-
 	oldAIUnhandledExceptionTranslator = NULL;
 	remains = false; 
 }
 
 EngineThreadHelper::~EngineThreadHelper()
 {
+}
+
+void EngineThreadHelper::addThreadObject()
+{
+	AIEngine& engine = AIEngine::getInstance();
+	engine.addWorkerObject( "engineThreadHelper" , this );
 }
 
 EngineThreadHelper *EngineThreadHelper::getThreadObject()
