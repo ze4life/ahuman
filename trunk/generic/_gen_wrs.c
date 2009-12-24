@@ -15,7 +15,7 @@
 RFC_HND
 	rfc_res_accel( RFC_HND p_inst , const char *p_name )
 {
-	return( LoadAccelerators( p_inst , p_name ) );
+	return( ( RFC_HND )LoadAccelerators( ( HINSTANCE )p_inst , p_name ) );
 }
 
 /* accelerator resource */
@@ -35,7 +35,7 @@ RFC_HND
 	if( l_lib -> s_lib == NULL )
 		return( NULL );
 
-	return( LoadAccelerators( l_lib -> s_lib , p_name ) );
+	return( ( RFC_HND )LoadAccelerators( ( HINSTANCE )l_lib -> s_lib , p_name ) );
 }
 
 /* image resource (IMAGE_BITMAP, IMAGE_CURSOR, IMAGE_ICON) */
@@ -47,7 +47,7 @@ RFC_HND
 		int p_cy ,
 		UINT p_load )
 {
-	return( LoadImage( p_inst , p_name , p_type , p_cx , p_cy , p_load ) );
+	return( ( RFC_HND )LoadImage( ( HINSTANCE )p_inst , p_name , p_type , p_cx , p_cy , p_load ) );
 }
 
 /* image resource (IMAGE_BITMAP, IMAGE_CURSOR, IMAGE_ICON) */
@@ -72,14 +72,14 @@ RFC_HND
 	if( l_lib -> s_lib == NULL )
 		return( NULL );
 
-	return( LoadImage( l_lib -> s_lib , p_name , p_type , p_cx , p_cy , p_load ) );
+	return( ( RFC_HND )LoadImage( ( HINSTANCE )l_lib -> s_lib , p_name , p_type , p_cx , p_cy , p_load ) );
 }
 
 /* menu resource */
 RFC_HND
 	rfc_res_menu( RFC_HND p_inst , const char *p_name )
 {
-	return( LoadMenu( p_inst , p_name ) );
+	return( ( RFC_HND )LoadMenu( ( HINSTANCE )p_inst , p_name ) );
 }
 
 /* menu resource */
@@ -99,7 +99,7 @@ RFC_HND
 	if( l_lib -> s_lib == NULL )
 		return( NULL );
 
-	return( LoadMenu( l_lib -> s_lib , p_name ) );
+	return( ( RFC_HND )LoadMenu( ( HINSTANCE )l_lib -> s_lib , p_name ) );
 }
 
 /* string resource */
@@ -111,7 +111,7 @@ const char *
 
 	*l_buf = 0;
 
-	l_len = LoadString( p_inst , p_id , l_buf , 1024 );
+	l_len = LoadString( ( HINSTANCE )p_inst , p_id , l_buf , 1024 );
 	l_buf[ l_len ] = 0;
 
 	return( l_buf );
@@ -138,7 +138,7 @@ const char *
 	if( l_lib -> s_lib == NULL )
 		return( NULL );
 
-	l_len = LoadString( l_lib -> s_lib , p_id , l_buf , 1024 );
+	l_len = LoadString( ( HINSTANCE )l_lib -> s_lib , p_id , l_buf , 1024 );
 	l_buf[ l_len ] = 0;
 
 	return( l_buf );
@@ -150,11 +150,11 @@ RFC_HND
 {
 	HRSRC l_res;
 
-	l_res = FindResource( p_inst , p_name , RT_DIALOG );
+	l_res = FindResource( ( HINSTANCE )p_inst , p_name , RT_DIALOG );
 	if( l_res == NULL )
 		return( NULL );
 
-	return( LoadResource( p_inst , l_res ) );
+	return( ( RFC_HND )LoadResource( ( HINSTANCE )p_inst , l_res ) );
 }
 
 /* dialog resource */
@@ -175,11 +175,11 @@ RFC_HND
 	if( l_lib -> s_lib == NULL )
 		return( NULL );
 
-	l_res = FindResource( l_lib -> s_lib , p_name , RT_DIALOG );
+	l_res = FindResource( ( HINSTANCE )l_lib -> s_lib , p_name , RT_DIALOG );
 	if( l_res == NULL )
 		return( NULL );
 
-	return( LoadResource( l_lib -> s_lib , l_res ) );
+	return( ( RFC_HND )LoadResource( ( HINSTANCE )l_lib -> s_lib , l_res ) );
 }
 
 /* custom resource */
@@ -188,11 +188,11 @@ RFC_HND
 {
 	HRSRC l_res;
 
-	l_res = FindResource( p_inst , p_name , p_type );
+	l_res = FindResource( ( HINSTANCE )p_inst , p_name , p_type );
 	if( l_res == NULL )
 		return( NULL );
 
-	return( LoadResource( p_inst , l_res ) );
+	return( ( RFC_HND )LoadResource( ( HINSTANCE )p_inst , l_res ) );
 }
 
 /*#######################################################*/

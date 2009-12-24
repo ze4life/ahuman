@@ -74,20 +74,15 @@ static int
 
 /* create cube */
 rfc_cube *
-	rfc_cb_create( va_alist /* int p_type , int p_keyels , short s_isnum1 , ... , short s_isnum<p_keyels> */ )
-	va_dcl
+	rfc_cb_create( int p_type , int p_keyels , ... /*, short s_isnum1 , ... , short s_isnum<p_keyels> */ )
 {
 	va_list l_va;
 	rfc_cube *l_cb;
-	int l_type;
-	int l_keyels;
 
-	va_start( l_va );
-	l_type = va_arg( l_va , int );
-	if( l_type == RFC_EXT_TYPECHAR )
-		l_type = RFC_EXT_TYPESTRING;
-	l_keyels = va_arg( l_va , int );
-	l_cb = rfc_cb_create_va( l_type , l_keyels , l_va );
+	va_start( l_va , p_keyels );
+	if( p_type == RFC_EXT_TYPECHAR )
+		p_type = RFC_EXT_TYPESTRING;
+	l_cb = rfc_cb_create_va( p_type , p_keyels , l_va );
 	va_end( l_va );
 
 	return( l_cb );			
@@ -137,7 +132,7 @@ rfc_cube *
 
 	/* set key element numeric flags */
 	for( ; p_keyels--; l_el++ )
-		l_el -> s_isnum = va_arg( p_isnum , short );
+		l_el -> s_isnum = va_arg( p_isnum , int );
 
 	return( l_cb );
 }
@@ -261,49 +256,34 @@ void
 
 /* add item to cube */
 void
-	rfc_cb_add( va_alist /* rfc_cube *p_cb , void *p_ext , const void *p_value , {const char *|int} p_keyval1 , ... , {const char *|int} p_keyval<s_keyel_n> */ )
-	va_dcl
+	rfc_cb_add( rfc_cube *p_cb , void *p_ext , const void *p_value , ... /*{const char *|int} p_keyval1 , ... , {const char *|int} p_keyval<s_keyel_n> */ )
 {
 	va_list l_va;
-	rfc_cube *l_cb;
-	void *l_ext;
-	const void *l_value;
+	va_start( l_va , p_value );
 
-	va_start( l_va );
-	l_cb = va_arg( l_va , rfc_cube * );
-	l_ext = va_arg( l_va , void * );
-	l_value = va_arg( l_va , void * );
-
-	rfc_cb_add_va( l_cb , l_ext , l_value , l_va );
+	rfc_cb_add_va( p_cb , p_ext , p_value , l_va );
 	va_end( l_va );
 }
 
 void
-	rfc_cb_add_d( va_alist /* rfc_cube *p_cb , void *p_ext , short p_value , {const char *|int} p_keyval1 , ... , {const char *|int} p_keyval<s_keyel_n> */ )
-	va_dcl
+	rfc_cb_add_d( rfc_cube *p_cb , void *p_ext , short p_value , ... /*{const char *|int} p_keyval1 , ... , {const char *|int} p_keyval<s_keyel_n> */ )
 {
 	va_list l_va;
-	rfc_cube *l_cb;
-	void *l_ext;
-	short l_value;
 	RFC_INT64 l_v;
 
-	va_start( l_va );
-	l_cb = va_arg( l_va , rfc_cube * );
-	l_ext = va_arg( l_va , void * );
-	l_value = va_arg( l_va , short );
+	va_start( l_va , p_value );
 
 	/* check type */
-	switch( l_cb -> s_type )
+	switch( p_cb -> s_type )
 		{
 			case RFC_EXT_TYPESHORT :
-				rfc_cb_add_va( l_cb , l_ext , &l_value , l_va );
+				rfc_cb_add_va( p_cb , p_ext , &p_value , l_va );
 				break;
 			case RFC_EXT_TYPELONG :
 			case RFC_EXT_TYPEMONEY :
 			case RFC_EXT_TYPEDOUBLE :
-				rfc_type_cnv( &l_value , RFC_EXT_TYPESHORT , &l_v , l_cb -> s_type , NULL , NULL );
-				rfc_cb_add_va( l_cb , l_ext , &l_v , l_va );
+				rfc_type_cnv( &p_value , RFC_EXT_TYPESHORT , &l_v , p_cb -> s_type , NULL , NULL );
+				rfc_cb_add_va( p_cb , p_ext , &l_v , l_va );
 				break;
 		}
 
@@ -311,32 +291,25 @@ void
 }
 
 void
-	rfc_cb_add_l( va_alist /* rfc_cube *p_cb , void *p_ext , int p_value , {const char *|int} p_keyval1 , ... , {const char *|int} p_keyval<s_keyel_n> */ )
-	va_dcl
+	rfc_cb_add_l( rfc_cube *p_cb , void *p_ext , int p_value , ... /*{const char *|int} p_keyval1 , ... , {const char *|int} p_keyval<s_keyel_n> */ )
 {
 	va_list l_va;
-	rfc_cube *l_cb;
-	void *l_ext;
-	int l_value;
 	RFC_INT64 l_v;
 
-	va_start( l_va );
-	l_cb = va_arg( l_va , rfc_cube * );
-	l_ext = va_arg( l_va , void * );
-	l_value = va_arg( l_va , int );
+	va_start( l_va , p_value );
 
 	/* check type */
-	switch( l_cb -> s_type )
+	switch( p_cb -> s_type )
 		{
 			case RFC_EXT_TYPELONG :
 			case RFC_EXT_TYPEMOMENT :
 			case RFC_EXT_TYPETIMET :
-				rfc_cb_add_va( l_cb , l_ext , &l_value , l_va );
+				rfc_cb_add_va( p_cb , p_ext , &p_value , l_va );
 				break;
 			case RFC_EXT_TYPEMONEY :
 			case RFC_EXT_TYPEDOUBLE :
-				rfc_type_cnv( &l_value , RFC_EXT_TYPELONG , &l_v , l_cb -> s_type , NULL , NULL );
-				rfc_cb_add_va( l_cb , l_ext , &l_v , l_va );
+				rfc_type_cnv( &p_value , RFC_EXT_TYPELONG , &l_v , p_cb -> s_type , NULL , NULL );
+				rfc_cb_add_va( p_cb , p_ext , &l_v , l_va );
 				break;
 		}
 
@@ -344,29 +317,22 @@ void
 }
 	
 void
-	rfc_cb_add_m( va_alist /* rfc_cube *p_cb , void *p_ext , RFC_INT64 p_value , {const char *|int} p_keyval1 , ... , {const char *|int} p_keyval<s_keyel_n> */ )
-	va_dcl
+	rfc_cb_add_m( rfc_cube *p_cb , void *p_ext , RFC_INT64 p_value , ... /*{const char *|int} p_keyval1 , ... , {const char *|int} p_keyval<s_keyel_n> */ )
 {
 	va_list l_va;
-	rfc_cube *l_cb;
-	void *l_ext;
-	RFC_INT64 l_value;
 	RFC_INT64 l_v;
 
-	va_start( l_va );
-	l_cb = va_arg( l_va , rfc_cube * );
-	l_ext = va_arg( l_va , void * );
-	l_value = va_arg( l_va , RFC_INT64 );
+	va_start( l_va , p_value );
 
 	/* check type */
-	switch( l_cb -> s_type )
+	switch( p_cb -> s_type )
 		{
 			case RFC_EXT_TYPEMONEY :
-				rfc_cb_add_va( l_cb , l_ext , &l_value , l_va );
+				rfc_cb_add_va( p_cb , p_ext , &p_value , l_va );
 				break;
 			case RFC_EXT_TYPEDOUBLE :
-				rfc_type_cnv( &l_value , RFC_EXT_TYPEMONEY , &l_v , l_cb -> s_type , NULL , NULL );
-				rfc_cb_add_va( l_cb , l_ext , &l_v , l_va );
+				rfc_type_cnv( &p_value , RFC_EXT_TYPEMONEY , &l_v , p_cb -> s_type , NULL , NULL );
+				rfc_cb_add_va( p_cb , p_ext , &l_v , l_va );
 				break;
 		}
 
@@ -374,29 +340,22 @@ void
 }
 
 void
-	rfc_cb_add_f( va_alist /* rfc_cube *p_cb , void *p_ext , double p_value , {const char *|int} p_keyval1 , ... , {const char *|int} p_keyval<s_keyel_n> */ )
-	va_dcl
+	rfc_cb_add_f( rfc_cube *p_cb , void *p_ext , double p_value , ... /*{const char *|int} p_keyval1 , ... , {const char *|int} p_keyval<s_keyel_n> */ )
 {
 	va_list l_va;
-	rfc_cube *l_cb;
-	void *l_ext;
-	double l_value;
 	RFC_INT64 l_v;
 
-	va_start( l_va );
-	l_cb = va_arg( l_va , rfc_cube * );
-	l_ext = va_arg( l_va , void * );
-	l_value = va_arg( l_va , double );
+	va_start( l_va , p_value );
 
 	/* check type */
-	switch( l_cb -> s_type )
+	switch( p_cb -> s_type )
 		{
 			case RFC_EXT_TYPEDOUBLE :
-				rfc_cb_add_va( l_cb , l_ext , &l_value , l_va );
+				rfc_cb_add_va( p_cb , p_ext , &p_value , l_va );
 				break;
 			case RFC_EXT_TYPEMONEY :
-				rfc_type_cnv( &l_value , RFC_EXT_TYPEDOUBLE , &l_v , l_cb -> s_type , NULL , NULL );
-				rfc_cb_add_va( l_cb , l_ext , &l_v , l_va );
+				rfc_type_cnv( &p_value , RFC_EXT_TYPEDOUBLE , &l_v , p_cb -> s_type , NULL , NULL );
+				rfc_cb_add_va( p_cb , p_ext , &l_v , l_va );
 				break;
 		}
 
@@ -404,41 +363,27 @@ void
 }
 
 void
-	rfc_cb_add_s( va_alist /* rfc_cube *p_cb , void *p_ext , const char *p_value , {const char *|int} p_keyval1 , ... , {const char *|int} p_keyval<s_keyel_n> */ )
-	va_dcl
+	rfc_cb_add_s( rfc_cube *p_cb , void *p_ext , const char *p_value , ... /*{const char *|int} p_keyval1 , ... , {const char *|int} p_keyval<s_keyel_n> */ )
 {
 	va_list l_va;
-	rfc_cube *l_cb;
-	void *l_ext;
-	const char *l_value;
 
-	va_start( l_va );
-	l_cb = va_arg( l_va , rfc_cube * );
-	l_ext = va_arg( l_va , void * );
-	l_value = va_arg( l_va , const char * );
+	va_start( l_va , p_value );
 
-	if( l_cb -> s_type == RFC_EXT_TYPESTRING ||
-		l_cb -> s_type == RFC_EXT_TYPECHAR )
-		rfc_cb_add_va( l_cb , l_ext , &l_value , l_va );
+	if( p_cb -> s_type == RFC_EXT_TYPESTRING ||
+		p_cb -> s_type == RFC_EXT_TYPECHAR )
+		rfc_cb_add_va( p_cb , p_ext , &p_value , l_va );
 	va_end( l_va );
 }
 
 void
-	rfc_cb_add_p( va_alist /* rfc_cube *p_cb , void *p_ext , void *p_value , {const char *|int} p_keyval1 , ... , {const char *|int} p_keyval<s_keyel_n> */ )
-	va_dcl
+	rfc_cb_add_p( rfc_cube *p_cb , void *p_ext , void *p_value , ... /*{const char *|int} p_keyval1 , ... , {const char *|int} p_keyval<s_keyel_n> */ )
 {
 	va_list l_va;
-	rfc_cube *l_cb;
-	void *l_ext;
-	void *l_value;
 
-	va_start( l_va );
-	l_cb = va_arg( l_va , rfc_cube * );
-	l_ext = va_arg( l_va , void * );
-	l_value = va_arg( l_va , void * );
+	va_start( l_va , p_value );
 
-	if( l_cb -> s_type == RFC_EXT_TYPEPTR )
-		rfc_cb_add_va( l_cb , l_ext , &l_value , l_va );
+	if( p_cb -> s_type == RFC_EXT_TYPEPTR )
+		rfc_cb_add_va( p_cb , p_ext , &p_value , l_va );
 	va_end( l_va );
 }
 
@@ -852,17 +797,14 @@ int
 
 /* walk from root with filter by all axes */
 int
-	rfc_cb_mfwalk( va_alist /* rfc_cube *p_cb , int p_el1 , {int|const char *} p_keyval1 , ... , int p_el<n> , {int|const char *} p_keyval<n> , -1 */ )
-	va_dcl
+	rfc_cb_mfwalk( rfc_cube *p_cb , ... /*int p_el1 , {int|const char *} p_keyval1 , ... , int p_el<n> , {int|const char *} p_keyval<n> , -1 */ )
 {
 	va_list l_va;
-	rfc_cube *l_cb;
 	int l_res;
 
-	va_start( l_va );
-	l_cb = va_arg( l_va , rfc_cube * );
+	va_start( l_va , p_cb );
 	
-	l_res = rfc_cb_mfwalk_va( l_cb , l_va );
+	l_res = rfc_cb_mfwalk_va( p_cb , l_va );
 	va_end( l_va );
 
 	return( l_res );

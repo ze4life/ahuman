@@ -11,20 +11,20 @@
 static int g_dtm_month[ 12 ] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
 
-char * months[] = 
-{ 	"января", "февраля", "марта", "апреля", "мая", "июня",
-	"июля", "августа", "сентября", "октября", "ноября", "декабря" };
+const char * months[] = 
+{ 	"January", "February", "March", "April", "May", "June",
+	"July", "August", "September", "October" , "November", "December" };
 
-char * mon[] = 
-{ 	"янв", "фвр", "мар", "апр", "май", "июн",
-	"июл", "авг", "снт", "окт", "нояб", "дек" };
+const char * mon[] = 
+{ 	"JAN", "FEB", "MAR", "APR", "MAY", "JUN",
+	"JUL", "AUG", "SEP", "OCT", "NOV", "DEC" };
 
-char * week[] = 
-{	"воскресение" ,"понедельник", "вторник", "среда", "четверг",
-	"пятница", "суббота" };
+const char * week[] = 
+{	"sunday" ,"monday", "tuesday", "wednesday", "thursday",
+	"friday", "saturday" };
 
-char * wk[] = 
-{ 	"вс", "пн", "вт", "ср", "чт", "пт", "сб" };
+const char * wk[] = 
+{ 	"sn", "mn", "tu", "wd", "th", "fr", "st" };
 
 
 /*#######################################################*/
@@ -43,7 +43,7 @@ rfc_moment
 void 
 	_rfc_dtm_stm2string( struct tm * p_tm , rfc_fmt_date * p_fmt , char * p_tmstr )
 {
-	const char * l_dtdiv = "  ";/* разделитель между датой и временем */
+	const char * l_dtdiv = "  ";/* Г°Г Г§Г¤ГҐГ«ГЁГІГҐГ«Гј Г¬ГҐГ¦Г¤Гі Г¤Г ГІГ®Г© ГЁ ГўГ°ГҐГ¬ГҐГ­ГҐГ¬ */
 	int		year, month, day ,
 			hour, min  , sec ,
 			i ;

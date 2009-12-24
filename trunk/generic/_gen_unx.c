@@ -6,7 +6,7 @@
 #include <unistd.h>
 #include <errno.h>
 #include <pthread.h>
-#include <sys/sem.h>
+//#include <sys/sem.h>
 
 #include <__gen.h>
 

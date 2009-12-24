@@ -123,7 +123,7 @@ extern rfc_huge *
 
 /* set any level array element by index parameters */
 extern void
-	rfc_hm_mset( RFC_VARARGS /* rfc_huge *p_hm , int p_level , const void *p_value , int p_idx1 , ... , int p_idx<p_level> */ );
+	rfc_hm_mset( rfc_huge *p_hm , int p_level , const void *p_value , ... /*int p_idx1 , ... , int p_idx<p_level> */ );
 /* set any level array element by va_list */
 extern void
 	rfc_hm_mset_va( rfc_huge *p_hm , int p_level , const void *p_value , va_list p_idx );
@@ -132,7 +132,7 @@ extern void
 	rfc_hm_mset_a( rfc_huge *p_hm , int p_level , const void *p_value , int *p_idx );
 /* get any level array element by index parameters */
 extern const rfc_hugeel *
-	rfc_hm_mget( RFC_VARARGS /* rfc_huge *p_hm , int p_level , int p_idx1 , ... , int p_idx<p_level> */ );
+	rfc_hm_mget( rfc_huge *p_hm , int p_level , ... /*int p_idx1 , ... , int p_idx<p_level> */ );
 /* get any level array element by va_list */
 extern const rfc_hugeel *
 	rfc_hm_mget_va( rfc_huge *p_hm , int p_level , va_list p_idx );
@@ -141,7 +141,7 @@ extern const rfc_hugeel *
 	rfc_hm_mget_a( rfc_huge *p_hm , int p_level , int *p_idx );
 /* get any level subarray by index parameters */
 extern rfc_huge *
-	rfc_hm_mgetsub( RFC_VARARGS /* rfc_huge *p_hm , int p_level , int p_idx1 , ... , int p_idx<p_level> */ );
+	rfc_hm_mgetsub( rfc_huge *p_hm , int p_level , ... /*int p_idx1 , ... , int p_idx<p_level> */ );
 /* get any level subarray by va_list */
 extern rfc_huge *
 	rfc_hm_mgetsub_va( rfc_huge *p_hm , int p_level , va_list p_idx );

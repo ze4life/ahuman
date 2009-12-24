@@ -23,19 +23,19 @@ rfc_ustring
 		p_len = rfc_ustr_len( p_s );
 
 	if( p_allocate < p_len )
-		l_size = strlen( p_s );
+		l_size = strlen( ( const char * )p_s );
 	else
 		l_size = p_allocate * 3;
 
-	l_p = ( rfc_uchar * )malloc( sizeof( int ) + l_size + 1 );
+	l_p = ( char * )malloc( sizeof( int ) + l_size + 1 );
 	*( int * )l_p = l_size;
 	l_p += sizeof( int );
 
 	if( p_len )
-		strcpy( l_p , p_s );
+		strcpy( l_p , ( char * )p_s );
 	else
 		*l_p = 0;
-	return( l_p );
+	return( ( rfc_ustring )l_p );
 }
 
 /* reallocate buffer if needed */
@@ -53,7 +53,7 @@ rfc_ustring
 
 	/* reallocate */
 	p_str -= sizeof( int );
-	p_str = ( char * )realloc( p_str , p_size * 3 + sizeof( int ) + 1 );
+	p_str = ( rfc_ustring )realloc( p_str , p_size * 3 + sizeof( int ) + 1 );
 	*( int * )p_str = p_size * 3;
 	p_str += sizeof( int );
 
@@ -114,10 +114,10 @@ rfc_ustring
 		}
 
 	/* check allocation */
-	p_str = rfc_str_allocate( p_str , l_len + p_slen );
+	p_str = ( rfc_ustring )rfc_str_allocate( ( char * )p_str , l_len + p_slen );
 
 	/* shift tail */
-	l_size = ( p_str )? strlen( p_str ) : 0;
+	l_size = ( p_str )? strlen( ( char * )p_str ) : 0;
 	l_size_pos = rfc_ustr_size( p_str , p_pos );
 	l_size_slen = rfc_ustr_size( p_s , p_slen );
 	if( p_pos < l_len )
@@ -203,7 +203,7 @@ rfc_ustring
 	if( p_s == NULL || p_count <= 0 || *p_s == 0 )
 		return( NULL );
 
-	l_size = strlen( p_s );
+	l_size = strlen( ( char * )p_s );
 	l_len = rfc_ustr_len( p_s );
 	if( p_count >= l_len )
 		return( rfc_ustr_create( p_s , -1 , 0 ) );
@@ -235,21 +235,16 @@ rfc_ustring
 
 /* make format string */
 rfc_ustring
-	rfc_ustr_format( va_alist /* rfc_ustring p_str , const rfc_uchar *p_format , ... */ )
-	va_dcl
+	rfc_ustr_format( rfc_ustring p_str , const rfc_uchar *p_format , ... )
 {
 	va_list l_va;
-	rfc_ustring l_str;
-	const char *l_format;
 
-	va_start( l_va );
-	l_str = va_arg( l_va , rfc_ustring );
-	l_format = va_arg( l_va , const char * );
+	va_start( l_va , p_format );
 
-	l_str = rfc_ustr_format_va( l_str , l_format , l_va );
+	p_str = rfc_ustr_format_va( p_str , p_format , l_va );
 	va_end( l_va );
 
-	return( l_str );
+	return( p_str );
 }
 
 /* make format string with valist*/
@@ -257,7 +252,7 @@ rfc_ustring
 	rfc_ustr_format_va( rfc_ustring p_str , const rfc_uchar *p_format , va_list p_va )
 {
 	/* the same as for rfc_string */
-	return( rfc_str_format_va( ( rfc_string )p_str , ( const char * )p_format , p_va ) );
+	return( ( rfc_ustring )rfc_str_format_va( ( rfc_string )p_str , ( const char * )p_format , p_va ) );
 }
 
 /* special */
@@ -306,9 +301,9 @@ int
 	l_size1 = rfc_ustr_size( p_s1 , p_n );
 	l_size2 = rfc_ustr_size( p_s2 , p_n );
 	if( l_size1 != l_size2 )
-		return( strcmp( p_s1 , p_s2 ) );
+		return( strcmp( ( const char * )p_s1 , ( const char * )p_s2 ) );
 
-	return( strncmp( p_s1 , p_s2 , l_size1 ) );			
+	return( strncmp( ( const char * )p_s1 , ( const char * )p_s2 , l_size1 ) );			
 }
 
 /* get next character pointer */

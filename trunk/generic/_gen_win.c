@@ -259,12 +259,12 @@ RFC_HND rfc_lib_load( const char *p_lib )
 
 RFC_PROC rfc_lib_getfunc( RFC_HND p_lib , const char *p_func )
 {
-	return( ( RFC_PROC )GetProcAddress( p_lib , p_func ) );
+	return( ( RFC_PROC )GetProcAddress( ( HINSTANCE )p_lib , p_func ) );
 }
 
 void rfc_lib_unload( RFC_HND p_lib )
 {
-	FreeLibrary( p_lib );
+	FreeLibrary( ( HINSTANCE )p_lib );
 }
 
 /*#######################################################*/
@@ -273,7 +273,7 @@ void rfc_lib_unload( RFC_HND p_lib )
 
 void rfc_env_gethostname( char *p_name , int p_size )
 {
-	GetComputerName( p_name , &p_size );
+	GetComputerName( p_name , ( DWORD * )&p_size );
 }
 
 /*#######################################################*/
@@ -286,7 +286,7 @@ short
 	int l_len;
 
 	l_len = rfc_wstr_len( p_v );
-	if( !WideCharToMultiByte( p_cp , 0 , p_v , l_len , p_s , l_len , NULL , NULL ) )
+	if( !WideCharToMultiByte( p_cp , 0 , ( const WCHAR * )p_v , l_len , p_s , l_len , NULL , NULL ) )
 		return( 0 );
 
 	p_s[ l_len ] = 0;
@@ -300,7 +300,7 @@ short
 	int l_len;
 
 	l_len = strlen( p_v );
-	if( !MultiByteToWideChar( p_cp , 0 , p_v , l_len , p_s , l_len ) )
+	if( !MultiByteToWideChar( p_cp , 0 , p_v , l_len , ( WCHAR * )p_s , l_len ) )
 		return( 0 );
 
 	p_s[ l_len ] = 0;

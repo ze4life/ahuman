@@ -172,7 +172,7 @@ struct _rfc_map
 
 /* create map */
 extern rfc_map * 
-	rfc_map_create( RFC_VARARGS /* int p_type , int p_keys , short p_isnum1 , ... , short p_isnum<p_keys> */ );
+	rfc_map_create( int p_type , int p_keys , ... /*short p_isnum1 , ... , short p_isnum<p_keys> */ );
 extern rfc_map * 
 	rfc_map_create_a( int p_type , int p_keys , const short *p_isnum );
 extern rfc_map * 
@@ -196,7 +196,7 @@ extern void
 
 /* add item to map */
 extern int
-	rfc_map_add( RFC_VARARGS /* rfc_map *p_map , const RFC_TYPE *p_value , {const char *|int} p_keyval1 , ... , {const char *|int} p_keyval<s_keyel_n> */ );
+	rfc_map_add( rfc_map *p_map , const RFC_TYPE *p_value , ... /*{const char *|int} p_keyval1 , ... , {const char *|int} p_keyval<s_keyel_n> */ );
 extern int
 	rfc_map_add_a( rfc_map *p_map , const RFC_TYPE *p_value , const void **p_key /* {const char *|int}[] */ );
 extern int
@@ -204,7 +204,7 @@ extern int
 
 /* find item data */
 extern int
-	rfc_map_check( RFC_VARARGS /* rfc_map *p_map , RFC_TYPE *p_value , {const char *|int} p_keyval1 , ... , {const char *|int} p_keyval<s_keyel_n> */ );
+	rfc_map_check( rfc_map *p_map , RFC_TYPE *p_value , ... /*{const char *|int} p_keyval1 , ... , {const char *|int} p_keyval<s_keyel_n> */ );
 extern int
 	rfc_map_check_a( rfc_map *p_map , RFC_TYPE *p_value , const void **p_key /* {const char *|int}[] */ );
 extern int

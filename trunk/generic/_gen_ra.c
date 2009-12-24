@@ -737,7 +737,7 @@ static void
 			case 'V' : l_res = memcmp( l_p , ( char * )( p_all[ l_data[ l_to ] ] ) + p_idx -> s_offset , p_idx -> s_size ); break;
 			case 'S' : l_res = strcmp( ( char * )l_p , ( char * )( p_all[ l_data[ l_to ] ] ) + p_idx -> s_offset ); break;
 			case 'L' : l_res = ( *( long * )l_p ) - ( *( long * )( ( ( char * )p_all[ l_data[ l_to ] ] ) + p_idx -> s_offset ) ); break;
-			case 'P' : l_res = strcmp( l_p , *( char ** )( ( char * )( p_all[ l_data[ l_to ] ] ) + p_idx -> s_offset ) ); break;
+			case 'P' : l_res = strcmp( ( const char * )l_p , *( char ** )( ( char * )( p_all[ l_data[ l_to ] ] ) + p_idx -> s_offset ) ); break;
 			case 'G' : l_res = memcmp( l_p , *( void ** )( ( char * )( p_all[ l_data[ l_to ] ] ) + p_idx -> s_offset ) , p_idx -> s_size ); break;
 		}
 	if( l_res >= 0 )
@@ -751,7 +751,7 @@ static void
 			case 'V' : l_res = memcmp( l_p , ( char * )( p_all[ l_data[ 0 ] ] ) + p_idx -> s_offset , p_idx -> s_size ); break;
 			case 'S' : l_res = strcmp( ( char * )l_p , ( char * )( p_all[ l_data[ 0 ] ] ) + p_idx -> s_offset ); break;
 			case 'L' : l_res = ( *( long * )l_p ) - ( *( long * )( ( ( char * )p_all[ l_data[ 0 ] ] ) + p_idx -> s_offset ) ); break;
-			case 'P' : l_res = strcmp( l_p , *( char ** )( ( char * )( p_all[ l_data[ 0 ] ] ) + p_idx -> s_offset ) ); break;
+			case 'P' : l_res = strcmp( ( const char * )l_p , *( char ** )( ( char * )( p_all[ l_data[ 0 ] ] ) + p_idx -> s_offset ) ); break;
 			case 'G' : l_res = memcmp( l_p , *( void ** )( ( char * )( p_all[ l_data[ 0 ] ] ) + p_idx -> s_offset ) , p_idx -> s_size ); break;
 		}
 	if( l_res <= 0 )
@@ -769,7 +769,7 @@ static void
 							case 'V' : l_res = memcmp( l_p , l_v , p_idx -> s_size ); break;
 							case 'S' : l_res = strcmp( ( char * )l_p , ( char * )l_v ); break;
 							case 'L' : l_res = ( *( long * )l_p ) - ( *( long * )l_v ); break;
-							case 'P' : l_res = strcmp( l_p , *( char ** )l_v ); break;
+							case 'P' : l_res = strcmp( ( const char * )l_p , *( char ** )l_v ); break;
 							case 'G' : l_res = memcmp( l_p , *( void ** )l_v , p_idx -> s_size ); break;
 						}
 					if( l_res == 0 )
@@ -1379,7 +1379,7 @@ static int
 			case 'V' : l_res = memcmp( l_p , ( char * )( p_all[ l_data[ l_to ] ] ) + l_offset , l_size ); break;
 			case 'S' : l_res = strcmp( ( char * )l_p , ( char * )( p_all[ l_data[ l_to ] ] ) + l_offset ); break;
 			case 'L' : l_res = ( *( long * )l_p ) - ( *( long * )( ( ( char * )p_all[ l_data[ l_to ] ] ) + l_offset ) ); break;
-			case 'P' : l_res = strcmp( l_p , *( char ** )( ( char * )( p_all[ l_data[ l_to ] ] ) + l_offset ) ); break;
+			case 'P' : l_res = strcmp( ( const char * )l_p , *( char ** )( ( char * )( p_all[ l_data[ l_to ] ] ) + l_offset ) ); break;
 			case 'G' : l_res = memcmp( l_p , *( void ** )( ( char * )( p_all[ l_data[ l_to ] ] ) + l_offset ) , l_size ); break;
 		}
 	if( p_first )
@@ -1402,7 +1402,7 @@ static int
 			case 'V' : l_res = memcmp( l_p , ( char * )( p_all[ l_data[ 0 ] ] ) + l_offset , l_size ); break;
 			case 'S' : l_res = strcmp( ( char * )l_p , ( char * )( p_all[ l_data[ 0 ] ] ) + l_offset ); break;
 			case 'L' : l_res = ( *( long * )l_p ) - ( *( long * )( ( ( char * )p_all[ l_data[ 0 ] ] ) + l_offset ) ); break;
-			case 'P' : l_res = strcmp( l_p , *( char ** )( ( char * )( p_all[ l_data[ 0 ] ] ) + l_offset ) ); break;
+			case 'P' : l_res = strcmp( ( const char * )l_p , *( char ** )( ( char * )( p_all[ l_data[ 0 ] ] ) + l_offset ) ); break;
 			case 'G' : l_res = memcmp( l_p , *( void ** )( ( char * )( p_all[ l_data[ 0 ] ] ) + l_offset ) , l_size ); break;
 		}
 	if( l_res <= 0 && p_first )
@@ -1420,7 +1420,7 @@ static int
 					case 'V' : l_res = memcmp( l_p , l_v , l_size ); break;
 					case 'S' : l_res = strcmp( ( char * )l_p , ( char * )l_v ); break;
 					case 'L' : l_res = ( *( long * )l_p ) - ( *( long * )l_v ); break;
-					case 'P' : l_res = strcmp( l_p , *( char ** )l_v ); break;
+					case 'P' : l_res = strcmp( ( const char * )l_p , *( char ** )l_v ); break;
 					case 'G' : l_res = memcmp( l_p , *( void ** )l_v , l_size ); break;
 				}
 			if( p_first )
