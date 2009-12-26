@@ -22,8 +22,8 @@ Finish [JoinProject Joining the Project] quest before trying below
 
   * Projects are not directly dependent on each other; if dependencies exist, related interfaces and binaries are copied into target project codebase
   * Virtual folders should correspond to directories, except for below cases
-  ** if folder contains files of different types - e.g. headers and C++, then we can create virtual folders to separate these types - e.g. "include" directory
-  ** if folder has too many files to manage - we can split files by folders (but better to split files by subdirectories as well)
+   * if folder contains files of different types - e.g. headers and C++, then we can create virtual folders to separate these types - e.g. "include" directory
+   * if folder has too many files to manage - we can split files by folders (but better to split files by subdirectories as well)
   * Any project contains typical directories on top level:
    * src - all sources, including C/C++ headers and body files
    * bin - output files should be redirected to this location
@@ -31,8 +31,8 @@ Finish [JoinProject Joining the Project] quest before trying below
    * etc - configuration files if any
    * lib - used libraries
   * any project is included in one or more workspaces
-  ** project corresponds to the build target
-  ** workspace corresponds to the deployment target and has name:
+   * project corresponds to the build target
+   * workspace corresponds to the deployment target and has name:
 {{{
 "workspace.<deployment target name>"
 }}}
