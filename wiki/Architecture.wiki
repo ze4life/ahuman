@@ -3,6 +3,8 @@
 @@[Home] -> [Architecture]
 ----
 
+THIS PAGE IS A DRAFT
+
 == Core paradigms for architecture ==
 
   * [NeuralParadigm] - neural networks is chosen as principal method to represent mind functions. It is complemented by non-neural methods to arrange a system from many neral networks and to connect this system to the real world
@@ -72,3 +74,22 @@ Configuration items are defined by part:
 == Open questions ==
 
   * Not clear whether Neural and Variables paradigms could be effective way to represent learned knowledge. Possibly it should be combined with HTM/MPF technology (research task is open in [ArtificialIntelligenceResearch Artificial Intelligence Research])
+
+== Function / Tach Map ==
+
+|| *Module* || *Technology* || *Primary Function* || *Related Problems and Algorithms* ||
+|| *modmedia* || || || ||
+|| connectors || hardcoded || capture/emit signal || chat client, video-stream, signal processing ||
+|| sensors || hardtuned htm || extract variables values || vision, depth, 3d vision, narrow high resolution and wide low resolution ||
+|| effectors || hardcoded || affect connectors/externals || speech generator ||
+|| commands || markov process || low-level effectors/sensors control || manupulating unkown objects, reinforcement learning ||
+|| *modknowledge* || || || ||
+|| knowlets || belief networks || ready-to-use knowledge || associations - ready-to-use object structure and object relations as symbolic associations ||
+|| associations || dynamic htm || learned associative memory || object associations of any type - as derived and primary ||
+|| *modmind* || || || ||
+|| snapshots || hardcoded || throttle and mix to associate || sensor data ||
+|| variables || hardcoded || primary sensor data capture || internal object values ||
+|| logic || markov process || learned high-level strategies || strategies - active objects to actions, reinforcement learning ||
+|| *modheart* || || || ||
+|| feelings || hardcoded || internal inherent motivator || emotion vector projections ||
+|| character || neural network || feedback for markov process logic || what makes character? ||
