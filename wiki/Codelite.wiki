@@ -48,3 +48,9 @@ Compiler/Compiler Options=-g;$(shell wx-config --wxcfg=gcc_lib/mswud --cxxflags 
 Compiler/Preprocessor=__WX__
 Linker/Options=$(shell wx-config --wxcfg=gcc_lib/mswud --static=yes --debug=yes --libs --unicode=yes)
 }}}
+  * Release Settings:
+{{{
+Compiler/Compiler Options=-g;$(shell wx-config --wxcfg=gcc_lib/mswu --cxxflags --static=yes --unicode=yes --debug=no)
+Compiler/Preprocessor=__WX__
+Linker/Options=$(shell wx-config --wxcfg=gcc_lib/mswu --static=yes --debug=no --libs --unicode=yes)
+}}}
