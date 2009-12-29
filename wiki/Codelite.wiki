@@ -37,7 +37,7 @@ K:\tools\wxMSW-2.8.10\lib\gcc_lib\mswud\
 K:\tools\wxMSW-2.8.10\lib\gcc_lib\msw\
 K:\tools\wxMSW-2.8.10\lib\gcc_lib\mswd\
 
-(can be deleted after build)
+(can be deleted after build to free 500Mb on disk)
 K:\tools\wxMSW-2.8.10\build\msw\gcc_msw\
 K:\tools\wxMSW-2.8.10\build\msw\gcc_mswd\
 K:\tools\wxMSW-2.8.10\build\msw\gcc_mswu\
@@ -54,13 +54,13 @@ Linker/Options=-static
 }}}
   * Debug Settings:
 {{{
-Compiler/Compiler Options=-g;$(shell wx-config --wxcfg=gcc_lib/mswud --cxxflags --static=yes --unicode=yes --debug=yes)
+Compiler/Compiler Options=-g;$(shell wx-config --wxcfg=gcc_lib/mswud --cxxflags --static=yes --unicode=no --debug=yes)
 Compiler/Preprocessor=__WX__
-Linker/Options=$(shell wx-config --wxcfg=gcc_lib/mswud --static=yes --debug=yes --libs --unicode=yes)
+Linker/Options=$(shell wx-config --wxcfg=gcc_lib/mswud --static=yes --debug=yes --libs --unicode=no)
 }}}
   * Release Settings:
 {{{
-Compiler/Compiler Options=-g;$(shell wx-config --wxcfg=gcc_lib/mswu --cxxflags --static=yes --unicode=yes --debug=no)
+Compiler/Compiler Options=-g;$(shell wx-config --wxcfg=gcc_lib/mswu --cxxflags --static=yes --unicode=no --debug=no)
 Compiler/Preprocessor=__WX__
-Linker/Options=$(shell wx-config --wxcfg=gcc_lib/mswu --static=yes --debug=no --libs --unicode=yes)
+Linker/Options=$(shell wx-config --wxcfg=gcc_lib/mswu --static=yes --debug=no --libs --unicode=no)
 }}}
