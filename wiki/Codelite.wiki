@@ -21,17 +21,27 @@ TBD
 {{{
 @ECHO OFF
 set PATH=K:\tools\MinGW-4.4.0\bin;K:\tools\MinGW-4.4.0\lib
+mingw32-make -f makefile.gcc UNICODE=0 SHARED=0 MONOLITHIC=1 BUILD=debug
+mingw32-make -f makefile.gcc UNICODE=0 SHARED=0 MONOLITHIC=1 BUILD=release
 mingw32-make -f makefile.gcc UNICODE=1 SHARED=0 MONOLITHIC=1 BUILD=debug
 mingw32-make -f makefile.gcc UNICODE=1 SHARED=0 MONOLITHIC=1 BUILD=release
 }}}
    * execute build.bat - it will create:
 {{{
-K:\tools\wxMSW-2.8.10\build\msw\gcc_mswu\
-K:\tools\wxMSW-2.8.10\build\msw\gcc_mswud\
+K:\tools\wxMSW-2.8.10\lib\gcc_lib\libwxmsw28.a
+K:\tools\wxMSW-2.8.10\lib\gcc_lib\libwxmsw28d.a
 K:\tools\wxMSW-2.8.10\lib\gcc_lib\libwxmsw28u.a
 K:\tools\wxMSW-2.8.10\lib\gcc_lib\libwxmsw28ud.a
 K:\tools\wxMSW-2.8.10\lib\gcc_lib\mswu\
 K:\tools\wxMSW-2.8.10\lib\gcc_lib\mswud\
+K:\tools\wxMSW-2.8.10\lib\gcc_lib\msw\
+K:\tools\wxMSW-2.8.10\lib\gcc_lib\mswd\
+
+(can be deleted after build)
+K:\tools\wxMSW-2.8.10\build\msw\gcc_msw\
+K:\tools\wxMSW-2.8.10\build\msw\gcc_mswd\
+K:\tools\wxMSW-2.8.10\build\msw\gcc_mswu\
+K:\tools\wxMSW-2.8.10\build\msw\gcc_mswud\
 }}}
   * manually copy `K:\tools\wxMSW-2.8.10\include\wx\msw\setup.h` to `K:\tools\wxMSW-2.8.10\include\wx\setup.h`
   * in Codelite open Settings -> Environment Variables and add WXWIN with value `K:\tools\wxMSW-2.8.10`
