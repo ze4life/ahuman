@@ -1,18 +1,7 @@
 // aihtmview.h : main header file for the AIHTMVIEW application
 //
 
-#if !defined(AFX_AIHTMVIEW_H__55DBD5CC_FD6C_4456_A94B_40013D331936__INCLUDED_)
-#define AFX_AIHTMVIEW_H__55DBD5CC_FD6C_4456_A94B_40013D331936__INCLUDED_
-
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
-
-#ifndef __AFXWIN_H__
-	#error include 'stdafx.h' before including this file for PCH
-#endif
-
-#include "resource.h"       // main symbols
+#include <wx/wx.h>
 
 /////////////////////////////////////////////////////////////////////////////
 // CAihtmviewApp:
@@ -20,7 +9,8 @@
 //
 
 class AIHtmOps;
-class CAihtmviewApp : public CWinApp
+class CMainFrame;
+class CAihtmviewApp : public wxApp
 {
 public:
 	CAihtmviewApp();
@@ -28,28 +18,16 @@ public:
 	AIHtmOps *getHtm() { return( htm ); };
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CAihtmviewApp)
-	public:
-	virtual BOOL InitInstance();
-	virtual int ExitInstance();
-	//}}AFX_VIRTUAL
+public:
+	virtual bool OnInit();
+	virtual int OnExit();
 
 // Implementation
+    CMainFrame* m_mainFrame;
 	AIHtmOps *htm;
 
 public:
-	//{{AFX_MSG(CAihtmviewApp)
-	afx_msg void OnAppAbout();
-	afx_msg void OnCmdShowtop();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+	DECLARE_EVENT_TABLE();
 };
 
-
-/////////////////////////////////////////////////////////////////////////////
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_AIHTMVIEW_H__55DBD5CC_FD6C_4456_A94B_40013D331936__INCLUDED_)
+DECLARE_APP( CAihtmviewApp )

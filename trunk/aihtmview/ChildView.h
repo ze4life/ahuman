@@ -2,43 +2,34 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_CHILDVIEW_H__F482311F_17AB_4FA0_9012_7F6FC7B9DDDC__INCLUDED_)
-#define AFX_CHILDVIEW_H__F482311F_17AB_4FA0_9012_7F6FC7B9DDDC__INCLUDED_
-
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+#include <wx/rawbmp.h>
 
 /////////////////////////////////////////////////////////////////////////////
 // CChildView window
 
-class CChildView : public CWnd
+class CChildView : public wxScrolledWindow
 {
 // Construction
 public:
-	CChildView();
+	CChildView( wxWindow *parent );
 
 // Attributes
 public:
-	CDC mdc;
-	CBitmap memoryBitmap;
-	CRect rcEye;
-	int scanLineBytes;
-	BITMAP sbmp;
+	wxMemoryDC mdc;
+	wxBitmap memoryBitmap;
+	wxRect rcEye;
 
 // Operations
 public:
-	void showEyeBox( CDC& dc );
-	void moveEye( UINT key );
+	void showEyeBox( wxDC& dc );
+	void moveEye( int key , wxKeyEvent& ks );
 	const char *getEyeData();
+	BOOL eraseBkgnd( wxMemoryDC* pDC );
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CChildView)
-	protected:
-	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
-	virtual void PostNcDestroy();
-	//}}AFX_VIRTUAL
+	virtual void onCreate();
+	virtual void onDestroy();
+	virtual void UpdateWindowUI( long flags );
 
 // Implementation
 public:
@@ -46,19 +37,10 @@ public:
 
 	// Generated message map functions
 protected:
-	//{{AFX_MSG(CChildView)
-	afx_msg void OnPaint();
-	afx_msg void OnEditPaste();
-	afx_msg void OnUpdateEditPaste(CCmdUI* pCmdUI);
-	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
-	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+	void OnPaint( wxPaintEvent& event );
+	void OnPaste( wxCommandEvent& event );
+	void OnUpdatePaste( wxUpdateUIEvent& event );
+	void OnEraseBackground( wxEraseEvent& event );
+	void OnKeyDown( wxKeyEvent& event );
+	DECLARE_EVENT_TABLE();
 };
-
-/////////////////////////////////////////////////////////////////////////////
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_CHILDVIEW_H__F482311F_17AB_4FA0_9012_7F6FC7B9DDDC__INCLUDED_)

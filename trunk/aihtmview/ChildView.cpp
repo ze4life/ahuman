@@ -1,10 +1,11 @@
 // ChildView.cpp : implementation of the CChildView class
 //
 
-#include "stdafx.h"
 #include "aihtmview.h"
 #include "ChildView.h"
 #include "aihtmops.h"
+
+#include <wx/clipbrd.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -21,235 +22,213 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CChildView
 
-CChildView::CChildView()
+CChildView::CChildView( wxWindow *parent )
+:	wxScrolledWindow( parent, wxID_ANY, wxDefaultPosition , wxDefaultSize,
+		wxHSCROLL | wxVSCROLL | wxNO_FULL_REPAINT_ON_RESIZE )
 {
 	// excluding margins
-	rcEye.SetRect( 0 , 0 , EYE_WIDTH , EYE_HEIGHT );
+	rcEye = wxRect( 0 , 0 , EYE_WIDTH , EYE_HEIGHT );
 
-	AIHtmOps *htm = ( ( CAihtmviewApp * )AfxGetApp() ) -> getHtm();
+	AIHtmOps *htm = wxGetApp().getHtm();
 	htm -> createCortex( EYE_WIDTH , EYE_HEIGHT );
+
+	memoryBitmap.Create( MAX_WIDTH , MAX_HEIGHT , 24 );
 }
 
 CChildView::~CChildView()
 {
 }
 
-BEGIN_MESSAGE_MAP(CChildView,CWnd )
+BEGIN_EVENT_TABLE( CChildView , wxScrolledWindow )
 	//{{AFX_MSG_MAP(CChildView)
-	ON_WM_PAINT()
-	ON_COMMAND(ID_EDIT_PASTE, OnEditPaste)
-	ON_UPDATE_COMMAND_UI(ID_EDIT_PASTE, OnUpdateEditPaste)
-	ON_WM_ERASEBKGND()
-	ON_WM_KEYDOWN()
+	EVT_PAINT( CChildView::OnPaint )
+	EVT_MENU( wxID_PASTE , CChildView::OnPaste )
+	EVT_UPDATE_UI( wxID_PASTE, CChildView::OnUpdatePaste )
+	EVT_ERASE_BACKGROUND( CChildView::OnEraseBackground )
+	EVT_KEY_DOWN( CChildView::OnKeyDown )
 	//}}AFX_MSG_MAP
-END_MESSAGE_MAP()
+END_EVENT_TABLE()
 
 /////////////////////////////////////////////////////////////////////////////
 // CChildView message handlers
-
-BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs) 
+void CChildView::onCreate()
 {
-	if (!CWnd::PreCreateWindow(cs))
-		return FALSE;
-
-	cs.dwExStyle |= WS_EX_CLIENTEDGE;
-	cs.style &= ~WS_BORDER;
-	cs.lpszClass = AfxRegisterWndClass(CS_HREDRAW|CS_VREDRAW|CS_DBLCLKS, 
-		::LoadCursor(NULL, IDC_ARROW), HBRUSH(COLOR_WINDOW+1), NULL);
-
-	mdc.CreateCompatibleDC( NULL );
-	memoryBitmap.CreateBitmap( MAX_WIDTH , MAX_HEIGHT , 1 , 32 , NULL );
-
-	memset( &sbmp , 0 , sizeof( BITMAP ) );
-	memoryBitmap.GetBitmap( &sbmp );
-	scanLineBytes = sbmp.bmWidthBytes;
-
-	return TRUE;
 }
 
-void CChildView::OnPaint() 
+void CChildView::onDestroy()
 {
-	CPaintDC dc(this); // device context for painting
+}
+
+void CChildView::UpdateWindowUI( long flags )
+{
+}
+
+void CChildView::OnPaint( wxPaintEvent &WXUNUSED(event) ) 
+{
+	wxPaintDC dc( this ); // device context for painting
 	
 	// TODO: Add your message handler code here
-	CRect rc;
-	dc.GetClipBox( rc );
-	CBitmap *defaultBitmap = mdc.SelectObject( &memoryBitmap );
-	ASSERT( dc.BitBlt( rc.left , rc.top , rc.Width() , rc.Height() , &mdc , rc.left - BOX_MARGIN , rc.top - BOX_MARGIN , SRCCOPY ) );
+	mdc.SelectObjectAsSource( memoryBitmap );
+	dc.Blit( BOX_MARGIN , BOX_MARGIN , MAX_WIDTH , MAX_HEIGHT , &mdc , 0 , 0 , wxCOPY );
 
 	// show rect around draw box
-	rc.left = BOX_MARGIN;
-	rc.top = BOX_MARGIN;
-	rc.right = rc.left + MAX_WIDTH;
-	rc.bottom = rc.top + MAX_HEIGHT;
-	rc.InflateRect( 3 , 3 );
-	dc.DrawEdge( rc , EDGE_ETCHED , BF_RECT );
-
+	dc.SetBrush( *wxTRANSPARENT_BRUSH );
+	wxRect rc;
+	rc.x = BOX_MARGIN;
+	rc.y = BOX_MARGIN;
+	rc.width = MAX_WIDTH;
+	rc.height = MAX_HEIGHT;
+	rc.Inflate( 1 , 1 );
+	dc.SetPen( *wxWHITE_PEN );
+	dc.DrawRectangle( rc.x , rc.y , rc.width , rc.height );
+	rc.Inflate( 1 , 1 );
+	dc.SetPen( *wxBLACK_PEN );
+	dc.DrawRectangle( rc.x , rc.y , rc.width , rc.height );
+	
 	// show eye box
 	showEyeBox( dc );
-	mdc.SelectObject( defaultBitmap );
 }
 
-void CChildView::showEyeBox( CDC& dc )
+void CChildView::showEyeBox( wxDC& dc )
 {
-	CRect rc = rcEye;
-	rc.OffsetRect( BOX_MARGIN , BOX_MARGIN );
-	rc.InflateRect( 1 , 1 );
-	dc.Draw3dRect( rc , RGB( 0 , 0 , 255 ) , RGB( 0 , 0 , 128 ) );
-	rc.InflateRect( 1 , 1 );
-	dc.Draw3dRect( rc , RGB( 0 , 0 , 128 ) , RGB( 0 , 0 , 255 ) );
-	rc.InflateRect( 1 , 1 );
-	dc.DrawFocusRect( rc );
+	wxRect rc = rcEye;
+	rc.Offset( BOX_MARGIN , BOX_MARGIN );
+	rc.Inflate( 1 , 1 );
+	dc.SetPen( *wxWHITE_PEN );
+	dc.DrawRectangle( rc.x , rc.y , rc.width , rc.height );
+	rc.Inflate( 1 , 1 );
+	dc.SetPen( *wxBLACK_PEN );
+	dc.DrawRectangle( rc.x , rc.y , rc.width , rc.height );
+	rc.Inflate( 1 , 1 );
+	dc.SetPen( *wxWHITE_PEN );
+	dc.DrawRectangle( rc.x , rc.y , rc.width , rc.height );
 }
 
-void CChildView::OnEditPaste() 
+void CChildView::OnPaste( wxCommandEvent& event ) 
 {
 	// TODO: Add your command handler code here
-	::OpenClipboard( CWnd::GetSafeHwnd() );
-	HBITMAP hbmp = ( HBITMAP )::GetClipboardData( CF_BITMAP );
-	if( hbmp == NULL )
+	if( !wxTheClipboard -> Open() )
+		return;
+		
+	if( wxTheClipboard -> IsSupported( wxDF_BITMAP ) )
 		{
-			::CloseClipboard();
-			return;
+			wxBitmapDataObject bdo;
+			wxTheClipboard -> GetData( bdo );
+			wxBitmap bmp = bdo.GetBitmap();
+			
+			wxMemoryDC dcx( bmp );
+			int w = bmp.GetWidth();
+			int h = bmp.GetHeight();
+			
+			if( w > MAX_WIDTH )
+				w = MAX_WIDTH;
+			if( h > MAX_HEIGHT )
+				h = MAX_HEIGHT;
+			
+			mdc.SelectObject( memoryBitmap );
+			mdc.Blit( 0 , 0 , w , h , &dcx , 0 , 0 , wxCOPY );
+			
+			wxRect rc( BOX_MARGIN , BOX_MARGIN , w , h );
+			RefreshRect( rc );
 		}
-
-	CDC dcx;
-	dcx.CreateCompatibleDC( &mdc );
-
-	CBitmap *bmp = CBitmap::FromHandle( hbmp );
-	CBitmap *save = dcx.SelectObject( bmp );
-
-	BITMAP pbmp;
-	memset( &pbmp , 0 , sizeof( BITMAP ) );
-	bmp -> GetBitmap( &pbmp );
-	CSize s( pbmp.bmWidth , pbmp.bmHeight );
-	if( s.cx > MAX_WIDTH )
-		s.cx = MAX_WIDTH;
-	if( s.cy > MAX_HEIGHT )
-		s.cy = MAX_HEIGHT;
-
-	CBitmap *defaultBitmap = mdc.SelectObject( &memoryBitmap );
-	ASSERT( mdc.BitBlt( 0 , 0 , s.cx , s.cy , &dcx , 0 , 0 , SRCCOPY ) );
-	dcx.SelectObject( save );
-	mdc.SelectObject( defaultBitmap );
-	dcx.DeleteDC();
-
-	CRect rc( BOX_MARGIN , BOX_MARGIN , BOX_MARGIN + s.cx , BOX_MARGIN + s.cy );
-	InvalidateRect( rc );
-	UpdateWindow();
-
-	::CloseClipboard();
+		
+	wxTheClipboard -> Close();
 }
 
-void CChildView::OnUpdateEditPaste(CCmdUI* pCmdUI) 
+void CChildView::OnUpdatePaste( wxUpdateUIEvent& event ) 
 {
 	// TODO: Add your command update UI handler code here
-	pCmdUI -> Enable( ::IsClipboardFormatAvailable( CF_BITMAP ) );
+	bool available = wxTheClipboard -> IsSupported( wxDF_BITMAP );
+	event.Enable( available );
 }
 
-void CChildView::PostNcDestroy() 
-{
-	// TODO: Add your specialized code here and/or call the base class
-	mdc.DeleteDC();
-	memoryBitmap.DeleteObject();
-	
-	CWnd ::PostNcDestroy();
-}
-
-BOOL CChildView::OnEraseBkgnd(CDC* pDC) 
+void CChildView::OnEraseBackground( wxEraseEvent& event ) 
 {
 	// TODO: Add your message handler code here and/or call default
-	CRect rc;
-	pDC -> GetClipBox( rc );
-	CRgn rgn1;
-	rgn1.CreateRectRgnIndirect( rc );
-
-	rc.left = BOX_MARGIN;
-	rc.top = BOX_MARGIN;
-	rc.right = rc.left + MAX_WIDTH;
-	rc.bottom = rc.top + MAX_HEIGHT;
-	CRgn rgn2;
-	rgn2.CreateRectRgnIndirect( rc );
-
-	CRgn rgn;
-	rgn.CreateRectRgn( 0 , 0 , 0 , 0 );
-	rgn.CombineRgn( &rgn1 , &rgn2 , RGN_DIFF );
-
-	HBRUSH hbr = ( HBRUSH )::GetStockObject( WHITE_BRUSH );
-	CBrush *br = CBrush::FromHandle( hbr );
-	pDC -> FillRgn( &rgn , br );
+	wxDC *dc = event.GetDC();
 	
-	rgn1.DeleteObject();
-	rgn2.DeleteObject();
-	rgn.DeleteObject();
+	wxRect rca;
+	dc -> GetClippingBox( &rca.x , &rca.y , &rca.width , &rca.height );
+	wxRegion rgn1( rca );
 
-	return TRUE;
+	wxRect rc;
+	rc.x = BOX_MARGIN;
+	rc.y = BOX_MARGIN;
+	rc.width = MAX_WIDTH;
+	rc.height = MAX_HEIGHT;
+	wxRegion rgn2( rc );
+
+	rgn1.Xor( rgn2 );
+	wxDCClipper clip( *dc , rgn1 );
+
+	wxDCBrushChanger brushChange( *dc , *wxWHITE_BRUSH );
+	dc -> DrawRectangle( rca.x , rca.y , rca.width , rca.height );
+	
+	event.Skip();
 }
 
-void CChildView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) 
+void CChildView::OnKeyDown( wxKeyEvent& event ) 
 {
 	// TODO: Add your message handler code here and/or call default
-	if( nChar == VK_DOWN || nChar == VK_UP || nChar == VK_LEFT || nChar == VK_RIGHT )
-		moveEye( nChar );
-	
-	CWnd ::OnKeyDown(nChar, nRepCnt, nFlags);
+	int nChar = event.GetKeyCode();
+	if( nChar == WXK_DOWN || nChar == WXK_UP || nChar == WXK_LEFT || nChar == WXK_RIGHT )
+		moveEye( nChar , event );
 }
 
-void CChildView::moveEye( UINT key )
+void CChildView::moveEye( int key , wxKeyEvent& ks )
 {
 	int av = 1;
-	if( ::GetKeyState( VK_CONTROL ) & 0x8000 )
+	if( ks.AltDown() )
 		av = 2;
-	if( ::GetKeyState( VK_SHIFT ) & 0x8000 )
+	if( ks.ControlDown() )
 		av = ( av == 2 )? 8 : 4;
 
-	if( key == VK_LEFT )
+	if( key == WXK_LEFT )
 		{
-			if( rcEye.left == 0 )
+			if( rcEye.x == 0 )
 				return;
-			if( av > rcEye.left )
-				av = rcEye.left;
-			rcEye.OffsetRect( -av , 0 );
+			if( av > rcEye.x )
+				av = rcEye.x;
+			rcEye.Offset( -av , 0 );
 		}
 	else
-	if( key == VK_RIGHT )
+	if( key == WXK_RIGHT )
 		{
-			if( rcEye.right == MAX_WIDTH )
+			if( rcEye.GetRight() == MAX_WIDTH )
 				return;
-			if( av > ( MAX_WIDTH - rcEye.right ) )
-				av = MAX_WIDTH - rcEye.right;
-			rcEye.OffsetRect( av , 0 );
+			if( av > ( MAX_WIDTH - rcEye.GetRight() ) )
+				av = MAX_WIDTH - rcEye.GetRight();
+			rcEye.Offset( av , 0 );
 		}
 	else
-	if( key == VK_UP )
+	if( key == WXK_UP )
 		{
-			if( rcEye.top == 0 )
+			if( rcEye.y == 0 )
 				return;
-			if( av > rcEye.top )
-				av = rcEye.top;
-			rcEye.OffsetRect( 0 , -av );
+			if( av > rcEye.y )
+				av = rcEye.y;
+			rcEye.Offset( 0 , -av );
 		}
 	else
-	if( key == VK_DOWN )
+	if( key == WXK_DOWN )
 		{
-			if( rcEye.bottom == MAX_WIDTH )
+			if( rcEye.GetBottom() == MAX_HEIGHT )
 				return;
-			if( av > ( MAX_WIDTH - rcEye.bottom ) )
-				av = MAX_WIDTH - rcEye.bottom;
-			rcEye.OffsetRect( 0 , av );
+			if( av > ( MAX_HEIGHT - rcEye.GetBottom() ) )
+				av = MAX_HEIGHT - rcEye.GetBottom();
+			rcEye.Offset( 0 , av );
 		}
 
-	CRect rc = rcEye;
-	rc.OffsetRect( BOX_MARGIN , BOX_MARGIN );
-	rc.InflateRect( BOX_MARGIN + av , BOX_MARGIN + av );
-	InvalidateRect( rc );
-	UpdateWindow();
+	wxRect rc = rcEye;
+	rc.Offset( BOX_MARGIN , BOX_MARGIN );
+	rc.Inflate( BOX_MARGIN + av , BOX_MARGIN + av );
+	RefreshRect( rc );
 
 	// check need to send
-	if( !( ::GetKeyState( VK_CAPITAL ) & 1 ) )
+	if( !ks.ShiftDown() )
 		return;
 
-	AIHtmOps *htm = ( ( CAihtmviewApp * )AfxGetApp() ) -> getHtm();
+	AIHtmOps *htm = wxGetApp().getHtm();
 	const char *data = getEyeData();
 	htm -> sendPicture( data );
 }
@@ -257,53 +236,38 @@ void CChildView::moveEye( UINT key )
 const char *CChildView::getEyeData()
 {
 	static char v[ EYE_HEIGHT ][ EYE_WIDTH * 6 + 1 ];
-	char *readBuf = ( char * )calloc( 1 , sizeof( BITMAPINFOHEADER ) + sizeof( int ) * EYE_HEIGHT * MAX_WIDTH );
 
-	int height = rcEye.Height();
+	int height = rcEye.height;
 	
-	BITMAPINFO& bi = *( BITMAPINFO * )readBuf;
-	memset( &bi , 0 , sizeof( BITMAPINFO ) );
-	bi.bmiHeader.biSize = sizeof( BITMAPINFOHEADER );
-	bi.bmiHeader.biBitCount = 0;
-	// bi.bmiHeader.biBitCount = sbmp.bmBitsPixel;
-	// bi.bmiHeader.biWidth = sbmp.bmWidth;
-	// bi.bmiHeader.biHeight = sbmp.bmHeight;
-	// bi.bmiHeader.biPlanes = sbmp.bmPlanes;
-	// bi.bmiHeader.biCompression = BI_RGB;
-	// bi.bmiHeader.biSizeImage = sizeof( int ) * height * MAX_WIDTH;
-
-	BITMAP pbmp;
-	memset( &pbmp , 0 , sizeof( BITMAP ) );
-	memoryBitmap.GetBitmap( &pbmp );
-
-	// read bitmap - it will store lines in bottom to up formap
-	ASSERT( ::GetDIBits( mdc.GetSafeHdc() , ( HBITMAP )memoryBitmap.GetSafeHandle() , 0 , height , NULL , &bi , DIB_RGB_COLORS ) );
-	bi.bmiHeader.biCompression = BI_RGB;
-	bi.bmiHeader.biSizeImage = sizeof( int ) * height * MAX_WIDTH;
-	int res = ::GetDIBits( mdc.GetSafeHdc() , ( HBITMAP )memoryBitmap.GetSafeHandle() , MAX_HEIGHT - rcEye.bottom , height , bi.bmiColors , &bi , DIB_RGB_COLORS );
-	ASSERT( res == height );
-
-	// convert to hex - revert to have from top to bottom
-	char *bp = readBuf + sizeof( BITMAPINFOHEADER );
-	for( int k1 = 0; k1 < height; k1++ )
-		{
-			int revPos = height - k1 - 1;
-			for( int k2 = 0; k2 < EYE_WIDTH; k2++ )
+	// read bitmap
+	wxNativePixelData data( memoryBitmap , rcEye );
+	wxNativePixelData::Iterator p( data );
+	for( int y = 0; y < EYE_HEIGHT; ++y )
+        {
+            wxNativePixelData::Iterator rowStart = p;
+			char *pw = v[ y ];
+			
+			unsigned char pc[ 3 ];
+			unsigned char *xp = pc;
+			for( int x = 0; x < EYE_WIDTH; ++x , ++p )
 				{
-					char *p = v[ revPos ] + k2 * 6;
-					char *xp = bp + scanLineBytes * k1 + sizeof( int ) * ( rcEye.left + k2 ); // int:0bgr, int byte order:4321=rgb0
-
-					// do char to hex
+					pc[ 0 ] = p.Red();
+					pc[ 1 ] = p.Green();
+					pc[ 2 ] = p.Blue();
+					
 					for( int z = 0; z < 3; z++ )
 						{
 							unsigned char c = *xp++;
-							unsigned int v = ( c >> 4 );
-							*p++ = ( v >= 10 )? 'A' + ( v - 10 ) : '0' + v;
-							v = c & 0x0F;
-							*p++ = ( v >= 10 )? 'A' + ( v - 10 ) : '0' + v;
+							unsigned int hx = ( c >> 4 );
+							*pw++ = ( hx >= 10 )? 'A' + ( hx - 10 ) : '0' + hx;
+							hx = c & 0x0F;
+							*pw++ = ( hx >= 10 )? 'A' + ( hx - 10 ) : '0' + hx;
 						}
 				}
-			v[ revPos ][ EYE_WIDTH * 6 ] = '\n';
+
+            p = rowStart;
+            p.OffsetY( data , 1 );
+			v[ y ][ EYE_WIDTH * 6 ] = '\n';
 		}
 
 	v[ EYE_HEIGHT - 1 ][ EYE_WIDTH * 6 ] = 0;

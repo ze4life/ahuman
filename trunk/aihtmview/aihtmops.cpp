@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "aihtmview.h"
 #include "aihtmops.h"
 
 AIHtmOps::AIHtmOps()
@@ -15,7 +15,7 @@ bool AIHtmOps::connect( const char *url )
 		api.connect( url );
 	}
 	catch( String s ) {
-		AfxMessageBox( String( "Cannot connect: " ) + s );
+		wxMessageBox( ( const char * )( String( "Cannot connect: " ) + s ) );
 		return( false );
 	}
 	return( true );
@@ -38,10 +38,10 @@ void AIHtmOps::createCortex( int p_width , int p_height )
 		Xml res = api.execute();
 		String status = res.getAttribute( "status" );
 		if( !status.equals( "ok" ) )
-			AfxMessageBox( status );
+			wxMessageBox( ( const char * )status );
 	}
 	catch( String s ) {
-		AfxMessageBox( s );
+		wxMessageBox( ( const char * )s );
 	}
 }
 
@@ -57,9 +57,9 @@ void AIHtmOps::sendPicture( const char *hexbytes )
 			Xml res = api.execute();
 			String status = res.getAttribute( "status" );
 			if( !status.equals( "ok" ) )
-				AfxMessageBox( String( "sendPicture failed: " ) + status );
+				wxMessageBox( ( const char * )( String( "sendPicture failed: " ) + status ) );
 	}
 	catch( String s ) {
-		AfxMessageBox( String( "Exception: " ) + s );
+		wxMessageBox( ( const char * )( String( "Exception: " ) + s ) );
 	}
 }
