@@ -99,7 +99,11 @@ Let's use 100G bytes as the estimation for HI and it can be expressed as 10000 t
 AI memory contains NNs and knowlets (last for areas not important for personality).
 Max size of `NNs is 500Mb / 1K = 500K` neurons. It consists `500K / 100G  = 1 / 2000 = 0.05%` of original HI.
 Disk space can be used for inactive knowlets. Operating memory is for the active knowlets, maximum of `500Mb which is 10K * ( 500Mb / 1000T ) = 5T / 1000T = 0.5%` of original HI.
-After rounding we can say that active AI contains `0.1% HI in the form of NNs, 1% HI in the form of active knowlets of HI and 98.9% HI` in the form of passive knowlets.
+After rounding we can say that active AI contains `0.1% HI in the form of NNs (total 500K neurons), 1% HI in the form of active knowlets of HI and 98.9% HI in the form of passive knowlets`.
+
+We can develop knowlets "in lab" as components, e.g. by using pairs of {knowlet,NN}, where NN is trained separately then somehow converted to the logical form of knowlet, then knowlet is used as plug-in in AI
+
+In fact it is just like human can have artificial legs, ears, but remains being an intelligent.
 
 === CPU Problem ===
 
@@ -112,10 +116,4 @@ The only way remaining is to reduce a number of operations. The most marginal on
 
 Therefore we came to basic limitations - we do need fuzzy logic and neural networks, we should reduce neural network activity 1000 times, and we should keep overall activity on par with human mind.
 
-It gives us the below idea:
-  * limit active neurons to 30K
-  * use more than 30K in neural network with inactive neurons but implement "focus" feature; if we estimate 1 neuron to 1K and used memory to 500M, it gives us 500K neurons with 4% active
-  * replace most of AI neural network with ready-to-use knowledge modules (knowlets), i.e. equip AI with "mechanical" devices
-  * develop knowlets "in lab" as components, e.g. by using couple of knowlet-NN, where NN is trained separately then somehow converted to the logical form of knowlet, then knowlet is used as plug-in in AI
-
-In fact it is just like human can have artificial legs, ears, but remains being an intelligent.
+It gives us the below idea - limit active neurons to 30K in 500K NN with inactive neurons - implement "focus" feature with 30K / 500K = with 6% active neurons.
