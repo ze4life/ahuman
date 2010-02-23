@@ -15,12 +15,25 @@ Feasibility Study gives us below limitations for aHuman design:
   * use 500K neurons in operating memory (0.05% of HI)
   * use 30K focused neurons (6% of AI NNs)
   * develop knowlets as plug-ins
-  * use up to 500M in operating memory for activated knowlets (0.5% of HI)
-  * remaining inactive knowlets can use up to 100Gb disk space
+   * use up to 500M in operating memory for activated knowlets (0.5% of HI)
+   * remaining inactive knowlets can use up to 100Gb disk space
+  * separate feeling from emotions
+  * treat feeling as internal motivation system
+   * use broken Markov network as a "pain" body signal
+   * use sensor data consumed to adjust Markov network as "feed" body signal
+   * use expected action in Markov network as internal motivator
+   * curiosity is exploration action in Markov network
+   * derive new "uncertainty" body signal as mismatch between expected/suggested action and actual action
+  * don't create Markov networks initially, create HMM factories to construct networks
+  * create learning cycle based on body signals
+   * construct body reward function from body signals
+   * create system of feedback recognition, train it using body reward function
+   * create feedback reward function as output of feedback recognition system
+   * use feedback reward function to learn all active Markov networks
 
 == Core paradigms for architecture ==
 
-  * [NeuralParadigm] - neural networks is chosen as principal method to represent mind functions. It is complemented by non-neural methods to arrange a system from many neral networks and to connect this system to the real world
+  * [NeuralParadigm] - neural networks is chosen as principal method to represent mind functions. It is complemented by non-neural methods to arrange a system from many neural networks and to connect this system to the real world
   * [VariablesParadigm] - approach to represent entities of the world in such a way that we can reference them across all modules having attached metadata available immediately, and be free to represent both simple and complex items. Items work as inputs and outputs for numerous neural networks
   * [GenomeParadigm] - explains how to build multi-network step-by-step. It introduces neural variables, and uses the ability of neural networks to adopt to new inputs added when training is already done
 
