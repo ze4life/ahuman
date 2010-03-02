@@ -241,11 +241,11 @@ So after consuming 6Mb per second during 5 years child will complete his/her sen
 
 Let's consider using HTM to implement knowledge capture sensors.
 The CPU used for operations in HTM is:
-{code}
+{{{
 HTM_learn_time=layer1_learn_time + layer2_learn_time + ... + layerN_learn_time
 layerK_learn_time = number_of_stored_patterns * generalization_rate * number_of_input_time * add_time
 layer1_external_input_items * add_time + layer1_spatial_pooler_learn_time + 
-{code}
+}}}
 
 Sensors designs differ by:
   * nature of input signal
