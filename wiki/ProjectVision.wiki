@@ -242,9 +242,35 @@ So after consuming 6Mb per second during 5 years child will complete his/her sen
 Let's consider using HTM to implement knowledge capture sensors.
 The CPU used for operations in HTM is:
 {{{
-HTM_learn_time=layer1_learn_time + layer2_learn_time + ... + layerN_learn_time
-layerK_learn_time = number_of_stored_patterns * generalization_rate * number_of_input_time * add_time
-layer1_external_input_items * add_time + layer1_spatial_pooler_learn_time + 
+HTM_learn_time = number_of_viewed_patterns * one_pattern_process_elops * add_time
+one_pattern_process_elops = sum_by_layer( spatial_pooler_elops + temporal_pooler_elops ) = sum_spatial_pooler_elops_by_layer + sum_temporal_pooler_elops_by_layer
+layer_area_size = layer_input_size / layer_output_size
+
+spatial_pooler_elops = 1/2 * layer_area_size * layer_output_size * log2( layer_spatial_memory )
+temporal_pooler_elops = 1/2 * layer_output_size * layer_temporal_size * log2( layer_temporal_memory )
+
+Let's consider:
+layer_spatial_memory = const
+layer_temporal_memory = const
+layer_area_size = const
+final layer layer_output_size = 1 
+
+Then
+sum_spatial_pooler_elops_by_layer = 1/2 * sum( layer_area_size^layer_pos ) * log2( layer_spatial_memory ) = 
+1/2 * ( layer_area_size^(layer_count + 1) - 1 ) / ( layer_area_size - 1 ) * log2( layer_spatial_memory ) ~= 
+1/2 * layer_area_size^layer_count * log2( layer_spatial_memory )
+
+sum_temporal_pooler_elops_by_layer = 
+1/2 * layer_area_size^layer_count * layer_temporal_size/layer_area_size * log2( layer_temporal_memory )
+
+one_pattern_process_elops = 1/2 * layer_area_size^layer_count * ( log2( layer_spatial_memory ) + layer_temporal_size/layer_area_size * log2( layer_temporal_memory ) )
+
+if layer_temporal_size << layer_area_size then
+one_pattern_process_elops = 1/2 * layer_area_size^layer_count * log2( layer_spatial_memory ) = 
+1/2 * initial_input_size * log2( layer_spatial_memory ) elops
+
+number_of_patterns_in_second = 1/3G / (1/2 * initial_input_size * log2( layer_spatial_memory )) = 
+2/3G / ( initial_input_size * log2( layer_spatial_memory ) )
 }}}
 
 Sensors designs differ by:
