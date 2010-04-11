@@ -217,7 +217,7 @@ http://ahuman.googlecode.com/svn/images/wiki/research/course/06.hebb.jpg
    * The information produced by a given symbol is exactly the amount by which we reduce our uncertainty about that symbol when we observe it
    * The only H (measure of uncertainty) satisfying properties:
 
-{code}
+{{{
         n
 H = - K ∑ pi log pi
        i=1
@@ -227,37 +227,37 @@ K is a positive constant
 e.g. for two possibilities:
 
 H = - (p log p + q log q)
-{code}
+}}}
 
    * Joint Entropy:
 
-{code}
+{{{
 H(x,y) = - ∑ p(xi,yj) log p(xi,yj)
           i,j
 
 H(x,y) ≤ H(x) + H(y)
-{code}
+}}}
 
    * Conditional Entropy:
 
-{code}
+{{{
 H(y|x) = - ∑ p(xi) p(yj|xi) log p(yj|xi)
 H(y|x) = - ∑ p(xi,yj) log p(yj|xi)
 
 H(y) ≥ H(y|x)
 
 HMax = log n
-{code}
+}}}
 
    * Normalized Entropy (relative entropy):
 
-{code}
+{{{
 Ho(x) = H(x) / HMax
-{code}
+}}}
 
    * Mutual Information
 
-{code}
+{{{
 I(x,y) = ∑ p(xi,yj) log [ p(xi,yj) / p(xi)p(yj) ]
 
 I(x,y) = H(x) - H(x|y) = H(y) - H(y|x)
@@ -270,4 +270,4 @@ joint: H(x,y) = - ∑ p(xi,yj) log p(xi,yj)
 conditional: H(y|x) = - ∑ p(xi,yj) log p(yj|xi)
 mutual: I(x,y) = ∑ p(xi,yj) log [ p(xi,yj) / p(xi)p(yj) ]
 
-{code}
+}}}
