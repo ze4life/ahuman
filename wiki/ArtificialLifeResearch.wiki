@@ -193,3 +193,81 @@ http://ahuman.googlecode.com/svn/images/wiki/research/course/06.hebb.jpg
 </td>
 </tr>
 </table>
+
+=== 6. Introduction to Information Theory ===
+
+  * Probability
+   * Random experiment
+   * Elementary outcomes
+   * Sample space
+   * Frequency / Law of large numbers
+   * Subtraction Rule: P(NOT a) = 1 - P(a)
+   * Event
+   * Addition Rule: P(a OR b) = P(a) + P(b) - P(a AND b)
+   * Joint Probability: P(a AND b) = P(a,b)
+   * Conditional Probability: P(a|b) = P(a AND b) / P(b)
+   * Multiplication Rule: P(a AND b) = P(a|b) * P(b) = P(b|a) * P(a)
+   * Statistical Independence: P(a|b) = P(a), P(b|a) = P(b)
+   * Marginal Probability: P(x) - ignore information about other events
+  * Shannon Theory
+   * S = k log W: Entropy = Boltzmann’s-constant * log( function of # of possible micro-states )
+   * I = K log Ω: Entropy = constant (usually dropped) * log( function of # of possible micro-states )
+   * physical entropy to informational entropy: 1 electron volt / kelvin = 16,743 bits
+   * The language models just discussed and many other symbol sources can be described as Markov processes (stochastic processes in which future states depend solely on the current state, and not on how the current state was arrived at)
+   * The information produced by a given symbol is exactly the amount by which we reduce our uncertainty about that symbol when we observe it
+   * The only H (measure of uncertainty) satisfying properties:
+
+{code}
+        n
+H = - K ∑ pi log pi
+       i=1
+
+K is a positive constant
+
+e.g. for two possibilities:
+
+H = - (p log p + q log q)
+{code}
+
+   * Joint Entropy:
+
+{code}
+H(x,y) = - ∑ p(xi,yj) log p(xi,yj)
+          i,j
+
+H(x,y) ≤ H(x) + H(y)
+{code}
+
+   * Conditional Entropy:
+
+{code}
+H(y|x) = - ∑ p(xi) p(yj|xi) log p(yj|xi)
+H(y|x) = - ∑ p(xi,yj) log p(yj|xi)
+
+H(y) ≥ H(y|x)
+
+HMax = log n
+{code}
+
+   * Normalized Entropy (relative entropy):
+
+{code}
+Ho(x) = H(x) / HMax
+{code}
+
+   * Mutual Information
+
+{code}
+I(x,y) = ∑ p(xi,yj) log [ p(xi,yj) / p(xi)p(yj) ]
+
+I(x,y) = H(x) - H(x|y) = H(y) - H(y|x)
+I(x,y) >= 0
+I(x,y) = I(y,x)
+
+Probability and Uncertainty:
+marginal: H(x) = - ∑ p(xi) log p(xi)
+joint: H(x,y) = - ∑ p(xi,yj) log p(xi,yj)
+conditional: H(y|x) = - ∑ p(xi,yj) log p(yj|xi)
+mutual: I(x,y) = ∑ p(xi,yj) log [ p(xi,yj) / p(xi)p(yj) ]
+
+{code}
