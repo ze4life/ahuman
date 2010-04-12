@@ -339,3 +339,110 @@ a2-5 are arbitrary constants (a2 > 0)
 === 9. Spiking Neuron Models ===
 
 http://ahuman.googlecode.com/svn/images/wiki/research/course/09.activation.jpg
+
+  * Level 1. Detailed compartmental models
+   * Realistic spatial structure
+   * Supports dendritic computation and axonal signal filtering (coincidence detection, motion detection, gain modulation)
+   * Computationally expensive (single cell mostly)
+  * Level 2. Reduced compartmental models
+   * Can model temporal aspects of learning and spiking
+   * Have been used to model short term memory, cortical gamma oscillations, slow-wave sleep oscillations
+   * Still computationally expensive (max around 3,000 cells)
+  * Level 3. Single-compartment models
+   * Model phasic, chattering, tonic, and adaptive spiking, relating cell characteristics to observed spike trains
+   * Capture “synaptic noise” effects on probabilistic spiking, neuron sensitivity, network stability
+   * Computationally tractable (100,000s to 1011 neurons)
+  * Level 4. Cascade models
+   * Concatenation of linear filters, nonlinear transformations, and random processes
+   * Used to model visual system, simultaneous adaptation to mean light intensity and light contrast, other features
+   * Ignore dynamics that do affect experimental outcomes
+  * Level 5. Black-box models
+   * Model signal-processing characteristics with no consideration of physical machinery
+   * May reveal general operating points, how inputs modify responses
+   * Have revealed that sensory neurons operate close to their information-theoretic limit, and how neurons may shift their input-output curves to achieve this
+  
+  * Ways to model neuron
+{{{
+1. (Leaky) Integrate & Fire (I&F):
+v’ = I + a - b v
+if v ≥ vthresh then fire and reset v = c
+
+Four floating-point operations, plus one compare, per ms.
+3 of the 20 identified behaviors.
+
+2. Integrate & Fire with Adaptation (I&FA)
+v’ = I + a - b v + g (d - v)
+if v ≥ vthresh then fire and reset v = c
+g’ = (e δ(t) - g) / τ
+
+10 floating-point operations, plus compare, per ms
+5 of 20 identified behaviors.
+
+3. Integrate & Fire or Burst (I&FB)
+v’ = I + a - b v + g H(v - vh) h (vT - v)
+if v ≥ vthresh then fire and reset v = c
+h’ = { -h / τ- , if v > vh
+(1 - h) / τ+ , if v < vh
+
+Between 9 and 13 operations per ms (depending on v)
+9 to 11 behaviors still unmodeled.
+
+4. Resonate & Fire (R&F)
+z’ = I + (b + iω) z
+if Im(z) ≥ athresh then fire and reset z = z0(z)
+10 operations, plus compare, per ms
+9 behaviors unmodeled
+
+5. Quadratic Integrate & Fire (QI&F)
+v’ = I + a (v - vrest) (v - vthresh)
+if v ≥ vpeak then fire and reset v = vreset
+7 operations, plus compare, per ms
+15 of the 20 behaviors
+
+6. Izhikevich spiking model (ISM)
+v’ = 0.04 v2 + 5 v + 140 - u + I
+u’ = a (bv - u)
+if v ≥ 30 mv then has fired, so reset:
+v = c
+u = u + d
+
+13 floating point operations, plus compare, per ms in
+most regimes
+all 20 behaviors with different parameters
+
+7. FitzHugh-Nagumo
+v’ = a + b v + c v2 + d v3 - u
+u’ = ε (ev - u)
+
+18 floating point operations, per step
+10 of the defined 20
+
+8. Hindmarsh-Rose
+v’ = u - F(v) + I - w
+u’ = G(v) - u
+w’ = (H(v) - w) / τ
+
+30 floating point operations, per step
+17 of the 20 behaviors
+
+9. Morris-Lecar
+60 floating-point ops per step
+6 to 8 behaviors unmodeled
+
+10. Wilson polynomial neurons
+
+45 floating-point ops per step, but requires
+Can theoretically produce all 20 behaviors
+
+11. Hodgkin-Huxley
+120 floating-point ops per step
+all 20 behaviors
+}}}
+
+http://ahuman.googlecode.com/svn/images/wiki/research/course/09.spiketable.jpg
+
+  * processing power:
+   * 1,000 cortical spiking neurons in real time in MATLAB on a 1 GHz desktop PC
+   * 20,000 neurons in real time in C on a 1 GHz desktop PC
+   * 100,000 neurons with axonal delays and STDP learning
+   * detailed thalamo-cortical system with 1011 spiking neurons (size of the human brain), 6-layer cortical micro-circuitry, specific, non-specific, and reticular thalamic nuclei.” - one second of simulation took over a month on a cluster of 27 3 GHz processors
