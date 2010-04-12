@@ -294,3 +294,44 @@ joint: H(x,y) = - ∑ p(xi,yj) log p(xi,yj)
 conditional: H(y|x) = - ∑ p(xi,yj) log p(yj|xi)
 mutual: I(x,y) = ∑ p(xi,yj) log [ p(xi,yj) / p(xi)p(yj) ]
 }}}
+
+=== 8. Hebbian Learning and Information Theory ===
+
+  * Self-organization of brain maps
+   * Consistent with the way processing is done in the brain
+   * Should preferentially represent high-probability stimuli
+   * Based on local interactions (no global control)
+
+{{{
+von der Malsburg (1973) neuron activation rule:
+dHk(t)/dt = −αkHk(t) + ∑ plkHl(t) + ∑ sikAi(t)
+           activation    lateral    connections from
+              decay    connections  "retinal" layer
+
+The Shannon information rate (the average information transmitted from L to M per message):
+R = ∑∑ P(L,M) log[ P(L,M) / P(L)P(M) ] = H(L) - H(L|M) = H(M) - H(M|L)
+
+ - P(L) is the probability of the input message being L
+ - P(M) is the probability of the output message being M
+ - P(L,M) is the joint probability of the input being L and the output being M
+
+For the case in which P(L) is uniform over L:
+R = - ∑M [A(M)/A] log[A(M)/A] - (γν/A) ∑M s(M)
+
+ - P(M) = A(M) / A
+ - P(M|L) log P(M|L) is zero except for borderline L
+ - γ is a positive number whose value depends on the details of the noise process, and which determines P(M|L) for borderline L as a function of distance from the border
+}}}
+
+  * tends to produce maps in which regions of the input space that are activated more frequently are given greater representation in the output space
+  * Hebb-type rule can also be shown to maximize information in M about L, by showing that it minimizes uncertainties in L given M, in an LMSE (Least Mean Squared Error) sense
+
+{{{
+The linear response rule:
+M = a1 + ∑Lc
+
+Potential range of Hebb-type rules:
+∆ci = a2LiM + a3Li + a4M + a5
+
+a2-5 are arbitrary constants (a2 > 0)
+}}}
