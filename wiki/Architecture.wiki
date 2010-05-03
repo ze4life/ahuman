@@ -31,22 +31,35 @@ Feasibility Study gives us below limitations for aHuman design:
    * create feedback reward function as output of feedback recognition system
    * use feedback reward function to learn all active Markov networks
 
-== Core paradigms for architecture ==
+== Architecture models ==
 
-  * [NeuralParadigm] - neural networks is chosen as principal method to represent mind functions. It is complemented by non-neural methods to arrange a system from many neural networks and to connect this system to the real world
-  * [VariablesParadigm] - approach to represent entities of the world in such a way that we can reference them across all modules having attached metadata available immediately, and be free to represent both simple and complex items. Items work as inputs and outputs for numerous neural networks
-  * [GenomeParadigm] - explains how to build multi-network step-by-step. It introduces neural variables, and uses the ability of neural networks to adopt to new inputs added when training is already done
+Up to the moment several models were created, addressing different sides.
+Latest models include more enhanced understanding of subject area.
 
-These paradigms are combined together in below diagram, which presents a step to practical implementation of Human project:
+=== Current understanding ===
 
-Human is a set of neural networks, connected to sensors and effectors by means of low-level drivers, and genome services, responsible for arranging and adjusting those networks, and generic kernel for necessary but non-intelligent functions
+Last findings:
 
-http://ahuman.googlecode.com/svn/images/wiki/development/architecture.jpg
+Now the role and interrelationships of major scientific areas - Artificial Life, Artificial Intelligence, Cognition, Connectivism - quite clear and the design is based on:
+
+  * Plausible compared to human - local connections, major components are based on human design
+  * Design should allow using ordinary computer, not Blue Brain one
+  * All design items on first level should be based on limitations and existing human design - no attempt to descend to certain final component model
+  * Design should take into account priority of life features over intelligence features
+  * Items should demonstrate ability to adopt to environment "by design"
+
+http://ahuman.googlecode.com/svn/images/wiki/development/mindmap.jpg
+
+=== Original Model ===
+
+Component Design Principles are:
 
   * All blocks separate code and functions
   * Mentioned features are allocated to blocks and are covered by several ones
   * Features that exist as consequences of denoted interactions among blocks or serving to allow development and debugging, are design features and are not described here
   * Not connected blocks are in fact connected to all blocks and provide general services
+
+http://ahuman.googlecode.com/svn/images/wiki/development/architecture.jpg
 
 == Short architecture block explanations ==
 
@@ -104,6 +117,18 @@ Configuration items are defined by part:
     # *modio*: Channels
   * Part G. Generic Library
     # *genrtn*
+
+== Meta Design ===
+
+*Core paradigms for architecture*:
+
+  * [NeuralParadigm] - neural networks is chosen as principal method to represent mind functions. It is complemented by non-neural methods to arrange a system from many neural networks and to connect this system to the real world
+  * [VariablesParadigm] - approach to represent entities of the world in such a way that we can reference them across all modules having attached metadata available immediately, and be free to represent both simple and complex items. Items work as inputs and outputs for numerous neural networks
+  * [GenomeParadigm] - explains how to build multi-network step-by-step. It introduces neural variables, and uses the ability of neural networks to adopt to new inputs added when training is already done
+
+These paradigms are combined together in below diagram, which presents a step to practical implementation of Human project:
+
+Human is a set of neural networks, connected to sensors and effectors by means of low-level drivers, and genome services, responsible for arranging and adjusting those networks, and generic kernel for necessary but non-intelligent functions
 
 == Open questions ==
 
