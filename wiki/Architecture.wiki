@@ -56,7 +56,6 @@ Externals:
 
 Components:
 
-  * *Shell*: program kernel to provide generic services like logging to all blocks and to implement life functions
   * *Sensors*: Items to create snapshotting specific projections of external world information and to pass corresponding streams into information processing blocks. Sensors are fixed or can be affected by effectors (e.g. we can turn head to give our eyes new view)
   * *Effectors*: Items that somehow affect external world. Process only low-level commands
   * *Command Memory*: drivers to effectors, store NNs with strategies to execute complex commands by means of low-level commands, take into account current internal (known for driver only) state of effectors and provide external (understandable by all blocks) state to operating memory
@@ -68,8 +67,9 @@ Components:
   * *Hormones*: motivations of "body", meaning here what is derived from the life form of creature
   * *Character*: a set of established internal relations, reactions, activity patterns, criteria to estimate action - like spirit
 
-Libraries / Middleware:
+Framework:
 
+  * *Shell*: program kernel to provide generic services like logging to all blocks and to implement life functions
   * *Channels*: special functions to establish flexible and effective information flow channels information channels between blocks, make them asynchronous, convenient if complex like video-signal and and to avoid direct calls from one block to another (except to shell or channels itself)
   * *Persistence*: file-based database to store the knowledge gained
   * *NN Library*: implementation of known algorithms for neural networks
