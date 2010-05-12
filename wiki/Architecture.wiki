@@ -40,6 +40,19 @@ http://ahuman.googlecode.com/svn/images/wiki/development/mindmap.jpg
 
 http://ahuman.googlecode.com/svn/images/wiki/development/humanmind.jpg
 
+|| *Module / Component Set* || *Technology* || *Primary Function* || *Related Problems and Algorithms* ||
+|| *modmedia* || || || ||
+|| sensors || hardcoded || primary sensors to capture signal || chat reader, video-stream, signal processing ||
+|| effectors || hardcoded || emit signal || chat writer, primary feedback ||
+|| *modcognition* || || || ||
+|| cortex || HTM || primary cortex || ||
+|| amex || BAM/RBM || associative memory || ||
+|| *modintelligence* || || || ||
+|| strategies || HMM || rational behaviour || ||
+|| motor || HMM || effectors control || ||
+
+=== Function / Technology Map ===
+
 === Limitations ===
 
 Feasibility Study gives us below limitations for aHuman design:
@@ -66,7 +79,7 @@ Feasibility Study gives us below limitations for aHuman design:
    * create feedback reward function as output of feedback recognition system
    * use feedback reward function to learn all active Markov networks
 
-=== Original Model ===
+== Original Model ==
 
 Component Design Principles are:
 
@@ -104,7 +117,7 @@ Framework:
   * *NN Library*: implementation of known algorithms for neural networks
   * *AI Library*: implementation of known algorithms for artificial intelligence
 
-== Configuration items for development ==
+=== Configuration items for development ===
 
 To simplify development, the program could be split into below parts:
 
@@ -134,7 +147,7 @@ Configuration items are defined by part:
   * Part G. Generic Library
     # *genrtn*
 
-== Meta Design ===
+=== Meta Design ====
 
 *Core paradigms for architecture*:
 
@@ -146,11 +159,11 @@ These paradigms are combined together in below diagram, which presents a step to
 
 Human is a set of neural networks, connected to sensors and effectors by means of low-level drivers, and genome services, responsible for arranging and adjusting those networks, and generic kernel for necessary but non-intelligent functions
 
-== Open questions ==
+=== Open questions ===
 
   * Not clear whether Neural and Variables paradigms could be effective way to represent learned knowledge. Possibly it should be combined with HTM/MPF technology (research task is open in [ArtificialIntelligenceResearch Artificial Intelligence Research])
 
-== Function / Technology Map ==
+=== Function / Technology Map ===
 
 || *Module* || *Technology* || *Primary Function* || *Related Problems and Algorithms* ||
 || *modmedia* || || || ||
