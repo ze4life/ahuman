@@ -29,9 +29,10 @@ http://ahuman.googlecode.com/svn/images/wiki/development/mindmap.jpg
 *Major Diagram Features*:
 
   * Diagram is the same for biological human and for artificial life
-  * Body is regarded as consisting brain, physiology and biology parts
-    * physiology part is not having any information processing, but serve for direct converting neural signals to musculus changes or transform light into eye signals (not including any pattern processing, capture only); in aHuman it can be created as hard-coded, non-adoptable software without loss of Artificial Life features
-    * biology part represents human component and subsystems, which implement human as biological being - reproductive system, feed subsystem, blood subsystem and others; in aHuman it has meaning only for functions that link brain and body - like metabolism, pain feedback
+  * Body is regarded as consisting of non-overlapping brain, physiology and biology parts
+    * *physiology* - physiological part is not having any information processing, but serve for direct converting neural signals to musculus changes or transform light into eye signals (not including any pattern processing, capture only); in aHuman it can be created as hard-coded, non-adoptable software without loss of Artificial Life features
+    * *biology* - non-brain biological part represents human component and subsystems, which implement human as biological being - reproductive system, feed subsystem, blood subsystem and others; in aHuman it has meaning only for functions that link brain and body - like metabolism, pain feedback
+    * *brain* is a biological part intended to support mind operations; in aHuman it is represented by computer science solutions and algorithms based primarily on connectivists principles 
   * Mind on brain
    * mind is shown as cognition and intelligence functions, implemented on brain
    * several functions were identified by software model of brain
@@ -53,8 +54,9 @@ http://ahuman.googlecode.com/svn/images/wiki/development/humanmind.jpg
 || strategies || HMM || rational behaviour || ||
 || motor || HMM || effectors control || ||
 || *engine* || || || ||
+|| keeper || hardcoded || startup sequence and component management || ||
 || db || hardcoded || persistence services || ||
-|| io || hardcoded || persistence services || JMS/COM-style ||
+|| io || hardcoded || internal communications || JMS/COM-style ||
 || *lib* || || || ||
 || libgen || hardcoded || low-level generic algorithms and data primitives || ||
 || libnn || ANN || persistence services || ||
