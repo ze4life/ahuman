@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include <signal.h>
 
+#define TIXML_USE_STL
 #include "tinyxml.h"
 
 /*#########################################################################*/

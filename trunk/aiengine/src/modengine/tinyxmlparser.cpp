@@ -25,6 +25,7 @@ distribution.
 #include <ctype.h>
 #include <stddef.h>
 
+#define TIXML_USE_STL
 #include "tinyxml.h"
 
 //#define DEBUG_PARSER
