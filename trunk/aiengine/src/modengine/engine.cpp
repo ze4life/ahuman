@@ -197,8 +197,6 @@ void AIEngineImpl::createServices()
 	Service *svc;
 
 	svc = AIIO::createService(); svc -> isCreateCompleted = true;
-	svc = AINNLib::createService(); svc -> isCreateCompleted = true;
-	svc = AIHtmLib::createService(); svc -> isCreateCompleted = true;
 	svc = AIMedia::createService(); svc -> isCreateCompleted = true;
 	svc = AIHeart::createService(); svc -> isCreateCompleted = true;
 	svc = AIMind::createService(); svc -> isCreateCompleted = true;
