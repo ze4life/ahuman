@@ -2,6 +2,8 @@
 @@[Home] -> [ProjectPlanning]
 
 http://ahuman.googlecode.com/svn/images/wiki/research/planning.jpg
+
+<wiki:toc max_depth="2" />
 ----
 
 = Project Phases / Steps =
@@ -76,7 +78,7 @@ See [aHumanRequirements Requirements]
   * Use Time Window / Staged Delivery method - see [DevelopmentCycle]
   * Use free Open Sources tools and libraries
 
-==Current Challenges==
+== Current Challenges ==
 
 General:
 
@@ -98,10 +100,22 @@ Cognition:
    * linking distant items
    * multi-hop associations
 
-==Next Release==
+== Using Third-party Libraries ==
+
+Generally we have below options:
+  * don't use a copy of external code to implement 3-d party library functions (not suitable if take into account the complexity of aHuman task)
+  * use library code as a reference to understand algorithms and implement the same with required amendments (the way chosen when project has been started)
+  * use library as is, in form of committed binaries and headers or as full sources
+
+Last one is the way that looks to me most effective now.
+To keep it consistent with our architecture:
+  * never use external library API directly, do it only via facade interface
+  * support having in the codebase several libraries for the same purpose, e.g. several neural network implementations, and related wrappers in facade to address different coding style and design approaches
+
+== Next Release ==
 
 see [ReleasePlanning]
 
-==Future Features==
+== Future Features ==
 
   * [FutureFeatureLocalWatcher Local Watcher]
