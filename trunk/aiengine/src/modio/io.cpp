@@ -6,13 +6,13 @@
 
 AIIO::AIIO() 
 { 
-	thisPtr = static_cast<AIIOImpl *>( AIEngine::getInstance().getService( "AIIO" ) );
+	thisPtr = static_cast<AIIOImpl *>( AIEngine::getInstance().getService( "IO" ) );
 }
 
 /* static */ Service *AIIO::createService()
 {
 	Service *svc = new AIIOImpl();
-	AIEngine::getInstance().registerService( svc , "AIIO" );
+	AIEngine::getInstance().registerService( svc , "IO" );
 	return( svc );
 }
 
@@ -78,8 +78,7 @@ Publisher *AIIOImpl::createPublisher( Session *session , String channel , String
 	PublisherImpl *pub = new PublisherImpl( session , ch , pubName , msgtype );
 
 	ch -> addPublisher( pubName , pub );
-
-	AIIOImpl::logger.logInfo( String( "[" ) + pubName + "] publisher started on [" + channel + "] channel" );
+	logger.logInfo( pubName + " publisher started on " + channel + " channel" );
 
 	return( pub );
 }
@@ -90,7 +89,8 @@ Subscription *AIIOImpl::subscribe( Session *session , String channel , String su
 	SubscriptionImpl *sub = new SubscriptionImpl( session , ch , subName , subHandler );
 
 	ch -> addSubscription( subName , sub );
-	logger.logInfo( String( "[" ) + subName + "] subscriber started on [" + channel + "] channel" );
+	logger.logInfo( subName + " subscriber started on " + channel + " channel" );
+	
 	return( sub );
 }
 
@@ -103,7 +103,7 @@ bool AIIOImpl::destroyPublisher( Publisher *publisher )
 	if( ch != NULL )
 		{
 			ch -> deletePublisher( name );
-			logger.logInfo( String( "[" ) + name + "] publisher stopped on [" + ch -> getName() + "] channel" );
+			logger.logInfo( name + " publisher stopped on " + ch -> getName() + " channel" );
 		}
 
 	delete pub;
@@ -118,7 +118,7 @@ bool AIIOImpl::unsubscribe( Subscription *subscription )
 	if( ch != NULL )
 		{
 			ch -> deleteSubscription( sub -> name );
-			logger.logInfo( String( "[" ) + sub -> name + "] subscriber unsubscribed from [" + ch -> getName() + "] channel" );
+			logger.logInfo( sub -> name + " subscriber unsubscribed from " + ch -> getName() + " channel" );
 		}
 	delete sub;
 	return( true );

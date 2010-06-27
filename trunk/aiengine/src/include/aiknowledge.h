@@ -3,10 +3,6 @@
 
 #include <aiio.h>
 
-class AIToken;
-class AISentense;
-class AITokenList;
-
 /*#########################################################################*/
 /*#########################################################################*/
 
@@ -24,33 +20,5 @@ public:
 
 /*#########################################################################*/
 /*#########################################################################*/
-
-class AIToken : public Object
-{
-public:
-	virtual const char *getText() = 0;
-	virtual int getOrderPos() = 0;
-};
-
-/*#########################################################################*/
-/*#########################################################################*/
-
-class AISentense : public Object
-{
-public:
-	virtual void addToken( AIToken *p_token ) = 0;
-	virtual ClassList<AIToken>& getTokens() = 0;
-};
-
-/*#########################################################################*/
-/*#########################################################################*/
-
-class AITokenList : public Object
-{
-public:
-	virtual ClassList<AIToken>& getTokens() = 0;
-	virtual int getTokenCount() = 0;
-	virtual AIToken *getTokenByOrder( int p_order ) = 0;
-};
 
 #endif	// INCLUDE_AIKNOWLEDGE_H

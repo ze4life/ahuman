@@ -7,13 +7,13 @@
 
 AIDB::AIDB() 
 { 
-	thisPtr = static_cast<AIDBImpl *>( AIEngine::getInstance().getService( "AIDB" ) ); 
+	thisPtr = static_cast<AIDBImpl *>( AIEngine::getInstance().getService( "DB" ) ); 
 }
 
 /* static */ Service *AIDB::createService()
 {
 	Service *svc = new AIDBImpl();
-	AIEngine::getInstance().registerService( svc , "AIDB" );
+	AIEngine::getInstance().registerService( svc , "DB" );
 	return( svc );
 }
 

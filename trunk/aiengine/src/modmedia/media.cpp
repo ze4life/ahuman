@@ -6,13 +6,13 @@
 
 AIMedia::AIMedia() 
 { 
-	thisPtr = static_cast<AIMediaImpl *>( AIEngine::getInstance().getService( "AIMedia" ) ); 
+	thisPtr = static_cast<AIMediaImpl *>( AIEngine::getInstance().getService( "Media" ) ); 
 }
 
 /* static */ Service *AIMedia::createService()
 {
 	Service *svc = new AIMediaImpl();
-	AIEngine::getInstance().registerService( svc , "AIMedia" );
+	AIEngine::getInstance().registerService( svc , "Media" );
 	return( svc );
 }
 
@@ -63,6 +63,7 @@ void AIMediaImpl::startListeners()
 			// start
 			ASSERTMSG( listener -> startListener() , 
 				"AIMediaImpl::startListeners: cannot start listener " + name );
+			logger.logInfo( name + " listener started at " + listener -> getAddress() );
 		}
 }
 

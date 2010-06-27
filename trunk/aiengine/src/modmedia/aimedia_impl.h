@@ -75,6 +75,7 @@ public:
 	virtual void configure( Xml config ) = 0;
 	virtual bool startListener() = 0;
 	virtual void stopListener() = 0;
+	virtual String getAddress() = 0;
 
 public:
 	Listener();
@@ -194,6 +195,7 @@ public:
 	virtual void configure( Xml config );
 	virtual bool startListener();
 	virtual void stopListener();
+	virtual String getAddress();
 
 public:
 	String getTopicIn();

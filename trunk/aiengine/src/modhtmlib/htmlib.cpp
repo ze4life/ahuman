@@ -10,13 +10,13 @@ AIHtmLib::AIHtmLib()
 
 AIHtmLibImpl *AIHtmLibImpl::getServiceImpl()
 {
-	return( static_cast<AIHtmLibImpl *>( AIEngine::getInstance().getService( "AIHtmLib" ) ) );
+	return( static_cast<AIHtmLibImpl *>( AIEngine::getInstance().getService( "HtmLib" ) ) );
 }
 
 /* static */ Service *AIHtmLib::createService()
 {
 	Service *svc = new AIHtmLibImpl();
-	AIEngine::getInstance().registerService( svc , "AIHtmLib" );
+	AIEngine::getInstance().registerService( svc , "HtmLib" );
 	return( svc );
 }
 
@@ -27,24 +27,37 @@ AIHtmLibImpl::AIHtmLibImpl()
 
 void AIHtmLibImpl::initService()
 {
-	// register serialisable classes
-	HtmCortex::createSerializeObject();
+	addLibVariant( AIHtmLibVariant::createHtmCustom() );
 }
 
 void AIHtmLibImpl::runService()
 {
-	// register debug call subscriber
-	debug.init( config );
+	// log available commands
+	logger.logInfo( "AVAILABLE LIBRARIES:" );
+	for( int k = 0; k < variants.count(); k++ ) {
+		AIHtmLibVariant *var = variants.getClassByIndex( k );
+		logger.logInfo( "library=" + var -> getName() );
+	}
 }
 
 void AIHtmLibImpl::exitService()
 {
-	debug.exit();
 }
 
 void AIHtmLibImpl::destroyService()
 {
+	variants.destroy();
 	delete this;
+}
+
+void AIHtmLibImpl::addLibVariant( AIHtmLibVariant *lib )
+{
+	variants.add( lib -> getName() , lib );
+}
+
+AIHtmLibVariant *AIHtmLibImpl::getLibVariant( String name )
+{
+	return( variants.get( name ) );
 }
 
 /*#########################################################################*/

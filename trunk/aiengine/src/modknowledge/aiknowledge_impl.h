@@ -6,12 +6,6 @@
 #include <aidb.h>
 #include <aiio.h>
 
-class AISentenseImpl;
-class AITokenImpl;
-class AITokenListImpl;
-class AITokenAssociations;
-class AITokenAssocData;
-
 /*#########################################################################*/
 /*#########################################################################*/
 
@@ -30,11 +24,6 @@ public:
 	AIKnowledgeImpl();
 
 	// Object interface
-
-// base class interface
-public:
-	void loadPrimaryInformation();
-	void saveAllPersistent();
 
 // internals
 private:

@@ -196,12 +196,17 @@ void AIEngineImpl::createServices()
 	logger.logInfo( "create services..." );
 	Service *svc;
 
+	// tech services
+	svc = AITestPool::createService(); svc -> isCreateCompleted = true;
 	svc = AIIO::createService(); svc -> isCreateCompleted = true;
 	svc = AIMedia::createService(); svc -> isCreateCompleted = true;
-	svc = AIHeart::createService(); svc -> isCreateCompleted = true;
-	svc = AIMind::createService(); svc -> isCreateCompleted = true;
-	svc = AIKnowledge::createService(); svc -> isCreateCompleted = true;
 	svc = AIDB::createService(); svc -> isCreateCompleted = true;
+	
+	// mind services
+	svc = AINNLib::createService(); svc -> isCreateCompleted = true;
+	svc = AIHtmLib::createService(); svc -> isCreateCompleted = true;
+	svc = AIKnowledge::createService(); svc -> isCreateCompleted = true;
+	svc = AICommands::createService(); svc -> isCreateCompleted = true;
 
 	// attach loggers
 	for( int k = 0; k < services.count(); k++ )
