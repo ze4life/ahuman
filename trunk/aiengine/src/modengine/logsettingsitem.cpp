@@ -24,17 +24,20 @@ void LogSettingsItem::setLevel( Logger::LogLevel p_level )
 	level = p_level;
 }
 
-void LogSettingsItem::setLevelSymbol( char p_level )
+void LogSettingsItem::setLevelByName( String p_level )
 {
-	switch( p_level )
-		{
-			case 'N' :	level = Logger::LogLevelNone; break;
-			case 'E' :	level = Logger::LogLevelError; break;
-			case 'I' :	level = Logger::LogLevelInfo; break;
-			case 'A' :	level = Logger::LogLevelDebug; break;
-			default :
-				ASSERT( false );
-		}
+	p_level = p_level.toUpper();
+	
+	if( p_level.equals( "NORMAL" ) )
+		level = Logger::LogLevelNone;
+	else if( p_level.equals( "ERROR" ) )
+		level = Logger::LogLevelError;
+	else if( p_level.equals( "INFO" ) )
+		level = Logger::LogLevelInfo;
+	else if( p_level.equals( "DEBUG" ) )
+		level = Logger::LogLevelDebug;
+	else
+		ASSERTFAILED( "Unknown log level=" + p_level );
 }
 
 Xml LogSettingsItem::getXml()
@@ -47,24 +50,22 @@ void LogSettingsItem::configure( Xml xml )
 	settings = xml;
 
 	String level = xml.getAttribute( "level" );
-	setLevelSymbol( *( const char * )level );
+	setLevelByName( level );
 
 	// read exclude settings if any
-	for( Xml item = xml.getFirstChild( "exclude" ); item.exists(); item = item.getNextChild( "exclude" ) )
-		{
-			String name = item.getAttribute( "string" );
-			excludeList.add( name , this );
-		}
+	for( Xml item = xml.getFirstChild( "exclude" ); item.exists(); item = item.getNextChild( "exclude" ) ) {
+		String name = item.getAttribute( "string" );
+		excludeList.add( name , this );
+	}
 
 	// read instances if any
-	for( Xml instance = xml.getFirstChild( "instance" ); instance.exists(); instance = instance.getNextChild( "instance" ) )
-		{
-			String name = instance.getAttribute( "name" );
+	for( Xml instance = xml.getFirstChild( "instance" ); instance.exists(); instance = instance.getNextChild( "instance" ) ) {
+		String name = instance.getAttribute( "name" );
 
-			LogSettingsItem *lsi = new LogSettingsItem;
-			lsi -> configure( instance );
-			instanceSettings.add( name , lsi );
-		}
+		LogSettingsItem *lsi = new LogSettingsItem;
+		lsi -> configure( instance );
+		instanceSettings.add( name , lsi );
+	}
 }
 
 bool LogSettingsItem::logDisabled( Logger::LogLevel p_level )

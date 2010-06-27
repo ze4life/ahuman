@@ -114,6 +114,11 @@ void SocketServer::stopListener()
 	closeListeningPort();
 }
 
+String SocketServer::getAddress()
+{
+	return( getAddress( &listen_inet ) );
+}
+
 bool SocketServer::openListeningPort()
 {
 	// read parameters

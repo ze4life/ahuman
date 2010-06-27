@@ -63,6 +63,8 @@ public:
 	int findLast( char c );
 	String getMid( int from , int n );
 	char getChar( int index );
+	String toUpper();
+	String toLower();
 
 private:
 	void createFromString( const char *s );

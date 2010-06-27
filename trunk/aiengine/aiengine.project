@@ -8,186 +8,214 @@
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
-    <File Name="src\main.cpp"/>
+    <File Name="src/main.cpp"/>
     <VirtualDirectory Name="include">
-      <File Name="src\include\aiobject.h"/>
-      <File Name="src\include\aibasetypes.h"/>
-      <File Name="src\include\aidb.h"/>
-      <File Name="src\include\aiengine.h"/>
-      <File Name="src\include\aiheart.h"/>
-      <File Name="src\include\aihtmlib.h"/>
-      <File Name="src\include\aiio.h"/>
-      <File Name="src\include\aiknowledge.h"/>
-      <File Name="src\include\aimedia.h"/>
-      <File Name="src\include\aimind.h"/>
-      <File Name="src\include\ainnlib.h"/>
+      <File Name="src/include/aiobject.h"/>
+      <File Name="src/include/aibasetypes.h"/>
+      <File Name="src/include/aidb.h"/>
+      <File Name="src/include/aiengine.h"/>
+      <File Name="src/include/aihtmlib.h"/>
+      <File Name="src/include/aiio.h"/>
+      <File Name="src/include/aiknowledge.h"/>
+      <File Name="src/include/aimedia.h"/>
+      <File Name="src/include/ainnlib.h"/>
       <VirtualDirectory Name="generic">
-        <File Name="src\include\generic\_genstr.h"/>
-        <File Name="src\include\generic\__gen.h"/>
-        <File Name="src\include\generic\_gencach.h"/>
-        <File Name="src\include\generic\_gencube.h"/>
-        <File Name="src\include\generic\_gendata.h"/>
-        <File Name="src\include\generic\_genhuge.h"/>
-        <File Name="src\include\generic\_genmap.h"/>
-        <File Name="src\include\generic\_genmisc.h"/>
-        <File Name="src\include\generic\_genmsh.h"/>
-        <File Name="src\include\generic\_genos.h"/>
-        <File Name="src\include\generic\_genplat.h"/>
-        <File Name="src\include\generic\_genset.h"/>
+        <File Name="src/include/generic/_genstr.h"/>
+        <File Name="src/include/generic/__gen.h"/>
+        <File Name="src/include/generic/_gencach.h"/>
+        <File Name="src/include/generic/_gencube.h"/>
+        <File Name="src/include/generic/_gendata.h"/>
+        <File Name="src/include/generic/_genhuge.h"/>
+        <File Name="src/include/generic/_genmap.h"/>
+        <File Name="src/include/generic/_genmisc.h"/>
+        <File Name="src/include/generic/_genmsh.h"/>
+        <File Name="src/include/generic/_genos.h"/>
+        <File Name="src/include/generic/_genplat.h"/>
+        <File Name="src/include/generic/_genset.h"/>
+      </VirtualDirectory>
+      <File Name="src/include/test.h"/>
+      <File Name="src/include/aicommands.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="svcdb">
+      <File Name="src/moddb/db.cpp"/>
+      <File Name="src/moddb/dbcursor.cpp"/>
+      <File Name="src/moddb/dbfile.cpp"/>
+      <File Name="src/moddb/dbrecordheader.cpp"/>
+      <File Name="src/moddb/dbrecordset.cpp"/>
+      <File Name="src/moddb/aidb_impl.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="engine">
+      <File Name="src/modengine/engine.cpp"/>
+      <VirtualDirectory Name="tinyxml">
+        <File Name="src/modengine/tinyxml.h"/>
+        <File Name="src/modengine/tinyxml.cpp"/>
+        <File Name="src/modengine/tinyxmlerror.cpp"/>
+        <File Name="src/modengine/tinyxmlparser.cpp"/>
+      </VirtualDirectory>
+      <File Name="src/modengine/aiengine_impl.h"/>
+      <VirtualDirectory Name="logger">
+        <File Name="src/modengine/logger.cpp"/>
+        <File Name="src/modengine/logmanager.cpp"/>
+        <File Name="src/modengine/logsettings.cpp"/>
+        <File Name="src/modengine/logsettingsitem.cpp"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="types">
+        <File Name="src/modengine/multiindexiterator.cpp"/>
+        <File Name="src/modengine/scale.cpp"/>
+        <File Name="src/modengine/string.cpp"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="object">
+        <File Name="src/modengine/object.cpp"/>
+        <File Name="src/modengine/objectfield.cpp"/>
+        <File Name="src/modengine/serializeobject.cpp"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="helpers">
+        <File Name="src/modengine/enginethreadhelper.cpp"/>
+        <File Name="src/modengine/fileutils.cpp"/>
+        <File Name="src/modengine/math.cpp"/>
+        <File Name="src/modengine/random.cpp"/>
+        <File Name="src/modengine/runtimeexception.cpp"/>
+        <File Name="src/modengine/timer.cpp"/>
+        <File Name="src/modengine/xml.cpp"/>
       </VirtualDirectory>
     </VirtualDirectory>
-    <VirtualDirectory Name="moddb">
-      <File Name="src\moddb\db.cpp"/>
-      <File Name="src\moddb\dbcursor.cpp"/>
-      <File Name="src\moddb\dbfile.cpp"/>
-      <File Name="src\moddb\dbrecordheader.cpp"/>
-      <File Name="src\moddb\dbrecordset.cpp"/>
-      <VirtualDirectory Name="include">
-        <File Name="src\moddb\aidb_impl.h"/>
+    <VirtualDirectory Name="libbn">
+      <File Name="src/modhtmlib/htmlib.cpp"/>
+      <VirtualDirectory Name="htm_custom">
+        <File Name="src/modhtmlib/view_custom/htmcortex.cpp"/>
+        <File Name="src/modhtmlib/view_custom/htmhelper.cpp"/>
+        <File Name="src/modhtmlib/view_custom/htmlayer.cpp"/>
+        <File Name="src/modhtmlib/view_custom/htmlayermemory.cpp"/>
+        <File Name="src/modhtmlib/view_custom/htmrect.cpp"/>
+        <File Name="src/modhtmlib/view_custom/htmsequence.cpp"/>
+        <File Name="src/modhtmlib/view_custom/htm_custom.cpp"/>
+        <File Name="src/modhtmlib/view_custom/htm_custom.h"/>
       </VirtualDirectory>
+      <File Name="src/modhtmlib/aihtmlib_impl.h"/>
     </VirtualDirectory>
-    <VirtualDirectory Name="modengine">
-      <VirtualDirectory Name="include">
-        <File Name="src\modengine\aiengine_impl.h"/>
-        <File Name="src\modengine\tinyxml.h"/>
-      </VirtualDirectory>
-      <File Name="src\modengine\engine.cpp"/>
-      <File Name="src\modengine\enginethreadhelper.cpp"/>
-      <File Name="src\modengine\fileutils.cpp"/>
-      <File Name="src\modengine\logger.cpp"/>
-      <File Name="src\modengine\logmanager.cpp"/>
-      <File Name="src\modengine\logsettings.cpp"/>
-      <File Name="src\modengine\logsettingsitem.cpp"/>
-      <File Name="src\modengine\math.cpp"/>
-      <File Name="src\modengine\multiindexiterator.cpp"/>
-      <File Name="src\modengine\object.cpp"/>
-      <File Name="src\modengine\objectfield.cpp"/>
-      <File Name="src\modengine\random.cpp"/>
-      <File Name="src\modengine\runtimeexception.cpp"/>
-      <File Name="src\modengine\scale.cpp"/>
-      <File Name="src\modengine\serializeobject.cpp"/>
-      <File Name="src\modengine\string.cpp"/>
-      <File Name="src\modengine\timer.cpp"/>
-      <File Name="src\modengine\tinyxml.cpp"/>
-      <File Name="src\modengine\tinyxmlerror.cpp"/>
-      <File Name="src\modengine\tinyxmlparser.cpp"/>
-      <File Name="src\modengine\xml.cpp"/>
-    </VirtualDirectory>
-    <VirtualDirectory Name="modheart">
-      <VirtualDirectory Name="include">
-        <File Name="src\modheart\aiheart_impl.h"/>
-      </VirtualDirectory>
-      <File Name="src\modheart\emotion.cpp"/>
-      <File Name="src\modheart\heart.cpp"/>
-    </VirtualDirectory>
-    <VirtualDirectory Name="modhtmlib">
-      <VirtualDirectory Name="include">
-        <File Name="src\modhtmlib\aihtmlib_impl.h"/>
-      </VirtualDirectory>
-      <File Name="src\modhtmlib\htmcortex.cpp"/>
-      <File Name="src\modhtmlib\htmhelper.cpp"/>
-      <File Name="src\modhtmlib\htmlayer.cpp"/>
-      <File Name="src\modhtmlib\htmlayermemory.cpp"/>
-      <File Name="src\modhtmlib\htmlib.cpp"/>
-      <File Name="src\modhtmlib\htmlibdebug.cpp"/>
-      <File Name="src\modhtmlib\htmrect.cpp"/>
-      <File Name="src\modhtmlib\htmsequence.cpp"/>
-    </VirtualDirectory>
-    <VirtualDirectory Name="modio">
-      <VirtualDirectory Name="include">
-        <File Name="src\modio\aiio_impl.h"/>
-      </VirtualDirectory>
-      <File Name="src\modio\channel.cpp"/>
-      <File Name="src\modio\io.cpp"/>
-      <File Name="src\modio\message.cpp"/>
-      <File Name="src\modio\publisher.cpp"/>
-      <File Name="src\modio\queue.cpp"/>
-      <File Name="src\modio\session.cpp"/>
-      <File Name="src\modio\subscription.cpp"/>
-      <File Name="src\modio\xmlcall.cpp"/>
-      <File Name="src\modio\xmlmessage.cpp"/>
+    <VirtualDirectory Name="svcio">
+      <File Name="src/modio/channel.cpp"/>
+      <File Name="src/modio/io.cpp"/>
+      <File Name="src/modio/message.cpp"/>
+      <File Name="src/modio/publisher.cpp"/>
+      <File Name="src/modio/queue.cpp"/>
+      <File Name="src/modio/session.cpp"/>
+      <File Name="src/modio/subscription.cpp"/>
+      <File Name="src/modio/xmlcall.cpp"/>
+      <File Name="src/modio/xmlmessage.cpp"/>
+      <File Name="src/modio/aiio_impl.h"/>
     </VirtualDirectory>
     <VirtualDirectory Name="modknowledge">
-      <VirtualDirectory Name="include">
-        <File Name="src\modknowledge\aiknowledge_impl.h"/>
-      </VirtualDirectory>
-      <File Name="src\modknowledge\knowledge.cpp"/>
+      <File Name="src/modknowledge/knowledge.cpp"/>
+      <File Name="src/modknowledge/aiknowledge_impl.h"/>
     </VirtualDirectory>
     <VirtualDirectory Name="modmedia">
-      <VirtualDirectory Name="include">
-        <File Name="src\modmedia\aimedia_impl.h"/>
+      <File Name="src/modmedia/listener.cpp"/>
+      <File Name="src/modmedia/media.cpp"/>
+      <File Name="src/modmedia/socketconnection.cpp"/>
+      <File Name="src/modmedia/sockserver.cpp"/>
+      <File Name="src/modmedia/aimedia_impl.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="libnn">
+      <VirtualDirectory Name="fann_custom">
+        <File Name="src/modnnlib/fann_custom/nn.cpp"/>
+        <File Name="src/modnnlib/fann_custom/nnactivationfunction.cpp"/>
+        <File Name="src/modnnlib/fann_custom/nnerrorfunction.cpp"/>
+        <File Name="src/modnnlib/fann_custom/nnfinder.cpp"/>
+        <File Name="src/modnnlib/fann_custom/nnfinderfactory.cpp"/>
+        <File Name="src/modnnlib/fann_custom/nnfinderfactorysample.cpp"/>
+        <File Name="src/modnnlib/fann_custom/nninductionfunction.cpp"/>
+        <File Name="src/modnnlib/fann_custom/nnlayer.cpp"/>
+        <File Name="src/modnnlib/fann_custom/nnneuron.cpp"/>
+        <File Name="src/modnnlib/fann_custom/nnregression.cpp"/>
+        <File Name="src/modnnlib/fann_custom/nnregressionfactory.cpp"/>
+        <File Name="src/modnnlib/fann_custom/nnsample.cpp"/>
+        <File Name="src/modnnlib/fann_custom/nnsamples.cpp"/>
+        <File Name="src/modnnlib/fann_custom/nnscanpoint.cpp"/>
+        <File Name="src/modnnlib/fann_custom/nnstopfunction.cpp"/>
+        <File Name="src/modnnlib/fann_custom/nnstrategy.cpp"/>
+        <File Name="src/modnnlib/fann_custom/nnstrategybackpropagation.cpp"/>
+        <File Name="src/modnnlib/fann_custom/nnstrategyhelper.cpp"/>
+        <File Name="src/modnnlib/fann_custom/nnstrategyscan.cpp"/>
+        <File Name="src/modnnlib/fann_custom/nnstrategyscaniteration.cpp"/>
+        <File Name="src/modnnlib/fann_custom/nnvalidatefunction.cpp"/>
+        <File Name="src/modnnlib/fann_custom/nnvariable.cpp"/>
+        <File Name="src/modnnlib/fann_custom/nnvariablecategory.cpp"/>
+        <File Name="src/modnnlib/fann_custom/nnvariables.cpp"/>
+        <File Name="src/modnnlib/fann_custom/nnvariablescontainer.cpp"/>
+        <File Name="src/modnnlib/fann_custom/nnvariablesimple.cpp"/>
+        <File Name="src/modnnlib/fann_custom/nnweights.cpp"/>
+        <File Name="src/modnnlib/fann_custom/fann_custom_implfunc.h"/>
+        <File Name="src/modnnlib/fann_custom/fann_custom_implnet.h"/>
+        <File Name="src/modnnlib/fann_custom/fann_custom_implnn.h"/>
+        <File Name="src/modnnlib/fann_custom/fann_custom_implstrategy.h"/>
+        <File Name="src/modnnlib/fann_custom/fann_custom.h"/>
+        <File Name="src/modnnlib/fann_custom/fann_custom.cpp"/>
       </VirtualDirectory>
-      <File Name="src\modmedia\listener.cpp"/>
-      <File Name="src\modmedia\media.cpp"/>
-      <File Name="src\modmedia\socketconnection.cpp"/>
-      <File Name="src\modmedia\sockserver.cpp"/>
+      <File Name="src/modnnlib/ainnlib_impl.h"/>
+      <File Name="src/modnnlib/nnlib.cpp"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="test">
+      <File Name="src/test/test.cpp"/>
+      <File Name="src/test/test_impl.h"/>
+      <File Name="src/test/nnlib_fann_custom.cpp"/>
+      <File Name="src/test/htmlib_view_custom.cpp"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="modsenses">
+      <VirtualDirectory Name="textreader"/>
+      <VirtualDirectory Name="switcher"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="modmemory">
+      <VirtualDirectory Name="state"/>
+      <VirtualDirectory Name="spatialpooler"/>
+      <VirtualDirectory Name="temporalpooler"/>
     </VirtualDirectory>
     <VirtualDirectory Name="modmind">
-      <VirtualDirectory Name="include">
-        <File Name="src\modmind\aimind_impl.h"/>
-      </VirtualDirectory>
-      <File Name="src\modmind\mind.cpp"/>
+      <VirtualDirectory Name="behavior"/>
+      <VirtualDirectory Name="motor"/>
+      <VirtualDirectory Name="feeling"/>
     </VirtualDirectory>
-    <VirtualDirectory Name="modnnlib">
-      <VirtualDirectory Name="include">
-        <File Name="src\modnnlib\ainnlib_impl.h"/>
-        <File Name="src\modnnlib\ainnlib_implfunc.h"/>
-        <File Name="src\modnnlib\ainnlib_implnet.h"/>
-        <File Name="src\modnnlib\ainnlib_implnn.h"/>
-        <File Name="src\modnnlib\ainnlib_implstrategy.h"/>
-      </VirtualDirectory>
-      <File Name="src\modnnlib\nn.cpp"/>
-      <File Name="src\modnnlib\nnactivationfunction.cpp"/>
-      <File Name="src\modnnlib\nnerrorfunction.cpp"/>
-      <File Name="src\modnnlib\nnfinder.cpp"/>
-      <File Name="src\modnnlib\nnfinderfactory.cpp"/>
-      <File Name="src\modnnlib\nnfinderfactorysample.cpp"/>
-      <File Name="src\modnnlib\nninductionfunction.cpp"/>
-      <File Name="src\modnnlib\nnlayer.cpp"/>
-      <File Name="src\modnnlib\nnlib.cpp"/>
-      <File Name="src\modnnlib\nnlibdebug.cpp"/>
-      <File Name="src\modnnlib\nnneuron.cpp"/>
-      <File Name="src\modnnlib\nnregression.cpp"/>
-      <File Name="src\modnnlib\nnregressionfactory.cpp"/>
-      <File Name="src\modnnlib\nnsample.cpp"/>
-      <File Name="src\modnnlib\nnsamples.cpp"/>
-      <File Name="src\modnnlib\nnscanpoint.cpp"/>
-      <File Name="src\modnnlib\nnstopfunction.cpp"/>
-      <File Name="src\modnnlib\nnstrategy.cpp"/>
-      <File Name="src\modnnlib\nnstrategybackpropagation.cpp"/>
-      <File Name="src\modnnlib\nnstrategyhelper.cpp"/>
-      <File Name="src\modnnlib\nnstrategyscan.cpp"/>
-      <File Name="src\modnnlib\nnstrategyscaniteration.cpp"/>
-      <File Name="src\modnnlib\nnvalidatefunction.cpp"/>
-      <File Name="src\modnnlib\nnvariable.cpp"/>
-      <File Name="src\modnnlib\nnvariablecategory.cpp"/>
-      <File Name="src\modnnlib\nnvariables.cpp"/>
-      <File Name="src\modnnlib\nnvariablescontainer.cpp"/>
-      <File Name="src\modnnlib\nnvariablesimple.cpp"/>
-      <File Name="src\modnnlib\nnweights.cpp"/>
+    <VirtualDirectory Name="modcommands">
+      <VirtualDirectory Name="chat"/>
+      <VirtualDirectory Name="feedback"/>
+      <VirtualDirectory Name="dirwalker"/>
+      <File Name="src/modcommands/commands.cpp"/>
+      <File Name="src/modcommands/aicommands_impl.h"/>
     </VirtualDirectory>
   </VirtualDirectory>
   <Dependencies Name="Release"/>
   <VirtualDirectory Name="lib">
     <VirtualDirectory Name="debug">
-      <File Name="lib\debug\libgeneric.debug.a"/>
+      <File Name="lib/debug/libgeneric.debug.a"/>
     </VirtualDirectory>
     <VirtualDirectory Name="release">
-      <File Name="lib\release\libgeneric.a"/>
+      <File Name="lib/release/libgeneric.a"/>
     </VirtualDirectory>
   </VirtualDirectory>
   <VirtualDirectory Name="etc">
-    <File Name="etc\nnlib.xml"/>
-    <File Name="etc\database.xml"/>
-    <File Name="etc\heart.xml"/>
-    <File Name="etc\htmlib.xml"/>
-    <File Name="etc\io.xml"/>
-    <File Name="etc\knowledge.xml"/>
-    <File Name="etc\main.xml"/>
-    <File Name="etc\media.xml"/>
-    <File Name="etc\mind.xml"/>
+    <File Name="etc/nnlib.xml"/>
+    <File Name="etc/database.xml"/>
+    <File Name="etc/htmlib.xml"/>
+    <File Name="etc/io.xml"/>
+    <File Name="etc/knowledge.xml"/>
+    <File Name="etc/main.xml"/>
+    <File Name="etc/media.xml"/>
+    <File Name="etc/test.xml"/>
+    <File Name="etc/commands.xml"/>
   </VirtualDirectory>
+  <Dependencies Name="Debug"/>
   <Settings Type="Executable">
+    <GlobalSettings>
+      <Compiler Options="">
+        <IncludePath Value="."/>
+        <IncludePath Value="$(ProjectPath)src/include"/>
+      </Compiler>
+      <Linker Options="-static">
+        <LibraryPath Value="."/>
+        <Library Value="ws2_32"/>
+      </Linker>
+      <ResourceCompiler Options=""/>
+    </GlobalSettings>
     <Configuration Name="Debug" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
       <Compiler Options="" Required="yes" PreCompiledHeader=""/>
       <Linker Options="" Required="yes">
@@ -195,27 +223,26 @@
         <Library Value="generic.debug"/>
       </Linker>
       <ResourceCompiler Options="" Required="no"/>
-      <General OutputFile="./bin/human.debug.exe" IntermediateDirectory="./build/debug" Command="" CommandArguments="" WorkingDirectory="" PauseExecWhenProcTerminates="yes"/>
+      <General OutputFile="./bin/human.debug.exe" IntermediateDirectory="./build/debug" Command="./bin/human.debug.exe" CommandArguments="./etc" WorkingDirectory="." PauseExecWhenProcTerminates="yes"/>
       <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
-        <PostConnectCommands></PostConnectCommands>
-        <StartupCommands></StartupCommands>
+        <PostConnectCommands/>
+        <StartupCommands/>
       </Debugger>
       <PreBuild/>
       <PostBuild/>
       <CustomBuild Enabled="no">
-        <CleanCommand></CleanCommand>
-        <BuildCommand></BuildCommand>
-        <PreprocessFileCommand></PreprocessFileCommand>
-        <SingleFileCommand></SingleFileCommand>
-        <MakefileGenerationCommand></MakefileGenerationCommand>
+        <RebuildCommand/>
+        <CleanCommand/>
+        <BuildCommand/>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
         <ThirdPartyToolName>None</ThirdPartyToolName>
-        <WorkingDirectory></WorkingDirectory>
+        <WorkingDirectory/>
       </CustomBuild>
       <AdditionalRules>
-        <CustomPostBuild></CustomPostBuild>
-        <CustomPreBuild>
-
-</CustomPreBuild>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
       </AdditionalRules>
     </Configuration>
     <Configuration Name="Release" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
@@ -227,37 +254,25 @@
       <ResourceCompiler Options="" Required="no"/>
       <General OutputFile="./bin/human-debug.exe" IntermediateDirectory="./build/release" Command="" CommandArguments="" WorkingDirectory="" PauseExecWhenProcTerminates="yes"/>
       <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
-        <PostConnectCommands></PostConnectCommands>
-        <StartupCommands></StartupCommands>
+        <PostConnectCommands/>
+        <StartupCommands/>
       </Debugger>
       <PreBuild/>
       <PostBuild/>
       <CustomBuild Enabled="no">
-        <CleanCommand></CleanCommand>
-        <BuildCommand></BuildCommand>
-        <PreprocessFileCommand></PreprocessFileCommand>
-        <SingleFileCommand></SingleFileCommand>
-        <MakefileGenerationCommand></MakefileGenerationCommand>
+        <RebuildCommand/>
+        <CleanCommand/>
+        <BuildCommand/>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
         <ThirdPartyToolName>None</ThirdPartyToolName>
-        <WorkingDirectory></WorkingDirectory>
+        <WorkingDirectory/>
       </CustomBuild>
       <AdditionalRules>
-        <CustomPostBuild></CustomPostBuild>
-        <CustomPreBuild></CustomPreBuild>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
       </AdditionalRules>
     </Configuration>
-    <GlobalSettings>
-      <Compiler Options="">
-        <IncludePath Value="."/>
-        <IncludePath Value="$(ProjectPath)src/include"/>
-        <Preprocessor Value="TIXML_USE_STL"/>
-      </Compiler>
-      <Linker Options="-static">
-        <LibraryPath Value="."/>
-        <Library Value="ws2_32"/>
-      </Linker>
-      <ResourceCompiler Options=""/>
-    </GlobalSettings>
   </Settings>
-  <Dependencies Name="Debug"/>
 </CodeLite_Project>

@@ -6,10 +6,10 @@
 #include <aiio.h>
 #include <ainnlib.h>
 #include <aihtmlib.h>
-#include <aiheart.h>
-#include <aimind.h>
 #include <aiknowledge.h>
+#include <aicommands.h>
 #include <aidb.h>
+#include <test.h>
 
 #include <stdio.h>
 #include <signal.h>
@@ -150,7 +150,7 @@ public:
 	Logger::LogLevel getLevel();
 	Xml getXml();
 	void setLevel( Logger::LogLevel level );
-	void setLevelSymbol( char level );
+	void setLevelByName( String level );
 
 private:
 	Xml settings;

@@ -256,6 +256,20 @@ int String::findLastAny( const char *chars )
 	return( -1 );
 }
 
+String String::toUpper()
+{
+	String x = v;
+	strupr( x.v );
+	return( x );
+}
+
+String String::toLower()
+{
+	String x = v;
+	strlwr( x.v );
+	return( x );
+}
+
 int String::findLast( char c )
 {
 	if( v == NULL )

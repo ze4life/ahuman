@@ -30,11 +30,17 @@ void XmlCall::setXmlFromMessage()
 	
 	Xml xml = XmlMessage::getXml();
 	requestId = xml.getAttribute( "requestId" );
+	className = xml.getAttribute( "class" );
 	functionName = xml.getAttribute( "name" );
 	params = xml.getChildNode( "parameters" );
 }
 
 // request
+String XmlCall::getClassName()
+{
+	return( className );
+}
+
 String XmlCall::getFunctionName()
 {
 	return( functionName );
@@ -124,8 +130,7 @@ String XmlCall::sendResponseUnknownException( Publisher *pub )
 String XmlCall::sendUnknownResponse()
 {
 	// send default response
-	Xml res = createResponse();
-	res.setAttribute( "status" , "Unknown" );
+	createStatusResponse( "UNKNOWN" );
 
 	XmlMessage *msg = new XmlMessage( xmlResponse );
 	String msgId = channelOut -> publish( getSession() , msg );
@@ -133,3 +138,23 @@ String XmlCall::sendUnknownResponse()
 
 	return( msgId );
 }
+
+Xml XmlCall::createStatusResponse( String status )
+{
+	Xml res = createResponse();
+	res.setAttribute( "status" , status );
+	return( res );
+}
+
+String XmlCall::sendStatusResponse( String status )
+{
+	// send default response
+	createStatusResponse( status );
+
+	XmlMessage *msg = new XmlMessage( xmlResponse );
+	String msgId = channelOut -> publish( getSession() , msg );
+	responseSent = true;
+
+	return( msgId );
+}
+

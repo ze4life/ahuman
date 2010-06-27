@@ -73,9 +73,9 @@ public:
 class Subscriber
 {
 public:
-	virtual void onMessage( Message *msg ) = 0;
-	virtual void onXmlMessage( XmlMessage *msg ) = 0;
-	virtual void onXmlCall( XmlCall *msg ) = 0;
+	virtual void onMessage( Message *msg ) {};
+	virtual void onXmlMessage( XmlMessage *msg ) {};
+	virtual void onXmlCall( XmlCall *msg ) {};
 };
 
 /*#########################################################################*/
@@ -174,6 +174,7 @@ public:
 	void setXmlFromMessage();
 
 	// request
+	String getClassName();
 	String getFunctionName();
 	String getParam( String paramName );
 	String getParam( String paramName , String defaultValue );
@@ -186,16 +187,19 @@ public:
 	// response
 	Xml getResponse();
 	Xml createResponse();
+	Xml createStatusResponse( String status );
 	String sendResponse( Publisher *pub );
 	String sendResponseException( Publisher *pub , RuntimeException& e );
 	String sendResponseUnknownException( Publisher *pub );
 	String sendUnknownResponse();
+	String sendStatusResponse( String status );
 
 private:
 	Channel *channelIn;
 	Channel *channelOut;
 
 	String requestId;
+	String className;
 	String functionName;
 	Xml params;
 	Xml xmlResponse;

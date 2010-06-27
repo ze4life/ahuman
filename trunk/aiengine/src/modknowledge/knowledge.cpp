@@ -6,13 +6,13 @@
 
 AIKnowledge::AIKnowledge() 
 { 
-	thisPtr = static_cast<AIKnowledgeImpl *>( AIEngine::getInstance().getService( "AIKnowledge" ) ); 
+	thisPtr = static_cast<AIKnowledgeImpl *>( AIEngine::getInstance().getService( "Knowledge" ) ); 
 }
 
 /* static */ Service *AIKnowledge::createService()
 {
 	Service *svc = new AIKnowledgeImpl();
-	AIEngine::getInstance().registerService( svc , "AIKnowledge" );
+	AIEngine::getInstance().registerService( svc , "Knowledge" );
 	return( svc );
 }
 
@@ -27,12 +27,10 @@ void AIKnowledgeImpl::initService()
 
 void AIKnowledgeImpl::runService()
 {
-	loadPrimaryInformation();
 }
 
 void AIKnowledgeImpl::exitService()
 {
-	saveAllPersistent();
 }
 
 void AIKnowledgeImpl::destroyService()
@@ -42,12 +40,3 @@ void AIKnowledgeImpl::destroyService()
 
 /*#########################################################################*/
 /*#########################################################################*/
-
-void AIKnowledgeImpl::loadPrimaryInformation()
-{
-}
-
-void AIKnowledgeImpl::saveAllPersistent()
-{
-}
-
