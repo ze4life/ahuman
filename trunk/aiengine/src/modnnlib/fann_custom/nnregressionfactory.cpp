@@ -111,7 +111,7 @@ NNStrategyBackPropagation *NNRegressionFactory::createDefaultStrategy( const cha
 	// set validate
 	NNValidateFunction *vf = p -> getValidateFunction();
 	float avgFailedNeurons = 0;
-	float bitTolerance = stopBitsPrecision * 1.5;
+	float bitTolerance = stopBitsPrecision * 1.5f;
 	vf -> setValidateAvgOutputBits( bitTolerance , avgFailedNeurons );
 
 	ps -> setSmoothLearning( false );

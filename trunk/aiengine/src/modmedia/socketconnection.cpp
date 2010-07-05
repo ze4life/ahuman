@@ -196,7 +196,7 @@ void SocketConnection::processData( const char *p_msg )
 	// format is "message0x01", where message contains only printable characters
 	do
 		{
-			char *l_end = strchr( p_msg , 0x01 );
+			const char *l_end = strchr( p_msg , 0x01 );
 			if( l_end == NULL )
 				{
 					message += p_msg;
@@ -208,7 +208,7 @@ void SocketConnection::processData( const char *p_msg )
 			processMessage( message );
 			message.clear();
 
-			p_msg = ++l_end;
+			p_msg += l_end - p_msg + 1;
 		}
 	while( *p_msg );
 }

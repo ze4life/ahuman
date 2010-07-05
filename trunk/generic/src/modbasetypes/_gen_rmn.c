@@ -88,9 +88,10 @@ void
 void
 	rfc_money_get_deformat( rfc_fmt_money * p_fmt )
 {
-	strcpy(p_fmt -> s_group.s_chdiv, "");
+	*p_fmt -> s_group.s_chdiv = 0;
 	p_fmt -> s_group.s_ndig  = 3;
-	strcpy(p_fmt -> s_prec.s_chdiv, ".");
+	*p_fmt -> s_prec.s_chdiv = '.';
+	*( p_fmt -> s_prec.s_chdiv + 1 ) = 0;
 	p_fmt -> s_prec.s_ndig	 = 2;
 }
 

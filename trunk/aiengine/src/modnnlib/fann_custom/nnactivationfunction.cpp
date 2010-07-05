@@ -115,7 +115,7 @@ void NNActivationFunction::initFunction( ActivationFunction ft , bool p_symmetri
 	symmetric = p_symmetric;
 
 	if( scaleOutputs )
-		setOutputFunction( ( symmetric )? -1 : 0 , 1 );
+		setOutputFunction( ( symmetric )? -1.f : 0.f , 1.f );
 }
 
 // get string function name representation
@@ -350,9 +350,9 @@ float NNActivationFunction::getOutputFunction( float x )
 					9.90000009536743164062e-01, 
 					-1, 1, x ) );
 			case FANN_THRESHOLD :
-				return( ( x < 0 )? 0 : 1 );
+				return( ( x < 0 )? 0.f : 1.f );
 			case FANN_THRESHOLD_SYMMETRIC :
-				return( ( x < 0 )? -1 : 1 );
+				return( ( x < 0 )? -1.f : 1.f );
 			case FANN_GAUSSIAN :
 				return( ( float )( exp(-x*x) ) );
 			case FANN_GAUSSIAN_SYMMETRIC :
@@ -445,9 +445,9 @@ float NNActivationFunction::getReverseFunction( float x )
 					9.90000009536743164062e-01, 
 					-1, 1, x ) );
 			case FANN_THRESHOLD :
-				return( ( x < 0 )? 0 : 1 );
+				return( ( x < 0 )? 0.f : 1.f );
 			case FANN_THRESHOLD_SYMMETRIC :
-				return( ( x < 0 )? -1 : 1 );
+				return( ( x < 0 )? -1.f : 1.f );
 			case FANN_GAUSSIAN :
 				return( ( float )( exp(-x*x) ) );
 			case FANN_GAUSSIAN_SYMMETRIC :

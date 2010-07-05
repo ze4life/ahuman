@@ -105,6 +105,7 @@ bool LogManager::startWriter()
 {
 	String fileName = logSettings.getFileName();
 
+	logFileStream = NULL;
 	logFileStream = fopen( fileName , "at" );
 	if( logFileStream == NULL ) {
 		String error = "AIEngineImpl::logStart: cannot initialize logging: cannot open file - ";
@@ -156,7 +157,8 @@ int LogManager::run()
 
 void LogManager::output( LogRecord *p )
 {
-	struct tm *lt = localtime( &p -> time );
+	struct tm lt;
+	localtime_s( &lt , ( const time_t * )&(p -> time) );
 
 	if( p -> count <= 0 )
 		return;
@@ -172,7 +174,7 @@ void LogManager::output( LogRecord *p )
 	sprintf( l_buf , "[%s, 0x%4.4x] %2.2d:%2.2d:%2.2d,%3.3d - " , 
 		levelNames[ p -> logLevel ] ,
 		p -> threadId ,
-		lt -> tm_hour , lt -> tm_min , lt -> tm_sec , 
+		lt.tm_hour , lt.tm_min , lt.tm_sec , 
 		p -> time_ms );
 
 	// output
@@ -303,7 +305,7 @@ void LogManager::set( LogRecord *p , bool copy , const char **chunkLines , int c
 	p -> count = count;
 
 	struct _timeb timebuffer;
-	_ftime( &timebuffer );
+	_ftime_s( &timebuffer );
 	p -> time = timebuffer.time;
 	p -> time_ms = timebuffer.millitm;
 	p -> logLevel = p_logLevel;
@@ -316,8 +318,8 @@ void LogManager::set( LogRecord *p , bool copy , const char **chunkLines , int c
 		{
 			if( copy )
 				{
-					p -> strings.one = strdup( *chunkLines );
-					p -> postfix = ( postfix == NULL || *postfix == 0 )? NULL : strdup( postfix );
+					p -> strings.one = _strdup( *chunkLines );
+					p -> postfix = ( postfix == NULL || *postfix == 0 )? NULL : _strdup( postfix );
 				}
 			else
 				{
@@ -331,8 +333,8 @@ void LogManager::set( LogRecord *p , bool copy , const char **chunkLines , int c
 				{
 					p -> strings.many = ( char ** )calloc( count , sizeof( char * ) );
 					for( int k = 0; k < count; k++ )
-						p -> strings.many[ k ] = strdup( chunkLines[ k ] );
-					p -> postfix = ( postfix == NULL || *postfix == 0 )? NULL : strdup( postfix );
+						p -> strings.many[ k ] = _strdup( chunkLines[ k ] );
+					p -> postfix = ( postfix == NULL || *postfix == 0 )? NULL : _strdup( postfix );
 				}
 			else
 				{

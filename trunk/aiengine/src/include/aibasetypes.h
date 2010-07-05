@@ -1195,7 +1195,7 @@ public:
 	typedef int (TC::*PF)( const TA& v1 , const TA& v2 );
 
 public:
-	Sort( TA *va , int n , TC *p_p , Sort::PF p_pf )
+	Sort( TA *va , int n , TC *p_p , PF p_pf )
 		{
 			p = p_p;
 			pf = p_pf;

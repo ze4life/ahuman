@@ -56,7 +56,7 @@ int HtmCortex::calculateNumberOfLayers( int d1 , int d2 )
 	int maxDim = ( d1 > d2 )? d1 : d2;
 	ASSERT( maxDim > 0 );
 
-	int nLayers = -2 + ( int )( log( maxDim ) / log( 2 ) );
+	int nLayers = -2 + ( int )( log( ( double )maxDim ) / log( 2. ) );
 	if( nLayers < 2 )
 		nLayers = 2;
 	return( nLayers );

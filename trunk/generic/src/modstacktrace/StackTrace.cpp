@@ -1,6 +1,5 @@
 #include "StackTrace.h"
 #include "MapFile.h"
-#include "MapFileEntry.h"
 #include <string.h>
 #include <stdio.h>
 
@@ -10,9 +9,8 @@
 
 //-----------------------------------------------------------------------------
 
-namespace dev
+namespace MAPFILE
 {
-
 
 static long getCaller( int index )
 {
@@ -89,7 +87,7 @@ bool StackTrace::getStackTrace( MapFile** map, int maps, void *ptr , getStackTra
 			const MapFile *entryMap = NULL;
 			for( int j = 0; j < maps; j++ )
 				{
-					entry = map[ j ] -> findEntry( addr );
+					entry = map[ j ] -> findSymbol( addr );
 					if( entry != -1 )
 						{
 							entryMap = map[j];
@@ -107,7 +105,7 @@ bool StackTrace::getStackTrace( MapFile** map, int maps, void *ptr , getStackTra
 
 			const char *entryName = NULL;
 			if( entryMap != NULL )
-				entryName = entryMap -> getEntry( entry ).name();
+				entryName = entryMap -> getSymbol( entry ) -> f_symname;
 
 			// split into class/function
 			char *functionName = NULL;
@@ -146,7 +144,7 @@ void StackTrace::fillMapEntry( MapFile& map , int entry , char *p_class , char *
 	*p_class = 0;
 	*p_func = 0;
 
-	const char *entryName = map.getEntry( entry ).name();
+	const char *entryName = map.getSymbol( entry ) -> f_symname;
 	if( entryName == NULL )
 		return;
 

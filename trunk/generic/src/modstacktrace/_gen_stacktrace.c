@@ -35,23 +35,31 @@ static void rfc_thr_onfillstack( void *ptr ,
 
 	if( moduleName != NULL )
 		{
-			sl -> moduleName = strcpy( p , moduleName );
-			p += strlen( moduleName ) + 1;
+			sl -> moduleName = p;
+			size = strlen( moduleName ) + 1;
+			strcpy( p , moduleName );
+			p += size;
 		}
 	if( className != NULL )
 		{
-			sl -> className = strcpy( p , className );
-			p += strlen( className ) + 1;
+			sl -> className = p;
+			size = strlen( className ) + 1;
+			strcpy( p , className );
+			p += size;
 		}
 	if( functionName != NULL )
 		{
-			sl -> functionName = strcpy( p , functionName );
-			p += strlen( functionName ) + 1;
+			sl -> functionName = p;
+			size = strlen( functionName ) + 1;
+			strcpy( p , functionName );
+			p += size;
 		}
 	if( message != NULL )
 		{
-			sl -> message = strcpy( p , message );
-			p += strlen( message ) + 1;
+			sl -> message = p;
+			size = strlen( message ) + 1;
+			strcpy( p , message );
+			p += size;
 		}
 
 	v.u_p = sl;

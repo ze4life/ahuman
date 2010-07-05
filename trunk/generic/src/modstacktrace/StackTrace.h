@@ -1,8 +1,7 @@
 #ifndef _DEV_STACKTRACE_H
 #define _DEV_STACKTRACE_H
 
-
-namespace dev
+namespace MAPFILE
 {
 
 extern "C"
@@ -16,7 +15,6 @@ typedef void ( *getStackTraceCB )(
 }
 
 class MapFile;
-
 
 /** Stack tracing utility. */
 class StackTrace

@@ -66,6 +66,8 @@ void Logger::printStack( rfc_threadstack *stack , int skipTop )
 
 	log( String( "CALL STACK:" ) , 1 , Logger::LogLevelInfo );
 
+	if( skipTop == 0 )
+		skipTop = stack -> extraLevels;
 	if( skipTop > 0 )
 		{
 			log( String( "\t...skipped..." ) , 0 , Logger::LogLevelInfo );
@@ -93,6 +95,13 @@ void Logger::printStack( rfc_threadstack *stack , int skipTop )
 				"::" + sl -> functionName + 
 				" (" + moduleNameShort + 
 				", " + sl -> message + ")" , mode , Logger::LogLevelInfo );
+
+			// stop after main function
+			if( k > 0 && !strcmp( sl -> functionName , "_main" ) ) {
+				mode = 2;
+				log( "\t...skipped..." , mode , Logger::LogLevelInfo );
+				break;
+			}
 		}
 }
 

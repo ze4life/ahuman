@@ -2,12 +2,21 @@
 #define _DEV_MAPFILE_H
 
 
-namespace dev
+namespace MAPFILE
 {
 
-
-class MapFileEntry;
-
+/** An entry in the map file. */
+typedef struct
+{
+	long	f_section;
+	long	f_addr;
+	long	f_fulladdr;
+	char	f_type1;
+	char	f_type2;
+	char	*f_symname;
+	char	*f_symlib;
+	char	*f_symfile;
+} MAP_FILE_SYMBOL;
 
 /** 
  * Linker generated module map file parser.
@@ -35,22 +44,16 @@ public:
 	~MapFile();
 
 	/** Returns preferred load address. */
-	long				loadAddress() const;
-
-	/** Returns ith entry from the map file. */
-	const MapFileEntry&	getEntry( int i ) const;
-
-	/** Returns ith segment from the map file. */
-	const MapFileEntry&	getSegment( int i ) const;
-
-	/** Returns number of segments in the map file. */
-	int					segments() const;
+	long				loadAddressPlanned() const;
+	long				loadAddressActual() const;
 
 	/** Returns number of entries in the map file. */
-	int					entries() const;
+	int					symbols() const;
+	const MAP_FILE_SYMBOL	*getSymbol( int i ) const;
 
 	/** Returns error code or 0 (ERROR_NONE) if no error. */
-	ErrorType			error() const;
+	ErrorType			error();
+	const char *		errorString();
 
 	/** Returns line number of last successful read character. */
 	int					line() const;
@@ -59,7 +62,7 @@ public:
 	 * Finds entry which contains specified address. 
 	 * @return Entry index or -1 if not found.
 	 */
-	int					findEntry( long addr ) const;
+	int					findSymbol( long addr ) const;
 
 	/** 
 	 * Returns current module name, with map extension.

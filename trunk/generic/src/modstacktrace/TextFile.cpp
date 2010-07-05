@@ -1,10 +1,12 @@
 #include "TextFile.h"
 #include <stdio.h>
 #include <ctype.h>
+#include <malloc.h>
+#include <string.h>
 
 //-----------------------------------------------------------------------------
 
-namespace dev
+namespace MAPFILE
 {
 
 
@@ -12,18 +14,23 @@ class TextFile::TextFileImpl
 {
 public:
 	TextFile::ErrorType		err;
+	char *					errString;
 	int						line;
 
 	explicit TextFileImpl( const char* filename )
 	{
 		err				= TextFile::ERROR_NONE;
+		errString		= NULL;
 		line			= 1;
 		m_peeked		= false;
 		m_peekedChar	= 0;
-		m_file			= fopen( filename, "rt" );
+		m_file = fopen( filename, "rt" );
 
-		if ( !m_file )
-			err = TextFile::ERROR_OPEN;
+		if ( !m_file ) {
+			char bf[ 1024 ];
+			sprintf( bf , "cannot open file %s" , filename );
+			setError( TextFile::ERROR_OPEN , bf );
+		}
 	}
 
 	~TextFileImpl()
@@ -33,6 +40,20 @@ public:
 			fclose( m_file );
 			m_file = 0;
 		}
+		
+		if( errString != NULL )
+			free( errString );
+	}
+
+	void setError( TextFile::ErrorType p_err , const char *p_errString )
+	{
+		err = p_err;
+		if( errString != NULL ) {
+			free( errString );
+			errString = NULL;
+		}
+
+		errString = _strdup( p_errString );
 	}
 
 	bool eof() const
@@ -58,7 +79,7 @@ public:
 			else
 			{
 				if ( ferror(m_file) )
-					err = TextFile::ERROR_READ;
+					setError( TextFile::ERROR_READ , "error while reading file with getc() - ferror reported" );
 			}
 		}
 
@@ -140,7 +161,7 @@ public:
 		char ch;
 		if ( !peekChar(&ch) || !isalnum(ch) )
 		{
-			err = TextFile::ERROR_PARSE;
+			setError( TextFile::ERROR_PARSE , "unable to parse file: hex must start with alphanumeric character" );
 			return 0;
 		}
 
@@ -222,6 +243,11 @@ bool TextFile::skipWhitespace()
 TextFile::ErrorType TextFile::error() const
 {
 	return m_this->err;
+}
+
+const char *TextFile::getErrorString() const
+{
+	return m_this->errString;
 }
 
 bool TextFile::readChar( char* ch )

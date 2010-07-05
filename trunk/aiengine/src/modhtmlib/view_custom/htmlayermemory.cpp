@@ -131,7 +131,7 @@ float HtmLayerMemory::compare( HtmSequence *cs1 , HtmSequence *cs2 )
 		if( *sd1++ == *sd2++ )
 			sne++;
 
-	float res = sne;
+	float res = ( float )sne;
 	res /= sn;
 	return( res );
 }

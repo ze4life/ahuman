@@ -970,7 +970,7 @@ void NNStrategyHelper::onCheckGlobalMinBySubset( int point , MultiIndexIterator&
 	if( !logger.isLogAll() )
 		return;
 
-	showIndexes( mi , ( beyond )? 0 : 1 );
+	showIndexes( mi , ( beyond )? 0.f : 1.f );
 
 	if( !final )
 		return;

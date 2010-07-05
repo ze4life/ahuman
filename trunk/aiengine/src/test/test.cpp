@@ -19,6 +19,8 @@ AITestPoolImpl *AITestPoolImpl::getServiceImpl() {
 
 AITestPoolImpl::AITestPoolImpl()
 :	engine( AIEngine::getInstance() ) {
+	callPub = NULL;
+	callSub = NULL;
 }
 
 void AITestPoolImpl::initService() {

@@ -236,7 +236,7 @@ bool NNFinder::learnStatIteration( NNSamples *samplesLearn , NNSamples *samplesV
 	// set validate
 	NNValidateFunction *vf = p -> getValidateFunction();
 	float avgFailedNeurons = 0;
-	bitTolerance = sp -> stopBitsPrecision * 1.5;
+	bitTolerance = sp -> stopBitsPrecision * 1.5f;
 	vf -> setValidateAvgOutputBits( bitTolerance , avgFailedNeurons );
 
 	if( sp -> momentum > 0 )
@@ -371,7 +371,7 @@ bool NNFinder::findClass( float *sensors , int *classID , float *probability )
 	float totalError = 0;
 	for( int m = 0; m < n; m++ )
 		{
-			float expectedValue = ( m == maxTarget )? 1 : 0;
+			float expectedValue = ( m == maxTarget )? 1.f : 0.f;
 			float v = ( *outputs[ m ] + 1 ) / 2;
 			float diff = expectedValue - v;
 			diff = ABS( diff ) - bitTolerance;

@@ -184,7 +184,7 @@ void testFinderLearn( XmlCall& call ) {
 		}
 
 		for( int kTrainCount = 50; kTrainCount <= 100; kTrainCount += 10 ) {
-			sp.gradientRate = ( sp.algorithm == 1 )? 0.7 : 1.5;
+			sp.gradientRate = ( sp.algorithm == 1 )? 0.7f : 1.5f;
 
 			NNSamples samplesLearn( finder.getNN() );
 			for( int z1 = kTrainCount; z1--; ) {
@@ -260,7 +260,7 @@ void testFinderFactory( XmlCall& call ) {
 	reg.create( "TMP" , sensors , targets , sp.hiddenLayerSize );
 
 	for( int k = 0; k < 10; k++ ) {
-		sp.gradientRate = 1.5 + k * 0.1f;
+		sp.gradientRate = 1.5f + k * 0.1f;
 
 		NNRegression::StatResults res;
 		reg.learnStat( &samplesLearn , NULL , &sp , res );

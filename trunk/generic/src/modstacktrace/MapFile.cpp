@@ -1,31 +1,45 @@
 #include "MapFile.h"
 #include "MapFileEntry.h"
 #include "TextFile.h"
-#include "Array.h"
-#include <algorithm>
 #include <string.h>
 #include <ctype.h>
 #ifdef WIN32
 #include <windows.h>
+#include <Psapi.h>
 #endif
 
 //-----------------------------------------------------------------------------
 
-namespace dev
+namespace MAPFILE
 {
 
+extern "C" int onSortMapSymbols( const void *p_e1 , const void *p_e2 )
+{
+	// sort by address
+	return( (*( const MAP_FILE_SYMBOL ** )p_e1) -> f_fulladdr - (*( const MAP_FILE_SYMBOL ** )p_e2) -> f_fulladdr );
+}
 
 class MapFile::MapFileImpl
 {
 public:
-	long				loadAddr;
+	long				loadAddrPlanned;
+	long				loadAddrActual;
 	char				name[256];
-	Array<MapFileEntry> segments;
-	Array<MapFileEntry> entries;
+	MAP_FILE_SYMBOL		**symbols;
+	int					symbols_n;
+	int					symbols_a;
 
 	MapFileImpl( const char* filename ) :
-		loadAddr(0), m_file( filename ), m_err( MapFile::ERROR_NONE )
+		loadAddrPlanned(0), m_file( filename ), m_err( MapFile::ERROR_NONE ) , m_errString( NULL )
 	{
+		loadAddrActual = 0;
+		symbols_n = 0;
+		symbols_a = 1024;
+		symbols = ( MAP_FILE_SYMBOL ** )calloc( sizeof( MAP_FILE_SYMBOL * ) , symbols_a );
+
+		if( m_file.error() )
+			return;
+
 		m_file.readString( name, sizeof(name) );
 
 		char buf[1024];
@@ -41,19 +55,30 @@ public:
 				m_file.skipLine();
 		}
 
-		std::sort( segments.begin(), segments.end() );
-		std::sort( entries.begin(), entries.end() );
+		qsort( symbols , symbols_n , sizeof( MAP_FILE_SYMBOL * ) , onSortMapSymbols );
+		loadAddrActual = loadAddrPlanned;
 	}
 
 	~MapFileImpl()
 	{
+		if( m_errString != NULL )
+			free( m_errString );
+
+		// free data
+		if( symbols != NULL ) {
+			for( int k = 0; k < symbols_n; k++ )
+				free( symbols[ k ] );
+
+			free( symbols );
+		}
 	}
 
-	ErrorType error() const
+	MapFile::ErrorType error()
 	{
 		if ( m_err != MapFile::ERROR_NONE )
 			return m_err;
 
+		setErrorString( m_file.getErrorString() );
 		switch ( m_file.error() )
 		{
 		case TextFile::ERROR_OPEN:	return MapFile::ERROR_OPEN;
@@ -61,6 +86,22 @@ public:
 		case TextFile::ERROR_PARSE:	return MapFile::ERROR_PARSE;
 		default:					return MapFile::ERROR_NONE;
 		}
+	}
+	
+	const char *errorString()
+	{
+		error();
+		return( m_errString );
+	}
+
+	void setErrorString( const char *text )
+	{
+		if( m_errString != NULL ) {
+			free( m_errString );
+			m_errString = NULL;
+		}
+		
+		m_errString = _strdup( text );
 	}
 
 	int line() const
@@ -75,6 +116,7 @@ private:
 	TextFile			m_file;
 	MapFile::ErrorType	m_err;
 	int					m_errLine;
+	char *				m_errString;
 
 	/**
 	 * Returns true if the next line is empty.
@@ -126,7 +168,7 @@ private:
 	void parseLoadAddress()
 	{
 		parse( "load" ); parse( "address" ); parse( "is" );
-		loadAddr = m_file.readHex();
+		loadAddrPlanned = m_file.readHex();
 	}
 
 	/**
@@ -136,6 +178,7 @@ private:
 	 */
 	void parseSegments()
 	{
+		// ignore this section
 		parse( "Length" );
 		parse( "Name" );
 		parse( "Class" );
@@ -143,26 +186,64 @@ private:
 		
 		while ( !error() )
 		{
-			int seg = m_file.readHex();
-			parse( ':' );
-			int offs = m_file.readHex();
-			int len = m_file.readHex();
-			parse( 'H' );
-			char buf[256];
-			m_file.readString( buf, sizeof(buf) );
-			segments.add( MapFileEntry(seg,offs,len,buf) );
-
 			// break at empty line
 			if ( nextLineEmpty() )
 				break;
 		}
 	}
 
+	void addNewSymbol( long seg , long offs , const char *entryname , long fulladdr , char type1 , char type2 , const char *libname , const char *objname )
+	{
+		// calc sizes
+		int l_len = sizeof( MAP_FILE_SYMBOL );
+		if( entryname != NULL )
+			l_len += strlen( entryname ) + 1;
+		if( libname != NULL )
+			l_len += strlen( libname ) + 1;
+		if( objname != NULL )
+			l_len += strlen( objname ) + 1;
+
+		MAP_FILE_SYMBOL *s = ( MAP_FILE_SYMBOL * )calloc( 1 , l_len );
+		s -> f_section = seg;
+		s -> f_addr = offs;
+		s -> f_fulladdr = fulladdr;
+		s -> f_type1 = type1;
+		s -> f_type2 = type2;
+
+		char *writeptr = ( char * )( s + 1 );
+		if( entryname != NULL ) {
+			s -> f_symname = writeptr;
+			strcpy( writeptr , entryname );
+			writeptr += strlen( entryname ) + 1;
+		}
+
+		if( libname != NULL ) {
+			s -> f_symlib = writeptr;
+			strcpy( writeptr , libname );
+			writeptr += strlen( libname ) + 1;
+		}
+		
+		if( objname != NULL ) {
+			s -> f_symfile = writeptr;
+			strcpy( writeptr , objname );
+			writeptr += strlen( objname ) + 1;
+		}
+
+		// add to array
+		if( symbols_a == symbols_n ) {
+			symbols_a *= 2;
+			symbols = ( MAP_FILE_SYMBOL ** )realloc( symbols , symbols_a * sizeof( MAP_FILE_SYMBOL * ) );
+		}
+
+		symbols[ symbols_n++ ] = s;
+	}
+
+
 	/**
 	 * Example:
 	 * (Address)       Publics by Value           Rva+Base     Lib:Object
-	 * 0001:000001a0   ?stackTrace@@YAXXZ         004011a0 f   main.obj
-	 */
+	 * 0002:000aa6b0       ??_GTestUnit@@QAEPAXI@Z    005106b0 f i test.obj
+ 	 */
 	void parseEntries()
 	{
 		parse( "Publics" ); parse( "by" ); parse( "Value" );
@@ -175,9 +256,26 @@ private:
 			int seg = m_file.readHex();
 			parse( ':' );
 			int offs = m_file.readHex();
-			char buf[256];
-			m_file.readString( buf, sizeof(buf) );
-			char* entryname = buf;
+			char symbol[256];
+			m_file.readString( symbol, sizeof(symbol) );
+			char* entryname = symbol;
+			int fulladdr = m_file.readHex();
+			char space;
+			char type1;
+			char type2;
+			m_file.readChar( &space ); m_file.readChar( &type1 ); m_file.readChar( &space ); m_file.readChar( &type2 ); m_file.readChar( &space ); 
+			char obj[256];
+			m_file.readString( obj, sizeof(obj) );
+			char *libname = NULL;
+			char *objname = strchr( obj , ':' );
+			if( objname != NULL ) {
+				libname = obj;
+				*objname++ = 0;
+			}
+			else {
+				libname = NULL;
+				objname = obj;
+			}
 
 			// chop entry name at @@
 			char* end = strstr( entryname, "@@" );
@@ -191,7 +289,7 @@ private:
 				if ( *str == '@' )
 					*str = '.';
 
-			entries.add( MapFileEntry(seg,offs,0,entryname) );
+			addNewSymbol( seg , offs , entryname , fulladdr , type1 , type2 , libname , objname );
 
 			// break at empty line
 			if ( nextLineEmpty() )
@@ -212,34 +310,34 @@ MapFile::~MapFile()
 	delete m_this;
 }
 
-long MapFile::loadAddress() const
+long MapFile::loadAddressPlanned() const
 {
-	return m_this->loadAddr;
+	return m_this->loadAddrPlanned;
 }
 
-const MapFileEntry&	MapFile::getSegment( int i ) const
+long MapFile::loadAddressActual() const
 {
-	return m_this->segments[i];
+	return m_this->loadAddrActual;
 }
 
-const MapFileEntry&	MapFile::getEntry( int i ) const
+const MAP_FILE_SYMBOL *MapFile::getSymbol( int i ) const
 {
-	return m_this->entries[i];
+	return m_this->symbols[i];
 }
 
-int MapFile::segments() const
+int MapFile::symbols() const
 {
-	return m_this->segments.size();
+	return m_this->symbols_n;
 }
 
-int MapFile::entries() const
-{
-	return m_this->entries.size();
-}
-
-MapFile::ErrorType MapFile::error() const
+MapFile::ErrorType MapFile::error()
 {
 	return m_this->error();
+}
+
+const char *MapFile::errorString()
+{
+	return( m_this->errorString() );
 }
 
 int MapFile::line() const
@@ -247,30 +345,23 @@ int MapFile::line() const
 	return m_this->line();
 }
 
-int MapFile::findEntry( long addr ) const
+int MapFile::findSymbol( long addr ) const
 {
-	for ( int j = 0 ; j < segments() ; ++j )
-	{
-		const MapFileEntry& segment = getSegment( j );
-		long section = segment.section();
-		long segmentBegin = loadAddress() + (segment.section() << 12) + segment.offset();
-		long segmentEnd = segmentBegin + segment.length();
+	// rewrite address to planned one
+	long addrPlanned = addr - loadAddressActual() + loadAddressPlanned();
 
-		if ( addr >= segmentBegin && addr < segmentEnd )
-		{
-			for ( int i = entries()-1 ; i >= 0  ; --i )
-			{
-				const MapFileEntry entry = getEntry( i );
-				if ( entry.section() == section )
-				{
-					long entryAddr = loadAddress() + (entry.section() << 12) + entry.offset();
-					if ( entryAddr <= addr )
-						return i;
-				}
-			}
-		}
-	}
-	return -1;
+	// check it is after last address
+	MAP_FILE_SYMBOL **ss = m_this -> symbols;
+	int n = m_this -> symbols_n;
+	if( addr > ss[ n - 1 ] -> f_fulladdr )
+		return( -1 );
+
+	// find with linear search in sorted array
+	for( int k = n - 1; k >= 0; k-- )
+		if( ss[ k ] -> f_fulladdr < addr )
+			return( k );
+
+	return( -1 );
 }
 
 void MapFile::getModuleMapFilename( char* buffer, int bufferSize )
@@ -298,7 +389,6 @@ void MapFile::getModuleMapFilename( char* buffer, int bufferSize )
 		strcat( buffer, ".map" );
 	}
 }
-
 
 } // dev
 /*

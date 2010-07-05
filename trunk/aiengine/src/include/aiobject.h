@@ -371,7 +371,7 @@ public:
 	void showStatistics();
 
 	static int getRandomIntStatic( int min , int max );
-	static int getRandomFloatStatic( float min , float max );
+	static float getRandomFloatStatic( float min , float max );
 
 private:
 	static float randFloat();

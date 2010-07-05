@@ -88,7 +88,7 @@ float NNFinderFactorySample::getST( NNFinderFactorySample::FieldST field )
 
 float NNFinderFactorySample::p2TargetFunction( NN *pp )
 {
-	return( p2TargetFunction( pp ) );
+	return( 0 );
 }
 
 float NNFinderFactorySample::p2TargetFunction( const float *t )
@@ -124,16 +124,16 @@ float NNFinderFactorySample::getSysVar( FieldSYS field )
 // set all at once
 void NNFinderFactorySample::setStat( NNSamples *samplesLearn , NNSamples *samplesValidate , NNFinder::StatParams *sp , NNFinder::StatResults& res )
 {
-	setSA( SA_nSensors , samplesLearn -> sizeIn() );
-	setSA( SA_nTargets , samplesLearn -> sizeOut() );
-	setSB( SB_algorithm , sp -> algorithm );
-	setSB( SB_nHiddenNeurons1 , sp -> hiddenLayerSize );
+	setSA( SA_nSensors , ( float )samplesLearn -> sizeIn() );
+	setSA( SA_nTargets , ( float )samplesLearn -> sizeOut() );
+	setSB( SB_algorithm , ( float )sp -> algorithm );
+	setSB( SB_nHiddenNeurons1 , ( float )sp -> hiddenLayerSize );
 	setSB( SB_learnRate , sp -> gradientRate );
 
-	setST( ST_avgEpochs , res.avgEpochCount );
-	setST( ST_avgRestarts , res.restartsTotal );
-	setST( ST_avgExecuteStat , res.setSensorsTotal );
-	setST( ST_avgValidateError , res.validationFailures );
+	setST( ST_avgEpochs , ( float )res.avgEpochCount );
+	setST( ST_avgRestarts , ( float )res.restartsTotal );
+	setST( ST_avgExecuteStat , ( float )res.setSensorsTotal );
+	setST( ST_avgValidateError , ( float )res.validationFailures );
 }
 
 int NNFinderFactorySample::getStatSampleSensors( NNVariables *vars , ClassList<NNVariable>& sensors )

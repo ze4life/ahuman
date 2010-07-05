@@ -70,7 +70,7 @@ char *
 			return( NULL );
 		}
 
-	return( ( char * )( g_memcheck_items[ g_memcheck_count++ ] = strdup( p_src ) ) );
+	return( ( char * )( g_memcheck_items[ g_memcheck_count++ ] = _strdup( p_src ) ) );
 }
 
 void *

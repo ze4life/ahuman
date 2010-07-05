@@ -635,6 +635,6 @@ void AIEngineImpl::destroySerializeObjectInstances()
 
 void AIEngineImpl::manageCallStack()
 {
-//	EngineThreadHelper *to = EngineThreadHelper::getThreadObject();
-//	to -> oldAIUnhandledExceptionTranslator = ( void (*)() )::_set_se_translator( AIUnhandledExceptionTranslator );
+	EngineThreadHelper *to = EngineThreadHelper::getThreadObject();
+	to -> oldAIUnhandledExceptionTranslator = ( void (*)() )::_set_se_translator( AIUnhandledExceptionTranslator );
 }

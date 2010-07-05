@@ -477,8 +477,8 @@ void NN::initWeightsByWidrowNguyen()
 		}
 
 	// scale factor
-	float inputCount = inputs.count();
-	float scaleFactor = ( float )( pow(0.7*hiddenCount,1/inputCount)/rangeMax );
+	float inputCount = ( float )inputs.count();
+	float scaleFactor = ( float )( pow(( double )0.7*hiddenCount , 1./inputCount)/rangeMax );
 
 	// calculate weights
 	Random rw;

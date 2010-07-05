@@ -28,7 +28,7 @@ static StringData *ensureFreeSpace( char *& p , int space )
 				
 	// if space already exists
 	StringData *d = getData( p );
-	if( d -> size - strlen( p ) >= space )
+	if( d -> size - strlen( p ) >= ( unsigned )space )
 		return( d );
 
 	// reallocation
@@ -259,14 +259,14 @@ int String::findLastAny( const char *chars )
 String String::toUpper()
 {
 	String x = v;
-	strupr( x.v );
+	_strupr( x.v );
 	return( x );
 }
 
 String String::toLower()
 {
 	String x = v;
-	strlwr( x.v );
+	_strlwr( x.v );
 	return( x );
 }
 
