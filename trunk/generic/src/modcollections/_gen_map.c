@@ -388,6 +388,7 @@ short
 	int k , n;
 	char *l_x;
 	char *l_xn;
+	int l_slen;
 
 	if( p_pos < 0 ||
 		p_pos >= p_map -> s_n )
@@ -409,7 +410,8 @@ short
 		l_s = "";
 
 	/* check no need reallocation */
-	if( ( l_e -> s_value.u_s - ( char * )l_e ) + strlen( l_s ) + 1 <= l_e -> s_size )
+	l_slen = strlen( l_s );
+	if( ( l_e -> s_value.u_s - ( char * )l_e ) + l_slen + 1 <= ( int )l_e -> s_size )
 		{
 			strcpy( l_e -> s_value.u_s , l_s );
 			return( 1 );

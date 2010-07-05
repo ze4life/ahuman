@@ -59,116 +59,106 @@ void
 
 	l_str[ 0 ] = '\0';
 
-	for ( i = 0; i < 4; i++ )
-	{
-		switch( p_fmt -> s_el[ i ] . s_type  )
-		{
-		case 'Y':
-			if ( p_fmt -> s_el[ i ] . s_fmt != RFC_FMT_NOT )
-			{
-				if ( p_fmt -> s_el[ i ] . s_fmt == RFC_FMT_YEAR_SHORTDIG )
-					year %= 100;
-				sprintf( l_sss , "%0*d" , p_fmt -> s_el[ i ] . s_fmt , year );
-				strcat( l_str , l_sss );
-				if ( i < 3 && p_fmt -> s_el[ i + 1 ] . s_type != 'T' &&
-						p_fmt -> s_el[ i + 1 ] .s_fmt != RFC_FMT_NOT )
-					strcat( l_str , p_fmt -> s_ddiv );
-				else
-					strcat( l_str , l_dtdiv );
-			}
-			break;
+	for ( i = 0; i < 4; i++ ) {
+		switch( p_fmt -> s_el[ i ].s_type  ) {
+			case 'Y':
+				if ( p_fmt -> s_el[ i ].s_fmt != RFC_FMT_NOT ) {
+					if ( p_fmt -> s_el[ i ].s_fmt == RFC_FMT_YEAR_SHORTDIG )
+						year %= 100;
 
-		case 'M':
-			if ( p_fmt -> s_el [ i ] . s_fmt != RFC_FMT_NOT )
-			{
-				if ( p_fmt -> s_el [ i ] . s_fmt == RFC_FMT_MONTH_LONGSTR )
-				{
-					sprintf( l_sss , "%s" , months[ month ] );
+					sprintf( l_sss , "%0*d" , p_fmt -> s_el[ i ].s_fmt , year );
 					strcat( l_str , l_sss );
-				}
-				else if ( p_fmt -> s_el [ i ] . s_fmt == RFC_FMT_MONTH_SHORTSTR )
-				{
-					sprintf( l_sss , "%s" , mon[ month ] );
-					strcat( l_str , l_sss );
-				}
-				else
-				{
-					sprintf( l_sss , "%.*d" , p_fmt -> s_el[ i ] . s_fmt , month );
-					strcat( l_str , l_sss );
-				}
-				if ( i < 3 && p_fmt -> s_el[ i + 1 ] . s_type != 'T' &&
-						p_fmt -> s_el[ i + 1 ] .s_fmt != RFC_FMT_NOT)
-					strcat( l_str , p_fmt -> s_ddiv );
-				else
-					strcat( l_str , l_dtdiv );
-			}
-			break;
-
-		case 'D':
-			if ( p_fmt -> s_el[ i ] . s_fmt  != RFC_FMT_NOT )
-			{
-				if ( p_fmt -> s_el[ i ] . s_fmt  == RFC_FMT_DAY_SHORTSTR )
-				{
-					sprintf( l_sss , "%s" ,	wk[ p_tm -> tm_wday ] );
-					l_str[ 0 ] = '\0';
-					strcat( l_str , l_sss );
-					strcpy( p_tmstr , l_str );
-					return;
-				}
-				else if ( p_fmt -> s_el[ i ] . s_fmt  == RFC_FMT_DAY_LONGSTR )
-				{
-					sprintf( l_sss , "%s" , week[ p_tm -> tm_wday ] );
-					l_str[ 0 ] = '\0';
-					strcat( l_str , l_sss );
-					strcpy( p_tmstr , l_str );
-					return;
-				}
-				else
-				{
-					sprintf( l_sss , "%.*d" , p_fmt -> s_el[ i ] . s_fmt , day );
-					strcat( l_str , l_sss );
-					if ( i < 3 && p_fmt -> s_el[ i + 1 ] . s_type != 'T' &&
-						p_fmt -> s_el[ i + 1 ] .s_fmt != RFC_FMT_NOT)
+					if ( i < 3 && p_fmt -> s_el[ i + 1 ].s_type != 'T' &&
+							p_fmt -> s_el[ i + 1 ].s_fmt != RFC_FMT_NOT )
 						strcat( l_str , p_fmt -> s_ddiv );
 					else
-						strcat( l_str , l_dtdiv ); 
+						strcat( l_str , l_dtdiv );
 				}
-			}
+				break;
+
+			case 'M':
+				if ( p_fmt -> s_el [ i ] . s_fmt != RFC_FMT_NOT ) {
+					if ( p_fmt -> s_el [ i ] . s_fmt == RFC_FMT_MONTH_LONGSTR ) {
+						sprintf( l_sss , "%s" , months[ month ] );
+						strcat( l_str , l_sss );
+					}
+					else if ( p_fmt -> s_el [ i ].s_fmt == RFC_FMT_MONTH_SHORTSTR ) {
+						sprintf( l_sss , "%s" , mon[ month ] );
+						strcat( l_str , l_sss );
+					}
+					else {
+						sprintf( l_sss , "%.*d" , p_fmt -> s_el[ i ].s_fmt , month );
+						strcat( l_str , l_sss );
+					}
+
+					if ( i < 3 && p_fmt -> s_el[ i + 1 ] . s_type != 'T' &&
+							p_fmt -> s_el[ i + 1 ] .s_fmt != RFC_FMT_NOT)
+						strcat( l_str , p_fmt -> s_ddiv );
+					else
+						strcat( l_str , l_dtdiv );
+				}
 			break;
 
-		case 'T':
-			if ( p_fmt -> s_el[ i ] . s_fmt  != RFC_FMT_NOT )
-			{
-				sprintf( l_sss , "%02d" , hour );
-				strcat ( l_str , l_sss );
-				strcat ( l_str , p_fmt -> s_tdiv );
-				sprintf( l_sss , "%02d" , min );
-				strcat ( l_str , l_sss );
-				if ( p_fmt -> s_el[ i ] . s_fmt == RFC_FMT_TIME_LONGDIG )
-				{
-					strcat ( l_str , p_fmt -> s_tdiv );
-					sprintf( l_sss , "%02d" , sec );
-					strcat ( l_str , l_sss );
+			case 'D':
+				if ( p_fmt -> s_el[ i ] . s_fmt  != RFC_FMT_NOT ) {
+					if ( p_fmt -> s_el[ i ] . s_fmt  == RFC_FMT_DAY_SHORTSTR ) {
+						sprintf( l_sss , "%s" ,	wk[ p_tm -> tm_wday ] );
+						l_str[ 0 ] = '\0';
+						strcat( l_str , l_sss );
+						strcpy( p_tmstr , l_str );
+						return;
+					}
+					else if ( p_fmt -> s_el[ i ] . s_fmt  == RFC_FMT_DAY_LONGSTR ) {
+						sprintf( l_sss , "%s" , week[ p_tm -> tm_wday ] );
+						l_str[ 0 ] = '\0';
+						strcat( l_str , l_sss );
+						strcpy( p_tmstr , l_str );
+						return;
+					}
+					else {
+						sprintf( l_sss , "%.*d" , p_fmt -> s_el[ i ] . s_fmt , day );
+						strcat( l_str , l_sss );
+						if ( i < 3 && p_fmt -> s_el[ i + 1 ] . s_type != 'T' &&
+								p_fmt -> s_el[ i + 1 ] .s_fmt != RFC_FMT_NOT)
+							strcat( l_str , p_fmt -> s_ddiv );
+						else
+							strcat( l_str , l_dtdiv ); 
+					}
 				}
-				if ( i < 3 ) strcat( l_str , l_dtdiv ); 
-			}
+				break;
+
+			case 'T':
+				if ( p_fmt -> s_el[ i ] . s_fmt  != RFC_FMT_NOT ) {
+					sprintf( l_sss , "%02d" , hour );
+					strcat( l_str , l_sss );
+					strcat( l_str , p_fmt -> s_tdiv );
+					sprintf( l_sss , "%02d" , min );
+					strcat( l_str , l_sss );
+
+					if ( p_fmt -> s_el[ i ] . s_fmt == RFC_FMT_TIME_LONGDIG ) {
+						strcat( l_str , p_fmt -> s_tdiv );
+						sprintf( l_sss , "%02d" , sec );
+						strcat( l_str , l_sss );
+					}
+
+					if ( i < 3 )
+						strcat( l_str , l_dtdiv ); 
+				}
 		}
 	}
-	strcpy( p_tmstr , l_str );
-	return ;
-}
 
+	strcpy( p_tmstr , l_str );
+}
 
 /* convert time_t date/time to formated string */
 void 
 	rfc_dtm_time2string( time_t p_time , const rfc_fmt_date * p_fmt , char * p_tmstr )
 {
 
-	struct tm *		l_s_tm;
+	struct tm		l_s_tm;
 	rfc_fmt_date	l_fmt;
 
-	if ( p_fmt == NULL )
-	{
+	if ( p_fmt == NULL ) {
 		l_fmt . s_el[ 0 ] . s_type	= 'D';
 		l_fmt . s_el[ 0 ] . s_fmt	= RFC_FMT_DAY_LONGDIG;
 		l_fmt . s_el[ 1 ] . s_type	= 'M';
@@ -179,28 +169,29 @@ void
 		l_fmt . s_el[ 3 ] . s_fmt	= RFC_FMT_TIME_SHORTDIG;
 		strcpy( l_fmt . s_ddiv , "." );
 		strcpy( l_fmt . s_tdiv , ":" );
-	} else
+	}
+	else
 		memcpy( &l_fmt , p_fmt , sizeof( rfc_fmt_date ) );
 
-	l_s_tm	= localtime( &p_time );
-	_rfc_dtm_stm2string( l_s_tm , &l_fmt , p_tmstr );
-	return;
+	localtime_s( &l_s_tm , &p_time );
+	_rfc_dtm_stm2string( &l_s_tm , &l_fmt , p_tmstr );
 }
 
 rfc_moment rfc_dtm_moment( short p_prec )
 {
 	time_t		t		= time( NULL );
-	struct tm	*l_tms	= localtime( &t );
+	struct tm	l_tms;
 
 	char l_buf[9+1];
 	int l_min = 0;
-	switch( p_prec )
-	{
+
+	localtime_s( &l_tms , &t );
+	switch( p_prec ) {
 		case 0:	l_min = 95;	break;
-		case 1:	l_min = ( l_tms -> tm_min + 60 * l_tms -> tm_hour ) / 15 ; break;
+		case 1:	l_min = ( l_tms.tm_min + 60 * l_tms.tm_hour ) / 15 ; break;
 	}
 			
-	sprintf( l_buf , "%03d%02d%02d%02d" , l_tms->tm_year , l_tms->tm_mon + 1 , l_tms->tm_mday , (int)l_min );
+	sprintf( l_buf , "%03d%02d%02d%02d" , l_tms.tm_year , l_tms.tm_mon + 1 , l_tms.tm_mday , (int)l_min );
 
 	return (rfc_moment) atoi( l_buf );
 }
@@ -229,8 +220,7 @@ void
 	struct tm		l_tms;
 	int				year, day, month, i;
 
-	if( p_mmt == 0 )
-	{
+	if( p_mmt == 0 ) {
 		p_mmtstr[ 0 ] = '\0';
 		return;
 	}
@@ -239,10 +229,10 @@ void
 	month = ( p_mmt / 10000 ) % 100;
 	day   = ( p_mmt / 100 ) % 100;
 
-	if ( p_fmt != NULL )
-	{
+	if ( p_fmt != NULL ) {
 		memcpy( &l_fmt , p_fmt , sizeof( rfc_fmt_date ) );
 		i = 0;
+
 		while ( l_fmt . s_el[ i++ ] . s_type != 'T' && i < 4 ) ;
 		if ( --i < 4 ) 
 			l_fmt . s_el[ i ] . s_fmt = RFC_FMT_NOT;
@@ -259,7 +249,6 @@ void
 	l_tms . tm_wday = ( rfc_dtm_get_weekday( p_mmt ) + 4 ) % 7;
 
 	_rfc_dtm_stm2string( &l_tms , &l_fmt , p_mmtstr );
-	return;
 }
 
 /* get moment from days since 01.01.1900 */

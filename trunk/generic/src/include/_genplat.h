@@ -39,6 +39,8 @@
 #define BITS_PER_INT		32
 #endif
 
+#define BIG_STRING_SIZE		64535
+
 typedef void *				RFC_HND;
 typedef void				( *RFC_PROC )();
 

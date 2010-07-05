@@ -14,7 +14,7 @@ Random::Random()
 
 	// init randomizer if called first time
 	if( instanceCount++ == 0 )
-		srand( time( NULL ) );
+		srand( ( int )time( NULL ) );
 
 	statCounts = NULL;
 	statBuckets = 0;
@@ -108,8 +108,8 @@ int Random::getRandomInt()
 
 float Random::randFloat()
 {
-	float r1 = rand();
-	float r2 = rand();
+	float r1 = ( float )rand();
+	float r2 = ( float )rand();
 
 	if( r1 < r2 )
 		return( r1 / r2 );
@@ -232,15 +232,15 @@ void Random::showStatistics()
 	float avg = avgBucket / sum;
 
 	for( int m = 0; m < statBuckets; m++ )
-		var += ( statCounts[ m ] - avg ) * ( statCounts[ m ] - avg );
-	int varAvg = ( int )sqrt( var / statBuckets );
+		var += ( int )( ( statCounts[ m ] - avg ) * ( statCounts[ m ] - avg ) );
+	int varAvg = ( int )sqrt( ( double )( var / statBuckets ) );
 
 	logger.logInfo( String( "STAT: bucket count=" ) + statBuckets + 
 		", avg bucket=" + avg );
 	for( int z = 0; z < statBuckets; z++ )
 		{
-			int diff = statCounts[ z ] - avg;
-			float var = ( int )sqrt( diff * diff );
+			int diff = ( int )( statCounts[ z ] - avg );
+			float var = ( float )sqrt( ( double )( diff * diff ) );
 			logger.logInfo( String( "BUCKET #" ) + z + 
 				": count=" + statCounts[ z ] );
 		}
@@ -259,7 +259,7 @@ int Random::getRandomIntStatic( int min , int max )
 	return( v );
 }
 
-int Random::getRandomFloatStatic( float min , float max )
+float Random::getRandomFloatStatic( float min , float max )
 {
 	float v = min + randFloat() * ( max - min );
 	if( v > max )

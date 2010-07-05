@@ -481,9 +481,10 @@ short
 			for( k = 0; k < n; k++ )
 				{
 					l_p = rfc_msh_item_get( p_msh , k );
+					l_mem = strlen( l_s ) + 1;
 					strcpy( l_s , l_p -> s_name );
 					l_p -> s_name = l_s;
-					l_s += strlen( l_s ) + 1;
+					l_s += l_mem;
 				}
 
 			p_msh -> s_data = l_b;

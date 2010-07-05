@@ -222,7 +222,7 @@ bool NNRegression::learnStatIteration( NNSamples *samplesLearn , NNSamples *samp
 	// set validate
 	NNValidateFunction *vf = p -> getValidateFunction();
 	float avgFailedNeurons = 0;
-	bitTolerance = sp -> stopBitsPrecision * 1.5;
+	bitTolerance = sp -> stopBitsPrecision * 1.5f;
 	vf -> setValidateAvgOutputBits( bitTolerance , avgFailedNeurons );
 
 	if( sp -> momentum > 0 )

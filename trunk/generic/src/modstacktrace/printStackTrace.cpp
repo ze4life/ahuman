@@ -6,7 +6,7 @@
 
 //-----------------------------------------------------------------------------
 
-using namespace dev;
+using namespace MAPFILE;
 
 //-----------------------------------------------------------------------------
 
@@ -21,18 +21,14 @@ extern "C" short getStackTrace( void *ptr , ::getStackTraceCB cb )
 
 	// parse map file
 	MapFile map( modname );
-	switch ( map.error() )
+	if( map.error() )
 	{
-	case MapFile::ERROR_OPEN:	( *cb )( ptr , modname , NULL , NULL , "Failed to open map file" ); break;
-	case MapFile::ERROR_READ:	( *cb )( ptr , modname , NULL , NULL , "Error while reading map file" ); break;
-	case MapFile::ERROR_PARSE:	( *cb )( ptr , modname , NULL , NULL , "Parse error in map file" ); break;
-	default:					break;
+		( *cb )( ptr , modname , NULL , NULL , map.errorString() );
+		if( map.error() )
+			return( 0 );
 	}
 
-	// print stack trace to buffer
-	if( map.error() )
-		return( 0 );
-
+	// print stack trace into buffer
 	MapFile* maps[] = {&map};
 	if( StackTrace::getStackTrace( maps, 1, ptr , cb ) )
 		return( 1 );
@@ -51,7 +47,7 @@ extern "C" short getModuleItemByAddr( void *p_addr , char *p_class , char *p_fun
 	if( map.error() )
 		return( 0 );
 
-	int entry = map.findEntry( ( long )p_addr );
+	int entry = map.findSymbol( ( long )p_addr );
 	if( entry < 0 )
 		return( 0 );
 

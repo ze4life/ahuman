@@ -178,7 +178,7 @@ NNStrategyBackPropagation *NNFinderFactory::createDefaultStrategy( const NN *p )
 	// set validate
 	NNValidateFunction *vf = p -> getValidateFunction();
 	float avgFailedNeurons = 0;
-	float bitTolerance = stopBitsPrecision * 1.5;
+	float bitTolerance = stopBitsPrecision * 1.5f;
 	vf -> setValidateAvgOutputBits( bitTolerance , avgFailedNeurons );
 
 	ps -> setSmoothLearning( false );
@@ -218,10 +218,10 @@ void NNFinderFactory::createInitialP1( NN **pp , NNStrategyBackPropagation **ps 
 	float stopBitsPrecision = 0.1f;
 	float avgFailedNeurons = 0;
 	float bitTolerance = stopBitsPrecision * 1.5f;
-	float totalFailedNeurons = 0;
+	int totalFailedNeurons = 0;
 
 	vf -> setValidateAvgOutputBits( bitTolerance , avgFailedNeurons );
-	sf -> setModeBits( stopBitsPrecision , totalFailedNeurons );
+	sf -> setModeBits( ( float )stopBitsPrecision , totalFailedNeurons );
 	sf -> setMaxIterations( 1000 );
 
 	*pp = p;
@@ -253,10 +253,10 @@ void NNFinderFactory::createInitialP2( NN **pp , NNStrategyBackPropagation **ps 
 	float stopBitsPrecision = 0.1f;
 	float avgFailedNeurons = 0;
 	float bitTolerance = stopBitsPrecision * 1.5f;
-	float totalFailedNeurons = 0;
+	int totalFailedNeurons = 0;
 
 	vf -> setValidateAvgOutputBits( bitTolerance , avgFailedNeurons );
-	sf -> setModeBits( stopBitsPrecision , totalFailedNeurons );
+	sf -> setModeBits( ( float )stopBitsPrecision , totalFailedNeurons );
 
 	*pp = p;
 	*ps = s;

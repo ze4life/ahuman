@@ -63,22 +63,22 @@ RuntimeException::RuntimeException( const char *p_msg , const char *p_file , int
 	stack = rfc_thr_stackget( 1 );
 	line = p_line;
 	
-	char *p1 = strrchr( file , '\\' );
-	char *p2 = strrchr( file , '/' );
+	const char *p1 = strrchr( file , '\\' );
+	const char *p2 = strrchr( file , '/' );
 
 	if( p1 == NULL && p2 == NULL )
 		fileShort = file;
 	else
 	if( p1 != NULL && p2 == NULL )
-		fileShort = ( ( const char * )p1 ) + 1;
+		fileShort = p1 + 1;
 	else
 	if( p1 == NULL && p2 != NULL )
-		fileShort = ( ( const char * )p2 ) + 1;
+		fileShort = p2 + 1;
 	else
 	if( p1 < p2 )
-		fileShort = ( ( const char * )p2 ) + 1;
+		fileShort = p2 + 1;
 	else
-		fileShort = ( ( const char * )p1 ) + 1;
+		fileShort = p1 + 1;
 }
 
 void RuntimeException::printStack( Logger& logger ) 
@@ -131,6 +131,12 @@ String RuntimeException::printStack()
 				"::" + sl -> functionName + 
 				" (" + moduleNameShort + 
 				", " + sl -> message + ")";
+
+			// stop after main function
+			if( !strcmp( sl -> functionName , "_main" ) ) {
+				error += String( "\n\t...skipped..." );
+				break;
+			}
 		}
 
 	return( error );

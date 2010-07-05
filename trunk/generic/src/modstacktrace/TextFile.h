@@ -2,7 +2,7 @@
 #define _DEV_TEXTFILE_H
 
 
-namespace dev
+namespace MAPFILE
 {
 
 
@@ -71,6 +71,7 @@ public:
 
 	/** Returns error code or 0 (ERROR_NONE) if no error. */
 	ErrorType	error() const;
+	const char *getErrorString() const;
 
 	/** Returns line number of last successful read character. */
 	int			line() const;

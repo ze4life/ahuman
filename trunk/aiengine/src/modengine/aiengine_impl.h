@@ -207,7 +207,7 @@ class LogManager
 			char **many;
 		} strings;
 		int count;
-		long time;
+		__time64_t time;
 		long time_ms;
 		Logger::LogLevel logLevel;
 		long threadId;

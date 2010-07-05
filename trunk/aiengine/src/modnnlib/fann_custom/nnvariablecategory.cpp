@@ -22,7 +22,7 @@ void NNVariableCategory::clearValue()
 
 float NNVariableCategory::getValue()
 {
-	return( value );
+	return( ( float )value );
 }
 
 // attach to NN
@@ -66,7 +66,7 @@ void NNVariableCategory::setValueAndCalculateRepresentation( float p_value , NNV
 	value = ( int )p_value;
 	float **pv = ( ( NNVariableCategory::Mapping * )vm ) -> pv -> getAll();
 	for( int k = 0; k < categoryCount - 1; k++ )
-		*( pv[ k ] ) = ( value == (k+1) )? 1 : -1;
+		*( pv[ k ] ) = ( value == (k+1) )? 1.f : -1.f;
 }
 
 void NNVariableCategory::calculateBackRepresentation( float p_value , NNVariable::Mapping *vm )
@@ -74,7 +74,7 @@ void NNVariableCategory::calculateBackRepresentation( float p_value , NNVariable
 	int x_value = ( int )p_value;
 	float **pv = ( ( NNVariableCategory::Mapping * )vm ) -> pvBack -> getAll();
 	for( int k = 0; k < categoryCount - 1; k++ )
-		*( pv[ k ] ) = ( x_value == (k+1) )? 1 : -1;
+		*( pv[ k ] ) = ( x_value == (k+1) )? 1.f : -1.f;
 }
 
 void NNVariableCategory::calculateValueFromRepresentation( NNVariable::Mapping *vm )
