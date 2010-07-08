@@ -1,24 +1,24 @@
-#ifndef	INCLUDE_AICOMMANDS_H
-#define INCLUDE_AICOMMANDS_H
+#ifndef	INCLUDE_AIBODY_H
+#define INCLUDE_AIBODY_H
 
-#include <aiio.h>
+#include <aisvcio.h>
 
 /*#########################################################################*/
 /*#########################################################################*/
 
 // handle inquires to AI accumulated experience and information
-class AICommands
+class AIBody
 {
 public:
 
 // engine helpers
 public:
 	static Service *createService();
-	AICommands *thisPtr;
-	AICommands();
+	AIBody *thisPtr;
+	AIBody();
 };
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-#endif	// INCLUDE_AICOMMANDS_H
+#endif	// INCLUDE_AIINTELLIGENCE_H
