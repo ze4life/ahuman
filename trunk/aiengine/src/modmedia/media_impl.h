@@ -5,7 +5,7 @@
 
 #include <aiengine.h>
 #include <aimedia.h>
-#include <aiio.h>
+#include <aisvcio.h>
 
 #define _closesocket	closesocket
 #define _ioctlsocket	ioctlsocket
