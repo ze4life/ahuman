@@ -3,29 +3,7 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-AINNLib::AINNLib() 
-{ 
-	thisPtr = AINNLibImpl::getServiceImpl(); 
-}
-
-AINNLibImpl *AINNLibImpl::getServiceImpl()
-{
-	return( static_cast<AINNLibImpl *>( AIEngine::getInstance().getService( "AINNLib" ) ) );
-}
-
-/* static */ Service *AINNLib::createService()
-{
-	Service *svc = new AINNLibImpl();
-	AIEngine::getInstance().registerService( svc , "AINNLib" );
-	return( svc );
-}
-
-AINNLibImpl::AINNLibImpl()
-:	engine( AIEngine::getInstance() )
-{
-}
-
-void AINNLibImpl::initService()
+AILibNNVariant *AILibNNVariant::createFannCustom()
 {
 	// register serialisable classes
 	NNVariable::createSerializeObject();
@@ -54,32 +32,8 @@ void AINNLibImpl::initService()
 	NNRegressionFactory::createSerializeObject();
 	NNFinder::createSerializeObject();
 	NNFinderFactory::createSerializeObject();
-}
 
-void AINNLibImpl::runService()
-{
-	// load variables container
-	NNVariablesContainer *vc = NNVariablesContainer::getInstance();
-	AIDB db;
-	db.load( vc , "main" );
-
-	// load factories
-	regressionFactory.init();
-	finderFactory.init();
-	db.save( vc , "main" );
-
-	// register debug call subscriber
-	debug.init( config );
-}
-
-void AINNLibImpl::exitService()
-{
-	debug.exit();
-}
-
-void AINNLibImpl::destroyService()
-{
-	delete this;
+	return( new LibFannCustom() );
 }
 
 /*#########################################################################*/

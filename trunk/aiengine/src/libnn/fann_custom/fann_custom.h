@@ -23,7 +23,10 @@ class NNFinderFactory;
 class LibFannCustom : public AILibNNVariant
 {
 public:
-	LibFannCustom() : AILibNNVariant( "LibFannCustom" ) {};
+	LibFannCustom() : AILibNNVariant( "LibFannCustom" ), engine( AIEngine::getInstance() ) {
+		finderFactory = NULL;
+		regressionFactory = NULL;
+	};
 	void init();
 	
 	static LibFannCustom *getInstance() {
@@ -39,6 +42,7 @@ public:
 	}
 	
 private:
+	AIEngine& engine;
 	NNFinderFactory *finderFactory;
 	NNRegressionFactory *regressionFactory;
 };
