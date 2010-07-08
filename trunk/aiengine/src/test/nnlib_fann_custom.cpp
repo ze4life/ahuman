@@ -1,6 +1,6 @@
 
 #include "test_impl.h"
-#include "../modnnlib/fann_custom/fann_custom.h"
+#include "../libnn/fann_custom/fann_custom.h"
 
 /*#########################################################################*/
 /*#########################################################################*/

@@ -207,6 +207,7 @@ void AIEngineImpl::createServices()
 	svc = AILibBN::createService(); svc -> isCreateCompleted = true;
 	svc = AIKnowledge::createService(); svc -> isCreateCompleted = true;
 	svc = AIIntelligence::createService(); svc -> isCreateCompleted = true;
+	svc = AIBody::createService(); svc -> isCreateCompleted = true;
 
 	// attach loggers
 	for( int k = 0; k < services.count(); k++ )
