@@ -2,7 +2,7 @@
 #define INCLUDE_AIDB_IMPL_H
 
 #include <aiengine.h>
-#include <aidb.h>
+#include <aisvcdb.h>
 
 class AIDBCursorImpl;
 class AIDBFile;
