@@ -1,29 +1,29 @@
 // understanding the meaning
 
-#ifndef	INCLUDE_AINNLIB_H
-#define INCLUDE_AINNLIB_H
+#ifndef	INCLUDE_AILIBBN_H
+#define INCLUDE_AILIBBN_H
 
-#include <aiio.h>
+#include <aisvcio.h>
 
-class AINNLibVariant;
+class AILibBNVariant;
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-class AINNLib
+class AILibBN
 {
 public:
 
 // engine helpers
 public:
 	static Service *createService();
-	AINNLib *thisPtr;
-	AINNLib();
+	AILibBN *thisPtr;
+	AILibBN();
 
-	virtual void addLibVariant( AINNLibVariant *lib ) {
+	virtual void addLibVariant( AILibBNVariant *lib ) {
 		thisPtr -> addLibVariant( lib );
 	};
-	virtual AINNLibVariant *getLibVariant( String name ) {
+	virtual AILibBNVariant *getLibVariant( String name ) {
 		return( thisPtr -> getLibVariant( name ) );
 	}
 };
@@ -31,12 +31,12 @@ public:
 /*#########################################################################*/
 /*#########################################################################*/
 
-class AINNLibVariant
+class AILibBNVariant
 {
 public:
-	static AINNLibVariant *createFannCustom();
+	static AILibBNVariant *createHtmCustom();
 	
-	AINNLibVariant( String p_name ) { 
+	AILibBNVariant( String p_name ) { 
 		name = p_name; 
 	};
 
@@ -51,4 +51,4 @@ private:
 /*#########################################################################*/
 /*#########################################################################*/
 
-#endif	// INCLUDE_AINNLIB_H
+#endif	// INCLUDE_AILIBBN_H

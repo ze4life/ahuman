@@ -1,5 +1,5 @@
-#ifndef	INCLUDE_AIKNOWLEDGE_H
-#define INCLUDE_AIKNOWLEDGE_H
+#ifndef	INCLUDE_AIINTELLIGENCE_H
+#define INCLUDE_AIINTELLIGENCE_H
 
 #include <aisvcio.h>
 
@@ -7,18 +7,18 @@
 /*#########################################################################*/
 
 // handle inquires to AI accumulated experience and information
-class AIKnowledge
+class AIIntelligence
 {
 public:
 
 // engine helpers
 public:
 	static Service *createService();
-	AIKnowledge *thisPtr;
-	AIKnowledge();
+	AIIntelligence *thisPtr;
+	AIIntelligence();
 };
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-#endif	// INCLUDE_AIKNOWLEDGE_H
+#endif	// INCLUDE_AIINTELLIGENCE_H
