@@ -2,7 +2,7 @@
 #define INCLUDE_AIIO_IMPL_H
 
 #include <aiengine.h>
-#include <aiio.h>
+#include <aisvcio.h>
 
 class SessionImpl;
 class Channel;
