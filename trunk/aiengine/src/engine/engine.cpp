@@ -1,5 +1,5 @@
 
-#include "aiengine_impl.h"
+#include "engine_impl.h"
 #include <windows.h>
 
 AIEngineImpl *AIEngineImpl::instance = NULL;
@@ -203,10 +203,10 @@ void AIEngineImpl::createServices()
 	svc = AIDB::createService(); svc -> isCreateCompleted = true;
 	
 	// mind services
-	svc = AINNLib::createService(); svc -> isCreateCompleted = true;
-	svc = AIHtmLib::createService(); svc -> isCreateCompleted = true;
+	svc = AILibNN::createService(); svc -> isCreateCompleted = true;
+	svc = AILibBN::createService(); svc -> isCreateCompleted = true;
 	svc = AIKnowledge::createService(); svc -> isCreateCompleted = true;
-	svc = AICommands::createService(); svc -> isCreateCompleted = true;
+	svc = AIIntelligence::createService(); svc -> isCreateCompleted = true;
 
 	// attach loggers
 	for( int k = 0; k < services.count(); k++ )
