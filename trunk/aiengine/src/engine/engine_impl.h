@@ -9,7 +9,9 @@
 #include <aimedia.h>
 #include <aiknowledge.h>
 #include <aiintelligence.h>
+#include <aicognition.h>
 #include <aibody.h>
+#include <aibrain.h>
 #include <test.h>
 
 #include <stdio.h>
@@ -22,6 +24,7 @@
 /*#########################################################################*/
 
 class LogManager;
+class ThreadData;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -52,12 +55,12 @@ public:
 
 	// threads
 	virtual int getThreadId();
-	virtual void workerCreated();
-	virtual void workerStarted();
-	virtual void workerExited( int status );
-	virtual void workerExited( RFC_THREAD thread , int status );
+	virtual int runThread( String name , Object *object , void (Object::*)( void *p_arg ) , void *p_arg );
 	virtual void addWorkerObject( const char *key , ThreadObject *to );
 	virtual ThreadObject *getWorkerObject( const char *key );
+
+public:
+	unsigned threadFunction( ThreadData *td );
 
 // base class interface
 private:
@@ -66,6 +69,10 @@ private:
 	static AIEngineImpl *instance;
 	int runInternal( const char *configDir );
 	void workerDestroyed();
+	void workerCreated();
+	void workerStarted( ThreadData *threadData );
+	void workerExited( int status );
+	void workerExited( RFC_THREAD thread , int status );
 
 	// constructor
 	AIEngineImpl();
@@ -87,6 +94,7 @@ private:
 	// log manager
 	void logStart( Xml configLogging );
 	void logStop();
+	void logStopAsync();
 
 // data
 private:
@@ -200,7 +208,7 @@ private:
 /*#########################################################################*/
 /*#########################################################################*/
 
-class LogManager
+class LogManager : public Object
 {
 	typedef struct {
 		union {
@@ -218,22 +226,24 @@ public:
 	LogManager();
 	~LogManager();
 
+	virtual const char *getClass() { return( "LogManager" ); };
+
 	// main run function
 	void configure( Xml config );
-	int run();
+	void run( void * );
 
 	// sync/async mode
 	void setSyncMode( bool syncMode );
 	bool getSyncMode();
 
 	// start/stop async thread
-	bool startWriter();
-	void stopWriter();
-	void waitForExit();
+	bool start();
+	void stopAsync();
+	void stop();
 
 	// add/get log records
 	void add( const char **chunkLines , int count , Logger::LogLevel logLevel , const char *postfix );
-	bool get();
+	bool get( bool p_autolock );
 	int getLogRecordsPending();
 
 	// log level
@@ -252,8 +262,7 @@ private:
 	FILE *logFileStream;
 	LogSettings logSettings;
 	bool isFileLoggingEnabled;
-	bool stop;
-	RFC_THREAD independentThreadID;
+	bool stopAll;
 
 	// rolling read/write buffer
 	LogRecord *v;

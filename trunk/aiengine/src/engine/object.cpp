@@ -11,6 +11,19 @@ const char *Object::getClass()
 	throw RuntimeError( "Object::getClass: virtual function undefined for class" );
 }
 
+String Object::getObjectName()
+{
+	if( name.getBuffer() != NULL )
+		return( name );
+
+	if( instance.getBuffer() != NULL ) {
+		name = instance;
+		return( instance );
+	}
+
+	return( getClass() );
+}
+
 void Object::serialize( SerializeObject& so ) 
 {
 	throw RuntimeError( "Object::serialize: virtual function undefined for class" );

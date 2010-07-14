@@ -4,32 +4,6 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-static 	unsigned		__stdcall threadClientFunction( void *p_arg )
-{
-	AIEngine& engine = AIEngine::getInstance();
-	engine.workerStarted();
-
-	// startup sockets
-	WSADATA l_wsa;
-	WSAStartup( MAKEWORD( 1 , 1 ) , &l_wsa );
-
-	// read messages
-	SocketConnection *client = ( SocketConnection * )p_arg;
-	client -> readMessages();
-
-	Listener *listener = client -> getListener();
-	listener -> destroyListenerConnection( client );
-
-	// cleanup sockets
-	WSACleanup();
-
-	engine.workerExited( 0 );
-	return( 0 );
-}
-
-/*#########################################################################*/
-/*#########################################################################*/
-
 SocketConnection::SocketConnection( SocketServer *p_server , SOCKET p_clientSocket , struct sockaddr_in *p_clientAddress , Message::MsgType p_msgType )
 :	engine( AIEngine::getInstance() )
 {
@@ -57,6 +31,23 @@ SocketConnection::~SocketConnection()
 			AIIO io;
 			io.closeSession( session );
 		}
+}
+
+void SocketConnection::threadClientFunction( void *p_arg )
+{
+	// startup sockets
+	WSADATA l_wsa;
+	WSAStartup( MAKEWORD( 1 , 1 ) , &l_wsa );
+
+	// read messages
+	SocketConnection *client = ( SocketConnection * )p_arg;
+	client -> readMessages();
+
+	Listener *listener = client -> getListener();
+	listener -> destroyListenerConnection( client );
+
+	// cleanup sockets
+	WSACleanup();
 }
 
 bool SocketConnection::startConnection()
@@ -87,12 +78,7 @@ bool SocketConnection::startConnection()
 	// start reading thread
 	if( server -> getWayIn() || server -> getAuth() )
 		{
-			engine.workerCreated();
-			if( rfc_thr_process( &thread , this , threadClientFunction ) ) {
-				logger.logError( "startConnectionThread: cannot start client thread" );
-				engine.workerExited( thread , -21 );
-				return( false );
-			}
+			engine.runThread( Connection::getName() , this , ( ObjectFunction )&SocketConnection::threadClientFunction , NULL );
 			threadStarted = true;
 		}
 

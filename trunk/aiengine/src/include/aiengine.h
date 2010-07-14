@@ -184,6 +184,8 @@ protected:
 /*#########################################################################*/
 /*#########################################################################*/
 
+typedef void (Object::*ObjectFunction)( void *p_arg );
+
 class AIEngine
 {
 // run from main only
@@ -215,11 +217,8 @@ public:
 	virtual Service *getService( const char *serviceName ) = 0;
 
 	// thread management
+	virtual int runThread( String name , Object *object , ObjectFunction function , void *p_arg ) = 0;
 	virtual int getThreadId() = 0;
-	virtual void workerCreated() = 0;
-	virtual void workerStarted() = 0;
-	virtual void workerExited( int status ) = 0;
-	virtual void workerExited( RFC_THREAD thread , int status ) = 0;
 	virtual void addWorkerObject( const char *key , ThreadObject *to ) = 0;
 	virtual ThreadObject *getWorkerObject( const char *key ) = 0;
 };

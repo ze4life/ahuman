@@ -19,14 +19,28 @@ void AIUnhandledExceptionTranslator( unsigned int exceptionCode , struct _EXCEPT
 class ThreadData
 {
 public:
-	MapStringToClass<ThreadObject> map;
+	RFC_THREAD threadExtId;
+	String name;
 	DWORD threadId;
+	Object *object;
+	void ( Object::*objectFunction )( void *p_arg );
+	void *objectFunctionArg;
+
+	MapStringToClass<ThreadObject> map;
 };
 
 /* if termination signal catched */
 static void on_exit( int p_sig )
 {
 	AIEngine::getInstance().exit( -4 );
+}
+
+static 	unsigned		__stdcall threadMainFunction( void *p_arg )
+{
+	ThreadData *td = ( ThreadData * )p_arg;
+	AIEngine& engine = AIEngine::getInstance();
+	AIEngineImpl *impl = ( AIEngineImpl * )&engine;
+	return( impl -> threadFunction( td ) );
 }
 
 /*#########################################################################*/
@@ -91,7 +105,9 @@ void AIEngineImpl::init()
 
 	// register main thread
 	workerCreated();
-	workerStarted();
+
+	ThreadData *td = new ThreadData;
+	workerStarted( td );
 
 	// engine configuration
 	config = loadXml( "main.xml" );
@@ -164,6 +180,7 @@ int AIEngineImpl::runInternal( const char *p_configDir )
 	exitServices();
 
 	// wait till instance execution ended
+	logStopAsync();
 	while( countExit > 1 )
 		rfc_thr_sleep( 1 );
 
@@ -180,7 +197,9 @@ int AIEngineImpl::runInternal( const char *p_configDir )
 void AIEngineImpl::exit( int status )
 {
 	workerCreated();
-	workerStarted();
+
+	ThreadData *td = new ThreadData;
+	workerStarted( td );
 
 	logger.logInfo( "Stop by signal" );
 
@@ -207,7 +226,9 @@ void AIEngineImpl::createServices()
 	svc = AILibBN::createService(); svc -> isCreateCompleted = true;
 	svc = AIKnowledge::createService(); svc -> isCreateCompleted = true;
 	svc = AIIntelligence::createService(); svc -> isCreateCompleted = true;
+	svc = AICognition::createService(); svc -> isCreateCompleted = true;
 	svc = AIBody::createService(); svc -> isCreateCompleted = true;
+	svc = AIBrain::createService(); svc -> isCreateCompleted = true;
 
 	// attach loggers
 	for( int k = 0; k < services.count(); k++ )
@@ -369,7 +390,7 @@ void AIEngineImpl::logStart( Xml configLogging )
 {
 	// open file
 	logManager -> configure( configLogging );
-	if( !logManager -> startWriter() )
+	if( !logManager -> start() )
 		throw RuntimeError( "AIEngineImpl::logStart: cannot initialize logging: unknown reason" );
 
 	logger.logInfo( "LOGGING STARTED" );
@@ -377,17 +398,70 @@ void AIEngineImpl::logStart( Xml configLogging )
 
 void AIEngineImpl::logStop()
 {
-	// stop async logging
-	logManager -> stopWriter();
-	logManager -> waitForExit();
-
+	// stop logging
 	logger.logInfo( "LOGGING STOPPED" );
+	logManager -> stop();
+}
+
+void AIEngineImpl::logStopAsync()
+{
+	// stop async logging
+	logManager -> stopAsync();
 }
 
 int AIEngineImpl::getThreadId()
 {
 	ThreadData *threadData = ( ThreadData * )TlsGetValue( tlsIndex );
 	return( threadData -> threadId );
+}
+
+unsigned AIEngineImpl::threadFunction( ThreadData *td )
+{
+	workerStarted( td );
+	
+	int status = 0;
+	Object *o = td -> object;
+	Logger& tlogger = o -> getLogger();
+	tlogger.attach( o );
+
+	try {
+		tlogger.logInfo( "Thread " + td -> name + ": started with threadId=" + ( int )td -> threadId );
+		void ( Object::*of )( void *p_arg ) = td -> objectFunction;
+		void *oa = td -> objectFunctionArg;
+		( o ->* of )( oa );
+	}
+	catch ( RuntimeException& e ) {
+		e.printStack( tlogger );
+		status = -12;
+	}
+	catch ( ... ) {
+		tlogger.logError( "Thread " + td -> name + ": unknown exception" );
+		tlogger.printStack();
+		status = -13;
+	}
+
+	workerExited( status );
+	return( status );
+}
+
+int AIEngineImpl::runThread( String p_name , Object *object , void (Object::*p_function)( void *p_arg ) , void *p_arg )
+{
+	workerCreated();
+
+	ThreadData *td = new ThreadData;
+	td -> object = object;
+	td -> objectFunction = p_function;
+	td -> objectFunctionArg = p_arg;
+	td -> name = p_name;
+
+	if( rfc_thr_process( &td -> threadExtId , ( void * )td , threadMainFunction ) )
+		{
+			logger.logError( "AIEngineImpl::runThread - cannot start thread: " + td -> name );
+			workerExited( td -> threadExtId , -10 );
+			return( 0 );
+		}
+
+	return( 1 );
 }
 
 void AIEngineImpl::workerCreated()
@@ -397,10 +471,9 @@ void AIEngineImpl::workerCreated()
 	rfc_hnd_semunlock( lockExit );
 }
 
-void AIEngineImpl::workerStarted()
+void AIEngineImpl::workerStarted( ThreadData *threadData )
 {
 	// thread-allocated data
-	ThreadData *threadData = new ThreadData;
 	TlsSetValue( tlsIndex , threadData );
 
 	threadData -> threadId = ::GetCurrentThreadId();

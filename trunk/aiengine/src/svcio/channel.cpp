@@ -6,36 +6,6 @@ const char *Channel::NAME = "Channel";
 /*#########################################################################*/
 /*#########################################################################*/
 
-static 	unsigned		__stdcall threadChannelFunction( void *p_arg )
-{
-	Channel *channel = ( Channel * )p_arg;
-
-	String name = channel -> getInstance();
-	Logger& logger = channel -> getLogger();
-	AIEngine& engine = AIEngine::getInstance();
-	engine.workerStarted();
-	
-	int status = 0;
-	try {
-		channel -> processMessages();
-	}
-	catch ( RuntimeException& e ) {
-		e.printStack( logger );
-		status = -12;
-	}
-	catch ( ... ) {
-		logger.logError( String( "threadChannelFunction: unknown exception, channel=" ) + name );
-		logger.printStack();
-		status = -13;
-	}
-
-	engine.workerExited( status );
-	return( status );
-}
-
-/*#########################################################################*/
-/*#########################################################################*/
-
 // input/output messages
 // class AIIODuplexChannel
 Channel::Channel( String p_msgid , String p_name , bool p_sync )
@@ -73,6 +43,11 @@ String Channel::getName()
 	return( name );
 }
 
+void Channel::threadChannelFunction( void *p_arg )
+{
+	processMessages();
+}
+
 void Channel::open()
 {
 	lock();
@@ -85,22 +60,14 @@ void Channel::open()
 	messages = new IOQueue( Object::getInstance() );
 
 	// create channel thread
+	unlock();
 	if( !sync )
 		{
 			AIEngine& engine = AIEngine::getInstance();
-			engine.workerCreated();
-			if( rfc_thr_process( &threadID , ( void * )this , threadChannelFunction ) )
-				{
-					run = false;
-					logger.logError( "Channel::open - cannot start listening thread" );
-					engine.workerExited( threadID , -10 );
-					unlock();
-					return;
-				}
+			engine.runThread( name ,  this , ( ObjectFunction )&Channel::threadChannelFunction , NULL );
 		}
 
 	opened = true;
-	unlock();
 }
 
 void Channel::close()

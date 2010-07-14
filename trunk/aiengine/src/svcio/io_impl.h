@@ -102,6 +102,7 @@ public:
 	void deletePublisher( String key );
 
 	// read messages and call subscribers
+	void threadChannelFunction( void *p_arg );
 	void processMessages();
 
 private:
