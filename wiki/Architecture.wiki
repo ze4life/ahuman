@@ -43,29 +43,30 @@ http://ahuman.googlecode.com/svn/images/wiki/development/humanmind.jpg
 
 == Function / Technology Map ==
 
-|| *Module / Component Set* || *Candidate Technologies* || *Primary Function* || *Related Problems and Algorithms* ||
-|| *modbody* || || || ||
-|| physionix || || positioning of sensors and effectors || ||
-|| bionix || || internal senses and motivation || ||
-|| brain || || memory evolution || ||
-|| *modmedia* || || || ||
-|| connectors || || physical connections and async io || ||
-|| sensors || || primary sensors to capture signal || chat reader, video-stream, signal processing ||
-|| effectors || || emit signal || chat writer, primary feedback ||
-|| *modcognition* || || || ||
-|| cortex || || primary cortex || ||
-|| amex || || associative memory || inferior temporal cortex (ITC) ||
-|| *modintelligence* || || || ||
-|| strategies || || rational behaviour || ||
-|| motor || || effectors control || ||
-|| *engine* || || || ||
-|| keeper || hardcoded || startup sequence and component management || ||
-|| db || hardcoded || persistence services || ||
-|| io || hardcoded || internal communications || JMS/COM-style ||
+|| *Module / Component Set* || *Primary Function* || *Related Problems and Algorithms* ||
+|| *modbody* || || ||
+|| physiology || positioning of sensors and effectors || ||
+|| biology || internal senses and motivation || ||
+|| sensors || produce raw sensor flow || chat reader, video-stream, signal processing ||
+|| effectors || pre-defined sets of actions in environment || chat writer, primary feedback ||
+|| *modbrain* || || ||
+|| (modbrain) || multi-neurex map and its evolution || ||
+|| *modmedia* || || ||
+|| (modmedia) || physical access to external environment || ||
+|| *modcognition* || || ||
+|| cortex || primary cortex || ||
+|| amex || associative memory || inferior temporal cortex (ITC) ||
+|| *modintelligence* || || ||
+|| behavior || rational intentions from perception || ||
+|| motor || effectors control || ||
+|| *engine* || || ||
+|| (engine) || startup sequence and component management || ||
+|| *svcdb* || persistence services || ||
+|| *svcio* || internal communications || JMS/COM-style ||
 || *lib* || || || ||
-|| libgen || hardcoded || low-level generic algorithms and data primitives || ||
-|| libnn || HMM, RBM, BAM || neural networks of various types || ||
-|| libbn || HTM || belief networks || ||
+|| libgen || low-level generic algorithms and data primitives || ||
+|| libnn || neural networks of various types || HMM, ANN ||
+|| libbn || belief networks || HTM ||
 
 == Limitations ==
 
