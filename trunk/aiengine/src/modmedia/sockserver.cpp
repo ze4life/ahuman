@@ -3,30 +3,6 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-static 	unsigned		__stdcall threadConnectFunction( void *p_arg )
-{
-	SocketServer *server = ( SocketServer * )p_arg;
-
-	// register thread
-	AIEngine& engine = AIEngine::getInstance();
-	engine.workerStarted();
-
-	// startup sockets
-	SocketServer::initSocketLib();
-
-	// accept connections
-	server -> acceptConnectionLoop();
-
-	// cleanup sockets
-	SocketServer::exitSocketLib();
-
-	engine.workerExited( 0 );
-	return( 0 );
-}
-
-/*#########################################################################*/
-/*#########################################################################*/
-
 SocketServer::SocketServer()
 :	engine( AIEngine::getInstance() )
 {
@@ -119,6 +95,18 @@ String SocketServer::getAddress()
 	return( getAddress( &listen_inet ) );
 }
 
+void SocketServer::threadConnectFunction( void *p_arg )
+{
+	// startup sockets
+	initSocketLib();
+
+	// accept connections
+	acceptConnectionLoop();
+
+	// cleanup sockets
+	exitSocketLib();
+}
+
 bool SocketServer::openListeningPort()
 {
 	// read parameters
@@ -168,16 +156,11 @@ bool SocketServer::openListeningPort()
 		return( false );
 
 	// start listening thread
-	engine.workerCreated();
-	if( rfc_thr_process( &listenThread , this , threadConnectFunction ) ) {
-		logger.logError( "openListeningPort: cannot start listening thread" );
-		engine.workerExited( listenThread , -20 );
-		return( false );
-	}
-
+	engine.runThread( Listener::getName() , this , ( ObjectFunction )&SocketServer::threadConnectFunction , NULL );
+	
 	String msg = "openListeningPort: started listener [" + Listener::getName() + "] on " + getAddress( &listen_inet );
-
 	logger.logInfo( msg );
+
 	return( true );
 }
 

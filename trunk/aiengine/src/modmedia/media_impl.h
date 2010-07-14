@@ -132,12 +132,13 @@ private:
 /*#########################################################################*/
 /*#########################################################################*/
 
-class SocketConnection : public Connection , public Subscriber
+class SocketConnection : public Object , public Connection , public Subscriber
 {
 public:
 	SocketConnection( SocketServer *server , SOCKET clientSocket , struct sockaddr_in *clientAddress , Message::MsgType msgType );
 	~SocketConnection();
 
+	virtual const char *getClass() { return( "SocketConnection" ); };
 	virtual bool startConnection();
 	virtual void stopConnection();
 
@@ -151,6 +152,9 @@ public:
 	virtual void onMessage( Message *msg );
 	virtual void onXmlMessage( XmlMessage *msg );
 	virtual void onXmlCall( XmlCall *msg );
+
+public:
+	void threadClientFunction( void *p_arg );
 
 private:
 	void tryLogin( const char *p_msg );
@@ -182,7 +186,7 @@ private:
 /*#########################################################################*/
 /*#########################################################################*/
 
-class SocketServer : public Listener
+class SocketServer : public Object , public Listener
 {
 public:
 	SocketServer();
@@ -192,6 +196,7 @@ public:
 	static void exitSocketLib();
 
 public:
+	virtual const char *getClass() { return( "SocketServer" ); };
 	virtual void configure( Xml config );
 	virtual bool startListener();
 	virtual void stopListener();
@@ -211,6 +216,7 @@ public:
 	bool waitReadSocket( SOCKET socket , int p_sec );
 	void performConnect();
 	bool startConnection( SOCKET clientSocket , struct sockaddr_in *clientAddress );
+	void threadConnectFunction( void *p_arg );
 
 	static String getAddress( struct sockaddr_in *clientAddress );
 

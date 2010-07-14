@@ -27,7 +27,7 @@ class Random;
 class Object
 {
 public:
-	virtual const char *getClass();
+	virtual const char *getClass() = 0;
 	virtual void serialize( SerializeObject& so );
 	virtual void deserialize( Object *parent , SerializeObject& so );
 	virtual String getPK();
@@ -39,6 +39,7 @@ public:
 	static void deserialize( Object *parent , Object *o , SerializeObject& so );
 	static Object *createObject( const char *className );
 
+	String getObjectName();
 	const char *getInstance();
 	void setInstance( const char *instance );
 
@@ -46,6 +47,7 @@ protected:
 	Object() {};
 	Logger logger;
 	String instance;
+	String name;
 };
 
 /*#########################################################################*/

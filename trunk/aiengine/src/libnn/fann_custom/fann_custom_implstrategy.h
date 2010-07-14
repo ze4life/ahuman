@@ -339,7 +339,7 @@ private:
 /*#########################################################################*/
 /*#########################################################################*/
 
-class NNStrategyScanIteration : public Object
+class NNStrategyScanIteration
 {
 	typedef enum {
 		PACKET_ERRFUNC_MAX = 1 ,
@@ -432,7 +432,7 @@ private:
 /*#########################################################################*/
 /*#########################################################################*/
 
-class NNStrategyScan : public NNStrategy , public Object
+class NNStrategyScan : public Object , public NNStrategy
 {
 public:
 	// Object interface
@@ -441,13 +441,13 @@ public:
 
 	static const char *NAME;
 	virtual const char *getClass() { return( NAME ); };
-	virtual void serialize( SerializeObject& so );
-	virtual void deserialize( Object *parent , SerializeObject& so );
 
 	static Object *onCreate( const char *className ) { return( new NNStrategyScan ); };
 	static void createSerializeObject();
 	static SerializeObject *getSerializeObject()
 		{ return( AIEngine::getInstance().getSerializeObject( NAME ) ); };
+	void serialize( SerializeObject& so );
+	void deserialize( Object *parent , SerializeObject& so );
 
 public:
 	static NNStrategyScan *newInit( NN *p_p );

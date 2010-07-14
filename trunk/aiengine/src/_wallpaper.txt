@@ -1,29 +1,60 @@
-MODULE OVERVIEW AND STATUS
+MODULE OVERVIEW AND STATUS (in terms of upcoming major release)
 ----------------------------------------------
-	moddb:	PRE-ALPHA
-	modheart: PRE-ALPHA
-	modio: PRE-ALPHA
+	engine:	PRE-ALPHA
+
+	libbn: PRE-ALPHA
+	libnn: PRE-ALPHA
+
+	modbody: PRE-ALPHA
+	modbrain: PRE-ALPHA
+	modcognition: PRE-ALPHA
+	modintelligence: PRE-ALPHA
 	modknowledge: PRE-ALPHA
-	modmind: PRE-ALPHA
 	modmedia: PRE-ALPHA
-	modnnlib: PRE-ALPHA
-	modmedia: PRE-ALPHA
-	modengine: PRE-ALPHA
+
+	svcdb: PRE-ALPHA
+	svcio: PRE-ALPHA
 
 ARCHITECTURE
 ----------------------------------------------
-modengine
+engine
 	- whole creature life functions
 	- generic application services
 
-modheart
-	- gormone factory/feelings
-	- personality/character
+libbn
+	- belief networks of different types
+	- implement neurex abstraction as belief network
 
-modmind
-	- genome structures
-	- creating and linking neural networks
-	- producing semantical signals for effectors
+libbn
+	- neural networks of different types
+	- implement neurex abstraction as neural network
+
+modbody
+	- biology/capture software process characteristics as body signals
+	- biology/gormone factory and feelings
+	- sensors/produce raw sensor flow
+	- effectors/pre-defined sets of actions in environment
+	- physiology/direct feedback to effectors from environment
+	- physiology/inborn unconditional reflexes
+
+modbrain
+	- neurex-to-neurex linking
+	- keep overall multi-neurex map
+	- thinking as activation of selected neurexes
+	- memory decay
+
+modcognition
+	- cortex/transform raw sensor flow item into set of features
+	- cortex/long-term memory for input patterns
+	- associations/hebbian associations of different order among features
+	- associations/mental state as short-term memory for activated features
+
+modintelligence
+	- behavior/learning temporal sequences of features
+	- behavior/predict expected features and activate them in associative memory
+	- behavior/generate intentions based on features controlled by feelings
+	- behavior/generate higher order intentions based on lower-order intentions in case of inefficiency of learned low-level strategy
+	- motor/produce actions by intentions controlled by feelings
 
 modknowledge
 	- ready-to-use non-neural knowledge
@@ -31,20 +62,27 @@ modknowledge
 
 modmedia
 	- facades for external media access libraries/connectors
-	- sensors for genome structure
-	- effectors
+	- physical access to external environment
 
-modio
+svcio
 	- channel management for external flows
 	- managing internal data flows
 	- support for commands and data streams
 
-modnnlib
-	- neural networking library
-
-moddb
+svcdb
 	- object persistance
 	- swapping neural networks
+
+----------------------------------------------
+workflow path:
+	ENVIRONMENT
+	-(modbody/sensors # modbody/physiology)> senses 
+	-(mogcognition/cortex # modbrain)> features 
+	-(modcognition/associations # modbrain)> associations 
+	-(modintelligence/behavior # modbody/biology)> intentions -(modintelligence/behavior # modbody/biology)> intentions 
+	-(modintelligence/motor # modbody/physiology)> actions
+	-(modbody/effectors # modbody/physiology)> 
+	ENVIRONMENT
 
 ALPHA ISSUES AND TODO
 ----------------------------------------------

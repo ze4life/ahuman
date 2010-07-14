@@ -6,12 +6,6 @@
 // #############################################################################
 // #############################################################################
 
-static 	unsigned		__stdcall threadMainFunction( void *p_arg )
-{
-	LogManager *log = ( LogManager * )( p_arg );
-	return( log -> run() );
-}
-
 RFC_HND LogManager::stopEvent = NULL;
 
 // #############################################################################
@@ -26,12 +20,12 @@ LogManager::LogManager()
 	rfc_hnd_evsignal( stopEvent );
 
 	isFileLoggingEnabled = false;
-	stop = true;
+	stopAll = true;
 
 	va = 1000;
 	v = ( LogRecord * )calloc( va , sizeof( LogRecord ) );
 	extraMode = false;
-	syncMode = false;
+	syncMode = true;
 
 	n1e = 0; n3e = va;
 	n2f = n4f = n5f = n6e = 0;
@@ -41,8 +35,6 @@ LogManager::LogManager()
 
 LogManager::~LogManager()
 {
-	stop = true;
-
 	// check no filled data
 	ASSERT( n2f == 0 && n4f == 0 && n5f == 0 );
 
@@ -82,13 +74,18 @@ LogSettingsItem *LogManager::getCustomLogSettings( const char *loggerName )
 // sync/async mode
 void LogManager::setSyncMode( bool p_syncMode )
 {
-	syncMode = p_syncMode;
-	if( syncMode == false )
+	if( syncMode == p_syncMode )
 		return;
 
-	// wait till all async are written
-	while( getLogRecordsPending() > 0 )
-		rfc_thr_sleep( 1 );
+	syncMode = p_syncMode;
+	if( syncMode == false ) {
+		AIEngine& engine = AIEngine::getInstance();
+		engine.runThread( "LogWriter" , this , ( ObjectFunction )&LogManager::run , NULL );
+	}
+	else {
+		// wait till writer thread is ended
+		rfc_hnd_waitevent( stopEvent );
+	}
 }
 
 bool LogManager::getSyncMode()
@@ -96,12 +93,7 @@ bool LogManager::getSyncMode()
 	return( syncMode );
 }
 
-void LogManager::waitForExit()
-{
-	rfc_hnd_waitevent( stopEvent );
-}
-
-bool LogManager::startWriter()
+bool LogManager::start()
 {
 	String fileName = logSettings.getFileName();
 
@@ -114,45 +106,50 @@ bool LogManager::startWriter()
 		return( false );
 	}
 
-	AIEngine& engine = AIEngine::getInstance();
-	if( rfc_thr_process( &independentThreadID , ( void * )this , threadMainFunction ) ) {
-		fprintf( stderr , "LogManager::start: cannot start listening thread" );
-		return( false );
-	}
+	// start async writer
+	setSyncMode( false );
 
+	// enable logging to screen and to file
 	isFileLoggingEnabled = true;
-	stop = false;
+	stopAll = false;
 
 	return( true );
 }
 
-void LogManager::stopWriter()
+void LogManager::stopAsync()
 {
-	stop = true;
 	setSyncMode( true );
 }
 
-int LogManager::run()
+void LogManager::stop()
 {
-	engine = &AIEngine::getInstance();
+	stopAsync();
+	stopAll = true;
+}
+
+void LogManager::run( void * )
+{
 	rfc_hnd_evreset( stopEvent );
 
-	int status = 0;
 	try {
 		// do get in cycle
-		while( get() );
+		while( syncMode == false )
+			get( true );
+
+		// cleanup async queue before exit
+		rfc_hnd_semlock( lock );
+		while( get( false ) );
+		rfc_hnd_semunlock( lock );
 	}
 	catch ( RuntimeException& e ) {
+		e.printStack( getLogger() );
 		fprintf( stderr , "exception in logging: " , e.getMsg() );
-		status = -41;
 	}
 	catch ( ... ) {
 		fprintf( stderr , "unknown exception in logging" );
-		status = -42;
 	}
 
 	rfc_hnd_evsignal( stopEvent );
-	return( status );
 }
 
 void LogManager::output( LogRecord *p )
@@ -223,6 +220,8 @@ void LogManager::output( LogRecord *p )
 
 void LogManager::add( const char **chunkLines , int count , Logger::LogLevel p_logLevel , const char *postfix )
 {
+	ASSERTMSG( stopAll == false , "Logging is closed" );
+
 	if( syncMode )
 		{
 			// print in sync
@@ -361,26 +360,28 @@ void LogManager::clear( LogRecord *p )
 	p -> count = 0;
 }
 
-bool LogManager::get()
+bool LogManager::get( bool p_autolock )
 {
 	// await data
 	while( 1 )
 		{
 			// only exclusive
-			rfc_hnd_semlock( lock );
+			if( p_autolock )
+				rfc_hnd_semlock( lock );
 
 			if( n2f || n4f )
 				break;
 
-			// exit event
-			if( stop )
-				{
+			// do not wait in sync mode
+			if( syncMode ) {
+				if( p_autolock )
 					rfc_hnd_semunlock( lock );
-					return( false );
-				}
+				return( false );
+			}
 
 			// no data - wait
-			rfc_hnd_semunlock( lock );
+			if( p_autolock )
+				rfc_hnd_semunlock( lock );
 			rfc_thr_sleep( 1 );
 		}
 
@@ -458,7 +459,8 @@ bool LogManager::get()
 	memset( &v[ readFrom ] , 0 , sizeof( LogRecord ) * n );
 	// fprintf( logFileStream , "-n[%d, %d, %d, %d, %d, %d], s[%d, %d]\n" ,
 	//	n1e , n2f , n3e , n4f , n5f , n6e , startAdd , startGet );
-	rfc_hnd_semunlock( lock );
+	if( p_autolock )
+		rfc_hnd_semunlock( lock );
 
 	// write w/o lock
 	for( int k = 0; k < n; k++ )

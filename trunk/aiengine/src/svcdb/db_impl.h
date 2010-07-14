@@ -118,7 +118,7 @@ private:
 // #############################################################################
 // #############################################################################
 
-class AIDBRecordHeader : public Object
+class AIDBRecordHeader
 {
 public:
 	AIDBRecordHeader( long fileHeaderSize );
@@ -157,7 +157,7 @@ private:
 // #############################################################################
 // #############################################################################
 
-class AIDBRecordSet : public Object
+class AIDBRecordSet
 {
 public:
 	AIDBRecordSet( FILE *f , int headerSize );
