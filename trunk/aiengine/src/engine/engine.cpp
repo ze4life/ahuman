@@ -148,21 +148,18 @@ int AIEngineImpl::runInternal( const char *p_configDir )
 		createServices();
 
 		// initialize classes
-		if( initServices() )
+		if( initServices() ) {
 			status = runServices();
-		else
+
+			logger.logInfo( "SERVER STARTED" );
+			logger.logInfo( "----------------------------------------" );
+
+			waitExitSignal();
+		}
+		else {
+			logger.logInfo( "UNABLE TO START SERVER" );
 			status = -1;
-
-		logger.logInfo( "SERVER STARTED" );
-		logger.logInfo( "----------------------------------------" );
-
-		// wait till instance execution ended
-		rfc_hnd_semlock( lockExit );
-		if( countExit > 1 )
-			{
-				rfc_hnd_semunlock( lockExit );
-				rfc_hnd_waitevent( eventExit );
-			}
+		}
 	}
 	catch ( RuntimeException& e ) {
 		e.printStack( logger );
@@ -322,7 +319,18 @@ int AIEngineImpl::runServices()
 	signal( SIGILL , on_exit );
 	signal( SIGSEGV , on_exit );
 
+	// wait till instance execution ended
 	return( workerStatus );
+}
+
+void AIEngineImpl::waitExitSignal()
+{
+	rfc_hnd_semlock( lockExit );
+	if( countExit > 1 )
+		{
+			rfc_hnd_semunlock( lockExit );
+			rfc_hnd_waitevent( eventExit );
+		}
 }
 
 void AIEngineImpl::exitServices()

@@ -2,6 +2,7 @@
 #define INCLUDE_AIBODY_IMPL_H
 
 #include <aiengine.h>
+#include <aibrain.h>
 #include <aibody.h>
 #include <aisvcdb.h>
 #include <aisvcio.h>
@@ -32,5 +33,26 @@ private:
 
 // #############################################################################
 // #############################################################################
+
+// any sensor or effector
+// each generally has both actions and senses
+// sensors have actions controlling treir focus and other metrics controlling data capture
+// effectors have senses with direct feedback from environment to action
+// set of senses or set of actions form two specific cortexes with corresponding inputs or outputs
+class Attractor
+{
+// construction
+public:
+	static Attractor *createFileSysWalker();
+
+public:
+	Attractor() {};
+	virtual ~Attractor() {};
+
+// operations
+public:
+	virtual Cortex *getSensesCortex() = 0;
+	virtual Cortex *getActionsCortex() = 0;
+};
 
 #endif	// INCLUDE_AIBODY_IMPL_H
