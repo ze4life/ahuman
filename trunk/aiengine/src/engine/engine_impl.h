@@ -90,6 +90,7 @@ private:
 	int runServices();
 	void exitServices();
 	void destroyServices();
+	void waitExitSignal();
 
 	// log manager
 	void logStart( Xml configLogging );

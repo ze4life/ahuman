@@ -393,6 +393,13 @@ public:
 	T *get( int index ) const { return( ( T * )( rfc_lst_get( data , index ) -> u_p ) ); };
 	void set( int index , T *value ) { rfc_lst_get( data , index ) -> u_p = value; };
 	T& getRef( int index ) const { return( *get( index ) ); };
+	ClassList<T> copy() const { 
+		ClassList<T> x; 
+		int xn = rfc_lst_count( data );
+		x.allocate( xn ); 
+		memcpy( x.data -> s_p , data -> s_p , sizeof( RFC_TYPE ) * xn );
+		return( x );
+	};
 
 	void insert( int index , T *v ) 
 		{ 
