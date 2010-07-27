@@ -24,7 +24,11 @@ class AIBodyImpl : public AIBody , public Service
 public:
 	AIBodyImpl();
 
-	// Object interface
+private:
+	static MindArea *createSensors();
+	static MindArea *createEffectors();
+	static MindArea *createBiology();
+	static MindArea *createPhysiology();
 
 // internals
 private:
@@ -34,25 +38,27 @@ private:
 // #############################################################################
 // #############################################################################
 
-// any sensor or effector
-// each generally has both actions and senses
+// any body element
+// each generally has two direction - input and output cortexes
+// internal cortex implementation is fully hard-coded
 // sensors have actions controlling treir focus and other metrics controlling data capture
 // effectors have senses with direct feedback from environment to action
-// set of senses or set of actions form two specific cortexes with corresponding inputs or outputs
+// does not have state persisted while AI is not running
+// created on AI start
 class Attractor
 {
 // construction
 public:
-	static Attractor *createFileSysWalker();
-
-public:
 	Attractor() {};
 	virtual ~Attractor() {};
 
+	// sensors
+	static Attractor *createFileSysWalker( MindArea *area );
+
 // operations
 public:
-	virtual Cortex *getSensesCortex() = 0;
-	virtual Cortex *getActionsCortex() = 0;
+	// cortex that process inputs as actions, outputs as feedback
+	virtual Cortex *getCortex() = 0;
 };
 
 #endif	// INCLUDE_AIBODY_IMPL_H

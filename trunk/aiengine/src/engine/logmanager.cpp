@@ -79,8 +79,8 @@ void LogManager::setSyncMode( bool p_syncMode )
 
 	syncMode = p_syncMode;
 	if( syncMode == false ) {
-		AIEngine& engine = AIEngine::getInstance();
-		engine.runThread( "LogWriter" , this , ( ObjectFunction )&LogManager::run , NULL );
+		AIEngine& en = AIEngine::getInstance();
+		en.runThread( "LogWriter" , this , ( ObjectFunction )&LogManager::run , NULL );
 	}
 	else {
 		// wait till writer thread is ended
@@ -96,6 +96,7 @@ bool LogManager::getSyncMode()
 bool LogManager::start()
 {
 	String fileName = logSettings.getFileName();
+	engine = &AIEngine::getInstance();
 
 	logFileStream = NULL;
 	logFileStream = fopen( fileName , "at" );

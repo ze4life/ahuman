@@ -96,6 +96,19 @@ bool Xml::getBooleanAttribute( String a )
 	return( getAttribute( a , "false" ).equals( "true" ) );
 }
 
+int Xml::getIntAttribute( String a )
+{
+	ASSERT( node != NULL );
+
+	TiXmlElement *xml = ( TiXmlElement * )node;
+	const char *v = xml -> Attribute( a );
+
+	ASSERTMSG( v != NULL , a + " attribute is NULL" );
+	int value = 0;
+	ASSERTMSG( sscanf( v , "%d" , &value ) == 1 , "Unable to parse integer in string: " + a );
+	return( value );
+}
+
 String Xml::getProperty( String name )
 {
 	ASSERT( node != NULL );
@@ -211,6 +224,16 @@ void Xml::setBooleanAttribute( String a , bool value )
 
 	const char *valueStr = ( value )? "true" : "false";
 	xml -> SetAttribute( a , valueStr );
+}
+
+void Xml::setIntAttribute( String a , int value )
+{
+	ASSERT( node != NULL );
+	TiXmlElement *xml = ( TiXmlElement * )node;
+
+	char v[ 15 ];
+	sprintf( v , "%d" , value );
+	xml -> SetAttribute( a , v );
 }
 
 Xml Xml::getFirstChild( String name )

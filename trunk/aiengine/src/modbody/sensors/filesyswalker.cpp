@@ -3,7 +3,7 @@
 // #############################################################################
 // #############################################################################
 
-class SensorFileSysWalker : public Attractor
+class SensorFileSysWalker : public Attractor , public CortexEventHandler
 {
 public:
 	SensorFileSysWalker() {
@@ -11,20 +11,26 @@ public:
 
 	virtual ~SensorFileSysWalker() {};
 
-	Cortex *getSensesCortex() {
-		return( NULL );
+	void createAttractor( MindArea *area ) {
+		AIBrain brain;
+		cortex = brain.createCortex( area , "CortexHardcoded" , 0 , 1 , 1 , this );
 	}
 
-	Cortex *getActionsCortex() {
-		return( NULL );
+	virtual Cortex *getCortex() {
+		return( cortex );
 	}
+
+private:
+	Cortex *cortex;
 };
 
 // #############################################################################
 // #############################################################################
 
-Attractor *Attractor::createFileSysWalker()
+Attractor *Attractor::createFileSysWalker( MindArea *area )
 {
-	return( new SensorFileSysWalker() );
+	SensorFileSysWalker *att = new SensorFileSysWalker();
+	att -> createAttractor( area );
+	return( att );
 }
 

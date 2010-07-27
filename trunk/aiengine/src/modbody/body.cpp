@@ -23,6 +23,8 @@ AIBodyImpl::AIBodyImpl()
 
 void AIBodyImpl::initService()
 {
+	AIBrain brain;
+	brain.addMindArea( "Sensors" , createSensors() );
 }
 
 void AIBodyImpl::runService()
