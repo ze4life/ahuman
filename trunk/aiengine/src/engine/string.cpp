@@ -270,6 +270,13 @@ String String::toLower()
 	return( x );
 }
 
+String String::toHex( int value )
+{
+	char l_buf[ 10 ];
+	sprintf( l_buf , "%x" , value );
+	return( l_buf );
+}
+
 int String::findLast( char c )
 {
 	if( v == NULL )

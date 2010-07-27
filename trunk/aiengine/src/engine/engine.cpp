@@ -19,6 +19,14 @@ void AIUnhandledExceptionTranslator( unsigned int exceptionCode , struct _EXCEPT
 class ThreadData
 {
 public:
+	ThreadData() {
+		memset( &threadExtId , 0 , sizeof( RFC_THREAD ) );
+		threadId = ( DWORD )NULL;
+		object = NULL;
+		objectFunction = NULL;
+		objectFunctionArg = NULL;
+	}
+public:
 	RFC_THREAD threadExtId;
 	String name;
 	DWORD threadId;
@@ -433,7 +441,7 @@ unsigned AIEngineImpl::threadFunction( ThreadData *td )
 	tlogger.attach( o );
 
 	try {
-		tlogger.logInfo( "Thread " + td -> name + ": started with threadId=" + ( int )td -> threadId );
+		tlogger.logInfo( "Thread " + td -> name + ": started with threadId=0x" + String::toHex( ( int )td -> threadId ) );
 		void ( Object::*of )( void *p_arg ) = td -> objectFunction;
 		void *oa = td -> objectFunctionArg;
 		( o ->* of )( oa );

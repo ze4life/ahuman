@@ -58,8 +58,10 @@ public:
 	String getAttribute( String a );
 	String getAttribute( String a , String defaultValue );
 	bool getBooleanAttribute( String a );
+	int getIntAttribute( String a );
 	void setAttribute( String a , String value );
 	void setBooleanAttribute( String a , bool value );
+	void setIntAttribute( String a , int value );
 
 	// properties
 	String getProperty( String name );

@@ -22,6 +22,7 @@ template<class T> class ClassList;
 template<typename T> class FixedPtrList;
 template<class T> class TwoIndexClassArray;
 template<class T> class MapIntToClass;
+class MapStringToInt;
 template<class TK , class TV> class MapPtrToClass;
 template<class T> class MapStringToClass;
 template<class T> class VectorMap;
@@ -65,6 +66,7 @@ public:
 	char getChar( int index );
 	String toUpper();
 	String toLower();
+	static String toHex( int value );
 
 private:
 	void createFromString( const char *s );
@@ -952,7 +954,7 @@ public:
 		{
 			T *l_value;
 			if( rfc_map_strcheck( mapData , key , ( void ** )&l_value ) < 0 )
-				l_value = NULL;;
+				l_value = NULL;
 
 			rfc_map_strsetkey( mapData , key , value );
 			return( l_value );
@@ -1033,6 +1035,133 @@ public:
 		{
 			if( k < 0 || k >= rfc_map_strcount( mapData ) )
 				throw RuntimeError( "MapStringToClass::getByIndex - invalid index" );
+
+			return( mapData -> s_p[ k ].s_x );
+		};
+			
+private:
+	rfc_strmap *mapData;
+};
+
+// #############################################################################
+// #############################################################################
+
+// map String to int
+class MapStringToInt
+{
+public:
+	MapStringToInt()
+		{
+			mapData = rfc_map_strcreate();
+		};
+	~MapStringToInt()
+		{
+			rfc_map_strdrop( mapData );
+		};
+
+public:
+	void allocate( int count )
+		{
+			rfc_map_stralloc( mapData , count );
+		};
+
+	int add( const char *key , int value )
+		{
+			int l_value;
+			if( rfc_map_strcheck( mapData , key , ( void ** )&l_value ) >= 0 )
+				throw RuntimeError( "MapStringToInt::add - key already exists" );
+
+			int index = rfc_map_strsetkey( mapData , key , ( void * )value );
+			return( index );
+		};
+
+	void add( MapStringToInt& a )
+		{
+			rfc_strmap *s = a.mapData;
+			for( int k = 0; k < rfc_map_strcount( s ); k++ )
+				rfc_map_stradd( mapData , s -> s_p[ k ].s_x , s -> s_p[ k ].s_y );
+		};
+
+	int set( const char *key , int value )
+		{
+			int l_value;
+			if( rfc_map_strcheck( mapData , key , ( void ** )&l_value ) < 0 )
+				l_value = -1;
+
+			rfc_map_strsetkey( mapData , key , ( void * )value );
+			return( l_value );
+		};
+
+	int get( const char *key )
+		{
+			int l_value;
+			if( rfc_map_strcheck( mapData , key , ( void ** )&l_value ) < 0 )
+				return( -1 );
+
+			return( l_value );
+		};
+	// return item from which given string begins
+	int getPartial( const char *key )
+		{
+			int n = rfc_map_strcount( mapData );
+			if( n == 0 )
+				return( -1 );
+
+			int fp = rfc_map_strinsertpos( mapData , key );
+
+			// check returned - it could be equal to required
+			if( fp < n )
+				{
+					const char *kfp = mapData -> s_p[ fp ].s_x;
+					if( !strcmp( kfp , key ) )
+						return( ( int )mapData -> s_p[ fp ].s_y );
+				}
+
+			// check previous - it could be partially equal to returned
+			if( fp > 0 )
+				{
+					fp--;
+					const char *kfp = mapData -> s_p[ fp ].s_x;
+					if( !strncmp( kfp , key , strlen( kfp ) ) )
+						return( ( int )mapData -> s_p[ fp ].s_y );
+				}
+
+			return( -1 );
+		};
+
+	int remove( const char *key )
+		{
+			return( ( int )rfc_map_strremove( mapData , key ) );
+		};
+
+	void clear()
+		{
+			rfc_map_strclear( mapData );
+		};
+
+	int count()
+		{
+			return( rfc_map_strcount( mapData ) );
+		};
+
+	void destroy()
+		{
+			rfc_strmap *s = mapData;
+			rfc_map_strclear( mapData );
+		};
+
+	int getClassByIndex( int k )
+		{
+			if( k < 0 || k >= rfc_map_strcount( mapData ) )
+				throw RuntimeError( "MapStringToInt::getByIndex - invalid index" );
+
+			return( ( int )rfc_map_strget( mapData , k ) );
+		};
+			
+	const char *getKeyByIndex( int k )
+		{
+			if( k < 0 || k >= rfc_map_strcount( mapData ) )
+				throw RuntimeError( "MapStringToInt::getByIndex - invalid index" );
 
 			return( mapData -> s_p[ k ].s_x );
 		};

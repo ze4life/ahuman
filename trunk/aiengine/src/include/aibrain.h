@@ -5,6 +5,7 @@
 
 class MindArea;
 class Cortex;
+class CortexEventHandler;
 class MindLink;
 class CortexLink;
 
@@ -27,13 +28,17 @@ public:
 // operations
 public:
 	// mind areas
+	virtual void addMindArea( String areaId , MindArea *area ) {
+		thisPtr -> addMindArea( areaId , area );
+	}
+
 	virtual MindArea *getMindArea( String areaId ) {
 		return( thisPtr -> getMindArea( areaId ) );
 	}
 	  
 	// cortex
-	virtual Cortex *createCortex( MindArea *area , String netType , int size , int inputs , int outputs ) {
-		return( thisPtr -> createCortex( area , netType , size , inputs , outputs ) );
+	virtual Cortex *createCortex( MindArea *area , String netType , int size , int inputs , int outputs , CortexEventHandler *handler ) {
+		return( thisPtr -> createCortex( area , netType , size , inputs , outputs , handler ) );
 	}
 
 	virtual Cortex *getCortex( String cortexId ) {
@@ -45,7 +50,7 @@ public:
 /*#########################################################################*/
 
 // brain provides implementation for mind areas
-// each mind area is represented by one module component - next level folder under mod...
+// each mind area is implemented by module components - next level folder under mod...
 // each mind area has own name and own location in the brain
 // mind area has pre-defined size as number of neurons, no matter of neuron type
 // inter-area connections have own lifecycle, controlled by brain
@@ -55,24 +60,54 @@ public:
 {
 public:
 	MindArea() {};
-	virtual ~MindArea() = 0;
+	virtual ~MindArea() {};
 
 // operations
 public:
+	virtual void createArea() = 0;
+	virtual void loadArea() = 0;
 
+	void setId( String id ) {
+		areaId = id;
+	}
+	String getId() {
+		return( areaId );
+	}
+
+private:
+	String areaId;
 };
 
 /*#########################################################################*/
 /*#########################################################################*/
 
+/* interface */ class CortexEventHandler
+{
+public:
+	virtual void onCreate() {};
+	virtual void onDestroy() {};
+	virtual void onInputsUpdated() {};
+	virtual void onOutputsUpdated() {};
+};
+
 // any neural network, belief or ANN
 // each cortex is created by component, which defines its type and properties by means of specific libnn or libbn library
 // cortex can be inbound, outbound or internal
-class Cortex
+/* interface */ class Cortex
 {
 public:
 	Cortex() {};
-	virtual ~Cortex() = 0;
+	virtual ~Cortex() {};
+
+	void setId( String id ) {
+		cortexId = id;
+	}
+	String getId() {
+		return( cortexId );
+	}
+
+private:
+	String cortexId;
 };
 
 /*#########################################################################*/
