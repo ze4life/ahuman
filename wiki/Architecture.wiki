@@ -91,6 +91,20 @@ Feasibility Study gives us below limitations for aHuman design:
    * create feedback reward function as output of feedback recognition system
    * use feedback reward function to learn all active Markov networks
 
+== Ideas inspired by coding ==
+
+  * mind consists of mind areas
+  * mind area consists of neural networks of various types
+  * single AI component is responsible for specific area and defines how it is constructed from networks - shape, used network types, sizes and inter-area links
+  * brain holds mind
+  * brain defines how areas are connected
+  * brain contains thread pool, executing elementary operations
+  * elementary operation is either network input/output calculation or link walkthough
+  * any operation leads to learning - either inside one network, or inside link
+  * networks can be of small typical size - e.g. 300 neurons, and thread pool can be 100 threads executing their operations and then sleeping for a while
+  * networks porcessed in the same time mean "mind focus"
+  * after processing focus is changed
+
 = Stale Models =
 
   * [ArchitectureModelInitial Original Model]
