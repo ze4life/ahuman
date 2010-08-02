@@ -23,6 +23,12 @@ AIBrainImpl::AIBrainImpl()
 	lockStructure = ( RFC_HND )NULL;
 	sessionId = 0;
 	cortexId = 0;
+	activeMemory = NULL;
+}
+
+AIBrainImpl *AIBrainImpl::getInstance()
+{
+	return( ( AIBrainImpl * )AIEngine::getInstance().getService( "Brain" ) );
 }
 
 void AIBrainImpl::initService()
@@ -30,10 +36,10 @@ void AIBrainImpl::initService()
 	// load mind map
 	logger.logInfo( "reading mind map..." );
 	Xml xml = Service::getConfig();
-	xml = xml.getFirstChild( "MindMap" );
-	ASSERTMSG( xml.exists() , "MindMap is not present in brain configuration file" );
+	Xml xmlMindMap = xml.getFirstChild( "MindMap" );
+	ASSERTMSG( xmlMindMap.exists() , "MindMap is not present in brain configuration file" );
 
-	mindMap -> createFromXml( xml );
+	mindMap -> createFromXml( xmlMindMap );
 
 	// cortex handlers
 	int index = 0;
@@ -43,6 +49,13 @@ void AIBrainImpl::initService()
 
 	// lock
 	lockStructure = rfc_hnd_semcreate();
+
+	// create active memory
+	Xml xmlActiveMemory = xml.getFirstChild( "ActiveMemory" );
+	ASSERTMSG( xmlActiveMemory.exists() , "ActiveMemory is not present in brain configuration file" );
+
+	activeMemory = new ActiveMemory();
+	activeMemory -> create( xmlActiveMemory );
 }
 
 void AIBrainImpl::runService()
@@ -52,19 +65,33 @@ void AIBrainImpl::runService()
 		MindArea *area = mindAreas.getClassByIndex( k );
 		area -> createArea();
 	}
+
+	// start thinking
+	activeMemory -> start();
 }
 
 void AIBrainImpl::exitService()
 {
+	// stop thinking
+	if( activeMemory != NULL )
+		activeMemory -> stop();
 }
 
 void AIBrainImpl::destroyService()
 {
-	if( lockStructure != ( RFC_HND )NULL )
-		rfc_hnd_semdestroy( lockStructure );
+	// drop memory
+	if( activeMemory != NULL )
+		delete activeMemory;
 
+	// drop cortexes
+	mapCortex.destroy();
+
+	// static data
 	if( mindMap != NULL )
 		delete mindMap;
+
+	if( lockStructure != ( RFC_HND )NULL )
+		rfc_hnd_semdestroy( lockStructure );
 
 	delete this;
 }
@@ -102,15 +129,16 @@ Cortex *AIBrainImpl::getCortex( String cortexId )
 
 Cortex *AIBrainImpl::createCortex( MindArea *area , String netType , int size , int inputs , int outputs , CortexEventHandler *handler )
 {
-	logger.logInfo( "create cortex: type=" + netType + ", size=" + size + ", inputs=" + inputs + ", outputs=" + outputs );
-
 	// find cortex factory
 	int index = mapCortexFactoryIndex.get( netType );
 	ASSERTMSG( index >= 0 , "Unable to find cortex type=" + netType );
 	CortexFactory factory = cortexFactories.get( index );
 
 	// create cortex
-	Cortex *cortex = ( this ->* factory ) ( area , netType , size , inputs , outputs , handler );
+	TopCortexEventHandler *topHandler = new TopCortexEventHandler;
+	topHandler -> nextHandler = handler;
+	Cortex *cortex = ( this ->* factory ) ( area , netType , size , inputs , outputs );
+	cortex -> setHandler( topHandler );
 	ASSERTMSG( cortex != NULL , "Unable to create cortex type=" + netType );
 
 	// register cortex
@@ -120,26 +148,28 @@ Cortex *AIBrainImpl::createCortex( MindArea *area , String netType , int size , 
 	mapCortex.add( id , cortex );
 	unlock();
 
+	logger.logInfo( "cortex created: id=" + id + ", type=" + netType + ", size=" + size + ", inputs=" + inputs + ", outputs=" + outputs );
+	topHandler -> onCreate( cortex );
 	return( cortex );
 }
 
-Cortex *AIBrainImpl::createHardcodedCortex( MindArea *area , String netType , int size , int inputs , int outputs , CortexEventHandler *handler )
+Cortex *AIBrainImpl::createHardcodedCortex( MindArea *area , String netType , int size , int inputs , int outputs )
 {
 	allocateArea( area , inputs + outputs );
-	CortexHardcoded *cortex = new CortexHardcoded( area , inputs , outputs , handler );
+	Cortex *cortex = new Cortex( area , inputs , 0 , outputs );
 	return( cortex );
 }
 
-Cortex *AIBrainImpl::createHardcodedInputsCortex( MindArea *area , String netType , int size , int inputs , int outputs , CortexEventHandler *handler )
+Cortex *AIBrainImpl::createHardcodedInputsCortex( MindArea *area , String netType , int size , int inputs , int outputs )
 {
 	allocateArea( area , inputs );
-	CortexHardcoded *cortex = new CortexHardcoded( area , inputs , 0 , handler );
+	Cortex *cortex = new Cortex( area , inputs , 0 , 0 );
 	return( cortex );
 }
 
-Cortex *AIBrainImpl::createHardcodedOutputsCortex( MindArea *area , String netType , int size , int inputs , int outputs , CortexEventHandler *handler )
+Cortex *AIBrainImpl::createHardcodedOutputsCortex( MindArea *area , String netType , int size , int inputs , int outputs )
 {
 	allocateArea( area , outputs );
-	CortexHardcoded *cortex = new CortexHardcoded( area , 0 , outputs , handler );
+	Cortex *cortex = new Cortex( area , 0 , 0 , outputs );
 	return( cortex );
 }
