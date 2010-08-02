@@ -6,9 +6,15 @@
 #include <aisvcdb.h>
 #include <aisvcio.h>
 
+class AIBrainImpl;
 class MindMap;
 class MindAreaInfo;
 class MindLinkInfo;
+class TopCortexEventHandler;
+class ActiveMemory;
+class ActiveMemoryThread;
+class ActiveMemoryThreadPool;
+class ActiveMemoryObject;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -26,6 +32,7 @@ class AIBrainImpl : public AIBrain , public Service
 // external interface
 public:
 	AIBrainImpl();
+	static AIBrainImpl *getInstance();
 
 	// mind areas
 	virtual void addMindArea( String areaId , MindArea *area );
@@ -37,9 +44,9 @@ public:
 	virtual Cortex *getCortex( String cortexId );
 	virtual Cortex *createCortex( MindArea *area , String netType , int size , int inputs , int outputs , CortexEventHandler *handler );
 
-	Cortex *createHardcodedCortex( MindArea *area , String netType , int size , int inputs , int outputs , CortexEventHandler *handler );
-	Cortex *createHardcodedInputsCortex( MindArea *area , String netType , int size , int inputs , int outputs , CortexEventHandler *handler );
-	Cortex *createHardcodedOutputsCortex( MindArea *area , String netType , int size , int inputs , int outputs , CortexEventHandler *handler );
+	Cortex *createHardcodedCortex( MindArea *area , String netType , int size , int inputs , int outputs );
+	Cortex *createHardcodedInputsCortex( MindArea *area , String netType , int size , int inputs , int outputs );
+	Cortex *createHardcodedOutputsCortex( MindArea *area , String netType , int size , int inputs , int outputs );
 
 	// mind map
 	MindMap *getMindMap() {
@@ -62,13 +69,14 @@ private:
 	MapStringToClass<MindArea> mindAreas;
 	MapStringToInt mapCortexFactoryIndex;
 
-typedef Cortex *( AIBrainImpl::*CortexFactory )( MindArea *area , String netType , int size , int inputs , int outputs , CortexEventHandler *handler );
+typedef Cortex *( AIBrainImpl::*CortexFactory )( MindArea *area , String netType , int size , int inputs , int outputs );
 
 	FlatList<CortexFactory> cortexFactories;
 	RFC_HND lockStructure;
 	int sessionId;
 	int cortexId;
 	MapStringToClass<Cortex> mapCortex;
+	ActiveMemory *activeMemory;
 };
 
 /*#########################################################################*/
@@ -110,6 +118,9 @@ private:
 	int sizeNotAllocated;
 };
 
+/*#########################################################################*/
+/*#########################################################################*/
+
 class MindLinkInfo
 {
 public:
@@ -136,6 +147,9 @@ public:
 	MindAreaInfo *masterArea;
 	MindAreaInfo *slaveArea;
 };
+
+/*#########################################################################*/
+/*#########################################################################*/
 
 // set of mind areas is a mind map
 // topology of mind map is pre-defined , including size and inter-area connections
@@ -168,20 +182,159 @@ private:
 // #############################################################################
 // #############################################################################
 
-class CortexHardcoded : public Cortex
+class TopCortexEventHandler : public CortexEventHandler
 {
 public:
-	CortexHardcoded( MindArea *area , int inputs , int outputs , CortexEventHandler *handler );
-	~CortexHardcoded();
+	virtual void onCreate( Cortex *cortex );
+	virtual void onInputsUpdated( Cortex *cortex );
+	virtual void onOutputsUpdated( Cortex *cortex );
 
-	void updateInputs();
-	void updateOutputs();
+	AIBrainImpl *svc;
+};
+
+// #############################################################################
+// #############################################################################
+
+class ActiveMemory
+{
+public:
+	ActiveMemory();
+	~ActiveMemory();
+
+	void create( Xml config );
+
+// operations
+public:
+	void start();
+	void stop();
 
 private:
-	MindArea *area;
-	int inputs;
-	int outputs;
-	CortexEventHandler *handler;
+	void configure( Xml config );
+	void createMemoryObjects();
+	void createThreadPool();
+
+private:
+	ActiveMemoryThreadPool *threadPool;
+	ClassList<ActiveMemoryObject> memoryObjects;
+
+	int focusSize;
+};
+
+// #############################################################################
+// #############################################################################
+
+class ActiveMemoryThread : public Object
+{
+public:
+	ActiveMemoryThread( int id , ClassList<ActiveMemoryObject>& objects );
+	~ActiveMemoryThread();
+
+	const char *getClass() { return( "ActiveMemoryThread" ); };
+
+	// configuring
+	void setMsPerOperation( int p_msPerOperation ) { msPerOperation = p_msPerOperation; };
+	void setReportGroup( int p_reportGroup ) { reportGroup = p_reportGroup; };
+	void setDynamicOperationTime( bool p_dynamicOperationTime ) { dynamicOperationTime = p_dynamicOperationTime; };
+	void setMinLoad( float p_minLoad ) { minLoad = p_minLoad; };
+	void setMaxLoad( float p_maxLoad ) { maxLoad = p_maxLoad; };
+
+// operations
+public:
+	String getName();
+
+	void create();
+	void suspend();
+	void resume();
+	void stop();
+
+	void run( void *p_arg );
+	void execute( ActiveMemoryObject *object );
+
+private:
+	void increaseSpeed( int factor );
+	void decreaseSpeed( int factor );
+
+private:
+	AIEngine& engine;
+
+	// identity
+	int threadId;
+	ClassList<ActiveMemoryObject> executeObjects; 
+	String name;
+
+	// configuration
+	int msPerOperation;
+	bool dynamicOperationTime;
+	int reportGroup;
+	float minLoad;
+	float maxLoad;
+
+	// control
+	bool suspendSignal;
+	bool stopSignal;
+	RFC_HND thread;
+	RFC_HND runEvent;
+	RFC_HND suspendEvent;
+
+	// statistics
+	int msExecTimeTotal;
+	int msSleepTimeTotal;
+	int msWaitTimeRemained;
+	int nRatioOperations;
+	float ratioExecutionByOperation;
+};
+
+// #############################################################################
+// #############################################################################
+
+class ActiveMemoryThreadPool
+{
+public:
+	ActiveMemoryThreadPool();
+	~ActiveMemoryThreadPool();
+
+	void configure( Xml config );
+
+// operations
+public:
+	void create( ClassList<ActiveMemoryObject>& objects );
+
+	void start();
+	void suspend();
+	void resume();
+	void stop();
+
+private:
+	ClassList<ActiveMemoryThread> threads;
+
+	int nThreads;
+	bool dynamicOperationTime;
+	int nReportGroup;
+	int minLoad;
+	int maxLoad;
+};
+
+// #############################################################################
+// #############################################################################
+
+class ActiveMemoryObject : public Object
+{
+public:
+	ActiveMemoryObject( int id );
+	~ActiveMemoryObject();
+
+	const char *getClass() { return( "ActiveMemoryObject" ); };
+
+// operations
+public:
+	void setCortex( Cortex *cortex );
+	String getName() { return( name ); };
+
+	void execute();
+
+private:
+	int activeMemoryObjectId;
+	String name;
 };
 
 // #############################################################################
