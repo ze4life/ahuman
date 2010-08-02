@@ -1190,6 +1190,14 @@ public:
 public:
 	// time passed - in ms
 	int timePassed();
+	// time passed - in clocks
+	int timePassedClocks();
+
+	// convert clocks to ms
+	static int timeClocksToMs( int clocks );
+	// convert ms to clocks
+	static int timeMsToClocks( int ms );
+
 	bool go();
 	int waitNext();
 
