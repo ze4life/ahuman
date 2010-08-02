@@ -228,17 +228,17 @@ void
 }
 
 void
-	rfc_hpt_setpoint()
+	rfc_hpt_setpoint( RFC_INT64 *pv )
 {
-	QueryPerformanceCounter( &hpt_start_ticks );
+	QueryPerformanceCounter( ( LARGE_INTEGER * )pv );
 }
 
 int	
-	rfc_hpt_timepassed()
+	rfc_hpt_timepassed( RFC_INT64 *pv )
 {
 	LARGE_INTEGER hpt_stop_ticks;
 	QueryPerformanceCounter( &hpt_stop_ticks );
-	return( ( int )( hpt_stop_ticks.QuadPart - hpt_start_ticks.QuadPart ) );
+	return( ( int )( hpt_stop_ticks.QuadPart - *pv ) );
 }
 
 int	
