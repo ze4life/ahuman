@@ -242,13 +242,13 @@ int
 }
 
 int	
-	rfc_hpt_ts2ms( int ticks )
+	rfc_hpt_ticks2ms( int ticks )
 {
 	return( ( int )( ( ticks * hpt_window_clocks ) / hpt_window_ticks ) );
 }
 
 int	
-	rfc_hpt_ms2ts( int ms )
+	rfc_hpt_ms2ticks( int ms )
 {
 	return( ( int )( ( ms * hpt_window_ticks ) / hpt_window_clocks ) );
 }
