@@ -434,6 +434,14 @@ public:
 			for( int k = 0; k < n; k++ )
 				add( new T );
 		};
+	void create( ClassList<T>& src )
+		{
+			destroy();
+			int n = src.count();
+			allocate( n );
+			for( int k = 0; k < n; k++ )
+				add( src.get( k ) );
+		};
 	void createNulls( int n ) 
 		{ 
 			destroy();
@@ -1183,10 +1191,12 @@ public:
 	// time passed - in ms
 	int timePassed();
 	bool go();
+	int waitNext();
 
 private:
 	long timeStarted;
 	int waitTime;
+	int waitCount;
 };
 
 // #############################################################################

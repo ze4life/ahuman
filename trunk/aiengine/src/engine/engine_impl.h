@@ -54,8 +54,10 @@ public:
 	virtual Service *getService( const char *serviceName );
 
 	// threads
+	virtual RFC_HND runThread( String name , Object *object , void (Object::*)( void *p_arg ) , void *p_arg );
+	virtual bool waitThreadExited( RFC_HND thread );
+	virtual RFC_HND getThreadHandle();
 	virtual int getThreadId();
-	virtual int runThread( String name , Object *object , void (Object::*)( void *p_arg ) , void *p_arg );
 	virtual void addWorkerObject( const char *key , ThreadObject *to );
 	virtual ThreadObject *getWorkerObject( const char *key );
 

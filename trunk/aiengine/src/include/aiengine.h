@@ -219,7 +219,9 @@ public:
 	virtual Service *getService( const char *serviceName ) = 0;
 
 	// thread management
-	virtual int runThread( String name , Object *object , ObjectFunction function , void *p_arg ) = 0;
+	virtual RFC_HND runThread( String name , Object *object , ObjectFunction function , void *p_arg ) = 0;
+	virtual bool waitThreadExited( RFC_HND thread ) = 0;
+	virtual RFC_HND getThreadHandle() = 0;
 	virtual int getThreadId() = 0;
 	virtual void addWorkerObject( const char *key , ThreadObject *to ) = 0;
 	virtual ThreadObject *getWorkerObject( const char *key ) = 0;
