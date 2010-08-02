@@ -197,3 +197,58 @@ short
 	p_s[ l_len ] = 0;
 	return( 1 );
 }
+
+/*#######################################################*/
+/*#######################################################*/
+/* high precision time measurement */
+
+static LARGE_INTEGER hpt_start_ticks;
+static long hpt_start_clocks;
+static LONGLONG hpt_window_ticks;
+static LONGLONG hpt_window_clocks;
+
+void
+	rfc_hpt_startadjustment()
+{
+	QueryPerformanceCounter( &hpt_start_ticks );
+	hpt_start_clocks = GetTickCount();
+}
+
+void
+	rfc_hpt_stopadjustment()
+{
+	LARGE_INTEGER hpt_stop_ticks;
+	long htp_stop_clocks;
+
+	QueryPerformanceCounter( &hpt_stop_ticks );
+	htp_stop_clocks = GetTickCount();
+
+	hpt_window_ticks = hpt_stop_ticks.QuadPart - hpt_start_ticks.QuadPart;
+	hpt_window_clocks = htp_stop_clocks - hpt_start_clocks;
+}
+
+void
+	rfc_hpt_setpoint()
+{
+	QueryPerformanceCounter( &hpt_start_ticks );
+}
+
+int	
+	rfc_hpt_timepassed()
+{
+	LARGE_INTEGER hpt_stop_ticks;
+	QueryPerformanceCounter( &hpt_stop_ticks );
+	return( ( int )( hpt_stop_ticks.QuadPart - hpt_start_ticks.QuadPart ) );
+}
+
+int	
+	rfc_hpt_ts2ms( int ticks )
+{
+	return( ( int )( ( ticks * hpt_window_clocks ) / hpt_window_ticks ) );
+}
+
+int	
+	rfc_hpt_ms2ts( int ms )
+{
+	return( ( int )( ( ms * hpt_window_ticks ) / hpt_window_clocks ) );
+}

@@ -286,3 +286,14 @@ extern void			rfc_env_gethostname( char *p_name , int p_size );
 
 /*#######################################################*/
 /*#######################################################*/
+/* high precision time measurement */
+
+extern void			rfc_hpt_startadjustment();
+extern void			rfc_hpt_stopadjustment();
+extern void			rfc_hpt_setpoint();
+extern int			rfc_hpt_timepassed();
+extern int			rfc_hpt_ticks2ms( int ticks );
+extern int			rfc_hpt_ms2ticks( int ms );
+
+/*#######################################################*/
+/*#######################################################*/
