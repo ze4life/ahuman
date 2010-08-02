@@ -431,6 +431,11 @@ int AIEngineImpl::getThreadId()
 	return( threadData -> threadId );
 }
 
+RFC_HND AIEngineImpl::getThreadHandle() {
+	ThreadData *threadData = ( ThreadData * )TlsGetValue( tlsIndex );
+	return( threadData -> threadExtId.s_ih );
+}
+
 unsigned AIEngineImpl::threadFunction( ThreadData *td )
 {
 	workerStarted( td );
@@ -460,7 +465,7 @@ unsigned AIEngineImpl::threadFunction( ThreadData *td )
 	return( status );
 }
 
-int AIEngineImpl::runThread( String p_name , Object *object , void (Object::*p_function)( void *p_arg ) , void *p_arg )
+RFC_HND AIEngineImpl::runThread( String p_name , Object *object , void (Object::*p_function)( void *p_arg ) , void *p_arg )
 {
 	workerCreated();
 
@@ -474,10 +479,10 @@ int AIEngineImpl::runThread( String p_name , Object *object , void (Object::*p_f
 		{
 			logger.logError( "AIEngineImpl::runThread - cannot start thread: " + td -> name );
 			workerExited( td -> threadExtId , -10 );
-			return( 0 );
+			return( NULL );
 		}
 
-	return( 1 );
+	return( td -> threadExtId.s_ih );
 }
 
 void AIEngineImpl::workerCreated()
@@ -514,6 +519,17 @@ void AIEngineImpl::workerExited( int status )
 	ASSERT( threadData != NULL );
 	threadData -> map.destroy();
 	delete threadData;
+}
+
+bool AIEngineImpl::waitThreadExited( RFC_HND threadId )
+{
+	RFC_THREAD th;
+	th.s_ih = threadId;
+	th.s_ip = NULL;
+	if( rfc_thr_waitexit( &th ) < 0 )
+		return( false );
+
+	return( true );
 }
 
 void AIEngineImpl::workerDestroyed()

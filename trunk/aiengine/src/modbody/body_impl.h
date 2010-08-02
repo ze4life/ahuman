@@ -57,7 +57,7 @@ public:
 
 // operations
 public:
-	// cortex that process inputs as actions, outputs as feedback
+	// hardcoded cortex that process inputs as actions, outputs as feedback
 	virtual Cortex *getCortex() = 0;
 };
 

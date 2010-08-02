@@ -84,10 +84,16 @@ private:
 /* interface */ class CortexEventHandler
 {
 public:
-	virtual void onCreate() {};
-	virtual void onDestroy() {};
-	virtual void onInputsUpdated() {};
-	virtual void onOutputsUpdated() {};
+	CortexEventHandler() {
+		nextHandler = NULL;
+	};
+
+	virtual void onCreate( Cortex *cortex ) {};
+	virtual void onInputsUpdated( Cortex *cortex ) {};
+	virtual void onOutputsUpdated( Cortex *cortex ) {};
+	virtual void onRun( Cortex *cortex ) {};
+
+	CortexEventHandler *nextHandler;
 };
 
 // any neural network, belief or ANN
@@ -96,7 +102,12 @@ public:
 /* interface */ class Cortex
 {
 public:
-	Cortex() {};
+	Cortex( MindArea *p_area , int p_inputs , int p_size , int p_outputs ) {
+		area = p_area;
+		inputs = p_inputs;
+		size = p_size;
+		outputs = p_outputs;
+	};
 	virtual ~Cortex() {};
 
 	void setId( String id ) {
@@ -105,9 +116,28 @@ public:
 	String getId() {
 		return( cortexId );
 	}
+	void setHandler( CortexEventHandler *p_handler ) {
+		handler = p_handler; 
+	}
+
+	// standard cortex events handling
+	virtual void updateInputs() {
+		if( handler != NULL )
+			handler -> onInputsUpdated( this );
+	}
+	virtual void updateOutputs() {
+		if( handler != NULL )
+			handler -> onOutputsUpdated( this );
+	}
 
 private:
 	String cortexId;
+	MindArea *area;
+	int inputs;
+	int size;
+	int outputs;
+protected:
+	CortexEventHandler *handler;
 };
 
 /*#########################################################################*/

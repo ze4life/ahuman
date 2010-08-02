@@ -7,6 +7,8 @@
 Timer::Timer()
 {
 	timeStarted = clock();
+	waitTime = 0;
+	waitCount = 0;
 }
 
 Timer::Timer( int p_waitTime )
@@ -26,3 +28,11 @@ bool Timer::go()
 	return( timePassed() < waitTime );
 }
 
+int Timer::waitNext()
+{
+	int secs = waitTime / 1000;
+	if( secs == 0 )
+		secs = 1;
+	rfc_thr_sleep( secs );
+	return( ++waitCount );
+}

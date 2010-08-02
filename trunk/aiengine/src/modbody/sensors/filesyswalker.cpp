@@ -3,13 +3,20 @@
 // #############################################################################
 // #############################################################################
 
-class SensorFileSysWalker : public Attractor , public CortexEventHandler
+class SensorFileSysWalker : public Object , public Attractor , public CortexEventHandler
 {
+private:
+	AIEngine& engine;
+	Cortex *cortex;
+
 public:
-	SensorFileSysWalker() {
+	SensorFileSysWalker() 
+	: engine( AIEngine::getInstance() ) {
+		cortex = NULL;
 	}
 
 	virtual ~SensorFileSysWalker() {};
+	virtual const char *getClass() { return( "SensorFileSysWalker" ); };
 
 	void createAttractor( MindArea *area ) {
 		AIBrain brain;
@@ -20,8 +27,12 @@ public:
 		return( cortex );
 	}
 
-private:
-	Cortex *cortex;
+	virtual void onCreate( Cortex *cortex ) {
+	};
+
+	virtual void onRun() {
+		logger.logInfo( "run thread..." );
+	}
 };
 
 // #############################################################################
