@@ -17,6 +17,7 @@ class IOQueue;
 class AIIOImpl : public AIIO , public Service
 {
 	// service
+	virtual void createService();
 	virtual void initService();
 	virtual void runService();
 	virtual void exitService();
@@ -38,10 +39,11 @@ public:
 	virtual bool unsubscribe( Subscription *subscription );
 
 private:
-	void createChannel( Xml config );
+	Channel *createChannel( Xml config );
 	Channel *getChannel( String name );
 	void lock();
 	void unlock();
+	void openAllChannels();
 	void closeAllChannels();
 
 // internals
