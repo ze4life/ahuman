@@ -15,6 +15,7 @@ class ActiveMemory;
 class ActiveMemoryThread;
 class ActiveMemoryThreadPool;
 class ActiveMemoryObject;
+class MindLinkImpl;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -23,6 +24,7 @@ class ActiveMemoryObject;
 class AIBrainImpl : public AIBrain , public Service
 {
 	// service
+	virtual void createService();
 	virtual void initService();
 	virtual void runService();
 	virtual void exitService();
@@ -37,9 +39,11 @@ public:
 	// mind areas
 	virtual void addMindArea( String areaId , MindArea *area );
 	virtual MindArea *getMindArea( String areaId );
-
 	void allocateArea( MindArea *area , int size );
 	  
+	// mind area links
+	MindLink *createMindLink( MindLinkInfo *linkInfo , MindArea *masterArea , MindArea *slaveArea );
+
 	// cortex
 	virtual Cortex *getCortex( String cortexId );
 	virtual Cortex *createCortex( MindArea *area , String netType , int size , int inputs , int outputs , CortexEventHandler *handler );
@@ -77,6 +81,8 @@ typedef Cortex *( AIBrainImpl::*CortexFactory )( MindArea *area , String netType
 	int cortexId;
 	MapStringToClass<Cortex> mapCortex;
 	ActiveMemory *activeMemory;
+	ClassList<MindLink> mindLinks;
+	Session *ioBrainSession;
 };
 
 /*#########################################################################*/
@@ -99,8 +105,10 @@ public:
 	const ClassList<MindLinkInfo>& getLinks() {
 		return( links );
 	};
-	void resolveLinks( MindMap *map );
 	void allocate( int size );
+	void addLink( MindLinkInfo *link ) {
+		links.add( link );
+	}
 
 	// structure lock
 	void lock() {
@@ -137,15 +145,15 @@ public:
 	String getSlaveAreaId() {
 		return( slaveAreaId );
 	};
-	void resolveLinks( MindMap *map );
+	String getChannelId() {
+		return( channelId );
+	}
 
 // data
 public:
 	String masterAreaId;
 	String slaveAreaId;
-
-	MindAreaInfo *masterArea;
-	MindAreaInfo *slaveArea;
+	String channelId;
 };
 
 /*#########################################################################*/
@@ -174,8 +182,13 @@ public:
 		return( info );
 	}
 
+	ClassList<MindLinkInfo>& getLinks() {
+		return( mindLinks );
+	}
+
 private:
 	ClassList<MindAreaInfo> mindAreas;
+	ClassList<MindLinkInfo> mindLinks;
 	MapStringToClass<MindAreaInfo> mindAreaMap;
 };
 
@@ -232,10 +245,14 @@ public:
 	const char *getClass() { return( "ActiveMemoryThread" ); };
 
 	// configuring
-	void setMsPerOperation( int p_msPerOperation ) { msPerOperation = p_msPerOperation; };
-	void setReportGroup( int p_reportGroup ) { reportGroup = p_reportGroup; };
-	void setDynamicOperationTime( bool p_dynamicOperationTime ) { dynamicOperationTime = p_dynamicOperationTime; };
-	void setMinLoad( float p_minLoad ) { minLoad = p_minLoad; };
+	void setOperationsPerSecond( int p_operationsPerSecond ) { 
+		operationsPerSecond = p_operationsPerSecond;
+		msPerOperation = 1000 / operationsPerSecond; 
+		ticksPerOperation = Timer::timeMsToTicks( msPerOperation );
+	};
+	void setSecondsPerCycle( int p_secondsPerCycle ) { 
+		secondsPerCycle = p_secondsPerCycle; 
+	};
 	void setMaxLoad( float p_maxLoad ) { maxLoad = p_maxLoad; };
 
 // operations
@@ -263,10 +280,10 @@ private:
 	String name;
 
 	// configuration
+	int operationsPerSecond;
 	int msPerOperation;
-	bool dynamicOperationTime;
+	int secondsPerCycle;
 	int reportGroup;
-	float minLoad;
 	float maxLoad;
 
 	// control
@@ -277,11 +294,18 @@ private:
 	RFC_HND suspendEvent;
 
 	// statistics
-	int msExecTimeTotal;
-	int msSleepTimeTotal;
-	int msWaitTimeRemained;
-	int nRatioOperations;
+	int ticksPerSecond;
+	int ticksPerOperation;
+	int ticksExecTimeTotal;
+	int ticksSleepTimeTotal;
+	int ticksWaitTimeRemained;
+	int nLastOperations;
 	float ratioExecutionByOperation;
+
+	RFC_INT64 idle , user , kernel;
+	RFC_INT64 didle , duser , dkernel;
+	int ticksPerOperationLastFactor;
+	bool ticksPerOperationLastIncrease;
 };
 
 // #############################################################################
@@ -308,9 +332,8 @@ private:
 	ClassList<ActiveMemoryThread> threads;
 
 	int nThreads;
-	bool dynamicOperationTime;
-	int nReportGroup;
-	int minLoad;
+	int secondsPerCycle;
+	int operationsPerSecond;
 	int maxLoad;
 };
 
@@ -335,6 +358,25 @@ public:
 private:
 	int activeMemoryObjectId;
 	String name;
+};
+
+// #############################################################################
+// #############################################################################
+
+class MindLinkImpl : public MindLink , public Subscriber
+{
+public:
+	MindLinkImpl( MindLinkInfo *p_info );
+	~MindLinkImpl();
+
+	virtual void open( Session *session );
+
+	virtual void onMessage( Message *msg );
+
+private:
+	MindLinkInfo *info;
+	Session *session;
+	Subscription *iosub;
 };
 
 // #############################################################################

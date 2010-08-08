@@ -12,9 +12,8 @@ ActiveMemoryThreadPool::~ActiveMemoryThreadPool()
 void ActiveMemoryThreadPool::configure( Xml config )
 {
 	nThreads = config.getIntProperty( "threadCount" );
-	dynamicOperationTime = config.getBooleanProperty( "dynamicLoad" );
-	nReportGroup = config.getIntProperty( "reportGroup" );
-	minLoad = config.getIntProperty( "minLoad" );
+	operationsPerSecond = config.getIntProperty( "operationsPerSecond" );
+	secondsPerCycle = config.getIntProperty( "secondsPerCycle" );
 	maxLoad = config.getIntProperty( "maxLoad" );
 }
 
@@ -31,12 +30,11 @@ void ActiveMemoryThreadPool::create( ClassList<ActiveMemoryObject>& objects )
 
 	// as a model, each operation is followed by sleep period to allow rest of the mind
 	// execute time plus sleep time is operation time
-	// we have limit for operations stated that 30K neurons can be processed in a second
+	// we have limit for operations stated that 30K neurons are active in the same time
 	// operations are performed by network
 	// we consider each network to have 300 neurons (it is drived by areas which split mind area into neurons)
-	// final expected throughput is 100 operations (networks) per second
-	// if we have N threads, it means each thread should execute each operation in 1000 * nThreads / 100 = 10 * nThreads milliseconds
-	int msOperationDuration = 10 * nThreads;
+	// final expected throughput is 100 operations (networks) are performed simultaneously
+	// it generally means 100 threads are required
 
 	// split objects by threads
 	int nFrom = 0;
@@ -59,11 +57,9 @@ void ActiveMemoryThreadPool::create( ClassList<ActiveMemoryObject>& objects )
 		threads.add( thread );
 
 		// configure thread
-		thread -> setDynamicOperationTime ( dynamicOperationTime );
-		thread -> setMsPerOperation( msOperationDuration );
-		thread -> setReportGroup( nReportGroup );
-		thread -> setMinLoad( ( ( float )minLoad ) / nThreads );
-		thread -> setMaxLoad( ( ( float )maxLoad ) / nThreads );
+		thread -> setOperationsPerSecond( operationsPerSecond );
+		thread -> setSecondsPerCycle( secondsPerCycle );
+		thread -> setMaxLoad( ( float )maxLoad );
 
 		nFrom += n;
 	}

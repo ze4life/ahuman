@@ -18,7 +18,7 @@ void MindAreaInfo::createFromXml( Xml xml )
 {
 	// attributes are properties
 	areaId = xml.getAttribute( "id" );
-	sizeNotAllocated = size = xml.getIntAttribute( "size" );
+	sizeNotAllocated = size = xml.getIntProperty( "size" );
 
 	// child elements are MindLink
 	for( Xml xmlChild = xml.getFirstChild( "MindLink" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "MindLink" ) ) {
@@ -28,14 +28,6 @@ void MindAreaInfo::createFromXml( Xml xml )
 
 		// add
 		links.add( info );
-	}
-}
-
-void MindAreaInfo::resolveLinks( MindMap *map )
-{
-	for( int k = links.count() - 1; k >= 0; k-- ) {
-		MindLinkInfo *info = links.get( k );
-		info -> resolveLinks( map );
 	}
 }
 

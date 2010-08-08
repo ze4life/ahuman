@@ -19,9 +19,16 @@ void MindMap::createFromXml( Xml xml )
 		mindAreaMap.add( id , info );
 	}
 
-	// resolve links
-	for( int k = mindAreaMap.count() - 1; k >= 0; k-- ) {
-		MindAreaInfo *info = mindAreaMap.getClassByIndex( k );
-		info -> resolveLinks( this );
+	// child elements are MindAreaInfo
+	Xml xmlLinks = xml.getFirstChild( "MindLinks" );
+
+	Xml xmlChild;
+	if( xmlLinks.exists() )
+		xmlChild = xmlLinks.getFirstChild( "MindLink" );
+	for( ; xmlChild.exists(); xmlChild = xmlChild.getNextChild( "MindLink" ) ) {
+		// construct MindArea from attributes
+		MindLinkInfo *info = new MindLinkInfo;
+		info -> createFromXml( xmlChild );
+		mindLinks.add( info );
 	}
 }
