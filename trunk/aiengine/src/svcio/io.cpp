@@ -9,7 +9,7 @@ AIIO::AIIO()
 	thisPtr = static_cast<AIIOImpl *>( AIEngine::getInstance().getService( "IO" ) );
 }
 
-/* static */ Service *AIIO::createService()
+/* static */ Service *AIIO::newService()
 {
 	Service *svc = new AIIOImpl();
 	AIEngine::getInstance().registerService( svc , "IO" );
@@ -23,16 +23,21 @@ AIIOImpl::AIIOImpl()
 	lastSessionId = 0;
 }
 
-void AIIOImpl::initService()
+void AIIOImpl::createService()
 {
-	// start all channels
+	// create all channels
 	Xml topics = config.getChildNode( "topics" );
 	for( Xml topic = topics.getFirstChild( "topic" ); topic.exists(); topic = topic.getNextChild( "topic" ) )
 		createChannel( topic );
 }
 
+void AIIOImpl::initService()
+{
+}
+
 void AIIOImpl::runService()
 {
+	openAllChannels();
 }
 
 void AIIOImpl::exitService()
@@ -127,7 +132,7 @@ bool AIIOImpl::unsubscribe( Subscription *subscription )
 /*#########################################################################*/
 /*#########################################################################*/
 
-void AIIOImpl::createChannel( Xml config )
+Channel *AIIOImpl::createChannel( Xml config )
 {
 	String name = config.getAttribute( "name" );
 	String msgid = config.getProperty( "msgid" );
@@ -139,7 +144,7 @@ void AIIOImpl::createChannel( Xml config )
 	ASSERT( auth == false );
 
 	mapChannels.add( name , channel );
-	channel -> open();
+	return( channel );
 }
 
 Channel *AIIOImpl::getChannel( String name )
@@ -160,6 +165,22 @@ void AIIOImpl::lock()
 void AIIOImpl::unlock()
 {
 	rfc_lock_release( dataLock );
+}
+
+void AIIOImpl::openAllChannels()
+{
+	lock();
+
+	// close all channels
+	for( int k = 0; k < mapChannels.count(); k++ )
+		{
+			Channel *channel = mapChannels.getClassByIndex( k );
+
+			// close given channel
+			channel -> open();
+		}
+
+	unlock();
 }
 
 void AIIOImpl::closeAllChannels()
