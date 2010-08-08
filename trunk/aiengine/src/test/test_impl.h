@@ -14,6 +14,7 @@ class AITestPoolImpl : public AITestPool , public Service , public Subscriber
 {
 public:
 	// service
+	virtual void createService();
 	virtual void initService();
 	virtual void runService();
 	virtual void exitService();
