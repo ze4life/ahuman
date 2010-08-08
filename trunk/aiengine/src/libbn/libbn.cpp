@@ -13,7 +13,7 @@ AILibBNImpl *AILibBNImpl::getServiceImpl()
 	return( static_cast<AILibBNImpl *>( AIEngine::getInstance().getService( "LibBN" ) ) );
 }
 
-/* static */ Service *AILibBN::createService()
+/* static */ Service *AILibBN::newService()
 {
 	Service *svc = new AILibBNImpl();
 	AIEngine::getInstance().registerService( svc , "LibBN" );
@@ -25,12 +25,12 @@ AILibBNImpl::AILibBNImpl()
 {
 }
 
-void AILibBNImpl::initService()
+void AILibBNImpl::createService()
 {
 	addLibVariant( AILibBNVariant::createHtmCustom() );
 }
 
-void AILibBNImpl::runService()
+void AILibBNImpl::initService()
 {
 	// log available commands
 	logger.logInfo( "AVAILABLE LIBRARIES:" );
@@ -38,6 +38,10 @@ void AILibBNImpl::runService()
 		AILibBNVariant *var = variants.getClassByIndex( k );
 		logger.logInfo( "library=" + var -> getName() );
 	}
+}
+
+void AILibBNImpl::runService()
+{
 }
 
 void AILibBNImpl::exitService()
