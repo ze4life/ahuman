@@ -15,15 +15,24 @@ ActiveMemoryThread::ActiveMemoryThread( int id , ClassList<ActiveMemoryObject>& 
 
 	executeObjects.create( objects );
 
+	operationsPerSecond = 0;
 	msPerOperation = 0;
-	reportGroup = 0;
-	dynamicOperationTime = false;
+	secondsPerCycle = 0;
+	maxLoad = 0;
 
-	msExecTimeTotal = 0;
-	msSleepTimeTotal = 0;
-	msWaitTimeRemained = 0;
+	ticksPerSecond = Timer::timeMsToTicks( 1000 );
+	ticksPerOperation = 0;
+	ticksExecTimeTotal = 0;
+	ticksSleepTimeTotal = 0;
+	ticksWaitTimeRemained = 0;
 	ratioExecutionByOperation = 0;
-	nRatioOperations = 0;
+	nLastOperations = 0;
+
+	idle = 0; user = 0; kernel = 0;
+	rfc_sys_getcpuload( &idle , &user , &kernel , &didle , &duser , &dkernel );
+
+	ticksPerOperationLastFactor = 0;
+	ticksPerOperationLastIncrease = false;
 }
 
 ActiveMemoryThread::~ActiveMemoryThread()
@@ -71,10 +80,15 @@ void ActiveMemoryThread::run( void *p_arg )
 {
 	// cycled queue
 	int currentObject = 0;
+	reportGroup = secondsPerCycle * operationsPerSecond;
 
 	logger.attach( name );
 	logger.logInfo( String( "Thread started: msPerOperation=" ) + msPerOperation +
-		", reportGroup=" + reportGroup );
+		", operationsPerSecond=" + operationsPerSecond +
+		", reportGroup=" + reportGroup +
+		", secondsPerCycle=" + secondsPerCycle +
+		", maxLoad=" + maxLoad +
+		", ticksPerSecond=" + ticksPerSecond );
 
 	while( !stopSignal ) {
 		// ensure run enabled
@@ -114,85 +128,137 @@ void ActiveMemoryThread::execute( ActiveMemoryObject *object )
 	// execute and measure execution time (in milliseconds)
 	Timer t;
 	object -> execute();
-	int executeTime = t.timePassed();
+	int executeTimeTicks = t.timePassedTicks();
 
 	// to calculate current execute/sleep ratio
-	msExecTimeTotal += executeTime;
+	ticksExecTimeTotal += executeTimeTicks;
 
 	// calculate sleep time for this opeation (can be negative!)
-	int opSleepTime = msPerOperation - executeTime;
+	int opSleepTimeTicks = ticksPerOperation - executeTimeTicks;
 
 	// add to pending sleep time
-	msWaitTimeRemained += opSleepTime;
-	nRatioOperations++;
+	ticksWaitTimeRemained += opSleepTimeTicks;
+	nLastOperations++;
 
 	// if sleep time is less than second - do nothing
-	if( msWaitTimeRemained < 1000 ) {
+	if( ticksWaitTimeRemained < ticksPerSecond ) {
 		logger.logInfo( "non-sleep execute operation=" + object -> getName() + 
-			", nRatioOperations=" + nRatioOperations +
-			", executeTime=" + executeTime +
-			", opSleepTime=" + opSleepTime + 
-			", msWaitTimeRemained=" + msWaitTimeRemained );
-
-		// if negative and synamic mode - decrease speed
-		if( dynamicOperationTime && msWaitTimeRemained < 0 )
-			decreaseSpeed( 2 );
-
-		return;
+			", nLastOperations=" + nLastOperations +
+			", executeTimeTicks=" + executeTimeTicks +
+			", opSleepTimeTicks=" + opSleepTimeTicks + 
+			", ticksWaitTimeRemained=" + ticksWaitTimeRemained );
 	}
-	
-	// get whole number of seconds to sleep (probably always will be 1) and sleep
-	int sleepSeconds = msWaitTimeRemained / 1000;
-	rfc_thr_sleep( sleepSeconds );
-	int sleepTime = t.timePassed() - executeTime;
-	msSleepTimeTotal += sleepTime;
-	msWaitTimeRemained -= sleepTime;
+	else {
+		// get whole number of seconds to sleep (probably always will be 1) and sleep
+		int sleepSeconds = ticksWaitTimeRemained / ticksPerSecond;
+		rfc_thr_sleep( sleepSeconds );
+		int sleepTimeTicks = t.timePassedTicks() - executeTimeTicks;
+		ticksSleepTimeTotal += sleepTimeTicks;
+		ticksWaitTimeRemained -= sleepTimeTicks;
 
-	logger.logInfo( "sleep execute operation=" + object -> getName() + 
-		", nRatioOperations=" + nRatioOperations +
-		", executeTime=" + executeTime +
-		", opSleepTime=" + opSleepTime +
-		", sleepSeconds=" + sleepSeconds +
-		", sleepTime=" + sleepTime +
-		", msWaitTimeRemained=" + msWaitTimeRemained );
+		logger.logInfo( "sleep execute operation=" + object -> getName() + 
+			", nLastOperations=" + nLastOperations +
+			", executeTimeTicks=" + executeTimeTicks +
+			", opSleepTimeTicks=" + opSleepTimeTicks +
+			", sleepSeconds=" + sleepSeconds +
+			", sleepTimeTicks=" + sleepTimeTicks +
+			", ticksWaitTimeRemained=" + ticksWaitTimeRemained );
+	}
 
 	// measure new execute/operation ratio in percents - once per 100 executions
-	if( nRatioOperations < reportGroup )
+	if( nLastOperations < reportGroup )
 		return;
 
 	// calculate ratio
-	ratioExecutionByOperation = ( msExecTimeTotal * 100.0f ) / ( msExecTimeTotal + msSleepTimeTotal );
+	ratioExecutionByOperation = ( ticksExecTimeTotal * 100.0f ) / ( ticksExecTimeTotal + ticksSleepTimeTotal );
+	float currentOperationsPerSecond = nLastOperations / ( ( float )( ticksExecTimeTotal + ticksSleepTimeTotal ) / ticksPerSecond );
 
 	// log stat
-	logger.logInfo( String( "Execution/Duration Ratio is " ) + ratioExecutionByOperation + 
-		"%, msExecTimeTotal=" + msExecTimeTotal + 
-		", msSleepTimeTotal=" + msSleepTimeTotal +
-		", msWaitTimeRemained=" + msWaitTimeRemained );
-
-	// clean statistics
-	nRatioOperations = 0;
-	msExecTimeTotal = 0;
-	msSleepTimeTotal = 0;
+	float currentCPULoad = 	rfc_sys_getcpuload( &idle , &user , &kernel , &didle , &duser , &dkernel );
+	logger.logInfo( String( "Execution/Duration Ratio is " ) + ratioExecutionByOperation + "%" +
+		", currentCPULoad=" + currentCPULoad +
+		", didle=" + ( int )didle +
+		", dkernel=" + ( int )dkernel +
+		", duser=" + ( int )duser +
+		", ticksExecTimeTotal=" + ticksExecTimeTotal + 
+		", currentOperationsPerSecond=" + currentOperationsPerSecond +
+		", ticksSleepTimeTotal=" + ticksSleepTimeTotal +
+		", ticksWaitTimeRemained=" + ticksWaitTimeRemained );
 
 	// recalculate operation time if dynamic
-	if( !dynamicOperationTime )
-		return;
-
-	if( ratioExecutionByOperation < minLoad )
-		increaseSpeed( 1 );
-	else
-	if( ratioExecutionByOperation > maxLoad )
+	if( currentCPULoad > maxLoad ) {
 		decreaseSpeed( 1 );
+	}
+	else
+	if( currentCPULoad < 0.9 * maxLoad && 
+		currentOperationsPerSecond < ( float )operationsPerSecond ) {
+		increaseSpeed( 1 );
+	}
+
+	// clean statistics
+	nLastOperations = 0;
+	ticksExecTimeTotal = 0;
+	ticksSleepTimeTotal = 0;
 }
 
+// factor is shows ratio whole/part, where whole is current speed and part is its change to be done
+// always positive, maximum change is current value
 void ActiveMemoryThread::increaseSpeed( int factor )
 {
-	msPerOperation /= 2 * factor;
+	int factorApply;
+
+	if( ticksPerOperationLastFactor != 0 ) {
+		factorApply = ticksPerOperationLastFactor / factor;
+		if( ticksPerOperationLastIncrease )
+			factorApply /= 2;
+		else
+			factorApply *= 2;
+	}
+	else
+		factorApply = 2 * factor;
+
+	if( factorApply < 1 )
+		factorApply = 1;
+
+	ticksPerOperation -= ticksPerOperation / factorApply;
+	if( ticksPerOperation < 1 )
+		ticksPerOperation = 1;
+
+	ticksPerOperationLastFactor = factorApply;
+	ticksPerOperationLastIncrease = true;
+
+	msPerOperation = Timer::timeTicksToMs( ticksPerOperation );
+	if( msPerOperation < 1 )
+		msPerOperation = 1;
 	logger.logInfo( String( "speed increased, msPerOperation=" ) + msPerOperation );
 }
 
 void ActiveMemoryThread::decreaseSpeed( int factor )
 {
-	msPerOperation *= 2 * factor;
+	int factorApply;
+
+	if( ticksPerOperationLastFactor != 0 ) {
+		factorApply = ticksPerOperationLastFactor / factor;
+		if( ticksPerOperationLastIncrease )
+			factorApply *= 2;
+		else
+			factorApply /= 2;
+	}
+	else
+		factorApply = 2 * factor;
+
+	if( factorApply < 1 )
+		factorApply = 1;
+
+	ticksPerOperation += ticksPerOperation / factorApply;
+	if( ticksPerOperation < 1 )
+		ticksPerOperation = 1;
+
+	ticksPerOperationLastFactor = factorApply;
+	ticksPerOperationLastIncrease = false;
+
+	msPerOperation = Timer::timeTicksToMs( ticksPerOperation );
+	if( msPerOperation < 1 )
+		msPerOperation = 1;
 	logger.logInfo( String( "speed decreased, msPerOperation=" ) + msPerOperation );
 }

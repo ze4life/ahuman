@@ -9,7 +9,7 @@ AIBrain::AIBrain()
 	thisPtr = static_cast<AIBrainImpl *>( AIEngine::getInstance().getService( "Brain" ) ); 
 }
 
-/* static */ Service *AIBrain::createService()
+/* static */ Service *AIBrain::newService()
 {
 	Service *svc = new AIBrainImpl();
 	AIEngine::getInstance().registerService( svc , "Brain" );
@@ -31,7 +31,7 @@ AIBrainImpl *AIBrainImpl::getInstance()
 	return( ( AIBrainImpl * )AIEngine::getInstance().getService( "Brain" ) );
 }
 
-void AIBrainImpl::initService()
+void AIBrainImpl::createService()
 {
 	// load mind map
 	logger.logInfo( "reading mind map..." );
@@ -58,14 +58,21 @@ void AIBrainImpl::initService()
 	activeMemory -> create( xmlActiveMemory );
 }
 
-void AIBrainImpl::runService()
+void AIBrainImpl::initService()
 {
+	// create IO session
+	AIIO io;
+	ioBrainSession = io.createSession();
+
 	// now always create all registered mind areas
 	for( int k = mindAreas.count() - 1; k >= 0; k-- ) {
 		MindArea *area = mindAreas.getClassByIndex( k );
 		area -> createArea();
 	}
+}
 
+void AIBrainImpl::runService()
+{
 	// start thinking
 	activeMemory -> start();
 }
@@ -105,6 +112,31 @@ void AIBrainImpl::addMindArea( String areaId , MindArea *area )
 	ASSERTMSG( mindAreas.get( areaId ) == NULL , "duplicate area to be added: " + areaId );
 	mindAreas.add( areaId , area );
 	area -> setId( areaId );
+
+	// create links for this area
+	ClassList<MindLinkInfo>& links = mindMap -> getLinks();
+	for( int k = links.count() - 1; k >= 0; k-- ) {
+		MindLinkInfo *linkInfo = links.get( k );
+		
+		String masterAreaId = linkInfo -> getMasterAreaId();
+		String slaveAreaId = linkInfo -> getSlaveAreaId();
+
+		// create only if new
+		if( masterAreaId.equals( areaId ) ||
+			slaveAreaId.equals( areaId ) ) {
+			// find areas
+			MindArea *masterArea = getMindArea( masterAreaId );
+			if( masterArea == NULL )
+				continue;
+
+			MindArea *slaveArea = getMindArea( slaveAreaId );
+			if( slaveArea == NULL )
+				continue;
+		
+			// create area
+			createMindLink( linkInfo , masterArea , slaveArea );
+		}
+	}
 }
 
 MindArea *AIBrainImpl::getMindArea( String areaId )
@@ -172,4 +204,14 @@ Cortex *AIBrainImpl::createHardcodedOutputsCortex( MindArea *area , String netTy
 	allocateArea( area , outputs );
 	Cortex *cortex = new Cortex( area , 0 , 0 , outputs );
 	return( cortex );
+}
+
+// mind area links
+MindLink *AIBrainImpl::createMindLink( MindLinkInfo *linkInfo , MindArea *masterArea , MindArea *slaveArea )
+{
+	// create link
+	MindLinkImpl *link = new MindLinkImpl( linkInfo );
+	link -> open( ioBrainSession );
+	mindLinks.add( link );
+	return( link );
 }
