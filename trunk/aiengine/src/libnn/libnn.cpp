@@ -13,7 +13,7 @@ AILibNNImpl *AILibNNImpl::getServiceImpl()
 	return( static_cast<AILibNNImpl *>( AIEngine::getInstance().getService( "LibNN" ) ) );
 }
 
-/* static */ Service *AILibNN::createService()
+/* static */ Service *AILibNN::newService()
 {
 	Service *svc = new AILibNNImpl();
 	AIEngine::getInstance().registerService( svc , "LibNN" );
@@ -25,12 +25,12 @@ AILibNNImpl::AILibNNImpl()
 {
 }
 
-void AILibNNImpl::initService()
+void AILibNNImpl::createService()
 {
 	addLibVariant( AILibNNVariant::createFannCustom() );
 }
 
-void AILibNNImpl::runService()
+void AILibNNImpl::initService()
 {
 	// log available commands
 	logger.logInfo( "AVAILABLE LIBRARIES:" );
@@ -38,6 +38,10 @@ void AILibNNImpl::runService()
 		AILibNNVariant *var = variants.getClassByIndex( k );
 		logger.logInfo( "library=" + var -> getName() );
 	}
+}
+
+void AILibNNImpl::runService()
+{
 }
 
 void AILibNNImpl::exitService()
