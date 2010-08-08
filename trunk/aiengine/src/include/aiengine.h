@@ -64,6 +64,7 @@ public:
 	void setIntAttribute( String a , int value );
 
 	// properties
+	void getProperties( MapStringToString& map );
 	String getProperty( String name );
 	String getProperty( String name , String defaultValue );
 	bool getBooleanProperty( String name );
@@ -142,6 +143,8 @@ class Service
 public:
 	Service()
 		{
+			isNewCompleted = false;
+			isCreateStarted = false;
 			isCreateCompleted = false;
 			isInitStarted = false;
 			isInitCompleted = false;
@@ -153,6 +156,7 @@ public:
 		};
 
 	virtual const char *getName() = 0;
+	virtual void createService() = 0;
 	virtual void initService() = 0;
 	virtual void runService() = 0;
 	virtual void exitService() = 0;
@@ -166,6 +170,8 @@ public:
 	Logger& getLogger() { return( logger ); };
 
 	// status properties
+	bool isNewCompleted;
+	bool isCreateStarted;
 	bool isCreateCompleted;
 	bool isInitStarted;
 	bool isInitCompleted;

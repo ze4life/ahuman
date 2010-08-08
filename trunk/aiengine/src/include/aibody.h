@@ -13,7 +13,7 @@ public:
 
 // engine helpers
 public:
-	static Service *createService();
+	static Service *newService();
 	AIBody *thisPtr;
 	AIBody();
 };

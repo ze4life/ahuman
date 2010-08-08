@@ -290,10 +290,15 @@ extern void			rfc_env_gethostname( char *p_name , int p_size );
 
 extern void			rfc_hpt_startadjustment();
 extern void			rfc_hpt_stopadjustment();
-extern void			rfc_hpt_setpoint();
-extern int			rfc_hpt_timepassed();
+extern void			rfc_hpt_setpoint( RFC_INT64 *pv );
+extern int			rfc_hpt_timepassed( RFC_INT64 *pv );
 extern int			rfc_hpt_ticks2ms( int ticks );
 extern int			rfc_hpt_ms2ticks( int ms );
+
+/*#######################################################*/
+/*#######################################################*/
+
+extern float		rfc_sys_getcpuload( RFC_INT64 *idle , RFC_INT64 *user , RFC_INT64 *kernel , RFC_INT64 *didle , RFC_INT64 *duser , RFC_INT64 *dkernel );
 
 /*#######################################################*/
 /*#######################################################*/

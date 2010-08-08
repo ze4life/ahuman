@@ -42,7 +42,7 @@ public:
 
 // engine helpers
 public:
-	static Service *createService();
+	static Service *newService();
 	AIDB *thisPtr;
 	AIDB();
 };
