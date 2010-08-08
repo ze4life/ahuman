@@ -9,7 +9,7 @@ AIIntelligence::AIIntelligence()
 	thisPtr = static_cast<AIIntelligenceImpl *>( AIEngine::getInstance().getService( "Intelligence" ) ); 
 }
 
-/* static */ Service *AIIntelligence::createService()
+/* static */ Service *AIIntelligence::newService()
 {
 	Service *svc = new AIIntelligenceImpl();
 	AIEngine::getInstance().registerService( svc , "Intelligence" );
@@ -18,6 +18,10 @@ AIIntelligence::AIIntelligence()
 
 AIIntelligenceImpl::AIIntelligenceImpl()
 :	engine( AIEngine::getInstance() )
+{
+}
+
+void AIIntelligenceImpl::createService()
 {
 }
 
