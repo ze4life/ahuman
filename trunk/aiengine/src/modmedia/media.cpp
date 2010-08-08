@@ -9,7 +9,7 @@ AIMedia::AIMedia()
 	thisPtr = static_cast<AIMediaImpl *>( AIEngine::getInstance().getService( "Media" ) ); 
 }
 
-/* static */ Service *AIMedia::createService()
+/* static */ Service *AIMedia::newService()
 {
 	Service *svc = new AIMediaImpl();
 	AIEngine::getInstance().registerService( svc , "Media" );
@@ -18,6 +18,10 @@ AIMedia::AIMedia()
 
 AIMediaImpl::AIMediaImpl()
 :	engine( AIEngine::getInstance() )
+{
+}
+
+void AIMediaImpl::createService()
 {
 }
 
