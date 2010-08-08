@@ -9,7 +9,7 @@ AIBody::AIBody()
 	thisPtr = static_cast<AIBodyImpl *>( AIEngine::getInstance().getService( "Body" ) ); 
 }
 
-/* static */ Service *AIBody::createService()
+/* static */ Service *AIBody::newService()
 {
 	Service *svc = new AIBodyImpl();
 	AIEngine::getInstance().registerService( svc , "Body" );
@@ -21,10 +21,14 @@ AIBodyImpl::AIBodyImpl()
 {
 }
 
-void AIBodyImpl::initService()
+void AIBodyImpl::createService()
 {
 	AIBrain brain;
 	brain.addMindArea( "Sensors" , createSensors() );
+}
+
+void AIBodyImpl::initService()
+{
 }
 
 void AIBodyImpl::runService()

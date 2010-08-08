@@ -3,9 +3,10 @@
 
 #include <aiengine.h>
 #include <aibrain.h>
-#include <aibody.h>
 #include <aisvcdb.h>
 #include <aisvcio.h>
+
+#include <aibody.h>
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -14,6 +15,7 @@
 class AIBodyImpl : public AIBody , public Service
 {
 	// service
+	virtual void createService();
 	virtual void initService();
 	virtual void runService();
 	virtual void exitService();
