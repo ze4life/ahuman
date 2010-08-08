@@ -1,24 +1,31 @@
 <service>
+
 	<MindMap>
-		<MindArea id="Sensors" size="10000">
-			<MindLink masterArea="Sensors" slaveArea="PrimaryCortex"/>
+		<MindArea id="Sensors">
+			<property name="size" value="10000"/>
 		</MindArea>
-		<MindArea id="PrimaryCortex" size="100000">
-			<MindLink masterArea="PrimaryCortex" slaveArea="EnthorinalCortex"/>
+		<MindArea id="NeoCortex">
+			<property name="size" value="100000"/>
 		</MindArea>
-		<MindArea id="EnthorinalCortex" size="100000">
+		<MindArea id="EnthorinalCortex">
+			<property name="size" value="100000"/>
 		</MindArea>
+		<MindLinks>
+			<MindLink masterArea="Sensors" slaveArea="NeoCortex" channel="sensordata"/>
+			<MindLink masterArea="NeoCortex" slaveArea="EnthorinalCortex" channel="features"/>
+		</MindLinks>
 	</MindMap>
+
 	<ActiveMemory>
 		<MemoryFocus>
 			<property name="objectCount" value="100"/>
 		</MemoryFocus>
 		<ThreadPool>
-			<property name="threadCount" value="100"/>
-			<property name="dynamicLoad" value="true"/>
-			<property name="reportGroup" value="10"/>
-			<property name="minLoad" value="10"/>
+			<property name="threadCount" value="10"/>
+			<property name="operationsPerSecond" value="1"/>
+			<property name="secondsPerCycle" value="5"/>
 			<property name="maxLoad" value="30"/>
 		</ThreadPool>
 	</ActiveMemory>
+
 </service>
