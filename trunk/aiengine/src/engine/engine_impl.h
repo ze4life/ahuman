@@ -88,8 +88,8 @@ private:
 
 	// services
 	void createServices();
-	bool initServices();
-	int runServices();
+	void initServices();
+	void runServices();
 	void exitServices();
 	void destroyServices();
 	void waitExitSignal();
@@ -238,6 +238,7 @@ public:
 	// sync/async mode
 	void setSyncMode( bool syncMode );
 	bool getSyncMode();
+	bool getConfiguredSyncMode();
 
 	// start/stop async thread
 	bool start();
@@ -275,6 +276,7 @@ private:
 	int va;
 	bool extraMode;
 	bool syncMode;
+	bool syncModeConfigured;
 
 	int n1e;	// empty
 	int n2f;	// filled

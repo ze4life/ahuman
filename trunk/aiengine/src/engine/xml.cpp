@@ -266,6 +266,22 @@ Xml Xml::getNextChild( String name )
 	return( item );
 }
 
+void Xml::getProperties( MapStringToString& map )
+{
+	ASSERT( node != NULL );
+
+	TiXmlElement *xml = ( TiXmlElement * )node;
+	TiXmlElement *xmlChild = xml -> FirstChildElement( "property" );
+	while( xmlChild != NULL )
+		{
+			String name = xmlChild -> Attribute( "name" );
+			String value = xmlChild -> Attribute( "value" );
+			map.add( name , value );
+
+			xmlChild = xmlChild -> NextSiblingElement();
+		}
+}
+
 String Xml::serialize()
 {
 	TiXmlDocument *l_doc = ( TiXmlDocument * )doc;
