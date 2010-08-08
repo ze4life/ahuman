@@ -21,7 +21,7 @@ public:
 
 // engine helpers
 public:
-	static Service *createService();
+	static Service *newService();
 	AIBrain *thisPtr;
 	AIBrain();
 
@@ -73,9 +73,16 @@ public:
 	String getId() {
 		return( areaId );
 	}
+	void addMindLink( MindLink *link ) {
+		mindLinks.add( link );
+	}
+	ClassList<MindLink>& getMindLinks() {
+		return( mindLinks );
+	}
 
 private:
 	String areaId;
+	ClassList<MindLink> mindLinks;
 };
 
 /*#########################################################################*/
@@ -153,7 +160,7 @@ class MindLink
 {
 public:
 	MindLink() {};
-	virtual ~MindLink() = 0;
+	virtual ~MindLink() {};
 };
 
 /*#########################################################################*/

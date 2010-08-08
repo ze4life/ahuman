@@ -16,7 +16,7 @@ public:
 
 // engine helpers
 public:
-	static Service *createService();
+	static Service *newService();
 	AILibNN *thisPtr;
 	AILibNN();
 

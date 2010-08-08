@@ -34,7 +34,7 @@ public:
 
 // engine helpers
 public:
-	static Service *createService();
+	static Service *newService();
 	AIIO *thisPtr;
 	AIIO();
 };

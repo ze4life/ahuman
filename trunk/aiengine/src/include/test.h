@@ -11,7 +11,7 @@ public:
 
 // engine helpers
 public:
-	static Service *createService();
+	static Service *newService();
 	AITestPool *thisPtr;
 	AITestPool();
 };

@@ -14,7 +14,7 @@ public:
 
 // engine helpers
 public:
-	static Service *createService();
+	static Service *newService();
 	AIMedia *thisPtr;
 	AIMedia();
 };

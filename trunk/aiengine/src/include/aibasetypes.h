@@ -22,11 +22,12 @@ template<class T> class ClassList;
 template<typename T> class FixedPtrList;
 template<class T> class TwoIndexClassArray;
 template<class T> class MapIntToClass;
-class MapStringToInt;
 template<class TK , class TV> class MapPtrToClass;
 template<class T> class MapStringToClass;
 template<class T> class VectorMap;
 template<class TA, class TC> class Sort;
+class MapStringToInt;
+class MapStringToString;
 
 // #############################################################################
 // #############################################################################
@@ -1142,9 +1143,134 @@ public:
 			return( ( int )rfc_map_strremove( mapData , key ) );
 		};
 
-	void clear()
+	int count()
+		{
+			return( rfc_map_strcount( mapData ) );
+		};
+
+	void destroy()
 		{
 			rfc_map_strclear( mapData );
+		};
+
+	int getClassByIndex( int k )
+		{
+			if( k < 0 || k >= rfc_map_strcount( mapData ) )
+				throw RuntimeError( "MapStringToInt::getByIndex - invalid index" );
+
+			return( ( int )mapData -> s_p[ k ].s_y );
+		};
+			
+	const char *getKeyByIndex( int k )
+		{
+			if( k < 0 || k >= rfc_map_strcount( mapData ) )
+				throw RuntimeError( "MapStringToInt::getByIndex - invalid index" );
+
+			return( mapData -> s_p[ k ].s_x );
+		};
+			
+private:
+	rfc_strmap *mapData;
+};
+
+// #############################################################################
+// #############################################################################
+
+// map String to String
+class MapStringToString
+{
+public:
+	MapStringToString()
+		{
+			mapData = rfc_map_strcreate();
+		};
+	~MapStringToString()
+		{
+			destroy();
+			rfc_map_strdrop( mapData );
+		};
+
+public:
+	void allocate( int count )
+		{
+			rfc_map_stralloc( mapData , count );
+		};
+
+	int add( const char *key , const char *value )
+		{
+			ASSERTMSG( value != NULL , "value should not be NULL" );
+			char *l_value;
+			if( rfc_map_strcheck( mapData , key , ( void ** )&l_value ) >= 0 )
+				throw RuntimeError( "MapStringToInt::add - key already exists" );
+
+			char *setValue = _strdup( value );
+			int index = rfc_map_strsetkey( mapData , key , ( void * )setValue );
+			return( index );
+		};
+
+	void add( MapStringToString& a )
+		{
+			rfc_strmap *s = a.mapData;
+			for( int k = 0; k < rfc_map_strcount( s ); k++ ) {
+				char *setValue = _strdup( ( char * )s -> s_p[ k ].s_y );
+				rfc_map_stradd( mapData , s -> s_p[ k ].s_x , setValue );
+			}
+		};
+
+	void set( const char *key , const char *value )
+		{
+			ASSERTMSG( value != NULL , "value should not be NULL" );
+			char *l_value;
+			if( rfc_map_strcheck( mapData , key , ( void ** )&l_value ) < 0 )
+				l_value = NULL;
+			else
+				free( l_value );
+
+			char *setValue = _strdup( value );
+			rfc_map_strsetkey( mapData , key , ( void * )setValue );
+		};
+
+	const char *get( const char *key )
+		{
+			char *l_value;
+			if( rfc_map_strcheck( mapData , key , ( void ** )&l_value ) < 0 )
+				return( NULL );
+
+			return( l_value );
+		};
+	// return item from which given string begins
+	const char *getPartial( const char *key )
+		{
+			int n = rfc_map_strcount( mapData );
+			if( n == 0 )
+				return( NULL );
+
+			int fp = rfc_map_strinsertpos( mapData , key );
+
+			// check returned - it could be equal to required
+			if( fp < n )
+				{
+					const char *kfp = mapData -> s_p[ fp ].s_x;
+					if( !strcmp( kfp , key ) )
+						return( ( const char * )mapData -> s_p[ fp ].s_y );
+				}
+
+			// check previous - it could be partially equal to returned
+			if( fp > 0 )
+				{
+					fp--;
+					const char *kfp = mapData -> s_p[ fp ].s_x;
+					if( !strncmp( kfp , key , strlen( kfp ) ) )
+						return( ( const char * )mapData -> s_p[ fp ].s_y );
+				}
+
+			return( NULL );
+		};
+
+	void remove( const char *key )
+		{
+			char *value = ( char * )rfc_map_strremove( mapData , key );
+			free( value );
 		};
 
 	int count()
@@ -1154,16 +1280,17 @@ public:
 
 	void destroy()
 		{
-			rfc_strmap *s = mapData;
+			for( int k = 0; k < mapData -> s_n; k++ )
+				free( ( char * )mapData -> s_p[ k ].s_y );
 			rfc_map_strclear( mapData );
 		};
 
-	int getClassByIndex( int k )
+	const char *getClassByIndex( int k )
 		{
 			if( k < 0 || k >= rfc_map_strcount( mapData ) )
 				throw RuntimeError( "MapStringToInt::getByIndex - invalid index" );
 
-			return( ( int )rfc_map_strget( mapData , k ) );
+			return( ( const char * )mapData -> s_p[ k ].s_y );
 		};
 			
 	const char *getKeyByIndex( int k )
@@ -1187,22 +1314,32 @@ public:
 	Timer();
 	Timer( int waitTime );
 
+	static void startAdjustment();
+	static void stopAdjustment();
+
 public:
 	// time passed - in ms
 	int timePassed();
 	// time passed - in clocks
 	int timePassedClocks();
+	// time passed - in ticks
+	int timePassedTicks();
 
 	// convert clocks to ms
 	static int timeClocksToMs( int clocks );
 	// convert ms to clocks
 	static int timeMsToClocks( int ms );
+	// convert ticks to ms
+	static int timeTicksToMs( int ticks );
+	// convert ms to ticks
+	static int timeMsToTicks( int ms );
 
 	bool go();
 	int waitNext();
 
 private:
 	long timeStarted;
+	RFC_INT64 timeStartedTicks;
 	int waitTime;
 	int waitCount;
 };
