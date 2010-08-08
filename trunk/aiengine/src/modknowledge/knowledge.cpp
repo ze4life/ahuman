@@ -9,7 +9,7 @@ AIKnowledge::AIKnowledge()
 	thisPtr = static_cast<AIKnowledgeImpl *>( AIEngine::getInstance().getService( "Knowledge" ) ); 
 }
 
-/* static */ Service *AIKnowledge::createService()
+/* static */ Service *AIKnowledge::newService()
 {
 	Service *svc = new AIKnowledgeImpl();
 	AIEngine::getInstance().registerService( svc , "Knowledge" );
@@ -18,6 +18,10 @@ AIKnowledge::AIKnowledge()
 
 AIKnowledgeImpl::AIKnowledgeImpl()
 :	engine( AIEngine::getInstance() )
+{
+}
+
+void AIKnowledgeImpl::createService()
 {
 }
 

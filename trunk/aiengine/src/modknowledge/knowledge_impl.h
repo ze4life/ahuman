@@ -13,6 +13,7 @@
 class AIKnowledgeImpl : public AIKnowledge , public Service
 {
 	// service
+	virtual void createService();
 	virtual void initService();
 	virtual void runService();
 	virtual void exitService();
