@@ -2,9 +2,11 @@
 #define INCLUDE_AICOGNITION_IMPL_H
 
 #include <aiengine.h>
-#include <aicognition.h>
+#include <aibrain.h>
 #include <aisvcdb.h>
 #include <aisvcio.h>
+
+#include <aicognition.h>
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -13,6 +15,7 @@
 class AICognitionImpl : public AICognition , public Service
 {
 	// service
+	virtual void createService();
 	virtual void initService();
 	virtual void runService();
 	virtual void exitService();
@@ -23,7 +26,8 @@ class AICognitionImpl : public AICognition , public Service
 public:
 	AICognitionImpl();
 
-	// Object interface
+private:
+	static MindArea *createNeoCortex();
 
 // internals
 private:
