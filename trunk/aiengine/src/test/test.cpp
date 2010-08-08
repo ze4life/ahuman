@@ -11,7 +11,7 @@ AITestPoolImpl *AITestPoolImpl::getServiceImpl() {
 	return( static_cast<AITestPoolImpl *>( AIEngine::getInstance().getService( "TestPool" ) ) );
 }
 
-/* static */ Service *AITestPool::createService() {
+/* static */ Service *AITestPool::newService() {
 	Service *svc = new AITestPoolImpl();
 	AIEngine::getInstance().registerService( svc , "TestPool" );
 	return( svc );
@@ -23,7 +23,7 @@ AITestPoolImpl::AITestPoolImpl()
 	callSub = NULL;
 }
 
-void AITestPoolImpl::initService() {
+void AITestPoolImpl::createService() {
 	// create units
 	addTestUnit( TestUnit::createFannCustom() );
 	addTestUnit( TestUnit::createHtmViewCustom() );
@@ -38,6 +38,9 @@ void AITestPoolImpl::initService() {
 			logger.logInfo( String( "method=" ) + methods.getKeyByIndex( m ) );
 		}
 	}
+}
+
+void AITestPoolImpl::initService() {
 }
 
 void AITestPoolImpl::runService() {
