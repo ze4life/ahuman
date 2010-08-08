@@ -10,16 +10,20 @@ AIDB::AIDB()
 	thisPtr = static_cast<AIDBImpl *>( AIEngine::getInstance().getService( "DB" ) ); 
 }
 
-/* static */ Service *AIDB::createService()
+/* static */ Service *AIDB::newService()
 {
 	Service *svc = new AIDBImpl();
 	AIEngine::getInstance().registerService( svc , "DB" );
 	return( svc );
 }
 
-void AIDBImpl::initService()
+void AIDBImpl::createService()
 {
 	openDatabase();
+}
+
+void AIDBImpl::initService()
+{
 }
 
 void AIDBImpl::runService()

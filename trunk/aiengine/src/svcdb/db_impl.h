@@ -28,6 +28,7 @@ class AIDBImpl : public AIDB , public Service
 
 public:
 	// service
+	virtual void createService();
 	virtual void initService();
 	virtual void runService();
 	virtual void exitService();
