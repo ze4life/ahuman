@@ -26,6 +26,7 @@ LogManager::LogManager()
 	v = ( LogRecord * )calloc( va , sizeof( LogRecord ) );
 	extraMode = false;
 	syncMode = true;
+	syncModeConfigured = true;
 
 	n1e = 0; n3e = va;
 	n2f = n4f = n5f = n6e = 0;
@@ -48,7 +49,7 @@ LogManager::~LogManager()
 void LogManager::configure( Xml config )
 {
 	logSettings.load( config );
-	setSyncMode( logSettings.getSyncMode() );
+	syncModeConfigured = logSettings.getSyncMode();
 }
 
 LogSettingsItem *LogManager::getDefaultSettings()
@@ -93,6 +94,11 @@ bool LogManager::getSyncMode()
 	return( syncMode );
 }
 
+bool LogManager::getConfiguredSyncMode()
+{
+	return( syncModeConfigured );
+}
+
 bool LogManager::start()
 {
 	String fileName = logSettings.getFileName();
@@ -106,9 +112,6 @@ bool LogManager::start()
 		fprintf( stderr , error );
 		return( false );
 	}
-
-	// start async writer
-	setSyncMode( false );
 
 	// enable logging to screen and to file
 	isFileLoggingEnabled = true;

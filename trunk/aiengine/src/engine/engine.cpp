@@ -106,6 +106,10 @@ AIEngineImpl::~AIEngineImpl()
 
 void AIEngineImpl::init()
 {
+	Timer::startAdjustment();
+	rfc_thr_sleep( 1 );
+	Timer::stopAdjustment();
+
 	logManager = new LogManager();
 	logManager -> setSyncMode( true );
 
@@ -156,26 +160,24 @@ int AIEngineImpl::runInternal( const char *p_configDir )
 		createServices();
 
 		// initialize classes
-		if( initServices() ) {
-			status = runServices();
+		initServices();
 
-			logger.logInfo( "SERVER STARTED" );
-			logger.logInfo( "----------------------------------------" );
+		// run services
+		runServices();
 
-			waitExitSignal();
-		}
-		else {
-			logger.logInfo( "UNABLE TO START SERVER" );
-			status = -1;
-		}
+		logger.logInfo( "SERVER STARTED" );
+		logger.logInfo( "----------------------------------------" );
+
+		waitExitSignal();
 	}
 	catch ( RuntimeException& e ) {
+		logger.logInfo( "UNABLE TO START SERVER" );
 		e.printStack( logger );
-		status = -2;
+		status = -1;
 	}
 	catch ( ... ) {
 		fprintf( stderr , "AIEngineImpl::runInternal - unexpected unknown exception" );
-		status = -3;
+		status = -2;
 	}
 
 	logger.logInfo( "----------------------------------------" );
@@ -221,19 +223,19 @@ void AIEngineImpl::createServices()
 	Service *svc;
 
 	// tech services
-	svc = AITestPool::createService(); svc -> isCreateCompleted = true;
-	svc = AIIO::createService(); svc -> isCreateCompleted = true;
-	svc = AIMedia::createService(); svc -> isCreateCompleted = true;
-	svc = AIDB::createService(); svc -> isCreateCompleted = true;
+	svc = AITestPool::newService(); svc -> isNewCompleted = true;
+	svc = AIIO::newService(); svc -> isNewCompleted = true;
+	svc = AIMedia::newService(); svc -> isNewCompleted = true;
+	svc = AIDB::newService(); svc -> isNewCompleted = true;
 	
 	// mind services
-	svc = AILibNN::createService(); svc -> isCreateCompleted = true;
-	svc = AILibBN::createService(); svc -> isCreateCompleted = true;
-	svc = AIKnowledge::createService(); svc -> isCreateCompleted = true;
-	svc = AIIntelligence::createService(); svc -> isCreateCompleted = true;
-	svc = AICognition::createService(); svc -> isCreateCompleted = true;
-	svc = AIBody::createService(); svc -> isCreateCompleted = true;
-	svc = AIBrain::createService(); svc -> isCreateCompleted = true;
+	svc = AILibNN::newService(); svc -> isNewCompleted = true;
+	svc = AILibBN::newService(); svc -> isNewCompleted = true;
+	svc = AIKnowledge::newService(); svc -> isNewCompleted = true;
+	svc = AIIntelligence::newService(); svc -> isNewCompleted = true;
+	svc = AICognition::newService(); svc -> isNewCompleted = true;
+	svc = AIBody::newService(); svc -> isNewCompleted = true;
+	svc = AIBrain::newService(); svc -> isNewCompleted = true;
 
 	// attach loggers
 	for( int k = 0; k < services.count(); k++ )
@@ -243,7 +245,7 @@ void AIEngineImpl::createServices()
 			logger.attach( svc );
 		}
 
-	// attach configurations
+	// attach configurations and create configured data
 	Xml configs = config.getChildNode( "services" );
 	for( Xml item = configs.getFirstChild( "service" ); item.exists(); item = item.getNextChild( "service" ) )
 		{
@@ -255,13 +257,13 @@ void AIEngineImpl::createServices()
 
 			Xml configService = loadXml( fileName );
 			svc -> configure( configService );
-		}
-
-	// check all configured
-	for( int k = 0; k < services.count(); k++ )
-		{
-			Service *svc = services.getClassByIndex( k );
 			ASSERTMSG( svc -> getConfig().exists() , String( "Service [" ) + svc -> getName() + "] is not configured" );
+
+			svc -> isCreateStarted = true; 
+			logger.logInfo( String( "create service: " ) + svc -> getName() + String( "..." ) );
+			svc -> createService();
+			logger.logInfo( String( "create service: " ) + svc -> getName() + String( " - done" ) );
+			svc -> isCreateCompleted = true; 
 		}
 
 	logger.logInfo( "create services - done" );
@@ -272,32 +274,25 @@ LogManager *AIEngineImpl::getLogManager()
 	return( logManager );
 }
 
-bool AIEngineImpl::initServices() 
+void AIEngineImpl::initServices() 
 {
-	try {
-		for( int k = 0; k < services.count(); k++ )
-			{
-				Service *svc = services.getClassByIndex( k );
-				ASSERT( svc -> isCreateCompleted );
+	for( int k = 0; k < services.count(); k++ )
+		{
+			Service *svc = services.getClassByIndex( k );
+			ASSERT( svc -> isCreateCompleted );
 
-				// call service init procedure
-				logger.logInfo( String( "init service: " ) + svc -> getName() + String( "..." ) );
-				svc -> isInitStarted = true; 
-				svc -> initService(); 
-				svc -> isInitCompleted = true;
-				logger.logInfo( String( "init service: " ) + svc -> getName() + String( " - done" ) );
-			}
-	}
-	catch ( RuntimeException& e ) {
-		e.printStack( logger );
-		return( false );
-	}
+			// call service init procedure
+			logger.logInfo( String( "init service: " ) + svc -> getName() + String( "..." ) );
+			svc -> isInitStarted = true; 
+			svc -> initService(); 
+			svc -> isInitCompleted = true;
+			logger.logInfo( String( "init service: " ) + svc -> getName() + String( " - done" ) );
+		}
 
 	logger.logInfo( "init services - done" );
-	return( true );
 }
 
-int AIEngineImpl::runServices()
+void AIEngineImpl::runServices()
 {
 	logger.logInfo( "run services..." );
 
@@ -326,9 +321,6 @@ int AIEngineImpl::runServices()
 	signal( SIGFPE , on_exit );
 	signal( SIGILL , on_exit );
 	signal( SIGSEGV , on_exit );
-
-	// wait till instance execution ended
-	return( workerStatus );
 }
 
 void AIEngineImpl::waitExitSignal()
@@ -410,6 +402,10 @@ void AIEngineImpl::logStart( Xml configLogging )
 		throw RuntimeError( "AIEngineImpl::logStart: cannot initialize logging: unknown reason" );
 
 	logger.logInfo( "LOGGING STARTED" );
+
+	// start configured mode
+	bool mode = logManager -> getConfiguredSyncMode();
+	logManager -> setSyncMode( mode );
 }
 
 void AIEngineImpl::logStop()
@@ -447,6 +443,7 @@ unsigned AIEngineImpl::threadFunction( ThreadData *td )
 
 	try {
 		tlogger.logInfo( "Thread " + td -> name + ": started with threadId=0x" + String::toHex( ( int )td -> threadId ) );
+		tlogger.attach( td -> name );
 		void ( Object::*of )( void *p_arg ) = td -> objectFunction;
 		void *oa = td -> objectFunctionArg;
 		( o ->* of )( oa );

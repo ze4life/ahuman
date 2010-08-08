@@ -97,7 +97,8 @@ void Logger::printStack( rfc_threadstack *stack , int skipTop )
 				", " + sl -> message + ")" , mode , Logger::LogLevelInfo );
 
 			// stop after main function
-			if( k > 0 && !strcmp( sl -> functionName , "_main" ) ) {
+			String functionName = sl -> functionName;
+			if( k > 0 && !strcmp( functionName , "_main" ) ) {
 				mode = 2;
 				log( "\t...skipped..." , mode , Logger::LogLevelInfo );
 				break;
