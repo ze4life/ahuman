@@ -38,14 +38,14 @@ modbody
 	- physiology/inborn unconditional reflexes
 
 modbrain
-	- neurex-to-neurex linking
+	- cortex-to-cortex linking
 	- keep overall multi-neurex map
 	- thinking as activation of selected neurexes
 	- memory decay
 
 modcognition
-	- cortex/transform raw sensor flow item into set of features
-	- cortex/long-term memory for input patterns
+	- neocortex/transform raw sensor flow item into set of features
+	- neocortex/long-term memory for input patterns
 	- associations/hebbian associations of different order among features
 	- associations/mental state as short-term memory for activated features
 
@@ -81,7 +81,7 @@ workflow path:
 	-(modcognition/associations # modbrain)> associations 
 	-(modintelligence/behavior # modbody/biology)> intentions -(modintelligence/behavior # modbody/biology)> intentions 
 	-(modintelligence/motor # modbody/physiology)> actions
-	-(modbody/effectors # modbody/physiology)> 
+	-(modbody/effectors # modbody/physiology)> feedbacks
 	ENVIRONMENT
 
 ALPHA ISSUES AND TODO
