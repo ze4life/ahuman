@@ -1,5 +1,8 @@
 #summary Test Framework
+
 @@[Home] -> [TestFramework]
+
+http://ahuman.googlecode.com/svn/images/wiki/test/mindtest.jpg
 ----
 
 == Test Strategy ==
@@ -120,7 +123,22 @@ REQUEST:
 </xmlcall>
 
 RESPONSE:
-<xmlcallresult requestId="REQ-1" name="expert::createbysamples" status="Exception">C++ Exception: assertion failed (false) (file=nnfinderfactory.cpp, line=62)&#x0A;&#x09;...skipped...&#x0A;&#x09;NNFinderFactory::create (aiengine, 0x41f017)&#x0A;&#x09;AIExpertDebug::testCreateBySamples (aiengine, 0x414363)&#x0A;&#x09;AIExpertDebug::onMessage (aiengine, 0x414141)&#x0A;&#x09;Channel::subscribeEvent (aiengine, 0x4080ff)&#x0A;&#x09;Channel::publish (aiengine, 0x40789f)&#x0A;&#x09;PublisherImpl::publish (aiengine, 0x40b3ab)&#x0A;&#x09;SocketConnection::processMessage (aiengine, 0x411790)&#x0A;&#x09;SocketConnection::processData (aiengine, 0x41148f)&#x0A;&#x09;SocketConnection::performRead (aiengine, 0x41129b)&#x0A;&#x09;SocketConnection::readMessages (aiengine, 0x410fde)&#x0A;&#x09;SocketConnection::startConnection (aiengine, 0x410f39)&#x0A;&#x09;::__beginthreadex (aiengine, 0x49b973)&#x0A;&#x09;:: (unknown, 0x7c80b683)</xmlcallresult>
+<xmlcallresult requestId="REQ-1" name="expert::createbysamples" 
+status="Exception">C++ Exception: assertion failed (false) (file=nnfinderfactory.cpp,
+line=62)&#x0A;&#x09;...skipped...&#x0A;&#x09;
+NNFinderFactory::create (aiengine, 0x41f017)&#x0A;&#x09;
+AIExpertDebug::testCreateBySamples (aiengine,0x414363)&#x0A;&#x09;
+AIExpertDebug::onMessage (aiengine, 0x414141)&#x0A;&#x09;
+Channel::subscribeEvent (aiengine, 0x4080ff)&#x0A;&#x09;
+Channel::publish (aiengine, 0x40789f)&#x0A;&#x09;
+PublisherImpl::publish (aiengine, 0x40b3ab)&#x0A;&#x09;
+SocketConnection::processMessage (aiengine, 0x411790)&#x0A;&#x09;
+SocketConnection::processData (aiengine, 0x41148f)&#x0A;&#x09;
+SocketConnection::performRead (aiengine, 0x41129b)&#x0A;&#x09;
+SocketConnection::readMessages (aiengine, 0x410fde)&#x0A;&#x09;
+SocketConnection::startConnection (aiengine, 0x410f39)&#x0A;&#x09;
+::__beginthreadex (aiengine, 0x49b973)&#x0A;&#x09;
+:: (unknown, 0x7c80b683)</xmlcallresult>
 
 Exception: C++ Exception: assertion failed (false) (file=nnfinderfactory.cpp, line=62)
 	...skipped...
