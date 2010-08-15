@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{D37696A7-9CD9-4123-B200-3D79B5D812A1}</ProjectGuid>
+    <RootNamespace>genericvc</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <TargetName>$(ProjectName).debug</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>C:\projects\ai2svn\human\generic\src\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_MBCS;WIN32;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\generic\src\include\_gencach.h" />
+    <ClInclude Include="..\..\generic\src\include\_gencube.h" />
+    <ClInclude Include="..\..\generic\src\include\_gendata.h" />
+    <ClInclude Include="..\..\generic\src\include\_genhuge.h" />
+    <ClInclude Include="..\..\generic\src\include\_genmap.h" />
+    <ClInclude Include="..\..\generic\src\include\_genmisc.h" />
+    <ClInclude Include="..\..\generic\src\include\_genmsh.h" />
+    <ClInclude Include="..\..\generic\src\include\_genos.h" />
+    <ClInclude Include="..\..\generic\src\include\_genplat.h" />
+    <ClInclude Include="..\..\generic\src\include\_genset.h" />
+    <ClInclude Include="..\..\generic\src\include\_genstr.h" />
+    <ClInclude Include="..\..\generic\src\include\__gen.h" />
+    <ClInclude Include="..\..\generic\src\modstacktrace\MapFile.h" />
+    <ClInclude Include="..\..\generic\src\modstacktrace\printStackTrace.h" />
+    <ClInclude Include="..\..\generic\src\modstacktrace\StackTrace.h" />
+    <ClInclude Include="..\..\generic\src\modstacktrace\TextFile.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\generic\src\modalgorithms\_gen_blb.c" />
+    <ClCompile Include="..\..\generic\src\modalgorithms\_gen_msh.c" />
+    <ClCompile Include="..\..\generic\src\modalgorithms\_gen_qs.c" />
+    <ClCompile Include="..\..\generic\src\modbasetypes\_gen_cnv.c" />
+    <ClCompile Include="..\..\generic\src\modbasetypes\_gen_rd.c" />
+    <ClCompile Include="..\..\generic\src\modbasetypes\_gen_rmn.c" />
+    <ClCompile Include="..\..\generic\src\modcollections\_gen_cb.c" />
+    <ClCompile Include="..\..\generic\src\modcollections\_gen_cch.c" />
+    <ClCompile Include="..\..\generic\src\modcollections\_gen_hm.c" />
+    <ClCompile Include="..\..\generic\src\modcollections\_gen_lst.c" />
+    <ClCompile Include="..\..\generic\src\modcollections\_gen_map.c" />
+    <ClCompile Include="..\..\generic\src\modcollections\_gen_ptr.c" />
+    <ClCompile Include="..\..\generic\src\modcollections\_gen_ra.c" />
+    <ClCompile Include="..\..\generic\src\modcollections\_gen_rai.c" />
+    <ClCompile Include="..\..\generic\src\modcollections\_gen_set.c" />
+    <ClCompile Include="..\..\generic\src\modos\_gen_lock.c" />
+    <ClCompile Include="..\..\generic\src\modos\_gen_mem.c" />
+    <ClCompile Include="..\..\generic\src\modos\_gen_opt.c" />
+    <ClCompile Include="..\..\generic\src\modos\_gen_rl.c" />
+    <ClCompile Include="..\..\generic\src\modos\_gen_win.c" />
+    <ClCompile Include="..\..\generic\src\modos\_gen_wrs.c" />
+    <ClCompile Include="..\..\generic\src\modstacktrace\MapFile.cpp" />
+    <ClCompile Include="..\..\generic\src\modstacktrace\printStackTrace.cpp" />
+    <ClCompile Include="..\..\generic\src\modstacktrace\StackTrace.cpp" />
+    <ClCompile Include="..\..\generic\src\modstacktrace\TextFile.cpp" />
+    <ClCompile Include="..\..\generic\src\modstacktrace\_gen_stacktrace.c" />
+    <ClCompile Include="..\..\generic\src\modstring\_gen_rs.c" />
+    <ClCompile Include="..\..\generic\src\modstring\_gen_rsu.c" />
+    <ClCompile Include="..\..\generic\src\modstring\_gen_rsw.c" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

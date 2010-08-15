@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{D4065AFD-968A-42BA-8A75-C92593B2329A}</ProjectGuid>
+    <RootNamespace>aienginevc</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>C:\projects\ai2svn\human\aiengine\src\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_MBCS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling>Async</ExceptionHandling>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Psapi.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateMapFile>true</GenerateMapFile>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <FixedBaseAddress>true</FixedBaseAddress>
+      <BaseAddress>0x00400000</BaseAddress>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="..\..\aiengine\src\_wallpaper.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\aiengine\src\engine\engine.cpp" />
+    <ClCompile Include="..\..\aiengine\src\engine\enginethreadhelper.cpp" />
+    <ClCompile Include="..\..\aiengine\src\engine\fileutils.cpp" />
+    <ClCompile Include="..\..\aiengine\src\engine\logger.cpp" />
+    <ClCompile Include="..\..\aiengine\src\engine\logmanager.cpp" />
+    <ClCompile Include="..\..\aiengine\src\engine\logsettings.cpp" />
+    <ClCompile Include="..\..\aiengine\src\engine\logsettingsitem.cpp" />
+    <ClCompile Include="..\..\aiengine\src\engine\math.cpp" />
+    <ClCompile Include="..\..\aiengine\src\engine\multiindexiterator.cpp" />
+    <ClCompile Include="..\..\aiengine\src\engine\object.cpp" />
+    <ClCompile Include="..\..\aiengine\src\engine\objectfield.cpp" />
+    <ClCompile Include="..\..\aiengine\src\engine\random.cpp" />
+    <ClCompile Include="..\..\aiengine\src\engine\runtimeexception.cpp" />
+    <ClCompile Include="..\..\aiengine\src\engine\scale.cpp" />
+    <ClCompile Include="..\..\aiengine\src\engine\serializeobject.cpp" />
+    <ClCompile Include="..\..\aiengine\src\engine\string.cpp" />
+    <ClCompile Include="..\..\aiengine\src\engine\timer.cpp" />
+    <ClCompile Include="..\..\aiengine\src\engine\tinyxml.cpp" />
+    <ClCompile Include="..\..\aiengine\src\engine\tinyxmlerror.cpp" />
+    <ClCompile Include="..\..\aiengine\src\engine\tinyxmlparser.cpp" />
+    <ClCompile Include="..\..\aiengine\src\engine\xml.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libbn\libbn.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libbn\view_custom\htmcortex.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libbn\view_custom\htmhelper.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libbn\view_custom\htmlayer.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libbn\view_custom\htmlayermemory.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libbn\view_custom\htmrect.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libbn\view_custom\htmsequence.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libbn\view_custom\htm_custom.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libnn\fann_custom\fann_custom.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libnn\fann_custom\nn.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libnn\fann_custom\nnactivationfunction.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libnn\fann_custom\nnerrorfunction.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libnn\fann_custom\nnfinder.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libnn\fann_custom\nnfinderfactory.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libnn\fann_custom\nnfinderfactorysample.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libnn\fann_custom\nninductionfunction.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libnn\fann_custom\nnlayer.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libnn\fann_custom\nnneuron.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libnn\fann_custom\nnregression.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libnn\fann_custom\nnregressionfactory.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libnn\fann_custom\nnsample.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libnn\fann_custom\nnsamples.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libnn\fann_custom\nnscanpoint.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libnn\fann_custom\nnstopfunction.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libnn\fann_custom\nnstrategy.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libnn\fann_custom\nnstrategybackpropagation.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libnn\fann_custom\nnstrategyhelper.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libnn\fann_custom\nnstrategyscan.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libnn\fann_custom\nnstrategyscaniteration.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libnn\fann_custom\nnvalidatefunction.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libnn\fann_custom\nnvariable.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libnn\fann_custom\nnvariablecategory.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libnn\fann_custom\nnvariables.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libnn\fann_custom\nnvariablescontainer.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libnn\fann_custom\nnvariablesimple.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libnn\fann_custom\nnweights.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libnn\libnn.cpp" />
+    <ClCompile Include="..\..\aiengine\src\main.cpp" />
+    <ClCompile Include="..\..\aiengine\src\modbody\body.cpp" />
+    <ClCompile Include="..\..\aiengine\src\modbody\sensors.cpp" />
+    <ClCompile Include="..\..\aiengine\src\modbody\sensors\filesyswalker.cpp" />
+    <ClCompile Include="..\..\aiengine\src\modbrain\activememory.cpp" />
+    <ClCompile Include="..\..\aiengine\src\modbrain\activememoryobject.cpp" />
+    <ClCompile Include="..\..\aiengine\src\modbrain\activememorythread.cpp" />
+    <ClCompile Include="..\..\aiengine\src\modbrain\activememorythreadpool.cpp" />
+    <ClCompile Include="..\..\aiengine\src\modbrain\brain.cpp" />
+    <ClCompile Include="..\..\aiengine\src\modbrain\mindareainfo.cpp" />
+    <ClCompile Include="..\..\aiengine\src\modbrain\mindlink.cpp" />
+    <ClCompile Include="..\..\aiengine\src\modbrain\mindlinkinfo.cpp" />
+    <ClCompile Include="..\..\aiengine\src\modbrain\mindmap.cpp" />
+    <ClCompile Include="..\..\aiengine\src\modbrain\topcortexeventhandler.cpp" />
+    <ClCompile Include="..\..\aiengine\src\modcognition\cognition.cpp" />
+    <ClCompile Include="..\..\aiengine\src\modcognition\neocortex.cpp" />
+    <ClCompile Include="..\..\aiengine\src\modintelligence\intelligence.cpp" />
+    <ClCompile Include="..\..\aiengine\src\modknowledge\knowledge.cpp" />
+    <ClCompile Include="..\..\aiengine\src\modmedia\listener.cpp" />
+    <ClCompile Include="..\..\aiengine\src\modmedia\media.cpp" />
+    <ClCompile Include="..\..\aiengine\src\modmedia\socketconnection.cpp" />
+    <ClCompile Include="..\..\aiengine\src\modmedia\sockserver.cpp" />
+    <ClCompile Include="..\..\aiengine\src\svcdb\db.cpp" />
+    <ClCompile Include="..\..\aiengine\src\svcdb\dbcursor.cpp" />
+    <ClCompile Include="..\..\aiengine\src\svcdb\dbfile.cpp" />
+    <ClCompile Include="..\..\aiengine\src\svcdb\dbrecordheader.cpp" />
+    <ClCompile Include="..\..\aiengine\src\svcdb\dbrecordset.cpp" />
+    <ClCompile Include="..\..\aiengine\src\svcio\channel.cpp" />
+    <ClCompile Include="..\..\aiengine\src\svcio\io.cpp" />
+    <ClCompile Include="..\..\aiengine\src\svcio\message.cpp" />
+    <ClCompile Include="..\..\aiengine\src\svcio\publisher.cpp" />
+    <ClCompile Include="..\..\aiengine\src\svcio\queue.cpp" />
+    <ClCompile Include="..\..\aiengine\src\svcio\session.cpp" />
+    <ClCompile Include="..\..\aiengine\src\svcio\subscription.cpp" />
+    <ClCompile Include="..\..\aiengine\src\svcio\xmlcall.cpp" />
+    <ClCompile Include="..\..\aiengine\src\svcio\xmlmessage.cpp" />
+    <ClCompile Include="..\..\aiengine\src\test\htmlib_view_custom.cpp" />
+    <ClCompile Include="..\..\aiengine\src\test\nnlib_fann_custom.cpp" />
+    <ClCompile Include="..\..\aiengine\src\test\test.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\aiengine\src\engine\engine_impl.h" />
+    <ClInclude Include="..\..\aiengine\src\engine\tinyxml.h" />
+    <ClInclude Include="..\..\aiengine\src\include\aibasetypes.h" />
+    <ClInclude Include="..\..\aiengine\src\include\aibody.h" />
+    <ClInclude Include="..\..\aiengine\src\include\aibrain.h" />
+    <ClInclude Include="..\..\aiengine\src\include\aicognition.h" />
+    <ClInclude Include="..\..\aiengine\src\include\aiintelligence.h" />
+    <ClInclude Include="..\..\aiengine\src\include\aisvcdb.h" />
+    <ClInclude Include="..\..\aiengine\src\include\aiengine.h" />
+    <ClInclude Include="..\..\aiengine\src\include\ailibbn.h" />
+    <ClInclude Include="..\..\aiengine\src\include\aisvcio.h" />
+    <ClInclude Include="..\..\aiengine\src\include\aiknowledge.h" />
+    <ClInclude Include="..\..\aiengine\src\include\aimedia.h" />
+    <ClInclude Include="..\..\aiengine\src\include\ailibnn.h" />
+    <ClInclude Include="..\..\aiengine\src\include\aiobject.h" />
+    <ClInclude Include="..\..\aiengine\src\include\generic\_gencach.h" />
+    <ClInclude Include="..\..\aiengine\src\include\generic\_gencube.h" />
+    <ClInclude Include="..\..\aiengine\src\include\generic\_gendata.h" />
+    <ClInclude Include="..\..\aiengine\src\include\generic\_genhuge.h" />
+    <ClInclude Include="..\..\aiengine\src\include\generic\_genmap.h" />
+    <ClInclude Include="..\..\aiengine\src\include\generic\_genmisc.h" />
+    <ClInclude Include="..\..\aiengine\src\include\generic\_genmsh.h" />
+    <ClInclude Include="..\..\aiengine\src\include\generic\_genos.h" />
+    <ClInclude Include="..\..\aiengine\src\include\generic\_genplat.h" />
+    <ClInclude Include="..\..\aiengine\src\include\generic\_genset.h" />
+    <ClInclude Include="..\..\aiengine\src\include\generic\_genstr.h" />
+    <ClInclude Include="..\..\aiengine\src\include\generic\__gen.h" />
+    <ClInclude Include="..\..\aiengine\src\include\test.h" />
+    <ClInclude Include="..\..\aiengine\src\libbn\libbn_impl.h" />
+    <ClInclude Include="..\..\aiengine\src\libbn\view_custom\htm_custom.h" />
+    <ClInclude Include="..\..\aiengine\src\libnn\fann_custom\fann_custom.h" />
+    <ClInclude Include="..\..\aiengine\src\libnn\fann_custom\fann_custom_implfunc.h" />
+    <ClInclude Include="..\..\aiengine\src\libnn\fann_custom\fann_custom_implnet.h" />
+    <ClInclude Include="..\..\aiengine\src\libnn\fann_custom\fann_custom_implnn.h" />
+    <ClInclude Include="..\..\aiengine\src\libnn\fann_custom\fann_custom_implstrategy.h" />
+    <ClInclude Include="..\..\aiengine\src\libnn\libnn_impl.h" />
+    <ClInclude Include="..\..\aiengine\src\modbody\body_impl.h" />
+    <ClInclude Include="..\..\aiengine\src\modbrain\brain_impl.h" />
+    <ClInclude Include="..\..\aiengine\src\modcognition\cognition_impl.h" />
+    <ClInclude Include="..\..\aiengine\src\modintelligence\intelligence_impl.h" />
+    <ClInclude Include="..\..\aiengine\src\modknowledge\knowledge_impl.h" />
+    <ClInclude Include="..\..\aiengine\src\modmedia\media_impl.h" />
+    <ClInclude Include="..\..\aiengine\src\svcdb\db_impl.h" />
+    <ClInclude Include="..\..\aiengine\src\svcio\io_impl.h" />
+    <ClInclude Include="..\..\aiengine\src\test\test_impl.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\aiengine\lib\debug\generic.vc.debug.lib" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
