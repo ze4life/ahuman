@@ -252,3 +252,29 @@ int
 {
 	return( ( int )( ( ms * hpt_window_ticks ) / hpt_window_clocks ) );
 }
+
+/*#######################################################*/
+/*#######################################################*/
+
+float		
+	rfc_sys_getcpuload( RFC_INT64 *idle , RFC_INT64 *user , RFC_INT64 *kernel , RFC_INT64 *didle , RFC_INT64 *duser , RFC_INT64 *dkernel )
+{
+	RFC_INT64 idleOld , userOld , kernelOld;
+	double timeFree, timeBusy;
+
+	idleOld = *idle;
+	userOld = *user;
+	kernelOld = *kernel;
+	if( !GetSystemTimes( ( LPFILETIME )idle , ( LPFILETIME )kernel , ( LPFILETIME )user ) )
+		return( -1 );
+	
+	*didle = *idle - idleOld;
+	*dkernel = *kernel - kernelOld;
+	*duser = *user - userOld;
+
+	timeFree = ( double )*didle;
+	timeBusy = ( double )( *duser + *dkernel );
+
+	return( 100.f * ( 1.f - ( float )( timeFree / timeBusy ) ) );
+}
+
