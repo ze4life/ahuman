@@ -147,6 +147,8 @@ String& String::operator +=( float v )
 
 String::operator const char *() const
 {
+	if( v == NULL )
+		return( "" );
 	return( v );
 }
 

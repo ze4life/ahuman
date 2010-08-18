@@ -192,7 +192,7 @@ protected:
 /*#########################################################################*/
 /*#########################################################################*/
 
-typedef void (Object::*ObjectFunction)( void *p_arg );
+typedef void (Object::*ObjectThreadFunction)( void *p_arg );
 
 class AIEngine
 {
@@ -225,7 +225,7 @@ public:
 	virtual Service *getService( const char *serviceName ) = 0;
 
 	// thread management
-	virtual RFC_HND runThread( String name , Object *object , ObjectFunction function , void *p_arg ) = 0;
+	virtual RFC_HND runThread( String name , Object *object , ObjectThreadFunction function , void *p_arg ) = 0;
 	virtual bool waitThreadExited( RFC_HND thread ) = 0;
 	virtual RFC_HND getThreadHandle() = 0;
 	virtual int getThreadId() = 0;

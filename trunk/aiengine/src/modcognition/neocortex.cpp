@@ -8,9 +8,9 @@ public:
 
 // MindArea interface
 public:
-	virtual void createArea() {
+	virtual void onCreateArea() {
 	};
-	virtual void loadArea() {
+	virtual void onLoadArea() {
 	}
 };
 

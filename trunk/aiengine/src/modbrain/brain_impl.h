@@ -46,17 +46,15 @@ public:
 
 	// cortex
 	virtual Cortex *getCortex( String cortexId );
-	virtual Cortex *createCortex( MindArea *area , String netType , int size , int inputs , int outputs , CortexEventHandler *handler );
-
-	Cortex *createHardcodedCortex( MindArea *area , String netType , int size , int inputs , int outputs );
-	Cortex *createHardcodedInputsCortex( MindArea *area , String netType , int size , int inputs , int outputs );
-	Cortex *createHardcodedOutputsCortex( MindArea *area , String netType , int size , int inputs , int outputs );
+	virtual Cortex *createCortex( MindArea *area , String netType , int size , int inputs , int outputs );
+	virtual void addHardcodedCortex( MindArea *area , Cortex *cortex );
 
 	// mind map
 	MindMap *getMindMap() {
 		return( mindMap );
 	}
 
+private:
 	// structure lock
 	void lock() {
 		rfc_hnd_semlock( lockStructure );
@@ -190,19 +188,6 @@ private:
 	ClassList<MindAreaInfo> mindAreas;
 	ClassList<MindLinkInfo> mindLinks;
 	MapStringToClass<MindAreaInfo> mindAreaMap;
-};
-
-// #############################################################################
-// #############################################################################
-
-class TopCortexEventHandler : public CortexEventHandler
-{
-public:
-	virtual void onCreate( Cortex *cortex );
-	virtual void onInputsUpdated( Cortex *cortex );
-	virtual void onOutputsUpdated( Cortex *cortex );
-
-	AIBrainImpl *svc;
 };
 
 // #############################################################################

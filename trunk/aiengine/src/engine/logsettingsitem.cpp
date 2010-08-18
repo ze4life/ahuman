@@ -28,9 +28,7 @@ void LogSettingsItem::setLevelByName( String p_level )
 {
 	p_level = p_level.toUpper();
 	
-	if( p_level.equals( "NORMAL" ) )
-		level = Logger::LogLevelNone;
-	else if( p_level.equals( "ERROR" ) )
+	if( p_level.equals( "ERROR" ) )
 		level = Logger::LogLevelError;
 	else if( p_level.equals( "INFO" ) )
 		level = Logger::LogLevelInfo;

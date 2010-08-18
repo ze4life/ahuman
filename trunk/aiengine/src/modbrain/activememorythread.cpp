@@ -50,7 +50,7 @@ void ActiveMemoryThread::create()
 {
 	// start thread
 	name = String( "AMT" ) + threadId;
-	thread = engine.runThread( name , this , ( ObjectFunction )&ActiveMemoryThread::run , NULL );
+	thread = engine.runThread( name , this , ( ObjectThreadFunction )&ActiveMemoryThread::run , NULL );
 }
 
 void ActiveMemoryThread::suspend()

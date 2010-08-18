@@ -5,7 +5,6 @@
 
 class MindArea;
 class Cortex;
-class CortexEventHandler;
 class MindLink;
 class CortexLink;
 
@@ -37,8 +36,11 @@ public:
 	}
 	  
 	// cortex
-	virtual Cortex *createCortex( MindArea *area , String netType , int size , int inputs , int outputs , CortexEventHandler *handler ) {
-		return( thisPtr -> createCortex( area , netType , size , inputs , outputs , handler ) );
+	virtual Cortex *createCortex( MindArea *area , String netType , int size , int inputs , int outputs ) {
+		return( thisPtr -> createCortex( area , netType , size , inputs , outputs ) );
+	}
+	virtual void addHardcodedCortex( MindArea *area , Cortex *cortex ) {
+		return( thisPtr -> addHardcodedCortex( area , cortex ) );
 	}
 
 	virtual Cortex *getCortex( String cortexId ) {
@@ -62,10 +64,13 @@ public:
 	MindArea() {};
 	virtual ~MindArea() {};
 
-// operations
 public:
-	virtual void createArea() = 0;
-	virtual void loadArea() = 0;
+	// mind area events
+	virtual void onCreateArea() = 0;
+	virtual void onLoadArea() = 0;
+	virtual void onBrainStop() {};
+	// cortex events
+	virtual void onCreateCortex( Cortex *cortex ) {};
 
 	void setId( String id ) {
 		areaId = id;
@@ -79,29 +84,24 @@ public:
 	ClassList<MindLink>& getMindLinks() {
 		return( mindLinks );
 	}
+	void addCortex( Cortex *cortex ) {
+		cortexList.add( cortex );
+	}
+	ClassList<Cortex>& getCortexList() {
+		return( cortexList );
+	}
 
 private:
 	String areaId;
 	ClassList<MindLink> mindLinks;
+	ClassList<Cortex> cortexList;
 };
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-/* interface */ class CortexEventHandler
-{
-public:
-	CortexEventHandler() {
-		nextHandler = NULL;
-	};
-
-	virtual void onCreate( Cortex *cortex ) {};
-	virtual void onInputsUpdated( Cortex *cortex ) {};
-	virtual void onOutputsUpdated( Cortex *cortex ) {};
-	virtual void onRun( Cortex *cortex ) {};
-
-	CortexEventHandler *nextHandler;
-};
+// cortex value type
+typedef float cortexvt;
 
 // any neural network, belief or ANN
 // each cortex is created by component, which defines its type and properties by means of specific libnn or libbn library
@@ -109,13 +109,21 @@ public:
 /* interface */ class Cortex
 {
 public:
-	Cortex( MindArea *p_area , int p_inputs , int p_size , int p_outputs ) {
+	Cortex( MindArea *p_area , int p_ninputs , int p_size , int p_noutputs ) {
 		area = p_area;
-		inputs = p_inputs;
+		nInputs = p_ninputs;
 		size = p_size;
-		outputs = p_outputs;
+		nOutputs = p_noutputs;
+
+		inputs = ( nInputs > 0 )? ( cortexvt * )calloc( nInputs , sizeof( cortexvt ) ) : NULL;
+		outputs = ( nOutputs > 0 )? ( cortexvt * )calloc( nOutputs , sizeof( cortexvt ) ) : NULL;
 	};
-	virtual ~Cortex() {};
+	virtual ~Cortex() {
+		if( inputs != NULL )
+			free( inputs );
+		if( outputs != NULL )
+			free( outputs );
+	};
 
 	void setId( String id ) {
 		cortexId = id;
@@ -123,28 +131,30 @@ public:
 	String getId() {
 		return( cortexId );
 	}
-	void setHandler( CortexEventHandler *p_handler ) {
-		handler = p_handler; 
-	}
 
-	// standard cortex events handling
-	virtual void updateInputs() {
-		if( handler != NULL )
-			handler -> onInputsUpdated( this );
-	}
-	virtual void updateOutputs() {
-		if( handler != NULL )
-			handler -> onOutputsUpdated( this );
-	}
+	// standard cortex events
+	virtual void onRun() {};
+
+	// process standard cortex changes
+	void processInputsUpdated();
+	void processOutputsUpdated();
+
+	int getNInputs() { return( nInputs ); };
+	int getNOutputs() { return( nOutputs ); };
+	int getSize() { return( size ); };
+
+	cortexvt *getInputs() { return( inputs ); };
+	cortexvt *getOutputs() { return( outputs ); };
 
 private:
 	String cortexId;
 	MindArea *area;
-	int inputs;
+	int nInputs;
+	int nOutputs;
 	int size;
-	int outputs;
-protected:
-	CortexEventHandler *handler;
+
+	cortexvt *inputs;
+	cortexvt *outputs;
 };
 
 /*#########################################################################*/

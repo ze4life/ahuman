@@ -86,7 +86,7 @@ AIEngineImpl::AIEngineImpl()
 	countExit = 0;
 	stoppedBySignal = false;
 
-	logManager = NULL;
+	logManager = new LogManager();
 	mapObjectTypeIdToSerializeObject = rfc_map_strcreate();
 	tlsIndex = TlsAlloc();
 }
@@ -106,14 +106,12 @@ AIEngineImpl::~AIEngineImpl()
 
 void AIEngineImpl::init()
 {
+	// start logging
+	logger.attachRoot();
+
 	Timer::startAdjustment();
 	rfc_thr_sleep( 1 );
 	Timer::stopAdjustment();
-
-	logManager = new LogManager();
-	logManager -> setSyncMode( true );
-
-	logger.attachRoot();
 
 	// register main thread
 	workerCreated();
@@ -188,8 +186,14 @@ int AIEngineImpl::runInternal( const char *p_configDir )
 
 	// wait till instance execution ended
 	logStopAsync();
-	while( countExit > 1 )
+	while( true ) {
+		int count = countExit - 1;
+		if( count <= 0 )
+			break;
+
+		logger.logInfo( String( "Waiting for stopping " ) + count + " thread(s)..." );
 		rfc_thr_sleep( 1 );
+	}
 
 	// destroy services
 	destroyServices();

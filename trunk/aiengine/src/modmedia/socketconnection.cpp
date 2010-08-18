@@ -40,11 +40,10 @@ void SocketConnection::threadClientFunction( void *p_arg )
 	WSAStartup( MAKEWORD( 1 , 1 ) , &l_wsa );
 
 	// read messages
-	SocketConnection *client = ( SocketConnection * )p_arg;
-	client -> readMessages();
+	readMessages();
 
-	Listener *listener = client -> getListener();
-	listener -> destroyListenerConnection( client );
+	Listener *listener = getListener();
+	listener -> destroyListenerConnection( this );
 
 	// cleanup sockets
 	WSACleanup();
@@ -78,7 +77,7 @@ bool SocketConnection::startConnection()
 	// start reading thread
 	if( server -> getWayIn() || server -> getAuth() )
 		{
-			engine.runThread( Connection::getName() , this , ( ObjectFunction )&SocketConnection::threadClientFunction , NULL );
+			engine.runThread( Connection::getName() , this , ( ObjectThreadFunction )&SocketConnection::threadClientFunction , NULL );
 			threadStarted = true;
 		}
 

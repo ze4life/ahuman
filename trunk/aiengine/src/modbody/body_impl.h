@@ -43,15 +43,16 @@ private:
 // any body element
 // each generally has two direction - input and output cortexes
 // internal cortex implementation is fully hard-coded
-// sensors have actions controlling treir focus and other metrics controlling data capture
+// sensors have actions controlling their focus and other metrics controlling data capture
 // effectors have senses with direct feedback from environment to action
 // does not have state persisted while AI is not running
 // created on AI start
-class Attractor
+class Attractor : public Cortex
 {
 // construction
 public:
-	Attractor() {};
+	Attractor( MindArea *area , int inputs , int outputs )
+	:	Cortex( area , inputs , 0 , outputs ) {};
 	virtual ~Attractor() {};
 
 	// sensors
@@ -59,8 +60,6 @@ public:
 
 // operations
 public:
-	// hardcoded cortex that process inputs as actions, outputs as feedback
-	virtual Cortex *getCortex() = 0;
 };
 
 #endif	// INCLUDE_AIBODY_IMPL_H

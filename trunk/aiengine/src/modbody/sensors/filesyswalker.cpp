@@ -3,35 +3,30 @@
 // #############################################################################
 // #############################################################################
 
-class SensorFileSysWalker : public Object , public Attractor , public CortexEventHandler
+class SensorFileSysWalker : public Object , public Attractor
 {
 private:
 	AIEngine& engine;
-	Cortex *cortex;
+	float *vin;
+	float *vout;
 
 public:
-	SensorFileSysWalker() 
-	: engine( AIEngine::getInstance() ) {
-		cortex = NULL;
+	SensorFileSysWalker( MindArea *area ) 
+	:	Attractor( area , 1 , 1 ) ,
+		engine( AIEngine::getInstance() ) {
+		// data
+		vin = Cortex::getInputs();
+		vout = Cortex::getOutputs();
 	}
 
 	virtual ~SensorFileSysWalker() {};
 	virtual const char *getClass() { return( "SensorFileSysWalker" ); };
 
-	void createAttractor( MindArea *area ) {
-		AIBrain brain;
-		cortex = brain.createCortex( area , "CortexHardcoded" , 0 , 1 , 1 , this );
-	}
-
-	virtual Cortex *getCortex() {
-		return( cortex );
-	}
-
-	virtual void onCreate( Cortex *cortex ) {
-	};
-
 	virtual void onRun() {
-		logger.logInfo( "run thread..." );
+		logger.logInfo( "SensorFileSysWalker: produce sensor data..." );
+		*vout = 1;
+		// trigger standard brain action
+		Cortex::processOutputsUpdated();
 	}
 };
 
@@ -40,8 +35,7 @@ public:
 
 Attractor *Attractor::createFileSysWalker( MindArea *area )
 {
-	SensorFileSysWalker *att = new SensorFileSysWalker();
-	att -> createAttractor( area );
+	SensorFileSysWalker *att = new SensorFileSysWalker( area );
 	return( att );
 }
 
