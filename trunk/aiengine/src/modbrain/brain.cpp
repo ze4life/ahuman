@@ -173,6 +173,7 @@ Cortex *AIBrainImpl::createCortex( MindArea *area , String netType , int size , 
 	// create cortex
 	Cortex *cortex = ( this ->* factory ) ( area , netType , size , inputs , outputs );
 	ASSERTMSG( cortex != NULL , "Unable to create cortex type=" + netType );
+	area -> onCreateCortex( cortex );
 
 	// register cortex
 	lock();
@@ -182,7 +183,7 @@ Cortex *AIBrainImpl::createCortex( MindArea *area , String netType , int size , 
 	unlock();
 
 	logger.logInfo( "cortex created: id=" + id + ", type=" + netType + ", size=" + size + ", inputs=" + inputs + ", outputs=" + outputs );
-	area -> onCreateCortex( cortex );
+	area -> onAddCortex( cortex );
 	return( cortex );
 }
 
@@ -200,14 +201,19 @@ void AIBrainImpl::addHardcodedCortex( MindArea *area , Cortex *cortex )
 	unlock();
 
 	logger.logInfo( "hardcoded cortex registered: id=" + id + ", inputs=" + inputs + ", outputs=" + outputs );
+	area -> onAddCortex( cortex );
 }
 
 // mind area links
 MindLink *AIBrainImpl::createMindLink( MindLinkInfo *linkInfo , MindArea *masterArea , MindArea *slaveArea )
 {
 	// create link
-	MindLinkImpl *link = new MindLinkImpl( linkInfo );
+	MindLink *link = new MindLink( linkInfo );
 	link -> open( ioBrainSession );
 	mindLinks.add( link );
+
+	masterArea -> addMindLink( link );
+	slaveArea -> addMindLink( link );
+
 	return( link );
 }

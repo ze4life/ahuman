@@ -1,25 +1,41 @@
 #include "brain_impl.h"
 
-MindLinkImpl::MindLinkImpl( MindLinkInfo *p_info )
+MindLink::MindLink( MindLinkInfo *p_info )
 {
 	info = p_info;
+
+	AIBrainImpl *bi = AIBrainImpl::getInstance();
+
+	String masterAreaId = info -> getMasterAreaId();
+	String slaveAreaId = info -> getSlaveAreaId();
+	sourceArea = bi -> getMindArea( masterAreaId );
+	destinationArea = bi -> getMindArea( slaveAreaId );
+
 	session = NULL;
 	iosub = NULL;
+	iopub = NULL;
 }
 
-MindLinkImpl::~MindLinkImpl()
+MindLink::~MindLink()
 {
 }
 
-void MindLinkImpl::open( Session *session )
+void MindLink::open( Session *p_session )
 {
+	session = p_session;
 	String channelId = info -> getChannelId();
+	String ioid =  info -> getMasterAreaId() + "-" +  info -> getSlaveAreaId();
 
 	AIIO io;
-	iosub = io.subscribe( session , channelId , channelId , this );
+	iosub = io.subscribe( session , channelId , ioid , this );
+	iopub = io.createPublisher( session , channelId ,  ioid , "MindLinkMsg" );
 }
 
-void MindLinkImpl::onMessage( Message *msg )
+void MindLink::publish( Message *msg )
+{
+	iopub -> publish( session , msg );
+}
+
+void MindLink::onMessage( Message *msg )
 {
 }
-

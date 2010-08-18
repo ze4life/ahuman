@@ -62,7 +62,7 @@ bool NNStrategyScan::learnSample( NNSamples *samples , int id , NNWeights *pwBes
 int NNStrategyScan::getIterationsPerSec( NNSample *sample )
 {
 	// calculate iterations within 100 ms
-	Timer t;
+	Timer t( true );
 	NNErrorFunction *ef = NNStrategy::getErrorFunction();
 	int k = 0;
 	for( ; t.timePassed() < 100; k++ )
@@ -113,7 +113,7 @@ bool NNStrategyScan::doLearn( NNSamples *samples , NNSample *sample , NNScanPoin
 	NNScanPoint *bestPoint = createRunsAndStartPoint( runByPrecision );
 	
 	// run in cycle till time expired or given tolerance achieved
-	Timer ct;
+	Timer ct( true );
 	bool loopDetected = false;
 	int iterationsDone = 0;
 	for( int iteration = 0; /* t.go() && */ bestPoint -> getVariance() > tolerance && iteration < 100; iteration++ )

@@ -15,7 +15,6 @@ class ActiveMemory;
 class ActiveMemoryThread;
 class ActiveMemoryThreadPool;
 class ActiveMemoryObject;
-class MindLinkImpl;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -343,25 +342,6 @@ public:
 private:
 	int activeMemoryObjectId;
 	String name;
-};
-
-// #############################################################################
-// #############################################################################
-
-class MindLinkImpl : public MindLink , public Subscriber
-{
-public:
-	MindLinkImpl( MindLinkInfo *p_info );
-	~MindLinkImpl();
-
-	virtual void open( Session *session );
-
-	virtual void onMessage( Message *msg );
-
-private:
-	MindLinkInfo *info;
-	Session *session;
-	Subscription *iosub;
 };
 
 // #############################################################################

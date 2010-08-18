@@ -3,7 +3,7 @@
 XmlMessage::XmlMessage( const char *txt )
 {
 	Message::msgBaseType = MsgType_Xml;
-	Message::setText( txt );
+	TextMessage::setText( txt );
 }
 
 XmlMessage::XmlMessage( Xml p_xml )
@@ -32,7 +32,7 @@ void XmlMessage::setXmlFromMessage( const char *contentType )
 	if( !xml.exists() )
 		{
 			AIEngine& engine = AIEngine::getInstance();
-			xml = engine.readXml( Message::getText() , contentType );
+			xml = engine.readXml( TextMessage::getText() , contentType );
 		}
 
 	ASSERT( xml.getName().equals( contentType ) );
@@ -40,5 +40,5 @@ void XmlMessage::setXmlFromMessage( const char *contentType )
 
 void XmlMessage::setMessageFromXml()
 {
-	Message::setText( xml.serialize() );
+	TextMessage::setText( xml.serialize() );
 }

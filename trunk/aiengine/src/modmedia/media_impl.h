@@ -147,10 +147,10 @@ public:
 
 	void readMessages();
 	void sendString( const char *p_msg , int len );
-	void writeMessage( Message *p_msg );
+	void writeMessage( TextMessage *p_msg );
 
 	// subscriber
-	virtual void onMessage( Message *msg );
+	virtual void onMessage( TextMessage *msg );
 	virtual void onXmlMessage( XmlMessage *msg );
 	virtual void onXmlCall( XmlCall *msg );
 

@@ -5,6 +5,7 @@ class Sensors : public Object , public MindArea
 	AIEngine& engine;
 	RFC_HND threadSensesTracker;
 	bool runSensesTracker;
+	ClassList<Attractor> sensors;
 
 // construction
 public:
@@ -15,10 +16,6 @@ public:
 		threadSensesTracker = ( RFC_HND )NULL;
 		runSensesTracker = true;
 	};
-
-	void createAttractors() {
-		Attractor::createFileSysWalker( this );
-	}
 
 	const char *getClass() { return( "Sensors" ); };
 
@@ -41,23 +38,62 @@ public:
 	};
 
 private:
+	void createAttractors() {
+		addSensor( Attractor::createFileSysWalker( this ) );
+	}
+
+	void addSensor( Attractor *att ) {
+		sensors.add( att );
+	}
+
 	void startTracker() {
 		// start tracking thread
 		threadSensesTracker = engine.runThread( "SensesTracker" , this , ( ObjectThreadFunction )&Sensors::onRunSensesTracker , NULL );
 	}
 
 	void onRunSensesTracker( void *p_arg ) {
+		logger.attach( "SensesTracker" );
+
 		// run until stop signal
+		int sleepRemained = 0;
 		while( runSensesTracker ) {
-			pollIteration();
+			pollIteration( sleepRemained );
 		}
 	}
 
-	void pollIteration() {
+	void pollIteration( int& sleepRemained ) {
+		int timeNow = Timer::timeNow();
+
 		// iterate sensors and find sleep time required
-		ClassList<Cortex>& list = MindArea::getCortexList();
-		for( int k = list.count() - 1; k >= 0; k-- ) {
-			Cortex *attractor = list.get( k );
+		int minMs = 0;
+		for( int k = sensors.count() - 1; k >= 0; k-- ) {
+			Attractor *att = sensors.get( k );
+
+			// get poll status and time to next poll
+			bool poll = att -> getPollState();
+			int ms;
+			if( poll )
+				ms = att -> getPollInterval( timeNow );
+
+			// run all in poll state
+			if( poll && ms <= 0 )
+				att -> runPoll();
+
+			if( minMs == 0 || ( ms > 0 && ms < minMs ) )
+				minMs = ms;
+		}
+
+		// check need sleep
+		if( minMs == 0 )
+			rfc_thr_sleep( 1 );
+		else {
+			// buffered sleep time
+			sleepRemained += minMs;
+			int sleepSeconds = sleepRemained / 1000;
+			if( sleepSeconds > 0 ) {
+				rfc_thr_sleep( sleepSeconds );
+				sleepRemained %= 1000;
+			}
 		}
 	}
 };

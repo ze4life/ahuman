@@ -1311,13 +1311,18 @@ private:
 class Timer
 {
 public:
-	Timer();
+	Timer( bool setInitialTime );
 	Timer( int waitTime );
 
+	// initial adjustments
 	static void startAdjustment();
 	static void stopAdjustment();
+	// time passed from process start - in ms
+	static int timeNow();
 
 public:
+	// timestamp of timer construction - in ms
+	int timeCreated();
 	// time passed - in ms
 	int timePassed();
 	// time passed - in clocks

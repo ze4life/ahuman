@@ -126,7 +126,7 @@ void ActiveMemoryThread::run( void *p_arg )
 void ActiveMemoryThread::execute( ActiveMemoryObject *object )
 {
 	// execute and measure execution time (in milliseconds)
-	Timer t;
+	Timer t( true );
 	object -> execute();
 	int executeTimeTicks = t.timePassedTicks();
 
