@@ -71,6 +71,7 @@ public:
 	virtual void onBrainStop() {};
 	// cortex events
 	virtual void onCreateCortex( Cortex *cortex ) {};
+	virtual void onAddCortex( Cortex *cortex ) {};
 
 	void setId( String id ) {
 		areaId = id;
@@ -133,12 +134,13 @@ public:
 	}
 
 	// standard cortex events
-	virtual void onRun() {};
+	virtual void onCortexRun() {};
 
 	// process standard cortex changes
 	void processInputsUpdated();
 	void processOutputsUpdated();
 
+	Cortex *getArea();
 	int getNInputs() { return( nInputs ); };
 	int getNOutputs() { return( nOutputs ); };
 	int getSize() { return( size ); };
@@ -160,17 +162,38 @@ private:
 /*#########################################################################*/
 /*#########################################################################*/
 
+class MindLinkInfo;
+
 // created by static setup on start
 // however each inter-area connection has its own lifecycle in terms of connection details
 // connection details declare which cortexes are connected, and specific interneuron connections in these intercortex connections can emerge or disappear
 // inter-area connection connects outputs of one area and inputs of another area
 // dynamics of connection is directed by brain
 // how inputs/outputs are connected to cortexes - it is defined by related component
-class MindLink
+class MindLink : public Subscriber
 {
 public:
-	MindLink() {};
-	virtual ~MindLink() {};
+	MindLink( MindLinkInfo *p_info );
+	~MindLink();
+
+// operations
+public:
+	void open( Session *session );
+	void onMessage( Message *msg );
+	void publish( Message *msg );
+
+	MindArea *getSourceArea() { return( sourceArea ); };
+	MindArea *getDestinationArea() { return( destinationArea ); };
+
+private:
+	MindLinkInfo *info;
+
+	MindArea *sourceArea;
+	MindArea *destinationArea;
+
+	Session *session;
+	Subscription *iosub;
+	Publisher *iopub;
 };
 
 /*#########################################################################*/

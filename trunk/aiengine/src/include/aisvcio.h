@@ -124,9 +124,6 @@ public:
 	void setChannelMessageId( const char *p_id ) { id = p_id; };
 	const String& getChannelMessageId() { return( id ); };
 
-	void setText( const char *p_txt ) { message = p_txt; };
-	const String& getText() { return( message ); };
-
 	void setSession( Session *p_session ) { session = p_session; };
 	Session *getSession() { return( session ); };
 
@@ -138,13 +135,74 @@ private:
 	String extid;
 	String type;
 	String source;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+// message
+class TextMessage : public Message
+{
+public:
+	TextMessage() {};
+	TextMessage( const char *p_txt ) { message = p_txt; };
+
+	void setText( const char *p_txt ) { message = p_txt; };
+	const String& getText() { return( message ); };
+
+private:
 	String message;
 };
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-class XmlMessage : public Message
+class BinaryMessage : public Message
+{
+public:
+	BinaryMessage() { 
+		size = 0; 
+		data = NULL; 
+	};
+	BinaryMessage( int p_size ) { 
+		ASSERTMSG( "Unexpected message size" , p_size > 0 ); 
+		size = ( unsigned )p_size;
+		data = calloc( size , 1 );
+	};
+	virtual ~BinaryMessage() {
+		if( data != NULL )
+			free( data );
+	}
+
+	void *getBuffer() { return( data ); };
+	int getSize() { return( ( int )size ); };
+
+	void setArray( int n , int *values ) {
+		ASSERTMSG( "number of items is greater than allocated" , n * sizeof( int ) <= size );
+		memcpy( data , values , n * sizeof( int ) );
+	}
+	void setArray( int n , float *values ) {
+		ASSERTMSG( "number of items is greater than allocated" , n * sizeof( float ) <= size );
+		memcpy( data , values , n * sizeof( float ) );
+	}
+	void getArray( int n , int *values ) {
+		ASSERTMSG( "number of items is greater than allocated" , n * sizeof( int ) <= size );
+		memcpy( values , data , n * sizeof( int ) );
+	}
+	void getArray( int n , float *values ) {
+		ASSERTMSG( "number of items is greater than allocated" , n * sizeof( float ) <= size );
+		memcpy( values , data , n * sizeof( float ) );
+	}
+
+private:
+	unsigned size;
+	void *data;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class XmlMessage : public TextMessage
 {
 public:
 	XmlMessage( const char *txt );

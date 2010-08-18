@@ -17,12 +17,17 @@ public:
 		// data
 		vin = Cortex::getInputs();
 		vout = Cortex::getOutputs();
+		// poll setup
+		Attractor::setPollInterval( 100 );
+		Attractor::setPollState( true );
+
+		logger.attach( this );
 	}
 
 	virtual ~SensorFileSysWalker() {};
 	virtual const char *getClass() { return( "SensorFileSysWalker" ); };
 
-	virtual void onRun() {
+	virtual void onCortexRun() {
 		logger.logInfo( "SensorFileSysWalker: produce sensor data..." );
 		*vout = 1;
 		// trigger standard brain action

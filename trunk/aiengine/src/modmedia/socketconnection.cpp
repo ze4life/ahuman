@@ -234,7 +234,7 @@ void SocketConnection::tryLogin( const char *p_msg )
 {
 }
 
-void SocketConnection::writeMessage( Message *p_msg )
+void SocketConnection::writeMessage( TextMessage *p_msg )
 {
 	const String& s = p_msg -> getText();
 	sendString( ( const char * )s , s.length() );
@@ -259,7 +259,7 @@ String SocketConnection::getClientSocketName()
 	return( msg );
 }
 
-void SocketConnection::onMessage( Message *msg )
+void SocketConnection::onMessage( TextMessage *msg )
 {
 	writeMessage( msg );
 }

@@ -49,17 +49,45 @@ private:
 // created on AI start
 class Attractor : public Cortex
 {
+	bool pollState;
+	int pollNextMs;
+	int pollIntervalMs;
+
 // construction
 public:
 	Attractor( MindArea *area , int inputs , int outputs )
-	:	Cortex( area , inputs , 0 , outputs ) {};
+	:	Cortex( area , inputs , 0 , outputs ) {
+		pollState = false;
+		pollNextMs = 0;
+		pollIntervalMs = 0;
+	};
 	virtual ~Attractor() {};
 
 	// sensors
 	static Attractor *createFileSysWalker( MindArea *area );
 
+	// cortex overridables
+	virtual void onCortexRun() = 0;
+
 // operations
 public:
+	// poll setup
+	void setPollState( bool state ) { pollState = state; };
+	void setPollInterval( int intervalMs ) {
+		pollIntervalMs = intervalMs;
+	}
+
+	// poll state
+	bool getPollState() { return( pollState ); };
+	int getPollInterval( int timeNowMs ) {
+		return( pollNextMs - timeNowMs );
+	}
+
+	// do poll iteration
+	void runPoll() {
+		onCortexRun();
+		pollNextMs = Timer::timeNow() + pollIntervalMs;
+	}
 };
 
 #endif	// INCLUDE_AIBODY_IMPL_H

@@ -4,10 +4,12 @@
 // #############################################################################
 // #############################################################################
 
-Timer::Timer()
+Timer::Timer( bool setInitialTime )
 {
-	timeStarted = clock();
-	rfc_hpt_setpoint( &timeStartedTicks );
+	if( setInitialTime ) {
+		timeStarted = clock();
+		rfc_hpt_setpoint( &timeStartedTicks );
+	}
 
 	waitTime = 0;
 	waitCount = 0;
@@ -19,6 +21,18 @@ Timer::Timer( int p_waitTime )
 	rfc_hpt_setpoint( &timeStartedTicks );
 
 	waitTime = p_waitTime;
+}
+
+// time passed from process start - in ms
+int Timer::timeNow()
+{
+	long timeNow = clock();
+	return( ( int )( timeNow * 1000 / CLOCKS_PER_SEC ) );
+}
+
+int Timer::timeCreated()
+{
+	return( ( int )( timeStarted * 1000 / CLOCKS_PER_SEC ) );
 }
 
 void Timer::startAdjustment()
