@@ -20,7 +20,7 @@ LogManager::LogManager()
 	rfc_hnd_evsignal( stopEvent );
 
 	isFileLoggingEnabled = false;
-	stopAll = true;
+	stopAll = false;
 
 	va = 1000;
 	v = ( LogRecord * )calloc( va , sizeof( LogRecord ) );
@@ -81,7 +81,7 @@ void LogManager::setSyncMode( bool p_syncMode )
 	syncMode = p_syncMode;
 	if( syncMode == false ) {
 		AIEngine& en = AIEngine::getInstance();
-		en.runThread( "LogWriter" , this , ( ObjectFunction )&LogManager::run , NULL );
+		en.runThread( "LogWriter" , this , ( ObjectThreadFunction )&LogManager::run , NULL );
 	}
 	else {
 		// wait till writer thread is ended

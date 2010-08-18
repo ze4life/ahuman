@@ -64,7 +64,7 @@ void Channel::open()
 	if( !sync )
 		{
 			AIEngine& engine = AIEngine::getInstance();
-			engine.runThread( name ,  this , ( ObjectFunction )&Channel::threadChannelFunction , NULL );
+			engine.runThread( name ,  this , ( ObjectThreadFunction )&Channel::threadChannelFunction , NULL );
 		}
 
 	opened = true;

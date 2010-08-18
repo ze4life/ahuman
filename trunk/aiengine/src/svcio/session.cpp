@@ -44,7 +44,7 @@ int SessionImpl::getSessionId()
 void SessionImpl::setObject( Object *o , String name )
 {
 	rfc_lock_exclusive( dataLock );
-	Object *oOld = objects.get( name );
+	Object *oOld = objects.get( name );	
 	objects.add( name , o );
 	rfc_lock_release( dataLock );
 

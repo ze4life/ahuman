@@ -43,9 +43,7 @@ void AIBrainImpl::createService()
 
 	// cortex handlers
 	int index = 0;
-	index = cortexFactories.add( &AIBrainImpl::createHardcodedCortex ); mapCortexFactoryIndex.add( "CortexHardcoded" , index );
-	index = cortexFactories.add( &AIBrainImpl::createHardcodedInputsCortex ); mapCortexFactoryIndex.add( "CortexHardcodedInputs" , index++ );
-	index = cortexFactories.add( &AIBrainImpl::createHardcodedOutputsCortex ); mapCortexFactoryIndex.add( "CortexHardcodedOutputs" , index++ );
+	// index = cortexFactories.add( &AIBrainImpl::onCreateXXXCortex ); mapCortexFactoryIndex.add( "XXX" , index );
 
 	// lock
 	lockStructure = rfc_hnd_semcreate();
@@ -67,7 +65,7 @@ void AIBrainImpl::initService()
 	// now always create all registered mind areas
 	for( int k = mindAreas.count() - 1; k >= 0; k-- ) {
 		MindArea *area = mindAreas.getClassByIndex( k );
-		area -> createArea();
+		area -> onCreateArea();
 	}
 }
 
@@ -82,6 +80,12 @@ void AIBrainImpl::exitService()
 	// stop thinking
 	if( activeMemory != NULL )
 		activeMemory -> stop();
+
+	// inform areas about exit
+	for( int k = mindAreas.count() - 1; k >= 0; k-- ) {
+		MindArea *area = mindAreas.getClassByIndex( k );
+		area -> onBrainStop();
+	}
 }
 
 void AIBrainImpl::destroyService()
@@ -159,7 +163,7 @@ Cortex *AIBrainImpl::getCortex( String cortexId )
 	return( cortex );
 }
 
-Cortex *AIBrainImpl::createCortex( MindArea *area , String netType , int size , int inputs , int outputs , CortexEventHandler *handler )
+Cortex *AIBrainImpl::createCortex( MindArea *area , String netType , int size , int inputs , int outputs )
 {
 	// find cortex factory
 	int index = mapCortexFactoryIndex.get( netType );
@@ -167,10 +171,7 @@ Cortex *AIBrainImpl::createCortex( MindArea *area , String netType , int size , 
 	CortexFactory factory = cortexFactories.get( index );
 
 	// create cortex
-	TopCortexEventHandler *topHandler = new TopCortexEventHandler;
-	topHandler -> nextHandler = handler;
 	Cortex *cortex = ( this ->* factory ) ( area , netType , size , inputs , outputs );
-	cortex -> setHandler( topHandler );
 	ASSERTMSG( cortex != NULL , "Unable to create cortex type=" + netType );
 
 	// register cortex
@@ -181,29 +182,24 @@ Cortex *AIBrainImpl::createCortex( MindArea *area , String netType , int size , 
 	unlock();
 
 	logger.logInfo( "cortex created: id=" + id + ", type=" + netType + ", size=" + size + ", inputs=" + inputs + ", outputs=" + outputs );
-	topHandler -> onCreate( cortex );
+	area -> onCreateCortex( cortex );
 	return( cortex );
 }
 
-Cortex *AIBrainImpl::createHardcodedCortex( MindArea *area , String netType , int size , int inputs , int outputs )
+void AIBrainImpl::addHardcodedCortex( MindArea *area , Cortex *cortex )
 {
+	int inputs = cortex -> getNInputs();
+	int outputs = cortex -> getNOutputs();
 	allocateArea( area , inputs + outputs );
-	Cortex *cortex = new Cortex( area , inputs , 0 , outputs );
-	return( cortex );
-}
 
-Cortex *AIBrainImpl::createHardcodedInputsCortex( MindArea *area , String netType , int size , int inputs , int outputs )
-{
-	allocateArea( area , inputs );
-	Cortex *cortex = new Cortex( area , inputs , 0 , 0 );
-	return( cortex );
-}
+	// register cortex
+	lock();
+	String id = String( "CTX" ) + sessionId + "S" + ++cortexId + "C";
+	cortex -> setId( id );
+	mapCortex.add( id , cortex );
+	unlock();
 
-Cortex *AIBrainImpl::createHardcodedOutputsCortex( MindArea *area , String netType , int size , int inputs , int outputs )
-{
-	allocateArea( area , outputs );
-	Cortex *cortex = new Cortex( area , 0 , 0 , outputs );
-	return( cortex );
+	logger.logInfo( "hardcoded cortex registered: id=" + id + ", inputs=" + inputs + ", outputs=" + outputs );
 }
 
 // mind area links

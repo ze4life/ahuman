@@ -156,7 +156,7 @@ bool SocketServer::openListeningPort()
 		return( false );
 
 	// start listening thread
-	engine.runThread( Listener::getName() , this , ( ObjectFunction )&SocketServer::threadConnectFunction , NULL );
+	engine.runThread( Listener::getName() , this , ( ObjectThreadFunction )&SocketServer::threadConnectFunction , NULL );
 	
 	String msg = "openListeningPort: started listener [" + Listener::getName() + "] on " + getAddress( &listen_inet );
 	logger.logInfo( msg );

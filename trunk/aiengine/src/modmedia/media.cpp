@@ -38,13 +38,12 @@ void AIMediaImpl::runService()
 void AIMediaImpl::exitService()
 {
 	stopListeners();
+	listeners.destroy();
 }
 
 void AIMediaImpl::destroyService()
 {
 	SocketServer::exitSocketLib();
-
-	listeners.destroy();
 	delete this;
 }
 

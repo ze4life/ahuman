@@ -98,11 +98,13 @@ void Logger::printStack( rfc_threadstack *stack , int skipTop )
 
 			// stop after main function
 			String functionName = sl -> functionName;
-			if( k > 0 && !strcmp( functionName , "_main" ) ) {
-				mode = 2;
-				log( "\t...skipped..." , mode , Logger::LogLevelInfo );
-				break;
-			}
+			if( k > 0 )
+				if( strcmp( functionName , "_main" ) == 0 ||
+					strcmp( functionName , "runThread" ) == 0 ) {
+					mode = 2;
+					log( "\t...skipped..." , mode , Logger::LogLevelInfo );
+					break;
+				}
 		}
 }
 
