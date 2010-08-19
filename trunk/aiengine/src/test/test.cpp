@@ -13,7 +13,6 @@ AITestPoolImpl *AITestPoolImpl::getServiceImpl() {
 
 /* static */ Service *AITestPool::newService() {
 	Service *svc = new AITestPoolImpl();
-	AIEngine::getInstance().registerService( svc , "TestPool" );
 	return( svc );
 }
 
@@ -45,7 +44,7 @@ void AITestPoolImpl::initService() {
 
 void AITestPoolImpl::runService() {
 	// subscribe
-	Xml xml = Service::config.getFirstChild( "channels" );
+	Xml xml = configService.getFirstChild( "channels" );
 	String channelIn = xml.getProperty( "request" );
 	String channelOut = xml.getProperty( "response" );
 

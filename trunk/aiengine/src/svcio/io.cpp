@@ -12,7 +12,6 @@ AIIO::AIIO()
 /* static */ Service *AIIO::newService()
 {
 	Service *svc = new AIIOImpl();
-	AIEngine::getInstance().registerService( svc , "IO" );
 	return( svc );
 }
 
@@ -26,18 +25,19 @@ AIIOImpl::AIIOImpl()
 void AIIOImpl::createService()
 {
 	// create all channels
-	Xml topics = config.getChildNode( "topics" );
+	Xml topics = configService.getChildNode( "topics" );
 	for( Xml topic = topics.getFirstChild( "topic" ); topic.exists(); topic = topic.getNextChild( "topic" ) )
 		createChannel( topic );
 }
 
 void AIIOImpl::initService()
 {
+	openAllChannels();
 }
 
 void AIIOImpl::runService()
 {
-	openAllChannels();
+	startAllChannels();
 }
 
 void AIIOImpl::exitService()
@@ -171,13 +171,29 @@ void AIIOImpl::openAllChannels()
 {
 	lock();
 
+	// open all channels
+	for( int k = 0; k < mapChannels.count(); k++ )
+		{
+			Channel *channel = mapChannels.getClassByIndex( k );
+
+			// open given channel
+			channel -> open();
+		}
+
+	unlock();
+}
+
+void AIIOImpl::startAllChannels()
+{
+	lock();
+
 	// close all channels
 	for( int k = 0; k < mapChannels.count(); k++ )
 		{
 			Channel *channel = mapChannels.getClassByIndex( k );
 
-			// close given channel
-			channel -> open();
+			// start given channel
+			channel -> start();
 		}
 
 	unlock();

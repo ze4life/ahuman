@@ -307,6 +307,21 @@ String String::getMid( int from , int n )
 	return( s );
 }
 
+String String::getMid( int from )
+{
+	if( v == NULL )
+		return( "" );
+
+	int len = length();
+	if( from >= len )
+		return( "" );
+
+	String s;
+	int n = len - from;
+	s.assign( v + from  , n );
+	return( s );
+}
+
 // #############################################################################
 // #############################################################################
 

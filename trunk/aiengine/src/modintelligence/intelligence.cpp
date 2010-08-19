@@ -12,7 +12,6 @@ AIIntelligence::AIIntelligence()
 /* static */ Service *AIIntelligence::newService()
 {
 	Service *svc = new AIIntelligenceImpl();
-	AIEngine::getInstance().registerService( svc , "Intelligence" );
 	return( svc );
 }
 

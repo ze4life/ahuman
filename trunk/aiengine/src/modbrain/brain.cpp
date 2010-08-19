@@ -12,7 +12,6 @@ AIBrain::AIBrain()
 /* static */ Service *AIBrain::newService()
 {
 	Service *svc = new AIBrainImpl();
-	AIEngine::getInstance().registerService( svc , "Brain" );
 	return( svc );
 }
 
@@ -35,7 +34,7 @@ void AIBrainImpl::createService()
 {
 	// load mind map
 	logger.logInfo( "reading mind map..." );
-	Xml xml = Service::getConfig();
+	Xml xml = Service::getConfigService();
 	Xml xmlMindMap = xml.getFirstChild( "MindMap" );
 	ASSERTMSG( xmlMindMap.exists() , "MindMap is not present in brain configuration file" );
 
@@ -71,6 +70,12 @@ void AIBrainImpl::initService()
 
 void AIBrainImpl::runService()
 {
+	// enable areas to live
+	for( int k = mindAreas.count() - 1; k >= 0; k-- ) {
+		MindArea *area = mindAreas.getClassByIndex( k );
+		area -> onBrainStart();
+	}
+
 	// start thinking
 	activeMemory -> start();
 }

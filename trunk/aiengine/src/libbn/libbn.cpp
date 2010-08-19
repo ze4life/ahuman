@@ -16,7 +16,6 @@ AILibBNImpl *AILibBNImpl::getServiceImpl()
 /* static */ Service *AILibBN::newService()
 {
 	Service *svc = new AILibBNImpl();
-	AIEngine::getInstance().registerService( svc , "LibBN" );
 	return( svc );
 }
 

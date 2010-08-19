@@ -64,6 +64,7 @@ public:
 	int findLastAny( const char *chars );
 	int findLast( char c );
 	String getMid( int from , int n );
+	String getMid( int from );
 	char getChar( int index );
 	String toUpper();
 	String toLower();

@@ -58,16 +58,21 @@ void Channel::open()
 		}
 
 	messages = new IOQueue( Object::getInstance() );
+	opened = true;
+}
 
+void Channel::start()
+{
 	// create channel thread
-	unlock();
+	lock();
 	if( !sync )
 		{
 			AIEngine& engine = AIEngine::getInstance();
 			engine.runThread( name ,  this , ( ObjectThreadFunction )&Channel::threadChannelFunction , NULL );
 		}
 
-	opened = true;
+	run = true;
+	unlock();
 }
 
 void Channel::close()
@@ -79,19 +84,18 @@ void Channel::close()
 			return;
 		}
 
+	// close queue and cleanup
 	opened = false;
+	run = false;
+	if( messages != NULL )
+		messages -> makeEmptyAndWakeup();
+
 	if( !sync )
 		{
 			// stop thread
-			run = false;
-			messages -> makeEmptyAndWakeup();
-
 			rfc_thr_waitexit( &threadID );
 			memset( &threadID , 0 , sizeof( RFC_THREAD ) );
 		}
-			
-	if( messages != NULL )
-		messages -> makeEmptyAndWakeup();
 
 	// clear subscribers and publishers
 	disconnectSubscriptions();
@@ -109,7 +113,10 @@ String Channel::publish( Session *p_session , PublisherImpl *pub , const char *m
 
 String Channel::publish( Session *p_session , PublisherImpl *pub , Message *msg )
 {
-	ASSERT( opened );
+	ASSERTMSG( opened , "Cannot publish to channel name=" + name + " - not open" );
+	if( sync )
+		ASSERTMSG( run , "Cannot publish to sync channel name=" + name + " - not started" );
+
 	String id = getNewMessageId();
 	msg -> setChannelMessageId( id ); 
 	msg -> setSourceId( pub -> name );
@@ -128,7 +135,10 @@ String Channel::publish( Session *p_session , PublisherImpl *pub , Message *msg 
 
 String Channel::publish( Session *p_session , Message *msg )
 {
-	ASSERT( opened );
+	ASSERTMSG( opened , "Cannot publish to channel name=" + name + " - not open" );
+	if( sync )
+		ASSERTMSG( run , "Cannot publish to sync channel name=" + name + " - not started" );
+
 	String id = getNewMessageId();
 	msg -> setChannelMessageId( id ); 
 	msg -> setSession( p_session );
@@ -188,9 +198,6 @@ void Channel::deletePublisher( String key )
 // executing in separate thread
 void Channel::processMessages()
 {
-	opened = true;
-	run = true;
-
 	logger.logInfo( String( "CHANNEL ID=" ) + Object::getInstance() + ": opened" );
 	while( run ) 
 		{

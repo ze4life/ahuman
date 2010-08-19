@@ -68,6 +68,7 @@ public:
 	// mind area events
 	virtual void onCreateArea() = 0;
 	virtual void onLoadArea() = 0;
+	virtual void onBrainStart() {};
 	virtual void onBrainStop() {};
 	// cortex events
 	virtual void onCreateCortex( Cortex *cortex ) {};

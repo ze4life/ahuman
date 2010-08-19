@@ -23,11 +23,13 @@ public:
 public:
 	virtual void onCreateArea() {
 		createAttractors();
-		startTracker();
 	};
 	virtual void onLoadArea() {
 		// for body areas create and load are the same
 		onCreateArea();
+	}
+	virtual void onBrainStart() {
+		startTracker();
 	}
 	virtual void onBrainStop() {
 		runSensesTracker = false;

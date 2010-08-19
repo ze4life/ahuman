@@ -53,6 +53,9 @@ public:
 	Xml getChildNode( String s );
 	Xml getFirstChild( String name );
 	Xml getNextChild( String name );
+	// path items are delimited by '/' chars
+	Xml findChildByPath( String path );
+	Xml findChildByPathAttr( String path , String attr , String value );
 
 	// attributes
 	String getAttribute( String a );
@@ -163,8 +166,15 @@ public:
 	virtual void destroyService() = 0;
 
 	// configuration
-	virtual void configure( Xml p_config ) { config = p_config; };
-	Xml getConfig() { return( config ); };
+	bool isCreate;
+	bool isInit;
+	bool isRun;
+
+	virtual void configure() {};
+	void setConfigMain( Xml p_config ) { configMain = p_config; };
+	void setConfigService( Xml p_config ) { configService = p_config; };
+	Xml getConfigMain() { return( configMain ); };
+	Xml getConfigService() { return( configService ); };
 
 	// logger
 	Logger& getLogger() { return( logger ); };
@@ -185,7 +195,8 @@ protected:
 	Logger logger;
 
 	// configuration
-	Xml config;
+	Xml configMain;
+	Xml configService;
 	Xml configLogging;
 };
 
@@ -221,7 +232,6 @@ public:
 	virtual void replaceSerializeObjectInstanceSrc( SerializeObject *sop ) = 0;
 
 	// service operations
-	virtual void registerService( Service *src , const char *serviceName ) = 0;
 	virtual Service *getService( const char *serviceName ) = 0;
 
 	// thread management

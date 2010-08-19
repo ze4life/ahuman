@@ -12,7 +12,6 @@ AIBody::AIBody()
 /* static */ Service *AIBody::newService()
 {
 	Service *svc = new AIBodyImpl();
-	AIEngine::getInstance().registerService( svc , "Body" );
 	return( svc );
 }
 

@@ -350,3 +350,52 @@ void Xml::setFloatProperty( String name , float value )
 	sprintf( l_buf , "%f" , value );
 	setProperty( name , l_buf );
 }
+
+Xml Xml::findChildByPath( String path )
+{
+	Xml xml = *this;
+
+	const char *p = path;
+	while( *p ) {
+		const char *np = strchr( p , '/' );
+
+		String key;
+		if( np == NULL ) {
+			key = p;
+			p += strlen( p );
+		}
+		else {
+			key = path.getMid( p - path , np - p );
+			p = np + 1;
+		}
+
+		xml = xml.getFirstChild( key );
+		if( !xml.exists() )
+			return( xml );
+	}
+
+	return( xml );
+}
+
+Xml Xml::findChildByPathAttr( String path , String attr , String value )
+{
+	Xml xml = findChildByPath( path );
+	if( !xml.exists() )
+		return( xml );
+
+	String key;
+	int index = path.findLast( '/' );
+	if( index < 0 )
+		key = path;
+	else
+		key = path.getMid( index + 1 );
+
+	while( xml.exists() ) {
+		if( xml.getAttribute( attr , "" ).equals( value ) )
+			return( xml );
+
+		xml = xml.getNextChild( key );
+	}
+	return( xml );
+}
+
