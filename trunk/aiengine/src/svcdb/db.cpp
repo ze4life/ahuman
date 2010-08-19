@@ -13,7 +13,6 @@ AIDB::AIDB()
 /* static */ Service *AIDB::newService()
 {
 	Service *svc = new AIDBImpl();
-	AIEngine::getInstance().registerService( svc , "DB" );
 	return( svc );
 }
 
@@ -57,7 +56,7 @@ AIDBImpl::~AIDBImpl()
 
 void AIDBImpl::openDatabase()
 {
-	Xml cfg = Service::config.getChildNode( "location" );
+	Xml cfg = Service::configService.getChildNode( "location" );
 	dbPath = cfg.getProperty( "path" );
 }
 

@@ -16,7 +16,6 @@ AILibNNImpl *AILibNNImpl::getServiceImpl()
 /* static */ Service *AILibNN::newService()
 {
 	Service *svc = new AILibNNImpl();
-	AIEngine::getInstance().registerService( svc , "LibNN" );
 	return( svc );
 }
 

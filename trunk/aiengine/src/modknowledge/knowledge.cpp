@@ -12,7 +12,6 @@ AIKnowledge::AIKnowledge()
 /* static */ Service *AIKnowledge::newService()
 {
 	Service *svc = new AIKnowledgeImpl();
-	AIEngine::getInstance().registerService( svc , "Knowledge" );
 	return( svc );
 }
 

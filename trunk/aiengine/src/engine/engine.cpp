@@ -80,6 +80,8 @@ AIEngine& AIEngine::getInstance()
 // constructor
 AIEngineImpl::AIEngineImpl()
 {
+	state = AI_COLD;
+
 	workerStatus = 0;
 	lockExit = rfc_hnd_semcreate();
 	eventExit = rfc_hnd_evcreate();
@@ -156,12 +158,15 @@ int AIEngineImpl::runInternal( const char *p_configDir )
 	try {
 		// create all service classes
 		createServices();
+		state = AI_CREATED;
 
 		// initialize classes
 		initServices();
+		state = AI_INITIALIZED;
 
 		// run services
 		runServices();
+		state = AI_RUNNING;
 
 		logger.logInfo( "SERVER STARTED" );
 		logger.logInfo( "----------------------------------------" );
@@ -183,6 +188,7 @@ int AIEngineImpl::runInternal( const char *p_configDir )
 	
 	// exit services
 	exitServices();
+	state = AI_EXITED;
 
 	// wait till instance execution ended
 	logStopAsync();
@@ -197,6 +203,7 @@ int AIEngineImpl::runInternal( const char *p_configDir )
 
 	// destroy services
 	destroyServices();
+	state = AI_STOPPED;
 
 	logger.logInfo( "----------------------------------------" );
 	logger.logInfo( "SERVER STOPPED" );
@@ -224,53 +231,82 @@ void AIEngineImpl::exit( int status )
 void AIEngineImpl::createServices()
 {
 	logger.logInfo( "create services..." );
-	Service *svc;
 
 	// tech services
-	svc = AITestPool::newService(); svc -> isNewCompleted = true;
-	svc = AIIO::newService(); svc -> isNewCompleted = true;
-	svc = AIMedia::newService(); svc -> isNewCompleted = true;
-	svc = AIDB::newService(); svc -> isNewCompleted = true;
+	constructService( "TestPool" , &AITestPool::newService );
+	constructService( "IO" , &AIIO::newService );
+	constructService( "Media" , &AIMedia::newService );
+	constructService( "DB" , &AIDB::newService );
 	
 	// mind services
-	svc = AILibNN::newService(); svc -> isNewCompleted = true;
-	svc = AILibBN::newService(); svc -> isNewCompleted = true;
-	svc = AIKnowledge::newService(); svc -> isNewCompleted = true;
-	svc = AIIntelligence::newService(); svc -> isNewCompleted = true;
-	svc = AICognition::newService(); svc -> isNewCompleted = true;
-	svc = AIBody::newService(); svc -> isNewCompleted = true;
-	svc = AIBrain::newService(); svc -> isNewCompleted = true;
+	constructService( "LibBN" , &AILibNN::newService );
+	constructService( "LibNN" , &AILibBN::newService );
+	constructService( "Knowledge" , &AIKnowledge::newService );
+	constructService( "Intelligence" , &AIIntelligence::newService );
+	constructService( "Cognition" , &AICognition::newService );
+	constructService( "Body" , &AIBody::newService );
+	constructService( "Brain" , &AIBrain::newService );
 
 	// attach loggers
-	for( int k = 0; k < services.count(); k++ )
-		{
-			Service *svc = services.getClassByIndex( k );
-			Logger& logger = svc -> getLogger();
-			logger.attach( svc );
+	for( int k = 0; k < services.count(); k++ ) {
+		Service *svc = services.getClassByIndex( k );
+
+		// check creation is blocked
+		if( !svc -> isCreate ) {
+			logger.logInfo( String( "blocked create service: name=" ) + svc -> getName() );
+			continue;
 		}
 
-	// attach configurations and create configured data
-	Xml configs = config.getChildNode( "services" );
-	for( Xml item = configs.getFirstChild( "service" ); item.exists(); item = item.getNextChild( "service" ) )
-		{
-			String serviceName = item.getAttribute( "name" );
-			String fileName = item.getProperty( "file" );
-			
-			svc = services.get( serviceName );
-			ASSERTMSG( svc != NULL , String( "Service [" ) + serviceName + "] not found" );
+		// get name and configuration
+		String name = svc -> getName();
+		Xml item = svc -> getConfigMain();
 
-			Xml configService = loadXml( fileName );
-			svc -> configure( configService );
-			ASSERTMSG( svc -> getConfig().exists() , String( "Service [" ) + svc -> getName() + "] is not configured" );
+		String fileName = item.getProperty( "file" );
 
-			svc -> isCreateStarted = true; 
-			logger.logInfo( String( "create service: " ) + svc -> getName() + String( "..." ) );
-			svc -> createService();
-			logger.logInfo( String( "create service: " ) + svc -> getName() + String( " - done" ) );
-			svc -> isCreateCompleted = true; 
-		}
+		// configure service
+		Xml configService = loadXml( fileName );
+		ASSERTMSG( configService.exists() , String( "Service name=" ) + svc -> getName() + " is not configured" );
+		svc -> setConfigService( configService );
+		svc -> configure();
+
+		// internal data creation
+		svc -> isCreateStarted = true; 
+		logger.logInfo( String( "create service: name=" ) + svc -> getName() + String( "..." ) );
+		svc -> createService();
+		logger.logInfo( String( "create service: name=" ) + svc -> getName() + String( " - done" ) );
+		svc -> isCreateCompleted = true; 
+	}
 
 	logger.logInfo( "create services - done" );
+}
+
+Service *AIEngineImpl::constructService( String name , ServiceFactoryFunction factoryFunction )
+{
+	Xml svccfg = config.findChildByPathAttr( "services/service" , "name" , name );
+	ASSERTMSG( svccfg.exists() , String( "Service name=" ) + name + " not found" );
+
+	// check need create
+	if( !svccfg.getAttribute( "run" , "true" ).equals( "true" ) ) {
+		logger.logInfo( "Ignore service: name=" + name );
+		return( NULL );
+	}
+
+	// construct service
+	Service *svc = ( *factoryFunction )();
+	svc -> isCreate = svccfg.getAttribute( "create" , "true" ).equals( "true" );
+	svc -> isInit = ( svc -> isCreate )? svccfg.getAttribute( "init" , "true" ).equals( "true" ) : false;
+	svc -> isRun = ( svc -> isInit )? svccfg.getAttribute( "create" , "true" ).equals( "true" ): false;
+
+	// set top configuration and register service
+	svc -> setConfigMain( svccfg );
+	registerService( svc , name );
+
+	// setup logging
+	Logger& logger = svc -> getLogger();
+	logger.attach( svc );
+
+	svc -> isNewCompleted = true;
+	return( svc );
 }
 
 LogManager *AIEngineImpl::getLogManager()
@@ -280,18 +316,24 @@ LogManager *AIEngineImpl::getLogManager()
 
 void AIEngineImpl::initServices() 
 {
-	for( int k = 0; k < services.count(); k++ )
-		{
-			Service *svc = services.getClassByIndex( k );
-			ASSERT( svc -> isCreateCompleted );
+	for( int k = 0; k < services.count(); k++ ) {
+		Service *svc = services.getClassByIndex( k );
 
-			// call service init procedure
-			logger.logInfo( String( "init service: " ) + svc -> getName() + String( "..." ) );
-			svc -> isInitStarted = true; 
-			svc -> initService(); 
-			svc -> isInitCompleted = true;
-			logger.logInfo( String( "init service: " ) + svc -> getName() + String( " - done" ) );
+		// check initialization is blocked
+		if( !svc -> isInit ) {
+			logger.logInfo( String( "blocked init service: name=" ) + svc -> getName() );
+			continue;
 		}
+
+		ASSERT( svc -> isCreateCompleted );
+
+		// call service init procedure
+		logger.logInfo( String( "init service: " ) + svc -> getName() + String( "..." ) );
+		svc -> isInitStarted = true; 
+		svc -> initService(); 
+		svc -> isInitCompleted = true;
+		logger.logInfo( String( "init service: " ) + svc -> getName() + String( " - done" ) );
+	}
 
 	logger.logInfo( "init services - done" );
 }
@@ -304,17 +346,23 @@ void AIEngineImpl::runServices()
 	rfc_hnd_evreset( eventExit );
 
 	// run all instances
-	for( int k = 0; k < services.count(); k++ )
-		{
-			Service *svc = services.getClassByIndex( k );
-			ASSERT( svc -> isInitCompleted );
+	for( int k = 0; k < services.count(); k++ ) {
+		Service *svc = services.getClassByIndex( k );
 
-			logger.logInfo( String( "run service: " ) + svc -> getName() + String( "..." ) );
-			svc -> isRunStarted = true; 
-			svc -> runService(); 
-			svc -> isRunCompleted = true;
-			logger.logInfo( String( "run service: " ) + svc -> getName() + String( " - done" ) );
+		// check run is blocked
+		if( !svc -> isRun ) {
+			logger.logInfo( String( "blocked run service: name=" ) + svc -> getName() );
+			continue;
 		}
+
+		ASSERT( svc -> isInitCompleted );
+
+		logger.logInfo( String( "run service: " ) + svc -> getName() + String( "..." ) );
+		svc -> isRunStarted = true; 
+		svc -> runService();
+		svc -> isRunCompleted = true;
+		logger.logInfo( String( "run service: " ) + svc -> getName() + String( " - done" ) );
+	}
 
 	logger.logInfo( "run services - done" );
 
@@ -325,6 +373,10 @@ void AIEngineImpl::runServices()
 	signal( SIGFPE , on_exit );
 	signal( SIGILL , on_exit );
 	signal( SIGSEGV , on_exit );
+
+	// set logging to configured mode
+	bool mode = logManager -> getConfiguredSyncMode();
+	logManager -> setSyncMode( mode );
 }
 
 void AIEngineImpl::waitExitSignal()
@@ -406,10 +458,6 @@ void AIEngineImpl::logStart( Xml configLogging )
 		throw RuntimeError( "AIEngineImpl::logStart: cannot initialize logging: unknown reason" );
 
 	logger.logInfo( "LOGGING STARTED" );
-
-	// start configured mode
-	bool mode = logManager -> getConfiguredSyncMode();
-	logManager -> setSyncMode( mode );
 }
 
 void AIEngineImpl::logStop()
@@ -468,6 +516,7 @@ unsigned AIEngineImpl::threadFunction( ThreadData *td )
 
 RFC_HND AIEngineImpl::runThread( String p_name , Object *object , void (Object::*p_function)( void *p_arg ) , void *p_arg )
 {
+	ASSERTMSG( state == AI_INITIALIZED || state == AI_RUNNING , String( "Cannot start any thread in state=" ) + state );
 	workerCreated();
 
 	ThreadData *td = new ThreadData;

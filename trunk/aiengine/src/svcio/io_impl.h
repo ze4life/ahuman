@@ -44,6 +44,7 @@ private:
 	void lock();
 	void unlock();
 	void openAllChannels();
+	void startAllChannels();
 	void closeAllChannels();
 
 // internals
@@ -92,6 +93,7 @@ public:
 public:
 	String getName();
 	void open();
+	void start();
 	void close();
 	String publish( Session *session , PublisherImpl *pub , const char *msg );
 	String publish( Session *session , PublisherImpl *pub , Message *msg );

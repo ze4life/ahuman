@@ -26,11 +26,22 @@
 class LogManager;
 class ThreadData;
 
+typedef Service * ( *ServiceFactoryFunction )();
+
 /*#########################################################################*/
 /*#########################################################################*/
 
 class AIEngineImpl : public AIEngine 
 {
+	enum {
+		AI_COLD = 1 ,
+		AI_CREATED = 2 ,
+		AI_INITIALIZED = 3 ,
+		AI_RUNNING = 4 ,
+		AI_EXITED = 5 ,
+		AI_STOPPED = 6
+	} state;
+
 // external interface
 public:
 	// others
@@ -50,7 +61,6 @@ public:
 	virtual void replaceSerializeObjectInstanceSrc( SerializeObject *o );
 
 	// services
-	virtual void registerService( Service *src ,  const char *serviceName );
 	virtual Service *getService( const char *serviceName );
 
 	// threads
@@ -87,7 +97,9 @@ private:
 	void manageCallStack();
 
 	// services
+	void registerService( Service *src ,  const char *serviceName );
 	void createServices();
+	Service *constructService( String name , ServiceFactoryFunction factoryFunction );
 	void initServices();
 	void runServices();
 	void exitServices();

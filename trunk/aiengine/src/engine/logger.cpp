@@ -100,7 +100,7 @@ void Logger::printStack( rfc_threadstack *stack , int skipTop )
 			String functionName = sl -> functionName;
 			if( k > 0 )
 				if( strcmp( functionName , "_main" ) == 0 ||
-					strcmp( functionName , "runThread" ) == 0 ) {
+					strcmp( functionName , "threadMainFunction" ) == 0 ) {
 					mode = 2;
 					log( "\t...skipped..." , mode , Logger::LogLevelInfo );
 					break;

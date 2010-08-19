@@ -12,7 +12,6 @@ AIMedia::AIMedia()
 /* static */ Service *AIMedia::newService()
 {
 	Service *svc = new AIMediaImpl();
-	AIEngine::getInstance().registerService( svc , "Media" );
 	return( svc );
 }
 
@@ -53,7 +52,7 @@ void AIMediaImpl::destroyService()
 void AIMediaImpl::startListeners()
 {
 	// scan configuration
-	Xml configListeners = config.getChildNode( "listeners" );
+	Xml configListeners = configService.getChildNode( "listeners" );
 	for( Xml item = configListeners.getFirstChild( "listener" ); item.exists(); item = item.getNextChild( "listener" ) )
 		{
 			String name = item.getAttribute( "name" );
