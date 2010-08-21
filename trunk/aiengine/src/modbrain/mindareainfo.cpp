@@ -3,7 +3,6 @@
 MindAreaInfo::MindAreaInfo()
 {
 	size = 0;
-	sizeNotAllocated = 0;
 	lockStructure = rfc_hnd_semcreate();
 	logger.attach( this );
 }
@@ -18,7 +17,20 @@ void MindAreaInfo::createFromXml( Xml xml )
 {
 	// attributes are properties
 	areaId = xml.getAttribute( "id" );
-	sizeNotAllocated = size = xml.getIntProperty( "size" );
+
+	int x , y , z;
+	x = xml.getIntProperty( "posX" );
+	y = xml.getIntProperty( "posY" );
+	z = xml.getIntProperty( "posZ" );
+	location.setPosition( x , y , z );
+
+	int dx , dy , dz;
+	dx = xml.getIntProperty( "sizeX" );
+	dy = xml.getIntProperty( "sizeY" );
+	dz = xml.getIntProperty( "sizeZ" );
+	location.setDimensions( dx , dy , dz );
+
+	size = location.getSize();
 
 	// child elements are MindLink
 	for( Xml xmlChild = xml.getFirstChild( "MindLink" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "MindLink" ) ) {
@@ -29,21 +41,5 @@ void MindAreaInfo::createFromXml( Xml xml )
 		// add
 		links.add( info );
 	}
-}
-
-void MindAreaInfo::allocate( int p_size )
-{
-	// verify
-	lock();
-	int na = sizeNotAllocated;
-	if( na < p_size ) {
-		unlock();
-		ASSERTMSG( na >= p_size , String( "area memory is exhausted - nonallocated=" ) + na + ", requestedsize=" + p_size );
-	}
-
-	// allocate
-	sizeNotAllocated -= p_size;
-	logger.logInfo( "mind area id=" + areaId + ": allocated " + p_size + " of " + na + " (total=" + size + ")" );
-	unlock();
 }
 

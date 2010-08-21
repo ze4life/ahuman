@@ -68,40 +68,38 @@ int Random::getRandomInt()
 {
 	int r;
 	int v;
-	switch( type )
-		{
-			case RND_RANGEINT :
-				r = rand();
-				v = ( int )( ( ( float )r * ( max1.u_l - min1.u_l + 1 ) ) / ( RAND_MAX + 1 ) );
+	switch( type ) {
+		case RND_RANGEINT :
+			r = rand();
+			v = ( int )( ( ( float )r * ( max1.u_l - min1.u_l + 1 ) ) / ( RAND_MAX + 1 ) );
 
-				// stat
-				if( collect )
-					statCounts[ v ]++;
+			// stat
+			if( collect )
+				statCounts[ v ]++;
 
+			v = min1.u_l + v;
+			if( v > max1.u_l )
+				v = max1.u_l;
+			return( v );
+		case RND_TWORANGEINT :
+			r = rand();
+			v = ( int )( ( ( ( float )r ) * ( max1.u_l - min1.u_l + 1 + max2.u_l - min2.u_l + 1 ) ) / ( RAND_MAX + 1 ) );
+
+			// stat
+			if( collect )
+				statCounts[ v ]++;
+
+			if( v <= ( max1.u_l - min1.u_l ) )
 				v = min1.u_l + v;
-				if( v > max1.u_l )
-					v = max1.u_l;
-				return( v );
-			case RND_TWORANGEINT :
-				r = rand();
-				v = ( int )( ( ( ( float )r ) * ( max1.u_l - min1.u_l + 1 + max2.u_l - min2.u_l + 1 ) ) / ( RAND_MAX + 1 ) );
+			else {
+				v -= max1.u_l - min1.u_l + 1;
+				v = min2.u_l + v;
+				if( v > max2.u_l )
+					v = max2.u_l;
+			}
 
-				// stat
-				if( collect )
-					statCounts[ v ]++;
-
-				if( v <= ( max1.u_l - min1.u_l ) )
-					v = min1.u_l + v;
-				else
-					{
-						v -= max1.u_l - min1.u_l + 1;
-						v = min2.u_l + v;
-						if( v > max2.u_l )
-							v = max2.u_l;
-					}
-
-				return( v );
-		}
+			return( v );
+	}
 
 	throw RuntimeError( "Random::getRandomInt: inappropriate type" );
 }
@@ -120,46 +118,42 @@ float Random::getRandomFloat()
 {
 	float r;
 	float v;
-	switch( type )
-		{
-			case RND_RANGEFLOAT :
-				r = randFloat();
-				v = r * ( max1.u_r - min1.u_r );
+	switch( type ) {
+		case RND_RANGEFLOAT :
+			r = randFloat();
+			v = r * ( max1.u_r - min1.u_r );
 
-				// stat
-				if( collect )
-					{
-						int bucket = ( int )( v / bucketSize );
-						statCounts[ bucket ]++;
-					}
+			// stat
+			if( collect ) {
+				int bucket = ( int )( v / bucketSize );
+				statCounts[ bucket ]++;
+			}
 
+			v = min1.u_r + v;
+			if( v > max1.u_r )
+				v = max1.u_r;
+			return( v );
+		case RND_TWORANGEFLOAT :
+			r = randFloat();
+			v = r * ( max1.u_r - min1.u_r + max2.u_r - min2.u_r );
+
+			// stat
+			if( collect ) {
+				int bucket = ( int )( v / bucketSize );
+				statCounts[ bucket ]++;
+			}
+
+			if( v <= ( max1.u_r - min1.u_r ) )
 				v = min1.u_r + v;
-				if( v > max1.u_r )
-					v = max1.u_r;
-				return( v );
-			case RND_TWORANGEFLOAT :
-				r = randFloat();
-				v = r * ( max1.u_r - min1.u_r + max2.u_r - min2.u_r );
+			else {
+				v -= max1.u_r - min1.u_r;
+				v = min2.u_r + v;
+				if( v > max2.u_r )
+					v = max2.u_r;
+			}
 
-				// stat
-				if( collect )
-					{
-						int bucket = ( int )( v / bucketSize );
-						statCounts[ bucket ]++;
-					}
-
-				if( v <= ( max1.u_r - min1.u_r ) )
-					v = min1.u_r + v;
-				else
-					{
-						v -= max1.u_r - min1.u_r;
-						v = min2.u_r + v;
-						if( v > max2.u_r )
-							v = max2.u_r;
-					}
-
-				return( v );
-		}
+			return( v );
+	}
 
 	throw RuntimeError( "Random::getRandomFloat: inappropriate type" );
 }
@@ -174,15 +168,14 @@ void Random::collectStatisticsInt()
 	if( statCounts != NULL )
 		free( statCounts );
 
-	switch( type )
-		{
-			case RND_RANGEINT :
-				statBuckets = max1.u_l - min1.u_l + 1;
-				break;
-			case RND_TWORANGEINT :
-				statBuckets = max1.u_l - min1.u_l + 1 + max2.u_l - min2.u_l + 1;
-				break;
-		}
+	switch( type ) {
+		case RND_RANGEINT :
+			statBuckets = max1.u_l - min1.u_l + 1;
+			break;
+		case RND_TWORANGEINT :
+			statBuckets = max1.u_l - min1.u_l + 1 + max2.u_l - min2.u_l + 1;
+			break;
+	}
 
 	statCounts = ( int * )calloc( statBuckets , sizeof( int ) );
 	collect = true;
@@ -195,17 +188,16 @@ void Random::collectStatisticsFloat( int count )
 
 	statBuckets = count;
 	statCounts = ( int * )calloc( statBuckets , sizeof( int ) );
-	switch( type )
-		{
-			case RND_RANGEFLOAT :
-				bucketSize = ( max1.u_r - min1.u_r ) / count;
-				break;
-			case RND_TWORANGEFLOAT :
-				bucketSize = ( max1.u_r - min1.u_r + max2.u_r - min2.u_r ) / count;
-				break;
-			default:
-				throw RuntimeError( "Random::collectStatisticsFloat: invalid type" );
-		}
+	switch( type ) {
+		case RND_RANGEFLOAT :
+			bucketSize = ( max1.u_r - min1.u_r ) / count;
+			break;
+		case RND_TWORANGEFLOAT :
+			bucketSize = ( max1.u_r - min1.u_r + max2.u_r - min2.u_r ) / count;
+			break;
+		default:
+			throw RuntimeError( "Random::collectStatisticsFloat: invalid type" );
+	}
 	
 	collect = true;
 }
@@ -224,11 +216,10 @@ void Random::showStatistics()
 	var = 0;
 
 	float avgBucket = 0;
-	for( int k = 0; k < statBuckets; k++ )
-		{
-			sum += statCounts[ k ];
-			avgBucket += statCounts[ k ] * ( k + 0.5f );
-		}
+	for( int k = 0; k < statBuckets; k++ ) {
+		sum += statCounts[ k ];
+		avgBucket += statCounts[ k ] * ( k + 0.5f );
+	}
 	float avg = avgBucket / sum;
 
 	for( int m = 0; m < statBuckets; m++ )
@@ -237,13 +228,12 @@ void Random::showStatistics()
 
 	logger.logInfo( String( "STAT: bucket count=" ) + statBuckets + 
 		", avg bucket=" + avg );
-	for( int z = 0; z < statBuckets; z++ )
-		{
-			int diff = ( int )( statCounts[ z ] - avg );
-			float var = ( float )sqrt( ( double )( diff * diff ) );
-			logger.logInfo( String( "BUCKET #" ) + z + 
-				": count=" + statCounts[ z ] );
-		}
+	for( int z = 0; z < statBuckets; z++ ) {
+		int diff = ( int )( statCounts[ z ] - avg );
+		float var = ( float )sqrt( ( double )( diff * diff ) );
+		logger.logInfo( String( "BUCKET #" ) + z + 
+			": count=" + statCounts[ z ] );
+	}
 }
 
 int Random::getRandomIntStatic( int min , int max )
@@ -288,39 +278,35 @@ void Random::serialize( SerializeObject& so )
 {
 	so.setPropInt( type , "type" );
 
-	if( type == RND_RANGEFLOAT || type == RND_TWORANGEFLOAT )
-		{
-			so.setPropFloat( min1.u_r , "min1.u_r" );
-			so.setPropFloat( max1.u_r , "max1.u_r" );
-			so.setPropFloat( min2.u_r , "min2.u_r" );
-			so.setPropFloat( max2.u_r , "max2.u_r" );
-		}
+	if( type == RND_RANGEFLOAT || type == RND_TWORANGEFLOAT ) {
+		so.setPropFloat( min1.u_r , "min1.u_r" );
+		so.setPropFloat( max1.u_r , "max1.u_r" );
+		so.setPropFloat( min2.u_r , "min2.u_r" );
+		so.setPropFloat( max2.u_r , "max2.u_r" );
+	}
 	else
-	if( type == RND_RANGEINT || type == RND_TWORANGEINT )
-		{
-			so.setPropInt( min1.u_l , "min1.u_l" );
-			so.setPropInt( max1.u_l , "max1.u_l" );
-			so.setPropInt( min2.u_l , "min2.u_l" );
-			so.setPropInt( max2.u_l , "max2.u_l" );
-		}
+	if( type == RND_RANGEINT || type == RND_TWORANGEINT ) {
+		so.setPropInt( min1.u_l , "min1.u_l" );
+		so.setPropInt( max1.u_l , "max1.u_l" );
+		so.setPropInt( min2.u_l , "min2.u_l" );
+		so.setPropInt( max2.u_l , "max2.u_l" );
+	}
 }
 
 void Random::deserialize( Object *parent , SerializeObject& so )
 {
 	type = ( RandomType )so.getPropInt( "type" );
-	if( type == RND_RANGEFLOAT || type == RND_TWORANGEFLOAT )
-		{
-			min1.u_r = so.getPropFloat( "min1.u_r" );
-			max1.u_r = so.getPropFloat( "max1.u_r" );
-			min2.u_r = so.getPropFloat( "min2.u_r" );
-			max2.u_r = so.getPropFloat( "max2.u_r" );
-		}
+	if( type == RND_RANGEFLOAT || type == RND_TWORANGEFLOAT ) {
+		min1.u_r = so.getPropFloat( "min1.u_r" );
+		max1.u_r = so.getPropFloat( "max1.u_r" );
+		min2.u_r = so.getPropFloat( "min2.u_r" );
+		max2.u_r = so.getPropFloat( "max2.u_r" );
+	}
 	else
-	if( type == RND_RANGEINT || type == RND_TWORANGEINT )
-		{
-			min1.u_l = so.getPropInt( "min1.u_l" );
-			max1.u_l = so.getPropInt( "max1.u_l" );
-			min2.u_l = so.getPropInt( "min2.u_l" );
-			max2.u_l = so.getPropInt( "max2.u_l" );
-		}
+	if( type == RND_RANGEINT || type == RND_TWORANGEINT ) {
+		min1.u_l = so.getPropInt( "min1.u_l" );
+		max1.u_l = so.getPropInt( "max1.u_l" );
+		min2.u_l = so.getPropInt( "min2.u_l" );
+		max2.u_l = so.getPropInt( "max2.u_l" );
+	}
 }

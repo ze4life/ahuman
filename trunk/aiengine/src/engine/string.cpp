@@ -16,15 +16,14 @@ static StringData *getData( char *p )
 static StringData *ensureFreeSpace( char *& p , int space )
 {
 	// create new
-	if( p == NULL )
-		{
-			StringData *d = ( StringData * )malloc( sizeof( StringData ) + space + 1 );
-			p = ( char * )( d + 1 );
-			*p = 0;
+	if( p == NULL ) {
+		StringData *d = ( StringData * )malloc( sizeof( StringData ) + space + 1 );
+		p = ( char * )( d + 1 );
+		*p = 0;
 
-			d -> size = space;
-			return( d );
-		}
+		d -> size = space;
+		return( d );
+	}
 				
 	// if space already exists
 	StringData *d = getData( p );
@@ -201,11 +200,10 @@ String& String::append( int count , char c )
 
 void String::resize( int nn )
 {
-	if( v == NULL )
-		{
-			ensureFreeSpace( v , nn );
-			return;
-		}
+	if( v == NULL ) {
+		ensureFreeSpace( v , nn );
+		return;
+	}
 			
 	ensureFreeSpace( v , nn - length() );
 }
@@ -244,13 +242,12 @@ int String::findLastAny( const char *chars )
 
 	char c;
 	char *pBest = NULL;
-	while( c = *chars++ )
-		{
-			char *p = strrchr( v , c );
-			if( p != NULL )
-				if( pBest == NULL || p > pBest )
-					pBest = p;
-		}
+	while( c = *chars++ ) {
+		char *p = strrchr( v , c );
+		if( p != NULL )
+			if( pBest == NULL || p > pBest )
+				pBest = p;
+	}
 
 	if( pBest != NULL )
 		return( pBest - v );

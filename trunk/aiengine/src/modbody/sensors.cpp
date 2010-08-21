@@ -6,6 +6,7 @@ class Sensors : public Object , public MindArea
 	RFC_HND threadSensesTracker;
 	bool runSensesTracker;
 	ClassList<Attractor> sensors;
+	BrainLocation coverLocation;
 
 // construction
 public:
@@ -46,6 +47,24 @@ private:
 
 	void addSensor( Attractor *att ) {
 		sensors.add( att );
+
+		// generate cortex dimentions - square-like
+		BrainLocation cortexLocation;
+		int nInputs = att -> getNInputs();
+		int nOutputs = att -> getNOutputs();
+		int dz = 2;
+		int dx = min( nInputs , nOutputs );
+		int dy = ( ( nInputs + nOutputs ) / dx ) / dz;
+		if( ( dx * dy * dz ) < ( nInputs + nOutputs ) )
+			dy++;
+
+		cortexLocation.setDimensions( dx , dy , 2 );
+		BrainLocation areaLocation = MindArea::getLocation();
+		areaLocation.placeLocation( coverLocation , cortexLocation );
+
+		// add to brain
+		AIBrain brain;
+		brain.addHardcodedCortex( this , areaLocation , att );
 	}
 
 	void startTracker() {
@@ -73,16 +92,16 @@ private:
 
 			// get poll status and time to next poll
 			bool poll = att -> getPollState();
-			int ms;
-			if( poll )
-				ms = att -> getPollInterval( timeNow );
+			if( poll ) {
+				int ms = att -> getPollInterval( timeNow );
 
-			// run all in poll state
-			if( poll && ms <= 0 )
-				att -> runPoll();
+				// run all in poll state
+				if( ms <= 0 )
+					att -> runPoll();
 
-			if( minMs == 0 || ( ms > 0 && ms < minMs ) )
-				minMs = ms;
+				if( minMs == 0 || ( ms > 0 && ms < minMs ) )
+					minMs = ms;
+			}
 		}
 
 		// check need sleep

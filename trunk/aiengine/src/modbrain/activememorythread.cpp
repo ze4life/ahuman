@@ -1,5 +1,8 @@
 #include "brain_impl.h"
 
+#define MIN_TICKS_PER_OPERATION		1000
+#define MAX_TICKS_PER_OPERATION		100000
+
 ActiveMemoryThread::ActiveMemoryThread( int id , ClassList<ActiveMemoryObject>& objects )
 :	engine( AIEngine::getInstance() )
 {
@@ -18,7 +21,7 @@ ActiveMemoryThread::ActiveMemoryThread( int id , ClassList<ActiveMemoryObject>& 
 	operationsPerSecond = 0;
 	msPerOperation = 0;
 	secondsPerCycle = 0;
-	maxLoad = 0;
+	maxCPULoad = 0;
 
 	ticksPerSecond = Timer::timeMsToTicks( 1000 );
 	ticksPerOperation = 0;
@@ -28,8 +31,8 @@ ActiveMemoryThread::ActiveMemoryThread( int id , ClassList<ActiveMemoryObject>& 
 	ratioExecutionByOperation = 0;
 	nLastOperations = 0;
 
-	idle = 0; user = 0; kernel = 0;
-	rfc_sys_getcpuload( &idle , &user , &kernel , &didle , &duser , &dkernel );
+	cpuload.initialized = 0;
+	lastCPULoad = rfc_sys_getcpuload( &cpuload );
 
 	ticksPerOperationLastFactor = 0;
 	ticksPerOperationLastIncrease = false;
@@ -87,7 +90,7 @@ void ActiveMemoryThread::run( void *p_arg )
 		", operationsPerSecond=" + operationsPerSecond +
 		", reportGroup=" + reportGroup +
 		", secondsPerCycle=" + secondsPerCycle +
-		", maxLoad=" + maxLoad +
+		", maxLoad=" + maxCPULoad +
 		", ticksPerSecond=" + ticksPerSecond );
 
 	while( !stopSignal ) {
@@ -174,23 +177,24 @@ void ActiveMemoryThread::execute( ActiveMemoryObject *object )
 	float currentOperationsPerSecond = nLastOperations / ( ( float )( ticksExecTimeTotal + ticksSleepTimeTotal ) / ticksPerSecond );
 
 	// log stat
-	float currentCPULoad = 	rfc_sys_getcpuload( &idle , &user , &kernel , &didle , &duser , &dkernel );
+	lastCPULoad = rfc_sys_getcpuload( &cpuload );
 	logger.logInfo( String( "Execution/Duration Ratio is " ) + ratioExecutionByOperation + "%" +
-		", currentCPULoad=" + currentCPULoad +
-		", didle=" + ( int )didle +
-		", dkernel=" + ( int )dkernel +
-		", duser=" + ( int )duser +
+		", currentCPULoad=" + lastCPULoad +
+		", didle=" + ( int )( cpuload.idle - cpuload.pidle ) +
+		", dkernel=" + ( int )( cpuload.kernel - cpuload.pkernel ) +
+		", duser=" + ( int )( cpuload.user - cpuload.puser ) +
+		", dclocks=" + ( int )( cpuload.clocks - cpuload.pclocks ) +
 		", ticksExecTimeTotal=" + ticksExecTimeTotal + 
 		", currentOperationsPerSecond=" + currentOperationsPerSecond +
 		", ticksSleepTimeTotal=" + ticksSleepTimeTotal +
 		", ticksWaitTimeRemained=" + ticksWaitTimeRemained );
 
 	// recalculate operation time if dynamic
-	if( currentCPULoad > maxLoad ) {
+	if( lastCPULoad > maxCPULoad ) {
 		decreaseSpeed( 1 );
 	}
 	else
-	if( currentCPULoad < 0.9 * maxLoad && 
+	if( lastCPULoad < 0.9 * maxCPULoad && 
 		currentOperationsPerSecond < ( float )operationsPerSecond ) {
 		increaseSpeed( 1 );
 	}
@@ -221,8 +225,8 @@ void ActiveMemoryThread::increaseSpeed( int factor )
 		factorApply = 1;
 
 	ticksPerOperation -= ticksPerOperation / factorApply;
-	if( ticksPerOperation < 1 )
-		ticksPerOperation = 1;
+	if( ticksPerOperation < MIN_TICKS_PER_OPERATION )
+		ticksPerOperation = MIN_TICKS_PER_OPERATION;
 
 	ticksPerOperationLastFactor = factorApply;
 	ticksPerOperationLastIncrease = true;
@@ -251,8 +255,8 @@ void ActiveMemoryThread::decreaseSpeed( int factor )
 		factorApply = 1;
 
 	ticksPerOperation += ticksPerOperation / factorApply;
-	if( ticksPerOperation < 1 )
-		ticksPerOperation = 1;
+	if( ticksPerOperation > MAX_TICKS_PER_OPERATION )
+		ticksPerOperation = MAX_TICKS_PER_OPERATION;
 
 	ticksPerOperationLastFactor = factorApply;
 	ticksPerOperationLastIncrease = false;

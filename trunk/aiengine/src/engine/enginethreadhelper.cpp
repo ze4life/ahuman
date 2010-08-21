@@ -16,11 +16,11 @@ EngineThreadHelper::~EngineThreadHelper()
 void EngineThreadHelper::addThreadObject()
 {
 	AIEngine& engine = AIEngine::getInstance();
-	engine.addWorkerObject( "engineThreadHelper" , this );
+	engine.addThreadObject( "engineThreadHelper" , this );
 }
 
 EngineThreadHelper *EngineThreadHelper::getThreadObject()
 {
 	AIEngine& engine = AIEngine::getInstance();
-	return( ( EngineThreadHelper * )engine.getWorkerObject( "engineThreadHelper" ) );
+	return( ( EngineThreadHelper * )engine.getThreadObject( "engineThreadHelper" ) );
 }

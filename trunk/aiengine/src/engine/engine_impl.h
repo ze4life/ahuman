@@ -68,8 +68,8 @@ public:
 	virtual bool waitThreadExited( RFC_HND thread );
 	virtual RFC_HND getThreadHandle();
 	virtual int getThreadId();
-	virtual void addWorkerObject( const char *key , ThreadObject *to );
-	virtual ThreadObject *getWorkerObject( const char *key );
+	virtual void addThreadObject( const char *key , ThreadObject *to );
+	virtual ThreadObject *getThreadObject( const char *key );
 
 public:
 	unsigned threadFunction( ThreadData *td );
@@ -99,6 +99,7 @@ private:
 	// services
 	void registerService( Service *src ,  const char *serviceName );
 	void createServices();
+	void constructServices();
 	Service *constructService( String name , ServiceFactoryFunction factoryFunction );
 	void initServices();
 	void runServices();

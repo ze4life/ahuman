@@ -2,6 +2,8 @@
 #define INCLUDE_AIIO_H
 
 class Message;
+class TextMessage;
+class BinaryMessage;
 class Publisher;
 class Subscriber;
 class Subscription;

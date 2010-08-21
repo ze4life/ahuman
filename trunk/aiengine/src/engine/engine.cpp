@@ -232,22 +232,10 @@ void AIEngineImpl::createServices()
 {
 	logger.logInfo( "create services..." );
 
-	// tech services
-	constructService( "TestPool" , &AITestPool::newService );
-	constructService( "IO" , &AIIO::newService );
-	constructService( "Media" , &AIMedia::newService );
-	constructService( "DB" , &AIDB::newService );
-	
-	// mind services
-	constructService( "LibBN" , &AILibNN::newService );
-	constructService( "LibNN" , &AILibBN::newService );
-	constructService( "Knowledge" , &AIKnowledge::newService );
-	constructService( "Intelligence" , &AIIntelligence::newService );
-	constructService( "Cognition" , &AICognition::newService );
-	constructService( "Body" , &AIBody::newService );
-	constructService( "Brain" , &AIBrain::newService );
+	// call factory methods
+	constructServices();
 
-	// attach loggers
+	// attach loggers and run creation event
 	for( int k = 0; k < services.count(); k++ ) {
 		Service *svc = services.getClassByIndex( k );
 
@@ -278,6 +266,24 @@ void AIEngineImpl::createServices()
 	}
 
 	logger.logInfo( "create services - done" );
+}
+
+void AIEngineImpl::constructServices()
+{
+	// tech services
+	constructService( "TestPool" , &AITestPool::newService );
+	constructService( "IO" , &AIIO::newService );
+	constructService( "Media" , &AIMedia::newService );
+	constructService( "DB" , &AIDB::newService );
+	
+	// mind services
+	constructService( "LibBN" , &AILibNN::newService );
+	constructService( "LibNN" , &AILibBN::newService );
+	constructService( "Knowledge" , &AIKnowledge::newService );
+	constructService( "Intelligence" , &AIIntelligence::newService );
+	constructService( "Cognition" , &AICognition::newService );
+	constructService( "Body" , &AIBody::newService );
+	constructService( "Brain" , &AIBrain::newService );
 }
 
 Service *AIEngineImpl::constructService( String name , ServiceFactoryFunction factoryFunction )
@@ -382,70 +388,68 @@ void AIEngineImpl::runServices()
 void AIEngineImpl::waitExitSignal()
 {
 	rfc_hnd_semlock( lockExit );
-	if( countExit > 1 )
-		{
-			rfc_hnd_semunlock( lockExit );
-			rfc_hnd_waitevent( eventExit );
-		}
+	if( countExit > 1 ) {
+		rfc_hnd_semunlock( lockExit );
+		rfc_hnd_waitevent( eventExit );
+	}
 }
 
 void AIEngineImpl::exitServices()
 {
 	logger.logInfo( "exit services..." );
-	for( int k = 0; k < services.count(); k++ )
-		{
-			// exit sepately from each other
-			Service *svc = NULL;
-			try {
-				svc = services.getClassByIndex( k );
-				if( svc -> isInitStarted == false || svc -> isExitStarted == true )
-					continue;
+	for( int k = 0; k < services.count(); k++ ) {
+		// exit sepately from each other
+		Service *svc = NULL;
+		try {
+			svc = services.getClassByIndex( k );
+			if( svc -> isInitStarted == false || svc -> isExitStarted == true )
+				continue;
 
-				logger.logInfo( String( "exit service: " ) + svc -> getName() + String( "..." ) );
-				svc -> isExitStarted = true;
-				svc -> exitService();
-				svc -> isExitCompleted = true;
-				logger.logInfo( String( "exit service: " ) + svc -> getName() + String( " - done" ) );
-			}
-			catch( RuntimeException& e ) {
-				e.printStack( logger );
-				logger.logInfo( String( "exception while stopping service: " ) + svc -> getName() );
-			}
-			catch( ... ) {
-				logger.logInfo( String( "unknown exception while stopping service: " ) + svc -> getName() );
-			}
+			logger.logInfo( String( "exit service: " ) + svc -> getName() + String( "..." ) );
+			svc -> isExitStarted = true;
+			svc -> exitService();
+			svc -> isExitCompleted = true;
+			logger.logInfo( String( "exit service: " ) + svc -> getName() + String( " - done" ) );
 		}
+		catch( RuntimeException& e ) {
+			e.printStack( logger );
+			logger.logInfo( String( "exception while stopping service: " ) + svc -> getName() );
+		}
+		catch( ... ) {
+			logger.logInfo( String( "unknown exception while stopping service: " ) + svc -> getName() );
+		}
+	}
 	logger.logInfo( "exit services - done" );
 }
 
 void AIEngineImpl::destroyServices()
 {
 	logger.logInfo( "destroy services..." );
-	for( int k = 0; k < services.count(); k++ )
-		{
-			// destroy sepately from each other
-			Service *svc = NULL;
-			try {
-				svc = services.getClassByIndex( k );
-				services.set( services.getKeyByIndex( k ) , NULL );
+	for( int k = 0; k < services.count(); k++ ) {
+		// destroy sepately from each other
+		Service *svc = NULL;
+		try {
+			svc = services.getClassByIndex( k );
+			services.set( services.getKeyByIndex( k ) , NULL );
 
-				if( svc -> isExitStarted == false || svc -> isDestroyStarted == true )
-					continue;
+			if( svc -> isExitStarted == false || svc -> isDestroyStarted == true )
+				continue;
 
-				String name = svc -> getName();
-				logger.logInfo( String( "destroy service: " ) + name + String( "..." ) );
-				svc -> isDestroyStarted = true;
-				svc -> destroyService();
-				logger.logInfo( String( "destroy service: " ) + name + String( " - done" ) );
-			}
-			catch( RuntimeException& e ) {
-				e.printStack( logger );
-				logger.logInfo( String( "exception while destroying service: " ) + svc -> getName() );
-			}
-			catch( ... ) {
-				logger.logInfo( String( "unknown exception while destroying service: " ) + svc -> getName() );
-			}
+			String name = svc -> getName();
+			logger.logInfo( String( "destroy service: " ) + name + String( "..." ) );
+			svc -> isDestroyStarted = true;
+			svc -> destroyService();
+			logger.logInfo( String( "destroy service: " ) + name + String( " - done" ) );
 		}
+		catch( RuntimeException& e ) {
+			e.printStack( logger );
+			logger.logInfo( String( "exception while destroying service: " ) + svc -> getName() );
+		}
+		catch( ... ) {
+			logger.logInfo( String( "unknown exception while destroying service: " ) + svc -> getName() );
+		}
+	}
+
 	services.clear();
 	logger.logInfo( "destroy services - done" );
 }
@@ -493,9 +497,10 @@ unsigned AIEngineImpl::threadFunction( ThreadData *td )
 	Logger& tlogger = o -> getLogger();
 	tlogger.attach( o );
 
+	String name = td -> name;
 	try {
-		tlogger.logInfo( "Thread " + td -> name + ": started with threadId=0x" + String::toHex( ( int )td -> threadId ) );
-		tlogger.attach( td -> name );
+		tlogger.logInfo( "Thread " + name + ": started with threadId=0x" + String::toHex( ( int )td -> threadId ) );
+		tlogger.attach( name );
 		void ( Object::*of )( void *p_arg ) = td -> objectFunction;
 		void *oa = td -> objectFunctionArg;
 		( o ->* of )( oa );
@@ -505,11 +510,12 @@ unsigned AIEngineImpl::threadFunction( ThreadData *td )
 		status = -12;
 	}
 	catch ( ... ) {
-		tlogger.logError( "Thread " + td -> name + ": unknown exception" );
+		tlogger.logError( "Thread " + name + ": unknown exception" );
 		tlogger.printStack();
 		status = -13;
 	}
 
+	tlogger.logInfo( "Thread " + name + ": finished" );
 	workerExited( status );
 	return( status );
 }
@@ -525,12 +531,11 @@ RFC_HND AIEngineImpl::runThread( String p_name , Object *object , void (Object::
 	td -> objectFunctionArg = p_arg;
 	td -> name = p_name;
 
-	if( rfc_thr_process( &td -> threadExtId , ( void * )td , threadMainFunction ) )
-		{
-			logger.logError( "AIEngineImpl::runThread - cannot start thread: " + td -> name );
-			workerExited( td -> threadExtId , -10 );
-			return( NULL );
-		}
+	if( rfc_thr_process( &td -> threadExtId , ( void * )td , threadMainFunction ) ) {
+		logger.logError( "AIEngineImpl::runThread - cannot start thread: " + td -> name );
+		workerExited( td -> threadExtId , -10 );
+		return( NULL );
+	}
 
 	return( td -> threadExtId.s_ih );
 }
@@ -566,6 +571,8 @@ void AIEngineImpl::workerExited( int status )
 
 	// thread-allocated data
 	ThreadData *threadData = ( ThreadData * )TlsGetValue( tlsIndex );
+	TlsSetValue( tlsIndex , NULL );
+
 	ASSERT( threadData != NULL );
 	threadData -> map.destroy();
 	delete threadData;
@@ -594,7 +601,7 @@ void AIEngineImpl::workerDestroyed()
 	rfc_hnd_semunlock( lockExit );
 }
 
-void AIEngineImpl::addWorkerObject( const char *key , ThreadObject *to )
+void AIEngineImpl::addThreadObject( const char *key , ThreadObject *to )
 {
 	ASSERT( key != NULL );
 	ASSERT( to != NULL );
@@ -605,7 +612,7 @@ void AIEngineImpl::addWorkerObject( const char *key , ThreadObject *to )
 	threadData -> map.add( key , to );
 }
 
-ThreadObject *AIEngineImpl::getWorkerObject( const char *key )
+ThreadObject *AIEngineImpl::getThreadObject( const char *key )
 {
 	ThreadData *threadData = ( ThreadData * )TlsGetValue( tlsIndex );
 	ASSERT( threadData != NULL );
@@ -616,20 +623,18 @@ Xml AIEngineImpl::loadXml( String fileName )
 {
 	// check whether already loaded
 	TiXmlDocument *doc = configs.get( fileName );
-	if( doc == NULL )
-		{
-			// init instance
-			String path = configDir + "/" + fileName;
-			doc = new TiXmlDocument( path );
-			if( !doc -> LoadFile() )
-				{
-					String err = String( "AIEngineImpl::getRoot: cannot load root configuration from: " ) + path;
-					delete doc;
-					throw RuntimeError( err );
-				}
-
-			configs.add( fileName , doc );
+	if( doc == NULL ) {
+		// init instance
+		String path = configDir + "/" + fileName;
+		doc = new TiXmlDocument( path );
+		if( !doc -> LoadFile() ) {
+			String err = String( "AIEngineImpl::getRoot: cannot load root configuration from: " ) + path;
+			delete doc;
+			throw RuntimeError( err );
 		}
+
+		configs.add( fileName , doc );
+	}
 
 	Xml config;
 	config.attach( doc , doc -> FirstChildElement() );
@@ -641,28 +646,25 @@ Xml AIEngineImpl::readXml( const char *data , const char *contentName )
 	TiXmlDocument *doc = new TiXmlDocument();
 
 	const char *p = doc -> Parse( data );
-	if( doc -> Error() )
-		{
-			delete doc;
-			String err = "XML message cannot be read";
-			throw RuntimeError( err );
-		}
+	if( doc -> Error() ) {
+		delete doc;
+		String err = "XML message cannot be read";
+		throw RuntimeError( err );
+	}
 
 	// verify trailing data are only spaces
-	if( p != NULL )
-		{
-			char c;
-			while( c = *p++ )
-				if( !( c == ' ' || c == '\t' || c == '\v' || c == '\n' || c == '\r' ) )
-					break;
+	if( p != NULL ) {
+		char c;
+		while( c = *p++ )
+			if( !( c == ' ' || c == '\t' || c == '\v' || c == '\n' || c == '\r' ) )
+				break;
 
-			if( c )
-				{
-					delete doc;
-					String err = "XML message is malformed - data found behind message";
-					throw RuntimeError( err );
-				}
+		if( c ) {
+			delete doc;
+			String err = "XML message is malformed - data found behind message";
+			throw RuntimeError( err );
 		}
+	}
 
 	// verify message has given child element
 	try {
@@ -781,11 +783,10 @@ SerializeObject *AIEngineImpl::getSerializeObjectInstance( const char *p_inst )
 
 void AIEngineImpl::destroySerializeObjectInstances()
 {
-	for( int k = 0; k < rfc_map_strcount( mapObjectTypeIdToSerializeObject ); k++ )
-		{
-			SerializeObject *so = ( SerializeObject * )rfc_map_strget( mapObjectTypeIdToSerializeObject , k );
-			so -> deref();
-		}
+	for( int k = 0; k < rfc_map_strcount( mapObjectTypeIdToSerializeObject ); k++ ) {
+		SerializeObject *so = ( SerializeObject * )rfc_map_strget( mapObjectTypeIdToSerializeObject , k );
+		so -> deref();
+	}
 	rfc_map_strclear( mapObjectTypeIdToSerializeObject );
 }
 

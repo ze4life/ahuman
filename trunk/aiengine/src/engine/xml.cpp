@@ -115,14 +115,13 @@ String Xml::getProperty( String name )
 
 	TiXmlElement *xml = ( TiXmlElement * )node;
 	TiXmlElement *xmlChild = xml -> FirstChildElement( "property" );
-	while( xmlChild != NULL )
-		{
-			String nameFound = xmlChild -> Attribute( "name" );
-			if( nameFound.equals( name ) )
-				break;
+	while( xmlChild != NULL ) {
+		String nameFound = xmlChild -> Attribute( "name" );
+		if( nameFound.equals( name ) )
+			break;
 
-			xmlChild = xmlChild -> NextSiblingElement();
-		}
+		xmlChild = xmlChild -> NextSiblingElement();
+	}
 
 	ASSERTMSG( xmlChild != NULL , String( "property " ) + name + " not found" );
 
@@ -183,14 +182,13 @@ String Xml::getProperty( String name , String defaultValue )
 
 	TiXmlElement *xml = ( TiXmlElement * )node;
 	TiXmlElement *xmlChild = xml -> FirstChildElement( "property" );
-	while( xmlChild != NULL )
-		{
-			String nameFound = xmlChild -> Attribute( "name" );
-			if( nameFound.equals( name ) )
-				break;
+	while( xmlChild != NULL ) {
+		String nameFound = xmlChild -> Attribute( "name" );
+		if( nameFound.equals( name ) )
+			break;
 
-			xmlChild = xmlChild -> NextSiblingElement();
-		}
+		xmlChild = xmlChild -> NextSiblingElement();
+	}
 
 	if( xmlChild == NULL )
 		return( defaultValue );
@@ -272,14 +270,13 @@ void Xml::getProperties( MapStringToString& map )
 
 	TiXmlElement *xml = ( TiXmlElement * )node;
 	TiXmlElement *xmlChild = xml -> FirstChildElement( "property" );
-	while( xmlChild != NULL )
-		{
-			String name = xmlChild -> Attribute( "name" );
-			String value = xmlChild -> Attribute( "value" );
-			map.add( name , value );
+	while( xmlChild != NULL ) {
+		String name = xmlChild -> Attribute( "name" );
+		String value = xmlChild -> Attribute( "value" );
+		map.add( name , value );
 
-			xmlChild = xmlChild -> NextSiblingElement();
-		}
+		xmlChild = xmlChild -> NextSiblingElement();
+	}
 }
 
 String Xml::serialize()

@@ -56,7 +56,7 @@ class Attractor : public Cortex
 // construction
 public:
 	Attractor( MindArea *area , int inputs , int outputs )
-	:	Cortex( area , inputs , 0 , outputs ) {
+	:	Cortex( area , inputs , outputs ) {
 		pollState = false;
 		pollNextMs = 0;
 		pollIntervalMs = 0;

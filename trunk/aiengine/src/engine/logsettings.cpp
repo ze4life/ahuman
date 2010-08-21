@@ -41,14 +41,13 @@ void LogSettings::readLevels( Xml config , const char *listName , MapStringToCla
 	p_defaultSettings.configure( list );
 
 	// read list
-	for( Xml item = list.getFirstChild( "class" ); item.exists(); item = item.getNextChild( "class" ) )
-		{
-			String name = item.getAttribute( "name" );
+	for( Xml item = list.getFirstChild( "class" ); item.exists(); item = item.getNextChild( "class" ) ) {
+		String name = item.getAttribute( "name" );
 
-			LogSettingsItem *lsi = new LogSettingsItem;
-			lsi -> configure( item );
-			map.add( name , lsi );
-		}
+		LogSettingsItem *lsi = new LogSettingsItem;
+		lsi -> configure( item );
+		map.add( name , lsi );
+	}
 }
 
 LogSettingsItem *LogSettings::getDefaultSettings()

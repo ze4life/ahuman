@@ -180,43 +180,40 @@ void LogManager::output( LogRecord *p )
 
 	// output
 	FILE *cs = ( p -> logLevel == Logger::LogLevelError )? stderr : stdout;
-	if( p -> count == 1 )
-		{
-			fprintf( cs , "%s%s" , l_buf , p -> strings.one );
-			if( p -> postfix != NULL )
-				fprintf( cs , " [%s]\n" , p -> postfix );
-			else
-				fprintf( cs , "\n" );
-			if( isFileLoggingEnabled )
-				{
-					fprintf( logFileStream , "%s%s" , l_buf , p -> strings.one );
-					if( p -> postfix != NULL )
-						fprintf( logFileStream , " [%s]\n" , p -> postfix );
-					else
-						fprintf( logFileStream , "\n" );
-				}
-		}
-	else
-		{
-			if( p -> postfix != NULL )
-				fprintf( cs , "%s [%s]\n" , l_buf , p -> postfix );
-			else
-				fprintf( cs , "%s\n" , l_buf );
-			if( isFileLoggingEnabled )
-				{
-					if( p -> postfix != NULL )
-						fprintf( logFileStream , "%s [%s]\n" , l_buf , p -> postfix );
-					else
-						fprintf( logFileStream , "%s\n" , l_buf );
-				}
+	if( p -> count == 1 ) {
+		fprintf( cs , "%s%s" , l_buf , p -> strings.one );
+		if( p -> postfix != NULL )
+			fprintf( cs , " [%s]\n" , p -> postfix );
+		else
+			fprintf( cs , "\n" );
 
-			for( int k = 0; k < p -> count; k++ )
-				{
-					fprintf( cs , "%s\n" , p -> strings.many[ k ] );
-					if( isFileLoggingEnabled )
-						fprintf( logFileStream , "%s\n" , p -> strings.many[ k ] );
-				}
+		if( isFileLoggingEnabled ) {
+			fprintf( logFileStream , "%s%s" , l_buf , p -> strings.one );
+			if( p -> postfix != NULL )
+				fprintf( logFileStream , " [%s]\n" , p -> postfix );
+			else
+				fprintf( logFileStream , "\n" );
 		}
+	}
+	else {
+		if( p -> postfix != NULL )
+			fprintf( cs , "%s [%s]\n" , l_buf , p -> postfix );
+		else
+			fprintf( cs , "%s\n" , l_buf );
+
+		if( isFileLoggingEnabled ) {
+			if( p -> postfix != NULL )
+				fprintf( logFileStream , "%s [%s]\n" , l_buf , p -> postfix );
+			else
+				fprintf( logFileStream , "%s\n" , l_buf );
+		}
+
+		for( int k = 0; k < p -> count; k++ ) {
+			fprintf( cs , "%s\n" , p -> strings.many[ k ] );
+			if( isFileLoggingEnabled )
+				fprintf( logFileStream , "%s\n" , p -> strings.many[ k ] );
+		}
+	}
 
 	if( isFileLoggingEnabled )
 		fflush( logFileStream );
@@ -226,70 +223,63 @@ void LogManager::add( const char **chunkLines , int count , Logger::LogLevel p_l
 {
 	ASSERTMSG( stopAll == false , "Logging is closed" );
 
-	if( syncMode )
-		{
-			// print in sync
-			LogRecord lr;
-			set( &lr , false , chunkLines , count , p_logLevel , postfix );
-			output( &lr );
-			return;
-		}
+	if( syncMode ) {
+		// print in sync
+		LogRecord lr;
+		set( &lr , false , chunkLines , count , p_logLevel , postfix );
+		output( &lr );
+		return;
+	}
 
 	// only exclusive
 	rfc_hnd_semlock( lock );
 
 	// simple mode
-	if( !extraMode )
-		{
-			// space available
-			if( n1e || n3e )
-				{
-					// has space for adding
-					set( &v[ startAdd ] , true , chunkLines , count , p_logLevel , postfix );
-					if( n4f )
-						{
-							n3e--;
-							n2f++;
-							startAdd++;
-						}
-					else
-						{
-							n3e--;
-							n2f++;
-							startAdd++;
+	if( !extraMode ) {
+		// space available
+		if( n1e || n3e ) {
+			// has space for adding
+			set( &v[ startAdd ] , true , chunkLines , count , p_logLevel , postfix );
+			if( n4f ) {
+				n3e--;
+				n2f++;
+				startAdd++;
+			}
+			else {
+				n3e--;
+				n2f++;
+				startAdd++;
 
-							// roll to top
-							if( startAdd == va )
-								{
-									startAdd = 0;
-									n4f = n2f;
-									n2f = 0;
-									n3e = n1e;
-									n1e = 0;
-								}
-						}
-
-					// fprintf( logFileStream , "+n[%d, %d, %d, %d, %d, %d], s[%d, %d]\n" ,
-					//	n1e , n2f , n3e , n4f , n5f , n6e , startAdd , startGet );
-					// fflush( logFileStream );
-					rfc_hnd_semunlock( lock );
-					return;
+				// roll to top
+				if( startAdd == va ) {
+					startAdd = 0;
+					n4f = n2f;
+					n2f = 0;
+					n3e = n1e;
+					n1e = 0;
 				}
+			}
 
-			// no space - start extended mode
-			extraMode = true;
-			startAdd = va;
+			// fprintf( logFileStream , "+n[%d, %d, %d, %d, %d, %d], s[%d, %d]\n" ,
+			//	n1e , n2f , n3e , n4f , n5f , n6e , startAdd , startGet );
+			// fflush( logFileStream );
+			rfc_hnd_semunlock( lock );
+			return;
 		}
+
+		// no space - start extended mode
+		extraMode = true;
+		startAdd = va;
+	}
 
 	// add in extra mode
-	if( !n6e )
-		{
-			// no empty slots - reallocation required
-			n6e = 100;
-			va += n6e;
-			v = ( LogRecord * )realloc( v , va * sizeof( LogRecord ) );
-			memset( &v[ va - n6e ] , 0 , sizeof( LogRecord ) * n6e );
-		}
+	if( !n6e ) {
+		// no empty slots - reallocation required
+		n6e = 100;
+		va += n6e;
+		v = ( LogRecord * )realloc( v , va * sizeof( LogRecord ) );
+		memset( &v[ va - n6e ] , 0 , sizeof( LogRecord ) * n6e );
+	}
 
 	// write log record
 	set( &v[ startAdd ] , true , chunkLines , count , p_logLevel , postfix );
@@ -317,77 +307,68 @@ void LogManager::set( LogRecord *p , bool copy , const char **chunkLines , int c
 	if( count == 0 )
 		p -> strings.one = NULL;
 	else
-	if( count == 1 )
-		{
-			if( copy )
-				{
-					p -> strings.one = _strdup( *chunkLines );
-					p -> postfix = ( postfix == NULL || *postfix == 0 )? NULL : _strdup( postfix );
-				}
-			else
-				{
-					p -> strings.one = ( char * )*chunkLines;
-					p -> postfix = ( postfix == NULL || *postfix == 0 )? NULL : ( char * )postfix;
-				}
+	if( count == 1 ) {
+		if( copy ) {
+			p -> strings.one = _strdup( *chunkLines );
+			p -> postfix = ( postfix == NULL || *postfix == 0 )? NULL : _strdup( postfix );
 		}
-	else
-		{
-			if( copy )
-				{
-					p -> strings.many = ( char ** )calloc( count , sizeof( char * ) );
-					for( int k = 0; k < count; k++ )
-						p -> strings.many[ k ] = _strdup( chunkLines[ k ] );
-					p -> postfix = ( postfix == NULL || *postfix == 0 )? NULL : _strdup( postfix );
-				}
-			else
-				{
-					p -> strings.many = ( char ** )chunkLines;
-					p -> postfix = ( postfix == NULL || *postfix == 0 )? NULL : ( char * )postfix;
-				}
+		else {
+			p -> strings.one = ( char * )*chunkLines;
+			p -> postfix = ( postfix == NULL || *postfix == 0 )? NULL : ( char * )postfix;
 		}
+	}
+	else {
+		if( copy ) {
+			p -> strings.many = ( char ** )calloc( count , sizeof( char * ) );
+			for( int k = 0; k < count; k++ )
+				p -> strings.many[ k ] = _strdup( chunkLines[ k ] );
+			p -> postfix = ( postfix == NULL || *postfix == 0 )? NULL : _strdup( postfix );
+		}
+		else {
+			p -> strings.many = ( char ** )chunkLines;
+			p -> postfix = ( postfix == NULL || *postfix == 0 )? NULL : ( char * )postfix;
+		}
+	}
 }
 
 void LogManager::clear( LogRecord *p )
 {
-	if( p -> count == 1 )
-		{
-			free( p -> strings.one );
-			p -> strings.one = NULL;
-		}
-	else
-		{
-			for( int k = 0; k < p -> count; k++ )
-				free( p -> strings.many[ k ] );
-			free( p -> strings.many );
-			p -> strings.many = NULL;
-		}
+	if( p -> count == 1 ) {
+		free( p -> strings.one );
+		p -> strings.one = NULL;
+	}
+	else {
+		for( int k = 0; k < p -> count; k++ )
+			free( p -> strings.many[ k ] );
+		free( p -> strings.many );
+		p -> strings.many = NULL;
+	}
 	p -> count = 0;
 }
 
 bool LogManager::get( bool p_autolock )
 {
 	// await data
-	while( 1 )
-		{
-			// only exclusive
-			if( p_autolock )
-				rfc_hnd_semlock( lock );
+	while( 1 ) {
+		// only exclusive
+		if( p_autolock )
+			rfc_hnd_semlock( lock );
 
-			if( n2f || n4f )
-				break;
+		if( n2f || n4f )
+			break;
 
-			// do not wait in sync mode
-			if( syncMode ) {
-				if( p_autolock )
-					rfc_hnd_semunlock( lock );
-				return( false );
-			}
-
-			// no data - wait
+		// do not wait in sync mode
+		if( syncMode ) {
 			if( p_autolock )
 				rfc_hnd_semunlock( lock );
-			rfc_thr_sleep( 1 );
+			return( false );
 		}
+
+		// no data - wait
+		if( p_autolock )
+			rfc_hnd_semunlock( lock );
+		rfc_thr_sleep( 1 );
+	}
 
 	// get pending count
 	int readFrom = startGet;
@@ -396,67 +377,59 @@ bool LogManager::get( bool p_autolock )
 	LogRecord localRecords[ maxRead ];
 
 	// read n2/n4 first
-	if( n4f > 0 )
-		{
-			// read n4
-			if( n4f > maxRead )
-				{
-					// partial read
-					n4f -= maxRead;
-					n3e += maxRead;
-					n = maxRead;
-					startGet += n;
-				}
-			else
-				{
-					// full read
-					n = n4f;
-					n3e += n4f;
-					n4f = 0;
+	if( n4f > 0 ) {
+		// read n4
+		if( n4f > maxRead ) {
+			// partial read
+			n4f -= maxRead;
+			n3e += maxRead;
+			n = maxRead;
+			startGet += n;
+		}
+		else {
+			// full read
+			n = n4f;
+			n3e += n4f;
+			n4f = 0;
 
-					// roll read to top
+			// roll read to top
+			startGet = n1e;
+		}
+	}
+	else {
+		// read n2
+		if( n2f > maxRead ) {
+			// partial read
+			n2f -= maxRead;
+			n1e += maxRead;
+			n = maxRead;
+			startGet += n;
+		}
+		else {
+			// full read
+			n = n2f;
+			n1e += n2f;
+			n2f = 0;
+			startGet += n;
+
+			// extra mode
+			if( extraMode ) {
+				startGet += n3e;
+				n1e += n3e;
+				n3e = n6e;
+				n6e = 0;
+				n2f = n5f;
+				n5f = 0;
+
+				extraMode = false;
+			}
+			else {
+				// roll
+				if( startGet == va )
 					startGet = n1e;
-				}
+			}
 		}
-	else
-		{
-			// read n2
-			if( n2f > maxRead )
-				{
-					// partial read
-					n2f -= maxRead;
-					n1e += maxRead;
-					n = maxRead;
-					startGet += n;
-				}
-			else
-				{
-					// full read
-					n = n2f;
-					n1e += n2f;
-					n2f = 0;
-					startGet += n;
-
-					// extra mode
-					if( extraMode )
-						{
-							startGet += n3e;
-							n1e += n3e;
-							n3e = n6e;
-							n6e = 0;
-							n2f = n5f;
-							n5f = 0;
-
-							extraMode = false;
-						}
-					else
-						{
-							// roll
-							if( startGet == va )
-								startGet = n1e;
-						}
-				}
-		}
+	}
 
 	// read
 	memcpy( localRecords , &v[ readFrom ] , sizeof( LogRecord ) * n );
@@ -467,11 +440,10 @@ bool LogManager::get( bool p_autolock )
 		rfc_hnd_semunlock( lock );
 
 	// write w/o lock
-	for( int k = 0; k < n; k++ )
-		{
-			output( &localRecords[ k ] );
-			clear( &localRecords[ k ] );
-		}
+	for( int k = 0; k < n; k++ ) {
+		output( &localRecords[ k ] );
+		clear( &localRecords[ k ] );
+	}
 
 	return( true );
 }
