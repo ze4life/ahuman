@@ -298,7 +298,28 @@ extern int			rfc_hpt_ms2ticks( int ms );
 /*#######################################################*/
 /*#######################################################*/
 
-extern float		rfc_sys_getcpuload( RFC_INT64 *idle , RFC_INT64 *user , RFC_INT64 *kernel , RFC_INT64 *didle , RFC_INT64 *duser , RFC_INT64 *dkernel );
+typedef struct {
+	// false in first call
+	short initialized;
+
+	// current counter values
+	RFC_INT64 idle;
+	RFC_INT64 user;
+	RFC_INT64 kernel;
+	int clocks;
+	// previous counter values
+	RFC_INT64 pidle;
+	RFC_INT64 puser;
+	RFC_INT64 pkernel;
+	int pclocks;
+	// anchor counter values to calculate CPU load
+	RFC_INT64 aidle; 
+	RFC_INT64 auser;
+	RFC_INT64 akernel;
+	int aclocks;
+} CPULOADINFO;
+
+extern float		rfc_sys_getcpuload( CPULOADINFO *info );
 
 /*#######################################################*/
 /*#######################################################*/

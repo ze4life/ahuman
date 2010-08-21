@@ -7,6 +7,8 @@
 #include <process.h>
 #include "__gen.h"
 
+#define MIN_CPU_LOAD_TICKS 100
+
 /*#######################################################*/
 /*#######################################################*/
 /* module handle */
@@ -257,24 +259,61 @@ int
 /*#######################################################*/
 
 float		
-	rfc_sys_getcpuload( RFC_INT64 *idle , RFC_INT64 *user , RFC_INT64 *kernel , RFC_INT64 *didle , RFC_INT64 *duser , RFC_INT64 *dkernel )
+	rfc_sys_getcpuload( CPULOADINFO *info )
 {
-	RFC_INT64 idleOld , userOld , kernelOld;
 	double timeFree, timeBusy;
+	float cpuLoad;
 
-	idleOld = *idle;
-	userOld = *user;
-	kernelOld = *kernel;
-	if( !GetSystemTimes( ( LPFILETIME )idle , ( LPFILETIME )kernel , ( LPFILETIME )user ) )
-		return( -1 );
-	
-	*didle = *idle - idleOld;
-	*dkernel = *kernel - kernelOld;
-	*duser = *user - userOld;
+	/* check initial set */
+	if( !info -> initialized ) {
+		/* one point */
+		info -> clocks = ( int )clock();
+		if( !GetSystemTimes( ( LPFILETIME )&info -> pidle , ( LPFILETIME )&info -> pkernel , ( LPFILETIME )&info -> puser ) )
+			return( -1 );
 
-	timeFree = ( double )*didle;
-	timeBusy = ( double )( *duser + *dkernel );
+		/* copy current point to anchor */
+		info -> aidle = info -> pidle;
+		info -> akernel = info -> pkernel;
+		info -> auser = info -> puser;
+		info -> aclocks = info -> pclocks;
 
-	return( 100.f * ( 1.f - ( float )( timeFree / timeBusy ) ) );
+		/* timeout 100ms */
+		Sleep( 100 );
+
+		/* last point */
+		info -> clocks = ( int )clock();
+		if( !GetSystemTimes( ( LPFILETIME )&info -> idle , ( LPFILETIME )&info -> kernel , ( LPFILETIME )&info -> user ) )
+			return( -1 );
+
+		/* mark as initialized */
+		info -> initialized = 1;
+	}
+	else {
+		/* set previous */
+		info -> pidle = info -> idle;
+		info -> pkernel = info -> kernel;
+		info -> puser = info -> user;
+		info -> pclocks = info -> clocks;
+
+		/* last point */
+		info -> clocks = ( int )clock();
+		if( !GetSystemTimes( ( LPFILETIME )&info -> idle , ( LPFILETIME )&info -> kernel , ( LPFILETIME )&info -> user ) )
+			return( -1 );
+
+		/* check can use new anchor */
+		if( ( info -> clocks - info -> pclocks ) > MIN_CPU_LOAD_TICKS ) {
+			info -> aidle = info -> pidle;
+			info -> akernel = info -> pkernel;
+			info -> auser = info -> puser;
+			info -> aclocks = info -> pclocks;
+		}
+	}
+
+	/* calculate cpu load as last vs anchor */
+	timeFree = ( double )( info -> idle - info -> aidle );
+	timeBusy = ( double )( info -> user - info -> auser + info -> kernel - info -> akernel );
+
+	cpuLoad = 100.f * ( 1.f - ( float )( timeFree / timeBusy ) );
+	return( cpuLoad );
 }
 
