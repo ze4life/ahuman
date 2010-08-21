@@ -38,16 +38,14 @@ ObjectField::ObjectField( int p_id , const char *p_name , char p_type , bool isL
 	name = p_name;
 	type = p_type;
 
-	if( isList )
-		{
-			switch( p_type )
-				{
-					case TP_CHAR :		throw RuntimeError( "ObjectField::ObjectField: wrong type" );
-					case TP_INT :		type = TP_INTLIST; break;
-					case TP_FLOAT :		type = TP_FLOATLIST; break;
-					case TP_STRING :	type = TP_STRINGLIST; break;
-				}
+	if( isList ) {
+		switch( p_type ) {
+			case TP_CHAR :		throw RuntimeError( "ObjectField::ObjectField: wrong type" );
+			case TP_INT :		type = TP_INTLIST; break;
+			case TP_FLOAT :		type = TP_FLOATLIST; break;
+			case TP_STRING :	type = TP_STRINGLIST; break;
 		}
+	}
 }
 
 ObjectField::ObjectField( int p_id , const char *p_name , SerializeObject *p_so , bool isList )
@@ -76,33 +74,29 @@ ObjectField::~ObjectField()
 
 void ObjectField::clearData( bool pFree )
 {
-	if( isOwnData )
-		{
-			// free
-			isOwnData = false;
-			if( pFree )
-				{
-					switch( type )
-						{
-							case TP_STRING :
-							case TP_STRINGLIST :
-							case TP_INTLIST :
-							case TP_FLOATLIST :
-								if( value.value != NULL )
-									free( ( void * )value.value );
-								break;
-							case TP_OBJECT :
-								if( value.value != NULL )
-									delete value.objectValue;
-								break;
-							case TP_OBJECTLIST :
-								if( value.value != NULL )
-									value.objectListValue -> destroy();
-								break;
-						}
-				}
-
+	if( isOwnData ) {
+		// free
+		isOwnData = false;
+		if( pFree ) {
+			switch( type ) {
+				case TP_STRING :
+				case TP_STRINGLIST :
+				case TP_INTLIST :
+				case TP_FLOATLIST :
+					if( value.value != NULL )
+						free( ( void * )value.value );
+					break;
+				case TP_OBJECT :
+					if( value.value != NULL )
+						delete value.objectValue;
+					break;
+				case TP_OBJECTLIST :
+					if( value.value != NULL )
+						value.objectListValue -> destroy();
+					break;
+			}
 		}
+	}
 
 	// object container always owned by field
 	if( type != TP_OBJECTLIST )
@@ -338,23 +332,22 @@ void ObjectField::setObjectList( ClassList<Object> *v , bool pOwn )
 
 char ObjectField::getBaseType()
 {
-	switch( type )
-		{
-			case TP_CHAR :
-				return( TP_CHAR );
-			case TP_INT :
-			case TP_INTLIST :
-				return( TP_INT );
-			case TP_FLOAT :
-			case TP_FLOATLIST :
-				return( TP_FLOAT );
-			case TP_STRING :
-			case TP_STRINGLIST :
-				return( TP_STRING );
-			case TP_OBJECT :
-			case TP_OBJECTLIST :
-				return( TP_OBJECT );
-		}
+	switch( type ) {
+		case TP_CHAR :
+			return( TP_CHAR );
+		case TP_INT :
+		case TP_INTLIST :
+			return( TP_INT );
+		case TP_FLOAT :
+		case TP_FLOATLIST :
+			return( TP_FLOAT );
+		case TP_STRING :
+		case TP_STRINGLIST :
+			return( TP_STRING );
+		case TP_OBJECT :
+		case TP_OBJECTLIST :
+			return( TP_OBJECT );
+	}
 
 	throw RuntimeError( "ObjectField::getBaseType: unknown datatype" );
 }

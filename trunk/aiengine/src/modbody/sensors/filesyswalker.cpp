@@ -19,7 +19,7 @@ public:
 		vout = Cortex::getOutputs();
 		// poll setup
 		Attractor::setPollInterval( 100 );
-		Attractor::setPollState( true );
+		Attractor::setPollState( false );
 
 		logger.attach( this );
 	}

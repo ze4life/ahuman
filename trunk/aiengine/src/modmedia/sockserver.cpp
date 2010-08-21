@@ -8,6 +8,7 @@ SocketServer::SocketServer()
 {
 	continueConnecting = true;
 	shutdownInProgress = false;
+	listenThread = ( RFC_HND )NULL;
 	Listener::setMsgType( Message::MsgType_Unknown );
 }
 
@@ -156,7 +157,7 @@ bool SocketServer::openListeningPort()
 		return( false );
 
 	// start listening thread
-	engine.runThread( Listener::getName() , this , ( ObjectThreadFunction )&SocketServer::threadConnectFunction , NULL );
+	listenThread = engine.runThread( Listener::getName() , this , ( ObjectThreadFunction )&SocketServer::threadConnectFunction , NULL );
 	
 	String msg = "openListeningPort: started listener [" + Listener::getName() + "] on " + getAddress( &listen_inet );
 	logger.logInfo( msg );
@@ -195,6 +196,11 @@ void SocketServer::closeListeningPort()
 			String msg = "closeListeningPort: stopped listener on " + getAddress( &listen_inet );
 			logger.logInfo( msg );
 		}
+
+	if( listenThread != ( RFC_HND )NULL ) {
+		engine.waitThreadExited( listenThread );
+		listenThread = ( RFC_HND )NULL;
+	}
 }
 
 void SocketServer::acceptConnectionLoop()

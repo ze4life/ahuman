@@ -237,7 +237,7 @@ private:
 	String topicIn;
 	String topicOut;
 
-	RFC_THREAD listenThread;
+	RFC_HND listenThread;
 	SOCKET listenSocket;
 	struct sockaddr_in listen_inet;
 };

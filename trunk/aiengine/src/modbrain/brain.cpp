@@ -118,10 +118,13 @@ void AIBrainImpl::destroyService()
 // mind areas
 void AIBrainImpl::addMindArea( String areaId , MindArea *area )
 {
+	MindAreaInfo *info = mindMap -> getAreaById( areaId );
+	ASSERTMSG( info != NULL , "Unknown mind area: id=" + areaId );
+
 	ASSERTMSG( mindAreas.get( areaId ) == NULL , "duplicate area to be added: " + areaId );
 	mindAreas.add( areaId , area );
-	area -> setId( areaId );
-
+	area -> attach( areaId );
+	
 	// create links for this area
 	ClassList<MindLinkInfo>& links = mindMap -> getLinks();
 	for( int k = links.count() - 1; k >= 0; k-- ) {
@@ -153,13 +156,6 @@ MindArea *AIBrainImpl::getMindArea( String areaId )
 	return( mindAreas.get( areaId ) );
 }
 
-void AIBrainImpl::allocateArea( MindArea *area , int size )
-{
-	String id = area -> getId();
-	MindAreaInfo *info = mindMap -> getAreaById( id );
-	info -> allocate( size );
-}
-
 // cortex
 Cortex *AIBrainImpl::getCortex( String cortexId )
 {
@@ -168,17 +164,22 @@ Cortex *AIBrainImpl::getCortex( String cortexId )
 	return( cortex );
 }
 
-Cortex *AIBrainImpl::createCortex( MindArea *area , String netType , int size , int inputs , int outputs )
+Cortex *AIBrainImpl::createCortex( MindArea *area , BrainLocation& relativeLocation , String netType , int inputs , int outputs )
 {
 	// find cortex factory
 	int index = mapCortexFactoryIndex.get( netType );
 	ASSERTMSG( index >= 0 , "Unable to find cortex type=" + netType );
 	CortexFactory factory = cortexFactories.get( index );
 
+	// create absolute location
+	const BrainLocation& areaLocation = area -> getLocation();
+	BrainLocation cortexLocation = areaLocation.getAbsoluteLocation( relativeLocation );
+	int size = cortexLocation.getSize();
+
 	// create cortex
-	Cortex *cortex = ( this ->* factory ) ( area , netType , size , inputs , outputs );
+	Cortex *cortex = ( this ->* factory ) ( area , netType , inputs , size , outputs );
 	ASSERTMSG( cortex != NULL , "Unable to create cortex type=" + netType );
-	area -> onCreateCortex( cortex );
+	cortex -> setLocation( cortexLocation );
 
 	// register cortex
 	lock();
@@ -187,16 +188,21 @@ Cortex *AIBrainImpl::createCortex( MindArea *area , String netType , int size , 
 	mapCortex.add( id , cortex );
 	unlock();
 
+	area -> addCortex( cortex );
 	logger.logInfo( "cortex created: id=" + id + ", type=" + netType + ", size=" + size + ", inputs=" + inputs + ", outputs=" + outputs );
-	area -> onAddCortex( cortex );
 	return( cortex );
 }
 
-void AIBrainImpl::addHardcodedCortex( MindArea *area , Cortex *cortex )
+void AIBrainImpl::addHardcodedCortex( MindArea *area , BrainLocation& relativeLocation , Cortex *cortex )
 {
 	int inputs = cortex -> getNInputs();
 	int outputs = cortex -> getNOutputs();
-	allocateArea( area , inputs + outputs );
+
+	// create absolute location
+	const BrainLocation& areaLocation = area -> getLocation();
+	BrainLocation cortexLocation = areaLocation.getAbsoluteLocation( relativeLocation );
+	int size = cortexLocation.getSize();
+	cortex -> setLocation( cortexLocation );
 
 	// register cortex
 	lock();
@@ -205,8 +211,8 @@ void AIBrainImpl::addHardcodedCortex( MindArea *area , Cortex *cortex )
 	mapCortex.add( id , cortex );
 	unlock();
 
-	logger.logInfo( "hardcoded cortex registered: id=" + id + ", inputs=" + inputs + ", outputs=" + outputs );
-	area -> onAddCortex( cortex );
+	area -> addCortex( cortex );
+	logger.logInfo( "hardcoded cortex registered: id=" + id + ", inputs=" + inputs + ", size=" + size + ", outputs=" + outputs );
 }
 
 // mind area links

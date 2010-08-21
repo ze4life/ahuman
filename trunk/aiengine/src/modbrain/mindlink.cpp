@@ -29,11 +29,22 @@ void MindLink::open( Session *p_session )
 	AIIO io;
 	iosub = io.subscribe( session , channelId , ioid , this );
 	iopub = io.createPublisher( session , channelId ,  ioid , "MindLinkMsg" );
+
+	destinationArea -> onOpenMindLinkDestination( this , channelId );
+	sourceArea -> onOpenMindLinkSource( this , channelId );
 }
 
-void MindLink::publish( Message *msg )
+void MindLink::publish( BinaryMessage *msg )
 {
 	iopub -> publish( session , msg );
+}
+
+Subscription *MindLink::subscribe( Subscriber *handler , String name )
+{
+	AIIO io;
+	String channelId = info -> getChannelId();
+	Subscription *sub = io.subscribe( session , channelId , channelId + "-" + name , handler );
+	return( sub );
 }
 
 void MindLink::onMessage( Message *msg )

@@ -1,17 +1,30 @@
 #include "cognition_impl.h"
 
-class NeoCortex : public MindArea
+class NeoCortex : public Object , public MindArea
 {
+	NeoCortexSensorsSubscriber *sensorsSub;
+
 // construction
 public:
-	NeoCortex() {};
+	NeoCortex() {
+		sensorsSub = new NeoCortexSensorsSubscriber();
+	};
+	virtual ~NeoCortex() {
+		delete sensorsSub;
+	}
+
+	const char *getClass() { return( "NeoCortex" ); };
 
 // MindArea interface
 public:
-	virtual void onCreateArea() {
+	virtual void onCreateArea() {};
+	virtual void onLoadArea() {};
+
+	virtual void onOpenMindLinkDestination( MindLink *link , String channelId ) {
+		if( channelId.equals( "sensordata" ) ) {
+			link -> subscribe( sensorsSub , "neocortex" );
+		}
 	};
-	virtual void onLoadArea() {
-	}
 };
 
 MindArea *AICognitionImpl::createNeoCortex()

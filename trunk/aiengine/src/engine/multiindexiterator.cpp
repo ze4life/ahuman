@@ -43,17 +43,16 @@ bool MultiIndexIterator::next()
 	globalIndex++;
 
 	// increment pos
-	for( int k = numberOfAxis - 1; k >= 0; k-- )
-		{
-			int v = ++(axisIndex[ k ]);
-			if( v < axisPoints )
-				return( true );
+	for( int k = numberOfAxis - 1; k >= 0; k-- ) {
+		int v = ++(axisIndex[ k ]);
+		if( v < axisPoints )
+			return( true );
 
-			if( k == 0 )
-				break;
+		if( k == 0 )
+			break;
 
-			axisIndex[ k ] = 0;
-		}
+		axisIndex[ k ] = 0;
+	}
 
 	globalIndex = -2;
 	return( false );
@@ -67,36 +66,32 @@ bool MultiIndexIterator::nextAround()
 
 	// cycle to ignore marginal points
 	bool scanEnded = false;
-	do
-		{
-			globalIndexAround++;
+	do {
+		globalIndexAround++;
 
-			// increment pos (3 value by each axis)
-			scanEnded = false;
-			for( int k = numberOfAxis - 1; k >= 0; k-- )
-				{
-					// check axis after update - is it within limits
-					int v = ++(axisIndexAround[ k ]);
+		// increment pos (3 value by each axis)
+		scanEnded = false;
+		for( int k = numberOfAxis - 1; k >= 0; k-- ) {
+			// check axis after update - is it within limits
+			int v = ++(axisIndexAround[ k ]);
 
-					// check in scan area for this axis
-					if( v < 3 )
-						{
-							// if beyond limits - go to next point
-							if( isBeyondAround() )
-								break;
+			// check in scan area for this axis
+			if( v < 3 ) {
+				// if beyond limits - go to next point
+				if( isBeyondAround() )
+					break;
 
-							return( true );
-						}
+				return( true );
+			}
 
-					if( k == 0 )
-						{
-							scanEnded = true;
-							break;
-						}
+			if( k == 0 ) {
+				scanEnded = true;
+				break;
+			}
 
-					axisIndexAround[ k ] = 0;
-				}
+			axisIndexAround[ k ] = 0;
 		}
+	}
 	while( !scanEnded );
 
 	globalIndexAround = -2;
@@ -105,13 +100,12 @@ bool MultiIndexIterator::nextAround()
 
 bool MultiIndexIterator::isBeyondAround()
 {
-	for( int k = 0; k < numberOfAxis; k++ )
-		{
-			int v = axisIndexAround[ k ];
-			int newIndex = axisIndex[ k ] + ( ( v == 2 )? -1 : v );
-			if( newIndex < 0 || newIndex >= axisPoints )
-				return( true );
-		}
+	for( int k = 0; k < numberOfAxis; k++ ) {
+		int v = axisIndexAround[ k ];
+		int newIndex = axisIndex[ k ] + ( ( v == 2 )? -1 : v );
+		if( newIndex < 0 || newIndex >= axisPoints )
+			return( true );
+	}
 	return( false );
 }
 
@@ -146,14 +140,13 @@ int MultiIndexIterator::getGlobalIndexAround()
 	// calculate global index
 	int number = 0;
 	int mul = 1;
-	for( int k = numberOfAxis - 1; k >= 0; k-- )
-		{
-			int v = axisIndexAround[ k ];
-			int index = axisIndex[ k ] + ( ( v == 2 )? -1 : v );
+	for( int k = numberOfAxis - 1; k >= 0; k-- ) {
+		int v = axisIndexAround[ k ];
+		int index = axisIndex[ k ] + ( ( v == 2 )? -1 : v );
 			
-			number += mul * index;
-			mul *= axisPoints;
-		}
+		number += mul * index;
+		mul *= axisPoints;
+	}
 
 	if( number < 0 || number >= totalPoints )
 		throw RuntimeError( "MultiIndexIterator::getGlobalIndexAround: number < 0 || number >= totalPoints" );
@@ -192,15 +185,14 @@ int MultiIndexIterator::getAxisPoints()
 
 bool MultiIndexIterator::hasEqualIndexes()
 {
-	for( int k = 0; k < numberOfAxis - 1; k++ )
-		{
-			int index = axisIndex[ k ];
+	for( int k = 0; k < numberOfAxis - 1; k++ ) {
+		int index = axisIndex[ k ];
 			
-			// try find
-			for( int m = k + 1; m < numberOfAxis; m++ )
-				if( axisIndex[ m ] == index )
-					return( true );
-		}
+		// try find
+		for( int m = k + 1; m < numberOfAxis; m++ )
+			if( axisIndex[ m ] == index )
+				return( true );
+	}
 	return( false );
 }
 
@@ -213,51 +205,47 @@ void MultiIndexIterator::startDistinctUnsorted()
 bool MultiIndexIterator::nextDistinctUnsorted()
 {
 	// first point
-	if( globalIndex == -1 )
-		{
-			if( numberOfAxis > axisPoints )
-				throw RuntimeError( "MultiIndexIterator::nextDistinctUnsorted: numberOfAxis > axisPoints" );
+	if( globalIndex == -1 ) {
+		if( numberOfAxis > axisPoints )
+			throw RuntimeError( "MultiIndexIterator::nextDistinctUnsorted: numberOfAxis > axisPoints" );
 
+		int mul = 1;
+		int val = 0;
+		for( int k = numberOfAxis - 1; k >= 0; k-- , mul *= axisPoints ) {
+			axisIndex[ k ] = k;
+			val += mul * k;
+		}
+
+		globalIndex = val;
+		return( true );
+	}
+
+	// next point
+	for( int m = numberOfAxis - 1; m >= 0; m-- ) {
+		int v = ++(axisIndex[ m ]);
+			
+		// v has value range [axisIndex[m-1]+1,axisPoints-numberOfAxis+m]
+		// for m=0 it will be [0,axisPoints-numberOfAxis]
+		// for m=numberOfAxis-1 it will be [...,axisPoints-1]
+
+		if( v <= ( axisPoints - numberOfAxis + m ) ) {
+			// set increasing values for all next
+			for( int z = m + 1; z < numberOfAxis; z++ )
+				axisIndex[ z ] = v + z - m;
+
+			// calculate global index
 			int mul = 1;
 			int val = 0;
-			for( int k = numberOfAxis - 1; k >= 0; k-- , mul *= axisPoints )
-				{
-					axisIndex[ k ] = k;
-					val += mul * k;
-				}
+			for( int t = numberOfAxis - 1; t >= 0; t-- , mul *= axisPoints )
+				val += axisIndex[ t ] * mul;
 
 			globalIndex = val;
 			return( true );
 		}
 
-	// next point
-	for( int m = numberOfAxis - 1; m >= 0; m-- )
-		{
-			int v = ++(axisIndex[ m ]);
-			
-			// v has value range [axisIndex[m-1]+1,axisPoints-numberOfAxis+m]
-			// for m=0 it will be [0,axisPoints-numberOfAxis]
-			// for m=numberOfAxis-1 it will be [...,axisPoints-1]
-
-			if( v <= ( axisPoints - numberOfAxis + m ) )
-				{
-					// set increasing values for all next
-					for( int z = m + 1; z < numberOfAxis; z++ )
-						axisIndex[ z ] = v + z - m;
-
-					// calculate global index
-					int mul = 1;
-					int val = 0;
-					for( int t = numberOfAxis - 1; t >= 0; t-- , mul *= axisPoints )
-						val += axisIndex[ t ] * mul;
-
-					globalIndex = val;
-					return( true );
-				}
-
-			if( m == 0 )
-				break;
-		}
+		if( m == 0 )
+			break;
+	}
 
 	globalIndex = -2;
 	return( false );

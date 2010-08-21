@@ -22,12 +22,12 @@ AIBodyImpl::AIBodyImpl()
 
 void AIBodyImpl::createService()
 {
-	AIBrain brain;
-	brain.addMindArea( "Sensors" , createSensors() );
 }
 
 void AIBodyImpl::initService()
 {
+	AIBrain brain;
+	brain.addMindArea( "Sensors" , createSensors() );
 }
 
 void AIBodyImpl::runService()

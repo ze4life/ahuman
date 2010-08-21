@@ -37,11 +37,11 @@ void AIMediaImpl::runService()
 void AIMediaImpl::exitService()
 {
 	stopListeners();
-	listeners.destroy();
 }
 
 void AIMediaImpl::destroyService()
 {
+	listeners.destroy();
 	SocketServer::exitSocketLib();
 	delete this;
 }
@@ -53,20 +53,19 @@ void AIMediaImpl::startListeners()
 {
 	// scan configuration
 	Xml configListeners = configService.getChildNode( "listeners" );
-	for( Xml item = configListeners.getFirstChild( "listener" ); item.exists(); item = item.getNextChild( "listener" ) )
-		{
-			String name = item.getAttribute( "name" );
-			String type = item.getAttribute( "type" );
+	for( Xml item = configListeners.getFirstChild( "listener" ); item.exists(); item = item.getNextChild( "listener" ) ) {
+		String name = item.getAttribute( "name" );
+		String type = item.getAttribute( "type" );
 
-			// create and configure
-			Listener *listener = runListenerFactory( name , type );
-			listener -> configure( item );
+		// create and configure
+		Listener *listener = runListenerFactory( name , type );
+		listener -> configure( item );
 
-			// start
-			ASSERTMSG( listener -> startListener() , 
-				"AIMediaImpl::startListeners: cannot start listener " + name );
-			logger.logInfo( name + " listener started at " + listener -> getAddress() );
-		}
+		// start
+		ASSERTMSG( listener -> startListener() , 
+			"AIMediaImpl::startListeners: cannot start listener " + name );
+		logger.logInfo( name + " listener started at " + listener -> getAddress() );
+	}
 }
 
 Listener *AIMediaImpl::runListenerFactory( String name , String type )
@@ -83,11 +82,10 @@ Listener *AIMediaImpl::runListenerFactory( String name , String type )
 
 void AIMediaImpl::stopListeners()
 {
-	for( int k = 0; k < listeners.count(); k++ )
-		{
-			Listener *listener = listeners.getClassByIndex( k );
-			listener -> stopListener();
-			listener -> stopListenerConnections();
-		}
+	for( int k = 0; k < listeners.count(); k++ ) {
+		Listener *listener = listeners.getClassByIndex( k );
+		listener -> stopListener();
+		listener -> stopListenerConnections();
+	}
 }
 

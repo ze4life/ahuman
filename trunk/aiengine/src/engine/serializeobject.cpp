@@ -341,12 +341,11 @@ void SerializeObject::setPropIntListFromStructList( void *p_val , int n , int si
 
 	int shift = offset;
 	int *pvSet = valNew;
-	for( int k = 0; k < n; k++ )
-		{
-			int *pvGet = ( int * )( ( ( char * )p_val ) + shift );
-			*pvSet++ = *pvGet;
-			shift += sizeStruct;
-		}
+	for( int k = 0; k < n; k++ ) {
+		int *pvGet = ( int * )( ( ( char * )p_val ) + shift );
+		*pvSet++ = *pvGet;
+		shift += sizeStruct;
+	}
 
 	setPropIntList( valNew , n , p_field , true );
 }
@@ -359,11 +358,10 @@ void SerializeObject::setPropIntListFromStructPtrList( void **p_val , int n , in
 	int *valNew = ( int * )malloc( n * sizeof( int ) );
 
 	int *pvSet = valNew;
-	for( int k = 0; k < n; k++ )
-		{
-			int *pvGet = ( int * )( ( ( char * )p_val[ k ] ) + offset );
-			*pvSet++ = *pvGet;
-		}
+	for( int k = 0; k < n; k++ ) {
+		int *pvGet = ( int * )( ( ( char * )p_val[ k ] ) + offset );
+		*pvSet++ = *pvGet;
+	}
 
 	setPropIntList( valNew , n , p_field , true );
 }
@@ -418,12 +416,11 @@ void SerializeObject::setPropFloatListFromStructList( void *p_val , int n , int 
 
 	int shift = offset;
 	float *pvSet = valNew;
-	for( int k = 0; k < n; k++ )
-		{
-			float *pvGet = ( float * )( ( ( char * )p_val ) + shift );
-			*pvSet++ = *pvGet;
-			shift += sizeStruct;
-		}
+	for( int k = 0; k < n; k++ ) {
+		float *pvGet = ( float * )( ( ( char * )p_val ) + shift );
+		*pvSet++ = *pvGet;
+		shift += sizeStruct;
+	}
 
 	setPropFloatList( valNew , n , p_field , true );
 }
@@ -436,11 +433,10 @@ void SerializeObject::setPropFloatListFromStructPtrList( void **p_val , int n , 
 	float *valNew = ( float * )malloc( n * sizeof( float ) );
 
 	float *pvSet = valNew;
-	for( int k = 0; k < n; k++ )
-		{
-			float *pvGet = ( float * )( ( ( char * )p_val[ k ] ) + offset );
-			*pvSet++ = *pvGet;
-		}
+	for( int k = 0; k < n; k++ ) {
+		float *pvGet = ( float * )( ( ( char * )p_val[ k ] ) + offset );
+		*pvSet++ = *pvGet;
+	}
 
 	setPropFloatList( valNew , n , p_field , true );
 }
@@ -574,129 +570,115 @@ void SerializeObject::fillMapString( String& s , bool useName , int level )
 
 	char l_buf[ 12 ];
 	int nListItems = 0;
-	for( int k = 0; k < fieldList.count(); k++ )
-		{
-			// delimiter
-			s += TB_LISTDELIMITER_AND_SPACE;
-			s += "\n";
-			s.append( level , '\t' );
+	for( int k = 0; k < fieldList.count(); k++ ) {
+		// delimiter
+		s += TB_LISTDELIMITER_AND_SPACE;
+		s += "\n";
+		s.append( level , '\t' );
 
-			// field prefix
-			ObjectField *field = fieldList.get( k );
-			int id = field -> getId();
+		// field prefix
+		ObjectField *field = fieldList.get( k );
+		int id = field -> getId();
 			
-			if( useName )
-				s += field -> getName();
-			else
-				{
-					sprintf( l_buf , "%d" , id );
-					s += l_buf;
-				}
-			s += "=";
-
-			// field data
-			if( field -> isList() )
-				s += TB_OPEN;
-
-			switch( field -> getBaseType() )
-				{
-					case TP_CHAR :
-						addCharEscaped( s , field -> getChar() );
-						break;
-					case TP_INT :
-						if( field -> isList() )
-							{
-								int *v = field -> getIntList( &nListItems , false );
-								for( int m = 0; m < nListItems; m++ )
-									{
-										if( m > 0 )
-											s += TB_LISTDELIMITER_AND_SPACE;
-										addInt( s , v[ m ] );
-									}
-							}
-						else
-							addInt( s , field -> getInt() );
-						break;
-					case TP_FLOAT :
-						if( field -> isList() )
-							{
-								float *v = field -> getFloatList( &nListItems , false );
-								for( int m = 0; m < nListItems; m++ )
-									{
-										if( m > 0 )
-											s += TB_LISTDELIMITER_AND_SPACE;
-										addFloat( s , v[ m ] );
-									}
-							}
-						else
-							addFloat( s , field -> getFloat() );
-						break;
-					case TP_STRING :
-						if( field -> isList() )
-							{
-								const char **v = field -> getStringList( &nListItems , false );
-								for( int m = 0; m < nListItems; m++ )
-									{
-										if( m > 0 )
-											s += TB_LISTDELIMITER_AND_SPACE;
-										addStringEscaped( s , v[ m ] );
-									}
-							}
-						else
-							{
-								addStringEscaped( s , field -> getString( false ) );
-							}
-						break;
-					case TP_OBJECT :
-						if( field -> isList() )
-							{
-								FlatList<Object *> *v = field -> getObjectList();
-								SerializeObject *so = field -> getFieldSerializeObject();
-								nListItems = v -> count();
-								Object **va = v -> getAll();
-								for( int m = 0; m < nListItems; m++ )
-									{
-										if( m > 0 )
-											s += TB_LISTDELIMITER_AND_SPACE;
-
-										s += "\n";
-										s.append( level + 1 , '\t' );
-
-										// serialize using object SO - if field's one is empty
-										Object *o = *va++;
-										SerializeObject *soUsed = ( so != NULL )? so : o -> getSerializeObject();
-										Object::serialize( o , *soUsed );
-
-										// add object data from new line
-										soUsed -> fillMapString( s , useName , level + 1 );
-									}
-							}
-						else
-							{
-								SerializeObject *so = field -> getFieldSerializeObject();
-								Object *o = field -> getObject( false );
-
-								if( o != NULL )
-									{
-										// serialize using object SO - if field's one is empty
-										SerializeObject *soUsed = ( so != NULL )? so : o -> getSerializeObject();
-										Object::serialize( o , *soUsed );
-										soUsed -> fillMapString( s , useName , level + 1 );
-									}
-								else
-									{
-										// add NULL object representaion
-										s += TB_OPEN;
-										s += TB_CLOSE;
-									}
-							}
-						break;
-				}
-
-			// list terminator
-			if( field -> isList() )
-				s += TB_CLOSE;
+		if( useName )
+			s += field -> getName();
+		else {
+			sprintf( l_buf , "%d" , id );
+			s += l_buf;
 		}
+		s += "=";
+
+		// field data
+		if( field -> isList() )
+			s += TB_OPEN;
+
+		switch( field -> getBaseType() ) {
+			case TP_CHAR :
+				addCharEscaped( s , field -> getChar() );
+				break;
+			case TP_INT :
+				if( field -> isList() ) {
+					int *v = field -> getIntList( &nListItems , false );
+					for( int m = 0; m < nListItems; m++ ) {
+						if( m > 0 )
+							s += TB_LISTDELIMITER_AND_SPACE;
+						addInt( s , v[ m ] );
+					}
+				}
+				else
+					addInt( s , field -> getInt() );
+				break;
+			case TP_FLOAT :
+				if( field -> isList() ) {
+					float *v = field -> getFloatList( &nListItems , false );
+					for( int m = 0; m < nListItems; m++ ) {
+						if( m > 0 )
+							s += TB_LISTDELIMITER_AND_SPACE;
+						addFloat( s , v[ m ] );
+					}
+				}
+				else
+					addFloat( s , field -> getFloat() );
+				break;
+			case TP_STRING :
+				if( field -> isList() ) {
+					const char **v = field -> getStringList( &nListItems , false );
+					for( int m = 0; m < nListItems; m++ ) {
+						if( m > 0 )
+							s += TB_LISTDELIMITER_AND_SPACE;
+						addStringEscaped( s , v[ m ] );
+					}
+				}
+				else {
+					addStringEscaped( s , field -> getString( false ) );
+				}
+				break;
+			case TP_OBJECT :
+				if( field -> isList() ) {
+					FlatList<Object *> *v = field -> getObjectList();
+					SerializeObject *so = field -> getFieldSerializeObject();
+					nListItems = v -> count();
+					Object **va = v -> getAll();
+
+					for( int m = 0; m < nListItems; m++ ) {
+						if( m > 0 )
+							s += TB_LISTDELIMITER_AND_SPACE;
+
+						s += "\n";
+						s.append( level + 1 , '\t' );
+
+						// serialize using object SO - if field's one is empty
+						Object *o = *va++;
+						SerializeObject *soUsed = ( so != NULL )? so : o -> getSerializeObject();
+						Object::serialize( o , *soUsed );
+
+						// add object data from new line
+						soUsed -> fillMapString( s , useName , level + 1 );
+					}
+				}
+				else {
+					SerializeObject *so = field -> getFieldSerializeObject();
+					Object *o = field -> getObject( false );
+
+					if( o != NULL ) {
+						// serialize using object SO - if field's one is empty
+						SerializeObject *soUsed = ( so != NULL )? so : o -> getSerializeObject();
+						Object::serialize( o , *soUsed );
+						soUsed -> fillMapString( s , useName , level + 1 );
+					}
+					else {
+						// add NULL object representaion
+						s += TB_OPEN;
+						s += TB_CLOSE;
+					}
+				}
+				break;
+		}
+
+		// list terminator
+		if( field -> isList() )
+			s += TB_CLOSE;
+	}
 
 	s += TB_CLOSE;
 }
@@ -750,162 +732,147 @@ const char *SerializeObject::readFromString( const char *p , SerializeObject *so
 	// skip spaces
 	p = skipSpaces( p );
 	bool endOfList = false;
-	while( c = *p )
-		{
-			// possibles: "   {  x    =y,    x=y, x=y, x="y", x = {y} }"
-			switch( part )
-				{
-					case 0 :
-						if( c != TB_OPEN )
-							throw RuntimeError( "SerializeObject::readFromString: missed { symbol" );
+	while( c = *p ) {
+		// possibles: "   {  x    =y,    x=y, x=y, x="y", x = {y} }"
+		switch( part ) {
+			case 0 :
+				if( c != TB_OPEN )
+					throw RuntimeError( "SerializeObject::readFromString: missed { symbol" );
 
-						part = 1;
-						len = 0;
+				part = 1;
+				len = 0;
 
-						// skip spaces
-						p = skipSpaces( ++p );
+				// skip spaces
+				p = skipSpaces( ++p );
 
-						// check empty list
-						if( *p == TB_CLOSE )
-							return( ++p );
-						break;
-					case 1 :
-						if( c == '=' || c == ' ' )
-							{
-								// terminates key ID
-								if( len == 0 )
-									throw RuntimeError( "SerializeObject::readFromString: missed field id/name" );
+				// check empty list
+				if( *p == TB_CLOSE )
+					return( ++p );
+				break;
+			case 1 :
+				if( c == '=' || c == ' ' ) {
+					// terminates key ID
+					if( len == 0 )
+						throw RuntimeError( "SerializeObject::readFromString: missed field id/name" );
 
-								l_buf[ len ] = 0;
-								len = 0;
+					l_buf[ len ] = 0;
+					len = 0;
 
-								bool isClassName = false;
-								bool ignoreFieldData = false;
-								if( soSrc == NULL )
-									{
-										if( strcmp( l_buf , "class" ) )
-											{
-												ASSERT( so != NULL );
+					bool isClassName = false;
+					bool ignoreFieldData = false;
+					if( soSrc == NULL ) {
+						if( strcmp( l_buf , "class" ) ) {
+							ASSERT( so != NULL );
 
-												// read using field names
-												field = so -> getFieldByName( l_buf );
-												if( field == NULL )
-													ignoreFieldData = true;
-											}
-										else
-											isClassName = true;
-									}
-								else
-									{
-										key = atoi( l_buf );
-										if( key > 0 )
-											{
-												ASSERT( so != NULL );
-												field = so -> getFieldById( key , soSrc );
-												if( field == NULL )
-													ignoreFieldData = true;
-											}
-										else
-											isClassName = true;
-									}
-
-								// skip spaces=spaces
-								if( c == ' ' )
-									{
-										// find =
-										p = skipSpaces( p );
-										if( *p++ != '=' )
-											throw RuntimeError( "SerializeObject::readFromString: missed = after field id/name" );
-									}
-								else
-									{	
-										// skip =
-										p++;
-									}
-								p = skipSpaces( p );
-
-								if( ignoreFieldData )
-									{
-										// ignore/skip field data
-										p = skipFieldData( p );
-										part = 2;
-										continue;
-									}
-
-								if( isClassName )
-									{
-										// read special property - class name
-										char *className;
-										p = readString( p , true , &className , NULL );
-
-										if( so == NULL )
-											so = AIEngine::getInstance().getSerializeObject( className );
-										so -> setEffectiveObjectClass( className );
-
-										if( className != NULL )
-											free( className );
-									}
-								else
-									{
-										ASSERT( so != NULL );
-
-										// create object if first field
-										if( *pv == NULL )
-											*pv = so -> createObject();
-
-										ObjectField *fieldSrc = NULL;
-										if( soSrc != NULL )
-											fieldSrc = soSrc -> getFieldById( key );
-
-										if( dataCount >= MAX_FIELDS )
-											throw RuntimeError( "SerializeObject::readFromString: too many fields" );
-
-										// postpone object translation to avoid recursion
-										dataField[ dataCount ] = field;
-										dataValue[ dataCount ].V = NULL;
-										dataListCount[ dataCount ] = 0;
-
-										p = so -> readFieldData( *pv , p , field , fieldSrc , &dataValue[ dataCount ] , &dataListCount[ dataCount ] );
-										dataCount++;
-									}
-								part = 2;
-							}
+							// read using field names
+							field = so -> getFieldByName( l_buf );
+							if( field == NULL )
+								ignoreFieldData = true;
+						}
 						else
-							{
-								if( soSrc != NULL )
-									{
-										if( !isdigit( c ) )
-											throw RuntimeError( "SerializeObject::readFromString: non-digit found in field id" );
+							isClassName = true;
+					}
+					else {
+						key = atoi( l_buf );
+						if( key > 0 ) {
+							ASSERT( so != NULL );
+							field = so -> getFieldById( key , soSrc );
+							if( field == NULL )
+								ignoreFieldData = true;
+						}
+						else
+							isClassName = true;
+					}
 
-										if( len == 10 )
-											throw RuntimeError( "SerializeObject::readFromString: too long field id" );
-									}
-								else
-									if( len >= MAX_NAMELEN )
-										throw RuntimeError( "SerializeObject::readFromString: too long field name" );
+					// skip spaces=spaces
+					if( c == ' ' ) {
+						// find =
+						p = skipSpaces( p );
+						if( *p++ != '=' )
+							throw RuntimeError( "SerializeObject::readFromString: missed = after field id/name" );
+					}
+					else {	
+						// skip =
+						p++;
+					}
+					p = skipSpaces( p );
 
-								l_buf[ len++ ] = c;
-								p++;
-							}
-						break;
-					case 2 :
-						p = skipListDelimiter( p , &endOfList );
-						if( endOfList )
-							{
-								if( *p++ != TB_CLOSE )
-									throw RuntimeError( "SerializeObject::readObjectFromString: no end of String" );
+					if( ignoreFieldData ) {
+						// ignore/skip field data
+						p = skipFieldData( p );
+						part = 2;
+						continue;
+					}
 
-								// set data
-								for( int k = 0; k < dataCount; k++ )
-									so -> setFieldData( dataField[ k ] , &dataValue[ k ] , dataListCount[ k ] );
+					if( isClassName ) {
+						// read special property - class name
+						char *className;
+						p = readString( p , true , &className , NULL );
 
-								return( p );
-							}
+						if( so == NULL )
+							so = AIEngine::getInstance().getSerializeObject( className );
+						so -> setEffectiveObjectClass( className );
 
-						part = 1;
-						break;
+						if( className != NULL )
+							free( className );
+					}
+					else {
+						ASSERT( so != NULL );
+
+						// create object if first field
+						if( *pv == NULL )
+							*pv = so -> createObject();
+
+						ObjectField *fieldSrc = NULL;
+						if( soSrc != NULL )
+							fieldSrc = soSrc -> getFieldById( key );
+
+						if( dataCount >= MAX_FIELDS )
+							throw RuntimeError( "SerializeObject::readFromString: too many fields" );
+
+						// postpone object translation to avoid recursion
+						dataField[ dataCount ] = field;
+						dataValue[ dataCount ].V = NULL;
+						dataListCount[ dataCount ] = 0;
+
+						p = so -> readFieldData( *pv , p , field , fieldSrc , &dataValue[ dataCount ] , &dataListCount[ dataCount ] );
+						dataCount++;
+					}
+					part = 2;
 				}
+				else {
+					if( soSrc != NULL ) {
+						if( !isdigit( c ) )
+							throw RuntimeError( "SerializeObject::readFromString: non-digit found in field id" );
+
+						if( len == 10 )
+							throw RuntimeError( "SerializeObject::readFromString: too long field id" );
+					}
+					else
+						if( len >= MAX_NAMELEN )
+							throw RuntimeError( "SerializeObject::readFromString: too long field name" );
+
+					l_buf[ len++ ] = c;
+					p++;
+				}
+				break;
+			case 2 :
+				p = skipListDelimiter( p , &endOfList );
+				if( endOfList ) {
+					if( *p++ != TB_CLOSE )
+						throw RuntimeError( "SerializeObject::readObjectFromString: no end of String" );
+
+					// set data
+					for( int k = 0; k < dataCount; k++ )
+						so -> setFieldData( dataField[ k ] , &dataValue[ k ] , dataListCount[ k ] );
+
+					return( p );
+				}
+
+				part = 1;
+				break;
 		}
+	}
 
 	throw RuntimeError( "SerializeObject::readObjectFromString: unexpected end of row" );
 }
@@ -914,43 +881,42 @@ void SerializeObject::setFieldData( ObjectField *field , void *dataValue , int d
 {
 	FieldData& v = *( FieldData * )dataValue;
 
-	switch( field -> getBaseType() )
-		{
-			case TP_CHAR :
-				field -> setChar( v.charV );
-				break;
+	switch( field -> getBaseType() ) {
+		case TP_CHAR :
+			field -> setChar( v.charV );
+			break;
 
-			case TP_INT :
-				if( field -> isList() )
-					field -> setIntList( v.intVL , dataListCount , true );
-				else
-					field -> setInt( v.intV );
-				break;
+		case TP_INT :
+			if( field -> isList() )
+				field -> setIntList( v.intVL , dataListCount , true );
+			else
+				field -> setInt( v.intV );
+			break;
 
-			case TP_FLOAT :
-				if( field -> isList() )
-					field -> setFloatList( v.floatVL , dataListCount , true );
-				else
-					field -> setFloat( v.floatV );
-				break;
+		case TP_FLOAT :
+			if( field -> isList() )
+				field -> setFloatList( v.floatVL , dataListCount , true );
+			else
+				field -> setFloat( v.floatV );
+			break;
 
-			case TP_STRING :
-				if( field -> isList() )
-					field -> setStringList( ( const char ** )v.stringVL , dataListCount , true );
-				else
-					field -> setString( v.stringV , true );
-				break;
+		case TP_STRING :
+			if( field -> isList() )
+				field -> setStringList( ( const char ** )v.stringVL , dataListCount , true );
+			else
+				field -> setString( v.stringV , true );
+			break;
 
-			case TP_OBJECT :
-				if( field -> isList() )
-					field -> setObjectList( v.objectVL , true );
-				else
-					field -> setObject( v.objectV , true );
-				break;
+		case TP_OBJECT :
+			if( field -> isList() )
+				field -> setObjectList( v.objectVL , true );
+			else
+				field -> setObject( v.objectV , true );
+			break;
 
-			default :
-				throw RuntimeError( "SerializeObject::readFieldData: unknown datatype" );
-		}
+		default :
+			throw RuntimeError( "SerializeObject::readFieldData: unknown datatype" );
+	}
 }
 
 const char *SerializeObject::skipListDelimiter( const char *p , bool *endOfList )
@@ -961,11 +927,10 @@ const char *SerializeObject::skipListDelimiter( const char *p , bool *endOfList 
 	char c = *p;
 
 	// if end of list
-	if( c == TB_CLOSE )
-		{
-			*endOfList = true;
-			return( p );
-		}
+	if( c == TB_CLOSE ) {
+		*endOfList = true;
+		return( p );
+	}
 
 	*endOfList = false;
 
@@ -1018,14 +983,13 @@ const char *SerializeObject::readString( const char *p , bool pAlloc , char **pv
 	int len = skipString( p ) - p - 2;
 
 	// empty String
-	if( len == 0 )
-		{
-			if( pAlloc )
-				*pvAlloc = NULL;
-			else
-				*pvNoAlloc = 0;
-			return( p );
-		}
+	if( len == 0 ) {
+		if( pAlloc )
+			*pvAlloc = NULL;
+		else
+			*pvNoAlloc = 0;
+		return( p );
+	}
 
 	// allocate
 	char *v;
@@ -1038,38 +1002,36 @@ const char *SerializeObject::readString( const char *p , bool pAlloc , char **pv
 	// read String "
 	*p++;
 
-	while( *p )
-		{
-			const char *px = strpbrk( p , "\"\\" );
-			if( px == NULL )
-				throw RuntimeError( "SerializeObject::readString: end of String not found" );
+	while( *p ) {
+		const char *px = strpbrk( p , "\"\\" );
+		if( px == NULL )
+			throw RuntimeError( "SerializeObject::readString: end of String not found" );
 			
-			// copy all between
-			int n = px - p;
-			strncpy( lv , p , n );
-			lv += n;
+		// copy all between
+		int n = px - p;
+		strncpy( lv , p , n );
+		lv += n;
 
-			p = px;
-			if( *p++ == '"' )
-				break;
+		p = px;
+		if( *p++ == '"' )
+			break;
 
-			if( !*p )
-				throw RuntimeError( "SerializeObject::readString: unexpected end of String" );
+		if( !*p )
+			throw RuntimeError( "SerializeObject::readString: unexpected end of String" );
 
-			// escaped symbol
-			*lv++ = *p++;
-		}
+		// escaped symbol
+		*lv++ = *p++;
+	}
 
 	*lv = 0;
 
 	// special handling for allocated
 	if( pAlloc )
-		if( lv == v )
-			{
-				// empty String
-				free( v );
-				*pvAlloc = NULL;
-			}
+		if( lv == v ) {
+			// empty String
+			free( v );
+			*pvAlloc = NULL;
+		}
 		else
 			*pvAlloc = v;
 
@@ -1085,23 +1047,22 @@ const char *SerializeObject::skipString( const char *p )
 	if( *p++ != '"' )
 		throw RuntimeError( "SerializeObject::skipString: expected String start symbol" );
 
-	while( *p )
-		{
-			const char *px = strpbrk( p , "\"\\" );
+	while( *p ) {
+		const char *px = strpbrk( p , "\"\\" );
 			
-			// if no end String mark
-			if( px == NULL )
-				throw RuntimeError( "SerializeObject::skipString: no end String mark" );
+		// if no end String mark
+		if( px == NULL )
+			throw RuntimeError( "SerializeObject::skipString: no end String mark" );
 
-			if( *px == '"' )
-				return( ++px );
+		if( *px == '"' )
+			return( ++px );
 
-			// if escaped symbol
-			if( !*++px )
-				throw RuntimeError( "SerializeObject::skipString: unexpected end of String" );
+		// if escaped symbol
+		if( !*++px )
+			throw RuntimeError( "SerializeObject::skipString: unexpected end of String" );
 			
-			p = ++px;
-		}
+		p = ++px;
+	}
 
 	throw RuntimeError( "SerializeObject::skipString: end of String not found" );
 }
@@ -1119,30 +1080,28 @@ const char *SerializeObject::skipBlock( const char *p )
 	// count block marks, but ignore inside strings
 	int bc = 1;
 	char eob[4] = { TB_OPEN , TB_CLOSE , '"' , 0 };
-	while( bc )
-		{
-			// find special symbol
-			const char *px = strpbrk( p , eob );
-			if( px == NULL )
-				throw RuntimeError( "SerializeObject::skipBlock: no end block mark" );
+	while( bc ) {
+		// find special symbol
+		const char *px = strpbrk( p , eob );
+		if( px == NULL )
+			throw RuntimeError( "SerializeObject::skipBlock: no end block mark" );
 
-			switch( *px ) 
-				{
-					case TB_OPEN :
-						bc++;
-						p = ++px;
-						break;
+		switch( *px ) {
+			case TB_OPEN :
+				bc++;
+				p = ++px;
+				break;
 					
-					case TB_CLOSE :
-						bc--;
-						p = ++px;
-						break;
+			case TB_CLOSE :
+				bc--;
+				p = ++px;
+				break;
 
-					case '"' :
-						p = skipString( px );
-						break;
-				}
+			case '"' :
+				p = skipString( px );
+				break;
 		}
+	}
 
 	return( p );
 }
@@ -1160,33 +1119,32 @@ const char *SerializeObject::readFieldData( Object *o , const char *p , ObjectFi
 	FieldData& v = *( FieldData * )data;
 
 	SerializeObject *soSrc = NULL;
-	switch( field -> getBaseType() )
-		{
-			case TP_CHAR :
-				p = readChar( p , &v.charV );
-				break;
+	switch( field -> getBaseType() ) {
+		case TP_CHAR :
+			p = readChar( p , &v.charV );
+			break;
 
-			case TP_INT :
-				p = readInt( p , &v.intV );
-				break;
+		case TP_INT :
+			p = readInt( p , &v.intV );
+			break;
 
-			case TP_FLOAT :
-				p = readFloat( p , &v.floatV );
-				break;
+		case TP_FLOAT :
+			p = readFloat( p , &v.floatV );
+			break;
 
-			case TP_STRING :
-				p = readString( p , true , &v.stringV , NULL );
-				break;
+		case TP_STRING :
+			p = readString( p , true , &v.stringV , NULL );
+			break;
 
-			case TP_OBJECT :
-				if( fieldSrc != NULL )
-					soSrc = fieldSrc -> getFieldSerializeObject();
-				p = readObject( o , p , &v.objectV , field -> getFieldSerializeObject() , soSrc );
-				break;
+		case TP_OBJECT :
+			if( fieldSrc != NULL )
+				soSrc = fieldSrc -> getFieldSerializeObject();
+			p = readObject( o , p , &v.objectV , field -> getFieldSerializeObject() , soSrc );
+			break;
 
-			default :
-				throw RuntimeError( "SerializeObject::readFieldData: unknown datatype" );
-		}
+		default :
+			throw RuntimeError( "SerializeObject::readFieldData: unknown datatype" );
+	}
 
 	return( p );
 }
@@ -1201,16 +1159,15 @@ const char *SerializeObject::readInt( const char *p , int *p_v )
 	char *s = l_buf;
 	char c;
 	int n = 0;
-	while( c = *p )
-		{
-			if( n == 11 )
-				throw RuntimeError( "SerializeObject::readInt: too long for int data" );
+	while( c = *p ) {
+		if( n == 11 )
+			throw RuntimeError( "SerializeObject::readInt: too long for int data" );
 
-			if( isdigit( c ) || c == '-' )
-				n++ , *s++ = *p++;
-			else
-				break;
-		}
+		if( isdigit( c ) || c == '-' )
+			n++ , *s++ = *p++;
+		else
+			break;
+	}
 	if( c == 0 )
 		throw RuntimeError( "SerializeObject::readInt: unexpected end of String" );
 	
@@ -1232,16 +1189,15 @@ const char *SerializeObject::readFloat( const char *p , float *p_v )
 	char *s = l_buf;
 	char c;
 	int n = 0;
-	while( c = *p )
-		{
-			if( n == 63 )
-				throw RuntimeError( "SerializeObject::readFloat: too long for float data" );
+	while( c = *p ) {
+		if( n == 63 )
+			throw RuntimeError( "SerializeObject::readFloat: too long for float data" );
 
-			if( isdigit( c ) || c == '-' || c == '.' )
-				n++ , *s++ = *p++;
-			else
-				break;
-		}
+		if( isdigit( c ) || c == '-' || c == '.' )
+			n++ , *s++ = *p++;
+		else
+			break;
+	}
 	if( c == 0 )
 		throw RuntimeError( "SerializeObject::readFloat: unexpected end of String" );
 	
@@ -1270,40 +1226,38 @@ const char *SerializeObject::readFieldDataList( Object *o , const char *p , Obje
 	int n = *pn = readListCount( p );
 	
 	// empty list
-	if( n == 0 )
-		{
-			p = skipSpaces( p );
-			if( *p++ != TB_CLOSE )
-				throw RuntimeError( "SerializeObject::readFieldDataList: no stop block mark" );
-			return( p );
-		}
+	if( n == 0 ) {
+		p = skipSpaces( p );
+		if( *p++ != TB_CLOSE )
+			throw RuntimeError( "SerializeObject::readFieldDataList: no stop block mark" );
+		return( p );
+	}
 
 	// allocate list memory
 	char *charData;
-	switch( field -> getBaseType() )
-		{
-			case TP_CHAR :
-				throw RuntimeError( "SerializeObject::readFieldDataList: wrong datatype - char list" );
-			case TP_INT :
-				v.intVL = ( int * )calloc( n , sizeof( int ) );
-				break;
+	switch( field -> getBaseType() ) {
+		case TP_CHAR :
+			throw RuntimeError( "SerializeObject::readFieldDataList: wrong datatype - char list" );
+		case TP_INT :
+			v.intVL = ( int * )calloc( n , sizeof( int ) );
+			break;
 
-			case TP_FLOAT :
-				v.floatVL = ( float * )calloc( n , sizeof( float ) );
-				break;
+		case TP_FLOAT :
+			v.floatVL = ( float * )calloc( n , sizeof( float ) );
+			break;
 
-			case TP_STRING :
-				v.stringVL = ( char ** )calloc( 1 , sizeof( const char * ) * n + size );
-				charData = ( char * )( v.stringVL + n );
-				break;
+		case TP_STRING :
+			v.stringVL = ( char ** )calloc( 1 , sizeof( const char * ) * n + size );
+			charData = ( char * )( v.stringVL + n );
+			break;
 
-			case TP_OBJECT :
-				v.objectVL = new ClassList<Object>;
-				v.objectVL -> allocate( n );
+		case TP_OBJECT :
+			v.objectVL = new ClassList<Object>;
+			v.objectVL -> allocate( n );
 
-				// set field later - when filled
-				break;
-		}
+			// set field later - when filled
+			break;
+	}
 
 	// save ptr
 	FieldData vw;
@@ -1312,41 +1266,39 @@ const char *SerializeObject::readFieldDataList( Object *o , const char *p , Obje
 	// read data
 	Object *objectData;
 	SerializeObject *soSrc = NULL;
-	for( int k = 0; k < n; k++ )
-		{
-			switch( field -> getBaseType() )
-				{
-					case TP_CHAR :
-						throw RuntimeError( "SerializeObject::readFieldDataList: wrong datatype - char list" );
-					case TP_INT :
-						p = readInt( p , vw.intVL++ );
-						break;
+	for( int k = 0; k < n; k++ ) {
+		switch( field -> getBaseType() ) {
+			case TP_CHAR :
+				throw RuntimeError( "SerializeObject::readFieldDataList: wrong datatype - char list" );
+			case TP_INT :
+				p = readInt( p , vw.intVL++ );
+				break;
 
-					case TP_FLOAT :
-						p = readFloat( p , vw.floatVL++ );
-						break;
+			case TP_FLOAT :
+				p = readFloat( p , vw.floatVL++ );
+				break;
 
-					case TP_STRING :
-						*vw.stringVL++ = charData;
-						p = readString( p , false , NULL , charData );
-						charData += strlen( charData ) + 1;
-						break;
+			case TP_STRING :
+				*vw.stringVL++ = charData;
+				p = readString( p , false , NULL , charData );
+				charData += strlen( charData ) + 1;
+				break;
 
-					case TP_OBJECT :
-						if( fieldSrc != NULL )
-							soSrc = fieldSrc -> getFieldSerializeObject();
-						p = readObject( o , p , &objectData , field -> getFieldSerializeObject() , soSrc );
-						vw.objectVL -> add( objectData );
-						break;
-				}
-
-			bool endOfList = false;
-			p = skipListDelimiter( p , &endOfList );
-
-			if( !endOfList )
-				if( k == ( n - 1 ) )
-					throw RuntimeError( "SerializeObject::readFieldDataList: no end of list after last item" );
+			case TP_OBJECT :
+				if( fieldSrc != NULL )
+					soSrc = fieldSrc -> getFieldSerializeObject();
+				p = readObject( o , p , &objectData , field -> getFieldSerializeObject() , soSrc );
+				vw.objectVL -> add( objectData );
+				break;
 		}
+
+		bool endOfList = false;
+		p = skipListDelimiter( p , &endOfList );
+
+		if( !endOfList )
+			if( k == ( n - 1 ) )
+				throw RuntimeError( "SerializeObject::readFieldDataList: no end of list after last item" );
+	}
 
 	// check list terminator
 	if( *p++ != TB_CLOSE )
@@ -1362,17 +1314,16 @@ const char *SerializeObject::readObject( Object *parent , const char *p , Object
 	p = SerializeObject::readFromString( p , so , soSrc , pv );
 	
 	Object *o = *pv;
-	if( o != NULL )
-		{
-			// set effective class by default
-			if( so != NULL )
-				so -> setEffectiveObjectClass( o -> getClass() );
-			else
-				so = o -> getSerializeObject();
+	if( o != NULL ) {
+		// set effective class by default
+		if( so != NULL )
+			so -> setEffectiveObjectClass( o -> getClass() );
+		else
+			so = o -> getSerializeObject();
 
-			// read data
-			Object::deserialize( parent , o , *so );
-		}
+		// read data
+		Object::deserialize( parent , o , *so );
+	}
 
 	return( p );
 }
@@ -1382,20 +1333,17 @@ void SerializeObject::addStringEscaped( String& s , const char *p )
 	int x;
 	s += '"';
 
-	while( *p )
-		{
-			x = strcspn( p , "\\\"" );
-			if( x > 0 )
-				{
-					s.append( p , x );
-					p += x;
-				}
-			else
-				{
-					s += '\\';
-					s += *p++;
-				}
+	while( *p ) {
+		x = strcspn( p , "\\\"" );
+		if( x > 0 ) {
+			s.append( p , x );
+			p += x;
 		}
+		else {
+			s += '\\';
+			s += *p++;
+		}
+	}
 
 	s += '"';
 }
@@ -1412,16 +1360,15 @@ int SerializeObject::readListCount( const char *p )
 		return( 0 );
 
 	int n = 0;
-	while( *p )
-		{
-			p = skipFieldData( p );
-			n++;
+	while( *p ) {
+		p = skipFieldData( p );
+		n++;
 
-			bool endOfList = false;
-			p = skipListDelimiter( p , &endOfList );
-			if( endOfList )
-				return( n );
-		}
+		bool endOfList = false;
+		p = skipListDelimiter( p , &endOfList );
+		if( endOfList )
+			return( n );
+	}
 
 	throw RuntimeError( "SerializeObject::readListCount: no list stop mark" );
 }
@@ -1474,14 +1421,13 @@ void SerializeObject::deserialize( Object *parent , SerializeObject& so )
 	// rebuild maps
 	rfc_map_ptrclear( mapIdToField );
 	rfc_map_strclear( mapNameToField );
-	for( int k = 0; k < fieldList.count(); k++ )
-		{
-			ObjectField *field = fieldList.get( k );
-			field -> attach( this );
+	for( int k = 0; k < fieldList.count(); k++ ) {
+		ObjectField *field = fieldList.get( k );
+		field -> attach( this );
 
-			rfc_map_stradd( mapNameToField , field -> getName() , ( void * )field );
-			rfc_map_ptradd( mapIdToField , ( void * )field -> getId() , ( unsigned long )field );
-		}
+		rfc_map_stradd( mapNameToField , field -> getName() , ( void * )field );
+		rfc_map_ptradd( mapIdToField , ( void * )field -> getId() , ( unsigned long )field );
+	}
 }
 
 String SerializeObject::getPK()
@@ -1511,23 +1457,21 @@ const char *SerializeObject::readChar( const char *p , char *p_v )
 
 	// check escaped
 	char c = *p++;
-	if( c == '\\' )
-		{
-			c = *p++;
-			if( c == 0 )
-				throw RuntimeError( "SerializeObject::readChar: zero char found in data" );
-		}
+	if( c == '\\' ) {
+		c = *p++;
+		if( c == 0 )
+			throw RuntimeError( "SerializeObject::readChar: zero char found in data" );
+	}
 	*p_v = c;
 	return( p );
 }
 
 void SerializeObject::clearData()
 {
-	for( int k = 0; k < fieldList.count(); k++ )
-		{
-			ObjectField *f = fieldList.get( k );
-			f -> clearData();
-		}
+	for( int k = 0; k < fieldList.count(); k++ ) {
+		ObjectField *f = fieldList.get( k );
+		f -> clearData();
+	}
 }
 
 const char *SerializeObject::getEffectiveObjectClass()

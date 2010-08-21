@@ -38,15 +38,11 @@ public:
 	// mind areas
 	virtual void addMindArea( String areaId , MindArea *area );
 	virtual MindArea *getMindArea( String areaId );
-	void allocateArea( MindArea *area , int size );
 	  
-	// mind area links
-	MindLink *createMindLink( MindLinkInfo *linkInfo , MindArea *masterArea , MindArea *slaveArea );
-
 	// cortex
 	virtual Cortex *getCortex( String cortexId );
-	virtual Cortex *createCortex( MindArea *area , String netType , int size , int inputs , int outputs );
-	virtual void addHardcodedCortex( MindArea *area , Cortex *cortex );
+	virtual Cortex *createCortex( MindArea *area , BrainLocation& relativeLocation , String netType , int inputs , int outputs );
+	virtual void addHardcodedCortex( MindArea *area , BrainLocation& relativeLocation , Cortex *cortex );
 
 	// mind map
 	MindMap *getMindMap() {
@@ -54,6 +50,8 @@ public:
 	}
 
 private:
+	MindLink *createMindLink( MindLinkInfo *linkInfo , MindArea *masterArea , MindArea *slaveArea );
+
 	// structure lock
 	void lock() {
 		rfc_hnd_semlock( lockStructure );
@@ -99,10 +97,10 @@ public:
 	String getAreaId() {
 		return( areaId );
 	};
+	const BrainLocation& getLocation() { return( location ); };
 	const ClassList<MindLinkInfo>& getLinks() {
 		return( links );
 	};
-	void allocate( int size );
 	void addLink( MindLinkInfo *link ) {
 		links.add( link );
 	}
@@ -117,10 +115,11 @@ public:
 
 private:
 	String areaId;
+	BrainLocation location;
+
 	ClassList<MindLinkInfo> links;
 	RFC_HND lockStructure;
 	int size;
-	int sizeNotAllocated;
 };
 
 /*#########################################################################*/
@@ -237,7 +236,7 @@ public:
 	void setSecondsPerCycle( int p_secondsPerCycle ) { 
 		secondsPerCycle = p_secondsPerCycle; 
 	};
-	void setMaxLoad( float p_maxLoad ) { maxLoad = p_maxLoad; };
+	void setMaxLoad( float p_maxLoad ) { maxCPULoad = p_maxLoad; };
 
 // operations
 public:
@@ -268,7 +267,8 @@ private:
 	int msPerOperation;
 	int secondsPerCycle;
 	int reportGroup;
-	float maxLoad;
+	float lastCPULoad;
+	float maxCPULoad;
 
 	// control
 	bool suspendSignal;
@@ -286,8 +286,7 @@ private:
 	int nLastOperations;
 	float ratioExecutionByOperation;
 
-	RFC_INT64 idle , user , kernel;
-	RFC_INT64 didle , duser , dkernel;
+	CPULOADINFO cpuload;
 	int ticksPerOperationLastFactor;
 	bool ticksPerOperationLastIncrease;
 };

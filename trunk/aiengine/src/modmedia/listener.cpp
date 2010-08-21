@@ -44,11 +44,10 @@ void Listener::addListenerConnection( Connection *connection )
 
 void Listener::stopListenerConnections()
 {
-	for( int k = 0; k < connections.count(); k++ )
-		{
-			Connection *connection = connections.getClassByIndex( k );
-			connection -> stopConnection();
-		}
+	for( int k = 0; k < connections.count(); k++ ) {
+		Connection *connection = connections.getClassByIndex( k );
+		connection -> stopConnection();
+	}
 }
 
 void Listener::destroyListenerConnection( Connection *connection )

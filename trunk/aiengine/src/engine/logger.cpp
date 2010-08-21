@@ -68,44 +68,42 @@ void Logger::printStack( rfc_threadstack *stack , int skipTop )
 
 	if( skipTop == 0 )
 		skipTop = stack -> extraLevels;
-	if( skipTop > 0 )
-		{
-			log( String( "\t...skipped..." ) , 0 , Logger::LogLevelInfo );
-			startItem -= skipTop;
-		}
+	if( skipTop > 0 ) {
+		log( String( "\t...skipped..." ) , 0 , Logger::LogLevelInfo );
+		startItem -= skipTop;
+	}
 
-	for( int k = startItem; k >= 0; k-- )
-		{
-			rfc_threadstacklevel *sl = rfc_thr_stacklevel( stack , k );
+	for( int k = startItem; k >= 0; k-- ) {
+		rfc_threadstacklevel *sl = rfc_thr_stacklevel( stack , k );
 
-			int mode = 0;
-			if( k == 0 )
+		int mode = 0;
+		if( k == 0 )
+			mode = 2;
+
+		// extract short name
+		String moduleName = sl -> moduleName;
+		int from = moduleName.findLastAny( "/\\" );
+		int to = moduleName.findLast( '.' );
+
+		String moduleNameShort = moduleName;
+		if( from >= 0 && to >= 0 )
+			moduleNameShort = moduleNameShort.getMid( from + 1 , to - from - 1 );
+
+		log( String( "\t" ) + sl -> className + 
+			"::" + sl -> functionName + 
+			" (" + moduleNameShort + 
+			", " + sl -> message + ")" , mode , Logger::LogLevelInfo );
+
+		// stop after main function
+		String functionName = sl -> functionName;
+		if( k > 0 )
+			if( strcmp( functionName , "_main" ) == 0 ||
+				strcmp( functionName , "threadMainFunction" ) == 0 ) {
 				mode = 2;
-
-			// extract short name
-			String moduleName = sl -> moduleName;
-			int from = moduleName.findLastAny( "/\\" );
-			int to = moduleName.findLast( '.' );
-
-			String moduleNameShort = moduleName;
-			if( from >= 0 && to >= 0 )
-				moduleNameShort = moduleNameShort.getMid( from + 1 , to - from - 1 );
-
-			log( String( "\t" ) + sl -> className + 
-				"::" + sl -> functionName + 
-				" (" + moduleNameShort + 
-				", " + sl -> message + ")" , mode , Logger::LogLevelInfo );
-
-			// stop after main function
-			String functionName = sl -> functionName;
-			if( k > 0 )
-				if( strcmp( functionName , "_main" ) == 0 ||
-					strcmp( functionName , "threadMainFunction" ) == 0 ) {
-					mode = 2;
-					log( "\t...skipped..." , mode , Logger::LogLevelInfo );
-					break;
-				}
-		}
+				log( "\t...skipped..." , mode , Logger::LogLevelInfo );
+				break;
+			}
+	}
 }
 
 // log calls
@@ -173,37 +171,32 @@ void Logger::log( const char *s , int mode , Logger::LogLevel p_logLevel )
 	EngineThreadHelper *logTail = EngineThreadHelper::getThreadObject();
 
 	LogManager *logManager = engine.getLogManager();
-	if( logTail == NULL )
-		{
-			logManager -> add( &s , 1 , p_logLevel , getPostfix() );
-			return;
-		}
+	if( logTail == NULL ) {
+		logManager -> add( &s , 1 , p_logLevel , getPostfix() );
+		return;
+	}
 	
 	// release old
 	String& w = logTail -> lastMsg;
 	if( logTail -> remains )
-		{
-			if( mode == 1 || mode < 0 )
-				{
-					const char *p = logTail -> lastMsg;
-					logManager -> add( &p , 1 , p_logLevel , getPostfix() );
+		if( mode == 1 || mode < 0 ) {
+			const char *p = logTail -> lastMsg;
+			logManager -> add( &p , 1 , p_logLevel , getPostfix() );
 
-					logTail -> remains = false;
-					w.clear();
-				}
+			logTail -> remains = false;
+			w.clear();
 		}
 
 	w += s;
 	if( mode ==	0 || mode == 1 )
 		w += "\n";
 
-	if( mode == 2 || mode < 0 )
-		{
-			const char *p = w;
-			logManager -> add( &p , 1 , p_logLevel , getPostfix() );
-			logTail -> remains = false;
-			w.clear();
-		}
+	if( mode == 2 || mode < 0 ) {
+		const char *p = w;
+		logManager -> add( &p , 1 , p_logLevel , getPostfix() );
+		logTail -> remains = false;
+		w.clear();
+	}
 	else
 		logTail -> remains = true;
 }

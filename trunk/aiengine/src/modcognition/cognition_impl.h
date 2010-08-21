@@ -11,6 +11,11 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
+class NeoCortexSensorsSubscriber;
+
+/*#########################################################################*/
+/*#########################################################################*/
+
 // derives knowledge from io, activates mind
 class AICognitionImpl : public AICognition , public Service
 {
@@ -32,6 +37,21 @@ private:
 // internals
 private:
 	AIEngine& engine;
+};
+
+// #############################################################################
+// #############################################################################
+
+class NeoCortexSensorsSubscriber : public Object , public Subscriber
+{
+public:
+	NeoCortexSensorsSubscriber() {};
+
+	const char *getClass() { return( "NeoCortexSensorsSubscriber" ); };
+
+public:
+	// subscriber events
+	virtual void onMessage( Message *msg );
 };
 
 // #############################################################################

@@ -2,7 +2,7 @@
 	<!-- service configuration -->
 
 	<services>
-		<service name="Media" run="false">
+		<service name="Media" run="true">
 			<property name="file" value="media.xml"/>
 		</service>
 		<service name="IO">
@@ -44,7 +44,7 @@
 		<property name="filename" value="log\main.log"/>
 		<property name="format" value="log: %"/>
 		
-		<objectLogLevel level="DEBUG">
+		<objectLogLevel level="INFO">
 			<class name="NNFinderFactory" level="DEBUG"/>
 			<class name="NNFinder" level="DEBUG"/>
 			<class name="NNStrategyBackPropagation" level="DEBUG">
@@ -52,10 +52,10 @@
 			</class>
 		</objectLogLevel>
 
-		<serviceLogLevel level="DEBUG">
+		<serviceLogLevel level="INFO">
 		</serviceLogLevel>
 
-		<customLogLevel level="DEBUG">
+		<customLogLevel level="INFO">
 			<class name="SocketServer::debug" level="ERROR"/>
 			<class name="SocketServer::chat" level="ERROR"/>
 			<class name="SocketConnection" level="ERROR"/>
