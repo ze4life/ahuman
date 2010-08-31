@@ -28,19 +28,25 @@ Uncertain:
 Certain:
   * sensor stream has neural representation
   * sensor stream item is represented by vector of variables
-  * each vector variable corresponds to specific sensor neuron
-  * sensor neuron can have multiple connections to neocortex networks
   * sensor stream item is represented by sequence of vectors
   * sequence can be of different length depending on focus
-  * one variable represents the same external properties for the same resolution
 
 Uncertain:
   * sensor stream is stateless - every sensor item is derived only from one external item
-  * vector variable is float
   * vector has the same number of variables for all sensor stream items
-  * each variable does not have fixed semantics 
-  * one variable can represent different external properties for different resolutions
- 
+  * vector variable is float
+
+== Sensor neuron ==
+
+Certain:
+  * each vector variable corresponds to specific sensor neuron
+  * sensor neuron can have multiple connections to neocortex networks
+  * one sensor neuron represents the same external properties for the same resolution
+
+Uncertain:
+  * sensor neuron does not have fixed semantic
+  * one sensor neuron can represent different external properties for different resolutions
+
 == Finally for the project purposes ==
 
   * conscious capture by event
