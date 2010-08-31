@@ -1,0 +1,32 @@
+#summary Converting specific external stream to neural stream
+
+@@[Home] -> [SensorsResearch] -> [SensorsDigital2NeuralTransformation]
+----
+
+== Capture events ==
+
+Certain:
+  * conscious capture is performed by event
+  * event is either control change command or spotted changes in external properties
+  * conscious capture depends on capture resolution and capture area
+
+Uncertain:
+  * sensor has unconscious ongoing capture with constant low resolution but wide area
+  * sensor can generate either full set of properties or only delta to previous transfer
+
+== External stream ==
+
+Certain:
+  * set of events produce external stream
+  * one external stream item is transformed into zero, one or more sensor stream item
+  * sensor stream has neural representation - item is represented by vector of floats
+  * external item can be ignored if sensor stream is not consumed in time
+
+Uncertain:
+  * sensor stream is stateless - every sensor item is derived only from one external item
+
+Finally for the project purposes:
+  * conscious capture by event
+  * full property set transfer
+  * throtteling of externall stream
+  * external stream item if represented by sequence
