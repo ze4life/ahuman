@@ -30,11 +30,16 @@ Certain:
   * sensor stream item is represented by vector of variables
   * sensor stream item is represented by sequence of vectors
   * sequence can be of different length depending on focus
+  * width is the number of vector variables
+  * all items of one sequence have the same width - sequence width
 
 Uncertain:
-  * sensor stream is stateless - every sensor item is derived only from one external item
-  * vector has the same number of variables for all sensor stream items
   * vector variable is float
+  * sensor stream is stateless - every sensor item is derived only from one external item
+  * different sequences can have different width
+  * sequence has energy which is proportional to sequence width and length
+  * sequence energy is external stream item energy multiplied by energy amplifier
+  * energy amplifier factor is part of focus conrol state
 
 == Sensor neuron ==
 
@@ -52,4 +57,5 @@ Uncertain:
   * conscious capture by event
   * full property set transfer
   * throtteling of externall stream
-  * external stream item if represented by sequence
+  * external stream item is represented by variable-length sequence of sensor stream items
+  * float variables
