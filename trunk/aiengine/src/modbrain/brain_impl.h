@@ -314,6 +314,7 @@ public:
 private:
 	ClassList<ActiveMemoryThread> threads;
 
+	bool runEnabled;
 	int nThreads;
 	int secondsPerCycle;
 	int operationsPerSecond;

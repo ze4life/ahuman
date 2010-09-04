@@ -2,6 +2,7 @@
 
 ActiveMemoryThreadPool::ActiveMemoryThreadPool()
 {
+	runEnabled = false;
 }
 
 ActiveMemoryThreadPool::~ActiveMemoryThreadPool()
@@ -11,6 +12,7 @@ ActiveMemoryThreadPool::~ActiveMemoryThreadPool()
 
 void ActiveMemoryThreadPool::configure( Xml config )
 {
+	runEnabled = config.getBooleanProperty( "run" );
 	nThreads = config.getIntProperty( "threadCount" );
 	operationsPerSecond = config.getIntProperty( "operationsPerSecond" );
 	secondsPerCycle = config.getIntProperty( "secondsPerCycle" );
@@ -19,11 +21,14 @@ void ActiveMemoryThreadPool::configure( Xml config )
 
 void ActiveMemoryThreadPool::create( ClassList<ActiveMemoryObject>& objects )
 {
+	if( !runEnabled )
+		return;
+
 	int nObjects = objects.count();
 	if( nThreads > nObjects )
 		nThreads = nObjects;
 
-	ASSERTMSG( nThreads > 1 , "nThreads is invalid" );
+	ASSERTMSG( nThreads >= 1 , "nThreads is invalid" );
 
 	int nWhole = nObjects / nThreads;
 	int nPart = nObjects % nThreads;

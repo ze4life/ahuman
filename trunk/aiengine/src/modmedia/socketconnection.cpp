@@ -13,6 +13,7 @@ SocketConnection::SocketConnection( SocketServer *p_server , SOCKET p_clientSock
 	socket = p_clientSocket;
 	memcpy( &addr , p_clientAddress , sizeof( struct sockaddr_in ) );
 
+	thread = NULL;
 	threadStarted = false;
 	connected = false;
 	logout = false;
@@ -43,7 +44,7 @@ void SocketConnection::threadClientFunction( void *p_arg )
 	readMessages();
 
 	Listener *listener = getListener();
-	listener -> destroyListenerConnection( this );
+	listener -> removeListenerConnection( this );
 
 	// cleanup sockets
 	WSACleanup();
@@ -77,7 +78,7 @@ bool SocketConnection::startConnection()
 	// start reading thread
 	if( server -> getWayIn() || server -> getAuth() )
 		{
-			engine.runThread( Connection::getName() , this , ( ObjectThreadFunction )&SocketConnection::threadClientFunction , NULL );
+			thread = engine.runThread( Connection::getName() , this , ( ObjectThreadFunction )&SocketConnection::threadClientFunction , NULL );
 			threadStarted = true;
 		}
 

@@ -28,6 +28,7 @@ template<class T> class VectorMap;
 template<class TA, class TC> class Sort;
 class MapStringToInt;
 class MapStringToString;
+class StringList;
 
 // #############################################################################
 // #############################################################################
@@ -61,6 +62,7 @@ public:
 	int length() const;
 	bool isEmpty() const;
 
+	int find( const char *substring );
 	int findLastAny( const char *chars );
 	int findLast( char c );
 	String getMid( int from , int n );
@@ -1304,6 +1306,54 @@ public:
 			
 private:
 	rfc_strmap *mapData;
+};
+
+// #############################################################################
+// #############################################################################
+
+extern "C" static int lstcompareStringListAscend( void *p_userdata , const RFC_TYPE *p_e1 , const RFC_TYPE *p_e2 );
+extern "C" static int lstcompareStringListDescend( void *p_userdata , const RFC_TYPE *p_e1 , const RFC_TYPE *p_e2 );
+
+class StringList {
+public:
+	StringList() {
+		data = rfc_lst_create( RFC_EXT_TYPESTRING );
+	};
+	~StringList() {
+		rfc_lst_destroy( data );
+	};
+
+	int add( const char *value ) {
+		RFC_TYPE v;
+		v.u_c = value;
+		int index = rfc_lst_add( data , &v );
+		return( index );
+	}
+	int count() {
+		return( data -> s_n );
+	}
+	String get( int index ) {
+		ASSERT( index >= 0 && index < data -> s_n );
+		return( rfc_lst_get( data , index ) -> u_c );
+	}
+	void set( int index , const char *value ) {
+		ASSERT( index >= 0 && index < data -> s_n );
+		RFC_TYPE v;
+		v.u_c = value;
+		rfc_lst_replace( data , index , &v );
+	}
+	int find( String file ) {
+		for( int k = 0; k < data -> s_n; k++ )
+			if( file.equals( data -> s_p[ k ].u_c ) )
+				return( k );
+		return( -1 );
+	}
+
+	void sort() {
+		rfc_lst_sort( data , NULL , NULL );
+	}
+
+	rfc_list *data;
 };
 
 // #############################################################################

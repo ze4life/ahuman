@@ -6,28 +6,24 @@
 
 // class Logger
 // construction
-Logger::Logger()
-{
+Logger::Logger() {
 	o = NULL;
 	s = NULL;
 	loggerName = NULL;
 	settings = NULL;
 }
 
-Logger::~Logger()
-{
+Logger::~Logger() {
 }
 
-void Logger::attachRoot()
-{
+void Logger::attachRoot() {
 	loggerName = ".";
 
 	LogManager *logManager = AIEngine::getInstance().getLogManager();
 	settings = logManager -> getDefaultSettings();
 }
 
-void Logger::attach( Service *p_s )
-{
+void Logger::attach( Service *p_s ) {
 	loggerName = p_s -> getName();
 	s = p_s;
 
@@ -35,8 +31,7 @@ void Logger::attach( Service *p_s )
 	settings = logManager -> getServiceLogSettings( p_s );
 }
 
-void Logger::attach( Object *p_o )
-{
+void Logger::attach( Object *p_o ) {
 	loggerName = p_o -> getClass();
 	o = p_o;
 
@@ -44,24 +39,31 @@ void Logger::attach( Object *p_o )
 	settings = logManager -> getObjectLogSettings( p_o );
 }
 
-void Logger::attach( const char *p_loggerName )
-{
-	loggerName = p_loggerName;
-
+void Logger::attach( const char *p_loggerName ) {
 	LogManager *logManager = AIEngine::getInstance().getLogManager();
-	settings = logManager -> getCustomLogSettings( loggerName );
+
+	// attach custom only if set
+	LogSettingsItem *settingsNew = logManager -> getCustomLogSettings( p_loggerName );
+	if( settingsNew == NULL ) {
+		// set to default if none currently
+		if( settings == NULL ) {
+			settingsNew = logManager -> getCustomDefaultLogSettings();
+		}
+		return;
+	}
+
+	loggerName = p_loggerName;
+	settings = settingsNew;
 }
 
 // stack
-void Logger::printStack()
-{
+void Logger::printStack() {
 	rfc_threadstack *stack = rfc_thr_stackget( 1 );
 	printStack( stack , 0 );
 	rfc_thr_stackfree( stack );
 }
 
-void Logger::printStack( rfc_threadstack *stack , int skipTop )
-{
+void Logger::printStack( rfc_threadstack *stack , int skipTop ) {
 	int startItem = rfc_thr_stackfulldepth( stack ) - 1;
 
 	log( String( "CALL STACK:" ) , 1 , Logger::LogLevelInfo );
@@ -107,8 +109,7 @@ void Logger::printStack( rfc_threadstack *stack , int skipTop )
 }
 
 // log calls
-void Logger::logInfo( const char *s , int mode )
-{
+void Logger::logInfo( const char *s , int mode ) {
 	if( settings == NULL )
 		attachRoot(); 
 	if( settings -> logDisabled( Logger::LogLevelInfo ) )
@@ -117,8 +118,7 @@ void Logger::logInfo( const char *s , int mode )
 	log( s , mode , Logger::LogLevelInfo );
 }
 
-void Logger::logError( const char *s , int mode )
-{
+void Logger::logError( const char *s , int mode ) {
 	if( settings == NULL )
 		attachRoot(); 
 	if( settings -> logDisabled( Logger::LogLevelError ) )
@@ -127,8 +127,7 @@ void Logger::logError( const char *s , int mode )
 	log( s , mode , Logger::LogLevelError );
 }
 
-void Logger::logDebug( const char *s , int mode )
-{
+void Logger::logDebug( const char *s , int mode ) {
 	if( settings == NULL )
 		attachRoot(); 
 	if( settings -> logDisabled( Logger::LogLevelDebug ) )
@@ -137,8 +136,7 @@ void Logger::logDebug( const char *s , int mode )
 	log( s , mode , Logger::LogLevelDebug );
 }
 
-void Logger::logObject( const char *prompt , Object *obj , Logger::LogLevel p_logLevel )
-{
+void Logger::logObject( const char *prompt , Object *obj , Logger::LogLevel p_logLevel ) {
 	if( settings == NULL )
 		attachRoot(); 
 	if( settings -> logDisabled( p_logLevel ) )
@@ -159,8 +157,7 @@ void Logger::logObject( const char *prompt , Object *obj , Logger::LogLevel p_lo
 	logManager -> add( lines , 2 , p_logLevel , getPostfix() );
 }
 
-void Logger::log( const char *s , int mode , Logger::LogLevel p_logLevel )
-{
+void Logger::log( const char *s , int mode , Logger::LogLevel p_logLevel ) {
 	// check needs to be excluded
 	if( settings == NULL )
 		attachRoot(); 
@@ -201,22 +198,19 @@ void Logger::log( const char *s , int mode , Logger::LogLevel p_logLevel )
 		logTail -> remains = true;
 }
 
-const char *Logger::getPostfix()
-{
+const char *Logger::getPostfix() {
 	if( loggerName != NULL )
 		return( loggerName );
 	return( NULL );
 }
 
-bool Logger::isLogAll()
-{
+bool Logger::isLogAll() {
 	if( settings == NULL )
 		attachRoot(); 
 	return( settings -> getLevel() == LogLevelDebug );
 }
 
-Xml Logger::getLogSettings()
-{
+Xml Logger::getLogSettings() {
 	if( settings == NULL )
 		attachRoot(); 
 	return( settings -> getXml() );

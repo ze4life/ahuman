@@ -11,8 +11,7 @@ RFC_HND LogManager::stopEvent = NULL;
 // #############################################################################
 // #############################################################################
 
-LogManager::LogManager()
-{
+LogManager::LogManager() {
 	engine = NULL;
 	logFileStream = NULL;
 	lock = rfc_hnd_semcreate();
@@ -34,8 +33,7 @@ LogManager::LogManager()
 	startAdd = startGet = 0;
 }
 
-LogManager::~LogManager()
-{
+LogManager::~LogManager() {
 	// check no filled data
 	ASSERT( n2f == 0 && n4f == 0 && n5f == 0 );
 
@@ -46,35 +44,33 @@ LogManager::~LogManager()
 	rfc_hnd_evdestroy( stopEvent );
 }
 
-void LogManager::configure( Xml config )
-{
+void LogManager::configure( Xml config ) {
 	logSettings.load( config );
 	syncModeConfigured = logSettings.getSyncMode();
 }
 
-LogSettingsItem *LogManager::getDefaultSettings()
-{
+LogSettingsItem *LogManager::getDefaultSettings() {
 	return( logSettings.getDefaultSettings() );
 }
 
-LogSettingsItem *LogManager::getObjectLogSettings( Object *o )
-{
+LogSettingsItem *LogManager::getObjectLogSettings( Object *o ) {
 	return( logSettings.getObjectSettings( o -> getClass() , o -> getInstance() ) );
 }
 
-LogSettingsItem  *LogManager::getServiceLogSettings( Service *s )
-{
+LogSettingsItem  *LogManager::getServiceLogSettings( Service *s ) {
 	return( logSettings.getServiceSettings( s -> getName() ) );
 }
 
-LogSettingsItem *LogManager::getCustomLogSettings( const char *loggerName )
-{
+LogSettingsItem *LogManager::getCustomLogSettings( const char *loggerName ) {
 	return( logSettings.getCustomSettings( loggerName ) );
 }
 
+LogSettingsItem *LogManager::getCustomDefaultLogSettings() {
+	return( logSettings.getCustomDefaultSettings() );
+}
+
 // sync/async mode
-void LogManager::setSyncMode( bool p_syncMode )
-{
+void LogManager::setSyncMode( bool p_syncMode ) {
 	if( syncMode == p_syncMode )
 		return;
 
@@ -89,18 +85,15 @@ void LogManager::setSyncMode( bool p_syncMode )
 	}
 }
 
-bool LogManager::getSyncMode()
-{
+bool LogManager::getSyncMode() {
 	return( syncMode );
 }
 
-bool LogManager::getConfiguredSyncMode()
-{
+bool LogManager::getConfiguredSyncMode() {
 	return( syncModeConfigured );
 }
 
-bool LogManager::start()
-{
+bool LogManager::start() {
 	String fileName = logSettings.getFileName();
 	engine = &AIEngine::getInstance();
 
@@ -120,19 +113,16 @@ bool LogManager::start()
 	return( true );
 }
 
-void LogManager::stopAsync()
-{
+void LogManager::stopAsync() {
 	setSyncMode( true );
 }
 
-void LogManager::stop()
-{
+void LogManager::stop() {
 	stopAsync();
 	stopAll = true;
 }
 
-void LogManager::run( void * )
-{
+void LogManager::run( void * ) {
 	rfc_hnd_evreset( stopEvent );
 
 	try {
@@ -156,8 +146,7 @@ void LogManager::run( void * )
 	rfc_hnd_evsignal( stopEvent );
 }
 
-void LogManager::output( LogRecord *p )
-{
+void LogManager::output( LogRecord *p ) {
 	struct tm lt;
 	localtime_s( &lt , ( const time_t * )&(p -> time) );
 
@@ -219,8 +208,7 @@ void LogManager::output( LogRecord *p )
 		fflush( logFileStream );
 }
 
-void LogManager::add( const char **chunkLines , int count , Logger::LogLevel p_logLevel , const char *postfix )
-{
+void LogManager::add( const char **chunkLines , int count , Logger::LogLevel p_logLevel , const char *postfix ) {
 	ASSERTMSG( stopAll == false , "Logging is closed" );
 
 	if( syncMode ) {
@@ -293,8 +281,7 @@ void LogManager::add( const char **chunkLines , int count , Logger::LogLevel p_l
 	rfc_hnd_semunlock( lock );
 }
 
-void LogManager::set( LogRecord *p , bool copy , const char **chunkLines , int count , Logger::LogLevel p_logLevel , const char *postfix )
-{
+void LogManager::set( LogRecord *p , bool copy , const char **chunkLines , int count , Logger::LogLevel p_logLevel , const char *postfix ) {
 	p -> count = count;
 
 	struct _timeb timebuffer;
@@ -331,8 +318,7 @@ void LogManager::set( LogRecord *p , bool copy , const char **chunkLines , int c
 	}
 }
 
-void LogManager::clear( LogRecord *p )
-{
+void LogManager::clear( LogRecord *p ) {
 	if( p -> count == 1 ) {
 		free( p -> strings.one );
 		p -> strings.one = NULL;
@@ -346,8 +332,7 @@ void LogManager::clear( LogRecord *p )
 	p -> count = 0;
 }
 
-bool LogManager::get( bool p_autolock )
-{
+bool LogManager::get( bool p_autolock ) {
 	// await data
 	while( 1 ) {
 		// only exclusive
@@ -448,8 +433,7 @@ bool LogManager::get( bool p_autolock )
 	return( true );
 }
 
-int LogManager::getLogRecordsPending()
-{
+int LogManager::getLogRecordsPending() {
 	rfc_hnd_semlock( lock );
 	int n = n2f + n4f + n5f;
 	rfc_hnd_semunlock( lock );

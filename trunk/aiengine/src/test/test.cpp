@@ -24,8 +24,9 @@ AITestPoolImpl::AITestPoolImpl()
 
 void AITestPoolImpl::createService() {
 	// create units
-	addTestUnit( TestUnit::createFannCustom() );
-	addTestUnit( TestUnit::createHtmViewCustom() );
+	addTestUnit( TestUnit::createFannCustomTest() );
+	addTestUnit( TestUnit::createHtmViewCustomTest() );
+	addTestUnit( TestUnit::createFileSysWalkerTest() );
 	
 	// log available commands
 	logger.logInfo( "AVAILABLE TEST METHODS:" );
@@ -80,17 +81,15 @@ void AITestPoolImpl::onXmlCall( XmlCall *msg ) {
 	String cn = call.getClassName();
 	String fn = call.getFunctionName();
 	String fnfull = cn + "::" + fn;
-	logger.logInfo( fnfull + " called in session " + call.getSession() -> getSessionId() );
+	logger.logInfo( fnfull + " test method called in session " + call.getSession() -> getSessionId() );
 
 	// find unit
 	TestUnit *unit = units.get( cn );
-	if( unit == NULL )
-		return;
+	ASSERTMSG( unit != NULL , "Unknown test unit=" + cn );
 		
 	// find method
 	TestMethod *method = unit -> getMethod( fnfull );
-	if( method == NULL )
-		return;
+	ASSERTMSG( method != NULL , "Unknown test unit method=" + fn );
 
 	try {
 		logger.logInfo( fnfull + " method found in test classes" );

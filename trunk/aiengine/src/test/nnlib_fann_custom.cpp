@@ -272,7 +272,7 @@ void testFinderFactory( XmlCall& call ) {
 /*#########################################################################*/
 /*#########################################################################*/
 
-TestUnit *TestUnit::createFannCustom() {
+TestUnit *TestUnit::createFannCustomTest() {
 	return( new TestFannCustom );
 }
 
