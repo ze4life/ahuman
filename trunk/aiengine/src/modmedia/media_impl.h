@@ -88,7 +88,7 @@ public:
 	String getName();
 
 	void addListenerConnection( Connection *connection );
-	void destroyListenerConnection( Connection *connection );
+	void removeListenerConnection( Connection *connection );
 	void stopListenerConnections();
 
 private:
@@ -175,9 +175,9 @@ private:
 
 	SOCKET socket;
 	struct sockaddr_in addr;
-	RFC_THREAD thread;
 	String message;
 
+	RFC_HND thread;
 	bool threadStarted;
 	bool continueRead;
 	bool connected;

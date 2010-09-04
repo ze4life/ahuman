@@ -100,7 +100,7 @@ void testViewPicture( XmlCall& call ) {
 /*#########################################################################*/
 /*#########################################################################*/
 
-TestUnit *TestUnit::createHtmViewCustom() {
+TestUnit *TestUnit::createHtmViewCustomTest() {
 	return( new TestHtmViewCustom );
 }
 

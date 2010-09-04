@@ -235,6 +235,17 @@ bool String::isEmpty() const
 	return( v == NULL || *v == 0 );
 }
 
+int String::find( const char *substring ) {
+	if( v == NULL || substring == NULL )
+		return( -1 );
+
+	char *ptr = strstr( v , substring );
+	if( ptr == NULL )
+		return( -1 );
+
+	return( ptr - v );
+}
+
 int String::findLastAny( const char *chars )
 {
 	if( v == NULL )

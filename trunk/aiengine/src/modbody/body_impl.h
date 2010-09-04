@@ -47,47 +47,102 @@ private:
 // effectors have senses with direct feedback from environment to action
 // does not have state persisted while AI is not running
 // created on AI start
-class Attractor : public Cortex
+class Sensor : public Cortex
 {
+	// every sensor should implement:
+	//		control state: capture area
+	//		control state: capture resolution
+	//		deliver captured properties from external world and transfer to sensordata IO channel according to control state
+	//		deriver exposed properties from control state and deliver them to external world
+	String name;
+
+	// auto-polling
 	bool pollState;
 	int pollNextMs;
 	int pollIntervalMs;
 
 // construction
 public:
-	Attractor( MindArea *area , int inputs , int outputs )
+	Sensor( String p_name , MindArea *area , int inputs , int outputs )
 	:	Cortex( area , inputs , outputs ) {
+		name = p_name;
 		pollState = false;
 		pollNextMs = 0;
 		pollIntervalMs = 0;
 	};
-	virtual ~Attractor() {};
+	virtual ~Sensor() {};
 
 	// sensors
-	static Attractor *createFileSysWalker( MindArea *area );
+	static Sensor *createFileSysWalker( MindArea *area );
 
 	// cortex overridables
-	virtual void onCortexRun() = 0;
+	virtual void onCortexRun() {
+		// inpus were updated
+		processSensorControl();
+	};
+
+	// sensor overridables
+	virtual void startSensor() = 0;
+	virtual void stopSensor() = 0;
+	virtual void processSensorControl() = 0;
+	virtual bool executeSensorControl() = 0;
+	virtual void produceSensorData() = 0;
 
 // operations
 public:
+	String getName() { return( name ); };
+
 	// poll setup
 	void setPollState( bool state ) { pollState = state; };
 	void setPollInterval( int intervalMs ) {
 		pollIntervalMs = intervalMs;
-	}
+	};
 
 	// poll state
 	bool getPollState() { return( pollState ); };
 	int getPollInterval( int timeNowMs ) {
 		return( pollNextMs - timeNowMs );
-	}
+	};
 
 	// do poll iteration
 	void runPoll() {
-		onCortexRun();
+		ASSERTMSG( pollState , "Unexpected" );
+
+		produceSensorData();
 		pollNextMs = Timer::timeNow() + pollIntervalMs;
-	}
+	};
+};
+
+class Sensors : public Object , public MindArea
+{
+	AIEngine& engine;
+	RFC_HND threadSensesTracker;
+	bool runSensesTracker;
+	MapStringToClass<Sensor> sensors;
+	BrainLocation coverLocation;
+
+// construction
+public:
+	Sensors();
+	const char *getClass() { return( "Sensors" ); };
+	static Sensors *getSensors();
+
+	Sensor *getSensor( String name );
+
+// MindArea events
+public:
+	virtual void onCreateArea();
+	virtual void onLoadArea();
+	virtual void onBrainStart();
+	virtual void onBrainStop();
+
+private:
+	void createSensors();
+	void addSensor( Sensor *att );
+
+	void startTracker();
+	void onRunSensesTracker( void *p_arg );
+	void pollIteration( int& sleepRemained );
 };
 
 #endif	// INCLUDE_AIBODY_IMPL_H

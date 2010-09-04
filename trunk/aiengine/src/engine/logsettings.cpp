@@ -5,19 +5,16 @@
 /*#########################################################################*/
 
 // class LogSettings : public Object
-LogSettings::LogSettings()
-{
+LogSettings::LogSettings() {
 }
 
-LogSettings::~LogSettings()
-{
+LogSettings::~LogSettings() {
 	objectData.destroy();
 	serviceData.destroy();
 	customData.destroy();
 }
 
-void LogSettings::load( Xml config )
-{
+void LogSettings::load( Xml config ) {
 	// read
 	syncMode = config.getBooleanProperty( "syncMode" );
 	logFile = config.getProperty( "filename" );
@@ -29,8 +26,7 @@ void LogSettings::load( Xml config )
 	readLevels( config , "customLogLevel" , customData , defaultCustomSettings );
 }
 
-void LogSettings::readLevels( Xml config , const char *listName , MapStringToClass<LogSettingsItem>& map , LogSettingsItem& p_defaultSettings )
-{
+void LogSettings::readLevels( Xml config , const char *listName , MapStringToClass<LogSettingsItem>& map , LogSettingsItem& p_defaultSettings ) {
 	map.destroy();
 
 	Xml list = config.getChildNode( listName );
@@ -50,13 +46,15 @@ void LogSettings::readLevels( Xml config , const char *listName , MapStringToCla
 	}
 }
 
-LogSettingsItem *LogSettings::getDefaultSettings()
-{
+LogSettingsItem *LogSettings::getDefaultSettings() {
 	return( &defaultSettings );
 }
 
-LogSettingsItem *LogSettings::getObjectSettings( const char *className , const char *instance )
-{
+LogSettingsItem *LogSettings::getCustomDefaultSettings() {
+	return( &defaultCustomSettings );
+}
+
+LogSettingsItem *LogSettings::getObjectSettings( const char *className , const char *instance ) {
 	// get class-based logger
 	LogSettingsItem *item = objectData.get( className );
 	if( item == NULL )
@@ -66,8 +64,7 @@ LogSettingsItem *LogSettings::getObjectSettings( const char *className , const c
 	return( item -> getSettings( instance ) );
 }
 
-LogSettingsItem *LogSettings::getServiceSettings( const char *className )
-{
+LogSettingsItem *LogSettings::getServiceSettings( const char *className ) {
 	// get class-based logger
 	LogSettingsItem *item = serviceData.get( className );
 	if( item == NULL )
@@ -77,28 +74,20 @@ LogSettingsItem *LogSettings::getServiceSettings( const char *className )
 	return( item );
 }
 
-LogSettingsItem *LogSettings::getCustomSettings( const char *loggerName )
-{
-	// get class-based logger
+LogSettingsItem *LogSettings::getCustomSettings( const char *loggerName ) {
+	// get class-based logger - do not use default
 	LogSettingsItem *item = customData.get( loggerName );
-	if( item == NULL )
-		return( &defaultCustomSettings );
-
-	// get object settings
 	return( item );
 }
 
-String LogSettings::getFileName()
-{
+String LogSettings::getFileName() {
 	return( logFile );
 }
 
-String LogSettings::getFormat()
-{
+String LogSettings::getFormat() {
 	return( logFormat );
 }
 
-bool LogSettings::getSyncMode()
-{
+bool LogSettings::getSyncMode() {
 	return( syncMode );
 }

@@ -201,6 +201,7 @@ public:
 	String getFormat();
 
 	LogSettingsItem *getDefaultSettings();
+	LogSettingsItem *getCustomDefaultSettings();
 	LogSettingsItem *getObjectSettings( const char *className , const char *instance );
 	LogSettingsItem *getServiceSettings( const char *className );
 	LogSettingsItem *getCustomSettings( const char *loggerName );
@@ -265,6 +266,7 @@ public:
 
 	// log level
 	LogSettingsItem *getDefaultSettings();
+	LogSettingsItem *getCustomDefaultLogSettings();
 	LogSettingsItem *getObjectLogSettings( Object *o );
 	LogSettingsItem *getServiceLogSettings( Service *s );
 	LogSettingsItem *getCustomLogSettings( const char *loggerName );

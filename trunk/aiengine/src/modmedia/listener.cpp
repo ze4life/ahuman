@@ -50,10 +50,8 @@ void Listener::stopListenerConnections()
 	}
 }
 
-void Listener::destroyListenerConnection( Connection *connection )
+void Listener::removeListenerConnection( Connection *connection )
 {
 	String key = connection -> getName();
 	connections.remove( key );
-	delete connection;
 }
-

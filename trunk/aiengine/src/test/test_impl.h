@@ -66,8 +66,9 @@ class TestUnit
 {
 // test units
 public:
-	static TestUnit *createFannCustom();
-	static TestUnit *createHtmViewCustom();
+	static TestUnit *createFannCustomTest();
+	static TestUnit *createHtmViewCustomTest();
+	static TestUnit *createFileSysWalkerTest();
 
 // generic
 public:
