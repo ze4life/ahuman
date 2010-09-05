@@ -95,7 +95,7 @@ void RuntimeException::printStack( Logger& logger )
 	logger.printStack( stack , skipCount );
 }
 
-String RuntimeException::printStack()
+String RuntimeException::printStackToString()
 {
 	String error;
 	if( !isSEH() )
@@ -130,7 +130,8 @@ String RuntimeException::printStack()
 
 		// stop after main function or after start thread function
 		if( strcmp( sl -> functionName , "_main" ) == 0 ||
-			strcmp( sl -> functionName , "threadMainFunction" ) == 0 ) {
+			strcmp( sl -> functionName , "threadMainFunction" ) == 0 ||
+			strcmp( sl -> functionName , "runThread" ) == 0 ) {
 			error += String( "\n\t...skipped..." );
 			break;
 		}

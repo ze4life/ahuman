@@ -93,7 +93,7 @@ public:
 	RuntimeException( unsigned int code , int skipLevels , void *p_addr );
 	RuntimeException( const char *p_msg , const char *p_file , int p_line );
 	void printStack( Logger& logger );
-	String printStack();
+	String printStackToString();
 
 	bool isSEH();
 	const char *getClassName();
