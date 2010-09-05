@@ -92,7 +92,6 @@ void AITestPoolImpl::onXmlCall( XmlCall *msg ) {
 	ASSERTMSG( method != NULL , "Unknown test unit method=" + fn );
 
 	try {
-		logger.logInfo( fnfull + " method found in test classes" );
 		unit -> logger.attach( fnfull );
 		unit -> callMethod( method , call );
 		call.sendStatusResponse( "OK" );

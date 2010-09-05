@@ -161,11 +161,10 @@ void LogManager::output( LogRecord *p ) {
 	};
 
 	char l_buf[ 100 ];
-	sprintf( l_buf , "[%s, 0x%4.4x] %2.2d:%2.2d:%2.2d,%3.3d - " , 
+	sprintf( l_buf , "%2.2d:%2.2d:%2.2d,%3.3d [%s, 0x%4.4x] - " , 
+		lt.tm_hour , lt.tm_min , lt.tm_sec , p -> time_ms ,
 		levelNames[ p -> logLevel ] ,
-		p -> threadId ,
-		lt.tm_hour , lt.tm_min , lt.tm_sec , 
-		p -> time_ms );
+		p -> threadId );
 
 	// output
 	FILE *cs = ( p -> logLevel == Logger::LogLevelError )? stderr : stdout;
