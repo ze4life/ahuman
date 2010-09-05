@@ -129,10 +129,26 @@ public:
 			curFocusCommandStrength = ( int )( ( vin[1] + 1 ) * 50 );
 
 			switch( curFocusCommand ) {
-				case COMMAND_FOCUS_UP :			res = commandFocusUp(); break;
-				case COMMAND_FOCUS_DOWN :		res = commandFocusDown(); break;
-				case COMMAND_FOCUS_INCREASE :	res = commandFocusIncrease(); break;
-				case COMMAND_FOCUS_DECREASE :	res = commandFocusDecrease(); break;
+				case COMMAND_FOCUS_UP :			
+					res = commandFocusUp();
+					if( res )
+						logger.logDebug( "SensorFileSysWalker::commandFocusUp - new pos=" + getCurPos() );
+					break;
+				case COMMAND_FOCUS_DOWN :		
+					res = commandFocusDown(); 
+					if( res )
+						logger.logDebug( "SensorFileSysWalker::commandFocusDown - new pos=" + getCurPos() );
+					break;
+				case COMMAND_FOCUS_INCREASE :	
+					res = commandFocusIncrease(); 
+					if( res )
+						logger.logDebug( "SensorFileSysWalker::commandFocusIncrease - new pos=" + getCurPos() );
+					break;
+				case COMMAND_FOCUS_DECREASE :	
+					res = commandFocusDecrease(); 
+					if( res )
+						logger.logDebug( "SensorFileSysWalker::commandFocusDecrease - new pos=" + getCurPos() );
+					break;
 			}
 		}
 		catch( RuntimeException& e ) {
@@ -257,10 +273,14 @@ public:
 
 	// send initial information - as focus changed
 	bool SensorFileSysWalker::commandFocusUp() {
+		if( curFocusCommandStrength == 0 )
+			curFocusCommandStrength = 1;
 		return( commandMove( -curFocusCommandStrength ) );
 	}
 
 	bool SensorFileSysWalker::commandFocusDown() {
+		if( curFocusCommandStrength == 0 )
+			curFocusCommandStrength = 1;
 		return( commandMove( curFocusCommandStrength ) );
 	}
 
@@ -274,6 +294,8 @@ public:
 				curDisk = item;
 				return( true );
 			case FOCUS_DIR :
+				if( curDir.equals( curDisk + ":" ) )
+					return( false );
 				item = getFileUpDown( curDir , change );
 				if( item.equals( curDir ) )
 					return( false );
@@ -292,7 +314,7 @@ public:
 	bool SensorFileSysWalker::commandFocusIncrease() {
 		switch( curFocusType ) {
 			case FOCUS_COMPUTER :
-				switch( curFocusCommandStrength % 35 ) {
+				switch( curFocusCommandStrength / 35 ) {
 					case 0 :
 						curDisk = getFirstDisk();
 						curFocusType = FOCUS_DISK;
@@ -314,7 +336,7 @@ public:
 				}
 				return( true );
 			case FOCUS_DISK :
-				switch( curFocusCommandStrength % 50 ) {
+				switch( curFocusCommandStrength / 50 ) {
 					case 0 :
 						curDir = getRootDiskDirectory( curDisk );
 						curFocusType = FOCUS_DIR;
@@ -353,7 +375,7 @@ public:
 				curDisk.clear();
 				return( true );
 			case FOCUS_DIR :
-				if( curFocusCommandStrength % 50 ) {
+				if( curFocusCommandStrength / 50 ) {
 					curFocusType = FOCUS_COMPUTER;
 					curDisk.clear();
 					curDir.clear();
@@ -364,7 +386,7 @@ public:
 				curDir.clear();
 				return( true );
 			case FOCUS_FILE :
-				switch( curFocusCommandStrength % 35 ) {
+				switch( curFocusCommandStrength / 35 ) {
 					case 0 : 
 						curFocusType = FOCUS_DIR; 
 						curFile.clear();
@@ -437,25 +459,41 @@ public:
 	}
 
 	String getFirstDirectoryFile( String directory ) {
+		// read files
 		WIN32_FIND_DATA findFileData;
-		
+		BOOL findNext = TRUE;
 		HANDLE hFind = ::FindFirstFile( directory + "\\*" , &findFileData );
 		if( hFind == INVALID_HANDLE_VALUE )
 			return( "" );
 
-		String resFile = findFileData.cFileName;
+		for( ; hFind != INVALID_HANDLE_VALUE && findNext; findNext = ::FindNextFileA( hFind , &findFileData ) ) {
+			String item = findFileData.cFileName;
+
+			// ignore special current and parent dirs
+			if( item.equals( "." ) || item.equals( ".." ) )
+				continue;
+
+			break;
+		}
 		::FindClose( hFind );
 
+		String resFile = findFileData.cFileName;
 		return( directory + "\\" + resFile );
 	}
 
 	String getDiskUpDown( String disk , int move ) {
+		ASSERTMSG( move != 0 , "Unexpected" );
 		String disks = getDiskList();
 
 		int index = disks.find( disk );
-		ASSERTMSG( index < 0 , "Unexpected" );
+		ASSERTMSG( index >= 0 , "Unexpected: " + disk );
 
 		int indexMove = ( move > 0 )? ( ( disks.length() - index ) * move ) / 100 : ( index * move ) / 100;
+
+		// assure at least move by 1
+		if( indexMove == 0 )
+			indexMove = ( move > 0 )? 1 : -1;
+
 		index += indexMove;
 		if( index < 0 )
 			index = 0;
@@ -477,6 +515,7 @@ public:
 	}
 
 	String getFileUpDown( String file , int move ) {
+		ASSERTMSG( move != 0 , "Unexpected" );
 		String dir = getDir( file );
 		StringList files;
 
@@ -484,11 +523,16 @@ public:
 		getDirList( dir , files );
 
 		// find current index
-		String fileOnly = getFileOnly( dir );
+		String fileOnly = getFileOnly( file );
 		int index = files.find( fileOnly );
-		ASSERTMSG( index < 0 , "Unexpected" );
+		ASSERTMSG( index >= 0 , "Unexpected: " + file );
 
 		int indexMove = ( move > 0 )? ( ( files.count() - index ) * move ) / 100 : ( index * move ) / 100;
+
+		// assure at least move by 1
+		if( indexMove == 0 )
+			indexMove = ( move > 0 )? 1 : -1;
+
 		index += indexMove;
 		if( index < 0 )
 			index = 0;
@@ -507,7 +551,7 @@ public:
 
 	String getDir( String file ) {
 		int index = file.findLast( '\\' );
-		ASSERTMSG( index >= 0 , "Unexpected" );
+		ASSERTMSG( index >= 0 , "Unexpected: " + file );
 
 		// directory name does not contain trailing slash
 		return( file.getMid( 0 , index ) );
@@ -515,21 +559,29 @@ public:
 
 	String getFileOnly( String file ) {
 		int index = file.findLast( '\\' );
-		ASSERTMSG( index >= 0 , "Unexpected" );
+		ASSERTMSG( index >= 0 , "Unexpected: " + file );
 
 		return( file.getMid( index + 1 ) );
 	}
 
 	void getDirList( String dir , StringList& files ) {
 		String findName = dir + "\\*";
-		WIN32_FIND_DATA findFileData;
-		BOOL findNext = TRUE;
 
 		// read files
+		WIN32_FIND_DATA findFileData;
+		BOOL findNext = TRUE;
 		HANDLE hFind = ::FindFirstFile( findName , &findFileData );
-		for( ; hFind != INVALID_HANDLE_VALUE && findNext; findNext = ::FindNextFileA( hFind , &findFileData ) )
-			files.add( findFileData.cFileName );
-		::FindClose( hFind );
+		for( ; hFind != INVALID_HANDLE_VALUE && findNext; findNext = ::FindNextFileA( hFind , &findFileData ) ) {
+			String item = findFileData.cFileName;
+
+			// ignore specifal current and parent dirs
+			if( item.equals( "." ) || item.equals( ".." ) )
+				continue;
+
+			files.add( item );
+		}
+		if( hFind != INVALID_HANDLE_VALUE )
+			::FindClose( hFind );
 
 		// sort
 		files.sort();

@@ -26,17 +26,17 @@ public:
 		doMoveFocus( cmd , percentToNeural( strength ) );
 	}
 	void testChangeFocusDown( XmlCall& call ) {
-		int strength = call.getIntParam( "strength" , 0 );
+		int strength = call.getIntParam( "strength" , 50 );
 		float cmd = -0.3f;
 		doMoveFocus( cmd , percentToNeural( strength ) );
 	}
 	void testChangeFocusIncrease( XmlCall& call ) {
-		int strength = call.getIntParam( "strength" , 0 );
+		int strength = call.getIntParam( "strength" , 50 );
 		float cmd = 0.3f;
 		doMoveFocus( cmd , percentToNeural( strength ) );
 	}
 	void testChangeFocusDecrease( XmlCall& call ) {
-		int strength = call.getIntParam( "strength" , 0 );
+		int strength = call.getIntParam( "strength" , 50 );
 		float cmd = 0.8f;
 		doMoveFocus( cmd , percentToNeural( strength ) );
 	}
