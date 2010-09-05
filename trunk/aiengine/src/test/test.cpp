@@ -98,13 +98,13 @@ void AITestPoolImpl::onXmlCall( XmlCall *msg ) {
 		call.sendStatusResponse( "OK" );
 	}
 	catch ( RuntimeException& e ) {
-		call.sendResponseException( callPub , e );
 		e.printStack( logger );
+		call.sendResponseException( callPub , e );
 	}
 	catch( ... ) {
-		call.sendResponseUnknownException( callPub );
 		logger.logError( "Unknown exception:" );
 		logger.printStack();
+		call.sendResponseUnknownException( callPub );
 	}
 }
 

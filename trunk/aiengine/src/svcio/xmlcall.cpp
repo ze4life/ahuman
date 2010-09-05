@@ -108,7 +108,7 @@ String XmlCall::sendResponse( Publisher *pub )
 
 String XmlCall::sendResponseException( Publisher *pub , RuntimeException& e )
 {
-	String error = e.printStack();
+	String error = e.printStackToString();
 	Xml res = createResponse();
 	res.setAttribute( "status" , "Exception" );
 	res.addTextElement( "exception" , error );

@@ -26,7 +26,18 @@ class SensorFileSysWalker : public Object , public Sensor
 		COMMAND_FOCUS_DECREASE = 4 ,
 		COMMAND_LAST = 4
 	} FOCUS_COMMAND;
-	
+
+// signals emitted
+#define SIGNAL_COMPUTER_NAME "COMPUTERNAME"
+#define SIGNAL_DISK_LISTITEM "DISK"
+#define SIGNAL_DIR_LISTITEM "DIRECTORYITEM"
+#define SIGNAL_FILE_NAME "FILENAME"
+#define SIGNAL_FILE_TYPE "FILETYPE"
+#define SIGNAL_DISK_NAME "DISKNAME"
+#define SIGNAL_DISK_SPACETOTAL "DISKSPACETOTAL"
+#define SIGNAL_DISK_SPACEUSED "DISKSPACEUSED"
+#define SIGNAL_DISK_SPACEFREE "DISKSPACEFREE"
+
 	// command to be executed
 	FOCUS_COMMAND curFocusCommand;
 	// power of command - 1-100
@@ -125,7 +136,7 @@ public:
 			}
 		}
 		catch( RuntimeException& e ) {
-			e.printStack();
+			e.printStack( logger );
 		}
 
 		unlock();
@@ -145,7 +156,7 @@ public:
 			}
 		}
 		catch( RuntimeException& e ) {
-			e.printStack();
+			e.printStack( logger );
 		}
 		unlock();
 	}
@@ -179,38 +190,69 @@ public:
 
 	// send initial information - as focus changed
 	void SensorFileSysWalker::sendNewComputerInfo() {
-		logger.logDebug( getCurPos() + ": SensorFileSysWalker::sendNewComputerInfo" );
+		logger.logDebug( "SensorFileSysWalker::sendNewComputerInfo" );
+		String name = getComputerName();
+		sendSignal( SIGNAL_COMPUTER_NAME , name );
+
+		String disks = getDiskList();
+		for( int k = 0; k < disks.length(); k++ ) {
+			String disk = disks.getMid( k , 1 ) + ":";
+			sendSignal( SIGNAL_DISK_LISTITEM , disk );
+		}
 	}
 
 	void SensorFileSysWalker::sendNewDiskInfo() {
-		logger.logDebug( getCurPos() + ": SensorFileSysWalker::sendNewDiskInfo" );
+		logger.logDebug( "SensorFileSysWalker::sendNewDiskInfo" );
+
+		// send disk information
+		float diskSpaceTotalGB;
+		float diskSpaceUsedGB;
+		float diskSpaceFreeGB;
+
+		getDiskInfo( curDisk , &diskSpaceTotalGB , &diskSpaceUsedGB , &diskSpaceFreeGB );
+		sendSignal( SIGNAL_DISK_NAME , curDisk );
+		sendSignal( SIGNAL_DISK_SPACETOTAL , String("") + diskSpaceTotalGB + "GB" );
+		sendSignal( SIGNAL_DISK_SPACEUSED , String("") + diskSpaceUsedGB + "GB" );
+		sendSignal( SIGNAL_DISK_SPACEFREE , String("") + diskSpaceFreeGB + "GB" );
 	}
 
 	void SensorFileSysWalker::sendNewDirectoryInfo() {
-		logger.logDebug( getCurPos() + ": SensorFileSysWalker::sendNewDirectoryInfo" );
+		logger.logDebug( "SensorFileSysWalker::sendNewDirectoryInfo" );
+
+		// send current directory list
+		StringList files;
+		getDirList( curDir , files );
+		for( int k = 0; k < files.count(); k++ ) {
+			String file = files.get( k );
+			sendSignal( SIGNAL_DIR_LISTITEM , file );
+		}
 	}
 
 	void SensorFileSysWalker::sendNewFileInfo() {
-		logger.logDebug( getCurPos() + ": SensorFileSysWalker::sendNewFileInfo" );
+		logger.logDebug( "SensorFileSysWalker::sendNewFileInfo" );
+
+		String file = getFileOnly( curFile );
+		sendSignal( SIGNAL_FILE_NAME , file );
+		sendSignal( SIGNAL_FILE_TYPE , getFileType( curFile ) );
 	}
 
 	// send update from event
 	void SensorFileSysWalker::sendUpdateComputerInfo() {
 		// not expected
-		logger.logDebug( getCurPos() + ": SensorFileSysWalker::sendUpdateComputerInfo" );
+		logger.logDebug( "SensorFileSysWalker::sendUpdateComputerInfo" );
 	}
 
 	void SensorFileSysWalker::sendUpdateDiskInfo() {
 		// not expected
-		logger.logDebug( getCurPos() + ": SensorFileSysWalker::sendUpdateDiskInfo" );
+		logger.logDebug( "SensorFileSysWalker::sendUpdateDiskInfo" );
 	}
 
 	void SensorFileSysWalker::sendUpdateDirectoryInfo() {
-		logger.logDebug( getCurPos() + ": SensorFileSysWalker::sendUpdateDirectoryInfo" );
+		logger.logDebug( "SensorFileSysWalker::sendUpdateDirectoryInfo" );
 	}
 
 	void SensorFileSysWalker::sendUpdateFileInfo() {
-		logger.logDebug( getCurPos() + ": SensorFileSysWalker::sendUpdateFileInfo" );
+		logger.logDebug( "SensorFileSysWalker::sendUpdateFileInfo" );
 	}
 
 	// send initial information - as focus changed
@@ -354,6 +396,10 @@ public:
 		return( "" );
 	}
 
+	void sendSignal( String type , String value ) {
+		logger.logDebug( "sendSignal: type=" + type + ", value=" + value );
+	}
+
 // #############################################################################
 // #############################################################################
 // helpers
@@ -374,13 +420,16 @@ public:
 		}
 	}
 
+	String getComputerName() {
+		char l_name[ 128 ];
+		DWORD l_size = sizeof( l_name );
+		::GetComputerName( l_name , &l_size );
+		return( l_name );
+	}
+
 	String getFirstDisk() {
-		DWORD mask = ::GetLogicalDrives();
-		char letter = 'A';
-		for( int bit = 1; bit < 0x7FFFFFF; bit <<= 1 , letter++ )
-			if( mask & bit )
-				return( String( "" ) + letter );
-		return( "?" );
+		String disks = getDiskList();
+		return( disks.getMid( 0 , 1 ) );
 	}
 
 	String getRootDiskDirectory( String disk ) {
@@ -401,12 +450,7 @@ public:
 	}
 
 	String getDiskUpDown( String disk , int move ) {
-		DWORD mask = ::GetLogicalDrives();
-		String disks;
-		char letter = 'A';
-		for( int bit = 1; bit < 0x7FFFFFF; bit <<= 1 , letter++ )
-			if( mask & bit )
-				disks += letter;
+		String disks = getDiskList();
 
 		int index = disks.find( disk );
 		ASSERTMSG( index < 0 , "Unexpected" );
@@ -420,6 +464,16 @@ public:
 			index = disks.length() - 1;
 
 		return( disks.getMid( index , 1 ) );
+	}
+
+	String getDiskList() {
+		String disks;
+		DWORD mask = ::GetLogicalDrives();
+		char letter = 'A';
+		for( int bit = 1; bit < 0x7FFFFFF; bit <<= 1 , letter++ )
+			if( mask & bit )
+				disks += letter;
+		return( disks );
 	}
 
 	String getFileUpDown( String file , int move ) {
@@ -479,6 +533,26 @@ public:
 
 		// sort
 		files.sort();
+	}
+
+	String getFileType( String file ) {
+		DWORD attrs = ::GetFileAttributes( file );
+		if( attrs & FILE_ATTRIBUTE_DIRECTORY )
+			return( "dir" );
+		if( attrs & FILE_ATTRIBUTE_HIDDEN )
+			return( "hidden" );
+		return( "normal" );
+	}
+
+	void getDiskInfo( String disk , float *diskSpaceTotalGB , float *diskSpaceUsedGB , float *diskSpaceFreeGB ) {
+		RFC_INT64 ignore , spaceTotalGB , spaceUsedGB , spaceFreeGB;
+		ASSERT( ::GetDiskFreeSpaceEx( disk + ":\\" , ( PULARGE_INTEGER ) &ignore , ( PULARGE_INTEGER )&spaceTotalGB , ( PULARGE_INTEGER )&spaceFreeGB ) );
+		spaceUsedGB = spaceTotalGB - spaceFreeGB;
+		float v1gb = 1024. * 1024. * 1024.;
+
+		*diskSpaceTotalGB = spaceTotalGB / v1gb;
+		*diskSpaceUsedGB = spaceUsedGB / v1gb;
+		*diskSpaceFreeGB = spaceFreeGB / v1gb;
 	}
 
 // #############################################################################
