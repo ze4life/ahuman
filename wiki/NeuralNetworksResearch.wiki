@@ -8,6 +8,15 @@ Neural Network research covers understanding types of neural networks, construct
 
 == Terms ==
 
+From investigations and trying to be in a mainstream, below terms are born in Neural Networking (possibly will go to separate page in the future):
+
+  * *neural variable* (NV): the entity, supported by mind
+  * *neural network* (NN): system of connected neurons, translating one set of neural variables into another set of neural variables (NV-mapping)
+  * *neural sensor*: one of external inputs for neural network, mapped to one neural variable
+  * *neural target*: one of final outputs for neural network, mapped to one neural variable
+  * *neural input*: scalar value, obtained by pre-processing of neural sensor before passing to NN internals. E.g. n-coded representing on discrete values, 2-dimensional sensors
+  * *neural output*: scalar value, internal NN output, to be passed to post-processing to generate target variable
+
 == Research Targets == 
 
   * [NeuralNetworkTypes Types of Neural Networks]
@@ -19,54 +28,6 @@ Neural Network research covers understanding types of neural networks, construct
   * Neuron Types - see [http://www.david.curtis.care4free.net/hebbs.gif link]
 
 http://www.david.curtis.care4free.net/hebbs.gif
-
-== Terms ==
-
-From investigations and trying to be in a mainstream, below terms are born in Neural Networking (possibly will go to separate page in the future):
-
-  * *neural variable* (NV): the entity, supported by mind
-  * *neural network* (NN): system of connected neurons, translating one set of neural variables into another set of neural variables (NV-mapping)
-  * *neural sensor*: one of external inputs for neural network, mapped to one neural variable
-  * *neural target*: one of final outputs for neural network, mapped to one neural variable
-  * *neural input*: scalar value, obtained by pre-processing of neural sensor before passing to NN internals. E.g. n-coded representing on discrete values, 2-dimensional sensors
-  * *neural output*: scalar value, internal NN output, to be passed to post-processing to generate target variable
-
-== Research targets ==
-
-See research status grouped by target
-
-== Create a core set of algorithms for generic classification and regression ==
-
-PROBLEM:
-
-  * Implement algorithms that learn any NV-mapping for nearly 100% cases
-  * Make sure they will work limited time at a cost of precision
-
-FINDINGS:
-
-  * !QuickProp is good enough for batch training
-  * Incremental training works, but slower
-  * Auto-restart is required
-
-TODO:
-  * Add constructive algorithm
-
-== Find best parameters for training algorithm ==
-
-PROBLEM:
-
-  * Most algorithm are very sensitive to parameters
-  * Best values of parameters depend on NV-mapping
-
-FINDINGS:
-
-  * Simplified NN is created to learn from various samples
-  * Samples are persisted to be reused for batch/cache algorithm
-
-TODO:
-
-  * Find what meta-information can help for choosing parameters values
-  * Extend parameter-selection NN to use meta-information from variables
 
 == Useful resources ==
 
