@@ -77,7 +77,13 @@ void LogManager::setSyncMode( bool p_syncMode ) {
 	syncMode = p_syncMode;
 	if( syncMode == false ) {
 		AIEngine& en = AIEngine::getInstance();
-		en.runThread( "LogWriter" , this , ( ObjectThreadFunction )&LogManager::run , NULL );
+		rfc_hnd_evreset( stopEvent );
+		if( en.runThread( "LogWriter" , this , ( ObjectThreadFunction )&LogManager::run , NULL ) != NULL ) {
+			rfc_hnd_waitevent( stopEvent );
+			rfc_hnd_evreset( stopEvent );
+		}
+		else
+			rfc_hnd_evsignal( stopEvent );
 	}
 	else {
 		// wait till writer thread is ended
@@ -123,7 +129,8 @@ void LogManager::stop() {
 }
 
 void LogManager::run( void * ) {
-	rfc_hnd_evreset( stopEvent );
+	// signal thread is started
+	rfc_hnd_evsignal( stopEvent );
 
 	try {
 		// do get in cycle

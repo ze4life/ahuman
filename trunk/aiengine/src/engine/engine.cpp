@@ -322,6 +322,7 @@ LogManager *AIEngineImpl::getLogManager()
 
 void AIEngineImpl::initServices() 
 {
+	// init services
 	for( int k = 0; k < services.count(); k++ ) {
 		Service *svc = services.getClassByIndex( k );
 
@@ -346,6 +347,10 @@ void AIEngineImpl::initServices()
 
 void AIEngineImpl::runServices()
 {
+	// set logging to configured mode
+	bool mode = logManager -> getConfiguredSyncMode();
+	logManager -> setSyncMode( mode );
+
 	logger.logInfo( "run services..." );
 
 	// initialize event
@@ -379,10 +384,6 @@ void AIEngineImpl::runServices()
 	signal( SIGFPE , on_exit );
 	signal( SIGILL , on_exit );
 	signal( SIGSEGV , on_exit );
-
-	// set logging to configured mode
-	bool mode = logManager -> getConfiguredSyncMode();
-	logManager -> setSyncMode( mode );
 }
 
 void AIEngineImpl::waitExitSignal()
