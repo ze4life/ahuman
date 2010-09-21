@@ -49,11 +49,11 @@ void Logger::attach( const char *p_loggerName ) {
 		if( settings == NULL ) {
 			settingsNew = logManager -> getCustomDefaultLogSettings();
 		}
-		return;
 	}
 
 	loggerName = p_loggerName;
-	settings = settingsNew;
+	if( settingsNew != NULL )
+		settings = settingsNew;
 }
 
 // stack
