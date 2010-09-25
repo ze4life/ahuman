@@ -22,42 +22,48 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 Sense::Sense(unsigned x, unsigned y, unsigned ovlap) : PatternSource(x, y, 1)
 {
-	Overlap = ovlap;
+	overlap = ovlap;
 }
 
 //return the pattern for Sub-region (x, y) in the calling region
 //sideCompr is calling region's side compression
 //the result 1-D array must be allocated before
 //eye must take overlap into account
-void Sense::GetPattern(unsigned x, unsigned y, unsigned sideCompr, unsigned *result)
+void Sense::getPattern(unsigned x, unsigned y, unsigned sideCompr, unsigned *result)
 {
 	unsigned resultIndex = 0;
-	unsigned pixelIncrement = sideCompr - Overlap;
+	unsigned pixelIncrement = sideCompr - overlap;
 	for(unsigned i = x * pixelIncrement; i < x * pixelIncrement + sideCompr; i++)
 		for(unsigned j = y * pixelIncrement; j < y * pixelIncrement + sideCompr; j++)
-			result[resultIndex++] = GetNameOutput(i, j);
+			result[resultIndex++] = getNameOutput(i, j);
 }
 
 /////////////////// BitmapVision //////////////////////////////////////
-BitmapVision::BitmapVision(unsigned x, unsigned y, unsigned ovlap)
-:	Sense(x, y, ovlap) {
-	pixArray = NULL;
-	Parent = NULL;
+BitmapVision::BitmapVision( SFNeoCortex& nc )
+:	Sense(nc.areaSide, nc.areaSide, nc.overlapSubRegions )
+{
+	parent = NULL;
 }
 
-void BitmapVision::SetBitmap(TwoIndexArray<unsigned> &pPixArray){
-	this->pixArray = &pPixArray;
-	//cUtils.Pause();
+BitmapVision::BitmapVision(unsigned x, unsigned y, unsigned ovlap)
+:	Sense(x, y, ovlap) 
+{
+	parent = NULL;
+}
+
+void BitmapVision::setBitmap(TwoIndexArray<unsigned> &pPixArray)
+{
+	pixArray.copy( pPixArray );
 }
 
 //assume Bitmap is assigned
-void BitmapVision::FeedForward(unsigned learningRegion, bool feedbackStage){ 
-	Parent->FeedForward(learningRegion, feedbackStage);
+void BitmapVision::feedForward(unsigned learningRegion, bool feedbackStage)
+{ 
+	parent -> feedForward(learningRegion, feedbackStage);
 }
 
 //feed forward the value of the pixel
-unsigned BitmapVision::GetNameOutput(unsigned x, unsigned y){
-	return (*pixArray)[x][y];
+unsigned BitmapVision::getNameOutput(unsigned x, unsigned y)
+{
+	return pixArray[x][y];
 }
-
-

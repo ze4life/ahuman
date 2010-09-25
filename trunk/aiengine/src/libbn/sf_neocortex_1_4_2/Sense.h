@@ -24,40 +24,31 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 class Sense : public PatternSource
 {
 private:
-	unsigned Overlap; //number of overlapping pixels between adjacent parent sub-regions
+	unsigned overlap; //number of overlapping pixels between adjacent parent sub-regions
 
 public:
-	Sense(unsigned x, unsigned y, unsigned ovlap);
+	Sense( unsigned x , unsigned y , unsigned overlap );
 
-	void GetPattern(unsigned x, unsigned y, unsigned sideCompr, unsigned *result);
-
-	// =================================================================================================
-	// DG - must implement these two functions because they are pure virtual functions in the superclass
-	// ---------------------------------------------------------------
+	void getPattern( unsigned x , unsigned y , unsigned sideCompr , unsigned *result );
 
 	// Never called
-	vector<double> GetLambdaOutput(unsigned x, unsigned y) {
-		std::vector<double> *lRet = NULL;
-		return *lRet; 
-	};
-
-	// Never called
-	void SetPiInput(unsigned x, unsigned y, vector<double> &pi) {
-	};
-	// ==============================================================
+	vector<double> getLambdaOutput(unsigned x, unsigned y) { std::vector<double> *lRet = NULL; return *lRet; };
+	void setPiInput(unsigned x, unsigned y, vector<double> &pi) {};
 };
 
 class BitmapVision : public Sense {
 private:
-	TwoIndexArray<unsigned> * pixArray;
+	TwoIndexArray<unsigned> pixArray;
 
 public:
-	BitmapVision(unsigned x, unsigned y, unsigned ovlap);
-	void SetBitmap( TwoIndexArray<unsigned>& pixArray );
+	BitmapVision( SFNeoCortex& nc );
+	BitmapVision( unsigned x, unsigned y, unsigned overlap );
 
-	virtual unsigned GetNameOutput(unsigned x, unsigned y);
-	virtual int GetSequence(unsigned x, unsigned y)	{ return GetNameOutput(x, y); } //dummy
-	virtual void FeedForward(unsigned learningRegion, bool feedbackStage);
+	void setBitmap( TwoIndexArray<unsigned>& pixArray );
+
+	virtual unsigned getNameOutput( unsigned x, unsigned y );
+	virtual int getSequence( unsigned x, unsigned y ) { return getNameOutput(x, y); } //dummy
+	virtual void feedForward( unsigned learningRegion, bool feedbackStage );
 
 	// See declaration in PatternSource
 };

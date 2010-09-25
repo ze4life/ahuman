@@ -19,56 +19,55 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 #include "sf_neocortex.h"
 
-void Sequence::CreateData(){
-	if(SequenceLength > 0 && InputCount > 0) {
-		Data = new unsigned*[SequenceLength];      //create 2-D array
-		for(unsigned i = 0; i < SequenceLength; i++) {
-			Data[i] = new unsigned[InputCount];
-			for ( unsigned j=0; j<InputCount; j++ ) {
-				Data[i][j] = 0;
+void Sequence::createData(){
+	if( sequenceLength > 0 && inputCount > 0 ) {
+		data = new unsigned*[sequenceLength];      //create 2-D array
+		for( unsigned i = 0; i < sequenceLength; i++ ) {
+			data[i] = new unsigned[inputCount];
+			for ( unsigned j = 0; j < inputCount; j++ ) {
+				data[i][j] = 0;
 			}
 		}
 	}
 }
 
-void Sequence::DeleteData() {
-	if(SequenceLength > 0 && InputCount > 0) {
-		for(unsigned i = 0; i < SequenceLength; i++)
-			delete Data[i];
-		delete Data;
+void Sequence::deleteData() {
+	if( sequenceLength > 0 && inputCount > 0) {
+		for(unsigned i = 0; i < sequenceLength; i++)
+			delete data[i];
+		delete data;
 	}
 }
 
 Sequence::Sequence(unsigned pSeqLen, unsigned ic) {
-	SequenceLength = pSeqLen;
-	InputCount = ic;
-	CreateData();    //create empty array in advance
-	Length = 0;
+	sequenceLength = pSeqLen;
+	inputCount = ic;
+	createData();    //create empty array in advance
+	length = 0;
 }
 
 Sequence::~Sequence() {
-	DeleteData();
+	deleteData();
 }
 
-void Sequence::Init(unsigned pSeqLen, unsigned ic) {
-	DeleteData();
-	SequenceLength = pSeqLen;
-	InputCount = ic;
-	CreateData();
+void Sequence::init(unsigned pSeqLen, unsigned ic) {
+	deleteData();
+	sequenceLength = pSeqLen;
+	inputCount = ic;
+	createData();
 }
 
 //add the pattern to the end of the sequence
 //pattern is an array of length InputCount
-void Sequence::AddPattern(unsigned *pattern) {
-	if(Length < SequenceLength) {
+void Sequence::addPattern(unsigned *pattern) {
+	if(length < sequenceLength) {
 		//copy pattern array
-		for(unsigned i = 0; i < InputCount; i++)
-			Data[Length][i] = pattern[i];
-		Length++;
+		for(unsigned i = 0; i < inputCount; i++)
+			data[length][i] = pattern[i];
+		length++;
 	}
 	else {
-		std::ostringstream  lLogStream;
-		lLogStream << "Length: " << Length << " is out of bounds. Cannot add pattern."<< std::endl;
+		// << "Length: " << Length << " is out of bounds. Cannot add pattern."<< std::endl;
 		// TO DO Can't log here at the moment: no IO available.  Need to pass in reference to constructor.
 		//IO.Log( std::string( lLogStream.str() ) );
 	}
@@ -76,25 +75,24 @@ void Sequence::AddPattern(unsigned *pattern) {
 	//     throw std::exception("Sequence is already filled.");
 }
 
-void Sequence::Clear(){
-	Length = 0;
+void Sequence::clear(){
+	length = 0;
 }
 
 //returns percentage of similarity (1 if sequences are identical)
 //assuming sequence lengths and input counts match
 //s may be incomplete
-double Sequence::Compare(Sequence &s, unsigned length) {
-	if(SequenceLength != s.SequenceLength || InputCount != s.InputCount)  {
-		std::ostringstream  lLogStream;
-		lLogStream << "Cannot compare sequences of different lengths."<< std::endl;
+double Sequence::compare( Sequence &s , unsigned length ) {
+	if( sequenceLength != s.sequenceLength || inputCount != s.inputCount)  {
+		// lLogStream << "Cannot compare sequences of different lengths."<< std::endl;
 		// TO DO Can't log here at the moment: no IO available.  Need to pass in reference to constructor.
 		//IO.Log( std::string( lLogStream.str() ) );
 	}
 
 	//     throw std::exception("Cannot compare sequences of different lengths.");
-	if(!Complete()) {
-		std::ostringstream  lLogStream;
-		lLogStream << "Cannot compare with incomplete sequence."<< std::endl;
+	if( !complete() ) {
+		//std::ostringstream  lLogStream;
+		// lLogStream << "Cannot compare with incomplete sequence."<< std::endl;
 		// TO DO Can't log here at the moment: no IO available.  Need to pass in reference to constructor.
 		//IO.Log( std::string( lLogStream.str() ) );
 		return 0; // crashes if sequences unequal - DG fixed 05/05/2008
@@ -102,62 +100,62 @@ double Sequence::Compare(Sequence &s, unsigned length) {
 
 	//     throw std::exception("Cannot compare with incomplete sequence.");
 	unsigned matches = 0;
-	for(unsigned i = 0; i < length; i++)
-		for(unsigned j = 0; j < InputCount; j++)
-			if(Data[i][j] == s.Data[i][j])
+	for( unsigned i = 0; i < length; i++ )
+		for( unsigned j = 0; j < inputCount; j++ )
+			if( data[i][j] == s.data[i][j] )
 				matches++;
 
-	return (double)matches / (length * InputCount); //precision of match
+	return (double)matches / (length * inputCount); //precision of match
 }
 
-double Sequence::Compare(Sequence &s){
-	return Compare(s, s.Length); //compare only filled part
+double Sequence::compare( Sequence &s ) {
+	return compare( s, s.length ); //compare only filled part
 }
 
-void Sequence::Assign(Sequence &s) {
-	if(SequenceLength != s.SequenceLength || InputCount != s.InputCount)
-		Init(s.SequenceLength, s.InputCount);
+void Sequence::assign(Sequence &s) {
+	if( sequenceLength != s.sequenceLength || inputCount != s.inputCount)
+		init( s.sequenceLength, s.inputCount );
 
-	Length = s.Length;
-	for(unsigned i = 0; i < SequenceLength; i++)
-		for(unsigned j = 0; j < InputCount; j++)
-			Data[i][j] = s.Data[i][j];
+	length = s.length;
+	for( unsigned i = 0; i < sequenceLength; i++ )
+		for( unsigned j = 0; j < inputCount; j++ )
+			data[i][j] = s.data[i][j];
 }
 
-unsigned Sequence::GetElement(unsigned patternIndex, unsigned elementIndex){
-	return Data[patternIndex][elementIndex];
+unsigned Sequence::getElement(unsigned patternIndex, unsigned elementIndex){
+	return data[patternIndex][elementIndex];
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 LearnedSequence::LearnedSequence()
 : Sequence(0, 0){
-	Frequency = 0; //empty sequence
+	frequency = 0; //empty sequence
 }
 
 LearnedSequence::LearnedSequence(unsigned sl, unsigned ic)
 : Sequence(sl, ic)
 {
-	Frequency = 0; //empty sequence
+	frequency = 0; //empty sequence
 }
 
-void LearnedSequence::Init(unsigned sl, unsigned ic)
+void LearnedSequence::init(unsigned sl, unsigned ic)
 {
-	Sequence::Init(sl, ic);
-	Frequency = 0; //empty sequence
+	Sequence::init(sl, ic);
+	frequency = 0; //empty sequence
 }
 
-void LearnedSequence::Assign(Sequence &s)
+void LearnedSequence::assign(Sequence &s)
 {
-  Sequence::Assign(s);
-  Frequency = 1; //not empty sequence - frequency must be > 0
+  Sequence::assign(s);
+  frequency = 1; //not empty sequence - frequency must be > 0
 }
 
-void LearnedSequence::Assign(LearnedSequence &s)
+void LearnedSequence::assign(LearnedSequence &s)
 {
-  Sequence::Assign(s);
-  Frequency = s.Frequency;
+  Sequence::assign(s);
+  frequency = s.frequency;
 }
 
-bool LearnedSequence::CanDiscard() {
-  return Frequency <= 1;
+bool LearnedSequence::canDiscard() {
+  return frequency <= 1;
 }

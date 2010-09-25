@@ -27,6 +27,7 @@ void AITestPoolImpl::createService() {
 	addTestUnit( TestUnit::createFannCustomTest() );
 	addTestUnit( TestUnit::createHtmViewCustomTest() );
 	addTestUnit( TestUnit::createFileSysWalkerTest() );
+	addTestUnit( TestUnit::createNeoCortexTest() );
 	
 	// log available commands
 	logger.logInfo( "AVAILABLE TEST METHODS:" );

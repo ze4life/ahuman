@@ -10,14 +10,6 @@ class HtmLayerMemory;
 class HtmLayer;
 class HtmHelper;
 
-class LibHtmCustom : public AILibBNVariant
-{
-public:
-	LibHtmCustom() : AILibBNVariant( "LibHtmCustom" ) {};
-	
-	void init();
-};
-
 /*#########################################################################*/
 /*#########################################################################*/
 

@@ -18,9 +18,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#ifndef RegionH
-#define RegionH
-
 #include <vector>
 
 using namespace std;
@@ -29,41 +26,55 @@ using namespace std;
 
 class NeoRegion : public PatternSource, public ContextSource {
 private:
-	unsigned ThisRegionLevel;           //level of region in hierarchy (0-lowest)
-	unsigned ThisRegionSideCompression; //how many times the side of forward input is compressed
-	unsigned SubRegionInputCount;//number of inputs to a Sub-region (space) 
-	SubRegion ***cSubRegions;
-	LearnedSequence *Mem; //[NeoParameters::MaxMemSize]; //learned vectors for this region
-	unsigned MemCount;       //number of filled spots in memory array
+	unsigned thisRegionLevel;           //level of region in hierarchy (0-lowest)
+	unsigned thisRegionSideCompression; //how many times the side of forward input is compressed
+	unsigned subRegionInputCount;//number of inputs to a Sub-region (space) 
+	SubRegion ***subRegions;
+	LearnedSequence *mem; //[NeoParameters::MaxMemSize]; //learned vectors for this region
+	unsigned memCount;       //number of filled spots in memory array
 
-	void GetLevel0Lambda(unsigned x, unsigned y, vector<vector<double> > &lambda);
-	unsigned int ThisMaxMemSize;
-	unsigned cLowUsageFailureCount;
+	unsigned int thisMaxMemSize;
+	unsigned lowUsageFailureCount;
 
 public:
-	NeoRegion(SFNeoCortex& nc, unsigned x, unsigned y, unsigned sl, unsigned sideCompr, unsigned regionLevel);
+	NeoRegion( SFNeoCortex& nc, unsigned outputSizeX, unsigned outputSizeY, unsigned sequenceLength, unsigned sideCompression, unsigned regionLevel );
 	virtual ~NeoRegion();
 
-	void InitLowUsageFailureCount(){ cLowUsageFailureCount=0; };
-	unsigned GetLowUsageFailureCount(){ return cLowUsageFailureCount; };
-	virtual void FeedForward(unsigned learningRegion, bool feedbackStage);
-	virtual void Contextual();
-	void ForgetRareMemories( bool pForgettingOn );
-	void ForgetMemory( unsigned i );
-	void InitForInference();
-	void BeginRecognition();
-	void Recognize();
+// ContextSource
+public:
+	virtual void feedForward(unsigned learningRegion, bool feedbackStage);
+	virtual void contextual();
+	virtual int getSequence(unsigned x, unsigned y);
+	virtual unsigned getMemCount() { return memCount; }
 
-	virtual vector<double> GetLambdaOutput(unsigned x, unsigned y);
-	virtual void SetPiInput(unsigned x, unsigned y, vector<double> &pi);
+// PatternSource
+public:
+	virtual vector<double> getLambdaOutput(unsigned x, unsigned y);
+	virtual void setPiInput(unsigned x, unsigned y, vector<double> &pi);
+	virtual unsigned getNameOutput(unsigned x, unsigned y);
 
-	virtual unsigned GetNameOutput(unsigned x, unsigned y);
-	virtual int GetSequence(unsigned x, unsigned y);
+// others
+public:
+	// counting discarded new patterns
+	void InitLowUsageFailureCount() { lowUsageFailureCount = 0; };
+	unsigned GetLowUsageFailureCount() { return lowUsageFailureCount; };
+	
+	// forget learned sequences if frequency less than ct.RegionForgetThreshold / frequency of sequence delimiting ct.RegionForgetThreshold sequences sorted by frequence
+	void forgetRareMemories( bool forgettingOn );
+	// forget memory item
+	void forgetMemory( unsigned memPos );
+	// initialise after all regions created
+	void initForInference();
+	// initialise before recognition
+	void beginRecognition();
+	// find pattern
+	void recognize();
 
-	LearnedSequence &Memory(unsigned index);
-	virtual unsigned GetMemCount() {return MemCount;}
-	unsigned GetLevel() {return ThisRegionLevel;}
-	int AddSequence(Sequence &s);
+	// access to memory from subregions
+	LearnedSequence& memory( unsigned index );
+	// add sequence to memory - called from subregions
+	int addSequence( Sequence &s );
+
+private:
+	void getLevel0Lambda( unsigned xPos , unsigned yPos , vector<vector<double> > &lambda );
 };
-
-#endif

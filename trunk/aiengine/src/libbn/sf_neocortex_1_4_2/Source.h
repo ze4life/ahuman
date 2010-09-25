@@ -27,44 +27,54 @@ using namespace std;
 
 class ContextSource;
 
-//structure that can produce a pattern in a form of unsigned matrix (x by y)
-//has feed-forward outputs
-class PatternSource{
+// structure that can produce a pattern in a form of unsigned matrix (x by y)
+// has feed-forward outputs
+// parent
+class PatternSource {
 protected:
-	ContextSource *Parent;
-	unsigned OutputsX, OutputsY;
-	unsigned SequenceLength; //number of steps that form a sequence (time)
-	unsigned PatternNumber; //in the current sequence: from 0 to SequenceLength
-	virtual vector<double> GetLambdaOutput(unsigned x, unsigned y) = 0;
+	ContextSource *parent;
+	unsigned outputsX, outputsY;
+	unsigned sequenceLength; // number of steps that form a sequence (time)
+	unsigned patternNumber; // in the current sequence: from 0 to SequenceLength
+
+protected:
+	virtual vector<double> getLambdaOutput( unsigned xPos , unsigned yPos ) = 0;
+public:
+	virtual unsigned getNameOutput( unsigned xPos , unsigned yPos ) = 0;
+	virtual void setPiInput( unsigned xPos , unsigned yPos , vector<double> &pi ) = 0;
 
 public:
-	PatternSource(unsigned x, unsigned y, unsigned sl);
-	virtual ~PatternSource(){};
-	void SetParent(ContextSource *s) { Parent = s; }
-	ContextSource * GetParent() { return Parent; }
+	PatternSource( unsigned outputSizeX , unsigned outputSizeY , unsigned sequenceLength );
+	virtual ~PatternSource() {};
 
-	virtual unsigned GetNameOutput(unsigned x, unsigned y) = 0;
-	virtual void GetPattern(unsigned x, unsigned y, unsigned sideCompr, unsigned *result);
-	virtual void GetLambda(unsigned x, unsigned y, unsigned sideCompr, vector<vector<double> > &result);
-	virtual void SetPiInput(unsigned x, unsigned y, vector<double> &pi) = 0;
-	virtual void SetPi(unsigned x, unsigned y, unsigned sideCompr, vector<vector<double> > &pi);
+	void setParent( ContextSource *s ) { parent = s; }
+	ContextSource *getParent() { return parent; }
+
+public:
+	virtual void getPattern( unsigned xPos , unsigned yPos , unsigned sideCompression , unsigned *result );
+	virtual void getLambda( unsigned xPos , unsigned yPos , unsigned sideCompression , vector<vector<double> > &result );
+	virtual void setPi( unsigned xPos , unsigned yPos , unsigned sideCompression , vector<vector<double> > &pi );
 };
 
-class ContextSource{
+// child
+class ContextSource {
 public:
-	SFNeoCortex& neocortex;
+	NeoCortex& neocortex;
 
 protected:
-	PatternSource *Child;
+	PatternSource *child;
 
 public:
-	ContextSource( SFNeoCortex& neocortex );
-	virtual ~ContextSource(){};
-	void SetChild(PatternSource *s) {Child = s;}
-	virtual void FeedForward(unsigned learningRegion, bool feedbackStage) = 0;
-	virtual void Contextual() = 0;
-	virtual int GetSequence(unsigned x, unsigned y) = 0;
-	virtual unsigned GetMemCount() = 0;
+	ContextSource( NeoCortex& neocortex );
+	virtual ~ContextSource() {};
+
+	void setChild( PatternSource *s ) { child = s; }
+
+public:
+	virtual void feedForward( unsigned learningRegion, bool feedbackStage ) = 0;
+	virtual void contextual() = 0;
+	virtual int getSequence( unsigned xPos , unsigned yPos ) = 0;
+	virtual unsigned getMemCount() = 0;
 };
 
 #endif

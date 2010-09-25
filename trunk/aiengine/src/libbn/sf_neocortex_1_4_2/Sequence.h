@@ -18,49 +18,46 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#ifndef SequenceH
-#define SequenceH
-
-class Sequence{
+class Sequence {
 private:
-	unsigned Length;         //current number of patterns stored
+	unsigned length;         //current number of patterns stored
 
-	void CreateData();
-	void DeleteData();
+	void createData();
+	void deleteData();
 
 protected:
-	unsigned SequenceLength; //number of steps that form a sequence (time)
-	unsigned InputCount;     //number of unsigned inputs (space)
-	unsigned **Data; //dimensions SequenceLength x InputCount    
+	unsigned sequenceLength; //number of steps that form a sequence (time)
+	unsigned inputCount;     //number of unsigned inputs (space)
+	unsigned **data; //dimensions SequenceLength x InputCount    
 
 public:
-	Sequence(unsigned sl, unsigned ic);
+	Sequence( unsigned sequenceLegth , unsigned inutCount );
 	virtual ~Sequence();
-	virtual void Init(unsigned sl, unsigned ic);
-	void AddPattern(unsigned *pattern);
-	void Clear();
-	unsigned GetLength(){return Length;}
-	bool Complete(){return Length == SequenceLength;}
-	double Compare(Sequence &s);
-	double Compare(Sequence &s, unsigned length);
-	virtual void Assign(Sequence &s);
-	unsigned GetElement(unsigned patternIndex, unsigned elementIndex);
+
+	virtual void init( unsigned sequenceLength , unsigned inputCount );
+	void addPattern( unsigned *pattern );
+	void clear();
+	unsigned getLength() { return length; }
+	bool complete() { return length == sequenceLength; }
+	double compare( Sequence &s );
+	double compare( Sequence &s , unsigned length );
+	virtual void assign( Sequence &s );
+	unsigned getElement( unsigned patternIndex , unsigned elementIndex );
 };
 
 class LearnedSequence : public Sequence {
 private:
-	unsigned Frequency;
+	unsigned frequency;
 
 public:
 	LearnedSequence();
-	LearnedSequence(unsigned sl, unsigned ic);
+	LearnedSequence( unsigned sequenceLegth , unsigned inutCount );
 	virtual ~LearnedSequence(){};
-	virtual void Init(unsigned sl, unsigned ic);
-	void IncFrequency(){Frequency++;}
-	virtual void Assign(Sequence &s);
-	void Assign(LearnedSequence &s);
-	bool CanDiscard();
-	unsigned GetFrequency(){return Frequency;}
-};
 
-#endif
+	virtual void init( unsigned sequenceLegth , unsigned inutCount );
+	void increaseFrequency(){ frequency++; }
+	virtual void assign( Sequence &s );
+	void assign( LearnedSequence &s );
+	bool canDiscard();
+	unsigned getFrequency() { return frequency; }
+};

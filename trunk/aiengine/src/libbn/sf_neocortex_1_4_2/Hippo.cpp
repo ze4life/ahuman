@@ -23,142 +23,130 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 Hippocampus::Hippocampus(SFNeoCortex& nc , unsigned sideCompr) 
 :	ContextSource( nc ) 
 {
-	MemCount = 0;
-	SequenceOutput = SFNeoCortex::OutputNone;
-	SideCompression = sideCompr;
+	memCount = 0;
+	sequenceOutput = SFNeoCortex::OUTPUT_NONE;
+	sideCompression = sideCompr;
 
-	MaxBel.resize(neocortex.PredictionCount, 0);
-	MaxIndex.resize(neocortex.PredictionCount, 0);
+	maxBel.resize( neocortex.predictionCount , 0 );
+	maxIndex.resize( neocortex.predictionCount , 0 );
 
-	ThisMaxMemSize = 1000;
-	Mem = new std::string[ThisMaxMemSize];
+	thisMaxMemSize = 1000;
+	mem = new std::string[ thisMaxMemSize ];
 }
 
-void Hippocampus::SetTextOutput(std::string name){
+void Hippocampus::setTextOutput( std::string name ){
 	unsigned i;
-	for(i = 0; i < MemCount; i++)
-		if(Mem[i] == name)
+	for(i = 0; i < memCount; i++)
+		if( mem[i] == name )
 			break; //i is the sequence number found
 
-	if(i == MemCount)
-		Mem[MemCount++] = name; 
+	if( i == memCount )
+		mem[ memCount++ ] = name; 
 
-	SequenceOutput = i;
+	sequenceOutput = i;
 }
 
-void Hippocampus::InitForInference(){
+void Hippocampus::initForInference(){
 // DG Check valid
 //   if ( MemCount == 0 ) {
 //    return;
 //}
-	PiIn.resize(MemCount, 1. / MemCount);
-	BelStar.resize(MemCount, 0); //MemCount will not change after learning
-	CombinedBelief.resize(MemCount, 0);
-	std::ostringstream  lLogStream;
-	lLogStream << "Hippocampus memories: " << MemCount; //<< std::endl;
-	// cGuiUtils.Summary( std::string( lLogStream.str() ) );
+	piIn.resize( memCount , 1. / memCount );
+	belStar.resize( memCount , 0 ); // memCount will not change after learning
+	combinedBelief.resize( memCount , 0 );
+	std::ostringstream lLogStream;
+
+	neocortex.log( String( "Hippocampus memories: " ) + memCount );
 }
 
-void Hippocampus::BeginRecognition(){
-	PiIn.assign(MemCount, 1. / MemCount); //reinitialize PiIn before each recognition
-	CombinedBelief.assign(MemCount, 0);
+void Hippocampus::beginRecognition(){
+	piIn.assign( memCount , 1. / memCount ); //reinitialize PiIn before each recognition
+	combinedBelief.assign( memCount , 0 );
 }
 
-void Hippocampus::Recognize(){
+void Hippocampus::recognize() {
 	vector<vector<double> > lambda;
-	Child->GetLambda(0, 0, SideCompression, lambda);
+	child -> getLambda( 0 , 0 , sideCompression , lambda);
 
 	unsigned r, c;
 
 	//multiply all lambdas into lambdaProd
-	vector<double> lambdaProd(MemCount, 1);
-	for(c = 0; c < MemCount; c++)
-	for(r = 0; r < lambda.size(); r++)
-		lambdaProd[c] *= lambda[r][c];
+	vector<double> lambdaProd( memCount , 1 );
+	for( c = 0; c < memCount; c++)
+		for( r = 0; r < lambda.size(); r++ )
+			lambdaProd[c] *= lambda[r][c];
 
-	BelStar.assign(MemCount, 0);
-	double SumBelStar = 0;
-	for(c = 0; c < MemCount; c++){
-		BelStar[c] = lambdaProd[c] / MemCount;
-		SumBelStar += BelStar[c];
+	belStar.assign( memCount , 0 );
+	double sumBelStar = 0;
+	for( c = 0; c < memCount; c++ ) {
+		belStar[c] = lambdaProd[c] / memCount;
+		sumBelStar += belStar[c];
 	}
 
-	//  if(SumBelStar > 0) //else we get too little probabilities (not similar to anything)
-	//    for(c = 0; c < MemCount; c++)
-	//      CombinedBelief[c] += BelStar[c] / SumBelStar; //normalize (let SumBelStar = 1)
-
 	// Optimisation by Greg Kochaniak
-	if(SumBelStar > 0) { //else we get too little probabilities (not similar to anything)
-		double RecipSumBelStar = 1.0 / SumBelStar;  //  Just one division here allows us to multply instead of dividing
-		for(c = 0; c < MemCount; c++)
-		CombinedBelief[c] += BelStar[c] * RecipSumBelStar; //normalize (let SumBelStar = 1)
+	if( sumBelStar > 0 ) { //else we get too little probabilities (not similar to anything)
+		double recipSumBelStar = 1.0 / sumBelStar;  //  Just one division here allows us to multply instead of dividing
+		for( c = 0; c < memCount; c++ )
+			combinedBelief[c] += belStar[c] * recipSumBelStar; //normalize (let SumBelStar = 1)
 	}
 
 	vector<vector<double> > piOut;
-	piOut.resize(lambda.size());       //lambda.size() = NumberOfChildren
+	piOut.resize( lambda.size() );       //lambda.size() = NumberOfChildren
 	for(r = 0; r < piOut.size(); r++) { //piOut.size()  = NumberOfChildren
-		piOut[r].resize(MemCount);
-		for(c = 0; c < MemCount; c++)
-			if(lambda[r][c] == 0)
+		piOut[r].resize( memCount );
+		for( c = 0; c < memCount; c++ )
+			if( lambda[r][c] == 0 )
 				piOut[r][c] = 0;
 			else
-				piOut[r][c] = BelStar[c] / lambda[r][c];
+				piOut[r][c] = belStar[c] / lambda[r][c];
 	}
-	Child->SetPi(0, 0, SideCompression, piOut); //distribute PiOut to each child Sub-region
+	child -> setPi( 0 , 0 , sideCompression , piOut ); //distribute piOut to each child Sub-region
 }
 
 //noOfResults that was used for recognition of moving image
-void Hippocampus::CalculateResults(unsigned noOfResults){ //find and display 10 best results
+void Hippocampus::calculateResults( unsigned noOfResults ) { //find N best results
 	unsigned c;
-	for(c = 0; c < MemCount; c++)
-		CombinedBelief[c] /= noOfResults; //normalize so that sum(CombinedBelief) = 1
+	for( c = 0; c < memCount; c++ )
+		combinedBelief[c] /= noOfResults; //normalize so that sum(CombinedBelief) = 1
 
-	MaxBel.assign(neocortex.PredictionCount, 0);
-	MaxIndex.assign(neocortex.PredictionCount, 0);
-	for(unsigned i = 0; i < neocortex.PredictionCount; i++) {
-		for(c = 0; c < MemCount; c++)
-			if(CombinedBelief[c] > MaxBel[i]) {
-				MaxBel[i] = CombinedBelief[c];
-				MaxIndex[i] = c;
+	maxBel.assign( neocortex.predictionCount , 0 );
+	maxIndex.assign( neocortex.predictionCount , 0 );
+	for( unsigned i = 0; i < neocortex.predictionCount; i++ ) {
+		for( c = 0; c < memCount; c++ )
+			if( combinedBelief[c] > maxBel[i] ) {
+				maxBel[i] = combinedBelief[c];
+				maxIndex[i] = c;
 			}
 
-		CombinedBelief[MaxIndex[i]] = 0; //will find next maximum
+		combinedBelief[maxIndex[i]] = 0; //will find next maximum
 	}
 }
 
 //noOfResults that was used for recognition of moving image
-void Hippocampus::DisplayResults( bool pLog, bool pImages ) { //find and display 10 best results
-   if ( pLog ){
-      for(unsigned i = 0; i < neocortex.PredictionCount; i++){
-         std::ostringstream  lLogStream;
-         if ( MaxBel[i] > 0 )
-         {
-            lLogStream << (i+1) << ": " << Mem[MaxIndex[i]] << "    " << (MaxBel[i]); //<< std::endl;
-            // cGuiUtils.Log( std::string( lLogStream.str() ) );
-         }
-      }
+void Hippocampus::displayResults( bool pLog, bool pImages ) { //display N best results
+	if ( pLog ) {
+		for(unsigned i = 0; i < neocortex.predictionCount; i++) {
+			if( maxBel[i] > 0 )
+				neocortex.log( String("Hippocampus::displayResults - ") + (i+1) + ": " + mem[maxIndex[i]].c_str() + "    " + (maxBel[i]) );
+		}
    }
    //cGuiUtils.Plot(MaxBel); - no TChart in Turbo C++ 
-   if ( pImages ){
-      // cGuiUtils.DisplayPredictionImages(MaxIndex, MaxBel);
+   if ( pImages ) {
+		displayPredictionImages();
    }
 }
 
-std::string Hippocampus::GetResultName(unsigned resultNumber){
-  return Mem[MaxIndex[resultNumber]];
+std::string Hippocampus::getResultName( unsigned resultNumber ){
+  return mem[ maxIndex[resultNumber] ];
 }
 
-int Hippocampus::GetSequence(unsigned x, unsigned y){
-  return SequenceOutput;
+void Hippocampus::displayPredictionImages() {
 }
 
-void Hippocampus::DisplayAllMemories(){
-  // cGuiUtils.Log("");
-  // cGuiUtils.Log("Memory of hippocampus:");
-  for(unsigned i = 0; i < ThisMaxMemSize; i++)
-    if ( !(Mem[i].length() == 0) ){
-       std::ostringstream  lLogStream;
-       lLogStream << i << "\t" << Mem[i]; //<< std::endl;
-       // cGuiUtils.Log( std::string( lLogStream.str() ) );
-  }
+void Hippocampus::displayAllMemories(){
+	neocortex.log( "" );
+	neocortex.log( "Memory of hippocampus:" );
+	for(unsigned i = 0; i < thisMaxMemSize; i++)
+		if ( !(mem[i].length() == 0) )
+			neocortex.log( String( "Hippocampus::displayAllMemories - " ) + i + "\t" + mem[i].c_str() );
 }
