@@ -34,8 +34,6 @@ public:
 class AILibBNVariant
 {
 public:
-	static AILibBNVariant *createHtmCustom();
-	
 	AILibBNVariant( String p_name ) { 
 		name = p_name; 
 	};

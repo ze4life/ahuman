@@ -350,10 +350,30 @@ String operator +( const String& s1 , int value )
 	return( s );
 }
 
+String operator +( const String& s1 , unsigned value )
+{
+	char l_buf[ 12 ];
+	sprintf( l_buf , "%u" , value );
+
+	String s = s1;
+	s += l_buf;
+	return( s );
+}
+
 String operator +( const String& s1 , float value )
 {
 	char l_buf[ 30 ];
 	sprintf( l_buf , "%g" , value );
+
+	String s = s1;
+	s += l_buf;
+	return( s );
+}
+
+String operator +( const String& s1 , double value )
+{
+	char l_buf[ 30 ];
+	sprintf( l_buf , "%lf" , value );
 
 	String s = s1;
 	s += l_buf;

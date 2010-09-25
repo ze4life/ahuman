@@ -25,34 +25,40 @@ class SFNeoCortex;
 
 class Hippocampus : public ContextSource {
 private:
-	unsigned ThisMaxMemSize;
-	std::string * Mem; //[NeoParameters::MaxMemSize];
-	unsigned MemCount;        //number of filled spots in memory array
-	unsigned SideCompression; //number of children = SideCompression*SideCompression
-	int SequenceOutput;
-	std::string TextInput, TextOutput;
-	vector<double> BelStar, PiIn, CombinedBelief, MaxBel;
-	vector<unsigned> MaxIndex;
+	unsigned thisMaxMemSize;
+	std::string *mem; //[thisMaxMemSize];
+	unsigned memCount;        //number of filled spots in memory array
+	unsigned sideCompression; //number of children = SideCompression*SideCompression
+	int sequenceOutput;
+	vector<double> belStar;
+	vector<double> piIn;
+	vector<double> combinedBelief;
+	vector<double> maxBel;
+	vector<unsigned> maxIndex;
+
+// ContextSource
+public:
+    virtual void feedForward(unsigned learningRegion, bool feedbackStage) {};
+    virtual void contextual() {};
+    virtual unsigned getMemCount() { return memCount; }
+	virtual int getSequence( unsigned xPos , unsigned yPos ) { return sequenceOutput; }
 
 public:
-    Hippocampus(SFNeoCortex& nc , unsigned sideCompr);
-    ~Hippocampus(){ delete [] Mem; };
-    void SetTextOutput(std::string name);
+    Hippocampus( SFNeoCortex& nc , unsigned sideCompression );
+    ~Hippocampus() { delete [] mem; };
 
-    void FeedForward(unsigned learningRegion, bool feedbackStage) {}
-    void Contextual()  {}
+    void setTextOutput( std::string name );
 
-    void InitForInference();
-    void BeginRecognition();
-    void Recognize();
-    void DisplayResults(bool pLog, bool pImages);
-    void CalculateResults(unsigned saccadeCount);
-    std::string GetResultName(unsigned resultNumber);    
+    void initForInference();
+    void beginRecognition();
+    void recognize();
 
-    virtual int GetSequence(unsigned x, unsigned y);
-    virtual unsigned GetMemCount() {return MemCount;}
+    void displayResults( bool pLog , bool pImages );
+    void calculateResults( unsigned saccadeCount );
+    std::string getResultName( unsigned resultNumber );    
 
-    void DisplayAllMemories();
+    void displayAllMemories();
+	void displayPredictionImages();
 };
 
 #endif

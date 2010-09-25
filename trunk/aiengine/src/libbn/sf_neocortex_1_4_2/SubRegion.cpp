@@ -21,46 +21,44 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "sf_neocortex.h"
 
 SubRegion::SubRegion(SFNeoCortex& nc , unsigned pSeqLen, unsigned ic, NeoRegion &r) 
-:	neocortex( nc ) , MyRegion(r)
+:	neocortex( nc ) , myRegion(r)
 {
-	SequenceLength = pSeqLen;
-	InputCount = ic;
-	CurrentSequence = new Sequence(SequenceLength, InputCount);
-	NameOutput = neocortex.OutputNone;
-	cCPDMatrix = new std::map<AccessKey, double>; //, AccessKey::LessThan> ;
+	sequenceLength = pSeqLen;
+	inputCount = ic;
+	currentSequence = new Sequence( sequenceLength , inputCount );
+	nameOutput = neocortex.OUTPUT_NONE;
 }
 
 SubRegion::~SubRegion()
 {
-	delete CurrentSequence;
-	cCPDMatrix->clear();
-	delete cCPDMatrix;
+	delete currentSequence;
+	cpdMatrix.clear();
 }
 
 //finds a sequence in the array of learned sequences
 // It always finds a match
-void SubRegion::FindBestMatch(Sequence &s, unsigned &retIndex, double &retPrecision)
+void SubRegion::findBestMatch( Sequence &s , unsigned &retIndex , double &retPrecision )
 {
 	double precision;
 	retPrecision = 0;
 	retIndex = 0;
 
-	for(unsigned i = 0; i < MyRegion.GetMemCount(); i++) {
-		precision = MyRegion.Memory(i).Compare(s);
-		if(precision > retPrecision) {
+	for(unsigned i = 0; i < myRegion.getMemCount(); i++) {
+		precision = myRegion.memory(i).compare( s );
+		if( precision > retPrecision ) {
 			retPrecision = precision;
 			retIndex = i;
 
-			if(retPrecision == 1) //can't be better
+			if( retPrecision == 1 ) //can't be better
 				return;
 		}
 	}  
 }
 
-int SubRegion::FindLowUsage( unsigned pMaxUsage )
+int SubRegion::findLowUsage( unsigned pMaxUsage )
 {
-	for(unsigned i = 0; i < MyRegion.GetMemCount(); i++) {
-		if ( MyRegion.Memory(i).GetFrequency() < (pMaxUsage+1) ) {
+	for(unsigned i = 0; i < myRegion.getMemCount(); i++) {
+		if( myRegion.memory(i).getFrequency() < (pMaxUsage+1) ) {
 			return i;
 		}
 	}  
@@ -69,52 +67,53 @@ int SubRegion::FindLowUsage( unsigned pMaxUsage )
 
 //take input pattern, process it and remember the output
 //pattern is array of length InputCount containing the input pattern
-bool SubRegion::FeedForward( unsigned *pattern, bool memorize, unsigned pLowUsageThreshold )
+bool SubRegion::feedForward( unsigned *pattern, bool memorize, unsigned pLowUsageThreshold )
 {
 	bool lRetCode = true;
 	// CurrentSequence is the single sequence that is being worked on
 	// Sequence length is always one.
-	CurrentSequence->AddPattern(pattern);
-	if(CurrentSequence->Complete()) {
+	currentSequence -> addPattern( pattern );
+
+	if( currentSequence -> complete() ) {
 		unsigned int lLearnedIndex;
 		double lMatchPrecision;
 		BestMatch lBestMatch;
-		FindBestMatch(*CurrentSequence, lLearnedIndex, lMatchPrecision);
+		findBestMatch(*currentSequence, lLearnedIndex, lMatchPrecision);
 
-		lBestMatch.Precision = lMatchPrecision;
-		lBestMatch.Index = lLearnedIndex;
+		lBestMatch.precision = lMatchPrecision;
+		lBestMatch.index = lLearnedIndex;
 
-		if(memorize && lBestMatch.Precision < 1) { // potentially treat as a new sequence
+		if( memorize && lBestMatch.precision < 1) { // potentially treat as a new sequence
 			int lRetIndex = 0;
-			lRetIndex = MyRegion.AddSequence(*CurrentSequence);
+			lRetIndex = myRegion.addSequence( *currentSequence );
 
 			if ( -1 ==  lRetIndex ) {
 				// New at version 1.4
 				// Memory full so add it to the best place we can find
 				// But only for a reasonably good match
 				// 
-				if ( lBestMatch.Precision > neocortex.BestMatchPrecision ) {
-					MyRegion.Memory(lBestMatch.Index).IncFrequency();  
+				if ( lBestMatch.precision > neocortex.bestMatchPrecision ) {
+					myRegion.memory( lBestMatch.index ).increaseFrequency();  
 				}
 				else {
-					int lLowUsageIndex = FindLowUsage(pLowUsageThreshold);
+					int lLowUsageIndex = findLowUsage( pLowUsageThreshold );
 					if ( lLowUsageIndex != -1 ) {
 						// Replace the memory with the one at the top 
-						MyRegion.ForgetMemory( lLowUsageIndex );
+						myRegion.forgetMemory( lLowUsageIndex );
 						// Add the new sequence to the top
-						lRetIndex = MyRegion.AddSequence(*CurrentSequence);
+						lRetIndex = myRegion.addSequence( *currentSequence );
 						if ( -1 ==  lRetIndex ) {
 							lRetCode = false;
-							lBestMatch.Index = neocortex.OutputNone;
+							lBestMatch.index = neocortex.OUTPUT_NONE;
 						}
 						else {
-							lBestMatch.Index = (unsigned int) lRetIndex; // this should be the top of memory
+							lBestMatch.index = (unsigned int) lRetIndex; // this should be the top of memory
 						}
 					}
 					else {
 						// Sequence was not added.
 						lRetCode = false;
-						lBestMatch.Index = neocortex.OutputNone;
+						lBestMatch.index = neocortex.OUTPUT_NONE;
 						// Would be nice to log - but we do not have logging in this class right now.
 						//std::ostringstream  lLogStream;
 						//lLogStream << "Cannot find a low-usage slot for new sequence." << " Memory is full."; //<< std::endl; 
@@ -124,38 +123,38 @@ bool SubRegion::FeedForward( unsigned *pattern, bool memorize, unsigned pLowUsag
 			}
 			else {
 				// Memory already had space for the new sequence (frequency is already set to 1)
-				lBestMatch.Index = (unsigned int) lRetIndex;
+				lBestMatch.index = (unsigned int) lRetIndex;
 			}
 		}
 		else {
-			if ( memorize && lBestMatch.Precision == 1 ) {
+			if ( memorize && lBestMatch.precision == 1 ) {
 				// Match precision is 100%
-				MyRegion.Memory(lBestMatch.Index).IncFrequency();  
+				myRegion.memory( lBestMatch.index ).increaseFrequency();  
 			}
 		}
 
-		NameOutput = lBestMatch.Index; //index of the best match for the new sequence
-		cMemIndex = lBestMatch.Index;   //used in Contextual
-		CurrentSequence->Clear();
+		nameOutput = lBestMatch.index; //index of the best match for the new sequence
+		memIndex = lBestMatch.index;   //used in Contextual
+		currentSequence -> clear();
 	}
 
 	return lRetCode;
 }
 
-void SubRegion::Contextual(unsigned parentContext) 
+void SubRegion::contextual(unsigned parentContext) 
 {
 	//parentContext is name output from parent
 	//  NO NEED to pre-create entries - only the ones that are required will be created
 	std::map<AccessKey, double> lIter; 
-	AccessKey lKey(parentContext, cMemIndex);
+	AccessKey lKey( parentContext , memIndex );
 
 	// Returns false if entry did not exist
-	if ( (*cCPDMatrix)[lKey] == 0.0 ) {
+	if( cpdMatrix[lKey] == 0.0 ) {
 	// Initialize new entry (note that it has been created by the attempted access
-		(*cCPDMatrix)[lKey] = 1.0;
+		cpdMatrix[lKey] = 1.0;
 	}
 	else {
-		(*cCPDMatrix)[lKey] += 1.0;
+		cpdMatrix[lKey] += 1.0;
 	}
 	//   Use insert to speed things up
 	// May be quicker but may crash
@@ -166,7 +165,7 @@ void SubRegion::Contextual(unsigned parentContext)
 	//}
 }
 
-void SubRegion::InitForInference(unsigned pParentMemCount)
+void SubRegion::initForInference(unsigned pParentMemCount)
 {
 	//cCPDMatrix has pParentMemCount rows and MemCount Sub-regions
 
@@ -174,7 +173,7 @@ void SubRegion::InitForInference(unsigned pParentMemCount)
    
 	// Declare map iterator.  This will return all elements row-major order.
 	// Initialise Current row to the first row of the matrix
-	std::map<AccessKey, double>::iterator lIter = cCPDMatrix->begin(); //, AccessKey::LessThan>::iterator lIter = cCPDMatrix->begin();
+	std::map<AccessKey, double>::iterator lIter = cpdMatrix.begin(); //, AccessKey::LessThan>::iterator lIter = cCPDMatrix->begin();
 	unsigned lCurrentRow = lIter-> first.cPosition.first;
 
 	std::vector<AccessKey> lvPrev;
@@ -184,7 +183,7 @@ void SubRegion::InitForInference(unsigned pParentMemCount)
 	unsigned lMaxRow = 0;
 
 	// Normalise the results
-	for ( lIter = cCPDMatrix->begin(); lIter != cCPDMatrix->end(); lIter++ ) {
+	for ( lIter = cpdMatrix.begin(); lIter != cpdMatrix.end(); lIter++ ) {
 		// NB the lIter->first is the key for the map.
 		//    The key itself is also made up of a value pair - row and column, respectively, within cPosition.
 		// 
@@ -195,7 +194,7 @@ void SubRegion::InitForInference(unsigned pParentMemCount)
 			if ( sum > 0 ) {
 				lvPrevIter = lvPrev.begin();
 				for ( lvPrevIter = lvPrev.begin(); lvPrevIter != lvPrev.end(); lvPrevIter++ ) {
-					(*cCPDMatrix)[*lvPrevIter] /= sum;
+					cpdMatrix[*lvPrevIter] /= sum;
 				}
 
 				sum = 0;
@@ -211,7 +210,7 @@ void SubRegion::InitForInference(unsigned pParentMemCount)
 		// So do it now
 		lvPrevIter = lvPrev.begin();
 		for ( lvPrevIter = lvPrev.begin(); lvPrevIter != lvPrev.end(); lvPrevIter++ ) {
-			(*cCPDMatrix)[*lvPrevIter] /= sum;
+			cpdMatrix[*lvPrevIter] /= sum;
 		}
 
 		sum=0;
@@ -219,28 +218,28 @@ void SubRegion::InitForInference(unsigned pParentMemCount)
 	}   
 
 	// Increment to give the actual row count
-	cPiIn.resize(lCurrentRow+1, 1);
+	piIn.resize(lCurrentRow+1, 1);
 	// It seems that the following is sometimes too small:
 	// cPiIn.resize(pParentMemCount, 1);
 }
 
-void SubRegion::BeginRecognition(unsigned parentMemCount)
+void SubRegion::beginRecognition(unsigned parentMemCount)
 {
-	cPiIn.assign(parentMemCount, 1); //reinitialize cPiIn before each recognition
+	piIn.assign(parentMemCount, 1); //reinitialize cPiIn before each recognition
 }
 
 //lambda is evidence from children, measures NumberOfChildren x MemCount
 //for Level0: lambda[r][c] is probability that the input to the child r is
 //the memorized pattern c (how close is the input to the memorized pattern)
 //assume size(piOut) = number of children
-void SubRegion::Recognize(vector<vector<double> > &lambda, vector<vector<double> > &piOut)
+void SubRegion::recognize(vector<vector<double> > &lambda, vector<vector<double> > &piOut)
 {
 	unsigned r, c;
 
 	AccessKey lKey(0,0);
 
-	unsigned rowCount = MyRegion.GetParent()->GetMemCount(); //cPiIn.size(); ?
-	unsigned colCount = MyRegion.GetMemCount();
+	unsigned rowCount = myRegion.getParent() -> getMemCount(); //cPiIn.size(); ?
+	unsigned colCount = myRegion.getMemCount();
 
 	//multiply all lambdas into lambdaProd
 	//lambdaProd[c] is combined probability from children that the input to ALL of them
@@ -278,25 +277,25 @@ void SubRegion::Recognize(vector<vector<double> > &lambda, vector<vector<double>
 	//            part of the higher-level pattern r
 	// Optimisation by Greg Kochaniak - fxu does not have to be a matrix if we just have a single loop.
 	double fxu, lOut;
-	cBelStar.assign(colCount, 0);
-	cLambdaOut.assign(rowCount, 0);
+	belStar.assign(colCount, 0);
+	lambdaOut.assign(rowCount, 0);
 
 	std::map<AccessKey, double>::iterator lIter, lIterEnd;
-	lIterEnd = cCPDMatrix->end();
-	for ( lIter = cCPDMatrix->begin(); lIter != lIterEnd; lIter++ ) {
+	lIterEnd = cpdMatrix.end();
+	for ( lIter = cpdMatrix.begin(); lIter != lIterEnd; lIter++ ) {
 		const std::pair<unsigned,unsigned> lPosition= lIter->first.cPosition;
 		r=lPosition.first;
 		c=lPosition.second;
 		double lVal = lIter->second;
 		lOut = lambdaProd[c] * lVal;
-		fxu = lOut * cPiIn[r];
+		fxu = lOut * piIn[r];
 
-		if ( cBelStar[c] < fxu ) {
-			cBelStar[c] = fxu;
+		if( belStar[c] < fxu ) {
+			belStar[c] = fxu;
 		}
 
-		if (cLambdaOut[r] < lOut ) {
-			cLambdaOut[r] = lOut;
+		if( lambdaOut[r] < lOut ) {
+			lambdaOut[r] = lOut;
 		}
 	}
 
@@ -336,14 +335,14 @@ void SubRegion::Recognize(vector<vector<double> > &lambda, vector<vector<double>
 	*/
 }
 
-vector<double> SubRegion::GetLambdaOutput() {
-	return cLambdaOut;
+vector<double> SubRegion::getLambdaOutput() {
+	return lambdaOut;
 }
 
-void SubRegion::SetPiInput(vector<double> &pi) {
-	cPiIn = pi; //copies all elements; pi.size() = pParentMemCount
+void SubRegion::setPiInput(vector<double> &pi) {
+	piIn = pi; //copies all elements; pi.size() = pParentMemCount
 }
 
-unsigned SubRegion::GetNameOutput() {
-	return NameOutput;
+unsigned SubRegion::getNameOutput() {
+	return nameOutput;
 }

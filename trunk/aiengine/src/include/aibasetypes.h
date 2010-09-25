@@ -80,7 +80,9 @@ private:
 
 String operator +( const String& s1 , const char *s2 );
 String operator +( const String& s1 , int value );
+String operator +( const String& s1 , unsigned value );
 String operator +( const String& s1 , float value );
+String operator +( const String& s1 , double value );
 String operator +( const String& s1 , char value );
 String operator +( const String& s1 , bool value );
 

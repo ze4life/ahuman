@@ -27,6 +27,11 @@ public:
 	void addLibVariant( AILibBNVariant *lib );
 	AILibBNVariant *getLibVariant( String name );
 
+// create library items
+public:
+	static AILibBNVariant *createHtmCustom();
+	static AILibBNVariant *createSFNeoCortex();
+
 // internals
 private:
 	AIEngine& engine;

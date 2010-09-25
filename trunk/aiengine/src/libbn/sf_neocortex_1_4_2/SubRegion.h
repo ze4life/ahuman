@@ -18,9 +18,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#ifndef SubRegionH
-#define SubRegionH
-
 #include <vector>
 
 using namespace std;
@@ -33,41 +30,38 @@ class SubRegion {
 private:
 	SFNeoCortex& neocortex;
 
-	unsigned SequenceLength; //number of steps that form a sequence (time)
-	unsigned InputCount;     //number of inputs (space)
-	NeoRegion &MyRegion;
-	int NameOutput; //output value of the Sub-region; negative values are special situations
-	unsigned cMemIndex; //for level1 indexes in Mem
-	Sequence *CurrentSequence;
+	unsigned sequenceLength; //number of steps that form a sequence (time)
+	unsigned inputCount;     //number of inputs (space)
+	NeoRegion &myRegion;
+	int nameOutput; //output value of the Sub-region; negative values are special situations
+	unsigned memIndex; //for level1 indexes in Mem
+	Sequence *currentSequence;
+
 	//vector<vector<double> > cCPDMatrix;
-
 	// This is a map based sparse matrix to replace <vector<vector>>
-	std::map<AccessKey, double> * cCPDMatrix;
-	std::vector<double> cBelStar, cLambdaOut, cPiIn;
-
-	void FindBestMatch(Sequence &s, unsigned &retIndex, double &retPrecision);
-	int SubRegion::FindLowUsage(unsigned pMaxUsage);
+	std::map<AccessKey, double> cpdMatrix;
+	std::vector<double> belStar, lambdaOut, piIn;
 
 	struct BestMatch {
 		//Sequence * Sequence;
-		double Precision;
-		unsigned int Index;
+		double precision;
+		unsigned int index;
 	};
 
-	//void AddLearnedSequence(Sequence &s, int &retIndex);
+	void findBestMatch( Sequence &s , unsigned &retIndex , double &retPrecision );
+	int findLowUsage( unsigned maxUsage );
 
 public:
-	SubRegion(SFNeoCortex& nc , unsigned sl, unsigned ic, NeoRegion &r);
+	SubRegion( SFNeoCortex& nc , unsigned sequenceLength , unsigned inputCount , NeoRegion &r );
 	virtual ~SubRegion();
-	bool FeedForward(unsigned *pattern, bool memorize, unsigned pLowUsageThreshold);
-	void Contextual(unsigned parentContext);
-	void InitForInference(unsigned parentMemCount);
-	void BeginRecognition(unsigned parentMemCount);
-	void Recognize(vector<vector<double> > &lambda, vector<vector<double> > &piOut);
 
-	vector<double> GetLambdaOutput();
-	void SetPiInput(vector<double> &pi);
-	unsigned GetNameOutput();
+	bool feedForward( unsigned *pattern , bool memorize , unsigned pLowUsageThreshold );
+	void contextual( unsigned parentContext );
+	void initForInference( unsigned parentMemCount );
+	void beginRecognition( unsigned parentMemCount );
+	void recognize( vector<vector<double> > &lambda , vector<vector<double> > &piOut );
+
+	vector<double> getLambdaOutput();
+	void setPiInput( vector<double> &pi );
+	unsigned getNameOutput();
 };
-
-#endif

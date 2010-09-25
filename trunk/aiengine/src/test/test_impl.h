@@ -69,6 +69,7 @@ public:
 	static TestUnit *createFannCustomTest();
 	static TestUnit *createHtmViewCustomTest();
 	static TestUnit *createFileSysWalkerTest();
+	static TestUnit *createNeoCortexTest();
 
 // generic
 public:
