@@ -2,27 +2,28 @@
 
 class NeoCortex : public Object , public MindArea
 {
-	NeoCortexSensorsSubscriber *sensorsSub;
+	CognitiveProcessor *cortexFileSys;
 
 // construction
 public:
 	NeoCortex() {
-		sensorsSub = new NeoCortexSensorsSubscriber();
+		cortexFileSys = CognitiveProcessor::createFileSysCortex();
 	};
 	virtual ~NeoCortex() {
-		delete sensorsSub;
+		delete cortexFileSys;
 	}
 
 	const char *getClass() { return( "NeoCortex" ); };
 
 // MindArea interface
 public:
-	virtual void onCreateArea() {};
+	virtual void onCreateArea() {
+	};
 	virtual void onLoadArea() {};
 
 	virtual void onOpenMindLinkDestination( MindLink *link , String channelId ) {
 		if( channelId.equals( "sensordata" ) ) {
-			link -> subscribe( sensorsSub , "neocortex" );
+			link -> subscribe( cortexFileSys , "sub.filesys" , "FileSysWalker" );
 		}
 	};
 };

@@ -59,13 +59,13 @@ public:
 // child
 class ContextSource {
 public:
-	NeoCortex& neocortex;
+	SFNeoCortex& neocortex;
 
 protected:
 	PatternSource *child;
 
 public:
-	ContextSource( NeoCortex& neocortex );
+	ContextSource( SFNeoCortex& neocortex );
 	virtual ~ContextSource() {};
 
 	void setChild( PatternSource *s ) { child = s; }

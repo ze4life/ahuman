@@ -1,6 +1,8 @@
 #ifndef	INCLUDE_AIIO_H
 #define INCLUDE_AIIO_H
 
+#include <aiengine.h>
+
 class Message;
 class TextMessage;
 class BinaryMessage;
@@ -29,6 +31,8 @@ public:
 		{ return( thisPtr -> createPublisher( session , channel , pubName , msgtype ) ); };
 	virtual Subscription *subscribe( Session *session , String channel , String subName , Subscriber *sub )
 		{ return( thisPtr -> subscribe( session , channel , subName , sub ) ); };
+	virtual Subscription *subscribeSelector( Session *session , String channel , String selector , String subName , Subscriber *sub )
+		{ return( thisPtr -> subscribeSelector( session , channel , selector , subName , sub ) ); };
 	virtual bool destroyPublisher( Publisher *pub )
 		{ return( thisPtr -> destroyPublisher( pub ) ); };
 	virtual bool unsubscribe( Subscription *sub )

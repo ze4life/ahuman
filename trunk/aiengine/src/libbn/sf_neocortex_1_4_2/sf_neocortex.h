@@ -9,7 +9,7 @@
 #include "aiengine.h"
 #include "aibrain.h"
 
-class NeoCortex : public Cortex
+class SFNeoCortex : public Cortex
 {
 public:
 	Logger logger;
@@ -33,7 +33,7 @@ public:
 	bool deletionByPercentage;
 
 public:
-	NeoCortex( MindArea *area , unsigned bottomSide ) : Cortex( area , bottomSide * bottomSide , 1 ) {
+	SFNeoCortex( MindArea *area , unsigned bottomSide ) : Cortex( area , bottomSide * bottomSide , 1 ) {
 		logger.attach( "NeoCortex" );
 	};
 

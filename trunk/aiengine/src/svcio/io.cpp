@@ -99,6 +99,18 @@ Subscription *AIIOImpl::subscribe( Session *session , String channel , String su
 	return( sub );
 }
 
+Subscription *AIIOImpl::subscribeSelector( Session *session , String channel , String selector , String subName , Subscriber *subHandler )
+{
+	Channel *ch = getChannel( channel );
+	SubscriptionImpl *sub = new SubscriptionImpl( session , ch , subName , subHandler );
+	sub -> setSelector( selector );
+
+	ch -> addSubscription( subName , sub );
+	logger.logInfo( subName + " subscriber started on " + channel + " channel" );
+	
+	return( sub );
+}
+
 bool AIIOImpl::destroyPublisher( Publisher *publisher )
 {
 	PublisherImpl *pub = ( PublisherImpl * )publisher;

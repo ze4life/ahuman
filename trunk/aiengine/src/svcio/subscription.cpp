@@ -41,24 +41,43 @@ void SubscriptionImpl::disconnected()
 }
 
 /*
- * Process the message deepnding upon the type.
+ * Process the message depending upon the type.
  * @param msg is the message to be processed.
  */
 void SubscriptionImpl::processMessage( Message *msg )
 {
-	switch( msg -> getMsgBaseType() )
-		{
-			case Message::MsgType_Text :
-				sub -> onMessage( msg );
-				break;
-			case Message::MsgType_Xml :
-				sub -> onXmlMessage( ( XmlMessage * )msg );
-				break;
-			case Message::MsgType_XmlCall :
-				sub -> onXmlCall( ( XmlCall * )msg );
-				break;
-			default:
-				ASSERTFAILED( String( "Uknown message type for message: " ) + msg -> getChannelMessageId() );
-		}
+	// verify selector
+	if( !selector.isEmpty() )
+		if( !isMatchSelector( msg ) )
+			return;
+
+	switch( msg -> getMsgBaseType() ) {
+		case Message::MsgType_Text :
+			sub -> onMessage( msg );
+			break;
+		case Message::MsgType_Xml :
+			sub -> onXmlMessage( ( XmlMessage * )msg );
+			break;
+		case Message::MsgType_XmlCall :
+			sub -> onXmlCall( ( XmlCall * )msg );
+			break;
+		default:
+			ASSERTFAILED( String( "Uknown message type for message: " ) + msg -> getChannelMessageId() );
+	}
+}
+
+void SubscriptionImpl::setSelector( String p_selector )
+{
+	selector = p_selector;
+}
+
+bool SubscriptionImpl::isMatchSelector( Message *msg )
+{
+	// for now, check only message type as selector contents
+	const String& type = msg -> getType();
+	if( type.isEmpty() )
+		return( false );
+
+	return( selector.find( type ) >= 0 );
 }
 

@@ -1,6 +1,8 @@
 #ifndef	INCLUDE_AIDB_H
 #define INCLUDE_AIDB_H
 
+#include <aiengine.h>
+
 class AIDB;
 class AIDBFile;
 class AIDBCursor;

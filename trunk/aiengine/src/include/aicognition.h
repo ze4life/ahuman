@@ -1,6 +1,7 @@
 #ifndef	INCLUDE_AICOGNITION_H
 #define INCLUDE_AICOGNITION_H
 
+#include <aiengine.h>
 #include <aisvcio.h>
 
 /*#########################################################################*/

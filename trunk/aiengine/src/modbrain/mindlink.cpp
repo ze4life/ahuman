@@ -39,11 +39,11 @@ void MindLink::publish( BinaryMessage *msg )
 	iopub -> publish( session , msg );
 }
 
-Subscription *MindLink::subscribe( Subscriber *handler , String name )
+Subscription *MindLink::subscribe( Subscriber *handler , String name , String selector )
 {
 	AIIO io;
 	String channelId = info -> getChannelId();
-	Subscription *sub = io.subscribe( session , channelId , channelId + "-" + name , handler );
+	Subscription *sub = io.subscribeSelector( session , channelId , selector , channelId + "-" + name , handler );
 	return( sub );
 }
 

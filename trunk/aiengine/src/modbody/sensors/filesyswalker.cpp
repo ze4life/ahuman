@@ -105,6 +105,11 @@ public:
 		// control data: capture resolution
 		curFocusType = FOCUS_COMPUTER;
 		curFocusDepth = -1;
+
+		// start capture for first dir tree
+		curDisk = getFirstDisk();
+		curDir = getRootDiskDirectory( curDisk );
+		curFocusType = FOCUS_DIR;
 	}
 
 	virtual ~SensorFileSysWalker() {

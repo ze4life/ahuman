@@ -3,7 +3,7 @@
 #ifndef	INCLUDE_AILIBBN_H
 #define INCLUDE_AILIBBN_H
 
-#include <aisvcio.h>
+#include <aiengine.h>
 
 class AILibBNVariant;
 
