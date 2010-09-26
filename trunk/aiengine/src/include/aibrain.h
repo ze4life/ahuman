@@ -1,6 +1,7 @@
 #ifndef	INCLUDE_AIBRAIN_H
 #define INCLUDE_AIBRAIN_H
 
+#include <aiengine.h>
 #include <aisvcio.h>
 
 class MindArea;
@@ -47,6 +48,9 @@ public:
 	virtual Cortex *getCortex( String cortexId ) {
 		return( thisPtr -> getCortex( cortexId ) );
 	}
+
+	// mind area helpers
+	static MindArea *getNeoCortexArea() { AIBrain brain; return( brain.getMindArea( "NeoCortex" ) ); }
 };
 
 /*#########################################################################*/
@@ -183,6 +187,7 @@ public:
 		area = p_area;
 		nInputs = p_ninputs;
 		nOutputs = p_noutputs;
+		neuronsUsed = 0;
 
 		inputs = ( nInputs > 0 )? ( cortexvt * )calloc( nInputs , sizeof( cortexvt ) ) : NULL;
 		outputs = ( nOutputs > 0 )? ( cortexvt * )calloc( nOutputs , sizeof( cortexvt ) ) : NULL;
@@ -214,6 +219,12 @@ public:
 	int getNInputs() { return( nInputs ); };
 	int getNOutputs() { return( nOutputs ); };
 
+	String getNetType() { return( netType ); };
+	void setNetType( String type ) { netType = type; };
+
+	int getNSize() { return( neuronsUsed ); };
+	void setNSize( int p_nsize ) { neuronsUsed = p_nsize; };
+
 	cortexvt *getInputs() { return( inputs ); };
 	cortexvt *getOutputs() { return( outputs ); };
 
@@ -221,9 +232,11 @@ private:
 	String cortexId;
 	MindArea *area;
 	BrainLocation location;
+	String netType;
 
 	int nInputs;
 	int nOutputs;
+	int neuronsUsed;
 
 	cortexvt *inputs;
 	cortexvt *outputs;
@@ -252,7 +265,7 @@ public:
 
 	void open( Session *session );
 	void publish( BinaryMessage *msg );
-	Subscription *subscribe( Subscriber *handler , String name );
+	Subscription *subscribe( Subscriber *handler , String name , String selector );
 
 	MindArea *getSourceArea() { return( sourceArea ); };
 	MindArea *getDestinationArea() { return( destinationArea ); };

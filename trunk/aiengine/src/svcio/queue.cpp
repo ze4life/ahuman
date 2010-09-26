@@ -19,12 +19,15 @@ const char *IOQueue::NAME = "IOQueue";
 IOQueue::IOQueue( String p_queueId )
 :	engine( AIEngine::getInstance() )
 {
+	Object::setInstance( p_queueId );
+
 	queueId = p_queueId;
 	queueLock = rfc_lock_create();
 	queueWakeupEvent = rfc_hnd_evcreate();
 	/* Create a list to add messages of type pointer */
 	queueMessages = rfc_lst_create( RFC_EXT_TYPEPTR );
-	logger.attach( queueId );
+
+	logger.attach( this );
 }
 
 /*

@@ -1,5 +1,8 @@
-#include "test_impl.h"
+#include "aibrain.h"
+#include "ailibbn.h"
 #include "..\libbn\sf_neocortex_1_4_2\sf_neocortex.h"
+
+#include "test_impl.h"
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -20,8 +23,9 @@ public:
 public:
 
 	void testCreateSimple( XmlCall& call ) {
+		// use libbn sf_neocortex library directly without unified interface
 		// set parameters
-		SFNeoCortex ct;
+		SFNeoCortex ct( AIBrain::getNeoCortexArea() , 32 );
 		ct.areaSide = 32;
 		ct.bestMatchPrecision = 0.95;
 		ct.overlapSubRegions = 0;

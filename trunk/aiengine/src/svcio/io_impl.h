@@ -35,6 +35,7 @@ public:
 	// topics publishers and subscribers
 	virtual Publisher *createPublisher( Session *session , String channel , String pubName , String msgtype );
 	virtual Subscription *subscribe( Session *session , String channel , String subName , Subscriber *sub );
+	virtual Subscription *subscribeSelector( Session *session , String channel , String selector , String subName , Subscriber *sub );
 	virtual bool destroyPublisher( Publisher *publisher );
 	virtual bool unsubscribe( Subscription *subscription );
 
@@ -164,14 +165,20 @@ class SubscriptionImpl : public Subscription
 {
 public:
 	SubscriptionImpl( Session *session , Channel *p_channel , String p_name , Subscriber *p_sub );
+	void setSelector( String selector );
+
 	virtual Channel *getChannel();
 
 	void disconnected();
 	void processMessage( Message *msg );
 
+private:
+	bool isMatchSelector( Message *msg );
+
 public:
 	Session *session;
 	Channel *channel;
+	String selector;
 	String name;
 	Subscriber *sub;
 };

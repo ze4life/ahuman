@@ -180,16 +180,11 @@ Cortex *AIBrainImpl::createCortex( MindArea *area , BrainLocation& relativeLocat
 	Cortex *cortex = ( this ->* factory ) ( area , netType , inputs , size , outputs );
 	ASSERTMSG( cortex != NULL , "Unable to create cortex type=" + netType );
 	cortex -> setLocation( cortexLocation );
+	cortex -> setNetType( netType );
+	cortex -> setNSize( size );
 
 	// register cortex
-	lock();
-	String id = String( "CTX" ) + sessionId + "S" + ++cortexId + "C";
-	cortex -> setId( id );
-	mapCortex.add( id , cortex );
-	unlock();
-
-	area -> addCortex( cortex );
-	logger.logInfo( "cortex created: id=" + id + ", type=" + netType + ", size=" + size + ", inputs=" + inputs + ", outputs=" + outputs );
+	registerCortex( cortex , area );
 	return( cortex );
 }
 
@@ -203,16 +198,33 @@ void AIBrainImpl::addHardcodedCortex( MindArea *area , BrainLocation& relativeLo
 	BrainLocation cortexLocation = areaLocation.getAbsoluteLocation( relativeLocation );
 	int size = cortexLocation.getSize();
 	cortex -> setLocation( cortexLocation );
+	cortex -> setNetType( "hardcoded" );
+	cortex -> setNSize( 0 );
 
 	// register cortex
+	registerCortex( cortex , area );
+}
+
+void AIBrainImpl::registerCortex( Cortex *cortex , MindArea *area )
+{
 	lock();
-	String id = String( "CTX" ) + sessionId + "S" + ++cortexId + "C";
-	cortex -> setId( id );
+	String id = cortex -> getId();
+	if( id.isEmpty() ) {
+		id = String( "CTX" ) + sessionId + "S" + ++cortexId + "C";
+		cortex -> setId( id );
+	}
+	if( mapCortex.get( id ) != NULL ) {
+		unlock();
+		ASSERTFAILED( "Cortex has non-uniqie id=" + id );
+		return;
+	}
+
 	mapCortex.add( id , cortex );
 	unlock();
 
 	area -> addCortex( cortex );
-	logger.logInfo( "hardcoded cortex registered: id=" + id + ", inputs=" + inputs + ", size=" + size + ", outputs=" + outputs );
+	logger.logInfo( "cortex created: id=" + id + ", type=" + cortex -> getNetType() + 
+		", size=" + cortex -> getNSize() + ", inputs=" + cortex -> getNInputs() + ", outputs=" + cortex -> getNOutputs() );
 }
 
 // mind area links

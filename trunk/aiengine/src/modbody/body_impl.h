@@ -66,6 +66,7 @@ public:
 	Sensor( String p_name , MindArea *area , int inputs , int outputs )
 	:	Cortex( area , inputs , outputs ) {
 		name = p_name;
+		Cortex::setId( name );
 		pollState = false;
 		pollNextMs = 0;
 		pollIntervalMs = 0;

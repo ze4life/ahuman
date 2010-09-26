@@ -51,6 +51,7 @@ public:
 
 private:
 	MindLink *createMindLink( MindLinkInfo *linkInfo , MindArea *masterArea , MindArea *slaveArea );
+	void registerCortex( Cortex *cortex , MindArea *area );
 
 	// structure lock
 	void lock() {
