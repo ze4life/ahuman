@@ -41,28 +41,6 @@ public:
 	void log( const char *s ) { logger.logDebug( s ); };
 };
 
-// class hierarchy
-//		ContextSource (parent)
-//		PatternSource (child)
-//		Hippo - ContextSource
-//		NeoRegion - ContextSource, PatternSource : LearnedSequence[max], SubRegion[sizeX,sizeY]
-//		Sense - PatternSource
-//		BitmapVision - Sense
-//		SubRegion : belief matrix
-//		Sequence : unsigned[SequenceLength (time) x InputCount (spatial)]
-//		LearnedSequence - Sequence : frequency
-//
-// problems found:
-//		fixed-length sequences
-//		memory requirements seems high
-//		sequence length is 1 in examples
-//		one output
-//		temporal pooler and spatial pooler are not delimited
-//		there is offline learning
-//
-// interesting features:
-//		subregions overlapping
-
 #include "Source.h"
 #include "Hippo.h"
 #include "Sequence.h"

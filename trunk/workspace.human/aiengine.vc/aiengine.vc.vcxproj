@@ -41,7 +41,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\..\aiengine\src\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\..\aiengine\src\include;.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
@@ -93,6 +93,13 @@
     <ClCompile Include="..\..\aiengine\src\engine\tinyxmlparser.cpp" />
     <ClCompile Include="..\..\aiengine\src\engine\xml.cpp" />
     <ClCompile Include="..\..\aiengine\src\libbn\libbn.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libbn\sf_neocortex_1_4_2\Hippo.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libbn\sf_neocortex_1_4_2\NeoRegion.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libbn\sf_neocortex_1_4_2\Sense.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libbn\sf_neocortex_1_4_2\Sequence.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libbn\sf_neocortex_1_4_2\sf_neocortex.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libbn\sf_neocortex_1_4_2\Source.cpp" />
+    <ClCompile Include="..\..\aiengine\src\libbn\sf_neocortex_1_4_2\SubRegion.cpp" />
     <ClCompile Include="..\..\aiengine\src\libbn\view_custom\htmcortex.cpp" />
     <ClCompile Include="..\..\aiengine\src\libbn\view_custom\htmhelper.cpp" />
     <ClCompile Include="..\..\aiengine\src\libbn\view_custom\htmlayer.cpp" />
@@ -147,7 +154,7 @@
     <ClCompile Include="..\..\aiengine\src\modbrain\mindmap.cpp" />
     <ClCompile Include="..\..\aiengine\src\modcognition\cognition.cpp" />
     <ClCompile Include="..\..\aiengine\src\modcognition\neocortex.cpp" />
-    <ClCompile Include="..\..\aiengine\src\modcognition\neocortex\neocortexsensorssubscriber.cpp" />
+    <ClCompile Include="..\..\aiengine\src\modcognition\neocortex\filesysreader.cpp" />
     <ClCompile Include="..\..\aiengine\src\modintelligence\intelligence.cpp" />
     <ClCompile Include="..\..\aiengine\src\modknowledge\knowledge.cpp" />
     <ClCompile Include="..\..\aiengine\src\modmedia\listener.cpp" />
@@ -172,6 +179,7 @@
     <ClCompile Include="..\..\aiengine\src\test\nnlib_fann_custom.cpp" />
     <ClCompile Include="..\..\aiengine\src\test\test.cpp" />
     <ClCompile Include="..\..\aiengine\src\test\test_filesyswalker.cpp" />
+    <ClCompile Include="..\..\aiengine\src\test\test_neocortex.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\aiengine\src\engine\engine_impl.h" />
@@ -203,6 +211,14 @@
     <ClInclude Include="..\..\aiengine\src\include\generic\__gen.h" />
     <ClInclude Include="..\..\aiengine\src\include\test.h" />
     <ClInclude Include="..\..\aiengine\src\libbn\libbn_impl.h" />
+    <ClInclude Include="..\..\aiengine\src\libbn\sf_neocortex_1_4_2\Hippo.h" />
+    <ClInclude Include="..\..\aiengine\src\libbn\sf_neocortex_1_4_2\NeoRegion.h" />
+    <ClInclude Include="..\..\aiengine\src\libbn\sf_neocortex_1_4_2\Sense.h" />
+    <ClInclude Include="..\..\aiengine\src\libbn\sf_neocortex_1_4_2\Sequence.h" />
+    <ClInclude Include="..\..\aiengine\src\libbn\sf_neocortex_1_4_2\sf_neocortex.h" />
+    <ClInclude Include="..\..\aiengine\src\libbn\sf_neocortex_1_4_2\Source.h" />
+    <ClInclude Include="..\..\aiengine\src\libbn\sf_neocortex_1_4_2\SparseArray.h" />
+    <ClInclude Include="..\..\aiengine\src\libbn\sf_neocortex_1_4_2\SubRegion.h" />
     <ClInclude Include="..\..\aiengine\src\libbn\view_custom\htm_custom.h" />
     <ClInclude Include="..\..\aiengine\src\libnn\fann_custom\fann_custom.h" />
     <ClInclude Include="..\..\aiengine\src\libnn\fann_custom\fann_custom_implfunc.h" />

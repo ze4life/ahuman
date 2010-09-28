@@ -72,6 +72,7 @@ public:
 	BrainLocation() {
 		x = y = z = 0;
 		dx = dy = dz = 0;
+		ox = oy = oz = 0;
 	}
 
 	void setPosition( int p_x , int p_y , int p_z ) {
@@ -79,6 +80,12 @@ public:
 	}
 	void setDimensions( int p_dx , int p_dy , int p_dz ) {
 		dx = p_dx; dy = p_dy; dz = p_dz;
+	}
+	void setOrientaion( int p_ox , int p_y , int p_oz ) {
+#ifndef sign
+#define sign(x) (((x)>0)?1:((x)<0)?-1:0)
+#endif
+		ox = sign( p_ox ); oy = sign( oy ); oz = sign( p_oz );
 	}
 	int getSize() const {
 		return( dx * dy * dz );
@@ -89,6 +96,11 @@ public:
 	bool placeLocation( BrainLocation& cover , BrainLocation& add ) const;
 	void getLowerCorner( int& cx , int& cy , int& cz ) const;
 	void centerByLowerCorner( int cx , int cy , int cz );
+
+	// get output surface according to orientation
+	BrainLocation getOutputLocation() const;
+	// get surface dimentions
+	void get2Dsizes( int& sa , int& sb ) const;
 
 private:
 	bool placeLocationFirst( BrainLocation& cover , BrainLocation& add ) const;
@@ -103,6 +115,11 @@ private:
 	int dx;
 	int dy;
 	int dz;
+
+	// orientation (-1,0,1)
+	int ox;
+	int oy;
+	int oz;
 };
 
 /*#########################################################################*/
