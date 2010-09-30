@@ -18,12 +18,7 @@ void Cortex::processOutputsUpdated()
 		if( link -> getSourceArea() != area )
 			continue;
 
-		// create message - copy output data
-		BinaryMessage *msg = new BinaryMessage( nOutputs * sizeof( cortexvt ) );
-		msg -> setArray( nOutputs , outputs );
-		msg -> setType( cortexId );
-
 		// pass message to the channel
-		link -> publish( msg );
+		link -> transferOutputs( this );
 	}
 }

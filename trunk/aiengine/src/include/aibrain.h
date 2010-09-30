@@ -281,8 +281,9 @@ public:
 	virtual void onMessage( Message *msg );
 
 	void open( Session *session );
-	void publish( BinaryMessage *msg );
-	Subscription *subscribe( Subscriber *handler , String name , String selector );
+	void transferOutputs( Cortex *cortex );
+	Subscription *subscribe( Subscriber *handler , String name );
+	Subscription *subscribeSelector( Subscriber *handler , String name , String selector );
 
 	MindArea *getSourceArea() { return( sourceArea ); };
 	MindArea *getDestinationArea() { return( destinationArea ); };
@@ -309,6 +310,29 @@ class CortexLink
 public:
 	CortexLink() {};
 	virtual ~CortexLink() = 0;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+// class to snapshot outputs from cortex and transfer to other cortexes
+class CortexMessage : public BinaryMessage {
+	Cortex *cortex;
+
+public:
+	CortexMessage( Cortex *p_cortex ) { cortex = p_cortex; };
+
+public:
+	Cortex *getSourceCortex() { return( cortex ); };
+
+	void capture() {
+		// capture outputs from cortex
+		int noutputs = cortex -> getNOutputs();
+		BinaryMessage::allocate( noutputs * sizeof( cortexvt ) );
+		BinaryMessage::setArray( noutputs , cortex -> getOutputs() );
+		// set message properties
+		Message::setType( cortex -> getId() );
+	}
 };
 
 /*#########################################################################*/

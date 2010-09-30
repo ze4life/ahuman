@@ -36,6 +36,9 @@ public:
 	SFNeoCortex( MindArea *area , unsigned bottomSide ) : Cortex( area , bottomSide * bottomSide , 1 ) {
 		logger.attach( "NeoCortex" );
 	};
+	virtual ~SFNeoCortex() {
+		logger.logDebug( "Exiting NeoCortex..." );
+	};
 
 public:
 	void log( const char *s ) { logger.logDebug( s ); };

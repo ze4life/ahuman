@@ -517,6 +517,7 @@ unsigned AIEngineImpl::threadFunction( ThreadData *td )
 	}
 
 	tlogger.logInfo( "Thread " + name + ": finished" );
+	tlogger.attach( o );
 	workerExited( status );
 	return( status );
 }

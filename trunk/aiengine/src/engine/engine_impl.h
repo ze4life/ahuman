@@ -275,6 +275,7 @@ private:
 	void set( LogRecord *p , bool copy , const char **chunkLines , int count , Logger::LogLevel logLevel , const char *postfix );
 	void clear( LogRecord *p );
 	void output( LogRecord *p );
+	void showAsyncMessages();
 
 private:
 	AIEngine *engine;

@@ -37,13 +37,23 @@ private:
 // #############################################################################
 // #############################################################################
 
-class CognitiveProcessor : public Object , public Subscriber
+class CognitiveProcessor : public Object
 {
-public:
-	CognitiveProcessor() {};
+private:
+	Cortex *cortex;
+
+	const char *getClass() { return( "CognitiveProcessor" ); };
 
 public:
-	static CognitiveProcessor *createFileSysCortex();
+	CognitiveProcessor() {};
+	virtual ~CognitiveProcessor() {};
+
+public:
+	void createCortexProcessor( Cortex *inputs );
+
+public:
+	virtual void processMessage( CortexMessage *message );
+	virtual void stop() {};
 };
 
 // #############################################################################

@@ -180,6 +180,16 @@ public:
 			free( data );
 	}
 
+	void allocate( unsigned p_size ) {
+		ASSERTMSG( "Unexpected message size" , p_size > 0 ); 
+		if( p_size <= size )
+			return;
+		size = ( unsigned )p_size;
+		if( data == NULL )
+			data = calloc( size , 1 );
+		else
+			data = realloc( data , size );
+	}
 	void *getBuffer() { return( data ); };
 	int getSize() { return( ( int )size ); };
 

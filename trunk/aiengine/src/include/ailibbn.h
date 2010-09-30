@@ -37,6 +37,8 @@ public:
 	AILibBNVariant( String p_name ) { 
 		name = p_name; 
 	};
+	virtual ~AILibBNVariant() {
+	};
 
 	String getName() { 
 		return( name ); 
