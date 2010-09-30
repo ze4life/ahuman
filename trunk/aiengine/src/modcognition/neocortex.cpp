@@ -1,32 +1,59 @@
 #include "cognition_impl.h"
 
-class NeoCortex : public Object , public MindArea
+class NeoCortex : public Object , public MindArea , public Subscriber
 {
-	CognitiveProcessor *cortexFileSys;
+	MapStringToClass<CognitiveProcessor> cortexMap;
 
 // construction
 public:
 	NeoCortex() {
-		cortexFileSys = CognitiveProcessor::createFileSysCortex();
 	};
 	virtual ~NeoCortex() {
-		delete cortexFileSys;
+		cortexMap.destroy();
 	}
 
 	const char *getClass() { return( "NeoCortex" ); };
 
 // MindArea interface
 public:
-	virtual void onCreateArea() {
-	};
+	virtual void onCreateArea() {};
 	virtual void onLoadArea() {};
+
+	virtual void onBrainStop() {
+		for( int k = 0; k < cortexMap.count(); k++ ) {
+			CognitiveProcessor *cp = cortexMap.getClassByIndex( k );
+			cp -> stop();
+		}
+	};
 
 	virtual void onOpenMindLinkDestination( MindLink *link , String channelId ) {
 		if( channelId.equals( "sensordata" ) ) {
-			link -> subscribe( cortexFileSys , "sub.filesys" , "FileSysWalker" );
+			link -> subscribe( this , "sub.neocortex" );
 		}
 	};
+
+	virtual void onMessage( Message *msg ) {
+		// it is CortexMessage
+		CortexMessage *cortexMessage = ( CortexMessage * )msg;
+		
+		// find cortex counterpart by source cortex map
+		Cortex *source = cortexMessage -> getSourceCortex();
+		CognitiveProcessor *processor = cortexMap.get( source -> getId() );
+
+		// create processor if does not exists
+		if( processor == NULL ) {
+			processor = new CognitiveProcessor();
+			processor -> createCortexProcessor( source );
+			cortexMap.add( source -> getId() , processor );
+		}
+
+		// pass cortex data to the processor
+		processor -> processMessage( cortexMessage );
+	}
 };
+
+/*#########################################################################*/
+/*#########################################################################*/
 
 MindArea *AICognitionImpl::createNeoCortex()
 {

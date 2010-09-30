@@ -34,16 +34,29 @@ void MindLink::open( Session *p_session )
 	sourceArea -> onOpenMindLinkSource( this , channelId );
 }
 
-void MindLink::publish( BinaryMessage *msg )
+void MindLink::transferOutputs( Cortex *cortex )
 {
+	// create message and grab data
+	CortexMessage *msg = new CortexMessage( cortex );
+	msg -> capture();
+
+	// send
 	iopub -> publish( session , msg );
 }
 
-Subscription *MindLink::subscribe( Subscriber *handler , String name , String selector )
+Subscription *MindLink::subscribeSelector( Subscriber *handler , String name , String selector )
 {
 	AIIO io;
 	String channelId = info -> getChannelId();
 	Subscription *sub = io.subscribeSelector( session , channelId , selector , channelId + "-" + name , handler );
+	return( sub );
+}
+
+Subscription *MindLink::subscribe( Subscriber *handler , String name )
+{
+	AIIO io;
+	String channelId = info -> getChannelId();
+	Subscription *sub = io.subscribe( session , channelId , channelId + "-" + name , handler );
 	return( sub );
 }
 

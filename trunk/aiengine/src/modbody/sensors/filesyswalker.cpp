@@ -509,8 +509,9 @@ public:
 
 	void closeWaitHandle() {
 		if( changeHandle != NULL ) {
-			stopTracking( changeHandle );
+			HANDLE h = changeHandle;
 			changeHandle = NULL;
+			stopTracking( h );
 		}
 	}
 

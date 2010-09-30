@@ -217,16 +217,21 @@ void LogManager::output( LogRecord *p ) {
 void LogManager::add( const char **chunkLines , int count , Logger::LogLevel p_logLevel , const char *postfix ) {
 	ASSERTMSG( stopAll == false , "Logging is closed" );
 
+	// only exclusive
+	rfc_hnd_semlock( lock );
+
 	if( syncMode ) {
+		// ensure no async messages
+		showAsyncMessages();
+
 		// print in sync
 		LogRecord lr;
 		set( &lr , false , chunkLines , count , p_logLevel , postfix );
 		output( &lr );
+
+		rfc_hnd_semunlock( lock );
 		return;
 	}
-
-	// only exclusive
-	rfc_hnd_semlock( lock );
 
 	// simple mode
 	if( !extraMode ) {
@@ -440,9 +445,12 @@ bool LogManager::get( bool p_autolock ) {
 }
 
 int LogManager::getLogRecordsPending() {
-	rfc_hnd_semlock( lock );
 	int n = n2f + n4f + n5f;
-	rfc_hnd_semunlock( lock );
-
 	return( n );
 }
+
+void LogManager::showAsyncMessages() {
+	while( getLogRecordsPending() > 0 )
+		get( false );
+}
+
