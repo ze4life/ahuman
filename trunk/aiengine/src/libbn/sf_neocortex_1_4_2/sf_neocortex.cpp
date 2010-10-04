@@ -46,6 +46,15 @@ public:
 	}
 };
 
+SFNeoCortex::SFNeoCortex( MindArea *area , unsigned bottomSide ) : Cortex( area , bottomSide * bottomSide , 1 ) {
+	/* Create a complete new cortex here depending upon the dimensions of the input*/
+	logger.attach( "NeoCortex" );
+};
+
+SFNeoCortex::~SFNeoCortex() {
+	logger.logDebug( "Exiting NeoCortex..." );
+};
+
 /*#########################################################################*/
 /*#########################################################################*/
 
