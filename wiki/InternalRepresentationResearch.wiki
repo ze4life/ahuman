@@ -11,12 +11,12 @@
 Source parameters:
   * input rectangular region of size X,Y
   * outputs is also some rectangle, where each item is probability of corresponding sequence
+  * spacial factor defines how big are recognised spacial patterns 
+  * temporal factor defines how long can be recognised sequence
+  * depth factor defines how complex is spacial-temporal pattern
 
-Mapping to Human Brain
+Sequences and Columns:
   * item corresponds to cortical column
-  * several regions
-
-Implementation:
   * column stores spacial-temporal sequence
   * until allocated (filled), column is empty or half-empty
   * column defines maximum sequence size
@@ -24,3 +24,6 @@ Implementation:
   * so column can be: empty, partial/full unrecognized/recognised
   * column is recognised if frequence is high enough
   * sequence can be forgotten by column
+
+Regions:
+  * 
