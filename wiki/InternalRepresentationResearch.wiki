@@ -2,14 +2,25 @@
 @@[Home] -> [MemoryPredictionResearch] -> [InternalRepresentationResearch]
 ----
 
-= References =
+== References ==
 
   * High level requirements - see http://code.google.com/p/ahuman/wiki/aMatterRequirements
 
-= Design Outlined =
+== Constructing Regions ==
 
-TBD
+Source parameters:
+  * input rectangular region of size X,Y
+  * outputs is also some rectangle, where each item is probability of corresponding sequence
 
-= Building the Model =
+Mapping to Human Brain
+  * item corresponds to cortical column
+  * several regions
 
-TBD
+Implementation:
+  * column stores spacial-temporal sequence
+  * until allocated (filled), column is empty or half-empty
+  * column defines maximum sequence size
+  * reduced sequence can be recognised, not trying to enlarge
+  * so column can be: empty, partial/full unrecognized/recognised
+  * column is recognised if frequence is big enough
+  * sequence can be forgotten by column
