@@ -27,6 +27,9 @@ Sequences and Columns:
   * sequence can be forgotten by column
 
 Regions:
-  * biologically plausible is having several regions equivalent in outputs/output sizes
-  * can enlarge from bottom to top
+  * biologically plausible is having several regions equivalent in inputs/output sizes
+  * can enlarge from bottom (intput) to top (output) 
   * can have asymmetric sizes compression
+  * if area overlap is zero, then input item is presented only in one output item; it means spacial inputs patterns are mapped to several outputs items, no one item represents whole picture; input pattern is represented by output pattern
+  * if area overlap is not zero - then it can require too many regions to enable represent any inputs pattern by one outputs item
+  * if find most active column on top level it is classical Jeff's HTM
