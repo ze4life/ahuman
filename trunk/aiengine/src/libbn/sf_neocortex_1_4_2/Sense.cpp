@@ -53,6 +53,7 @@ BitmapVision::BitmapVision(unsigned x, unsigned y, unsigned ovlap)
 
 void BitmapVision::setBitmap(TwoIndexArray<unsigned> &pPixArray)
 {
+	pixArray.create(pPixArray.getN1(), pPixArray.getN2());
 	pixArray.copy( pPixArray );
 }
 
