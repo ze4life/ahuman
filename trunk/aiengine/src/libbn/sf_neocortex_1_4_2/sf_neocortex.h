@@ -51,6 +51,7 @@ public:
 	void setSideH(int size);
 	int  getSideV(){ return sideV; }
 	int  getSideH() { return sideH; }
+	Hippocampus* getHippo(){ return hippo; }
 	void setSideCompression(int comp);
 	void setRegionCount(int count);
 	void setSense(PatternSource* sense);
