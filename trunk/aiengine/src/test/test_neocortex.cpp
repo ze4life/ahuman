@@ -47,6 +47,15 @@ public:
 		BitmapVision eye( ct );
 		ct.createCortexNetwork();
 		ct.setSense(&eye);
+		TwoIndexArray<unsigned int> arr(40,40);
+		arr.setAllValues(2);
+		eye.setBitmap(arr);
+		Hippocampus* hippo = ct.getHippo();
+		hippo->setTextOutput("test"); //add name to be learned to Mem
+
+		eye.feedForward(0, false); //cascading through 
+		hippo->displayAllMemories();
+		hippo->displayResults(true, false);
 	}
 };
 
