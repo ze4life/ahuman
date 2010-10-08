@@ -1,5 +1,8 @@
 #include "sf_neocortex.h"
 #include "..\libbn_impl.h"
+#include "Hippo.h"
+
+#include <math.h>
 
 // class hierarchy
 //		ContextSource (parent)
@@ -41,23 +44,77 @@ public:
 		outputsPlace.get2Dsizes( sa , sb );
 
 		// create hippo
-		SFNeoCortex *neo = new SFNeoCortex( area , sa * sb );
+		SFNeoCortex *neo = new SFNeoCortex( area , sa , sb );
 		return( neo );
 	}
+
+
 };
 
-SFNeoCortex::SFNeoCortex( MindArea *area , unsigned bottomSide ) : Cortex( area , bottomSide * bottomSide , 1 ) {
+SFNeoCortex::SFNeoCortex( MindArea *area , unsigned bottomSideV, unsigned bottomSideH ) : Cortex( area , bottomSideV * bottomSideH , 1 ) {
+	/* Update the local variables */
+	sideV = bottomSideV;
+	sideH = bottomSideH;
 	/* Create a complete new cortex here depending upon the dimensions of the input*/
 	logger.attach( "NeoCortex" );
-};
+}
 
+void SFNeoCortex::validateInputs(){
+	ASSERT(regionCount > 0);
+	ASSERT(sequenceLength.count() == regionCount);
+	ASSERT(regionSideCompression.count() == regionCount);
+	ASSERT(sideH > 0);
+	ASSERT(sideV > 0);
+}
+
+bool SFNeoCortex::createCortexNetwork(){
+	/* Validate that we have everything before creating network */
+	validateInputs();
+	int sideVer = sideV;
+	int sideHor = sideH;
+	regions = new NeoRegion* [regionCount];
+	for( int k = 0; k < regionCount; k++ )	{
+		if(k != 0){
+			sideVer /= regionSideCompression[k];
+			sideHor /= regionSideCompression[k];
+		}
+		regions[k] = new NeoRegion(*this,sideHor, sideVer, sequenceLength[k], regionSideCompression[k], k);
+		 if(k > 0){
+			 regions[k]->setChild(regions[k - 1]);
+		 }
+	}
+	for(int i = 0; i < regionCount-1; i++){
+		/* Set parents of every region */
+		regions[i]->setParent(regions[i + 1]);
+	}
+	int maxSide = (sideHor > sideVer) ? sideHor : sideVer;
+	hippo = new Hippocampus(*this, maxSide);
+	regions[regionCount - 1]->setParent(hippo);
+	return true;
+}
+
+void SFNeoCortex::setSense(PatternSource* sense){
+	regions[0] -> setChild(sense);
+	sense->setParent( regions[0] );	
+}
+
+void SFNeoCortex::setSideH(int size){
+	sideH = size;
+}
+void SFNeoCortex::setSideV(int size){
+	sideV = size;
+}
+void SFNeoCortex::setSideCompression(int size){
+	sideCompression = size;
+}
+void SFNeoCortex::setRegionCount(int count){
+	regionCount = count;
+}
 SFNeoCortex::~SFNeoCortex() {
 	logger.logDebug( "Exiting NeoCortex..." );
-};
-
+}
 /*#########################################################################*/
 /*#########################################################################*/
-
 AILibBNVariant *AILibBNImpl::createSFNeoCortex() {
 	return( new SFNeoCortexLib() );
 }

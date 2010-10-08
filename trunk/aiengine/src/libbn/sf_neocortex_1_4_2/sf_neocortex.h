@@ -9,14 +9,23 @@
 #include "aiengine.h"
 #include "aibrain.h"
 
+
+class NeoRegion;
+class Hippocampus;
+class PatternSource;
 class SFNeoCortex : public Cortex
 {
+private:
+	/* Sides of the input layer of the cortex */
+	unsigned sideV, sideH;
+	/* Layers array in the cortex */
+	NeoRegion** regions;
+	Hippocampus* hippo;
+	unsigned regionCount;
+	unsigned sideCompression;
 public:
 	Logger logger;
 	static const int OUTPUT_NONE = -1;
-	
-	unsigned regionCount;
-	unsigned areaSide;
 	unsigned bottomRegionSide;
 
 	FlatList<unsigned> regionSideCompression;
@@ -24,7 +33,7 @@ public:
 	FlatList<unsigned> regionMemorySize;
 	FlatList<double> regionForgetThreshold;
 	FlatList<unsigned> regionLowUsageThreshold;
-
+	
 	// number of pixels overlapping between adjacent sub-regions
 	unsigned overlapSubRegions;
 
@@ -33,11 +42,20 @@ public:
 	bool deletionByPercentage;
 
 public:
-	SFNeoCortex( MindArea *area , unsigned bottomSide );
+	SFNeoCortex( MindArea *area , unsigned bottomSideV, unsigned bottomSideH );
 	virtual ~SFNeoCortex();
-
 public:
 	void log( const char *s ) { logger.logDebug( s ); };
+	bool createCortexNetwork();
+	void setSideV(int size);
+	void setSideH(int size);
+	int  getSideV(){ return sideV; }
+	int  getSideH() { return sideH; }
+	void setSideCompression(int comp);
+	void setRegionCount(int count);
+	void setSense(PatternSource* sense);
+private:
+	void validateInputs(void);
 };
 
 #include "Source.h"
@@ -48,3 +66,4 @@ public:
 #include "Source.h"
 #include "NeoRegion.h"
 #include "Sense.h"
+
