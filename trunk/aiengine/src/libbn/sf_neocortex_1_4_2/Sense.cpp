@@ -40,7 +40,7 @@ void Sense::getPattern(unsigned x, unsigned y, unsigned sideCompr, unsigned *res
 
 /////////////////// BitmapVision //////////////////////////////////////
 BitmapVision::BitmapVision( SFNeoCortex& nc )
-:	Sense(nc.areaSide, nc.areaSide, nc.overlapSubRegions )
+	:	Sense(nc.getSideH(), nc.getSideV(), nc.overlapSubRegions )
 {
 	parent = NULL;
 }
