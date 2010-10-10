@@ -10,12 +10,19 @@ class MindLink;
 class CortexLink;
 class BrainLocation;
 
+// #############################################################################
+// #############################################################################
+
+// cortex value type
+typedef float cortexvt;
+
 /*#########################################################################*/
 /*#########################################################################*/
 
 // brain instantiates multi-cortex network
 // top-level brain structure is represented by mind map, consists of mind areas and not changed with time
 // brain controls lifecycle of cortexes and connections among them
+// brain providers adapters to cortex for every library implementing one of cortex approaches
 class AIBrain
 {
 public:
@@ -36,15 +43,16 @@ public:
 	virtual MindArea *getMindArea( String areaId ) {
 		return( thisPtr -> getMindArea( areaId ) );
 	}
-	  
-	// cortex - relative location from lower corner
-	virtual Cortex *createCortex( MindArea *area , BrainLocation& relativeLocation , String netType , int inputs , int outputs ) {
-		return( thisPtr -> createCortex( area , relativeLocation , netType , inputs , outputs ) );
+
+	// cortex construction
+	virtual void createSensorCortex( MindArea *area , BrainLocation& relativeLocation , Cortex *cortex ) {
+		return( thisPtr -> createSensorCortex( area , relativeLocation , cortex ) );
 	}
-	virtual void addHardcodedCortex( MindArea *area , BrainLocation& relativeLocation , Cortex *cortex ) {
-		return( thisPtr -> addHardcodedCortex( area , relativeLocation , cortex ) );
+	virtual Cortex *createNeoCortex( MindArea *area , BrainLocation& relativeLocation , Cortex *sensorCortex ) {
+		return( thisPtr -> createNeoCortex( area , relativeLocation , sensorCortex ) );
 	}
 
+	// get cortex by ID
 	virtual Cortex *getCortex( String cortexId ) {
 		return( thisPtr -> getCortex( cortexId ) );
 	}
@@ -68,45 +76,8 @@ public:
 // brain controls that areas/cortexes do not overlap
 class BrainLocation
 {
-public:
-	BrainLocation() {
-		x = y = z = 0;
-		dx = dy = dz = 0;
-		ox = oy = oz = 0;
-	}
-
-	void setPosition( int p_x , int p_y , int p_z ) {
-		x = p_x; y = p_y; z = p_z;
-	}
-	void setDimensions( int p_dx , int p_dy , int p_dz ) {
-		dx = p_dx; dy = p_dy; dz = p_dz;
-	}
-	void setOrientaion( int p_ox , int p_y , int p_oz ) {
-#ifndef sign
-#define sign(x) (((x)>0)?1:((x)<0)?-1:0)
-#endif
-		ox = sign( p_ox ); oy = sign( oy ); oz = sign( p_oz );
-	}
-	int getSize() const {
-		return( dx * dy * dz );
-	}
-
-	// relative is counted from lower corner
-	BrainLocation getAbsoluteLocation( const BrainLocation& relativeLocation ) const;
-	bool placeLocation( BrainLocation& cover , BrainLocation& add ) const;
-	void getLowerCorner( int& cx , int& cy , int& cz ) const;
-	void centerByLowerCorner( int cx , int cy , int cz );
-
-	// get output surface according to orientation
-	BrainLocation getOutputLocation() const;
-	// get surface dimentions
-	void get2Dsizes( int& sa , int& sb ) const;
-
 private:
-	bool placeLocationFirst( BrainLocation& cover , BrainLocation& add ) const;
-
-private:
-	// absolute center position
+	// lower corner position (relative to parent)
 	int x;
 	int y;
 	int z;
@@ -120,6 +91,52 @@ private:
 	int ox;
 	int oy;
 	int oz;
+
+public:
+	BrainLocation() {
+		x = y = z = 0;
+		dx = dy = dz = 0;
+		ox = oy = oz = 0;
+	}
+
+	void setPosition( int p_x , int p_y , int p_z ) {
+		x = p_x; y = p_y; z = p_z;
+	}
+	void setDimensions( int p_dx , int p_dy , int p_dz ) {
+		dx = p_dx; dy = p_dy; dz = p_dz;
+	}
+	void setOrientationX( bool p_neg2pos ) {
+		oz = ( p_neg2pos )? 1 : -1; oy = 0; oz = 0;
+	}
+	void setOrientationY( bool p_neg2pos ) {
+		ox = 0; oy = ( p_neg2pos )? 1 : -1; oz = 0;
+	}
+	void setOrientationZ( bool p_neg2pos ) {
+		ox = 0; oy = 0; oz = ( p_neg2pos )? 1 : -1;
+	}
+	int getSize() const {
+		return( dx * dy * dz );
+	}
+
+	// relative is counted from lower corner
+	BrainLocation getAbsoluteLocation( const BrainLocation& relativeLocation ) const;
+	BrainLocation getRelativeLocation( const BrainLocation& absoluteLocation ) const;
+	bool placeLocation( BrainLocation& cover , BrainLocation& add ) const;
+	void getCenter( int& cx , int& cy , int& cz ) const;
+	void movePosition( int cx , int cy , int cz );
+	void resize( int cx , int cy , int cz );
+	void setSurfaceDimensions( int d1 , int d2 );
+	void center( const BrainLocation& parent );
+	void moveInside( BrainLocation& relativePosition ) const;
+
+	// get inputs/outputs surface according to orientation
+	BrainLocation getInputsSurface() const;
+	BrainLocation getOutputsSurface() const;
+	// get surface dimentions (one of dimensions is zero)
+	void get2Dsizes( int& sa , int& sb ) const;
+
+private:
+	bool placeLocationFirst( BrainLocation& cover , BrainLocation& add ) const;
 };
 
 /*#########################################################################*/
@@ -164,7 +181,7 @@ public:
 	ClassList<MindLink>& getMindLinks() {
 		return( mindLinks );
 	}
-	void addCortex( Cortex *cortex );
+	void addCortex( Cortex *cortex , const BrainLocation& relativeLocation );
 	ClassList<Cortex>& getCortexList() {
 		return( cortexList );
 	}
@@ -191,24 +208,64 @@ private:
 /*#########################################################################*/
 /*#########################################################################*/
 
-// cortex value type
-typedef float cortexvt;
+class CortexIOSizeInfo
+{
+public:
+	CortexIOSizeInfo() {};
+	CortexIOSizeInfo( int p_nInputs , int p_nOutputs ) {
+		nInputs = p_nInputs;
+		nInputsDim1 = 0;
+		nInputsDim2 = 0;
+
+		nOutputs = p_nOutputs;
+		nOutputsDim1 = 0;
+		nOutputsDim2 = 0;
+	};
+	CortexIOSizeInfo( int p_nInputs , int p_nInputsDim1 , int p_nInputsDim2 , int p_nOutputs , int p_nOutputsDim1 , int p_nOutputsDim2 ) {
+		nInputs = p_nInputs;
+		nInputsDim1 = p_nInputsDim1;
+		nInputsDim2 = p_nInputsDim2;
+
+		nOutputs = p_nOutputs;
+		nOutputsDim1 = p_nOutputsDim1;
+		nOutputsDim2 = p_nOutputsDim2;
+	};
+
+public:
+	int nInputs;
+	int nInputsDim1;
+	int nInputsDim2;
+
+	int nOutputs;
+	int nOutputsDim1;
+	int nOutputsDim2;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
 
 // any neural network, belief or ANN
 // each cortex is created by component, which defines its type and properties by means of specific libnn or libbn library
 // cortex can be inbound, outbound or internal
 /* interface */ class Cortex
 {
-public:
-	Cortex( MindArea *p_area , int p_ninputs , int p_noutputs ) {
-		area = p_area;
-		nInputs = p_ninputs;
-		nOutputs = p_noutputs;
-		neuronsUsed = 0;
+private:
+	String cortexId;
+	MindArea *area;
+	String netType;
 
-		inputs = ( nInputs > 0 )? ( cortexvt * )calloc( nInputs , sizeof( cortexvt ) ) : NULL;
-		outputs = ( nOutputs > 0 )? ( cortexvt * )calloc( nOutputs , sizeof( cortexvt ) ) : NULL;
-	};
+	BrainLocation areaLocation;
+	BrainLocation inputsSurface;
+	BrainLocation outputsSurface;
+	CortexIOSizeInfo ioSizeInfo;
+	int neuronsUsed;
+
+	cortexvt *inputs;
+	cortexvt *outputs;
+
+protected:
+	Cortex( const char *netType , MindArea *p_area , const CortexIOSizeInfo& p_ioSizeInfo );
+public:
 	virtual ~Cortex() {
 		if( inputs != NULL )
 			free( inputs );
@@ -222,8 +279,10 @@ public:
 	String getId() {
 		return( cortexId );
 	}
-	void setLocation( const BrainLocation& p_location ) { location = p_location; };
-	const BrainLocation& getLocation() { return( location ); };
+	void setAreaLocation( const BrainLocation& p_location );
+	const BrainLocation& getAreaLocation() { return( areaLocation ); };
+	const BrainLocation& getInputsSurface() { return( inputsSurface ); };
+	const BrainLocation& getOutputsSurface() { return( outputsSurface ); };
 
 	// standard cortex events
 	virtual void onCortexRun() {};
@@ -232,31 +291,17 @@ public:
 	void processInputsUpdated();
 	void processOutputsUpdated();
 
-	Cortex *getArea();
-	int getNInputs() { return( nInputs ); };
-	int getNOutputs() { return( nOutputs ); };
+	MindArea *getArea() { return( area ); };
+	int getNInputs() { return( ioSizeInfo.nInputs ); };
+	int getNOutputs() { return( ioSizeInfo.nOutputs ); };
+	int getNInputs( int& dim1 , int& dim2 ) { dim1 = ioSizeInfo.nInputsDim1; dim2 = ioSizeInfo.nInputsDim2; return( ioSizeInfo.nInputs ); };
+	int getNOutputs( int& dim1 , int& dim2 ) { dim1 = ioSizeInfo.nOutputsDim1; dim2 = ioSizeInfo.nOutputsDim2; return( ioSizeInfo.nOutputs ); };
 
 	String getNetType() { return( netType ); };
-	void setNetType( String type ) { netType = type; };
-
 	int getNSize() { return( neuronsUsed ); };
-	void setNSize( int p_nsize ) { neuronsUsed = p_nsize; };
 
 	cortexvt *getInputs() { return( inputs ); };
 	cortexvt *getOutputs() { return( outputs ); };
-
-private:
-	String cortexId;
-	MindArea *area;
-	BrainLocation location;
-	String netType;
-
-	int nInputs;
-	int nOutputs;
-	int neuronsUsed;
-
-	cortexvt *inputs;
-	cortexvt *outputs;
 };
 
 /*#########################################################################*/
@@ -316,22 +361,38 @@ public:
 /*#########################################################################*/
 
 // class to snapshot outputs from cortex and transfer to other cortexes
-class CortexMessage : public BinaryMessage {
+class CortexMessage : public Message
+{
+private:
+	unsigned size;
+	cortexvt *data;
 	Cortex *cortex;
 
 public:
-	CortexMessage( Cortex *p_cortex ) { cortex = p_cortex; };
+	CortexMessage( Cortex *p_cortex ) : Message( Message::MsgType_Binary , "cortexmessage" ) { 
+		cortex = p_cortex;
+		size = cortex -> getNOutputs();
+		data = ( cortexvt * )calloc( size , sizeof( cortexvt ) ); 
+	};
+	virtual ~CortexMessage() {
+		if( data != NULL )
+			free( data );
+	}
 
 public:
 	Cortex *getSourceCortex() { return( cortex ); };
+	void *getBuffer() { return( data ); };
+	int getSize() { return( ( int )size ); };
 
 	void capture() {
 		// capture outputs from cortex
-		int noutputs = cortex -> getNOutputs();
-		BinaryMessage::allocate( noutputs * sizeof( cortexvt ) );
-		BinaryMessage::setArray( noutputs , cortex -> getOutputs() );
-		// set message properties
-		Message::setType( cortex -> getId() );
+		cortexvt *outputs = cortex -> getOutputs();
+		memcpy( data , outputs , size * sizeof( cortexvt ) );
+	}
+
+	void get( unsigned n , cortexvt *values ) {
+		ASSERTMSG( "message does not fit into buffer" , n >= size );
+		memcpy( values , data , size * sizeof( float ) );
 	}
 };
 

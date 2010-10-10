@@ -3,9 +3,10 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-Message::Message()
+Message::Message( Message::MsgType p_baseType , const char *p_classType )
+:	baseType( p_baseType ) ,
+	classType( p_classType )
 {
-	msgBaseType = MsgType_Text;
 	session = NULL;
 }
 

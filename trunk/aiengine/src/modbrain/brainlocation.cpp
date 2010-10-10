@@ -2,13 +2,23 @@
 
 BrainLocation BrainLocation::getAbsoluteLocation( const BrainLocation& relativeLocation ) const
 {
-	// get lower corner
-	int cx , cy , cz;
-	getLowerCorner( cx , cy , cz );
-
-	// make lower corner absolute position and center
 	BrainLocation location = relativeLocation;
-	location.centerByLowerCorner( location.x + cx , location.y + cy , location.z + cz );
+
+	// offset lower corner for own coords
+	location.x += x;
+	location.y += y;
+	location.z += z;
+	return( location );
+}
+
+BrainLocation BrainLocation::getRelativeLocation( const BrainLocation& absoluteLocation ) const
+{
+	BrainLocation location = absoluteLocation;
+
+	// offset lower corner for own coords
+	location.x -= x;
+	location.y -= y;
+	location.z -= z;
 	return( location );
 }
 
@@ -25,57 +35,88 @@ bool BrainLocation::placeLocationFirst( BrainLocation& cover , BrainLocation& ad
 	if( add.dx > dx || add.dy > dy || add.dz > dz )
 		return( false );
 	
-	// lower corner
-	int cx , cy , cz;
-	getLowerCorner( cx , cy , cz );
-	
 	// align by lower corner
-	add.centerByLowerCorner( cx , cy , cz );
+	add.x = 0;
+	add.y = 0;
+	add.z = 0;
+	
+	// cover is the same
 	cover = add;
 	return( true );
 }
 
-void BrainLocation::getLowerCorner( int& cx , int& cy , int& cz ) const
+void BrainLocation::getCenter( int& cx , int& cy , int& cz ) const
 {
-	cx = x - dx/2;
-	cy = y - dy/2;
-	cz = z - dz/2;
-}
-
-void BrainLocation::centerByLowerCorner( int cx , int cy , int cz )
-{
-	x = cx + dx/2;
-	y = cy + dy/2;
-	z = cz + dz/2;
+	cx = x + dx/2;
+	cy = y + dy/2;
+	cz = z + dz/2;
 }
 
 // get output surface according to orientation
-BrainLocation BrainLocation::getOutputLocation() const
+BrainLocation BrainLocation::getInputsSurface() const
+{
+	BrainLocation location = *this;
+
+	if( ox ) {
+		if( ox < 0 )
+			location.x = x + dx - 1;
+		else
+			location.x = x;
+		location.dx = 0;
+		location.ox = 0;
+	}
+	else
+	if( oy ) {
+		if( oy < 0 )
+			location.y = y + dy - 1;
+		else
+			location.y = y;
+		location.dy = 0;
+		location.oy = 0;
+	}
+	else
+	if( oz ) {
+		if( oz < 0 )
+			location.z = z + dz - 1;
+		else
+			location.z = z;
+		location.dz = 0;
+		location.oz = 0;
+	}
+
+	return( location );
+}
+
+// get output surface according to orientation
+BrainLocation BrainLocation::getOutputsSurface() const
 {
 	BrainLocation location = *this;
 
 	if( ox ) {
 		if( ox > 0 )
-			location.x += dx/2;
+			location.x = x + dx - 1;
 		else
-			location.x -= dx/2;
+			location.x = x;
 		location.dx = 0;
+		location.ox = 0;
 	}
 	else
 	if( oy ) {
 		if( oy > 0 )
-			location.y += dy/2;
+			location.y = y + dy - 1;
 		else
-			location.y -= dy/2;
+			location.y = y;
 		location.dy = 0;
+		location.oy = 0;
 	}
 	else
 	if( oz ) {
 		if( oz > 0 )
-			location.z += dz/2;
+			location.z = z + dz - 1;
 		else
-			location.z -= dz/2;
+			location.z = z;
 		location.dz = 0;
+		location.oz = 0;
 	}
 
 	return( location );
@@ -84,20 +125,88 @@ BrainLocation BrainLocation::getOutputLocation() const
 // get surface dimentions
 void BrainLocation::get2Dsizes( int& sa , int& sb ) const
 {
-	if( ox ) {
+	if( dx == 0 ) {
 		sa = dy;
 		sb = dz;
 	}
 	else
-	if( oy ) {
+	if( dy == 0 ) {
 		sa = dx;
 		sb = dz;
 	}
 	else
-	if( oz ) {
+	if( dz == 0 ) {
 		sa = dx;
 		sb = dy;
 	}
 }
 
+void BrainLocation::movePosition( int cx , int cy , int cz )
+{
+	x += cx;
+	y += cy;
+	z += cz;
+}
+
+void BrainLocation::resize( int cx , int cy , int cz )
+{
+	dx += cx;
+	dy += cy;
+	dz += cz;
+}
+
+void BrainLocation::setSurfaceDimensions( int d1 , int d2 )
+{
+	if( dx == 0 ) {
+		dy = d1;
+		dz = d2;
+	}
+	else
+	if( dy == 0 ) {
+		dx = d1;
+		dz = d2;
+	}
+	else
+	if( dz == 0 ) {
+		dx = d1;
+		dy = d2;
+	}
+}
+
+void BrainLocation::center( const BrainLocation& parent )
+{
+	int cx , cy , cz;
+	parent.getCenter( cx , cy , cz );
+
+	x = cx - dx / 2;
+	y = cy - dy / 2;
+	z = cz - dz / 2;
+}
+
+void BrainLocation::moveInside( BrainLocation& relativePosition ) const
+{
+	// check able to move in
+	ASSERTMSG( relativePosition.dx <= dx &&
+		relativePosition.dy <= dy &&
+		relativePosition.dz <= dz , "Unable to place given location inside parent location" );
+
+	// check boundaries
+	if( relativePosition.x < 0 )
+		relativePosition.x = 0;
+	else
+	if( relativePosition.x + relativePosition.dx > x + dx )
+		relativePosition.x = x + dx - relativePosition.dx;
+
+	if( relativePosition.y < 0 )
+		relativePosition.y = 0;
+	else
+	if( relativePosition.y + relativePosition.dy > y + dy )
+		relativePosition.y = y + dy - relativePosition.dy;
+
+	if( relativePosition.z < 0 )
+		relativePosition.z = 0;
+	else
+	if( relativePosition.z + relativePosition.dz > z + dz )
+		relativePosition.z = z + dz - relativePosition.dz;
+}
 

@@ -4,9 +4,9 @@
 /*#########################################################################*/
 
 XmlCall::XmlCall( Channel *p_channelIn , Channel *p_channelOut , const char *txt )
-:	XmlMessage( txt )
+:	XmlMessage( Message::MsgType_XmlCall , NULL )
 {
-	Message::msgBaseType = MsgType_XmlCall;
+	TextMessage::setText( txt );
 	responseSent = false;
 	channelIn = p_channelIn;
 	channelOut = p_channelOut;

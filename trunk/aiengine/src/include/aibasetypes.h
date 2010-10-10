@@ -29,6 +29,7 @@ template<class TA, class TC> class Sort;
 class MapStringToInt;
 class MapStringToString;
 class StringList;
+class Value;
 
 // #############################################################################
 // #############################################################################
@@ -50,7 +51,7 @@ public:
 	String& operator =( const char *s );
 	String& operator =( String& s );
 
-	bool equals( const char *s );
+	bool equals( const char *s ) const;
 	void clear();
 	String& append( int count , char c );
 	String& append( const char *s , int nChars );
@@ -62,14 +63,14 @@ public:
 	int length() const;
 	bool isEmpty() const;
 
-	int find( const char *substring );
-	int findLastAny( const char *chars );
-	int findLast( char c );
-	String getMid( int from , int n );
-	String getMid( int from );
-	char getChar( int index );
-	String toUpper();
-	String toLower();
+	int find( const char *substring ) const;
+	int findLastAny( const char *chars ) const;
+	int findLast( char c ) const;
+	String getMid( int from , int n ) const;
+	String getMid( int from ) const;
+	char getChar( int index ) const;
+	String toUpper() const;
+	String toLower() const;
 	static String toHex( int value );
 
 private:
@@ -1561,6 +1562,41 @@ public:
 private:
 	TC *p;
 	PF pf;
+};
+
+// #############################################################################
+// #############################################################################
+
+class Value
+{
+public:
+	RFC_TYPE value;
+	int type;
+
+public:
+	Value( long v ) { value.u_l = v; type = RFC_EXT_TYPELONG; };
+	Value( double v ) { value.u_f = v; type = RFC_EXT_TYPEDOUBLE; };
+	Value( RFC_INT64 v ) { value.u_m = v; type = RFC_EXT_TYPEMONEY; };
+	Value( const char *v ) { if( v == NULL ) v = ""; value.u_s = _strdup( v ); type = RFC_EXT_TYPECHAR; };
+	Value( short v ) { value.u_d = v; type = RFC_EXT_TYPESHORT; };
+	Value( float v ) { value.u_r = v; type = RFC_EXT_TYPESHORT; };
+	~Value() { if( type == RFC_EXT_TYPECHAR ) free( value.u_s ); };
+
+	long getLong() { ASSERTMSG( type == RFC_EXT_TYPELONG , "RFC_EXT_TYPELONG expected" ); return( value.u_l ); };
+	double getDouble() { ASSERTMSG( type == RFC_EXT_TYPEDOUBLE , "RFC_EXT_TYPEDOUBLE expected" ); return( value.u_f ); };
+	RFC_INT64 getInt64() { ASSERTMSG( type == RFC_EXT_TYPEMONEY , "RFC_EXT_TYPEMONEY expected" ); return( value.u_m ); };
+	const char *getString() { ASSERTMSG( type == RFC_EXT_TYPECHAR , "RFC_EXT_TYPECHAR expected" ); return( value.u_s ); };
+	short getShort() { ASSERTMSG( type == RFC_EXT_TYPESHORT , "RFC_EXT_TYPESHORT expected" ); return( value.u_d ); };
+	float getFloat() { ASSERTMSG( type == RFC_EXT_TYPEFLOAT , "RFC_EXT_TYPEFLOAT expected" ); return( value.u_r ); };
+
+	Value& operator =( const Value& cv ) {
+		if( cv.type == RFC_EXT_TYPECHAR )
+			value.u_s = _strdup( cv.value.u_s );
+		else
+			value.u_m = cv.value.u_m;
+		type = cv.type;
+		return( *this );
+	}
 };
 
 // #############################################################################

@@ -42,10 +42,10 @@ private:
 	TwoIndexArray<unsigned> pixArray;
 
 public:
-	BitmapVision( SFNeoCortex& nc );
+	BitmapVision( SFNeoCortex& nc , unsigned bitmapSizeX , unsigned bitmapSizeY );
 	BitmapVision( unsigned x, unsigned y, unsigned overlap );
 
-	void setBitmap( TwoIndexArray<unsigned>& pixArray );
+	TwoIndexArray<unsigned>& getBitmap() { return( pixArray ); };
 
 	virtual unsigned getNameOutput( unsigned x, unsigned y );
 	virtual int getSequence( unsigned x, unsigned y ) { return getNameOutput(x, y); } //dummy

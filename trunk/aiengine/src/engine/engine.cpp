@@ -277,8 +277,8 @@ void AIEngineImpl::constructServices()
 	constructService( "DB" , &AIDB::newService );
 	
 	// mind services
-	constructService( "LibBN" , &AILibNN::newService );
-	constructService( "LibNN" , &AILibBN::newService );
+	constructService( "LibNN" , &AILibNN::newService );
+	constructService( "LibBN" , &AILibBN::newService );
 	constructService( "Knowledge" , &AIKnowledge::newService );
 	constructService( "Intelligence" , &AIIntelligence::newService );
 	constructService( "Cognition" , &AICognition::newService );

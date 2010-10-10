@@ -106,9 +106,8 @@ void Channel::close()
 
 String Channel::publish( Session *p_session , PublisherImpl *pub , const char *msg )
 {
-	TextMessage *l_msg = new TextMessage;
+	TextMessage *l_msg = new TextMessage( pub -> msgtype );
 	l_msg -> setText( msg );
-	l_msg -> setType( pub -> msgtype );
 	return( publish( p_session , pub , l_msg ) );
 }
 

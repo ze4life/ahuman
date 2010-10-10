@@ -75,7 +75,7 @@ private:
 
 public:
 	SensorFileSysWalker( MindArea *area ) 
-	:	Sensor( "FileSysWalker" , area , NINPUTS , NOUTPUTS ) ,
+	:	Sensor( "FileSysWalker" , area , CortexIOSizeInfo( NINPUTS , NOUTPUTS ) ) ,
 		engine( AIEngine::getInstance() ) {
 
 		// internal data

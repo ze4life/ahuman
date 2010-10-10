@@ -32,7 +32,9 @@ public:
 		}
 	};
 
-	virtual void onMessage( Message *msg ) {
+	virtual void onBinaryMessage( Message *msg ) {
+		ASSERT( msg -> isClassType( "cortexmessage" ) );
+
 		// it is CortexMessage
 		CortexMessage *cortexMessage = ( CortexMessage * )msg;
 		
@@ -43,7 +45,7 @@ public:
 		// create processor if does not exists
 		if( processor == NULL ) {
 			processor = new CognitiveProcessor();
-			processor -> createCortexProcessor( source );
+			processor -> createCortexProcessor( this , source );
 			cortexMap.add( source -> getId() , processor );
 		}
 

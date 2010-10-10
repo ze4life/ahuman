@@ -39,22 +39,17 @@ void Sense::getPattern(unsigned x, unsigned y, unsigned sideCompr, unsigned *res
 }
 
 /////////////////// BitmapVision //////////////////////////////////////
-BitmapVision::BitmapVision( SFNeoCortex& nc )
+BitmapVision::BitmapVision( SFNeoCortex& nc , unsigned bitmapSizeX , unsigned bitmapSizeY )
 :	Sense(nc.sensorAreaSideX, nc.sensorAreaSideY, nc.overlapSubRegions )
 {
 	parent = NULL;
+	pixArray.create( bitmapSizeX , bitmapSizeY );
 }
 
 BitmapVision::BitmapVision(unsigned x, unsigned y, unsigned ovlap)
 :	Sense(x, y, ovlap) 
 {
 	parent = NULL;
-}
-
-void BitmapVision::setBitmap(TwoIndexArray<unsigned> &pPixArray)
-{
-	pixArray.create(pPixArray.getN1(), pPixArray.getN2());
-	pixArray.copy( pPixArray );
 }
 
 //assume Bitmap is assigned
