@@ -10,8 +10,12 @@ SFNeoCortex::~SFNeoCortex()
 
 	// delete classes
 	regions.destroy();
-	delete sensor;
-	delete hippo;
+
+	if( sensor != NULL )
+		delete sensor;
+
+	if( hippo != NULL )
+		delete hippo;
 }
 
 void SFNeoCortex::createCortexNetwork()
@@ -37,7 +41,10 @@ void SFNeoCortex::createCortexNetwork()
 	for(i = 0; i < regionCount-1; i++)
 		regions[i] -> setParent( regions[i+1] );
 
-	sensor = new Sense( sensorAreaSideX , sensorAreaSideY , overlapSubRegions );
+	// create default sensor if not created before
+	if( sensor == NULL )
+		sensor = new Sense( sensorAreaSideX , sensorAreaSideY , overlapSubRegions );
+
 	regions[0] -> setChild( sensor );
 	sensor -> setParent( regions[0] );
 
