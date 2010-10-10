@@ -123,7 +123,7 @@ BrainLocation BrainLocation::getOutputsSurface() const
 }
 
 // get surface dimentions
-void BrainLocation::get2Dsizes( int& sa , int& sb ) const
+void BrainLocation::getSurfaceDimensions( int& sa , int& sb ) const
 {
 	if( dx == 0 ) {
 		sa = dy;
@@ -139,6 +139,14 @@ void BrainLocation::get2Dsizes( int& sa , int& sb ) const
 		sa = dx;
 		sb = dy;
 	}
+}
+
+// get surface dimentions
+int BrainLocation::getSurfaceSize() const
+{
+	int sa , sb;
+	getSurfaceDimensions( sa , sb );
+	return( sa * sb );
 }
 
 void BrainLocation::movePosition( int cx , int cy , int cz )

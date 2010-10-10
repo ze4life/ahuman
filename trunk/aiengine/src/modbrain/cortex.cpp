@@ -28,6 +28,7 @@ Cortex::Cortex( const char *p_netType , MindArea *p_area , const CortexIOSizeInf
 
 void Cortex::processInputsUpdated()
 {
+	onCortexRun();
 }
 
 void Cortex::processOutputsUpdated()

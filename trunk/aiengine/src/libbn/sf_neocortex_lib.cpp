@@ -70,7 +70,11 @@ Object *SFNeoCortexLibBN::createBeliefNetwork( int sizeX , int sizeY , int nRegi
 		neo -> maxSequenceLength.add( maxSequenceLength );
 	}
 
-	// create regions
+	// create bitmap sense
+	BitmapVision *sense = new BitmapVision( *neo , sizeX , sizeY );
+	neo -> setSense( sense );
+
+	// create regions - default sense
 	neo -> createCortexNetwork();
 	return( neo );
 }
@@ -79,6 +83,22 @@ void SFNeoCortexLibBN::deleteObject( Object *object )
 {
 	SFNeoCortex *libobj = ( SFNeoCortex * )object;
 	delete libobj;
+}
+
+unsigned *SFNeoCortexLibBN::getInputsBuffer( Object *object )
+{
+	SFNeoCortex *libobj = ( SFNeoCortex * )object;
+	BitmapVision *sense = ( BitmapVision * )libobj -> getSense();
+	TwoIndexArray<unsigned>& data = sense -> getBitmap();
+	return( data.getData() );
+}
+
+void SFNeoCortexLibBN::feedForward( Object *object , unsigned learningRegion, bool feedbackStage )
+{
+	// objects
+	SFNeoCortex *libobj = ( SFNeoCortex * )object;
+	Sense *sense = libobj -> getSense();
+	sense -> feedForward( learningRegion , feedbackStage );
 }
 
 /*#########################################################################*/

@@ -132,8 +132,8 @@ public:
 	// get inputs/outputs surface according to orientation
 	BrainLocation getInputsSurface() const;
 	BrainLocation getOutputsSurface() const;
-	// get surface dimentions (one of dimensions is zero)
-	void get2Dsizes( int& sa , int& sb ) const;
+	void getSurfaceDimensions( int& sa , int& sb ) const;
+	int getSurfaceSize() const;
 
 private:
 	bool placeLocationFirst( BrainLocation& cover , BrainLocation& add ) const;

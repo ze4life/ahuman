@@ -20,6 +20,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include "sf_neocortex.h"
 
+/*#########################################################################*/
+/*#########################################################################*/
+
 Sense::Sense(unsigned x, unsigned y, unsigned ovlap) : PatternSource(x, y, 1)
 {
 	overlap = ovlap;
@@ -38,6 +41,29 @@ void Sense::getPattern(unsigned x, unsigned y, unsigned sideCompr, unsigned *res
 			result[resultIndex++] = getNameOutput(i, j);
 }
 
+//assume input data are set
+void Sense::feedForward(unsigned learningRegion, bool feedbackStage)
+{ 
+	parent -> feedForward(learningRegion, feedbackStage);
+}
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+DirectInputSense::DirectInputSense( unsigned *p_externalData , unsigned sizeX , unsigned sizeY , unsigned overlap )
+:	Sense( sizeX , sizeY, overlap ) ,
+	externalData( p_externalData )
+{
+}
+
+unsigned DirectInputSense::getNameOutput( unsigned x, unsigned y )
+{
+	return( externalData[ y * PatternSource::outputsX + x ] );
+}
+
+/*#########################################################################*/
+/*#########################################################################*/
+
 /////////////////// BitmapVision //////////////////////////////////////
 BitmapVision::BitmapVision( SFNeoCortex& nc , unsigned bitmapSizeX , unsigned bitmapSizeY )
 :	Sense(nc.sensorAreaSideX, nc.sensorAreaSideY, nc.overlapSubRegions )
@@ -52,14 +78,11 @@ BitmapVision::BitmapVision(unsigned x, unsigned y, unsigned ovlap)
 	parent = NULL;
 }
 
-//assume Bitmap is assigned
-void BitmapVision::feedForward(unsigned learningRegion, bool feedbackStage)
-{ 
-	parent -> feedForward(learningRegion, feedbackStage);
-}
-
 //feed forward the value of the pixel
 unsigned BitmapVision::getNameOutput(unsigned x, unsigned y)
 {
 	return pixArray[x][y];
 }
+
+/*#########################################################################*/
+/*#########################################################################*/
