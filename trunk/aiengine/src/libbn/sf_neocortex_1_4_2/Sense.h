@@ -27,9 +27,10 @@ private:
 	unsigned overlap; //number of overlapping pixels between adjacent parent sub-regions
 
 public:
-	Sense( unsigned x , unsigned y , unsigned overlap );
+	Sense( unsigned sizeX , unsigned sizeY , unsigned overlap );
 
 	void getPattern( unsigned x , unsigned y , unsigned sideCompr , unsigned *result );
+	virtual unsigned getNameOutput( unsigned x, unsigned y ) { return( 0 ); };
 
 	// Never called
 	vector<double> getLambdaOutput(unsigned x, unsigned y) { std::vector<double> *lRet = NULL; return *lRet; };

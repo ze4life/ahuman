@@ -26,8 +26,8 @@ AILibBNImpl::AILibBNImpl()
 
 void AILibBNImpl::createService()
 {
-	addLibVariant( AILibBNImpl::createHtmCustom() );
-	addLibVariant( AILibBNImpl::createSFNeoCortex() );
+	addLibVariant( AILibBNImpl::createViewCustomLib() );
+	addLibVariant( AILibBNImpl::createSFNeoCortexLib() );
 }
 
 void AILibBNImpl::initService()

@@ -1,7 +1,4 @@
 #include <aiengine.h>
-#include <ailibbn.h>
-#include <aisvcio.h>
-#include <aisvcdb.h>
 
 class HtmRect;
 class HtmCortex;

@@ -24,13 +24,17 @@ public:
 	AILibBNImpl();
 	static AILibBNImpl *getServiceImpl();
 
+	virtual SFNeoCortexLibBN *getSFNeoCortexLib() { return( ( SFNeoCortexLibBN * )getLibVariant( "SFNeoCortex" ) ); };
+	virtual ViewCustomLibBN *getViewCustomLib() { return( ( ViewCustomLibBN * )getLibVariant( "ViewCustom" ) ); };
+
+private:
 	void addLibVariant( AILibBNVariant *lib );
 	AILibBNVariant *getLibVariant( String name );
 
 // create library items
 public:
-	static AILibBNVariant *createHtmCustom();
-	static AILibBNVariant *createSFNeoCortex();
+	static AILibBNVariant *createViewCustomLib();
+	static AILibBNVariant *createSFNeoCortexLib();
 
 // internals
 private:

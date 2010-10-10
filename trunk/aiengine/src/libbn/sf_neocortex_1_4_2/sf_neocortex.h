@@ -7,57 +7,98 @@
 #include <math.h>
 
 #include "aiengine.h"
-#include "aibrain.h"
 
+/*#########################################################################*/
+/*#########################################################################*/
 
 class NeoRegion;
+class Sense;
 class Hippocampus;
 class PatternSource;
-class SFNeoCortex : public Cortex
+
+class SFNeoCortex : public Object
 {
-private:
-	/* Sides of the input layer of the cortex */
-	unsigned sideV, sideH;
-	/* Layers array in the cortex */
-	NeoRegion** regions;
-	Hippocampus* hippo;
-	unsigned regionCount;
-	unsigned sideCompression;
 public:
 	Logger logger;
 	static const int OUTPUT_NONE = -1;
-	unsigned bottomRegionSide;
+	
+	// start info
+	unsigned sensorAreaSideX;
+	unsigned sensorAreaSideY;
+	unsigned predictionCount;
 
-	FlatList<unsigned> regionSideCompression;
-	FlatList<unsigned> sequenceLength;
+	// number of items overlapping between adjacent sub-regions
+	unsigned overlapSubRegions;
+	double bestMatchPrecision; // 0.95
+	bool deletionByPercentage;
+
+	// derived info
+	unsigned regionCount;
+	unsigned bottomSizeX;
+	unsigned bottomSizeY;
+
+	// region parameters
+	FlatList<unsigned> regionSideXCompression;
+	FlatList<unsigned> regionSideYCompression;
 	FlatList<unsigned> regionMemorySize;
 	FlatList<double> regionForgetThreshold;
 	FlatList<unsigned> regionLowUsageThreshold;
-	
-	// number of pixels overlapping between adjacent sub-regions
-	unsigned overlapSubRegions;
+	FlatList<unsigned> maxSequenceLength;
 
-	double bestMatchPrecision; // 0.95
-	unsigned predictionCount;
-	bool deletionByPercentage;
+	// classes
+private:
+	Hippocampus *hippo;
+	Sense *sensor;
+	ClassList<NeoRegion> regions;
 
 public:
-	SFNeoCortex( MindArea *area , unsigned bottomSideV, unsigned bottomSideH );
+	// cortex inputs are sensor data rectangle
+	// cortex outputs are set of class/probability pairs - reflecting probability distribution used
+	SFNeoCortex( unsigned sourceSizeX , unsigned sourceSizeY , unsigned nClasses ) {
+		sensorAreaSideX = sourceSizeX;
+		sensorAreaSideY = sourceSizeY;
+		predictionCount = nClasses;
+
+		overlapSubRegions = 0;
+		bestMatchPrecision = 0;
+		deletionByPercentage = false;
+
+		regionCount = 0;
+		bottomSizeX = 0;
+		bottomSizeY = 0;
+
+		hippo = NULL;
+		sensor = NULL;
+
+		logger.attach( "NeoCortex" );
+	};
 	virtual ~SFNeoCortex();
+	virtual const char *getClass() { return( "SFNeoCortex" ); };
+
+public:
+	void setOverlapSubRegions( unsigned p_v );
+	void setBestMatchPrecision( double p_v ) { bestMatchPrecision = p_v; };
+	void setDeletionByPercentage( bool p_v ) { deletionByPercentage = p_v; };
+
+	void createRegions();
+
+private:
+	NeoRegion *addRegion( unsigned sideCompression , unsigned memorySize , double forgetThreshold , unsigned lowUsageThreshold , unsigned sequenceLength );
+
 public:
 	void log( const char *s ) { logger.logDebug( s ); };
 	bool createCortexNetwork();
-	void setSideV(int size);
-	void setSideH(int size);
-	int  getSideV(){ return sideV; }
-	int  getSideH() { return sideH; }
-	Hippocampus* getHippo(){ return hippo; }
-	void setSideCompression(int comp);
-	void setRegionCount(int count);
-	void setSense(PatternSource* sense);
+	Hippocampus* getHippo() { return hippo; }
+	void setSideCompression( int comp );
+	void setRegionCount( int count );
+	void setSense( PatternSource* sense);
+
 private:
 	void validateInputs(void);
 };
+
+/*#########################################################################*/
+/*#########################################################################*/
 
 #include "Source.h"
 #include "Hippo.h"

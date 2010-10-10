@@ -22,11 +22,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include "sf_neocortex.h"
 
-NeoRegion::NeoRegion( SFNeoCortex& nc , unsigned x , unsigned y , unsigned pSeqLen , unsigned sideCompr , unsigned regionLevel )
-:	PatternSource(x, y, pSeqLen), ContextSource( nc ) {
+NeoRegion::NeoRegion( SFNeoCortex& nc , unsigned outputSizeX , unsigned outputSizeY , unsigned pSeqLen , unsigned sideXCompression , unsigned sideYCompression , unsigned regionLevel )
+:	PatternSource(outputSizeX, outputSizeY, pSeqLen), ContextSource( nc ) {
 	thisRegionLevel = regionLevel;
-	thisRegionSideCompression = sideCompr;
-	subRegionInputCount = thisRegionSideCompression*thisRegionSideCompression; //number of inputs to a Sub-region
+	thisRegionSideXCompression = sideXCompression;
+	thisRegionSideYCompression = sideYCompression;
+	subRegionInputCount = thisRegionSideXCompression * thisRegionSideYCompression; //number of inputs to a Sub-region
 	memCount = 0;
 	thisMaxMemSize = neocortex.regionMemorySize[ thisRegionLevel ];
 
@@ -65,7 +66,7 @@ void NeoRegion::feedForward(unsigned learningRegion, bool feedbackStage)
 	unsigned x, y;
 	for(x = 0; x < outputsX; x++) {
 		for(y = 0; y < outputsY; y++) {
-			child -> getPattern( x , y , thisRegionSideCompression , pattern );
+			child -> getPattern( x , y , thisRegionSideXCompression , thisRegionSideYCompression , pattern );
 
 			// Version 1.4
 			lLowUsageThreshold = neocortex.regionLowUsageThreshold[ learningRegion ];
@@ -175,7 +176,7 @@ void NeoRegion::getLevel0Lambda( unsigned x , unsigned y , vector<vector<double>
 	int hammDist;
 	unsigned *pattern = new unsigned[ subRegionInputCount ];
 	double newLambda;
-	child -> getPattern( x , y , thisRegionSideCompression , pattern ); //image patch from Eye
+	child -> getPattern( x , y , thisRegionSideXCompression , thisRegionSideYCompression , pattern ); //image patch from Eye
 	lambda.resize(1);
 	lambda[0].resize(0);
 
@@ -201,10 +202,10 @@ void NeoRegion::recognize(){
 			if( thisRegionLevel == 0 )
 				getLevel0Lambda( x , y , lambda ); //lambda = 1 x 139 from uniqueL1_vectors
 			else //ThisRegionLevel=1: 4x1037, ThisRegionLevel=2: 16x91
-				child -> getLambda( x , y , thisRegionSideCompression , lambda );
+				child -> getLambda( x , y , thisRegionSideXCompression , thisRegionSideYCompression , lambda );
 
 			subRegions[x][y] -> recognize( lambda , piOut );
-			child -> setPi( x , y , thisRegionSideCompression , piOut ); //distribute PiOut to each child of the region
+			child -> setPi( x , y , thisRegionSideXCompression , thisRegionSideYCompression , piOut ); //distribute PiOut to each child of the region
 		}
 }
 
@@ -222,8 +223,8 @@ unsigned NeoRegion::getNameOutput( unsigned x , unsigned y ) {
 
 //x, y are the coordinates of a Sub-region in lower region that is requesting the sequence
 int NeoRegion::getSequence( unsigned x , unsigned y ) {
-	unsigned mySubRegionX = x / thisRegionSideCompression; //coordinates of the column of current region
-	unsigned mySubRegionY = y / thisRegionSideCompression;
+	unsigned mySubRegionX = x / thisRegionSideXCompression; //coordinates of the column of current region
+	unsigned mySubRegionY = y / thisRegionSideYCompression;
 	return subRegions[ mySubRegionX ][ mySubRegionY ] -> getNameOutput();
 }
 

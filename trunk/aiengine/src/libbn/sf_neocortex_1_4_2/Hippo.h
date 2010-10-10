@@ -28,7 +28,8 @@ private:
 	unsigned thisMaxMemSize;
 	std::string *mem; //[thisMaxMemSize];
 	unsigned memCount;        //number of filled spots in memory array
-	unsigned sideCompression; //number of children = SideCompression*SideCompression
+	unsigned sideCompressionX; //number of children = SideCompression*SideCompression
+	unsigned sideCompressionY; //number of children = SideCompression*SideCompression
 	int sequenceOutput;
 	vector<double> belStar;
 	vector<double> piIn;
@@ -44,7 +45,7 @@ public:
 	virtual int getSequence( unsigned xPos , unsigned yPos ) { return sequenceOutput; }
 
 public:
-    Hippocampus( SFNeoCortex& nc , unsigned sideCompression );
+    Hippocampus( SFNeoCortex& nc , unsigned sideCompressionX , unsigned sideCompressionY );
     ~Hippocampus() { delete [] mem; };
 
     void setTextOutput( std::string name );
