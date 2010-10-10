@@ -41,7 +41,7 @@ SFNeoCortexLibBN::~SFNeoCortexLibBN()
 Object *SFNeoCortexLibBN::createBeliefNetwork( int sizeX , int sizeY , int nRegions , int nClasses , int neuronCount , int maxSequenceLength )
 {
 	// create hippo
-	SFNeoCortex *neo = new SFNeoCortex( sizeX , sizeY , nClasses );
+	SFNeoCortex *neo = new SFNeoCortex( nRegions , sizeX , sizeY , nClasses );
 	neo -> bestMatchPrecision = 0.95;
 	neo -> overlapSubRegions = 0;
 	neo -> regionCount = nRegions;
@@ -71,7 +71,7 @@ Object *SFNeoCortexLibBN::createBeliefNetwork( int sizeX , int sizeY , int nRegi
 	}
 
 	// create regions
-	neo -> createRegions();
+	neo -> createCortexNetwork();
 	return( neo );
 }
 

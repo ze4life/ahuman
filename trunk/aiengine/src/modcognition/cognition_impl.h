@@ -40,7 +40,9 @@ private:
 class CognitiveProcessor : public Object
 {
 private:
-	Cortex *cortex;
+	Cortex *inputsCortex;
+	Cortex *cognitiveCortex;
+	int inputAreaSize;
 
 	const char *getClass() { return( "CognitiveProcessor" ); };
 
@@ -49,7 +51,7 @@ public:
 	virtual ~CognitiveProcessor() {};
 
 public:
-	void createCortexProcessor( Cortex *inputs );
+	void createCortexProcessor( MindArea *area , Cortex *inputs );
 
 public:
 	virtual void processMessage( CortexMessage *message );

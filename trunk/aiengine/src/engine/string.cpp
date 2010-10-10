@@ -79,7 +79,7 @@ String::String( const String& s )
 	assign( s , s.length() );
 }
 
-char String::getChar( int index )
+char String::getChar( int index ) const
 {
 	if( v == NULL )
 		return( 0 );
@@ -87,7 +87,7 @@ char String::getChar( int index )
 	return( v[ index ] );
 }
 
-bool String::equals( const char *s )
+bool String::equals( const char *s ) const
 {
 	if( v == NULL )
 		return( s == NULL || *s == 0 );
@@ -235,7 +235,7 @@ bool String::isEmpty() const
 	return( v == NULL || *v == 0 );
 }
 
-int String::find( const char *substring ) {
+int String::find( const char *substring ) const {
 	if( v == NULL || substring == NULL )
 		return( -1 );
 
@@ -246,7 +246,7 @@ int String::find( const char *substring ) {
 	return( ptr - v );
 }
 
-int String::findLastAny( const char *chars )
+int String::findLastAny( const char *chars ) const
 {
 	if( v == NULL )
 		return( -1 );
@@ -266,14 +266,14 @@ int String::findLastAny( const char *chars )
 	return( -1 );
 }
 
-String String::toUpper()
+String String::toUpper() const
 {
 	String x = v;
 	_strupr( x.v );
 	return( x );
 }
 
-String String::toLower()
+String String::toLower() const
 {
 	String x = v;
 	_strlwr( x.v );
@@ -287,7 +287,7 @@ String String::toHex( int value )
 	return( l_buf );
 }
 
-int String::findLast( char c )
+int String::findLast( char c ) const
 {
 	if( v == NULL )
 		return( -1 );
@@ -299,7 +299,7 @@ int String::findLast( char c )
 	return( p - v );
 }
 
-String String::getMid( int from , int n )
+String String::getMid( int from , int n ) const
 {
 	if( v == NULL )
 		return( "" );
@@ -315,7 +315,7 @@ String String::getMid( int from , int n )
 	return( s );
 }
 
-String String::getMid( int from )
+String String::getMid( int from ) const
 {
 	if( v == NULL )
 		return( "" );

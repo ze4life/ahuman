@@ -61,10 +61,14 @@ class Sensor : public Cortex
 	int pollNextMs;
 	int pollIntervalMs;
 
+	// dimensions (sensor third size is 2 always)
+	unsigned dim1;
+	unsigned dim2;
+
 // construction
 public:
-	Sensor( String p_name , MindArea *area , int inputs , int outputs )
-	:	Cortex( area , inputs , outputs ) {
+	Sensor( String p_name , MindArea *area , const CortexIOSizeInfo& ioSizeInfo )
+	:	Cortex( "hardcoded" , area , ioSizeInfo ) {
 		name = p_name;
 		Cortex::setId( name );
 		pollState = false;

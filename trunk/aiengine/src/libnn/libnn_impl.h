@@ -15,6 +15,11 @@
 // derives knowledge from io, activates mind
 class AILibNNImpl : public AILibNN , public Service
 {
+private:
+	AIEngine& engine;
+	MapStringToClass<AILibNNVariant> variants;
+
+public:
 	// service
 	virtual void createService();
 	virtual void initService();
@@ -28,14 +33,11 @@ public:
 	AILibNNImpl();
 	static AILibNNImpl *getServiceImpl();
 
-	void addLibVariant( AILibNNVariant *lib );
 	AILibNNVariant *getLibVariant( String name );
 
 // internals
 private:
-	AIEngine& engine;
-	
-	MapStringToClass<AILibNNVariant> variants;
+	void addLibVariant( AILibNNVariant *lib );
 };
 
 /*#########################################################################*/

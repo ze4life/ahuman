@@ -82,6 +82,7 @@ public:
 	virtual void onMessage( Message *msg ) {};
 	virtual void onXmlMessage( XmlMessage *msg ) {};
 	virtual void onXmlCall( XmlCall *msg ) {};
+	virtual void onBinaryMessage( Message *msg ) {};
 };
 
 /*#########################################################################*/
@@ -106,20 +107,23 @@ public:
 		MsgType_Unknown = 0 ,
 		MsgType_Text = 1 ,
 		MsgType_Xml = 2 ,
-		MsgType_XmlCall = 3
+		MsgType_XmlCall = 3 ,
+		MsgType_Binary = 4
 	} MsgType;
 
 public:
-	Message();
+	Message( MsgType baseType , const char *classType );
 	virtual ~Message();
 	virtual void postExecute() {};
 
+	MsgType getBaseType() { return( baseType ); };
+	const String& getClassType() { return( classType ); };
+
 	XmlCall& toXmlCall();
 
-	MsgType getMsgBaseType() { return( msgBaseType ); };
-
-	void setType( const char *p_type ) { type = p_type; };
-	const String& getType() { return( type ); };
+	bool isClassType( const char *p_classType ) const {
+		return( classType.equals( p_classType ) );
+	}
 
 	void setSourceId( const char *p_id ) { source = p_id; };
 	const String& getSourceId() { return( source ); };
@@ -134,12 +138,13 @@ public:
 	Session *getSession() { return( session ); };
 
 protected:
-	MsgType msgBaseType;
+	const MsgType baseType;
+	const String classType;
+
 private:
 	Session *session;
 	String id;
 	String extid;
-	String type;
 	String source;
 };
 
@@ -150,69 +155,18 @@ private:
 class TextMessage : public Message
 {
 public:
-	TextMessage() {};
-	TextMessage( const char *p_txt ) { message = p_txt; };
+	TextMessage() : Message( Message::MsgType_Text , NULL ) {};
+	TextMessage( const char *classType ) : Message( Message::MsgType_Text , classType ) {};
 
+protected:
+	TextMessage( MsgType p_baseType , const char *p_classType ) : Message( p_baseType , p_classType ) {};
+
+public:
 	void setText( const char *p_txt ) { message = p_txt; };
 	const String& getText() { return( message ); };
 
 private:
 	String message;
-};
-
-/*#########################################################################*/
-/*#########################################################################*/
-
-class BinaryMessage : public Message
-{
-public:
-	BinaryMessage() { 
-		size = 0; 
-		data = NULL; 
-	};
-	BinaryMessage( int p_size ) { 
-		ASSERTMSG( "Unexpected message size" , p_size > 0 ); 
-		size = ( unsigned )p_size;
-		data = calloc( size , 1 );
-	};
-	virtual ~BinaryMessage() {
-		if( data != NULL )
-			free( data );
-	}
-
-	void allocate( unsigned p_size ) {
-		ASSERTMSG( "Unexpected message size" , p_size > 0 ); 
-		if( p_size <= size )
-			return;
-		size = ( unsigned )p_size;
-		if( data == NULL )
-			data = calloc( size , 1 );
-		else
-			data = realloc( data , size );
-	}
-	void *getBuffer() { return( data ); };
-	int getSize() { return( ( int )size ); };
-
-	void setArray( int n , int *values ) {
-		ASSERTMSG( "number of items is greater than allocated" , n * sizeof( int ) <= size );
-		memcpy( data , values , n * sizeof( int ) );
-	}
-	void setArray( int n , float *values ) {
-		ASSERTMSG( "number of items is greater than allocated" , n * sizeof( float ) <= size );
-		memcpy( data , values , n * sizeof( float ) );
-	}
-	void getArray( int n , int *values ) {
-		ASSERTMSG( "number of items is greater than allocated" , n * sizeof( int ) <= size );
-		memcpy( values , data , n * sizeof( int ) );
-	}
-	void getArray( int n , float *values ) {
-		ASSERTMSG( "number of items is greater than allocated" , n * sizeof( float ) <= size );
-		memcpy( values , data , n * sizeof( float ) );
-	}
-
-private:
-	unsigned size;
-	void *data;
 };
 
 /*#########################################################################*/
@@ -226,7 +180,12 @@ public:
 	virtual ~XmlMessage();
 	virtual void postExecute() {};
 
+protected:
+	XmlMessage( MsgType p_baseType , const char *p_classType ) : TextMessage( p_baseType , p_classType ) {};
+
 public:
+	void setXml( Xml p_xml ) { xml = p_xml; };
+	void setXmlFromString( const char *p_xml ) { TextMessage::setText( p_xml ); };
 	Xml getXml();
 	void setXmlFromMessage( const char *type );
 	void setMessageFromXml();

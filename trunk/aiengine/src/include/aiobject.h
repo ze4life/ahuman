@@ -10,6 +10,7 @@
 class Object;
 class SerializeObject;
 class ObjectField;
+class PropertyContainer;
 
 // object-based helper classes
 class Scale;
@@ -391,6 +392,38 @@ private:
 	int *statCounts;
 	int statBuckets;
 	float bucketSize;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class PropertyContainer {
+private:
+	MapStringToClass<Value> params;
+
+public:
+	PropertyContainer() {};
+	~PropertyContainer() { params.destroy(); };
+
+	void setInt( const char *key , int value ) { 
+		ASSERTMSG( params.get( key ) == NULL , "Already used key=" + String( key ) );
+		params.set( key , new Value( ( long )value ) ); 
+	};
+	int getInt( const char *key ) { 
+		Value *pv = params.get( key ); 
+		ASSERTMSG( pv != NULL , "Not found key=" + String( key ) );
+		return( pv -> getLong() );
+	}
+
+	void setString( const char *key , const char *value ) { 
+		ASSERTMSG( params.get( key ) == NULL , "Already used key=" + String( key ) );
+		params.set( key , new Value( value ) ); 
+	};
+	const char *getString( const char *key ) { 
+		Value *pv = params.get( key ); 
+		ASSERTMSG( pv != NULL , "Not found key=" + String( key ) );
+		return( pv -> getString() );
+	}
 };
 
 /*#########################################################################*/

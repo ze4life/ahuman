@@ -14,7 +14,7 @@ SFNeoCortex::~SFNeoCortex()
 	delete hippo;
 }
 
-void SFNeoCortex::createRegions()
+void SFNeoCortex::createCortexNetwork()
 {
 	unsigned i, sideX = 0, sideY = 0;
 	for(i = 0; i < regionCount; i++) {

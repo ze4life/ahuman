@@ -1,5 +1,6 @@
 
 #include "brain_impl.h"
+#include "ailibbn.h"
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -164,48 +165,7 @@ Cortex *AIBrainImpl::getCortex( String cortexId )
 	return( cortex );
 }
 
-Cortex *AIBrainImpl::createCortex( MindArea *area , BrainLocation& relativeLocation , String netType , int inputs , int outputs )
-{
-	// find cortex factory
-	int index = mapCortexFactoryIndex.get( netType );
-	ASSERTMSG( index >= 0 , "Unable to find cortex type=" + netType );
-	CortexFactory factory = cortexFactories.get( index );
-
-	// create absolute location
-	const BrainLocation& areaLocation = area -> getLocation();
-	BrainLocation cortexLocation = areaLocation.getAbsoluteLocation( relativeLocation );
-	int size = cortexLocation.getSize();
-
-	// create cortex
-	Cortex *cortex = ( this ->* factory ) ( area , netType , inputs , size , outputs );
-	ASSERTMSG( cortex != NULL , "Unable to create cortex type=" + netType );
-	cortex -> setLocation( cortexLocation );
-	cortex -> setNetType( netType );
-	cortex -> setNSize( size );
-
-	// register cortex
-	registerCortex( cortex , area );
-	return( cortex );
-}
-
-void AIBrainImpl::addHardcodedCortex( MindArea *area , BrainLocation& relativeLocation , Cortex *cortex )
-{
-	int inputs = cortex -> getNInputs();
-	int outputs = cortex -> getNOutputs();
-
-	// create absolute location
-	const BrainLocation& areaLocation = area -> getLocation();
-	BrainLocation cortexLocation = areaLocation.getAbsoluteLocation( relativeLocation );
-	int size = cortexLocation.getSize();
-	cortex -> setLocation( cortexLocation );
-	cortex -> setNetType( "hardcoded" );
-	cortex -> setNSize( 0 );
-
-	// register cortex
-	registerCortex( cortex , area );
-}
-
-void AIBrainImpl::registerCortex( Cortex *cortex , MindArea *area )
+void AIBrainImpl::registerCortex( Cortex *cortex , MindArea *area , const BrainLocation& relativeLocation )
 {
 	lock();
 	String id = cortex -> getId();
@@ -213,6 +173,7 @@ void AIBrainImpl::registerCortex( Cortex *cortex , MindArea *area )
 		id = String( "CTX" ) + sessionId + "S" + ++cortexId + "C";
 		cortex -> setId( id );
 	}
+
 	if( mapCortex.get( id ) != NULL ) {
 		unlock();
 		ASSERTFAILED( "Cortex has non-uniqie id=" + id );
@@ -222,7 +183,7 @@ void AIBrainImpl::registerCortex( Cortex *cortex , MindArea *area )
 	mapCortex.add( id , cortex );
 	unlock();
 
-	area -> addCortex( cortex );
+	area -> addCortex( cortex , relativeLocation );
 	logger.logInfo( "cortex created: id=" + id + ", type=" + cortex -> getNetType() + 
 		", size=" + cortex -> getNSize() + ", inputs=" + cortex -> getNInputs() + ", outputs=" + cortex -> getNOutputs() );
 }
@@ -239,4 +200,30 @@ MindLink *AIBrainImpl::createMindLink( MindLinkInfo *linkInfo , MindArea *master
 	slaveArea -> addMindLink( link );
 
 	return( link );
+}
+
+/*#########################################################################*/
+/*#########################################################################*/
+// cortex construction
+
+Cortex *AIBrainImpl::createNeoCortex( MindArea *area , BrainLocation& relativeLocation , Cortex *sensorCortex )
+{
+	// create adapter
+	Cortex *cortex = createSFNeoCortexAdapter( area , relativeLocation , sensorCortex );
+	// register cortex
+	registerCortex( cortex , area , relativeLocation );
+	return( cortex );
+}
+
+void AIBrainImpl::createSensorCortex( MindArea *area , BrainLocation& relativeLocation , Cortex *cortex )
+{
+	int inputs = cortex -> getNInputs();
+	int outputs = cortex -> getNOutputs();
+
+	// create absolute location
+	const BrainLocation& areaLocation = area -> getLocation();
+	BrainLocation cortexLocation = areaLocation.getAbsoluteLocation( relativeLocation );
+
+	// register cortex
+	registerCortex( cortex , area , cortexLocation );
 }

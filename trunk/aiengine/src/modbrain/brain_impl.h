@@ -22,6 +22,22 @@ class ActiveMemoryObject;
 // derives knowledge from io, activates mind
 class AIBrainImpl : public AIBrain , public Service
 {
+// internals
+private:
+	AIEngine& engine;
+
+	MindMap *mindMap;
+	MapStringToClass<MindArea> mindAreas;
+
+	RFC_HND lockStructure;
+	int sessionId;
+	int cortexId;
+	MapStringToClass<Cortex> mapCortex;
+	ActiveMemory *activeMemory;
+	ClassList<MindLink> mindLinks;
+	Session *ioBrainSession;
+
+public:
 	// service
 	virtual void createService();
 	virtual void initService();
@@ -40,9 +56,9 @@ public:
 	virtual MindArea *getMindArea( String areaId );
 	  
 	// cortex
+	virtual void createSensorCortex( MindArea *area , BrainLocation& relativeLocation , Cortex *cortex );
+	virtual Cortex *createNeoCortex( MindArea *area , BrainLocation& relativeLocation , Cortex *sensorCortex );
 	virtual Cortex *getCortex( String cortexId );
-	virtual Cortex *createCortex( MindArea *area , BrainLocation& relativeLocation , String netType , int inputs , int outputs );
-	virtual void addHardcodedCortex( MindArea *area , BrainLocation& relativeLocation , Cortex *cortex );
 
 	// mind map
 	MindMap *getMindMap() {
@@ -51,7 +67,7 @@ public:
 
 private:
 	MindLink *createMindLink( MindLinkInfo *linkInfo , MindArea *masterArea , MindArea *slaveArea );
-	void registerCortex( Cortex *cortex , MindArea *area );
+	void registerCortex( Cortex *cortex , MindArea *area , const BrainLocation& relativeLocation );
 
 	// structure lock
 	void lock() {
@@ -61,24 +77,8 @@ private:
 		rfc_hnd_semunlock( lockStructure );
 	}
 
-// internals
-private:
-	AIEngine& engine;
-
-	MindMap *mindMap;
-	MapStringToClass<MindArea> mindAreas;
-	MapStringToInt mapCortexFactoryIndex;
-
-typedef Cortex *( AIBrainImpl::*CortexFactory )( MindArea *area , String netType , int size , int inputs , int outputs );
-
-	FlatList<CortexFactory> cortexFactories;
-	RFC_HND lockStructure;
-	int sessionId;
-	int cortexId;
-	MapStringToClass<Cortex> mapCortex;
-	ActiveMemory *activeMemory;
-	ClassList<MindLink> mindLinks;
-	Session *ioBrainSession;
+	// cortex-to-library adapters
+	Cortex *createSFNeoCortexAdapter( MindArea *area , BrainLocation& relativeLocation , Cortex *sensorCortex );
 };
 
 /*#########################################################################*/

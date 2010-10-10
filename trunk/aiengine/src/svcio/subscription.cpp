@@ -51,18 +51,33 @@ void SubscriptionImpl::processMessage( Message *msg )
 		if( !isMatchSelector( msg ) )
 			return;
 
-	switch( msg -> getMsgBaseType() ) {
-		case Message::MsgType_Text :
-			sub -> onMessage( msg );
-			break;
-		case Message::MsgType_Xml :
-			sub -> onXmlMessage( ( XmlMessage * )msg );
-			break;
-		case Message::MsgType_XmlCall :
-			sub -> onXmlCall( ( XmlCall * )msg );
-			break;
-		default:
-			ASSERTFAILED( String( "Uknown message type for message: " ) + msg -> getChannelMessageId() );
+	try {
+		switch( msg -> getBaseType() ) {
+			case Message::MsgType_Text :
+				sub -> onMessage( msg );
+				break;
+			case Message::MsgType_Xml :
+				sub -> onXmlMessage( ( XmlMessage * )msg );
+				break;
+			case Message::MsgType_XmlCall :
+				sub -> onXmlCall( ( XmlCall * )msg );
+				break;
+			case Message::MsgType_Binary :
+				sub -> onBinaryMessage( msg );
+				break;
+			default:
+				ASSERTFAILED( String( "Uknown message type for message: " ) + msg -> getChannelMessageId() );
+		}
+	}
+	catch ( RuntimeException& e ) {
+		Logger logger = channel -> getLogger();
+		logger.logError( "Channel=" + channel -> getName() + ", subscription=" + name + ": exception when processing message" );
+		e.printStack( logger );
+	}
+	catch ( ... ) {
+		Logger logger = channel -> getLogger();
+		logger.logError( "Channel=" + channel -> getName() + ", subscription=" + name + ": unknown exception" );
+		logger.printStack();
 	}
 }
 
@@ -74,7 +89,7 @@ void SubscriptionImpl::setSelector( String p_selector )
 bool SubscriptionImpl::isMatchSelector( Message *msg )
 {
 	// for now, check only message type as selector contents
-	const String& type = msg -> getType();
+	const String& type = msg -> getClassType();
 	if( type.isEmpty() )
 		return( false );
 

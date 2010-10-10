@@ -49,21 +49,26 @@ void Sensors::addSensor( Sensor *att ) {
 
 	// generate cortex dimentions - square-like
 	BrainLocation cortexLocation;
-	int nInputs = att -> getNInputs();
-	int nOutputs = att -> getNOutputs();
+	int inputsDim1 , inputsDim2;
+	int nInputs = att -> getNInputs( inputsDim1 , inputsDim2 );
+	int outputsDim1 , outputsDim2;
+	int nOutputs = att -> getNOutputs( outputsDim1 , outputsDim2 );
+
+	// two layers: upper - control, lower - sensor data
 	int dz = 2;
-	int dx = min( nInputs , nOutputs );
-	int dy = ( ( nInputs + nOutputs ) / dx ) / dz;
-	if( ( dx * dy * dz ) < ( nInputs + nOutputs ) )
-		dy++;
+
+	// make cortex location
+	int dx = max( inputsDim1 , outputsDim1 );
+	int dy = max( inputsDim2 , outputsDim2 );
 
 	cortexLocation.setDimensions( dx , dy , dz );
+	cortexLocation.setOrientationZ( true );
 	BrainLocation areaLocation = MindArea::getLocation();
 	areaLocation.placeLocation( coverLocation , cortexLocation );
 
 	// add to brain
 	AIBrain brain;
-	brain.addHardcodedCortex( this , areaLocation , att );
+	brain.createSensorCortex( this , cortexLocation , att );
 }
 
 Sensor *Sensors::getSensor( String name ) {

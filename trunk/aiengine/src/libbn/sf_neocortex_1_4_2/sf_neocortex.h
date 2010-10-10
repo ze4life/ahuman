@@ -54,7 +54,7 @@ private:
 public:
 	// cortex inputs are sensor data rectangle
 	// cortex outputs are set of class/probability pairs - reflecting probability distribution used
-	SFNeoCortex( unsigned sourceSizeX , unsigned sourceSizeY , unsigned nClasses ) {
+	SFNeoCortex( unsigned nRegions , unsigned sourceSizeX , unsigned sourceSizeY , unsigned nClasses ) {
 		sensorAreaSideX = sourceSizeX;
 		sensorAreaSideY = sourceSizeY;
 		predictionCount = nClasses;
@@ -63,7 +63,7 @@ public:
 		bestMatchPrecision = 0;
 		deletionByPercentage = false;
 
-		regionCount = 0;
+		regionCount = nRegions;
 		bottomSizeX = 0;
 		bottomSizeY = 0;
 
@@ -80,18 +80,16 @@ public:
 	void setBestMatchPrecision( double p_v ) { bestMatchPrecision = p_v; };
 	void setDeletionByPercentage( bool p_v ) { deletionByPercentage = p_v; };
 
-	void createRegions();
+	void createCortexNetwork();
 
 private:
 	NeoRegion *addRegion( unsigned sideCompression , unsigned memorySize , double forgetThreshold , unsigned lowUsageThreshold , unsigned sequenceLength );
 
 public:
 	void log( const char *s ) { logger.logDebug( s ); };
-	bool createCortexNetwork();
 	Hippocampus* getHippo() { return hippo; }
 	void setSideCompression( int comp );
-	void setRegionCount( int count );
-	void setSense( PatternSource* sense);
+	void setSense( Sense *sense ) { sensor = sense; };
 
 private:
 	void validateInputs(void);

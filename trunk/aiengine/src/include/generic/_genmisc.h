@@ -189,11 +189,11 @@ struct _rfc_fmt_date
 #define	RFC_MOMENT_MAX	2100123195
 
 #ifndef max
-#define max(a,b) (((a)<(b))?(a):(b))
+#define max(a,b) (((a)>(b))?(a):(b))
 #endif
 
 #ifndef min
-#define min(a,b) (((a)>(b))?(a):(b))
+#define min(a,b) (((a)<(b))?(a):(b))
 #endif
 
 /*#######################################################*/

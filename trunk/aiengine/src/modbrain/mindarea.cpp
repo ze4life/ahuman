@@ -26,14 +26,14 @@ void MindArea::attach( String id )
 	sizeNotAllocated = size;
 }
 
-void MindArea::addCortex( Cortex *cortex )
+void MindArea::addCortex( Cortex *cortex , const BrainLocation& relativeLocation )
 {
-	const BrainLocation& locationCortex = cortex -> getLocation();
-	
 	lock();
 
 	// size control
-	int sizeCortex = locationCortex.getSize();
+	int sizeCortex = relativeLocation.getSize();
+	ASSERTMSG( sizeCortex != 0 , "No volume space initialised for cortex=" + cortex -> getId() );
+
 	if( sizeCortex > sizeNotAllocated ) {
 		unlock();
 		ASSERTFAILED( "Mind area id=" + areaId + " does not have enough space: sizeCortex=" + sizeCortex + ", sizeNotAllocated=" + sizeNotAllocated );
@@ -43,6 +43,7 @@ void MindArea::addCortex( Cortex *cortex )
 
 	// add to cortex list
 	cortexList.add( cortex );
+	cortex -> setAreaLocation( relativeLocation );
 
 	unlock();
 
