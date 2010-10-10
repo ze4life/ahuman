@@ -20,12 +20,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include "sf_neocortex.h"
 
-Hippocampus::Hippocampus(SFNeoCortex& nc , unsigned sideCompr) 
+Hippocampus::Hippocampus(SFNeoCortex& nc , unsigned sideComprX , unsigned sideComprY ) 
 :	ContextSource( nc ) 
 {
 	memCount = 0;
 	sequenceOutput = SFNeoCortex::OUTPUT_NONE;
-	sideCompression = sideCompr;
+	sideCompressionX = sideComprX;
+	sideCompressionY = sideComprY;
 
 	maxBel.resize( neocortex.predictionCount , 0 );
 	maxIndex.resize( neocortex.predictionCount , 0 );
@@ -66,7 +67,7 @@ void Hippocampus::beginRecognition(){
 
 void Hippocampus::recognize() {
 	vector<vector<double> > lambda;
-	child -> getLambda( 0 , 0 , sideCompression , lambda);
+	child -> getLambda( 0 , 0 , sideCompressionX , sideCompressionY , lambda);
 
 	unsigned r, c;
 
@@ -100,7 +101,7 @@ void Hippocampus::recognize() {
 			else
 				piOut[r][c] = belStar[c] / lambda[r][c];
 	}
-	child -> setPi( 0 , 0 , sideCompression , piOut ); //distribute piOut to each child Sub-region
+	child -> setPi( 0 , 0 , sideCompressionX , sideCompressionY , piOut ); //distribute piOut to each child Sub-region
 }
 
 //noOfResults that was used for recognition of moving image

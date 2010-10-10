@@ -51,9 +51,9 @@ public:
 	ContextSource *getParent() { return parent; }
 
 public:
-	virtual void getPattern( unsigned xPos , unsigned yPos , unsigned sideCompression , unsigned *result );
-	virtual void getLambda( unsigned xPos , unsigned yPos , unsigned sideCompression , vector<vector<double> > &result );
-	virtual void setPi( unsigned xPos , unsigned yPos , unsigned sideCompression , vector<vector<double> > &pi );
+	virtual void getPattern( unsigned xPos , unsigned yPos , unsigned sideXCompression , unsigned sideYCompression , unsigned *result );
+	virtual void getLambda( unsigned xPos , unsigned yPos , unsigned sideXCompression , unsigned sideYCompression , vector<vector<double> > &result );
+	virtual void setPi( unsigned xPos , unsigned yPos , unsigned sideXCompression , unsigned sideYCompression , vector<vector<double> > &pi );
 };
 
 // child

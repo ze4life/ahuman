@@ -27,7 +27,8 @@ using namespace std;
 class NeoRegion : public PatternSource, public ContextSource {
 private:
 	unsigned thisRegionLevel;           //level of region in hierarchy (0-lowest)
-	unsigned thisRegionSideCompression; //how many times the side of forward input is compressed
+	unsigned thisRegionSideXCompression; //how many times the side of forward input is compressed
+	unsigned thisRegionSideYCompression; //how many times the side of forward input is compressed
 	unsigned subRegionInputCount;//number of inputs to a Sub-region (space) 
 	SubRegion ***subRegions;
 	LearnedSequence *mem; //[NeoParameters::MaxMemSize]; //learned vectors for this region
@@ -37,7 +38,7 @@ private:
 	unsigned lowUsageFailureCount;
 
 public:
-	NeoRegion( SFNeoCortex& nc, unsigned outputSizeX, unsigned outputSizeY, unsigned sequenceLength, unsigned sideCompression, unsigned regionLevel );
+	NeoRegion( SFNeoCortex& nc, unsigned outputSizeX, unsigned outputSizeY, unsigned sequenceLength, unsigned sideXCompression, unsigned sideYCompression, unsigned regionLevel );
 	virtual ~NeoRegion();
 
 // ContextSource

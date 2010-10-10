@@ -33,29 +33,29 @@ PatternSource::PatternSource(unsigned x, unsigned y, unsigned pSeqLen)
 //return the pattern for Sub-region (x, y) in the calling region
 //sideCompr is calling region's side compression
 //the result 1-D array must be allocated before
-void PatternSource::getPattern(unsigned x, unsigned y, unsigned sideCompr, unsigned *result)
+void PatternSource::getPattern(unsigned x, unsigned y, unsigned sideXCompr, unsigned sideYCompr, unsigned *result)
 {
 	unsigned resultIndex = 0;
-	for(unsigned i = x * sideCompr; i < (x+1) * sideCompr; i++)
-		for(unsigned j = y * sideCompr; j < (y+1) * sideCompr; j++)
+	for(unsigned i = x * sideXCompr; i < (x+1) * sideXCompr; i++)
+		for(unsigned j = y * sideYCompr; j < (y+1) * sideYCompr; j++)
 			result[resultIndex++] = getNameOutput(i, j);
 }
 
-void PatternSource::getLambda(unsigned x, unsigned y, unsigned sideCompr, vector<vector<double> > &result)
+void PatternSource::getLambda(unsigned x, unsigned y, unsigned sideXCompr, unsigned sideYCompr, vector<vector<double> > &result)
 {
 	result.resize(0);
-	for(unsigned i = x * sideCompr; i < (x+1) * sideCompr; i++)
-		for(unsigned j = y * sideCompr; j < (y+1) * sideCompr; j++)
+	for(unsigned i = x * sideXCompr; i < (x+1) * sideXCompr; i++)
+		for(unsigned j = y * sideYCompr; j < (y+1) * sideYCompr; j++)
 			result.push_back(getLambdaOutput(i, j));
 }
 
-void PatternSource::setPi(unsigned x, unsigned y, unsigned sideCompr, vector<vector<double> > &pi)
+void PatternSource::setPi(unsigned x, unsigned y, unsigned sideXCompr, unsigned sideYCompr, vector<vector<double> > &pi)
 {
 	int piIndex = 0;
 	int lPiSize = pi.size();
 
-	for(unsigned i = x * sideCompr; i < (x+1) * sideCompr; i++)
-		for(unsigned j = y * sideCompr; j < (y+1) * sideCompr; j++)	{
+	for(unsigned i = x * sideXCompr; i < (x+1) * sideXCompr; i++)
+		for(unsigned j = y * sideYCompr; j < (y+1) * sideYCompr; j++)	{
 			// DG Check valid
 			if ( piIndex < lPiSize ) {
 				setPiInput(i, j, pi[piIndex++]);
