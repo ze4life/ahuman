@@ -21,6 +21,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef SenseH
 #define SenseH
 
+/*#########################################################################*/
+/*#########################################################################*/
+
 class Sense : public PatternSource
 {
 private:
@@ -35,7 +38,26 @@ public:
 	// Never called
 	vector<double> getLambdaOutput(unsigned x, unsigned y) { std::vector<double> *lRet = NULL; return *lRet; };
 	void setPiInput(unsigned x, unsigned y, vector<double> &pi) {};
+	void feedForward( unsigned learningRegion, bool feedbackStage );
 };
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+// inputs data are owned by external components
+class DirectInputSense : public Sense
+{
+private:
+	unsigned *externalData;
+
+public:
+	DirectInputSense( unsigned *externalData , unsigned sizeX , unsigned sizeY , unsigned overlap );
+
+	virtual unsigned getNameOutput( unsigned x, unsigned y );
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
 
 class BitmapVision : public Sense {
 private:
@@ -49,9 +71,11 @@ public:
 
 	virtual unsigned getNameOutput( unsigned x, unsigned y );
 	virtual int getSequence( unsigned x, unsigned y ) { return getNameOutput(x, y); } //dummy
-	virtual void feedForward( unsigned learningRegion, bool feedbackStage );
 
 	// See declaration in PatternSource
 };
+
+/*#########################################################################*/
+/*#########################################################################*/
 
 #endif

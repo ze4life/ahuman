@@ -10,6 +10,7 @@ void CognitiveProcessor::createCortexProcessor( MindArea *area , Cortex *inputs 
 	MindArea *sourceArea = inputs -> getArea();
 	const BrainLocation& sourceAreaLocation = sourceArea -> getLocation();
 	BrainLocation inputsSurface = sourceAreaLocation.getAbsoluteLocation( inputsSurfaceLocal );
+	inputAreaSize = inputsSurface.getSurfaceSize();
 
 	// get cortex location
 	const BrainLocation& areaLocation = area -> getLocation();
@@ -20,12 +21,6 @@ void CognitiveProcessor::createCortexProcessor( MindArea *area , Cortex *inputs 
 	int nSize = 2 + nRegions;
 	location.resize( 0 , 0 , nSize );
 	location.setOrientationZ( true );
-
-	// inputs location
-	int sizeX, sizeY;
-	BrainLocation connectors = inputs -> getOutputsSurface();
-	connectors.get2Dsizes( sizeX , sizeY );
-	inputAreaSize = sizeX * sizeY;
 
 	// use cortex factory
 	AIBrain brain;

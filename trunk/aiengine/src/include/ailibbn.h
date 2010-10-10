@@ -60,6 +60,9 @@ public:
 	// probability destribution across given number of labels
 	Object *createBeliefNetwork( int sizeX , int sizeY , int nRegions , int nClasses , int neuronCount , int maxSequenceLength );
 	void deleteObject( Object *object );
+
+	unsigned *getInputsBuffer( Object *object );
+	void feedForward( Object *object , unsigned learningRegion, bool feedbackStage );
 };
 
 /*#########################################################################*/

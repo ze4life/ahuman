@@ -90,6 +90,7 @@ public:
 	Hippocampus* getHippo() { return hippo; }
 	void setSideCompression( int comp );
 	void setSense( Sense *sense ) { sensor = sense; };
+	Sense *getSense() { return( sensor ); };
 
 private:
 	void validateInputs(void);
