@@ -43,12 +43,10 @@ Xml LogSettingsItem::getXml()
 	return( settings );
 }
 
-void LogSettingsItem::configure( Xml xml )
+void LogSettingsItem::configure( Xml xml , String defaultLevel )
 {
 	settings = xml;
-
-	String level = xml.getAttribute( "level" );
-	setLevelByName( level );
+	setLevelByName( defaultLevel );
 
 	// read exclude settings if any
 	for( Xml item = xml.getFirstChild( "exclude" ); item.exists(); item = item.getNextChild( "exclude" ) ) {
@@ -61,7 +59,8 @@ void LogSettingsItem::configure( Xml xml )
 		String name = instance.getAttribute( "name" );
 
 		LogSettingsItem *lsi = new LogSettingsItem;
-		lsi -> configure( instance );
+		String level = instance.getAttribute( "level" );
+		lsi -> configure( instance , level );
 		instanceSettings.add( name , lsi );
 	}
 }
