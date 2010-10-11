@@ -3,22 +3,23 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-XNeoCortex::XNeoCortex( unsigned nRegions , unsigned sourceSizeX , unsigned sourceSizeY , unsigned nClasses )
+XNeoCortex::XNeoCortex( XSense *p_sense , unsigned p_sensorSizeX , unsigned p_sensorSizeY , unsigned p_hippoPatchSizeX , unsigned p_hippoPatchSizeY , 
+		unsigned p_hippoOutputSizeX , unsigned p_hippoOutputSizeY , unsigned p_hippoMemorySize )
 {
-	sensorAreaSideX = sourceSizeX;
-	sensorAreaSideY = sourceSizeY;
-	predictionCount = nClasses;
+	sensor = p_sense;
 
-	overlapSubRegions = 0;
+	sensorSizeX = p_sensorSizeX;
+	sensorSizeY = p_sensorSizeY;
+	hippoPatchSizeX = p_hippoPatchSizeX;
+	hippoPatchSizeY = p_hippoPatchSizeY;
+	hippoOutputSizeX = p_hippoOutputSizeX;
+	hippoOutputSizeY = p_hippoOutputSizeY;
+	hippoMemorySize = p_hippoMemorySize;
+
 	bestMatchPrecision = 0;
 	deletionByPercentage = false;
 
-	regionCount = nRegions;
-	bottomSizeX = 0;
-	bottomSizeY = 0;
-
 	hippo = NULL;
-	sensor = NULL;
 
 	logger.attach( this );
 }
@@ -37,48 +38,62 @@ XNeoCortex::~XNeoCortex()
 		delete hippo;
 }
 
+XNeoRegion *XNeoCortex::addRegion( unsigned srcSizeX , unsigned srcSizeY , unsigned overlapSubRegions , unsigned memorySize , 
+	double forgetThreshold , unsigned lowUsageThreshold , unsigned maxSequenceLength )
+{
+	// calculate size of region
+	// regionSizeX * srcSizeX = upperregionSizeX + ( regionSizeX - 1 ) * overlapSubRegions
+	// regionSizeX = ( upperregionSizeX - overlapSubRegions ) / ( srcSizeX - overlapSubRegions );
+	// upper region is last region in already added or sensor size
+	unsigned upperregionSizeX = ( regions.count() > 0 )? regions.last() -> getRegionSizeX() : sensorSizeX;
+	unsigned upperregionSizeY = ( regions.count() > 0 )? regions.last() -> getRegionSizeY() : sensorSizeY;
+	
+	unsigned regionSizeX = ( upperregionSizeX - overlapSubRegions ) / ( srcSizeX - overlapSubRegions );
+	unsigned regionSizeY = ( upperregionSizeY - overlapSubRegions ) / ( srcSizeY - overlapSubRegions );
+
+	XNeoRegion *region = new XNeoRegion( *this , regions.count() , srcSizeX , srcSizeY , overlapSubRegions , regionSizeX , regionSizeY ,
+		memorySize , forgetThreshold , lowUsageThreshold , maxSequenceLength );
+	regions.add( region );
+
+	return( region );
+}
+
 void XNeoCortex::createCortexNetwork()
 {
-	logger.logDebug( String( "SFNeoCortex::createCortexNetwork - create neocortex with bottomSizeX=" ) + bottomSizeX + ", bottomSizeY=" + bottomSizeY + ":" , Logger::LogStart );
+	logger.logDebug( String( "XNeoCortex - create neocortex with sensorSizeX=" ) + sensorSizeX + ", sensorSizeY=" + sensorSizeY , Logger::LogStart );
 
-	unsigned i, sideX = 0, sideY = 0;
-	for(i = 0; i < regionCount; i++) {
-		if(i == 0) {
-			sideX = bottomSizeX;
-			sideY = bottomSizeY;
+	for( int k = 0; k < regions.count(); k++ ) {
+		XNeoRegion *region = regions[ k ];
+		logger.logDebug( String( "\tXNeoCortex - create region with srcPatchSizeX=" ) + region -> srcPatchSizeX + 
+			", srcPatchSizeY=" + region -> srcPatchSizeY + 
+			", regionSizeX=" + region -> getRegionSizeX() +
+			", regionSizeY=" + region -> getRegionSizeY() +
+			", maxSequenceLength=" + region -> maxSequenceLength +
+			", maxMemorySize=" + region -> maxMemorySize +
+			", overlapSubRegions=" + region -> overlapSubRegions , Logger::LogLine );
+
+		if( k > 0 ) {
+			regions[k] -> setChild( regions[k-1] );
+			regions[k-1] -> setParent( regions[k] );
 		}
-		else {
-			sideX /= regionSideXCompression[i];
-			sideY /= regionSideYCompression[i];
-		}
-
-		XNeoRegion *region = new XNeoRegion( *this , sideX , sideY , maxSequenceLength[i] , regionSideXCompression[i] , regionSideYCompression[i] , i );
-		regions.add( region );
-
-		logger.logDebug( String( "\tSFNeoCortex::createCortexNetwork - create region with sideX=" ) + sideX + ", sideY=" + sideY , Logger::LogLine );
-
-		if(i > 0)
-			regions[i] -> setChild(regions[i-1]);
 	}
-
-	for(i = 0; i < regionCount-1; i++)
-		regions[i] -> setParent( regions[i+1] );
 
 	// create default sensor if not created before
 	if( sensor == NULL )
-		sensor = new XSense( sensorAreaSideX , sensorAreaSideY , overlapSubRegions );
+		sensor = new XSense( sensorSizeX , sensorSizeY );
 
-	regions[0] -> setChild( sensor );
-	sensor -> setParent( regions[0] );
+	regions.first() -> setChild( sensor );
+	sensor -> setParent( regions.first() );
 
-	hippo = new XHippocampus( *this , sideX , sideY ); //side of top region == side compression of hippocampus to give '1'
-	hippo -> setChild( regions[regionCount-1] );
-	regions[regionCount-1] -> setParent( hippo );
+	hippo = new XHippocampus( *this , hippoPatchSizeX , hippoPatchSizeY , hippoOutputSizeX , hippoOutputSizeY , hippoMemorySize ); //side of top region == side compression of hippocampus to give '1'
+	hippo -> setChild( regions.last() );
+	regions.last() -> setParent( hippo );
 
-	logger.logDebug( String( "\tSFNeoCortex::createCortexNetwork - create Hippo with sideX=" ) + sideX + ", sideY=" + sideY , Logger::LogStop );
-}
-
-void XNeoCortex::setOverlapSubRegions( unsigned p_v ) {
+	logger.logDebug( String( "\tXNeoCortex - create Hippo with hippoPatchSizeX=" ) + hippoPatchSizeX + 
+		", hippoPatchSizeY=" + hippoPatchSizeY +
+		", hippoOutputSizeX=" + hippoOutputSizeX +
+		", hippoOutputSizeY=" + hippoOutputSizeY +
+		", hippoMemorySize=" + hippoMemorySize , Logger::LogStop );
 }
 
 /*#########################################################################*/

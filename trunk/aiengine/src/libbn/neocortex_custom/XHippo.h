@@ -25,11 +25,21 @@ CUSTOMIZED
 
 class XHippocampus : public XContextSource {
 private:
-	unsigned thisMaxMemSize;
+	XNeoCortex& nc;
+	Logger logger;
+
+	// initial parameters
+	unsigned maxMemorySize;
+	unsigned hippoOutputSizeX;
+	unsigned hippoOutputSizeY;
+	unsigned srcPatchSizeX; // number of children = SideCompression*SideCompression
+	unsigned srcPatchSizeY; // number of children = SideCompression*SideCompression
+
+	// calculated
+	unsigned hippoOutputSize;
+
 	std::string *mem; //[thisMaxMemSize];
-	unsigned memCount;        //number of filled spots in memory array
-	unsigned sideCompressionX; //number of children = SideCompression*SideCompression
-	unsigned sideCompressionY; //number of children = SideCompression*SideCompression
+	unsigned memCount;        // number of filled spots in memory array
 	int sequenceOutput;
 	vector<double> belStar;
 	vector<double> piIn;
@@ -45,7 +55,7 @@ public:
 	virtual int getSequence( unsigned xPos , unsigned yPos ) { return sequenceOutput; }
 
 public:
-    XHippocampus( XNeoCortex& nc , unsigned sideCompressionX , unsigned sideCompressionY );
+    XHippocampus( XNeoCortex& nc , unsigned srcPatchSizeX , unsigned srcPatchSizeY , unsigned hippoOutputSizeX , unsigned hippoOutputSizeY , unsigned maxMemorySize );
     ~XHippocampus() { delete [] mem; };
 
     void setTextOutput( std::string name );
@@ -59,5 +69,4 @@ public:
     std::string getResultName( unsigned resultNumber );    
 
     void displayAllMemories();
-	void displayPredictionImages();
 };

@@ -209,7 +209,7 @@ MindLink *AIBrainImpl::createMindLink( MindLinkInfo *linkInfo , MindArea *master
 Cortex *AIBrainImpl::createNeoCortex( MindArea *area , BrainLocation& relativeLocation , Cortex *sensorCortex )
 {
 	// create adapter
-	Cortex *cortex = createSFNeoCortexAdapter( area , relativeLocation , sensorCortex );
+	Cortex *cortex = createNeoCortexCustomAdapter( area , relativeLocation , sensorCortex );
 	// register cortex
 	registerCortex( cortex , area , relativeLocation );
 	return( cortex );

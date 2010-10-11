@@ -25,13 +25,10 @@ CUSTOMISED
 
 class XSense : public XPatternSource
 {
-private:
-	unsigned overlap; //number of overlapping pixels between adjacent parent sub-regions
-
 public:
-	XSense( unsigned sizeX , unsigned sizeY , unsigned overlap );
+	XSense( unsigned sizeX , unsigned sizeY );
 
-	void getPattern( unsigned x , unsigned y , unsigned sideCompr , unsigned *result );
+	void getPattern( unsigned posX , unsigned posY , unsigned sizePatchX , unsigned sizePatchY , unsigned overlap , unsigned *result );
 	virtual unsigned getNameOutput( unsigned x, unsigned y ) { return( 0 ); };
 
 	// Never called
@@ -44,13 +41,13 @@ public:
 /*#########################################################################*/
 
 // inputs data are owned by external components
-class XDirectInputSense : public XSense
+class XDirectSense : public XSense
 {
 private:
 	unsigned *externalData;
 
 public:
-	XDirectInputSense( unsigned *externalData , unsigned sizeX , unsigned sizeY , unsigned overlap );
+	XDirectSense( unsigned *externalData , unsigned sizeX , unsigned sizeY );
 
 	virtual unsigned getNameOutput( unsigned x, unsigned y );
 };
@@ -58,15 +55,14 @@ public:
 /*#########################################################################*/
 /*#########################################################################*/
 
-class XBitmapVision : public XSense {
+class XOwnedSense : public XSense {
 private:
-	TwoIndexArray<unsigned> pixArray;
+	TwoIndexArray<unsigned> data;
 
 public:
-	XBitmapVision( XNeoCortex& nc , unsigned bitmapSizeX , unsigned bitmapSizeY );
-	XBitmapVision( unsigned x, unsigned y, unsigned overlap );
+	XOwnedSense( unsigned sizeX , unsigned sizeY );
 
-	TwoIndexArray<unsigned>& getBitmap() { return( pixArray ); };
+	TwoIndexArray<unsigned>& getData() { return( data ); };
 
 	virtual unsigned getNameOutput( unsigned x, unsigned y );
 	virtual int getSequence( unsigned x, unsigned y ) { return getNameOutput(x, y); } //dummy

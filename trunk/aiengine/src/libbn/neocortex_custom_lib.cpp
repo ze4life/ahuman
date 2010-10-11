@@ -38,44 +38,37 @@ NeoCortexCustomLibBN::~NeoCortexCustomLibBN()
 
 // create neocortex with the same inputs as outputs of given cortex and 
 // probability destribution across given number of labels
-Object *NeoCortexCustomLibBN::createBeliefNetwork( unsigned sourceSizeX , unsigned sourceSizeY , unsigned nHistory , unsigned nClasses , unsigned neuronCount , unsigned maxRegionSequenceLength )
+//		sourceSizeX, sourceSizeY: sensor size
+Object *NeoCortexCustomLibBN::createBeliefNetwork( unsigned sourceSizeX , unsigned sourceSizeY , unsigned nHistory , 
+	unsigned nHippoOutputX , unsigned nHippoOutputY , unsigned neuronCount )
 {
-	// create hippo
-	int nRegions = 3;
-	XNeoCortex *neo = new XNeoCortex( nRegions , sourceSizeY , sourceSizeY , nClasses );
-	neo -> bestMatchPrecision = 0.95;
-	neo -> overlapSubRegions = 0;
-	neo -> regionCount = nRegions;
+	// calculate number of regions required to hold given number of spacial and temporal inputs
+	// first region is pure spacial pooler with overlap and with initial compression factor (compression=4x4, overlap=compression/2, maxSequenceLength=1, memory=neuronCount/2)
+	// next region is pure temporal pooler and implements all history coverage (compression=1, overlap=0, maxSequenceLength=nHistory, memory=neuronCount/4)
+	// finally Hippo should scale spacial size to 1 (compression=2, maxSequenceLength=1, memory=neuronCount/4/(nRegions-2)) an provide final sequence distribution
 
-	// bottom
-	int compressionX = ( int )( log( ( double )sourceSizeX ) / log( ( double )2 ) );
-	int compressionY = ( int )( log( ( double )sourceSizeY ) / log( ( double )2 ) );
-	double lSideX = ( double( sourceSizeX - neo -> overlapSubRegions ) / double( compressionX - neo -> overlapSubRegions ) );
-	neo -> bottomSizeX = ( unsigned )lSideX;
-	double lSideY = ( double( sourceSizeY - neo -> overlapSubRegions ) / double( compressionY - neo -> overlapSubRegions ) );
-	neo -> bottomSizeY = ( unsigned )lSideY;
+	// create sense with own data array
+	XOwnedSense *sense = new XOwnedSense( sourceSizeX , sourceSizeY );
 
-	// delete a percentage of memories/delete memories below threshold
-	neo -> deletionByPercentage = false;
-	neo -> predictionCount = nClasses;
+	// create cortex
+	unsigned regionPatchX = 4;
+	unsigned regionPatchY = 4;
+	unsigned hippoPatchX = sourceSizeX / regionPatchX;
+	if( hippoPatchX * regionPatchX < sourceSizeX )
+		hippoPatchX++;
+	unsigned hippoPatchY = sourceSizeY / regionPatchY;
+	if( hippoPatchY * regionPatchY < sourceSizeY )
+		hippoPatchY++;
+	XNeoCortex *neo = new XNeoCortex( sense , sourceSizeX , sourceSizeY , hippoPatchX , hippoPatchY , nHippoOutputX , nHippoOutputY , neuronCount / 4 );
+	
+	neo -> setBestMatchPrecision( 0.95 );
+	neo -> setDeletionByPercentage( false );
 
-	// derived: whole number of overlapping subregions that fit into NeoParameters::ImageSide
-	// image side covered by hierarchy. May not cover whole bitmap due to overlap
-	for( int k = 0; k < nRegions; k++ ) {
-		double threshold = ( k == 0 )? 0.05 : 5;
-		neo -> regionForgetThreshold.add( threshold );
-		neo -> regionMemorySize.add( neuronCount * 10 / nRegions );
-		neo -> regionLowUsageThreshold.add( 2 );
-		neo -> regionSideXCompression.add( compressionX );
-		neo -> regionSideYCompression.add( compressionY );
-		neo -> maxSequenceLength.add( maxRegionSequenceLength );
-	}
+	// regions
+	neo -> addRegion( regionPatchX , regionPatchY , 2 , neuronCount / 2 , 0.05 , 2 , 1 ); 
+	neo -> addRegion( 1 , 1 , 0 , neuronCount / 4 , 5 , 2 , nHistory );
 
-	// create bitmap sense
-	XBitmapVision *sense = new XBitmapVision( *neo , sourceSizeX , sourceSizeY );
-	neo -> setSense( sense );
-
-	// create regions - default sense
+	// compolete creation of regions
 	neo -> createCortexNetwork();
 	return( neo );
 }
@@ -89,8 +82,8 @@ void NeoCortexCustomLibBN::deleteObject( Object *object )
 unsigned *NeoCortexCustomLibBN::getInputsBuffer( Object *object )
 {
 	XNeoCortex *libobj = ( XNeoCortex * )object;
-	XBitmapVision *sense = ( XBitmapVision * )libobj -> getSense();
-	TwoIndexArray<unsigned>& data = sense -> getBitmap();
+	XOwnedSense *sense = ( XOwnedSense * )libobj -> getSense();
+	TwoIndexArray<unsigned>& data = sense -> getData();
 	return( data.getData() );
 }
 

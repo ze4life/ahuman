@@ -22,19 +22,26 @@ CUSTOMISED
 
 #include "XNeoCortex.h"
 
-XHippocampus::XHippocampus( XNeoCortex& nc , unsigned sideComprX , unsigned sideComprY ) 
-:	XContextSource( nc ) 
+XHippocampus::XHippocampus( XNeoCortex& p_nc , unsigned p_srcPatchSizeX , unsigned p_srcPatchSizeY , 
+	unsigned p_hippoOutputSizeX , unsigned p_hippoOutputSizeY , unsigned p_maxMemorySize )
+:	nc( p_nc ) 
 {
+	logger.attach( "XHippocampus" );
+
 	memCount = 0;
+	maxMemorySize = p_maxMemorySize;
+	srcPatchSizeX = p_srcPatchSizeX;
+	srcPatchSizeY = p_srcPatchSizeY;
+	hippoOutputSizeX = p_hippoOutputSizeX;
+	hippoOutputSizeY = p_hippoOutputSizeY;
+
+	hippoOutputSize = hippoOutputSizeX * hippoOutputSizeY;
+
 	sequenceOutput = XNeoCortex::OUTPUT_NONE;
-	sideCompressionX = sideComprX;
-	sideCompressionY = sideComprY;
+	maxBel.resize( hippoOutputSize , 0 );
+	maxIndex.resize( hippoOutputSize , 0 );
 
-	maxBel.resize( neocortex.predictionCount , 0 );
-	maxIndex.resize( neocortex.predictionCount , 0 );
-
-	thisMaxMemSize = 1000;
-	mem = new std::string[ thisMaxMemSize ];
+	mem = new std::string[ maxMemorySize ];
 }
 
 void XHippocampus::setTextOutput( std::string name ){
@@ -59,7 +66,7 @@ void XHippocampus::initForInference(){
 	combinedBelief.resize( memCount , 0 );
 	std::ostringstream lLogStream;
 
-	neocortex.log( String( "Hippocampus memories: " ) + memCount );
+	logger.logDebug( String( "Hippocampus memories: " ) + memCount );
 }
 
 void XHippocampus::beginRecognition(){
@@ -69,7 +76,7 @@ void XHippocampus::beginRecognition(){
 
 void XHippocampus::recognize() {
 	vector<vector<double> > lambda;
-	child -> getLambda( 0 , 0 , sideCompressionX , sideCompressionY , lambda);
+	child -> getLambda( 0 , 0 , srcPatchSizeX , srcPatchSizeY , lambda);
 
 	unsigned r, c;
 
@@ -103,7 +110,7 @@ void XHippocampus::recognize() {
 			else
 				piOut[r][c] = belStar[c] / lambda[r][c];
 	}
-	child -> setPi( 0 , 0 , sideCompressionX , sideCompressionY , piOut ); //distribute piOut to each child Sub-region
+	child -> setPi( 0 , 0 , srcPatchSizeX , srcPatchSizeY , piOut ); //distribute piOut to each child Sub-region
 }
 
 //noOfResults that was used for recognition of moving image
@@ -112,9 +119,9 @@ void XHippocampus::calculateResults( unsigned noOfResults ) { //find N best resu
 	for( c = 0; c < memCount; c++ )
 		combinedBelief[c] /= noOfResults; //normalize so that sum(CombinedBelief) = 1
 
-	maxBel.assign( neocortex.predictionCount , 0 );
-	maxIndex.assign( neocortex.predictionCount , 0 );
-	for( unsigned i = 0; i < neocortex.predictionCount; i++ ) {
+	maxBel.assign( hippoOutputSize , 0 );
+	maxIndex.assign( hippoOutputSize , 0 );
+	for( unsigned i = 0; i < hippoOutputSize; i++ ) {
 		for( c = 0; c < memCount; c++ )
 			if( combinedBelief[c] > maxBel[i] ) {
 				maxBel[i] = combinedBelief[c];
@@ -128,14 +135,10 @@ void XHippocampus::calculateResults( unsigned noOfResults ) { //find N best resu
 //noOfResults that was used for recognition of moving image
 void XHippocampus::displayResults( bool pLog, bool pImages ) { //display N best results
 	if ( pLog ) {
-		for(unsigned i = 0; i < neocortex.predictionCount; i++) {
+		for(unsigned i = 0; i < hippoOutputSize; i++) {
 			if( maxBel[i] > 0 )
-				neocortex.log( String("Hippocampus::displayResults - ") + (i+1) + ": " + mem[maxIndex[i]].c_str() + "    " + (maxBel[i]) );
+				logger.logDebug( String("Hippocampus::displayResults - ") + (i+1) + ": " + mem[maxIndex[i]].c_str() + "    " + (maxBel[i]) );
 		}
-   }
-   //cGuiUtils.Plot(MaxBel); - no TChart in Turbo C++ 
-   if ( pImages ) {
-		displayPredictionImages();
    }
 }
 
@@ -143,13 +146,14 @@ std::string XHippocampus::getResultName( unsigned resultNumber ){
   return mem[ maxIndex[resultNumber] ];
 }
 
-void XHippocampus::displayPredictionImages() {
-}
-
 void XHippocampus::displayAllMemories(){
-	neocortex.log( "" );
-	neocortex.log( "Memory of hippocampus:" );
-	for(unsigned i = 0; i < thisMaxMemSize; i++)
-		if ( !(mem[i].length() == 0) )
-			neocortex.log( String( "Hippocampus::displayAllMemories - " ) + i + "\t" + mem[i].c_str() );
+	logger.logDebug( "Memory of hippocampus:" , Logger::LogStart );
+	int memCount = 0;
+	for( unsigned i = 0; i < maxMemorySize; i++ )
+		if ( !(mem[i].length() == 0) ) {
+			logger.logDebug( String( "\tHippocampus::displayAllMemories - " ) + i + "\t" + mem[i].c_str() , Logger::LogLine );
+			memCount++;
+		}
+
+	logger.logDebug( String( "\tTotal: memCount=" ) + memCount , Logger::LogStop );
 }

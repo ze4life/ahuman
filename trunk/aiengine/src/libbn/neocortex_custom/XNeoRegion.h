@@ -24,20 +24,36 @@ CUSTOMISED
 /*#########################################################################*/
 
 class XNeoRegion : public XPatternSource, public XContextSource {
-private:
-	unsigned thisRegionLevel;           //level of region in hierarchy (0-lowest)
-	unsigned thisRegionSideXCompression; //how many times the side of forward input is compressed
-	unsigned thisRegionSideYCompression; //how many times the side of forward input is compressed
-	unsigned subRegionInputCount;//number of inputs to a Sub-region (space) 
-	XSubRegion ***subRegions;
-	XLearnedSequence *mem; //[NeoParameters::MaxMemSize]; //learned vectors for this region
-	unsigned memCount;       //number of filled spots in memory array
+public:
+	XNeoCortex& nc;
 
-	unsigned int thisMaxMemSize;
+	// initial parameters
+	unsigned level; // level of region in hierarchy (0-lowest)
+	unsigned srcPatchSizeX;
+	unsigned srcPatchSizeY;
+	unsigned overlapSubRegions;
+	unsigned maxMemorySize;
+	double forgetThreshold;
+	unsigned lowUsageThreshold;
+	unsigned maxSequenceLength;
+
+	// calculated
+	unsigned regionSizeX;
+	unsigned regionSizeY;
+
+private:
+	// calculations
+	XSubRegion ***subRegions;
+	XLearnedSequence *mem; // [NeoParameters::MaxMemSize]; //learned vectors for this region
+	unsigned memCount;       // number of filled spots in memory array
+	unsigned subRegionInputCount; // number of inputs to a Sub-region (space) = srcSizeX * srcSizeY
 	unsigned lowUsageFailureCount;
 
+	Logger logger;
+
 public:
-	XNeoRegion( XNeoCortex& nc, unsigned outputSizeX, unsigned outputSizeY, unsigned sequenceLength, unsigned sideXCompression, unsigned sideYCompression, unsigned regionLevel );
+	XNeoRegion( XNeoCortex& nc , unsigned level , unsigned srcPatchSizeX , unsigned srcPatchSizeY , unsigned overlapSubRegions , unsigned regionSizeX , unsigned regionSizeY ,
+		unsigned maxMemorySize , double forgetThreshold , unsigned lowUsageThreshold , unsigned maxSequenceLength );
 	virtual ~XNeoRegion();
 
 // ContextSource
@@ -49,12 +65,16 @@ public:
 
 // PatternSource
 public:
-	virtual vector<double> getLambdaOutput(unsigned x, unsigned y);
-	virtual void setPiInput(unsigned x, unsigned y, vector<double> &pi);
-	virtual unsigned getNameOutput(unsigned x, unsigned y);
+	virtual vector<double> getLambdaOutput( unsigned x, unsigned y );
+	virtual void setPiInput( unsigned x, unsigned y, vector<double> &pi );
+	virtual unsigned getNameOutput( unsigned x, unsigned y );
 
 // others
 public:
+	// calculated size info
+	unsigned getRegionSizeX() { return( regionSizeX ); };
+	unsigned getRegionSizeY() { return( regionSizeY ); };
+
 	// counting discarded new patterns
 	void InitLowUsageFailureCount() { lowUsageFailureCount = 0; };
 	unsigned GetLowUsageFailureCount() { return lowUsageFailureCount; };
