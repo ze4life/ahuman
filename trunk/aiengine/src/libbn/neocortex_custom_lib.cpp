@@ -1,5 +1,5 @@
 #include "libbn_impl.h"
-#include "sf_neocortex_1_4_2/sf_neocortex.h"
+#include "neocortex_custom/XNeoCortex.h"
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -27,31 +27,32 @@
 // interesting features:
 //		subregions overlapping
 
-SFNeoCortexLibBN::SFNeoCortexLibBN()
-:	AILibBNVariant( "SFNeoCortex" )
+NeoCortexCustomLibBN::NeoCortexCustomLibBN()
+:	AILibBNVariant( "NeoCortexCustom" )
 {
 }
 
-SFNeoCortexLibBN::~SFNeoCortexLibBN()
+NeoCortexCustomLibBN::~NeoCortexCustomLibBN()
 {
 }
 
 // create neocortex with the same inputs as outputs of given cortex and 
 // probability destribution across given number of labels
-Object *SFNeoCortexLibBN::createBeliefNetwork( int sizeX , int sizeY , int nRegions , int nClasses , int neuronCount , int maxSequenceLength )
+Object *NeoCortexCustomLibBN::createBeliefNetwork( unsigned sourceSizeX , unsigned sourceSizeY , unsigned nHistory , unsigned nClasses , unsigned neuronCount , unsigned maxRegionSequenceLength )
 {
 	// create hippo
-	SFNeoCortex *neo = new SFNeoCortex( nRegions , sizeX , sizeY , nClasses );
+	int nRegions = 3;
+	XNeoCortex *neo = new XNeoCortex( nRegions , sourceSizeY , sourceSizeY , nClasses );
 	neo -> bestMatchPrecision = 0.95;
 	neo -> overlapSubRegions = 0;
 	neo -> regionCount = nRegions;
 
 	// bottom
-	int compressionX = ( int )( log( ( double )sizeX ) / log( ( double )2 ) );
-	int compressionY = ( int )( log( ( double )sizeY ) / log( ( double )2 ) );
-	double lSideX = ( double( sizeX - neo -> overlapSubRegions ) / double( compressionX - neo -> overlapSubRegions ) );
+	int compressionX = ( int )( log( ( double )sourceSizeX ) / log( ( double )2 ) );
+	int compressionY = ( int )( log( ( double )sourceSizeY ) / log( ( double )2 ) );
+	double lSideX = ( double( sourceSizeX - neo -> overlapSubRegions ) / double( compressionX - neo -> overlapSubRegions ) );
 	neo -> bottomSizeX = ( unsigned )lSideX;
-	double lSideY = ( double( sizeY - neo -> overlapSubRegions ) / double( compressionY - neo -> overlapSubRegions ) );
+	double lSideY = ( double( sourceSizeY - neo -> overlapSubRegions ) / double( compressionY - neo -> overlapSubRegions ) );
 	neo -> bottomSizeY = ( unsigned )lSideY;
 
 	// delete a percentage of memories/delete memories below threshold
@@ -67,11 +68,11 @@ Object *SFNeoCortexLibBN::createBeliefNetwork( int sizeX , int sizeY , int nRegi
 		neo -> regionLowUsageThreshold.add( 2 );
 		neo -> regionSideXCompression.add( compressionX );
 		neo -> regionSideYCompression.add( compressionY );
-		neo -> maxSequenceLength.add( maxSequenceLength );
+		neo -> maxSequenceLength.add( maxRegionSequenceLength );
 	}
 
 	// create bitmap sense
-	BitmapVision *sense = new BitmapVision( *neo , sizeX , sizeY );
+	XBitmapVision *sense = new XBitmapVision( *neo , sourceSizeX , sourceSizeY );
 	neo -> setSense( sense );
 
 	// create regions - default sense
@@ -79,31 +80,31 @@ Object *SFNeoCortexLibBN::createBeliefNetwork( int sizeX , int sizeY , int nRegi
 	return( neo );
 }
 
-void SFNeoCortexLibBN::deleteObject( Object *object )
+void NeoCortexCustomLibBN::deleteObject( Object *object )
 {
-	SFNeoCortex *libobj = ( SFNeoCortex * )object;
+	XNeoCortex *libobj = ( XNeoCortex * )object;
 	delete libobj;
 }
 
-unsigned *SFNeoCortexLibBN::getInputsBuffer( Object *object )
+unsigned *NeoCortexCustomLibBN::getInputsBuffer( Object *object )
 {
-	SFNeoCortex *libobj = ( SFNeoCortex * )object;
-	BitmapVision *sense = ( BitmapVision * )libobj -> getSense();
+	XNeoCortex *libobj = ( XNeoCortex * )object;
+	XBitmapVision *sense = ( XBitmapVision * )libobj -> getSense();
 	TwoIndexArray<unsigned>& data = sense -> getBitmap();
 	return( data.getData() );
 }
 
-void SFNeoCortexLibBN::feedForward( Object *object , unsigned learningRegion, bool feedbackStage )
+void NeoCortexCustomLibBN::feedForward( Object *object , unsigned learningRegion, bool feedbackStage )
 {
 	// objects
-	SFNeoCortex *libobj = ( SFNeoCortex * )object;
-	Sense *sense = libobj -> getSense();
+	XNeoCortex *libobj = ( XNeoCortex * )object;
+	XSense *sense = libobj -> getSense();
 	sense -> feedForward( learningRegion , feedbackStage );
 }
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-AILibBNVariant *AILibBNImpl::createSFNeoCortexLib() {
-	return( new SFNeoCortexLibBN() );
+AILibBNVariant *AILibBNImpl::createNeoCortexCustomLib() {
+	return( new NeoCortexCustomLibBN() );
 }

@@ -36,7 +36,7 @@ public:
 		ct.regionMemorySize.add( 3 , 30000 );
 		ct.regionLowUsageThreshold.add( 3 , 2 );
 		ct.regionSideXCompression.add( 4 ); ct.regionSideXCompression.add( 2 ); ct.regionSideXCompression.add( 2 );
-		ct.regionSideYCompression.add( 4 ); ct.regionSideYCompression.add( 2 ); ct.regionSideYCompression.add( 2 );
+		ct.regionSideYCompression.add( ct.regionSideXCompression );
 		ct.maxSequenceLength.add( 3 , 1 );
 		// derived: whole number of overlapping subregions that fit into ImageSide
 		//double lSide = ( double(ct.areaSide - ct.overlapSubRegions ) / double(ct.regionSideCompression[0] - ct.overlapSubRegions ) );

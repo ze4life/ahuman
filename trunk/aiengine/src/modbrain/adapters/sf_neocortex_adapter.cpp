@@ -4,27 +4,27 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-class SFNeoCortexAdapter : public Cortex {
+class NeoCortexCustomAdapter : public Cortex {
 private:
-	SFNeoCortexLibBN *lib;
+	NeoCortexCustomLibBN *lib;
 	Object *libobj;
 	unsigned *libInputs;
 	cortexvt *cortexInputs;
 	int nInputs;
 
 public:
-SFNeoCortexAdapter( MindArea *area , const CortexIOSizeInfo& io )
-:	Cortex( "SFNeoCortex" , area , io )
+NeoCortexCustomAdapter( MindArea *area , const CortexIOSizeInfo& io )
+:	Cortex( "NeoCortexCustomAdapter" , area , io )
 {
 }
 
-~SFNeoCortexAdapter()
+~NeoCortexCustomAdapter()
 {
 	if( lib != NULL )
 		lib -> deleteObject( libobj );
 }
 
-void setObject( SFNeoCortexLibBN *p_lib , Object *p_libobj )
+void setObject( NeoCortexCustomLibBN *p_lib , Object *p_libobj )
 {
 	lib = p_lib;
 	libobj = p_libobj;
@@ -54,7 +54,7 @@ Cortex *AIBrainImpl::createSFNeoCortexAdapter( MindArea *area , BrainLocation& r
 {
 	// use Source Forge neocortex library
 	AILibBN libbn;
-	SFNeoCortexLibBN *lib = libbn.getSFNeoCortexLib();
+	NeoCortexCustomLibBN *lib = libbn.getNeoCortexCustomLib();
 
 	// create belief network
 	// inputs - given cortex
@@ -70,7 +70,7 @@ Cortex *AIBrainImpl::createSFNeoCortexAdapter( MindArea *area , BrainLocation& r
 	int maxSequenceLength = 10;
 
 	// create cortex
-	SFNeoCortexAdapter *libcortex = new SFNeoCortexAdapter( area , CortexIOSizeInfo( inputAreaSize , nClasses * 2 ) );
+	NeoCortexCustomAdapter *libcortex = new NeoCortexCustomAdapter( area , CortexIOSizeInfo( inputAreaSize , nClasses * 2 ) );
 	// create library object
 	Object *libobj = lib -> createBeliefNetwork( sizeX , sizeY , nRegions , nClasses , neuronCount , maxSequenceLength );
 	// attach
