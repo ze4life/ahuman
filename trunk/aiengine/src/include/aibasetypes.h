@@ -169,12 +169,13 @@ public:
 	T& last() const { return( getRef( n - 1 ) ); };
 	T& operator []( int index ) const { return( getRef( index ) ); };
 
-	void add( const T *values , int p_n )
+	int add( const T *values , int p_n )
 		{
 			allocate( n + p_n );
 			for( int k = 0; k < p_n; k++ )
 				data[ n + k ] = values[ k ];
 			n += p_n;
+			return( p_n );
 		};
 	int add( const T& p ) { allocate( n + 1 ); data[ n ] = p; return( n++ ); };
 	int add( int count , const T& p ) 
@@ -186,6 +187,7 @@ public:
 			n += count;
 			return( n ); 
 		};
+	int add( const FlatList<T>& a ) { return( add( a.getAll() , a.count() ) ); };
 	void clear() { memset( data , 0 , sizeof( T ) * n ); n = 0; };
 	void destroy() { free( data ); data = NULL; n = a = 0; };
 	void remove( int k ) 

@@ -8,7 +8,7 @@
 class Cortex;
 
 class AILibBNVariant;
-class SFNeoCortexLibBN;
+class NeoCortexCustomLibBN;
 class ViewCustomLibBN;
 
 /*#########################################################################*/
@@ -18,8 +18,8 @@ class ViewCustomLibBN;
 class AILibBN
 {
 public:
-	virtual SFNeoCortexLibBN *getSFNeoCortexLib() {
-		return( thisPtr -> getSFNeoCortexLib() );
+	virtual NeoCortexCustomLibBN *getNeoCortexCustomLib() {
+		return( thisPtr -> getNeoCortexCustomLib() );
 	};
 	virtual ViewCustomLibBN *getViewCustomLib() {
 		return( thisPtr -> getViewCustomLib() );
@@ -50,15 +50,15 @@ public:
 /*#########################################################################*/
 /*#########################################################################*/
 
-class SFNeoCortexLibBN : public AILibBNVariant
+class NeoCortexCustomLibBN : public AILibBNVariant
 {
 public:
-	SFNeoCortexLibBN();
-	~SFNeoCortexLibBN();
+	NeoCortexCustomLibBN();
+	~NeoCortexCustomLibBN();
 
 	// create neocortex with the same inputs as outputs of given cortex and 
 	// probability destribution across given number of labels
-	Object *createBeliefNetwork( int sizeX , int sizeY , int nRegions , int nClasses , int neuronCount , int maxSequenceLength );
+	Object *createBeliefNetwork( unsigned sourceSizeX , unsigned sourceSizeY , unsigned nHistory , unsigned nClasses , unsigned neuronCount , unsigned maxRegionSequenceLength );
 	void deleteObject( Object *object );
 
 	unsigned *getInputsBuffer( Object *object );
