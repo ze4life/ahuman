@@ -19,7 +19,6 @@ class PatternSource;
 class SFNeoCortex : public Object
 {
 public:
-	Logger logger;
 	static const int OUTPUT_NONE = -1;
 	
 	// start info
@@ -54,24 +53,7 @@ private:
 public:
 	// cortex inputs are sensor data rectangle
 	// cortex outputs are set of class/probability pairs - reflecting probability distribution used
-	SFNeoCortex( unsigned nRegions , unsigned sourceSizeX , unsigned sourceSizeY , unsigned nClasses ) {
-		sensorAreaSideX = sourceSizeX;
-		sensorAreaSideY = sourceSizeY;
-		predictionCount = nClasses;
-
-		overlapSubRegions = 0;
-		bestMatchPrecision = 0;
-		deletionByPercentage = false;
-
-		regionCount = nRegions;
-		bottomSizeX = 0;
-		bottomSizeY = 0;
-
-		hippo = NULL;
-		sensor = NULL;
-
-		logger.attach( "NeoCortex" );
-	};
+	SFNeoCortex( unsigned nRegions , unsigned sourceSizeX , unsigned sourceSizeY , unsigned nClasses );
 	virtual ~SFNeoCortex();
 	virtual const char *getClass() { return( "SFNeoCortex" ); };
 

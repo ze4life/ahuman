@@ -66,21 +66,21 @@ void Logger::printStack() {
 void Logger::printStack( rfc_threadstack *stack , int skipTop ) {
 	int startItem = rfc_thr_stackfulldepth( stack ) - 1;
 
-	log( String( "CALL STACK:" ) , 1 , Logger::LogLevelInfo );
+	log( String( "CALL STACK:" ) , Logger::LogStart , Logger::LogLevelInfo );
 
 	if( skipTop == 0 )
 		skipTop = stack -> extraLevels;
 	if( skipTop > 0 ) {
-		log( String( "\t...skipped..." ) , 0 , Logger::LogLevelInfo );
+		log( String( "\t...skipped..." ) , Logger::LogLine , Logger::LogLevelInfo );
 		startItem -= skipTop;
 	}
 
 	for( int k = startItem; k >= 0; k-- ) {
 		rfc_threadstacklevel *sl = rfc_thr_stacklevel( stack , k );
 
-		int mode = 0;
+		LogOutputMode mode = Logger::LogLine;
 		if( k == 0 )
-			mode = 2;
+			mode = Logger::LogStop;
 
 		// extract short name
 		String moduleName = sl -> moduleName;
@@ -102,7 +102,7 @@ void Logger::printStack( rfc_threadstack *stack , int skipTop ) {
 			if( strcmp( functionName , "_main" ) == 0 ||
 				strcmp( functionName , "threadMainFunction" ) == 0 ||
 				strcmp( functionName , "runThread" ) == 0 ) {
-				mode = 2;
+				mode = Logger::LogStop;
 				log( "\t...skipped..." , mode , Logger::LogLevelInfo );
 				break;
 			}
@@ -110,7 +110,7 @@ void Logger::printStack( rfc_threadstack *stack , int skipTop ) {
 }
 
 // log calls
-void Logger::logInfo( const char *s , int mode ) {
+void Logger::logInfo( const char *s , LogOutputMode mode ) {
 	if( settings == NULL )
 		attachRoot(); 
 	if( settings -> logDisabled( Logger::LogLevelInfo ) )
@@ -119,7 +119,7 @@ void Logger::logInfo( const char *s , int mode ) {
 	log( s , mode , Logger::LogLevelInfo );
 }
 
-void Logger::logError( const char *s , int mode ) {
+void Logger::logError( const char *s , LogOutputMode mode ) {
 	if( settings == NULL )
 		attachRoot(); 
 	if( settings -> logDisabled( Logger::LogLevelError ) )
@@ -128,7 +128,7 @@ void Logger::logError( const char *s , int mode ) {
 	log( s , mode , Logger::LogLevelError );
 }
 
-void Logger::logDebug( const char *s , int mode ) {
+void Logger::logDebug( const char *s , LogOutputMode mode ) {
 	if( settings == NULL )
 		attachRoot(); 
 	if( settings -> logDisabled( Logger::LogLevelDebug ) )
@@ -158,7 +158,7 @@ void Logger::logObject( const char *prompt , Object *obj , Logger::LogLevel p_lo
 	logManager -> add( lines , 2 , p_logLevel , getPostfix() );
 }
 
-void Logger::log( const char *s , int mode , Logger::LogLevel p_logLevel ) {
+void Logger::log( const char *s , LogOutputMode mode , Logger::LogLevel p_logLevel ) {
 	// check needs to be excluded
 	if( settings == NULL )
 		attachRoot(); 
@@ -177,8 +177,8 @@ void Logger::log( const char *s , int mode , Logger::LogLevel p_logLevel ) {
 	// release old
 	String& w = logTail -> lastMsg;
 	if( logTail -> remains )
-		if( mode == 1 || mode < 0 ) {
-			const char *p = logTail -> lastMsg;
+		if( mode == Logger::LogStart || mode == Logger::LogDefault ) {
+			const char *p = w;
 			logManager -> add( &p , 1 , p_logLevel , getPostfix() );
 
 			logTail -> remains = false;
@@ -186,10 +186,10 @@ void Logger::log( const char *s , int mode , Logger::LogLevel p_logLevel ) {
 		}
 
 	w += s;
-	if( mode ==	0 || mode == 1 )
+	if( mode ==	Logger::LogLine || mode == Logger::LogStart )
 		w += "\n";
 
-	if( mode == 2 || mode < 0 ) {
+	if( mode == Logger::LogStop || mode == Logger::LogDefault ) {
 		const char *p = w;
 		logManager -> add( &p , 1 , p_logLevel , getPostfix() );
 		logTail -> remains = false;

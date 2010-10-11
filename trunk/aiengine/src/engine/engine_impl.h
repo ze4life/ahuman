@@ -108,7 +108,7 @@ private:
 	void waitExitSignal();
 
 	// log manager
-	void logStart( Xml configLogging );
+	void logStart( String configLogging );
 	void logStop();
 	void logStopAsync();
 
@@ -166,7 +166,7 @@ public:
 	~LogSettingsItem();
 
 public:
-	void configure( Xml config );
+	void configure( Xml config , String defaultLevel );
 
 	bool logDisabled( Logger::LogLevel level );
 	bool isExcluded( const char *s );

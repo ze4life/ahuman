@@ -16,11 +16,12 @@ LogSettings::~LogSettings() {
 
 void LogSettings::load( Xml config ) {
 	// read
+	String defaultLevel = config.getProperty( "defaultLevel" );
 	syncMode = config.getBooleanProperty( "syncMode" );
 	logFile = config.getProperty( "filename" );
 	logFormat = config.getProperty( "format" );
 
-	defaultSettings.configure( config );
+	defaultSettings.configure( config , defaultLevel );
 	readLevels( config , "objectLogLevel" , objectData , defaultObjectSettings );
 	readLevels( config , "serviceLogLevel" , serviceData , defaultServiceSettings );
 	readLevels( config , "customLogLevel" , customData , defaultCustomSettings );
@@ -34,14 +35,16 @@ void LogSettings::readLevels( Xml config , const char *listName , MapStringToCla
 		return;
 
 	// default settings
-	p_defaultSettings.configure( list );
+	String level = list.getAttribute( "level" );
+	p_defaultSettings.configure( list , level );
 
 	// read list
 	for( Xml item = list.getFirstChild( "class" ); item.exists(); item = item.getNextChild( "class" ) ) {
 		String name = item.getAttribute( "name" );
 
 		LogSettingsItem *lsi = new LogSettingsItem;
-		lsi -> configure( item );
+		String level = item.getAttribute( "level" );
+		lsi -> configure( item , level );
 		map.add( name , lsi );
 	}
 }

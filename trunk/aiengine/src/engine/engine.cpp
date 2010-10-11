@@ -126,7 +126,8 @@ void AIEngineImpl::init()
 
 	// init logging
 	Xml configLogging = config.getChildNode( "logging" );
-	logStart( configLogging );
+	String logConfigFileName = configLogging.getProperty( "file" );
+	logStart( logConfigFileName );
 
 	// register serializable classes
 	Scale::createSerializeObject();
@@ -455,8 +456,12 @@ void AIEngineImpl::destroyServices()
 	logger.logInfo( "destroy services - done" );
 }
 
-void AIEngineImpl::logStart( Xml configLogging )
+void AIEngineImpl::logStart( String logConfigFileName )
 {
+	// read configuration file
+	Xml configLogging = loadXml( logConfigFileName );
+	ASSERTMSG( configLogging.exists() , "Logging is not configured: unable to use file=" + logConfigFileName );
+
 	// open file
 	logManager -> configure( configLogging );
 	if( !logManager -> start() )

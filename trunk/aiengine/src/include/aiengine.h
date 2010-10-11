@@ -103,6 +103,13 @@ public:
 		LogLevelDebug = 3
 	} LogLevel;
 
+	typedef enum {
+		LogStart = 1 ,
+		LogLine = 0 ,
+		LogStop = 2 ,
+		LogDefault = -1
+	} LogOutputMode;
+
 public:
 	// construction
 	Logger();
@@ -119,16 +126,16 @@ public:
 	void printStack( rfc_threadstack *stack , int skipTop = 0 );
 
 	// log calls
-	void logInfo( const char *s , int logMode = -1 );
-	void logError( const char *s , int logMode = -1 );
-	void logDebug( const char *s , int logMode = -1 );
+	void logInfo( const char *s , LogOutputMode logMode = LogDefault );
+	void logError( const char *s , LogOutputMode logMode = LogDefault );
+	void logDebug( const char *s , LogOutputMode logMode = LogDefault );
 	void logObject( const char *prompt , Object *obj , Logger::LogLevel logLevel );
 
 	// check log status
 	bool isLogAll();
 
 private:
-	void log( const char *s , int logMode , Logger::LogLevel logLevel );
+	void log( const char *s , LogOutputMode logMode , Logger::LogLevel logLevel );
 	const char *getPostfix();
 	
 private:
