@@ -16,36 +16,52 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+CUSTOMISED
 */
 
 #include "XNeoCortex.h"
 
-XNeoRegion::XNeoRegion( XNeoCortex& nc , unsigned outputSizeX , unsigned outputSizeY , unsigned pSeqLen , unsigned sideXCompression , unsigned sideYCompression , unsigned regionLevel )
-:	XPatternSource(outputSizeX, outputSizeY, pSeqLen), XContextSource( nc ) {
-	thisRegionLevel = regionLevel;
-	thisRegionSideXCompression = sideXCompression;
-	thisRegionSideYCompression = sideYCompression;
-	subRegionInputCount = thisRegionSideXCompression * thisRegionSideYCompression; //number of inputs to a Sub-region
+XNeoRegion::XNeoRegion( XNeoCortex& p_nc, unsigned p_level , unsigned p_srcPatchSizeX , unsigned p_srcPatchSizeY , unsigned p_overlapSubRegions , 
+	unsigned p_regionSizeX , unsigned p_regionSizeY , 
+	unsigned p_maxMemorySize , double p_forgetThreshold , unsigned p_lowUsageThreshold , unsigned p_maxSequenceLength )
+:	nc( p_nc ) ,
+	XPatternSource( p_regionSizeX , p_regionSizeY , p_maxSequenceLength )
+{
+	logger.attach( "XNeoRegion" );
+
+	level = p_level;
+	srcPatchSizeX = p_srcPatchSizeX;
+	srcPatchSizeY = p_srcPatchSizeY;
+	overlapSubRegions = p_overlapSubRegions;
+	maxMemorySize = p_maxMemorySize;
+	forgetThreshold = p_forgetThreshold;
+	lowUsageThreshold = p_lowUsageThreshold;
+	maxSequenceLength = p_maxSequenceLength;
+
+	regionSizeX = p_regionSizeX;
+	regionSizeY = p_regionSizeY;
+
 	memCount = 0;
-	thisMaxMemSize = neocortex.regionMemorySize[ thisRegionLevel ];
+	subRegionInputCount = srcPatchSizeX * srcPatchSizeY; // number of inputs to a Sub-region
 
 	// Initialise memory - we could create it as we go along but in practice the memory always fills up anyway so better do it here
 	// This leaves open the possibility of 'grafting' new memory on later.
 	// Maybe in a real brain if the memory fills up there is a mechanism for growing more.
 	// The premise here is that, in adults at least, we normally have fixed amount of tissue to work with.
-	mem = new XLearnedSequence[thisMaxMemSize];
+	mem = new XLearnedSequence[ maxMemorySize ];
 
-	subRegions = new XSubRegion**[outputsX];
-	for( unsigned i = 0; i < outputsX; i++ ) {
-		subRegions[i] = new XSubRegion*[outputsY];
-		for(unsigned j = 0; j < outputsY; j++)
-			subRegions[i][j] = new XSubRegion( nc , sequenceLength , subRegionInputCount , *this );
+	subRegions = new XSubRegion**[ regionSizeX ];
+	for( unsigned i = 0; i < regionSizeX; i++ ) {
+		subRegions[ i ] = new XSubRegion*[ regionSizeY ];
+		for( unsigned j = 0; j < regionSizeY; j++ )
+			subRegions[ i ][ j ] = new XSubRegion( nc , sequenceLength , subRegionInputCount , *this );
 	}
 }
 
 XNeoRegion::~XNeoRegion() {
-	for( unsigned x = 0; x < outputsX; x++ ){
-		for(unsigned y = 0; y < outputsY; y++)
+	for( unsigned x = 0; x < regionSizeX; x++ ){
+		for(unsigned y = 0; y < regionSizeY; y++)
 			delete subRegions[x][y];
 
 		delete subRegions[x];
@@ -56,23 +72,19 @@ XNeoRegion::~XNeoRegion() {
 }
 
 //take inputs, process them and remember the output
-void XNeoRegion::feedForward(unsigned learningRegion, bool feedbackStage)
+void XNeoRegion::feedForward( unsigned learningRegion , bool feedbackStage )
 {
 	unsigned lLowUsageThreshold = 0;
-	unsigned *pattern = new unsigned[subRegionInputCount];
-	bool memorize = learningRegion == thisRegionLevel && !feedbackStage;
-	unsigned x, y;
-	for(x = 0; x < outputsX; x++) {
-		for(y = 0; y < outputsY; y++) {
-			child -> getPattern( x , y , thisRegionSideXCompression , thisRegionSideYCompression , pattern );
+	unsigned *pattern = new unsigned[ subRegionInputCount ];
+	bool memorize = ( learningRegion == level ) && ( !feedbackStage );
 
-			// Version 1.4
-			lLowUsageThreshold = neocortex.regionLowUsageThreshold[ learningRegion ];
+	for( unsigned x = 0; x < regionSizeX; x++ ) {
+		for( unsigned y = 0; y < regionSizeY; y++ ) {
+			child -> getPattern( x , y , srcPatchSizeX , srcPatchSizeY , pattern );
 
-			bool lRetcode = subRegions[x][y] -> feedForward( pattern , memorize , lLowUsageThreshold ); //process and remember output
-			// Version 1.4    - there is only one error condition that is reported
-			//                - it happens if a low usage slot cannot be found.
+			bool lRetcode = subRegions[x][y] -> feedForward( pattern , memorize , lowUsageThreshold ); //process and remember output
 			if ( !lRetcode ) {
+				// it happens if a low usage slot cannot be found.
 				lowUsageFailureCount++;
 			}
 		}
@@ -80,8 +92,11 @@ void XNeoRegion::feedForward(unsigned learningRegion, bool feedbackStage)
 
 	delete pattern;
 
-	if( ++patternNumber == sequenceLength ) { //sequence processed and names are ready
-		if( thisRegionLevel < learningRegion )   //stop feed-forward chain at learning region
+	// sequence processed and names are ready
+	// CHANGE!!! - fixed-length sequences
+	if( ++patternNumber == sequenceLength ) { 
+		// stop feed-forward chain at learning region
+		if( level < learningRegion )
 			parent -> feedForward( learningRegion , feedbackStage );
 
 		patternNumber = 0;
@@ -90,8 +105,8 @@ void XNeoRegion::feedForward(unsigned learningRegion, bool feedbackStage)
 
 void XNeoRegion::contextual(){ //parent is the learning region
 	unsigned x, y, parentContext;
-	for(x = 0; x < outputsX; x++)
-		for(y = 0; y < outputsY; y++) {
+	for(x = 0; x < regionSizeX; x++)
+		for(y = 0; y < regionSizeY; y++) {
 			parentContext = parent -> getSequence(x, y); //name output from parent
 			subRegions[x][y] -> contextual(parentContext);
 		}
@@ -109,61 +124,64 @@ void XNeoRegion::forgetRareMemories( bool pForgettingOn )
 			lTotalObserved += lFrequency;
 		}
 
-		std::ostringstream  lLogStream;
-		lLogStream << "Region " << thisRegionLevel << " total observations: " << lTotalObserved;
-		lLogStream << ". Number of Memories: " << memCount;
-		// cGuiUtils->Summary( std::string( lLogStream.str() ) );
+		logger.logDebug( String( "Region level=" ) + level + 
+			" - total observations: " + lTotalObserved +
+			", number of memories: " + memCount );
 		return;
 	}
 
 	// For forgetting by percentage
 	std::vector<unsigned>lFrequencies;
-	for(unsigned j = 0; j < memCount; j++) { 
+	for( unsigned j = 0; j < memCount; j++ ) { 
 		unsigned lFrequency = mem[j].getFrequency();
 		lTotalObserved += lFrequency;
 		lFrequencies.push_back(lFrequency);
 	}
 
 	std::sort(lFrequencies.begin(), lFrequencies.end());
-	int frequency = ( int )( memCount * neocortex.regionForgetThreshold[ thisRegionLevel ] / 100 );
+	int frequency = ( int )( memCount * forgetThreshold / 100 );
 	float lPercentageThreshold = (float)lFrequencies[ frequency ];
 
 	float lMemThreshold = 0.0;
-	if( neocortex.deletionByPercentage ) {
+	if( nc.deletionByPercentage ) {
 		lMemThreshold = lPercentageThreshold;
 	}
 	else {
 		// Original calculation
-		lMemThreshold = ( float )( neocortex.regionForgetThreshold[ thisRegionLevel ] * (float) lTotalObserved / (float) ( memCount ) );
+		lMemThreshold = ( float )( forgetThreshold * (float) lTotalObserved / (float) ( memCount ) );
 	}
 
 	if ( lMemThreshold > 0 ) {
+		// forget this sequence - overwrite with last element
 		for(unsigned i = 0; i < memCount; i++)
-			if( mem[i].getFrequency() < lMemThreshold ) { //forget this sequence
-				mem[i--].assign( mem[--memCount] ); //overwrite with last element
-			}
+			if( mem[ i ].getFrequency() < lMemThreshold )
+				mem[ i-- ].assign( mem[--memCount] );
 	}
 
-	neocortex.log( String( "Region " ) + thisRegionLevel + " total observations: " + lTotalObserved );
 	if (lMemThreshold > 0 ) {
-		neocortex.log( String( "Memories before forgetting: " ) + lOldMemCount + ", Memories after forgetting : " + memCount );
+		logger.logDebug( String( "Region level=" ) + level + 
+			" - total observations=" + lTotalObserved +
+			", memories before forgetting=" + lOldMemCount + 
+			", memories after forgetting=" + memCount );
 	}
 	else {
-		neocortex.log( String( "Number of Memories: " ) + lOldMemCount );
+		logger.logDebug( String( "Region level=" ) + level + 
+			" - total observations=" + lTotalObserved +
+			", number of memories=" + lOldMemCount );
 	}
 }
 
 void XNeoRegion::initForInference(){
-	for(unsigned x = 0; x < outputsX; x++)
-		for(unsigned y = 0; y < outputsY; y++)
+	for( unsigned x = 0; x < regionSizeX; x++ )
+		for( unsigned y = 0; y < regionSizeY; y++ )
 			subRegions[x][y] -> initForInference( parent -> getMemCount() );
 
-	neocortex.log( String( "NeoRegion::initForInference - " ) + thisRegionLevel + " level memories: " + memCount );
+	logger.logDebug( String( "NeoRegion::initForInference - level=" ) + level + " memories=" + memCount );
 }
 
 void XNeoRegion::beginRecognition() {
-	for(unsigned x = 0; x < outputsX; x++)
-		for( unsigned y = 0; y < outputsY; y++ )
+	for(unsigned x = 0; x < regionSizeX; x++)
+		for( unsigned y = 0; y < regionSizeY; y++ )
 			subRegions[x][y] -> beginRecognition( parent -> getMemCount() );
 }
 
@@ -174,7 +192,7 @@ void XNeoRegion::getLevel0Lambda( unsigned x , unsigned y , vector<vector<double
 	int hammDist;
 	unsigned *pattern = new unsigned[ subRegionInputCount ];
 	double newLambda;
-	child -> getPattern( x , y , thisRegionSideXCompression , thisRegionSideYCompression , pattern ); //image patch from Eye
+	child -> getPattern( x , y , srcPatchSizeX , srcPatchSizeY , pattern ); //image patch from Eye
 	lambda.resize(1);
 	lambda[0].resize(0);
 
@@ -193,17 +211,17 @@ void XNeoRegion::getLevel0Lambda( unsigned x , unsigned y , vector<vector<double
 void XNeoRegion::recognize(){
 	vector<vector<double> > lambda, piOut;
 
-	for( unsigned x = 0; x < outputsX; x++)
-		for(unsigned y = 0; y < outputsY; y++){
+	for( unsigned x = 0; x < regionSizeX; x++)
+		for(unsigned y = 0; y < regionSizeY; y++){
 			//get lambda from each child of the region
 			//(similarity to observed patterns from children)
-			if( thisRegionLevel == 0 )
+			if( level == 0 )
 				getLevel0Lambda( x , y , lambda ); //lambda = 1 x 139 from uniqueL1_vectors
 			else //ThisRegionLevel=1: 4x1037, ThisRegionLevel=2: 16x91
-				child -> getLambda( x , y , thisRegionSideXCompression , thisRegionSideYCompression , lambda );
+				child -> getLambda( x , y , srcPatchSizeX , srcPatchSizeY , lambda );
 
 			subRegions[x][y] -> recognize( lambda , piOut );
-			child -> setPi( x , y , thisRegionSideXCompression , thisRegionSideYCompression , piOut ); //distribute PiOut to each child of the region
+			child -> setPi( x , y , srcPatchSizeX , srcPatchSizeY , piOut ); //distribute PiOut to each child of the region
 		}
 }
 
@@ -221,20 +239,20 @@ unsigned XNeoRegion::getNameOutput( unsigned x , unsigned y ) {
 
 //x, y are the coordinates of a Sub-region in lower region that is requesting the sequence
 int XNeoRegion::getSequence( unsigned x , unsigned y ) {
-	unsigned mySubRegionX = x / thisRegionSideXCompression; //coordinates of the column of current region
-	unsigned mySubRegionY = y / thisRegionSideYCompression;
+	// coordinates of the column of current region
+	unsigned mySubRegionX = x / srcPatchSizeX; 
+	unsigned mySubRegionY = y / srcPatchSizeY;
 	return subRegions[ mySubRegionX ][ mySubRegionY ] -> getNameOutput();
 }
 
 XLearnedSequence &XNeoRegion::memory(unsigned index) {
 	if( index < memCount )
 		return mem[index];
-	else {
-		neocortex.log( String( "Memory index: " ) + index + " is out of bounds." );
-		// DG 05/05/2008 This is not ideal but does output some information
-		//               The fault is probably non-recoverable.
-		return * ( new XLearnedSequence() ); 
-	}
+
+	logger.logDebug( String( "Memory index: " ) + index + " is out of bounds." );
+	// DG 05/05/2008 This is not ideal but does output some information
+	//               The fault is probably non-recoverable.
+	return * ( new XLearnedSequence() ); 
 }
 
 void XNeoRegion::forgetMemory( unsigned i )
@@ -245,7 +263,7 @@ void XNeoRegion::forgetMemory( unsigned i )
 // Returns -1 if memory is full
 int XNeoRegion::addSequence( XSequence &s )
 {
-	if( memCount < thisMaxMemSize ) {
+	if( memCount < maxMemorySize ) {
 		// MemCount is one more than the current maximum index
 		// But MemCount is the old value and we do have a new entry
 		mem[memCount++].assign(s); // set frequency to 1

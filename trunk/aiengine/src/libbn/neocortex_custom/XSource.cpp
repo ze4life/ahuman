@@ -64,6 +64,6 @@ void XPatternSource::setPi(unsigned x, unsigned y, unsigned sideXCompr, unsigned
 		}
 }
 
-XContextSource::XContextSource(XNeoCortex& nc ) : neocortex( nc ) {
+XContextSource::XContextSource() {
 	child = NULL;
 }

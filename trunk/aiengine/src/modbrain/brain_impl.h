@@ -78,7 +78,7 @@ private:
 	}
 
 	// cortex-to-library adapters
-	Cortex *createSFNeoCortexAdapter( MindArea *area , BrainLocation& relativeLocation , Cortex *sensorCortex );
+	Cortex *createNeoCortexCustomAdapter( MindArea *area , BrainLocation& relativeLocation , Cortex *sensorCortex );
 };
 
 /*#########################################################################*/

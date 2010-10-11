@@ -33,28 +33,19 @@ class XNeoCortex : public Object
 public:
 	static const int OUTPUT_NONE = -1;
 	
-	// start info
-	unsigned sensorAreaSideX;
-	unsigned sensorAreaSideY;
-	unsigned predictionCount;
-
-	// number of items overlapping between adjacent sub-regions
-	unsigned overlapSubRegions;
+	// global settings
 	double bestMatchPrecision; // 0.95
 	bool deletionByPercentage;
 
-	// derived info
-	unsigned regionCount;
-	unsigned bottomSizeX;
-	unsigned bottomSizeY;
-
-	// region parameters
-	FlatList<unsigned> regionSideXCompression;
-	FlatList<unsigned> regionSideYCompression;
-	FlatList<unsigned> regionMemorySize;
-	FlatList<double> regionForgetThreshold;
-	FlatList<unsigned> regionLowUsageThreshold;
-	FlatList<unsigned> maxSequenceLength;
+private:
+	// start info
+	unsigned sensorSizeX;
+	unsigned sensorSizeY;
+	unsigned hippoPatchSizeX;
+	unsigned hippoPatchSizeY;
+	unsigned hippoOutputSizeX;
+	unsigned hippoOutputSizeY;
+	unsigned hippoMemorySize;
 
 	// classes
 private:
@@ -65,25 +56,21 @@ private:
 public:
 	// cortex inputs are sensor data rectangle
 	// cortex outputs are set of class/probability pairs - reflecting probability distribution used
-	XNeoCortex( unsigned nRegions , unsigned sourceSizeX , unsigned sourceSizeY , unsigned nClasses );
+	XNeoCortex( XSense *sense , unsigned sensorSizeX , unsigned sensorSizeY , unsigned hippoPatchSizeX , unsigned hippoPatchSizeY , 
+		unsigned hippoOutputSizeX , unsigned hippoOutputSizeY , unsigned hippoMemorySize );
 	virtual ~XNeoCortex();
 	virtual const char *getClass() { return( "XNeoCortex" ); };
 
 public:
-	void setOverlapSubRegions( unsigned p_v );
 	void setBestMatchPrecision( double p_v ) { bestMatchPrecision = p_v; };
 	void setDeletionByPercentage( bool p_v ) { deletionByPercentage = p_v; };
 
+	XNeoRegion *addRegion( unsigned sizeX , unsigned sizeY , unsigned overlapSubRegions , unsigned memorySize , 
+		double forgetThreshold , unsigned lowUsageThreshold , unsigned maxSequenceLength );
 	void createCortexNetwork();
 
-private:
-	XNeoRegion *addRegion( unsigned sideCompression , unsigned memorySize , double forgetThreshold , unsigned lowUsageThreshold , unsigned sequenceLength );
-
 public:
-	void log( const char *s ) { logger.logDebug( s ); };
 	XHippocampus* getHippo() { return hippo; }
-	void setSideCompression( int comp );
-	void setSense( XSense *sense ) { sensor = sense; };
 	XSense *getSense() { return( sensor ); };
 
 private:

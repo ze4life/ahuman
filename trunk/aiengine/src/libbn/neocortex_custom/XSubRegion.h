@@ -25,7 +25,7 @@ CUSTOMISED
 
 class XSubRegion {
 private:
-	XNeoCortex& neocortex;
+	XNeoCortex& nc;
 
 	unsigned sequenceLength; //number of steps that form a sequence (time)
 	unsigned inputCount;     //number of inputs (space)

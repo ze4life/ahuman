@@ -57,14 +57,11 @@ public:
 
 // child
 class XContextSource {
-public:
-	XNeoCortex& neocortex;
-
 protected:
 	XPatternSource *child;
 
 public:
-	XContextSource( XNeoCortex& neocortex );
+	XContextSource();
 	virtual ~XContextSource() {};
 
 	void setChild( XPatternSource *s ) { child = s; }

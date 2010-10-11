@@ -50,7 +50,7 @@ virtual void onCortexRun()
 /*#########################################################################*/
 /*#########################################################################*/
 
-Cortex *AIBrainImpl::createSFNeoCortexAdapter( MindArea *area , BrainLocation& relativeLocation , Cortex *sensorCortex )
+Cortex *AIBrainImpl::createNeoCortexCustomAdapter( MindArea *area , BrainLocation& relativeLocation , Cortex *sensorCortex )
 {
 	// use Source Forge neocortex library
 	AILibBN libbn;
@@ -64,15 +64,16 @@ Cortex *AIBrainImpl::createSFNeoCortexAdapter( MindArea *area , BrainLocation& r
 	connectors.getSurfaceDimensions( sizeX , sizeY );
 
 	int inputAreaSize = sizeX * sizeY;
-	int nRegions = 3;
-	int nClasses = 10;
-	int neuronCount = nRegions * inputAreaSize;
-	int maxSequenceLength = 10;
+	int nHippoX = sizeX;
+	int nHippoY = sizeY;
+	int outputAreaSize = nHippoX * nHippoY;
 
 	// create cortex
-	NeoCortexCustomAdapter *libcortex = new NeoCortexCustomAdapter( area , CortexIOSizeInfo( inputAreaSize , nClasses * 2 ) );
+	NeoCortexCustomAdapter *libcortex = new NeoCortexCustomAdapter( area , CortexIOSizeInfo( inputAreaSize , sizeX , sizeY , outputAreaSize , nHippoX , nHippoY ) );
 	// create library object
-	Object *libobj = lib -> createBeliefNetwork( sizeX , sizeY , nRegions , nClasses , neuronCount , maxSequenceLength );
+	int nHistory = 10;
+	int neuronCount = relativeLocation.getSize() * nHistory;
+	Object *libobj = lib -> createBeliefNetwork( sizeX , sizeY , nHistory , nHippoX , nHippoY , neuronCount );
 	// attach
 	libcortex -> setObject( lib , libobj );
 	return( libcortex );

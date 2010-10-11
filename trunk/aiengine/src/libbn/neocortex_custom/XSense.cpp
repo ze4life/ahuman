@@ -25,26 +25,25 @@ CUSTOMISED
 /*#########################################################################*/
 /*#########################################################################*/
 
-XSense::XSense(unsigned x, unsigned y, unsigned ovlap) : XPatternSource(x, y, 1)
+XSense::XSense( unsigned sizeX , unsigned sizeY ) : XPatternSource( sizeX , sizeY , 1 )
 {
-	overlap = ovlap;
 }
 
-//return the pattern for Sub-region (x, y) in the calling region
-//sideCompr is calling region's side compression
-//the result 1-D array must be allocated before
-//eye must take overlap into account
-void XSense::getPattern(unsigned x, unsigned y, unsigned sideCompr, unsigned *result)
+// return the pattern for Sub-region (x, y) in the calling region
+// the result 1-D array must be allocated before
+// eye must take overlap into account
+void XSense::getPattern( unsigned posX , unsigned posY , unsigned sizePatchX , unsigned sizePatchY , unsigned overlap , unsigned *result)
 {
 	unsigned resultIndex = 0;
-	unsigned pixelIncrement = sideCompr - overlap;
-	for(unsigned i = x * pixelIncrement; i < x * pixelIncrement + sideCompr; i++)
-		for(unsigned j = y * pixelIncrement; j < y * pixelIncrement + sideCompr; j++)
+	unsigned incrementX = sizePatchX - overlap;
+	unsigned incrementY = sizePatchY - overlap;
+	for( unsigned i = posX * incrementX; i < posX * incrementX + sizePatchX; i++ )
+		for( unsigned j = posY * incrementY; j < posY * incrementY + sizePatchY; j++ )
 			result[resultIndex++] = getNameOutput(i, j);
 }
 
 //assume input data are set
-void XSense::feedForward(unsigned learningRegion, bool feedbackStage)
+void XSense::feedForward( unsigned learningRegion , bool feedbackStage )
 { 
 	parent -> feedForward(learningRegion, feedbackStage);
 }
@@ -52,38 +51,31 @@ void XSense::feedForward(unsigned learningRegion, bool feedbackStage)
 /*#########################################################################*/
 /*#########################################################################*/
 
-XDirectInputSense::XDirectInputSense( unsigned *p_externalData , unsigned sizeX , unsigned sizeY , unsigned overlap )
-:	XSense( sizeX , sizeY, overlap ) ,
+XDirectSense::XDirectSense( unsigned *p_externalData , unsigned sizeX , unsigned sizeY )
+:	XSense( sizeX , sizeY ) ,
 	externalData( p_externalData )
 {
 }
 
-unsigned XDirectInputSense::getNameOutput( unsigned x, unsigned y )
+unsigned XDirectSense::getNameOutput( unsigned posX , unsigned posY )
 {
-	return( externalData[ y * XPatternSource::outputsX + x ] );
+	return( externalData[ posY * XPatternSource::outputsX + posX ] );
 }
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-/////////////////// BitmapVision //////////////////////////////////////
-XBitmapVision::XBitmapVision( XNeoCortex& nc , unsigned bitmapSizeX , unsigned bitmapSizeY )
-:	XSense(nc.sensorAreaSideX, nc.sensorAreaSideY, nc.overlapSubRegions )
+XOwnedSense::XOwnedSense( unsigned sizeX , unsigned sizeY )
+:	XSense( sizeX , sizeY )
 {
 	parent = NULL;
-	pixArray.create( bitmapSizeX , bitmapSizeY );
+	data.create( sizeX , sizeY );
 }
 
-XBitmapVision::XBitmapVision(unsigned x, unsigned y, unsigned ovlap)
-:	XSense(x, y, ovlap) 
+// feed forward the value of the pixel
+unsigned XOwnedSense::getNameOutput( unsigned x , unsigned y )
 {
-	parent = NULL;
-}
-
-//feed forward the value of the pixel
-unsigned XBitmapVision::getNameOutput(unsigned x, unsigned y)
-{
-	return pixArray[x][y];
+	return data[x][y];
 }
 
 /*#########################################################################*/

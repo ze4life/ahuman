@@ -22,13 +22,13 @@ CUSTOMISED
 
 #include "XNeoCortex.h"
 
-XSubRegion::XSubRegion( XNeoCortex& nc , unsigned pSeqLen, unsigned ic, XNeoRegion &r ) 
-:	neocortex( nc ) , myRegion(r)
+XSubRegion::XSubRegion( XNeoCortex& p_nc , unsigned pSeqLen, unsigned ic, XNeoRegion &r ) 
+:	nc( p_nc ) , myRegion(r)
 {
 	sequenceLength = pSeqLen;
 	inputCount = ic;
 	currentSequence = new XSequence( sequenceLength , inputCount );
-	nameOutput = neocortex.OUTPUT_NONE;
+	nameOutput = nc.OUTPUT_NONE;
 }
 
 XSubRegion::~XSubRegion()
@@ -94,7 +94,7 @@ bool XSubRegion::feedForward( unsigned *pattern, bool memorize, unsigned pLowUsa
 				// Memory full so add it to the best place we can find
 				// But only for a reasonably good match
 				// 
-				if ( lBestMatch.precision > neocortex.bestMatchPrecision ) {
+				if ( lBestMatch.precision > nc.bestMatchPrecision ) {
 					myRegion.memory( lBestMatch.index ).increaseFrequency();  
 				}
 				else {
@@ -106,7 +106,7 @@ bool XSubRegion::feedForward( unsigned *pattern, bool memorize, unsigned pLowUsa
 						lRetIndex = myRegion.addSequence( *currentSequence );
 						if ( -1 ==  lRetIndex ) {
 							lRetCode = false;
-							lBestMatch.index = neocortex.OUTPUT_NONE;
+							lBestMatch.index = nc.OUTPUT_NONE;
 						}
 						else {
 							lBestMatch.index = (unsigned int) lRetIndex; // this should be the top of memory
@@ -115,7 +115,7 @@ bool XSubRegion::feedForward( unsigned *pattern, bool memorize, unsigned pLowUsa
 					else {
 						// Sequence was not added.
 						lRetCode = false;
-						lBestMatch.index = neocortex.OUTPUT_NONE;
+						lBestMatch.index = nc.OUTPUT_NONE;
 						// Would be nice to log - but we do not have logging in this class right now.
 						//std::ostringstream  lLogStream;
 						//lLogStream << "Cannot find a low-usage slot for new sequence." << " Memory is full."; //<< std::endl; 

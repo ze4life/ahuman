@@ -58,7 +58,7 @@ public:
 
 	// create neocortex with the same inputs as outputs of given cortex and 
 	// probability destribution across given number of labels
-	Object *createBeliefNetwork( unsigned sourceSizeX , unsigned sourceSizeY , unsigned nHistory , unsigned nClasses , unsigned neuronCount , unsigned maxRegionSequenceLength );
+	Object *createBeliefNetwork( unsigned sourceSizeX , unsigned sourceSizeY , unsigned nHistory , unsigned nHippoX , unsigned nHippoY , unsigned neuronCount );
 	void deleteObject( Object *object );
 
 	unsigned *getInputsBuffer( Object *object );
