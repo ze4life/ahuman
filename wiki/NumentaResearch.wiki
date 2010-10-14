@@ -16,7 +16,7 @@ learn the sequences necessary for this theory.
   * *Temporal*: HHMM - hierarchical hidden Markov model (Fine et al.) - 1998
   * *Spatial and Temporal*: HTM (Numenta) - 2005
 
-== Biological Constraints ==
+== Constraints ==
 
 Requirements that a biological sequence memory must meet, which are different from linear computer memory.
 
@@ -25,3 +25,14 @@ Requirements that a biological sequence memory must meet, which are different fr
   * *Auto-associative recall* - recognize sequences even if it is presented with a partial sequence from the middle of a previously learned sequence; naturally auto-associative
   * *Variable-order memory* - ‘ABCDE’ and ‘YBCDZ’ - correctly predict the last element of the sequence based on an input that occurred many time steps earlier; the internal representation of an afferent pattern must change depending on the temporal context in which it occurs; the representation for the elements ‘B’, ‘C’ and ‘D’ must be somehow different when preceded by ‘A’ than by ‘Y’
   * *Biological constraints* - any proposed mechanism should map to one or more prominent features of neocortical anatomy
+
+== Biological Implications ==
+
+  * *Sparsification of response* - general cell activity in the neocortex should become more sparse and selective when receiving input in naturally occurring sequences versus receiving spatial inputs in temporal isolation or random order; sparse encoding - efficient method of representation in neural tissue
+  * *Inhibitory requirements* - excitatory lateral input to one or a few cells inhibits all the other cells in the near proximity; this laterally induced inhibition must be stronger and faster than the feed-forward excitation
+  * *Distributed representations* - distributed representations in two ways:
+   * in almost all cases, multiple cells are simultaneously active, although the pattern of activation will always be sparse
+   * activations are distributed; every region of the hierarchy passes a distribution of potentially active sequences to its parent regions
+  * *Efficient computation* - use information from previous inputs when making predictions, and both the history of inputs and the forward predictions are distributions over many states; calculation using dynamic programming by Bellman (see George, D. 2008 How the brain might work: a hierarchical and temporal model for learning and recognition. PhD thesis, Stanford University. §4.6.2)
+  * *Cortical layers* - some cell layers are learning feed-forward sequences (layers 4 and 3) and other layers are learning feedback sequences (layers 2 and 6). Layer 5 is where they are combined to form a belief
+  * *Sequence timing* - remember the duration for each element in the sequence; can speed up or slow down stored as a series of phrases at one level of the hierarchy, the phrases are decomposed into a series of words at the next lower level and each word is decomposed into a series of phonemes at the next lower level
