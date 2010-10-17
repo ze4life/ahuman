@@ -40,3 +40,16 @@ Requirements that a biological sequence memory must meet, which are different fr
    * it could learn a single sequence of 600 notes using exactly 50 of each of the 12 tones
    * it could learn 100 sequences of six notes each
    * capacity of HTM derives primarily from the hierarchy, not the sequence memory in each node; the hierarchy allows learned sequences to be used repeatedly in different combinations
+
+== Implementation Hints ==
+
+  * bayesian network
+  * sequences of different length
+  * no sequence begin/end marks 
+  * variable-order Markov chain
+  * columns with neurons having the same inputs
+  * lateral excitatory and inhibitory connections to model sequence activation
+  * dynamic programming by Bellman to re-use history
+  * store duration for each sequence item
+  * state-splitting algorithm
+  * able to match sequence by middle part
