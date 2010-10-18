@@ -1,0 +1,2 @@
+java TestImageServer
+pause
