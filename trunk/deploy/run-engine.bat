@@ -1,1 +1,1 @@
-start bin\aiengine.exe K:\projects\ai2svn\environments\local\etc
+bin\aiengine.vc.exe C:\Sarbjit\onlineahuman\aiengine\etc
