@@ -1,1 +1,2 @@
-start bin\aiconsole.exe -s 169.254.27.205:20001
+bin\aiconsole.vc.exe -s BDC-L-SINGHS:20001
+pause
