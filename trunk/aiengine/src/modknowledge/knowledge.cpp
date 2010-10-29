@@ -18,18 +18,23 @@ AIKnowledge::AIKnowledge()
 AIKnowledgeImpl::AIKnowledgeImpl()
 :	engine( AIEngine::getInstance() )
 {
+
 }
 
 void AIKnowledgeImpl::createService()
 {
+
 }
 
 void AIKnowledgeImpl::initService()
 {
+
 }
 
 void AIKnowledgeImpl::runService()
 {
+	ImageKnowledgeBase* imageSrc = ImageKnowledgeBase::getInstance();
+	imageSrc->startKnowledgeSource();
 }
 
 void AIKnowledgeImpl::exitService()
