@@ -1,7 +1,7 @@
 #include "aibrain.h"
 #include "ailibbn.h"
 #include "../libbn/sf_neocortex_1_4_2/sf_neocortex.h"
-
+#include "../svcio/io_impl.h"
 #include "test_impl.h"
 
 /*#########################################################################*/
@@ -17,6 +17,7 @@ public:
 
 	virtual void init() {
 		ADD_METHOD( TestNeoCortex::testCreateSimple );
+		ADD_METHOD(TestNeoCortex::testImageKnowledgeBase);
 	}
 	
 // tests
@@ -25,7 +26,7 @@ public:
 	void testCreateSimple( XmlCall& call ) {
 		// use libbn sf_neocortex library directly without unified interface
 		// set parameters
-		SFNeoCortex ct( 3 , 32 , 32 , 10 );
+		SFNeoCortex ct( 3 , 32 , 32 , 10 ); 
 		ct.bestMatchPrecision = 0.95;
 		ct.overlapSubRegions = 0;
 		// Delete a Percentage of memories/Delete memories below threshold
@@ -57,6 +58,16 @@ public:
 		eye -> feedForward(0, false); //cascading through 
 		hippo->displayAllMemories();
 		hippo->displayResults(true, false);
+	}
+
+	void testImageKnowledgeBase(XmlCall& call){
+		AIEngine &engine = AIEngine::getInstance();
+		AIIOImpl *srv = (AIIOImpl*)engine.getService("IO");
+		Session *session = srv->createSession(); 
+		Publisher *pub = srv->createPublisher( session , "imagekbcmd" , "TestImageQueryProcessor" , "IMGRES" );
+		TextMessage *msg = new TextMessage();
+		msg->setText("iphone;200;200;10\n");
+		pub->publish(session, msg);
 	}
 };
 
