@@ -79,7 +79,7 @@ public:
 
 	// sensors
 	static Sensor *createFileSysWalker( MindArea *area );
-
+	static Sensor *createEye( MindArea *area );
 	// cortex overridables
 	virtual void onCortexRun() {
 		// inpus were updated
