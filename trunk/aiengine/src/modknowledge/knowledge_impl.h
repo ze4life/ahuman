@@ -31,6 +31,38 @@ private:
 	AIEngine& engine;
 };
 
+class ImageKnowledgeBase: public Object{
+
+private:
+	AIEngine& engine;
+	RFC_HND thread;
+	String query;
+	static ImageKnowledgeBase *instance;
+	ImageKnowledgeBase();
+public:
+	virtual void startKnowledgeSource();
+	virtual void stopKnowledgeSource();
+	static ImageKnowledgeBase* getInstance(){
+		if(instance == NULL){
+			instance = new ImageKnowledgeBase();
+		}
+		return instance;
+	}
+	//virtual void imageDataGrabber(void*);
+	virtual const char *getClass() { return( "ImageKnowledgeBase" ); };
+};
+
+class ImageQueryProcessor: public Subscriber, public Object{
+public:
+	ImageQueryProcessor();
+	virtual void onMessage(Message *msg );
+	virtual const char *getClass() { return( "ImageQueryProcessor" ); };
+private:
+	void processQuery(Message *msg);
+	AIEngine& engine;
+	SOCKET sock;
+	SOCKADDR_IN add;
+};	
 // #############################################################################
 // #############################################################################
 
