@@ -42,6 +42,7 @@ void Sensors::onBrainStop() {
 
 void Sensors::createSensors() {
 	addSensor( Sensor::createFileSysWalker( this ) );
+	addSensor( Sensor::createEye( this ) );
 }
 
 void Sensors::addSensor( Sensor *att ) {
