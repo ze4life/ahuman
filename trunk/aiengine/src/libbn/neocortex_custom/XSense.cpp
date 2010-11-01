@@ -43,7 +43,7 @@ void XSense::getPattern( unsigned posX , unsigned posY , unsigned sizePatchX , u
 }
 
 //assume input data are set
-void XSense::feedForward( unsigned learningRegion , bool feedbackStage )
+void XSense::feedForward( int learningRegion , bool feedbackStage )
 { 
 	parent -> feedForward(learningRegion, feedbackStage);
 }

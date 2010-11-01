@@ -42,7 +42,8 @@ virtual void onCortexRun()
 	for( int k = 0; k < nInputs; k++ )
 		libInputs[k] = ( unsigned )( ( 1 + cortexInputs[k] ) * 255 / 2 );
 
-	lib -> feedForward( libobj , 0 , false );
+	lib -> feedForward( libobj , -1 , false );
+	lib -> displayAllMemories( libobj );
 }
 
 };

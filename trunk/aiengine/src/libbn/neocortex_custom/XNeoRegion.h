@@ -58,7 +58,7 @@ public:
 
 // ContextSource
 public:
-	virtual void feedForward(unsigned learningRegion, bool feedbackStage);
+	virtual void feedForward( int learningRegion, bool feedbackStage);
 	virtual void contextual();
 	virtual int getSequence(unsigned x, unsigned y);
 	virtual unsigned getMemCount() { return memCount; }

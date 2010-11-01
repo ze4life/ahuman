@@ -62,7 +62,10 @@ public:
 	void deleteObject( Object *object );
 
 	unsigned *getInputsBuffer( Object *object );
-	void feedForward( Object *object , unsigned learningRegion, bool feedbackStage );
+	void feedForward( Object *object , int learningRegion , bool feedbackStage );
+
+	void displayAllMemories( Object *object );
+	void displayHippoMemories( Object *object );
 };
 
 /*#########################################################################*/

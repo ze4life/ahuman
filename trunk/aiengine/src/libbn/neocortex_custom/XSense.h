@@ -34,7 +34,7 @@ public:
 	// Never called
 	vector<double> getLambdaOutput(unsigned x, unsigned y) { std::vector<double> *lRet = NULL; return *lRet; };
 	void setPiInput(unsigned x, unsigned y, vector<double> &pi) {};
-	void feedForward( unsigned learningRegion, bool feedbackStage );
+	void feedForward( int learningRegion, bool feedbackStage );
 };
 
 /*#########################################################################*/

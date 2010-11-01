@@ -20,14 +20,17 @@ ARCHITECTURE
 engine
 	- whole creature life functions
 	- generic application services
+	- component lifecycle support
 
 libbn
 	- belief networks of different types
-	- implement neurex abstraction as belief network
+	- implement cortex abstraction as belief network
+	- individual facade wrapper to each library, exposing only essential things
 
 libbn
 	- neural networks of different types
-	- implement neurex abstraction as neural network
+	- implement cortex abstraction as neural network
+	- individual facade wrapper to each library, exposing only essential things
 
 modbody
 	- biology/capture software process characteristics as body signals
@@ -38,10 +41,11 @@ modbody
 	- physiology/inborn unconditional reflexes
 
 modbrain
+	- keep overall multi-area map
 	- cortex-to-cortex linking
-	- keep overall multi-neurex map
-	- thinking as activation of selected neurexes
+	- thinking as activation of selected cortexes
 	- memory decay
+	- adapters of any belief or neural cortex implementation
 
 modcognition
 	- neocortex/transform raw sensor flow item into set of features
@@ -87,14 +91,24 @@ workflow path:
 ALPHA ISSUES AND TODO
 ----------------------------------------------
 
+DESIGN ISSUES
+-------------
+	- cortex abstraction does not include feedback
+
 TODO IN PROGRESS
----------------------
-	modnnlib: 
+----------------
+	- review design by comparing with human brain architecture, especially limbic system
+	- build working version of neocortex, able to consume messages from filesyswalker and form meaningful representation
+
+POTENTIONAL TODO
+----------------
+	modio:
+		Add admin command interface - no YACC processing
+	nnlib: 
 		Make neural networking library be able to solve generic (arbitrary 
 		number of inputs/outputs) approximation	problem, generic classification 
 		problem.
-	modio:
-		Add admin command interface - no YACC processing
+
 
 REFACTORING
 ---------------------

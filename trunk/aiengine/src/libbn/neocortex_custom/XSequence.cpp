@@ -22,30 +22,18 @@ CUSTOMISED
 
 #include "XNeoCortex.h"
 
-void XSequence::createData(){
-	if( sequenceLength > 0 && inputCount > 0 ) {
-		data = new unsigned*[sequenceLength];      //create 2-D array
-		for( unsigned i = 0; i < sequenceLength; i++ ) {
-			data[i] = new unsigned[inputCount];
-			for ( unsigned j = 0; j < inputCount; j++ ) {
-				data[i][j] = 0;
-			}
-		}
-	}
+void XSequence::createData() {
+	data.create( sequenceLength , inputCount );
 }
 
 void XSequence::deleteData() {
-	if( sequenceLength > 0 && inputCount > 0) {
-		for(unsigned i = 0; i < sequenceLength; i++)
-			delete data[i];
-		delete data;
-	}
+	data.destroy();
 }
 
-XSequence::XSequence(unsigned pSeqLen, unsigned ic) {
+XSequence::XSequence( unsigned pSeqLen, unsigned ic ) {
 	sequenceLength = pSeqLen;
 	inputCount = ic;
-	createData();    //create empty array in advance
+	createData();    // create empty array in advance
 	length = 0;
 }
 
@@ -53,7 +41,7 @@ XSequence::~XSequence() {
 	deleteData();
 }
 
-void XSequence::init(unsigned pSeqLen, unsigned ic) {
+void XSequence::init( unsigned pSeqLen, unsigned ic ) {
 	deleteData();
 	sequenceLength = pSeqLen;
 	inputCount = ic;

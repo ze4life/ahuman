@@ -96,5 +96,15 @@ void XNeoCortex::createCortexNetwork()
 		", hippoMemorySize=" + hippoMemorySize , Logger::LogStop );
 }
 
+void XNeoCortex::showRegionMemories()
+{
+	logger.logDebug( "NeoCortex regions:" , Logger::LogStart );
+	for( int k = 0; k < regions.count(); k++ ) {
+		XNeoRegion *region = regions.get( k );
+		logger.logDebug( String( "\tRegion " ) + k + ": memories=" + region -> getMemCount() , Logger::LogLine );
+	}
+	logger.logDebug( "." , Logger::LogStop );
+}
+
 /*#########################################################################*/
 /*#########################################################################*/
