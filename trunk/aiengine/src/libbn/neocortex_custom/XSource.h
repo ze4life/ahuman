@@ -67,7 +67,7 @@ public:
 	void setChild( XPatternSource *s ) { child = s; }
 
 public:
-	virtual void feedForward( unsigned learningRegion, bool feedbackStage ) = 0;
+	virtual void feedForward( int learningRegion, bool feedbackStage ) = 0;
 	virtual void contextual() = 0;
 	virtual int getSequence( unsigned xPos , unsigned yPos ) = 0;
 	virtual unsigned getMemCount() = 0;

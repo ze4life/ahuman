@@ -49,7 +49,7 @@ private:
 
 // ContextSource
 public:
-    virtual void feedForward(unsigned learningRegion, bool feedbackStage) {};
+    virtual void feedForward(int learningRegion, bool feedbackStage) {};
     virtual void contextual() {};
     virtual unsigned getMemCount() { return memCount; }
 	virtual int getSequence( unsigned xPos , unsigned yPos ) { return sequenceOutput; }

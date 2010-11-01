@@ -44,6 +44,7 @@ XNeoRegion::XNeoRegion( XNeoCortex& p_nc, unsigned p_level , unsigned p_srcPatch
 
 	memCount = 0;
 	subRegionInputCount = srcPatchSizeX * srcPatchSizeY; // number of inputs to a Sub-region
+	lowUsageFailureCount = 0;
 
 	// Initialise memory - we could create it as we go along but in practice the memory always fills up anyway so better do it here
 	// This leaves open the possibility of 'grafting' new memory on later.
@@ -72,11 +73,11 @@ XNeoRegion::~XNeoRegion() {
 }
 
 //take inputs, process them and remember the output
-void XNeoRegion::feedForward( unsigned learningRegion , bool feedbackStage )
+void XNeoRegion::feedForward( int learningRegion , bool feedbackStage )
 {
 	unsigned lLowUsageThreshold = 0;
 	unsigned *pattern = new unsigned[ subRegionInputCount ];
-	bool memorize = ( learningRegion == level ) && ( !feedbackStage );
+	bool memorize = ( learningRegion == level || learningRegion < 0 ) && ( !feedbackStage );
 
 	for( unsigned x = 0; x < regionSizeX; x++ ) {
 		for( unsigned y = 0; y < regionSizeY; y++ ) {
@@ -96,7 +97,7 @@ void XNeoRegion::feedForward( unsigned learningRegion , bool feedbackStage )
 	// CHANGE!!! - fixed-length sequences
 	if( ++patternNumber == sequenceLength ) { 
 		// stop feed-forward chain at learning region
-		if( level < learningRegion )
+		if( (( int )level ) < learningRegion || learningRegion < 0 )
 			parent -> feedForward( learningRegion , feedbackStage );
 
 		patternNumber = 0;

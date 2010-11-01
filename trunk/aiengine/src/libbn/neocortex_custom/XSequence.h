@@ -31,9 +31,9 @@ private:
 	void deleteData();
 
 protected:
-	unsigned sequenceLength; //number of steps that form a sequence (time)
-	unsigned inputCount;     //number of unsigned inputs (space)
-	unsigned **data; //dimensions SequenceLength x InputCount    
+	unsigned sequenceLength; // number of steps that form a sequence (time)
+	unsigned inputCount;     // number of unsigned inputs (space)
+	TwoIndexArray<unsigned> data; // dimensions SequenceLength x InputCount    
 
 public:
 	XSequence( unsigned sequenceLegth , unsigned inutCount );

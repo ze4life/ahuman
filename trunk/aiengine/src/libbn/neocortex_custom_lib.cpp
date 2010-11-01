@@ -17,12 +17,14 @@
 //
 // problems found:
 //		fixed-length sequences
-//		square region - to be addressed
+//		offline learning by one region at a time
+//		not feeding incomplete sequence to next region
+//		square region
 //		memory requirements seems high
 //		sequence length is 1 in examples
 //		one output
 //		temporal pooler and spatial pooler are not delimited
-//		there is offline learning
+//		supervised learning
 //
 // interesting features:
 //		subregions overlapping
@@ -87,12 +89,30 @@ unsigned *NeoCortexCustomLibBN::getInputsBuffer( Object *object )
 	return( data.getData() );
 }
 
-void NeoCortexCustomLibBN::feedForward( Object *object , unsigned learningRegion, bool feedbackStage )
+void NeoCortexCustomLibBN::feedForward( Object *object , int learningRegion , bool feedbackStage )
 {
-	// objects
+	// feed
 	XNeoCortex *libobj = ( XNeoCortex * )object;
 	XSense *sense = libobj -> getSense();
 	sense -> feedForward( learningRegion , feedbackStage );
+
+	// display outputs
+	XHippocampus *hippo = libobj -> getHippo();
+}
+
+void NeoCortexCustomLibBN::displayAllMemories( Object *object )
+{
+	XNeoCortex *libobj = ( XNeoCortex * )object;
+	XHippocampus *hippo = libobj -> getHippo();
+	libobj -> showRegionMemories();
+	hippo -> displayAllMemories();
+}
+
+void NeoCortexCustomLibBN::displayHippoMemories( Object *object )
+{
+	XNeoCortex *libobj = ( XNeoCortex * )object;
+	XHippocampus *hippo = libobj -> getHippo();
+	hippo -> displayAllMemories();
 }
 
 /*#########################################################################*/

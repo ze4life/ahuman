@@ -62,6 +62,9 @@ public:
 	virtual const char *getClass() { return( "XNeoCortex" ); };
 
 public:
+	unsigned getRegionCount() { return( regions.count() ); };
+	XNeoRegion *getRegion( int index ) { return( regions.get( index ) ); };
+
 	void setBestMatchPrecision( double p_v ) { bestMatchPrecision = p_v; };
 	void setDeletionByPercentage( bool p_v ) { deletionByPercentage = p_v; };
 
@@ -72,6 +75,8 @@ public:
 public:
 	XHippocampus* getHippo() { return hippo; }
 	XSense *getSense() { return( sensor ); };
+
+	void showRegionMemories();
 
 private:
 	void validateInputs(void);
