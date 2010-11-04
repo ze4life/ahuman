@@ -72,6 +72,7 @@ public:
 	String toUpper() const;
 	String toLower() const;
 	static String toHex( int value );
+	int split( StringList& parts , String delimiter ) const;
 
 private:
 	void createFromString( const char *s );

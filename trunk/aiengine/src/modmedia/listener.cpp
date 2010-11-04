@@ -23,11 +23,6 @@ Message::MsgType Listener::getMsgType()
 	return( msgType );
 }
 
-void Listener::setName( String p_name )
-{ 
-	name = p_name; 
-}
-
 String Listener::getName() 
 { 
 	return( name ); 

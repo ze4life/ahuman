@@ -3,9 +3,10 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-SocketServer::SocketServer()
+SocketServer::SocketServer( String p_name )
 :	engine( AIEngine::getInstance() )
 {
+	name = p_name;
 	continueConnecting = true;
 	shutdownInProgress = false;
 	listenThread = ( RFC_HND )NULL;
@@ -41,23 +42,10 @@ bool SocketServer::getWayOut()
 	return( wayOut );
 }
 
-void SocketServer::initSocketLib()
-{
-	WSADATA l_wsa;
-	memset( &l_wsa, 0 , sizeof( WSADATA ) );
-	WSAStartup( MAKEWORD( 2 , 2 ) , &l_wsa );
-}
-
-void SocketServer::exitSocketLib()
-{
-	/* cleanup sockets */
-	WSACleanup();
-}
-
 void SocketServer::configure( Xml config )
 {
-	auth = config.getBooleanAttribute( "direction" );
-	String direction = config.getAttribute( "direction" );
+	auth = config.getBooleanProperty( "auth" );
+	String direction = config.getProperty( "direction" );
 	wayIn = direction.equals( "in" ) || direction.equals( "duplex" );
 	wayOut = direction.equals( "out" ) || direction.equals( "duplex" );
 
@@ -98,14 +86,16 @@ String SocketServer::getAddress()
 
 void SocketServer::threadConnectFunction( void *p_arg )
 {
+	AIMediaImpl *media = AIMediaImpl::getServiceImpl();
+
 	// startup sockets
-	initSocketLib();
+	media -> initSocketLib();
 
 	// accept connections
 	acceptConnectionLoop();
 
 	// cleanup sockets
-	exitSocketLib();
+	media -> exitSocketLib();
 }
 
 bool SocketServer::openListeningPort()

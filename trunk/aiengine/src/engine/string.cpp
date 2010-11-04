@@ -330,6 +330,27 @@ String String::getMid( int from ) const
 	return( s );
 }
 
+int String::split( StringList& parts , String delimiter ) const
+{
+	if( isEmpty() )
+		return( 0 );
+
+	// scan string
+	const char *p = v;
+	while( *v ) {
+		const char *pn = strstr( p , delimiter );
+		if( pn == NULL ) {
+			parts.add( p );
+			break;
+		}
+
+		parts.add( getMid( p - v , pn - p ) );
+		p = pn + delimiter.length();
+	}
+
+	return( parts.count() );
+}
+
 // #############################################################################
 // #############################################################################
 
@@ -400,3 +421,4 @@ String operator +( const String& s1 , bool value )
 	s += ( value )? "true" : "false";
 	return( s );
 }
+

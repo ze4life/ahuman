@@ -1,5 +1,4 @@
 #include "../body_impl.h"
-#include <windows.h>
 
 class Eye : public Sensor, public Object{
 
