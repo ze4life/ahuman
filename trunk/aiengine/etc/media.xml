@@ -1,15 +1,44 @@
 <service>
 	<listeners>
-		<listener name="debug" type="tcp" direction="duplex" auth = "false">
+		<listener name="debug">
+			<property name="direction" value="duplex"/>
+			<property name="auth" value="false"/>
 			<property name="port" value="20001"/> 
 			<property name="msgtype" value="xmlcall"/> 
 			<property name="topic.in" value="debug.commands.in"/> 
 			<property name="topic.out" value="debug.commands.out"/> 
 		</listener>
-		<listener1 name="chat" type="tcp" direction="duplex" auth = "false">
+
+		<listener1 name="chat">
+			<property name="direction" value="duplex"/>
+			<property name="auth" value="false"/>
 			<property name="port" value="20002"/> 
 			<property name="topic.in" value="chat.in"/> 
 			<property name="topic.out" value="chat.out"/> 
 		</listener1>
 	</listeners>
+
+	<connectors>
+		<connector name="google">
+			<property name="type" value="request-response"/>
+			<property name="permanent" value="false"/>
+			<property name="direction" value="duplex"/>
+			<property name="host" value="20001"/> 
+			<property name="port" value="20001"/> 
+			<property name="msgtype" value="text"/> 
+			<property name="topic.in" value="debug.commands.in"/> 
+			<property name="topic.out" value="debug.commands.out"/> 
+		</connector>
+
+		<connector name="image-processor">
+			<property name="type" value="request-response"/>
+			<property name="permanent" value="false"/>
+			<property name="direction" value="duplex"/>
+			<property name="host" value="localhost"/> 
+			<property name="port" value="9000"/> 
+			<property name="msgtype" value="text"/> 
+			<property name="topic.in" value="debug.commands.in"/> 
+			<property name="topic.out" value="debug.commands.out"/> 
+		</connector>
+	</connectors>
 </service>

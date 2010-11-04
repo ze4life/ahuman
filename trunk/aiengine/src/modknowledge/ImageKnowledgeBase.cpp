@@ -1,6 +1,4 @@
-#include <Windows.h>
 #include "knowledge_impl.h"
-#include "../svcio/io_impl.h"
 
 /*************************************************************************************
 The logic for getting information is that the module will get the command
@@ -17,86 +15,71 @@ get results. Any module can publish to the 'imagekbcmd' to activate the search p
 
 ***************************************************************************************/
 
-/**
-This is the default constructor and can be used to add any initialization
-functionality 
-*/
+ImageKnowledgeBase::ImageKnowledgeBase()
+:	engine( AIEngine::getInstance() )
+{
+}
 
-ImageQueryProcessor::ImageQueryProcessor():engine(AIEngine::getInstance()){
-		/* Create socket */
-	WSADATA l_wsa;
-	LPHOSTENT  hostEntry;
-	memset( &l_wsa, 0 , sizeof( WSADATA ) );
-	WSAStartup( MAKEWORD( 2 , 2 ) , &l_wsa );
-	sock = socket(AF_INET,SOCK_STREAM, 0);
-	if(sock == SOCKET_ERROR){
-		logger.logDebug( "ImageQueryProcessor::processQuery - Could not create socket.");
-		return;	
-	}
-	memset(&add, 0, sizeof(SOCKADDR_IN));
-	hostEntry = gethostbyname("localhost");
-	add.sin_addr = *((LPIN_ADDR)*hostEntry->h_addr_list);
-	add.sin_family = AF_INET;
-	add.sin_port = htons(9000);
+void ImageKnowledgeBase::configure( Xml config )
+{
+	externalChannel = config.getProperty( "external-channel" );
+	commandChannel = config.getProperty( "command-topic" );
+	responseChannel = config.getProperty( "response-topic" );
+}
+
+void ImageKnowledgeBase::startKnowledgeSource()
+{
+	// create publisher
+	AIIO io;
+	publisher = io.createPublisher( NULL , responseChannel , "ImageQueryResults" , "IMGRES" );
+
+	/* Create a subscriber to process the messages */
+	subscription = io.subscribe( NULL , commandChannel , "ImageQueryProcessor" , this );
+	logger.logDebug( "ImageKnowledgeBase::startKnowledgeSource - Source started");
+}
+
+void ImageKnowledgeBase::stopKnowledgeSource()
+{
+	AIIO io;
+	io.unsubscribe( subscription );
+	io.destroyPublisher( publisher );
+
+	subscription = NULL;
+	publisher = NULL;
 }
 
 /**
 Function called when we get message in the queue 
 */
-void ImageQueryProcessor::onMessage( Message *msg ) {
+void ImageKnowledgeBase::onTextMessage( TextMessage *msg )
+{
 	logger.logDebug( "ImageQueryProcessor::onMessage - Got message to be processed.");
-	/* Get results from internet and feed the channel */
-	if(sock != SOCKET_ERROR){
-		processQuery(msg);
-	}
+	processQuery( msg -> getText() );
 }
 
 /**
 Function responsible to fetch image data from image knowledge base server 
 */
-void ImageQueryProcessor::processQuery(Message* msg){
-	
-	AIIOImpl *srv = (AIIOImpl*)engine.getService("IO");
-	Publisher *pub = srv->createPublisher( msg->getSession() , "imagekbrsp" , "ImageQueryResults" , "IMGRES" );
-	if(connect(sock,(LPSOCKADDR)&add,sizeof(SOCKADDR_IN)) == SOCKET_ERROR){
-		logger.logDebug( "ImageQueryProcessor::processQuery - Could not connect to data source.");
-		return;
-	}
+void ImageKnowledgeBase::processQuery( String query )
+{
+	AIMedia media;
+
 	/* Get the query from the message */
-	TextMessage *tmsg = (TextMessage*)msg;
-	const char *query = tmsg->getText();
-	char * qu = new char[strlen(query)];
-	strcpy(qu, query);
-	send(sock, query, strlen(query), 0);
-	char* q = strtok(qu,";");
-	int x = atoi(strtok(NULL,";"));
-	int y = atoi(strtok(NULL,";"));
-	int samples = atoi(strtok(NULL,";"));
-	char *ch = new char[x * y];
-	for(int i = 0; i < samples; i++){
-		int res = recv(sock, ch, x * y, 0);
-		if(res <= 0) break;
-		/* publish results to the channel */
-		pub->publish(msg->getSession(), ch);
+	media.sendTextToDirectChannel( externalChannel , query );
+
+	StringList list;
+	query.split( list , ";" );
+
+	ASSERTMSG( list.count() == 4 , "Invalid query - expecting 4 tokens, query=" + query );
+
+	String q = list.get( 0 );
+	int x = atoi( list.get( 1 ) );
+	int y = atoi( list.get( 2 ) );
+	int samples = atoi( list.get( 3 ) );
+
+	for( int i = 0; i < samples; i++ ) {
+		// read and publish to channel
+		String data = media.receiveFixedSizeTextFromDirectChannel( externalChannel , x * y );
+		publisher -> publish( NULL , data );
 	}
-}
-
-/********************************************************************************/
-/********************************************************************************/
-ImageKnowledgeBase* ImageKnowledgeBase::instance = NULL;
-
-ImageKnowledgeBase::ImageKnowledgeBase():engine(AIEngine::getInstance()){
-		
-}
-void ImageKnowledgeBase::startKnowledgeSource(){
-	AIIOImpl *srv = (AIIOImpl*)engine.getService("IO");
-	/* Create a subscriber to process the messages */
-	ImageQueryProcessor *sub = new ImageQueryProcessor();
-	Session *session = srv->createSession(); 
-	srv->subscribe(NULL,"imagekbcmd","ImageQueryProcessor", sub);
-	logger.logDebug( "ImageKnowledgeBase::startKnowledgeSource - Source started");
-}
-
-void ImageKnowledgeBase::stopKnowledgeSource(){
-	
 }

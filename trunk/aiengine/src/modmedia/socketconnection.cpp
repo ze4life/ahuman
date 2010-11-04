@@ -260,7 +260,7 @@ String SocketConnection::getClientSocketName()
 	return( msg );
 }
 
-void SocketConnection::onMessage( TextMessage *msg )
+void SocketConnection::onTextMessage( TextMessage *msg )
 {
 	writeMessage( msg );
 }

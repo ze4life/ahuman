@@ -23,26 +23,26 @@ AIKnowledgeImpl::AIKnowledgeImpl()
 
 void AIKnowledgeImpl::createService()
 {
-
 }
 
 void AIKnowledgeImpl::initService()
 {
-
+	imageKnowledgeBase = new ImageKnowledgeBase();
 }
 
 void AIKnowledgeImpl::runService()
 {
-	ImageKnowledgeBase* imageSrc = ImageKnowledgeBase::getInstance();
-	imageSrc->startKnowledgeSource();
+	imageKnowledgeBase -> startKnowledgeSource();
 }
 
 void AIKnowledgeImpl::exitService()
 {
+	imageKnowledgeBase -> stopKnowledgeSource();
 }
 
 void AIKnowledgeImpl::destroyService()
 {
+	delete imageKnowledgeBase;
 	delete this;
 }
 

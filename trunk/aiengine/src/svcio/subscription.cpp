@@ -54,7 +54,7 @@ void SubscriptionImpl::processMessage( Message *msg )
 	try {
 		switch( msg -> getBaseType() ) {
 			case Message::MsgType_Text :
-				sub -> onMessage( msg );
+				sub -> onTextMessage( ( TextMessage * )msg );
 				break;
 			case Message::MsgType_Xml :
 				sub -> onXmlMessage( ( XmlMessage * )msg );
@@ -66,7 +66,8 @@ void SubscriptionImpl::processMessage( Message *msg )
 				sub -> onBinaryMessage( msg );
 				break;
 			default:
-				ASSERTFAILED( String( "Uknown message type for message: " ) + msg -> getChannelMessageId() );
+				sub -> onMessage( msg );
+				break;
 		}
 	}
 	catch ( RuntimeException& e ) {

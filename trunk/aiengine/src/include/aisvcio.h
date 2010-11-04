@@ -80,6 +80,7 @@ class Subscriber
 {
 public:
 	virtual void onMessage( Message *msg ) {};
+	virtual void onTextMessage( TextMessage *msg ) {};
 	virtual void onXmlMessage( XmlMessage *msg ) {};
 	virtual void onXmlCall( XmlCall *msg ) {};
 	virtual void onBinaryMessage( Message *msg ) {};
