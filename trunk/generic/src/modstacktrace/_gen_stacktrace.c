@@ -68,11 +68,16 @@ static void rfc_thr_onfillstack( void *ptr ,
 
 rfc_threadstack *rfc_thr_stackget( int skipLevels )
 {
+	return( rfc_thr_stackgetforthread( NULL , skipLevels ) );
+}
+
+rfc_threadstack *rfc_thr_stackgetforthread( RFC_HND thread , int skipLevels )
+{
 	rfc_threadstack *stack = ( rfc_threadstack * )calloc( 1 , sizeof( rfc_threadstack ) );
 	stack -> levels.s_type = RFC_EXT_TYPEPTR;
 	stack -> extraLevels = skipLevels + 2;
 
-	if( !getStackTrace( stack , rfc_thr_onfillstack ) )
+	if( !getThreadStackTrace( ( unsigned long )thread , stack , rfc_thr_onfillstack ) )
 		stack -> brokenStack = 1;
 
 	return( stack );

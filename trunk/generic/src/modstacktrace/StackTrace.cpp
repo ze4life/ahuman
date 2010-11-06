@@ -2,6 +2,7 @@
 #include "MapFile.h"
 #include <string.h>
 #include <stdio.h>
+#include <windows.h>
 
 //-----------------------------------------------------------------------------
 
@@ -39,7 +40,8 @@ StackTrace_getCaller_next:
 #endif
 }
 
-bool StackTrace::getStackTrace( MapFile** map, int maps, void *ptr , getStackTraceCB cb )
+// if thread is NULL - use for current thread, otherwise can be used only for suspended thread
+bool StackTrace::getStackTrace( unsigned long thread , MapFile** map, int maps, void *ptr , getStackTraceCB cb )
 {
 	// list callers
 	long callersAddr[ MAX_DEPTH ];
@@ -47,6 +49,11 @@ bool StackTrace::getStackTrace( MapFile** map, int maps, void *ptr , getStackTra
 	int i;
 	bool longStack = false;
 	bool errorGettingStack = false;
+
+	// handle foreign thread
+	CONTEXT saveContext;
+	if( thread != NULL )
+		switchContext( thread , &saveContext );
 
 	long addr;
 	for( i = 1; i <= MAX_DEPTH; i++ )
@@ -73,6 +80,10 @@ bool StackTrace::getStackTrace( MapFile** map, int maps, void *ptr , getStackTra
 			if( addr == 0 )
 				break;
 		}
+
+	// restore context
+	if( thread != NULL )
+		restoreContext( thread , &saveContext );
 
 	// output call stack
 	int needed = 0;
@@ -169,7 +180,6 @@ void StackTrace::fillMapEntry( MapFile& map , int entry , char *p_class , char *
 		strcpy( p_func , functionName );
 }
 
-} // dev
 /*
  * Copyright (c) 2001 Jani Kajala
  *
@@ -182,3 +192,61 @@ void StackTrace::fillMapEntry( MapFile& map , int entry , char *p_class , char *
  * of this software for any purpose. It is provided "as is" 
  * without express or implied warranty.
  */
+
+void StackTrace::switchContext( unsigned long thread , void *saveContext )
+{
+	// can be used only for suspended threads
+	// get context
+	CONTEXT *context = ( CONTEXT * )saveContext;
+	CONTEXT foreign;
+	::GetThreadContext( ( HANDLE )thread , &foreign );
+
+	DWORD ebxSave , ebpSave, ecxSave, eaxSave;
+	DWORD ebxSet , ebpSet, ecxSet, eaxSet;
+
+	ebxSet = foreign.Ebx;
+	ebpSet = foreign.Ebp;
+	ecxSet = foreign.Ecx;
+	eaxSet = foreign.Eax;
+
+	// set context of current thread to required thread, save existing state
+	__asm
+	{
+		mov ebxSave, ebx
+		mov ebpSave, ebp
+		mov ecxSave, ecx
+		mov eaxSave, eax
+		mov ebx, ebxSet
+		mov ebp, ebpSet
+		mov ecx, ecxSet
+		mov eax, eaxSet
+	}
+
+	context -> Ebx = ebxSave;
+	context -> Ebp = ebpSave;
+	context -> Ecx = ecxSave;
+	context -> Eax = eaxSave;
+}
+
+void StackTrace::restoreContext( unsigned long thread , void *saveContext )
+{
+	// can be used only for suspended threads
+	// restore context of current thread
+	CONTEXT *context = ( CONTEXT * )saveContext;
+
+	DWORD ebxSet , ebpSet, ecxSet, eaxSet;
+	ebxSet = context -> Ebx;
+	ebpSet = context -> Ebp;
+	ecxSet = context -> Ecx;
+	eaxSet = context -> Eax;
+
+	__asm
+	{
+		mov ebx, ebxSet
+		mov ebp, ebpSet
+		mov ecx, ecxSet
+		mov eax, eaxSet
+	}
+}
+
+} // dev

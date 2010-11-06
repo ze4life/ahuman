@@ -80,11 +80,16 @@ private:
 
 	static AIEngineImpl *instance;
 	int runInternal( const char *configDir );
-	void workerDestroyed();
+	void exitServer();
+	void setSignalHandlers();
+	void printStackTrace();
+	void printStackTrace( ThreadData *td );
+
 	void workerCreated();
 	void workerStarted( ThreadData *threadData );
 	void workerExited( int status );
-	void workerExited( RFC_THREAD thread , int status );
+	void workerExited( ThreadData *threadData , int status );
+	String getActiveThreads();
 
 	// constructor
 	AIEngineImpl();
@@ -133,6 +138,7 @@ private:
 
 	// services
 	MapStringToClass<Service> services;
+	MapStringToClass<ThreadData> threads;
 
 	// serializable objects
 	rfc_strmap *mapObjectTypeIdToSerializeObject;

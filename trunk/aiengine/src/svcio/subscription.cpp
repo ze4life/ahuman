@@ -72,12 +72,12 @@ void SubscriptionImpl::processMessage( Message *msg )
 	}
 	catch ( RuntimeException& e ) {
 		Logger logger = channel -> getLogger();
-		logger.logError( "Channel=" + channel -> getName() + ", subscription=" + name + ": exception when processing message" );
+		logger.logError( "i/o channel id=" + channel -> getName() + ", subscription=" + name + ": exception when processing message" );
 		e.printStack( logger );
 	}
 	catch ( ... ) {
 		Logger logger = channel -> getLogger();
-		logger.logError( "Channel=" + channel -> getName() + ", subscription=" + name + ": unknown exception" );
+		logger.logError( "i/o channel id=" + channel -> getName() + ", subscription=" + name + ": unknown exception" );
 		logger.printStack();
 	}
 }

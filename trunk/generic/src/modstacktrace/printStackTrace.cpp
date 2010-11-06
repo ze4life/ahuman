@@ -13,7 +13,7 @@ using namespace MAPFILE;
 /**
  * Prints stack trace using callback
  */
-extern "C" short getStackTrace( void *ptr , ::getStackTraceCB cb )
+extern "C" short getThreadStackTrace( unsigned long thread , void *ptr , ::getStackTraceCB cb )
 {
 	// find out map file name
 	char modname[500];
@@ -30,7 +30,7 @@ extern "C" short getStackTrace( void *ptr , ::getStackTraceCB cb )
 
 	// print stack trace into buffer
 	MapFile* maps[] = {&map};
-	if( StackTrace::getStackTrace( maps, 1, ptr , cb ) )
+	if( StackTrace::getStackTrace( thread , maps, 1, ptr , cb ) )
 		return( 1 );
 
 	return( 0 );
