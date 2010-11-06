@@ -6,7 +6,12 @@
 
 AIBody::AIBody() 
 { 
-	thisPtr = static_cast<AIBodyImpl *>( AIEngine::getInstance().getService( "Body" ) ); 
+	thisPtr = AIBodyImpl::getInstance(); 
+}
+
+AIBodyImpl *AIBodyImpl::getInstance()
+{
+	return( ( AIBodyImpl * )AIEngine::getInstance().getService( "Body" ) );
 }
 
 /* static */ Service *AIBody::newService()
@@ -20,7 +25,7 @@ AIBodyImpl::AIBodyImpl()
 {
 }
 
-void AIBodyImpl::createService()
+void AIBodyImpl::createService( Xml config )
 {
 }
 

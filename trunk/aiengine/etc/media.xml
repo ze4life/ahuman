@@ -1,6 +1,7 @@
 <service>
+
 	<listeners>
-		<listener name="debug">
+		<listener name="debug" run="true">
 			<property name="direction" value="duplex"/>
 			<property name="auth" value="false"/>
 			<property name="port" value="20001"/> 
@@ -8,18 +9,10 @@
 			<property name="topic.in" value="debug.commands.in"/> 
 			<property name="topic.out" value="debug.commands.out"/> 
 		</listener>
-
-		<listener1 name="chat">
-			<property name="direction" value="duplex"/>
-			<property name="auth" value="false"/>
-			<property name="port" value="20002"/> 
-			<property name="topic.in" value="chat.in"/> 
-			<property name="topic.out" value="chat.out"/> 
-		</listener1>
 	</listeners>
 
-	<connectors>
-		<connector name="google">
+	<directchannels>
+		<channel name="google" run="true">
 			<property name="type" value="request-response"/>
 			<property name="permanent" value="false"/>
 			<property name="direction" value="duplex"/>
@@ -28,9 +21,9 @@
 			<property name="msgtype" value="text"/> 
 			<property name="topic.in" value="debug.commands.in"/> 
 			<property name="topic.out" value="debug.commands.out"/> 
-		</connector>
+		</channel>
 
-		<connector name="image-processor">
+		<channel name="image-processor" run="false">
 			<property name="type" value="request-response"/>
 			<property name="permanent" value="false"/>
 			<property name="direction" value="duplex"/>
@@ -39,6 +32,7 @@
 			<property name="msgtype" value="text"/> 
 			<property name="topic.in" value="debug.commands.in"/> 
 			<property name="topic.out" value="debug.commands.out"/> 
-		</connector>
-	</connectors>
+		</channel>
+	</directchannels>
+
 </service>

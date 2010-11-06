@@ -22,10 +22,10 @@ AIIOImpl::AIIOImpl()
 	lastSessionId = 0;
 }
 
-void AIIOImpl::createService()
+void AIIOImpl::createService( Xml config )
 {
 	// create all channels
-	Xml topics = configService.getChildNode( "topics" );
+	Xml topics = config.getChildNode( "topics" );
 	for( Xml topic = topics.getFirstChild( "topic" ); topic.exists(); topic = topic.getNextChild( "topic" ) )
 		createChannel( topic );
 }

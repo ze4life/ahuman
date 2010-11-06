@@ -16,8 +16,18 @@ class IOQueue;
 // derives knowledge from io, activates mind
 class AIIOImpl : public AIIO , public Service
 {
+// internals
+private:
+	AIEngine& engine;
+
+	rfc_lock *dataLock;
+	int lastSessionId;
+	MapStringToClass<Channel> mapChannels; // channel name to class
+	MapIntToClass<SessionImpl> sessions;
+
+public:
 	// service
-	virtual void createService();
+	virtual void createService( Xml config );
 	virtual void initService();
 	virtual void runService();
 	virtual void exitService();
@@ -47,15 +57,6 @@ private:
 	void openAllChannels();
 	void startAllChannels();
 	void closeAllChannels();
-
-// internals
-private:
-	AIEngine& engine;
-
-	rfc_lock *dataLock;
-	int lastSessionId;
-	MapStringToClass<Channel> mapChannels; // channel name to class
-	MapIntToClass<SessionImpl> sessions;
 };
 
 /*#########################################################################*/

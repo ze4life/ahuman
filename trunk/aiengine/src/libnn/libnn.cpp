@@ -24,7 +24,7 @@ AILibNNImpl::AILibNNImpl()
 {
 }
 
-void AILibNNImpl::createService()
+void AILibNNImpl::createService( Xml config )
 {
 	addLibVariant( AILibNNVariant::createFannCustom() );
 }

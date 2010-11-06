@@ -20,7 +20,7 @@ AIIntelligenceImpl::AIIntelligenceImpl()
 {
 }
 
-void AIIntelligenceImpl::createService()
+void AIIntelligenceImpl::createService( Xml config )
 {
 }
 

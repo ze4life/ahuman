@@ -79,7 +79,7 @@ public:
 	virtual String getAddress() = 0;
 
 public:
-	Listener();
+	Listener( String name );
 	virtual ~Listener();
 
 public:
@@ -104,19 +104,25 @@ private:
 // handles different media AI will use to communicate
 class AIMediaImpl : public AIMedia , public Service
 {
+private:
+	AIEngine& engine;
+	MapStringToClass<Listener> listeners;
+	MapStringToClass<ActiveSocket> activeSockets;
+
+public:
 	// service
-	virtual void createService();
+	virtual void createService( Xml config );
 	virtual void initService();
 	virtual void runService();
 	virtual void exitService();
 	virtual void destroyService();
 	virtual const char *getName() { return( "Media" ); };
 
-// external interface
 public:
 	AIMediaImpl();
 	static AIMediaImpl *getServiceImpl();
 
+// external interface
 public:
 	Listener *getListener( String name );
 
@@ -130,21 +136,18 @@ public:
 // internals
 private:
 	// implement set of listeners
+	void createListeners( Xml config );
 	void startListeners();
 	void stopListeners();
 	Listener *runListenerFactory( String name );
 
 	// implement active connections
+	void createActiveSockets( Xml config );
 	void startActiveSockets();
 	void stopActiveSockets();
 	ActiveSocket *runActivatorFactory( String name );
 
 	ActiveSocket *getActiveSocket( String name );
-
-private:
-	AIEngine& engine;
-	MapStringToClass<Listener> listeners;
-	MapStringToClass<ActiveSocket> activeSockets;
 };
 
 /*#########################################################################*/

@@ -57,11 +57,15 @@ Xml Xml::getChildNode( String s )
 	catch( ... ) {
 	}
 
-	ASSERTMSG( xmlChild != NULL , String( "child node " ) + s + " not found" );
 	Xml x;
 	x.attach( doc , xmlChild );
 
 	return( x );
+}
+
+Xml Xml::getChildNamedNode( String element , String name )
+{
+	return( findChildByPathAttr( element , "name" , name ) );
 }
 
 String Xml::getAttribute( String a )

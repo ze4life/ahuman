@@ -26,9 +26,15 @@ class AIDBImpl : public AIDB , public Service
 		FILETYPE_OBJECT = 3
 	} FileType;
 
+// internals
+private:
+	AIEngine& engine;
+	String dbPath;
+	rfc_strmap *mapFileIdToFile;
+
 public:
 	// service
-	virtual void createService();
+	virtual void createService( Xml config );
 	virtual void initService();
 	virtual void runService();
 	virtual void exitService();
@@ -64,14 +70,7 @@ private:
 	AIDBFile *openCustomFile( const char *name );
 
 	void clearLastCursor();
-
 	void createDirectory( const char *path );
-
-// internals
-private:
-	AIEngine& engine;
-	String dbPath;
-	rfc_strmap *mapFileIdToFile;
 };
 
 // #############################################################################

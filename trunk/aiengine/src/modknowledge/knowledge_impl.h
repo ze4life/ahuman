@@ -10,7 +10,7 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-class ImageKnowledgeBase;
+class KnowledgeController;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -20,11 +20,11 @@ class AIKnowledgeImpl : public AIKnowledge , public Service
 {
 private:
 	AIEngine& engine;
-	ImageKnowledgeBase *imageKnowledgeBase;
+	MapStringToClass<KnowledgeController> controllers;
 
 public:
 	// service
-	virtual void createService();
+	virtual void createService( Xml config );
 	virtual void initService();
 	virtual void runService();
 	virtual void exitService();
@@ -35,36 +35,32 @@ public:
 
 // external interface
 public:
-	ImageKnowledgeBase *getKnowledgeBase() { return( imageKnowledgeBase ); };
+	KnowledgeController *getKnowledgeController( String name );
+
+private:
+	void addKnowledgeController( Xml configControllers , KnowledgeController *controller );
 };
 
 // #############################################################################
 // #############################################################################
 
-class ImageKnowledgeBase : public Object , public Subscriber {
+class KnowledgeController : public Object
+{
 private:
-	AIEngine& engine;
-	RFC_HND thread;
-
-	String externalChannel;
-	String commandChannel;
-	String responseChannel;
-
-	Publisher *publisher;
-	Subscription *subscription;
+	String name;
 
 public:
-	ImageKnowledgeBase();
-	virtual const char *getClass() { return( "ImageKnowledgeBase" ); };
+	static KnowledgeController *createImageKnowledgeBase();
 
 public:
-	virtual void onTextMessage( TextMessage *msg );
-	void configure( Xml config );
-	void startKnowledgeSource();
-	void stopKnowledgeSource();
+	KnowledgeController( String p_name ) { name = p_name; };
+	virtual ~KnowledgeController() {};
 
-private:
-	void processQuery( String command );
+	virtual void createController( Xml config ) = 0;
+	virtual void startController() = 0;
+	virtual void stopController() = 0;
+
+	String getName() { return( name ); };
 };
 
 // #############################################################################

@@ -16,8 +16,12 @@ AIDB::AIDB()
 	return( svc );
 }
 
-void AIDBImpl::createService()
+void AIDBImpl::createService( Xml config )
 {
+	// get DB path
+	Xml cfg = config.getChildNode( "location" );
+	dbPath = cfg.getProperty( "path" );
+
 	openDatabase();
 }
 
@@ -56,8 +60,6 @@ AIDBImpl::~AIDBImpl()
 
 void AIDBImpl::openDatabase()
 {
-	Xml cfg = Service::configService.getChildNode( "location" );
-	dbPath = cfg.getProperty( "path" );
 }
 
 void AIDBImpl::closeDatabase()

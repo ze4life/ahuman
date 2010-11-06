@@ -1,31 +1,40 @@
 #include "body_impl.h"
 
 Sensors::Sensors()
-:	engine( AIEngine::getInstance() ) {
+:	engine( AIEngine::getInstance() )
+{
 
 	// init variables
 	threadSensesTracker = ( RFC_HND )NULL;
 	runSensesTracker = true;
 }
 
-void Sensors::onCreateArea() {
+void Sensors::onCreateArea()
+{
 	createSensors();
-};
-void Sensors::onLoadArea() {
+}
+
+void Sensors::onLoadArea()
+{
 	// for body areas create and load are the same
 	onCreateArea();
 }
-void Sensors::onBrainStart() {
+
+void Sensors::onBrainStart()
+{
 	// start sensors
 	for( int k = 0; k < sensors.count(); k++ ) {
 		Sensor *sensor = sensors.getClassByIndex( k );
 		sensor -> startSensor();
+		logger.logInfo( "Sensors::onBrainStart: sensor started - name=" + sensor -> getName() );
 	}
 
 	// start poller
 	startTracker();
 }
-void Sensors::onBrainStop() {
+
+void Sensors::onBrainStop()
+{
 	// stop poller
 	runSensesTracker = false;
 	if( threadSensesTracker != NULL ) {
@@ -40,13 +49,29 @@ void Sensors::onBrainStop() {
 	}
 }
 
-void Sensors::createSensors() {
-	addSensor( Sensor::createFileSysWalker( this ) );
-	addSensor( Sensor::createEye( this ) );
+void Sensors::createSensors()
+{
+	AIBodyImpl *body = AIBodyImpl::getInstance();
+	Xml config = body -> getConfigService();
+	Xml configSensors = config.getChildNode( "sensors" );
+
+	addSensor( configSensors , Sensor::createFileSysWalker( this ) );
+	addSensor( configSensors , Sensor::createEye( this ) );
 }
 
-void Sensors::addSensor( Sensor *att ) {
-	sensors.add( att -> getName() , att );
+void Sensors::addSensor( Xml configSensors , Sensor *att )
+{
+	String name = att -> getName();
+	Xml config = configSensors.getChildNamedNode( "sensor" , name );
+
+	if( config.exists() && config.getBooleanAttribute( "run" ) ) {
+		sensors.add( name , att );
+		logger.logInfo( "Sensors::addSensor: sensor added - name=" + name );
+	}
+	else {
+		sensorsOffline.add( name , att );
+		logger.logInfo( "Sensors::addSensor: sensor is not configured to run - name=" + name );
+	}
 
 	// generate cortex dimentions - square-like
 	BrainLocation cortexLocation;
@@ -72,16 +97,19 @@ void Sensors::addSensor( Sensor *att ) {
 	brain.createSensorCortex( this , cortexLocation , att );
 }
 
-Sensor *Sensors::getSensor( String name ) {
+Sensor *Sensors::getSensor( String name )
+{
 	return( sensors.get( name ) );
 }
 
-void Sensors::startTracker() {
+void Sensors::startTracker()
+{
 	// start tracking thread
 	threadSensesTracker = engine.runThread( "SensesTracker" , this , ( ObjectThreadFunction )&Sensors::onRunSensesTracker , NULL );
 }
 
-void Sensors::onRunSensesTracker( void *p_arg ) {
+void Sensors::onRunSensesTracker( void *p_arg )
+{
 	logger.attach( "SensesTracker" );
 
 	// run until stop signal
@@ -91,7 +119,8 @@ void Sensors::onRunSensesTracker( void *p_arg ) {
 	}
 }
 
-void Sensors::pollIteration( int& sleepRemained ) {
+void Sensors::pollIteration( int& sleepRemained )
+{
 	int timeNow = Timer::timeNow();
 
 	// iterate sensors and find sleep time required
