@@ -9,46 +9,6 @@ class TestMethod;
 /*#########################################################################*/
 /*#########################################################################*/
 
-// derives knowledge from io, activates mind
-class AITestPoolImpl : public AITestPool , public Service , public Subscriber
-{
-private:
-	AIEngine& engine;
-
-	// configuration
-	String channelIn;
-	String channelOut;
-
-	// internals
-	Publisher *callPub;
-	Subscription *callSub;
-	MapStringToClass<TestUnit> units;
-
-public:
-	// service
-	virtual void createService( Xml config );
-	virtual void initService();
-	virtual void runService();
-	virtual void exitService();
-	virtual void destroyService();
-	virtual const char *getName() { return( "TestPool" ); };
-
-	// subscriber
-	virtual void onXmlCall( XmlCall *msg );
-
-// external interface
-public:
-	AITestPoolImpl();
-	static AITestPoolImpl *getServiceImpl();
-
-// internals
-private:
-	void addTestUnit( TestUnit *p_unit );
-};
-
-/*#########################################################################*/
-/*#########################################################################*/
-
 typedef void ( TestUnit::*TestUnitMethodType )( XmlCall& );
 #define ADD_METHOD( method ) TestUnit::addMethod( #method , ( TestUnitMethodType )&method )
 
@@ -71,11 +31,10 @@ class TestUnit
 {
 // test units
 public:
-	static TestUnit *createFannCustomTest();
-	static TestUnit *createHtmViewCustomTest();
-	static TestUnit *createFileSysWalkerTest();
-	static TestUnit *createNeoCortexTest();
-	static TestUnit *createDirectChannelsTest();
+	Logger logger;
+	
+	String name;
+	MapStringToClass<TestMethod> methods;
 
 // generic
 public:
@@ -110,12 +69,64 @@ protected:
 		methods.add( methodName , new TestMethod( methodName , methodFunction ) );
 	}
 
-// virtuals
+// test units
 public:
-	Logger logger;
-	
-	String name;
-	MapStringToClass<TestMethod> methods;
+	static TestUnit *createEngineThreadsTest();
+	static TestUnit *createFannCustomTest();
+	static TestUnit *createHtmViewCustomTest();
+	static TestUnit *createFileSysWalkerTest();
+	static TestUnit *createNeoCortexTest();
+	static TestUnit *createDirectChannelsTest();
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+// derives knowledge from io, activates mind
+class AITestPoolImpl : public AITestPool , public Service , public Subscriber
+{
+private:
+	void addTestUnits() {
+		addTestUnit( TestUnit::createEngineThreadsTest() );
+		addTestUnit( TestUnit::createFannCustomTest() );
+		addTestUnit( TestUnit::createHtmViewCustomTest() );
+		addTestUnit( TestUnit::createFileSysWalkerTest() );
+		addTestUnit( TestUnit::createNeoCortexTest() );
+		addTestUnit( TestUnit::createDirectChannelsTest() );
+	}
+
+private:
+	AIEngine& engine;
+
+	// configuration
+	String channelIn;
+	String channelOut;
+
+	// internals
+	Publisher *callPub;
+	Subscription *callSub;
+	MapStringToClass<TestUnit> units;
+
+public:
+	// service
+	virtual void createService( Xml config );
+	virtual void initService();
+	virtual void runService();
+	virtual void exitService();
+	virtual void destroyService();
+	virtual const char *getName() { return( "TestPool" ); };
+
+	// subscriber
+	virtual void onXmlCall( XmlCall *msg );
+
+// external interface
+public:
+	AITestPoolImpl();
+	static AITestPoolImpl *getServiceImpl();
+
+// internals
+private:
+	void addTestUnit( TestUnit *p_unit );
 };
 
 /*#########################################################################*/
