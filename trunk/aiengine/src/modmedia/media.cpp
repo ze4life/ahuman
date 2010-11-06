@@ -63,6 +63,18 @@ void AIMediaImpl::destroyService()
 /*#########################################################################*/
 /*#########################################################################*/
 
+Listener *AIMediaImpl::runListenerFactory( String name , Xml config )
+{
+	ASSERT( listeners.get( name ) == NULL );
+
+	Listener *listener = new SocketServer( name );
+	listener -> configure( config );
+
+	listeners.add( name , listener );
+
+	return( listener );
+}
+
 void AIMediaImpl::createListeners( Xml config )
 {
 	if( !config.exists() )
@@ -77,8 +89,7 @@ void AIMediaImpl::createListeners( Xml config )
 		}
 
 		// create and configure
-		Listener *listener = runListenerFactory( name );
-		listener -> configure( item );
+		Listener *listener = runListenerFactory( name , item );
 		logger.logInfo( "AIMediaImpl::createListeners: listener created - name=" + name );
 	}
 }
@@ -97,6 +108,18 @@ void AIMediaImpl::startListeners()
 	}
 }
 
+ActiveSocket *AIMediaImpl::runActiveSocketFactory( String name , Xml config )
+{
+	ASSERT( activeSockets.get( name ) == NULL );
+
+	ActiveSocket *as = new ActiveSocket( name );
+	as -> configure( config );
+
+	activeSockets.add( name , as );
+
+	return( as );
+}
+
 void AIMediaImpl::createActiveSockets( Xml config )
 {
 	if( !config.exists() )
@@ -111,8 +134,7 @@ void AIMediaImpl::createActiveSockets( Xml config )
 		}
 
 		// create and configure
-		ActiveSocket *ac = new ActiveSocket( name );
-		ac -> configure( item );
+		ActiveSocket *ac = runActiveSocketFactory( name , item );
 		logger.logInfo( "AIMediaImpl::createActiveSockets: direct channel created - name=" + name );
 	}
 }
@@ -137,16 +159,6 @@ void AIMediaImpl::stopActiveSockets()
 		ActiveSocket *ac = activeSockets.getClassByIndex( k );
 		ac -> stopActiveSocket();
 	}
-}
-
-Listener *AIMediaImpl::runListenerFactory( String name )
-{
-	ASSERT( listeners.get( name ) == NULL );
-
-	Listener *listener = new SocketServer( name );
-	listeners.add( name , listener );
-
-	return( listener );
 }
 
 void AIMediaImpl::stopListeners()

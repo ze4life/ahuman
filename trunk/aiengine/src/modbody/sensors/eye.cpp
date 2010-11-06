@@ -5,7 +5,7 @@ class Eye : public Sensor, public Object{
 public:
 	AIEngine& engine;
 
-	Eye( MindArea *area ) :	Sensor( "EyeSensor" , area , CortexIOSizeInfo( 20 , 2 ) ) ,
+	Eye( MindArea *area ) :	Sensor( "Eye" , area , CortexIOSizeInfo( 20 , 2 ) ) ,
 		engine( AIEngine::getInstance() ) {
 
 	}

@@ -233,6 +233,7 @@ private:
 	Channel *channelOut;
 
 	String requestId;
+	String name;
 	String className;
 	String functionName;
 	Xml params;
