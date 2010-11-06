@@ -22,7 +22,7 @@ AITestPoolImpl::AITestPoolImpl()
 	callSub = NULL;
 }
 
-void AITestPoolImpl::createService() {
+void AITestPoolImpl::createService( Xml config ) {
 	// create units
 	addTestUnit( TestUnit::createFannCustomTest() );
 	addTestUnit( TestUnit::createHtmViewCustomTest() );
@@ -39,20 +39,20 @@ void AITestPoolImpl::createService() {
 			logger.logInfo( String( "method=" ) + methods.getKeyByIndex( m ) );
 		}
 	}
+
+	Xml xml = config.getFirstChild( "channels" );
+	channelIn = xml.getProperty( "request" );
+	channelOut = xml.getProperty( "response" );
 }
 
 void AITestPoolImpl::initService() {
-}
-
-void AITestPoolImpl::runService() {
 	// subscribe
-	Xml xml = configService.getFirstChild( "channels" );
-	String channelIn = xml.getProperty( "request" );
-	String channelOut = xml.getProperty( "response" );
-
 	AIIO io;
 	callSub = io.subscribe( NULL , channelIn , "testpool" , this );
 	callPub = io.createPublisher( NULL , channelOut , "testpool" , "test" );
+}
+
+void AITestPoolImpl::runService() {
 }
 
 void AITestPoolImpl::exitService() {

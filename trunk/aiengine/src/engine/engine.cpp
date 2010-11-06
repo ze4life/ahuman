@@ -256,12 +256,11 @@ void AIEngineImpl::createServices()
 		Xml configService = loadXml( fileName );
 		ASSERTMSG( configService.exists() , String( "Service name=" ) + svc -> getName() + " is not configured" );
 		svc -> setConfigService( configService );
-		svc -> configure();
 
 		// internal data creation
 		svc -> isCreateStarted = true; 
 		logger.logInfo( String( "create service: name=" ) + svc -> getName() + String( "..." ) );
-		svc -> createService();
+		svc -> createService( configService );
 		logger.logInfo( String( "create service: name=" ) + svc -> getName() + String( " - done" ) );
 		svc -> isCreateCompleted = true; 
 	}

@@ -12,7 +12,7 @@
 class AILibBNImpl : public AILibBN , public Service
 {
 	// service
-	virtual void createService();
+	virtual void createService( Xml config );
 	virtual void initService();
 	virtual void runService();
 	virtual void exitService();

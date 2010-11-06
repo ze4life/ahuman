@@ -15,7 +15,7 @@
 class AIBodyImpl : public AIBody , public Service
 {
 	// service
-	virtual void createService();
+	virtual void createService( Xml config );
 	virtual void initService();
 	virtual void runService();
 	virtual void exitService();
@@ -25,6 +25,7 @@ class AIBodyImpl : public AIBody , public Service
 // external interface
 public:
 	AIBodyImpl();
+	static AIBodyImpl *getInstance();
 
 private:
 	static MindArea *createSensors();
@@ -124,6 +125,7 @@ class Sensors : public Object , public MindArea
 	RFC_HND threadSensesTracker;
 	bool runSensesTracker;
 	MapStringToClass<Sensor> sensors;
+	MapStringToClass<Sensor> sensorsOffline;
 	BrainLocation coverLocation;
 
 // construction
@@ -143,7 +145,7 @@ public:
 
 private:
 	void createSensors();
-	void addSensor( Sensor *att );
+	void addSensor( Xml configSensors , Sensor *att );
 
 	void startTracker();
 	void onRunSensesTracker( void *p_arg );

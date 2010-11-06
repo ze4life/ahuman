@@ -7,7 +7,12 @@
 
 AIBrain::AIBrain() 
 { 
-	thisPtr = static_cast<AIBrainImpl *>( AIEngine::getInstance().getService( "Brain" ) ); 
+	thisPtr = AIBrainImpl::getInstance();
+}
+
+AIBrainImpl *AIBrainImpl::getInstance()
+{
+	return( ( AIBrainImpl * )AIEngine::getInstance().getService( "Brain" ) );
 }
 
 /* static */ Service *AIBrain::newService()
@@ -26,17 +31,11 @@ AIBrainImpl::AIBrainImpl()
 	activeMemory = NULL;
 }
 
-AIBrainImpl *AIBrainImpl::getInstance()
-{
-	return( ( AIBrainImpl * )AIEngine::getInstance().getService( "Brain" ) );
-}
-
-void AIBrainImpl::createService()
+void AIBrainImpl::createService( Xml config )
 {
 	// load mind map
 	logger.logInfo( "reading mind map..." );
-	Xml xml = Service::getConfigService();
-	Xml xmlMindMap = xml.getFirstChild( "MindMap" );
+	Xml xmlMindMap = config.getFirstChild( "MindMap" );
 	ASSERTMSG( xmlMindMap.exists() , "MindMap is not present in brain configuration file" );
 
 	mindMap -> createFromXml( xmlMindMap );
@@ -49,7 +48,7 @@ void AIBrainImpl::createService()
 	lockStructure = rfc_hnd_semcreate();
 
 	// create active memory
-	Xml xmlActiveMemory = xml.getFirstChild( "ActiveMemory" );
+	Xml xmlActiveMemory = config.getFirstChild( "ActiveMemory" );
 	ASSERTMSG( xmlActiveMemory.exists() , "ActiveMemory is not present in brain configuration file" );
 
 	activeMemory = new ActiveMemory();

@@ -15,19 +15,45 @@ get results. Any module can publish to the 'imagekbcmd' to activate the search p
 
 ***************************************************************************************/
 
-ImageKnowledgeBase::ImageKnowledgeBase()
-:	engine( AIEngine::getInstance() )
+class ImageKnowledgeBase : public KnowledgeController , public Subscriber
+{
+private:
+	AIEngine& engine;
+	RFC_HND thread;
+
+	String externalChannel;
+	String commandChannel;
+	String responseChannel;
+
+	Publisher *publisher;
+	Subscription *subscription;
+
+public:
+
+ImageKnowledgeBase()
+:	KnowledgeController( getClass() ) , 
+	engine( AIEngine::getInstance() )
 {
 }
 
-void ImageKnowledgeBase::configure( Xml config )
+const char *getClass() { return( "ImageKnowledgeBase" ); };
+
+public:
+
+virtual void onTextMessage( TextMessage *msg )
+{
+	logger.logDebug( "ImageQueryProcessor::onMessage - Got message to be processed.");
+	processQuery( msg -> getText() );
+}
+
+virtual void createController( Xml config )
 {
 	externalChannel = config.getProperty( "external-channel" );
 	commandChannel = config.getProperty( "command-topic" );
 	responseChannel = config.getProperty( "response-topic" );
 }
 
-void ImageKnowledgeBase::startKnowledgeSource()
+virtual void startController()
 {
 	// create publisher
 	AIIO io;
@@ -38,7 +64,7 @@ void ImageKnowledgeBase::startKnowledgeSource()
 	logger.logDebug( "ImageKnowledgeBase::startKnowledgeSource - Source started");
 }
 
-void ImageKnowledgeBase::stopKnowledgeSource()
+virtual void stopController()
 {
 	AIIO io;
 	io.unsubscribe( subscription );
@@ -48,19 +74,12 @@ void ImageKnowledgeBase::stopKnowledgeSource()
 	publisher = NULL;
 }
 
-/**
-Function called when we get message in the queue 
-*/
-void ImageKnowledgeBase::onTextMessage( TextMessage *msg )
-{
-	logger.logDebug( "ImageQueryProcessor::onMessage - Got message to be processed.");
-	processQuery( msg -> getText() );
-}
+private:
 
 /**
 Function responsible to fetch image data from image knowledge base server 
 */
-void ImageKnowledgeBase::processQuery( String query )
+void processQuery( String query )
 {
 	AIMedia media;
 
@@ -83,3 +102,11 @@ void ImageKnowledgeBase::processQuery( String query )
 		publisher -> publish( NULL , data );
 	}
 }
+
+}; // class
+
+KnowledgeController *KnowledgeController::createImageKnowledgeBase()
+{
+	return( new ImageKnowledgeBase() );
+}
+

@@ -4,7 +4,8 @@
 /*#########################################################################*/
 
 SocketServer::SocketServer( String p_name )
-:	engine( AIEngine::getInstance() )
+:	engine( AIEngine::getInstance() ) ,
+	Listener( p_name )
 {
 	name = p_name;
 	continueConnecting = true;

@@ -24,7 +24,7 @@ AILibBNImpl::AILibBNImpl()
 {
 }
 
-void AILibBNImpl::createService()
+void AILibBNImpl::createService( Xml config )
 {
 	addLibVariant( AILibBNImpl::createViewCustomLib() );
 	addLibVariant( AILibBNImpl::createNeoCortexCustomLib() );

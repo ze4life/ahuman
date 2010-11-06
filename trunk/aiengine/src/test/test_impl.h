@@ -12,9 +12,21 @@ class TestMethod;
 // derives knowledge from io, activates mind
 class AITestPoolImpl : public AITestPool , public Service , public Subscriber
 {
+private:
+	AIEngine& engine;
+
+	// configuration
+	String channelIn;
+	String channelOut;
+
+	// internals
+	Publisher *callPub;
+	Subscription *callSub;
+	MapStringToClass<TestUnit> units;
+
 public:
 	// service
-	virtual void createService();
+	virtual void createService( Xml config );
 	virtual void initService();
 	virtual void runService();
 	virtual void exitService();
@@ -32,13 +44,6 @@ public:
 // internals
 private:
 	void addTestUnit( TestUnit *p_unit );
-
-private:
-	AIEngine& engine;
-
-	Publisher *callPub;
-	Subscription *callSub;
-	MapStringToClass<TestUnit> units;
 };
 
 /*#########################################################################*/

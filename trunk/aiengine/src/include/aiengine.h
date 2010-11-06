@@ -52,6 +52,7 @@ public:
 
 	// navigation
 	Xml getChildNode( String s );
+	Xml getChildNamedNode( String element , String name );
 	Xml getFirstChild( String name );
 	Xml getNextChild( String name );
 	// path items are delimited by '/' chars
@@ -167,7 +168,7 @@ public:
 		};
 
 	virtual const char *getName() = 0;
-	virtual void createService() = 0;
+	virtual void createService( Xml config ) = 0;
 	virtual void initService() = 0;
 	virtual void runService() = 0;
 	virtual void exitService() = 0;
@@ -178,7 +179,6 @@ public:
 	bool isInit;
 	bool isRun;
 
-	virtual void configure() {};
 	void setConfigMain( Xml p_config ) { configMain = p_config; };
 	void setConfigService( Xml p_config ) { configService = p_config; };
 	Xml getConfigMain() { return( configMain ); };
@@ -202,6 +202,7 @@ public:
 protected:
 	Logger logger;
 
+private:
 	// configuration
 	Xml configMain;
 	Xml configService;
