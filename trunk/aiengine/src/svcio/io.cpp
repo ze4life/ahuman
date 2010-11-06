@@ -83,7 +83,7 @@ Publisher *AIIOImpl::createPublisher( Session *session , String channel , String
 	PublisherImpl *pub = new PublisherImpl( session , ch , pubName , msgtype );
 
 	ch -> addPublisher( pubName , pub );
-	logger.logInfo( pubName + " publisher started on " + channel + " channel" );
+	logger.logInfo( pubName + " i/o publisher started on " + channel + " channel" );
 
 	return( pub );
 }
@@ -94,7 +94,7 @@ Subscription *AIIOImpl::subscribe( Session *session , String channel , String su
 	SubscriptionImpl *sub = new SubscriptionImpl( session , ch , subName , subHandler );
 
 	ch -> addSubscription( subName , sub );
-	logger.logInfo( subName + " subscriber started on " + channel + " channel" );
+	logger.logInfo( subName + " i/o subscriber started on " + channel + " channel" );
 	
 	return( sub );
 }
@@ -106,7 +106,7 @@ Subscription *AIIOImpl::subscribeSelector( Session *session , String channel , S
 	sub -> setSelector( selector );
 
 	ch -> addSubscription( subName , sub );
-	logger.logInfo( subName + " subscriber started on " + channel + " channel" );
+	logger.logInfo( subName + " i/o subscriber started on " + channel + " channel" );
 	
 	return( sub );
 }
@@ -120,7 +120,7 @@ bool AIIOImpl::destroyPublisher( Publisher *publisher )
 	if( ch != NULL )
 		{
 			ch -> deletePublisher( name );
-			logger.logInfo( name + " publisher stopped on " + ch -> getName() + " channel" );
+			logger.logInfo( name + " i/o publisher stopped on " + ch -> getName() + " channel" );
 		}
 
 	delete pub;
@@ -135,7 +135,7 @@ bool AIIOImpl::unsubscribe( Subscription *subscription )
 	if( ch != NULL )
 		{
 			ch -> deleteSubscription( sub -> name );
-			logger.logInfo( sub -> name + " subscriber unsubscribed from " + ch -> getName() + " channel" );
+			logger.logInfo( sub -> name + " i/o subscriber unsubscribed from " + ch -> getName() + " channel" );
 		}
 	delete sub;
 	return( true );
@@ -164,7 +164,7 @@ Channel *AIIOImpl::getChannel( String name )
 	lock();
 	Channel *channel = mapChannels.get( name );
 	unlock();
-	ASSERTMSG( channel != NULL , String( "Channel does not exist: [" ) + name + "]" );
+	ASSERTMSG( channel != NULL , String( "i/o channel does not exist: [" ) + name + "]" );
 
 	return( channel );
 }

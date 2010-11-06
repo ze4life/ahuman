@@ -84,7 +84,7 @@ void RuntimeException::printStack( Logger& logger )
 { 
 	if( !isSEH() ) {
 		logger.logError( String( "C++ Exception: " ) + msg + " (file=" + fileShort + ", line=" + line + ")" );
-		logger.printStack( stack );
+		logger.printStack( stack , 0 );
 		return;
 	}
 

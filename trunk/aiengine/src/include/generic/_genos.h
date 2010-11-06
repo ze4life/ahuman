@@ -263,6 +263,8 @@ typedef struct _rfc_threadstacklevel
 } rfc_threadstacklevel;
 
 extern rfc_threadstack *rfc_thr_stackget( int skipLevels );
+extern rfc_threadstack *rfc_thr_stackgetforthread( RFC_HND thread , int skipLevels );
+
 extern int			rfc_thr_stackfulldepth( rfc_threadstack *stack );
 extern int			rfc_thr_stackdepth( rfc_threadstack *stack );
 extern rfc_threadstacklevel *rfc_thr_stacklevel( rfc_threadstack *stack , int level );

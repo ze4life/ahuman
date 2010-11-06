@@ -124,7 +124,9 @@ public:
 
 	// stack
 	void printStack();
-	void printStack( rfc_threadstack *stack , int skipTop = 0 );
+	void printStack( rfc_threadstack *stack , int skipTop );
+	void printStackInplace( rfc_threadstack *stack , int skipTop );
+	void printStackInternal( rfc_threadstack *stack , int skipTop , bool printInplace );
 
 	// log calls
 	void logInfo( const char *s , LogOutputMode logMode = LogDefault );

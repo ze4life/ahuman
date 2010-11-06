@@ -113,9 +113,9 @@ String Channel::publish( Session *p_session , PublisherImpl *pub , const char *m
 
 String Channel::publish( Session *p_session , PublisherImpl *pub , Message *msg )
 {
-	ASSERTMSG( opened , "Cannot publish to channel name=" + name + " - not open" );
+	ASSERTMSG( opened , "cannot publish to i/o channel name=" + name + " - not open" );
 	if( sync )
-		ASSERTMSG( run , "Cannot publish to sync channel name=" + name + " - not started" );
+		ASSERTMSG( run , "cannot publish to sync i/o channel name=" + name + " - not started" );
 
 	String id = getNewMessageId();
 	msg -> setChannelMessageId( id ); 
@@ -135,9 +135,9 @@ String Channel::publish( Session *p_session , PublisherImpl *pub , Message *msg 
 
 String Channel::publish( Session *p_session , Message *msg )
 {
-	ASSERTMSG( opened , "Cannot publish to channel name=" + name + " - not open" );
+	ASSERTMSG( opened , "cannot publish to i/o channel name=" + name + " - not open" );
 	if( sync )
-		ASSERTMSG( run , "Cannot publish to sync channel name=" + name + " - not started" );
+		ASSERTMSG( run , "cannot publish to sync i/o channel name=" + name + " - not started" );
 
 	String id = getNewMessageId();
 	msg -> setChannelMessageId( id ); 
@@ -198,7 +198,7 @@ void Channel::deletePublisher( String key )
 // executing in separate thread
 void Channel::processMessages()
 {
-	logger.logInfo( String( "CHANNEL ID=" ) + Object::getInstance() + ": opened" );
+	logger.logInfo( String( "i/o channel opened id=" ) + Object::getInstance() );
 	while( run ) 
 		{
 			// get next message
@@ -207,14 +207,14 @@ void Channel::processMessages()
 				break;
 
 			// log
-			logger.logInfo( String( "CHANNEL ID=" ) + Object::getInstance() + ": extracted message ID=" + message -> getChannelMessageId() );
+			logger.logInfo( String( "message extracted from i/o channel id=" ) + Object::getInstance() + ", channelMessageId=" + message -> getChannelMessageId() );
 
 			// pass message
 			subscribeEvent( message );
 			delete message;
 		}
 
-	logger.logInfo( String( "CHANNEL: ID=" ) + Object::getInstance() + ": closed" );
+	logger.logInfo( String( "i/o channel closed id=" ) + Object::getInstance() );
 }
 
 /*#########################################################################*/

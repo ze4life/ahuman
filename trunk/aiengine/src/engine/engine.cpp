@@ -19,6 +19,17 @@ void AIUnhandledExceptionTranslator( unsigned int exceptionCode , struct _EXCEPT
 class ThreadData
 {
 public:
+	RFC_THREAD threadExtId;
+	String name;
+	DWORD threadId;
+	Object *object;
+	void ( Object::*objectFunction )( void *p_arg );
+	void *objectFunctionArg;
+	void *runningAddress;
+
+	MapStringToClass<ThreadObject> map;
+
+public:
 	ThreadData() {
 		memset( &threadExtId , 0 , sizeof( RFC_THREAD ) );
 		threadId = ( DWORD )NULL;
@@ -26,21 +37,12 @@ public:
 		objectFunction = NULL;
 		objectFunctionArg = NULL;
 	}
-public:
-	RFC_THREAD threadExtId;
-	String name;
-	DWORD threadId;
-	Object *object;
-	void ( Object::*objectFunction )( void *p_arg );
-	void *objectFunctionArg;
-
-	MapStringToClass<ThreadObject> map;
 };
 
 /* if termination signal catched */
 static void on_exit( int p_sig )
 {
-	AIEngine::getInstance().exit( -4 );
+	AIEngine::getInstance().exit( p_sig );
 }
 
 static 	unsigned		__stdcall threadMainFunction( void *p_arg )
@@ -119,6 +121,7 @@ void AIEngineImpl::init()
 	workerCreated();
 
 	ThreadData *td = new ThreadData;
+	td -> name = "main";
 	workerStarted( td );
 
 	// engine configuration
@@ -198,7 +201,8 @@ int AIEngineImpl::runInternal( const char *p_configDir )
 		if( count <= 0 )
 			break;
 
-		logger.logInfo( String( "Waiting for stopping " ) + count + " thread(s)..." );
+		String activeThreadList = getActiveThreads();
+		logger.logInfo( String( "Waiting for stopping " ) + count + " thread(s): " + activeThreadList );
 		rfc_thr_sleep( 1 );
 	}
 
@@ -215,18 +219,35 @@ int AIEngineImpl::runInternal( const char *p_configDir )
 
 void AIEngineImpl::exit( int status )
 {
+	// process again
 	workerCreated();
 
 	ThreadData *td = new ThreadData;
+	td -> name = "exit";
 	workerStarted( td );
 
+	switch( status ) {
+		case SIGBREAK :
+			printStackTrace();
+			break;
+		default:
+			exitServer();
+			break;
+	}
+
+	workerExited( 0 );
+
+	// reset signal handlers
+	setSignalHandlers();
+}
+
+void AIEngineImpl::exitServer()
+{
 	logger.logInfo( "Stop by signal" );
 
 	// raise stop event
 	stoppedBySignal = true;
 	rfc_hnd_evsignal( eventExit );
-
-	workerExited( 0 );
 }
 
 void AIEngineImpl::createServices()
@@ -378,6 +399,11 @@ void AIEngineImpl::runServices()
 	logger.logInfo( "run services - done" );
 
 	// set signal handlers
+	setSignalHandlers();
+}
+
+void AIEngineImpl::setSignalHandlers()
+{
 	signal( SIGABRT , on_exit );
 	signal( SIGINT , on_exit );
 	signal( SIGTERM , on_exit );
@@ -504,7 +530,6 @@ unsigned AIEngineImpl::threadFunction( ThreadData *td )
 
 	String name = td -> name;
 	try {
-		tlogger.logInfo( "Thread " + name + ": started with threadId=0x" + String::toHex( ( int )td -> threadId ) );
 		tlogger.attach( name );
 		void ( Object::*of )( void *p_arg ) = td -> objectFunction;
 		void *oa = td -> objectFunctionArg;
@@ -520,7 +545,6 @@ unsigned AIEngineImpl::threadFunction( ThreadData *td )
 		status = -13;
 	}
 
-	tlogger.logInfo( "Thread " + name + ": finished" );
 	tlogger.attach( o );
 	workerExited( status );
 	return( status );
@@ -539,7 +563,7 @@ RFC_HND AIEngineImpl::runThread( String p_name , Object *object , void (Object::
 
 	if( rfc_thr_process( &td -> threadExtId , ( void * )td , threadMainFunction ) ) {
 		logger.logError( "AIEngineImpl::runThread - cannot start thread: " + td -> name );
-		workerExited( td -> threadExtId , -10 );
+		workerExited( td , -10 );
 		return( NULL );
 	}
 
@@ -555,6 +579,17 @@ void AIEngineImpl::workerCreated()
 
 void AIEngineImpl::workerStarted( ThreadData *threadData )
 {
+	String name = threadData -> name;
+
+	// add worker to managed list
+	rfc_hnd_semlock( lockExit );
+	if( threads.get( name ) != NULL ) {
+		rfc_hnd_semunlock( lockExit );
+		ASSERTFAILED( "Thread already started with name=" + name );
+	}
+
+	threads.add( name , threadData );
+
 	// thread-allocated data
 	TlsSetValue( tlsIndex , threadData );
 
@@ -564,24 +599,47 @@ void AIEngineImpl::workerStarted( ThreadData *threadData )
 	EngineThreadHelper *to = new EngineThreadHelper;
 	to -> addThreadObject();
 	manageCallStack();
+
+	logger.logInfo( "thread started name=" + name + ", threadId=0x" + String::toHex( ( int )threadData -> threadId ) );
+	rfc_hnd_semunlock( lockExit );
 }
 
-void AIEngineImpl::workerExited( RFC_THREAD threadId , int status )
+void AIEngineImpl::workerExited( ThreadData *threadData , int status )
 {
-	workerDestroyed();
+	ASSERT( threadData != NULL );
+
+	rfc_hnd_semlock( lockExit );
+
+	// drop from thread list
+	String name = threadData -> name;
+	int threadId = ( int )threadData -> threadId;
+	threads.remove( name );
+
+	threadData -> map.destroy();
+
+	// decrease counter
+	countExit--;
+
+	// if no more workers (except main) - notify
+	if( countExit == 1 )
+		rfc_hnd_evsignal( eventExit );
+
+	logger.logInfo( "thread stopped name=" + name + ", threadId=0x" + String::toHex( ( int )threadData -> threadId ) );
+	delete threadData;
+
+	rfc_hnd_semunlock( lockExit );
 }
 
 void AIEngineImpl::workerExited( int status )
 {
-	workerDestroyed();
-
-	// thread-allocated data
+	// get thread-allocated data - clean it in thread memory
 	ThreadData *threadData = ( ThreadData * )TlsGetValue( tlsIndex );
-	TlsSetValue( tlsIndex , NULL );
 
-	ASSERT( threadData != NULL );
-	threadData -> map.destroy();
-	delete threadData;
+	// run common
+	workerExited( threadData , status );
+
+	// to be no more used
+	TlsSetValue( tlsIndex , NULL );
 }
 
 bool AIEngineImpl::waitThreadExited( RFC_HND threadId )
@@ -595,16 +653,18 @@ bool AIEngineImpl::waitThreadExited( RFC_HND threadId )
 	return( true );
 }
 
-void AIEngineImpl::workerDestroyed()
+String AIEngineImpl::getActiveThreads()
 {
+	String rs = "";
 	rfc_hnd_semlock( lockExit );
-	countExit--;
-
-	// if no more workers (except main) - notify
-	if( countExit == 1 )
-		rfc_hnd_evsignal( eventExit );
-
+	for( int k = 0; k < threads.count(); k++ ) {
+		ThreadData *td = threads.getClassByIndex( k );
+		if( k > 0 )
+			rs += ", ";
+		rs += td -> name;
+	}
 	rfc_hnd_semunlock( lockExit );
+	return( rs );
 }
 
 void AIEngineImpl::addThreadObject( const char *key , ThreadObject *to )
@@ -801,3 +861,45 @@ void AIEngineImpl::manageCallStack()
 	EngineThreadHelper *to = EngineThreadHelper::getThreadObject();
 	to -> oldAIUnhandledExceptionTranslator = ( void (*)() )::_set_se_translator( AIUnhandledExceptionTranslator );
 }
+
+void AIEngineImpl::printStackTrace()
+{
+	rfc_hnd_semlock( lockExit );
+	logger.logInfo( "THREAD DUMP:" , Logger::LogStart );
+	logger.logInfo( "------------" , Logger::LogLine );
+
+	for( int k = 0; k < threads.count(); k++ ) {
+		ThreadData *td = threads.getClassByIndex( k );
+		printStackTrace( td );
+	}
+
+	logger.logInfo( "------------" , Logger::LogStop );
+	rfc_hnd_semlock( lockExit );
+}
+
+void AIEngineImpl::printStackTrace( ThreadData *td )
+{
+	logger.logInfo( "thread name=" + td -> name + ", threadId=0x" + String::toHex( ( int )td -> threadId ) + ":" , Logger::LogLine );
+
+	// suspend if not the same thread
+	HANDLE handle = td -> threadExtId.s_ih;
+	bool sameThread = ( ::GetCurrentThread() == handle )? true : false;
+	rfc_threadstack *stack;
+	if( sameThread )
+		stack = rfc_thr_stackget( 0 );
+	else {
+		// suspend thread
+		::SuspendThread( handle );
+
+		// get stack
+		stack = rfc_thr_stackgetforthread( ( RFC_HND )handle , 0 );
+
+		// resume thread
+		::ResumeThread( handle );
+	}
+
+	// print stack
+	logger.printStackInplace( stack , 0 );
+	logger.logInfo( "                                                                              " , Logger::LogLine );
+}
+

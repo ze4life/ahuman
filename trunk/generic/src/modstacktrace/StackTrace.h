@@ -32,8 +32,11 @@ public:
 	 * @param bufferSize Size of the output buffer.
 	 * @return Needed buffer size.
 	 */
-	static bool	getStackTrace( MapFile** map, int maps, void *ptr , getStackTraceCB cb );
+	static bool	getStackTrace( unsigned long thread , MapFile** map, int maps, void *ptr , getStackTraceCB cb );
 	static void fillMapEntry( MapFile& map , int entry , char *p_class , char *p_func );
+
+	static void switchContext( unsigned long thread , void *saveContext );
+	static void restoreContext( unsigned long thread , void *saveContext );
 };
 
 

@@ -19,7 +19,7 @@ typedef void ( *getStackTraceCB )(
 	const char *functionName , 
 	const char *message );
 
-extern short getStackTrace( void *ptr , getStackTraceCB pf );
+extern short getThreadStackTrace( unsigned long thread , void *ptr , getStackTraceCB pf );
 extern short getModuleItemByAddr( void *p_addr , char *p_class , char *p_func );
 
 #ifdef __cplusplus
