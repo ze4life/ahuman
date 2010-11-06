@@ -64,6 +64,7 @@ public:
 	virtual Service *getService( const char *serviceName );
 
 	// threads
+	virtual void threadDump() { printStackTrace(); };
 	virtual RFC_HND runThread( String name , Object *object , void (Object::*)( void *p_arg ) , void *p_arg );
 	virtual bool waitThreadExited( RFC_HND thread );
 	virtual RFC_HND getThreadHandle();

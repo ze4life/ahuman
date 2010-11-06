@@ -56,6 +56,16 @@ static 	unsigned		__stdcall threadMainFunction( void *p_arg )
 /*#########################################################################*/
 /*#########################################################################*/
 
+void AIEngineImpl::setSignalHandlers()
+{
+	signal( SIGABRT , on_exit );
+	signal( SIGINT , on_exit );
+	signal( SIGTERM , on_exit );
+	signal( SIGFPE , on_exit );
+	signal( SIGILL , on_exit );
+	signal( SIGSEGV , on_exit );
+}
+
 int AIEngine::run( const char *configDir )
 {
 	int status = 0;
@@ -227,7 +237,7 @@ void AIEngineImpl::exit( int status )
 	workerStarted( td );
 
 	switch( status ) {
-		case SIGBREAK :
+		case SIGABRT :
 			printStackTrace();
 			break;
 		default:
@@ -400,16 +410,6 @@ void AIEngineImpl::runServices()
 
 	// set signal handlers
 	setSignalHandlers();
-}
-
-void AIEngineImpl::setSignalHandlers()
-{
-	signal( SIGABRT , on_exit );
-	signal( SIGINT , on_exit );
-	signal( SIGTERM , on_exit );
-	signal( SIGFPE , on_exit );
-	signal( SIGILL , on_exit );
-	signal( SIGSEGV , on_exit );
 }
 
 void AIEngineImpl::waitExitSignal()
