@@ -6,32 +6,32 @@
 			<property name="auth" value="false"/>
 			<property name="port" value="20001"/> 
 			<property name="msgtype" value="xmlcall"/> 
-			<property name="topic.in" value="debug.commands.in"/> 
-			<property name="topic.out" value="debug.commands.out"/> 
+			<property name="topic-in" value="debug.commands.in"/> 
+			<property name="topic-out" value="debug.commands.out"/> 
 		</listener>
 	</listeners>
 
 	<directchannels>
 		<channel name="google" run="true">
-			<property name="type" value="request-response"/>
-			<property name="permanent" value="false"/>
-			<property name="direction" value="duplex"/>
-			<property name="host" value="20001"/> 
-			<property name="port" value="20001"/> 
-			<property name="msgtype" value="text"/> 
-			<property name="topic.in" value="debug.commands.in"/> 
-			<property name="topic.out" value="debug.commands.out"/> 
+			<property name="protocol" value="request-response"/>
+			<property name="msgtype" value="text"/>
+			<property name="permanent" value="true"/>
+			<property name="host" value="google.com"/> 
+			<property name="port" value="80"/> 
+			<property name="redirect-in" value="true"/>
+			<property name="redirect-out" value="true"/> 
+			<property name="topic-in" value="http.in"/> 
+			<property name="topic-out" value="http.out"/> 
 		</channel>
 
 		<channel name="image-processor" run="false">
-			<property name="type" value="request-response"/>
-			<property name="permanent" value="false"/>
-			<property name="direction" value="duplex"/>
+			<property name="protocol" value="request-response"/>
+			<property name="msgtype" value="text"/>
+			<property name="permanent" value="true"/>
 			<property name="host" value="localhost"/> 
 			<property name="port" value="9000"/> 
-			<property name="msgtype" value="text"/> 
-			<property name="topic.in" value="debug.commands.in"/> 
-			<property name="topic.out" value="debug.commands.out"/> 
+			<property name="redirect-in" value="false"/>
+			<property name="redirect-out" value="false"/> 
 		</channel>
 	</directchannels>
 

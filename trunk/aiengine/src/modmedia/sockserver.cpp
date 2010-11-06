@@ -51,9 +51,9 @@ void SocketServer::configure( Xml config )
 	wayOut = direction.equals( "out" ) || direction.equals( "duplex" );
 
 	if( wayIn )
-		topicIn = config.getProperty( "topic.in" );
+		topicIn = config.getProperty( "topic-in" );
 	if( wayOut )
-		topicOut = config.getProperty( "topic.out" );
+		topicOut = config.getProperty( "topic-out" );
 
 	String smsgType = config.getProperty( "msgtype" , "text" );
 	if( smsgType.equals( "text" ) )

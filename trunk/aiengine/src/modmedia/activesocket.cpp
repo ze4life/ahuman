@@ -24,8 +24,8 @@ ActiveSocket::~ActiveSocket()
 
 void ActiveSocket::configure( Xml config )
 {
-	redirectInbound = config.getBooleanProperty( "redirect-inbound" );
-	redirectOutbound = config.getBooleanProperty( "redirect-outbound" );
+	redirectInbound = config.getBooleanProperty( "redirect-in" );
+	redirectOutbound = config.getBooleanProperty( "redirect-out" );
 
 	if( redirectInbound )
 		inboundChannelName = config.getProperty( "topic-in" );

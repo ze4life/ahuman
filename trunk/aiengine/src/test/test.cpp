@@ -28,6 +28,7 @@ void AITestPoolImpl::createService( Xml config ) {
 	addTestUnit( TestUnit::createHtmViewCustomTest() );
 	addTestUnit( TestUnit::createFileSysWalkerTest() );
 	addTestUnit( TestUnit::createNeoCortexTest() );
+	addTestUnit( TestUnit::createDirectChannelsTest() );
 	
 	// log available commands
 	logger.logInfo( "AVAILABLE TEST METHODS:" );

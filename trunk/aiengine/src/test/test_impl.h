@@ -75,6 +75,7 @@ public:
 	static TestUnit *createHtmViewCustomTest();
 	static TestUnit *createFileSysWalkerTest();
 	static TestUnit *createNeoCortexTest();
+	static TestUnit *createDirectChannelsTest();
 
 // generic
 public:

@@ -139,13 +139,13 @@ private:
 	void createListeners( Xml config );
 	void startListeners();
 	void stopListeners();
-	Listener *runListenerFactory( String name );
+	Listener *runListenerFactory( String name , Xml config );
 
 	// implement active connections
 	void createActiveSockets( Xml config );
 	void startActiveSockets();
 	void stopActiveSockets();
-	ActiveSocket *runActivatorFactory( String name );
+	ActiveSocket *runActiveSocketFactory( String name , Xml config );
 
 	ActiveSocket *getActiveSocket( String name );
 };

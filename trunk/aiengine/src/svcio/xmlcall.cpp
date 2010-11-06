@@ -29,9 +29,11 @@ void XmlCall::setXmlFromMessage()
 	XmlMessage::setXmlFromMessage( "xmlcall" );
 	
 	Xml xml = XmlMessage::getXml();
-	requestId = xml.getAttribute( "requestId" );
+	requestId = xml.getAttribute( "requestId" , "" );
+	name = xml.getAttribute( "name" , "" );
+
 	className = xml.getAttribute( "class" );
-	functionName = xml.getAttribute( "name" );
+	functionName = xml.getAttribute( "method" );
 	params = xml.getChildNode( "parameters" );
 }
 
@@ -87,8 +89,10 @@ Xml XmlCall::createResponse()
 	ASSERT( !xmlResponse.exists() );
 	
 	xmlResponse = AIEngine::getInstance().createXml( "xmlcallresult" );
-	xmlResponse.setAttribute( "requestId" , requestId );
-	xmlResponse.setAttribute( "name" , functionName );
+	if( !requestId.isEmpty() )
+		xmlResponse.setAttribute( "requestId" , requestId );
+	if( !name.isEmpty() )
+		xmlResponse.setAttribute( "name" , name );
 
 	return( xmlResponse );
 }
