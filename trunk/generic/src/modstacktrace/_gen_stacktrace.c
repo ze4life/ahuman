@@ -120,10 +120,10 @@ rfc_threadstack *rfc_thr_stackgetforthread( RFC_HND thread , int skipLevels )
 		if( module != NULL )
 			rfc_map_stradd( modules , modname , module );
 	}
+	rfc_hnd_semunlock( lockModulesHandle );
 
 	if( module == NULL || !getThreadStackTrace( &module , 1 , ( unsigned long )thread , stack , rfc_thr_onfillstack ) )
 		stack -> brokenStack = 1;
-	rfc_hnd_semunlock( lockModulesHandle );
 
 	return( stack );
 }
