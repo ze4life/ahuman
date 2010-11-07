@@ -84,22 +84,20 @@ void Logger::printStackInternal( rfc_threadstack *stack , int skipTop , bool pri
 {
 	int startItem = rfc_thr_stackfulldepth( stack ) - 1;
 
-	log( String( "CALL STACK:" ) , ( ( printInplace )? Logger::LogLine : Logger::LogStart ) , Logger::LogLevelInfo );
+	StringList lines;
+	lines.add( String( "CALL STACK:" ) );
 
 	if( skipTop == 0 )
 		skipTop = stack -> extraLevels;
+	
 	if( skipTop > 0 ) {
-		log( String( "\t...skipped..." ) , Logger::LogLine , Logger::LogLevelInfo );
+		lines.add( String( "\t...skipped..." ) );
 		startItem -= skipTop;
 	}
 
-	bool first = true;
+	bool skipLast = false;
 	for( int k = startItem; k >= 0; k-- ) {
 		rfc_threadstacklevel *sl = rfc_thr_stacklevel( stack , k );
-
-		LogOutputMode mode = Logger::LogLine;
-		if( first )
-			mode = ( ( printInplace )? Logger::LogLine : Logger::LogStop );
 
 		// extract short name
 		String moduleName = sl -> moduleName;
@@ -113,23 +111,34 @@ void Logger::printStackInternal( rfc_threadstack *stack , int skipTop , bool pri
 		if( !strcmp( moduleNameShort , "unknown" ) )
 			continue;
 
-		log( String( "\t" ) + sl -> className + 
+		lines.add( String( "\t" ) + sl -> className + 
 			"::" + sl -> functionName + 
 			" (" + moduleNameShort + 
-			", " + sl -> message + ")" , mode , Logger::LogLevelInfo );
+			", " + sl -> message + ")" );
 
 		// stop after main function
 		String functionName = sl -> functionName;
-		if( !first )
-			if( strcmp( functionName , "_main" ) == 0 ||
-				strcmp( functionName , "threadMainFunction" ) == 0 ||
-				strcmp( functionName , "runThread" ) == 0 ) {
-				mode = Logger::LogStop;
-				log( "\t...skipped..." , mode , Logger::LogLevelInfo );
-				break;
-			}
+		if( strcmp( functionName , "_main" ) == 0 ||
+			strcmp( functionName , "threadMainFunction" ) == 0 ||
+			strcmp( functionName , "runThread" ) == 0 ) {
+			if( k > 0 )
+				skipLast = true;
+			break;
+		}
+	}
 
-		first = false;
+	if( skipLast )
+		lines.add( "\t...skipped..." );
+
+	for( int k = 0; k < lines.count(); k++ ) {
+		LogOutputMode mode = Logger::LogLine;
+		if( !printInplace )
+			if( k == 0 )
+				mode = Logger::LogStart;
+			else
+			if( k == lines.count() - 1 )
+				mode = Logger::LogStop;
+		log( lines.get( k ) , mode , Logger::LogLevelInfo );
 	}
 }
 

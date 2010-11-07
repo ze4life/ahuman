@@ -64,7 +64,9 @@ public:
 	virtual Service *getService( const char *serviceName );
 
 	// threads
-	virtual void threadDump() { printStackTrace(); };
+	virtual void threadDumpAll( bool showStackTrace );
+	virtual void threadDumpByName( String name , bool showStackTrace );
+
 	virtual RFC_HND runThread( String name , Object *object , void (Object::*)( void *p_arg ) , void *p_arg );
 	virtual bool waitThreadExited( RFC_HND thread );
 	virtual RFC_HND getThreadHandle();
@@ -83,8 +85,7 @@ private:
 	int runInternal( const char *configDir );
 	void exitServer();
 	void setSignalHandlers();
-	void printStackTrace();
-	void printStackTrace( int index , ThreadData *td );
+	void printThreadStackTrace( ThreadData *td );
 
 	void workerCreated();
 	void workerStarted( ThreadData *threadData );

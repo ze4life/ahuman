@@ -17,14 +17,23 @@ public:
 
 	virtual void init() {
 		ADD_METHOD( TestEngineThreads::testThreadDump );
+		ADD_METHOD( TestEngineThreads::testShowThread );
 	}
 	
 // tests
 public:
 
 	void testThreadDump( XmlCall& call ) {
+		bool showStack = call.getBooleanParam( "showStack" );
 		AIEngine& engine = AIEngine::getInstance();
-		engine.threadDump();
+		engine.threadDumpAll( showStack );
+	}
+
+	void testShowThread( XmlCall& call ) {
+		String thread = call.getParam( "threadName" );
+		bool showStack = call.getBooleanParam( "showStack" );
+		AIEngine& engine = AIEngine::getInstance();
+		engine.threadDumpByName( thread , showStack );
 	}
 };
 

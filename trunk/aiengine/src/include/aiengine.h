@@ -246,7 +246,9 @@ public:
 	virtual Service *getService( const char *serviceName ) = 0;
 
 	// thread management
-	virtual void threadDump() = 0;
+	virtual void threadDumpAll( bool showStackTrace ) = 0;
+	virtual void threadDumpByName( String name , bool showStackTrace ) = 0;
+
 	virtual RFC_HND runThread( String name , Object *object , ObjectThreadFunction function , void *p_arg ) = 0;
 	virtual bool waitThreadExited( RFC_HND thread ) = 0;
 	virtual RFC_HND getThreadHandle() = 0;

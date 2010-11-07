@@ -133,6 +133,8 @@ void AIEngineImpl::init()
 
 	ThreadData *td = new ThreadData;
 	td -> name = "main";
+	td -> threadExtId.s_ih = ::OpenThread( THREAD_ALL_ACCESS , FALSE , ::GetCurrentThreadId() );
+	td -> threadExtId.s_ip = NULL;
 	workerStarted( td );
 
 	// engine configuration
@@ -237,15 +239,7 @@ void AIEngineImpl::exit( int status )
 	td -> name = "exit";
 	workerStarted( td );
 
-	switch( status ) {
-		case SIGABRT :
-			printStackTrace();
-			break;
-		default:
-			exitServer();
-			break;
-	}
-
+	exitServer();
 	workerExited( 0 );
 
 	// reset signal handlers
@@ -863,26 +857,48 @@ void AIEngineImpl::manageCallStack()
 	to -> oldAIUnhandledExceptionTranslator = ( void (*)() )::_set_se_translator( AIUnhandledExceptionTranslator );
 }
 
-void AIEngineImpl::printStackTrace()
+void AIEngineImpl::threadDumpAll( bool showStackTrace )
 {
 	rfc_hnd_semlock( lockExit );
-	logger.logInfo( "THREAD DUMP:" , Logger::LogStart );
+	logger.logInfo( String( "THREAD DUMP (" ) + "THREAD COUNT=" + threads.count() + "):" , Logger::LogStart );
 	logger.logInfo( "------------" , Logger::LogLine );
-	logger.logInfo( String( "THREAD COUNT=" ) + threads.count() , Logger::LogLine );
 
 	for( int k = 0; k < threads.count(); k++ ) {
 		ThreadData *td = threads.getClassByIndex( k );
-		printStackTrace( k , td );
+
+		String threadInfo = String( "THREAD DUMP: thread index=" ) + k + ", name=" + td -> name + ", threadId=0x" + String::toHex( ( int )td -> threadId );
+		if( showStackTrace )
+			 threadInfo += ":";
+		logger.logInfo( threadInfo , Logger::LogLine );
+
+		if( showStackTrace )
+			printThreadStackTrace( td );
 	}
 
 	logger.logInfo( "------------" , Logger::LogStop );
 	rfc_hnd_semunlock( lockExit );
 }
 
-void AIEngineImpl::printStackTrace( int index , ThreadData *td )
+void AIEngineImpl::threadDumpByName( String name , bool showStackTrace )
 {
-	logger.logInfo( String( "thread index=" ) + index + ", name=" + td -> name + ", threadId=0x" + String::toHex( ( int )td -> threadId ) + ":" , Logger::LogLine );
+	rfc_hnd_semlock( lockExit );
+	ThreadData *td = threads.get( name );
+	if( td != NULL ) {
+		String threadInfo = String( "THREAD DUMP: thread name=" ) + td -> name + ", threadId=0x" + String::toHex( ( int )td -> threadId );
+		if( showStackTrace )
+			 threadInfo += ":";
+		logger.logInfo( threadInfo );
 
+		if( showStackTrace )
+			printThreadStackTrace( td );
+	}
+	rfc_hnd_semunlock( lockExit );
+
+	ASSERTMSG( td != NULL , "Unknown thread name=" + name );
+}
+
+void AIEngineImpl::printThreadStackTrace( ThreadData *td )
+{
 	// suspend if not the same thread
 	DWORD currentThread = ::GetCurrentThreadId();
 	bool sameThread = ( currentThread == td -> threadId )? true : false;
