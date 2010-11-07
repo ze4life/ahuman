@@ -10,27 +10,36 @@ using namespace MAPFILE;
 
 //-----------------------------------------------------------------------------
 
+extern "C" void getCurrentModuleName( char *name , int namelen )
+{
+	MapFile::getModuleMapFilename( name , namelen );
+}
+
+extern "C" void *createModuleData( char *name , void *ptr , ::getStackTraceCB cb )
+{
+	MapFile *map = new MapFile( name );
+	if( map -> error() ) {
+		( *cb )( ptr , name , NULL , NULL , map -> errorString() );
+		if( map -> error() )
+			return( NULL );
+	}
+
+	return( map );
+}
+
+extern "C" void dropModuleData( void *module )
+{
+	MapFile *map = ( MapFile * )module;
+	delete map;
+}
+
 /**
  * Prints stack trace using callback
  */
-extern "C" short getThreadStackTrace( unsigned long thread , void *ptr , ::getStackTraceCB cb )
+extern "C" short getThreadStackTrace( void **maps , int nMaps , unsigned long thread , void *ptr , ::getStackTraceCB cb )
 {
-	// find out map file name
-	char modname[500];
-	MapFile::getModuleMapFilename( modname, sizeof(modname) );
-
-	// parse map file
-	MapFile map( modname );
-	if( map.error() )
-	{
-		( *cb )( ptr , modname , NULL , NULL , map.errorString() );
-		if( map.error() )
-			return( 0 );
-	}
-
 	// print stack trace into buffer
-	MapFile* maps[] = {&map};
-	if( StackTrace::getStackTrace( thread , maps, 1, ptr , cb ) )
+	if( StackTrace::getStackTrace( thread , ( MapFile ** )maps , nMaps , ptr , cb ) )
 		return( 1 );
 
 	return( 0 );

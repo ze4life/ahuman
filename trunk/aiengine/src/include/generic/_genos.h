@@ -262,6 +262,8 @@ typedef struct _rfc_threadstacklevel
 	const char *message;
 } rfc_threadstacklevel;
 
+extern void rfc_thr_initstackhandle();
+extern void rfc_thr_exitstackhandle();
 extern rfc_threadstack *rfc_thr_stackget( int skipLevels );
 extern rfc_threadstack *rfc_thr_stackgetforthread( RFC_HND thread , int skipLevels );
 

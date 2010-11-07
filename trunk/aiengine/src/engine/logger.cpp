@@ -93,11 +93,12 @@ void Logger::printStackInternal( rfc_threadstack *stack , int skipTop , bool pri
 		startItem -= skipTop;
 	}
 
+	bool first = true;
 	for( int k = startItem; k >= 0; k-- ) {
 		rfc_threadstacklevel *sl = rfc_thr_stacklevel( stack , k );
 
 		LogOutputMode mode = Logger::LogLine;
-		if( k == 0 )
+		if( first )
 			mode = ( ( printInplace )? Logger::LogLine : Logger::LogStop );
 
 		// extract short name
@@ -109,6 +110,9 @@ void Logger::printStackInternal( rfc_threadstack *stack , int skipTop , bool pri
 		if( from >= 0 && to >= 0 )
 			moduleNameShort = moduleNameShort.getMid( from + 1 , to - from - 1 );
 
+		if( !strcmp( moduleNameShort , "unknown" ) )
+			continue;
+
 		log( String( "\t" ) + sl -> className + 
 			"::" + sl -> functionName + 
 			" (" + moduleNameShort + 
@@ -116,7 +120,7 @@ void Logger::printStackInternal( rfc_threadstack *stack , int skipTop , bool pri
 
 		// stop after main function
 		String functionName = sl -> functionName;
-		if( k > 0 )
+		if( !first )
 			if( strcmp( functionName , "_main" ) == 0 ||
 				strcmp( functionName , "threadMainFunction" ) == 0 ||
 				strcmp( functionName , "runThread" ) == 0 ) {
@@ -124,6 +128,8 @@ void Logger::printStackInternal( rfc_threadstack *stack , int skipTop , bool pri
 				log( "\t...skipped..." , mode , Logger::LogLevelInfo );
 				break;
 			}
+
+		first = false;
 	}
 }
 
