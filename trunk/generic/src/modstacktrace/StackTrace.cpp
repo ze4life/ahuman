@@ -13,14 +13,14 @@
 namespace MAPFILE
 {
 
-static long getCaller( int index )
+static long getCaller( DWORD ebpvalue , int index )
 {
 #if defined(_DEBUG) && defined(_MSC_VER) && defined(_M_IX86)
 
 	long caller = 0;
 	__asm
 	{
-		mov ebx, ebp
+		mov ebx, ebpvalue
 		mov ecx, index
 		inc ecx
 		xor eax, eax
@@ -52,10 +52,10 @@ bool StackTrace::getStackTrace( unsigned long thread , MapFile** map, int maps, 
 
 	// handle foreign thread
 	CONTEXT saveContext;
-	if( thread != NULL )
-		switchContext( thread , &saveContext );
+	switchContext( thread , &saveContext );
 
 	long addr;
+	long ebpvalue = saveContext.Ebp;
 	for( i = 1; i <= MAX_DEPTH; i++ )
 		{
 			if( i == MAX_DEPTH )
@@ -66,7 +66,7 @@ bool StackTrace::getStackTrace( unsigned long thread , MapFile** map, int maps, 
 
 			try
 				{
-					addr = getCaller( i );
+					addr = getCaller( ebpvalue , i );
 				}
 			catch( ... )
 				{
@@ -82,8 +82,7 @@ bool StackTrace::getStackTrace( unsigned long thread , MapFile** map, int maps, 
 		}
 
 	// restore context
-	if( thread != NULL )
-		restoreContext( thread , &saveContext );
+	restoreContext( thread , &saveContext );
 
 	// output call stack
 	int needed = 0;
@@ -195,58 +194,31 @@ void StackTrace::fillMapEntry( MapFile& map , int entry , char *p_class , char *
 
 void StackTrace::switchContext( unsigned long thread , void *saveContext )
 {
-	// can be used only for suspended threads
-	// get context
 	CONTEXT *context = ( CONTEXT * )saveContext;
-	CONTEXT foreign;
-	::GetThreadContext( ( HANDLE )thread , &foreign );
 
-	DWORD ebxSave , ebpSave, ecxSave, eaxSave;
-	DWORD ebxSet , ebpSet, ecxSet, eaxSet;
+	if( thread == NULL ) {
+		long ebpvalue = 0;
+		__asm
+		{
+			mov ebpvalue, ebp
+		}
 
-	ebxSet = foreign.Ebx;
-	ebpSet = foreign.Ebp;
-	ecxSet = foreign.Ecx;
-	eaxSet = foreign.Eax;
-
-	// set context of current thread to required thread, save existing state
-	__asm
-	{
-		mov ebxSave, ebx
-		mov ebpSave, ebp
-		mov ecxSave, ecx
-		mov eaxSave, eax
-		mov ebx, ebxSet
-		mov ebp, ebpSet
-		mov ecx, ecxSet
-		mov eax, eaxSet
+		context -> Ebp = ebpvalue;
+		return;
 	}
 
-	context -> Ebx = ebxSave;
-	context -> Ebp = ebpSave;
-	context -> Ecx = ecxSave;
-	context -> Eax = eaxSave;
+	// can be used only for suspended threads
+	// get context
+	CONTEXT foreign;
+	memset( &foreign , 0 , sizeof( CONTEXT ) );
+	foreign.ContextFlags = CONTEXT_CONTROL;
+	::GetThreadContext( ( HANDLE )thread , &foreign );
+
+	context -> Ebp = foreign.Ebp;
 }
 
 void StackTrace::restoreContext( unsigned long thread , void *saveContext )
 {
-	// can be used only for suspended threads
-	// restore context of current thread
-	CONTEXT *context = ( CONTEXT * )saveContext;
-
-	DWORD ebxSet , ebpSet, ecxSet, eaxSet;
-	ebxSet = context -> Ebx;
-	ebpSet = context -> Ebp;
-	ecxSet = context -> Ecx;
-	eaxSet = context -> Eax;
-
-	__asm
-	{
-		mov ebx, ebxSet
-		mov ebp, ebpSet
-		mov ecx, ecxSet
-		mov eax, eaxSet
-	}
 }
 
 } // dev

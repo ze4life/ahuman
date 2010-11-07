@@ -25,7 +25,6 @@ public:
 	Object *object;
 	void ( Object::*objectFunction )( void *p_arg );
 	void *objectFunctionArg;
-	void *runningAddress;
 
 	MapStringToClass<ThreadObject> map;
 
@@ -69,6 +68,7 @@ void AIEngineImpl::setSignalHandlers()
 int AIEngine::run( const char *configDir )
 {
 	int status = 0;
+	rfc_thr_initstackhandle();
 
 	// create & run
 	AIEngineImpl::instance = new AIEngineImpl();
@@ -78,6 +78,7 @@ int AIEngine::run( const char *configDir )
 	delete AIEngineImpl::instance;
 	AIEngineImpl::instance = NULL;
 
+	rfc_thr_exitstackhandle();
 	return( status );
 }
 
@@ -867,28 +868,31 @@ void AIEngineImpl::printStackTrace()
 	rfc_hnd_semlock( lockExit );
 	logger.logInfo( "THREAD DUMP:" , Logger::LogStart );
 	logger.logInfo( "------------" , Logger::LogLine );
+	logger.logInfo( String( "THREAD COUNT=" ) + threads.count() , Logger::LogLine );
 
 	for( int k = 0; k < threads.count(); k++ ) {
 		ThreadData *td = threads.getClassByIndex( k );
-		printStackTrace( td );
+		printStackTrace( k , td );
 	}
 
 	logger.logInfo( "------------" , Logger::LogStop );
-	rfc_hnd_semlock( lockExit );
+	rfc_hnd_semunlock( lockExit );
 }
 
-void AIEngineImpl::printStackTrace( ThreadData *td )
+void AIEngineImpl::printStackTrace( int index , ThreadData *td )
 {
-	logger.logInfo( "thread name=" + td -> name + ", threadId=0x" + String::toHex( ( int )td -> threadId ) + ":" , Logger::LogLine );
+	logger.logInfo( String( "thread index=" ) + index + ", name=" + td -> name + ", threadId=0x" + String::toHex( ( int )td -> threadId ) + ":" , Logger::LogLine );
 
 	// suspend if not the same thread
-	HANDLE handle = td -> threadExtId.s_ih;
-	bool sameThread = ( ::GetCurrentThread() == handle )? true : false;
+	DWORD currentThread = ::GetCurrentThreadId();
+	bool sameThread = ( currentThread == td -> threadId )? true : false;
 	rfc_threadstack *stack;
+
 	if( sameThread )
 		stack = rfc_thr_stackget( 0 );
 	else {
 		// suspend thread
+		HANDLE handle = td -> threadExtId.s_ih;
 		::SuspendThread( handle );
 
 		// get stack
@@ -900,6 +904,5 @@ void AIEngineImpl::printStackTrace( ThreadData *td )
 
 	// print stack
 	logger.printStackInplace( stack , 0 );
-	logger.logInfo( "                                                                              " , Logger::LogLine );
 }
 

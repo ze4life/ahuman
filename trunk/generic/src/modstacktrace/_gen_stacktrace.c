@@ -5,6 +5,36 @@
 /*#######################################################*/
 /*#######################################################*/
 
+/* data to store modules */
+
+static RFC_HND lockModulesHandle = NULL;
+static rfc_strmap *modules;
+
+void rfc_thr_initstackhandle()
+{
+	lockModulesHandle = rfc_hnd_semcreate();
+	modules = rfc_map_strcreate();
+}
+
+void rfc_thr_exitstackhandle()
+{
+	int k;
+
+	rfc_hnd_semlock( lockModulesHandle );
+
+	for( k = 0; k < modules -> s_n; k++ )
+		dropModuleData( modules -> s_p[ k ].s_y );
+	rfc_map_strdrop( modules );
+	modules = NULL;
+
+	rfc_hnd_semunlock( lockModulesHandle );
+	rfc_hnd_semdestroy( lockModulesHandle );
+	lockModulesHandle = NULL;
+}
+
+/*#######################################################*/
+/*#######################################################*/
+
 static void rfc_thr_onfillstack( void *ptr ,
 	const char *moduleName , 
 	const char *className , 
@@ -73,12 +103,27 @@ rfc_threadstack *rfc_thr_stackget( int skipLevels )
 
 rfc_threadstack *rfc_thr_stackgetforthread( RFC_HND thread , int skipLevels )
 {
+	char modname[ 500 ];
+	void *module;
+
 	rfc_threadstack *stack = ( rfc_threadstack * )calloc( 1 , sizeof( rfc_threadstack ) );
 	stack -> levels.s_type = RFC_EXT_TYPEPTR;
-	stack -> extraLevels = skipLevels + 2;
+	stack -> extraLevels = skipLevels;
 
-	if( !getThreadStackTrace( ( unsigned long )thread , stack , rfc_thr_onfillstack ) )
+	/* find map file name */
+	getCurrentModuleName( modname , sizeof( modname ) );
+
+	/* check need parse map file */
+	rfc_hnd_semlock( lockModulesHandle );
+	if( rfc_map_strcheck( modules , modname , &module ) < 0 ) {
+		module = createModuleData( modname , stack , rfc_thr_onfillstack );
+		if( module != NULL )
+			rfc_map_stradd( modules , modname , module );
+	}
+
+	if( module == NULL || !getThreadStackTrace( &module , 1 , ( unsigned long )thread , stack , rfc_thr_onfillstack ) )
 		stack -> brokenStack = 1;
+	rfc_hnd_semunlock( lockModulesHandle );
 
 	return( stack );
 }

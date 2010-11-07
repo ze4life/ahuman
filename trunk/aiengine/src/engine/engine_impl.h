@@ -84,7 +84,7 @@ private:
 	void exitServer();
 	void setSignalHandlers();
 	void printStackTrace();
-	void printStackTrace( ThreadData *td );
+	void printStackTrace( int index , ThreadData *td );
 
 	void workerCreated();
 	void workerStarted( ThreadData *threadData );
