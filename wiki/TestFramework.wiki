@@ -160,7 +160,8 @@ INFO: disconnected
 
 == Thread Dumps ==
 
-Multi-thread application is hard to debug without understanding what happens in different threads in the same time. Framework contains special functions to print threads and their stack trace. 
+Multi-thread application is hard to debug without understanding what happens in different threads in the same time. Framework contains special functions to print threads and their stack trace.
+
 Also test unit created to allow calling these functions from outside of engine process. Threads are suspended for the time of capturing stack trace.
 
   * each thread has unique name, if started via AIEngine call; framework-based threads are started with well-defined names
@@ -204,6 +205,7 @@ thread index=10, name=sensordata, threadId=0x107c
 }}}
 
   * test unit call to show specific thread by its name, optionally with printing its stack trace:
+
 {{{
 <xmlcall name="ThreadDump" class="TestEngineThreads" method="testThreadDump">
 	<parameters>
