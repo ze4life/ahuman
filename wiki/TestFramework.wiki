@@ -13,6 +13,7 @@ To reduce overhead from bugfixing, two approaches are applied in aHuman project,
 
   * Logging
   * Automated Testing
+  * Thread Dumps
 
 == Logging ==
 
@@ -215,21 +216,12 @@ thread index=10, name=sensordata, threadId=0x107c
 
 results in log output:
 
-23:24:47,898 [INFO, 0x0db8] - THREAD DUMP: thread name=main, threadId=0xe38: [.]
-23:24:48,251 [INFO, 0x0db8] - CALL STACK:
-        ::_getThreadStackTrace (aiengine.vc, 0x5b0f87)
-        ::_rfc_thr_stackgetforthread (aiengine.vc, 0x5ac97d)
-        AIEngineImpl::printThreadStackTrace (aiengine.vc, 0x4afe81)
-        AIEngineImpl::threadDumpByName (aiengine.vc, 0x4afade)
-        TestEngineThreads::testShowThread (aiengine.vc, 0x5a4348)
-        TestUnit::callMethod (aiengine.vc, 0x5abf1c)
-        AITestPoolImpl::onXmlCall (aiengine.vc, 0x5abadc)
-        SubscriptionImpl::processMessage (aiengine.vc, 0x59f7fe)
-        Channel::subscribeEvent (aiengine.vc, 0x59995d)
-        Channel::processMessages (aiengine.vc, 0x5996f1)
-        Channel::threadChannelFunction (aiengine.vc, 0x5978ab)
-        AIEngineImpl::threadFunction (aiengine.vc, 0x4ac1a2)
-        AIEngineImpl::runThread (aiengine.vc, 0x4ac8ee)
-        ...skipped...
- [IOQueue]
+00:00:29,593 [INFO, 0x1660] - THREAD DUMP: thread name=main, threadId=0x1634: [.]
+00:00:41,401 [INFO, 0x1660] - CALL STACK:
+	::_rfc_hnd_waitevent (aiengine.vc, 0x5aeaec)
+	AIEngineImpl::waitExitSignal (aiengine.vc, 0x4aaed6)
+	AIEngineImpl::runInternal (aiengine.vc, 0x4a8491)
+	AIEngine::run (aiengine.vc, 0x4a78a4)
+	::_main (aiengine.vc, 0x56999f)
+	...skipped...
 }}}
