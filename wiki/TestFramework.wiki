@@ -157,3 +157,72 @@ Exception: C++ Exception: assertion failed (false) (file=nnfinderfactory.cpp, li
 	:: (unknown, 0x7c80b683)
 INFO: disconnected
 }}}
+
+== Thread Dumps ==
+
+Multi-thread application is hard to see without understanding what happens in different threads in the same time. Framework contains special functions to print threads and their stack trace.
+  * each thread has unique name, if started via AIEngine call; framework-based threads are started with well-defined names
+
+{{{
+	virtual RFC_HND runThread( String name , Object *object , ObjectThreadFunction function , void *p_arg ) = 0;
+}}}
+
+  * threads and stack trace are logged to main log after calls to AIEngine methods:
+
+{{{
+	virtual void threadDumpAll( bool showStackTrace ) = 0;
+	virtual void threadDumpByName( String name , bool showStackTrace ) = 0;
+}}}
+
+  * also test unit created to allow calling these functions from outside of engine process
+
+{{{
+<xmlcall name="ThreadDump" class="TestEngineThreads" method="testShowThread">
+	<parameters>
+		<property name="threadName" value="main"/>
+		<property name="showStack" value="false"/>
+	</parameters>
+</xmlcall>
+
+results in output:
+
+------------
+thread index=0name=SensesTracker, threadId=0x918
+thread index=1name=chat.in, threadId=0x1040
+thread index=2name=chat.out, threadId=0xd64
+thread index=3name=debug, threadId=0xde4
+thread index=4name=debug.4, threadId=0x14e8
+thread index=5name=debug.commands.in, threadId=0xccc
+thread index=6name=debug.commands.out, threadId=0x8ec
+thread index=7name=imagekbcmd, threadId=0x1020
+thread index=8name=imagekbrsp, threadId=0x12a0
+thread index=9name=main, threadId=0x1658
+thread index=10name=sensordata, threadId=0x13b4
+------------
+
+<xmlcall name="ThreadDump" class="TestEngineThreads" method="testThreadDump">
+	<parameters>
+		<property name="showStack" value="true"/>
+	</parameters>
+</xmlcall>
+
+results in log output:
+
+23:24:47,898 [INFO, 0x0db8] - THREAD DUMP: thread name=main, threadId=0xe38: [.]
+23:24:48,251 [INFO, 0x0db8] - CALL STACK:
+        ::_getThreadStackTrace (aiengine.vc, 0x5b0f87)
+        ::_rfc_thr_stackgetforthread (aiengine.vc, 0x5ac97d)
+        AIEngineImpl::printThreadStackTrace (aiengine.vc, 0x4afe81)
+        AIEngineImpl::threadDumpByName (aiengine.vc, 0x4afade)
+        TestEngineThreads::testShowThread (aiengine.vc, 0x5a4348)
+        TestUnit::callMethod (aiengine.vc, 0x5abf1c)
+        AITestPoolImpl::onXmlCall (aiengine.vc, 0x5abadc)
+        SubscriptionImpl::processMessage (aiengine.vc, 0x59f7fe)
+        Channel::subscribeEvent (aiengine.vc, 0x59995d)
+        Channel::processMessages (aiengine.vc, 0x5996f1)
+        Channel::threadChannelFunction (aiengine.vc, 0x5978ab)
+        AIEngineImpl::threadFunction (aiengine.vc, 0x4ac1a2)
+        AIEngineImpl::runThread (aiengine.vc, 0x4ac8ee)
+        ...skipped...
+ [IOQueue]
+}}}
