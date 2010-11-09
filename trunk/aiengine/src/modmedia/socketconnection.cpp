@@ -182,7 +182,7 @@ void SocketConnection::processData( const char *p_msg )
 	// format is "message0x01", where message contains only printable characters
 	do
 		{
-			const char *l_end = strchr( p_msg , 0x01 );
+			const char *l_end = strchr( p_msg , '\n' );
 			if( l_end == NULL )
 				{
 					message += p_msg;
@@ -250,8 +250,9 @@ void SocketConnection::sendString( const char *p_msg , int p_len )
  	send( socket , p_msg , p_len , 0 );
 
 	// send message terminator
-	char c = 0x01;
-	send( socket , &c , 1 , 0 );
+	//TODO: Sarbjit - Need to discuss the way around
+	//char c = 0x01;
+	send( socket , "\n" , 1 , 0 );
 }
 
 String SocketConnection::getClientSocketName()
