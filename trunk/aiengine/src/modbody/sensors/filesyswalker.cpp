@@ -706,7 +706,7 @@ public:
 
 	void stopTracking( HANDLE handle ) {
 		logger.logDebug( "stopTracking..." );
-		//::CancelIoEx( handle , NULL );
+		::CancelIoEx( handle , NULL );
 		::CloseHandle( handle );
 		logger.logDebug( "stopTracking - done" );
 	}
