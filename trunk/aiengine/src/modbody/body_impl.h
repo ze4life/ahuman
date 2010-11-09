@@ -7,10 +7,12 @@
 #include <aisvcio.h>
 
 #include <aibody.h>
-
+#include <rebecca/all.h>
+#include <rebecca/network_all.h>
+using namespace rebecca;
 /*#########################################################################*/
 /*#########################################################################*/
-
+class ChatInterface;
 // derives knowledge from io, activates mind
 class AIBodyImpl : public AIBody , public Service
 {
@@ -36,6 +38,7 @@ private:
 // internals
 private:
 	AIEngine& engine;
+	ChatInterface* chatInterface;
 };
 
 // #############################################################################
@@ -81,6 +84,7 @@ public:
 	// sensors
 	static Sensor *createFileSysWalker( MindArea *area );
 	static Sensor *createEye( MindArea *area );
+	static Sensor *createEar( MindArea *area );
 	// cortex overridables
 	virtual void onCortexRun() {
 		// inpus were updated
@@ -150,6 +154,24 @@ private:
 	void startTracker();
 	void onRunSensesTracker( void *p_arg );
 	void pollIteration( int& sleepRemained );
+};
+
+class ChatInterface : public Service , public Subscriber{
+private:
+	Publisher *pub;
+	Subscription *sub;
+	String inTopic, outTopic;
+	GraphBuilder* builder;
+	AimlFacade aiml;
+public:
+	ChatInterface();
+	virtual void createService( Xml config );
+	virtual void initService();
+	virtual void runService();
+	virtual void exitService();
+	virtual void destroyService();
+	virtual void onTextMessage(TextMessage * msg);
+	virtual const char *getName() { return("ChatInterface"); };
 };
 
 #endif	// INCLUDE_AIBODY_IMPL_H

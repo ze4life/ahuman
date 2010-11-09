@@ -228,8 +228,8 @@ void Channel::subscribeEvent( Message *p_msg )
 		{
 			SubscriptionImpl *sub = subs.getClassByIndex( k );
 			Session *l_sub_session = sub -> session;
-
-			if( l_sub_session == NULL || l_session == l_sub_session )
+			//TODO: Sarbjit: Not sure how to get over this
+			//if( l_sub_session == NULL || l_session == l_sub_session )
 				sub -> processMessage( p_msg );
 		}
 	unlock();
@@ -281,3 +281,4 @@ void Channel::disconnectPublishers()
 		}
 	pubs.clear();
 }
+
