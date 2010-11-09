@@ -9,6 +9,24 @@
 			<property name="topic-in" value="debug.commands.in"/> 
 			<property name="topic-out" value="debug.commands.out"/> 
 		</listener>
+		<listener name="ear-listener" run="true">
+			<property name="direction" value="duplex"/>
+			<property name="auth" value="false"/>
+			<property name="port" value="19000"/> 
+			<property name="msgtype" value="text"/> 
+			<property name="topic-in" value="ear"/> 
+			<property name="topic-out" value="eartemp"/> 
+
+		</listener>
+		<listener name="mouth-speaker" run="true">
+			<property name="direction" value="duplex"/>
+			<property name="auth" value="false"/>
+			<property name="port" value="19001"/> 
+			<property name="msgtype" value="text"/> 
+			<property name="topic-out" value="mouth"/> 
+			<property name="topic-in" value="mouthtemp"/> 
+		</listener>
+
 	</listeners>
 
 	<directchannels>
