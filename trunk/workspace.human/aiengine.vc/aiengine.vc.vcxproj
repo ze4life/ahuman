@@ -36,7 +36,10 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>C:\Sarbjit\onlineahuman\libaiml\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Sarbjit\onlineahuman\libaiml\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -47,7 +50,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Psapi.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Psapi.lib;Ws2_32.lib;rebecca-mt.lib;rebecca-network.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateMapFile>true</GenerateMapFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <FixedBaseAddress>true</FixedBaseAddress>
@@ -146,6 +149,7 @@
     <ClCompile Include="..\..\aiengine\src\libnn\libnn.cpp" />
     <ClCompile Include="..\..\aiengine\src\main.cpp" />
     <ClCompile Include="..\..\aiengine\src\modbody\body.cpp" />
+    <ClCompile Include="..\..\aiengine\src\modbody\chatInterface.cpp" />
     <ClCompile Include="..\..\aiengine\src\modbody\sensors.cpp" />
     <ClCompile Include="..\..\aiengine\src\modbody\sensors\eye.cpp" />
     <ClCompile Include="..\..\aiengine\src\modbody\sensors\filesyswalker.cpp" />
