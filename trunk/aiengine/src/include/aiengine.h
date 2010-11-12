@@ -44,6 +44,8 @@ public:
 	void attach( void *doc , void *node );
 	bool exists();
 
+	static Xml parse( const char *src , int& len , bool& p_error );
+
 	// direct data
 	String getName();
 	String getValue();

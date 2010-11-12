@@ -4,6 +4,7 @@
 /*#########################################################################*/
 
 Listener::Listener( String p_name )
+:	protocol( logger )
 {
 	name = p_name;
 	lastConnectionId = 0;

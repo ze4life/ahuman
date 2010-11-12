@@ -36,7 +36,7 @@ void AIMediaImpl::createService( Xml config )
 
 void AIMediaImpl::initService()
 {
-	initSocketLib();
+	SocketProtocol::initSocketLib();
 }
 
 void AIMediaImpl::runService()
@@ -56,7 +56,7 @@ void AIMediaImpl::destroyService()
 	listeners.destroy();
 	activeSockets.destroy();
 
-	exitSocketLib();
+	SocketProtocol::exitSocketLib();
 	delete this;
 }
 
@@ -170,19 +170,6 @@ void AIMediaImpl::stopListeners()
 	}
 }
 
-void AIMediaImpl::initSocketLib()
-{
-	WSADATA l_wsa;
-	memset( &l_wsa, 0 , sizeof( WSADATA ) );
-	WSAStartup( MAKEWORD( 2 , 2 ) , &l_wsa );
-}
-
-void AIMediaImpl::exitSocketLib()
-{
-	/* cleanup sockets */
-	WSACleanup();
-}
-
 ActiveSocket *AIMediaImpl::getActiveSocket( String name )
 {
 	ActiveSocket *socket = activeSockets.get( name );
@@ -205,5 +192,5 @@ String AIMediaImpl::receiveTextFromDirectChannel( String name , bool wait )
 String AIMediaImpl::receiveFixedSizeTextFromDirectChannel( String name , int size )
 {
 	ActiveSocket *s = getActiveSocket( name );
-	return( s -> receiveFixedText( size ) );
+	return( s -> receiveFixedText( size , false ) );
 }

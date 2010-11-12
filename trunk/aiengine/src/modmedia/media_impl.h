@@ -41,6 +41,60 @@ class SocketConnection;
 /*#########################################################################*/
 /*#########################################################################*/
 
+class SocketProtocol
+{
+private:
+	typedef enum {
+		FLOW_PROTOCOL_UNKNOWN = 0 , 
+		FLOW_PROTOCOL_TEXT_MESSAGES = 1 ,
+		FLOW_PROTOCOL_XML_MESSAGES = 2 ,
+		FLOW_PROTOCOL_TEXT_STREAM = 3 ,
+		FLOW_PROTOCOL_BINARY_STREAM = 4
+	} FLOW_PROTOCOL;
+
+	FLOW_PROTOCOL pin;
+	FLOW_PROTOCOL pout;
+	String delimiterIn;
+	String delimiterOut;
+
+	int maxPacketSize;
+	static const int MAX_PACKET_SIZE_DEFAULT = 1000000;
+	int maxReadSize;
+	static const int MAX_READ_SIZE_DEFAULT = 4096;
+	int waitTimeSec;
+	static const int WAIT_TIME_SEC_DEFAULT = 30;
+
+	String inPending;
+	bool shutdownInProgress;
+	Logger& logger;
+
+public:
+	SocketProtocol( Logger& logger );
+	void create( Xml config );
+	void copy( SocketProtocol& src );
+
+public:
+	static void initSocketLib();
+	static void exitSocketLib();
+	static bool waitSocketData( SOCKET socket , int p_sec , bool& p_error );
+
+public:
+	bool readMessage( SOCKET socketHandle , String& msg , bool wait , bool& connectionClosed );
+	bool readFixedSizeMessage( SOCKET socketHandle , int size , String& msg , bool wait , bool& connectionClosed );
+
+	bool readXmlMessage( SOCKET socketHandle , Xml& xml , bool wait , bool& connectionClosed );
+	void writeMessage( SOCKET socketHandle , const String& msg , bool& connectionClosed );
+
+	bool waitSocketData( SOCKET socket , bool p_wait );
+
+private:
+	void createFlow( Xml config , FLOW_PROTOCOL& proto , String& delimiter , String prototype );
+	bool readMessageInternal( SOCKET socketHandle , String& msg , int fixedSize , bool wait , bool& connectionClosed );
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
 class Connection
 {
 public:
@@ -69,8 +123,15 @@ private:
 /*#########################################################################*/
 /*#########################################################################*/
 
-class Listener
+class Listener : public Object
 {
+private:
+	SocketProtocol protocol;
+	int lastConnectionId;
+	Message::MsgType msgType;
+	String name;
+	MapStringToClass<Connection> connections;
+
 public:
 	// interface
 	virtual void configure( Xml config ) = 0;
@@ -82,20 +143,17 @@ public:
 	Listener( String name );
 	virtual ~Listener();
 
+	virtual const char *getClass() { return( "Listener" ); };
+
 public:
 	void setMsgType( Message::MsgType msgType );
 	Message::MsgType getMsgType();
 	String getName();
+	SocketProtocol& getProtocol() { return( protocol ); };
 
 	void addListenerConnection( Connection *connection );
 	void removeListenerConnection( Connection *connection );
 	void stopListenerConnections();
-
-private:
-	int lastConnectionId;
-	Message::MsgType msgType;
-	String name;
-	MapStringToClass<Connection> connections;
 };
 
 /*#########################################################################*/
@@ -125,9 +183,6 @@ public:
 // external interface
 public:
 	Listener *getListener( String name );
-
-	void initSocketLib();
-	void exitSocketLib();
 
 	virtual void sendTextToDirectChannel( String name , String text );
 	virtual String receiveTextFromDirectChannel( String name , bool wait );
@@ -159,6 +214,7 @@ private:
 	SOCKET socketHandle;
 	struct sockaddr_in addr;
 	bool typetext;
+	SocketProtocol protocol;
 
 	RFC_HND thread;
 	bool threadStarted;
@@ -173,12 +229,6 @@ private:
 	String host;
 	String port;
 	bool permanentConnection;
-	int maxPacketSize;
-	static const int MAX_PACKET_SIZE_DEFAULT = 1000000;
-	int maxReadSize;
-	static const int MAX_READ_SIZE_DEFAULT = 4096;
-	int waitTimeSec;
-	static const int WAIT_TIME_SEC_DEFAULT = 30;
 
 	bool redirectInbound;
 	bool redirectOutbound;
@@ -205,12 +255,13 @@ public:
 
 	void sendText( String text );
 	String receiveText( bool wait );
-	String receiveFixedText( int size );
+	String receiveFixedText( int size , bool wait);
 
 private:
 	bool connectSocket();
 	void disconnectSocket();
 	bool waitReadSocket( bool wait );
+	void handleBrokenConnection();
 };
 
 /*#########################################################################*/
@@ -243,13 +294,13 @@ public:
 private:
 	void tryLogin( const char *p_msg );
 	void performRead();
-	void processData( const char *p_msg );
 	void processMessage( const char *p_msg );
 
 private:
 	AIEngine& engine;
 	AIIO io;
 	Logger logger;
+	SocketProtocol protocol;
 
 	SocketServer *server;
 	Publisher *pub;
@@ -270,7 +321,7 @@ private:
 /*#########################################################################*/
 /*#########################################################################*/
 
-class SocketServer : public Object , public Listener
+class SocketServer : public Listener
 {
 public:
 	SocketServer( String name );
@@ -294,7 +345,6 @@ public:
 	bool openListeningPort();
 	void closeListeningPort();
 
-	bool waitReadSocket( SOCKET socket , int p_sec );
 	void performConnect();
 	bool startConnection( SOCKET clientSocket , struct sockaddr_in *clientAddress );
 	void threadConnectFunction( void *p_arg );

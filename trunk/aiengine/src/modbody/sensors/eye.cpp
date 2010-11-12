@@ -5,34 +5,41 @@ class Eye : public Sensor, public Object{
 public:
 	AIEngine& engine;
 
-	Eye( MindArea *area ) :	Sensor( "Eye" , area , CortexIOSizeInfo( 20 , 2 ) ) ,
-		engine( AIEngine::getInstance() ) {
+Eye( MindArea *area ) 
+:	Sensor( "Eye" , area , CortexIOSizeInfo( 20 , 2 ) ) ,
+	engine( AIEngine::getInstance() )
+{
+}
 
-	}
+virtual ~Eye()
+{
+}
 
-	virtual ~Eye() {
+virtual const char *getClass()
+{
+	return( "Eye" ); 
+}
 
-	}
+virtual void startSensor()
+{
+}
 
-	virtual const char *getClass() {
-		return( "Eye" ); 
-	}
+virtual void stopSensor()
+{
+}
 
-	virtual void startSensor(){
+virtual void processSensorControl()
+{
+}
 
-	}
-	virtual void stopSensor(){
+virtual bool executeSensorControl()
+{
+	return true;
+}
 
-	}
-	virtual void processSensorControl(){
-
-	}
-	virtual bool executeSensorControl(){
-		return true;
-	}
-	virtual void produceSensorData() {
-
-	}
+virtual void produceSensorData()
+{
+}
 
 };
 

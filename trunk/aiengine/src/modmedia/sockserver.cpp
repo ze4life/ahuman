@@ -45,6 +45,8 @@ bool SocketServer::getWayOut()
 
 void SocketServer::configure( Xml config )
 {
+	Listener::getProtocol().create( config );
+
 	auth = config.getBooleanProperty( "auth" );
 	String direction = config.getProperty( "direction" );
 	wayIn = direction.equals( "in" ) || direction.equals( "duplex" );
@@ -90,13 +92,13 @@ void SocketServer::threadConnectFunction( void *p_arg )
 	AIMediaImpl *media = AIMediaImpl::getServiceImpl();
 
 	// startup sockets
-	media -> initSocketLib();
+	SocketProtocol::initSocketLib();
 
 	// accept connections
 	acceptConnectionLoop();
 
 	// cleanup sockets
-	media -> exitSocketLib();
+	SocketProtocol::exitSocketLib();
 }
 
 bool SocketServer::openListeningPort()
@@ -211,63 +213,10 @@ void SocketServer::acceptConnectionLoop()
 	}
 }
 
-bool SocketServer::waitReadSocket( SOCKET socket , int p_sec )
-{
-	struct fd_set l_set;
-	struct timeval l_t;
-
-	_fd_init( &l_set );
-	_fd_sethnd( &l_set , socket );
-	memset( &l_t , 0 , sizeof( struct timeval ) );
-
-	struct timeval *l_pt = NULL;
-	if( p_sec > 0 )
-		{
-			l_pt = &l_t;
-			l_t.tv_sec = p_sec;
-		}
-
-	int l_res = select( 0 , 
-		&l_set ,
-		NULL , 
-		&l_set ,
-		l_pt );
-
-	if( l_res <= 0 )
-		{
-			if( !shutdownInProgress )
-				logger.logError( "select returned value <= 0" );
-			return( false );
-		}
-
-	// check wakeup reason
-	int l_check = 0;
-	l_t.tv_sec = 0;
-
-	// check exception
-	_fd_checke( l_check , &l_set , &l_t , socket );
-	if( l_check )
-		{
-			if( !shutdownInProgress )
-				logger.logError( "select returned exception status" );
-			return( false );
-		}
-
-	// check read status - should be
-	_fd_checkr( l_check , &l_set , &l_t , socket );
-	if( !l_check )
-		{
-			if( !shutdownInProgress )
-				logger.logError( "select returned invalid state" );
-			return( false );
-		}
-
-	return( true );
-}
-
 void SocketServer::performConnect()
 {
-	if( !waitReadSocket( listenSocket , 0 ) )
+	bool l_error;
+	if( !SocketProtocol::waitSocketData( listenSocket , 0 , l_error ) )
 		{
 			continueConnecting = false;
 			return;

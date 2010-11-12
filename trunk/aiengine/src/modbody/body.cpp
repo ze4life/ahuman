@@ -27,24 +27,13 @@ AIBodyImpl::AIBodyImpl()
 
 void AIBodyImpl::createService( Xml config )
 {
-	Xml configInterfaces = config.getFirstChild( "interfaces" );
-	if( !configInterfaces.exists() )
-		return;
-	// find configuration
-	Xml conf = configInterfaces.getChildNamedNode( "interface" , "chat");
-	if(conf.getBooleanAttribute( "run" ) ) {
-		chatInterface = new ChatInterface();
-		chatInterface->createService(conf);
-	}
 }
 
 void AIBodyImpl::initService()
 {
 	AIBrain brain;
 	brain.addMindArea( "Sensors" , createSensors() );
-	if(chatInterface != NULL){
-		chatInterface->initService();
-	}
+	brain.addMindArea( "Physiology" , createPhysiology() );
 }
 
 void AIBodyImpl::runService()

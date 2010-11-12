@@ -5,16 +5,14 @@
 /*#########################################################################*/
 
 ActiveSocket::ActiveSocket( String p_name )
+:	protocol( logger )
 {
 	name = p_name;
 	msgType = Message::MsgType_Unknown;
 	redirectInbound = false;
 	redirectOutbound = false;
 	connected = false;
-	maxPacketSize = 0;
 	shutdownInProgress = false;
-	maxPacketSize = 0;
-	maxReadSize = 0;
 }
 
 ActiveSocket::~ActiveSocket()
@@ -36,9 +34,6 @@ void ActiveSocket::configure( Xml config )
 
 	host = config.getProperty( "host" );
 	port = config.getProperty( "port" );
-	maxPacketSize = config.getIntProperty( "max-packet-size" , MAX_PACKET_SIZE_DEFAULT );
-	maxReadSize = config.getIntProperty( "max-read-size" , MAX_READ_SIZE_DEFAULT );
-	waitTimeSec = config.getIntProperty( "wait-time-sec" , WAIT_TIME_SEC_DEFAULT );
 
 	loggerName = String( "ActiveSocket::" ) + name;
 	logger.attach( loggerName );
@@ -113,134 +108,55 @@ void ActiveSocket::disconnectSocket()
 	}
 }
 
+void ActiveSocket::handleBrokenConnection()
+{
+	disconnectSocket();
+}
+
 void ActiveSocket::sendText( String text )
 {
 	ASSERTMSG( connected , "Not connected" );
 
-	int lenRemained = text.length();
-	const char *p = text;
-	while( lenRemained > 0 ) {
-		int len = send( socketHandle , p , lenRemained , 0 );
-		ASSERTMSG( len != SOCKET_ERROR && len > 0 , String( "Unable send data to socket size=" ) + lenRemained );
-
-		logger.logDebug( String( "Packet sent, size=" ) + len );
-		lenRemained -= len;
-		p += len;
-	}
+	bool connectionClosed;
+	protocol.writeMessage( socketHandle , text , connectionClosed );
+	if( connectionClosed )
+		handleBrokenConnection();
 }
 
 String ActiveSocket::receiveText( bool wait )
 {
 	ASSERTMSG( connected , "Not connected" );
 
+	bool connectionClosed;
 	String final;
-	int packetSize = 0;
+	bool res = protocol.readMessage( socketHandle , final , wait , connectionClosed );
+	if( connectionClosed )
+		handleBrokenConnection();
 
-	while( packetSize < maxPacketSize ) {
-		int readSize = maxPacketSize - packetSize;
-		if( readSize > maxReadSize )
-			readSize = maxReadSize;
-
-		// allocate space
-		final.resize( readSize + packetSize );
-
-		// only first run can be blocking
-		bool haveData = waitReadSocket( ( packetSize == 0 )? wait : false );
-		if( !haveData )
-			break;
-
-		char *p = final.getBuffer();
-		int len = recv( socketHandle , p + packetSize , readSize , 0 );
-		ASSERTMSG( len != SOCKET_ERROR && len > 0 , String( "Unable receive data from socket size=" ) + readSize );
-
-		packetSize += len;
-		p[ packetSize ] = 0;
-		logger.logDebug( String( "Packet received, size=" ) + len );
-	}
+	if( !res )
+		return( "" );
 
 	return( final );
 }
 
-String ActiveSocket::receiveFixedText( int size )
+String ActiveSocket::receiveFixedText( int size , bool wait )
 {
 	ASSERTMSG( connected , "Not connected" );
 
+	bool connectionClosed;
 	String final;
-	int packetSize = 0;
+	bool res = protocol.readFixedSizeMessage( socketHandle , size , final , wait , connectionClosed );
+	if( connectionClosed )
+		handleBrokenConnection();
 
-	while( packetSize < size ) {
-		int readSize = size - packetSize;
-		if( readSize > maxReadSize )
-			readSize = maxReadSize;
-
-		// allocate space
-		final.resize( readSize + packetSize );
-
-		// only first run can be blocking
-		bool haveData = waitReadSocket( true );
-		if( !haveData )
-			continue;
-
-		char *p = final.getBuffer();
-		int len = recv( socketHandle , p + packetSize , readSize , 0 );
-		ASSERTMSG( len != SOCKET_ERROR && len > 0 , String( "Unable receive data from socket size=" ) + readSize );
-
-		packetSize += len;
-		p[ packetSize ] = 0;
-		logger.logDebug( String( "Packet received, size=" ) + len );
-	}
+	if( !res )
+		return( "" );
 
 	return( final );
 }
 
 bool ActiveSocket::waitReadSocket( bool wait )
 {
-	struct fd_set l_set;
-	struct timeval l_t;
-
-	_fd_init( &l_set );
-	_fd_sethnd( &l_set , socketHandle );
-	memset( &l_t , 0 , sizeof( struct timeval ) );
-
-	struct timeval *l_pt = NULL;
-
-	if( waitTimeSec > 0 ) {
-		l_pt = &l_t;
-		l_t.tv_sec = waitTimeSec;
-	}
-
-	int l_res = select( 0 , 
-		&l_set ,
-		NULL , 
-		&l_set ,
-		l_pt );
-
-	if( l_res <= 0 ) {
-		if( !shutdownInProgress )
-			logger.logError( "select returned value <= 0" );
-		return( false );
-	}
-
-	// check wakeup reason
-	int l_check = 0;
-	l_t.tv_sec = 0;
-
-	// check exception
-	_fd_checke( l_check , &l_set , &l_t , socketHandle );
-	if( l_check ) {
-		if( !shutdownInProgress )
-			logger.logError( "select returned exception status" );
-		return( false );
-	}
-
-	// check read status - should be
-	_fd_checkr( l_check , &l_set , &l_t , socketHandle );
-	if( !l_check ) {
-		if( !shutdownInProgress )
-			logger.logError( "select returned invalid state" );
-		return( false );
-	}
-
-	return( true );
+	return( protocol.waitSocketData( socketHandle , wait ) );
 }
 
