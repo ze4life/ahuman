@@ -7,12 +7,10 @@
 #include <aisvcio.h>
 
 #include <aibody.h>
-#include <rebecca/all.h>
-#include <rebecca/network_all.h>
-using namespace rebecca;
+
 /*#########################################################################*/
 /*#########################################################################*/
-class ChatInterface;
+
 // derives knowledge from io, activates mind
 class AIBodyImpl : public AIBody , public Service
 {
@@ -38,7 +36,6 @@ private:
 // internals
 private:
 	AIEngine& engine;
-	ChatInterface* chatInterface;
 };
 
 // #############################################################################
@@ -85,6 +82,7 @@ public:
 	static Sensor *createFileSysWalker( MindArea *area );
 	static Sensor *createEye( MindArea *area );
 	static Sensor *createEar( MindArea *area );
+
 	// cortex overridables
 	virtual void onCortexRun() {
 		// inpus were updated
@@ -123,6 +121,9 @@ public:
 	};
 };
 
+// #############################################################################
+// #############################################################################
+
 class Sensors : public Object , public MindArea
 {
 	AIEngine& engine;
@@ -156,22 +157,66 @@ private:
 	void pollIteration( int& sleepRemained );
 };
 
-class ChatInterface : public Service , public Subscriber{
+// #############################################################################
+// #############################################################################
+
+// physiology control - items from old brain, control sensors and effectors
+// created on AI start
+class PhysioControl : public Object
+{
 private:
-	Publisher *pub;
-	Subscription *sub;
-	String inTopic, outTopic;
-	GraphBuilder* builder;
-	AimlFacade aiml;
+	String name;
+
+// construction
 public:
-	ChatInterface();
-	virtual void createService( Xml config );
-	virtual void initService();
-	virtual void runService();
-	virtual void exitService();
-	virtual void destroyService();
-	virtual void onTextMessage(TextMessage * msg);
-	virtual const char *getName() { return("ChatInterface"); };
+	PhysioControl( String p_name ) { name = p_name; };
+	virtual ~PhysioControl() {};
+	const char *getClass() { return( "PhysioControl" ); };
+
+public:
+	// rebecca chat control
+	static PhysioControl *createRebeccaChat();
+
+	// physiology overridables
+	virtual void create( Xml config ) = 0;
+	virtual void start() = 0;
+	virtual void stop() = 0;
+
+// operations
+public:
+	String getName() { return( name ); };
 };
+
+// #############################################################################
+// #############################################################################
+
+class Physiology : public Object , public MindArea
+{
+	AIEngine& engine;
+	MapStringToClass<PhysioControl> controls;
+	MapStringToClass<PhysioControl> controlsOffline;
+
+// construction
+public:
+	Physiology();
+	const char *getClass() { return( "Physiology" ); };
+	static Physiology *getPhysiology();
+
+	PhysioControl *getControl( String name );
+
+// MindArea events
+public:
+	virtual void onCreateArea();
+	virtual void onLoadArea();
+	virtual void onBrainStart();
+	virtual void onBrainStop();
+
+private:
+	void createPhysiology();
+	void addControl( Xml config , PhysioControl *att );
+};
+
+// #############################################################################
+// #############################################################################
 
 #endif	// INCLUDE_AIBODY_IMPL_H

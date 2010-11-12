@@ -56,6 +56,7 @@ public:
 	String& append( int count , char c );
 	String& append( const char *s , int nChars );
 	String& assign( const char *s , int nChars );
+	void remove( int from , int n );
 
 	void resize( int length );
 	char *getBuffer();

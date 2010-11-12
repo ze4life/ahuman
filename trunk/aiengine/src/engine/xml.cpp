@@ -400,3 +400,30 @@ Xml Xml::findChildByPathAttr( String path , String attr , String value )
 	return( xml );
 }
 
+Xml Xml::parse( const char *src , int& len , bool& p_error )
+{
+	if( src == NULL )
+		return( Xml() );
+
+	// parse
+	TiXmlDocument *doc = new TiXmlDocument();
+
+	Xml xml;
+	try {
+		const char *res = doc -> Parse( src );
+		if( res != NULL ) {
+			p_error = false;
+			len = res - src;
+			xml.attach( doc , doc -> FirstChildElement() );
+		}
+	}
+	catch( RuntimeException& e ) {
+		Logger log;
+		e.printStack( log );
+		p_error = true;
+		len = 0;
+	}
+
+	return( xml );
+}
+

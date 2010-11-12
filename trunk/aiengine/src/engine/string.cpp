@@ -125,6 +125,24 @@ String& String::append( const char *s ,  int n2 )
 	return( *this );
 }
 
+void String::remove( int from , int n )
+{
+	if( v == NULL )
+		return;
+
+	int len = strlen( v );
+	if( from <= len )
+		return;
+
+	if( n >= len - from ) {
+		v[ from ] = 0;
+		return;
+	}
+
+	memmove( v , v + from , len - from - n );
+	v[ len - n ] = 0;
+}
+
 String& String::operator +=( char c )
 {
 	return( append( &c , 1 ) );
