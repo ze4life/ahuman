@@ -37,8 +37,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Sarbjit\onlineahuman\libaiml\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Sarbjit\onlineahuman\libaiml\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -50,7 +50,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Psapi.lib;Ws2_32.lib;rebecca-mt.lib;rebecca-network.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Psapi.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateMapFile>true</GenerateMapFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <FixedBaseAddress>true</FixedBaseAddress>
@@ -71,6 +71,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="..\..\aiengine\etc\body.xml" />
+    <None Include="..\..\aiengine\etc\brain.xml" />
+    <None Include="..\..\aiengine\etc\cognition.xml" />
+    <None Include="..\..\aiengine\etc\intelligence.xml" />
+    <None Include="..\..\aiengine\etc\knowledge.xml" />
+    <None Include="..\..\aiengine\etc\libbn.xml" />
+    <None Include="..\..\aiengine\etc\libnn.xml" />
+    <None Include="..\..\aiengine\etc\logging.xml" />
+    <None Include="..\..\aiengine\etc\main.xml" />
+    <None Include="..\..\aiengine\etc\media.xml">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="..\..\aiengine\etc\svcdb.xml" />
+    <None Include="..\..\aiengine\etc\svcio.xml" />
+    <None Include="..\..\aiengine\etc\test.xml" />
     <None Include="..\..\aiengine\src\_wallpaper.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -149,7 +164,8 @@
     <ClCompile Include="..\..\aiengine\src\libnn\libnn.cpp" />
     <ClCompile Include="..\..\aiengine\src\main.cpp" />
     <ClCompile Include="..\..\aiengine\src\modbody\body.cpp" />
-    <ClCompile Include="..\..\aiengine\src\modbody\chatInterface.cpp" />
+    <ClCompile Include="..\..\aiengine\src\modbody\physiology.cpp" />
+    <ClCompile Include="..\..\aiengine\src\modbody\physiology\rebeccachat.cpp" />
     <ClCompile Include="..\..\aiengine\src\modbody\sensors.cpp" />
     <ClCompile Include="..\..\aiengine\src\modbody\sensors\eye.cpp" />
     <ClCompile Include="..\..\aiengine\src\modbody\sensors\filesyswalker.cpp" />
@@ -177,6 +193,7 @@
     <ClCompile Include="..\..\aiengine\src\modmedia\media.cpp" />
     <ClCompile Include="..\..\aiengine\src\modmedia\socketconnection.cpp" />
     <ClCompile Include="..\..\aiengine\src\modmedia\sockserver.cpp" />
+    <ClCompile Include="..\..\aiengine\src\modmedia\socketprotocol.cpp" />
     <ClCompile Include="..\..\aiengine\src\svcdb\db.cpp" />
     <ClCompile Include="..\..\aiengine\src\svcdb\dbcursor.cpp" />
     <ClCompile Include="..\..\aiengine\src\svcdb\dbfile.cpp" />
@@ -227,6 +244,16 @@
     <ClInclude Include="..\..\aiengine\src\include\generic\_genset.h" />
     <ClInclude Include="..\..\aiengine\src\include\generic\_genstr.h" />
     <ClInclude Include="..\..\aiengine\src\include\generic\__gen.h" />
+    <ClInclude Include="..\..\aiengine\src\include\rebecca\AimlFacade.h" />
+    <ClInclude Include="..\..\aiengine\src\include\rebecca\all.h" />
+    <ClInclude Include="..\..\aiengine\src\include\rebecca\CallBacks.h" />
+    <ClInclude Include="..\..\aiengine\src\include\rebecca\Exceptions.h" />
+    <ClInclude Include="..\..\aiengine\src\include\rebecca\exports.h" />
+    <ClInclude Include="..\..\aiengine\src\include\rebecca\GraphBuilder.h" />
+    <ClInclude Include="..\..\aiengine\src\include\rebecca\NetworkAimlFacade.h" />
+    <ClInclude Include="..\..\aiengine\src\include\rebecca\NetworkGraphBuilder.h" />
+    <ClInclude Include="..\..\aiengine\src\include\rebecca\network_all.h" />
+    <ClInclude Include="..\..\aiengine\src\include\rebecca\StringPimpl.h" />
     <ClInclude Include="..\..\aiengine\src\include\test.h" />
     <ClInclude Include="..\..\aiengine\src\libbn\libbn_impl.h" />
     <ClInclude Include="..\..\aiengine\src\libbn\neocortex_custom\XHippo.h" />
@@ -263,7 +290,8 @@
     <ClInclude Include="..\..\aiengine\src\test\test_impl.h" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\..\aiengine\lib\debug\generic.vc.debug.lib" />
+    <Library Include="..\..\aiengine\lib\generic\generic.vc.debug.lib" />
+    <Library Include="..\..\aiengine\lib\rebecca\rebecca-mt.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
