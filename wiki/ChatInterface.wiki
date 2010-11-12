@@ -10,7 +10,17 @@ The library used to interpret AIML ( A bot language) is RebeccaAIML. It is devel
 
 = Implementation Details =
 
-A ChatInterface.cpp class implements the functionality. There are two listeners listening on two ports. One for getting the user input at port 19000 and other to give user output on port 19001. These are separate as they are analogous to aHuman ear and mouth. 
+A rebeccachat.cpp class implements the functionality. There are two listeners listening on two ports. One for getting the user input at port 19000 and other to give user output on port 19001. These are separate as they are analogous to aHuman ear and mouth. 
+
+Obviously bot is not truly cognitive component.
+It does not have neural interface and cannot be connected directly to other mind.
+
+Idea is to have:
+1. non-neural inputs/outputs pure listeners - only connected to input/output topics
+2. physiology is intended to integrate sensors and effectors in primitive way - like old brain - limbic system
+3. specific physiology control can be used to create immediate response to sensor data
+4. later to chat-in sensor and chat-out effector can be created based on data from the same topics
+5. future chat sensor and effector can live in parallel with rebecca and have controls to ensure rebecca will not reply when mind is going to do that
 
 == Method to Test =
 
