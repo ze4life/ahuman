@@ -2,6 +2,45 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <None Include="..\..\aiengine\src\_wallpaper.txt" />
+    <None Include="..\..\aiengine\etc\body.xml">
+      <Filter>etc</Filter>
+    </None>
+    <None Include="..\..\aiengine\etc\brain.xml">
+      <Filter>etc</Filter>
+    </None>
+    <None Include="..\..\aiengine\etc\cognition.xml">
+      <Filter>etc</Filter>
+    </None>
+    <None Include="..\..\aiengine\etc\intelligence.xml">
+      <Filter>etc</Filter>
+    </None>
+    <None Include="..\..\aiengine\etc\knowledge.xml">
+      <Filter>etc</Filter>
+    </None>
+    <None Include="..\..\aiengine\etc\libbn.xml">
+      <Filter>etc</Filter>
+    </None>
+    <None Include="..\..\aiengine\etc\libnn.xml">
+      <Filter>etc</Filter>
+    </None>
+    <None Include="..\..\aiengine\etc\logging.xml">
+      <Filter>etc</Filter>
+    </None>
+    <None Include="..\..\aiengine\etc\main.xml">
+      <Filter>etc</Filter>
+    </None>
+    <None Include="..\..\aiengine\etc\media.xml">
+      <Filter>etc</Filter>
+    </None>
+    <None Include="..\..\aiengine\etc\svcdb.xml">
+      <Filter>etc</Filter>
+    </None>
+    <None Include="..\..\aiengine\etc\svcio.xml">
+      <Filter>etc</Filter>
+    </None>
+    <None Include="..\..\aiengine\etc\test.xml">
+      <Filter>etc</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\aiengine\src\main.cpp" />
@@ -371,8 +410,14 @@
     <ClCompile Include="..\..\aiengine\src\test\enginethreads_test.cpp">
       <Filter>test\engine</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\aiengine\src\modbody\chatInterface.cpp">
+    <ClCompile Include="..\..\aiengine\src\modmedia\socketprotocol.cpp">
+      <Filter>modmedia</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\aiengine\src\modbody\physiology.cpp">
       <Filter>modbody</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\aiengine\src\modbody\physiology\rebeccachat.cpp">
+      <Filter>modbody\physiology</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -559,6 +604,36 @@
     <ClInclude Include="..\..\aiengine\src\libbn\neocortex_custom\XSubRegion.h">
       <Filter>libbn\neocortex_custom</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\aiengine\src\include\rebecca\AimlFacade.h">
+      <Filter>include\rebecca</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\aiengine\src\include\rebecca\all.h">
+      <Filter>include\rebecca</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\aiengine\src\include\rebecca\CallBacks.h">
+      <Filter>include\rebecca</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\aiengine\src\include\rebecca\Exceptions.h">
+      <Filter>include\rebecca</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\aiengine\src\include\rebecca\exports.h">
+      <Filter>include\rebecca</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\aiengine\src\include\rebecca\GraphBuilder.h">
+      <Filter>include\rebecca</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\aiengine\src\include\rebecca\network_all.h">
+      <Filter>include\rebecca</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\aiengine\src\include\rebecca\NetworkAimlFacade.h">
+      <Filter>include\rebecca</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\aiengine\src\include\rebecca\NetworkGraphBuilder.h">
+      <Filter>include\rebecca</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\aiengine\src\include\rebecca\StringPimpl.h">
+      <Filter>include\rebecca</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="include">
@@ -611,12 +686,6 @@
     </Filter>
     <Filter Include="linklibs">
       <UniqueIdentifier>{5fd14957-15b3-43cb-b691-6787ff0d47b8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="linklibs\debug">
-      <UniqueIdentifier>{6555438c-857a-424d-8f4a-4c36674aa89c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="linklibs\release">
-      <UniqueIdentifier>{4e304edf-5b31-41f4-ba75-1452ea0bc0a3}</UniqueIdentifier>
     </Filter>
     <Filter Include="modintelligence">
       <UniqueIdentifier>{a626ee74-3728-4047-ab47-83c038c97b14}</UniqueIdentifier>
@@ -681,10 +750,25 @@
     <Filter Include="test\engine">
       <UniqueIdentifier>{7a5c5c9c-f499-417d-93ce-98e304ca5cf2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="etc">
+      <UniqueIdentifier>{0b1b9d6c-8008-4364-9b59-0a21a8b815d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="linklibs\rebecca">
+      <UniqueIdentifier>{b9d49437-6fa8-4fb1-a6cd-2f5eea811744}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="linklibs\generic">
+      <UniqueIdentifier>{dcb0d53e-1897-4454-a78f-a910f0290276}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\rebecca">
+      <UniqueIdentifier>{9ec255c8-d7e7-4fad-8bc9-a20328fa155d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\..\aiengine\lib\debug\generic.vc.debug.lib">
-      <Filter>linklibs\debug</Filter>
+    <Library Include="..\..\aiengine\lib\generic\generic.vc.debug.lib">
+      <Filter>linklibs\generic</Filter>
+    </Library>
+    <Library Include="..\..\aiengine\lib\rebecca\rebecca-mt.lib">
+      <Filter>linklibs\rebecca</Filter>
     </Library>
   </ItemGroup>
 </Project>
