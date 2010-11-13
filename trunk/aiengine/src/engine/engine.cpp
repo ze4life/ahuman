@@ -757,15 +757,6 @@ Xml AIEngineImpl::createXml( const char *contentName )
 	return( xml );
 }
 
-void AIEngineImpl::destroyXmlDoc( Xml& xml )
-{
-	TiXmlDocument *doc = ( TiXmlDocument * )xml.doc;
-	delete doc;
-
-	xml.doc = NULL;
-	xml.node = NULL;
-}
-
 // services
 void AIEngineImpl::registerService( Service *svc ,  const char *serviceName )
 {

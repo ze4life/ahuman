@@ -82,7 +82,7 @@ public:
 	bool readMessage( SOCKET socketHandle , String& msg , bool wait , bool& connectionClosed );
 	bool readFixedSizeMessage( SOCKET socketHandle , int size , String& msg , bool wait , bool& connectionClosed );
 
-	bool readXmlMessage( SOCKET socketHandle , Xml& xml , bool wait , bool& connectionClosed );
+	bool readXmlMessage( SOCKET socketHandle , Xml& xml , String& msg , bool wait , bool& connectionClosed );
 	void writeMessage( SOCKET socketHandle , const String& msg , bool& connectionClosed );
 
 	bool waitSocketData( SOCKET socket , bool p_wait );

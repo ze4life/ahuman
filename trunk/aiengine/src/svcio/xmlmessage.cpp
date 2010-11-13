@@ -15,10 +15,7 @@ XmlMessage::XmlMessage( Xml p_xml )
 XmlMessage::~XmlMessage()
 {
 	if( xml.exists() )
-		{
-			AIEngine& engine = AIEngine::getInstance();
-			engine.destroyXmlDoc( xml );
-		}
+		xml.destroy();
 }
 
 Xml XmlMessage::getXml()

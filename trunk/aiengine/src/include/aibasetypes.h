@@ -75,6 +75,8 @@ public:
 	static String toHex( int value );
 	int split( StringList& parts , String delimiter ) const;
 
+	static String parseStringLiteral( const char *p );
+
 private:
 	void createFromString( const char *s );
 private:

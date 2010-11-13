@@ -15,7 +15,7 @@ XmlCall::XmlCall( Channel *p_channelIn , Channel *p_channelOut , const char *txt
 XmlCall::~XmlCall()
 {
 	if( xmlResponse.exists() && responseSent == false )
-		AIEngine::getInstance().destroyXmlDoc( xmlResponse );
+		xmlResponse.destroy();
 }
 
 void XmlCall::postExecute()

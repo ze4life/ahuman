@@ -37,12 +37,11 @@ public:
 
 class Xml
 {
-	friend class AIEngineImpl;
-
 public:
 	Xml();
 	void attach( void *doc , void *node );
 	bool exists();
+	void destroy();
 
 	static Xml parse( const char *src , int& len , bool& p_error );
 
@@ -234,7 +233,6 @@ public:
 	virtual Xml loadXml( String fileName ) = 0;
 	virtual Xml readXml( const char *data , const char *contentName ) = 0;
 	virtual Xml createXml( const char *contentName ) = 0;
-	virtual void destroyXmlDoc( Xml& xml ) = 0;
 
 	// object serializations
 	virtual void registerSerializeObject( SerializeObject *sop ) = 0;
