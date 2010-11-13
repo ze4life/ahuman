@@ -5,6 +5,7 @@
 // #############################################################################
 // #############################################################################
 
+// SEH exception handling
 RuntimeException::RuntimeException( unsigned int code , int skipLevels , void *p_addr )
 {
 	seh = true;
@@ -52,14 +53,14 @@ RuntimeException::RuntimeException( unsigned int code , int skipLevels , void *p
 	}
 }
 
-// class RuntimeException
+// C++ exception handling
 RuntimeException::RuntimeException( const char *p_msg , const char *p_file , int p_line )
 {
 	seh = false;
 
 	msg = p_msg;
 	file = p_file;
-	stack = rfc_thr_stackget( 1 );
+	stack = rfc_thr_stackget( 3 );
 	line = p_line;
 	
 	const char *p1 = strrchr( file , '\\' );

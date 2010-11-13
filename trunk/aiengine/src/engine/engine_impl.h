@@ -50,7 +50,6 @@ public:
 	virtual Xml loadXml( String fileName );
 	virtual Xml readXml( const char *data , const char *contentName );
 	virtual Xml createXml( const char *contentName );
-	virtual void destroyXmlDoc( Xml& xml );
 
 	// serializable objects
 	virtual void registerSerializeObject( SerializeObject *sop );

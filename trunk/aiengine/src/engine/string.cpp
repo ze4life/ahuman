@@ -131,7 +131,7 @@ void String::remove( int from , int n )
 		return;
 
 	int len = strlen( v );
-	if( from <= len )
+	if( from >= len )
 		return;
 
 	if( n >= len - from ) {
@@ -367,6 +367,73 @@ int String::split( StringList& parts , String delimiter ) const
 	}
 
 	return( parts.count() );
+}
+
+String String::parseStringLiteral( const char *p )
+{
+	String s;
+	if( p == NULL )
+		return( s );
+
+	char c;
+	char buf[ 10 ];
+	int n;
+	while( c = *p++ ) {
+		if( c != '\\' ) {
+			s += c;
+			continue;
+		}
+
+		c = *p++;
+		switch( c ) {
+			case 0 : s += '\\'; return( s );
+			default : s += c; break;
+			case 'n' : s += '\n'; break;
+			case 't' : s += '\t'; break;
+			case 'v' : s += '\v'; break;
+			case 'b' : s += '\b'; break;
+			case 'r' : s += '\r'; break;
+			case 'f' : s += '\f'; break;
+			case 'a' : s += '\a'; break;
+			case '\\' : s += '\\'; break;
+			case '?' : s += '?'; break;
+			case '\'' : s += '\''; break;
+			case '"' : s += '"'; break;
+
+			case 'x' : 
+				n = 0;
+				while( c = *p ) {
+					if( n < 2 && isxdigit( c ) ) {
+						buf[ n++ ] = c;
+						p++;
+					}
+					else
+						break;
+				}
+				buf[ n ] = 0;
+				sscanf( buf , "%x" , &n );
+				s += ( char )n;
+				break;
+
+			case '0' : case '1' : case '2' : case '3' : case '4' : case '5' : case '6' : case '7' : case '8' : case '9' : 
+				n = 1;
+				buf[ 0 ] = c;
+				while( c = *p ) {
+					if( n < 3 && isdigit( c ) ) {
+						buf[ n++ ] = c;
+						p++;
+					}
+					else
+						break;
+				}
+				buf[ n ] = 0;
+				sscanf( buf , "%d" , &n );
+				s += ( char )n;
+				break;
+		}
+	}
+
+	return( s );
 }
 
 // #############################################################################

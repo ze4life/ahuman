@@ -16,6 +16,18 @@ void Xml::attach( void *p_doc , void *p_node )
 	node = p_node;
 }
 
+void Xml::destroy()
+{
+	if( !exists() )
+		return;
+
+	TiXmlDocument *l_doc = ( TiXmlDocument * )doc;
+	delete l_doc;
+
+	doc = NULL;
+	node = NULL;
+}
+
 String Xml::getName()
 {
 	ASSERT( node != NULL );
