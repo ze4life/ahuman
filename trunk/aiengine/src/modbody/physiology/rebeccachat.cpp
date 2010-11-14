@@ -47,25 +47,27 @@ virtual void start()
 	/* Create a subscriber to process the messages */
 	sub = io.subscribe( NULL , inTopic , "EarListener" , this );
 	builder = &aiml.getGraphBuilder();
-	builder -> setAIMLSchema("resources\\schema\\AIML.xsd");
-	builder -> setCommonTypesSchema("resources\\schema\\common-types.xsd");
-	builder -> setBotConfigurationSchema("resources\\schema\\bot-configuration.xsd");
+
+	AIEngine& engine = AIEngine::getInstance();
+	builder -> setAIMLSchema( ( const char * )engine.getConfigurationPath( "rebecca/xsd/AIML.xsd" ) );
+	builder -> setCommonTypesSchema( ( const char * )engine.getConfigurationPath( "rebecca/xsd/common-types.xsd" ) );
+	builder -> setBotConfigurationSchema( ( const char * )engine.getConfigurationPath( "rebecca/xsd/bot-configuration.xsd" ) );
 
 	// set to true that we want to do XML validation    
 	builder -> setAIMLValidation();
 	builder -> setBotConfigurationValidation();
 
 	// parse the substitutions file
-	builder -> parseSubstitutionFile("conf\\substitutions.xml");
+	builder -> parseSubstitutionFile( ( const char * )engine.getConfigurationPath( "rebecca/substitutions.xml" ) );
 
 	// parse sentence splitters
-	builder -> parseSentenceSplitterFile("conf\\sentence-splitters.xml");
+	builder -> parseSentenceSplitterFile( ( const char * )engine.getConfigurationPath( "rebecca/sentence-splitters.xml" ) );
 
 	// parse bot properties    
-	builder -> parsePropertiesFile("conf\\properties.xml");
+	builder -> parsePropertiesFile( ( const char * )engine.getConfigurationPath( "rebecca/properties.xml" ) );
 
 	// add the AIML directory unless its already added    
-	builder -> addDirectoryUnlessAlreadyAdded( "aiml\\annotated_alice" );
+	builder -> addDirectoryUnlessAlreadyAdded( ( const char * )engine.getConfigurationPath( "rebecca/aiml" ) );
 	builder -> createGraph();
 	string botName = builder -> getBotPredicate( "name" ).c_str();
 	StringPimpl response = builder -> getResponse( "connect" );

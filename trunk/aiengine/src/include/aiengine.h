@@ -230,6 +230,8 @@ public:
 	// others
 	virtual void exit( int status ) = 0;
 	virtual LogManager *getLogManager() = 0;
+	virtual String getConfigurationPath( String etcpath ) = 0;
+
 	virtual Xml loadXml( String fileName ) = 0;
 	virtual Xml readXml( const char *data , const char *contentName ) = 0;
 	virtual Xml createXml( const char *contentName ) = 0;

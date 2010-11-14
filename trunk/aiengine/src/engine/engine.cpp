@@ -196,7 +196,7 @@ int AIEngineImpl::runInternal( const char *p_configDir )
 		status = -1;
 	}
 	catch ( ... ) {
-		fprintf( stderr , "AIEngineImpl::runInternal - unexpected unknown exception" );
+		logger.logError( "AIEngineImpl::runInternal - unexpected unknown exception" );
 		status = -2;
 	}
 
@@ -253,6 +253,11 @@ void AIEngineImpl::exitServer()
 	// raise stop event
 	stoppedBySignal = true;
 	rfc_hnd_evsignal( eventExit );
+}
+
+String AIEngineImpl::getConfigurationPath( String etcpath )
+{
+	return( configDir + "/" + etcpath );
 }
 
 void AIEngineImpl::createServices()
