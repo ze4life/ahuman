@@ -8,11 +8,14 @@ ActiveSocket::ActiveSocket( String p_name )
 :	protocol( logger )
 {
 	name = p_name;
-	msgType = Message::MsgType_Unknown;
 	redirectInbound = false;
 	redirectOutbound = false;
 	connected = false;
 	shutdownInProgress = false;
+
+	sub = NULL;
+	pub = NULL;
+	socketThread = NULL;
 }
 
 ActiveSocket::~ActiveSocket()
@@ -30,15 +33,16 @@ void ActiveSocket::configure( Xml config )
 	if( redirectOutbound )
 		outboundChannelName = config.getProperty( "topic-out" );
 
-	typetext = config.getProperty( "msgtype" , "text" ).equals( "text" );
-
 	host = config.getProperty( "host" );
 	port = config.getProperty( "port" );
+	permanentConnection = config.getBooleanProperty( "permanent" );
 
+	// start protocol
+	protocol.create( config );
+
+	// start logging
 	loggerName = String( "ActiveSocket::" ) + name;
 	logger.attach( loggerName );
-
-	permanentConnection = config.getBooleanProperty( "permanent" );
 }
 
 bool ActiveSocket::startActiveSocket()
@@ -57,23 +61,38 @@ bool ActiveSocket::startActiveSocket()
 	if( !permanentConnection )
 		return( true );
 
+	// init messaging
+	AIIO io;
+	if( redirectOutbound )
+		sub = io.subscribe( NULL , outboundChannelName , name + "active-socket" , this );
+	if( redirectInbound ) {
+		pub = io.createPublisher( NULL , inboundChannelName , name + "active-socket" , "text" );
+
+		// start reading thread
+		AIEngine& engine = AIEngine::getInstance();
+		socketThread = engine.runThread( name + "active-socket" , this , ( ObjectThreadFunction )&ActiveSocket::readSocketThread , NULL );
+	}
+
+	// connect to external address
 	return( connectSocket() );
 }
 
 void ActiveSocket::stopActiveSocket()
 {
 	// stop thread reading from socket if any
+	shutdownInProgress = true;
 	disconnectSocket();
+
+	if( socketThread != NULL ) {
+		AIEngine& engine = AIEngine::getInstance();
+		engine.waitThreadExited( socketThread );
+		socketThread = NULL;
+	}
 }
 
 String ActiveSocket::getAddress()
 {
 	return( host + ":" + port );
-}
-
-Message::MsgType ActiveSocket::getMsgType()
-{
-	return( msgType );
 }
 
 String ActiveSocket::getName()
@@ -110,7 +129,8 @@ void ActiveSocket::disconnectSocket()
 
 void ActiveSocket::handleBrokenConnection()
 {
-	disconnectSocket();
+	if( !shutdownInProgress )
+		disconnectSocket();
 }
 
 void ActiveSocket::sendText( String text )
@@ -160,3 +180,42 @@ bool ActiveSocket::waitReadSocket( bool wait )
 	return( protocol.waitSocketData( socketHandle , wait ) );
 }
 
+void ActiveSocket::onTextMessage( TextMessage *msg )
+{
+	// forward from channel to socket
+	bool connectionClosed;
+	protocol.writeMessage( socketHandle , msg -> getText() , connectionClosed );
+	if( connectionClosed )
+		handleBrokenConnection();
+	else
+		logger.logDebug( "sent message to socket msgid=" + msg -> getChannelMessageId() );
+}
+
+void ActiveSocket::readSocketThread( void *p_arg )
+{
+	while( !shutdownInProgress ) {
+		if( !connected ) {
+			// try to connect
+			if( !connectSocket() ) {
+				rfc_thr_sleep( 1 );
+				continue;
+			}
+		}
+
+		// try reading
+		bool connectionClosed;
+		String final;
+		bool res = protocol.readMessage( socketHandle , final , true , connectionClosed );
+		if( connectionClosed ) {
+			handleBrokenConnection();
+			continue;
+		}
+
+		if( !res )
+			continue;
+
+		// write message to channel
+		String msgid = pub -> publish( NULL , final );
+		logger.logDebug( "read message from socket msgid=" + msgid );
+	}
+}

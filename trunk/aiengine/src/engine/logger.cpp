@@ -44,6 +44,12 @@ void Logger::attach( Object *p_o )
 	settings = logManager -> getObjectLogSettings( p_o );
 }
 
+void Logger::attach( Object *p_o , const char *p_loggerName )
+{
+	attach( p_o );
+	loggerName = p_loggerName;
+}
+
 void Logger::attach( const char *p_loggerName )
 {
 	LogManager *logManager = AIEngine::getInstance().getLogManager();

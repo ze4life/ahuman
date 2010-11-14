@@ -30,7 +30,7 @@ String Listener::getName()
 	return( name ); 
 }
 
-void Listener::addListenerConnection( Connection *connection )
+void Listener::addListenerConnection( SocketConnection *connection )
 {
 	String key = getName() + "." + (++lastConnectionId);
 
@@ -42,12 +42,12 @@ void Listener::addListenerConnection( Connection *connection )
 void Listener::stopListenerConnections()
 {
 	for( int k = 0; k < connections.count(); k++ ) {
-		Connection *connection = connections.getClassByIndex( k );
+		SocketConnection *connection = connections.getClassByIndex( k );
 		connection -> stopConnection();
 	}
 }
 
-void Listener::removeListenerConnection( Connection *connection )
+void Listener::removeListenerConnection( SocketConnection *connection )
 {
 	String key = connection -> getName();
 	connections.remove( key );

@@ -41,6 +41,7 @@ RFC_HND rfc_hnd_semcreate()
 /* destroy semaphore */
 void rfc_hnd_semdestroy( RFC_HND p_hnd )
 {
+	CancelIoEx( p_hnd , NULL );
 	CloseHandle( p_hnd );
 }
 
@@ -62,6 +63,7 @@ RFC_HND rfc_hnd_evcreate()
 /* destroy event */
 void rfc_hnd_evdestroy( RFC_HND p_hnd )
 {
+	CancelIoEx( p_hnd , NULL );
 	CloseHandle( p_hnd );
 }
 
@@ -86,6 +88,7 @@ RFC_HND		rfc_hnd_mutcreate( void )
 /* destroy mutex */
 void		rfc_hnd_mutdestroy( RFC_HND p_hnd )
 {
+	CancelIoEx( p_hnd , NULL );
 	CloseHandle( p_hnd );
 }
 

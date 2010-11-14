@@ -27,7 +27,7 @@ IOQueue::IOQueue( String p_queueId )
 	/* Create a list to add messages of type pointer */
 	queueMessages = rfc_lst_create( RFC_EXT_TYPEPTR );
 
-	logger.attach( this );
+	logger.attach( this , queueId );
 }
 
 /*

@@ -19,8 +19,6 @@ Channel::Channel( String p_msgid , String p_name , bool p_sync )
 	run = false;
 	queueMessageId = 0;
 
-	memset( &threadID , 0 , sizeof( RFC_THREAD ) );
-	
 	messages = NULL;
 	channelLock = rfc_lock_create();
 }
@@ -69,7 +67,7 @@ void Channel::start()
 	if( !sync )
 		{
 			AIEngine& engine = AIEngine::getInstance();
-			engine.runThread( name ,  this , ( ObjectThreadFunction )&Channel::threadChannelFunction , NULL );
+			channelThread = engine.runThread( name ,  this , ( ObjectThreadFunction )&Channel::threadChannelFunction , NULL );
 		}
 
 	run = true;
@@ -94,8 +92,9 @@ void Channel::close()
 	if( !sync )
 		{
 			// stop thread
-			rfc_thr_waitexit( &threadID );
-			memset( &threadID , 0 , sizeof( RFC_THREAD ) );
+			AIEngine& engine = AIEngine::getInstance();
+			engine.waitThreadExited( channelThread );
+			channelThread = NULL;
 		}
 
 	// clear subscribers and publishers

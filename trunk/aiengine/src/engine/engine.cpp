@@ -268,8 +268,8 @@ void AIEngineImpl::createServices()
 	constructServices();
 
 	// attach loggers and run creation event
-	for( int k = 0; k < services.count(); k++ ) {
-		Service *svc = services.getClassByIndex( k );
+	for( int k = 0; k < serviceList.count(); k++ ) {
+		Service *svc = serviceList.get( k );
 
 		// check creation is blocked
 		if( !svc -> isCreate ) {
@@ -302,10 +302,10 @@ void AIEngineImpl::createServices()
 void AIEngineImpl::constructServices()
 {
 	// tech services
-	constructService( "TestPool" , &AITestPool::newService );
 	constructService( "IO" , &AIIO::newService );
-	constructService( "Media" , &AIMedia::newService );
 	constructService( "DB" , &AIDB::newService );
+	constructService( "TestPool" , &AITestPool::newService );
+	constructService( "Media" , &AIMedia::newService );
 	
 	// mind services
 	constructService( "LibNN" , &AILibNN::newService );
@@ -343,6 +343,9 @@ Service *AIEngineImpl::constructService( String name , ServiceFactoryFunction fa
 	logger.attach( svc );
 
 	svc -> isNewCompleted = true;
+
+	// add to list
+	serviceList.add( svc );
 	return( svc );
 }
 
@@ -354,8 +357,8 @@ LogManager *AIEngineImpl::getLogManager()
 void AIEngineImpl::initServices() 
 {
 	// init services
-	for( int k = 0; k < services.count(); k++ ) {
-		Service *svc = services.getClassByIndex( k );
+	for( int k = 0; k < serviceList.count(); k++ ) {
+		Service *svc = serviceList.get( k );
 
 		// check initialization is blocked
 		if( !svc -> isInit ) {
@@ -388,8 +391,8 @@ void AIEngineImpl::runServices()
 	rfc_hnd_evreset( eventExit );
 
 	// run all instances
-	for( int k = 0; k < services.count(); k++ ) {
-		Service *svc = services.getClassByIndex( k );
+	for( int k = 0; k < serviceList.count(); k++ ) {
+		Service *svc = serviceList.get( k );
 
 		// check run is blocked
 		if( !svc -> isRun ) {
@@ -424,11 +427,13 @@ void AIEngineImpl::waitExitSignal()
 void AIEngineImpl::exitServices()
 {
 	logger.logInfo( "exit services..." );
-	for( int k = 0; k < services.count(); k++ ) {
+
+	// in back order
+	for( int k = serviceList.count() - 1; k >= 0 ; k-- ) {
 		// exit sepately from each other
 		Service *svc = NULL;
 		try {
-			svc = services.getClassByIndex( k );
+			svc = serviceList.get( k );
 			if( svc -> isInitStarted == false || svc -> isExitStarted == true )
 				continue;
 
@@ -452,12 +457,16 @@ void AIEngineImpl::exitServices()
 void AIEngineImpl::destroyServices()
 {
 	logger.logInfo( "destroy services..." );
-	for( int k = 0; k < services.count(); k++ ) {
+
+	// in back order
+	for( int k = serviceList.count() - 1; k >= 0; k-- ) {
 		// destroy sepately from each other
 		Service *svc = NULL;
 		try {
-			svc = services.getClassByIndex( k );
-			services.set( services.getKeyByIndex( k ) , NULL );
+			svc = serviceList.get( k );
+
+			// clear in service map
+			services.set( svc -> getName() , NULL );
 
 			if( svc -> isExitStarted == false || svc -> isDestroyStarted == true )
 				continue;
@@ -478,6 +487,7 @@ void AIEngineImpl::destroyServices()
 	}
 
 	services.clear();
+	serviceList.clear();
 	logger.logInfo( "destroy services - done" );
 }
 
@@ -659,7 +669,10 @@ String AIEngineImpl::getActiveThreads()
 	rfc_hnd_semlock( lockExit );
 	for( int k = 0; k < threads.count(); k++ ) {
 		ThreadData *td = threads.getClassByIndex( k );
-		if( k > 0 )
+		if( td -> name.equals( "main" ) )
+			continue;
+
+		if( !rs.isEmpty() )
 			rs += ", ";
 		rs += td -> name;
 	}

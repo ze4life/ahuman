@@ -41,7 +41,7 @@ public:
 	TestUnit( String p_name ) {
 		name = p_name;
 	}
-	~TestUnit() {
+	virtual ~TestUnit() {
 		methods.destroy();
 	}
 
@@ -63,6 +63,7 @@ public:
 	}
 	
 	virtual void init() = 0;
+	virtual void exit() {};
 	
 protected:
 	void addMethod( String methodName , TestUnitMethodType methodFunction ) {

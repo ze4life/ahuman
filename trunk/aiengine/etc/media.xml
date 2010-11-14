@@ -43,15 +43,15 @@
 			<property name="protocol" value="asymmetric"/>
 			<property name="protocol-outbound" value="text-messages"/>
 			<property name="protocol-inbound" value="xml-messages"/>
-			<property name="protocol-outbound.delimiter" value=""/>
+			<property name="protocol-outbound.delimiter" value="\n"/>
 			<property name="msgtype" value="text"/>
 			<property name="permanent" value="true"/>
 			<property name="host" value="google.com"/> 
 			<property name="port" value="80"/> 
 			<property name="redirect-in" value="true"/>
 			<property name="redirect-out" value="true"/> 
-			<property name="topic-in" value="http.in"/> 
-			<property name="topic-out" value="http.out"/> 
+			<property name="topic-in" value="http.response"/> 
+			<property name="topic-out" value="http.request"/> 
 		</channel>
 
 		<channel name="image-processor" run="true">

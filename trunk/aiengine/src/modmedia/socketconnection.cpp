@@ -8,6 +8,9 @@ SocketConnection::SocketConnection( SocketServer *p_server , SOCKET p_clientSock
 :	engine( AIEngine::getInstance() ) ,
 	protocol( logger )
 {
+	listener = NULL;
+	session = NULL; 
+
 	server = p_server;
 	sub = NULL;
 
@@ -28,12 +31,16 @@ SocketConnection::SocketConnection( SocketServer *p_server , SOCKET p_clientSock
 SocketConnection::~SocketConnection()
 {
 	// delete session
-	Session *session = Connection::getSession();
-	if( session != NULL )
-		{
-			AIIO io;
-			io.closeSession( session );
-		}
+	if( session != NULL ) {
+		AIIO io;
+		io.closeSession( session );
+	}
+}
+
+void SocketConnection::setName( String name )
+{
+	key = name; 
+	logger.attach( key );
 }
 
 void SocketConnection::threadClientFunction( void *p_arg )
@@ -60,8 +67,7 @@ bool SocketConnection::startConnection()
 
 	// connect to topics
 	AIIO io;
-	Session *session = io.createSession();
-	Connection::setSession( session );
+	session = io.createSession();
 	if( server -> getWayIn() ) {
 		String topicIn = server -> getTopicIn();
 		AIIO io;
@@ -76,7 +82,7 @@ bool SocketConnection::startConnection()
 
 	// start reading thread
 	if( server -> getWayIn() || server -> getAuth() ) {
-		thread = engine.runThread( Connection::getName() , this , ( ObjectThreadFunction )&SocketConnection::threadClientFunction , NULL );
+		thread = engine.runThread( key , this , ( ObjectThreadFunction )&SocketConnection::threadClientFunction , NULL );
 		threadStarted = true;
 	}
 
@@ -94,11 +100,11 @@ void SocketConnection::readMessages()
 			performRead();
 	}
 	catch ( RuntimeException& e ) {
-		logger.logError( getName() + ": SocketConnection::readMessages - exception catched:" );
+		logger.logError( key + ": SocketConnection::readMessages - exception caught:" );
 		e.printStack( logger );
 	}
 	catch ( ... ) {
-		logger.logError( getName() + ": SocketConnection::readMessages - unknown exception in read" );
+		logger.logError( key + ": SocketConnection::readMessages - unknown exception in read" );
 		logger.printStack();
 	}
 
@@ -106,7 +112,7 @@ void SocketConnection::readMessages()
 		stopConnection();
 	}
 	catch ( ... ) {
-		logger.logError( getName() + ": SocketConnection::readMessages - unknown exception in stop" );
+		logger.logError( key + ": SocketConnection::readMessages - unknown exception in stop" );
 		logger.printStack();
 	}
 }
@@ -175,19 +181,19 @@ void SocketConnection::processMessage( const char *p_msg )
 	logger.logDebug( getName() + ": socket received message (" + p_msg + ")" );
 							    
 	if( msgType == Message::MsgType_Text ) {
-		pub -> publish( Connection::getSession() , p_msg );
+		pub -> publish( session , p_msg );
 	}
 	else
 	if( msgType == Message::MsgType_Xml ) {
 		XmlMessage *l_msg = new XmlMessage( p_msg );
 		l_msg -> setXmlFromMessage( pub -> getMsgType() );
-		pub -> publish( Connection::getSession() , p_msg );
+		pub -> publish( session , p_msg );
 	}
 	else
 	if( msgType == Message::MsgType_XmlCall ) {
 		XmlCall *call = new XmlCall( pub -> getChannel() , sub -> getChannel() , p_msg );
 		call -> setXmlFromMessage();
-		pub -> publish( Connection::getSession() , call );
+		pub -> publish( session , call );
 	}
 }
 
