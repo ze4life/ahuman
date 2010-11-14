@@ -32,8 +32,6 @@
 	_res = select( 0 , NULL , NULL , _fd_set , _fd_time )
 
 class Listener;
-class Connection;
-
 class SocketServer;
 class ActiveSocket;
 class SocketConnection;
@@ -76,7 +74,7 @@ public:
 public:
 	static void initSocketLib();
 	static void exitSocketLib();
-	static bool waitSocketData( SOCKET socket , int p_sec , bool& p_error );
+	static bool waitSocketDataTimeout( SOCKET socket , int p_sec , bool& p_error );
 
 public:
 	bool readMessage( SOCKET socketHandle , String& msg , bool wait , bool& connectionClosed );
@@ -95,34 +93,6 @@ private:
 /*#########################################################################*/
 /*#########################################################################*/
 
-class Connection
-{
-public:
-	Connection() { listener = NULL; session = NULL; };
-	virtual ~Connection() {};
-
-	void setListener( Listener *p_listener ) { listener = p_listener; };
-	Listener *getListener() { return( listener ); };
-
-	void setName( String name ) { key = name; };
-	String getName() { return( key ); };
-
-	void setSession( Session *p_session ) { session = p_session; };
-	Session *getSession() { return( session ); };
-
-public:
-	virtual bool startConnection() = 0;
-	virtual void stopConnection() = 0;
-
-private:
-	Listener *listener;
-	String key;
-	Session *session;
-};
-
-/*#########################################################################*/
-/*#########################################################################*/
-
 class Listener : public Object
 {
 private:
@@ -130,7 +100,7 @@ private:
 	int lastConnectionId;
 	Message::MsgType msgType;
 	String name;
-	MapStringToClass<Connection> connections;
+	MapStringToClass<SocketConnection> connections;
 
 public:
 	// interface
@@ -151,8 +121,8 @@ public:
 	String getName();
 	SocketProtocol& getProtocol() { return( protocol ); };
 
-	void addListenerConnection( Connection *connection );
-	void removeListenerConnection( Connection *connection );
+	void addListenerConnection( SocketConnection *connection );
+	void removeListenerConnection( SocketConnection *connection );
 	void stopListenerConnections();
 };
 
@@ -213,16 +183,14 @@ class ActiveSocket : public Object , public Subscriber
 private:
 	SOCKET socketHandle;
 	struct sockaddr_in addr;
-	bool typetext;
 	SocketProtocol protocol;
 
-	RFC_HND thread;
+	RFC_HND socketThread;
 	bool threadStarted;
 	bool continueRead;
 	bool connected;
 	bool shutdownInProgress;
 
-	Message::MsgType msgType;
 	String name;
 	String loggerName;
 	
@@ -235,7 +203,8 @@ private:
 
 	String inboundChannelName;
 	String outboundChannelName;
-	Publisher *inboundChannel;
+	Subscription *sub;
+	Publisher *pub;
 
 public:
 	// interface
@@ -243,13 +212,14 @@ public:
 	bool startActiveSocket();
 	void stopActiveSocket();
 
+	virtual void onTextMessage( TextMessage *msg );
+
 public:
 	ActiveSocket( String name );
 	virtual ~ActiveSocket();
 	virtual const char *getClass() { return( "ActiveSocket" ); };
 
 public:
-	Message::MsgType getMsgType();
 	String getName();
 	String getAddress();
 
@@ -262,40 +232,14 @@ private:
 	void disconnectSocket();
 	bool waitReadSocket( bool wait );
 	void handleBrokenConnection();
+	void readSocketThread( void *p_arg );
 };
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-class SocketConnection : public Object , public Connection , public Subscriber
+class SocketConnection : public Object , public Subscriber
 {
-public:
-	SocketConnection( SocketServer *server , SOCKET clientSocket , struct sockaddr_in *clientAddress , Message::MsgType msgType );
-	~SocketConnection();
-
-	virtual const char *getClass() { return( "SocketConnection" ); };
-	virtual bool startConnection();
-	virtual void stopConnection();
-
-	String getClientSocketName();
-
-	void readMessages();
-	void sendString( const char *p_msg , int len );
-	void writeMessage( TextMessage *p_msg );
-
-	// subscriber
-	virtual void onTextMessage( TextMessage *msg );
-	virtual void onXmlMessage( XmlMessage *msg );
-	virtual void onXmlCall( XmlCall *msg );
-
-public:
-	void threadClientFunction( void *p_arg );
-
-private:
-	void tryLogin( const char *p_msg );
-	void performRead();
-	void processMessage( const char *p_msg );
-
 private:
 	AIEngine& engine;
 	AIIO io;
@@ -316,6 +260,50 @@ private:
 	bool continueRead;
 	bool connected;
 	bool logout;
+
+	// connection
+	Listener *listener;
+	String key;
+	Session *session;
+
+public:
+	SocketConnection( SocketServer *server , SOCKET clientSocket , struct sockaddr_in *clientAddress , Message::MsgType msgType );
+	~SocketConnection();
+
+	virtual const char *getClass() { return( "SocketConnection" ); };
+
+public:
+	bool startConnection();
+	void stopConnection();
+
+	String getClientSocketName();
+
+	void readMessages();
+	void sendString( const char *p_msg , int len );
+	void writeMessage( TextMessage *p_msg );
+
+	// subscriber
+	virtual void onTextMessage( TextMessage *msg );
+	virtual void onXmlMessage( XmlMessage *msg );
+	virtual void onXmlCall( XmlCall *msg );
+
+	// connection
+	void setListener( Listener *p_listener ) { listener = p_listener; };
+	Listener *getListener() { return( listener ); };
+
+	void setName( String name );
+	String getName() { return( key ); };
+
+	void setSession( Session *p_session ) { session = p_session; };
+	Session *getSession() { return( session ); };
+
+public:
+	void threadClientFunction( void *p_arg );
+
+private:
+	void tryLogin( const char *p_msg );
+	void performRead();
+	void processMessage( const char *p_msg );
 };
 
 /*#########################################################################*/

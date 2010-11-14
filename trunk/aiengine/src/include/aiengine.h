@@ -121,6 +121,7 @@ public:
 	void attachRoot();
 	void attach( Service *s );
 	void attach( Object *o );
+	void attach( Object *o , const char *loggerName );
 	void attach( const char *loggerName );
 
 	// stack

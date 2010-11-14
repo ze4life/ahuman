@@ -26,6 +26,7 @@ LogManager::LogManager() {
 	extraMode = false;
 	syncMode = true;
 	syncModeConfigured = true;
+	asyncThread = NULL;
 
 	n1e = 0; n3e = va;
 	n2f = n4f = n5f = n6e = 0;
@@ -78,7 +79,9 @@ void LogManager::setSyncMode( bool p_syncMode ) {
 	if( syncMode == false ) {
 		AIEngine& en = AIEngine::getInstance();
 		rfc_hnd_evreset( stopEvent );
-		if( en.runThread( "LogWriter" , this , ( ObjectThreadFunction )&LogManager::run , NULL ) != NULL ) {
+		asyncThread = en.runThread( "LogWriter" , this , ( ObjectThreadFunction )&LogManager::run , NULL );
+
+		if( asyncThread != NULL ) {
 			rfc_hnd_waitevent( stopEvent );
 			rfc_hnd_evreset( stopEvent );
 		}

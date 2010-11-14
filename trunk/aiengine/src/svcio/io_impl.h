@@ -130,7 +130,7 @@ private:
 	int queueMessageId;
 
 	rfc_lock *channelLock;
-	RFC_THREAD threadID;
+	RFC_HND channelThread;
 	IOQueue *messages;
 	MapStringToClass<SubscriptionImpl> subs;
 	MapStringToClass<PublisherImpl> pubs;

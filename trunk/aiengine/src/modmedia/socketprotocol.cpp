@@ -77,7 +77,7 @@ void SocketProtocol::createFlow( Xml config , FLOW_PROTOCOL& proto , String& del
 	}
 }
 
-bool SocketProtocol::waitSocketData( SOCKET socket , int p_sec , bool& p_error )
+bool SocketProtocol::waitSocketDataTimeout( SOCKET socket , int p_sec , bool& p_error )
 {
 	struct fd_set l_set;
 	struct timeval l_t;
@@ -93,15 +93,19 @@ bool SocketProtocol::waitSocketData( SOCKET socket , int p_sec , bool& p_error )
 			l_t.tv_sec = p_sec;
 		}
 
+	p_error = true;
 	int l_res = select( 0 , 
 		&l_set ,
 		NULL , 
 		&l_set ,
 		l_pt );
 
-	p_error = true;
-	if( l_res <= 0 )
+	p_error = false;
+	if( l_res <= 0 ) {
+		if( l_res < 0 )
+			p_error = true;
 		return( false );
+	}
 
 	// check wakeup reason
 	int l_check = 0;
@@ -109,8 +113,10 @@ bool SocketProtocol::waitSocketData( SOCKET socket , int p_sec , bool& p_error )
 
 	// check exception
 	_fd_checke( l_check , &l_set , &l_t , socket );
-	if( l_check )
+	if( l_check ) {
+		p_error = true;
 		return( false );
+	}
 
 	// check read status - should be
 	p_error = false;
@@ -125,7 +131,7 @@ bool SocketProtocol::waitSocketData( SOCKET socket , bool p_wait )
 {
 	int waitTime = ( p_wait )? waitTimeSec : 0;
 	bool error = false;
-	if( waitSocketData( socket , waitTime , error ) )
+	if( waitSocketDataTimeout( socket , waitTime , error ) )
 		return( true );
 
 	if( !shutdownInProgress )
@@ -173,8 +179,9 @@ bool SocketProtocol::readXmlMessage( SOCKET socketHandle , Xml& xml , String& ms
 				}
 
 				// wait next chunk from socket
-				while( !waitSocketData( socketHandle , wait ) ) {
-					if( !wait )
+				int waitTime = ( wait )? waitTimeSec : 0;
+				while( !waitSocketDataTimeout( socketHandle , waitTime , connectionClosed ) ) {
+					if( connectionClosed || wait == false )
 						return( false );
 				}
 
@@ -272,8 +279,12 @@ bool SocketProtocol::readMessageInternal( SOCKET socketHandle , String& msg , in
 
 				// wait next chunk from socket
 				while( true ) {
-					if( waitSocketData( socketHandle , wait ) )
+					int waitTime = ( wait )? waitTimeSec : 0;
+					if( waitSocketDataTimeout( socketHandle , waitTime , connectionClosed ) )
 						break;
+
+					if( connectionClosed )
+						return( false );
 
 					if( !wait )
 						return( false );
@@ -299,7 +310,11 @@ bool SocketProtocol::readMessageInternal( SOCKET socketHandle , String& msg , in
 			while( true ) {
 				if( fixedSize > 0 ) {
 					// if waiting for fixed size data
-					if( !waitSocketData( socketHandle , wait ) ) {
+					int waitTime = ( wait )? waitTimeSec : 0;
+					if( !waitSocketDataTimeout( socketHandle , waitTime , connectionClosed ) ) {
+						if( connectionClosed )
+							return( false );
+
 						// in wait mode try again
 						if( wait )
 							continue;
@@ -311,7 +326,11 @@ bool SocketProtocol::readMessageInternal( SOCKET socketHandle , String& msg , in
 				else {
 					// just any part of text stream - wait can be only for first time
 					bool waitCall = ( packetSize == 0 )? wait : false;
-					if( !waitSocketData( socketHandle , waitCall ) ) {
+					int waitTime = ( waitCall )? waitTimeSec : 0;
+					if( !waitSocketDataTimeout( socketHandle , waitTime , connectionClosed ) ) {
+						if( connectionClosed )
+							return( false );
+
 						if( packetSize > 0 ) {
 							msg = inPending;
 							inPending.clear();

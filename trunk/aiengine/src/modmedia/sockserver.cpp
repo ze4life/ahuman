@@ -216,11 +216,10 @@ void SocketServer::acceptConnectionLoop()
 void SocketServer::performConnect()
 {
 	bool l_error;
-	if( !SocketProtocol::waitSocketData( listenSocket , 0 , l_error ) )
-		{
-			continueConnecting = false;
-			return;
-		}
+	if( !SocketProtocol::waitSocketDataTimeout( listenSocket , 0 , l_error ) ) {
+		continueConnecting = false;
+		return;
+	}
 
 	// connect request received
 	struct sockaddr_in clientAddress;
@@ -230,12 +229,11 @@ void SocketServer::performConnect()
 	int l_len = sizeof( struct sockaddr_in );
 	SOCKET clientSocket = accept( listenSocket , ( struct sockaddr * )&clientAddress , &l_len );
 
-	if( clientSocket == INVALID_SOCKET )
-		{
-			continueConnecting = false;
-			logger.logError( "accept returned INVALID_SOCKET" );
-			return;
-		}
+	if( clientSocket == INVALID_SOCKET ) {
+		continueConnecting = false;
+		logger.logError( "accept returned INVALID_SOCKET" );
+		return;
+	}
 
 	/* set non-blocking */
 	unsigned long l_ok = 1;
@@ -248,12 +246,11 @@ void SocketServer::performConnect()
 	setsockopt( clientSocket , SOL_SOCKET , SO_LINGER , ( char * )&l_linger , sizeof( struct linger ) );
 
 	// start connection thread
-	if( !startConnection( clientSocket , &clientAddress ) )
-		{
-			continueConnecting = false;
-			logger.logError( "cannot start client thread" );
-			return;
-		}
+	if( !startConnection( clientSocket , &clientAddress ) ) {
+		continueConnecting = false;
+		logger.logError( "cannot start client thread" );
+		return;
+	}
 }
 
 bool SocketServer::startConnection( SOCKET clientSocket , struct sockaddr_in *clientAddress )
@@ -261,12 +258,11 @@ bool SocketServer::startConnection( SOCKET clientSocket , struct sockaddr_in *cl
 	SocketConnection *client = new SocketConnection( this , clientSocket , clientAddress , Listener::getMsgType() );
 	Listener::addListenerConnection( client );
 
-	if( !client -> startConnection() )
-		{
-			client -> stopConnection();
-			delete client;
-			return( false );
-		}
+	if( !client -> startConnection() ) {
+		client -> stopConnection();
+		delete client;
+		return( false );
+	}
 
 	return( true );
 }

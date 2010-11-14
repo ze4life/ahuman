@@ -141,6 +141,7 @@ private:
 	MapStringToClass<TiXmlDocument> configs;
 
 	// services
+	ClassList<Service> serviceList;
 	MapStringToClass<Service> services;
 	MapStringToClass<ThreadData> threads;
 
@@ -303,6 +304,7 @@ private:
 	bool extraMode;
 	bool syncMode;
 	bool syncModeConfigured;
+	RFC_HND asyncThread;
 
 	int n1e;	// empty
 	int n2f;	// filled
