@@ -164,7 +164,7 @@ Channel *AIIOImpl::getChannel( String name )
 	lock();
 	Channel *channel = mapChannels.get( name );
 	unlock();
-	ASSERTMSG( channel != NULL , String( "i/o channel does not exist: [" ) + name + "]" );
+	ASSERTMSG( channel != NULL , String( "i/o channel does not exist: name=" ) + name );
 
 	return( channel );
 }

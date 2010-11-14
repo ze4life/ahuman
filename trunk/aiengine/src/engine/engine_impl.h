@@ -47,6 +47,9 @@ public:
 	// others
 	virtual void exit( int status );
 	virtual LogManager *getLogManager();
+
+	virtual String getConfigurationPath( String etcpath );
+
 	virtual Xml loadXml( String fileName );
 	virtual Xml readXml( const char *data , const char *contentName );
 	virtual Xml createXml( const char *contentName );

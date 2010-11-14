@@ -21,7 +21,19 @@ void Physiology::onBrainStart()
 	// start controls
 	for( int k = 0; k < controls.count(); k++ ) {
 		PhysioControl *control = controls.getClassByIndex( k );
-		control -> start();
+		String name = controls.getKeyByIndex( k );
+
+		try {
+			control -> start();
+		}
+		catch ( RuntimeException& e ) {
+			logger.logError( "Physiology::onBrainStart - cannot start control name=" + name );
+			e.printStack( logger );
+		}
+		catch ( ... ) {
+			logger.logError( "Physiology::onBrainStart - unexpected unknown exception, cannot start control name=" + name );
+		}
+
 		logger.logInfo( "Physiology::onBrainStart: control started - name=" + control -> getName() );
 	}
 }
@@ -50,8 +62,12 @@ void Physiology::addControl( Xml configControls , PhysioControl *att )
 	Xml config = configControls.getChildNamedNode( "control" , name );
 
 	if( config.exists() && config.getBooleanAttribute( "run" ) ) {
+		// add
 		controls.add( name , att );
 		logger.logInfo( "Physiology::addControl: control added - name=" + name );
+
+		// configure
+		att -> create( config );
 	}
 	else {
 		controlsOffline.add( name , att );
