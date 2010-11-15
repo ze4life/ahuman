@@ -420,7 +420,7 @@ void AIEngineImpl::waitExitSignal()
 	rfc_hnd_semlock( lockExit );
 	if( countExit > 1 ) {
 		rfc_hnd_semunlock( lockExit );
-		rfc_hnd_waitevent( eventExit );
+		rfc_hnd_waitevent( eventExit , -1 );
 	}
 }
 

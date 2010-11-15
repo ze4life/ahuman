@@ -798,7 +798,7 @@ public:
 		if( changeHandle == NULL ) {
 			// wait command event
 			unlock();
-			rfc_hnd_waitevent( commandEvent );
+			rfc_hnd_waitevent( commandEvent , -1 );
 			rfc_hnd_evreset( commandEvent );
 			return;
 		}

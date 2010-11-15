@@ -78,7 +78,7 @@ Message *IOQueue::getNextMessage()
 		logger.logDebug( "i/o getNextMessage: found zero records " );
 		rfc_lock_release( queueLock );
 		logger.logDebug( "i/o getNextMessage: start wait event..." );
-		rfc_hnd_waitevent( queueWakeupEvent );
+		rfc_hnd_waitevent( queueWakeupEvent , -1 );
 		logger.logDebug( "i/o getNextMessage: event found" );
 
 		// lock again and reset event
