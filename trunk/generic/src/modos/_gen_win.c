@@ -46,10 +46,13 @@ void rfc_hnd_semdestroy( RFC_HND p_hnd )
 }
 
 /* wait to event signaled */
-int rfc_hnd_waitevent( RFC_HND p_hnd )
+short rfc_hnd_waitevent( RFC_HND p_hnd , int p_timeout_ms )
 {
-	if( WaitForSingleObject( p_hnd , INFINITE ) != WAIT_OBJECT_0 )
-		return( -1 );
+	DWORD waitParam = p_timeout_ms;
+	if( p_timeout_ms < 0 )
+		waitParam = INFINITE;
+	if( WaitForSingleObject( p_hnd , waitParam ) == WAIT_OBJECT_0 )
+		return( 1 );
 
 	return( 0 );
 }
