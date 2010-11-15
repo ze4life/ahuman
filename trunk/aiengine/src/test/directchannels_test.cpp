@@ -10,10 +10,16 @@ private:
 	RFC_HND msgEvent;
 	String pageResults;
 
+	Subscription *sub;
+	Publisher *pub;
+
 // construction
 public:
 	TestDirectChannels() : TestUnit( "TestDirectChannels" ) {
 		msgEvent = rfc_hnd_evcreate();
+
+		pub = NULL;
+		sub = NULL;
 	};
 	~TestDirectChannels() {
 		rfc_hnd_evdestroy( msgEvent );
@@ -21,6 +27,10 @@ public:
 
 	virtual void init() {
 		ADD_METHOD( TestDirectChannels::testRequestPage );
+
+		AIIO io;
+		sub = io.subscribe( NULL , "http.response" , "http.test" , this );
+		pub = io.createPublisher( NULL , "http.request" , "http.test" , "text" );
 	}
 	virtual void exit() {
 		rfc_hnd_evsignal( msgEvent );
@@ -32,17 +42,13 @@ public:
 	void testRequestPage( XmlCall& call ) {
 		String page = call.getParam( "page" );
 		
-		AIIO io;
-		Subscription *sub = io.subscribe( call.getSession() , "http.response" , "http.test" , this );
-		Publisher *pub = io.createPublisher( call.getSession() , "http.request" , "http.test" , "text" );
-
 		rfc_hnd_evreset( msgEvent );
 		pageResults.clear();
 
 		String pageQuery = "GET " + page;
 		String msgId = pub -> publish( call.getSession() , pageQuery );
 
-		rfc_hnd_waitevent( msgEvent );
+		rfc_hnd_waitevent( msgEvent , 5000 );
 		
 		ASSERTMSG( !pageResults.isEmpty() , "No response from google page=" + page );
 		Xml xml = call.createResponse();

@@ -60,7 +60,7 @@ void ActiveMemoryThread::suspend()
 {
 	rfc_hnd_evreset( runEvent );
 	suspendSignal = true;
-	rfc_hnd_waitevent( suspendEvent );
+	rfc_hnd_waitevent( suspendEvent , -1 );
 }
 
 void ActiveMemoryThread::resume()
@@ -95,7 +95,7 @@ void ActiveMemoryThread::run( void *p_arg )
 
 	while( !stopSignal ) {
 		// ensure run enabled
-		rfc_hnd_waitevent( runEvent );
+		rfc_hnd_waitevent( runEvent , -1 );
 
 		// get execution object
 		ActiveMemoryObject *object = executeObjects.get( currentObject );
@@ -114,7 +114,7 @@ void ActiveMemoryThread::run( void *p_arg )
 			logger.logInfo( String( "Thread suspended" ) );
 
 			// wait till resumed
-			rfc_hnd_waitevent( runEvent );
+			rfc_hnd_waitevent( runEvent , -1 );
 			if( !stopSignal )
 				logger.logInfo( String( "Thread resumed" ) );
 

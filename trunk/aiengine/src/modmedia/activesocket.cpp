@@ -117,13 +117,13 @@ bool ActiveSocket::connectSocket()
 void ActiveSocket::disconnectSocket()
 {
 	if( connected ) {
+		connected = false;
+
 		_closesocket( socketHandle );
 		socketHandle = INVALID_SOCKET;
 
 		String msg = "ActiveSocket::disconnectSocket: stopped socket on " + getAddress();
 		logger.logInfo( msg );
-
-		connected = false;
 	}
 }
 

@@ -82,7 +82,7 @@ void LogManager::setSyncMode( bool p_syncMode ) {
 		asyncThread = en.runThread( "LogWriter" , this , ( ObjectThreadFunction )&LogManager::run , NULL );
 
 		if( asyncThread != NULL ) {
-			rfc_hnd_waitevent( stopEvent );
+			rfc_hnd_waitevent( stopEvent , -1 );
 			rfc_hnd_evreset( stopEvent );
 		}
 		else
@@ -90,7 +90,7 @@ void LogManager::setSyncMode( bool p_syncMode ) {
 	}
 	else {
 		// wait till writer thread is ended
-		rfc_hnd_waitevent( stopEvent );
+		rfc_hnd_waitevent( stopEvent , -1 );
 	}
 }
 
