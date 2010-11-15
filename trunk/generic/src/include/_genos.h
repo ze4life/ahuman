@@ -220,7 +220,9 @@ extern RFC_HND		rfc_hnd_evcreate( void );
 extern void			rfc_hnd_evdestroy( RFC_HND p_hnd );
 extern void			rfc_hnd_evsignal( RFC_HND p_hnd );
 extern void			rfc_hnd_evreset( RFC_HND p_hnd );
-extern int			rfc_hnd_waitevent( RFC_HND p_hnd );
+
+/* p_timeout_ms<0 - INFINITE, p_timeout_ms=0 - check/no wait, p_timeout_ms>0 - wait timeout */
+extern short		rfc_hnd_waitevent( RFC_HND p_hnd , int p_timeout_ms );
 
 /* mutex */
 extern RFC_HND		rfc_hnd_mutcreate( void );
