@@ -45,7 +45,7 @@ public:
 		rfc_hnd_evreset( msgEvent );
 		pageResults.clear();
 
-		String pageQuery = "GET " + page;
+		String pageQuery = "GET " + page + " HTTP/1.1";
 		String msgId = pub -> publish( call.getSession() , pageQuery );
 
 		rfc_hnd_waitevent( msgEvent , 5000 );

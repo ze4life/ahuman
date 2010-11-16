@@ -9,6 +9,8 @@ SocketProtocol::SocketProtocol( Logger& p_logger )
 	maxReadSize = 0;
 	waitTimeSec = 0;
 	shutdownInProgress = false;
+	showMessagesIn = false;
+	showMessagesOut = false;
 }
 
 void SocketProtocol::initSocketLib()
@@ -34,19 +36,22 @@ void SocketProtocol::create( Xml config )
 	ASSERTMSG( !protocol.isEmpty() , "protocol is not defined" );
 
 	if( protocol.equals( "asymmetric" ) ) {
-		createFlow( config , pin , delimiterIn , "protocol-inbound" );
-		createFlow( config , pout , delimiterOut , "protocol-outbound" );
+		createFlow( config , pin , delimiterIn , "protocol-inbound" , showMessagesIn );
+		createFlow( config , pout , delimiterOut , "protocol-outbound" , showMessagesOut );
 	}
 	else {
-		createFlow( config , pin , delimiterIn , "protocol" );
+		createFlow( config , pin , delimiterIn , "protocol" , showMessagesIn );
 		pout = pin;
 		delimiterOut = delimiterIn;
+		showMessagesOut = showMessagesIn;
 	}
 }
 
-void SocketProtocol::createFlow( Xml config , FLOW_PROTOCOL& proto , String& delimiter , String prototype )
+void SocketProtocol::createFlow( Xml config , FLOW_PROTOCOL& proto , String& delimiter , String prototype , bool& showMessages )
 {
 	String protocol = config.getProperty( prototype );
+	showMessages = config.getBooleanProperty( prototype + ".showmessages" );
+
 	if( protocol.equals( "xml-messages" ) ) {
 		proto = FLOW_PROTOCOL_XML_MESSAGES;
 
@@ -59,8 +64,6 @@ void SocketProtocol::createFlow( Xml config , FLOW_PROTOCOL& proto , String& del
 
 		String s = config.getProperty( prototype + ".delimiter" , "" );
 		delimiter = String::parseStringLiteral( s );
-
-		ASSERTMSG( !delimiter.isEmpty() , "Delimiter is required for test messaging protocol=" + protocol );
 	}
 	else
 	if( protocol.equals( "text-stream" ) ) {
@@ -87,18 +90,13 @@ bool SocketProtocol::waitSocketDataTimeout( SOCKET socket , int p_sec , bool& p_
 	memset( &l_t , 0 , sizeof( struct timeval ) );
 
 	struct timeval *l_pt = NULL;
-	if( p_sec > 0 )
-		{
-			l_pt = &l_t;
-			l_t.tv_sec = p_sec;
-		}
+	if( p_sec > 0 ) {
+		l_pt = &l_t;
+		l_t.tv_sec = p_sec;
+	}
 
 	p_error = true;
-	int l_res = select( 0 , 
-		&l_set ,
-		NULL , 
-		&l_set ,
-		l_pt );
+	int l_res = select( 0 , &l_set , NULL , &l_set , l_pt );
 
 	p_error = false;
 	if( l_res <= 0 ) {
@@ -206,6 +204,7 @@ void SocketProtocol::writeMessage( SOCKET socketHandle , const String& msg , boo
 {
 	int lenRemained = msg.length();
 	const char *p = msg;
+	connectionClosed = false;
 	while( lenRemained > 0 ) {
 		int len = send( socketHandle , p , lenRemained , 0 );
 		if( len == SOCKET_ERROR || len == 0 ) {
@@ -213,7 +212,10 @@ void SocketProtocol::writeMessage( SOCKET socketHandle , const String& msg , boo
 			return;
 		};
 
-		logger.logDebug( String( "Packet sent, size=" ) + len );
+		if( showMessagesOut )
+			logger.logDebug( String( "packet sent, size=" ) + len + ", text=" + msg );
+		else
+			logger.logDebug( String( "packet sent, size=" ) + len );
 		lenRemained -= len;
 		p += len;
 	}
@@ -251,7 +253,7 @@ bool SocketProtocol::readMessageInternal( SOCKET socketHandle , String& msg , in
 	switch( pin ) {
 		default :
 		case FLOW_PROTOCOL_UNKNOWN :
-			ASSERTFAILED( "SocketProtocol::readMessageInternal: protocol is not defined to read from socket" );
+			ASSERTFAILED( "SocketProtocol::readMessageInternal - protocol is not defined to read from socket" );
 			break;
 
 		case FLOW_PROTOCOL_XML_MESSAGES :
@@ -261,7 +263,7 @@ bool SocketProtocol::readMessageInternal( SOCKET socketHandle , String& msg , in
 			// xml is actualy not required
 			xml.destroy();
 			if( fixedSize > 0 && fixedSize != msg.length() )
-				ASSERTFAILED( "SocketProtocol::readMessageInternal: returned xml message has length, different from fixed size=" + fixedSize );
+				ASSERTFAILED( "SocketProtocol::readMessageInternal - returned xml message has length, different from fixed size=" + fixedSize );
 
 			return( true );
 
@@ -273,7 +275,7 @@ bool SocketProtocol::readMessageInternal( SOCKET socketHandle , String& msg , in
 					msg = inPending.getMid( 0 , index );
 					inPending.remove( 0 , index + delimiterIn.length() );
 					if( fixedSize > 0 )
-						ASSERTMSG( msg.length() == fixedSize , String( "SocketProtocol::readMessageInternal: received message has size=" ) + msg.length() + ", expected size=" + fixedSize );
+						ASSERTMSG( msg.length() == fixedSize , String( "SocketProtocol::readMessageInternal - received message has size=" ) + msg.length() + ", expected size=" + fixedSize );
 					return( true );
 				}
 
@@ -299,6 +301,21 @@ bool SocketProtocol::readMessageInternal( SOCKET socketHandle , String& msg , in
 				}
 
 				buf[ l_recv ] = 0;
+				if( showMessagesIn )
+					logger.logDebug( String( "SocketProtocol::readMessageInternal - packet received, size=" ) + l_recv + ", text=" + buf );
+				else
+					logger.logDebug( String( "SocketProtocol::readMessageInternal - packet received, size=" ) + l_recv );
+
+				// treat packet as message
+				if( delimiterIn.isEmpty() ) {
+					// check fixed size
+					if( fixedSize > 0 )
+						ASSERTMSG( l_recv == fixedSize , String( "SocketProtocol::readMessageInternal - received message has size=" ) + l_recv + ", expected size=" + fixedSize );
+
+					msg = buf;
+					return( true );
+				}
+
 				inPending += buf;
 			}
 			break;
@@ -355,16 +372,19 @@ bool SocketProtocol::readMessageInternal( SOCKET socketHandle , String& msg , in
 
 				// read packet
 				char *p = inPending.getBuffer();
-				int len = recv( socketHandle , p + packetSize , readOneSize , 0 );
-				if( len == SOCKET_ERROR || len == 0 ) {
+				int l_recv = recv( socketHandle , p + packetSize , readOneSize , 0 );
+				if( l_recv == SOCKET_ERROR || l_recv == 0 ) {
 					connectionClosed = true;
 					inPending.clear();
 					return( false );
 				}
 
-				packetSize += len;
+				packetSize += l_recv;
 				p[ packetSize ] = 0;
-				logger.logDebug( String( "SocketProtocol::readMessageInternal: packet received, size=" ) + len );
+				if( showMessagesIn )
+					logger.logDebug( String( "SocketProtocol::readMessageInternal - packet received, size=" ) + l_recv + ", text=" + buf );
+				else
+					logger.logDebug( String( "SocketProtocol::readMessageInternal - packet received, size=" ) + l_recv );
 
 				// check fixed size is received
 				if( fixedSize > 0 && packetSize == fixedSize ) {
