@@ -54,6 +54,8 @@ private:
 	FLOW_PROTOCOL pout;
 	String delimiterIn;
 	String delimiterOut;
+	bool showMessagesIn;
+	bool showMessagesOut;
 
 	int maxPacketSize;
 	static const int MAX_PACKET_SIZE_DEFAULT = 1000000;
@@ -86,7 +88,7 @@ public:
 	bool waitSocketData( SOCKET socket , bool p_wait );
 
 private:
-	void createFlow( Xml config , FLOW_PROTOCOL& proto , String& delimiter , String prototype );
+	void createFlow( Xml config , FLOW_PROTOCOL& proto , String& delimiter , String prototype , bool& showMessages );
 	bool readMessageInternal( SOCKET socketHandle , String& msg , int fixedSize , bool wait , bool& connectionClosed );
 };
 
@@ -190,6 +192,7 @@ private:
 	bool continueRead;
 	bool connected;
 	bool shutdownInProgress;
+	int reconnectionTimeout;
 
 	String name;
 	String loggerName;

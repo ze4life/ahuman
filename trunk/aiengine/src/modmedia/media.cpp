@@ -149,7 +149,7 @@ void AIMediaImpl::startActiveSockets()
 		String name = ac -> getName();
 		ASSERTMSG( ac -> startActiveSocket() , 
 			"AIMediaImpl::startActiveSockets: cannot start channel=" + name );
-		logger.logInfo( "AIMediaImpl::startActiveSockets: direct channel successfully connected to " + ac -> getAddress() + " - name=" + name );
+		logger.logInfo( "AIMediaImpl::startActiveSockets: direct channel started name=" + name );
 	}
 }
 

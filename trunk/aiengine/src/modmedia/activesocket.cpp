@@ -36,30 +36,24 @@ void ActiveSocket::configure( Xml config )
 	host = config.getProperty( "host" );
 	port = config.getProperty( "port" );
 	permanentConnection = config.getBooleanProperty( "permanent" );
+	reconnectionTimeout = config.getIntProperty( "reconnectionTimeoutSec" , 10 );
 
 	// start protocol
 	protocol.create( config );
 
 	// start logging
 	loggerName = String( "ActiveSocket::" ) + name;
-	logger.attach( loggerName );
+	logger.attach( this , loggerName );
 }
 
 bool ActiveSocket::startActiveSocket()
 {
 	// open connection and start thread related to connection - to read from socket - if expected
-	socketHandle = socket( AF_INET , SOCK_STREAM , 0 );
-
-	ASSERTMSG( socketHandle != SOCKET_ERROR , "ActiveSocket::startActiveSocket - could not create socket for name=" + name );
-
 	memset( &addr , 0 , sizeof( SOCKADDR_IN ) );
 	struct hostent *hostEntry = gethostbyname( host );
 	addr.sin_addr = *( ( LPIN_ADDR ) *hostEntry -> h_addr_list );
 	addr.sin_family = AF_INET;
 	addr.sin_port = htons( atoi( port ) );
-
-	if( !permanentConnection )
-		return( true );
 
 	// init messaging
 	AIIO io;
@@ -70,11 +64,10 @@ bool ActiveSocket::startActiveSocket()
 
 		// start reading thread
 		AIEngine& engine = AIEngine::getInstance();
-		socketThread = engine.runThread( name + "active-socket" , this , ( ObjectThreadFunction )&ActiveSocket::readSocketThread , NULL );
+		socketThread = engine.runThread( name + ".reader" , this , ( ObjectThreadFunction )&ActiveSocket::readSocketThread , NULL );
 	}
 
-	// connect to external address
-	return( connectSocket() );
+	return( true );
 }
 
 void ActiveSocket::stopActiveSocket()
@@ -105,11 +98,17 @@ bool ActiveSocket::connectSocket()
 	if( connected )
 		return( true );
 
+	// create handle
+	socketHandle = socket( AF_INET , SOCK_STREAM , 0 );
+	ASSERTMSG( socketHandle != SOCKET_ERROR , "ActiveSocket::startActiveSocket - unable to create socket for name=" + name );
+
+	// connect to exteranl host/port
 	if( connect( socketHandle , ( LPSOCKADDR )&addr , sizeof( SOCKADDR_IN ) ) == SOCKET_ERROR ) {
-		logger.logDebug( "ActiveSocket::connectSocket - Could not connect to data source for name=" + name );
+		logger.logDebug( "ActiveSocket::connectSocket - unable to connect to host=" + host + ", port=" + port + " for name=" + name );
 		return( false );
 	}
 
+	logger.logDebug( "ActiveSocket::connectSocket - successfully connected to host=" + host + ", port=" + port + ", name=" + name );
 	connected = true;
 	return( true );
 }
@@ -122,8 +121,7 @@ void ActiveSocket::disconnectSocket()
 		_closesocket( socketHandle );
 		socketHandle = INVALID_SOCKET;
 
-		String msg = "ActiveSocket::disconnectSocket: stopped socket on " + getAddress();
-		logger.logInfo( msg );
+		logger.logInfo( "ActiveSocket::disconnectSocket: disconnected name=" + name );
 	}
 }
 
@@ -135,7 +133,9 @@ void ActiveSocket::handleBrokenConnection()
 
 void ActiveSocket::sendText( String text )
 {
-	ASSERTMSG( connected , "Not connected" );
+	// connect to external address
+	if( !connected )
+		ASSERTMSG( connectSocket() , "ActiveSocket::sendText - unable to connect ActiveSocket=" + name );
 
 	bool connectionClosed;
 	protocol.writeMessage( socketHandle , text , connectionClosed );
@@ -145,7 +145,9 @@ void ActiveSocket::sendText( String text )
 
 String ActiveSocket::receiveText( bool wait )
 {
-	ASSERTMSG( connected , "Not connected" );
+	// connect to external address
+	if( !connected )
+		ASSERTMSG( connectSocket() , "ActiveSocket::receiveText - unable to connect ActiveSocket=" + name );
 
 	bool connectionClosed;
 	String final;
@@ -161,7 +163,9 @@ String ActiveSocket::receiveText( bool wait )
 
 String ActiveSocket::receiveFixedText( int size , bool wait )
 {
-	ASSERTMSG( connected , "Not connected" );
+	// connect to external address
+	if( !connected )
+		ASSERTMSG( connectSocket() , "ActiveSocket::receiveFixedText - unable to connect ActiveSocket=" + name );
 
 	bool connectionClosed;
 	String final;
@@ -177,11 +181,19 @@ String ActiveSocket::receiveFixedText( int size , bool wait )
 
 bool ActiveSocket::waitReadSocket( bool wait )
 {
+	// connect to external address
+	if( !connected )
+		ASSERTMSG( connectSocket() , "ActiveSocket::waitReadSocket - unable to connect ActiveSocket=" + name );
+
 	return( protocol.waitSocketData( socketHandle , wait ) );
 }
 
 void ActiveSocket::onTextMessage( TextMessage *msg )
 {
+	// connect to external address
+	if( !connected )
+		ASSERTMSG( connectSocket() , "ActiveSocket::onTextMessage - unable to connect ActiveSocket=" + name );
+
 	// forward from channel to socket
 	bool connectionClosed;
 	protocol.writeMessage( socketHandle , msg -> getText() , connectionClosed );
@@ -197,7 +209,7 @@ void ActiveSocket::readSocketThread( void *p_arg )
 		if( !connected ) {
 			// try to connect
 			if( !connectSocket() ) {
-				rfc_thr_sleep( 1 );
+				rfc_thr_sleep( reconnectionTimeout );
 				continue;
 			}
 		}
