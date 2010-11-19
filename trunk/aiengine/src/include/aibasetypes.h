@@ -57,6 +57,7 @@ public:
 	String& append( const char *s , int nChars );
 	String& assign( const char *s , int nChars );
 	void remove( int from , int n );
+	void insert( int from , const char *s );
 
 	void resize( int length );
 	char *getBuffer();
@@ -65,6 +66,7 @@ public:
 	bool isEmpty() const;
 
 	int find( const char *substring ) const;
+	int find( int startfrom , const char *substring ) const;
 	int findLastAny( const char *chars ) const;
 	int findLast( char c ) const;
 	String getMid( int from , int n ) const;
@@ -74,6 +76,7 @@ public:
 	String toLower() const;
 	static String toHex( int value );
 	int split( StringList& parts , String delimiter ) const;
+	bool startsFrom( const char *substring ) const;
 
 	static String parseStringLiteral( const char *p );
 

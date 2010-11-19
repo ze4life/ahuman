@@ -39,12 +39,10 @@
 
 	<directchannels>
     
-		<channel name="google" run="true">
-			<property name="protocol" value="asymmetric"/>
-			<property name="protocol-outbound" value="text-messages"/>
-			<property name="protocol-inbound" value="xml-messages"/>
-			<property name="protocol-outbound.delimiter" value=""/>
-			<property name="protocol-outbound.showmessages" value="true"/>
+		<channel name="localweb" run="true">
+			<property name="protocol" value="http"/>
+			<property name="protocol.showmessages" value="false"/>
+			<property name="protocol.showpackets" value="false"/>
 			<property name="msgtype" value="text"/>
 			<property name="permanent" value="true"/>
 			<property name="host" value="www.google.com"/> 

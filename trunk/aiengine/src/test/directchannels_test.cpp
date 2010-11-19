@@ -45,15 +45,17 @@ public:
 		rfc_hnd_evreset( msgEvent );
 		pageResults.clear();
 
-		String pageQuery = "GET " + page + " HTTP/1.1";
-		String msgId = pub -> publish( call.getSession() , pageQuery );
+		// send page request
+		String msgId = pub -> publish( call.getSession() , page );
 
+		// wait for response
 		rfc_hnd_waitevent( msgEvent , 5000 );
 		
+		// publish if received
 		ASSERTMSG( !pageResults.isEmpty() , "No response from google page=" + page );
 		Xml xml = call.createResponse();
-		xml.addTextElement( "request" , page );
-		xml.addTextElement( "response" , pageResults );
+		xml.addTextElement( "page" , page );
+		xml.addTextElement( "body" , pageResults );
 	}
 
 	virtual void onTextMessage( TextMessage *msg ) {
