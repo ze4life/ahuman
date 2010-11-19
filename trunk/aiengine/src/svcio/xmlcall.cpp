@@ -145,9 +145,11 @@ String XmlCall::sendUnknownResponse()
 
 Xml XmlCall::createStatusResponse( String status )
 {
-	Xml res = createResponse();
-	res.setAttribute( "status" , status );
-	return( res );
+	if( !xmlResponse.exists() )
+		xmlResponse = createResponse();
+
+	xmlResponse.setAttribute( "status" , status );
+	return( xmlResponse );
 }
 
 String XmlCall::sendStatusResponse( String status )

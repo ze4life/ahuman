@@ -46,8 +46,9 @@ private:
 		FLOW_PROTOCOL_UNKNOWN = 0 , 
 		FLOW_PROTOCOL_TEXT_MESSAGES = 1 ,
 		FLOW_PROTOCOL_XML_MESSAGES = 2 ,
-		FLOW_PROTOCOL_TEXT_STREAM = 3 ,
-		FLOW_PROTOCOL_BINARY_STREAM = 4
+		FLOW_PROTOCOL_HTTP_MESSAGES = 3 ,
+		FLOW_PROTOCOL_TEXT_STREAM = 4 ,
+		FLOW_PROTOCOL_BINARY_STREAM = 5
 	} FLOW_PROTOCOL;
 
 	FLOW_PROTOCOL pin;
@@ -56,6 +57,8 @@ private:
 	String delimiterOut;
 	bool showMessagesIn;
 	bool showMessagesOut;
+	bool showPacketsIn;
+	bool showPacketsOut;
 
 	int maxPacketSize;
 	static const int MAX_PACKET_SIZE_DEFAULT = 1000000;
@@ -68,10 +71,19 @@ private:
 	bool shutdownInProgress;
 	Logger& logger;
 
+	// message data
+	String startLine;
+	MapStringToString headerLines;
+	String chunks;
+	char state;
+	char substate;
+	int chunkSize;
+
 public:
 	SocketProtocol( Logger& logger );
 	void create( Xml config );
 	void copy( SocketProtocol& src );
+	void init();
 
 public:
 	static void initSocketLib();
@@ -88,8 +100,20 @@ public:
 	bool waitSocketData( SOCKET socket , bool p_wait );
 
 private:
-	void createFlow( Xml config , FLOW_PROTOCOL& proto , String& delimiter , String prototype , bool& showMessages );
+	void createFlow( Xml config , FLOW_PROTOCOL& proto , String& delimiter , String prototype , bool& showPackets , bool& showMessages );
+
 	bool readMessageInternal( SOCKET socketHandle , String& msg , int fixedSize , bool wait , bool& connectionClosed );
+	bool readXmlMessageInternal( SOCKET socketHandle , Xml& xml , String& msg , bool wait , bool& connectionClosed );
+	bool readTextMessageInternal( SOCKET socketHandle , String& msg , int fixedSize , bool wait , bool& connectionClosed );
+	bool readTextStreamInternal( SOCKET socketHandle , String& msg , int fixedSize , bool wait , bool& connectionClosed );
+	bool readHttpMessageInternal( SOCKET socketHandle , String& msg , bool wait , bool& connectionClosed );
+	bool readHttpMessageStartLine( SOCKET socketHandle , bool wait , bool& connectionClosed );
+	bool readHttpMessageHeader( SOCKET socketHandle , bool wait , bool& connectionClosed );
+	bool readHttpMessageBody( SOCKET socketHandle , String& msg , bool wait , bool& connectionClosed );
+	bool readHttpMessageBodyChunk( SOCKET socketHandle , String& msg , int size , bool wait , bool& connectionClosed );
+	void writeHttpMessageInternal( SOCKET socketHandle , const String& msg , bool& connectionClosed );
+	void writeSocketInternal( SOCKET socketHandle , const char *s , bool& connectionClosed );
+	bool readSocketInternal( SOCKET socketHandle , bool wait , bool& connectionClosed );
 };
 
 /*#########################################################################*/
@@ -184,8 +208,8 @@ class ActiveSocket : public Object , public Subscriber
 {
 private:
 	SOCKET socketHandle;
-	struct sockaddr_in addr;
 	SocketProtocol protocol;
+	RFC_HND lock;
 
 	RFC_HND socketThread;
 	bool threadStarted;
@@ -232,6 +256,7 @@ public:
 
 private:
 	bool connectSocket();
+	bool connectSocketProtected();
 	void disconnectSocket();
 	bool waitReadSocket( bool wait );
 	void handleBrokenConnection();

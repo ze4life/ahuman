@@ -139,7 +139,7 @@ void String::remove( int from , int n )
 		return;
 	}
 
-	memmove( v , v + from , len - from - n );
+	memmove( v + from , v + from + n , len - from - n );
 	v[ len - n ] = 0;
 }
 
@@ -253,11 +253,27 @@ bool String::isEmpty() const
 	return( v == NULL || *v == 0 );
 }
 
-int String::find( const char *substring ) const {
+int String::find( const char *substring ) const
+{
 	if( v == NULL || substring == NULL )
 		return( -1 );
 
 	char *ptr = strstr( v , substring );
+	if( ptr == NULL )
+		return( -1 );
+
+	return( ptr - v );
+}
+
+int String::find( int startfrom , const char *substring ) const
+{
+	if( v == NULL || substring == NULL )
+		return( -1 );
+
+	if( strlen( v ) <= ( unsigned )startfrom )
+		return( -1 );
+
+	char *ptr = strstr( v + startfrom , substring );
 	if( ptr == NULL )
 		return( -1 );
 
@@ -434,6 +450,30 @@ String String::parseStringLiteral( const char *p )
 	}
 
 	return( s );
+}
+
+bool String::startsFrom( const char *substring ) const
+{
+	if( v == NULL )
+		return( false );
+
+	return( strncmp( v , substring , strlen( substring ) ) == 0 );
+}
+
+void String::insert( int from , const char *s )
+{
+	if( s == NULL )
+		return;
+
+	int length = ( v == NULL )? 0 : strlen( v );
+	ASSERTMSG( from <= length , "String::insert - invalid string operation" );
+
+	int lengthAdd = strlen( s );
+	resize( length + lengthAdd );
+
+	memmove( v + from + lengthAdd , v + from , length - from );
+	v[ length + lengthAdd ] = 0;
+	memcpy( v + from , s , lengthAdd );
 }
 
 // #############################################################################

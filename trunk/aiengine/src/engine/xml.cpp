@@ -311,10 +311,10 @@ Xml Xml::addTextElement( String name , String value )
 	ASSERT( node != NULL );
 
 	TiXmlElement *xml = ( TiXmlElement * )node;
-	TiXmlText *xmlValue = new TiXmlText( name );
-	xml -> LinkEndChild( xmlValue );
-
-	xmlValue -> SetValue( value );
+	TiXmlElement *xmlElement = new TiXmlElement( name );
+	xml -> LinkEndChild( xmlElement );
+	TiXmlText *xmlValue = new TiXmlText( value );
+	xmlElement -> LinkEndChild( xmlValue );
 
 	Xml ret;
 	ret.attach( doc , xmlValue );

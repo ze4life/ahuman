@@ -108,14 +108,14 @@ void AIMediaImpl::startListeners()
 	}
 }
 
-ActiveSocket *AIMediaImpl::runActiveSocketFactory( String name , Xml config )
+ActiveSocket *AIMediaImpl::runActiveSocketFactory( String p_name , Xml config )
 {
-	ASSERT( activeSockets.get( name ) == NULL );
+	ASSERT( activeSockets.get( p_name ) == NULL );
 
-	ActiveSocket *as = new ActiveSocket( name );
+	ActiveSocket *as = new ActiveSocket( p_name );
 	as -> configure( config );
 
-	activeSockets.add( name , as );
+	activeSockets.add( p_name , as );
 
 	return( as );
 }

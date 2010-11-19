@@ -16,11 +16,14 @@ ActiveSocket::ActiveSocket( String p_name )
 	sub = NULL;
 	pub = NULL;
 	socketThread = NULL;
+
+	lock = rfc_hnd_semcreate();
 }
 
 ActiveSocket::~ActiveSocket()
 {
 	_closesocket( socketHandle );
+	rfc_hnd_semdestroy( lock );
 }
 
 void ActiveSocket::configure( Xml config )
@@ -48,13 +51,6 @@ void ActiveSocket::configure( Xml config )
 
 bool ActiveSocket::startActiveSocket()
 {
-	// open connection and start thread related to connection - to read from socket - if expected
-	memset( &addr , 0 , sizeof( SOCKADDR_IN ) );
-	struct hostent *hostEntry = gethostbyname( host );
-	addr.sin_addr = *( ( LPIN_ADDR ) *hostEntry -> h_addr_list );
-	addr.sin_family = AF_INET;
-	addr.sin_port = htons( atoi( port ) );
-
 	// init messaging
 	AIIO io;
 	if( redirectOutbound )
@@ -95,26 +91,60 @@ String ActiveSocket::getName()
 
 bool ActiveSocket::connectSocket()
 {
+	rfc_hnd_semlock( lock );
+	bool res = false;
+
+	try {
+		res = connectSocketProtected();
+	}
+	catch( ... ) {
+		logger.logDebug( "ActiveSocket::connectSocket - unexpected exception caught for name=" + name );
+	}
+
+	rfc_hnd_semunlock( lock );
+	return( res );
+}
+
+bool ActiveSocket::connectSocketProtected()
+{
 	if( connected )
 		return( true );
 
-	// create handle
-	socketHandle = socket( AF_INET , SOCK_STREAM , 0 );
-	ASSERTMSG( socketHandle != SOCKET_ERROR , "ActiveSocket::startActiveSocket - unable to create socket for name=" + name );
+	// open connection and start thread related to connection - to read from socket - if expected
+	struct sockaddr_in addr;
+	memset( &addr , 0 , sizeof( SOCKADDR_IN ) );
+	struct hostent *hostEntry = gethostbyname( host );
 
-	// connect to exteranl host/port
-	if( connect( socketHandle , ( LPSOCKADDR )&addr , sizeof( SOCKADDR_IN ) ) == SOCKET_ERROR ) {
-		logger.logDebug( "ActiveSocket::connectSocket - unable to connect to host=" + host + ", port=" + port + " for name=" + name );
+	if( hostEntry == NULL ) {
+		logger.logDebug( "ActiveSocket::connectSocketProtected - unable to find address of host=" + host + " for name=" + name );
 		return( false );
 	}
 
-	logger.logDebug( "ActiveSocket::connectSocket - successfully connected to host=" + host + ", port=" + port + ", name=" + name );
+	addr.sin_addr.S_un.S_addr = *( unsigned long * )hostEntry -> h_addr_list[ 0 ];
+	addr.sin_family = AF_INET;
+	addr.sin_port = htons( ( short )atoi( port ) );
+
+	// create handle
+	socketHandle = socket( AF_INET , SOCK_STREAM , 0 );
+	ASSERTMSG( socketHandle != SOCKET_ERROR , "ActiveSocket::connectSocketProtected - unable to create socket for name=" + name );
+
+	// connect to exteranl host/port
+	if( connect( socketHandle , ( struct sockaddr * )&addr , sizeof( sockaddr_in ) ) == SOCKET_ERROR ) {
+		logger.logDebug( "ActiveSocket::connectSocketProtected - unable to connect to host=" + host + ", port=" + port + " for name=" + name );
+		return( false );
+	}
+
+	unsigned long flag = 1;
+	ioctlsocket( socketHandle , FIONBIO , &flag );
+
+	logger.logDebug( "ActiveSocket::connectSocketProtected - successfully connected to host=" + host + ", port=" + port + ", name=" + name );
 	connected = true;
 	return( true );
 }
 
 void ActiveSocket::disconnectSocket()
 {
+	rfc_hnd_semlock( lock );
 	if( connected ) {
 		connected = false;
 
@@ -123,6 +153,7 @@ void ActiveSocket::disconnectSocket()
 
 		logger.logInfo( "ActiveSocket::disconnectSocket: disconnected name=" + name );
 	}
+	rfc_hnd_semunlock( lock );
 }
 
 void ActiveSocket::handleBrokenConnection()
