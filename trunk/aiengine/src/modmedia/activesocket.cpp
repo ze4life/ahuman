@@ -45,8 +45,8 @@ void ActiveSocket::configure( Xml config )
 	protocol.create( config );
 
 	// start logging
-	loggerName = String( "ActiveSocket::" ) + name;
-	logger.attach( this , loggerName );
+	Object::setInstance( name );
+	logger.attach( this );
 }
 
 bool ActiveSocket::startActiveSocket()
@@ -60,7 +60,7 @@ bool ActiveSocket::startActiveSocket()
 
 		// start reading thread
 		AIEngine& engine = AIEngine::getInstance();
-		socketThread = engine.runThread( name + ".reader" , this , ( ObjectThreadFunction )&ActiveSocket::readSocketThread , NULL );
+		socketThread = engine.runThread( Object::getLoggerName() , this , ( ObjectThreadFunction )&ActiveSocket::readSocketThread , NULL );
 	}
 
 	return( true );
@@ -98,7 +98,7 @@ bool ActiveSocket::connectSocket()
 		res = connectSocketProtected();
 	}
 	catch( ... ) {
-		logger.logDebug( "ActiveSocket::connectSocket - unexpected exception caught for name=" + name );
+		logger.logDebug( "connectSocket: unexpected exception caught for name=" + name );
 	}
 
 	rfc_hnd_semunlock( lock );
@@ -116,7 +116,7 @@ bool ActiveSocket::connectSocketProtected()
 	struct hostent *hostEntry = gethostbyname( host );
 
 	if( hostEntry == NULL ) {
-		logger.logDebug( "ActiveSocket::connectSocketProtected - unable to find address of host=" + host + " for name=" + name );
+		logger.logDebug( "connectSocketProtected: unable to find address of host=" + host + " for name=" + name );
 		return( false );
 	}
 
@@ -126,18 +126,18 @@ bool ActiveSocket::connectSocketProtected()
 
 	// create handle
 	socketHandle = socket( AF_INET , SOCK_STREAM , 0 );
-	ASSERTMSG( socketHandle != SOCKET_ERROR , "ActiveSocket::connectSocketProtected - unable to create socket for name=" + name );
+	ASSERTMSG( socketHandle != SOCKET_ERROR , "connectSocketProtected - unable to create socket for name=" + name );
 
 	// connect to exteranl host/port
 	if( connect( socketHandle , ( struct sockaddr * )&addr , sizeof( sockaddr_in ) ) == SOCKET_ERROR ) {
-		logger.logDebug( "ActiveSocket::connectSocketProtected - unable to connect to host=" + host + ", port=" + port + " for name=" + name );
+		logger.logDebug( "connectSocketProtected: unable to connect to host=" + host + ", port=" + port + " for name=" + name );
 		return( false );
 	}
 
 	unsigned long flag = 1;
 	ioctlsocket( socketHandle , FIONBIO , &flag );
 
-	logger.logDebug( "ActiveSocket::connectSocketProtected - successfully connected to host=" + host + ", port=" + port + ", name=" + name );
+	logger.logDebug( "connectSocketProtected: successfully connected to host=" + host + ", port=" + port + ", name=" + name );
 	connected = true;
 	return( true );
 }
@@ -151,7 +151,7 @@ void ActiveSocket::disconnectSocket()
 		_closesocket( socketHandle );
 		socketHandle = INVALID_SOCKET;
 
-		logger.logInfo( "ActiveSocket::disconnectSocket: disconnected name=" + name );
+		logger.logInfo( "disconnectSocket: disconnected name=" + name );
 	}
 	rfc_hnd_semunlock( lock );
 }
@@ -166,25 +166,30 @@ void ActiveSocket::sendText( String text )
 {
 	// connect to external address
 	if( !connected )
-		ASSERTMSG( connectSocket() , "ActiveSocket::sendText - unable to connect ActiveSocket=" + name );
+		ASSERTMSG( connectSocket() , "sendText - unable to connect ActiveSocket=" + name );
 
 	bool connectionClosed;
 	protocol.writeMessage( socketHandle , text , connectionClosed );
 	if( connectionClosed )
 		handleBrokenConnection();
+	else
+		logger.logInfo( "sendText: sent message to socket: text=" + text );
 }
 
 String ActiveSocket::receiveText( bool wait )
 {
 	// connect to external address
 	if( !connected )
-		ASSERTMSG( connectSocket() , "ActiveSocket::receiveText - unable to connect ActiveSocket=" + name );
+		ASSERTMSG( connectSocket() , "receiveText - unable to connect ActiveSocket=" + name );
 
 	bool connectionClosed;
 	String final;
 	bool res = protocol.readMessage( socketHandle , final , wait , connectionClosed );
 	if( connectionClosed )
 		handleBrokenConnection();
+	else
+	if( res )
+		logger.logInfo( "receiveText: received message from socket: text=" + final );
 
 	if( !res )
 		return( "" );
@@ -196,13 +201,16 @@ String ActiveSocket::receiveFixedText( int size , bool wait )
 {
 	// connect to external address
 	if( !connected )
-		ASSERTMSG( connectSocket() , "ActiveSocket::receiveFixedText - unable to connect ActiveSocket=" + name );
+		ASSERTMSG( connectSocket() , "receiveFixedText - unable to connect ActiveSocket=" + name );
 
 	bool connectionClosed;
 	String final;
 	bool res = protocol.readFixedSizeMessage( socketHandle , size , final , wait , connectionClosed );
 	if( connectionClosed )
 		handleBrokenConnection();
+	else
+	if( res )
+		logger.logInfo( "receiveFixedText: received message from socket: text=" + final );
 
 	if( !res )
 		return( "" );
@@ -214,7 +222,7 @@ bool ActiveSocket::waitReadSocket( bool wait )
 {
 	// connect to external address
 	if( !connected )
-		ASSERTMSG( connectSocket() , "ActiveSocket::waitReadSocket - unable to connect ActiveSocket=" + name );
+		ASSERTMSG( connectSocket() , "waitReadSocket - unable to connect ActiveSocket=" + name );
 
 	return( protocol.waitSocketData( socketHandle , wait ) );
 }
@@ -223,7 +231,7 @@ void ActiveSocket::onTextMessage( TextMessage *msg )
 {
 	// connect to external address
 	if( !connected )
-		ASSERTMSG( connectSocket() , "ActiveSocket::onTextMessage - unable to connect ActiveSocket=" + name );
+		ASSERTMSG( connectSocket() , "onTextMessage - unable to connect ActiveSocket=" + name );
 
 	// forward from channel to socket
 	bool connectionClosed;
@@ -231,7 +239,7 @@ void ActiveSocket::onTextMessage( TextMessage *msg )
 	if( connectionClosed )
 		handleBrokenConnection();
 	else
-		logger.logDebug( "sent message to socket msgid=" + msg -> getChannelMessageId() );
+		logger.logInfo( "onTextMessage: forwarded message from channel=" + outboundChannelName + " to socket msgid=" + msg -> getChannelMessageId() );
 }
 
 void ActiveSocket::readSocketThread( void *p_arg )
@@ -259,6 +267,6 @@ void ActiveSocket::readSocketThread( void *p_arg )
 
 		// write message to channel
 		String msgid = pub -> publish( NULL , final );
-		logger.logDebug( "read message from socket msgid=" + msgid );
+		logger.logInfo( "readSocketThread: forwarded message from socket msgid=" + msgid + " to channel=" + inboundChannelName );
 	}
 }

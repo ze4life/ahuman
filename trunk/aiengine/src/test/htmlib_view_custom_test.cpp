@@ -23,7 +23,7 @@ void testHelloWorld( XmlCall& call ) {
 
 	int sizeH = call.getIntParam( "sizeH" , 100 );
 	int sizeV = call.getIntParam( "sizeV" , 100 );
-	logger.logInfo( String( "create cortex sizeH=" ) + sizeH + ", sizeV=" + sizeV );
+	logger.logInfo( String( "testHelloWorld: create cortex sizeH=" ) + sizeH + ", sizeV=" + sizeV );
 	
 	ctx.create( sizeH , sizeV );
 

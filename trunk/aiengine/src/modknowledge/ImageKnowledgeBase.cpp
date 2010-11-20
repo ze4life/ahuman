@@ -42,7 +42,7 @@ public:
 
 virtual void onTextMessage( TextMessage *msg )
 {
-	logger.logDebug( "ImageQueryProcessor::onMessage - Got message to be processed.");
+	logger.logDebug( "onTextMessage: got message to be processed");
 	processQuery( msg -> getText() );
 }
 
@@ -61,7 +61,7 @@ virtual void startController()
 
 	/* Create a subscriber to process the messages */
 	subscription = io.subscribe( NULL , commandChannel , "ImageQueryProcessor" , this );
-	logger.logDebug( "ImageKnowledgeBase::startKnowledgeSource - Source started");
+	logger.logDebug( "startKnowledgeSource: Source started");
 }
 
 virtual void stopController()

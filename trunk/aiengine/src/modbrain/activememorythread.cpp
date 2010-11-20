@@ -86,7 +86,7 @@ void ActiveMemoryThread::run( void *p_arg )
 	reportGroup = secondsPerCycle * operationsPerSecond;
 
 	logger.attach( name );
-	logger.logInfo( String( "Thread started: msPerOperation=" ) + msPerOperation +
+	logger.logInfo( String( "run: thread started - msPerOperation=" ) + msPerOperation +
 		", operationsPerSecond=" + operationsPerSecond +
 		", reportGroup=" + reportGroup +
 		", secondsPerCycle=" + secondsPerCycle +
@@ -111,19 +111,19 @@ void ActiveMemoryThread::run( void *p_arg )
 		if( suspendSignal ) {
 			// notify stopped
 			rfc_hnd_evsignal( suspendEvent );
-			logger.logInfo( String( "Thread suspended" ) );
+			logger.logInfo( String( "run: thread suspended" ) );
 
 			// wait till resumed
 			rfc_hnd_waitevent( runEvent , -1 );
 			if( !stopSignal )
-				logger.logInfo( String( "Thread resumed" ) );
+				logger.logInfo( String( "run: thread resumed" ) );
 
 			// next cycle
 			rfc_hnd_evreset( suspendEvent );
 		}
 	}
 
-	logger.logInfo( String( "Thread stopped" ) );
+	logger.logInfo( String( "run: thread stopped" ) );
 }
 
 void ActiveMemoryThread::execute( ActiveMemoryObject *object )
@@ -145,7 +145,7 @@ void ActiveMemoryThread::execute( ActiveMemoryObject *object )
 
 	// if sleep time is less than second - do nothing
 	if( ticksWaitTimeRemained < ticksPerSecond ) {
-		logger.logInfo( "non-sleep execute operation=" + object -> getName() + 
+		logger.logInfo( "execute: non-sleep execute operation=" + object -> getName() + 
 			", nLastOperations=" + nLastOperations +
 			", executeTimeTicks=" + executeTimeTicks +
 			", opSleepTimeTicks=" + opSleepTimeTicks + 
@@ -159,7 +159,7 @@ void ActiveMemoryThread::execute( ActiveMemoryObject *object )
 		ticksSleepTimeTotal += sleepTimeTicks;
 		ticksWaitTimeRemained -= sleepTimeTicks;
 
-		logger.logInfo( "sleep execute operation=" + object -> getName() + 
+		logger.logInfo( "execute: sleep execute operation=" + object -> getName() + 
 			", nLastOperations=" + nLastOperations +
 			", executeTimeTicks=" + executeTimeTicks +
 			", opSleepTimeTicks=" + opSleepTimeTicks +
@@ -178,7 +178,7 @@ void ActiveMemoryThread::execute( ActiveMemoryObject *object )
 
 	// log stat
 	lastCPULoad = rfc_sys_getcpuload( &cpuload );
-	logger.logInfo( String( "Execution/Duration Ratio is " ) + ratioExecutionByOperation + "%" +
+	logger.logInfo( String( "execute: execution/duration ratio is " ) + ratioExecutionByOperation + "%" +
 		", currentCPULoad=" + lastCPULoad +
 		", didle=" + ( int )( cpuload.idle - cpuload.pidle ) +
 		", dkernel=" + ( int )( cpuload.kernel - cpuload.pkernel ) +
@@ -234,7 +234,7 @@ void ActiveMemoryThread::increaseSpeed( int factor )
 	msPerOperation = Timer::timeTicksToMs( ticksPerOperation );
 	if( msPerOperation < 1 )
 		msPerOperation = 1;
-	logger.logInfo( String( "speed increased, msPerOperation=" ) + msPerOperation );
+	logger.logInfo( String( "increaseSpeed: speed increased, msPerOperation=" ) + msPerOperation );
 }
 
 void ActiveMemoryThread::decreaseSpeed( int factor )
@@ -264,5 +264,5 @@ void ActiveMemoryThread::decreaseSpeed( int factor )
 	msPerOperation = Timer::timeTicksToMs( ticksPerOperation );
 	if( msPerOperation < 1 )
 		msPerOperation = 1;
-	logger.logInfo( String( "speed decreased, msPerOperation=" ) + msPerOperation );
+	logger.logInfo( String( "decreaseSpeed: speed decreased, msPerOperation=" ) + msPerOperation );
 }

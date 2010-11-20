@@ -226,12 +226,12 @@ void Random::showStatistics()
 		var += ( int )( ( statCounts[ m ] - avg ) * ( statCounts[ m ] - avg ) );
 	int varAvg = ( int )sqrt( ( double )( var / statBuckets ) );
 
-	logger.logInfo( String( "STAT: bucket count=" ) + statBuckets + 
+	logger.logInfo( String( "showStatistics: bucket count=" ) + statBuckets + 
 		", avg bucket=" + avg );
 	for( int z = 0; z < statBuckets; z++ ) {
 		int diff = ( int )( statCounts[ z ] - avg );
 		float var = ( float )sqrt( ( double )( diff * diff ) );
-		logger.logInfo( String( "BUCKET #" ) + z + 
+		logger.logInfo( String( "showStatistics: BUCKET #" ) + z + 
 			": count=" + statCounts[ z ] );
 	}
 }

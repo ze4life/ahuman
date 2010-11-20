@@ -169,8 +169,8 @@ int AIEngineImpl::runInternal( const char *p_configDir )
 		return( -3 );
 	}
 
-	logger.logInfo( "SERVER STARTING..." );
-	logger.logInfo( "----------------------------------------" );
+	logger.logInfo( "runInternal: SERVER STARTING..." );
+	logger.logInfo( "runInternal: ----------------------------------------" );
 	int status = 0;
 	try {
 		// create all service classes
@@ -185,23 +185,23 @@ int AIEngineImpl::runInternal( const char *p_configDir )
 		runServices();
 		state = AI_RUNNING;
 
-		logger.logInfo( "SERVER STARTED" );
+		logger.logInfo( "runInternal: SERVER STARTED" );
 		logger.logInfo( "----------------------------------------" );
 
 		waitExitSignal();
 	}
 	catch ( RuntimeException& e ) {
-		logger.logInfo( "UNABLE TO START SERVER" );
+		logger.logInfo( "runInternal: UNABLE TO START SERVER" );
 		e.printStack( logger );
 		status = -1;
 	}
 	catch ( ... ) {
-		logger.logError( "AIEngineImpl::runInternal - unexpected unknown exception" );
+		logger.logError( "runInternal: unexpected unknown exception" );
 		status = -2;
 	}
 
-	logger.logInfo( "----------------------------------------" );
-	logger.logInfo( "SERVER STOPPING..." );
+	logger.logInfo( "runInternal: ----------------------------------------" );
+	logger.logInfo( "runInternal: SERVER STOPPING..." );
 	
 	// exit services
 	exitServices();
@@ -215,7 +215,7 @@ int AIEngineImpl::runInternal( const char *p_configDir )
 			break;
 
 		String activeThreadList = getActiveThreads();
-		logger.logInfo( String( "Waiting for stopping " ) + count + " thread(s): " + activeThreadList );
+		logger.logInfo( String( "runInternal: Waiting for stopping " ) + count + " thread(s): " + activeThreadList );
 		rfc_thr_sleep( 1 );
 	}
 
@@ -223,8 +223,8 @@ int AIEngineImpl::runInternal( const char *p_configDir )
 	destroyServices();
 	state = AI_STOPPED;
 
-	logger.logInfo( "----------------------------------------" );
-	logger.logInfo( "SERVER STOPPED" );
+	logger.logInfo( "runInternal: ----------------------------------------" );
+	logger.logInfo( "runInternal: SERVER STOPPED" );
 	logStop();
 
 	return( status );
@@ -248,7 +248,7 @@ void AIEngineImpl::exit( int status )
 
 void AIEngineImpl::exitServer()
 {
-	logger.logInfo( "Stop by signal" );
+	logger.logInfo( "exitServer: Stop by signal" );
 
 	// raise stop event
 	stoppedBySignal = true;
@@ -262,7 +262,7 @@ String AIEngineImpl::getConfigurationPath( String etcpath )
 
 void AIEngineImpl::createServices()
 {
-	logger.logInfo( "create services..." );
+	logger.logInfo( "createServices: create services..." );
 
 	// call factory methods
 	constructServices();
@@ -273,7 +273,7 @@ void AIEngineImpl::createServices()
 
 		// check creation is blocked
 		if( !svc -> isCreate ) {
-			logger.logInfo( String( "blocked create service: name=" ) + svc -> getName() );
+			logger.logInfo( String( "createServices: blocked create service: name=" ) + svc -> getName() );
 			continue;
 		}
 
@@ -290,13 +290,13 @@ void AIEngineImpl::createServices()
 
 		// internal data creation
 		svc -> isCreateStarted = true; 
-		logger.logInfo( String( "create service: name=" ) + svc -> getName() + String( "..." ) );
+		logger.logInfo( String( "createServices: create service - name=" ) + svc -> getName() + String( "..." ) );
 		svc -> createService( configService );
-		logger.logInfo( String( "create service: name=" ) + svc -> getName() + String( " - done" ) );
+		logger.logInfo( String( "createServices: create service - name=" ) + svc -> getName() + String( " - done" ) );
 		svc -> isCreateCompleted = true; 
 	}
 
-	logger.logInfo( "create services - done" );
+	logger.logInfo( "createServices: create services - done" );
 }
 
 void AIEngineImpl::constructServices()
@@ -324,7 +324,7 @@ Service *AIEngineImpl::constructService( String name , ServiceFactoryFunction fa
 
 	// check need create
 	if( !svccfg.getAttribute( "run" , "true" ).equals( "true" ) ) {
-		logger.logInfo( "Ignore service: name=" + name );
+		logger.logInfo( "constructService: ignore service name=" + name );
 		return( NULL );
 	}
 
@@ -362,21 +362,21 @@ void AIEngineImpl::initServices()
 
 		// check initialization is blocked
 		if( !svc -> isInit ) {
-			logger.logInfo( String( "blocked init service: name=" ) + svc -> getName() );
+			logger.logInfo( String( "initServices: blocked init service - name=" ) + svc -> getName() );
 			continue;
 		}
 
 		ASSERT( svc -> isCreateCompleted );
 
 		// call service init procedure
-		logger.logInfo( String( "init service: " ) + svc -> getName() + String( "..." ) );
+		logger.logInfo( String( "initServices: init service name=" ) + svc -> getName() + String( "..." ) );
 		svc -> isInitStarted = true; 
 		svc -> initService(); 
 		svc -> isInitCompleted = true;
-		logger.logInfo( String( "init service: " ) + svc -> getName() + String( " - done" ) );
+		logger.logInfo( String( "initServices: init service name=" ) + svc -> getName() + String( " - done" ) );
 	}
 
-	logger.logInfo( "init services - done" );
+	logger.logInfo( "initServices: init services - done" );
 }
 
 void AIEngineImpl::runServices()
@@ -385,7 +385,7 @@ void AIEngineImpl::runServices()
 	bool mode = logManager -> getConfiguredSyncMode();
 	logManager -> setSyncMode( mode );
 
-	logger.logInfo( "run services..." );
+	logger.logInfo( "runServices: run services..." );
 
 	// initialize event
 	rfc_hnd_evreset( eventExit );
@@ -396,20 +396,20 @@ void AIEngineImpl::runServices()
 
 		// check run is blocked
 		if( !svc -> isRun ) {
-			logger.logInfo( String( "blocked run service: name=" ) + svc -> getName() );
+			logger.logInfo( String( "runServices: blocked run service name=" ) + svc -> getName() );
 			continue;
 		}
 
 		ASSERT( svc -> isInitCompleted );
 
-		logger.logInfo( String( "run service: " ) + svc -> getName() + String( "..." ) );
+		logger.logInfo( String( "runServices: run service name=" ) + svc -> getName() + String( "..." ) );
 		svc -> isRunStarted = true; 
 		svc -> runService();
 		svc -> isRunCompleted = true;
-		logger.logInfo( String( "run service: " ) + svc -> getName() + String( " - done" ) );
+		logger.logInfo( String( "runServices: run service name=" ) + svc -> getName() + String( " - done" ) );
 	}
 
-	logger.logInfo( "run services - done" );
+	logger.logInfo( "runServices: run services - done" );
 
 	// set signal handlers
 	setSignalHandlers();
@@ -426,7 +426,7 @@ void AIEngineImpl::waitExitSignal()
 
 void AIEngineImpl::exitServices()
 {
-	logger.logInfo( "exit services..." );
+	logger.logInfo( "exitServices: exit services..." );
 
 	// in back order
 	for( int k = serviceList.count() - 1; k >= 0 ; k-- ) {
@@ -437,26 +437,26 @@ void AIEngineImpl::exitServices()
 			if( svc -> isInitStarted == false || svc -> isExitStarted == true )
 				continue;
 
-			logger.logInfo( String( "exit service: " ) + svc -> getName() + String( "..." ) );
+			logger.logInfo( String( "exitServices: exit service name=" ) + svc -> getName() + String( "..." ) );
 			svc -> isExitStarted = true;
 			svc -> exitService();
 			svc -> isExitCompleted = true;
-			logger.logInfo( String( "exit service: " ) + svc -> getName() + String( " - done" ) );
+			logger.logInfo( String( "exitServices: exit service name=" ) + svc -> getName() + String( " - done" ) );
 		}
 		catch( RuntimeException& e ) {
 			e.printStack( logger );
-			logger.logInfo( String( "exception while stopping service: " ) + svc -> getName() );
+			logger.logInfo( String( "exitServices: exception while stopping service name=" ) + svc -> getName() );
 		}
 		catch( ... ) {
-			logger.logInfo( String( "unknown exception while stopping service: " ) + svc -> getName() );
+			logger.logInfo( String( "exitServices: unknown exception while stopping service name=" ) + svc -> getName() );
 		}
 	}
-	logger.logInfo( "exit services - done" );
+	logger.logInfo( "exitServices: exit services - done" );
 }
 
 void AIEngineImpl::destroyServices()
 {
-	logger.logInfo( "destroy services..." );
+	logger.logInfo( "destroyServices: destroy services..." );
 
 	// in back order
 	for( int k = serviceList.count() - 1; k >= 0; k-- ) {
@@ -472,43 +472,43 @@ void AIEngineImpl::destroyServices()
 				continue;
 
 			String name = svc -> getName();
-			logger.logInfo( String( "destroy service: " ) + name + String( "..." ) );
+			logger.logInfo( String( "destroyServices: destroy service name= " ) + name + String( "..." ) );
 			svc -> isDestroyStarted = true;
 			svc -> destroyService();
-			logger.logInfo( String( "destroy service: " ) + name + String( " - done" ) );
+			logger.logInfo( String( "destroyServices: destroy service name=" ) + name + String( " - done" ) );
 		}
 		catch( RuntimeException& e ) {
 			e.printStack( logger );
-			logger.logInfo( String( "exception while destroying service: " ) + svc -> getName() );
+			logger.logInfo( String( "destroyServices: exception while destroying service name=" ) + svc -> getName() );
 		}
 		catch( ... ) {
-			logger.logInfo( String( "unknown exception while destroying service: " ) + svc -> getName() );
+			logger.logInfo( String( "destroyServices: unknown exception while destroying service name=" ) + svc -> getName() );
 		}
 	}
 
 	services.clear();
 	serviceList.clear();
-	logger.logInfo( "destroy services - done" );
+	logger.logInfo( "destroyServices: destroy services - done" );
 }
 
 void AIEngineImpl::logStart( String logConfigFileName )
 {
 	// read configuration file
 	Xml configLogging = loadXml( logConfigFileName );
-	ASSERTMSG( configLogging.exists() , "Logging is not configured: unable to use file=" + logConfigFileName );
+	ASSERTMSG( configLogging.exists() , "logStart: logging is not configured - unable to use file=" + logConfigFileName );
 
 	// open file
 	logManager -> configure( configLogging );
 	if( !logManager -> start() )
-		throw RuntimeError( "AIEngineImpl::logStart: cannot initialize logging: unknown reason" );
+		throw RuntimeError( "logStart: cannot initialize logging - unknown reason" );
 
-	logger.logInfo( "LOGGING STARTED" );
+	logger.logInfo( "logStart: LOGGING STARTED" );
 }
 
 void AIEngineImpl::logStop()
 {
 	// stop logging
-	logger.logInfo( "LOGGING STOPPED" );
+	logger.logInfo( "logStop: LOGGING STOPPED" );
 	logManager -> stop();
 }
 
@@ -536,11 +536,9 @@ unsigned AIEngineImpl::threadFunction( ThreadData *td )
 	int status = 0;
 	Object *o = td -> object;
 	Logger& tlogger = o -> getLogger();
-	tlogger.attach( o );
 
 	String name = td -> name;
 	try {
-		tlogger.attach( name );
 		void ( Object::*of )( void *p_arg ) = td -> objectFunction;
 		void *oa = td -> objectFunctionArg;
 		( o ->* of )( oa );
@@ -550,12 +548,11 @@ unsigned AIEngineImpl::threadFunction( ThreadData *td )
 		status = -12;
 	}
 	catch ( ... ) {
-		tlogger.logError( "Thread " + name + ": unknown exception" );
+		tlogger.logError( "threadFunction: thread name=" + name + " - unknown exception" );
 		tlogger.printStack();
 		status = -13;
 	}
 
-	tlogger.attach( o );
 	workerExited( status );
 	return( status );
 }
@@ -572,7 +569,7 @@ RFC_HND AIEngineImpl::runThread( String p_name , Object *object , void (Object::
 	td -> name = p_name;
 
 	if( rfc_thr_process( &td -> threadExtId , ( void * )td , threadMainFunction ) ) {
-		logger.logError( "AIEngineImpl::runThread - cannot start thread: " + td -> name );
+		logger.logError( "runThread: cannot start thread name=" + td -> name );
 		workerExited( td , -10 );
 		return( NULL );
 	}
@@ -610,7 +607,7 @@ void AIEngineImpl::workerStarted( ThreadData *threadData )
 	to -> addThreadObject();
 	manageCallStack();
 
-	logger.logInfo( "thread started name=" + name + ", threadId=0x" + String::toHex( ( int )threadData -> threadId ) );
+	logger.logInfo( "workerStarted: thread started name=" + name + ", threadId=0x" + String::toHex( ( int )threadData -> threadId ) );
 	rfc_hnd_semunlock( lockExit );
 }
 
@@ -634,7 +631,7 @@ void AIEngineImpl::workerExited( ThreadData *threadData , int status )
 	if( countExit == 1 )
 		rfc_hnd_evsignal( eventExit );
 
-	logger.logInfo( "thread stopped name=" + name + ", threadId=0x" + String::toHex( ( int )threadData -> threadId ) );
+	logger.logInfo( "workerExited: thread stopped name=" + name + ", threadId=0x" + String::toHex( ( int )threadData -> threadId ) );
 	delete threadData;
 
 	rfc_hnd_semunlock( lockExit );
@@ -707,7 +704,7 @@ Xml AIEngineImpl::loadXml( String fileName )
 		String path = configDir + "/" + fileName;
 		doc = new TiXmlDocument( path );
 		if( !doc -> LoadFile() ) {
-			String err = String( "AIEngineImpl::getRoot: cannot load root configuration from: " ) + path;
+			String err = String( "loadXml: cannot load root configuration from path=" ) + path;
 			delete doc;
 			throw RuntimeError( err );
 		}
@@ -869,13 +866,13 @@ void AIEngineImpl::manageCallStack()
 void AIEngineImpl::threadDumpAll( bool showStackTrace )
 {
 	rfc_hnd_semlock( lockExit );
-	logger.logInfo( String( "THREAD DUMP (" ) + "THREAD COUNT=" + threads.count() + "):" , Logger::LogStart );
-	logger.logInfo( "------------" , Logger::LogLine );
+	logger.logInfo( String( "threadDumpAll: THREAD DUMP (" ) + "THREAD COUNT=" + threads.count() + "):" , Logger::LogStart );
+	logger.logInfo( "threadDumpAll: ------------" , Logger::LogLine );
 
 	for( int k = 0; k < threads.count(); k++ ) {
 		ThreadData *td = threads.getClassByIndex( k );
 
-		String threadInfo = String( "THREAD DUMP: thread index=" ) + k + ", name=" + td -> name + ", threadId=0x" + String::toHex( ( int )td -> threadId );
+		String threadInfo = String( "threadDumpAll: THREAD DUMP: thread index=" ) + k + ", name=" + td -> name + ", threadId=0x" + String::toHex( ( int )td -> threadId );
 		if( showStackTrace )
 			 threadInfo += ":";
 		logger.logInfo( threadInfo , Logger::LogLine );
@@ -884,7 +881,7 @@ void AIEngineImpl::threadDumpAll( bool showStackTrace )
 			printThreadStackTrace( td );
 	}
 
-	logger.logInfo( "------------" , Logger::LogStop );
+	logger.logInfo( "threadDumpAll: ------------" , Logger::LogStop );
 	rfc_hnd_semunlock( lockExit );
 }
 
@@ -893,7 +890,7 @@ void AIEngineImpl::threadDumpByName( String name , bool showStackTrace )
 	rfc_hnd_semlock( lockExit );
 	ThreadData *td = threads.get( name );
 	if( td != NULL ) {
-		String threadInfo = String( "THREAD DUMP: thread name=" ) + td -> name + ", threadId=0x" + String::toHex( ( int )td -> threadId );
+		String threadInfo = String( "threadDumpByName: THREAD DUMP: thread name=" ) + td -> name + ", threadId=0x" + String::toHex( ( int )td -> threadId );
 		if( showStackTrace )
 			 threadInfo += ":";
 		logger.logInfo( threadInfo );

@@ -253,7 +253,7 @@ bool SocketProtocol::readSocketInternal( SOCKET socketHandle , bool wait , bool&
 	inPending += buf;
 
 	if( showPacketsIn )
-		logger.logDebug( String( "SocketProtocol::readSocketInternal - packet received text=" ) + buf );
+		logger.logDebug( String( "readSocketInternal: packet received text=" ) + buf );
 	return( true );
 }
 
@@ -273,7 +273,7 @@ void SocketProtocol::writeMessage( SOCKET socketHandle , const String& msg , boo
 	}
 
 	if( showMessagesOut )
-		logger.logDebug( String( "SocketProtocol::writeMessage - message sent, size=" ) + msg.length() + ", text=" + msg );
+		logger.logDebug( String( "writeMessage: message sent, size=" ) + msg.length() + ", text=" + msg );
 }
 
 void SocketProtocol::writeSocketInternal( SOCKET socketHandle , const char *s , bool& connectionClosed )
@@ -292,7 +292,7 @@ void SocketProtocol::writeSocketInternal( SOCKET socketHandle , const char *s , 
 		};
 
 		if( showPacketsOut )
-			logger.logDebug( String( "SocketProtocol::writeSocketInternal - packet sent, size=" ) + len + ", text=" + s );
+			logger.logDebug( String( "writeSocketInternal: packet sent, size=" ) + len + ", text=" + s );
 
 		lenSent += len;
 		lenRemained -= len;
@@ -311,7 +311,7 @@ bool SocketProtocol::readMessageInternal( SOCKET socketHandle , String& msg , in
 	switch( pin ) {
 		default :
 		case FLOW_PROTOCOL_UNKNOWN :
-			ASSERTFAILED( "SocketProtocol::readMessageInternal - protocol is not defined to read from socket" );
+			ASSERTFAILED( "readMessageInternal: protocol is not defined to read from socket" );
 			break;
 
 		case FLOW_PROTOCOL_HTTP_MESSAGES :
@@ -341,7 +341,7 @@ bool SocketProtocol::readMessageInternal( SOCKET socketHandle , String& msg , in
 		ASSERTFAILED( "SocketProtocol::readMessageInternal - returned xml message has length, different from fixed size=" + fixedSize );
 
 	if( showMessagesIn )
-		logger.logDebug( String( "SocketProtocol::readMessageInternal - message received, size=" ) + msg.length() + ", text=" + msg );
+		logger.logDebug( String( "readMessageInternal: message received, size=" ) + msg.length() + ", text=" + msg );
 	return( true );
 }
 
@@ -382,7 +382,7 @@ bool SocketProtocol::readTextMessageInternal( SOCKET socketHandle , String& msg 
 
 		buf[ l_recv ] = 0;
 		if( showPacketsIn )
-			logger.logDebug( String( "SocketProtocol::readMessageInternal - packet received, size=" ) + l_recv + ", text=" + buf );
+			logger.logDebug( String( "readMessageInternal: packet received, size=" ) + l_recv + ", text=" + buf );
 
 		// treat packet as message
 		if( delimiterIn.isEmpty() ) {
@@ -464,7 +464,7 @@ bool SocketProtocol::readTextStreamInternal( SOCKET socketHandle , String& msg ,
 		packetSize += l_recv;
 		p[ packetSize ] = 0;
 		if( showPacketsIn )
-			logger.logDebug( String( "SocketProtocol::readMessageInternal - packet received, size=" ) + l_recv + ", text=" + buf );
+			logger.logDebug( String( "readMessageInternal: packet received, size=" ) + l_recv + ", text=" + buf );
 
 		// check fixed size is received
 		if( fixedSize > 0 && packetSize == fixedSize ) {

@@ -68,8 +68,10 @@ void SocketServer::configure( Xml config )
 		Listener::setMsgType( Message::MsgType_XmlCall );
 
 	port = atoi( config.getProperty( "port" ) );
-	loggerName = String( "SocketServer::" ) + Listener::getName();
-	logger.attach( loggerName );
+
+	// make instance
+	Object::setInstance( Listener::getName() );
+	logger.attach( this );
 }
 
 bool SocketServer::startListener()
@@ -152,7 +154,7 @@ bool SocketServer::openListeningPort()
 	// start listening thread
 	listenThread = engine.runThread( Listener::getName() , this , ( ObjectThreadFunction )&SocketServer::threadConnectFunction , NULL );
 	
-	String msg = "openListeningPort: started listener [" + Listener::getName() + "] on " + getAddress( &listen_inet );
+	String msg = "openListeningPort: started listener=" + Listener::getName() + " on address=" + getAddress( &listen_inet );
 	logger.logInfo( msg );
 
 	return( true );
@@ -186,7 +188,7 @@ void SocketServer::closeListeningPort()
 			_closesocket( listenSocket );
 			listenSocket = INVALID_SOCKET;
 
-			String msg = "closeListeningPort: stopped listener on " + getAddress( &listen_inet );
+			String msg = "closeListeningPort: stopped listener on address=" + getAddress( &listen_inet );
 			logger.logInfo( msg );
 		}
 
@@ -231,7 +233,7 @@ void SocketServer::performConnect()
 
 	if( clientSocket == INVALID_SOCKET ) {
 		continueConnecting = false;
-		logger.logError( "accept returned INVALID_SOCKET" );
+		logger.logError( "performConnect: accept returned INVALID_SOCKET" );
 		return;
 	}
 
@@ -248,7 +250,7 @@ void SocketServer::performConnect()
 	// start connection thread
 	if( !startConnection( clientSocket , &clientAddress ) ) {
 		continueConnecting = false;
-		logger.logError( "cannot start client thread" );
+		logger.logError( "performConnect: cannot start client thread" );
 		return;
 	}
 }

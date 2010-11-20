@@ -26,7 +26,7 @@ void Sensors::onBrainStart()
 	for( int k = 0; k < sensors.count(); k++ ) {
 		Sensor *sensor = sensors.getClassByIndex( k );
 		sensor -> startSensor();
-		logger.logInfo( "Sensors::onBrainStart: sensor started - name=" + sensor -> getName() );
+		logger.logInfo( "onBrainStart: sensor started - name=" + sensor -> getName() );
 	}
 
 	// start poller
@@ -66,11 +66,11 @@ void Sensors::addSensor( Xml configSensors , Sensor *att )
 
 	if( config.exists() && config.getBooleanAttribute( "run" ) ) {
 		sensors.add( name , att );
-		logger.logInfo( "Sensors::addSensor: sensor added - name=" + name );
+		logger.logInfo( "addSensor: sensor added - name=" + name );
 	}
 	else {
 		sensorsOffline.add( name , att );
-		logger.logInfo( "Sensors::addSensor: sensor is not configured to run - name=" + name );
+		logger.logInfo( "addSensor: sensor is not configured to run - name=" + name );
 	}
 
 	// generate cortex dimentions - square-like

@@ -218,7 +218,7 @@ void AIDBImpl::save( Object *o , const char *p_file )
 	fputs( s , f );
 	fclose( f );
 
-	logger.logInfo( String( "saved object " ) + o -> getClass() + 
+	logger.logInfo( String( "save: saved object " ) + o -> getClass() + 
 		" to file " + p_file );
 }
 
@@ -241,7 +241,7 @@ bool AIDBImpl::load( Object *o , const char *p_file )
 	SerializeObject::readFromString( data , so , NULL , &o );
 
 	Object::deserialize( NULL , o , *so );
-	logger.logInfo( String( "loaded object " ) + o -> getClass() + 
+	logger.logInfo( String( "load: loaded object " ) + o -> getClass() + 
 		" from file " + p_file );
 
 	return( true );

@@ -161,27 +161,27 @@ public:
 				case COMMAND_FOCUS_UP :			
 					res = commandFocusUp();
 					if( res )
-						logger.logDebug( "SensorFileSysWalker::commandFocusUp - new focus area=" + getCurFocusArea() );
+						logger.logDebug( "executeSensorControl: commandFocusUp - new focus area=" + getCurFocusArea() );
 					break;
 				case COMMAND_FOCUS_DOWN :		
 					res = commandFocusDown(); 
 					if( res )
-						logger.logDebug( "SensorFileSysWalker::commandFocusDown - new focus area=" + getCurFocusArea() );
+						logger.logDebug( "executeSensorControl: commandFocusDown - new focus area=" + getCurFocusArea() );
 					break;
 				case COMMAND_FOCUS_INCREASE :	
 					res = commandFocusIncrease(); 
 					if( res )
-						logger.logDebug( "SensorFileSysWalker::commandFocusIncrease - new focus area=" + getCurFocusArea() );
+						logger.logDebug( "executeSensorControl: commandFocusIncrease - new focus area=" + getCurFocusArea() );
 					break;
 				case COMMAND_FOCUS_DECREASE :	
 					res = commandFocusDecrease(); 
 					if( res )
-						logger.logDebug( "SensorFileSysWalker::commandFocusDecrease - new focus area=" + getCurFocusArea() );
+						logger.logDebug( "executeSensorControl: commandFocusDecrease - new focus area=" + getCurFocusArea() );
 					break;
 				case COMMAND_FOCUS_CHANGEDEPTH :	
 					res = commandFocusChangeDepth(); 
 					if( res )
-						logger.logDebug( "SensorFileSysWalker::commandFocusChangeDepth - new focus area=" + getCurFocusArea() );
+						logger.logDebug( "executeSensorControl: commandFocusChangeDepth - new focus area=" + getCurFocusArea() );
 					break;
 			}
 		}
@@ -200,7 +200,7 @@ public:
 	virtual void produceSensorData() {
 		lock();
 		try {
-			logger.logInfo( "SensorFileSysWalker: produce sensor data..." );
+			logger.logInfo( "produceSensorData: produce sensor data..." );
 		
 			switch( curFocusType ) {
 				case FOCUS_COMPUTER :	sendNewComputerInfo(); break;
@@ -244,7 +244,7 @@ public:
 
 	// send initial information - as focus changed
 	void SensorFileSysWalker::sendNewComputerInfo() {
-		logger.logDebug( "SensorFileSysWalker::sendNewComputerInfo" );
+		logger.logDebug( "sendNewComputerInfo: execute" );
 		String name = getComputerName();
 		sendSignal( SIGNAL_COMPUTER_NAME , name );
 
@@ -256,7 +256,7 @@ public:
 	}
 
 	void SensorFileSysWalker::sendNewDiskInfo() {
-		logger.logDebug( "SensorFileSysWalker::sendNewDiskInfo" );
+		logger.logDebug( "sendNewDiskInfo: execute" );
 
 		// send disk information
 		float diskSpaceTotalGB;
@@ -271,7 +271,7 @@ public:
 	}
 
 	void SensorFileSysWalker::sendNewDirectoryInfo() {
-		logger.logDebug( "SensorFileSysWalker::sendNewDirectoryInfo" );
+		logger.logDebug( "sendNewDirectoryInfo: execute" );
 
 		// send current directory list
 		StringList files;
@@ -283,7 +283,7 @@ public:
 	}
 
 	void SensorFileSysWalker::sendNewFileInfo() {
-		logger.logDebug( "SensorFileSysWalker::sendNewFileInfo" );
+		logger.logDebug( "sendNewFileInfo: execute" );
 
 		String file = getFileOnly( curFile );
 		sendSignal( SIGNAL_FILE_NAME , file );
@@ -701,18 +701,18 @@ public:
 	}
 
 	void continueTracking( HANDLE handle ) {
-		logger.logDebug( "continueTracking" );
+		logger.logDebug( "continueTracking: execute" );
 	}
 
 	void stopTracking( HANDLE handle ) {
-		logger.logDebug( "stopTracking..." );
+		logger.logDebug( "stopTracking: ..." );
 		::CancelIoEx( handle , NULL );
 		::CloseHandle( handle );
-		logger.logDebug( "stopTracking - done" );
+		logger.logDebug( "stopTracking: - done" );
 	}
 
 	void readDirChanges( HANDLE handle , void *buf , DWORD bufLength , int depth ) {
-		logger.logDebug( "readDirChanges" );
+		logger.logDebug( "readDirChanges: execute" );
 
 		FILE_NOTIFY_INFORMATION *pe = ( FILE_NOTIFY_INFORMATION * )buf;
 		while( true ) {
@@ -748,7 +748,7 @@ public:
 	}
 
 	void waitChangeEventAndExecute() {
-		logger.logDebug( "waitChangeEventAndExecute" );
+		logger.logDebug( "waitChangeEventAndExecute: execute" );
 
 		// read changes
 		DWORD bytesRead = 0;

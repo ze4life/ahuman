@@ -219,8 +219,6 @@ private:
 	int reconnectionTimeout;
 
 	String name;
-	String loggerName;
-	
 	String host;
 	String port;
 	bool permanentConnection;
@@ -372,7 +370,6 @@ private:
 
 	Logger logger;
 	String name;
-	String loggerName;
 
 	bool continueConnecting;
 	bool shutdownInProgress;

@@ -61,9 +61,9 @@ void SocketConnection::threadClientFunction( void *p_arg )
 bool SocketConnection::startConnection()
 {
 	// complete connection
-	logger.logInfo( String( "client [" ) + getName() + 
-		"] connected on listener [" + server -> getName() + 
-		"] from network address " + getClientSocketName() );
+	logger.logInfo( String( "startConnection: client name=" ) + getName() + 
+		" connected on listener=" + server -> getName() + 
+		" from network address=" + getClientSocketName() );
 
 	// connect to topics
 	AIIO io;
@@ -100,11 +100,11 @@ void SocketConnection::readMessages()
 			performRead();
 	}
 	catch ( RuntimeException& e ) {
-		logger.logError( key + ": SocketConnection::readMessages - exception caught:" );
+		logger.logError( "readMessages: connection=" + key + " - exception caught:" );
 		e.printStack( logger );
 	}
 	catch ( ... ) {
-		logger.logError( key + ": SocketConnection::readMessages - unknown exception in read" );
+		logger.logError( "readMessages: connection=" + key + " - unknown exception in read" );
 		logger.printStack();
 	}
 
@@ -112,7 +112,7 @@ void SocketConnection::readMessages()
 		stopConnection();
 	}
 	catch ( ... ) {
-		logger.logError( key + ": SocketConnection::readMessages - unknown exception in stop" );
+		logger.logError( "readMessages: connection=" + key + " - unknown exception in stop" );
 		logger.printStack();
 	}
 }
@@ -133,7 +133,7 @@ void SocketConnection::performRead()
 	if( connectionClosed ) {
 		continueRead = false;
 		logout = true;
-		logger.logDebug( "SocketConnection::performRead - empty message, disconnecting" );
+		logger.logDebug( "performRead: empty message, disconnecting" );
 	}
 }
 
@@ -164,7 +164,7 @@ void SocketConnection::stopConnection()
 	}
 
 	if( connected ) {
-		logger.logInfo( getName() + ": disconnected" );
+		logger.logInfo( "stopConnection: connection=" + getName() + ": disconnected" );
 		connected = false;
 	}
 }
@@ -178,7 +178,7 @@ void SocketConnection::processMessage( const char *p_msg )
 	}
 
 	// pass to channel
-	logger.logDebug( getName() + ": socket received message (" + p_msg + ")" );
+	logger.logDebug( "processMessage: connection=" + getName() + " - socket received message (" + p_msg + ")" );
 							    
 	if( msgType == Message::MsgType_Text ) {
 		pub -> publish( session , p_msg );
@@ -212,7 +212,7 @@ void SocketConnection::sendString( const char *p_msg , int p_len )
 	ASSERTMSG( p_len > 0 , "SocketConnection::sendString - empty message" );
 
 	// send message
-	logger.logDebug( getName() + ": send message to socket - (" + String( p_msg , p_len ) + ")" );
+	logger.logDebug( "sendString: conection=" + getName() + " - send message to socket - (" + String( p_msg , p_len ) + ")" );
 
 	bool connectionClosed;
 	protocol.writeMessage( socket , p_msg , connectionClosed );
@@ -220,7 +220,7 @@ void SocketConnection::sendString( const char *p_msg , int p_len )
 	if( connectionClosed ) {
 		continueRead = false;
 		logout = true;
-		logger.logDebug( "SocketConnection::sendString - cannot send" );
+		logger.logDebug( "sendString: cannot send" );
 	}
 }
 
