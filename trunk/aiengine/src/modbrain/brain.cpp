@@ -34,9 +34,9 @@ AIBrainImpl::AIBrainImpl()
 void AIBrainImpl::createService( Xml config )
 {
 	// load mind map
-	logger.logInfo( "reading mind map..." );
+	logger.logInfo( "createService: reading mind map..." );
 	Xml xmlMindMap = config.getFirstChild( "MindMap" );
-	ASSERTMSG( xmlMindMap.exists() , "MindMap is not present in brain configuration file" );
+	ASSERTMSG( xmlMindMap.exists() , "createService: MindMap is not present in brain configuration file" );
 
 	mindMap -> createFromXml( xmlMindMap );
 
@@ -49,7 +49,7 @@ void AIBrainImpl::createService( Xml config )
 
 	// create active memory
 	Xml xmlActiveMemory = config.getFirstChild( "ActiveMemory" );
-	ASSERTMSG( xmlActiveMemory.exists() , "ActiveMemory is not present in brain configuration file" );
+	ASSERTMSG( xmlActiveMemory.exists() , "createService: ActiveMemory is not present in brain configuration file" );
 
 	activeMemory = new ActiveMemory();
 	activeMemory -> create( xmlActiveMemory );
@@ -183,7 +183,7 @@ void AIBrainImpl::registerCortex( Cortex *cortex , MindArea *area , const BrainL
 	unlock();
 
 	area -> addCortex( cortex , relativeLocation );
-	logger.logInfo( "cortex created: id=" + id + ", type=" + cortex -> getNetType() + 
+	logger.logInfo( "registerCortex: cortex created - id=" + id + ", type=" + cortex -> getNetType() + 
 		", size=" + cortex -> getNSize() + ", inputs=" + cortex -> getNInputs() + ", outputs=" + cortex -> getNOutputs() );
 }
 

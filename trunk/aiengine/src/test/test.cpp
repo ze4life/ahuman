@@ -32,13 +32,13 @@ void AITestPoolImpl::createService( Xml config )
 	addTestUnits();
 	
 	// log available commands
-	logger.logInfo( "AVAILABLE TEST METHODS:" );
+	logger.logInfo( "createService: AVAILABLE TEST METHODS:" );
 	for( int k = 0; k < units.count(); k++ ) {
 		TestUnit *tu = units.getClassByIndex( k );
 		
 		MapStringToClass<TestMethod>& methods = tu -> methods;
 		for( int m = 0; m < methods.count(); m++ ) {
-			logger.logInfo( String( "method=" ) + methods.getKeyByIndex( m ) );
+			logger.logInfo( String( "createService: method=" ) + methods.getKeyByIndex( m ) );
 		}
 	}
 
@@ -95,7 +95,7 @@ void AITestPoolImpl::onXmlCall( XmlCall *msg )
 	String cn = call.getClassName();
 	String fn = call.getFunctionName();
 	String fnfull = cn + "::" + fn;
-	logger.logInfo( fnfull + " test method called in session " + call.getSession() -> getSessionId() );
+	logger.logInfo( "onXmlCall: test method name=" + fnfull + " called in session=" + call.getSession() -> getSessionId() );
 
 	// find unit
 	TestUnit *unit = units.get( cn );
@@ -115,7 +115,7 @@ void AITestPoolImpl::onXmlCall( XmlCall *msg )
 		call.sendResponseException( callPub , e );
 	}
 	catch( ... ) {
-		logger.logError( "Unknown exception:" );
+		logger.logError( "onXmlCall: unknown exception:" );
 		logger.printStack();
 		call.sendResponseUnknownException( callPub );
 	}

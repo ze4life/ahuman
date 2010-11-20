@@ -33,10 +33,10 @@ void AILibBNImpl::createService( Xml config )
 void AILibBNImpl::initService()
 {
 	// log available commands
-	logger.logInfo( "AVAILABLE LIBRARIES:" );
+	logger.logInfo( "initService: AVAILABLE LIBRARIES:" );
 	for( int k = 0; k < variants.count(); k++ ) {
 		AILibBNVariant *var = variants.getClassByIndex( k );
-		logger.logInfo( "library=" + var -> getName() );
+		logger.logInfo( "initService: library=" + var -> getName() );
 	}
 }
 

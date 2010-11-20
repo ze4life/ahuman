@@ -27,6 +27,15 @@ class Random;
 
 class Object
 {
+protected:
+	Object() {};
+	Logger logger;
+	String instance;
+
+private:
+	// used when attached to instance
+	String loggerName;
+
 public:
 	virtual const char *getClass() = 0;
 	virtual void serialize( SerializeObject& so );
@@ -36,19 +45,14 @@ public:
 public:
 	SerializeObject *getSerializeObject();
 	Logger& getLogger() { return( logger ); };
+	const char *getLoggerName();
+
 	static void serialize( Object *o , SerializeObject& so );
 	static void deserialize( Object *parent , Object *o , SerializeObject& so );
 	static Object *createObject( const char *className );
 
-	String getObjectName();
 	const char *getInstance();
 	void setInstance( const char *instance );
-
-protected:
-	Object() {};
-	Logger logger;
-	String instance;
-	String name;
 };
 
 /*#########################################################################*/

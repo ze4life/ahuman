@@ -29,7 +29,7 @@ void CognitiveProcessor::createCortexProcessor( MindArea *area , Cortex *inputs 
 
 void CognitiveProcessor::processMessage( CortexMessage *msg )
 {
-	logger.logInfo( "message received sourceid=" + msg -> getSourceId() + 
+	logger.logInfo( "processMessage: message received sourceid=" + msg -> getSourceId() + 
 		", classType=" + msg -> getClassType() +
 		", msgid=" + msg -> getChannelMessageId() );
 

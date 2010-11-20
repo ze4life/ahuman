@@ -27,14 +27,14 @@ void Physiology::onBrainStart()
 			control -> start();
 		}
 		catch ( RuntimeException& e ) {
-			logger.logError( "Physiology::onBrainStart - cannot start control name=" + name );
+			logger.logError( "onBrainStart: cannot start control name=" + name );
 			e.printStack( logger );
 		}
 		catch ( ... ) {
-			logger.logError( "Physiology::onBrainStart - unexpected unknown exception, cannot start control name=" + name );
+			logger.logError( "onBrainStart: unexpected unknown exception, cannot start control name=" + name );
 		}
 
-		logger.logInfo( "Physiology::onBrainStart: control started - name=" + control -> getName() );
+		logger.logInfo( "onBrainStart: control started - name=" + control -> getName() );
 	}
 }
 
@@ -64,14 +64,14 @@ void Physiology::addControl( Xml configControls , PhysioControl *att )
 	if( config.exists() && config.getBooleanAttribute( "run" ) ) {
 		// add
 		controls.add( name , att );
-		logger.logInfo( "Physiology::addControl: control added - name=" + name );
+		logger.logInfo( "addControl: control added - name=" + name );
 
 		// configure
 		att -> create( config );
 	}
 	else {
 		controlsOffline.add( name , att );
-		logger.logInfo( "Physiology::addControl: control is not configured to run - name=" + name );
+		logger.logInfo( "addControl: control is not configured to run - name=" + name );
 	}
 }
 

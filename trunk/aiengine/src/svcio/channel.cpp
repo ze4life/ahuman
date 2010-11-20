@@ -10,8 +10,6 @@ const char *Channel::NAME = "IOChannel";
 // class AIIODuplexChannel
 Channel::Channel( String p_msgid , String p_name , bool p_sync )
 {
-	Object::setInstance( p_msgid );
-
 	name = p_name;
 
 	opened = false;
@@ -21,6 +19,8 @@ Channel::Channel( String p_msgid , String p_name , bool p_sync )
 
 	messages = NULL;
 	channelLock = rfc_lock_create();
+
+	Object::setInstance( name );
 }
 
 Channel::~Channel()
@@ -197,7 +197,7 @@ void Channel::deletePublisher( String key )
 // executing in separate thread
 void Channel::processMessages()
 {
-	logger.logInfo( String( "i/o channel opened id=" ) + Object::getInstance() );
+	logger.logInfo( String( "processMessages: i/o channel opened id=" ) + Object::getInstance() );
 	while( run ) 
 		{
 			// get next message
@@ -206,14 +206,14 @@ void Channel::processMessages()
 				break;
 
 			// log
-			logger.logInfo( String( "message extracted from i/o channel id=" ) + Object::getInstance() + ", channelMessageId=" + message -> getChannelMessageId() );
+			logger.logInfo( String( "processMessages: message extracted from i/o channel id=" ) + Object::getInstance() + ", channelMessageId=" + message -> getChannelMessageId() );
 
 			// pass message
 			subscribeEvent( message );
 			delete message;
 		}
 
-	logger.logInfo( String( "i/o channel closed id=" ) + Object::getInstance() );
+	logger.logInfo( String( "processMessages: i/o channel closed id=" ) + Object::getInstance() );
 }
 
 /*#########################################################################*/

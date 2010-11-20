@@ -84,13 +84,13 @@ void AIMediaImpl::createListeners( Xml config )
 	for( Xml item = config.getFirstChild( "listener" ); item.exists(); item = item.getNextChild( "listener" ) ) {
 		String name = item.getAttribute( "name" );
 		if( !item.getBooleanAttribute( "run" ) ) {
-			logger.logInfo( "AIMediaImpl::createListeners: listener is not configured to run - name=" + name );
+			logger.logInfo( "createListeners: listener is not configured to run - name=" + name );
 			continue;
 		}
 
 		// create and configure
 		Listener *listener = runListenerFactory( name , item );
-		logger.logInfo( "AIMediaImpl::createListeners: listener created - name=" + name );
+		logger.logInfo( "createListeners: listener created - name=" + name );
 	}
 }
 
@@ -103,8 +103,8 @@ void AIMediaImpl::startListeners()
 		// start
 		String name = listener -> getName();
 		ASSERTMSG( listener -> startListener() , 
-			"AIMediaImpl::startListeners: cannot start listener=" + name );
-		logger.logInfo( "AIMediaImpl::startListeners: listener started at " + listener -> getAddress() + " - name=" + name );
+			"startListeners: cannot start listener=" + name );
+		logger.logInfo( "startListeners: listener started at " + listener -> getAddress() + " - name=" + name );
 	}
 }
 
@@ -129,13 +129,13 @@ void AIMediaImpl::createActiveSockets( Xml config )
 	for( Xml item = config.getFirstChild( "channel" ); item.exists(); item = item.getNextChild( "channel" ) ) {
 		String name = item.getAttribute( "name" );
 		if( !item.getBooleanAttribute( "run" ) ) {
-			logger.logInfo( "AIMediaImpl::createActiveSockets: direct channel is not configured to run - name=" + name );
+			logger.logInfo( "createActiveSockets: direct channel is not configured to run - name=" + name );
 			continue;
 		}
 
 		// create and configure
 		ActiveSocket *ac = runActiveSocketFactory( name , item );
-		logger.logInfo( "AIMediaImpl::createActiveSockets: direct channel created - name=" + name );
+		logger.logInfo( "createActiveSockets: direct channel created - name=" + name );
 	}
 }
 
@@ -148,8 +148,8 @@ void AIMediaImpl::startActiveSockets()
 		// start
 		String name = ac -> getName();
 		ASSERTMSG( ac -> startActiveSocket() , 
-			"AIMediaImpl::startActiveSockets: cannot start channel=" + name );
-		logger.logInfo( "AIMediaImpl::startActiveSockets: direct channel started name=" + name );
+			"startActiveSockets: cannot start channel=" + name );
+		logger.logInfo( "startActiveSockets: direct channel started name=" + name );
 	}
 }
 

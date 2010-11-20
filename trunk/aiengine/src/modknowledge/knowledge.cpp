@@ -41,14 +41,14 @@ void AIKnowledgeImpl::addKnowledgeController( Xml configControllers , KnowledgeC
 	if( !config.getBooleanAttribute( "run" ) ) {
 		// do not use this controller
 		delete controller;
-		logger.logInfo( "Knowledge controller ignored as not configured to run - name=" + name );
+		logger.logInfo( "addKnowledgeController: knowledge controller ignored as not configured to run - name=" + name );
 		return;
 	}
 
 	// add controller
 	controllers.add( name , controller );
 	controller -> createController( config );
-	logger.logInfo( "Knowledge controller created - name=" + name );
+	logger.logInfo( "addKnowledgeController: knowledge controller created - name=" + name );
 }
 
 void AIKnowledgeImpl::initService()
@@ -57,7 +57,7 @@ void AIKnowledgeImpl::initService()
 	for( int k = 0; k < controllers.count(); k++ ) {
 		KnowledgeController *controller = controllers.getClassByIndex( k );
 		controller -> startController();
-		logger.logInfo( "Knowledge controller started - name=" + controller -> getName() );
+		logger.logInfo( "initService: knowledge controller started - name=" + controller -> getName() );
 	}
 }
 
@@ -71,7 +71,7 @@ void AIKnowledgeImpl::exitService()
 	for( int k = 0; k < controllers.count(); k++ ) {
 		KnowledgeController *controller = controllers.getClassByIndex( k );
 		controller -> stopController();
-		logger.logInfo( "Knowledge controller stopped - name=" + controller -> getName() );
+		logger.logInfo( "exitService: knowledge controller stopped - name=" + controller -> getName() );
 	}
 }
 

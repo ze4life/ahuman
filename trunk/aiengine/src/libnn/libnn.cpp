@@ -32,10 +32,10 @@ void AILibNNImpl::createService( Xml config )
 void AILibNNImpl::initService()
 {
 	// log available commands
-	logger.logInfo( "AVAILABLE LIBRARIES:" );
+	logger.logInfo( "initService: AVAILABLE LIBRARIES:" );
 	for( int k = 0; k < variants.count(); k++ ) {
 		AILibNNVariant *var = variants.getClassByIndex( k );
-		logger.logInfo( "library=" + var -> getName() );
+		logger.logInfo( "initService: library=" + var -> getName() );
 	}
 }
 

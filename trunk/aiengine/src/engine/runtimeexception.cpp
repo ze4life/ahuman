@@ -84,12 +84,12 @@ RuntimeException::RuntimeException( const char *p_msg , const char *p_file , int
 void RuntimeException::printStack( Logger& logger ) 
 { 
 	if( !isSEH() ) {
-		logger.logError( String( "C++ Exception: " ) + msg + " (file=" + fileShort + ", line=" + line + ")" );
+		logger.logError( String( "printStack: C++ Exception - " ) + msg + " (file=" + fileShort + ", line=" + line + ")" );
 		logger.printStack( stack , 0 );
 		return;
 	}
 
-	logger.logError( String( "SEH Exception: " ) + className + "::" + functionName + " (" + msg + ")" );
+	logger.logError( String( "printStack: SEH Exception - " ) + className + "::" + functionName + " (" + msg + ")" );
 
 	// skip system levels
 	int skipCount = getSkipCount();

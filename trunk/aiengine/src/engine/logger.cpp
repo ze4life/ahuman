@@ -37,7 +37,7 @@ void Logger::attach( Service *p_s )
 
 void Logger::attach( Object *p_o )
 {
-	loggerName = p_o -> getClass();
+	loggerName = p_o -> getLoggerName();
 	o = p_o;
 
 	LogManager *logManager = AIEngine::getInstance().getLogManager();
