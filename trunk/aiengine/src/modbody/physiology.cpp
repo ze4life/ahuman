@@ -3,6 +3,7 @@
 Physiology::Physiology()
 :	engine( AIEngine::getInstance() )
 {
+	logger.attach( this );
 }
 
 void Physiology::onCreateArea()
@@ -31,6 +32,7 @@ void Physiology::onBrainStart()
 			e.printStack( logger );
 		}
 		catch ( ... ) {
+			logger.printStack();
 			logger.logError( "onBrainStart: unexpected unknown exception, cannot start control name=" + name );
 		}
 

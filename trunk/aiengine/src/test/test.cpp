@@ -115,8 +115,8 @@ void AITestPoolImpl::onXmlCall( XmlCall *msg )
 		call.sendResponseException( callPub , e );
 	}
 	catch( ... ) {
-		logger.logError( "onXmlCall: unknown exception:" );
 		logger.printStack();
+		logger.logError( "onXmlCall: unknown exception:" );
 		call.sendResponseUnknownException( callPub );
 	}
 }

@@ -7,6 +7,8 @@ Sensors::Sensors()
 	// init variables
 	threadSensesTracker = ( RFC_HND )NULL;
 	runSensesTracker = true;
+
+	logger.attach( this );
 }
 
 void Sensors::onCreateArea()

@@ -104,16 +104,16 @@ void SocketConnection::readMessages()
 		e.printStack( logger );
 	}
 	catch ( ... ) {
-		logger.logError( "readMessages: connection=" + key + " - unknown exception in read" );
 		logger.printStack();
+		logger.logError( "readMessages: connection=" + key + " - unknown exception in read" );
 	}
 
 	try {
 		stopConnection();
 	}
 	catch ( ... ) {
-		logger.logError( "readMessages: connection=" + key + " - unknown exception in stop" );
 		logger.printStack();
+		logger.logError( "readMessages: connection=" + key + " - unknown exception in stop" );
 	}
 }
 

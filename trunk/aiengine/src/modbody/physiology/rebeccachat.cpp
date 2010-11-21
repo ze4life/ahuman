@@ -46,6 +46,8 @@ virtual void start()
 
 	/* Create a subscriber to process the messages */
 	sub = io.subscribe( NULL , inTopic , "EarListener" , this );
+
+	logger.logInfo( "start rebecca chat engine..." ); 
 	builder = &aiml.getGraphBuilder();
 
 	AIEngine& engine = AIEngine::getInstance();
@@ -68,7 +70,11 @@ virtual void start()
 
 	// add the AIML directory unless its already added    
 	builder -> addDirectoryUnlessAlreadyAdded( ( const char * )engine.getConfigurationPath( "rebecca/aiml" ) );
+
+	logger.logInfo( "prepare rebecca chat engine database..." ); 
 	builder -> createGraph();
+	logger.logInfo( "rebecca chat engine started" ); 
+
 	string botName = builder -> getBotPredicate( "name" ).c_str();
 	StringPimpl response = builder -> getResponse( "connect" );
 }
