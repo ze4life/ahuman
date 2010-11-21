@@ -36,7 +36,7 @@ This feature allows to have unlimited set of listening ports in aiengine by mean
 }}}
 
   * *direction* - controls whether topic-in and topic-out are used, can be "duplex", "in", "out"
-  * *protocol* and protocol.* properties - control in/out messages, details are in [MediaProtocols Protocols]
+  * *protocol* and protocol.`*` properties - control in/out messages, details are in [MediaProtocols Protocols]
   * *auth* - not implemented fully now, but intended to have authorised sessions; if "true" then first message should contain auth props and no other messages will be sent to channels until authorisation completed
  * *port* - port where listener is started - use it to connect to server
  * *msgtype* - parse message to specific request type supported by IO before sending message to IO channel; possible values are "text" , "xml" , "xmlcall"; probably have to be migrated to protocol code
