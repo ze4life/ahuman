@@ -1,4 +1,3 @@
-
 #include "media_impl.h"
 
 /*#########################################################################*/
@@ -98,6 +97,7 @@ bool ActiveSocket::connectSocket()
 		res = connectSocketProtected();
 	}
 	catch( ... ) {
+		logger.printStack();
 		logger.logDebug( "connectSocket: unexpected exception caught for name=" + name );
 	}
 

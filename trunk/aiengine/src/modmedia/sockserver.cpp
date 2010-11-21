@@ -210,8 +210,8 @@ void SocketServer::acceptConnectionLoop()
 		e.printStack( logger );
 	}
 	catch ( ... ) {
-		logger.logError( "acceptConnectionLoop: unknown exception" );
 		logger.printStack();
+		logger.logError( "acceptConnectionLoop: unknown exception" );
 	}
 }
 

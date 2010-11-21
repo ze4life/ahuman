@@ -67,6 +67,7 @@ Xml Xml::getChildNode( String s )
 		xmlChild = xml -> FirstChildElement( s );
 	}
 	catch( ... ) {
+		// ignore - handle by null value returned
 	}
 
 	Xml x;
@@ -261,6 +262,7 @@ Xml Xml::getFirstChild( String name )
 		xmlChild = xml -> FirstChildElement( name );
 	}
 	catch( ... ) {
+		// ignore - handle by null value returned
 	}
 
 	Xml item;

@@ -164,6 +164,7 @@ int AIEngineImpl::runInternal( const char *p_configDir )
 		return( -2 );
 	}
 	catch ( ... ) {
+		logger.printStack();
 		fprintf( stderr , "AIEngineImpl::runInternal - unexpected unknown exception" );
 		logStop();
 		return( -3 );
@@ -196,6 +197,7 @@ int AIEngineImpl::runInternal( const char *p_configDir )
 		status = -1;
 	}
 	catch ( ... ) {
+		logger.printStack();
 		logger.logError( "runInternal: unexpected unknown exception" );
 		status = -2;
 	}
@@ -482,6 +484,7 @@ void AIEngineImpl::destroyServices()
 			logger.logInfo( String( "destroyServices: exception while destroying service name=" ) + svc -> getName() );
 		}
 		catch( ... ) {
+			logger.printStack();
 			logger.logInfo( String( "destroyServices: unknown exception while destroying service name=" ) + svc -> getName() );
 		}
 	}
@@ -548,6 +551,7 @@ unsigned AIEngineImpl::threadFunction( ThreadData *td )
 		status = -12;
 	}
 	catch ( ... ) {
+		logger.printStack();
 		tlogger.logError( "threadFunction: thread name=" + name + " - unknown exception" );
 		tlogger.printStack();
 		status = -13;
@@ -753,6 +757,7 @@ Xml AIEngineImpl::readXml( const char *data , const char *contentName )
 			}
 	}
 	catch( ... ) {
+		// ignore - generate own exception instead
 	}
 
 	delete doc;

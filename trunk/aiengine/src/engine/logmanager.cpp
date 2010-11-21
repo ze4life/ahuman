@@ -150,6 +150,7 @@ void LogManager::run( void * ) {
 		fprintf( stderr , "exception in logging: " , e.getMsg() );
 	}
 	catch ( ... ) {
+		logger.printStack();
 		fprintf( stderr , "unknown exception in logging" );
 	}
 

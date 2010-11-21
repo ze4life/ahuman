@@ -51,6 +51,7 @@ void SubscriptionImpl::processMessage( Message *msg )
 		if( !isMatchSelector( msg ) )
 			return;
 
+	Logger logger = channel -> getLogger();
 	try {
 		switch( msg -> getBaseType() ) {
 			case Message::MsgType_Text :
@@ -71,14 +72,12 @@ void SubscriptionImpl::processMessage( Message *msg )
 		}
 	}
 	catch ( RuntimeException& e ) {
-		Logger logger = channel -> getLogger();
 		logger.logError( "processMessage: i/o channel id=" + channel -> getName() + ", subscription=" + name + ": exception when processing message" );
 		e.printStack( logger );
 	}
 	catch ( ... ) {
-		Logger logger = channel -> getLogger();
-		logger.logError( "processMessage: i/o channel id=" + channel -> getName() + ", subscription=" + name + ": unknown exception" );
 		logger.printStack();
+		logger.logError( "processMessage: i/o channel id=" + channel -> getName() + ", subscription=" + name + ": unknown exception" );
 	}
 }
 
