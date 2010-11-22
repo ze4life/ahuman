@@ -2,6 +2,7 @@
 
 #include <rebecca/all.h>
 #include <rebecca/network_all.h>
+#include "lyrnx.h"
 using namespace rebecca;
 
 // #############################################################################
@@ -95,6 +96,8 @@ virtual void onTextMessage( TextMessage * msg )
 	char *ch = s.getBuffer();
 	StringPimpl response = builder->getResponse(ch);
 	const char* res = response.c_str();
+	// Call the lyrnx body part for creating voice
+	lyrnx::play((char*)res);
 	resmsg->setText(res);
 	pub->publish(NULL, resmsg);
 }
