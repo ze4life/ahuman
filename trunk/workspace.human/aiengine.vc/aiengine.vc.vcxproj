@@ -37,8 +37,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(IncludePath)</IncludePath>
-    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Sarbjit\ahumanSync\trunk\libespeak;C:\Sarbjit\ahumanSync\trunk\libaiml\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Sarbjit\ahumanSync\trunk\aiengine\lib;C:\Sarbjit\ahumanSync\trunk\aiengine\lib\rebecca;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -50,7 +50,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Psapi.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Psapi.lib;Ws2_32.lib;winmm.lib;libespeak.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateMapFile>true</GenerateMapFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <FixedBaseAddress>true</FixedBaseAddress>
@@ -165,6 +165,7 @@
     <ClCompile Include="..\..\aiengine\src\main.cpp" />
     <ClCompile Include="..\..\aiengine\src\modbody\body.cpp" />
     <ClCompile Include="..\..\aiengine\src\modbody\physiology.cpp" />
+    <ClCompile Include="..\..\aiengine\src\modbody\physiology\lyrnx.h" />
     <ClCompile Include="..\..\aiengine\src\modbody\physiology\rebeccachat.cpp" />
     <ClCompile Include="..\..\aiengine\src\modbody\sensors.cpp" />
     <ClCompile Include="..\..\aiengine\src\modbody\sensors\eye.cpp" />
