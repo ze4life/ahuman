@@ -2,11 +2,13 @@
 @@[Home] -> [SensorsResearch] -> [CortexAttention]
 ----
 
-== Attention in the Neocortex ==
+= Attention in the Neocortex =
 
 see 2007 - Model of covert attention and learning
 
-=== Overview of the cortex ===
+== 2.1 Mammalian Neocortex ==
+
+=== 2.1.1 Overview of the cortex ===
 
   * cerebral cortex is neocortex and old structures like hippocampus
   * most intelligent animals have larger absolute and relative neocortex
@@ -14,7 +16,7 @@ see 2007 - Model of covert attention and learning
   * after evolution it receives input from all sources and thus can build world model
   * independently of the location on the cortex, it has the same six-layered columnar structure and the same micro-connectivity
 
-=== Learning Feature Representations ===
+=== 2.1.2 Learning Feature Representations ===
 
   * exceptional feature of the motor cortex is that it has power to control the muscles
   * higher levels represent longer lasting actions that are more abstract and consist of many primitive actions
@@ -24,7 +26,7 @@ see 2007 - Model of covert attention and learning
    * if the context does not change when the inputs change, the context could teach the neuron that the different inputs are actually instantiations of the same object
    * feedback connections could act as teaching signals for the neurons
 
-=== Attention in Neocortex ===
+=== 2.1.3 Attention in Neocortex ===
 
   * sensory cortex cannot represent all objects existing in the inputs at the same time - there is selective attention
   * neocortex can think about and perceive only few different things simultaneously (covert attention)
@@ -47,7 +49,7 @@ see 2007 - Model of covert attention and learning
    * if a certain object is given attentional bias, then the location of that object is searched for
    * if the bias is given to some location, then the cortex will recognise the possible object in that location
 
-=== Architecture of Neocortex ===
+=== 2.1.4 Architecture of Neocortex ===
   
   * *connections*
    * 1st-order: thalamic -> inputs (layer 4) -> contextual (layers 1-3) -> outputs (layers 5-6) -> higher-order thalamic
@@ -74,7 +76,7 @@ see 2007 - Model of covert attention and learning
    * control the balance between bottom-up and top-down inference
    * gate the contents of working memory
 
-=== Purpose of Neocortex ===
+=== 2.1.5 Purpose of Neocortex ===
 
   * lots of learning happening in the subcortical structures as well
    * *basal ganglia* are considered to do *reinforcement learning*, which means learning those motor actions that are rewarding
@@ -85,3 +87,38 @@ see 2007 - Model of covert attention and learning
    * motor cortex perceives what the animal does - cortex can associate the evolutionary fixed action patterns to different situations
    * global neuromodulation signals, such as dopamine, mediate information about rewards and punishments
    * working memory in the prefrontal cortex is thought to be gated by subcortical structures, which focuses attention on the animal goals
+
+== 2.2 Models of learning regularities in the world ==
+
+  * cortex is often modelled as using unsupervised learning
+  * real cortex does receive teaching signals: the general contextual inputs from the thalamus matrix cells and the neuromodulators
+
+=== 2.2.1 Generative models ===
+
+  * generative models try to infer the original causes underlying the sensations
+  * generative models assume a physical model F that produces the sensory inputs x:
+{{{
+x = F(s) + n
+s - the physical causes, vector s can include information about the history of the world
+n - sensory noise
+}}}
+  * generative models try to learn the world model F, and then use this in inferring the causes s from the inputs
+  * *Bayesian network* is example of generative model, hierarchical statistical model
+   * can be used to infer the abstract causes from partial sensory inputs
+   * inference is computationally demanding
+  * *Helmholtz machine*
+   * inference/recognition can be done with one feed-forward activation sweep if distinct recognition model is added alongside the generative model
+   * recognition model is consistent as learnt at the same time with generative model
+  * error function can be the Kullback-Leibler divergence between the real sensory input probability distribution and that of the learnt generative model
+  * for dimensionality of real world accurate generative model would be immensely large and slow to learn
+  * generative models do not take into account the importance of different real world objects, or causes
+  * cortex of the animal must decide what to represent
+  * optimal way to make decisions is to maximise the expected utility of the consequences of the actions, leading to *Bayesian decision theory*
+   * actions could be the decisions about what objects to represent
+   * utilities are the utilities of representing different objects in the case they really exist in the current world state
+   * utility of representing an object should be higher for those objects that are relevant for the behaviour of the animal
+  * *cortical neural networks* must use information about the utility in two different time scales
+   * synaptic weights of the network should be used to represent those aspects of the world that are important (concerns learning and corresponds to the *longer time scale*)
+   * faster time scale corresponds to attention - select those targets that are the *most relevant*, for example dangerous or favourable
+
+=== 2.2.2 Learning features ===
