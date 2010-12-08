@@ -140,3 +140,25 @@ n - sensory noise
    * decorrelation means removing the correlations between the neural activations
 
 === 2.2.3 Guiding learning with context ===
+
+  * Hebbian-like trace-learning rule:
+{{{
+dw = x * y`, 
+y' is a leaky integrator of the neuron’s activation
+even if y goes to zero, the activation stays on for a short time in y'
+}}}
+  * recognition of certain objects in one time instant guides classifying the next inputs to the same objects - slow feature analysis (SFA)
+  * spatial context can mediate information both within one sense and from other senses
+  * learning of behaviourally meaningful aspects of the world
+   * contextual information from the motor cortex could help all the other parts of the cortex to learn motorically relevant representations
+   * contextual signals from the subcortical structures could allow for relating primitive emotional and instinct information to the cortical representations
+  * matrix cells in the thalamus are known to mediate *very general contextual* information to all parts of the cortex
+  * lateral and top-down feedback connections in the cortex itself probably mediate much contextual information between different cortical areas
+  * *denoising source separation* (DSS) - generic feature learning framework
+   * sparse ICA, SFA and CCA components can be learnt with DSS
+{{{
+1. Sphere the inputs.
+2. Extract activations of features from the inputs.
+3. Use prior information about the features to denoise the activations.
+4. Adapt the features with the denoised activations in Hebbian style. Keep the feature vectors as unit length.
+}}}
