@@ -123,3 +123,20 @@ n - sensory noise
    * faster time scale corresponds to attention - select those targets that are the *most relevant*, for example dangerous or favourable
 
 === 2.2.2 Learning features ===
+
+  * hierarchical pattern recognition network - higher level in the hierarchy learn increasingly invariant, abstract and global features and objects
+  * *Neocognitron*
+   * able to recognise visual objects despite their location in the picture
+   * has a growing translational invariance when moving upward in the hierarchy - by alternating simple-cell and complex-cell layers
+   * simple cells represent different features in their inputs
+   * complex-cell layers make a dimension reduction by grouping simple cells with the same features in different locations together - complex feature is invariant with respect to the location
+   * after dimension reduction, the next levels receive inputs from a larger areas - number of inputs into each area does not vary much; so additionally to higher invariance in higher layers, the units in higher layers also code for larger, more global shapes
+   * if learn with *Hebb rule*, choose direction in the multidimensional input space which contains the most variance, or energy - but no reason why the most variant feature in the inputs would be generally the most useful one
+  * *Independent component analysis* (ICA) tries to extract statistically independent features from the inputs
+   * representing independent features and objects explicitly in different neurons is useful
+   * when different neurons learn from the same inputs, they should do not all learn the same features
+   * to drives the features apart: *competitive learning* (only the most active neurons learn - e.g. SOM) and *decorrelation*
+   * to avoid decreasing information - *adding conscience* - frequent winners decrease their probability to win subsequent competitions
+   * decorrelation means removing the correlations between the neural activations
+
+=== 2.2.3 Guiding learning with context ===
