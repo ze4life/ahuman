@@ -183,3 +183,14 @@ even if y goes to zero, the activation stays on for a short time in y'
    * they try to learn everything in the inputs equally well - do not have attention.
 
 === 2.3.2 Controlling the targets of attention ===
+
+  * visual attention modelled using *predefined bottom-up saliency* for the targets
+   * new input (image) is first filtered with some constant filters (e.g. low pass filters with dimension reduction, detectors of discontinuities in the colour hues), which notice *salient locations* in the image
+   * attention can select the most *salient location first*; then if the target is not recognised, or is not interesting, attention can jump to the second target
+  * model in Olshausen - uses attention to achieve *invariant pattern recognition*
+   * attention selects the target, then a *shifter circuit network* transforms it into a scale and translation invariant constant reference frame - after this object can be recognised
+   * without attention, the constant reference frame could not be used because different objects are in different locations or have different scales
+  * problem with this kind of approach is that the *a priori rules* for salient targets must be predefined for each kind of data
+  * cortex should learn to use the relevancy of different objects to select the targets of attention
+
+=== 2.3.3 Models with emerging attention ===
