@@ -3,9 +3,11 @@
 <wiki:toc max_depth="3"/>
 ----
 
-= Attention in the Neocortex =
+*Attention in the Neocortex*
 
 see 2007 - Model of covert attention and learning
+
+= 2. Background =
 
 == 2.1 Mammalian Neocortex ==
 
@@ -216,3 +218,34 @@ even if y goes to zero, the activation stays on for a short time in y'
   * *biased-competition models* guide the representational capacity into useful objects; in the real cortex, learning is strongest from the attended sources; these models do not use the utility of learning Gestalt like coherent objects as much as the hierarchical predictive coding models, because feedback connections are absent during learning
 
 === 2.3.4 Autoassociative memory in selective attention ===
+
+  * attention can emerge from the competition between different attractors - auto-associative memories can be used to implement this competition
+   * set of memory vectors become attractors
+   * if the network is given a noisy or incomplete memory vector as input, it can restore the original one
+   * if it is given a mixture of many memories, it can select which one of them to restore
+  * *Hopfield network* is a simple auto-associative network for binary memory vectors
+   * has one neural layer, where each neuron has symmetric connections with each other
+   * the number of memory vectors that can be stored to a Hopfield network is approximately 14% of the vector dimensionality
+   * capacity will increase even if the memory vectors are artificially sparsified - in the competitive Hopfield neural network (CHNN); memory vectors are divided into smaller parts and winner-take-all competition is applied within parts
+
+== 2.4 Combining attention and learning ==
+
+=== 2.4.1 Models where attention guides learning ===
+
+  * attention is known to be an essential guide of learning in the real cortex
+   * if attention focuses on important targets, then those things will also be learnt
+   * learning distinct objects is also easier with selective attention - if the objects are introduced one at a time, and not simultaneously
+   * but how can attention select the objects before the network has learnt to recognise them?
+  * *adaptive resonance theory* (ART) uses attention to guide learning even when the objects have not been properly learnt
+   * tries to find similarities between the rudimentary learnt objects and the new inputs, and then update the representation of the most similar object to resemble more the present input
+   * attention and pattern recognition develop simultaneously, and accelerate each other’s learning
+   * higher learning rates can be used because even rudimentary selective attention screens interfering noise away
+   * ART uses attention in adapting the features
+  * *EXIT model* uses attention in learning of associations between distinct features
+   * attention enables higher learning rates, because there are no interfering objects
+
+=== 2.4.2 What is missing from the models ===
+
+  * ART is the only model that has attention and learning working concurrently and supporting each other
+    * however, it does not include contextual learning and does not operate by the biased-competition principle
+    * *solution - models that have cortex like architecture and dynamics that use co-operating learning and attention*
