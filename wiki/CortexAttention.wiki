@@ -194,3 +194,25 @@ even if y goes to zero, the activation stays on for a short time in y'
   * cortex should learn to use the relevancy of different objects to select the targets of attention
 
 === 2.3.3 Models with emerging attention ===
+
+  * no central decision maker exists who chooses the targets of attention
+  * *global, coherent attention* can emerge *iteratively* in a network where *local parts make their own decisions* about their representations; when the perceptual network controls the targets of its attention itself, the targets can better adapt to the world
+  * Lee and Mumford model resembles the predictive-coding networks
+   * integrates contextual information iteratively for forming a coherent interpretation of the inputs
+   * uses *particle filtering* for keeping several alternative hypotheses alive simultaneously
+   * network also discards the most improbable particles (hypotheses)and finds a single most probable interpretation to the inputs - can be called *selective attention*, because the network represents only some information of the inputs
+   * selection gives more representational power to holistic, Gestalt like objects, than the pure generative models give
+  * *biased-competition model* of attention works similarly
+   * local competition between features leads to emergence of global attention
+   * model adds top-down bias that can guide the network to work in goal-oriented way (e.g. the bias can start a search of a certain object in the visual cortex)
+  * *Deco and Rolls model* - based on Visnet network, which is a hierarchical model of the visual cortex
+   * uses Hebbian-like trace-learning rule for learning invariances
+   * extends Visnet to have top-down connections mediating the biases for local competition - produces attention
+   * if image contains many objects, representations of different objects will compete
+   * initially, features will be processed from all the objects - then the feedback connections alongside the local competition cause increasing *perceptual grouping of continuous shapes*
+   * process proceeds to a phase where the whole objects compete, and the winner will be recognised
+   * activity patterns in the whole network corresponding to different objects can be considered as *attractors* in a high-dimensional activation space
+   * network can consider all the different interpretation possibilities in parallel
+  * *biased-competition models* guide the representational capacity into useful objects; in the real cortex, learning is strongest from the attended sources; these models do not use the utility of learning Gestalt like coherent objects as much as the hierarchical predictive coding models, because feedback connections are absent during learning
+
+=== 2.3.4 Autoassociative memory in selective attention ===
