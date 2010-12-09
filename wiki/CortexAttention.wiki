@@ -162,3 +162,24 @@ even if y goes to zero, the activation stays on for a short time in y'
 3. Use prior information about the features to denoise the activations.
 4. Adapt the features with the denoised activations in Hebbian style. Keep the feature vectors as unit length.
 }}}
+
+== 2.3 Models Of Attention ==
+
+=== 2.3.1 Dynamical neural networks ===
+
+  * cortex is not a static feature extractor or a pattern recognition system, but dynamical system
+  * state of the cortex affects perception
+   * past inputs affect perception, because the cortex can do *temporal pattern recognition*
+   * cortex has its own *intentions*
+  * *Helmholtz machine through time* - temporal pattern recognition network; feed-forward fashion - has a “state”, but the higher layers do not have any effect on the lower ones
+  * *hierarchical predictive-coding models*
+   * class of models which use top-down connections alongside bottom-up ones to analyse both static and temporal inputs
+   * each level tries to predict the activations in the lower levels, which then send the prediction error back to the higher levels
+   * network converges to a state where the prediction error is minimised at each level
+   * explain *extra-classical receptive fields*, such as those of *end-stopping cells* in V1
+   * hierarchy in these models can integrate information temporally and spatially
+   * neurons make compromise between the *lower level error*, the *current activation* and the *prediction from the higher layer* - leads to holistic, coherent interpretation of the inputs in a Gestalt style
+   * neurons do not feed their actual activations, but only the prediction errors, to the higher layers - these neurons are experts in *focusing attention to novel features* in the world
+   * they try to learn everything in the inputs equally well - do not have attention.
+
+=== 2.3.2 Controlling the targets of attention ===
