@@ -329,8 +329,7 @@ http://ahuman.googlecode.com/svn/images/wiki/research/cortex/network.jpg
   * when a neural population recognises a symbol, it works as a target for learning of individual neurons
    * lateral connections can learn different symbols quite fast - adaptation of bottom-up weights transfers this information slowly into the features
    * the same contextual guidance results also in features that have the most mutual information across different modalities, as in the model by Becker and Hinton
-   * because the features are then related to those of the motor cortex and working memory (controlled by subcortical structures) - all inference becomes goal-oriented in the
-network
+   * because the features are then related to those of the motor cortex and working memory (controlled by subcortical structures) - all inference becomes goal-oriented in  the network
   * mutual-information maximisation has an additional benefit of noise reduction
    * real events in the world usually cause sensations in many modalities, while noise can be uncorrelated between modalities
    * features that relate to features from other modalities have a smaller probability of being modality-specific noise
@@ -342,6 +341,7 @@ network
    * units combine utility information to the probabilities of different neurons, following Bayesian decision theory; *contextual inputs are considered as signals of utility*, in addition to mediating probabilistic information
    * units make decisions about what to represent - implemented by competition between the neuronal activities
    * features and lateral associations adapt to those features that have been chosen to be represented
+
   * consequences if some of these mechanisms were not in the model
    * *no competition* - attention would not emerge; additionally, generalisation would get weaker in the network, even when there are lateral connections teaching generalisation; competition between the neurons is an active categorisation mechanism
    * *no bottom up feature learning* - if the bottom-up weights were constant and random, the lateral connections could still learn associations between random features, and symbols could emerge; this was tested with simulations; the result was that the symbols were much weaker than with adaptive features; as competition directs attention to some neurons, the symbols become stronger when the neurons code explicitly some real world features
