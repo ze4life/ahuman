@@ -271,8 +271,28 @@ http://ahuman.googlecode.com/svn/images/wiki/research/cortex/attention.jpg
    * neurons that try to learn to generalise from different instances of the same object can be sure that their inputs do not have distracting information
    * this quality is exploited in ART - the complex interferences between the objects and all their combinations do not have to be learnt
   * as by Deco and Rolls, learning is also enabled when using the network in perception
-  * for efficiency on higher level - biased competition is not implemented with detailed connections, but with an algorithm that resembles competitive Hopfield neural network (CHNN)
+   * for efficiency on higher level - biased competition is not implemented with detailed connections, but with an algorithm that resembles competitive Hopfield neural network (CHNN)
 
 == 3.1 Outline of the Model ==
+
+  * See picture below:
+   * thick black lines are neuronal groups that have internal competition
+   * black arrows are bottom-up connections
+   * purple arrows are connections mediating contextual bias
+
+http://ahuman.googlecode.com/svn/images/wiki/research/cortex/network.jpg
+
+  * model is a hierarchical neural network with inputs from two different modalities, visual and auditory
+   * network should learn to represent increasingly abstract and global information in its high layers
+   * layers are divided into distinct information processing units - correspond to CHNN units so that neurons within one such unit compete with each other
+   * within one unit, neurons also receive the same set of feed-forward inputs (the black arrows) - they learn to represent different features in these inputs
+   * information processing units could roughly correspond to hypercolumns of the real cortex
+   * there are contextual inputs (the purple arrows) which correspond to auto-associative (CHNN) connections
+   * in addition to coming from other neurons in the network, the context can come from outside the cortex; it can also have information about past activities of neurons
+  * no distinct learning and operation modes in this model - network learns all the time, while perceiving the world, selecting actions and so on
+  * behaviour of the network looks different on *different time scales*
+   * on *perceptual time scale*, the network tries to represent those objects that are both present in the world and are important
+   * on an *intermediate longer time scale*, it looks like an auto-associative memory - network learns the world knowledge as associations fast into the contextual connections
+   * on *long time scale* the network adapts its features to code the most important parts of the world
 
 === 2.1.1 Overview of the cortex ===
