@@ -295,4 +295,56 @@ http://ahuman.googlecode.com/svn/images/wiki/research/cortex/network.jpg
    * on an *intermediate longer time scale*, it looks like an auto-associative memory - network learns the world knowledge as associations fast into the contextual connections
    * on *long time scale* the network adapts its features to code the most important parts of the world
 
+*Perceptual time scale*
+
+  * operation of the network is very similar to that in the model developed by Deco and Rolls
+   * neurons calculate their corresponding features from the inputs
+   * at the same time, there is local competition, so that *only the most active features get through to the next layers*
+   * competition is *biased with the contextual associations*
+   * biased competition can give birth to *“bottom-up attention”* that selects salient targets from the inputs, and to *“top-down attention”* where the cortex’s high-level intentions guide perception - winning activation patterns usually result from both kinds of effects
+   * bottom-up saliency in this case means *coherent large shapes* where neighbouring areas can *support each other by associations* - Gestalt principles of perception
+
+*Associative memory time scale*
+
+  * bottom-up inputs suggest potential features to the network
+   * lateral connections work as an auto-associative memory (like CHNN) which classifies the inputs into familiar feature patterns - network can categorise different instances of familiar objects into similar activation patterns
+   * even if single neurons would not have learnt to represent some invariances well, the neural population can represent them
+  * learning lateral associations is slower than usual one-shot learning of auto-associative memories
+   * recall of past memories is softer - it is only a biasing effect
+   * if all the activation patterns the network can represent were some memories, it could not learn or perceive anything new
+  * when learning is slightly slower than one-shot learning, it is not affected much from a single appearance of some feature combination, but if that combination is experienced for a couple of times, it will form a memory in the lateral connections
+  * memories of different activation patterns can be seen as *symbols* in the network
+   * network receives continuous sensory inputs which it learns to categorise into more discrete neural patterns
+   * because of slow learning and soft competition, these symbols can adapt to the world where the agent lives
+   * appropriate abstraction levels and generalisation strength emerge in the network
+   * if the world contains strong regularities between many simultaneous features, the network will produce few large symbol codes, which include many neurons representing different features
+   * if the world contains many small objects, the network will develop more and smaller symbol codes than in the previous case
+
+*Longest time scale*
+
+  * features the neurons represent are adapted to the world using on-line DSS, with biased-competition as denoising
+   * results in learning features that are sparse, invariant and contextually coherent
+   * sparse features result from competition in general, because it makes the activity statistics sparse which leads to learning of sparse features as in the model by Olshausen and Field
+   * learning invariances happens in the dimension reduction layers with the supervision from the context, as in the model by Valpola
+  * when a neural population recognises a symbol, it works as a target for learning of individual neurons
+   * lateral connections can learn different symbols quite fast - adaptation of bottom-up weights transfers this information slowly into the features
+   * the same contextual guidance results also in features that have the most mutual information across different modalities, as in the model by Becker and Hinton
+   * because the features are then related to those of the motor cortex and working memory (controlled by subcortical structures) - all inference becomes goal-oriented in the
+network
+  * mutual-information maximisation has an additional benefit of noise reduction
+   * real events in the world usually cause sensations in many modalities, while noise can be uncorrelated between modalities
+   * features that relate to features from other modalities have a smaller probability of being modality-specific noise
+
+*Finally *
+
+  * local processing units do the following things
+   * units make *probabilistic inference* about the state of the world; bottom-up inputs are the measurements for which the network tries to find true physical causes; different neurons code different causes, or input features; in Bayesian terms, the *likelihood of the features is calculated from the bottom-up inputs*, and the *prior is calculated from the context*
+   * units combine utility information to the probabilities of different neurons, following Bayesian decision theory; *contextual inputs are considered as signals of utility*, in addition to mediating probabilistic information
+   * units make decisions about what to represent - implemented by competition between the neuronal activities
+   * features and lateral associations adapt to those features that have been chosen to be represented
+  * consequences if some of these mechanisms were not in the model
+   * *no competition* - attention would not emerge; additionally, generalisation would get weaker in the network, even when there are lateral connections teaching generalisation; competition between the neurons is an active categorisation mechanism
+   * *no bottom up feature learning* - if the bottom-up weights were constant and random, the lateral connections could still learn associations between random features, and symbols could emerge; this was tested with simulations; the result was that the symbols were much weaker than with adaptive features; as competition directs attention to some neurons, the symbols become stronger when the neurons code explicitly some real world features
+   * *learning all structure in the world, without guidance from attention* - a smaller portion of the representational capacity would be allocated for those things that have high relevance; moreover, learning would become more difficult when there are multiple objects present simultaneously
+
 === 2.1.1 Overview of the cortex ===
