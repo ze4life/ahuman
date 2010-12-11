@@ -37,16 +37,19 @@ see 2007 - Model of covert attention and learning
    * *neuron has much synaptic information but little activity information* - active state cannot represent all the knowledge of the neuron simultaneously
    * *binding problem* - one simple feature can take part in representing many different things; when two population codes overlap, the features between the objects can get mixed up; the right combinations of features can be found if only few objects are attended at once; the simulated reality must be kept apart from the real world, and different future plans must be kept from interfering with each other
    * invariant reference frame for pattern recognition - the same objects can appear in many different forms (weak)
+
   * targets of attention are selected based on bottom-up saliency and high-level intentions
   * *saliency* can be:
    * high contrast
    * good continuity
    * unexpectedness - in spatial or temporal context; dangerous or new opportunity
    * attending to salient targets can be reasonable for alive being - improves probability of having real object
+
   * high-level *intentions* can be:
    * search for certain objects from the visual field
    * can be controlled to target any kind of features, like spatial locations or auditory frequency bands
    * top-down control signals are thought to originate in the *frontal cortex*
+
   * *biased-competition model of attention* - all attention emerges from local competition between different features in the neural hierarchies; this competition can be biased with top-down signal, allowing for search of certain features
    * competition between different spatial locations works similarly to that between different features
    * if a certain object is given attentional bias, then the location of that object is searched for
@@ -57,23 +60,27 @@ see 2007 - Model of covert attention and learning
   * *connections*
    * 1st-order: thalamic -> inputs (layer 4) -> contextual (layers 1-3) -> outputs (layers 5-6) -> higher-order thalamic
    * higher-order: thalamic -> inputs -> contextual -> outputs -> ...
+
   * *minicolumns* form larger *columns* and *hypercolumns*
   * all neurons within one minicolumn respond roughly to similar stimuli
   * *suggestions*:
    * some layers could represent the true state of the world 
    * other layers could represent unexpected novelties
    * some layers could form laterally coherent feature aggregates between neighbouring columns
+
   * crucial connection type is *feedback connections*
    * more numerous than the bottom-up connections
    * cannot cause activations in the target neurons, but only modulate the activations
    * originate from the near surroundings of that area
    * important set of connections is feedback from the next hierarchical level
+
   * great amount of contextual input into layer 1 comes from special context mediating *matrix cells* in the thalamus
   * bottom-up circuitry from thalamus to inputs layer (4), to contextual layer (2,3), to outputs layer (5,6) and back to thalamus consists of excitatory neurons
   * *inhibitory connections* can:
    * take part in regulating the activations in the cortex
    * implement competition between excitatory neurons
    * implement contextual “explaining away” of local neural representations
+
   * there are more global signals, carried by *chemical neuromodulators*, that affect large parts of the cortex similarly; they can modulate both the plasticity and activations in the neurons
    * control learning and memorising
    * control the balance between bottom-up and top-down inference
@@ -84,6 +91,7 @@ see 2007 - Model of covert attention and learning
   * lots of learning happening in the subcortical structures as well
    * *basal ganglia* are considered to do *reinforcement learning*, which means learning those motor actions that are rewarding
    * *cerebellum* learns to contract the muscles on just the right time instants, resulting in *anticipative actions* and *smooth control*
+
   * cortex learns invariant representations for the complex information in the raw sensory data
   * additionally to representing the world state, it performs motor actions itself and plans the future
   * cortex incorporates the goals of the animal into its world model, and can thus make good action decisions:
@@ -109,9 +117,11 @@ n - sensory noise
   * *Bayesian network* is example of generative model, hierarchical statistical model
    * can be used to infer the abstract causes from partial sensory inputs
    * inference is computationally demanding
+
   * *Helmholtz machine*
    * inference/recognition can be done with one feed-forward activation sweep if distinct recognition model is added alongside the generative model
    * recognition model is consistent as learnt at the same time with generative model
+
   * error function can be the Kullback-Leibler divergence between the real sensory input probability distribution and that of the learnt generative model
   * for dimensionality of real world accurate generative model would be immensely large and slow to learn
   * generative models do not take into account the importance of different real world objects, or causes
@@ -120,6 +130,7 @@ n - sensory noise
    * actions could be the decisions about what objects to represent
    * utilities are the utilities of representing different objects in the case they really exist in the current world state
    * utility of representing an object should be higher for those objects that are relevant for the behaviour of the animal
+
   * *cortical neural networks* must use information about the utility in two different time scales
    * synaptic weights of the network should be used to represent those aspects of the world that are important (concerns learning and corresponds to the *longer time scale*)
    * faster time scale corresponds to attention - select those targets that are the *most relevant*, for example dangerous or favourable
@@ -134,6 +145,7 @@ n - sensory noise
    * complex-cell layers make a dimension reduction by grouping simple cells with the same features in different locations together - complex feature is invariant with respect to the location
    * after dimension reduction, the next levels receive inputs from a larger areas - number of inputs into each area does not vary much; so additionally to higher invariance in higher layers, the units in higher layers also code for larger, more global shapes
    * if learn with *Hebb rule*, choose direction in the multidimensional input space which contains the most variance, or energy - but no reason why the most variant feature in the inputs would be generally the most useful one
+
   * *Independent component analysis* (ICA) tries to extract statistically independent features from the inputs
    * representing independent features and objects explicitly in different neurons is useful
    * when different neurons learn from the same inputs, they should do not all learn the same features
@@ -154,6 +166,7 @@ even if y goes to zero, the activation stays on for a short time in y'
   * learning of behaviourally meaningful aspects of the world
    * contextual information from the motor cortex could help all the other parts of the cortex to learn motorically relevant representations
    * contextual signals from the subcortical structures could allow for relating primitive emotional and instinct information to the cortical representations
+
   * matrix cells in the thalamus are known to mediate *very general contextual* information to all parts of the cortex
   * lateral and top-down feedback connections in the cortex itself probably mediate much contextual information between different cortical areas
   * *denoising source separation* (DSS) - generic feature learning framework
@@ -173,6 +186,7 @@ even if y goes to zero, the activation stays on for a short time in y'
   * state of the cortex affects perception
    * past inputs affect perception, because the cortex can do *temporal pattern recognition*
    * cortex has its own *intentions*
+
   * *Helmholtz machine through time* - temporal pattern recognition network; feed-forward fashion - has a “state”, but the higher layers do not have any effect on the lower ones
   * *hierarchical predictive-coding models*
    * class of models which use top-down connections alongside bottom-up ones to analyse both static and temporal inputs
@@ -189,9 +203,11 @@ even if y goes to zero, the activation stays on for a short time in y'
   * visual attention modelled using *predefined bottom-up saliency* for the targets
    * new input (image) is first filtered with some constant filters (e.g. low pass filters with dimension reduction, detectors of discontinuities in the colour hues), which notice *salient locations* in the image
    * attention can select the most *salient location first*; then if the target is not recognised, or is not interesting, attention can jump to the second target
+
   * model in Olshausen - uses attention to achieve *invariant pattern recognition*
    * attention selects the target, then a *shifter circuit network* transforms it into a scale and translation invariant constant reference frame - after this object can be recognised
    * without attention, the constant reference frame could not be used because different objects are in different locations or have different scales
+
   * problem with this kind of approach is that the *a priori rules* for salient targets must be predefined for each kind of data
   * cortex should learn to use the relevancy of different objects to select the targets of attention
 
@@ -204,9 +220,11 @@ even if y goes to zero, the activation stays on for a short time in y'
    * uses *particle filtering* for keeping several alternative hypotheses alive simultaneously
    * network also discards the most improbable particles (hypotheses)and finds a single most probable interpretation to the inputs - can be called *selective attention*, because the network represents only some information of the inputs
    * selection gives more representational power to holistic, Gestalt like objects, than the pure generative models give
+
   * *biased-competition model* of attention works similarly
    * local competition between features leads to emergence of global attention
    * model adds top-down bias that can guide the network to work in goal-oriented way (e.g. the bias can start a search of a certain object in the visual cortex)
+
   * *Deco and Rolls model* - based on Visnet network, which is a hierarchical model of the visual cortex
    * uses Hebbian-like trace-learning rule for learning invariances
    * extends Visnet to have top-down connections mediating the biases for local competition - produces attention
@@ -215,6 +233,7 @@ even if y goes to zero, the activation stays on for a short time in y'
    * process proceeds to a phase where the whole objects compete, and the winner will be recognised
    * activity patterns in the whole network corresponding to different objects can be considered as *attractors* in a high-dimensional activation space
    * network can consider all the different interpretation possibilities in parallel
+
   * *biased-competition models* guide the representational capacity into useful objects; in the real cortex, learning is strongest from the attended sources; these models do not use the utility of learning Gestalt like coherent objects as much as the hierarchical predictive coding models, because feedback connections are absent during learning
 
 === 2.3.4 Autoassociative memory in selective attention ===
@@ -223,6 +242,7 @@ even if y goes to zero, the activation stays on for a short time in y'
    * set of memory vectors become attractors
    * if the network is given a noisy or incomplete memory vector as input, it can restore the original one
    * if it is given a mixture of many memories, it can select which one of them to restore
+
   * *Hopfield network* is a simple auto-associative network for binary memory vectors
    * has one neural layer, where each neuron has symmetric connections with each other
    * the number of memory vectors that can be stored to a Hopfield network is approximately 14% of the vector dimensionality
@@ -236,11 +256,13 @@ even if y goes to zero, the activation stays on for a short time in y'
    * if attention focuses on important targets, then those things will also be learnt
    * learning distinct objects is also easier with selective attention - if the objects are introduced one at a time, and not simultaneously
    * but how can attention select the objects before the network has learnt to recognise them?
+
   * *adaptive resonance theory* (ART) uses attention to guide learning even when the objects have not been properly learnt
    * tries to find similarities between the rudimentary learnt objects and the new inputs, and then update the representation of the most similar object to resemble more the present input
    * attention and pattern recognition develop simultaneously, and accelerate each other’s learning
    * higher learning rates can be used because even rudimentary selective attention screens interfering noise away
    * ART uses attention in adapting the features
+
   * *EXIT model* uses attention in learning of associations between distinct features
    * attention enables higher learning rates, because there are no interfering objects
 
@@ -263,13 +285,16 @@ http://ahuman.googlecode.com/svn/images/wiki/research/cortex/attention.jpg
    * network makes probabilistic inference of the momentary world state - combines the utility of representing different things into this inference, so it can *choose the target of attention* with Bayesian decision theory
    * network then learns from this target
    * by time, the network *learns to represent those things that are behaviourally relevant*
+
   * model does not use explicit utility
    * attention is a desired property, so only a *limited set of features* should be represented at a time
    * neighbouring parts of the network should choose *coherent features*
    * features should have strong *connections to goal-oriented modules*, such as motor cortex
+
   * even if the network would not need to do any action selection, *selective attention would improve learning*
    * neurons that try to learn to generalise from different instances of the same object can be sure that their inputs do not have distracting information
    * this quality is exploited in ART - the complex interferences between the objects and all their combinations do not have to be learnt
+
   * as by Deco and Rolls, learning is also enabled when using the network in perception
    * for efficiency on higher level - biased competition is not implemented with detailed connections, but with an algorithm that resembles competitive Hopfield neural network (CHNN)
 
@@ -289,6 +314,7 @@ http://ahuman.googlecode.com/svn/images/wiki/research/cortex/network.jpg
    * information processing units could roughly correspond to hypercolumns of the real cortex
    * there are contextual inputs (the purple arrows) which correspond to auto-associative (CHNN) connections
    * in addition to coming from other neurons in the network, the context can come from outside the cortex; it can also have information about past activities of neurons
+
   * no distinct learning and operation modes in this model - network learns all the time, while perceiving the world, selecting actions and so on
   * behaviour of the network looks different on *different time scales*
    * on *perceptual time scale*, the network tries to represent those objects that are both present in the world and are important
@@ -309,9 +335,11 @@ http://ahuman.googlecode.com/svn/images/wiki/research/cortex/network.jpg
   * bottom-up inputs suggest potential features to the network
    * lateral connections work as an auto-associative memory (like CHNN) which classifies the inputs into familiar feature patterns - network can categorise different instances of familiar objects into similar activation patterns
    * even if single neurons would not have learnt to represent some invariances well, the neural population can represent them
+
   * learning lateral associations is slower than usual one-shot learning of auto-associative memories
    * recall of past memories is softer - it is only a biasing effect
    * if all the activation patterns the network can represent were some memories, it could not learn or perceive anything new
+
   * when learning is slightly slower than one-shot learning, it is not affected much from a single appearance of some feature combination, but if that combination is experienced for a couple of times, it will form a memory in the lateral connections
   * memories of different activation patterns can be seen as *symbols* in the network
    * network receives continuous sensory inputs which it learns to categorise into more discrete neural patterns
@@ -326,10 +354,12 @@ http://ahuman.googlecode.com/svn/images/wiki/research/cortex/network.jpg
    * results in learning features that are sparse, invariant and contextually coherent
    * sparse features result from competition in general, because it makes the activity statistics sparse which leads to learning of sparse features as in the model by Olshausen and Field
    * learning invariances happens in the dimension reduction layers with the supervision from the context, as in the model by Valpola
+
   * when a neural population recognises a symbol, it works as a target for learning of individual neurons
    * lateral connections can learn different symbols quite fast - adaptation of bottom-up weights transfers this information slowly into the features
    * the same contextual guidance results also in features that have the most mutual information across different modalities, as in the model by Becker and Hinton
    * because the features are then related to those of the motor cortex and working memory (controlled by subcortical structures) - all inference becomes goal-oriented in  the network
+
   * mutual-information maximisation has an additional benefit of noise reduction
    * real events in the world usually cause sensations in many modalities, while noise can be uncorrelated between modalities
    * features that relate to features from other modalities have a smaller probability of being modality-specific noise
@@ -346,5 +376,3 @@ http://ahuman.googlecode.com/svn/images/wiki/research/cortex/network.jpg
    * *no competition* - attention would not emerge; additionally, generalisation would get weaker in the network, even when there are lateral connections teaching generalisation; competition between the neurons is an active categorisation mechanism
    * *no bottom up feature learning* - if the bottom-up weights were constant and random, the lateral connections could still learn associations between random features, and symbols could emerge; this was tested with simulations; the result was that the symbols were much weaker than with adaptive features; as competition directs attention to some neurons, the symbols become stronger when the neurons code explicitly some real world features
    * *learning all structure in the world, without guidance from attention* - a smaller portion of the representational capacity would be allocated for those things that have high relevance; moreover, learning would become more difficult when there are multiple objects present simultaneously
-
-=== 2.1.1 Overview of the cortex ===
