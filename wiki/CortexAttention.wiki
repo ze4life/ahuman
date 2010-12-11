@@ -252,12 +252,26 @@ even if y goes to zero, the activation stays on for a short time in y'
 
 = 3. Model =
 
-  * combines *emergent attention and learning*
+  * combines *emergent attention and learning* - can exist alone, but improved if support each other
    * attention increases the learning efficiency
    * attention determines the targets for learning
    * learning forms objects that be easily attended to
 
 http://ahuman.googlecode.com/svn/images/wiki/research/cortex/attention.jpg
+
+  * how attention guides learning:
+   * network makes probabilistic inference of the momentary world state - combines the utility of representing different things into this inference, so it can *choose the target of attention* with Bayesian decision theory
+   * network then learns from this target
+   * by time, the network *learns to represent those things that are behaviourally relevant*
+  * model does not use explicit utility
+   * attention is a desired property, so only a *limited set of features* should be represented at a time
+   * neighbouring parts of the network should choose *coherent features*
+   * features should have strong *connections to goal-oriented modules*, such as motor cortex
+  * even if the network would not need to do any action selection, *selective attention would improve learning*
+   * neurons that try to learn to generalise from different instances of the same object can be sure that their inputs do not have distracting information
+   * this quality is exploited in ART - the complex interferences between the objects and all their combinations do not have to be learnt
+  * as by Deco and Rolls, learning is also enabled when using the network in perception
+  * for efficiency on higher level - biased competition is not implemented with detailed connections, but with an algorithm that resembles competitive Hopfield neural network (CHNN)
 
 == 3.1 Outline of the Model ==
 
