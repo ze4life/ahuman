@@ -376,3 +376,48 @@ http://ahuman.googlecode.com/svn/images/wiki/research/cortex/network.jpg
    * *no competition* - attention would not emerge; additionally, generalisation would get weaker in the network, even when there are lateral connections teaching generalisation; competition between the neurons is an active categorisation mechanism
    * *no bottom up feature learning* - if the bottom-up weights were constant and random, the lateral connections could still learn associations between random features, and symbols could emerge; this was tested with simulations; the result was that the symbols were much weaker than with adaptive features; as competition directs attention to some neurons, the symbols become stronger when the neurons code explicitly some real world features
    * *learning all structure in the world, without guidance from attention* - a smaller portion of the representational capacity would be allocated for those things that have high relevance; moreover, learning would become more difficult when there are multiple objects present simultaneously
+
+== 3.2 How to handle temporal sequences ==
+
+  * *present model handles only static sensory inputs*
+  * model could be extended to handle dynamic sensory data by using the contextual associators as predictors for future inputs
+   * temporal continuity gives evidence for the existence of a feature
+   * utility of representing that feature may decrease when the system already knows about it
+   * therefore the system should do novelty filtering, suppress those features that can be predicted
+   * representing surprising events often have high utility - in animals attention is known to focus on surprising events
+  * combining the support for continuous features and novelty filtering could be implemented by using two different neuron sets in each processing unit
+   * first set would learn and represent continuous dynamics
+   * this layer would feed the second layer, which would filter novelties, guided by the context
+
+== 3.3 Example of learning and perception with the model ==
+
+  * assume that network is planted in a brain of a robot which stands still on a spot and manipulates objects with its arms
+  * network consists of visual and motor hierarchies
+  * motor inputs are the motor commands for moving the arms, that initially originate from outside the cortex model
+  * contextual bias from the motor cortex will make the visual cortex learn mostly nearby objects - far-away mountains, clouds or trees, the motor signals will never correlate with them
+   * visual cortex will represent mostly those features that are behaviourally meaningful
+   * lower levels get the strongest bias from the higher levels when there are nearby objects present - even the primitive visual features will be tuned mostly for those, and not to background tree leaves - will be considered as noise
+  * invariance classes will also be affected by the motor signals
+   * apart from translation, rotation and scale invariances, there may develop some neural patterns that respond invariantly to potentially graspable shapes
+   * if there are many different objects and shape instances that can be grasped with similar motor commands, the invariance can help in recognising those
+
+http://ahuman.googlecode.com/svn/images/wiki/research/cortex/perception.jpg
+
+  * target of attention is developed iteratively, information gets integrated from all sources
+   * different parts of the network receive inputs from objects A, B and C, which are behaviourally meaningful and have been learnt, and irrelevant information N such as background noise
+   * upper level of the network receives contextual bias that supports object A
+   * motor cortex could be doing something with this object
+  * *Step 1* - the inputs get to the first level
+   * processing units do not have features tuned for noise, so none of them will decide to represent it
+   * when one unit receives inputs from two different objects, competition chooses the larger activations to be represented
+  * *Step 2* - the initial first level activations go to the second level
+   * bias for A causes it to have stronger representation than B, even when its bottom-up signal is weaker
+   * meanwhile, the lateral connections in the first level form a B-symbol, which overrides C
+  * *Step 3* - the information flows back from the second level to the first
+   * there A and B have both lateral and top-down bias, but A has stronger top-down bias
+   * so it will override B
+  * *Step 4* - A and B feed the second level equally strongly, bias for A causes it to win the competition
+  * *Summary*
+   * noise was not represented at all
+   * object C was represented only weakly in the first level, because it did not have any contextual support
+   * A and B had lateral support, but A had additional external support, which caused high level attention to focus on it
