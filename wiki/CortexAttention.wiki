@@ -385,6 +385,7 @@ http://ahuman.googlecode.com/svn/images/wiki/research/cortex/network.jpg
    * utility of representing that feature may decrease when the system already knows about it
    * therefore the system should do novelty filtering, suppress those features that can be predicted
    * representing surprising events often have high utility - in animals attention is known to focus on surprising events
+
   * combining the support for continuous features and novelty filtering could be implemented by using two different neuron sets in each processing unit
    * first set would learn and represent continuous dynamics
    * this layer would feed the second layer, which would filter novelties, guided by the context
@@ -397,6 +398,7 @@ http://ahuman.googlecode.com/svn/images/wiki/research/cortex/network.jpg
   * contextual bias from the motor cortex will make the visual cortex learn mostly nearby objects - far-away mountains, clouds or trees, the motor signals will never correlate with them
    * visual cortex will represent mostly those features that are behaviourally meaningful
    * lower levels get the strongest bias from the higher levels when there are nearby objects present - even the primitive visual features will be tuned mostly for those, and not to background tree leaves - will be considered as noise
+
   * invariance classes will also be affected by the motor signals
    * apart from translation, rotation and scale invariances, there may develop some neural patterns that respond invariantly to potentially graspable shapes
    * if there are many different objects and shape instances that can be grasped with similar motor commands, the invariance can help in recognising those
@@ -407,16 +409,21 @@ http://ahuman.googlecode.com/svn/images/wiki/research/cortex/perception.jpg
    * different parts of the network receive inputs from objects A, B and C, which are behaviourally meaningful and have been learnt, and irrelevant information N such as background noise
    * upper level of the network receives contextual bias that supports object A
    * motor cortex could be doing something with this object
+
   * *Step 1* - the inputs get to the first level
    * processing units do not have features tuned for noise, so none of them will decide to represent it
    * when one unit receives inputs from two different objects, competition chooses the larger activations to be represented
+
   * *Step 2* - the initial first level activations go to the second level
    * bias for A causes it to have stronger representation than B, even when its bottom-up signal is weaker
    * meanwhile, the lateral connections in the first level form a B-symbol, which overrides C
+
   * *Step 3* - the information flows back from the second level to the first
    * there A and B have both lateral and top-down bias, but A has stronger top-down bias
    * so it will override B
+
   * *Step 4* - A and B feed the second level equally strongly, bias for A causes it to win the competition
+
   * *Summary*
    * noise was not represented at all
    * object C was represented only weakly in the first level, because it did not have any contextual support
