@@ -451,3 +451,36 @@ http://ahuman.googlecode.com/svn/images/wiki/research/cortex/steps.jpg
    * instead, decorrelation and competition should make the outputs from the processing units sufficiently close to spherical
    * however, there may remain quite strong correlations between elements from different units
    * if these correlations were removed with adaptive sphering, learning could improve, but the implementation would become more difficult
+
+  * *compute pre-activations*
+{{{
+calculate the feature pre-activation vector y from the bottom-up input vector x:
+
+y = f( x * w ) * g, where
+
+f - pre-activation function for neurons, 
+Implementation sets negative values to zero.
+Activation function does not have to modulate the features into being sparse, as the lateral competition will do that.
+
+w - feature (bottom-up) weight matrix
+
+g - slowly adapting sensitisation-gain vector of the neurons
+Tries to make the neurons average activity levels equal.
+Consequences: 
+The network activations are maximally informative in the Shannon information sense. If the input data has some frequent features, the network will use more neurons to represent different aspects of that feature. This way, the representation resolution is better for those features than for rare ones.
+For learning, the sensitisation-gains work as the conscience in (Desieno, 1988). The neurons learn equally often, and each neuron will represent something useful instead of getting stuck to noise features.
+Without sensitisation, the contextual associators would be biased toward the variances of the units. With sensitisation, they are better tuned to the information in their outputs.
+With sensitisation, all the neurons are used in representation, learning and associations and an “effective number of neurons” in the network becomes maximal.
+}}}
+
+  * *combines the contextual association*
+{{{
+calculate bias:
+
+b = w * x, where
+
+x - contextual or lateral inputs
+w - weight matrix, trained with supervised learning, using pre-activation vector y as target
+}}}
+
+  * reason for using supervised learning instead of Hebbian learning is that now it is easier to extend the associators from linear to non-linear - will increase the memory capacity of the whole network and enable the recognition of more complex objects
