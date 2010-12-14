@@ -428,3 +428,26 @@ http://ahuman.googlecode.com/svn/images/wiki/research/cortex/perception.jpg
    * noise was not represented at all
    * object C was represented only weakly in the first level, because it did not have any contextual support
    * A and B had lateral support, but A had additional external support, which caused high level attention to focus on it
+
+== 3.4 Implementation details ==
+
+=== 3.4.1 Calculating activations in one processing unit ===
+
+  * activations of the neurons are scalar numbers, updated on discrete time step
+  * one processing unit at a time calculates new activations for its neurons by computing
+all the below steps:
+   * it *computes preactivations* for the neurons first
+   * then it *combines the contextual association* into those
+   * then it does *competition between correlating elements* and finally *competition between all elements*
+   * then, depending on the phase in iterations on the whole network level, it may *adapt the features, lateral associators and the rest of the parameters*
+
+http://ahuman.googlecode.com/svn/images/wiki/research/cortex/steps.jpg
+
+  * inputs to the processing units should be spherically symmetric, in order to give the contextual modulation the power to affect both long-term learning, as in DSS, and instantaneous selection of features
+   * the primary input to the lowest level of the network is sphered separately on each patch that feeds distinct processing units
+   * done by initially measuring the means and covariance matrices from a set of inputs, and then removing the means and doing PCA sphering
+   * in PCA sphering, the data is projected to the uncorrelated principal components, and then scaled to have unit variance
+   * this kind of sphering is not done for data travelling between the processing units
+   * instead, decorrelation and competition should make the outputs from the processing units sufficiently close to spherical
+   * however, there may remain quite strong correlations between elements from different units
+   * if these correlations were removed with adaptive sphering, learning could improve, but the implementation would become more difficult
