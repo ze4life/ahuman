@@ -589,7 +589,7 @@ Algorithm for sparsifying vector y in its whole:
 
 1. Calculate the sparsity measure Ms from Y
 2. If the vector is sparser than before set limit, jump to the end. Otherwise continue.
-3. Update Y' = -Y - a * max Y. Set all negative elements of Y to zero and jump back to step 1.
+3. Update Y = -Y - a * max(Y). Set all negative elements of Y to zero and jump back to step 1.
 
 A fast, but still not too crude, method results from  being for example 0:2. 
 The sparsity limit can be determined by constructing a model vector that is as sparse 
@@ -605,3 +605,41 @@ After competition, the final activations y are ready. These can then be used by
 other processing units as bottom-up input or context. They are also used to adapt 
 the sensitisation-gains g, anti-Hebbian weights Wa and bottom-up weights Wb.
 }}}
+
+=== 3.4.2 The order in which the different units operate ===
+
+  * for one distinct input vector, the whole network must be ran for a couple of iterations, so that coherent attention has time to emerge
+   * for dynamic input data, one iteration per each input could suffice
+
+  * there are a few different alternatives for the order in which the processing units
+could operate
+   * one alternative would be to have no order between the units, but to run all the units simultaneously
+   * this can be done by running them in arbitrary order one at a time, but using the neural activations of the previous time step as inputs
+   * in this case, the first level units would be iterated many times before the high level units receive the same inputs
+   * emergence of coherent attention would take a long time (computationally)
+
+  * following order used:
+   * first run all the units of the first level in a random order, then the next level and so on to the top
+   * then the levels are ran in a reverse order - in this order, all the units have to be ran two times to get the information from the inputs to the highest level, and then the contextual information from the high levels back to the bottom
+   * for static input data, 2–5 iterations used of this order per input
+
+=== 3.4.3 Learning in the unit ===
+
+  * adaptive elements in the units are not trained each time the unit calculates new activations - instead, they are trained only just before introducing a new input to the network
+   * thus, learning happens after global attention has emerged, taking advantage of all the benefits of attentional learning
+
+  * bottom-up weights learn with the Hebbian rule 1Wbu:
+{{{
+dWb = nb * YX
+}}
+
+  * after updating, the rows are scaled to unit vectors
+   * the learning rate nb should be small - otherwise the weights would not converge, 
+but they could jump forever between different features
+   * in the experiments nb=0.0001 is used. Learning does not have to be strictly on-line
+   * instead, the weight changes can be accumulated for, say 10–500, iterations, and 
+then update the real weights and scale them to unit vectors
+   * this saves computation time and can make learning converge more smoothly
+
+  * for sensitisation, the variances (actually sums of squares) of feature activations must be measured, too.
+
