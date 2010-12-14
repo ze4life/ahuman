@@ -631,7 +631,7 @@ could operate
   * bottom-up weights learn with the Hebbian rule 1Wbu:
 {{{
 dWb = nb * YX
-}}
+}}}
 
   * after updating, the rows are scaled to unit vectors
    * the learning rate nb should be small - otherwise the weights would not converge, 
@@ -642,4 +642,3 @@ then update the real weights and scale them to unit vectors
    * this saves computation time and can make learning converge more smoothly
 
   * for sensitisation, the variances (actually sums of squares) of feature activations must be measured, too.
-
