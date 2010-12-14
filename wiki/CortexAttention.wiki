@@ -460,7 +460,8 @@ Yp = F( Wb * Xb ) * g, where
 
 F - pre-activation function for neurons, 
 Implementation sets negative values to zero.
-Activation function does not have to modulate the features into being sparse, as the lateral competition will do that.
+Activation function does not have to modulate the features into being sparse, 
+as the lateral competition will do that.
 
 Wb - feature (bottom-up) weight matrix
 
@@ -468,10 +469,18 @@ g - slowly adapting sensitisation-gain vector of the neurons
 Tries to make the neurons average activity levels equal.
 
 Consequences: 
-The network activations are maximally informative in the Shannon information sense. If the input data has some frequent features, the network will use more neurons to represent different aspects of that feature. This way, the representation resolution is better for those features than for rare ones.
-For learning, the sensitisation-gains work as the conscience in (Desieno, 1988). The neurons learn equally often, and each neuron will represent something useful instead of getting stuck to noise features.
-Without sensitisation, the contextual associators would be biased toward the variances of the units. With sensitisation, they are better tuned to the information in their outputs.
-With sensitisation, all the neurons are used in representation, learning and associations and an “effective number of neurons” in the network becomes maximal.
+The network activations are maximally informative in the Shannon information sense. 
+If the input data has some frequent features, the network will use more neurons 
+to represent different aspects of that feature. This way, the representation resolution
+is better for those features than for rare ones.
+For learning, the sensitisation-gains work as the conscience in (Desieno, 1988). 
+The neurons learn equally often, and each neuron will represent something useful 
+instead of getting stuck to noise features.
+Without sensitisation, the contextual associators would be biased toward the variances 
+of the units. With sensitisation, they are better tuned to the information in 
+their outputs.
+With sensitisation, all the neurons are used in representation, learning and associations 
+and an “effective number of neurons” in the network becomes maximal.
 }}}
 
   * *combines the contextual association*
@@ -481,17 +490,29 @@ calculate bias B:
 B = Wl * Xl, where
 
 Xl - contextual or lateral inputs
-Wl - weight matrix, trained with supervised learning, using pre-activation vector Yp as target
+Wl - weight matrix, trained with supervised learning, 
+using pre-activation vector Yp as target
 
-Reason for using supervised learning instead of Hebbian learning is that now it is easier to extend the associators from linear to non-linear - will increase the memory capacity of the whole network and enable the recognition of more complex objects.
+Reason for using supervised learning instead of Hebbian learning is that now it is 
+easier to extend the associators from linear to non-linear - will increase the memory
+capacity of the whole network and enable the recognition of more complex objects.
 
 Problem of supervised learning:
-When some contextual inputs can explain the targets, there is no further learning. 
-Usually the top-down context correlates more with the activations than the lateral context, and the lateral connections do not learn much anything. They would still be important. Therefore two different associators are used, one for each type of context. Both associators learn with supervised learning independently
+When some contextual inputs can explain the targets, there is no further learning.
+Usually the top-down context correlates more with the activations than the lateral
+context, and the lateral connections do not learn much anything. They would still be
+important. Therefore two different associators are used, one for each type of context.
+Both associators learn with supervised learning independently
 
-Then predictions from associators are combined with pre-activations - to get biased pre-activation vector Yb:
+Then predictions from associators are combined with pre-activations - 
+to get biased pre-activation vector Yb:
 
-Yb = Yp * ( 1 + S( m * Fm(B) ), where
+Yb = Yp * ( 1 + S(m * Fm(B)) ), where
 
-function fm sets the negative values to zero, scales b to have a maximum value 1 - prevents lateral positive feedback loops which could take take activations into infinity, from forming. m are modulation coefficients - 1 for lateral bias and 0:5 for top-down bias. Biases are not added to the pre-activations, but they modulate them - plain bias cannot give birth to activations and the network cannot start to hallucinate
+function fm sets the negative values to zero, scales b to have a maximum 
+value 1 - prevents lateral positive feedback loops which could take take activations 
+into infinity, from forming. m are modulation coefficients - 1 for lateral bias and 
+0.5 for top-down bias. Biases are not added to the pre-activations, but they modulate
+them - plain bias cannot give birth to activations and the network cannot start 
+to hallucinate
 }}}
