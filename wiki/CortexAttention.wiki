@@ -516,3 +516,91 @@ into infinity, from forming. m are modulation coefficients - 1 for lateral bias 
 them - plain bias cannot give birth to activations and the network cannot start 
 to hallucinate
 }}}
+
+  * *competition between correlating elements*
+{{{
+Decorrelation step prevents the neurons from learning the same features.
+Additionally, it makes the output of the unit closer to being spherical.
+}}}
+
+  * *competition between all elements*
+{{{
+Adds force that tries to keep the features separate, but that force alone was too weak.
+All the features in one unit learnt to represent only a few different features.
+Competition is not winner-takes-all type, so it can leave simultaneous activation 
+for correlating neurons.
+Decorrelation was not complete so that the resulting activations would satisfy
+some decorrelation equation. Instead, only one step anti-Hebbian decorrelation used.
+
+Decorrelated feature vector Yd:
+
+Yd = Fa( Yb - a * Wa * Yb ), where
+
+Fa - sets negative values to zero.
+Wa - anti-Hebbian weight matrix measuring the correlations between neurons.
+a - decorrelation strength
+In the experiments, decorrelation strength a=0.1 was not sufficient for keeping
+the features separate, but value a=1 was.
+
+Goal of competition is to choose the most active features, but it should not be 
+too severe, like winner-takes-all competition. If it were, the network could get stuck 
+in the initial decisions, and the iterative integration of information could not find 
+the best features to represent.
+There are many ways to implement this kind of soft competition. 
+A popular method is softmax activation function:
+
+Y = ( exp(p * Xi) )T / S( exp(p * Xi) ), where
+
+p - competition strength
+X - sparsified vector.
+
+Relative competition between two elements is always the same despite the activations 
+of other features. If there is only one large activation, it will drive all the other
+activations near zero, resulting in winner-takes-all competition.
+
+Another popular method is to use inhibitory connections between the neurons, and drive 
+the activations iteratively to a stable point, in a similar manner as decorrelation 
+is done in. Finding a stable point in these fixed-point equations may take
+many iterations and is thus computationally slow.
+}}}
+
+  * *calculating sparsity measure*
+{{{
+Following method used:
+Calculate a sparsity measure Ms for the activation pattern.
+Update the activations with gradient descent until they are sparse enough.
+if the pattern is already sparse in the beginning, there is no competition.
+On arbitrary patterns, a typical number of competition iterations needed was from 2 to 8.
+
+Sparsity of a random variable x can be measured with any convex function f - then the measure is Ms:
+
+Ms = E( f(x^2) ), used f(x^2) = -abs(x)
+
+Instead of expectation, the elements in the activation pattern are averaged. In order 
+to make this measure insensitive for the general size of the activation, the measure 
+was divided by the norm of the pattern:
+
+Ms(Y) = -S(Yi) / ||Y||
+
+Elements of Y are known to be non-negative
+Gradient of this measure is directly proportional to 1 vector, which has 1 as all the elements.
+
+Algorithm for sparsifying vector y in its whole:
+
+1. Calculate the sparsity measure Ms from Y
+2. If the vector is sparser than before set limit, jump to the end. Otherwise continue.
+3. Update Y' = -Y - a * max Y. Set all negative elements of Y to zero and jump back to step 1.
+
+A fast, but still not too crude, method results from  being for example 0:2. 
+The sparsity limit can be determined by constructing a model vector that is as sparse 
+as is wanted, and then calculating the measure from it. If only few elements of 
+the model vector are active, the sparsity limit will be high and competition strong.
+
+Very strong competition will generalise well. Small changes in the inputs will lead to
+similar representations. However, the stronger the competition, the less sensitive 
+it is to changes in contextual guidance. A good compromise model vector should be 
+clearly sparse, but still have more than one active neuron.
+
+After competition, the final activations y are ready. These can then be used by 
+other processing units as bottom-up input or context. They are also used to adapt 
+the sensitisation-gains g, anti-Hebbian weights Wa and bottom-up weights Wb.
