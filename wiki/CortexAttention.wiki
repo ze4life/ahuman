@@ -507,7 +507,7 @@ Both associators learn with supervised learning independently
 Then predictions from associators are combined with pre-activations - 
 to get biased pre-activation vector Yb:
 
-Yb = Yp * ( 1 + S(m * Fm(B)) ), where
+Yb = Yp * ( 1 + Sum(m * Fm(B)) ), where
 
 function fm sets the negative values to zero, scales b to have a maximum 
 value 1 - prevents lateral positive feedback loops which could take take activations 
@@ -549,7 +549,7 @@ the best features to represent.
 There are many ways to implement this kind of soft competition. 
 A popular method is softmax activation function:
 
-Y = ( exp(p * Xi) )T / S( exp(p * Xi) ), where
+Y = ( exp(p * Xi) )T / Sum( exp(p * Xi) ), where
 
 p - competition strength
 X - sparsified vector.
@@ -580,7 +580,7 @@ Instead of expectation, the elements in the activation pattern are averaged. In 
 to make this measure insensitive for the general size of the activation, the measure 
 was divided by the norm of the pattern:
 
-Ms(Y) = -S(Yi) / ||Y||
+Ms(Y) = -Sum(Yi) / ||Y||
 
 Elements of Y are known to be non-negative
 Gradient of this measure is directly proportional to 1 vector, which has 1 as all the elements.
@@ -611,8 +611,7 @@ the sensitisation-gains g, anti-Hebbian weights Wa and bottom-up weights Wb.
   * for one distinct input vector, the whole network must be ran for a couple of iterations, so that coherent attention has time to emerge
    * for dynamic input data, one iteration per each input could suffice
 
-  * there are a few different alternatives for the order in which the processing units
-could operate
+  * there are a few different alternatives for the order in which the processing units could operate
    * one alternative would be to have no order between the units, but to run all the units simultaneously
    * this can be done by running them in arbitrary order one at a time, but using the neural activations of the previous time step as inputs
    * in this case, the first level units would be iterated many times before the high level units receive the same inputs
@@ -628,9 +627,9 @@ could operate
   * adaptive elements in the units are not trained each time the unit calculates new activations - instead, they are trained only just before introducing a new input to the network
    * thus, learning happens after global attention has emerged, taking advantage of all the benefits of attentional learning
 
-  * bottom-up weights learn with the Hebbian rule 1Wbu:
+  * bottom-up weights learn with the Hebbian rule:
 {{{
-dWb = nb * YX
+dWb = nb * Y * X
 }}}
 
   * after updating, the rows are scaled to unit vectors
@@ -639,4 +638,10 @@ dWb = nb * YX
    * instead, the weight changes can be accumulated for, say 10–500, iterations, and then update the real weights and scale them to unit vectors
    * this saves computation time and can make learning converge more smoothly
 
-  * for sensitisation, the variances (actually sums of squares) of feature activations must be measured, too.
+  * for sensitisation, the variances (actually sums of squares) of feature activations must be measured, too
+...
+
+*finally*:
+  * artificial data as inputs
+  * do not learn dynamics from the world
+  * computationally ineffective
