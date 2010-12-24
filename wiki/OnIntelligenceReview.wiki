@@ -344,10 +344,32 @@ Below are most interesting thoughts, from my point of view, of really great book
    * cells in layers 2, 3, 5 have dendrites in layer 1 and can be excited by feedback
    * layers 2 and 3 axons form synapses in layer 5 before leaving cortex and can excite layers 5 and 6 cells
    * downward flow started in layer 6, then has multiple-path branch in layer 1 of lower region; some cells in layers 2, 3 and 5 are excited; some them excite layer 6 cells; which projects to next lower region and so on
+   * signal in axons, coming from layer 6, is spreading with speed of *200 miles/hour*
   * why information is spread across layer 1
    * need to convert internal representation into specific prediction
    * requires ability to decide which way to send signal as it propagates down the hierarchy
    * remember we can say word in memory or write it
    * when hear note of melody, brain has to take one of specific intervals and convert to next note
    * layer 1 does the work of branching
-  * signal in axons, coming from layer 6, is spreading with speed of *200 miles/hour*
+  * another indirect method of region communication - to implement *auto-associative memory*
+   * consider Hopfield networks - recurrent, when output of group of artificial neurons is fed back with delay to all neurons, causing *ability to learn sequences of patterns*
+   * as per Jeff Hawkins, the same is for cortex but with *columns instead of neurons*
+   * output of all columns is fed back to layer 1
+   * layer 1 contains information which columns were just active in this region
+   * large layer 5 cells in M1 make direct contact with muscles and spinal cord
+   * in V2 and V4 *large layer 5 cells project to the part of brain that moves eyes*
+  * axons in large layer 5 cells are split in two, one branch goes to thalamus
+   * thalamus receives many axons from every part of cortex and sends axons back to same areas
+   * thalamus is essential for normal living - cannot think with damaged thalamus
+   * there are couple of paths from thalamus to cortex
+   * one path starts from large layer 5 cells that projects to non-specific thalamic cells
+   * non-specific thalamic cells back to layer 1 over many cortex regions
+   * this circuit is exactly delayed feedback to learn sequences
+  * level 1 has two inputs
+   * active columns spread activity across layer 1 via thalamus
+   * first inputs are *"name of the song"* - inputs from above
+   * second inputs are *"where we are in the song"* - delayed activity from active columns
+   * thus layer 1 contains full information to make prediction if apply to invariant representation in the region
+  * after all cortex can learn and recall *multiple sequences of patterns*
+
+== How cortex region works: details ==
