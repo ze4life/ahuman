@@ -365,7 +365,7 @@ Below are most interesting thoughts, from my point of view, of really great book
    * one path starts from large layer 5 cells that projects to non-specific thalamic cells
    * non-specific thalamic cells back to layer 1 over many cortex regions
    * this circuit is exactly delayed feedback to learn sequences
-  * level 1 has two inputs
+  * layer 1 has two inputs
    * active columns spread activity across layer 1 via thalamus
    * first inputs are *"name of the song"* - inputs from above
    * second inputs are *"where we are in the song"* - delayed activity from active columns
@@ -384,17 +384,18 @@ Below are most interesting thoughts, from my point of view, of really great book
    * how cortex region *forms constant pattern* - sequence "name"
    * how cortex region *makes specific predictions*
   * assume cortex *column represents one bucket* (in real brain nothing is represented by one neuron or one column)
-   * level 4 cells fire if inputs from below regions have pattern for this bucket
+   * layer 4 cells fire if inputs from below regions have pattern for this bucket
    * inputs are often ambiguous and several columns can fit the same inputs, still cortex needs to decide which one is correct
    * column with strong input should prevent other columns from firing (I think electrical mechanism is in action - all columns receive inputs simultaneously, but each has its own level of matching its pattern - match factor causing accumulating energy; this energy fills neuron body, until it fires; greater match factor makes most matching column to fire first; firing quickly changes electrical potentials - which makes connections inhibitory)
    * brain have *inhibitory cells* - inhibit other neurons in a neighbourhood of cortex - one winner
    * inhibitory cells affect only area surrounding column - so many columns are still activated simultaneously
    * to make it simple - let's think only one winner column exists
   * consider *storing of sequence of patterns*
-   * consider one level 4 cell fired - causing levels 2 and 3 cells to fire, then level 5, then level 6 - finally all column becomes active
-   * 2,3,5 cells have many synapses in level 1 - if they are active when cells fire, then synapses become more strong according to Hebb
-   * if this occurs often, *synapses become strong enough* and can activate 2,3,5 cells even if level 4 cells are not active - cells learn to anticipate when to fire based on patterns in level 1 - means *prediction*
-   * half of inputs for layer 1 are from level 5 of neighbouring columns and regions - representing what was happening moments before - columns were active before this column becoming active - last state that was successfully perceived
+   * consider one layer 4 cell fired - causing layers 2 and 3 cells to fire, then layer 5, then layer 6 - finally all column becomes active
+   * 2,3,5 cells have many synapses in layer 1 - if they are active when cells fire, then synapses become more strong according to Hebb
+   * if this occurs often, *synapses become strong enough* and can activate 2,3,5 cells even if layer 4 cells are not active - cells learn to anticipate when to fire based on patterns in layer 1 - means *prediction*
+   * half of inputs for layer 1 are from layer 5 of neighbouring columns and regions - representing what was happening moments before - columns were active before this column becoming active - last state that was successfully perceived
    * *if the order of patterns is consistent over time - columns will learn the order* - columns will fire one after another in proper sequence
-   * other half of inputs for level 1 comes from level 6 in higher regions - more static, represents name of higher sequence currently perceived
-   * finally - level 1 represents both *name of sequence* (from upper region) and *last item in the sequence* (from all columns in this region); particular column can be shared among many different sequences without getting confused; *columns learn to fire in right context and in correct order*
+   * other half of inputs for layer 1 comes from layer 6 in higher regions - more static, represents name of higher sequence currently perceived
+   * finally - layer 1 represents both *name of sequence* (from upper region) and *last item in the sequence* (from all columns in this region); particular column can be shared among many different sequences without getting confused; *columns learn to fire in right context and in correct order*
+   * 90% of column synapses are from other columns, most of them are not from layer 1; e.g. 2,3,5 cells have thousands of synapses from both layer 1 and from neighbouring columns - from the same layer; activity in nearby columns is highly correlated
