@@ -401,5 +401,18 @@ Below are most interesting thoughts, from my point of view, of really great book
    * 90% of column synapses are from other columns, most of them are not from layer 1; e.g. 2,3,5 cells have thousands of synapses from both layer 1 and from neighbouring columns - from the same layer; activity in nearby columns is highly correlated
   * consider *forming name for a learned pattern*
    * what information is sent to higher region
-   * layers 2 and 3 cells send axons to higher region - activity of these cells is input to higher region; before sequence is learned, details are passed; but for hierarchy to work constant pattern should be relayed during learned sequence - sequence name, not the details
-   * 
+   * layers 2 and 3 cells send axons to higher region - activity of these cells is input to higher region; *before sequence is learned, details are passed*; but for hierarchy to work constant pattern should be relayed during learned sequence - sequence name, not the details
+   * *layers 2 and 3 outputs are turned off when column predicts its activity*
+   * no final understanding how it occurs - below is favourite (for Jeff Hawkins) plausible method
+   * assume layer 3 consists of layers 3a and 3b (used by some anatomists)
+   * assume *layer 2 cells learns to stay on during learned sequence* - all cells, as a group, represent *name of sequence* - if sequence contains 3 patterns, then cells stay active as we are within all 3 patterns
+   * assume *layer 3b cells fire when prediction for outputs was incorrect* - unexpected pattern
+   * before learning layer 3b fires and layer 2 is quiet, after learning vice versa
+   * assume *layer 3a cells, having dendrites in layer 1, are inhibitory and prevent layer 3b from firing* when layer 1 contains appropriate pattern
+  * how to *keep layer 2 cells active* throughout all patterns of known sequence
+   * this is difficult as layer 2 cells should stay active even when their columns are not active
+   * assume layer 2 cells form preferentially with layer 6 axons from higher region
+   * when higher region sends  pattern down to layer 1 of this region, layer 2 cells become active, representing all columns that are member of sequence
+   * since layer 2 also project back to higher region, they  form semi-stable group of cells (actually they don't just stay active - but fire synchronously in a rhythm)
+   * name predicted by higher region stays active (actually it means cells represent downward signal, but my suggestion - cells stay active only if supported by sequence patters)
+  * these are basic operations for forming invariant representations
