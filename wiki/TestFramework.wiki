@@ -181,9 +181,8 @@ Also test unit created to allow calling these functions from outside of engine p
   * test unit call to show all thread, optionally printing stack trace for each:
 
 {{{
-<xmlcall name="ThreadDump" class="TestEngineThreads" method="testShowThread">
+<xmlcall name="ThreadDump" class="TestEngineThreads" method="testThreadDump">
 	<parameters>
-		<property name="threadName" value="main"/>
 		<property name="showStack" value="false"/>
 	</parameters>
 </xmlcall>
@@ -208,7 +207,7 @@ thread index=10, name=sensordata, threadId=0x107c
   * test unit call to show specific thread by its name, optionally with printing its stack trace:
 
 {{{
-<xmlcall name="ThreadDump" class="TestEngineThreads" method="testThreadDump">
+<xmlcall name="ThreadDump" class="TestEngineThreads" method="testShowThread">
 	<parameters>
 		<property name="threadName" value="main"/>
 		<property name="showStack" value="true"/>
