@@ -22,6 +22,8 @@ Biological model add assumptions on top of biological features to make the whole
   * [http://en.wikipedia.org/wiki/Mesolimbic_pathway pathway begins in midbrain and connects to striatum, amygdala, hippocampus, medial prefrontal cortex]
   * [http://en.wikipedia.org/wiki/Nigrostriatal_pathway pathway connecting substantia nigra with striatum, involved in production of movement]
   * [http://en.wikipedia.org/wiki/Tuberoinfundibular_pathway intra-hypothalamus pathway, involved in regulation of lactation, menstrual cycle, vision, blood flow and sexual functions]
+  * [http://en.wikipedia.org/wiki/Ventral_stream ventral stream travels to the temporal lobe and is involved with object identification]
+  * [http://en.wikipedia.org/wiki/Ventral_stream dorsal stream stretches from the primary visual cortex (V1) in the occipital lobe forward into the parietal lobe]
 
 == Simplified Biological Overview ==
 
@@ -63,6 +65,33 @@ Modules are defined as follows:
 <th>Module and allocated areas</th>
 <th>Functions</th>
 <th>Flows</th>
+</tr>
+
+<tr>
+<td>
+  * *Head Sensors (HS)*
+</td>
+<td>
+  * *Owned Functions*
+   * capture events from external world
+   * capture static data from external world
+   * tracking objects / covert attention
+   * saccadic perception / covert attention
+   * expressing sensing behaviour
+  * *Involved in Functions*
+   * perceptions of various modalities
+   * pay attention to selected area / overt attention
+</td>
+<td>
+  * *Inbound*
+   * External World -> sensor data
+   * AC -> BSA -> attention area selection
+   * PC -> BSA -> low-level sensory control in perception
+  * *Outbound*
+   * sensory data -> BSA
+   * attention sensor control feedback -> THA -> AC
+   * perception control feedback -> THA -> PC
+</td>
 </tr>
 
 <tr>
@@ -179,8 +208,10 @@ Modules are defined as follows:
 <td>
   * *Inbound*
    * BSA -> THA -> pain
+   * S -> BSA -> THA -> pain
   * *Outbound*
-   * TBD
+   * sensory data -> HCA
+   * 
 </td>
 </tr>
 
