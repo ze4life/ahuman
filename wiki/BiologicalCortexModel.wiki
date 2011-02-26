@@ -86,12 +86,12 @@ Modules are defined as follows:
 <td>
   * *Inbound*
    * (External World) -> sensor data
-   * AC -> BSA -> attention area selection
    * PC -> BSA -> low-level sensory control in perception
+   * AC -> BSA -> attention area selection
   * *Outbound*
    * sensory data -> BSA
-   * attention sensor control feedback -> THA -> AC
    * perception control feedback -> THA -> PC
+   * attention sensor control feedback -> THA -> AC
    * sensory state expression -> (External World)
 </td>
 </tr>
@@ -120,18 +120,18 @@ Modules are defined as follows:
 <td>
   * *Relay*
    * BSA -> sensor data -> PC
-   * BSA -> pain -> PC
-   * BSA -> body sensations -> AC
-   * BSA -> cerebellum effector control feedback -> AC
-   * BG -> striatum effector control feedback -> AC
-   * HCA -> alerts, (anterior/medial nuclei) -> AC
-   * BG -> sensory data (ventral posterolateral/posteromedial nucleus) -> AC
    * BSA -> sensor data (lateral posterior nucleus, pulvinar) -> HCA
    * BSA -> perception (intralaminar) -> BG
+   * BSA -> cerebellum effector control feedback -> AC
+   * BSA -> body sensations -> AC
+   * BSA -> pain -> PC
+   * HCA -> alerts, (anterior/medial nuclei) -> AC
+   * BG -> sensory data (ventral posterolateral/posteromedial nucleus) -> AC
+   * BG -> striatum effector control feedback -> AC
   * *Reciprocal*
+   * PC -> (medial nuclei) -> PC
    * HCA -> (anterior nuclei) -> HCA
    * AC -> (medial nuclei) -> AC
-   * PC -> (medial nuclei) -> PC
 </td>
 </tr>
 
@@ -166,18 +166,18 @@ Modules are defined as follows:
 <td>
   * *Inbound*
    * BG -> THA -> sensory data
-   * PC -> association data
+   * PC -> perception data
+   * BSA -> THA -> body senses
    * HCA -> reward signals (orbitomedial PFC)
    * HCA -> past experience
-   * BSA -> THA -> body senses
    * THA -> bioregulatory responses
   * *Outbound*
+   * current converged sensory input (PCF) -> HCA
+   * motor/behavioral commands -> PC
+   * feedback to bias flow along expectation -> PC
    * motor control -> BSA
    * guidance of movement -> BG
    * (premotor) -> THA
-   * motor/behavioral commands -> PC
-   * feedback to bias flow along expectation -> PC
-   * current converged sensory input (PCF ) -> HCA
 </td>
 </tr>
 
@@ -209,14 +209,14 @@ Modules are defined as follows:
 </td>
 <td>
   * *Inbound*
-   * BSA -> THA -> pain
    * HS -> BSA -> THA -> sensory data
    * HS -> BSA -> THA -> sensory perception control feedback
    * HCA -> THA -> long-term memory sequences
+   * BSA -> THA -> pain
   * *Outbound*
    * sensory data -> HCA
-   * guide saccadic perception -> BSA -> HS
    * associations -> THA -> AC
+   * guide saccadic perception -> BSA -> HS
    * feelings -> AC
 </td>
 </tr>
