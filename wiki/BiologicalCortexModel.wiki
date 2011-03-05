@@ -70,28 +70,28 @@ Modules are defined as follows:
 
 <tr>
 <td>
-  * *Head Sensors (HS)*
+  * *Head Sensors Area(HSA)*
 </td>
 <td>
   * *Owned Functions*
    * capture events from external world
    * capture static data from external world
-   * tracking objects / covert attention
-   * saccadic perception / covert attention
    * expressing sensing behaviour
   * *Involved in Functions*
    * perceptions of various modalities
    * pay attention to selected area / overt attention
+   * tracking objects / covert attention
+   * saccadic perception / covert attention
 </td>
 <td>
   * *Inbound*
    * (External World) -> sensor data
-   * PC -> BSA -> low-level sensory control in perception
-   * AC -> BSA -> attention area selection
+   * PCM -> BSA -> low-level sensory control in perception
+   * ACM -> BSA -> attention area selection
   * *Outbound*
    * sensory data -> BSA
-   * perception control feedback -> THA -> PC
-   * attention sensor control feedback -> THA -> AC
+   * perception control feedback -> THA -> PCA
+   * attention sensor control feedback -> THA -> ACA
    * sensory state expression -> (External World)
 </td>
 </tr>
@@ -122,25 +122,25 @@ Modules are defined as follows:
 </td>
 <td>
   * *Relay*
-   * BSA -> sensor data -> PC
+   * BSA -> sensor data -> PCA
    * BSA -> sensor data (lateral posterior nucleus, pulvinar) -> HCA
-   * BSA -> perception (intralaminar) -> BG
-   * BSA -> cerebellum effector control feedback -> AC
-   * BSA -> body sensations -> AC
-   * BSA -> pain -> PC
-   * HCA -> alerts, (anterior/medial nuclei) -> AC
-   * BG -> sensory data (ventral posterolateral/posteromedial nucleus) -> AC
-   * BG -> striatum effector control feedback -> AC
+   * BSA -> perception (intralaminar) -> BGA
+   * BSA -> cerebellum effector control feedback -> ACA
+   * BSA -> body sensations -> ACA
+   * BSA -> pain -> PCA
+   * HCA -> alerts, (anterior/medial nuclei) -> ACA
+   * BGA -> sensory data (ventral posterolateral/posteromedial nucleus) -> ACA
+   * BGA -> striatum effector control feedback -> ACA
   * *Reciprocal*
-   * PC -> (medial nuclei) -> PC
+   * PCA -> (medial nuclei) -> PCA
    * HCA -> (anterior nuclei) -> HCA
-   * AC -> (medial nuclei) -> AC
+   * ACA -> (medial nuclei) -> ACA
 </td>
 </tr>
 
 <tr>
 <td>
-  * *Anterior Cortex (AC)*
+  * *Anterior Cortex Area (ACA)*
    * frontal lobe
    * parietal lobe
     * primary somatosensory cortex
@@ -168,25 +168,25 @@ Modules are defined as follows:
 </td>
 <td>
   * *Inbound*
-   * BG -> THA -> sensory data
-   * PC -> perception data
+   * BGA -> THA -> sensory data
+   * PCA -> perception data
    * BSA -> THA -> body senses
    * HCA -> reward signals (orbitomedial PFC)
    * HCA -> past experience
    * THA -> bioregulatory responses
   * *Outbound*
-   * current converged sensory input (PCF) -> HCA
-   * motor/behavioral commands -> PC
-   * feedback to bias flow along expectation -> PC
+   * current converged sensory input (pcf) -> HCA
+   * motor/behavioral commands -> PCA
+   * feedback to bias flow along expectation -> PCA
    * motor control -> BSA
-   * guidance of movement -> BG
+   * guidance of movement -> BGA
    * (premotor) -> THA
 </td>
 </tr>
 
 <tr>
 <td>
-  * *Posterior Cortex (PC)*
+  * *Posterior Cortex (PCA)*
    * occipital lobe
    * parietal lobe
     * superior parietal lobule
@@ -212,15 +212,15 @@ Modules are defined as follows:
 </td>
 <td>
   * *Inbound*
-   * HS -> BSA -> THA -> sensory data
-   * HS -> BSA -> THA -> sensory perception control feedback
+   * HSA -> BSA -> THA -> sensory data
+   * HSA -> BSA -> THA -> sensory perception control feedback
    * HCA -> THA -> long-term memory sequences
    * BSA -> THA -> pain
   * *Outbound*
    * sensory data -> HCA
-   * associations -> THA -> AC
-   * guide saccadic perception -> BSA -> HS
-   * feelings -> AC
+   * associations -> THA -> ACA
+   * guide saccadic perception -> BSA -> HSA
+   * feelings -> ACA
 </td>
 </tr>
 
@@ -254,7 +254,7 @@ Modules are defined as follows:
   * *Inbound*
    * BSA -> sensory input (hierarchical sensory pathway)
    * THA -> emotional stimulus
-   * PC -> polymodal sensory perception
+   * PCA -> polymodal sensory perception
   * *Outbound*
    * TBD
 </td>
@@ -288,10 +288,10 @@ Modules are defined as follows:
   * *Inbound*
    * TBD
   * *Outbound*
-   * regulation -> AC
-   * cognition -> AC
-   * instant actions -> BG
-   * sensory data (auditory, dorsal auditory pathway) -> PC
+   * regulation -> ACA
+   * cognition -> ACA
+   * instant actions -> BGA
+   * sensory data (auditory, dorsal auditory pathway) -> PCA
 </td>
 </tr>
 
@@ -331,8 +331,9 @@ Modules are defined as follows:
 
 <tr>
 <td>
-  * *Spinal Cord (SC)* (Body)
+  * *Spinal Cord (SCA)* (Body)
     * spinal cord
+    * (peripheral nervous system)
 </td>
 <td>
   * *Owned Functions*
