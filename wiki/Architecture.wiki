@@ -9,32 +9,25 @@ THIS PAGE IS A DRAFT
 
 = High Level Architecture v3 =
 
-== Layered Architecture ==
+== Overall Architecture ==
 
-<table border="0" align="left" cellspacing="25">
+aHuman architecture is based on biological model:
 
-<tr>
-<td>Layer
-</td>
-<td>Latest Advances and TBD
-</td>
-<td>Design Rate (1-5)
-</td>
-<td>Code Rate (1-5)
-</td>
-</tr>
+http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/top.jpg
 
-<tr>
-<td>Layer</td>
-<td>Latest Advances and TBD
-</td>
-<td>Design Rate (1-5)
-</td>
-<td>Code Rate (1-5)
-</td>
-</tr>
+aHuman framework contains below high-level modules:
 
-</table>
+|| *Module* || *Function* || *Notes* ||
+|| aWeeActuators || set of Sensors and Effectors || Can interact with external world; there can be different sets of actuators, aWeeActuators is test/trial one for prototyping aWee ||
+|| aMind || intelligence and feeling || in biological model includes brain, feeling components and all tracts ||
+|| aPlatform || generic software application functions || contains library components shared across different aHuman executable targets or specific auxiliary executable targets ||
+|| aGreatLibrary || ready-to-use libraries or generic auxiliary executables || can be project-generated library or external library; other modules are using only binaries and headers ||
+
+Possible executables:
+
+  * any actuators set, combined with aMind, aPlatform and aGreatLibrary library components
+  * executable aPlatform components combined with library components from aGreatLibrary
+  * executable aGreatLibrary components
 
 == Limitations ==
 
