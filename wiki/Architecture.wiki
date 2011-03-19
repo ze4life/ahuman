@@ -44,6 +44,23 @@ aMind is a sole part of aHuman and has its own layered HLA:
 || MINDREGION || aNeoCortexRegion, aArchiCortexRegion, aNucleiProcessorRegion, aNucleiRelayRegion, aNervousBranch || neocortex region, archicortex region, nuclei, nervous branch || Processing patterns ||
 || MINDNEURONET || aCortexNeuroLibrary, aNucleousNeuroLibrary || neocortex, archicortex, nuclei || Effective execution of wide patterns, memorizing, learning ||
 
+== Platform HLA ==
+
+Platform contains multiple services and split on HLA level to components as well:
+
+|| *Component* || *Implements* ||
+|| DataPrimitives || Collections and utility classes ||
+|| Messaging || Internal decoupling mechanism to arrange manageable numerous interactions among components ||
+|| TestSupport || Testing and debugging support ||
+|| Persistor || Persistence of memory in filesystem space ||
+|| Configurator || Configuration support ||
+|| Logger || Logging support ||
+|| ExceptionManager || Handling exceptions, stack trace ||
+|| LoadManager || CPU load tracking and controlling mind activity ||
+|| LifeCycle || Overall startup and shutdown sequences ||
+
+
+
 == HLA State and Development ==
 
   * rates: 1-5
