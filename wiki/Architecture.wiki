@@ -22,12 +22,13 @@ aHuman framework contains below high-level modules:
 || ACTUATORS || aWee, aYou, aPets, aHuman || set of Sensors and Effectors for different targets || Can interact with external world; there can be different sets of actuators, aPets or aWee can be test/trial one for prototyping aHuman ||
 || MIND || aMind || intelligence and feeling || in biological model includes brain, feeling components and all tracts ||
 || PLATFORM || aPlatform || generic software application functions || contains library components shared across different aHuman executable targets or specific auxiliary executable targets ||
-|| LIBRARY || aGreatLibrary || ready-to-use libraries or generic auxiliary executables || can be project-generated library or external library; other modules are using only binaries and headers ||
+|| LIBRARY || aGreatLibrary || ready-to-use libraries || can be project-generated library or external library; other modules are using only binaries and headers ||
+|| TOOLS || aToolSet || generic auxiliary executables || using platform and libraries, multiple utilities combined in one executable, like cvs/svn/p4 ||
 
 Possible executables:
 
   * any actuators set, combined with aMind, aPlatform and aGreatLibrary library components
-  * executable aPlatform components combined with library components from aGreatLibrary
+  * aToolSet combined with platform and library components from aGreatLibrary
   * executable aGreatLibrary components
 
 Resulting high-level architecture model is below one:
