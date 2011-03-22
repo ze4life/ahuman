@@ -19,7 +19,7 @@ http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/top.jpg
 aHuman framework contains below high-level modules:
 
 || *Module* || Name || *Implements* || *Notes* ||
-|| ACTUATORS || aWeeActuators || set of Sensors and Effectors for aWee target || Can interact with external world; there can be different sets of actuators, aWeeActuators is test/trial one for prototyping aWee ||
+|| ACTUATORS || aWee, aYou, aPets, aHuman || set of Sensors and Effectors for different targets || Can interact with external world; there can be different sets of actuators, aPets or aWee can be test/trial one for prototyping aHuman ||
 || MIND || aMind || intelligence and feeling || in biological model includes brain, feeling components and all tracts ||
 || PLATFORM || aPlatform || generic software application functions || contains library components shared across different aHuman executable targets or specific auxiliary executable targets ||
 || LIBRARY || aGreatLibrary || ready-to-use libraries or generic auxiliary executables || can be project-generated library or external library; other modules are using only binaries and headers ||
@@ -58,8 +58,6 @@ Platform contains multiple services and split on HLA level to components as well
 || aExceptionManager || Handling exceptions, stack trace ||
 || aLoadManager || CPU load tracking and controlling mind activity ||
 || aLifeCycle || Overall startup and shutdown sequences ||
-
-
 
 == HLA State and Development ==
 
