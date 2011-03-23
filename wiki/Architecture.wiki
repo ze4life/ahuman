@@ -50,15 +50,15 @@ aMind is a sole part of aHuman and has its own layered HLA:
 Platform contains multiple services and split on HLA level to components as well:
 
 || *Component* || *Implements* ||
-|| aDataPrimitives || Collections and utility classes ||
-|| aMessaging || Internal decoupling mechanism to arrange manageable numerous interactions among components ||
-|| aTestSupport || Testing and debugging support ||
-|| aPersistor || Persistence of memory in filesystem space ||
-|| aConfigurator || Configuration support ||
-|| aLogger || Logging support ||
-|| aExceptionManager || Handling exceptions, stack trace ||
-|| aLoadManager || CPU load tracking and controlling mind activity ||
-|| aLifeCycle || Overall startup and shutdown sequences ||
+|| ServiceManager || base types, plain and template classes, logging, exception handling, configuring, service and program lifecycle ||
+|| ObjectService || Unified objects and object persistence, object types ||
+|| MessagingService || Internal decoupling mechanism to arrange manageable numerous interactions among components ||
+|| ThreadService || multi-threading environment, CPU management, performance monitoring ||
+|| MediaService || Communicating with external world using standard protocols with non-aHuman services or internal aHuman protocol with aHuman tools ||
+|| PersistingService || Persistence of memory in filesystem space ||
+|| MathService || Specific mathematical calculations ||
+|| EnvService || Handling environment, including deployed instance, operating system and other available resources ||
+|| TestService || Testing and debugging support ||
 
 == HLA State and Development ==
 
