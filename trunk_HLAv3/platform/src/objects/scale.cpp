@@ -89,8 +89,6 @@ void Scale::recalculateRate()
 /*#########################################################################*/
 /*#########################################################################*/
 
-const char *Scale::NAME = "Scale";
-
 // AIObject interface
 void Scale::createSerializeObject()
 {
