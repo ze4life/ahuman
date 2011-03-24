@@ -28,7 +28,10 @@ void execute( String etcpath )
 
 	// cleanup
 	try {
-		sm.exitServices();
+		if( sm.isRunning() )
+			sm.stopServices();
+		if( sm.isCreated() )
+			sm.exitServices();
 		sm.destroyServices();
 	}
 	catch( RuntimeException& e ) {

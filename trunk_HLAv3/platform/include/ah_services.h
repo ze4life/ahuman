@@ -96,6 +96,8 @@ public:
 	void destroyServices();		// drop internal data
 
 	// runtime operations
+	bool isRunning();
+	bool isCreated();
 	void waitRunDefault();
 	bool canStartThread();
 	void setRootLogLevel( Logger::LogLevel p_logLevel );
