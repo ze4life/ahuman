@@ -82,6 +82,7 @@
     <ClCompile Include="src\math\random.cpp" />
     <ClCompile Include="src\media\mediaservice.cpp" />
     <ClCompile Include="src\messaging\messagingservice.cpp" />
+    <ClCompile Include="src\objects\multiindexiterator.cpp" />
     <ClCompile Include="src\objects\object.cpp" />
     <ClCompile Include="src\objects\objectfield.cpp" />
     <ClCompile Include="src\objects\objectservice.cpp" />
@@ -90,14 +91,13 @@
     <ClCompile Include="src\persisting\persistingservice.cpp" />
     <ClCompile Include="src\platform.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">ah_platform.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="src\services\logger.cpp" />
     <ClCompile Include="src\services\logmanager.cpp" />
     <ClCompile Include="src\services\logsettings.cpp" />
     <ClCompile Include="src\services\logsettingsitem.cpp" />
-    <ClCompile Include="src\services\multiindexiterator.cpp" />
     <ClCompile Include="src\services\runtimeexception.cpp" />
+    <ClCompile Include="src\services\service.cpp" />
     <ClCompile Include="src\services\servicemanager.cpp" />
     <ClCompile Include="src\services\string.cpp" />
     <ClCompile Include="src\services\tinyxml.cpp" />
@@ -110,22 +110,22 @@
     <ClCompile Include="src\threads\timer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="impl\ah_services_impl.h" />
     <ClInclude Include="impl\ah_objects_impl.h" />
+    <ClInclude Include="impl\ah_services_impl.h" />
     <ClInclude Include="impl\ah_threads_impl.h" />
     <ClInclude Include="impl\ah_tinyxml.h" />
     <ClInclude Include="include\ah_basetypes.h" />
     <ClInclude Include="include\ah_environment.h" />
     <ClInclude Include="include\ah_logging.h" />
-    <ClInclude Include="include\ah_objecttypes.h" />
-    <ClInclude Include="include\ah_templates.h" />
-    <ClInclude Include="include\ah_services.h" />
     <ClInclude Include="include\ah_math.h" />
-    <ClInclude Include="include\ah_platform.h" />
     <ClInclude Include="include\ah_media.h" />
-    <ClInclude Include="include\ah_objects.h" />
-    <ClInclude Include="include\ah_persisting.h" />
     <ClInclude Include="include\ah_messaging.h" />
+    <ClInclude Include="include\ah_objects.h" />
+    <ClInclude Include="include\ah_objecttypes.h" />
+    <ClInclude Include="include\ah_persisting.h" />
+    <ClInclude Include="include\ah_platform.h" />
+    <ClInclude Include="include\ah_services.h" />
+    <ClInclude Include="include\ah_templates.h" />
     <ClInclude Include="include\ah_testing.h" />
     <ClInclude Include="include\ah_threads.h" />
   </ItemGroup>

@@ -9,6 +9,12 @@
 
 RFC_HND LogManager::stopEvent = NULL;
 
+static unsigned __stdcall async_logger( void *p_arg ) {
+	LogManager *lm = ( LogManager * )p_arg;
+	lm -> run( NULL );
+	return( 0 );
+}
+
 // #############################################################################
 // #############################################################################
 
@@ -27,12 +33,14 @@ LogManager::LogManager() {
 	extraMode = false;
 	syncMode = true;
 	syncModeConfigured = true;
-	asyncThread = NULL;
+	memset( &asyncThread , 0 , sizeof( RFC_THREAD ) );
 
 	n1e = 0; n3e = va;
 	n2f = n4f = n5f = n6e = 0;
 
 	startAdd = startGet = 0;
+
+	logger.attachRoot();
 }
 
 LogManager::~LogManager() {
@@ -84,9 +92,8 @@ void LogManager::setSyncMode( bool p_syncMode ) {
 	syncMode = p_syncMode;
 	if( syncMode == false ) {
 		rfc_hnd_evreset( stopEvent );
-		asyncThread = ts -> runThread( "LogWriter" , this , ( ObjectThreadFunction )&LogManager::run , NULL );
-
-		if( asyncThread != NULL ) {
+		if( !rfc_thr_process( &asyncThread , this , async_logger ) ) {
+			// wait till log thread successfully started
 			rfc_hnd_waitevent( stopEvent , -1 );
 			rfc_hnd_evreset( stopEvent );
 		}
@@ -113,8 +120,7 @@ bool LogManager::start() {
 	logFileStream = NULL;
 	logFileStream = fopen( fileName , "at" );
 	if( logFileStream == NULL ) {
-		String error = "AIEngineImpl::logStart: cannot initialize logging: cannot open file - ";
-		error += fileName;
+		String error = "LogManager::logStart: cannot initialize logging: cannot open file - " + fileName + "\n";
 		fprintf( stderr , error );
 		return( false );
 	}

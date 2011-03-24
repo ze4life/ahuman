@@ -11,7 +11,11 @@
 
 class EnvService : public Service {
 public:
+	void setConfigurationPath( String etcpath );
 	String getConfigurationPath( String etcpath );
+	void configureAll( String etcpath );
+	void configurePlatform();
+	void configureServices();
 
 	virtual const char *getServiceName() { return( "EnvService" ); };
 	virtual void configureService( Xml config ) {};
@@ -31,6 +35,7 @@ public:
 
 private:
 	Xml loadXml( String fileName );
+	Xml getConfigurationData( Xml section , String objectType , String objectName );
 
 private:
 	String configDir;

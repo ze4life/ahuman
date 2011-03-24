@@ -102,6 +102,13 @@ bool Xml::getBooleanAttribute( String a ) {
 	return( getAttribute( a , "false" ).equals( "true" ) );
 }
 
+bool Xml::getBooleanAttribute( String a , bool defaultValue ) {
+	ASSERT( node != NULL );
+
+	TiXmlElement *xml = ( TiXmlElement * )node;
+	return( getAttribute( a , ( ( defaultValue )? "true" : "false" ) ).equals( "true" ) );
+}
+
 int Xml::getIntAttribute( String a ) {
 	ASSERT( node != NULL );
 
@@ -109,6 +116,20 @@ int Xml::getIntAttribute( String a ) {
 	const char *v = xml -> Attribute( a );
 
 	ASSERTMSG( v != NULL , a + " attribute is NULL" );
+	int value = 0;
+	ASSERTMSG( sscanf( v , "%d" , &value ) == 1 , "Unable to parse integer in string: " + a );
+	return( value );
+}
+
+int Xml::getIntAttribute( String a , int defaultValue ) {
+	ASSERT( node != NULL );
+
+	TiXmlElement *xml = ( TiXmlElement * )node;
+	const char *v = xml -> Attribute( a );
+
+	if( v == NULL )
+		return( defaultValue );
+
 	int value = 0;
 	ASSERTMSG( sscanf( v , "%d" , &value ) == 1 , "Unable to parse integer in string: " + a );
 	return( value );

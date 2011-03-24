@@ -5,7 +5,6 @@
 /*#########################################################################*/
 
 #include <ah_services.h>
-#include <ah_objects.h>
 
 #include <stdio.h>
 #include <signal.h>
@@ -86,7 +85,7 @@ private:
 /*#########################################################################*/
 /*#########################################################################*/
 
-class LogManager : public Object
+class LogManager
 {
 	typedef struct {
 		union {
@@ -140,6 +139,7 @@ private:
 
 private:
 	ServiceManager *engine;
+	Logger logger;
 	FILE *logFileStream;
 	LogSettings logSettings;
 	bool isFileLoggingEnabled;
@@ -154,7 +154,7 @@ private:
 	bool extraMode;
 	bool syncMode;
 	bool syncModeConfigured;
-	RFC_HND asyncThread;
+	RFC_THREAD asyncThread;
 
 	int n1e;	// empty
 	int n2f;	// filled

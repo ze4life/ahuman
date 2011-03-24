@@ -157,7 +157,9 @@ public:
 	String getAttribute( String a );
 	String getAttribute( String a , String defaultValue );
 	bool getBooleanAttribute( String a );
+	bool getBooleanAttribute( String a , bool defaultValue );
 	int getIntAttribute( String a );
+	int getIntAttribute( String a , int defaultValue );
 	void setAttribute( String a , String value );
 	void setBooleanAttribute( String a , bool value );
 	void setIntAttribute( String a , int value );
@@ -183,49 +185,6 @@ public:
 private:
 	void *doc;
 	void *node;
-};
-
-// #############################################################################
-// #############################################################################
-
-class MultiIndexIterator {
-public:
-	MultiIndexIterator( int numberOfAxis , int axisPoints );
-	~MultiIndexIterator();
-
-public:
-	void start();
-	void startAround( MultiIndexIterator& point );
-	void startDistinctUnsorted();
-
-	bool next();
-	bool nextAround();
-	bool nextDistinctUnsorted();
-
-	int getGlobalIndex();
-	int getGlobalIndexAround();
-
-	int getAxisIndex( int axis );
-	int getAxisIndexAround( int axis );
-
-	int getNumberOfAxis();
-	int getAxisPoints();
-
-	bool hasEqualIndexes();
-
-private:
-	bool isBeyondAround();
-
-private:
-	int totalPoints;
-	int numberOfAxis;
-	int axisPoints;
-
-	int *axisIndex; // [numberOfAxis]
-	int globalIndex;
-
-	int *axisIndexAround; // [numberOfAxis], delta for axisIndex, 0=0,1=1,2=-1
-	int globalIndexAround;
 };
 
 // #############################################################################

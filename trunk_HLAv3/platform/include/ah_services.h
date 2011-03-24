@@ -81,6 +81,11 @@ public:
 	Service *getService( const char *serviceName );
 	ClassList<Service> getServices();
 
+	// configuring
+	void configureDefault( String etcpath );
+	void configureLifecycle( Xml config );
+	void configureLogging( Xml config );
+
 	// operations for all added and optionally configured services
 	void createServices();		// create/set internal items according to configuration if any
 	void initServices();		// create contextual links among services, can start threads here
@@ -99,12 +104,12 @@ public:
 
 // class internals
 private:
-	void init();
-
 	// log manager
 	void logStart( Xml configLogging );
 	void logStop();
 	void logStopAsync();
+
+	Service *findServiceByName( String name );	
 
 // data
 private:
@@ -152,6 +157,7 @@ public:
 	void setConfigService( Xml p_config ) { configService = p_config; };
 	Xml getConfigMain() { return( configMain ); };
 	Xml getConfigService() { return( configService ); };
+	void configureLifecycle( Xml config );
 
 	// logger
 	void attachLogger() { logger.attachService( getServiceName() ); };

@@ -1,0 +1,40 @@
+<engine>
+	<platform>
+		<lifecycle>
+		</lifecycle>
+
+		<logging>			
+			<property name="configuration" value="logging.xml"/>
+		</logging>
+	</platform>
+
+	<!-- service configuration -->
+	<services>
+		<service name="EnvService" run="true">
+		</service>
+
+		<service name="MathService">
+		</service>
+
+		<service name="MediaService">
+			<property name="configuration" value="media.xml"/>
+		</service>
+
+		<service name="MessagingService">
+			<property name="configuration" value="messaging.xml"/>
+		</service>
+
+		<service name="ObjectService">
+		</service>
+
+		<service name="PersistingService">
+		</service>
+
+		<service name="TestService">
+			<property name="configuration" value="testing.xml"/>
+		</service>
+
+		<service name="ThreadService">
+		</service>
+	</services>
+</engine>

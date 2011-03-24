@@ -16,15 +16,14 @@ class Scale : public Object
 {
 public:
 	// Object interface
-	static const char *NAME;
-	virtual const char *getClass() { return( NAME ); };
+	virtual const char *getClass() { return( "Scale" ); };
 	virtual void serialize( SerializeObject& so );
 	virtual void deserialize( Object *parent , SerializeObject& so );
 
 	static void createSerializeObject();
 	static Object *onCreate( const char *className ) { return( new Scale ); };
 	static SerializeObject *getSerializeObject()
-		{ return( ObjectService::getService() -> getSerializeObject( NAME ) ); };
+		{ return( ObjectService::getService() -> getSerializeObject( "Scale" ) ); };
 
 public:
 	Scale();
@@ -58,6 +57,49 @@ private:
 	float rateFromTo;
 
 	bool doScale;
+};
+
+// #############################################################################
+// #############################################################################
+
+class MultiIndexIterator : public Object {
+public:
+	MultiIndexIterator( int numberOfAxis , int axisPoints );
+	~MultiIndexIterator();
+
+public:
+	void start();
+	void startAround( MultiIndexIterator& point );
+	void startDistinctUnsorted();
+
+	bool next();
+	bool nextAround();
+	bool nextDistinctUnsorted();
+
+	int getGlobalIndex();
+	int getGlobalIndexAround();
+
+	int getAxisIndex( int axis );
+	int getAxisIndexAround( int axis );
+
+	int getNumberOfAxis();
+	int getAxisPoints();
+
+	bool hasEqualIndexes();
+
+private:
+	bool isBeyondAround();
+
+private:
+	int totalPoints;
+	int numberOfAxis;
+	int axisPoints;
+
+	int *axisIndex; // [numberOfAxis]
+	int globalIndex;
+
+	int *axisIndexAround; // [numberOfAxis], delta for axisIndex, 0=0,1=1,2=-1
+	int globalIndexAround;
 };
 
 /*#########################################################################*/
