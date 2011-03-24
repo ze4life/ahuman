@@ -4,19 +4,34 @@ void execute( String etcpath )
 {
 	// create services
 	ServiceManager sm;
+	sm.setRootLogLevel( Logger::LogLevelDebug );
+	Logger logger;
+	logger.attachRoot();
+
 	try {
 		sm.addPlatformServices();
 
 		// configure all
 		sm.configureDefault( etcpath );
 
-		// create configured services
+		// create and configured services
 		sm.createServices();
+		sm.initServices();
+		sm.runServices();
+
+		// wait for completion
+		sm.waitRunDefault();
+	}
+	catch( RuntimeException& e ) {
+		logger.printStack( e );
+	}
+
+	// cleanup
+	try {
+		sm.exitServices();
 		sm.destroyServices();
 	}
 	catch( RuntimeException& e ) {
-		Logger logger;
-		logger.attachRoot();
 		logger.printStack( e );
 	}
 }

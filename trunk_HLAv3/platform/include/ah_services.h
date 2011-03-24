@@ -76,10 +76,11 @@ public:
 
 class ServiceManager {
 public:
+	// add services
 	void addService( Service *src );
 	void addPlatformServices();
 	Service *getService( const char *serviceName );
-	ClassList<Service> getServices();
+	ClassList<Service>& getServices();
 
 	// configuring
 	void configureDefault( String etcpath );
@@ -94,8 +95,11 @@ public:
 	void exitServices();		// wait for completion of all threads created, cleanup without dropping interfaces, last chance to use links between services
 	void destroyServices();		// drop internal data
 
-	LogManager *getLogManager();
+	// runtime operations
+	void waitRunDefault();
 	bool canStartThread();
+	void setRootLogLevel( Logger::LogLevel p_logLevel );
+	LogManager *getLogManager();
 
 public:
 	ServiceManager();
