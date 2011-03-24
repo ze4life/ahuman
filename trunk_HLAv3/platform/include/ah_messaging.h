@@ -9,13 +9,13 @@
 class Message;
 class TextMessage;
 class BinaryMessage;
-class Publisher;
-class Subscriber;
-class Subscription;
+class MessagePublisher;
+class MessageSubscriber;
+class MessageSubscription;
 class XmlMessage;
 class XmlCall;
-class Channel;
-class Session;
+class MessageChannel;
+class MessageSession;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -23,67 +23,100 @@ class Session;
 class MessagingService : public Service {
 public:
 	// sessions
-	Session *createSession();
-	void closeSession( Session *session );
+	MessageSession *createSession();
+	void closeSession( MessageSession *session );
 
 	// topics publishers and subscribers
-	Publisher *createPublisher( Session *session , String channel , String pubName , String msgtype );
-	Subscription *subscribe( Session *session , String channel , String subName , Subscriber *sub );
-	Subscription *subscribeSelector( Session *session , String channel , String selector , String subName , Subscriber *sub );
-	bool destroyPublisher( Publisher *pub );
-	bool unsubscribe( Subscription *sub );
+	MessagePublisher *createPublisher( MessageSession *session , String channel , String pubName , String msgtype );
+	MessageSubscription *subscribe( MessageSession *session , String channel , String subName , MessageSubscriber *sub );
+	MessageSubscription *subscribeSelector( MessageSession *session , String channel , String selector , String subName , MessageSubscriber *sub );
+	bool destroyPublisher( MessagePublisher *pub );
+	bool unsubscribe( MessageSubscription *sub );
 
 public:
 	virtual const char *getServiceName() { return( "MessagingService" ); };
-	virtual void configureService( Xml config ) {};
-	virtual void createService() {};
-	virtual void initService() {};
-	virtual void runService() {};
-	virtual void stopService() {};
-	virtual void exitService() {};
-	virtual void destroyService() {};
+	virtual void configureService( Xml config );
+	virtual void createService();
+	virtual void initService();
+	virtual void runService();
+	virtual void stopService();
+	virtual void exitService();
+	virtual void destroyService();
 
 // engine helpers
 protected:
 	MessagingService() {};
 public:
 	static Service *newService();
-	MessagingService *getService() { return( ( MessagingService * )ServiceManager::getInstance().getService( "MessagingService" ) ); };
+	static MessagingService *getService() { return( ( MessagingService * )ServiceManager::getInstance().getService( "MessagingService" ) ); };
+
+// internals
+private:
+	MessageChannel *createChannel( Xml config );
+	MessageChannel *getChannel( String name );
+	void lock();
+	void unlock();
+	void openAllChannels();
+	void startAllChannels();
+	void closeAllChannels();
+
+private:
+	Xml config;
+	rfc_lock *dataLock;
+	int lastSessionId;
+	MapStringToClass<MessageChannel> mapChannels; // channel name to class
+	MapIntToClass<MessageSession> sessions;
 };
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-class Session
-{
+class MessageSession {
 public:
-	Session() {};
-	virtual ~Session() {};
+	int getSessionId();
+	void setObject( Object *o , String name );
+	Object *getObject( String name );
 
 public:
-	virtual int getSessionId() = 0;
-	virtual void setObject( Object *o , String name ) = 0;
-	virtual Object *getObject( String name ) = 0;
+	MessageSession( int id );
+	~MessageSession();
+
+// internals
+private:
+	int sessionId;
+	rfc_lock *dataLock;
+	MapStringToClass<Object> objects;
 };
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-class Publisher
-{
+class MessagePublisher {
 public:
-	virtual ~Publisher() {};
-	virtual String publish( Session *session , const char *msg ) = 0;
-	virtual String publish( Session *session , Message *msg ) = 0;
-	virtual Channel *getChannel() = 0;
-	virtual const String& getMsgType() = 0;
+	MessagePublisher( MessageSession *session , MessageChannel *p_channel , String p_name , String p_msgtype );
+	~MessagePublisher();
+
+public:
+	String publish( MessageSession *session , const char *msg );
+	String publish( MessageSession *session , Message *msg );
+	MessageChannel *getChannel();
+	const String& getMsgType();
+
+// internals
+public:
+	void disconnected();
+
+public:
+	MessageSession *session;
+	MessageChannel *channel;
+	String name;
+	String msgtype;
 };
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-class Subscriber
-{
+class MessageSubscriber {
 public:
 	virtual void onMessage( Message *msg ) {};
 	virtual void onTextMessage( TextMessage *msg ) {};
@@ -95,20 +128,36 @@ public:
 /*#########################################################################*/
 /*#########################################################################*/
 
-class Subscription
-{
+class MessageSubscription {
 public:
-	virtual Channel *getChannel() = 0;
+	MessageChannel *getChannel();
+	void setSelector( String selector );
+	void disconnected();
 
-	virtual ~Subscription() {};
+public:
+	MessageSubscription( MessageSession *session , MessageChannel *p_channel , String p_name , MessageSubscriber *p_sub );
+	~MessageSubscription() {};
+
+// internals
+public:
+	void processMessage( Message *msg );
+
+private:
+	bool isMatchSelector( Message *msg );
+
+public:
+	MessageSession *session;
+	MessageChannel *channel;
+	String selector;
+	String name;
+	MessageSubscriber *sub;
 };
 
 /*#########################################################################*/
 /*#########################################################################*/
 
 // message
-class Message
-{
+class Message {
 public:
 	typedef enum {
 		MsgType_Unknown = 0 ,
@@ -121,6 +170,7 @@ public:
 public:
 	Message( MsgType baseType , const char *classType );
 	virtual ~Message();
+
 	virtual void postExecute() {};
 
 	MsgType getBaseType() { return( baseType ); };
@@ -141,15 +191,15 @@ public:
 	void setChannelMessageId( const char *p_id ) { id = p_id; };
 	const String& getChannelMessageId() { return( id ); };
 
-	void setSession( Session *p_session ) { session = p_session; };
-	Session *getSession() { return( session ); };
+	void setSession( MessageSession *p_session ) { session = p_session; };
+	MessageSession *getSession() { return( session ); };
 
 protected:
 	const MsgType baseType;
 	const String classType;
 
 private:
-	Session *session;
+	MessageSession *session;
 	String id;
 	String extid;
 	String source;
@@ -159,8 +209,7 @@ private:
 /*#########################################################################*/
 
 // message
-class TextMessage : public Message
-{
+class TextMessage : public Message {
 public:
 	TextMessage() : Message( Message::MsgType_Text , NULL ) {};
 	TextMessage( const char *classType ) : Message( Message::MsgType_Text , classType ) {};
@@ -179,12 +228,12 @@ private:
 /*#########################################################################*/
 /*#########################################################################*/
 
-class XmlMessage : public TextMessage
-{
+class XmlMessage : public TextMessage {
 public:
 	XmlMessage( const char *txt );
 	XmlMessage( Xml xml );
 	virtual ~XmlMessage();
+
 	virtual void postExecute() {};
 
 protected:
@@ -204,11 +253,11 @@ private:
 /*#########################################################################*/
 /*#########################################################################*/
 
-class XmlCall : public XmlMessage
-{
+class XmlCall : public XmlMessage {
 public:
-	XmlCall( Channel *channelIn , Channel *channelOut , const char *txt );
+	XmlCall( MessageChannel *channelIn , MessageChannel *channelOut , const char *txt );
 	virtual ~XmlCall();
+
 	virtual void postExecute();
 
 	void setXmlFromMessage();
@@ -228,15 +277,15 @@ public:
 	Xml getResponse();
 	Xml createResponse();
 	Xml createStatusResponse( String status );
-	String sendResponse( Publisher *pub );
-	String sendResponseException( Publisher *pub , RuntimeException& e );
-	String sendResponseUnknownException( Publisher *pub );
+	String sendResponse( MessagePublisher *pub );
+	String sendResponseException( MessagePublisher *pub , RuntimeException& e );
+	String sendResponseUnknownException( MessagePublisher *pub );
 	String sendUnknownResponse();
 	String sendStatusResponse( String status );
 
 private:
-	Channel *channelIn;
-	Channel *channelOut;
+	MessageChannel *channelIn;
+	MessageChannel *channelOut;
 
 	String requestId;
 	String name;

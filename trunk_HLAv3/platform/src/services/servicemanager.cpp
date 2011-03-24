@@ -239,11 +239,11 @@ void ServiceManager::exitServices() {
 		catch( RuntimeException& e ) {
 			everyCold = false;
 			logger.printStack( e );
-			logger.logInfo( String( "exitServices: exception while stopping service name=" ) + svc -> getServiceName() );
+			logger.logInfo( String( "exitServices: exception while exiting service name=" ) + svc -> getServiceName() );
 		}
 		catch( ... ) {
 			everyCold = false;
-			logger.logInfo( String( "exitServices: unknown exception while stopping service name=" ) + svc -> getServiceName() );
+			logger.logInfo( String( "exitServices: unknown exception while exiting service name=" ) + svc -> getServiceName() );
 		}
 	}
 
@@ -297,6 +297,14 @@ LogManager *ServiceManager::getLogManager() {
 
 bool ServiceManager::canStartThread() {
 	return( state.getState() == ServiceState::AH_INITIALIZED || state.getState() == ServiceState::AH_RUNNING );
+}
+
+bool ServiceManager::isRunning() {
+	return( state.getState() == ServiceState::AH_RUNNING );
+}
+
+bool ServiceManager::isCreated() {
+	return( state.getState() != ServiceState::AH_COLD );
 }
 
 /*#########################################################################*/
