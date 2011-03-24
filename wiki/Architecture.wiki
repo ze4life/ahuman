@@ -49,16 +49,16 @@ aMind is a sole part of aHuman and has its own layered HLA:
 
 Platform contains multiple services and split on HLA level to components as well:
 
-|| *Component* || *Implements* ||
-|| aServiceManager || base types, plain and template classes, logging, exception handling, service and program lifecycle ||
-|| aObjectService || Unified objects and object persistence, object types ||
-|| aMessagingService || Internal decoupling mechanism to arrange manageable numerous interactions among components ||
-|| aThreadService || multi-threading environment, CPU management, performance monitoring ||
-|| aMediaService || Communicating with external world using standard protocols with non-aHuman services or internal aHuman protocol with aHuman tools ||
-|| aPersistingService || Persistence of memory in filesystem space ||
-|| aMathService || Specific mathematical calculations ||
-|| aEnvService || Handling environment, including configuring, deployed instance, operating system and other available resources ||
-|| aTestService || Testing and debugging support ||
+|| *Component* || *Implements* || *Depends on* ||
+|| aServiceManager || base types, plain and template classes, logging, exception handling, service and program lifecycle || - ||
+|| aEnvService || Handling environment, including configuring, deployed instance, operating system and other available resources || - ||
+|| aObjectService || Unified objects and object persistence, object types || - ||
+|| aMathService || Specific mathematical calculations || - ||
+|| aPersistingService || Persistence of memory in filesystem space || aObjectService ||
+|| aThreadService || multi-threading environment, CPU management, performance monitoring || aObjectService ||
+|| aMessagingService || Internal decoupling mechanism to arrange manageable numerous interactions among components || aObjectService, aThreadService ||
+|| aMediaService || Communicating with external world using standard protocols with non-aHuman services or internal aHuman protocol with aHuman tools || aObjectService, aThreadService, aMessagingService ||
+|| aTestService || Testing and debugging support || aObjectService, aMessagingService ||
 
 == HLA State and Development ==
 
