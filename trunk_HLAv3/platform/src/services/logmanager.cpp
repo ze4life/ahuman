@@ -8,6 +8,7 @@
 // #############################################################################
 
 RFC_HND LogManager::stopEvent = NULL;
+LogSettingsItem *LogManager::rootSettings = NULL;
 
 static unsigned __stdcall async_logger( void *p_arg ) {
 	LogManager *lm = ( LogManager * )p_arg;
@@ -19,7 +20,6 @@ static unsigned __stdcall async_logger( void *p_arg ) {
 // #############################################################################
 
 LogManager::LogManager() {
-	engine = NULL;
 	logFileStream = NULL;
 	lock = rfc_hnd_semcreate();
 	stopEvent = rfc_hnd_evcreate();
@@ -39,7 +39,6 @@ LogManager::LogManager() {
 	n2f = n4f = n5f = n6e = 0;
 
 	startAdd = startGet = 0;
-
 	logger.attachRoot();
 }
 
@@ -56,11 +55,15 @@ LogManager::~LogManager() {
 
 void LogManager::configure( Xml config ) {
 	logSettings.load( config );
+
 	syncModeConfigured = logSettings.getSyncMode();
+	LogManager::rootSettings = logSettings.getDefaultSettings();
 }
 
-LogSettingsItem *LogManager::getDefaultSettings() {
-	return( logSettings.getDefaultSettings() );
+LogSettingsItem *LogManager::getRootSettings() {
+	if( LogManager::rootSettings == NULL )
+		LogManager::rootSettings = LogSettings::createRootSettings( Logger::LogLevelInfo );
+	return( LogManager::rootSettings );
 }
 
 LogSettingsItem *LogManager::getObjectLogSettings( const char *className , const char *classInstance ) {
@@ -81,17 +84,13 @@ LogSettingsItem *LogManager::getCustomDefaultLogSettings() {
 
 // sync/async mode
 void LogManager::setSyncMode( bool p_syncMode ) {
-	// enable only sync logging without thread service
-	ThreadService *ts = ThreadService::getService();
-	if( ts == NULL )
-		p_syncMode = true;
-
 	if( syncMode == p_syncMode )
 		return;
 
 	syncMode = p_syncMode;
 	if( syncMode == false ) {
 		rfc_hnd_evreset( stopEvent );
+		logger.logInfo( "LogManager::setSyncMode: start asynchronous logging..." );
 		if( !rfc_thr_process( &asyncThread , this , async_logger ) ) {
 			// wait till log thread successfully started
 			rfc_hnd_waitevent( stopEvent , -1 );
@@ -133,6 +132,9 @@ bool LogManager::start() {
 }
 
 void LogManager::stopAsync() {
+	if( syncMode )
+		return;
+
 	setSyncMode( true );
 }
 
@@ -144,6 +146,7 @@ void LogManager::stop() {
 void LogManager::run( void * ) {
 	// signal thread is started
 	rfc_hnd_evsignal( stopEvent );
+	logger.logInfo( "LogManager::run: asynchronous logging thread started" );
 
 	try {
 		// do get in cycle
@@ -157,13 +160,14 @@ void LogManager::run( void * ) {
 	}
 	catch ( RuntimeException& e ) {
 		logger.printStack( e );
-		fprintf( stderr , "exception in logging: " , e.getMsg() );
+		fprintf( stderr , "LogManager::run: exception in logging: " , e.getMsg() );
 	}
 	catch ( ... ) {
 		logger.printStack();
-		fprintf( stderr , "unknown exception in logging" );
+		fprintf( stderr , "LogManager::run: unknown exception in logging" );
 	}
 
+	logger.logInfo( "LogManager::run: asynchronous logging thread stopped" );
 	rfc_hnd_evsignal( stopEvent );
 }
 

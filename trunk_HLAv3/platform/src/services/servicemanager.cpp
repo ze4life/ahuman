@@ -29,6 +29,11 @@ void ServiceManager::configureLogging( Xml config ) {
 	logManager -> start();
 }
 
+void ServiceManager::setRootLogLevel( Logger::LogLevel p_logLevel ) {
+	LogSettingsItem *rootSettings = LogManager::getRootSettings();
+	rootSettings -> setLevel( p_logLevel );
+}
+
 void ServiceManager::addService( Service *svc ) {
 	serviceList.add( svc );
 	svc -> attachLogger();
@@ -58,8 +63,16 @@ Service *ServiceManager::getService( const char *serviceName ) {
 	return( services.get( serviceName ) );
 }
 
-ClassList<Service> ServiceManager::getServices() {
+ClassList<Service>& ServiceManager::getServices() {
 	return( serviceList );
+}
+
+void ServiceManager::waitRunDefault() {
+	ThreadService *ts = ThreadService::getService();
+	ASSERTMSG( ts != NULL , "Thread service is not created" );
+	ts -> waitExitSignal();
+	stopServices();
+	ts -> waitAllThreads();
 }
 
 void ServiceManager::createServices() {
@@ -143,8 +156,8 @@ void ServiceManager::initServices() {
 
 void ServiceManager::runServices() {
 	// set logging to configured mode
-	bool mode = logManager -> getConfiguredSyncMode();
-	logManager -> setSyncMode( mode );
+	if( !logManager -> getConfiguredSyncMode() )
+		logManager -> setSyncMode( false );
 
 	logger.logInfo( "runServices: run services..." );
 	state.setState( ServiceState::AH_RUNNING );
@@ -198,6 +211,9 @@ void ServiceManager::stopServices() {
 }
 
 void ServiceManager::exitServices() {
+	// set logging to sync mode
+	logManager -> setSyncMode( true );
+
 	logger.logInfo( "exitServices: exit services..." );
 	state.setState( ServiceState::AH_EXITING );
 

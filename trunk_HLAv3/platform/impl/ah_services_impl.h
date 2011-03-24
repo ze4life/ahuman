@@ -60,6 +60,7 @@ public:
 	String getFileName();
 	String getFormat();
 
+	static LogSettingsItem *createRootSettings( Logger::LogLevel p_logLevel );
 	LogSettingsItem *getDefaultSettings();
 	LogSettingsItem *getCustomDefaultSettings();
 	LogSettingsItem *getObjectSettings( const char *className , const char *instance );
@@ -125,7 +126,7 @@ public:
 	int getLogRecordsPending();
 
 	// log level
-	LogSettingsItem *getDefaultSettings();
+	static LogSettingsItem *getRootSettings();
 	LogSettingsItem *getCustomDefaultLogSettings();
 	LogSettingsItem *getObjectLogSettings( const char *className , const char *classInstance );
 	LogSettingsItem *getServiceLogSettings( const char *serviceName );
@@ -138,7 +139,8 @@ private:
 	void showAsyncMessages();
 
 private:
-	ServiceManager *engine;
+	static LogSettingsItem *rootSettings;
+
 	Logger logger;
 	FILE *logFileStream;
 	LogSettings logSettings;

@@ -14,6 +14,12 @@ LogSettings::~LogSettings() {
 	customData.destroy();
 }
 
+LogSettingsItem *LogSettings::createRootSettings( Logger::LogLevel p_logLevel ) {
+	LogSettingsItem *s = new LogSettingsItem();
+	s -> setLevel( p_logLevel );
+	return( s );
+}
+
 void LogSettings::load( Xml config ) {
 	// read
 	String defaultLevel = config.getProperty( "defaultLevel" );
@@ -94,3 +100,4 @@ String LogSettings::getFormat() {
 bool LogSettings::getSyncMode() {
 	return( syncMode );
 }
+
