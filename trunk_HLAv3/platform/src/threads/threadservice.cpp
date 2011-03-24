@@ -41,8 +41,6 @@ void ThreadService::createService() {
 
 	tlsIndex = TlsAlloc();
 
-	rfc_thr_initstackhandle();
-
 	Timer::startAdjustment();
 	rfc_thr_sleep( 1 );
 	Timer::stopAdjustment();
@@ -55,8 +53,6 @@ void ThreadService::createService() {
 }
 
 void ThreadService::destroyService() {
-	rfc_thr_exitstackhandle();
-
 	rfc_hnd_semdestroy( lockExit );
 	rfc_hnd_evdestroy( eventExit );
 }

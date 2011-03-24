@@ -42,148 +42,55 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="impl\ah_objects_impl.h">
-      <Filter>impl</Filter>
-    </ClInclude>
-    <ClInclude Include="impl\ah_services_impl.h">
-      <Filter>impl</Filter>
-    </ClInclude>
-    <ClInclude Include="impl\ah_threads_impl.h">
-      <Filter>impl</Filter>
-    </ClInclude>
-    <ClInclude Include="impl\ah_tinyxml.h">
-      <Filter>impl</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ah_basetypes.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ah_environment.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ah_logging.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ah_media.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ah_messaging.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ah_objects.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ah_objecttypes.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ah_persisting.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ah_platform.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ah_services.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ah_templates.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ah_testing.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ah_threads.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ah_math.h">
-      <Filter>include</Filter>
-    </ClInclude>
+    <ClCompile Include="src\services\service.cpp" />
+    <ClCompile Include="src\services\logger.cpp" />
+    <ClCompile Include="src\services\xml.cpp" />
+    <ClCompile Include="src\services\logmanager.cpp" />
+    <ClCompile Include="src\services\logsettings.cpp" />
+    <ClCompile Include="src\services\logsettingsitem.cpp" />
+    <ClCompile Include="src\services\runtimeexception.cpp" />
+    <ClCompile Include="src\services\servicemanager.cpp" />
+    <ClCompile Include="src\services\string.cpp" />
+    <ClCompile Include="src\services\tinyxml.cpp" />
+    <ClCompile Include="src\services\tinyxmlerror.cpp" />
+    <ClCompile Include="src\services\tinyxmlparser.cpp" />
+    <ClCompile Include="src\environment\envservice.cpp" />
+    <ClCompile Include="src\environment\fileutils.cpp" />
+    <ClCompile Include="src\math\mathservice.cpp" />
+    <ClCompile Include="src\math\random.cpp" />
+    <ClCompile Include="src\media\mediaservice.cpp" />
+    <ClCompile Include="src\messaging\messagingservice.cpp" />
+    <ClCompile Include="src\objects\multiindexiterator.cpp" />
+    <ClCompile Include="src\objects\object.cpp" />
+    <ClCompile Include="src\objects\objectfield.cpp" />
+    <ClCompile Include="src\objects\objectservice.cpp" />
+    <ClCompile Include="src\objects\scale.cpp" />
+    <ClCompile Include="src\objects\serializeobject.cpp" />
+    <ClCompile Include="src\persisting\persistingservice.cpp" />
+    <ClCompile Include="src\testing\testservice.cpp" />
+    <ClCompile Include="src\threads\threadhelper.cpp" />
+    <ClCompile Include="src\threads\threadservice.cpp" />
+    <ClCompile Include="src\threads\timer.cpp" />
+    <ClCompile Include="src\platform.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\platform.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\services\logger.cpp">
-      <Filter>src\services</Filter>
-    </ClCompile>
-    <ClCompile Include="src\services\logmanager.cpp">
-      <Filter>src\services</Filter>
-    </ClCompile>
-    <ClCompile Include="src\services\logsettings.cpp">
-      <Filter>src\services</Filter>
-    </ClCompile>
-    <ClCompile Include="src\services\logsettingsitem.cpp">
-      <Filter>src\services</Filter>
-    </ClCompile>
-    <ClCompile Include="src\services\multiindexiterator.cpp">
-      <Filter>src\services</Filter>
-    </ClCompile>
-    <ClCompile Include="src\services\runtimeexception.cpp">
-      <Filter>src\services</Filter>
-    </ClCompile>
-    <ClCompile Include="src\services\servicemanager.cpp">
-      <Filter>src\services</Filter>
-    </ClCompile>
-    <ClCompile Include="src\services\string.cpp">
-      <Filter>src\services</Filter>
-    </ClCompile>
-    <ClCompile Include="src\services\tinyxml.cpp">
-      <Filter>src\services</Filter>
-    </ClCompile>
-    <ClCompile Include="src\services\tinyxmlerror.cpp">
-      <Filter>src\services</Filter>
-    </ClCompile>
-    <ClCompile Include="src\services\tinyxmlparser.cpp">
-      <Filter>src\services</Filter>
-    </ClCompile>
-    <ClCompile Include="src\services\xml.cpp">
-      <Filter>src\services</Filter>
-    </ClCompile>
-    <ClCompile Include="src\objects\object.cpp">
-      <Filter>src\objects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\threads\threadservice.cpp">
-      <Filter>src\threads</Filter>
-    </ClCompile>
-    <ClCompile Include="src\objects\objectservice.cpp">
-      <Filter>src\objects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\environment\envservice.cpp">
-      <Filter>src\environment</Filter>
-    </ClCompile>
-    <ClCompile Include="src\objects\objectfield.cpp">
-      <Filter>src\objects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\objects\scale.cpp">
-      <Filter>src\objects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\objects\serializeobject.cpp">
-      <Filter>src\objects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\environment\fileutils.cpp">
-      <Filter>src\environment</Filter>
-    </ClCompile>
-    <ClCompile Include="src\threads\threadhelper.cpp">
-      <Filter>src\threads</Filter>
-    </ClCompile>
-    <ClCompile Include="src\threads\timer.cpp">
-      <Filter>src\threads</Filter>
-    </ClCompile>
-    <ClCompile Include="src\testing\testservice.cpp">
-      <Filter>src\testing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\math\random.cpp">
-      <Filter>src\math</Filter>
-    </ClCompile>
-    <ClCompile Include="src\persisting\persistingservice.cpp">
-      <Filter>src\persisting</Filter>
-    </ClCompile>
-    <ClCompile Include="src\media\mediaservice.cpp">
-      <Filter>src\media</Filter>
-    </ClCompile>
-    <ClCompile Include="src\messaging\messagingservice.cpp">
-      <Filter>src\messaging</Filter>
-    </ClCompile>
-    <ClCompile Include="src\math\mathservice.cpp">
-      <Filter>src\math</Filter>
-    </ClCompile>
+    <ClInclude Include="impl\ah_objects_impl.h" />
+    <ClInclude Include="impl\ah_services_impl.h" />
+    <ClInclude Include="impl\ah_threads_impl.h" />
+    <ClInclude Include="impl\ah_tinyxml.h" />
+    <ClInclude Include="include\ah_basetypes.h" />
+    <ClInclude Include="include\ah_environment.h" />
+    <ClInclude Include="include\ah_logging.h" />
+    <ClInclude Include="include\ah_math.h" />
+    <ClInclude Include="include\ah_media.h" />
+    <ClInclude Include="include\ah_messaging.h" />
+    <ClInclude Include="include\ah_objects.h" />
+    <ClInclude Include="include\ah_objecttypes.h" />
+    <ClInclude Include="include\ah_persisting.h" />
+    <ClInclude Include="include\ah_platform.h" />
+    <ClInclude Include="include\ah_services.h" />
+    <ClInclude Include="include\ah_templates.h" />
+    <ClInclude Include="include\ah_testing.h" />
+    <ClInclude Include="include\ah_threads.h" />
   </ItemGroup>
 </Project>

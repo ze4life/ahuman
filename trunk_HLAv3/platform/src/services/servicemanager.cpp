@@ -8,8 +8,39 @@ ServiceManager *ServiceManager::instance = NULL;
 /*#########################################################################*/
 /*#########################################################################*/
 
+static void UnhandledExceptionTranslator( unsigned int exceptionCode , struct _EXCEPTION_POINTERS *exceptionInfo ) {
+	throw RuntimeException( exceptionCode , 1 , exceptionInfo -> ExceptionRecord -> ExceptionAddress );
+}
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+void ServiceManager::configureDefault( String etcpath ) {
+	EnvService *es = ( EnvService * )findServiceByName( "EnvService" );
+	ASSERTMSG( es != NULL , "EnvService was not added to the list of services" );
+	es -> configureAll( etcpath );
+}
+
+void ServiceManager::configureLifecycle( Xml config ) {
+}
+
+void ServiceManager::configureLogging( Xml config ) {
+	logManager -> configure( config );
+	logManager -> start();
+}
+
 void ServiceManager::addService( Service *svc ) {
 	serviceList.add( svc );
+	svc -> attachLogger();
+}
+
+Service *ServiceManager::findServiceByName( String name ) {
+	for( int k = 0; k < serviceList.count(); k++ ) {
+		Service *svc = serviceList.get( k );
+		if( name.equals( svc -> getServiceName() ) )
+			return( svc );
+	}
+	return( NULL );
 }
 
 void ServiceManager::addPlatformServices() {
@@ -257,14 +288,21 @@ bool ServiceManager::canStartThread() {
 
 // constructor
 ServiceManager::ServiceManager() {
+	ServiceManager::instance = this;
+
 	stoppedBySignal = false;
 	logManager = new LogManager();
-	ServiceManager::instance = this;
 	logger.attachRoot();
+
+	// enable exception handling
+	rfc_thr_initstackhandle();
+	::_set_se_translator( UnhandledExceptionTranslator );
 }
 
 ServiceManager::~ServiceManager() {
 	delete logManager;
+
+	rfc_thr_exitstackhandle();
 }
 
 ServiceManager& ServiceManager::getInstance() {
@@ -296,3 +334,4 @@ void ServiceManager::logStopAsync()
 	// stop async logging
 	logManager -> stopAsync();
 }
+
