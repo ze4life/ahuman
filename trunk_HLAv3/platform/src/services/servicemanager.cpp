@@ -70,6 +70,7 @@ ClassList<Service>& ServiceManager::getServices() {
 void ServiceManager::waitRunDefault() {
 	ThreadService *ts = ThreadService::getService();
 	ASSERTMSG( ts != NULL , "Thread service is not created" );
+
 	ts -> waitExitSignal();
 	stopServices();
 	ts -> waitAllThreads();
@@ -180,8 +181,10 @@ void ServiceManager::runServices() {
 }
 
 void ServiceManager::stopServices() {
-	stoppedBySignal = true;
-	logger.logInfo( "stopServices: exit services..." );
+	if( !isRunning() )
+		return;
+
+	logger.logInfo( "stopServices: stop services..." );
 
 	// in back order
 	for( int k = serviceList.count() - 1; k >= 0 ; k-- ) {
@@ -213,6 +216,9 @@ void ServiceManager::stopServices() {
 void ServiceManager::exitServices() {
 	// set logging to sync mode
 	logManager -> setSyncMode( true );
+
+	if( !isCreated() )
+		return;
 
 	logger.logInfo( "exitServices: exit services..." );
 	state.setState( ServiceState::AH_EXITING );
@@ -314,7 +320,6 @@ bool ServiceManager::isCreated() {
 ServiceManager::ServiceManager() {
 	ServiceManager::instance = this;
 
-	stoppedBySignal = false;
 	logManager = new LogManager();
 	logger.attachRoot();
 

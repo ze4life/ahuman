@@ -11,7 +11,8 @@ MessageChannel::MessageChannel( String p_msgid , String p_name , bool p_sync ) {
 
 	opened = false;
 	sync = p_sync;
-	run = false;
+	running = false;
+	stopping = false;
 	queueMessageId = 0;
 
 	messages = NULL;
@@ -53,19 +54,36 @@ void MessageChannel::open() {
 }
 
 void MessageChannel::start() {
-	// create channel thread
 	lock();
+
+	// create channel thread
 	if( !sync ) {
 		ThreadService *ts = ThreadService::getService();
 		channelThread = ts -> runThread( name ,  this , ( ObjectThreadFunction )&MessageChannel::threadChannelFunction , NULL );
+		running = true;
 	}
 
-	run = true;
+	unlock();
+}
+
+void MessageChannel::stop() {
+	lock();
+
+	if( !running ) {
+		unlock();
+		return;
+	}
+
+	// mark stopping and wakeup thread
+	stopping = true;
+	messages -> wakeup();
+
 	unlock();
 }
 
 void MessageChannel::close() {
 	lock();
+
 	if( !opened ) {
 		unlock();
 		return;
@@ -73,20 +91,23 @@ void MessageChannel::close() {
 
 	// close queue and cleanup
 	opened = false;
-	run = false;
 	if( messages != NULL )
 		messages -> makeEmptyAndWakeup();
 
-	if( !sync ) {
+	if( running ) {
 		// stop thread
 		ThreadService *ts = ThreadService::getService();
 		ts -> waitThreadExited( channelThread );
 		channelThread = NULL;
+		running = false;
 	}
 
 	// clear subscribers and publishers
 	disconnectSubscriptions();
 	disconnectPublishers();
+
+	// stopped
+	stopping = false;
 	unlock();
 }
 
@@ -98,8 +119,6 @@ String MessageChannel::publish( MessageSession *p_session , MessagePublisher *pu
 
 String MessageChannel::publish( MessageSession *p_session , MessagePublisher *pub , Message *msg ) {
 	ASSERTMSG( opened , "cannot publish to i/o channel name=" + name + " - not open" );
-	if( sync )
-		ASSERTMSG( run , "cannot publish to sync i/o channel name=" + name + " - not started" );
 
 	String id = getNewMessageId();
 	msg -> setChannelMessageId( id ); 
@@ -118,8 +137,6 @@ String MessageChannel::publish( MessageSession *p_session , MessagePublisher *pu
 
 String MessageChannel::publish( MessageSession *p_session , Message *msg ) {
 	ASSERTMSG( opened , "cannot publish to i/o channel name=" + name + " - not open" );
-	if( sync )
-		ASSERTMSG( run , "cannot publish to sync i/o channel name=" + name + " - not started" );
 
 	String id = getNewMessageId();
 	msg -> setChannelMessageId( id ); 
@@ -173,11 +190,17 @@ void MessageChannel::deletePublisher( String key ) {
 // executing in separate thread
 void MessageChannel::processMessages() {
 	logger.logInfo( String( "processMessages: i/o channel opened id=" ) + Object::getInstance() );
-	while( run ) {
+	while( true ) {
 		// get next message
 		Message *message = messages -> getNextMessage();
-		if( message == NULL )
-			break;
+		if( message == NULL ) {
+			// exit if channel should be stopped
+			if( stopping )
+				break;
+
+			// ignore wakeup
+			continue;
+		}
 
 		// log
 		logger.logInfo( String( "processMessages: message extracted from i/o channel id=" ) + Object::getInstance() + 
@@ -200,8 +223,7 @@ void MessageChannel::subscribeEvent( Message *p_msg ) {
 	for( int k = 0; k < subs.count(); k++ ) {
 		MessageSubscription *sub = subs.getClassByIndex( k );
 		MessageSession *l_sub_session = sub -> session;
-		//TODO: Sarbjit: Not sure how to get over this
-		//if( l_sub_session == NULL || l_session == l_sub_session )
+		if( l_sub_session == NULL || l_session == l_sub_session )
 			sub -> processMessage( p_msg );
 	}
 	unlock();

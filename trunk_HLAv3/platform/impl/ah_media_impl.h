@@ -131,6 +131,7 @@ public:
 	virtual void configure( Xml config ) = 0;
 	virtual bool startListener() = 0;
 	virtual void stopListener() = 0;
+	virtual void exitListener() = 0;
 	virtual String getAddress() = 0;
 
 public:
@@ -148,6 +149,7 @@ public:
 	void addListenerConnection( SocketConnection *connection );
 	void removeListenerConnection( SocketConnection *connection );
 	void stopListenerConnections();
+	void exitListenerConnections();
 };
 
 /*#########################################################################*/
@@ -184,6 +186,7 @@ public:
 	void configure( Xml config );
 	bool startActiveSocket();
 	void stopActiveSocket();
+	void exitActiveSocket();
 
 	virtual void onTextMessage( TextMessage *msg );
 
@@ -245,6 +248,7 @@ public:
 public:
 	bool startConnection();
 	void stopConnection();
+	void exitConnection();
 
 	String getClientSocketName();
 
@@ -290,6 +294,7 @@ public:
 	virtual void configure( Xml config );
 	virtual bool startListener();
 	virtual void stopListener();
+	virtual void exitListener();
 	virtual String getAddress();
 
 public:
@@ -302,6 +307,7 @@ public:
 	void acceptConnectionLoop();
 	bool openListeningPort();
 	void closeListeningPort();
+	void exitListeningPort();
 
 	void performConnect();
 	bool startConnection( SOCKET clientSocket , struct sockaddr_in *clientAddress );

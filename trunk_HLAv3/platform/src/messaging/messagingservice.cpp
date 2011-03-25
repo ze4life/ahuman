@@ -31,6 +31,7 @@ void MessagingService::runService() {
 }
 
 void MessagingService::stopService() {
+	stopAllChannels();
 }
 
 void MessagingService::exitService() {
@@ -180,6 +181,20 @@ void MessagingService::startAllChannels() {
 
 		// start given channel
 		channel -> start();
+	}
+
+	unlock();
+}
+
+void MessagingService::stopAllChannels() {
+	lock();
+
+	// close all channels
+	for( int k = 0; k < mapChannels.count(); k++ ) {
+		MessageChannel *channel = mapChannels.getClassByIndex( k );
+
+		// close given channel
+		channel -> stop();
 	}
 
 	unlock();

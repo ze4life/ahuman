@@ -75,6 +75,12 @@ bool SocketServer::startListener() {
 
 void SocketServer::stopListener() {
 	closeListeningPort();
+	stopListenerConnections();
+}
+
+void SocketServer::exitListener() {
+	exitListeningPort();
+	exitListenerConnections();
 }
 
 String SocketServer::getAddress() {
@@ -177,12 +183,16 @@ void SocketServer::closeListeningPort() {
 		String msg = "closeListeningPort: stopped listener on address=" + getAddress( &listen_inet );
 		logger.logInfo( msg );
 	}
+}
 
+void SocketServer::exitListeningPort() {
 	if( listenThread != ( RFC_HND )NULL ) {
 		ThreadService *ts = ThreadService::getService();
 		ts -> waitThreadExited( listenThread );
 		listenThread = ( RFC_HND )NULL;
 	}
+
+	shutdownInProgress = false;
 }
 
 void SocketServer::acceptConnectionLoop() {

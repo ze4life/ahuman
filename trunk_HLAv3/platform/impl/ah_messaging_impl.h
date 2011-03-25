@@ -18,6 +18,7 @@ public:
 	String getName();
 	void open();
 	void start();
+	void stop();
 	void close();
 	String publish( MessageSession *session , MessagePublisher *pub , const char *msg );
 	String publish( MessageSession *session , MessagePublisher *pub , Message *msg );
@@ -52,7 +53,8 @@ private:
 	String name;
 	bool opened;
 	bool sync;
-	bool run;
+	bool running;
+	bool stopping;
 	int queueMessageId;
 
 	rfc_lock *channelLock;
@@ -77,6 +79,7 @@ public:
 	void addMessage( Message *p_str );
 	Message *getNextMessage();
 	Message *getNextMessageNoLock();
+	void wakeup();
 	void makeEmptyAndWakeup();
 	bool isEmpty();
 	const char *getId() { return( queueId ); };

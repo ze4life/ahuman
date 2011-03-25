@@ -58,6 +58,9 @@ private:
 	void unlock();
 	void openAllChannels();
 	void startAllChannels();
+	// each channel is marked with flag causing to stop when no more messages, channel will remain existing
+	void stopAllChannels();
+	// drop channels
 	void closeAllChannels();
 
 private:

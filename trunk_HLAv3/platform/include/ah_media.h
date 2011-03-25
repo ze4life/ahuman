@@ -47,12 +47,14 @@ private:
 	void createListeners( Xml config );
 	void startListeners();
 	void stopListeners();
+	void exitListeners();
 	SocketListener *runListenerFactory( String name , Xml config );
 
 	// implement active connections
 	void createActiveSockets( Xml config );
 	void startActiveSockets();
 	void stopActiveSockets();
+	void exitActiveSockets();
 	ActiveSocket *runActiveSocketFactory( String name , Xml config );
 	ActiveSocket *getActiveSocket( String name );
 
