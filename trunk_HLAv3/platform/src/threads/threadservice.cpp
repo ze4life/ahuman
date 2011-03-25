@@ -66,6 +66,9 @@ void ThreadService::addMainThread() {
 	td -> threadExtId.s_ih = ::OpenThread( THREAD_ALL_ACCESS , FALSE , ::GetCurrentThreadId() );
 	td -> threadExtId.s_ip = NULL;
 	workerStarted( td );
+
+	// reset signal handlers
+	setSignalHandlers();
 }
 
 int ThreadService::getThreadId() {

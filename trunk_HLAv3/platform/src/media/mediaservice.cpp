@@ -30,11 +30,13 @@ void MediaService::runService() {
 }
 
 void MediaService::stopService() {
+	stopListeners();
+	stopActiveSockets();
 }
 
 void MediaService::exitService() {
-	stopListeners();
-	stopActiveSockets();
+	exitListeners();
+	exitActiveSockets();
 }
 
 void MediaService::destroyService() {
@@ -143,7 +145,20 @@ void MediaService::stopListeners() {
 	for( int k = 0; k < listeners.count(); k++ ) {
 		SocketListener *listener = listeners.getClassByIndex( k );
 		listener -> stopListener();
-		listener -> stopListenerConnections();
+	}
+}
+
+void MediaService::exitActiveSockets() {
+	for( int k = 0; k < activeSockets.count(); k++ ) {
+		ActiveSocket *ac = activeSockets.getClassByIndex( k );
+		ac -> exitActiveSocket();
+	}
+}
+
+void MediaService::exitListeners() {
+	for( int k = 0; k < listeners.count(); k++ ) {
+		SocketListener *listener = listeners.getClassByIndex( k );
+		listener -> exitListener();
 	}
 }
 

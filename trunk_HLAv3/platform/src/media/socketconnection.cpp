@@ -161,6 +161,9 @@ void SocketConnection::stopConnection() {
 	}
 }
 
+void SocketConnection::exitConnection() {
+}
+
 void SocketConnection::processMessage( const char *p_msg ) {
 	if( server -> getAuth() && connected == false ) {
 		// the only message acceptable is connect

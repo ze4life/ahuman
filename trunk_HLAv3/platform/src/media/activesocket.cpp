@@ -70,12 +70,17 @@ void ActiveSocket::stopActiveSocket() {
 	// stop thread reading from socket if any
 	shutdownInProgress = true;
 	disconnectSocket();
+}
 
+void ActiveSocket::exitActiveSocket() {
 	if( socketThread != NULL ) {
 		ThreadService *ts = ThreadService::getService();
 		ts -> waitThreadExited( socketThread );
+
 		socketThread = NULL;
 	}
+
+	shutdownInProgress = false;
 }
 
 String ActiveSocket::getAddress() {

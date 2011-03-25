@@ -76,7 +76,7 @@ Message *MessageQueue::getNextMessage() {
 		// check if no messages
 		if( rfc_lst_count( queueMessages ) == 0 ) {
 			// return empty message
-			logger.logInfo( "getNextMessage: exiting..." );
+			logger.logInfo( "getNextMessage: wakeup without messages" );
 			rfc_lock_release( queueLock );
 			return( NULL );
 		}
@@ -127,18 +127,25 @@ Message *MessageQueue::getNextMessageNoLock() {
 }
 
 /*
+ * This API will send the wake up event
+ */
+void MessageQueue::wakeup() {
+	rfc_lock_exclusive( queueLock );
+	rfc_hnd_evsignal( queueWakeupEvent );
+	rfc_lock_release( queueLock );
+}
+
+/*
  * This API will clear all the messages and will send the wake up event
  */
 void MessageQueue::makeEmptyAndWakeup() {
 	rfc_lock_exclusive( queueLock );
 	// remove all messages
 	clearMessages();
-	logger.logInfo( "makeEmptyAndWakeup: clear messages" );
-	// signal for waiter and release lock
-	rfc_hnd_evsignal( queueWakeupEvent );
-	logger.logDebug( "makeEmptyAndWakeup: signal on" );
-
 	rfc_lock_release( queueLock );
+
+	// signal for waiter and release lock
+	wakeup();
 }
 
 /*

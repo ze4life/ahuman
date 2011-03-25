@@ -8,33 +8,55 @@ void execute( String etcpath )
 	Logger logger;
 	logger.attachRoot();
 
+	logger.logInfo( "AL/aWee: PREPARE TO START/CONFIGURING..." );
+
 	try {
 		sm.addPlatformServices();
 
 		// configure all
 		sm.configureDefault( etcpath );
 
-		// create and configured services
+		logger.logInfo( "--------------------" );
+		logger.logInfo( "AL/aWee: STARTING..." );
+		logger.logInfo( "--------------------" );
+
+		// create and run services
 		sm.createServices();
 		sm.initServices();
 		sm.runServices();
 
 		// wait for completion
+		logger.logInfo( "--------------------" );
+		logger.logInfo( "AL/aWee: RUNNING..." );
+		logger.logInfo( "--------------------" );
 		sm.waitRunDefault();
 	}
 	catch( RuntimeException& e ) {
+		logger.logInfo( "----------------------------------" );
+		logger.logInfo( "AL/aWee: STARTUP/RUNTIME EXCEPTION" );
+		logger.logInfo( "----------------------------------" );
+
 		logger.printStack( e );
 	}
 
 	// cleanup
 	try {
-		if( sm.isRunning() )
-			sm.stopServices();
-		if( sm.isCreated() )
-			sm.exitServices();
+		logger.logInfo( "--------------------" );
+		logger.logInfo( "AL/aWee: STOPPING..." );
+		logger.logInfo( "--------------------" );
+
+		sm.stopServices();
+		sm.exitServices();
 		sm.destroyServices();
+
+		logger.logInfo( "----------------" );
+		logger.logInfo( "AL/aWee: STOPPED" );
+		logger.logInfo( "----------------" );
 	}
 	catch( RuntimeException& e ) {
+		logger.logInfo( "------------------------------" );
+		logger.logInfo( "AL/aWee: EXCEPTION ON SHUTDOWN" );
+		logger.logInfo( "------------------------------" );
 		logger.printStack( e );
 	}
 }

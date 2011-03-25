@@ -38,32 +38,32 @@ public:
 	ServiceStateType getState() { return( state ); };
 
 	void setState( ServiceStateType value ) {
-		bool ok = false;
+		bool checkTransition = false;
 		if( state == AH_COLD )
-			ok = ( value == AH_CREATING );
+			checkTransition = ( value == AH_CREATING );
 		else
 		if( state == AH_CREATING )
-			ok = ( value == AH_CREATED || value == AH_EXITING );
+			checkTransition = ( value == AH_CREATED || value == AH_EXITING );
 		else
 		if( state == AH_CREATED )
-			ok = ( value == AH_INITIALIZING || value == AH_EXITING );
+			checkTransition = ( value == AH_INITIALIZING || value == AH_EXITING );
 		else
 		if( state == AH_INITIALIZING )
-			ok = ( value == AH_INITIALIZED || value == AH_EXITING );
+			checkTransition = ( value == AH_INITIALIZED || value == AH_EXITING );
 		else
 		if( state == AH_INITIALIZED )
-			ok = ( value == AH_RUNNING || value == AH_EXITING );
+			checkTransition = ( value == AH_RUNNING || value == AH_EXITING );
 		else
 		if( state == AH_RUNNING )
-			ok = ( value == AH_STOPPED );
+			checkTransition = ( value == AH_STOPPED );
 		else
 		if( state == AH_STOPPED )
-			ok = ( value == AH_EXITING );
+			checkTransition = ( value == AH_EXITING );
 		else
 		if( state == AH_EXITING )
-			ok = ( value == AH_COLD );
+			checkTransition = ( value == AH_COLD );
 
-		ASSERTMSG( ok , String( "Invalid state transition: stateFrom=" )  + state + ", stateTo=" + value );
+		ASSERTMSG( checkTransition , String( "Invalid state transition: stateFrom=" )  + state + ", stateTo=" + value );
 		state = value;
 	};
 
@@ -124,7 +124,6 @@ private:
 	ServiceState state;
 	String logLineFormat;
 	LogManager *logManager;
-	bool stoppedBySignal;
 	Logger logger;
 
 	// services

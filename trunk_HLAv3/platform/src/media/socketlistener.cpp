@@ -48,3 +48,11 @@ void SocketListener::removeListenerConnection( SocketConnection *connection ) {
 	String key = connection -> getName();
 	connections.remove( key );
 }
+
+void SocketListener::exitListenerConnections() {
+	for( int k = 0; k < connections.count(); k++ ) {
+		SocketConnection *connection = connections.getClassByIndex( k );
+		connection -> exitConnection();
+	}
+}
+
