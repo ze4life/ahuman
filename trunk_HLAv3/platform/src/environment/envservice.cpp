@@ -70,6 +70,14 @@ void EnvService::configureServices() {
 		// get service configuration
 		logger.logInfo( "Configure service name=" + name );
 		Xml svcSection = cfgServices.getChildNamedNode( "service" , name );
+
+		// if section is not present, service is ignored
+		if( !svcSection.exists() ) {
+			svc -> isCreate = svc -> isInit = svc -> isRun = false;
+			logger.logInfo( "Service is not present in configuration and hence ignored - name=" + name );
+			continue;
+		}
+
 		Xml cfgSvc = getConfigurationData( svcSection , "service" , name );
 
 		// configure service

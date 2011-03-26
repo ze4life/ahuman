@@ -6,9 +6,9 @@ SocketProtocol::SocketProtocol( Logger& p_logger )
 	pin = FLOW_PROTOCOL_UNKNOWN;
 	pout = FLOW_PROTOCOL_UNKNOWN;
 
-	maxPacketSize = 0;
-	maxReadSize = 0;
-	waitTimeSec = 0;
+	maxPacketSize = MAX_PACKET_SIZE_DEFAULT;
+	maxReadSize = MAX_READ_SIZE_DEFAULT;
+	waitTimeSec = WAIT_TIME_SEC_DEFAULT;
 
 	shutdownInProgress = false;
 
@@ -116,6 +116,39 @@ void SocketProtocol::createFlow( Xml config , FLOW_PROTOCOL& proto , String& del
 	else {
 		ASSERTFAILED( "Unknown protocol=" + protocol );
 	}
+}
+
+SOCKET SocketProtocol::open( String host , unsigned short port , struct sockaddr_in *addr ) {
+	memset( addr , 0 , sizeof( struct sockaddr_in ) );
+
+	addr -> sin_family = AF_INET;
+	addr -> sin_port = htons( port );
+
+	char c = *( const char * )host;
+	if( isdigit( c ) ) {
+		// get IP address
+		unsigned long l_addr = inet_addr( host );
+		addr -> sin_addr.S_un.S_addr = l_addr;
+	}
+	else {
+		// get IP by hostname
+		struct hostent *he = gethostbyname( host );
+		ASSERTMSG( he != NULL , "Cannot resolve host address" );
+
+		addr -> sin_addr.S_un.S_addr = *( unsigned long * )he -> h_addr_list[ 0 ];
+	}
+			
+	SOCKET socketHandle = socket( AF_INET , SOCK_STREAM , 0 );
+	int res = connect( socketHandle , ( struct sockaddr * )&addr , sizeof( sockaddr_in ) );
+	int errorCode = WSAGetLastError();
+	ASSERTMSG( res == 0 , String( "Error code found: " ) + errorCode );
+
+	return( socketHandle );
+}
+
+void SocketProtocol::close( SOCKET socket ) {
+	shutdown( socket , SD_BOTH );
+	_closesocket( socket );
 }
 
 bool SocketProtocol::waitSocketDataTimeout( SOCKET socket , int p_sec , bool& p_error ) {

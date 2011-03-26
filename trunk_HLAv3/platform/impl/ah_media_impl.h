@@ -41,7 +41,8 @@ class SocketConnection;
 /*#########################################################################*/
 
 class SocketProtocol {
-private:
+// protocol configuration
+public:
 	typedef enum {
 		FLOW_PROTOCOL_UNKNOWN = 0 , 
 		FLOW_PROTOCOL_TEXT_MESSAGES = 1 ,
@@ -67,6 +68,7 @@ private:
 	int waitTimeSec;
 	static const int WAIT_TIME_SEC_DEFAULT = 30;
 
+private:
 	String inPending;
 	bool shutdownInProgress;
 	Logger& logger;
@@ -89,6 +91,8 @@ public:
 	static void initSocketLib();
 	static void exitSocketLib();
 	static bool waitSocketDataTimeout( SOCKET socket , int p_sec , bool& p_error );
+	static SOCKET open( String host , unsigned short port , struct sockaddr_in *addr );
+	static void close( SOCKET socket );
 
 public:
 	bool readMessage( SOCKET socketHandle , String& msg , bool wait , bool& connectionClosed );
