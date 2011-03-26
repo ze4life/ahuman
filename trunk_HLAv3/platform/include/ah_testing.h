@@ -9,23 +9,33 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
+class TestExecutor;
+
 class TestService : public Service {
 public:
 	virtual const char *getServiceName() { return( "TestService" ); };
-	virtual void configureService( Xml config ) {};
-	virtual void createService() {};
-	virtual void initService() {};
-	virtual void runService() {};
-	virtual void stopService() {};
-	virtual void exitService() {};
-	virtual void destroyService() {};
+	virtual void configureService( Xml config );
+	virtual void createService();
+	virtual void initService();
+	virtual void runService();
+	virtual void stopService();
+	virtual void exitService();
+	virtual void destroyService();
 
 // engine helpers
 protected:
-	TestService() {};
+	TestService();
 public:
 	static Service *newService();
 	static TestService *getService() { return( ( TestService * )ServiceManager::getInstance().getService( "TestService" ) ); };
+
+// internals
+private:
+	TestExecutor *executor;
+
+	// configuration
+	String channelIn;
+	String channelOut;
 };
 
 /*#########################################################################*/
