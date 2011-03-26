@@ -10,6 +10,7 @@ ConsoleTool::ConsoleTool()
 }
 
 ConsoleTool::~ConsoleTool() {
+	logger.attachRoot();
 }
 
 int ConsoleTool::execute( int nargs , char **args ) {
@@ -66,14 +67,13 @@ int ConsoleTool::execute( int nargs , char **args ) {
 	api = new AdminApi;
 	int result = 0;
 	try {
+		logInfo( sout , String( "connecting to " ) + url + "..." );
 		api -> connect( url );
 		logInfo( sout , String( "connected to " ) + url );
 
 		result = executeCommands( sin , sout );
 	}
 	catch( RuntimeException& e ) {
-		Logger logger;
-		logger.attachRoot();
 		logger.printStack( e );
 		result = -1;
 	}
@@ -141,13 +141,29 @@ bool ConsoleTool::makeRequest( FILE *sin , FILE *sout ) {
 	if( msg.isEmpty() )
 		return( false );
 
-	Xml request = Xml::read( msg , "xmlcall" );
+	Xml request;
+	try {
+		request = api -> readXmlRequest( msg );
+	}
+	catch( RuntimeException& e ) {
+		logger.printStack( e );
+		return( true );
+	}
+
 	if( sin == NULL )
 		logXml( stdout , "REQUEST" , request );
 	if( sout != NULL )
 		logXml( sout , "REQUEST" , request );
+	
+	Xml response;
+	try {
+		response = api -> execute();
+	}
+	catch( RuntimeException& e ) {
+		logger.printStack( e );
+		return( true );
+	}
 
-	Xml response = api -> execute();
 	if( sout != NULL )
 		logXml( sout , "RESPONSE" , response );
 	else

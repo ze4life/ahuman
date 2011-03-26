@@ -221,7 +221,6 @@ private:
 
 class SocketConnection : public Object , public MessageSubscriber {
 private:
-	Logger logger;
 	SocketProtocol protocol;
 
 	SocketServer *server;

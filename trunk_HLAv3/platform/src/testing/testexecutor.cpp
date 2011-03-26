@@ -55,6 +55,8 @@ void TestExecutor::exit() {
 
 void TestExecutor::addTestUnit( TestUnit *p_unit ) {
 	units.add( p_unit -> getInstance() , p_unit );
+	p_unit -> onCreate();
+	p_unit -> attachLogger();
 }
 
 void TestExecutor::onXmlCall( XmlCall *msg ) {

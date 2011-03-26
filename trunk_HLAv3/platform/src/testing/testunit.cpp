@@ -6,16 +6,11 @@
 
 TestUnit::TestUnit( String p_name ) {
 	setInstance( p_name );
-	created = false;
+	initialized = false;
 }
 
 TestUnit::~TestUnit() {
 	methods.destroy();
-}
-
-void TestUnit::onCreate() {
-	attachLogger();
-	onInit();
 }
 
 TestMethod *TestUnit::getMethod( String methodName ) {
@@ -24,9 +19,9 @@ TestMethod *TestUnit::getMethod( String methodName ) {
 	
 void TestUnit::callMethod( TestMethod *method , XmlCall& call ) {
 	// if first execution - create unit
-	if( !created ) {
-		created = true;
-		onCreate();
+	if( !initialized ) {
+		initialized = true;
+		onInit();
 	}
 
 	// execute method

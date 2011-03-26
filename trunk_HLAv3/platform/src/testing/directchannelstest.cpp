@@ -26,9 +26,10 @@ public:
 		rfc_hnd_evdestroy( msgEvent );
 	};
 
-	virtual void onInit() {
+	virtual void onCreate() {
 		ADD_METHOD( DirectChannelsTest::testRequestPage );
-
+	}
+	virtual void onInit() {
 		MessagingService *ms = MessagingService::getService();
 		sub = ms -> subscribe( NULL , "http.response" , "http.test" , this );
 		pub = ms -> createPublisher( NULL , "http.request" , "http.test" , "text" );

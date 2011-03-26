@@ -35,13 +35,21 @@ Xml AdminApiSocket::execute( Xml req ) {
 	ASSERTMSG( connected , "Not connected" );
 
 	// get request ID
-	String requestId = req.getAttribute( "requestId" );
+	String requestId = req.getAttribute( "requestId" , "" );
+	if( requestId.isEmpty() )
+		setXmlRequestId( req );
 	String request = req.serialize();
-	protocol.writeMessage( socket , request , connected );
+
+	bool disconnected = false;
+	protocol.writeMessage( socket , request , disconnected );
+	if( disconnected )
+		connected = false;
 	ASSERTMSG( connected , "Connection is closed from server side while making request" );
 
 	String response;
-	if( !protocol.readMessage( socket , response , true , connected ) ) {
+	if( !protocol.readMessage( socket , response , true , disconnected ) ) {
+		if( disconnected )
+			connected = false;
 		ASSERTMSG( connected , "Connection is closed from server side while reading response" );
 		return( Xml() );
 	}

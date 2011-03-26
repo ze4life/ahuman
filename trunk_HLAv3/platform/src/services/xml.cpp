@@ -160,6 +160,11 @@ bool Xml::getBooleanProperty( String name ) {
 	return( prop.equals( "true" ) );
 }
 
+bool Xml::getBooleanProperty( String name , bool defaultValue ) {
+	String prop = getProperty( name , ( ( defaultValue )? "true" : "false" ) );
+	return( prop.equals( "true" ) );
+}
+
 int Xml::getIntProperty( String name ) {
 	String prop = getProperty( name );
 	char c;
@@ -446,7 +451,8 @@ Xml Xml::read( const char *data , const char *contentName ) {
 
 		if( c ) {
 			delete doc;
-			String err = "XML message is malformed - data found behind message";
+			String err = "XML message is malformed - data found behind message: ";
+			err += data;
 			throw RuntimeError( err );
 		}
 	}

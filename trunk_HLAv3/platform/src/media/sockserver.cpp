@@ -103,19 +103,14 @@ bool SocketServer::openListeningPort() {
 	short socket_port = port;
 
 	// prepare socket
-	char l_hostname[ 256 ];
-	struct hostent *l_hostent;
 	int l_len;
-
 	l_len = sizeof( struct sockaddr_in );
 	memset( &listen_inet , 0 , l_len );
 	listen_inet.sin_port = htons( ( unsigned short )socket_port );
 
 	/* calculate itself address */
-	gethostname( l_hostname , 255 );
-	l_hostent = gethostbyname( l_hostname );
 	listen_inet.sin_family = AF_INET;
-	memcpy( &listen_inet.sin_addr , l_hostent -> h_addr_list[ 0 ] , sizeof( listen_inet.sin_addr ) );
+	listen_inet.sin_addr.s_addr = INADDR_ANY;
 
 	unsigned long l_ok = 1;
 	listenSocket = socket( AF_INET , SOCK_STREAM , 0 );
