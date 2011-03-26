@@ -48,6 +48,8 @@ String XmlCall::getParam( String paramName ) {
 }
 
 String XmlCall::getParam( String paramName , String defaultValue ) {
+	if( !params.exists() )
+		return( defaultValue );
 	return( params.getProperty( paramName , defaultValue ) );
 }
 
@@ -56,6 +58,8 @@ int XmlCall::getIntParam( String paramName ) {
 }
 
 int XmlCall::getIntParam( String paramName , int defaultValue ) {
+	if( !params.exists() )
+		return( defaultValue );
 	return( params.getIntProperty( paramName , defaultValue ) );
 }
 
@@ -63,11 +67,19 @@ bool XmlCall::getBooleanParam( String paramName ) {
 	return( params.getBooleanProperty( paramName ) );
 }
 
+bool XmlCall::getBooleanParam( String paramName , bool defaultValue ) {
+	if( !params.exists() )
+		return( defaultValue );
+	return( params.getBooleanProperty( paramName , defaultValue ) );
+}
+
 float XmlCall::getFloatParam( String paramName ) {
 	return( params.getFloatProperty( paramName ) );
 }
 
 float XmlCall::getFloatParam( String paramName , float defaultValue ) {
+	if( !params.exists() )
+		return( defaultValue );
 	return( params.getFloatProperty( paramName , defaultValue ) );
 }
 

@@ -10,6 +10,7 @@ SocketConnection::SocketConnection( SocketServer *p_server , SOCKET p_clientSock
 	session = NULL; 
 
 	server = p_server;
+	pub = NULL;
 	sub = NULL;
 
 	socket = p_clientSocket;

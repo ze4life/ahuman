@@ -41,9 +41,9 @@ public:
 
 	virtual const char *getClass() { return( getInstance() ); };
 
-	virtual void onInit() = 0;
+	virtual void onInit() {};
 	virtual void onExit() {};
-	virtual void onCreate();
+	virtual void onCreate() = 0;
 
 	TestMethod *getMethod( String methodName );
 	void callMethod( TestMethod *method , XmlCall& call );
@@ -53,7 +53,7 @@ protected:
 
 // test units
 private:
-	bool created;
+	bool initialized;
 
 public:
 	MapStringToClass<TestMethod> methods;

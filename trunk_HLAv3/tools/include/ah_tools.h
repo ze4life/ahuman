@@ -18,10 +18,11 @@ public:
 	virtual int execute( int nargs , char **args ) = 0;
 
 public:
-	ToolBase( String p_name ) {
-		name = p_name;
-	};
+	ToolBase( String p_name );
 	virtual ~ToolBase() {};
+
+protected:
+	Logger logger;
 
 private:
 	String name;

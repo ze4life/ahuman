@@ -273,6 +273,7 @@ public:
 	int getIntParam( String paramName );
 	int getIntParam( String paramName , int defaultValue );
 	bool getBooleanParam( String paramName );
+	bool getBooleanParam( String paramName , bool defaultValue );
 	float getFloatParam( String paramName );
 	float getFloatParam( String paramName , float defaultValue );
 

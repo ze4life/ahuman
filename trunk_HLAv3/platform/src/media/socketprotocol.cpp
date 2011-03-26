@@ -139,7 +139,7 @@ SOCKET SocketProtocol::open( String host , unsigned short port , struct sockaddr
 	}
 			
 	SOCKET socketHandle = socket( AF_INET , SOCK_STREAM , 0 );
-	int res = connect( socketHandle , ( struct sockaddr * )&addr , sizeof( sockaddr_in ) );
+	int res = connect( socketHandle , ( struct sockaddr * )addr , sizeof( sockaddr_in ) );
 	int errorCode = WSAGetLastError();
 	ASSERTMSG( res == 0 , String( "Error code found: " ) + errorCode );
 

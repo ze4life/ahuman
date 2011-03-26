@@ -169,6 +169,7 @@ public:
 	String getProperty( String name );
 	String getProperty( String name , String defaultValue );
 	bool getBooleanProperty( String name );
+	bool getBooleanProperty( String name , bool defaultValue );
 	int getIntProperty( String name );
 	int getIntProperty( String name , int defaultValue );
 	float getFloatProperty( String name );

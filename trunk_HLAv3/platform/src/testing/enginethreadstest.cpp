@@ -13,7 +13,7 @@ public:
 	~EngineThreadsTest() {
 	};
 
-	virtual void onInit() {
+	virtual void onCreate() {
 		ADD_METHOD( EngineThreadsTest::testThreadDump );
 		ADD_METHOD( EngineThreadsTest::testShowThread );
 	}
@@ -22,7 +22,7 @@ public:
 public:
 
 	void testThreadDump( XmlCall& call ) {
-		bool showStack = call.getBooleanParam( "showStack" );
+		bool showStack = call.getBooleanParam( "showStack" , false );
 		ThreadService *ts = ThreadService::getService();
 		ts -> threadDumpAll( showStack );
 	}
