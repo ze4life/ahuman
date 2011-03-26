@@ -1,11 +1,42 @@
-// tools.cpp : Defines the entry point for the console application.
-//
+#include <ah_tools.h>
 
-#include "stdafx.h"
+/*#########################################################################*/
+/*#########################################################################*/
 
+int main(int argc, char **argv) {
 
-int main(int argc, char **argv)
-{
-	return 0;
+	// platform based
+	ServiceManager sm;
+
+	// switch params
+	if( argc < 2 ) {
+		printf( "arguments: <tool> [params]\n" );
+		return( -1 );
+	}
+
+	String toolName = argv[1];
+	ToolBase *tool = ToolBase::getTool( toolName );
+	if( tool == NULL ) {
+		printf( "Unknown tool: " + toolName );
+		return -1;
+	}
+
+	int result = 0;
+	try {
+		result = tool -> execute( argc - 2 , argv + 2 );
+	}
+	catch( RuntimeException& e ) {
+		Logger logger;
+		logger.attachRoot();
+		logger.printStack( e );
+		result = -1;
+	}
+	catch( ... ) {
+		printf( "Unknown exception cought" );
+		result = -1;
+	}
+
+	delete tool;
+	return( result );
 }
 
