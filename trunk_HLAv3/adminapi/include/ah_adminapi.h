@@ -25,8 +25,8 @@ public:
 	Xml execute();
 
 	Xml createXmlRequest();
+	Xml createXmlRequest( const char *data );
 	Xml loadXmlRequest( String fileName );
-	Xml readXmlRequest( const char *data );
 
 	void setFunctionName( String name );
 	void setParam( String name , String value );

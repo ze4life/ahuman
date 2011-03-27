@@ -152,13 +152,18 @@ bool SocketServer::openListeningPort() {
 
 String SocketServer::getAddress( struct sockaddr_in *a ) {
 	char l_buf[ 20 ];
-	sprintf( l_buf , "[%d.%d.%d.%d" , 
-		( unsigned int )a -> sin_addr.S_un.S_un_b.s_b1 ,
-		( unsigned int )a -> sin_addr.S_un.S_un_b.s_b2 ,
-		( unsigned int )a -> sin_addr.S_un.S_un_b.s_b3 ,
-		( unsigned int )a -> sin_addr.S_un.S_un_b.s_b4 );
 	
-	String s = l_buf;
+	String s;
+	if( a -> sin_addr.S_un.S_addr == 0 )
+		s = "localhost";
+	else {
+		sprintf( l_buf , "[%d.%d.%d.%d" , 
+			( unsigned int )a -> sin_addr.S_un.S_un_b.s_b1 ,
+			( unsigned int )a -> sin_addr.S_un.S_un_b.s_b2 ,
+			( unsigned int )a -> sin_addr.S_un.S_un_b.s_b3 ,
+			( unsigned int )a -> sin_addr.S_un.S_un_b.s_b4 );
+		s = l_buf;
+	}
 	s += ":";
 
 	sprintf( l_buf , "%d]" , ( unsigned int )ntohs( a -> sin_port ) );
@@ -208,7 +213,7 @@ void SocketServer::acceptConnectionLoop() {
 
 void SocketServer::performConnect() {
 	bool l_error;
-	if( !SocketProtocol::waitSocketDataTimeout( listenSocket , 0 , l_error ) ) {
+	if( !SocketProtocol::waitSocketDataInfinite( listenSocket , l_error ) ) {
 		continueConnecting = false;
 		return;
 	}

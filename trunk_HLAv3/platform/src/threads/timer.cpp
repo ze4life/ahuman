@@ -3,97 +3,91 @@
 // #############################################################################
 // #############################################################################
 
-Timer::Timer( bool setInitialTime )
-{
-	if( setInitialTime ) {
-		timeStarted = clock();
-		rfc_hpt_setpoint( &timeStartedTicks );
-	}
-
-	waitTime = 0;
+Timer::Timer() {
+	timeStarted = 0;
+	timeStartedTicks = 0;
+	waitTimeMs = 0;
 	waitCount = 0;
 }
 
-Timer::Timer( int p_waitTime )
-{
+void Timer::createWithStartingTimestamp() {
 	timeStarted = clock();
 	rfc_hpt_setpoint( &timeStartedTicks );
+}
 
-	waitTime = p_waitTime;
+void Timer::createRunWindowMs( int p_waitTimeMs ) {
+	timeStarted = clock();
+	waitTimeMs = p_waitTimeMs;
+}
+
+void Timer::createRunWindowSec( int p_waitTimeSec ) {
+	timeStarted = clock();
+	waitTimeMs = p_waitTimeSec * 1000;
 }
 
 // time passed from process start - in ms
-int Timer::timeNow()
-{
+int Timer::timeSinceProcessStartMs() {
 	long timeNow = clock();
 	return( ( int )( timeNow * 1000 / CLOCKS_PER_SEC ) );
 }
 
-int Timer::timeCreated()
-{
+int Timer::timeCreatedMs() {
 	return( ( int )( timeStarted * 1000 / CLOCKS_PER_SEC ) );
 }
 
-void Timer::startAdjustment()
-{
+void Timer::startAdjustment() {
 	rfc_hpt_startadjustment();
 }
 
-void Timer::stopAdjustment()
-{
+void Timer::stopAdjustment() {
 	rfc_hpt_stopadjustment();
 }
 
-int Timer::timePassed()
-{
+int Timer::timePassedMs() {
 	long timeNow = clock();
 	return( ( int )( ( timeNow - timeStarted ) * 1000 ) / CLOCKS_PER_SEC );
 }
 
 // time passed - in clocks
-int Timer::timePassedClocks()
-{
+int Timer::timePassedClocks() {
 	return( ( int )( clock() - timeStarted ) );
 }
 
 // time passed - in ticks
-int Timer::timePassedTicks()
-{
+int Timer::timePassedTicks() {
 	return( rfc_hpt_timepassed( &timeStartedTicks ) );
 }
 
 // convert clocks to ms
-int Timer::timeClocksToMs( int clocks )
-{
+int Timer::timeClocksToMs( int clocks ) {
 	return( ( int )( ( clocks * 1000 ) / CLOCKS_PER_SEC ) );
 }
 
 // convert ms to clocks
-int Timer::timeMsToClocks( int ms )
-{
+int Timer::timeMsToClocks( int ms ) {
 	return( ( int )( ( ms * CLOCKS_PER_SEC ) / 1000 ) );
 }
 
-bool Timer::go()
-{
-	return( timePassed() < waitTime );
+int Timer::timeRemainedSec() {
+	return( ( waitTimeMs - timePassedMs() ) / 1000 );
+}
+
+bool Timer::go() {
+	return( timePassedMs() < waitTimeMs );
 }
 
 // convert ticks to ms
-int Timer::timeTicksToMs( int ticks )
-{
+int Timer::timeTicksToMs( int ticks ) {
 	return( rfc_hpt_ticks2ms( ticks ) );
 }
 
 // convert ms to ticks
-int Timer::timeMsToTicks( int ms )
-{
+int Timer::timeMsToTicks( int ms ) {
 	return( rfc_hpt_ms2ticks( ms ) );
 }
 
-int Timer::waitNext()
-{
-	int secs = waitTime / 1000;
+int Timer::waitNextSecs() {
+	int secs = waitTimeMs / 1000;
 	if( secs == 0 )
 		secs = 1;
 	rfc_thr_sleep( secs );

@@ -49,6 +49,15 @@ Xml AdminApi::createXmlRequest() {
 	return( lastRequest );
 }
 
+Xml AdminApi::createXmlRequest( const char *data ) {
+	if( lastRequest.exists() )
+		lastRequest.destroy();
+	
+	lastRequest = Xml::read( data , "xmlcall" );
+
+	return( lastRequest );
+}
+
 Xml AdminApi::loadXmlRequest( String fileName ) {
 	if( lastRequest.exists() )
 		lastRequest.destroy();
@@ -56,15 +65,6 @@ Xml AdminApi::loadXmlRequest( String fileName ) {
 	lastRequest = Xml::load( fileName );
 	ASSERTMSG( lastRequest.exists() , "Unable to load file path=" + fileName );
 	ASSERTMSG( lastRequest.getName().equals( "xmlcall" ) , "Loaded file is not request" );
-
-	return( lastRequest );
-}
-
-Xml AdminApi::readXmlRequest( const char *data ) {
-	if( lastRequest.exists() )
-		lastRequest.destroy();
-	
-	lastRequest = Xml::read( data , "xmlcall" );
 
 	return( lastRequest );
 }
