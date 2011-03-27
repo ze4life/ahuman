@@ -106,10 +106,10 @@ Until project is mature, test codebase alignments looks to me not efficient. Tha
 
 }}}
 
-  * call can be done by aiconsole utility:
+  * call can be done by tools.exe utility:
 
 {{{
-start bin\aiconsole.exe -s 169.254.13.255:20001 -i %1 -o %1.out
+start tools.exe console -s localhost:20001 -i %1 -o %1.out
 }}}
 
   * after the call, test case can either form response xml, or throw any exception; the last will be combined within pre-defined standard xml response
@@ -117,7 +117,7 @@ start bin\aiconsole.exe -s 169.254.13.255:20001 -i %1 -o %1.out
 {{{
 INFO: ---------------------------
 INFO: AI console
-INFO: connected to 169.254.27.205:20001
+INFO: connected to localhost:20001
 REQUEST:
 <xmlcall name="expert::createbysamples" requestId="REQ-1">
     <parameters />
