@@ -7,7 +7,7 @@ AdminApiSocket::AdminApiSocket()
 :	protocol( logger ) {
 	lastRequestNumber = 0;
 	connected = false;
-	waitTimeSec = 30;
+	waitTimeSec = 5;
 	socket = INVALID_SOCKET;
 
 	logger.attachRoot();
@@ -26,9 +26,10 @@ void AdminApiSocket::exitThread() {
 	protocol.exitSocketLib();
 }
 
-void AdminApiSocket::setXmlRequestId( Xml req ) {
-	String requestId = String( "REQ-" ) + (++lastRequestNumber);
+String AdminApiSocket::setXmlRequestId( Xml req ) {
+	String requestId = String( "req-" ) + (++lastRequestNumber);
 	req.setAttribute( "requestId" , requestId );
+	return( requestId );
 }
 
 Xml AdminApiSocket::execute( Xml req ) {
@@ -37,7 +38,7 @@ Xml AdminApiSocket::execute( Xml req ) {
 	// get request ID
 	String requestId = req.getAttribute( "requestId" , "" );
 	if( requestId.isEmpty() )
-		setXmlRequestId( req );
+		requestId = setXmlRequestId( req );
 	String request = req.serialize();
 
 	bool disconnected = false;
@@ -51,6 +52,7 @@ Xml AdminApiSocket::execute( Xml req ) {
 		if( disconnected )
 			connected = false;
 		ASSERTMSG( connected , "Connection is closed from server side while reading response" );
+		ASSERTFAILED( "Timeout while waiting response for request=" + requestId );
 		return( Xml() );
 	}
 

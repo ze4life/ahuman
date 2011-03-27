@@ -66,7 +66,7 @@ public:
 	int maxReadSize;
 	static const int MAX_READ_SIZE_DEFAULT = 4096;
 	int waitTimeSec;
-	static const int WAIT_TIME_SEC_DEFAULT = 30;
+	static const int WAIT_TIME_SEC_DEFAULT = 5;
 
 private:
 	String inPending;
@@ -90,7 +90,8 @@ public:
 public:
 	static void initSocketLib();
 	static void exitSocketLib();
-	static bool waitSocketDataTimeout( SOCKET socket , int p_sec , bool& p_error );
+	static bool waitSocketDataInfinite( SOCKET socket , bool& p_error );
+	static bool waitSocketDataTimeoutSec( SOCKET socket , int p_sec , bool& p_error );
 	static SOCKET open( String host , unsigned short port , struct sockaddr_in *addr );
 	static void close( SOCKET socket );
 
@@ -102,21 +103,22 @@ public:
 	void writeMessage( SOCKET socketHandle , const String& msg , bool& connectionClosed );
 	bool waitSocketData( SOCKET socket , bool p_wait );
 
+// internals
 private:
 	void createFlow( Xml config , FLOW_PROTOCOL& proto , String& delimiter , String prototype , bool& showPackets , bool& showMessages );
 
-	bool readMessageInternal( SOCKET socketHandle , String& msg , int fixedSize , bool wait , bool& connectionClosed );
-	bool readXmlMessageInternal( SOCKET socketHandle , Xml& xml , String& msg , bool wait , bool& connectionClosed );
-	bool readTextMessageInternal( SOCKET socketHandle , String& msg , int fixedSize , bool wait , bool& connectionClosed );
-	bool readTextStreamInternal( SOCKET socketHandle , String& msg , int fixedSize , bool wait , bool& connectionClosed );
-	bool readHttpMessageInternal( SOCKET socketHandle , String& msg , bool wait , bool& connectionClosed );
-	bool readHttpMessageStartLine( SOCKET socketHandle , bool wait , bool& connectionClosed );
-	bool readHttpMessageHeader( SOCKET socketHandle , bool wait , bool& connectionClosed );
-	bool readHttpMessageBody( SOCKET socketHandle , String& msg , bool wait , bool& connectionClosed );
-	bool readHttpMessageBodyChunk( SOCKET socketHandle , String& msg , int size , bool wait , bool& connectionClosed );
+	bool readMessageInternal( SOCKET socketHandle , String& msg , int fixedSize , bool wait , Timer& timer , bool& connectionClosed );
+	bool readXmlMessageInternal( SOCKET socketHandle , Xml& xml , String& msg , bool wait , Timer& timer , bool& connectionClosed );
+	bool readTextMessageInternal( SOCKET socketHandle , String& msg , int fixedSize , bool wait , Timer& timer , bool& connectionClosed );
+	bool readTextStreamInternal( SOCKET socketHandle , String& msg , int fixedSize , bool wait , Timer& timer , bool& connectionClosed );
+	bool readHttpMessageInternal( SOCKET socketHandle , String& msg , bool wait , Timer& timer , bool& connectionClosed );
+	bool readHttpMessageStartLine( SOCKET socketHandle , bool wait , Timer& timer , bool& connectionClosed );
+	bool readHttpMessageHeader( SOCKET socketHandle , bool wait , Timer& timer , bool& connectionClosed );
+	bool readHttpMessageBody( SOCKET socketHandle , String& msg , bool wait , Timer& timer , bool& connectionClosed );
+	bool readHttpMessageBodyChunk( SOCKET socketHandle , String& msg , int size , bool wait , Timer& timer , bool& connectionClosed );
 	void writeHttpMessageInternal( SOCKET socketHandle , const String& msg , bool& connectionClosed );
 	void writeSocketInternal( SOCKET socketHandle , const char *s , bool& connectionClosed );
-	bool readSocketInternal( SOCKET socketHandle , bool wait , bool& connectionClosed );
+	bool readSocketInternal( SOCKET socketHandle , bool wait , Timer& timer , bool& connectionClosed );
 };
 
 /*#########################################################################*/

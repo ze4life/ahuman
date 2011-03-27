@@ -24,7 +24,7 @@ public:
 	Xml execute( Xml req );
 
 private:
-	void setXmlRequestId( Xml req );
+	String setXmlRequestId( Xml req );
 
 private:
 	Logger logger;

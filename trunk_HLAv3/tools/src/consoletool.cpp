@@ -143,7 +143,7 @@ bool ConsoleTool::makeRequest( FILE *sin , FILE *sout ) {
 
 	Xml request;
 	try {
-		request = api -> readXmlRequest( msg );
+		request = api -> createXmlRequest( msg );
 	}
 	catch( RuntimeException& e ) {
 		logger.printStack( e );

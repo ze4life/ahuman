@@ -7,6 +7,7 @@ int main(int argc, char **argv) {
 
 	// platform based
 	ServiceManager sm;
+	sm.setRootLogLevel( Logger::LogLevelDebug );
 
 	// switch params
 	if( argc < 2 ) {

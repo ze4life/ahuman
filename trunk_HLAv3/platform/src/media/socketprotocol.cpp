@@ -1,6 +1,9 @@
 #include <ah_platform.h>
 #include <ah_media_impl.h>
 
+/*#########################################################################*/
+/*#########################################################################*/
+
 SocketProtocol::SocketProtocol( Logger& p_logger )
 :	logger( p_logger ) {
 	pin = FLOW_PROTOCOL_UNKNOWN;
@@ -151,7 +154,11 @@ void SocketProtocol::close( SOCKET socket ) {
 	_closesocket( socket );
 }
 
-bool SocketProtocol::waitSocketDataTimeout( SOCKET socket , int p_sec , bool& p_error ) {
+bool SocketProtocol::waitSocketDataInfinite( SOCKET socket , bool& p_error ) {
+	return( waitSocketDataTimeoutSec( socket , -1 , p_error ) );
+}
+
+bool SocketProtocol::waitSocketDataTimeoutSec( SOCKET socket , int p_sec , bool& p_error ) {
 	struct fd_set l_set;
 	struct timeval l_t;
 
@@ -160,7 +167,7 @@ bool SocketProtocol::waitSocketDataTimeout( SOCKET socket , int p_sec , bool& p_
 	memset( &l_t , 0 , sizeof( struct timeval ) );
 
 	struct timeval *l_pt = NULL;
-	if( p_sec > 0 ) {
+	if( p_sec >= 0 ) {
 		l_pt = &l_t;
 		l_t.tv_sec = p_sec;
 	}
@@ -196,9 +203,10 @@ bool SocketProtocol::waitSocketDataTimeout( SOCKET socket , int p_sec , bool& p_
 }
 
 bool SocketProtocol::waitSocketData( SOCKET socket , bool p_wait ) {
-	int waitTime = ( p_wait )? waitTimeSec : 0;
+	int socket_waitTimeSec = ( p_wait )? waitTimeSec : 0;
+
 	bool error = false;
-	if( waitSocketDataTimeout( socket , waitTime , error ) )
+	if( waitSocketDataTimeoutSec( socket , socket_waitTimeSec , error ) )
 		return( true );
 
 	if( !shutdownInProgress )
@@ -208,74 +216,25 @@ bool SocketProtocol::waitSocketData( SOCKET socket , bool p_wait ) {
 }
 
 bool SocketProtocol::readMessage( SOCKET socketHandle , String& msg , bool wait , bool& connectionClosed ) {
-	return( readMessageInternal( socketHandle , msg , 0 , wait , connectionClosed ) );
+	Timer timer;
+	timer.createRunWindowSec( waitTimeSec );
+
+	return( readMessageInternal( socketHandle , msg , 0 , wait , timer , connectionClosed ) );
 }
 
 bool SocketProtocol::readXmlMessage( SOCKET socketHandle , Xml& xml , String& msg , bool wait , bool& connectionClosed ) {
+	Timer timer;
+	timer.createRunWindowSec( waitTimeSec );
+
 	connectionClosed = false;
 	if( pin == FLOW_PROTOCOL_HTTP_MESSAGES )
-		return( readHttpMessageInternal( socketHandle , msg , wait , connectionClosed ) );
+		return( readHttpMessageInternal( socketHandle , msg , wait , timer , connectionClosed ) );
 
 	if( pin == FLOW_PROTOCOL_XML_MESSAGES )
-		return( readXmlMessageInternal( socketHandle , xml , msg , wait , connectionClosed ) );
+		return( readXmlMessageInternal( socketHandle , xml , msg , wait , timer , connectionClosed ) );
 
 	ASSERTFAILED( "SocketProtocol::readMessage: protocol is not defined to read from socket" );
 	return( false );
-}
-
-bool SocketProtocol::readXmlMessageInternal( SOCKET socketHandle , Xml& xml , String& msg , bool wait , bool& connectionClosed ) {
-	connectionClosed = false;
-	while( true ) {
-		// try to extract next doc
-		if( inPending.length() > 0 ) {
-			int len = 0;
-			bool errflag = false;
-
-			// parse string
-			xml = Xml::parse( inPending , len , errflag );
-			if( errflag ) {
-				if( xml.exists() )
-					xml.destroy();
-				continue;
-			}
-				
-			if( xml.exists() ) {
-				msg = inPending;
-				inPending.remove( 0 , len );
-				return( true );
-			}
-		}
-
-		// wait next chunk from socket
-		if( !readSocketInternal( socketHandle , wait , connectionClosed ) )
-			return( false );
-	}
-
-	return( false );
-}
-
-bool SocketProtocol::readSocketInternal( SOCKET socketHandle , bool wait , bool& connectionClosed ) {
-	char buf[ 1024 ];
-	int waitTime = ( wait )? waitTimeSec : 0;
-	while( !waitSocketDataTimeout( socketHandle , waitTime , connectionClosed ) ) {
-		if( connectionClosed || wait == false )
-			return( false );
-	}
-
-	// read into buffer
-	int l_recv = recv( socketHandle , buf , sizeof( buf ) - 1 , 0 );
-	if( l_recv == 0 || l_recv == SOCKET_ERROR ) {
-		connectionClosed = true;
-		inPending.clear();
-		return( false );
-	}
-
-	buf[ l_recv ] = 0;
-	inPending += buf;
-
-	if( showPacketsIn )
-		logger.logDebug( String( "readSocketInternal: packet received text=" ) + buf );
-	return( true );
 }
 
 void SocketProtocol::writeMessage( SOCKET socketHandle , const String& msg , bool& connectionClosed ) {
@@ -294,6 +253,91 @@ void SocketProtocol::writeMessage( SOCKET socketHandle , const String& msg , boo
 
 	if( showMessagesOut )
 		logger.logDebug( String( "writeMessage: message sent, size=" ) + msg.length() + ", text=" + msg );
+}
+
+bool SocketProtocol::readFixedSizeMessage( SOCKET socketHandle , int size , String& msg , bool wait , bool& connectionClosed ) {
+	Timer timer;
+	timer.createRunWindowSec( waitTimeSec );
+
+	return( readMessageInternal( socketHandle , msg , size , wait , timer , connectionClosed ) );
+}
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+bool SocketProtocol::readXmlMessageInternal( SOCKET socketHandle , Xml& xml , String& msg , bool wait , Timer& timer , bool& connectionClosed ) {
+	connectionClosed = false;
+
+	while( true ) {
+		// check time passed
+		if( wait ) {
+			if( !timer.go() )
+				return( false );
+		}
+
+		// try to extract next doc
+		if( inPending.length() > 0 ) {
+			int len = 0;
+			bool errflag = false;
+
+			// parse string
+			xml = Xml::parse( inPending , len , errflag );
+			if( errflag ) {
+				if( xml.exists() )
+					xml.destroy();
+				continue;
+			}
+				
+			if( xml.exists() ) {
+				msg = inPending.getMid( 0 , len );
+				inPending.remove( 0 , len + delimiterIn.length() );
+				return( true );
+			}
+		}
+
+		// wait next chunk from socket
+		if( !readSocketInternal( socketHandle , wait , timer , connectionClosed ) )
+			return( false );
+	}
+
+	return( false );
+}
+
+bool SocketProtocol::readSocketInternal( SOCKET socketHandle , bool wait , Timer& timer , bool& connectionClosed ) {
+	char buf[ 1024 ];
+
+	while( true ) {
+		int socket_waitTimeSec = 0;
+		if( wait ) {
+			socket_waitTimeSec = timer.timeRemainedSec();
+			if( socket_waitTimeSec <= 0 )
+				return( false );
+		}
+
+		// if wait succeeded
+		logger.logDebug( String( "waitSocketDataTimeoutSec: socketHandle=" ) + socketHandle + ", socket_waitTimeSec=" + socket_waitTimeSec );
+		if( waitSocketDataTimeoutSec( socketHandle , socket_waitTimeSec , connectionClosed ) )
+			break;
+
+		// check whether more wait is required
+		if( connectionClosed || wait == false )
+			return( false );
+	}
+
+	// read into buffer
+	int l_recv = recv( socketHandle , buf , sizeof( buf ) - 1 , 0 );
+	if( l_recv == 0 || l_recv == SOCKET_ERROR ) {
+		connectionClosed = true;
+		inPending.clear();
+		return( false );
+	}
+
+	buf[ l_recv ] = 0;
+	inPending += buf;
+
+	if( showPacketsIn )
+		logger.logDebug( String( "readSocketInternal: packet received text=" ) + buf );
+	return( true );
 }
 
 void SocketProtocol::writeSocketInternal( SOCKET socketHandle , const char *s , bool& connectionClosed ) {
@@ -318,11 +362,7 @@ void SocketProtocol::writeSocketInternal( SOCKET socketHandle , const char *s , 
 	}
 }
 
-bool SocketProtocol::readFixedSizeMessage( SOCKET socketHandle , int size , String& msg , bool wait , bool& connectionClosed ) {
-	return( readMessageInternal( socketHandle , msg , size , wait , connectionClosed ) );
-}
-
-bool SocketProtocol::readMessageInternal( SOCKET socketHandle , String& msg , int fixedSize , bool wait , bool& connectionClosed ) {
+bool SocketProtocol::readMessageInternal( SOCKET socketHandle , String& msg , int fixedSize , bool wait , Timer& timer , bool& connectionClosed ) {
 	connectionClosed = false;
 	Xml xml;
 	switch( pin ) {
@@ -332,23 +372,23 @@ bool SocketProtocol::readMessageInternal( SOCKET socketHandle , String& msg , in
 			break;
 
 		case FLOW_PROTOCOL_HTTP_MESSAGES :
-			if( !readHttpMessageInternal( socketHandle , msg , wait , connectionClosed ) )
+			if( !readHttpMessageInternal( socketHandle , msg , wait , timer , connectionClosed ) )
 				return( false );
 			break;
 
 		case FLOW_PROTOCOL_XML_MESSAGES :
-			if( !readXmlMessageInternal( socketHandle , xml , msg , wait , connectionClosed ) )
+			if( !readXmlMessageInternal( socketHandle , xml , msg , wait , timer , connectionClosed ) )
 				return( false );
 			xml.destroy();
 			break;
 
 		case FLOW_PROTOCOL_TEXT_MESSAGES :
-			if( !readTextMessageInternal( socketHandle , msg , fixedSize , wait , connectionClosed ) )
+			if( !readTextMessageInternal( socketHandle , msg , fixedSize , wait , timer , connectionClosed ) )
 				return( false );
 			break;
 
 		case FLOW_PROTOCOL_TEXT_STREAM :
-			if( !readTextStreamInternal( socketHandle , msg , fixedSize , wait , connectionClosed ) )
+			if( !readTextStreamInternal( socketHandle , msg , fixedSize , wait , timer , connectionClosed ) )
 				return( false );
 			break;
 	}
@@ -362,9 +402,15 @@ bool SocketProtocol::readMessageInternal( SOCKET socketHandle , String& msg , in
 	return( true );
 }
 
-bool SocketProtocol::readTextMessageInternal( SOCKET socketHandle , String& msg , int fixedSize , bool wait , bool& connectionClosed ) {
+bool SocketProtocol::readTextMessageInternal( SOCKET socketHandle , String& msg , int fixedSize , bool wait , Timer& timer , bool& connectionClosed ) {
 	char buf[ 1024 ];
 	while( true ) {
+		// check timer
+		if( wait ) {
+			if( timer.timeRemainedSec() <= 0 )
+				return( false );
+		}
+
 		// message with delimiters
 		int index = inPending.find( delimiterIn );
 		if( index > 0 ) {
@@ -377,8 +423,13 @@ bool SocketProtocol::readTextMessageInternal( SOCKET socketHandle , String& msg 
 
 		// wait next chunk from socket
 		while( true ) {
-			int waitTime = ( wait )? waitTimeSec : 0;
-			if( waitSocketDataTimeout( socketHandle , waitTime , connectionClosed ) )
+			int socket_waitTimeSec = 0;
+			if( wait ) {
+				socket_waitTimeSec = timer.timeRemainedSec();
+				if( socket_waitTimeSec <= 0 )
+					return( false );
+			}
+			if( waitSocketDataTimeoutSec( socketHandle , socket_waitTimeSec , connectionClosed ) )
 				break;
 
 			if( connectionClosed )
@@ -416,7 +467,7 @@ bool SocketProtocol::readTextMessageInternal( SOCKET socketHandle , String& msg 
 	return( false );
 }
 
-bool SocketProtocol::readTextStreamInternal( SOCKET socketHandle , String& msg , int fixedSize , bool wait , bool& connectionClosed ) {
+bool SocketProtocol::readTextStreamInternal( SOCKET socketHandle , String& msg , int fixedSize , bool wait , Timer& timer , bool& connectionClosed ) {
 	int packetSize = 0;
 	inPending.clear();
 
@@ -424,8 +475,14 @@ bool SocketProtocol::readTextStreamInternal( SOCKET socketHandle , String& msg ,
 	while( true ) {
 		if( fixedSize > 0 ) {
 			// if waiting for fixed size data
-			int waitTime = ( wait )? waitTimeSec : 0;
-			if( !waitSocketDataTimeout( socketHandle , waitTime , connectionClosed ) ) {
+			int socket_waitTimeSec = 0;
+			if( wait ) {
+				socket_waitTimeSec = timer.timeRemainedSec();
+				if( socket_waitTimeSec <= 0 )
+					return( false );
+			}
+
+			if( !waitSocketDataTimeoutSec( socketHandle , socket_waitTimeSec , connectionClosed ) ) {
 				if( connectionClosed )
 					return( false );
 
@@ -440,8 +497,14 @@ bool SocketProtocol::readTextStreamInternal( SOCKET socketHandle , String& msg ,
 		else {
 			// just any part of text stream - wait can be only for first time
 			bool waitCall = ( packetSize == 0 )? wait : false;
-			int waitTime = ( waitCall )? waitTimeSec : 0;
-			if( !waitSocketDataTimeout( socketHandle , waitTime , connectionClosed ) ) {
+			int socket_waitTimeSec = 0;
+			if( waitCall ) {
+				socket_waitTimeSec = timer.timeRemainedSec();
+				if( socket_waitTimeSec <= 0 )
+					return( false );
+			}
+
+			if( !waitSocketDataTimeoutSec( socketHandle , socket_waitTimeSec , connectionClosed ) ) {
 				if( connectionClosed )
 					return( false );
 
@@ -503,17 +566,17 @@ void SocketProtocol::writeHttpMessageInternal( SOCKET socketHandle , const Strin
 	writeSocketInternal( socketHandle , request , connectionClosed );
 }
 
-bool SocketProtocol::readHttpMessageInternal( SOCKET socketHandle , String& msg , bool wait , bool& connectionClosed ) {
+bool SocketProtocol::readHttpMessageInternal( SOCKET socketHandle , String& msg , bool wait , Timer& timer , bool& connectionClosed ) {
 	// start-line
 	if( state == '0' ) {
-		if( !readHttpMessageStartLine( socketHandle , wait , connectionClosed ) )
+		if( !readHttpMessageStartLine( socketHandle , wait , timer , connectionClosed ) )
 			return( false );
 		state = 'H';
 	}
 
 	// *message-header CRLF
 	if( state == 'H' ) {
-		if( !readHttpMessageHeader( socketHandle , wait , connectionClosed ) )
+		if( !readHttpMessageHeader( socketHandle , wait , timer , connectionClosed ) )
 			return( false );
 		state = 'B';
 		substate = '0';
@@ -521,7 +584,7 @@ bool SocketProtocol::readHttpMessageInternal( SOCKET socketHandle , String& msg 
 
 	if( state == 'B' ) {
 		// [ message-body ]
-		if( !readHttpMessageBody( socketHandle , msg , wait , connectionClosed ) )
+		if( !readHttpMessageBody( socketHandle , msg , wait , timer , connectionClosed ) )
 			return( false );
 		state = '0';
 		substate = '0';
@@ -530,11 +593,10 @@ bool SocketProtocol::readHttpMessageInternal( SOCKET socketHandle , String& msg 
 	return( true );
 }
 
-bool SocketProtocol::readHttpMessageStartLine( SOCKET socketHandle , bool wait , bool& connectionClosed ) {
+bool SocketProtocol::readHttpMessageStartLine( SOCKET socketHandle , bool wait , Timer& timer , bool& connectionClosed ) {
 	headerLines.destroy();
 	startLine.clear();
 
-	int waitTime = ( wait )? waitTimeSec : 0;
 	while( true ) {
 		// check line completed
 		int index = inPending.find( "\r\n" );
@@ -544,17 +606,26 @@ bool SocketProtocol::readHttpMessageStartLine( SOCKET socketHandle , bool wait ,
 			return( true );
 		}
 
+		if( wait ) {
+			if( !timer.go() )
+				return( false );
+		}
+
 		// read more data
-		if( !readSocketInternal( socketHandle , wait , connectionClosed ) )
+		if( !readSocketInternal( socketHandle , wait , timer , connectionClosed ) )
 			return( false );
 	}
 
 	return( false );
 }
 
-bool SocketProtocol::readHttpMessageHeader( SOCKET socketHandle , bool wait , bool& connectionClosed ) {
-	int waitTime = ( wait )? waitTimeSec : 0;
+bool SocketProtocol::readHttpMessageHeader( SOCKET socketHandle , bool wait , Timer& timer , bool& connectionClosed ) {
 	while( true ) {
+		if( wait ) {
+			if( !timer.go() )
+				return( false );
+		}
+
 		// check line completed
 		int index = inPending.find( "\r\n" );
 		if( index >= 0 ) {
@@ -580,20 +651,20 @@ bool SocketProtocol::readHttpMessageHeader( SOCKET socketHandle , bool wait , bo
 		}
 
 		// read more data
-		if( !readSocketInternal( socketHandle , wait , connectionClosed ) )
+		if( !readSocketInternal( socketHandle , wait , timer , connectionClosed ) )
 			return( false );
 	}
 
 	return( true );
 }
 
-bool SocketProtocol::readHttpMessageBody( SOCKET socketHandle , String& msg , bool wait , bool& connectionClosed ) {
+bool SocketProtocol::readHttpMessageBody( SOCKET socketHandle , String& msg , bool wait , Timer& timer , bool& connectionClosed ) {
 	if( substate == '0' ) {
 		// should be set by Content-Length
 		String value = headerLines.get( "Content-Length" );
 		if( !value.isEmpty() ) {
 			int size = atoi( value );
-			return( readHttpMessageBodyChunk( socketHandle , msg , size , wait , connectionClosed ) );
+			return( readHttpMessageBodyChunk( socketHandle , msg , size , wait , timer , connectionClosed ) );
 		}
 		
 		// chunked is expected
@@ -606,6 +677,11 @@ bool SocketProtocol::readHttpMessageBody( SOCKET socketHandle , String& msg , bo
 	// read by chunk
 	// Chunked-Body   = *chunk
 	while( true ) {
+		if( wait ) {
+			if( !timer.go() )
+				return( false );
+		}
+
 		// chunk size
 		if( substate == 'S' ) {
 			// read line
@@ -634,7 +710,7 @@ bool SocketProtocol::readHttpMessageBody( SOCKET socketHandle , String& msg , bo
 		// chunk text
 		if( substate == 'C' ) {
 			String chunk;
-			if( !readHttpMessageBodyChunk( socketHandle , chunk , chunkSize , wait , connectionClosed ) )
+			if( !readHttpMessageBodyChunk( socketHandle , chunk , chunkSize , wait , timer , connectionClosed ) )
 				return( false );
 
 			// add to chunks
@@ -662,7 +738,7 @@ bool SocketProtocol::readHttpMessageBody( SOCKET socketHandle , String& msg , bo
 		}
 
 		// read more data
-		if( !readSocketInternal( socketHandle , wait , connectionClosed ) )
+		if( !readSocketInternal( socketHandle , wait , timer , connectionClosed ) )
 			return( false );
 	}
 
@@ -670,7 +746,7 @@ bool SocketProtocol::readHttpMessageBody( SOCKET socketHandle , String& msg , bo
 	return( true );
 }
 
-bool SocketProtocol::readHttpMessageBodyChunk( SOCKET socketHandle , String& msg , int size , bool wait , bool& connectionClosed ) {
+bool SocketProtocol::readHttpMessageBodyChunk( SOCKET socketHandle , String& msg , int size , bool wait , Timer& timer , bool& connectionClosed ) {
 	// read body
 	while( true ) {
 		int len = inPending.length();
@@ -681,7 +757,12 @@ bool SocketProtocol::readHttpMessageBodyChunk( SOCKET socketHandle , String& msg
 			break;
 		}
 
-		if( !readSocketInternal( socketHandle , wait , connectionClosed ) )
+		if( wait ) {
+			if( !timer.go() )
+				return( false );
+		}
+
+		if( !readSocketInternal( socketHandle , wait , timer , connectionClosed ) )
 			return( false );
 	}
 

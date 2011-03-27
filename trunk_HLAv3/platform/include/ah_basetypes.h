@@ -528,24 +528,31 @@ private:
 
 class Timer {
 public:
-	Timer( bool setInitialTime );
-	Timer( int waitTime );
+	Timer();
+	// do not set interval, set/not set starting timestamp
+	void createWithStartingTimestamp();
+	// set interval in ms and initial timestamp
+	void createRunWindowMs( int runTimeMs );
+	// set interval in seconds and initial timestamp
+	void createRunWindowSec( int runTimeSec );
 
 	// initial adjustments
 	static void startAdjustment();
 	static void stopAdjustment();
 	// time passed from process start - in ms
-	static int timeNow();
+	static int timeSinceProcessStartMs();
 
 public:
 	// timestamp of timer construction - in ms
-	int timeCreated();
+	int timeCreatedMs();
 	// time passed - in ms
-	int timePassed();
+	int timePassedMs();
 	// time passed - in clocks
 	int timePassedClocks();
 	// time passed - in ticks
 	int timePassedTicks();
+	// time remained - in secs
+	int timeRemainedSec();
 
 	// convert clocks to ms
 	static int timeClocksToMs( int clocks );
@@ -556,13 +563,15 @@ public:
 	// convert ms to ticks
 	static int timeMsToTicks( int ms );
 
+	// check current time is within run window
 	bool go();
-	int waitNext();
+	// wait next interval, rounded to seconds
+	int waitNextSecs();
 
 private:
 	long timeStarted;
 	RFC_INT64 timeStartedTicks;
-	int waitTime;
+	int waitTimeMs;
 	int waitCount;
 };
 
