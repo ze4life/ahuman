@@ -23,36 +23,36 @@ void Logger::setLoggerName( const char *name ) {
 	loggerName = name;
 }
 
-void Logger::attachService( const char *p_s ) {
-	loggerName = p_s;
+void Logger::attachService( const char *p_s , const char *p_loggerName ) {
+	loggerName = ( p_loggerName != NULL && *p_loggerName != 0 )? p_loggerName : p_s;
 	LogManager *logManager = ServiceManager::getInstance().getLogManager();
 	settings = logManager -> getServiceLogSettings( p_s );
 }
 
-void Logger::attachObject( const char *className , const char *classInstance ) {
-	loggerName = ( classInstance == NULL )? className : classInstance;
+void Logger::attachObjectInstance( const char *className , const char *classInstance , const char *p_loggerName ) {
+	loggerName = ( p_loggerName != NULL && *p_loggerName != 0 )? p_loggerName : ( ( classInstance == NULL )? className : classInstance );
 	LogManager *logManager = ServiceManager::getInstance().getLogManager();
 	settings = logManager -> getObjectLogSettings( className , classInstance );
 }
 
-void Logger::attachObject( const char *className ) {
-	loggerName = className;
+void Logger::attachObject( const char *className , const char *p_loggerName ) {
+	loggerName = ( p_loggerName != NULL && *p_loggerName != 0 )? p_loggerName : className;
 	LogManager *logManager = ServiceManager::getInstance().getLogManager();
 	settings = logManager -> getObjectLogSettings( className , NULL );
 }
 
-void Logger::attachCustom( const char *p_loggerName ) {
+void Logger::attachCustom( const char *customName , const char *p_loggerName ) {
+	loggerName = ( p_loggerName != NULL && *p_loggerName != 0 )? p_loggerName : customName;
 	LogManager *logManager = ServiceManager::getInstance().getLogManager();
 
 	// attach custom only if set
-	LogSettingsItem *settingsNew = logManager -> getCustomLogSettings( p_loggerName );
+	LogSettingsItem *settingsNew = logManager -> getCustomLogSettings( customName );
 
 	// set to default if none currently
 	if( settingsNew == NULL )
 		if( settings == NULL )
 			settingsNew = logManager -> getCustomDefaultLogSettings();
 
-	loggerName = p_loggerName;
 	if( settingsNew != NULL )
 		settings = settingsNew;
 }
