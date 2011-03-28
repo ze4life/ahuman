@@ -23,6 +23,11 @@ const char *Object::getInstance() {
 	return( instance );
 }
 
+void Object::setLoggerName( String name ) {
+	loggerName = name;
+	logger.setLoggerName( loggerName );
+}
+
 const char *Object::getLoggerName() {
 	if( loggerName.isEmpty() )
 		return( getClass() );
@@ -31,7 +36,6 @@ const char *Object::getLoggerName() {
 
 void Object::setInstance( const char *p_instance ) {
 	instance = p_instance;
-	loggerName = getClass() + ( "." + instance );
 	attachLogger();
 }
 

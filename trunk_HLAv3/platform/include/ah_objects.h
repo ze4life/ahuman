@@ -71,6 +71,7 @@ public:
 public:
 	SerializeObject *getSerializeObject();
 	void attachLogger();
+	void setLoggerName( String name );
 	Logger& getLogger() { return( logger ); };
 	const char *getLoggerName();
 	void log( const char *prompt , Logger::LogLevel p_logLevel );
