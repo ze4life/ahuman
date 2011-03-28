@@ -19,6 +19,10 @@ void Logger::attachRoot() {
 	settings = LogManager::getRootSettings();
 }
 
+void Logger::setLoggerName( const char *name ) {
+	loggerName = name;
+}
+
 void Logger::attachService( const char *p_s ) {
 	loggerName = p_s;
 	LogManager *logManager = ServiceManager::getInstance().getLogManager();

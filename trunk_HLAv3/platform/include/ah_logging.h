@@ -35,6 +35,7 @@ public:
 	~Logger();
 
 	Xml getLogSettings();
+	void setLoggerName( const char *name );
 	void attachRoot();
 	void attachService( const char *serviceName );
 	void attachObject( const char *className );
