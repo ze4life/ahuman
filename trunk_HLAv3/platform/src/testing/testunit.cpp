@@ -5,7 +5,7 @@
 /*#########################################################################*/
 
 TestUnit::TestUnit( String p_name ) {
-	setInstance( p_name );
+	testUnitName = p_name;
 	initialized = false;
 }
 

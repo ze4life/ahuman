@@ -39,6 +39,10 @@ void Object::setInstance( const char *p_instance ) {
 	attachLogger();
 }
 
+void Object::attachLogger() {
+	logger.attachObjectInstance( getClass() , instance , loggerName );
+}
+
 Object *Object::createObject( const char *className ) {
 	SerializeObject *so = ObjectService::getService() -> getSerializeObject( className );
 	return( so -> createObject() );
@@ -75,8 +79,4 @@ void Object::log( const char *prompt , Logger::LogLevel p_logLevel ) {
 	p += ": " + data;
 
 	logger.log( p , p_logLevel );
-}
-
-void Object::attachLogger() {
-	logger.attachObject( getClass() , instance );
 }

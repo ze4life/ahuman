@@ -1,6 +1,6 @@
 #include <ah_tools.h>
 #include <ah_consoletool.h>
-#include <adminapi\include\ah_adminapi.h>
+#include <platform\include\ah_platform.h>
 
 /*#########################################################################*/
 /*#########################################################################*/

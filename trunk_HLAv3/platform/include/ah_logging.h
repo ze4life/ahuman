@@ -37,10 +37,10 @@ public:
 	Xml getLogSettings();
 	void setLoggerName( const char *name );
 	void attachRoot();
-	void attachService( const char *serviceName );
-	void attachObject( const char *className );
-	void attachObject( const char *className , const char *classInstance );
-	void attachCustom( const char *loggerName );
+	void attachService( const char *serviceName , const char *loggerName = NULL );
+	void attachObject( const char *className , const char *loggerName = NULL );
+	void attachObjectInstance( const char *className , const char *classInstance , const char *loggerName = NULL );
+	void attachCustom( const char *customName , const char *loggerName = NULL );
 
 	// stack
 	void printStack();

@@ -39,7 +39,7 @@ public:
 	TestUnit( String p_name );
 	virtual ~TestUnit();
 
-	virtual const char *getClass() { return( getInstance() ); };
+	virtual const char *getClass() { return( testUnitName ); };
 
 	virtual void onInit() {};
 	virtual void onExit() {};
@@ -54,6 +54,7 @@ protected:
 // test units
 private:
 	bool initialized;
+	String testUnitName;
 
 public:
 	MapStringToClass<TestMethod> methods;

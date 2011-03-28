@@ -16,7 +16,7 @@ private:
 
 // construction
 public:
-	DirectChannelsTest() : TestUnit( "TestDirectChannels" ) {
+	DirectChannelsTest() : TestUnit( "DirectChannelsTest" ) {
 		msgEvent = rfc_hnd_evcreate();
 
 		pub = NULL;

@@ -54,7 +54,7 @@ void TestExecutor::exit() {
 }
 
 void TestExecutor::addTestUnit( TestUnit *p_unit ) {
-	units.add( p_unit -> getInstance() , p_unit );
+	units.add( p_unit -> getClass() , p_unit );
 	p_unit -> onCreate();
 	p_unit -> attachLogger();
 }
