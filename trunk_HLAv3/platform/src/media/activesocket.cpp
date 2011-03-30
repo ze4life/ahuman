@@ -59,9 +59,9 @@ bool ActiveSocket::startActiveSocket() {
 	// init messaging
 	MessagingService *io = MessagingService::getService();
 	if( redirectOutbound )
-		sub = io -> subscribe( NULL , outboundChannelName , name + "active-socket" , this );
+		sub = io -> subscribe( NULL , outboundChannelName , "as." + name , this );
 	if( redirectInbound )
-		pub = io -> createPublisher( NULL , inboundChannelName , name + "active-socket" , "text" );
+		pub = io -> createPublisher( NULL , inboundChannelName , "as." + name , "text" );
 
 	// create connection when starting
 	if( connectionType == CONNECTION_PERMANENT ) {
@@ -87,6 +87,7 @@ void ActiveSocket::stopActiveSocket() {
 			}
 			connections.destroy();
 		}
+		rfc_hnd_semunlock( lock );
 	}
 	catch( RuntimeException& e ) {
 		rfc_hnd_semunlock( lock );
@@ -114,6 +115,7 @@ void ActiveSocket::exitActiveSocket() {
 		}
 
 		shutdownInProgress = false;
+		rfc_hnd_semunlock( lock );
 	}
 	catch( RuntimeException& e ) {
 		rfc_hnd_semunlock( lock );
@@ -211,6 +213,7 @@ ActiveSocketConnection *ActiveSocket::getConnection( bool sendWay , String url ,
 
 		// connect to external address
 		ASSERTMSG( ac -> connectSocket() , "sendText - unable to connect ActiveSocket=" + name );
+		rfc_hnd_semunlock( lock );
 	}
 	catch( RuntimeException& e ) {
 		rfc_hnd_semunlock( lock );
