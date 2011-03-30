@@ -513,7 +513,7 @@ int Xml::getEnumProperty( String name , String pairList ) {
 
 		String key = items.get( 0 );
 		key.trim();
-		if( name.equals( key ) )
+		if( value.equals( key ) )
 			return( items.get( 1 ).toInteger() );
 	}
 
