@@ -64,19 +64,20 @@ void SocketProtocol::exitSocketLib() {
 }
 
 void SocketProtocol::create( Xml config ) {
-	maxPacketSize = config.getIntProperty( "max-packet-size" , MAX_PACKET_SIZE_DEFAULT );
-	maxReadSize = config.getIntProperty( "max-read-size" , MAX_READ_SIZE_DEFAULT );
-	waitTimeSec = config.getIntProperty( "wait-time-sec" , WAIT_TIME_SEC_DEFAULT );
-
 	String protocol = config.getProperty( "protocol" );
 	ASSERTMSG( !protocol.isEmpty() , "protocol is not defined" );
 
+	maxPacketSize = config.getIntProperty( "protocol.max-packet-size" , MAX_PACKET_SIZE_DEFAULT );
+	maxReadSize = config.getIntProperty( "protocol.max-read-size" , MAX_READ_SIZE_DEFAULT );
+	waitTimeSec = config.getIntProperty( "protocol.wait-time-sec" , WAIT_TIME_SEC_DEFAULT );
+
 	if( protocol.equals( "asymmetric" ) ) {
-		createFlow( config , pin , delimiterIn , "protocol-inbound" , showPacketsIn , showMessagesIn );
-		createFlow( config , pout , delimiterOut , "protocol-outbound" , showPacketsOut , showMessagesOut );
+		createFlow( config , protocolNameIn , pin , delimiterIn , "protocol.inbound" , showPacketsIn , showMessagesIn );
+		createFlow( config , protocolNameOut , pout , delimiterOut , "protocol.outbound" , showPacketsOut , showMessagesOut );
 	}
 	else {
-		createFlow( config , pin , delimiterIn , "protocol" , showPacketsIn , showMessagesIn );
+		createFlow( config , protocolNameIn , pin , delimiterIn , "protocol" , showPacketsIn , showMessagesIn );
+		protocolNameOut = protocolNameIn;
 		pout = pin;
 		delimiterOut = delimiterIn;
 		showPacketsOut = showPacketsIn; 
@@ -84,41 +85,45 @@ void SocketProtocol::create( Xml config ) {
 	}
 }
 
-void SocketProtocol::createFlow( Xml config , FLOW_PROTOCOL& proto , String& delimiter , String prototype , bool& showPackets , bool& showMessages ) {
-	String protocol = config.getProperty( prototype );
+void SocketProtocol::createFlow( Xml config , String& protocolName , FLOW_PROTOCOL& proto , String& delimiter , String prototype , bool& showPackets , bool& showMessages ) {
+	protocolName = config.getProperty( prototype );
 	showMessages = config.getBooleanProperty( prototype + ".showmessages" );
 	showPackets = config.getBooleanProperty( prototype + ".showpackets" );
 
-	if( protocol.equals( "xml-messages" ) ) {
+	if( protocolName.equals( "xml-messages" ) ) {
 		proto = FLOW_PROTOCOL_XML_MESSAGES;
 
 		String s = config.getProperty( prototype + ".delimiter" , "" );
 		delimiter = String::parseStringLiteral( s );
 	}
 	else
-	if( protocol.equals( "http" ) ) {
+	if( protocolName.equals( "http" ) ) {
 		proto = FLOW_PROTOCOL_HTTP_MESSAGES;
 	}
 	else
-	if( protocol.equals( "text-messages" ) ) {
+	if( protocolName.equals( "text-messages" ) ) {
 		proto = FLOW_PROTOCOL_TEXT_MESSAGES;
 
 		String s = config.getProperty( prototype + ".delimiter" , "" );
 		delimiter = String::parseStringLiteral( s );
 	}
 	else
-	if( protocol.equals( "text-stream" ) ) {
+	if( protocolName.equals( "text-stream" ) ) {
 		proto = FLOW_PROTOCOL_TEXT_STREAM;
 		delimiter.clear();
 	}
 	else
-	if( protocol.equals( "binary-stream" ) ) {
+	if( protocolName.equals( "binary-stream" ) ) {
 		proto = FLOW_PROTOCOL_BINARY_STREAM;
 		delimiter.clear();
 	}
 	else {
-		ASSERTFAILED( "Unknown protocol=" + protocol );
+		ASSERTFAILED( "Unknown protocol=" + protocolName );
 	}
+}
+
+SOCKET SocketProtocol::open( SocketUrl& url , struct sockaddr_in *addr ) {
+	return( open( url.getHost() , url.getPort() , addr ) );
 }
 
 SOCKET SocketProtocol::open( String host , unsigned short port , struct sockaddr_in *addr ) {
@@ -145,6 +150,9 @@ SOCKET SocketProtocol::open( String host , unsigned short port , struct sockaddr
 	int res = connect( socketHandle , ( struct sockaddr * )addr , sizeof( sockaddr_in ) );
 	int errorCode = WSAGetLastError();
 	ASSERTMSG( res == 0 , String( "Error code found: " ) + errorCode );
+
+	unsigned long flag = 1;
+	ioctlsocket( socketHandle , FIONBIO , &flag );
 
 	return( socketHandle );
 }

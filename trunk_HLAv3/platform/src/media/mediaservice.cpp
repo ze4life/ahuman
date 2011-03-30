@@ -168,17 +168,17 @@ ActiveSocket *MediaService::getActiveSocket( String name ) {
 	return( socket );
 }
 
-void MediaService::sendTextToDirectChannel( String name , String text ) {
+void MediaService::sendTextToDirectChannel( String name , String url , String text ) {
 	ActiveSocket *s = getActiveSocket( name );
-	s -> sendText( text );
+	s -> sendText( url , text );
 }
 
-String MediaService::receiveTextFromDirectChannel( String name , bool wait ) {
+String MediaService::receiveTextFromDirectChannel( String name , String url , bool wait ) {
 	ActiveSocket *s = getActiveSocket( name );
-	return( s -> receiveText( wait ) );
+	return( s -> receiveText( url , wait ) );
 }
 
-String MediaService::receiveFixedSizeTextFromDirectChannel( String name , int size ) {
+String MediaService::receiveFixedSizeTextFromDirectChannel( String name , String url , int size , bool wait ) {
 	ActiveSocket *s = getActiveSocket( name );
-	return( s -> receiveFixedText( size , false ) );
+	return( s -> receiveFixedSizeText( url , size , wait ) );
 }

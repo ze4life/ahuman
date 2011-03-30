@@ -108,17 +108,18 @@ void ServiceManager::createServices() {
 
 		state.setState( ServiceState::AH_CREATED );
 		logger.logInfo( "createServices: create services - done" );
+		return;
 	}
 	catch( RuntimeException& e ) {
 		logger.printStack( e );
-		logger.logError( "Unable to create services" );
 	}
 	catch( ... ) {
-		logger.logError( "Unable to create services" );
+		logger.logError( "createServices: unknown exception" );
 	}
 
 	// in case of failure
 	services.clear();
+	ASSERTFAILED( "createServices: fail to create services" );
 }
 
 void ServiceManager::initServices() {

@@ -197,6 +197,9 @@ public:
 	void setSession( MessageSession *p_session ) { session = p_session; };
 	MessageSession *getSession() { return( session ); };
 
+	String getProperty( String p_name );
+	void setProperty( String p_name , String p_value );
+
 protected:
 	const MsgType baseType;
 	const String classType;
@@ -206,6 +209,7 @@ private:
 	String id;
 	String extid;
 	String source;
+	MapStringToString properties;
 };
 
 /*#########################################################################*/
