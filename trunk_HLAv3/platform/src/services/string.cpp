@@ -7,13 +7,11 @@ typedef struct {
 	int size;
 } StringData;
 
-static StringData *getData( char *p )
-{
+static StringData *getData( char *p ) {
 	return( ( StringData * )( p - sizeof( StringData ) ) );
 }
 
-static StringData *ensureFreeSpace( char *& p , int space )
-{
+static StringData *ensureFreeSpace( char *& p , int space ) {
 	// create new
 	if( p == NULL ) {
 		StringData *d = ( StringData * )malloc( sizeof( StringData ) + space + 1 );
@@ -42,52 +40,44 @@ static StringData *ensureFreeSpace( char *& p , int space )
 }
 
 // class String
-String::String()
-{
+String::String() {
 	v = NULL;
 }
 
-String::~String()
-{
+String::~String() {
 	if( v != NULL )
 		free( getData( v ) );
 }
 
-String::String( const char *s )
-{
+String::String( const char *s ) {
 	v = NULL;
 	if( s != NULL )
 		assign( s , strlen( s ) );
 }
 
-String::String( const char *s , int len )
-{
+String::String( const char *s , int len ) {
 	v = NULL;
 	if( len > 0 )
 		assign( s , len );
 }
 
-void String::createFromString( const char *s )
-{
+void String::createFromString( const char *s ) {
 	assign( s , strlen( s ) );
 }
 
-String::String( const String& s )
-{
+String::String( const String& s ) {
 	v = NULL;
 	assign( s , s.length() );
 }
 
-char String::getChar( int index ) const
-{
+char String::getChar( int index ) const {
 	if( v == NULL )
 		return( 0 );
 	ASSERT( index < length() );
 	return( v[ index ] );
 }
 
-bool String::equals( const char *s ) const
-{
+bool String::equals( const char *s ) const {
 	if( v == NULL )
 		return( s == NULL || *s == 0 );
 	if( s == NULL )
@@ -96,8 +86,7 @@ bool String::equals( const char *s ) const
 	return( strcmp( s , v ) == 0 );
 }
 
-String& String::operator +=( const char *s )
-{
+String& String::operator +=( const char *s ) {
 	if( s == NULL )
 		return( *this );
 
@@ -107,8 +96,7 @@ String& String::operator +=( const char *s )
 	return( append( s , strlen( s ) ) );
 }
 
-String& String::append( const char *s ,  int n2 )
-{
+String& String::append( const char *s ,  int n2 ) {
 	if( s == NULL )
 		return( *this );
 
@@ -124,8 +112,7 @@ String& String::append( const char *s ,  int n2 )
 	return( *this );
 }
 
-void String::remove( int from , int n )
-{
+void String::remove( int from , int n ) {
 	if( v == NULL )
 		return;
 
@@ -142,58 +129,50 @@ void String::remove( int from , int n )
 	v[ len - n ] = 0;
 }
 
-String& String::operator +=( char c )
-{
+String& String::operator +=( char c ) {
 	return( append( &c , 1 ) );
 }
 
-String& String::operator +=( int v )
-{
+String& String::operator +=( int v ) {
 	char l_buf[ 12 ];
 	sprintf( l_buf , "%d" , v );
 	return( append( l_buf , strlen( l_buf ) ) );
 }
 
-String& String::operator +=( float v )
-{
+String& String::operator +=( float v ) {
 	char l_buf[ 30 ];
 	sprintf( l_buf , "%g" , v );
 	return( append( l_buf , strlen( l_buf ) ) );
 }
 
-String::operator const char *() const
-{
+String::operator const char *() const {
 	if( v == NULL )
 		return( "" );
 	return( v );
 }
 
-String& String::operator =( const char *s )
-{
+String& String::operator =( const char *s ) {
 	if( s == NULL )
 		return( *this );
 
 	return( assign( s , strlen( s ) ) );
 }
 
-String& String::operator =( String& s )
-{
+String& String::operator =( String& s ) {
 	if( s == NULL )
 		return( *this );
 
 	return( assign( s , strlen( s ) ) );
 }
 
-void String::clear()
-{
+void String::clear() {
 	if( v == NULL )
 		return;
 
 	*v = 0;
 }
 
-String& String::assign( const char *s ,  int n2 )
-{
+String& String::assign( const char *s ,  int n2 ) {
 	if( v != NULL )
 		*v = 0;
 
@@ -204,8 +183,7 @@ String& String::assign( const char *s ,  int n2 )
 	return( *this );
 }
 
-String& String::append( int count , char c )
-{
+String& String::append( int count , char c ) {
 	StringData *d = ensureFreeSpace( v , count );
 
 	int len = strlen( v );
@@ -215,8 +193,7 @@ String& String::append( int count , char c )
 	return( *this );
 }
 
-void String::resize( int nn )
-{
+void String::resize( int nn ) {
 	if( v == NULL ) {
 		ensureFreeSpace( v , nn );
 		return;
@@ -225,13 +202,11 @@ void String::resize( int nn )
 	ensureFreeSpace( v , nn - length() );
 }
 
-char *String::getBuffer()
-{
+char *String::getBuffer() {
 	return( v );
 }
 
-int String::size() const
-{
+int String::size() const {
 	if( v == NULL )
 		return( 0 );
 
@@ -239,21 +214,18 @@ int String::size() const
 	return( d -> size );
 }
 
-int String::length() const
-{
+int String::length() const {
 	if( v == NULL )
 		return( 0 );
 
 	return( strlen( v ) );
 }
 
-bool String::isEmpty() const
-{
+bool String::isEmpty() const {
 	return( v == NULL || *v == 0 );
 }
 
-int String::find( const char *substring ) const
-{
+int String::find( const char *substring ) const {
 	if( v == NULL || substring == NULL )
 		return( -1 );
 
@@ -264,8 +236,7 @@ int String::find( const char *substring ) const
 	return( ptr - v );
 }
 
-int String::find( int startfrom , const char *substring ) const
-{
+int String::find( int startfrom , const char *substring ) const {
 	if( v == NULL || substring == NULL )
 		return( -1 );
 
@@ -279,8 +250,7 @@ int String::find( int startfrom , const char *substring ) const
 	return( ptr - v );
 }
 
-int String::findLastAny( const char *chars ) const
-{
+int String::findLastAny( const char *chars ) const {
 	if( v == NULL )
 		return( -1 );
 
@@ -299,29 +269,25 @@ int String::findLastAny( const char *chars ) const
 	return( -1 );
 }
 
-String String::toUpper() const
-{
+String String::toUpper() const {
 	String x = v;
 	_strupr( x.v );
 	return( x );
 }
 
-String String::toLower() const
-{
+String String::toLower() const {
 	String x = v;
 	_strlwr( x.v );
 	return( x );
 }
 
-String String::toHex( int value )
-{
+String String::toHex( int value ) {
 	char l_buf[ 10 ];
 	sprintf( l_buf , "%x" , value );
 	return( l_buf );
 }
 
-int String::findLast( char c ) const
-{
+int String::findLast( char c ) const {
 	if( v == NULL )
 		return( -1 );
 
@@ -332,8 +298,7 @@ int String::findLast( char c ) const
 	return( p - v );
 }
 
-String String::getMid( int from , int n ) const
-{
+String String::getMid( int from , int n ) const {
 	if( v == NULL )
 		return( "" );
 
@@ -347,9 +312,8 @@ String String::getMid( int from , int n ) const
 	s.assign( v + from  , n );
 	return( s );
 }
-
-String String::getMid( int from ) const
-{
+ 
+String String::getMid( int from ) const {
 	if( v == NULL )
 		return( "" );
 
@@ -363,8 +327,7 @@ String String::getMid( int from ) const
 	return( s );
 }
 
-int String::split( StringList& parts , String delimiter ) const
-{
+int String::split( StringList& parts , String delimiter ) const {
 	if( isEmpty() )
 		return( 0 );
 
@@ -384,8 +347,7 @@ int String::split( StringList& parts , String delimiter ) const
 	return( parts.count() );
 }
 
-String String::parseStringLiteral( const char *p )
-{
+String String::parseStringLiteral( const char *p ) {
 	String s;
 	if( p == NULL )
 		return( s );
@@ -451,16 +413,14 @@ String String::parseStringLiteral( const char *p )
 	return( s );
 }
 
-bool String::startsFrom( const char *substring ) const
-{
+bool String::startsFrom( const char *substring ) const {
 	if( v == NULL )
 		return( false );
 
 	return( strncmp( v , substring , strlen( substring ) ) == 0 );
 }
 
-void String::insert( int from , const char *s )
-{
+void String::insert( int from , const char *s ) {
 	if( s == NULL )
 		return;
 
@@ -475,18 +435,40 @@ void String::insert( int from , const char *s )
 	memcpy( v + from , s , lengthAdd );
 }
 
+void String::trim() {
+	if( v == NULL )
+		return;
+
+	const char *spaces = " \t\n\r";
+	int skip = strspn( v , spaces );
+	remove( 0 , skip );
+
+	// from the end
+	int n = strlen( v );
+	for( skip = 0; skip < n && strchr( spaces , v[ n - skip - 1 ] ) != NULL; skip++ );
+	remove( n - skip , skip );
+}
+
+int String::toInteger() {
+	ASSERTMSG( v != NULL , "string is null" );
+
+	int value;
+	int argc = sscanf( v , "%d" , &value );
+	ASSERTMSG( argc == 1 , String( "cannot get integer from string=" ) + v );
+
+	return( value );
+}
+
 // #############################################################################
 // #############################################################################
 
-String operator +( String& s1 , const char *s2 )
-{
+String operator +( String& s1 , const char *s2 ) {
 	String s = s1;
 	s += s2;
 	return( s );
 }
 
-String operator +( const String& s1 , int value )
-{
+String operator +( const String& s1 , int value ) {
 	char l_buf[ 12 ];
 	sprintf( l_buf , "%d" , value );
 
@@ -495,8 +477,7 @@ String operator +( const String& s1 , int value )
 	return( s );
 }
 
-String operator +( const String& s1 , unsigned value )
-{
+String operator +( const String& s1 , unsigned value ) {
 	char l_buf[ 12 ];
 	sprintf( l_buf , "%u" , value );
 
@@ -505,8 +486,7 @@ String operator +( const String& s1 , unsigned value )
 	return( s );
 }
 
-String operator +( const String& s1 , float value )
-{
+String operator +( const String& s1 , float value ) {
 	char l_buf[ 30 ];
 	sprintf( l_buf , "%g" , value );
 
@@ -515,8 +495,7 @@ String operator +( const String& s1 , float value )
 	return( s );
 }
 
-String operator +( const String& s1 , double value )
-{
+String operator +( const String& s1 , double value ) {
 	char l_buf[ 30 ];
 	sprintf( l_buf , "%lf" , value );
 
@@ -525,24 +504,20 @@ String operator +( const String& s1 , double value )
 	return( s );
 }
 
-String operator +( const String& s1 , const char *s2 )
-{
+String operator +( const String& s1 , const char *s2 ) {
 	String s = s1;
 	s += s2;
 	return( s );
 }
 
-String operator +( const String& s1 , char value )
-{
+String operator +( const String& s1 , char value ) {
 	String s = s1;
 	s += value;
 	return( s );
 }
 
-String operator +( const String& s1 , bool value )
-{
+String operator +( const String& s1 , bool value ) {
 	String s = s1;
 	s += ( value )? "true" : "false";
 	return( s );
 }
-

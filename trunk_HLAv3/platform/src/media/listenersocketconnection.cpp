@@ -4,7 +4,7 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-SocketConnection::SocketConnection( SocketServer *p_server , SOCKET p_clientSocket , struct sockaddr_in *p_clientAddress , Message::MsgType p_msgType )
+ListenerSocketConnection::ListenerSocketConnection( SocketServer *p_server , SOCKET p_clientSocket , struct sockaddr_in *p_clientAddress , Message::MsgType p_msgType )
 :	protocol( logger ) {
 	listener = NULL;
 	session = NULL; 
@@ -27,7 +27,7 @@ SocketConnection::SocketConnection( SocketServer *p_server , SOCKET p_clientSock
 	attachLogger();
 }
 
-SocketConnection::~SocketConnection() {
+ListenerSocketConnection::~ListenerSocketConnection() {
 	// delete session
 	if( session != NULL ) {
 		MessagingService *ms = MessagingService::getService();
@@ -35,12 +35,12 @@ SocketConnection::~SocketConnection() {
 	}
 }
 
-void SocketConnection::setName( String name ) {
+void ListenerSocketConnection::setName( String name ) {
 	setInstance( name );
 	attachLogger();
 }
 
-void SocketConnection::threadClientFunction( void *p_arg ) {
+void ListenerSocketConnection::threadClientFunction( void *p_arg ) {
 	// startup sockets
 	SocketProtocol::initSocketLib();
 
@@ -54,7 +54,7 @@ void SocketConnection::threadClientFunction( void *p_arg ) {
 	SocketProtocol::exitSocketLib();
 }
 
-bool SocketConnection::startConnection() {
+bool ListenerSocketConnection::startConnection() {
 	// complete connection
 	logger.logInfo( String( "startConnection: client name=" ) + getName() + 
 		" connected on listener=" + server -> getName() + 
@@ -76,7 +76,7 @@ bool SocketConnection::startConnection() {
 	// start reading thread
 	if( server -> getWayIn() || server -> getAuth() ) {
 		ThreadService *ts = ThreadService::getService();
-		thread = ts -> runThread( getInstance() , this , ( ObjectThreadFunction )&SocketConnection::threadClientFunction , NULL );
+		thread = ts -> runThread( getInstance() , this , ( ObjectThreadFunction )&ListenerSocketConnection::threadClientFunction , NULL );
 		threadStarted = true;
 	}
 
@@ -86,7 +86,7 @@ bool SocketConnection::startConnection() {
 	return( true );
 }
 
-void SocketConnection::readMessages() {
+void ListenerSocketConnection::readMessages() {
 	String key = getInstance();
 
 	try {
@@ -112,7 +112,7 @@ void SocketConnection::readMessages() {
 	}
 }
 
-void SocketConnection::performRead() {
+void ListenerSocketConnection::performRead() {
 	// wait for input
 	if( server -> getWayIn() == false && server -> getAuth() == false )
 		return;
@@ -131,7 +131,7 @@ void SocketConnection::performRead() {
 	}
 }
 
-void SocketConnection::stopConnection() {
+void ListenerSocketConnection::stopConnection() {
 	// do not read more
 	continueRead = false;
 
@@ -162,10 +162,10 @@ void SocketConnection::stopConnection() {
 	}
 }
 
-void SocketConnection::exitConnection() {
+void ListenerSocketConnection::exitConnection() {
 }
 
-void SocketConnection::processMessage( const char *p_msg ) {
+void ListenerSocketConnection::processMessage( const char *p_msg ) {
 	if( server -> getAuth() && connected == false ) {
 		// the only message acceptable is connect
 		tryLogin( p_msg );
@@ -192,15 +192,15 @@ void SocketConnection::processMessage( const char *p_msg ) {
 	}
 }
 
-void SocketConnection::tryLogin( const char *p_msg ) {
+void ListenerSocketConnection::tryLogin( const char *p_msg ) {
 }
 
-void SocketConnection::writeMessage( TextMessage *p_msg ) {
+void ListenerSocketConnection::writeMessage( TextMessage *p_msg ) {
 	const String& s = p_msg -> getText();
 	sendString( ( const char * )s , s.length() );
 }
 
-void SocketConnection::sendString( const char *p_msg , int p_len ) {
+void ListenerSocketConnection::sendString( const char *p_msg , int p_len ) {
 	ASSERTMSG( p_len > 0 , "SocketConnection::sendString - empty message" );
 
 	// send message
@@ -216,20 +216,20 @@ void SocketConnection::sendString( const char *p_msg , int p_len ) {
 	}
 }
 
-String SocketConnection::getClientSocketName() {
+String ListenerSocketConnection::getClientSocketName() {
 	String msg = SocketServer::getAddress( &addr );
 	return( msg );
 }
 
-void SocketConnection::onTextMessage( TextMessage *msg ) {
+void ListenerSocketConnection::onTextMessage( TextMessage *msg ) {
 	writeMessage( msg );
 }
 
-void SocketConnection::onXmlMessage( XmlMessage *msg ) {
+void ListenerSocketConnection::onXmlMessage( XmlMessage *msg ) {
 	msg -> setMessageFromXml();
 	writeMessage( msg );
 }
 
-void SocketConnection::onXmlCall( XmlCall *msg ) {
+void ListenerSocketConnection::onXmlCall( XmlCall *msg ) {
 	ASSERTMSG( false , "not implemented yet" );
 }

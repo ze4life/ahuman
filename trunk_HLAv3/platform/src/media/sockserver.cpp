@@ -251,7 +251,7 @@ void SocketServer::performConnect() {
 }
 
 bool SocketServer::startConnection( SOCKET clientSocket , struct sockaddr_in *clientAddress ) {
-	SocketConnection *client = new SocketConnection( this , clientSocket , clientAddress , SocketListener::getMsgType() );
+	ListenerSocketConnection *client = new ListenerSocketConnection( this , clientSocket , clientAddress , SocketListener::getMsgType() );
 	SocketListener::addListenerConnection( client );
 
 	if( !client -> startConnection() ) {

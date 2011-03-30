@@ -18,9 +18,9 @@ class ActiveSocket;
 // handles different media AI will use to communicate
 class MediaService : public Service {
 public:
-	void sendTextToDirectChannel( String name , String text );
-	String receiveTextFromDirectChannel( String name , bool wait );
-	String receiveFixedSizeTextFromDirectChannel( String name , int size );
+	void sendTextToDirectChannel( String name , String url , String text );
+	String receiveTextFromDirectChannel( String name , String url , bool wait );
+	String receiveFixedSizeTextFromDirectChannel( String name , String url , int size , bool wait );
 
 	virtual const char *getServiceName() { return( "MediaService" ); };
 	virtual void configureService( Xml config );

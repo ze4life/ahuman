@@ -69,6 +69,8 @@ public:
 	static String toHex( int value );
 	int split( StringList& parts , String delimiter ) const;
 	bool startsFrom( const char *substring ) const;
+	void trim();
+	int toInteger();
 
 	static String parseStringLiteral( const char *p );
 
@@ -178,6 +180,7 @@ public:
 	void setBooleanProperty( String name , bool value );
 	void setIntProperty( String name , int value );
 	void setFloatProperty( String name , float value );
+	int getEnumProperty( String name , String pairList );
 
 	// elements
 	Xml addTextElement( String name , String value );

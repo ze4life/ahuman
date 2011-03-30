@@ -34,8 +34,10 @@
 
 class SocketListener;
 class SocketServer;
+class ListenerSocketConnection;
 class ActiveSocket;
-class SocketConnection;
+class ActiveSocketConnection;
+class SocketUrl;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -52,6 +54,8 @@ public:
 		FLOW_PROTOCOL_BINARY_STREAM = 5
 	} FLOW_PROTOCOL;
 
+	String protocolNameIn;
+	String protocolNameOut;
 	FLOW_PROTOCOL pin;
 	FLOW_PROTOCOL pout;
 	String delimiterIn;
@@ -92,6 +96,7 @@ public:
 	static void exitSocketLib();
 	static bool waitSocketDataInfinite( SOCKET socket , bool& p_error );
 	static bool waitSocketDataTimeoutSec( SOCKET socket , int p_sec , bool& p_error );
+	static SOCKET open( SocketUrl& url , struct sockaddr_in *addr );
 	static SOCKET open( String host , unsigned short port , struct sockaddr_in *addr );
 	static void close( SOCKET socket );
 
@@ -105,7 +110,7 @@ public:
 
 // internals
 private:
-	void createFlow( Xml config , FLOW_PROTOCOL& proto , String& delimiter , String prototype , bool& showPackets , bool& showMessages );
+	void createFlow( Xml config , String& protocolName , FLOW_PROTOCOL& proto , String& delimiter , String prototype , bool& showPackets , bool& showMessages );
 
 	bool readMessageInternal( SOCKET socketHandle , String& msg , int fixedSize , bool wait , Timer& timer , bool& connectionClosed );
 	bool readXmlMessageInternal( SOCKET socketHandle , Xml& xml , String& msg , bool wait , Timer& timer , bool& connectionClosed );
@@ -130,7 +135,7 @@ private:
 	int lastConnectionId;
 	Message::MsgType msgType;
 	String name;
-	MapStringToClass<SocketConnection> connections;
+	MapStringToClass<ListenerSocketConnection> connections;
 
 public:
 	// interface
@@ -152,8 +157,8 @@ public:
 	String getName();
 	SocketProtocol& getProtocol() { return( protocol ); };
 
-	void addListenerConnection( SocketConnection *connection );
-	void removeListenerConnection( SocketConnection *connection );
+	void addListenerConnection( ListenerSocketConnection *connection );
+	void removeListenerConnection( ListenerSocketConnection *connection );
 	void stopListenerConnections();
 	void exitListenerConnections();
 };
@@ -163,37 +168,57 @@ public:
 
 class ActiveSocket : public Object , public MessageSubscriber {
 private:
-	SOCKET socketHandle;
+	typedef enum { 
+		CONNECTION_SIGNLE = 1 ,
+		CONNECTION_PERMANENT = 2 ,
+		CONNECTION_MULTIPLE = 3
+	} ConnectionType;
+
+	typedef enum { 
+		SESSION_PERMANENT = 1 ,
+		SESSION_REQUESTRESPONSE = 2 ,
+		SESSION_REQUEST = 3
+	} SessionType;
+
 	SocketProtocol protocol;
 	RFC_HND lock;
 
-	RFC_HND socketThread;
-	bool threadStarted;
-	bool continueRead;
-	bool connected;
 	bool shutdownInProgress;
-	int reconnectionTimeout;
 
+	// configuration
+	int reconnectionTimeout;
 	String name;
 	String host;
-	String port;
-	bool permanentConnection;
+	int port;
+	ConnectionType connectionType;
+	SessionType sessionType;
 
 	bool redirectInbound;
 	bool redirectOutbound;
-
 	String inboundChannelName;
 	String outboundChannelName;
+
+	// messaging
 	MessageSubscription *sub;
 	MessagePublisher *pub;
 
+	// multiple connections - map "<protocol>:<port>//<host>" to connection created
+	MapStringToClass<ActiveSocketConnection> connections;
+	ActiveSocketConnection *connection;
+
 public:
 	// interface
+	void sendText( String url , String text );
+	String receiveText( String url , bool wait );
+	String receiveFixedSizeText( String url , int size , bool wait );
+	bool waitReadSocket( String url , bool wait );
+
 	void configure( Xml config );
 	bool startActiveSocket();
 	void stopActiveSocket();
 	void exitActiveSocket();
 
+protected:
 	virtual void onTextMessage( TextMessage *msg );
 
 public:
@@ -203,25 +228,65 @@ public:
 
 public:
 	String getName();
-	String getAddress();
-
-	void sendText( String text );
-	String receiveText( bool wait );
-	String receiveFixedText( int size , bool wait);
 
 private:
-	bool connectSocket();
-	bool connectSocketProtected();
-	void disconnectSocket();
-	bool waitReadSocket( bool wait );
-	void handleBrokenConnection();
-	void readSocketThread( void *p_arg );
+	ActiveSocketConnection *getConnection( bool sendWay , String url , SocketUrl& su );
+	ActiveSocketConnection *openConnection();
 };
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-class SocketConnection : public Object , public MessageSubscriber {
+class ActiveSocketConnection : public Object {
+private:
+	String urlKey;
+	SocketProtocol& protocol;
+	MessagePublisher *pub;
+
+	SOCKET socketHandle;
+	struct sockaddr_in addr;
+	bool continueRead;
+	bool connected;
+	RFC_HND socketThread;
+	bool threadStarted;
+	RFC_HND lock;
+	bool shutdownInProgress;
+	int reconnectionTimeoutSec;
+
+public:
+	String getUrlKey();
+	void setUrlKey( String p_urlkey );
+	void setReconnectionTimeoutSec( int reconnectionTimeoutSec );
+
+	bool connectSocket();
+	void closeSocket();
+	void exitSocket();
+
+	String getAddress();
+	void sendText( SocketUrl& su , String text );
+	String receiveText( SocketUrl& su , bool wait );
+	String receiveFixedText( SocketUrl& su , int size , bool wait);
+	bool waitReadSocket( SocketUrl& su , bool wait );
+
+public:
+	ActiveSocketConnection( String p_urlkey , SocketProtocol& protocol , MessagePublisher *pub );
+	~ActiveSocketConnection();
+
+protected:
+	const char *getClass() { return( "ActiveSocketConnection" ); };
+
+private:
+	bool connectSocketProtected();
+	void disconnectSocket();
+	void handleBrokenConnection();
+	void readSocketThread( void *p_arg );
+	void waitThreadFinished();
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class ListenerSocketConnection : public Object , public MessageSubscriber {
 private:
 	SocketProtocol protocol;
 
@@ -245,10 +310,10 @@ private:
 	MessageSession *session;
 
 public:
-	SocketConnection( SocketServer *server , SOCKET clientSocket , struct sockaddr_in *clientAddress , Message::MsgType msgType );
-	~SocketConnection();
+	ListenerSocketConnection( SocketServer *server , SOCKET clientSocket , struct sockaddr_in *clientAddress , Message::MsgType msgType );
+	~ListenerSocketConnection();
 
-	virtual const char *getClass() { return( "SocketConnection" ); };
+	virtual const char *getClass() { return( "ListenerSocketConnection" ); };
 
 public:
 	bool startConnection();
@@ -336,6 +401,36 @@ private:
 	RFC_HND listenThread;
 	SOCKET listenSocket;
 	struct sockaddr_in listen_inet;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class SocketUrl : public Object {
+private:
+	String protocol;
+	String host;
+	int port;
+	String page;
+
+public:
+	String getValidUrl();
+	String getValidUrlWithoutPage();
+	String getProtocol();
+	String getHost();
+	int getPort();
+	String getPage();
+
+	void setUrl( String url );
+	void setProtocol( String protocol );
+	void setHost( String host );
+	void setPort( int port );
+	void setPage( String page );
+
+public:
+	SocketUrl();
+	SocketUrl( String url );
+	const char *getClass() { return( "SocketUrl" ); };
 };
 
 /*#########################################################################*/

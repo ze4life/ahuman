@@ -501,3 +501,22 @@ Xml Xml::load( const char *path ) {
 	return( xml );
 }
 
+int Xml::getEnumProperty( String name , String pairList ) {
+	String value = getProperty( name );
+
+	StringList pairs;
+	pairList.split( pairs , "," );
+
+	for( int k = 0; k < pairs.count(); k++ ) {
+		StringList items;
+		pairs.get( k ).split( items , "=" );
+
+		String key = items.get( 0 );
+		key.trim();
+		if( name.equals( key ) )
+			return( items.get( 1 ).toInteger() );
+	}
+
+	ASSERTFAILED( "unable to find value=" + value + " in enum: " + pairList );
+	return( 0 );
+}

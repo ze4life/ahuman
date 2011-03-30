@@ -1,47 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="include">
-      <UniqueIdentifier>{f7bb7075-18b4-4c48-8f7f-9f892210bdda}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src">
-      <UniqueIdentifier>{518db97c-93f4-4c45-8474-e954af1a2419}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\messaging">
-      <UniqueIdentifier>{8f6b58d4-e631-474b-8293-86665f4bac2d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\api">
-      <UniqueIdentifier>{800efb74-e962-4bf0-910f-bd64443c0aab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="impl">
-      <UniqueIdentifier>{f0ba0739-1488-4bef-bc66-b4fe40b455b0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\objects">
-      <UniqueIdentifier>{b5b45b14-a184-4f27-a26f-727d296f925b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\services">
-      <UniqueIdentifier>{08d37f3d-22d6-4ccb-b09f-aeaa32ad4810}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\threads">
-      <UniqueIdentifier>{74f1e47b-472f-4cb8-a350-25fd12e9a6f9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\environment">
-      <UniqueIdentifier>{5f767597-9ac0-4e11-b561-cf456231390d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\testing">
-      <UniqueIdentifier>{5d7d6622-9c94-4ca4-ab06-d9cc10fca1c2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\math">
-      <UniqueIdentifier>{e0f57e59-daff-401f-9d90-30dd5c279444}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\persisting">
-      <UniqueIdentifier>{fb7b9d39-7b52-4a1d-9648-0d21b86ed713}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\media">
-      <UniqueIdentifier>{5569466d-8d20-47ed-9596-f60f58d61eda}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="src\services\service.cpp" />
     <ClCompile Include="src\services\logger.cpp" />
     <ClCompile Include="src\services\xml.cpp" />
@@ -73,7 +32,6 @@
     <ClCompile Include="src\threads\timer.cpp" />
     <ClCompile Include="src\platform.cpp" />
     <ClCompile Include="src\media\activesocket.cpp" />
-    <ClCompile Include="src\media\socketconnection.cpp" />
     <ClCompile Include="src\media\socketprotocol.cpp" />
     <ClCompile Include="src\media\sockserver.cpp" />
     <ClCompile Include="src\messaging\message.cpp" />
@@ -91,6 +49,9 @@
     <ClCompile Include="src\testing\testunit.cpp" />
     <ClCompile Include="src\adminapi\adminapi.cpp" />
     <ClCompile Include="src\adminapi\adminapisocket.cpp" />
+    <ClCompile Include="src\media\activesocketconnection.cpp" />
+    <ClCompile Include="src\media\listenersocketconnection.cpp" />
+    <ClCompile Include="src\media\socketurl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="impl\ah_objects_impl.h" />
