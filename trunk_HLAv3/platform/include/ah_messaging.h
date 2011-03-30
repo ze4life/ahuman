@@ -100,14 +100,17 @@ public:
 	~MessagePublisher();
 
 public:
+	TextMessage *createTextMessage();
+	TextMessage *createTextMessage( const char *msg );
 	String publish( MessageSession *session , const char *msg );
 	String publish( MessageSession *session , Message *msg );
-	MessageChannel *getChannel();
 	const String& getMsgType();
+	String getChannelName();
 
 // internals
 public:
 	void disconnected();
+	MessageChannel *getChannel();
 
 public:
 	MessageSession *session;
@@ -136,6 +139,7 @@ public:
 	MessageChannel *getChannel();
 	void setSelector( String selector );
 	void disconnected();
+	String getChannelName();
 
 public:
 	MessageSubscription( MessageSession *session , MessageChannel *p_channel , String p_name , MessageSubscriber *p_sub );
@@ -151,7 +155,7 @@ private:
 public:
 	MessageSession *session;
 	MessageChannel *channel;
-	String selector;
+	MapStringToString selectorConditions;
 	String name;
 	MessageSubscriber *sub;
 };
@@ -160,7 +164,7 @@ public:
 /*#########################################################################*/
 
 // message
-class Message {
+class Message : public Object {
 public:
 	typedef enum {
 		MsgType_Unknown = 0 ,
@@ -171,40 +175,42 @@ public:
 	} MsgType;
 
 public:
-	Message( MsgType baseType , const char *classType );
+	Message( MsgType baseType );
 	virtual ~Message();
+	virtual const char *getClass() = 0;
 
+public:
 	virtual void postExecute() {};
-
-	MsgType getBaseType() { return( baseType ); };
-	const String& getClassType() { return( classType ); };
 
 	XmlCall& toXmlCall();
 
-	bool isClassType( const char *p_classType ) const {
-		return( classType.equals( p_classType ) );
+	bool isClassType( const char *p_classType ) {
+		return( strcmp( getClass() , p_classType ) == 0 );
 	}
 
+	void setEndPoint( const char *p_endpoint ) { endpoint = p_endpoint; };
+	void setMessageType( const char *p_type ) { msgtype = p_type; };
 	void setSourceId( const char *p_id ) { source = p_id; };
-	const String& getSourceId() { return( source ); };
-
 	void setSourceMessageId( const char *p_id ) { extid = p_id; };
-	const String& getSourceMessageId() { return( extid ); };
-
 	void setChannelMessageId( const char *p_id ) { id = p_id; };
-	const String& getChannelMessageId() { return( id ); };
-
 	void setSession( MessageSession *p_session ) { session = p_session; };
-	MessageSession *getSession() { return( session ); };
-
-	String getProperty( String p_name );
 	void setProperty( String p_name , String p_value );
+
+	String getEndPoint() { return( endpoint ); };
+	String getMessageType() { return( msgtype ); };
+	MsgType getBaseType() { return( baseType ); };
+	const String& getSourceId() { return( source ); };
+	const String& getSourceMessageId() { return( extid ); };
+	const String& getChannelMessageId() { return( id ); };
+	MessageSession *getSession() { return( session ); };
+	String getProperty( String p_name );
 
 protected:
 	const MsgType baseType;
-	const String classType;
 
 private:
+	String endpoint;
+	String msgtype;
 	MessageSession *session;
 	String id;
 	String extid;
@@ -218,11 +224,11 @@ private:
 // message
 class TextMessage : public Message {
 public:
-	TextMessage() : Message( Message::MsgType_Text , NULL ) {};
-	TextMessage( const char *classType ) : Message( Message::MsgType_Text , classType ) {};
+	TextMessage() : Message( Message::MsgType_Text ) {};
 
 protected:
-	TextMessage( MsgType p_baseType , const char *p_classType ) : Message( p_baseType , p_classType ) {};
+	TextMessage( MsgType p_baseType ) : Message( p_baseType ) {};
+	const char *getClass() { return( "TextMessage" ); };
 
 public:
 	void setText( const char *p_txt ) { message = p_txt; };
@@ -240,11 +246,13 @@ public:
 	XmlMessage( const char *txt );
 	XmlMessage( Xml xml );
 	virtual ~XmlMessage();
+	const char *getClass() { return( "XmlMessage" ); };
 
+public:
 	virtual void postExecute() {};
 
 protected:
-	XmlMessage( MsgType p_baseType , const char *p_classType ) : TextMessage( p_baseType , p_classType ) {};
+	XmlMessage( MsgType p_baseType ) : TextMessage( p_baseType ) {};
 
 public:
 	void setXml( Xml p_xml ) { xml = p_xml; };
@@ -264,7 +272,9 @@ class XmlCall : public XmlMessage {
 public:
 	XmlCall( MessageChannel *channelIn , MessageChannel *channelOut , const char *txt );
 	virtual ~XmlCall();
+	const char *getClass() { return( "XmlCall" ); };
 
+public:	
 	virtual void postExecute();
 
 	void setXmlFromMessage();

@@ -19,7 +19,15 @@ static void on_exit( int p_sig ) {
 static unsigned __stdcall threadMainFunction( void *p_arg ) {
 	ThreadData *td = ( ThreadData * )p_arg;
 	ThreadService *ts = ThreadService::getService();
-	return( ts -> threadFunction( td ) );
+
+	try {
+		unsigned value = ts -> threadFunction( td );
+		return( value );
+	}
+	catch( ... ) {
+		fprintf( stderr , "threadMainFunction: uncaught exception while running thread\n" );
+	}
+	return( -1 );
 }
 
 static void UnhandledExceptionTranslator( unsigned int exceptionCode , struct _EXCEPTION_POINTERS *exceptionInfo ) {
@@ -86,14 +94,14 @@ RFC_HND ThreadService::getThreadHandle() {
 }
 
 unsigned ThreadService::threadFunction( ThreadData *td ) {
-	workerStarted( td );
-	
 	int status = 0;
 	Object *o = td -> object;
 	Logger& tlogger = o -> getLogger();
 
 	String name = td -> name;
 	try {
+		workerStarted( td );
+
 		void ( Object::*of )( void *p_arg ) = td -> objectFunction;
 		void *oa = td -> objectFunctionArg;
 		( o ->* of )( oa );

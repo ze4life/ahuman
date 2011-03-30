@@ -45,7 +45,7 @@ void MessageSubscription::disconnected() {
  */
 void MessageSubscription::processMessage( Message *msg ) {
 	// verify selector
-	if( !selector.isEmpty() )
+	if( selectorConditions.count() > 0 )
 		if( !isMatchSelector( msg ) )
 			return;
 
@@ -80,15 +80,50 @@ void MessageSubscription::processMessage( Message *msg ) {
 }
 
 void MessageSubscription::setSelector( String p_selector ) {
-	selector = p_selector;
+	selectorConditions.destroy();
+
+	// format is "key1=value, key2=value, ...", can include system properties - msgtype and endpoint
+	StringList parts;
+	p_selector.split( parts , "," );
+
+	// set to selector
+	for( int k = 0; k < parts.count(); k++ ) {
+		StringList items;
+		parts.get( k ).split( items , "=" );
+		ASSERTMSG( items.count() == 2 , "invalid selector=" + p_selector );
+
+		String key = items.get( 0 );
+		String value = items.get( 1 );
+		key.trim();
+		value.trim();
+
+		selectorConditions.add( key , value );
+	}
 }
 
 bool MessageSubscription::isMatchSelector( Message *msg ) {
-	// for now, check only message type as selector contents
-	const String& type = msg -> getClassType();
-	if( type.isEmpty() )
-		return( false );
+	// check system and message properties
+	for( int k = 0; k < selectorConditions.count(); k++ ) {
+		const char *key = selectorConditions.getKeyByIndex( k );
 
-	return( selector.find( type ) >= 0 );
+		const char *valueSelector = selectorConditions.get( key );
+		String valueMsg;
+		if( !strcmp( "msgtype" , key ) )
+			valueMsg = msg -> getMessageType();
+		else
+		if( !strcmp( "endcpoint" , key ) )
+			valueMsg = msg -> getEndPoint();
+		else
+			valueMsg = msg -> getProperty( key );
+
+		if( !valueMsg.equals( valueSelector ) )
+			return( false );
+	}
+
+	return( true );
+}
+
+String MessageSubscription::getChannelName() {
+	return( channel -> getName() );
 }
 

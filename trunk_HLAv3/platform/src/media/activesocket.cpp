@@ -4,6 +4,15 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
+void ActiveSocket::onTextMessage( TextMessage *msg ) {
+	String url = msg -> getEndPoint();
+	String text = msg -> getText();
+
+	SocketUrl su;
+	ActiveSocketConnection *ac = getConnection( true , url , su );
+	ac -> sendText( su , text );
+}
+
 ActiveSocket::ActiveSocket( String p_name )
 :	protocol( logger ) {
 	name = p_name;
@@ -153,15 +162,6 @@ bool ActiveSocket::waitReadSocket( String url , bool wait ) {
 	return( ac -> waitReadSocket( su , wait ) );
 }
 
-void ActiveSocket::onTextMessage( TextMessage *msg ) {
-	String url = msg -> getProperty( "url" );
-	String text = msg -> getText();
-
-	SocketUrl su;
-	ActiveSocketConnection *ac = getConnection( true , url , su );
-	ac -> sendText( su , text );
-}
-
 ActiveSocketConnection *ActiveSocket::getConnection( bool sendWay , String url , SocketUrl& su ) {
 	ActiveSocketConnection *ac = NULL;
 
@@ -200,11 +200,11 @@ ActiveSocketConnection *ActiveSocket::getConnection( bool sendWay , String url ,
 		if( connectionType == CONNECTION_MULTIPLE ) {
 			ac = connections.get( urlKey );
 			if( ac == NULL )
-				ac = new ActiveSocketConnection( urlKey , protocol , pub );
+				ac = new ActiveSocketConnection( name , urlKey , protocol , pub );
 		}
 		else {
 			if( connection == NULL )
-				connection = new ActiveSocketConnection( urlKey , protocol , pub );
+				connection = new ActiveSocketConnection( name , urlKey , protocol , pub );
 			else
 			if( !urlKey.equals( connection -> getUrlKey() ) )
 				connection -> setUrlKey( urlKey );

@@ -269,7 +269,7 @@ public:
 	bool waitReadSocket( SocketUrl& su , bool wait );
 
 public:
-	ActiveSocketConnection( String p_urlkey , SocketProtocol& protocol , MessagePublisher *pub );
+	ActiveSocketConnection( String activeSocketName , String p_urlkey , SocketProtocol& protocol , MessagePublisher *pub );
 	~ActiveSocketConnection();
 
 protected:
@@ -280,6 +280,7 @@ private:
 	void disconnectSocket();
 	void handleBrokenConnection();
 	void readSocketThread( void *p_arg );
+	void readSocketThreadProtected();
 	void waitThreadFinished();
 };
 

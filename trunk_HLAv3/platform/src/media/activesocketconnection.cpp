@@ -4,7 +4,7 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-ActiveSocketConnection::ActiveSocketConnection( String p_urlkey , SocketProtocol& p_protocol , MessagePublisher *p_pub )
+ActiveSocketConnection::ActiveSocketConnection( String activeSocketName , String p_urlkey , SocketProtocol& p_protocol , MessagePublisher *p_pub )
 :	protocol( p_protocol ) {
 	urlKey = p_urlkey;
 	pub = p_pub;
@@ -18,6 +18,7 @@ ActiveSocketConnection::ActiveSocketConnection( String p_urlkey , SocketProtocol
 	reconnectionTimeoutSec = 0;
 
 	lock = rfc_hnd_semcreate();
+	setInstance( "ac." + activeSocketName );
 }
 
 ActiveSocketConnection::~ActiveSocketConnection() {
@@ -29,13 +30,22 @@ String ActiveSocketConnection::getUrlKey() {
 }
 
 void ActiveSocketConnection::setUrlKey( String p_urlkey ) {
-	if( connected ) {
-		disconnectSocket();
-		waitThreadFinished();
-	}
+	rfc_hnd_semlock( lock );
 
-	urlKey = p_urlkey;
-	connectSocket();
+	try {
+		if( connected ) {
+			disconnectSocket();
+			waitThreadFinished();
+		}
+
+		urlKey = p_urlkey;
+		setInstance( urlKey );
+		rfc_hnd_semunlock( lock );
+	}
+	catch( RuntimeException& e ) {
+		rfc_hnd_semunlock( lock );
+		throw e;
+	}
 }
 
 void ActiveSocketConnection::setReconnectionTimeoutSec( int p_reconnectionTimeoutSec ) {
@@ -48,30 +58,15 @@ bool ActiveSocketConnection::connectSocket() {
 
 	try {
 		res = connectSocketProtected();
+		rfc_hnd_semunlock( lock );
 	}
 	catch( ... ) {
+		rfc_hnd_semunlock( lock );
 		logger.printStack();
-		logger.logDebug( "connectSocket: unexpected exception caught key=" + urlKey );
+		logger.logDebug( "connectSocket: unexpected exception caught for urlkey=" + urlKey );
 	}
 
-	rfc_hnd_semunlock( lock );
 	return( res );
-}
-
-void ActiveSocketConnection::exitSocket() {
-	waitThreadFinished();
-}
-
-/*#########################################################################*/
-/*#########################################################################*/
-
-void ActiveSocketConnection::waitThreadFinished() {
-	if( socketThread != NULL ) {
-		ThreadService *ts = ThreadService::getService();
-		ts -> waitThreadExited( socketThread );
-
-		socketThread = NULL;
-	}
 }
 
 String ActiveSocketConnection::getAddress() {
@@ -81,53 +76,14 @@ String ActiveSocketConnection::getAddress() {
 	return( host + ":" + port );
 }
 
-bool ActiveSocketConnection::connectSocketProtected() {
-	if( connected )
-		return( true );
-
-	rfc_hnd_semlock( lock );
-	try {
-		SocketUrl su( urlKey );
-		socketHandle = protocol.open( su , &addr );
-
-		// start reading thread
-		ThreadService *ts = ThreadService::getService();
-		socketThread = ts -> runThread( Object::getLoggerName() , this , ( ObjectThreadFunction )&ActiveSocketConnection::readSocketThread , NULL );
-
-		logger.logDebug( "connectSocketProtected: successfully connected to urlKey=" + urlKey );
-		connected = true;
-	}
-	catch( RuntimeException& e ) {
-		rfc_hnd_semunlock( lock );
-		logger.printStack( e );
-		ASSERTFAILED( "connectSocketProtected: runtime exception, urlkey=" +  urlKey );
-	}
-
-	return( true );
-}
-
-void ActiveSocketConnection::disconnectSocket() {
-	rfc_hnd_semlock( lock );
-	if( connected ) {
-		connected = false;
-
-		_closesocket( socketHandle );
-		socketHandle = INVALID_SOCKET;
-
-		logger.logInfo( "disconnectSocket: disconnected key=" + urlKey );
-	}
-	rfc_hnd_semunlock( lock );
-}
-
-void ActiveSocketConnection::handleBrokenConnection() {
-	if( !shutdownInProgress )
-		disconnectSocket();
-}
-
 void ActiveSocketConnection::closeSocket() {
 	// signal to thread
 	shutdownInProgress = true;
 	disconnectSocket();
+}
+
+void ActiveSocketConnection::exitSocket() {
+	waitThreadFinished();
 }
 
 void ActiveSocketConnection::sendText( SocketUrl& url , String text ) {
@@ -140,7 +96,7 @@ void ActiveSocketConnection::sendText( SocketUrl& url , String text ) {
 	if( connectionClosed )
 		handleBrokenConnection();
 	else
-		logger.logInfo( "sendText: sent message to socket: text=" + text );
+		logger.logInfo( "sendText: sent message to urlkey=" + urlKey + ", text=" + text );
 }
 
 String ActiveSocketConnection::receiveText( SocketUrl& url , bool wait ) {
@@ -155,7 +111,7 @@ String ActiveSocketConnection::receiveText( SocketUrl& url , bool wait ) {
 		handleBrokenConnection();
 	else
 	if( res )
-		logger.logInfo( "receiveText: received message from socket: text=" + final );
+		logger.logInfo( "receiveText: received message from urlkey=" + urlKey +", text=" + final );
 
 	if( !res )
 		return( "" );
@@ -166,7 +122,7 @@ String ActiveSocketConnection::receiveText( SocketUrl& url , bool wait ) {
 String ActiveSocketConnection::receiveFixedText( SocketUrl& url , int size , bool wait ) {
 	// connect to external address
 	if( !connected )
-		ASSERTMSG( connectSocket() , "receiveFixedText: unable to connect key=" + urlKey );
+		ASSERTMSG( connectSocket() , "receiveFixedText: unable to connect urlkey=" + urlKey );
 
 	bool connectionClosed;
 	String final;
@@ -175,7 +131,7 @@ String ActiveSocketConnection::receiveFixedText( SocketUrl& url , int size , boo
 		handleBrokenConnection();
 	else
 	if( res )
-		logger.logInfo( "receiveFixedText: received message from socket: text=" + final );
+		logger.logInfo( "receiveFixedText: received message from urlkey=" + urlKey +", text=" + final );
 
 	if( !res )
 		return( "" );
@@ -186,12 +142,76 @@ String ActiveSocketConnection::receiveFixedText( SocketUrl& url , int size , boo
 bool ActiveSocketConnection::waitReadSocket( SocketUrl& url , bool wait ) {
 	// connect to external address
 	if( !connected )
-		ASSERTMSG( connectSocket() , "waitReadSocket: unable to connect key=" + urlKey );
+		ASSERTMSG( connectSocket() , "waitReadSocket: unable to connect urlkey=" + urlKey );
 
 	return( protocol.waitSocketData( socketHandle , wait ) );
 }
 
+/*#########################################################################*/
+/*#########################################################################*/
+
+void ActiveSocketConnection::waitThreadFinished() {
+	if( socketThread != NULL ) {
+		ThreadService *ts = ThreadService::getService();
+		ts -> waitThreadExited( socketThread );
+
+		socketThread = NULL;
+	}
+}
+
+bool ActiveSocketConnection::connectSocketProtected() {
+	if( connected )
+		return( true );
+
+	try {
+		SocketUrl su( urlKey );
+		socketHandle = protocol.open( su , &addr );
+
+		// start reading thread
+		if( pub != NULL && threadStarted == false ) {
+			ThreadService *ts = ThreadService::getService();
+			socketThread = ts -> runThread( urlKey , this , ( ObjectThreadFunction )&ActiveSocketConnection::readSocketThread , NULL );
+			threadStarted = true;
+		}
+
+		logger.logInfo( "connectSocketProtected: successfully connected to urlkey=" + urlKey );
+		connected = true;
+	}
+	catch( RuntimeException& e ) {
+		logger.printStack( e );
+		ASSERTFAILED( "connectSocketProtected: runtime exception, urlkey=" +  urlKey );
+	}
+
+	return( true );
+}
+
+void ActiveSocketConnection::disconnectSocket() {
+	if( connected ) {
+		connected = false;
+
+		_closesocket( socketHandle );
+		socketHandle = INVALID_SOCKET;
+
+		logger.logInfo( "disconnectSocket: disconnected urlkey=" + urlKey );
+	}
+}
+
+void ActiveSocketConnection::handleBrokenConnection() {
+	if( !shutdownInProgress )
+		disconnectSocket();
+}
+
 void ActiveSocketConnection::readSocketThread( void *p_arg ) {
+	try {
+		readSocketThreadProtected();
+	}
+	catch( RuntimeException& e ) {
+		logger.logInfo( "readSocketThread: unexpected exception for urlkey=" + urlKey );
+		logger.printStack( e );
+	}
+}
+
+void ActiveSocketConnection::readSocketThreadProtected() {
 	while( !shutdownInProgress ) {
 		if( !connected ) {
 			// try to connect
@@ -215,7 +235,9 @@ void ActiveSocketConnection::readSocketThread( void *p_arg ) {
 
 		// write message to channel
 		String msgid = pub -> publish( NULL , final );
-		logger.logInfo( "readSocketThread: forwarded message from socket=" + urlKey + ", msgid=" + msgid + " to channel=" + pub -> name );
+		logger.logInfo( "readSocketThreadProtected: forwarded message from urlkey=" + urlKey + ", msgid=" + msgid + " to channel=" + pub -> getChannelName() );
 	}
+
+	threadStarted = false;
 }
 

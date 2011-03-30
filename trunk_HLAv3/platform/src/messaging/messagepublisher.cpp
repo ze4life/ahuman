@@ -70,3 +70,20 @@ void MessagePublisher::disconnected() {
 	channel = NULL;
 }
 
+TextMessage *MessagePublisher::createTextMessage() {
+	TextMessage *l_msg = new TextMessage();
+	l_msg -> setMessageType( msgtype );
+	return( l_msg );
+}
+
+TextMessage *MessagePublisher::createTextMessage( const char *msg ) {
+	TextMessage *l_msg = new TextMessage();
+	l_msg -> setMessageType( msgtype );
+	l_msg -> setText( msg );
+	return( l_msg );
+}
+
+String MessagePublisher::getChannelName() {
+	return( channel -> getName() );
+}
+

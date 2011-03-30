@@ -112,7 +112,8 @@ void MessageChannel::close() {
 }
 
 String MessageChannel::publish( MessageSession *p_session , MessagePublisher *pub , const char *msg ) {
-	TextMessage *l_msg = new TextMessage( pub -> msgtype );
+	TextMessage *l_msg = new TextMessage();
+	l_msg -> setMessageType( pub -> msgtype );
 	l_msg -> setText( msg );
 	return( publish( p_session , pub , l_msg ) );
 }
