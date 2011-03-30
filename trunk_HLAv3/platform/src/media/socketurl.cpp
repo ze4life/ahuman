@@ -57,7 +57,7 @@ void SocketUrl::setUrl( String url ) {
 	}
 	int index2e = ( index2 > 0 )? index2 + 2 : index1;
 	
-	int index3 = url.find( index2 , "/" );
+	int index3 = url.find( index2e , "/" );
 	if( index3 >= 0 ) {
 		String value = url.getMid( index2 , index3 - index2 );
 		value.trim();

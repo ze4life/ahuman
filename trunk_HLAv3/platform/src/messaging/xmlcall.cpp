@@ -5,7 +5,7 @@
 /*#########################################################################*/
 
 XmlCall::XmlCall( MessageChannel *p_channelIn , MessageChannel *p_channelOut , const char *txt )
-:	XmlMessage( Message::MsgType_XmlCall , NULL ) {
+:	XmlMessage( Message::MsgType_XmlCall ) {
 	TextMessage::setText( txt );
 	responseSent = false;
 	channelIn = p_channelIn;

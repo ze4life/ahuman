@@ -1,12 +1,12 @@
 #include <ah_platform.h>
 
 XmlMessage::XmlMessage( const char *txt )
-:	TextMessage( Message::MsgType_Xml , NULL ) {
+:	TextMessage( Message::MsgType_Xml ) {
 	TextMessage::setText( txt );
 }
 
 XmlMessage::XmlMessage( Xml p_xml )
-:	TextMessage( Message::MsgType_Xml , NULL ) {
+:	TextMessage( Message::MsgType_Xml ) {
 	xml = p_xml;
 }
 

@@ -42,19 +42,22 @@ public:
 public:
 
 	void testRequestPage( XmlCall& call ) {
-		String page = call.getParam( "page" );
+		String endpoint = call.getParam( "endpoint" );
+		String page = call.getParam( "page" , "" );
 		
 		rfc_hnd_evreset( msgEvent );
 		pageResults.clear();
 
 		// send page request
-		String msgId = pub -> publish( call.getSession() , page );
+		Message *msg = pub -> createTextMessage( endpoint + "/" + page );
+		msg -> setEndPoint( endpoint );
+		String msgId = pub -> publish( call.getSession() , msg );
 
 		// wait for response
 		rfc_hnd_waitevent( msgEvent , 5000 );
 		
 		// publish if received
-		ASSERTMSG( !pageResults.isEmpty() , "No response from google page=" + page );
+		ASSERTMSG( !pageResults.isEmpty() , "No response from endpoint=" + endpoint + ", page=" + page );
 		Xml xml = call.createResponse();
 		xml.addTextElement( "page" , page );
 		xml.addTextElement( "body" , pageResults );
