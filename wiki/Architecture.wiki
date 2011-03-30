@@ -20,45 +20,46 @@ aHuman framework contains below high-level modules:
 
 || *Module* || Name || *Implements* || *Notes* ||
 || ACTUATORS || aWee, aYou, aPets, aHuman || set of Sensors and Effectors for different targets || Can interact with external world; there can be different sets of actuators, aPets or aWee can be test/trial one for prototyping aHuman ||
-|| MIND || aMind || intelligence and feeling || in biological model includes brain, feeling components and all tracts ||
-|| PLATFORM || aPlatform || generic software application functions || contains library components shared across different aHuman executable targets or specific auxiliary executable targets ||
-|| TOOLS || aToolSet || generic auxiliary executables || using platform and libraries, multiple utilities combined in one executable, like cvs/svn/p4 ||
-|| LIBRARY || aGreatLibrary || ready-to-use libraries || can be project-generated library or external library; other modules are using only binaries and headers ||
+|| MIND || mind || intelligence and feeling || in biological model includes brain, feeling components and all tracts ||
+|| PLATFORM || platform || generic software application functions || contains library components shared across different aHuman executable targets or specific auxiliary executable targets ||
+|| TOOLS || tools || generic auxiliary executables || using platform and libraries, multiple utilities combined in one executable, like cvs/svn/p4 ||
+|| LIBRARY || library || ready-to-use libraries || can be project-generated library or external library; other modules are using only binaries and headers ||
 
 Possible executables:
 
-  * any actuators set, combined with aMind, aPlatform and aGreatLibrary library components
-  * aToolSet combined with platform and library components from aGreatLibrary
-  * executable aGreatLibrary components
+  * any actuators set, combined with MIND, PLATFORM and LIBRARY components
+  * TOOLS combined with PLATFORM and LIBRARY components
+  * executable LIBRARY components
 
 Resulting high-level architecture model is below one:
 
 http://ahuman.googlecode.com/svn/images/wiki/development/hla-v3.jpg
 
-== aMind High Level Architecture ==
+== MIND High Level Architecture ==
 
-aMind is a sole part of aHuman and has its own layered HLA:
+MIND is a sole part of aHuman and has its own layered HLA:
 
-|| *Layer* || *Name* || *Implements* || *Notes* ||
-|| MINDLIFECYCLE || aMindLifeCycle || mind modules, flows, module lifecycle || Handles mind birth, growth and wake/sleep cycle, geometry of mind ||
-|| MINDAREA || aNeoCortexArea, aArchiCortexArea, aNucleousProcessor, aNucleousRelay, aNervousSystem || mind modules - neocortex area, archicortex area, nucleous processor, nucleous relay, nervous system || Perception, motor, executive, feeling mind functions ||
-|| MINDREGION || aNeoCortexRegion, aArchiCortexRegion, aNucleiProcessorRegion, aNucleiRelayRegion, aNervousBranch || neocortex region, archicortex region, nuclei, nervous branch || Processing patterns ||
-|| MINDNEURONET || aCortexNeuroLibrary, aNucleousNeuroLibrary || neocortex, archicortex, nuclei || Effective execution of wide patterns, memorizing, learning ||
+|| *Layer* || *Components* || *Implements* || *Notes* ||
+|| MINDLIFECYCLE || lifecycle || mind modules, flows, module lifecycle || Handles mind birth, growth and wake/sleep cycle, geometry of mind ||
+|| MINDAREA || neocortexarea, archicortexarea, nucleousprocessor, nucleousrelay, nervoussystem || mind modules - neocortex area, archicortex area, nucleous processor, nucleous relay, nervous system || Perception, motor, executive, feeling mind functions ||
+|| MINDREGION || neocortexregion, archicortexregion, nucleiprocessorregion, nucleirelayregion, nervousbranch || neocortex region, archicortex region, nuclei, nervous branch || Processing patterns ||
+|| MINDNEURONET || cortexneuronet, nucleousneuronet || neocortex, archicortex, nuclei || Effective execution of wide patterns, memorizing, learning ||
 
 == Platform HLA ==
 
 Platform contains multiple services and split on HLA level to components as well:
 
 || *Component* || *Implements* || *Depends on* ||
-|| aServiceManager || base types, plain and template classes, logging, exception handling, service and program lifecycle || - ||
-|| aEnvService || Handling environment, including configuring, deployed instance, operating system and other available resources || - ||
-|| aObjectService || Unified objects and object persistence, object types || - ||
-|| aMathService || Specific mathematical calculations || - ||
-|| aPersistingService || Persistence of memory in filesystem space || aObjectService ||
-|| aThreadService || multi-threading environment, CPU management, performance monitoring || aObjectService ||
-|| aMessagingService || Internal decoupling mechanism to arrange manageable numerous interactions among components || aObjectService, aThreadService ||
-|| aMediaService || Communicating with external world using standard protocols with non-aHuman services or internal aHuman protocol with aHuman tools || aObjectService, aThreadService, aMessagingService ||
-|| aTestService || Testing and debugging support || aObjectService, aMessagingService ||
+|| services || base types, plain and template classes, logging, exception handling, service and program lifecycle || - ||
+|| environment || Handling environment, including configuring, deployed instance, operating system and other available resources || - ||
+|| objects || Unified objects and object persistence, object types || - ||
+|| math || Specific mathematical calculations || - ||
+|| persisting || Persistence of memory in filesystem space || objects ||
+|| threads || multi-threading environment, CPU management, performance monitoring || objects ||
+|| messaging || Internal decoupling mechanism to arrange manageable numerous interactions among components || objects, threads ||
+|| media || Communicating with external world using standard protocols with non-aHuman services or internal aHuman protocol with aHuman tools || objects, threads, messages ||
+|| adminapi || API to access internal aHuman components and run tests or specific operations || objects, messaging || media ||
+|| testing || Testing and debugging support || objects, messaging ||
 
 == HLA State and Development ==
 
