@@ -4,7 +4,7 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-#include <platform\include\ah_platform.h>
+#include <platform/include/ah_platform.h>
 
 class ToolBase;
 
