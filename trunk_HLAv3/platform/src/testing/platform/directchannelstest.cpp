@@ -4,8 +4,7 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-class DirectChannelsTest : public TestUnit , public MessageSubscriber
-{
+class DirectChannelsTest : public TestUnit , public MessageSubscriber {
 // data
 private:
 	RFC_HND msgEvent;

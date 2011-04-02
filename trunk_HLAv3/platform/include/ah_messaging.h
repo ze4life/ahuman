@@ -228,7 +228,7 @@ public:
 
 protected:
 	TextMessage( MsgType p_baseType ) : Message( p_baseType ) {};
-	const char *getClass() { return( "TextMessage" ); };
+	virtual const char *getClass() { return( "TextMessage" ); };
 
 public:
 	void setText( const char *p_txt ) { message = p_txt; };
@@ -246,7 +246,7 @@ public:
 	XmlMessage( const char *txt );
 	XmlMessage( Xml xml );
 	virtual ~XmlMessage();
-	const char *getClass() { return( "XmlMessage" ); };
+	virtual const char *getClass() { return( "XmlMessage" ); };
 
 public:
 	virtual void postExecute() {};
@@ -272,7 +272,7 @@ class XmlCall : public XmlMessage {
 public:
 	XmlCall( MessageChannel *channelIn , MessageChannel *channelOut , const char *txt );
 	virtual ~XmlCall();
-	const char *getClass() { return( "XmlCall" ); };
+	virtual const char *getClass() { return( "XmlCall" ); };
 
 public:	
 	virtual void postExecute();

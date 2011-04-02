@@ -390,6 +390,9 @@ void ThreadService::createThreadPool( String name , Xml configuration , ClassLis
 
 	// configure
 	tp -> configure( configuration );
+
+	// create tasks
+	tp -> create( tasks );
 }
 
 void ThreadService::startThreadPool( String name ) {
