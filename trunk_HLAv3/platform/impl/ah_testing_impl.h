@@ -61,6 +61,7 @@ public:
 
 	static TestUnit *createEngineThreadsTest();
 	static TestUnit *createDirectChannelsTest();
+	static TestUnit *createThreadPoolTest();
 };
 
 /*#########################################################################*/
@@ -77,7 +78,7 @@ public:
 
 protected:
 	// object
-	const char *getClass() { return( "TestExecutor" ); };
+	virtual const char *getClass() { return( "TestExecutor" ); };
 
 	// message subscriber
 	virtual void onXmlCall( XmlCall *msg );

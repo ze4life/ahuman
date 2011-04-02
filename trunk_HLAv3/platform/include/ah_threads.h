@@ -129,11 +129,11 @@ public:
 	virtual void execute() = 0;
 
 public:
-	ThreadPoolTask( String name ) {
+	ThreadPoolTask() {
 		pool = NULL;
 		thread = NULL;
-		setInstance( name );
 	};
+	virtual ~ThreadPoolTask() {};
 	virtual const char *getClass() = 0;
 
 public:

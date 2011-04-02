@@ -273,7 +273,7 @@ public:
 	~ActiveSocketConnection();
 
 protected:
-	const char *getClass() { return( "ActiveSocketConnection" ); };
+	virtual const char *getClass() { return( "ActiveSocketConnection" ); };
 
 private:
 	bool connectSocketProtected();
@@ -431,7 +431,7 @@ public:
 public:
 	SocketUrl();
 	SocketUrl( String url );
-	const char *getClass() { return( "SocketUrl" ); };
+	virtual const char *getClass() { return( "SocketUrl" ); };
 };
 
 /*#########################################################################*/

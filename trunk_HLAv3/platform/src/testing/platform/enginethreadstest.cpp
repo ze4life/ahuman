@@ -4,8 +4,7 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-class EngineThreadsTest : public TestUnit
-{
+class EngineThreadsTest : public TestUnit {
 // construction
 public:
 	EngineThreadsTest() : TestUnit( "EngineThreadsTest" ) {

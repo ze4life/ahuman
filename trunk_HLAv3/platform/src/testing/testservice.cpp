@@ -26,6 +26,7 @@ void TestService::initService() {
 	executor -> connectChannels( channelIn , channelOut );
 	executor -> addTestUnit( TestUnit::createEngineThreadsTest() );
 	executor -> addTestUnit( TestUnit::createDirectChannelsTest() );
+	executor -> addTestUnit( TestUnit::createThreadPoolTest() );
 }
 
 void TestService::runService() {
