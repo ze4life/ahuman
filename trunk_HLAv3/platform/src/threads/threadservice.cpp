@@ -60,6 +60,17 @@ void ThreadService::createService() {
 	addMainThread();
 }
 
+void ThreadService::exitService() {
+	// ensure all thread pools are stopped
+	for( int k = 0; k < threadpools.count(); k++ ) {
+		ThreadPool *tp = threadpools.getClassByIndex( k );
+		tp -> ensureStopped();
+	}
+
+	// drop all
+	threadpools.destroy();
+}
+
 void ThreadService::destroyService() {
 	rfc_hnd_semdestroy( lockExit );
 	rfc_hnd_evdestroy( eventExit );
@@ -366,4 +377,65 @@ void ThreadService::waitAllThreads() {
 		logger.logInfo( String( "runInternal: Waiting for stopping " ) + count + " thread(s): " + activeThreadList );
 		rfc_thr_sleep( 1 );
 	}
+}
+
+// thread pool operations
+void ThreadService::createThreadPool( String name , Xml configuration , ClassList<ThreadPoolTask>& tasks ) {
+	// check duplication
+	ASSERTMSG( threadpools.get( name ) == NULL , "Thread pool already exists with name=" + name );
+
+	// construct
+	ThreadPool *tp = new ThreadPool( name );
+	threadpools.add( name , tp );
+
+	// configure
+	tp -> configure( configuration );
+}
+
+void ThreadService::startThreadPool( String name ) {
+	// check exists
+	ThreadPool *tp = threadpools.get( name );
+	ASSERTMSG( tp != NULL , "Thread pool does not exist with name=" + name );
+
+	// start
+	tp -> start();
+}
+
+void ThreadService::stopThreadPool( String name ) {
+	// check exists
+	ThreadPool *tp = threadpools.get( name );
+	ASSERTMSG( tp != NULL , "Thread pool does not exist with name=" + name );
+
+	// stop
+	tp -> stop();
+}
+
+void ThreadService::suspendThreadPool( String name ) {
+	// check exists
+	ThreadPool *tp = threadpools.get( name );
+	ASSERTMSG( tp != NULL , "Thread pool does not exist with name=" + name );
+
+	// suspend
+	tp -> suspend();
+}
+
+void ThreadService::resumeThreadPool( String name ) {
+	// check exists
+	ThreadPool *tp = threadpools.get( name );
+	ASSERTMSG( tp != NULL , "Thread pool does not exist with name=" + name );
+
+	// resume
+	tp -> resume();
+}
+
+void ThreadService::destroyThreadPool( String name ) {
+	// ignore if does not exist
+	ThreadPool *tp = threadpools.get( name );
+	if( tp == NULL )
+		return;
+
+	// destroy
+	tp -> ensureStopped();
+	threadpools.remove( name );
+	delete tp;
 }

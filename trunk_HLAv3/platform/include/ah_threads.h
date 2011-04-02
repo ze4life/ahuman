@@ -10,6 +10,7 @@
 class ThreadService;
 class ThreadObject;
 class ThreadHelper;
+class ThreadPoolTask;
 
 typedef void (Object::*ObjectThreadFunction)( void *p_arg );
 
@@ -17,6 +18,7 @@ typedef void (Object::*ObjectThreadFunction)( void *p_arg );
 /*#########################################################################*/
 
 class ThreadData;
+class ThreadPool;
 
 class ThreadService : public Service {
 public:
@@ -33,6 +35,14 @@ public:
 	void manageThreadCallStack();
 	void setSignalHandlers();
 
+	// thread pool operations
+	void createThreadPool( String name , Xml configuration , ClassList<ThreadPoolTask>& tasks );
+	void startThreadPool( String name );
+	void stopThreadPool( String name );
+	void suspendThreadPool( String name );
+	void resumeThreadPool( String name );
+	void destroyThreadPool( String name );
+
 // service
 protected:
 	virtual const char *getServiceName() { return( "ThreadService" ); };
@@ -41,7 +51,7 @@ protected:
 	virtual void initService() {};
 	virtual void runService() {};
 	virtual void stopService() {};
-	virtual void exitService() {};
+	virtual void exitService();
 	virtual void destroyService();
 
 // engine helpers
@@ -70,6 +80,7 @@ private:
 
 private:
 	MapStringToClass<ThreadData> threads;
+	MapStringToClass<ThreadPool> threadpools;
 
 	// threads
 	int workerStatus;
@@ -101,6 +112,33 @@ public:
 	void ( *oldAIUnhandledExceptionTranslator )(); // _se_translator_function
 	String lastMsg;
 	bool remains;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class ThreadPool;
+class ThreadPoolItem;
+
+// it is interface - inherit specific task from this class
+class ThreadPoolTask : public Object {
+public:
+	virtual bool needExecution() { return( true ); };
+	virtual bool finished() { return( false ); };
+
+	virtual void execute() = 0;
+
+public:
+	ThreadPoolTask( String name ) {
+		pool = NULL;
+		thread = NULL;
+		setInstance( name );
+	};
+	virtual const char *getClass() = 0;
+
+public:
+	ThreadPool *pool;
+	ThreadPoolItem *thread;
 };
 
 /*#########################################################################*/
