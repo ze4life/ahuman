@@ -78,10 +78,8 @@ private:
 	String name;
 	bool runEnabled;
 	int nThreads;
-	int executionTimeWindowMs;
 	int secondsPerMonitoringCycle;
 	int maxLoadPercents;
-	int ticksPerSecond;
 
 	ClassList<ThreadPoolItem> threads;
 	RFC_HND monitorThread;
@@ -101,10 +99,6 @@ public:
 	void resume();
 
 // internals
-private:
-	void increaseSpeed( int factor );
-	void decreaseSpeed( int factor );
-
 protected:
 	void runMonitorThread( void *arg );
 	void runMonitorTask();
@@ -150,12 +144,36 @@ private:
 	ClassList<ThreadPoolTask> tasks;
 
 	int ticksPerSecond;
-	int executionTimeWindowTicks;
 
+public:
 	int executionCount;
 	int ticksExecTimeTotal;
 	int ticksSleepTimeTotal;
 	int ticksWaitTimeRemained;
+	int executionTimeWindowTicks;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class ThreadPoolPerformance {
+public:
+	ThreadPoolPerformance( ClassList<ThreadPoolItem>& threads );
+
+public:
+	void gather();
+	void updateSpeedIfRequired( float prevLoadPercents , float lastLoadPercents , float maxLoadPercents , CPULOADINFO& loadinfo );
+
+public:
+	ClassList<ThreadPoolItem>& threads;
+
+	int lastAverageTimeWindowTicks;
+	int lastAverageRunTicks;
+	int lastAverageSleepTicks;
+	int lastAverageExecutionCount;
+	int lastActiveThreads;
+
+	int ticksPerSecond;
 };
 
 /*#########################################################################*/

@@ -159,28 +159,33 @@ void ThreadService::workerCreated() {
 }
 
 void ThreadService::workerStarted( ThreadData *threadData ) {
-	String name = threadData -> name;
-
-	// add worker to managed list
 	rfc_hnd_semlock( lockExit );
-	if( threads.get( name ) != NULL ) {
+
+	try {
+		String name = threadData -> name;
+
+		// thread-allocated data
+		TlsSetValue( tlsIndex , threadData );
+		threadData -> threadId = ::GetCurrentThreadId();
+
+		// init logging
+		ThreadHelper *to = new ThreadHelper;
+		to -> addThreadObject();
+		manageThreadCallStack();
+
+		logger.logInfo( "workerStarted: thread started name=" + name + ", threadId=0x" + String::toHex( ( int )threadData -> threadId ) );
+
+		// add worker to managed list
+		if( threads.get( name ) != NULL )
+			ASSERTFAILED( "Thread already started with name=" + name );
+
+		threads.add( name , threadData );
+	}
+	catch( RuntimeException& e ) {
 		rfc_hnd_semunlock( lockExit );
-		ASSERTFAILED( "Thread already started with name=" + name );
+		throw e;
 	}
 
-	threads.add( name , threadData );
-
-	// thread-allocated data
-	TlsSetValue( tlsIndex , threadData );
-
-	threadData -> threadId = ::GetCurrentThreadId();
-
-	// init logging
-	ThreadHelper *to = new ThreadHelper;
-	to -> addThreadObject();
-	manageThreadCallStack();
-
-	logger.logInfo( "workerStarted: thread started name=" + name + ", threadId=0x" + String::toHex( ( int )threadData -> threadId ) );
 	rfc_hnd_semunlock( lockExit );
 }
 

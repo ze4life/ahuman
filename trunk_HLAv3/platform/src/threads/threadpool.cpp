@@ -17,10 +17,8 @@ ThreadPool::~ThreadPool() {
 void ThreadPool::configure( Xml config ) {
 	runEnabled = config.getBooleanProperty( "run" );
 	nThreads = config.getIntProperty( "threadCount" );
-	executionTimeWindowMs = config.getIntProperty( "executionTimeWindowMs" );
 	secondsPerMonitoringCycle = config.getIntProperty( "secondsPerMonitoringCycle" );
 	maxLoadPercents = config.getIntProperty( "maxLoadPercents" );
-	ticksPerSecond = Timer::timeMsToTicks( 1000 );
 	stopSignal = false;
 }
 
@@ -36,8 +34,6 @@ void ThreadPool::create( ClassList<ThreadPoolTask>& tasks ) {
 
 	int nWhole = nTasks / nThreads;
 	int nPart = nTasks % nThreads;
-
-	int executionTimeWindowTicks = ( int )( executionTimeWindowMs * 1000. / ticksPerSecond );
 
 	// split objects by threads
 	int nFrom = 0;
@@ -60,11 +56,10 @@ void ThreadPool::create( ClassList<ThreadPoolTask>& tasks ) {
 
 		// create thread (suspended) and add to the pool
 		String threadName = name + "#" + k;
-		ThreadPoolItem *thread = new ThreadPoolItem( name , k , threadTasks );
+		ThreadPoolItem *thread = new ThreadPoolItem( threadName , k , threadTasks );
 		threads.add( thread );
 
 		// configure thread
-		thread -> setExecutionTimeWindowTicks( executionTimeWindowTicks );
 		nFrom += n;
 	}
 }
@@ -137,29 +132,18 @@ void ThreadPool::runMonitorThread( void *arg ) {
 
 void ThreadPool::runMonitorTask() {
 	// log stat
-	lastCPULoad = rfc_sys_getcpuload( &cpuload );
+	float cpuLoad = rfc_sys_getcpuload( &cpuload );
 	logger.logInfo( String( "execute: currentCPULoad=" ) + lastCPULoad +
 		", didle=" + ( int )( cpuload.idle - cpuload.pidle ) +
 		", dkernel=" + ( int )( cpuload.kernel - cpuload.pkernel ) +
 		", duser=" + ( int )( cpuload.user - cpuload.puser ) +
 		", dclocks=" + ( int )( cpuload.clocks - cpuload.pclocks ) );
 
-	// recalculate operation time if dynamic
-	if( lastCPULoad > maxLoadPercents ) {
-		decreaseSpeed( 1 );
-	}
-	else
-	if( lastCPULoad < 0.9 * maxLoadPercents ) {
-		increaseSpeed( 1 );
-	}
-}
-	
-// factor is shows ratio whole/part, where whole is current speed and part is its change to be done
-// always positive, maximum change is current value
-void ThreadPool::increaseSpeed( int factor ) {
-	logger.logInfo( String( "increaseSpeed: speed increased" ) );
-}
+	// calculate current metrics
+	ThreadPoolPerformance tpp( threads );
+	tpp.gather();
 
-void ThreadPool::decreaseSpeed( int factor ) { 	
-	logger.logInfo( String( "decreaseSpeed: speed decreased" ) );
+	// recalculate operation time if dynamic
+	tpp.updateSpeedIfRequired( cpuLoad , lastCPULoad , ( float )maxLoadPercents , cpuload );
+	lastCPULoad = cpuLoad;
 }
