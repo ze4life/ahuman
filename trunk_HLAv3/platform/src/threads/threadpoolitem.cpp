@@ -136,6 +136,9 @@ void ThreadPoolItem::execute( ThreadPoolTask *task ) {
 	task -> execute();
 	int executeTimeTicks = t.timePassedTicks();
 
+	if( executionTimeWindowTicks == 0 )
+		executionTimeWindowTicks = executeTimeTicks;
+
 	// to calculate current execute/sleep ratio
 	ticksExecTimeTotal += executeTimeTicks;
 
