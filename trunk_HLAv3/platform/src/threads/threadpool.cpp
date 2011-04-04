@@ -72,10 +72,16 @@ void ThreadPool::ensureStopped() {
 void ThreadPool::start() {
 	state.setState( ThreadState::THREAD_STATE_RUNNING );
 
-	// iterate by threads
+	// iterate by threads - start threads
 	for( int k = threads.count() - 1; k >= 0; k-- ) {
 		ThreadPoolItem *thread = threads.get( k );
 		thread -> start();
+	}
+
+	// iterate by threads - resune
+	for( int k = threads.count() - 1; k >= 0; k-- ) {
+		ThreadPoolItem *thread = threads.get( k );
+		thread -> resume();
 	}
 
 	// start monitoring thread
@@ -140,7 +146,7 @@ void ThreadPool::runMonitorTask() {
 		", dclocks=" + ( int )( cpuload.clocks - cpuload.pclocks ) );
 
 	// calculate current metrics
-	ThreadPoolPerformance tpp( threads );
+	ThreadPoolPerformance tpp( logger , threads );
 	tpp.gather();
 
 	// recalculate operation time if dynamic
