@@ -158,13 +158,14 @@ public:
 
 class ThreadPoolPerformance {
 public:
-	ThreadPoolPerformance( ClassList<ThreadPoolItem>& threads );
+	ThreadPoolPerformance( Logger& logger , ClassList<ThreadPoolItem>& threads );
 
 public:
 	void gather();
 	void updateSpeedIfRequired( float prevLoadPercents , float lastLoadPercents , float maxLoadPercents , CPULOADINFO& loadinfo );
 
 public:
+	Logger& logger;
 	ClassList<ThreadPoolItem>& threads;
 
 	int lastAverageTimeWindowTicks;
