@@ -12,6 +12,7 @@ void execute( String etcpath )
 
 	try {
 		sm.addPlatformServices();
+		sm.addService( MindManager::newService() );
 
 		// configure all
 		sm.configureDefault( etcpath );

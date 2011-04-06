@@ -15,10 +15,10 @@ ThreadPool::~ThreadPool() {
 }
 
 void ThreadPool::configure( Xml config ) {
-	runEnabled = config.getBooleanProperty( "run" );
-	nThreads = config.getIntProperty( "threadCount" );
-	secondsPerMonitoringCycle = config.getIntProperty( "secondsPerMonitoringCycle" );
-	maxLoadPercents = config.getIntProperty( "maxLoadPercents" );
+	runEnabled = config.getBooleanProperty( "run" , true );
+	nThreads = config.getIntProperty( "threadCount" , 10 );
+	secondsPerMonitoringCycle = config.getIntProperty( "secondsPerMonitoringCycle" , 10 );
+	maxLoadPercents = config.getIntProperty( "maxLoadPercents" , 10 );
 	stopSignal = false;
 }
 
