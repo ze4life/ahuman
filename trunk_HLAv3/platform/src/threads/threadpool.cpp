@@ -130,8 +130,9 @@ void ThreadPool::runMonitorThread( void *arg ) {
 	cpuload.initialized = 0;
 	lastCPULoad = rfc_sys_getcpuload( &cpuload );
 
+	ThreadService *ts = ThreadService::getService();
 	while( !stopSignal ) {
-		rfc_thr_sleep( secondsPerMonitoringCycle );
+		ts -> threadSleepMs( secondsPerMonitoringCycle * 1000 );
 		runMonitorTask();
 	}
 }

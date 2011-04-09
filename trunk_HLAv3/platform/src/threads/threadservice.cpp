@@ -91,14 +91,14 @@ void ThreadService::addMainThread() {
 }
 
 int ThreadService::getThreadId() {
-	ThreadData *threadData = ( ThreadData * )TlsGetValue( tlsIndex );
+	ThreadData *threadData = getThreadData();
 	if( threadData == NULL )
 		return( 0 );
 	return( threadData -> threadId );
 }
 
 RFC_HND ThreadService::getThreadHandle() {
-	ThreadData *threadData = ( ThreadData * )TlsGetValue( tlsIndex );
+	ThreadData *threadData = getThreadData();
 	if( threadData == NULL )
 		return( ( RFC_HND )NULL );
 	return( threadData -> threadExtId.s_ih );
@@ -216,7 +216,7 @@ void ThreadService::workerExited( ThreadData *threadData , int status ) {
 
 void ThreadService::workerExited( int status ) {
 	// get thread-allocated data - clean it in thread memory
-	ThreadData *threadData = ( ThreadData * )TlsGetValue( tlsIndex );
+	ThreadData *threadData = getThreadData();
 
 	// run common
 	workerExited( threadData , status );
@@ -254,15 +254,19 @@ String ThreadService::getActiveThreads() {
 void ThreadService::addThreadObject( const char *key , ThreadObject *to ) {
 	ASSERT( key != NULL );
 	ASSERT( to != NULL );
-	ThreadData *threadData = ( ThreadData * )TlsGetValue( tlsIndex );
+	ThreadData *threadData = getThreadData();
 	ASSERT( threadData != NULL );
 	ASSERT( threadData -> map.get( key ) == NULL );
 
 	threadData -> map.add( key , to );
 }
 
+ThreadData *ThreadService::getThreadData() {
+	return( ( ThreadData * )TlsGetValue( tlsIndex ) );
+}
+
 ThreadObject *ThreadService::getThreadObject( const char *key ) {
-	ThreadData *threadData = ( ThreadData * )TlsGetValue( tlsIndex );
+	ThreadData *threadData = getThreadData();
 	if( threadData == NULL )
 		return( NULL );
 	return( threadData -> map.get( key ) );
@@ -358,6 +362,8 @@ void ThreadService::stopServicesBySignal( int status ) {
 	td -> name = "exit";
 	workerStarted( td );
 
+	threadSleepInterruptAll();
+
 	ServiceManager::getInstance().stopServices();
 	rfc_hnd_evsignal( eventExit );
 	workerExited( 0 );
@@ -447,3 +453,23 @@ void ThreadService::destroyThreadPool( String name ) {
 	threadpools.remove( name );
 	delete tp;
 }
+
+// interruptable sleep
+void ThreadService::threadSleepMs( int ms ) {
+	ThreadData *threadData = getThreadData();
+	rfc_hnd_waitevent( threadData -> sleepEvent , ms );
+}
+
+void ThreadService::threadSleepInterrupt( ThreadData *td ) {
+	rfc_hnd_evsignal( td -> sleepEvent );
+}
+
+void ThreadService::threadSleepInterruptAll() {
+	rfc_hnd_semlock( lockExit );
+	for( int k = 0; k < threads.count(); k++ ) {
+		ThreadData *td = threads.getClassByIndex( k );
+		rfc_hnd_evsignal( td -> sleepEvent );
+	}
+	rfc_hnd_semunlock( lockExit );
+}
+

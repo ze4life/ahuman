@@ -216,7 +216,8 @@ void ActiveSocketConnection::readSocketThreadProtected() {
 		if( !connected ) {
 			// try to connect
 			if( !connectSocket() ) {
-				rfc_thr_sleep( reconnectionTimeoutSec );
+				ThreadService *ts = ThreadService::getService();
+				ts -> threadSleepMs( reconnectionTimeoutSec * 1000 );
 				continue;
 			}
 		}

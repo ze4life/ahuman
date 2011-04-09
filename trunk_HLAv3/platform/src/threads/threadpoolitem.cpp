@@ -155,7 +155,10 @@ void ThreadPoolItem::execute( ThreadPoolTask *task ) {
 	
 	// get whole number of seconds to sleep (probably always will be 1) and sleep
 	int sleepSeconds = ticksWaitTimeRemained / ticksPerSecond;
-	rfc_thr_sleep( sleepSeconds );
+
+	ThreadService *ts = ThreadService::getService();
+	ts -> threadSleepMs( sleepSeconds * 1000 );
+
 	int sleepTimeTicks = t.timePassedTicks() - executeTimeTicks;
 	ticksSleepTimeTotal += sleepTimeTicks;
 	ticksWaitTimeRemained -= sleepTimeTicks;
