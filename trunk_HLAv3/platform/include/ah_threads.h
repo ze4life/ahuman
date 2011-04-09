@@ -43,6 +43,10 @@ public:
 	void resumeThreadPool( String name );
 	void destroyThreadPool( String name );
 
+	// interruptable sleep
+	void threadSleepMs( int ms );
+	void threadSleepInterruptAll();
+
 // service
 protected:
 	virtual const char *getServiceName() { return( "ThreadService" ); };
@@ -68,8 +72,10 @@ public:
 	void stopServicesBySignal( int p_signal );
 	void waitExitSignal();
 	void waitAllThreads();
+	void threadSleepInterrupt( ThreadData *td );
 
 private:
+	ThreadData *getThreadData();
 	void printThreadStackTrace( ThreadData *td );
 
 	void workerCreated();

@@ -20,7 +20,8 @@ public:
 public:
 	virtual void execute() {
 		logger.logInfo( String( "Task started for delay=" ) + taskTimeSec );
-		rfc_thr_sleep( taskTimeSec );
+		ThreadService *ts = ThreadService::getService();
+		ts -> threadSleepMs( taskTimeSec * 1000 );
 	};
 };
 
@@ -67,13 +68,13 @@ public:
 		// workflow
 		logger.logInfo( "Start thread pool..." );
 		ts -> startThreadPool( threadPoolName );
-		rfc_thr_sleep( runTimeSec );
+		ts -> threadSleepMs( runTimeSec * 1000 );
 		logger.logInfo( "Suspend thread pool..." );
 		ts -> suspendThreadPool( threadPoolName );
-		rfc_thr_sleep( suspendTimeSec );
+		ts -> threadSleepMs( suspendTimeSec * 1000 );
 		logger.logInfo( "Resume thread pool..." );
 		ts -> resumeThreadPool( threadPoolName );
-		rfc_thr_sleep( resumeTimeSec );
+		ts -> threadSleepMs( resumeTimeSec * 1000 );
 		logger.logInfo( "Stop thread pool..." );
 		ts -> stopThreadPool( threadPoolName );
 		logger.logInfo( "Destroy thread pool..." );

@@ -24,6 +24,7 @@ public:
 	void ( Object::*objectFunction )( void *p_arg );
 	void *objectFunctionArg;
 
+	RFC_HND sleepEvent;
 	MapStringToClass<ThreadObject> map;
 
 public:
@@ -33,7 +34,12 @@ public:
 		object = NULL;
 		objectFunction = NULL;
 		objectFunctionArg = NULL;
-	}
+		sleepEvent = rfc_hnd_evcreate();
+	};
+
+	~ThreadData() {
+		rfc_hnd_evdestroy( sleepEvent );
+	};
 };
 
 /*#########################################################################*/
