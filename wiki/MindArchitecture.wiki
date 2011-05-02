@@ -7,7 +7,7 @@
 
 == Object Model ==
 
-==== Mind primary layers ====
+==== Primary mind layers ====
 
   * mind target
 {{{
@@ -53,9 +53,13 @@ class NeuroPoolSet {NeuroPool[]}
 class NeuroLinkSet {NeuroLink[]}
 class NeuroPool {Neuron[]}
 class NeuroLink {NeuroPool, NeuroPool}
+    class ExcitatoryLink : NeuroLink
+    class InhibitoryLink : NeuroLink
+    class ModulatoryLink : NeuroLink
+class Neuron;
 }}}
 
-==== Mind auxiliary objects ====
+==== Auxiliary mind objects ====
 
   * mind stream
 {{{
