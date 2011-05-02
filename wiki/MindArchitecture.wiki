@@ -17,34 +17,50 @@ class MindEffector : MindActuator
 }}}
   * mind service
 {{{
-class MindService : Service
-    MindAreaSet *areas;
-    MindLinkSet *links;    
+class MindService : Service {MindAreaSet, MindLinkSet}
 }}}
   * mind area
 {{{
-class MindArea
-class MindRegionSet
-class MindRegionLinkSet
+class MindArea {MindAreaInfo, MindRegionSet, MindRegionLinkSet}
+    class ThalamusArea : MindArea
+    class SensoryArea : MindArea
+    class ParietalArea : MindArea
+    class BodyFeelingArea : MindArea
+    class OrbitoFrontalCortexArea : MindArea
+    class LateralCortexArea : MindArea
+    class HippocampusArea : MindArea
+    class BasalGangliaArea : MindArea
+    class BrainStemArea : MindArea
+    class SpinalCordArea : MindArea
+    class CranialNerveArea : MindArea
+    class MotorNerveArea : MindArea
+class MindRegionSet {MindRegion[]}
+class MindRegionLinkSet {MindRegionLink[]}
 }}}
   * mind region
 {{{
-class MindRegion
-class NeuroLinkSet
+class MindRegion {NeuroNet}
+    class CortexRegion : MindRegion
+    class NucleiRegion : MindRegion
+    class NerveRegion : MindRegion
 }}}
   * mind matter
 {{{
-class NeuroPool
-class NeuroNet
-class NeuroLink
+class NeuroNet {NeuroPoolSet, NeuroLinkSet}
+    class LayeredNet : NeuroNet
+    class NucleiNet : NeuroNet
+class NeuroPoolSet {NeuroPool[]}
+class NeuroLinkSet {NeuroLink[]}
+class NeuroPool {Neuron[]}
+class NeuroLink {NeuroPool, NeuroPool}
 }}}
 
 ==== Mind auxiliary objects ====
 
   * mind stream
 {{{
-class MindLink : MessageSubscriber
-class RegionLink
+class MindLink : MessageSubscriber {MindLinkInfo, MindRegionLinkSet}
+class MindRegionLink {NeuroLinkSet}
 class MindMessage : BinaryMessage
 }}}
   * mind space
