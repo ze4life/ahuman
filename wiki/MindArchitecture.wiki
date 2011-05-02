@@ -1,0 +1,46 @@
+#summary Mind High Level Architecture
+
+@@[Home] -> [Architecture] -> [MindArchitecture]
+
+<wiki:toc max_depth="3" />
+----
+
+== Object Model ==
+
+Mind primary layers:
+
+  * mind target
+   * class MindActuator : MindRegion
+   * class MindSensor : MindActuator
+   * class MindEffector : MindActuator
+  * mind service
+   * class MindService : Service
+{code}
+MindAreaSet areas;
+MindLinkSet links;    
+{code}
+  * mind area
+   * class MindArea
+   * class MindRegionSet
+   * class MindRegionLinkSet
+  * mind region
+   * class MindRegion
+   * class NeuroLinkSet
+  * mind matter
+   * class NeuroSet
+   * class NeuroNet
+   * class NeuroLink
+
+Mind auxiliary objects:
+
+  * mind stream
+   * class MindLink : MessageSubscriber
+   * class RegionLink
+   * class MindMessage : BinaryMessage
+  * mind space
+   * class MindLocation
+   * class MindMap
+   * class MindAreaInfo
+   * class MindLinkInfo
+  * mind base
+   * (low-level data types)
