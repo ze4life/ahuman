@@ -72,9 +72,10 @@ class MindLinkSet {MindLink[]}
   * mind space
 {{{
 class MindLocation
-class MindMap
-class MindAreaInfo
-class MindLinkInfo
+class MindAreaInfo {MindLocation}
+class MindLinkInfo {MindLocation}
+class MindSpace {MindLocation[]}
+class MindMap {MindAreaInfo[], MindLinkInfo[]}
 }}}
   * mind base
 {{{
