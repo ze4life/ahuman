@@ -17,7 +17,7 @@ class MindActuator : MindRegion
 }}}
   * mind service
 {{{
-class MindService : Service {MindAreaSet, MindRegionSet, MindLinkSet}
+class MindService : Service {MindAreaSet, MindRegionSet, MindAreaLinkSet}
 }}}
   * mind area
 {{{
@@ -64,11 +64,11 @@ class Neuron;
 
   * mind stream
 {{{
-class MindLink : MessageSubscriber {MindLinkInfo, MindRegionLinkSet}
+class MindAreaLink : MessageSubscriber {MindLinkInfo, MindRegionLinkSet}
+class MindAreaLinkSet {MindAreaLink[]}
 class MindRegionLink {NeuroLinkSet}
+class MindActiveMemory {NeuroLink[]};
 class MindMessage : BinaryMessage
-class MindLinkSet {MindLink[]}
-class MindActiveMemory {MindRegion[]};
 }}}
   * mind space
 {{{
