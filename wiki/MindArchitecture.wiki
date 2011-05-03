@@ -34,8 +34,7 @@ class MindArea {MindAreaInfo, MindRegionSet, MindRegionLinkSet}
     class SpinalCordArea : MindArea
     class CranialNerveArea : MindArea
     class MotorNerveArea : MindArea
-class MindRegionSet {MindRegion[]}
-class MindRegionLinkSet {MindRegionLink[]}
+class MindAreaSet {MindArea[]};
 }}}
   * mind region
 {{{
@@ -43,6 +42,8 @@ class MindRegion {NeuroNet}
     class CortexRegion : MindRegion
     class NucleiRegion : MindRegion
     class NerveRegion : MindRegion
+class MindRegionSet {MindRegion[]}
+class MindRegionLinkSet {MindRegionLink[]}
 }}}
   * mind matter
 {{{
@@ -66,6 +67,7 @@ class Neuron;
 class MindLink : MessageSubscriber {MindLinkInfo, MindRegionLinkSet}
 class MindRegionLink {NeuroLinkSet}
 class MindMessage : BinaryMessage
+class MindLinkSet {MindLink[]}
 }}}
   * mind space
 {{{
