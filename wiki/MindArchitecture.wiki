@@ -64,9 +64,9 @@ class Neuron;
 
   * mind stream
 {{{
-class MindAreaLink : MessageSubscriber {MindLinkInfo, MindRegionLinkSet}
+class MindAreaLink : MessageSubscriber {MindLinkInfo, MindRegion, MindRegion, MindRegionLinkSet}
 class MindAreaLinkSet {MindAreaLink[]}
-class MindRegionLink {NeuroLinkSet}
+class MindRegionLink {MindRegion, MindRegion, NeuroLinkSet}
 class MindRegionLinkSet {MindRegionLink[]}
 class MindActiveMemory {NeuroLink[]};
 class MindMessage : BinaryMessage
