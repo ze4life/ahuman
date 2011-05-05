@@ -8,6 +8,7 @@ MindArea::MindArea() {
 	lockHandle = rfc_hnd_semcreate();
 	size = 0;
 	sizeNotAllocated = 0;
+	location = new MindLocation();
 }
 
 MindArea::~MindArea() {
@@ -17,7 +18,7 @@ MindArea::~MindArea() {
 void MindArea::attach( String id ) {
 	areaId = id;
 
-	MindManager *mm = MindManager::getService();
+	MindService *mm = MindService::getService();
 	MindMap *map = mm -> getMindMap();
 	MindAreaInfo *info = map -> getAreaById( areaId );
 	ASSERTMSG( info != NULL , "Unknown area id=" + areaId );

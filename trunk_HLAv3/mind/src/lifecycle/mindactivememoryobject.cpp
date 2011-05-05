@@ -13,8 +13,8 @@ MindActiveMemoryObject::MindActiveMemoryObject( int id ) {
 MindActiveMemoryObject::~MindActiveMemoryObject() {
 }
 
-void MindActiveMemoryObject::setCortex( Cortex *p_cortex ) {
-	cortex = p_cortex;
+void MindActiveMemoryObject::setRegion( MindRegion *p_region ) {
+	region = p_region;
 }
 
 void MindActiveMemoryObject::execute() {
