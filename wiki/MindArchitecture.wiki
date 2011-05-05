@@ -48,25 +48,25 @@ class MindRegionSet {MindRegion[]}
 }}}
   * mind matter
 {{{
-class NeuroNet {NeuroPoolSet, NeuroLinkSet}
-    class LayeredNet : NeuroNet
-    class CompactNet : NeuroNet
-    class SpreadNet : NeuroNet
-class NeuroPoolSet {NeuroPool[]}
-class NeuroLinkSet {NeuroLink[]}
+class Neuron;
 class NeuroPool {Neuron[]}
+class NeuroPoolSet {NeuroPool[]}
 class NeuroLink {NeuroPool, NeuroPool}
     class ExcitatoryLink : NeuroLink
     class InhibitoryLink : NeuroLink
     class ModulatoryLink : NeuroLink
-class Neuron;
+class NeuroLinkSet {NeuroLink[]}
+class NeuroNet {NeuroPoolSet, NeuroLinkSet}
+    class LayeredNet : NeuroNet
+    class CompactNet : NeuroNet
+    class SpreadNet : NeuroNet
 }}}
 
 ==== Auxiliary mind objects ====
 
   * mind stream
 {{{
-class MindAreaLink : MessageSubscriber {MindLinkInfo, MindRegion, MindRegion, MindRegionLinkSet}
+class MindAreaLink : MessageSubscriber {MindLinkInfo, MindArea, MindArea, MindRegionLinkSet}
 class MindAreaLinkSet {MindAreaLink[]}
 class MindRegionLink {MindRegion, MindRegion, NeuroLinkSet}
 class MindRegionLinkSet {MindRegionLink[]}
