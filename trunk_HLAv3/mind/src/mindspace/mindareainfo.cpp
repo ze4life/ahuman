@@ -6,6 +6,7 @@
 
 MindAreaInfo::MindAreaInfo() {
 	attachLogger();
+	enabled = false;
 }
 
 MindAreaInfo::~MindAreaInfo() {
@@ -14,6 +15,7 @@ MindAreaInfo::~MindAreaInfo() {
 
 void MindAreaInfo::createFromXml( Xml xml ) {
 	// attributes are properties
+	enabled = xml.getBooleanAttribute( "enabled" );
 	areaId = xml.getAttribute( "id" );
 
 	int x , y , z;
@@ -39,3 +41,6 @@ void MindAreaInfo::createFromXml( Xml xml ) {
 	}
 }
 
+bool MindAreaInfo::runEnabled() {
+	return( enabled );
+}

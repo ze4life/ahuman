@@ -76,7 +76,7 @@ void MindService::runService() {
 
 void MindService::stopService() {
 	// sent areas to sleep
-	areaSet -> settleDownAreaSet();
+	areaSet -> asleepAreaSet();
 
 	// stop thinking
 	activeMemory -> stop();
@@ -133,7 +133,12 @@ void MindService::createArea( String areaId , MindArea *(MindService::*pfn)() ) 
 
 	// construct area
 	MindArea *area = (this ->* pfn)();
-	ASSERTMSG( area != NULL , "constructArea: areas is not present in mind configuration" );
+	if( area == NULL ) {
+		logger.logInfo( "constructArea: " + areaId + " mind area is not created - ignore" );
+		return;
+	}
+
+	ASSERTMSG( areaInfo != NULL , "constructArea: areas is not present in mind configuration" );
 	areaSet -> addMindArea( area );
 
 	// configure area
@@ -189,3 +194,16 @@ MindAreaLink *MindService::createMindLink( MindAreaLinkInfo *linkInfo , MindArea
 	return( link );
 }
 
+
+MindArea *MindService::createThalamusArea() { return( NULL ); };
+MindArea *MindService::createSensoryArea() { return( NULL ); };
+MindArea *MindService::createHippocampusArea() { return( NULL ); };
+MindArea *MindService::createParietalArea() { return( NULL ); };
+MindArea *MindService::createLateralPrefrontalCortexArea() { return( NULL ); };
+MindArea *MindService::createOrbitoMedialPrefrontalCortexArea() { return( NULL ); };
+MindArea *MindService::createBasalGangliaArea() { return( NULL ); };
+MindArea *MindService::createBrainStemArea() { return( NULL ); };
+MindArea *MindService::createCranialNerveArea() { return( NULL ); };
+MindArea *MindService::createSpinalCordArea() { return( NULL ); };
+MindArea *MindService::createMotorNerveArea() { return( NULL ); };
+MindArea *MindService::createBodyFeelingNerveArea() { return( NULL ); };

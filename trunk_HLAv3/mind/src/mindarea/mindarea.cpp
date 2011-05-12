@@ -17,6 +17,10 @@ void MindArea::configureArea( MindAreaInfo *p_info ) {
 	info = p_info;
 }
 
+MindAreaInfo *MindArea::getMindAreaInfo() {
+	return( info );
+}
+
 void MindArea::createArea() {
 	regionSet = new MindRegionSet;
 	regionLinkSet = new MindRegionLinkSet;
