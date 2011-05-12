@@ -4,10 +4,10 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-MindLinkInfo::MindLinkInfo() {
+MindAreaLinkInfo::MindAreaLinkInfo() {
 }
 
-void MindLinkInfo::createFromXml( Xml xml ) {
+void MindAreaLinkInfo::createFromXml( Xml xml ) {
 	masterAreaId = xml.getAttribute( "masterArea" );
 	slaveAreaId = xml.getAttribute( "slaveArea" );
 	channelId = xml.getAttribute( "channel" );

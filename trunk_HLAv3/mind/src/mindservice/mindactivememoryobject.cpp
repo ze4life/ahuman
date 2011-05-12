@@ -13,8 +13,8 @@ MindActiveMemoryObject::MindActiveMemoryObject( int id ) {
 MindActiveMemoryObject::~MindActiveMemoryObject() {
 }
 
-void MindActiveMemoryObject::setRegion( MindRegion *p_region ) {
-	region = p_region;
+void MindActiveMemoryObject::setTargetItem( NeuroLink *link ) {
+	targetItem = link;
 }
 
 void MindActiveMemoryObject::execute() {
@@ -30,4 +30,3 @@ bool MindActiveMemoryObject::needExecution() {
 bool MindActiveMemoryObject::finished() {
 	return( false );
 }
-
