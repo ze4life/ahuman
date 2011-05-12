@@ -18,6 +18,9 @@ class MindRegion : public Object {
 public:
 	virtual const char *getClass() = 0;
 
+	virtual void exitRegion() = 0;
+	virtual void destroyRegion() = 0;
+
 public:
 	String getId();
 	void setId( String p_id );
@@ -35,11 +38,14 @@ class MindRegionSet : public Object {
 public:
 	virtual const char *getClass() { return( "MindRegionSet" ); };
 
+	MindRegion *getMindRegion( String regionId );
 	void addMindRegion( MindRegion *region );
+	void exitRegionSet();
+	void destroyRegionSet();
 
 public:
-	ClassList<MindRegion> regionList;
-	MapStringToClass<MindRegion> regionMap;
+	ClassList<MindRegion> list;
+	MapStringToClass<MindRegion> map;
 };
 
 /*#########################################################################*/

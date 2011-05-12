@@ -1,0 +1,46 @@
+<service>
+
+	<MindMap>
+		<MindArea id="Sensors">
+			<property name="posX" value="0"/>
+			<property name="posY" value="0"/>
+			<property name="posZ" value="0"/>
+			<property name="sizeX" value="10000"/>
+			<property name="sizeY" value="10000"/>
+			<property name="sizeZ" value="2"/>
+		</MindArea>
+		<MindArea id="NeoCortex">
+			<property name="posX" value="0"/>
+			<property name="posY" value="0"/>
+			<property name="posZ" value="5"/>
+			<property name="sizeX" value="1000"/>
+			<property name="sizeY" value="1000"/>
+			<property name="sizeZ" value="100"/>
+		</MindArea>
+		<MindArea id="Physiology">
+			<property name="posX" value="0"/>
+			<property name="posY" value="0"/>
+			<property name="posZ" value="1000"/>
+			<property name="sizeX" value="1000"/>
+			<property name="sizeY" value="1000"/>
+			<property name="sizeZ" value="1000"/>
+		</MindArea>
+		<MindLinks>
+			<MindLink masterArea="Sensors" slaveArea="NeoCortex" channel="sensordata"/>
+		</MindLinks>
+	</MindMap>
+
+	<ActiveMemory>
+		<MemoryFocus>
+			<property name="objectCount" value="100"/>
+		</MemoryFocus>
+		<ThreadPool>
+			<property name="run" value="false"/>
+			<property name="threadCount" value="20"/>
+			<property name="operationsPerSecond" value="100"/>
+			<property name="secondsPerCycle" value="1"/>
+			<property name="maxLoad" value="90"/>
+		</ThreadPool>
+	</ActiveMemory>
+
+</service>

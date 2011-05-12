@@ -15,7 +15,7 @@ class MindAreaSet;
 class MindAreaInfo;
 class MindRegionSet;
 class MindRegionLinkSet;
-class MindLink;
+class MindAreaLink;
 
 // brain provides implementation for mind areas
 // each mind area is implemented by module components - next level folder under mod...
@@ -33,26 +33,20 @@ public:
 
 public:
 	// mind area lifecycle
-	virtual void onCreateArea() = 0;
-	virtual void onLoadArea() = 0;
-	virtual void onBrainStart() {};
-	virtual void onBrainStop() {};
-
-	// runtime mind link events
-	virtual void onOpenMindLinkSource( MindLink *link , String channelId ) {};
-	virtual void onOpenMindLinkDestination( MindLink *link , String channelId ) {};
+	virtual void configureArea( MindAreaInfo *info );
+	virtual void createArea();
+	virtual void initRegionsInArea() = 0;
+	virtual void initMasterLinkToArea( MindAreaLink *link , String slaveAreaId ) = 0;
+	virtual void initSlaveLinkToArea( MindAreaLink *link , String masterAreaId ) = 0;
+	virtual void wakeupArea( MindActiveMemory *activeMemory ) = 0;
+	virtual void asleepArea() = 0;
+	virtual void exitArea();
+	virtual void destroyArea();
 
 public:
-	void setMindAreaInfo( MindAreaInfo *info );
 	MindAreaInfo *getMindAreaInfo();
 
 private:
-	void lock() { rfc_hnd_semlock( lockHandle ); };
-	void unlock() { rfc_hnd_semunlock( lockHandle ); };
-
-private:
-	RFC_HND lockHandle;
-
 	MindAreaInfo *info;
 	MindRegionSet *regionSet;
 	MindRegionLinkSet *regionLinkSet;
@@ -61,11 +55,20 @@ private:
 /*#########################################################################*/
 /*#########################################################################*/
 
+class MindActiveMemory;
+
 class MindAreaSet : public Object {
 public:
 	virtual const char *getClass() { return( "MindAreaSet" ); };
 
 	void addMindArea( MindArea *area );
+	MindArea *getMindArea( String id );
+
+	void initRegionsInAreaSet();
+	void wakeupAreaSet( MindActiveMemory *activeMemory );
+	void asleepAreaSet();
+	void exitAreaSet();
+	void destroyAreaSet();
 
 public:
 	ClassList<MindArea> list;
