@@ -12,10 +12,13 @@
   * mind target interface
 {{{
 class MindTarget {MindSensorSet, MindEffectorSet}
+    (class SpecificMindTarget : MindTarget)
 class MindSensorSet {MindSensor[]}
 class MindEffectorSet {MindEffector[]}
 class MindSensor : MindRegion
+    (class SpecificMindSensor : MindSensor)
 class MindEffector : MindRegion
+    (class SpecificMindEffector : MindEffector)
 }}}
   * mind service
 {{{
