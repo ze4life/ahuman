@@ -40,7 +40,7 @@ void MindMap::createFromXml( Xml xml ) {
 		xmlChild = xmlLinks.getFirstChild( "MindLink" );
 	for( ; xmlChild.exists(); xmlChild = xmlChild.getNextChild( "MindLink" ) ) {
 		// construct MindArea from attributes
-		MindLinkInfo *info = new MindLinkInfo;
+		MindAreaLinkInfo *info = new MindAreaLinkInfo;
 		info -> createFromXml( xmlChild );
 		mindLinks.add( info );
 	}

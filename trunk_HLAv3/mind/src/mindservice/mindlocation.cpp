@@ -50,99 +50,6 @@ void MindLocation::getCenter( int& cx , int& cy , int& cz ) const {
 	cz = z + dz/2;
 }
 
-// get output surface according to orientation
-MindLocation MindLocation::getInputsSurface() const {
-	MindLocation location = *this;
-
-	if( ox ) {
-		if( ox < 0 )
-			location.x = x + dx - 1;
-		else
-			location.x = x;
-		location.dx = 0;
-		location.ox = 0;
-	}
-	else
-	if( oy ) {
-		if( oy < 0 )
-			location.y = y + dy - 1;
-		else
-			location.y = y;
-		location.dy = 0;
-		location.oy = 0;
-	}
-	else
-	if( oz ) {
-		if( oz < 0 )
-			location.z = z + dz - 1;
-		else
-			location.z = z;
-		location.dz = 0;
-		location.oz = 0;
-	}
-
-	return( location );
-}
-
-// get output surface according to orientation
-MindLocation MindLocation::getOutputsSurface() const {
-	MindLocation location = *this;
-
-	if( ox ) {
-		if( ox > 0 )
-			location.x = x + dx - 1;
-		else
-			location.x = x;
-		location.dx = 0;
-		location.ox = 0;
-	}
-	else
-	if( oy ) {
-		if( oy > 0 )
-			location.y = y + dy - 1;
-		else
-			location.y = y;
-		location.dy = 0;
-		location.oy = 0;
-	}
-	else
-	if( oz ) {
-		if( oz > 0 )
-			location.z = z + dz - 1;
-		else
-			location.z = z;
-		location.dz = 0;
-		location.oz = 0;
-	}
-
-	return( location );
-}
-
-// get surface dimentions
-void MindLocation::getSurfaceDimensions( int& sa , int& sb ) const {
-	if( dx == 0 ) {
-		sa = dy;
-		sb = dz;
-	}
-	else
-	if( dy == 0 ) {
-		sa = dx;
-		sb = dz;
-	}
-	else
-	if( dz == 0 ) {
-		sa = dx;
-		sb = dy;
-	}
-}
-
-// get surface dimentions
-int MindLocation::getSurfaceSize() const {
-	int sa , sb;
-	getSurfaceDimensions( sa , sb );
-	return( sa * sb );
-}
-
 void MindLocation::movePosition( int cx , int cy , int cz ) {
 	x += cx;
 	y += cy;
@@ -153,23 +60,6 @@ void MindLocation::resize( int cx , int cy , int cz ) {
 	dx += cx;
 	dy += cy;
 	dz += cz;
-}
-
-void MindLocation::setSurfaceDimensions( int d1 , int d2 ) {
-	if( dx == 0 ) {
-		dy = d1;
-		dz = d2;
-	}
-	else
-	if( dy == 0 ) {
-		dx = d1;
-		dz = d2;
-	}
-	else
-	if( dz == 0 ) {
-		dx = d1;
-		dy = d2;
-	}
 }
 
 void MindLocation::center( const MindLocation& parent ) {

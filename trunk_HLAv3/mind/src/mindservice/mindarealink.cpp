@@ -4,10 +4,10 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-MindLink::MindLink( MindLinkInfo *p_info ) {
+MindAreaLink::MindAreaLink( MindAreaLinkInfo *p_info ) {
 	info = p_info;
 
-	MindManager *mm = MindManager::getService();
+	MindService *mm = MindService::getService();
 
 	String masterAreaId = info -> getMasterAreaId();
 	String slaveAreaId = info -> getSlaveAreaId();
@@ -19,39 +19,27 @@ MindLink::MindLink( MindLinkInfo *p_info ) {
 	iopub = NULL;
 }
 
-MindLink::~MindLink() {
+MindAreaLink::~MindAreaLink() {
 }
 
-void MindLink::open( MessageSession *p_session ) {
+void MindAreaLink::open( MessageSession *p_session ) {
 	session = p_session;
 	String channelId = info -> getChannelId();
 	String ioid =  info -> getMasterAreaId() + "-" +  info -> getSlaveAreaId();
 
 	MessagingService *ms = MessagingService::getService();
 	iosub = ms -> subscribe( session , channelId , ioid , this );
-	iopub = ms -> createPublisher( session , channelId ,  ioid , "MindLinkMsg" );
-
-	destinationArea -> onOpenMindLinkDestination( this , channelId );
-	sourceArea -> onOpenMindLinkSource( this , channelId );
+	iopub = ms -> createPublisher( session , channelId ,  ioid , "MindAreaLinkMsg" );
 }
 
-void MindLink::transferOutputs( Cortex *cortex ) {
-	// create message and grab data
-	CortexMessage *msg = new CortexMessage( cortex );
-	msg -> capture();
-
-	// send
-	iopub -> publish( session , msg );
-}
-
-MessageSubscription *MindLink::subscribeSelector( MessageSubscriber *handler , String name , String selector ) {
+MessageSubscription *MindAreaLink::subscribeSelector( MessageSubscriber *handler , String name , String selector ) {
 	MessagingService *ms = MessagingService::getService();
 	String channelId = info -> getChannelId();
 	MessageSubscription *sub = ms -> subscribeSelector( session , channelId , selector , channelId + "-" + name , handler );
 	return( sub );
 }
 
-MessageSubscription *MindLink::subscribe( MessageSubscriber *handler , String name )
+MessageSubscription *MindAreaLink::subscribe( MessageSubscriber *handler , String name )
 {
 	MessagingService *ms = MessagingService::getService();
 	String channelId = info -> getChannelId();
@@ -59,5 +47,6 @@ MessageSubscription *MindLink::subscribe( MessageSubscriber *handler , String na
 	return( sub );
 }
 
-void MindLink::onMessage( Message *msg ) {
+void MindAreaLink::onMessage( Message *msg ) {
+	logger.logInfo( "MindAreaLink::onMessage - not implemented" );
 }

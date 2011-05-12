@@ -5,8 +5,6 @@
 /*#########################################################################*/
 
 MindActiveMemory::MindActiveMemory() {
-	threadPool = "am";
-	focusSize = 0;
 }
 
 MindActiveMemory::~MindActiveMemory() {
@@ -15,29 +13,29 @@ MindActiveMemory::~MindActiveMemory() {
 
 void MindActiveMemory::create( Xml config ) {
 	Xml xmlTP = config.getFirstChild( "ThreadPool" );
+	String threadPoolName = xmlTP.getProperty( "name" );
+
 	Xml xmlFocus = config.getFirstChild( "MemoryFocus" );
-	focusSize = xmlFocus.getIntProperty( "objectCount" );
+	int focusSize = xmlFocus.getIntProperty( "objectCount" );
 
-	createMemoryObjects();
-
-	ThreadService *ts = ThreadService::getService();
-	ts -> createThreadPool( threadPool , xmlTP , ( ClassList<ThreadPoolTask>& )memoryObjects );
-}
-
-void MindActiveMemory::createMemoryObjects() {
+	// create memory objects
 	for( int k = 0; k < focusSize; k++ ) {
 		MindActiveMemoryObject *object = new MindActiveMemoryObject( k );
 		memoryObjects.add( object );
 	}
+
+	// create thread pool
+	ThreadService *ts = ThreadService::getService();
+	ts -> createThreadPool( threadPoolName , xmlTP , ( ClassList<ThreadPoolTask>& )memoryObjects );
 }
 
 void MindActiveMemory::start() {
 	ThreadService *ts = ThreadService::getService();
-	ts -> startThreadPool( threadPool );
+	ts -> startThreadPool( threadPoolName );
 }
 
 void MindActiveMemory::stop() {
 	ThreadService *ts = ThreadService::getService();
-	ts -> stopThreadPool( threadPool );
+	ts -> stopThreadPool( threadPoolName );
 }
 

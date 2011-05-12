@@ -5,14 +5,11 @@
 /*#########################################################################*/
 
 MindAreaInfo::MindAreaInfo() {
-	size = 0;
-	lockStructure = rfc_hnd_semcreate();
 	attachLogger();
 }
 
 MindAreaInfo::~MindAreaInfo() {
 	links.destroy();
-	rfc_hnd_semdestroy( lockStructure );
 };
 
 void MindAreaInfo::createFromXml( Xml xml ) {
@@ -31,12 +28,10 @@ void MindAreaInfo::createFromXml( Xml xml ) {
 	dz = xml.getIntProperty( "sizeZ" );
 	location.setDimensions( dx , dy , dz );
 
-	size = location.getSize();
-
 	// child elements are MindLink
 	for( Xml xmlChild = xml.getFirstChild( "MindLink" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "MindLink" ) ) {
 		// construct MindArea from attributes
-		MindLinkInfo *info = new MindLinkInfo;
+		MindAreaLinkInfo *info = new MindAreaLinkInfo;
 		info -> createFromXml( xmlChild );
 
 		// add
