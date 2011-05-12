@@ -22,9 +22,9 @@ class MindRegion;
 class MindRegionSet;
 class MindMap;
 class MindActiveMemory;
-class MindLink;
-class MindLinkSet;
-class MindLinkInfo;
+class MindAreaLink;
+class MindAreaLinkSet;
+class MindAreaLinkInfo;
 class MindSensor;
 class MindEffector;
 class CortexRegion;
@@ -66,20 +66,6 @@ public:
 	InhibitoryLink *createInhibitoryLink( MindRegion *regionSrc, MindRegion *regionDst );
 	ModulatoryLink *createModulatoryLink( MindRegion *regionSrc, MindRegion *regionDst );
 
-	// create core items - areas
-	MindArea *createThalamusArea();
-	MindArea *createSensoryArea();
-	MindArea *createHippocampusArea();
-	MindArea *createParietalArea();
-	MindArea *createLateralPrefrontalCortexArea();
-	MindArea *createOrbitoMedialPrefrontalCortexArea();
-	MindArea *createBasalGangliaArea();
-	MindArea *createBrainStemArea();
-	MindArea *createCranialNerveArea();
-	MindArea *createSpinalCordArea();
-	MindArea *createMotorNerveArea ();
-	MindArea *createBodyFeelingNerveArea();
-
 // whole mind lifecycle
 public:
 	virtual const char *getServiceName() { return( "MindService" ); };
@@ -99,8 +85,26 @@ public:
 
 // internals:
 private:
-	void addMindArea( String areaId , MindArea *area );
-	MindLink *createMindLink( MindLinkInfo *linkInfo , MindArea *masterArea , MindArea *slaveArea );
+	// create core items - areas
+	MindArea *createThalamusArea();
+	MindArea *createSensoryArea();
+	MindArea *createHippocampusArea();
+	MindArea *createParietalArea();
+	MindArea *createLateralPrefrontalCortexArea();
+	MindArea *createOrbitoMedialPrefrontalCortexArea();
+	MindArea *createBasalGangliaArea();
+	MindArea *createBrainStemArea();
+	MindArea *createCranialNerveArea();
+	MindArea *createSpinalCordArea();
+	MindArea *createMotorNerveArea();
+	MindArea *createBodyFeelingNerveArea();
+
+	// routines
+	void createAreas();
+	void establishAreaLinks();
+
+	void createArea( String areaId , MindArea *(MindService::*pfn)() );
+	MindAreaLink *createMindLink( MindAreaLinkInfo *linkInfo , MindArea *masterArea , MindArea *slaveArea );
 	void addMindRegion( String regionId , MindRegion *region , const MindLocation& relativeLocation );
 
 	// structure lock
@@ -108,18 +112,18 @@ private:
 	void unlock() { rfc_hnd_semunlock( lockStructure );	}
 
 private:
-	Xml config;
 	RFC_HND lockStructure;
+	Xml config;
 
-	MindMap *mindMap;
 	MindSpace *mindSpace;
+	MindMap *mindMap;
 
 	MindAreaSet *areaSet;
 	MindRegionSet *regionSet;
-	MindLinkSet *linkSet;
+	MindAreaLinkSet *linkSet;
 	MindActiveMemory *activeMemory;
 
-	MessageSession *ioBrainSession;
+	MessageSession *session;
 	int areaIdSeq;
 	int regionIdSeq;
 };

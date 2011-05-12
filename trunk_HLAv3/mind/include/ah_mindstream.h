@@ -10,7 +10,6 @@ class MindAreaLink;
 class MindAreaLinkSet;
 class MindRegionLink;
 class MindRegionLinkSet;
-class MindActiveMemory;
 class MindMessage;
 
 /*#########################################################################*/
@@ -27,7 +26,7 @@ class MindRegion;
 // how inputs/outputs are connected to cortexes - it is defined by related component
 class MindAreaLink : public Object , public MessageSubscriber {
 public:
-	MindAreaLink( MindLinkInfo *p_info );
+	MindAreaLink( MindAreaLinkInfo *p_info );
 	~MindAreaLink();
 	const char *getClass() { return( "MindAreaLink" ); };
 
@@ -36,18 +35,17 @@ public:
 	virtual void onMessage( Message *msg );
 
 	void open( MessageSession *session );
-	void transferOutputs( MindRegion *region );
 	MessageSubscription *subscribe( MessageSubscriber *handler , String name );
 	MessageSubscription *subscribeSelector( MessageSubscriber *handler , String name , String selector );
 
-	MindArea *getSourceArea() { return( srcArea ); };
-	MindArea *getDestinationArea() { return( dstArea ); };
+	MindArea *getSourceArea() { return( sourceArea ); };
+	MindArea *getDestinationArea() { return( destinationArea ); };
 
 private:
-	MindLinkInfo *info;
+	MindAreaLinkInfo *info;
 
-	MindArea *srcArea;
-	MindArea *dstArea;
+	MindArea *sourceArea;
+	MindArea *destinationArea;
 	MindRegionLinkSet *links;
 
 	MessageSession *session;
@@ -62,8 +60,10 @@ class MindAreaLinkSet : public Object {
 public:
 	const char *getClass() { return( "MindAreaLinkSet" ); };
 
+	void addMindAreaLink( MindAreaLink *link );
+
 public:
-	ClassList<MindAreaLink> links;
+	ClassList<MindAreaLink> list;
 };
 
 /*#########################################################################*/
@@ -74,6 +74,9 @@ class NeuroLinkSet;
 class MindRegionLink : public Object {
 public:
 	const char *getClass() { return( "MindRegionLink" ); };
+
+	void exitRegionLink();
+	void destroyRegionLink();
 
 public:
 	MindRegion *src;
@@ -88,21 +91,11 @@ class MindRegionLinkSet : public Object {
 public:
 	const char *getClass() { return( "MindRegionLinkSet" ); };
 
-public:
-	ClassList<MindRegionLink> links;
-};
-
-/*#########################################################################*/
-/*#########################################################################*/
-
-class NeuroLink;
-
-class MindActiveMemory : public Object {
-public:
-	const char *getClass() { return( "MindActiveMemory" ); };
+	void exitRegionLinkSet();
+	void destroyRegionLinkSet();
 
 public:
-	ClassList<NeuroLink> links;
+	ClassList<MindRegionLink> list;
 };
 
 /*#########################################################################*/

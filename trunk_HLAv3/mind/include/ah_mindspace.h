@@ -6,6 +6,7 @@
 
 #include "ah_mindbase.h"
 
+class MindSpace;
 class MindLocation;
 class MindMap;
 class MindAreaInfo;
@@ -77,33 +78,29 @@ public:
 // operations
 public:
 	void createFromXml( Xml xml );
+
 	String getAreaId() { return( areaId ); };
+	bool runEnabled();
+
 	const MindLocation& getLocation() { return( location ); };
 	const ClassList<MindAreaLinkInfo>& getLinks() { return( links ); };
-
 	void addLink( MindAreaLinkInfo *link ) { links.add( link );	};
-
-	// structure lock
-	void lock() { rfc_hnd_semlock( lockStructure );	};
-	void unlock() { rfc_hnd_semunlock( lockStructure ); };
 
 private:
 	String areaId;
+	bool enabled;
 	MindLocation location;
-
 	ClassList<MindAreaLinkInfo> links;
-	RFC_HND lockStructure;
-	int size;
 };
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-class MindLinkInfo : public Object {
+class MindAreaLinkInfo : public Object {
 public:
-	MindLinkInfo();
-	~MindLinkInfo() {};
-	virtual const char *getClass() { return( "MindLinkInfo" ); };
+	MindAreaLinkInfo();
+	~MindAreaLinkInfo() {};
+	virtual const char *getClass() { return( "MindAreaLinkInfo" ); };
 
 // operations
 public:
@@ -130,6 +127,7 @@ public:
 
 // operations
 public:
+	void createFromXml( Xml xml );
 
 // data
 public:
@@ -154,7 +152,7 @@ public:
 
 	ClassList<MindAreaInfo>& getMindAreas() { return( mindAreas ); };
 	ClassList<MindAreaLinkInfo>& getLinks() { return( mindLinks ); }
-	MindAreaLinkInfo *getAreaById( String areaId );
+	MindAreaInfo *getAreaById( String areaId );
 
 private:
 	ClassList<MindAreaInfo> mindAreas;

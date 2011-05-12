@@ -96,6 +96,7 @@ public:
 	void destroyServices();		// drop internal data
 
 	// runtime operations
+	void execute();
 	bool isRunning();
 	bool isCreated();
 	void waitRunDefault();

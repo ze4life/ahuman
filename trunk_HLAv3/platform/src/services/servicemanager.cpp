@@ -339,8 +339,7 @@ ServiceManager& ServiceManager::getInstance() {
 	return( *ServiceManager::instance );
 }
 
-void ServiceManager::logStart( Xml configLogging )
-{
+void ServiceManager::logStart( Xml configLogging ) {
 	// read configuration file
 	ASSERTMSG( configLogging.exists() , "logStart: logging is not configured, empty configuration" );
 
@@ -352,16 +351,63 @@ void ServiceManager::logStart( Xml configLogging )
 	logger.logInfo( "logStart: LOGGING STARTED" );
 }
 
-void ServiceManager::logStop()
-{
+void ServiceManager::logStop() {
 	// stop logging
 	logger.logInfo( "logStop: LOGGING STOPPED" );
 	logManager -> stop();
 }
 
-void ServiceManager::logStopAsync()
-{
+void ServiceManager::logStopAsync() {
 	// stop async logging
 	logManager -> stopAsync();
+}
+
+void ServiceManager::execute() {
+	logger.logInfo( "execute: PREPARE TO START/CONFIGURING..." );
+
+	try {
+		logger.logInfo( "--------------------" );
+		logger.logInfo( "execute: STARTING..." );
+		logger.logInfo( "--------------------" );
+
+		// create and run services
+		createServices();
+		initServices();
+		runServices();
+
+		// wait for completion
+		logger.logInfo( "--------------------" );
+		logger.logInfo( "execute: RUNNING..." );
+		logger.logInfo( "--------------------" );
+		waitRunDefault();
+	}
+	catch( RuntimeException& e ) {
+		logger.logInfo( "----------------------------------" );
+		logger.logInfo( "execute: STARTUP/RUNTIME EXCEPTION" );
+		logger.logInfo( "----------------------------------" );
+
+		logger.printStack( e );
+	}
+
+	// cleanup
+	try {
+		logger.logInfo( "--------------------" );
+		logger.logInfo( "execute: STOPPING..." );
+		logger.logInfo( "--------------------" );
+
+		stopServices();
+		exitServices();
+		destroyServices();
+
+		logger.logInfo( "----------------" );
+		logger.logInfo( "execute: STOPPED" );
+		logger.logInfo( "----------------" );
+	}
+	catch( RuntimeException& e ) {
+		logger.logInfo( "------------------------------" );
+		logger.logInfo( "execute: EXCEPTION ON SHUTDOWN" );
+		logger.logInfo( "------------------------------" );
+		logger.printStack( e );
+	}
 }
 

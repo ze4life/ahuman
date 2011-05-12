@@ -4,47 +4,68 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
+#include <platform/include/ah_services.h>
+#include "ah_mindarea.h"
+#include "ah_mindregion.h"
+
 class MindTarget;
-class MindActuatorSet;
-class MindActuator;
+class MindSensorSet;
+class MindEffectorSet;
 class MindSensor;
 class MindEffector;
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-class MindTarget : public Object {
+class MindTarget : public Service {
 public:
-	virtual const char *getClass() = 0;
+	// targer service virtuals
+	virtual const char *getServiceName() = 0;
+	virtual void configureService( Xml config ) = 0;
+	virtual void createService() = 0;
+	virtual void initService() = 0;
+	virtual void runService() = 0;
+	virtual void stopService() = 0;
+	virtual void exitService() = 0;
+	virtual void destroyService() = 0;
 
 public:
 	void addSensor( MindSensor *sensor );
 	void addEffector( MindEffector *effector );
 
 private:
-	MindActuatorSet *sensors;
-	MindActuatorSet *effectors;
+	MindSensorSet *sensors;
+	MindEffectorSet *effectors;
 };
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-class MindActuatorSet : public Object {
+class MindSensorSet : public MindArea {
 public:
-	virtual const char *getClass() { return( "MindActuatorSet" ); };
-
-public:
-	void addActuator( MindActuator *actuator );
+	void addSensor( MindSensor *sensor );
 
 private:
-	ClassList<MindActuator> list;
-	MapStringToClass<MindActuator> map;
+	ClassList<MindSensor> list;
+	MapStringToClass<MindSensor> map;
 };
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-class MindActuator : public Object {
+class MindEffectorSet : public MindArea {
+public:
+	void addSensor( MindEffectorSet *sensor );
+
+private:
+	ClassList<MindEffectorSet> list;
+	MapStringToClass<MindEffectorSet> map;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class MindSensor : public MindRegion {
 public:
 	virtual const char *getClass() = 0;
 };
@@ -52,15 +73,7 @@ public:
 /*#########################################################################*/
 /*#########################################################################*/
 
-class MindSensor : public MindActuator {
-public:
-	virtual const char *getClass() = 0;
-};
-
-/*#########################################################################*/
-/*#########################################################################*/
-
-class MindEffector : public MindActuator {
+class MindEffector : public MindRegion {
 public:
 	virtual const char *getClass() = 0;
 };
