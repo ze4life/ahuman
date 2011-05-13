@@ -30,12 +30,12 @@ void MindAreaSet::asleepAreaSet() {
 
 void MindAreaSet::exitAreaSet() {
 	for( int k = 0; k < list.count(); k++ )
-		list.get( k ) -> exitArea();
+		list.get( k ) -> exit();
 }
 
 void MindAreaSet::destroyAreaSet() {
 	for( int k = 0; k < list.count(); k++ )
-		list.get( k ) -> destroyArea();
+		list.get( k ) -> destroy();
 
 	map.clear();
 	list.destroy();

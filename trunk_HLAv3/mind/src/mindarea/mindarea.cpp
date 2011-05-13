@@ -13,7 +13,7 @@ MindArea::MindArea() {
 MindArea::~MindArea() {
 }
 
-void MindArea::configureArea( MindAreaInfo *p_info ) {
+void MindArea::configure( MindAreaInfo *p_info ) {
 	info = p_info;
 }
 
@@ -21,17 +21,17 @@ MindAreaInfo *MindArea::getMindAreaInfo() {
 	return( info );
 }
 
-void MindArea::createArea() {
+void MindArea::create() {
 	regionSet = new MindRegionSet;
 	regionLinkSet = new MindRegionLinkSet;
 }
 
-void MindArea::exitArea() {
+void MindArea::exit() {
 	regionSet -> exitRegionSet();
 	regionLinkSet -> exitRegionLinkSet();
 }
 
-void MindArea::destroyArea() {
+void MindArea::destroy() {
 	regionSet -> destroyRegionSet();
 	regionLinkSet -> destroyRegionLinkSet();
 	delete regionSet;

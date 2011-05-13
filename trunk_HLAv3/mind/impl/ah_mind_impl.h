@@ -8,6 +8,9 @@
 
 class MindActiveMemory;
 class MindActiveMemoryObject;
+class MindSensorSetTracker;
+class MindSensorArea;
+class MindEffectorArea;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -49,6 +52,65 @@ private:
 	int activeMemoryObjectId;
 	String name;
 	NeuroLink *targetItem;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class MindSensorSet;
+
+class MindSensorSetTracker : public Object {
+public:
+	MindSensorSetTracker( MindSensorSet *set );
+
+public:
+	void startTracker();
+	void stopTracker();
+
+private:
+	void threadSensesTrackerMain( void *p_arg );
+	void pollIteration( int& sleepRemained );
+
+private:
+	MindSensorSet *set;
+	RFC_HND threadSensesTracker;
+	bool runSensesTracker;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class MindSensorArea : public MindArea {
+public:
+	MindSensorArea();
+	virtual ~MindSensorArea();
+	virtual const char *getClass() { return( "MindSensorArea" ); };
+
+public:
+	// mind area lifecycle
+	virtual void initRegionsInArea();
+	virtual void initMasterLinkToArea( MindAreaLink *link , String slaveAreaId );
+	virtual void initSlaveLinkToArea( MindAreaLink *link , String masterAreaId );
+	virtual void wakeupArea( MindActiveMemory *activeMemory );
+	virtual void asleepArea();
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class MindEffectorArea : public MindArea {
+public:
+	MindEffectorArea();
+	virtual ~MindEffectorArea();
+	virtual const char *getClass() { return( "MindEffectorArea" ); };
+
+public:
+	// mind area lifecycle
+	virtual void initRegionsInArea();
+	virtual void initMasterLinkToArea( MindAreaLink *link , String slaveAreaId );
+	virtual void initSlaveLinkToArea( MindAreaLink *link , String masterAreaId );
+	virtual void wakeupArea( MindActiveMemory *activeMemory );
+	virtual void asleepArea();
 };
 
 // #############################################################################

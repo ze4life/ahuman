@@ -1,15 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClInclude Include="stdafx.h" />
-    <ClInclude Include="aweetarget.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="stdafx.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="aweetarget.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <Filter Include="filesyswalker">
       <UniqueIdentifier>{9c4be224-5768-4cca-b927-b6c538d89eb1}</UniqueIdentifier>
     </Filter>
@@ -32,5 +23,15 @@
     <None Include="etc\main.xml" />
     <None Include="etc\media.xml" />
     <None Include="etc\messaging.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\aweetarget.cpp" />
+    <ClCompile Include="src\stdafx.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\sensors\filesyswalker.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\aweetarget.h" />
+    <ClInclude Include="include\stdafx.h" />
   </ItemGroup>
 </Project>

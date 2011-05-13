@@ -33,18 +33,18 @@ public:
 
 public:
 	// mind area lifecycle
-	virtual void configureArea( MindAreaInfo *info );
-	virtual void createArea();
 	virtual void initRegionsInArea() = 0;
 	virtual void initMasterLinkToArea( MindAreaLink *link , String slaveAreaId ) = 0;
 	virtual void initSlaveLinkToArea( MindAreaLink *link , String masterAreaId ) = 0;
 	virtual void wakeupArea( MindActiveMemory *activeMemory ) = 0;
 	virtual void asleepArea() = 0;
-	virtual void exitArea();
-	virtual void destroyArea();
 
 public:
 	MindAreaInfo *getMindAreaInfo();
+	void configure( MindAreaInfo *info );
+	void create();
+	void exit();
+	void destroy();
 
 private:
 	MindAreaInfo *info;
