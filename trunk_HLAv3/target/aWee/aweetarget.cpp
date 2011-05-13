@@ -8,6 +8,7 @@ AWeeTarget::AWeeTarget() {
 }
 
 void AWeeTarget::configureService( Xml config ) {
+	MindTarget::addSensor();
 }
 
 void AWeeTarget::createService() {
