@@ -47,9 +47,10 @@ MIND is a sole part of aHuman and has its own layered HLA:
 || *Layer* || *Components* || *Implements* || *Notes* ||
 || mind target || MindTarget, MindSensor, MindEffector || mind target framework and lifecycle || Provides facade interfaces to specific target, isolates of mind and platform design ||
 || mind service || MindService || high-level mind construction and service lifecycle implementation, factory for specific mind components || Handles mind birth, growth and wake/sleep cycle ||
-|| mind area || MindArea and specific areas in unified aHuman mind || lifecycle of mind areas, regional nature and structure of unified mind || sole mind architecture based on underlying techonologies of next layers ||
-|| mind region || MindRegion || connectivity architecture of specific mind tissue types - cortex, nuclei and nerve system || based on low-level neural components ||
+|| mind area || MindArea and specific areas in unified aHuman mind || lifecycle of mind areas, regional nature and structure of unified mind || Sole mind architecture based on underlying techonologies of next layers ||
+|| mind region || MindRegion || connectivity architecture of specific mind tissue types - cortex, nuclei and nerve system || Based on low-level neural components ||
 || mind matter || [Neuron], NeuroPool, NeuroLink, NeuroNet || neuron types, neural networks, neurotransmitters || Effective representation of low-level mind state ||
+|| mind space || MindSpace, MindLocation, MindMap || geometry of the mind || One more real dimension in brain modeling ||
 || mind stream || MindAreaLink, MindRegionLink, MindActiveMemory, MindMessage || principal mind flow || Effective execution of network signal propagation ||
 
 == Platform HLA ==
@@ -75,11 +76,12 @@ Platform contains multiple services and split on HLA level to components as well
 || *Layer/Module* || *Design Rate* || *Code Rate* || *Advances and TBD* ||
 || ACTUATORS || 2 *focus* || 2 *focus* || *adv*: unified sensor model, filesyswalker, *tbd*: overt and covert attention, digital-neural protocol ||
 || MIND || || || ||
-|| mind target || 3 *focus* || 1 || *adv*: separated by design, *tbd*: full lifecycle implementation in HLAv3 ||
-|| mind service || 3 *focus* || 1 || *adv*: biomodel, *tbd*: layered architecture, transition to HLAv3 ||
+|| mind target || 2 || 1 *focus* || *adv*: separated by design, *tbd*: full lifecycle implementation in HLAv3 ||
+|| mind service || 3 || 1 *focus* || *adv*: biomodel, *tbd*: layered architecture, transition to HLAv3 ||
 || mind area || 2 *focus* || 1 || *adv*: cortex types, *tbd*: neocortex area design ||
 || mind region || 2 *focus* || 1 *focus* || *adv*: HTM, reqs, features, *tbd*: complete neocortex region model ||
 || mind matter || 2 || 2 *focus* || *adv*: sourceforge cortex, fann, *tbd*: trial neocortex implementation ||
+|| mind space || 1 || 1 || *adv*: locations, *tbd*: - ||
 || mind stream || 2 *focus* || 2 *focus* || *adv*: -, *tbd*: link hierarchy, HTM links ||
 || PLATFORM || 3 || 3 || *adv*: life cycle, component-based code, HLAv3 codebase, *tbd*: - ||
 || TOOLS || 2 || 2 || *adv*: aiconsole, *tbd*: - ||
