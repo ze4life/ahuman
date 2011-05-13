@@ -3,8 +3,10 @@
 // are changed infrequently
 //
 
-#pragma once
-
+#include <windows.h>
 #include <stdio.h>
+
 #include <platform\include\ah_platform.h>
 #include <mind\include\ah_mind.h>
+
+#include "aweetarget.h"

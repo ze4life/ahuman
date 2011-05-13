@@ -17,25 +17,51 @@ class MindEffector;
 /*#########################################################################*/
 /*#########################################################################*/
 
+class MindSensorSetTracker;
+class MindSensorArea;
+class MindEffectorArea;
+
 class MindTarget : public Service {
 public:
-	// targer service virtuals
-	virtual const char *getServiceName() = 0;
-	virtual void configureService( Xml config ) = 0;
-	virtual void createService() = 0;
-	virtual void initService() = 0;
-	virtual void runService() = 0;
-	virtual void stopService() = 0;
-	virtual void exitService() = 0;
-	virtual void destroyService() = 0;
+	MindTarget();
 
-public:
-	void addSensor( MindSensor *sensor );
-	void addEffector( MindEffector *effector );
+	virtual void configureTarget( Xml config ) = 0;
+	virtual void createTarget() = 0;
+	virtual void initSensorsTarget( MindArea *sensorArea ) = 0;
+	virtual void initEffectorsTarget( MindArea *effectorArea ) = 0;
+	virtual void runTarget() = 0;
+	virtual void stopTarget() = 0;
+	virtual void exitTarget() = 0;
+	virtual void destroyTarget() = 0;
 
 private:
+	// target service virtuals
+	virtual const char *getServiceName() { return( "MindTarget" ); };
+	virtual void configureService( Xml config );
+	virtual void createService();
+	virtual void initService();
+	virtual void runService();
+	virtual void stopService();
+	virtual void exitService();
+	virtual void destroyService();
+
+public:
+	void configureSensors( Xml xml );
+	void addSensor( MindSensor *sensor );
+	void addEffector( MindEffector *effector );
+	void startSensors();
+	void stopSensors();
+	MindSensor *getSensor( String name );
+
+private:
+	Xml configSensors;
+	MindSensorArea *sensorArea;
 	MindSensorSet *sensors;
+	MindSensorSet *sensorsOffline;
+	MindSensorSetTracker *sensorTracker;
+
 	MindEffectorSet *effectors;
+	MindEffectorArea *effectorArea;
 };
 
 /*#########################################################################*/
@@ -44,6 +70,10 @@ private:
 class MindSensorSet : public MindArea {
 public:
 	void addSensor( MindSensor *sensor );
+	void startSensorSet();
+	void stopSensorSet();
+	void pollSensorSet( int timeNowMs , int *minPollNextMs );
+	MindSensor *getSensor( String name );
 
 private:
 	ClassList<MindSensor> list;
@@ -67,7 +97,46 @@ private:
 
 class MindSensor : public MindRegion {
 public:
+	MindSensor();
+
+	// Object
 	virtual const char *getClass() = 0;
+
+	// MindSensor
+	virtual void startSensor() = 0;
+	virtual void stopSensor() = 0;
+	virtual void processSensorControl() = 0;
+	virtual bool executeSensorControl() = 0;
+	virtual void produceSensorData() = 0;
+	virtual void pollSensor() = 0;
+
+private:
+	// MindRegion
+	virtual void exitRegion();
+	virtual void destroyRegion();
+
+public:
+	// memory allocation
+	neurovt *createSensoryDataMemoryNVT( int sizeNVT );
+	neurovt *createSensoryControlMemoryNVT( int sizeNVT );
+
+	// sensor operations
+	void processSensorData();
+
+	// poll handling
+	void setPollState( bool state );
+	bool getPollState();
+	int getPollIntervalMs( int timeNowMs );
+
+private:
+	// auto-polling
+	bool pollState;
+	int pollNextMs;
+	int pollIntervalMs;
+
+	// memory
+	neurovt *memorySensoryData;
+	neurovt *memorySensoryControl;
 };
 
 /*#########################################################################*/

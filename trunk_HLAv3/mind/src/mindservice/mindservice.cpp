@@ -142,10 +142,10 @@ void MindService::createArea( String areaId , MindArea *(MindService::*pfn)() ) 
 	areaSet -> addMindArea( area );
 
 	// configure area
-	area -> configureArea( areaInfo );
+	area -> configure( areaInfo );
 
 	// create area independent content 
-	area -> createArea();
+	area -> create();
 }
 
 // mind links
@@ -193,7 +193,6 @@ MindAreaLink *MindService::createMindLink( MindAreaLinkInfo *linkInfo , MindArea
 
 	return( link );
 }
-
 
 MindArea *MindService::createThalamusArea() { return( NULL ); };
 MindArea *MindService::createSensoryArea() { return( NULL ); };
