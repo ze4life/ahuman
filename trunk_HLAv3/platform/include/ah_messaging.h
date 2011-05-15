@@ -45,7 +45,7 @@ public:
 
 // engine helpers
 protected:
-	MessagingService() {};
+	MessagingService();
 public:
 	static Service *newService();
 	static MessagingService *getService() { return( ( MessagingService * )ServiceManager::getInstance().getService( "MessagingService" ) ); };

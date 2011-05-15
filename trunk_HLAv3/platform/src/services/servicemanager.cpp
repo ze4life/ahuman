@@ -363,22 +363,24 @@ void ServiceManager::logStopAsync() {
 }
 
 void ServiceManager::execute() {
-	logger.logInfo( "execute: PREPARE TO START/CONFIGURING..." );
-
 	try {
 		logger.logInfo( "--------------------" );
 		logger.logInfo( "execute: STARTING..." );
 		logger.logInfo( "--------------------" );
 
-		// create and run services
+		// create and initialize services
 		createServices();
 		initServices();
-		runServices();
 
 		// wait for completion
 		logger.logInfo( "--------------------" );
 		logger.logInfo( "execute: RUNNING..." );
 		logger.logInfo( "--------------------" );
+		runServices();
+
+		logger.logInfo( "--------------------" );
+		logger.logInfo( "execute: STARTED, WAITING FOR COMPLETION..." );
+		logger.logInfo( "-------------------------------------------" );
 		waitRunDefault();
 	}
 	catch( RuntimeException& e ) {
@@ -392,8 +394,8 @@ void ServiceManager::execute() {
 	// cleanup
 	try {
 		logger.logInfo( "--------------------" );
-		logger.logInfo( "execute: STOPPING..." );
-		logger.logInfo( "--------------------" );
+		logger.logInfo( "execute: EXITING..." );
+		logger.logInfo( "-------------------" );
 
 		stopServices();
 		exitServices();

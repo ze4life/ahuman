@@ -24,6 +24,7 @@ String EnvService::getConfigurationPath( String etcpath ) {
 }
 
 void EnvService::configureAll( String etcpath ) {
+	logger.logInfo( "CONFIGURING SERVICES using etcpath=" + etcpath );
 	setConfigurationPath( etcpath );
 
 	// configure platform
