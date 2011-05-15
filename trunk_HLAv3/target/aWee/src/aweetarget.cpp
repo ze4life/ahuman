@@ -10,6 +10,7 @@ void AWeeTarget::configureTarget( Xml config ) {
 }
 
 void AWeeTarget::createTarget() {
+	MindTarget::addSensor( AWeeTarget::createFileSysWalker() );
 }
 
 void AWeeTarget::initSensorsTarget( MindArea *sensorArea ) {

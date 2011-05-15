@@ -62,6 +62,7 @@ class MindSensorSet;
 class MindSensorSetTracker : public Object {
 public:
 	MindSensorSetTracker( MindSensorSet *set );
+	virtual const char *getClass() { return( "MindSensorSetTracker" ); };
 
 public:
 	void startTracker();
@@ -80,11 +81,11 @@ private:
 /*#########################################################################*/
 /*#########################################################################*/
 
-class MindSensorArea : public MindArea {
+class SensorArea : public MindArea {
 public:
-	MindSensorArea();
-	virtual ~MindSensorArea();
-	virtual const char *getClass() { return( "MindSensorArea" ); };
+	SensorArea();
+	virtual ~SensorArea();
+	virtual const char *getClass() { return( "SensorArea" ); };
 
 public:
 	// mind area lifecycle
@@ -98,11 +99,11 @@ public:
 /*#########################################################################*/
 /*#########################################################################*/
 
-class MindEffectorArea : public MindArea {
+class EffectorArea : public MindArea {
 public:
-	MindEffectorArea();
-	virtual ~MindEffectorArea();
-	virtual const char *getClass() { return( "MindEffectorArea" ); };
+	EffectorArea();
+	virtual ~EffectorArea();
+	virtual const char *getClass() { return( "EffectorArea" ); };
 
 public:
 	// mind area lifecycle
