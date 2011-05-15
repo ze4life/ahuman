@@ -1,7 +1,10 @@
 <service>
 
+	<MindSpace>
+	</MindSpace>
+
 	<MindMap>
-		<MindArea id="Sensors">
+		<MindArea id="ThalamusArea">
 			<property name="posX" value="0"/>
 			<property name="posY" value="0"/>
 			<property name="posZ" value="0"/>
@@ -9,24 +12,113 @@
 			<property name="sizeY" value="10000"/>
 			<property name="sizeZ" value="2"/>
 		</MindArea>
-		<MindArea id="NeoCortex">
+		<MindArea id="PerceptionArea">
 			<property name="posX" value="0"/>
 			<property name="posY" value="0"/>
-			<property name="posZ" value="5"/>
-			<property name="sizeX" value="1000"/>
-			<property name="sizeY" value="1000"/>
-			<property name="sizeZ" value="100"/>
+			<property name="posZ" value="0"/>
+			<property name="sizeX" value="10000"/>
+			<property name="sizeY" value="10000"/>
+			<property name="sizeZ" value="2"/>
 		</MindArea>
-		<MindArea id="Physiology">
+		<MindArea id="HippocampusArea">
 			<property name="posX" value="0"/>
 			<property name="posY" value="0"/>
-			<property name="posZ" value="1000"/>
-			<property name="sizeX" value="1000"/>
-			<property name="sizeY" value="1000"/>
-			<property name="sizeZ" value="1000"/>
+			<property name="posZ" value="0"/>
+			<property name="sizeX" value="10000"/>
+			<property name="sizeY" value="10000"/>
+			<property name="sizeZ" value="2"/>
 		</MindArea>
+		<MindArea id="ParietalArea">
+			<property name="posX" value="0"/>
+			<property name="posY" value="0"/>
+			<property name="posZ" value="0"/>
+			<property name="sizeX" value="10000"/>
+			<property name="sizeY" value="10000"/>
+			<property name="sizeZ" value="2"/>
+		</MindArea>
+		<MindArea id="LateralPrefrontalCortexArea">
+			<property name="posX" value="0"/>
+			<property name="posY" value="0"/>
+			<property name="posZ" value="0"/>
+			<property name="sizeX" value="10000"/>
+			<property name="sizeY" value="10000"/>
+			<property name="sizeZ" value="2"/>
+		</MindArea>
+		<MindArea id="OrbitoMedialPrefrontalCortexArea">
+			<property name="posX" value="0"/>
+			<property name="posY" value="0"/>
+			<property name="posZ" value="0"/>
+			<property name="sizeX" value="10000"/>
+			<property name="sizeY" value="10000"/>
+			<property name="sizeZ" value="2"/>
+		</MindArea>
+		<MindArea id="BasalGangliaArea">
+			<property name="posX" value="0"/>
+			<property name="posY" value="0"/>
+			<property name="posZ" value="0"/>
+			<property name="sizeX" value="10000"/>
+			<property name="sizeY" value="10000"/>
+			<property name="sizeZ" value="2"/>
+		</MindArea>
+		<MindArea id="BrainStemArea">
+			<property name="posX" value="0"/>
+			<property name="posY" value="0"/>
+			<property name="posZ" value="0"/>
+			<property name="sizeX" value="10000"/>
+			<property name="sizeY" value="10000"/>
+			<property name="sizeZ" value="2"/>
+		</MindArea>
+		<MindArea id="CranialNerveArea">
+			<property name="posX" value="0"/>
+			<property name="posY" value="0"/>
+			<property name="posZ" value="0"/>
+			<property name="sizeX" value="10000"/>
+			<property name="sizeY" value="10000"/>
+			<property name="sizeZ" value="2"/>
+		</MindArea>
+		<MindArea id="SpinalCordArea">
+			<property name="posX" value="0"/>
+			<property name="posY" value="0"/>
+			<property name="posZ" value="0"/>
+			<property name="sizeX" value="10000"/>
+			<property name="sizeY" value="10000"/>
+			<property name="sizeZ" value="2"/>
+		</MindArea>
+		<MindArea id="MotorNerveArea">
+			<property name="posX" value="0"/>
+			<property name="posY" value="0"/>
+			<property name="posZ" value="0"/>
+			<property name="sizeX" value="10000"/>
+			<property name="sizeY" value="10000"/>
+			<property name="sizeZ" value="2"/>
+		</MindArea>
+		<MindArea id="BodyFeelingNerveArea">
+			<property name="posX" value="0"/>
+			<property name="posY" value="0"/>
+			<property name="posZ" value="0"/>
+			<property name="sizeX" value="10000"/>
+			<property name="sizeY" value="10000"/>
+			<property name="sizeZ" value="2"/>
+		</MindArea>
+		<MindArea id="SensorArea">
+			<property name="posX" value="0"/>
+			<property name="posY" value="0"/>
+			<property name="posZ" value="0"/>
+			<property name="sizeX" value="10000"/>
+			<property name="sizeY" value="10000"/>
+			<property name="sizeZ" value="2"/>
+		</MindArea>
+		<MindArea id="EffectorArea">
+			<property name="posX" value="0"/>
+			<property name="posY" value="0"/>
+			<property name="posZ" value="0"/>
+			<property name="sizeX" value="10000"/>
+			<property name="sizeY" value="10000"/>
+			<property name="sizeZ" value="2"/>
+		</MindArea>
+
 		<MindLinks>
-			<MindLink masterArea="Sensors" slaveArea="NeoCortex" channel="sensordata"/>
+			<MindLink masterArea="SensorArea" slaveArea="PerceptionArea" channel="sensordata"/>
 		</MindLinks>
 	</MindMap>
 
@@ -34,7 +126,9 @@
 		<MemoryFocus>
 			<property name="objectCount" value="100"/>
 		</MemoryFocus>
+
 		<ThreadPool>
+			<property name="name" value="AMT"/>
 			<property name="run" value="false"/>
 			<property name="threadCount" value="20"/>
 			<property name="operationsPerSecond" value="100"/>

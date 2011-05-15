@@ -87,8 +87,11 @@ void MindService::exitService() {
 	areaSet -> exitAreaSet();
 
 	// stop session
-	MessagingService *ms = MessagingService::getService();
-	ms -> closeSession( session );
+	if( session != NULL ) {
+		MessagingService *ms = MessagingService::getService();
+		ms -> closeSession( session );
+		session = NULL;
+	}
 }
 
 void MindService::destroyService() {
@@ -107,7 +110,7 @@ void MindService::destroyService() {
 void MindService::createAreas() {
 	// construct only those that are configured
 	createArea( "ThalamusArea" , &MindService::createThalamusArea );
-	createArea( "SensoryArea" , &MindService::createSensoryArea );
+	createArea( "PerceptionArea" , &MindService::createPerceptionArea );
 	createArea( "HippocampusArea" , &MindService::createHippocampusArea );
 	createArea( "ParietalArea" , &MindService::createParietalArea );
 	createArea( "LateralPrefrontalCortexArea" , &MindService::createLateralPrefrontalCortexArea );
@@ -118,6 +121,8 @@ void MindService::createAreas() {
 	createArea( "SpinalCordArea" , &MindService::createSpinalCordArea );
 	createArea( "MotorNerveArea" , &MindService::createMotorNerveArea );
 	createArea( "BodyFeelingNerveArea" , &MindService::createBodyFeelingNerveArea );
+	createArea( "SensorArea" , &MindService::createSensorArea );
+	createArea( "EffectorArea" , &MindService::createEffectorArea );
 }
 
 void MindService::createArea( String areaId , MindArea *(MindService::*pfn)() ) {
@@ -195,7 +200,7 @@ MindAreaLink *MindService::createMindLink( MindAreaLinkInfo *linkInfo , MindArea
 }
 
 MindArea *MindService::createThalamusArea() { return( NULL ); };
-MindArea *MindService::createSensoryArea() { return( NULL ); };
+MindArea *MindService::createPerceptionArea() { return( NULL ); };
 MindArea *MindService::createHippocampusArea() { return( NULL ); };
 MindArea *MindService::createParietalArea() { return( NULL ); };
 MindArea *MindService::createLateralPrefrontalCortexArea() { return( NULL ); };
@@ -206,3 +211,6 @@ MindArea *MindService::createCranialNerveArea() { return( NULL ); };
 MindArea *MindService::createSpinalCordArea() { return( NULL ); };
 MindArea *MindService::createMotorNerveArea() { return( NULL ); };
 MindArea *MindService::createBodyFeelingNerveArea() { return( NULL ); };
+// target areas
+MindArea *MindService::createSensorArea() { return( NULL ); };
+MindArea *MindService::createEffectorArea() { return( NULL ); };

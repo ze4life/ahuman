@@ -4,6 +4,11 @@
 // #############################################################################
 // #############################################################################
 
+MessagingService::MessagingService() {
+	dataLock = NULL;
+	lastSessionId = 0;
+}
+
 Service *MessagingService::newService() {
 	return( new MessagingService() );
 }
@@ -39,7 +44,11 @@ void MessagingService::exitService() {
 }
 
 void MessagingService::destroyService() {
-	rfc_lock_destroy( dataLock );
+	if( dataLock != NULL ) {
+		rfc_lock_destroy( dataLock );
+		dataLock = NULL;
+	}
+
 	mapChannels.destroy();
 	sessions.destroy();
 

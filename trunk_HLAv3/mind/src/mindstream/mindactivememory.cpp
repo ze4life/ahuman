@@ -13,7 +13,7 @@ MindActiveMemory::~MindActiveMemory() {
 
 void MindActiveMemory::create( Xml config ) {
 	Xml xmlTP = config.getFirstChild( "ThreadPool" );
-	String threadPoolName = xmlTP.getProperty( "name" );
+	threadPoolName = xmlTP.getProperty( "name" );
 
 	Xml xmlFocus = config.getFirstChild( "MemoryFocus" );
 	int focusSize = xmlFocus.getIntProperty( "objectCount" );

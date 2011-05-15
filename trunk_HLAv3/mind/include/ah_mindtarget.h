@@ -18,8 +18,7 @@ class MindEffector;
 /*#########################################################################*/
 
 class MindSensorSetTracker;
-class MindSensorArea;
-class MindEffectorArea;
+class MindArea;
 
 class MindTarget : public Service {
 public:
@@ -55,13 +54,13 @@ public:
 
 private:
 	Xml configSensors;
-	MindSensorArea *sensorArea;
+	MindArea *sensorArea;
 	MindSensorSet *sensors;
 	MindSensorSet *sensorsOffline;
 	MindSensorSetTracker *sensorTracker;
 
 	MindEffectorSet *effectors;
-	MindEffectorArea *effectorArea;
+	MindArea *effectorArea;
 };
 
 /*#########################################################################*/

@@ -87,7 +87,7 @@ public:
 private:
 	// create core items - areas
 	MindArea *createThalamusArea();
-	MindArea *createSensoryArea();
+	MindArea *createPerceptionArea();
 	MindArea *createHippocampusArea();
 	MindArea *createParietalArea();
 	MindArea *createLateralPrefrontalCortexArea();
@@ -98,6 +98,9 @@ private:
 	MindArea *createSpinalCordArea();
 	MindArea *createMotorNerveArea();
 	MindArea *createBodyFeelingNerveArea();
+	// specific areas
+	MindArea *createSensorArea();
+	MindArea *createEffectorArea();
 
 	// routines
 	void createAreas();
