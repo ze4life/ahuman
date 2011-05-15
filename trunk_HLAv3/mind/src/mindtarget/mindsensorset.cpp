@@ -1,7 +1,12 @@
 #include <ah_mind.h>
+#include <ah_mind_impl.h>
 
 /*#########################################################################*/
 /*#########################################################################*/
+
+MindSensorSet::MindSensorSet() {
+	attachLogger();
+}
 
 void MindSensorSet::addSensor( MindSensor *sensor ) {
 	list.add( sensor );

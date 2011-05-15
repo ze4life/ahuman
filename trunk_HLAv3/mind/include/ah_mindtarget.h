@@ -44,13 +44,20 @@ private:
 	virtual void exitService();
 	virtual void destroyService();
 
+private:
+	// target areas
+	MindArea *createSensorArea();
+	MindArea *createEffectorArea();
+
 public:
 	void configureSensors( Xml xml );
 	void addSensor( MindSensor *sensor );
-	void addEffector( MindEffector *effector );
 	void startSensors();
 	void stopSensors();
 	MindSensor *getSensor( String name );
+
+	void configureEffectors( Xml xml );
+	void addEffector( MindEffector *effector );
 
 private:
 	Xml configSensors;
@@ -59,14 +66,19 @@ private:
 	MindSensorSet *sensorsOffline;
 	MindSensorSetTracker *sensorTracker;
 
-	MindEffectorSet *effectors;
+	Xml configEffectors;
 	MindArea *effectorArea;
+	MindEffectorSet *effectors;
 };
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-class MindSensorSet : public MindArea {
+class MindSensorSet : public Object {
+public:
+	MindSensorSet();
+	virtual const char *getClass() { return( "MindSensorSet" ); };
+
 public:
 	void addSensor( MindSensor *sensor );
 	void startSensorSet();
@@ -82,13 +94,17 @@ private:
 /*#########################################################################*/
 /*#########################################################################*/
 
-class MindEffectorSet : public MindArea {
+class MindEffectorSet : public Object {
 public:
-	void addSensor( MindEffectorSet *sensor );
+	MindEffectorSet();
+	virtual const char *getClass() { return( "MindEffectorSet" ); };
+
+public:
+	void addEffector( MindEffector *effector );
 
 private:
-	ClassList<MindEffectorSet> list;
-	MapStringToClass<MindEffectorSet> map;
+	ClassList<MindEffector> list;
+	MapStringToClass<MindEffector> map;
 };
 
 /*#########################################################################*/

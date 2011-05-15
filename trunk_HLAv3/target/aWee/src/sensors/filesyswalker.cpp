@@ -883,8 +883,7 @@ void SensorFileSysWalker::continueRead() {
 // #############################################################################
 // #############################################################################
 
-MindSensor *AWeeTarget::createFileSysWalker( MindArea *area ) {
-	SensorFileSysWalker *sensor = new SensorFileSysWalker();
-	return( sensor );
+MindSensor *AWeeTarget::createFileSysWalker() {
+	return( new SensorFileSysWalker() );
 }
 

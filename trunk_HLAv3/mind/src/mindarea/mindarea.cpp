@@ -27,15 +27,21 @@ void MindArea::create() {
 }
 
 void MindArea::exit() {
-	regionSet -> exitRegionSet();
-	regionLinkSet -> exitRegionLinkSet();
+	if( regionSet != NULL )
+		regionSet -> exitRegionSet();
+	if( regionLinkSet != NULL )
+		regionLinkSet -> exitRegionLinkSet();
 }
 
 void MindArea::destroy() {
-	regionSet -> destroyRegionSet();
-	regionLinkSet -> destroyRegionLinkSet();
-	delete regionSet;
-	regionSet = NULL;
-	delete regionLinkSet;
-	regionLinkSet = NULL;
+	if( regionSet != NULL ) {
+		regionSet -> destroyRegionSet();
+		delete regionSet;
+		regionSet = NULL;
+	}
+	if( regionLinkSet != NULL ) {
+		regionLinkSet -> destroyRegionLinkSet();
+		delete regionLinkSet;
+		regionLinkSet = NULL;
+	}
 }

@@ -23,8 +23,10 @@ void ThreadPool::configure( Xml config ) {
 }
 
 void ThreadPool::create( ClassList<ThreadPoolTask>& tasks ) {
-	if( !runEnabled )
+	if( !runEnabled ) {
+		logger.logInfo( "Ignore threadPool=" + name + ", runEnabled=false" );
 		return;
+	}
 
 	int nTasks = tasks.count();
 	if( nThreads > nTasks )
@@ -70,6 +72,9 @@ void ThreadPool::ensureStopped() {
 }
 
 void ThreadPool::start() {
+	if( !runEnabled )
+		return;
+
 	state.setState( ThreadState::THREAD_STATE_RUNNING );
 
 	// iterate by threads - start threads
@@ -90,6 +95,9 @@ void ThreadPool::start() {
 }
 
 void ThreadPool::suspend() {
+	if( !runEnabled )
+		return;
+
 	// iterate by threads
 	for( int k = threads.count() - 1; k >= 0; k-- ) {
 		ThreadPoolItem *thread = threads.get( k );
@@ -100,6 +108,9 @@ void ThreadPool::suspend() {
 }
 
 void ThreadPool::resume() {
+	if( !runEnabled )
+		return;
+
 	// iterate by threads
 	for( int k = threads.count() - 1; k >= 0; k-- ) {
 		ThreadPoolItem *thread = threads.get( k );
@@ -110,6 +121,9 @@ void ThreadPool::resume() {
 }
 
 void ThreadPool::stop() {
+	if( !runEnabled )
+		return;
+
 	// iterate by threads
 	for( int k = threads.count() - 1; k >= 0; k-- ) {
 		ThreadPoolItem *thread = threads.get( k );

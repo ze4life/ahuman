@@ -18,7 +18,7 @@ public:
 	virtual void destroyTarget();
 
 public:
-	MindSensor *createFileSysWalker( MindArea *area );
+	MindSensor *createFileSysWalker();
 };
 
 /*#########################################################################*/

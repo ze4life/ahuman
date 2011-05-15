@@ -121,8 +121,6 @@ void MindService::createAreas() {
 	createArea( "SpinalCordArea" , &MindService::createSpinalCordArea );
 	createArea( "MotorNerveArea" , &MindService::createMotorNerveArea );
 	createArea( "BodyFeelingNerveArea" , &MindService::createBodyFeelingNerveArea );
-	createArea( "SensorArea" , &MindService::createSensorArea );
-	createArea( "EffectorArea" , &MindService::createEffectorArea );
 }
 
 void MindService::createArea( String areaId , MindArea *(MindService::*pfn)() ) {
@@ -143,14 +141,26 @@ void MindService::createArea( String areaId , MindArea *(MindService::*pfn)() ) 
 		return;
 	}
 
+	addMindArea( area );
+}
+
+void MindService::setMindTarget( MindTarget *p_target ) {
+	target = p_target;
+}
+
+void MindService::addMindArea( MindArea *area ) {
+	// add mind area
+	MindAreaInfo *areaInfo = mindMap -> getAreaById( area -> getClass() );
 	ASSERTMSG( areaInfo != NULL , "constructArea: areas is not present in mind configuration" );
-	areaSet -> addMindArea( area );
 
 	// configure area
 	area -> configure( areaInfo );
 
 	// create area independent content 
 	area -> create();
+
+	// add to set
+	areaSet -> addMindArea( area );
 }
 
 // mind links
@@ -211,6 +221,3 @@ MindArea *MindService::createCranialNerveArea() { return( NULL ); };
 MindArea *MindService::createSpinalCordArea() { return( NULL ); };
 MindArea *MindService::createMotorNerveArea() { return( NULL ); };
 MindArea *MindService::createBodyFeelingNerveArea() { return( NULL ); };
-// target areas
-MindArea *MindService::createSensorArea() { return( NULL ); };
-MindArea *MindService::createEffectorArea() { return( NULL ); };

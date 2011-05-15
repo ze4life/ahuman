@@ -30,9 +30,12 @@ class MindEffector;
 class CortexRegion;
 class NucleiRegion;
 class NerveRegion;
+class NeuroNet;
 class LayeredNet;
 class CompactNet;
 class SpreadNet;
+class NeuroLink;
+class NeuroPool;
 class ExcitatoryLink;
 class InhibitoryLink;
 class ModulatoryLink;
@@ -41,10 +44,12 @@ class ModulatoryLink;
 class MindService : public Service {
 // interface
 public:
-	// add target-aligned sensor and effector regions
-	void setTarget( MindTarget *target );
-	void addSensorRegion( String regionId , MindArea *area , MindSensor *region , MindLocation& areaLocation );
-	void addEffectorRegion( String regionId , MindArea *area , MindEffector *region , MindLocation& areaLocation );
+	// let mind know about created core items
+	void setMindTarget( MindTarget *target );
+	void addMindArea( MindArea *area );
+	void addMindRegion( MindRegion *region , String regionId , MindArea *area , MindLocation& areaLocation );
+	void addNeuroNet( NeuroNet *net , MindRegion *region );
+	void addNeuroLink( NeuroLink *link , NeuroPool *src , NeuroPool *dst );
 
 	// get mind map, specific mind area, region
 	MindMap *getMindMap();
@@ -52,19 +57,19 @@ public:
 	MindRegion *getMindRegion( String regionId );
 	  
 	// create core items - regions
-	CortexRegion *createCortexRegion( String regionId , MindArea *area , MindLocation& areaLocation );
-	NucleiRegion *createNucleiRegion( String regionId , MindArea *area , MindLocation& areaLocation );
-	NerveRegion *createNerveRegion( String regionId , MindArea *area , MindLocation& areaLocation );
+	CortexRegion *createCortexRegion();
+	NucleiRegion *createNucleiRegion();
+	NerveRegion *createNerveRegion();
 
 	// create core items - NeuroNet
-	LayeredNet *createLayeredNet( MindRegion *region );
-	CompactNet *createCompactNet( MindRegion *region );
-	SpreadNet *createSpreadNet( MindRegion *region );
+	LayeredNet *createLayeredNet();
+	CompactNet *createCompactNet();
+	SpreadNet *createSpreadNet();
 
 	// create core items - neurolinks
-	ExcitatoryLink *createExcitatoryLink( MindRegion *regionSrc, MindRegion *regionDst );
-	InhibitoryLink *createInhibitoryLink( MindRegion *regionSrc, MindRegion *regionDst );
-	ModulatoryLink *createModulatoryLink( MindRegion *regionSrc, MindRegion *regionDst );
+	ExcitatoryLink *createExcitatoryLink();
+	InhibitoryLink *createInhibitoryLink();
+	ModulatoryLink *createModulatoryLink();
 
 // whole mind lifecycle
 public:
@@ -98,9 +103,6 @@ private:
 	MindArea *createSpinalCordArea();
 	MindArea *createMotorNerveArea();
 	MindArea *createBodyFeelingNerveArea();
-	// specific areas
-	MindArea *createSensorArea();
-	MindArea *createEffectorArea();
 
 	// routines
 	void createAreas();
@@ -118,6 +120,7 @@ private:
 	RFC_HND lockStructure;
 	Xml config;
 
+	MindTarget *target;
 	MindSpace *mindSpace;
 	MindMap *mindMap;
 
