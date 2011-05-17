@@ -13,8 +13,8 @@
 {{{
 class MindTarget : Service {MindSensorSet, MindEffectorSet, MindSensorArea, MindEffectorArea}
     (class SpecificMindTarget : MindTarget)
-class MindSensorSet : MindArea {MindSensor[]}
-class MindEffectorSet : MindArea {MindEffector[]}
+class MindSensorSet {MindSensor[]}
+class MindEffectorSet {MindEffector[]}
 class MindSensor : MindRegion
     (class SpecificMindSensor : MindSensor)
 class MindEffector : MindRegion
