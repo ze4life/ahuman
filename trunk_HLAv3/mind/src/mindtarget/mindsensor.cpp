@@ -10,6 +10,10 @@ MindSensor::MindSensor() {
 
 	memorySensoryData = NULL;
 	memorySensoryControl = NULL;
+
+	sizeSensoryData = 0;
+	sizeControlData = 0;
+	sizeControlFeedbackData = 0;
 }
 
 void MindSensor::setPollState( bool state ) {
@@ -18,14 +22,21 @@ void MindSensor::setPollState( bool state ) {
 
 neurovt *MindSensor::createSensoryDataMemoryNVT( int sizeNVT ) {
 	ASSERTMSG( sizeNVT > 0 , "createSensoryDataMemoryNVT: invalid value" );
+	sizeSensoryData = sizeNVT;
+
 	memorySensoryData = ( neurovt * )calloc( sizeNVT , sizeof( neurovt ) );
 	return( memorySensoryData );
 }
 
 neurovt *MindSensor::createSensoryControlMemoryNVT( int sizeNVT ) {
 	ASSERTMSG( sizeNVT > 0 , "createSensoryControlMemoryNVT: invalid value" );
+	sizeControlData = sizeNVT;
+
 	memorySensoryControl = ( neurovt * )calloc( sizeNVT , sizeof( neurovt ) );
 	return( memorySensoryControl );
+}
+
+void MindSensor::createRegion() {
 }
 
 void MindSensor::exitRegion() {
@@ -41,6 +52,7 @@ void MindSensor::destroyRegion() {
 }
 
 void MindSensor::processSensorData() {
+	MindRegion::sendOutputData( memorySensoryData , sizeSensoryData );
 }
 
 bool MindSensor::getPollState() {

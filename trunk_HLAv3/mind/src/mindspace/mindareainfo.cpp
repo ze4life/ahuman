@@ -15,7 +15,7 @@ MindAreaInfo::~MindAreaInfo() {
 
 void MindAreaInfo::createFromXml( Xml xml ) {
 	// attributes are properties
-	enabled = xml.getBooleanAttribute( "enabled" );
+	enabled = xml.getBooleanAttribute( "enabled" , true );
 	areaId = xml.getAttribute( "id" );
 
 	int x , y , z;

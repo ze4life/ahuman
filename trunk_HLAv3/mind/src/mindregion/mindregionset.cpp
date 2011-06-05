@@ -4,22 +4,30 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-MindRegion *MindRegionSet::getMindRegion( String regionId ) {
+MindRegion *MindRegionSet::getSetItem( String regionId ) {
 	return( map.get( regionId ) );
 }
 
-void MindRegionSet::addMindRegion( MindRegion *region ) {
+void MindRegionSet::addSetItem( MindRegion *region ) {
 	list.add( region );
-	map.add( region -> getId() , region );
+	map.add( region -> getRegionId() , region );
 }
 
 void MindRegionSet::exitRegionSet() {
 	for( int k = 0; k < list.count(); k++ )
-		list.get( k ) -> exitRegion();
+		list.get( k ) -> exit();
 }
 
 void MindRegionSet::destroyRegionSet() {
 	for( int k = 0; k < list.count(); k++ )
-		list.get( k ) -> destroyRegion();
+		list.get( k ) -> destroy();
+}
+
+int MindRegionSet::getCount() {
+	return( list.count() );
+}
+
+MindRegion *MindRegionSet::getSetItem( int k ) {
+	return( list.get( k ) );
 }
 

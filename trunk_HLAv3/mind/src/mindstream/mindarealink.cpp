@@ -17,9 +17,11 @@ MindAreaLink::MindAreaLink( MindAreaLinkInfo *p_info ) {
 	session = NULL;
 	iosub = NULL;
 	iopub = NULL;
+	links = new MindRegionLinkSet();
 }
 
 MindAreaLink::~MindAreaLink() {
+	delete links;
 }
 
 void MindAreaLink::open( MessageSession *p_session ) {
@@ -50,3 +52,8 @@ MessageSubscription *MindAreaLink::subscribe( MessageSubscriber *handler , Strin
 void MindAreaLink::onMessage( Message *msg ) {
 	logger.logInfo( "MindAreaLink::onMessage - not implemented" );
 }
+
+void MindAreaLink::addRegionLink( MindRegionLink *link ) {
+	links -> addSetItem( link );
+}
+

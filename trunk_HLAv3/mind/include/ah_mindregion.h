@@ -13,22 +13,33 @@ class MindRegionSet;
 /*#########################################################################*/
 
 class NeuroNet;
+class MindRegionLink;
 
 class MindRegion : public Object {
 public:
+	MindRegion();
+	virtual ~MindRegion();
 	virtual const char *getClass() = 0;
 
+	virtual void createRegion() = 0;
 	virtual void exitRegion() = 0;
 	virtual void destroyRegion() = 0;
 
 public:
-	String getId();
-	void setId( String p_id );
+	void create( MindArea *area , String p_id );
+	void exit();
+	void destroy();
+	void addRegionLink( MindRegion *src , MindRegion *dst , MindRegionLink *link );
+
+	String getRegionId();
+	void sendOutputData( neurovt *data , int size );
 
 private:
+	MindArea *area;
 	String id;
 
 	NeuroNet *net;
+	MindRegionLinkSet *regionLinkSet;
 };
 
 /*#########################################################################*/
@@ -38,8 +49,11 @@ class MindRegionSet : public Object {
 public:
 	virtual const char *getClass() { return( "MindRegionSet" ); };
 
-	MindRegion *getMindRegion( String regionId );
-	void addMindRegion( MindRegion *region );
+	int getCount();
+	MindRegion *getSetItem( int k );
+
+	MindRegion *getSetItem( String regionId );
+	void addSetItem( MindRegion *region );
 	void exitRegionSet();
 	void destroyRegionSet();
 
@@ -53,7 +67,14 @@ public:
 
 class CortexRegion : public MindRegion {
 public:
+	CortexRegion();
 	virtual const char *getClass() { return( "CortexRegion" ); };
+
+public:
+	// MindRegion interface
+	virtual void createRegion();
+	virtual void exitRegion();
+	virtual void destroyRegion();
 };
 
 /*#########################################################################*/

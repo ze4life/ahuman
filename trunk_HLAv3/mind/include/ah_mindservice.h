@@ -95,8 +95,7 @@ private:
 	MindArea *createPerceptionArea();
 	MindArea *createHippocampusArea();
 	MindArea *createParietalArea();
-	MindArea *createLateralPrefrontalCortexArea();
-	MindArea *createOrbitoMedialPrefrontalCortexArea();
+	MindArea *createPrefrontalCortexArea();
 	MindArea *createBasalGangliaArea();
 	MindArea *createBrainStemArea();
 	MindArea *createCranialNerveArea();

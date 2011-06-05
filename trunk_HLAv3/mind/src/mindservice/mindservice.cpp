@@ -113,8 +113,7 @@ void MindService::createAreas() {
 	createArea( "PerceptionArea" , &MindService::createPerceptionArea );
 	createArea( "HippocampusArea" , &MindService::createHippocampusArea );
 	createArea( "ParietalArea" , &MindService::createParietalArea );
-	createArea( "LateralPrefrontalCortexArea" , &MindService::createLateralPrefrontalCortexArea );
-	createArea( "OrbitoMedialPrefrontalCortexArea" , &MindService::createOrbitoMedialPrefrontalCortexArea );
+	createArea( "PrefrontalCortexArea" , &MindService::createPrefrontalCortexArea );
 	createArea( "BasalGangliaArea" , &MindService::createBasalGangliaArea );
 	createArea( "BrainStemArea" , &MindService::createBrainStemArea );
 	createArea( "CranialNerveArea" , &MindService::createCranialNerveArea );
@@ -161,6 +160,8 @@ void MindService::addMindArea( MindArea *area ) {
 
 	// add to set
 	areaSet -> addMindArea( area );
+
+	logger.logInfo( "MindArea added name=" + areaInfo -> getAreaId() );
 }
 
 // mind links
@@ -191,7 +192,7 @@ MindArea *MindService::getMindArea( String areaId ) {
 
 // cortex
 MindRegion *MindService::getMindRegion( String regionId ) {
-	MindRegion *region = regionSet -> getMindRegion( regionId );
+	MindRegion *region = regionSet -> getSetItem( regionId );
 	ASSERTMSG( region != NULL , "region is not found by id=" + regionId );
 	return( region );
 }
@@ -201,7 +202,7 @@ MindAreaLink *MindService::createMindLink( MindAreaLinkInfo *linkInfo , MindArea
 	// create link
 	MindAreaLink *link = new MindAreaLink( linkInfo );
 	link -> open( session );
-	linkSet -> addMindAreaLink( link );
+	linkSet -> addSetItem( link );
 
 	masterArea -> initMasterLinkToArea( link , linkInfo -> getSlaveAreaId() );
 	slaveArea -> initSlaveLinkToArea( link , linkInfo -> getMasterAreaId() );
@@ -210,11 +211,9 @@ MindAreaLink *MindService::createMindLink( MindAreaLinkInfo *linkInfo , MindArea
 }
 
 MindArea *MindService::createThalamusArea() { return( NULL ); };
-MindArea *MindService::createPerceptionArea() { return( NULL ); };
 MindArea *MindService::createHippocampusArea() { return( NULL ); };
 MindArea *MindService::createParietalArea() { return( NULL ); };
-MindArea *MindService::createLateralPrefrontalCortexArea() { return( NULL ); };
-MindArea *MindService::createOrbitoMedialPrefrontalCortexArea() { return( NULL ); };
+MindArea *MindService::createPrefrontalCortexArea() { return( NULL ); };
 MindArea *MindService::createBasalGangliaArea() { return( NULL ); };
 MindArea *MindService::createBrainStemArea() { return( NULL ); };
 MindArea *MindService::createCranialNerveArea() { return( NULL ); };

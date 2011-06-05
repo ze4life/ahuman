@@ -41,6 +41,8 @@ public:
 	MindArea *getSourceArea() { return( sourceArea ); };
 	MindArea *getDestinationArea() { return( destinationArea ); };
 
+	void addRegionLink( MindRegionLink *link );
+
 private:
 	MindAreaLinkInfo *info;
 
@@ -60,7 +62,7 @@ class MindAreaLinkSet : public Object {
 public:
 	const char *getClass() { return( "MindAreaLinkSet" ); };
 
-	void addMindAreaLink( MindAreaLink *link );
+	void addSetItem( MindAreaLink *link );
 
 public:
 	ClassList<MindAreaLink> list;
@@ -91,6 +93,8 @@ class MindRegionLinkSet : public Object {
 public:
 	const char *getClass() { return( "MindRegionLinkSet" ); };
 
+	void addSetItem( MindRegionLink *link );
+	
 	void exitRegionLinkSet();
 	void destroyRegionLinkSet();
 
