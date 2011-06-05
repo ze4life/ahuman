@@ -45,3 +45,25 @@ void MindArea::destroy() {
 		regionLinkSet = NULL;
 	}
 }
+
+MindRegionSet *MindArea::getRegionSet() {
+	return( regionSet );
+}
+
+MindRegion *MindArea::openRegion( String group , String id ) {
+	// generate id
+	String regionId = group + "." + id;
+
+	// check exists
+	MindRegion *region = regionSet -> getSetItem( regionId );
+	if( region != NULL )
+		return( region );
+
+	// create region - delegate to specific area
+	region = createGroupRegion( group );
+	region -> create( this , regionId );
+
+	regionSet -> addSetItem( region );
+	return( region );
+}
+

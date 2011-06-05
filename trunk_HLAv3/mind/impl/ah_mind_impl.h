@@ -9,8 +9,6 @@
 class MindActiveMemory;
 class MindActiveMemoryObject;
 class MindSensorSetTracker;
-class MindSensorArea;
-class MindEffectorArea;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -76,42 +74,6 @@ private:
 	MindSensorSet *set;
 	RFC_HND threadSensesTracker;
 	bool runSensesTracker;
-};
-
-/*#########################################################################*/
-/*#########################################################################*/
-
-class SensorArea : public MindArea {
-public:
-	SensorArea();
-	virtual ~SensorArea();
-	virtual const char *getClass() { return( "SensorArea" ); };
-
-public:
-	// mind area lifecycle
-	virtual void initRegionsInArea();
-	virtual void initMasterLinkToArea( MindAreaLink *link , String slaveAreaId );
-	virtual void initSlaveLinkToArea( MindAreaLink *link , String masterAreaId );
-	virtual void wakeupArea( MindActiveMemory *activeMemory );
-	virtual void asleepArea();
-};
-
-/*#########################################################################*/
-/*#########################################################################*/
-
-class EffectorArea : public MindArea {
-public:
-	EffectorArea();
-	virtual ~EffectorArea();
-	virtual const char *getClass() { return( "EffectorArea" ); };
-
-public:
-	// mind area lifecycle
-	virtual void initRegionsInArea();
-	virtual void initMasterLinkToArea( MindAreaLink *link , String slaveAreaId );
-	virtual void initSlaveLinkToArea( MindAreaLink *link , String masterAreaId );
-	virtual void wakeupArea( MindActiveMemory *activeMemory );
-	virtual void asleepArea();
 };
 
 // #############################################################################

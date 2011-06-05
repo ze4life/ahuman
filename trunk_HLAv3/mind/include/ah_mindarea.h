@@ -33,6 +33,7 @@ public:
 
 public:
 	// mind area lifecycle
+	virtual MindRegion *createGroupRegion( String group ) = 0;
 	virtual void initRegionsInArea() = 0;
 	virtual void initMasterLinkToArea( MindAreaLink *link , String slaveAreaId ) = 0;
 	virtual void initSlaveLinkToArea( MindAreaLink *link , String masterAreaId ) = 0;
@@ -45,6 +46,10 @@ public:
 	void create();
 	void exit();
 	void destroy();
+	MindRegion *openRegion( String group , String id );
+
+protected:
+	MindRegionSet *getRegionSet();
 
 private:
 	MindAreaInfo *info;

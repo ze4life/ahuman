@@ -4,6 +4,15 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-void MindAreaLinkSet::addSetItem( MindAreaLink *link ) {
-	list.add( link );
+CortexRegion::CortexRegion() {
 }
+
+void CortexRegion::createRegion() {
+}
+
+void CortexRegion::exitRegion() {
+}
+
+void CortexRegion::destroyRegion() {
+}
+

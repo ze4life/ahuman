@@ -14,3 +14,6 @@ void MindRegionLinkSet::destroyRegionLinkSet() {
 		list.get( k ) -> destroyRegionLink();
 }
 
+void MindRegionLinkSet::addSetItem( MindRegionLink *link ) {
+	list.add( link );
+}

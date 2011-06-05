@@ -13,6 +13,8 @@ class MindSensorSet;
 class MindEffectorSet;
 class MindSensor;
 class MindEffector;
+class MindSensorArea;
+class MindEffectorArea;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -127,6 +129,7 @@ public:
 
 private:
 	// MindRegion
+	virtual void createRegion();
 	virtual void exitRegion();
 	virtual void destroyRegion();
 
@@ -152,6 +155,9 @@ private:
 	// memory
 	neurovt *memorySensoryData;
 	neurovt *memorySensoryControl;
+	int sizeSensoryData;
+	int sizeControlData;
+	int sizeControlFeedbackData;
 };
 
 /*#########################################################################*/
@@ -164,5 +170,53 @@ public:
 
 /*#########################################################################*/
 /*#########################################################################*/
+
+class SensorArea : public MindArea {
+public:
+	SensorArea();
+	virtual ~SensorArea();
+	virtual const char *getClass() { return( "SensorArea" ); };
+
+public:
+	// own functions
+	void createSensorArea( MindTarget *target );
+	MindTarget *getTarget();
+
+	// MindArea lifecycle
+	virtual MindRegion *createGroupRegion( String group );
+	virtual void initRegionsInArea();
+	virtual void initMasterLinkToArea( MindAreaLink *link , String slaveAreaId );
+	virtual void initSlaveLinkToArea( MindAreaLink *link , String masterAreaId );
+	virtual void wakeupArea( MindActiveMemory *activeMemory );
+	virtual void asleepArea();
+
+private:
+	void initLinksToPerceptionArea( MindAreaLink *link );
+
+private:
+	MindTarget *target;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class EffectorArea : public MindArea {
+public:
+	EffectorArea();
+	virtual ~EffectorArea();
+	virtual const char *getClass() { return( "EffectorArea" ); };
+
+public:
+	// mind area lifecycle
+	virtual MindRegion *createGroupRegion( String group );
+	virtual void initRegionsInArea();
+	virtual void initMasterLinkToArea( MindAreaLink *link , String slaveAreaId );
+	virtual void initSlaveLinkToArea( MindAreaLink *link , String masterAreaId );
+	virtual void wakeupArea( MindActiveMemory *activeMemory );
+	virtual void asleepArea();
+};
+
+// #############################################################################
+// #############################################################################
 
 #endif // INCLUDE_AH_MINDTARGET_H
