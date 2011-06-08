@@ -19,7 +19,7 @@ class MindRegion : public Object {
 public:
 	MindRegion();
 	virtual ~MindRegion();
-	virtual const char *getClass() = 0;
+	virtual const char *getClass() { return( "MindRegion" ); };
 
 	virtual void createRegion() = 0;
 	virtual void exitRegion() = 0;
@@ -52,8 +52,9 @@ public:
 	int getCount();
 	MindRegion *getSetItem( int k );
 
-	MindRegion *getSetItem( String regionId );
+	MindRegion *getSetItemById( String regionId );
 	void addSetItem( MindRegion *region );
+
 	void exitRegionSet();
 	void destroyRegionSet();
 

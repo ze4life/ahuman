@@ -4,7 +4,7 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-MindArea *MindTarget::createSensorArea() {
+SensorArea *MindTarget::createSensorArea() {
 	return( new SensorArea() );
 }
 
@@ -12,25 +12,35 @@ MindArea *MindTarget::createSensorArea() {
 /*#########################################################################*/
 
 SensorArea::SensorArea() {
+	target = NULL;
 }
 
 SensorArea::~SensorArea() {
 }
 
 // own functions
-void SensorArea::createSensorArea( MindTarget *p_target ) {
+void SensorArea::createSensorArea( MindTarget *p_target , MindSensorSet *sensorSet ) {
 	target = p_target;
+	MindRegionSet *set = MindArea::getRegionSet();
+
+	for( int k = 0; k < sensorSet -> getCount(); k++ ) {
+		MindSensor *sensor = sensorSet -> getSetItem( k );
+		set -> addSetItem( sensor );
+	}
+}
+
+void SensorArea::initSensorArea() {
 }
 
 MindTarget *SensorArea::getTarget() {
 	return( target );
 }
 
-// mind area lifecycle
 MindRegion *SensorArea::createGroupRegion( String group ) {
 	return( NULL );
 }
 
+// mind area lifecycle
 void SensorArea::initRegionsInArea() {
 }
 

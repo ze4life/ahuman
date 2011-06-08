@@ -31,6 +31,7 @@ void MindTarget::configureService( Xml config ) {
 
 void MindTarget::createService() {
 	sensorArea = MindTarget::createSensorArea();
+
 	sensors = new MindSensorSet();
 	sensorsOffline = new MindSensorSet();
 	sensorTracker = new MindSensorSetTracker( sensors );
@@ -38,7 +39,7 @@ void MindTarget::createService() {
 	effectorArea = MindTarget::createEffectorArea();
 	effectors = new MindEffectorSet();
 
-	// call final target
+	// call target with sensors and effectors
 	createTarget();
 }
 
@@ -47,6 +48,17 @@ void MindTarget::initService() {
 	ms -> setMindTarget( this );
 	ms -> addMindArea( sensorArea );
 	ms -> addMindArea( effectorArea );
+
+	// create areas
+	sensorArea -> createSensorArea( this , sensors );
+	effectorArea -> createEffectorArea( this );
+
+	// create sensors
+	sensors -> createSensorSet( sensorArea );
+
+	// init areas
+	sensorArea -> initSensorArea();
+	effectorArea -> initEffectorArea();
 
 	// call final target
 	initSensorsTarget( sensorArea );
@@ -98,11 +110,11 @@ void MindTarget::addSensor( MindSensor *sensor ) {
 	Xml config = configSensors.getChildNamedNode( "sensor" , name );
 
 	if( config.exists() && config.getBooleanAttribute( "run" , true ) ) {
-		sensors -> addSensor( sensor );
+		sensors -> addSetItem( sensor );
 		logger.logInfo( "addSensor: sensor added - name=" + name );
 	}
 	else {
-		sensorsOffline -> addSensor( sensor );
+		sensorsOffline -> addSetItem( sensor );
 		logger.logInfo( "addSensor: sensor is not configured to run - name=" + name );
 	}
 }

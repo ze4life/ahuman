@@ -4,7 +4,7 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-MindArea *MindTarget::createEffectorArea() {
+EffectorArea *MindTarget::createEffectorArea() {
 	return( new EffectorArea() );
 }
 
@@ -15,6 +15,18 @@ EffectorArea::EffectorArea() {
 }
 
 EffectorArea::~EffectorArea() {
+}
+
+// own functions
+void EffectorArea::createEffectorArea( MindTarget *p_target ) {
+	target = p_target;
+}
+
+void EffectorArea::initEffectorArea() {
+}
+
+MindTarget *EffectorArea::getTarget() {
+	return( target );
 }
 
 // mind area lifecycle

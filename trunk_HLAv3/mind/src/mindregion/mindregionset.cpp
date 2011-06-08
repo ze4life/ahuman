@@ -4,7 +4,7 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-MindRegion *MindRegionSet::getSetItem( String regionId ) {
+MindRegion *MindRegionSet::getSetItemById( String regionId ) {
 	return( map.get( regionId ) );
 }
 

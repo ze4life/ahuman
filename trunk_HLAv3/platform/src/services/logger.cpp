@@ -30,7 +30,7 @@ void Logger::attachService( const char *p_s , const char *p_loggerName ) {
 }
 
 void Logger::attachObjectInstance( const char *className , const char *classInstance , const char *p_loggerName ) {
-	loggerName = ( p_loggerName != NULL && *p_loggerName != 0 )? p_loggerName : ( ( classInstance == NULL )? className : classInstance );
+	loggerName = ( p_loggerName != NULL && *p_loggerName != 0 )? p_loggerName : ( ( classInstance == NULL || *classInstance == 0 )? className : classInstance );
 	LogManager *logManager = ServiceManager::getInstance().getLogManager();
 	settings = logManager -> getObjectLogSettings( className , classInstance );
 }

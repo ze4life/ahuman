@@ -161,7 +161,7 @@ void MindService::addMindArea( MindArea *area ) {
 	// add to set
 	areaSet -> addMindArea( area );
 
-	logger.logInfo( "MindArea added name=" + areaInfo -> getAreaId() );
+	logger.logInfo( "addMindArea: MindArea added name=" + areaInfo -> getAreaId() );
 }
 
 // mind links
@@ -192,8 +192,8 @@ MindArea *MindService::getMindArea( String areaId ) {
 
 // cortex
 MindRegion *MindService::getMindRegion( String regionId ) {
-	MindRegion *region = regionSet -> getSetItem( regionId );
-	ASSERTMSG( region != NULL , "region is not found by id=" + regionId );
+	MindRegion *region = regionSet -> getSetItemById( regionId );
+	ASSERTMSG( region != NULL , "getMindRegion: region is not found by id=" + regionId );
 	return( region );
 }
 

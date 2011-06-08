@@ -8,13 +8,28 @@ MindSensorSet::MindSensorSet() {
 	attachLogger();
 }
 
-void MindSensorSet::addSensor( MindSensor *sensor ) {
+int MindSensorSet::getCount() {
+	return( list.count() );
+}
+
+MindSensor *MindSensorSet::getSetItem( int k ) {
+	return( list.get( k ) );
+}
+
+void MindSensorSet::addSetItem( MindSensor *sensor ) {
 	list.add( sensor );
 	map.add( sensor -> getClass() , sensor );
 }
 
 MindSensor *MindSensorSet::getSensor( String name ) {
 	return( map.get( name ) );
+}
+
+void MindSensorSet::createSensorSet( MindArea *area ) {
+	for( int k = 0; k < list.count(); k++ ) {
+		MindSensor *sensor = list.get( k );
+		sensor -> create( area , sensor -> getClass() );
+	}
 }
 
 void MindSensorSet::startSensorSet() {

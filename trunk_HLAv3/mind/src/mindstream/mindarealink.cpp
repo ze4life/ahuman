@@ -41,8 +41,7 @@ MessageSubscription *MindAreaLink::subscribeSelector( MessageSubscriber *handler
 	return( sub );
 }
 
-MessageSubscription *MindAreaLink::subscribe( MessageSubscriber *handler , String name )
-{
+MessageSubscription *MindAreaLink::subscribe( MessageSubscriber *handler , String name ) {
 	MessagingService *ms = MessagingService::getService();
 	String channelId = info -> getChannelId();
 	MessageSubscription *sub = ms -> subscribe( session , channelId , channelId + "-" + name , handler );
@@ -56,4 +55,3 @@ void MindAreaLink::onMessage( Message *msg ) {
 void MindAreaLink::addRegionLink( MindRegionLink *link ) {
 	links -> addSetItem( link );
 }
-
