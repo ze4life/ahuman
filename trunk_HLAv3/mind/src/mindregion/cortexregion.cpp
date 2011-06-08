@@ -5,6 +5,7 @@
 /*#########################################################################*/
 
 CortexRegion::CortexRegion() {
+	attachLogger();
 }
 
 void CortexRegion::createRegion() {

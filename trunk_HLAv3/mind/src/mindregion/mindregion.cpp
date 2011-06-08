@@ -5,6 +5,8 @@
 /*#########################################################################*/
 
 MindRegion::MindRegion() {
+	attachLogger();
+
 	area = NULL;
 	net = NULL;
 	regionLinkSet = NULL;
@@ -18,6 +20,10 @@ void MindRegion::create( MindArea *p_area , String p_id ) {
 	id = p_id;
 
 	regionLinkSet = new MindRegionLinkSet();
+	logger.logDebug( "create: region created - id=" + p_id + ", area=" + area -> getClass() );
+
+	// call virtual
+	createRegion();
 }
 
 void MindRegion::exit() {

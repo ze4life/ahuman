@@ -55,7 +55,7 @@ MindRegion *MindArea::openRegion( String group , String id ) {
 	String regionId = group + "." + id;
 
 	// check exists
-	MindRegion *region = regionSet -> getSetItem( regionId );
+	MindRegion *region = regionSet -> getSetItemById( regionId );
 	if( region != NULL )
 		return( region );
 

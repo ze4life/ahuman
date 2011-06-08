@@ -13,8 +13,8 @@ class MindSensorSet;
 class MindEffectorSet;
 class MindSensor;
 class MindEffector;
-class MindSensorArea;
-class MindEffectorArea;
+class SensorArea;
+class EffectorArea;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -48,8 +48,8 @@ private:
 
 private:
 	// target areas
-	MindArea *createSensorArea();
-	MindArea *createEffectorArea();
+	SensorArea *createSensorArea();
+	EffectorArea *createEffectorArea();
 
 public:
 	void configureSensors( Xml xml );
@@ -63,13 +63,13 @@ public:
 
 private:
 	Xml configSensors;
-	MindArea *sensorArea;
+	SensorArea *sensorArea;
 	MindSensorSet *sensors;
 	MindSensorSet *sensorsOffline;
 	MindSensorSetTracker *sensorTracker;
 
 	Xml configEffectors;
-	MindArea *effectorArea;
+	EffectorArea *effectorArea;
 	MindEffectorSet *effectors;
 };
 
@@ -82,7 +82,11 @@ public:
 	virtual const char *getClass() { return( "MindSensorSet" ); };
 
 public:
-	void addSensor( MindSensor *sensor );
+	int getCount();
+	MindSensor *getSetItem( int k );
+	void addSetItem( MindSensor *sensor );
+
+	void createSensorSet( MindArea *area );
 	void startSensorSet();
 	void stopSensorSet();
 	void pollSensorSet( int timeNowMs , int *minPollNextMs );
@@ -179,11 +183,13 @@ public:
 
 public:
 	// own functions
-	void createSensorArea( MindTarget *target );
+	void createSensorArea( MindTarget *target , MindSensorSet *sensorSet );
+	void initSensorArea();
 	MindTarget *getTarget();
 
-	// MindArea lifecycle
+	// MindArea delegate
 	virtual MindRegion *createGroupRegion( String group );
+	// MindArea lifecycle
 	virtual void initRegionsInArea();
 	virtual void initMasterLinkToArea( MindAreaLink *link , String slaveAreaId );
 	virtual void initSlaveLinkToArea( MindAreaLink *link , String masterAreaId );
@@ -207,6 +213,11 @@ public:
 	virtual const char *getClass() { return( "EffectorArea" ); };
 
 public:
+	// own functions
+	void createEffectorArea( MindTarget *target );
+	void initEffectorArea();
+	MindTarget *getTarget();
+
 	// mind area lifecycle
 	virtual MindRegion *createGroupRegion( String group );
 	virtual void initRegionsInArea();
@@ -214,6 +225,9 @@ public:
 	virtual void initSlaveLinkToArea( MindAreaLink *link , String masterAreaId );
 	virtual void wakeupArea( MindActiveMemory *activeMemory );
 	virtual void asleepArea();
+
+private:
+	MindTarget *target;
 };
 
 // #############################################################################

@@ -179,9 +179,9 @@ void LogManager::output( LogRecord *p ) {
 		return;
 
 	static const char *levelNames[ 4 ] = {
-		"NONE" ,
+		" NONE" ,
 		"ERROR" ,
-		"INFO" ,
+		" INFO" ,
 		"DEBUG"
 	};
 
