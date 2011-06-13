@@ -42,6 +42,7 @@ public:
 	MindArea *getDestinationArea() { return( destinationArea ); };
 
 	void addRegionLink( MindRegionLink *link );
+	void sendOutputData( MindRegion *region , neurovt *data , int size );
 
 private:
 	MindAreaLinkInfo *info;
@@ -63,6 +64,7 @@ public:
 	const char *getClass() { return( "MindAreaLinkSet" ); };
 
 	void addSetItem( MindAreaLink *link );
+	void sendOutputData( MindRegion *region , neurovt *data , int size );
 
 public:
 	ClassList<MindAreaLink> list;
@@ -72,13 +74,20 @@ public:
 /*#########################################################################*/
 
 class NeuroLinkSet;
+class MindRegion;
 
 class MindRegionLink : public Object {
 public:
+	MindRegionLink();
 	const char *getClass() { return( "MindRegionLink" ); };
 
+	MindRegion *getSrcRegion();
+	MindRegion *getDstRegion();
+
+	void createRegionLink( MindRegion *srcRegion , MindRegion *dstRegion );
 	void exitRegionLink();
 	void destroyRegionLink();
+	void sendOutputData( neurovt *data , int size );
 
 public:
 	MindRegion *src;
@@ -89,12 +98,15 @@ public:
 /*#########################################################################*/
 /*#########################################################################*/
 
+class MindRegion;
+
 class MindRegionLinkSet : public Object {
 public:
 	const char *getClass() { return( "MindRegionLinkSet" ); };
 
 	void addSetItem( MindRegionLink *link );
-	
+
+	void sendOutputData( MindRegion *region , neurovt *data , int size );
 	void exitRegionLinkSet();
 	void destroyRegionLinkSet();
 

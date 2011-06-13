@@ -56,6 +56,7 @@ public:
 	void addSensor( MindSensor *sensor );
 	void startSensors();
 	void stopSensors();
+	MindSensorSet *getSensorSet();
 	MindSensor *getSensor( String name );
 
 	void configureEffectors( Xml xml );
@@ -183,14 +184,11 @@ public:
 
 public:
 	// own functions
-	void createSensorArea( MindTarget *target , MindSensorSet *sensorSet );
 	void initSensorArea();
 	MindTarget *getTarget();
 
-	// MindArea delegate
-	virtual MindRegion *createGroupRegion( String group );
 	// MindArea lifecycle
-	virtual void initRegionsInArea();
+	virtual void initRegionsInArea( MindTarget *target );
 	virtual void initMasterLinkToArea( MindAreaLink *link , String slaveAreaId );
 	virtual void initSlaveLinkToArea( MindAreaLink *link , String masterAreaId );
 	virtual void wakeupArea( MindActiveMemory *activeMemory );
@@ -219,8 +217,7 @@ public:
 	MindTarget *getTarget();
 
 	// mind area lifecycle
-	virtual MindRegion *createGroupRegion( String group );
-	virtual void initRegionsInArea();
+	virtual void initRegionsInArea( MindTarget *target );
 	virtual void initMasterLinkToArea( MindAreaLink *link , String slaveAreaId );
 	virtual void initSlaveLinkToArea( MindAreaLink *link , String masterAreaId );
 	virtual void wakeupArea( MindActiveMemory *activeMemory );

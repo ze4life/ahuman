@@ -55,3 +55,7 @@ void MindAreaLink::onMessage( Message *msg ) {
 void MindAreaLink::addRegionLink( MindRegionLink *link ) {
 	links -> addSetItem( link );
 }
+
+void MindAreaLink::sendOutputData( MindRegion *region , neurovt *data , int size ) {
+	links -> sendOutputData( region , data , size );
+}

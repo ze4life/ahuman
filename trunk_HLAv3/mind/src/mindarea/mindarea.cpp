@@ -8,6 +8,7 @@ MindArea::MindArea() {
 	info = NULL;
 	regionSet = NULL;
 	regionLinkSet = NULL;
+	areaLinkSet = NULL;
 }
 
 MindArea::~MindArea() {
@@ -24,6 +25,20 @@ MindAreaInfo *MindArea::getMindAreaInfo() {
 void MindArea::create() {
 	regionSet = new MindRegionSet;
 	regionLinkSet = new MindRegionLinkSet;
+	areaLinkSet = new MindAreaLinkSet;
+}
+
+// mind area links
+MindAreaLink *MindArea::createMindLink( MindArea *slaveArea , MindAreaLinkInfo *linkInfo , MessageSession *session ) {
+	// create link
+	MindAreaLink *link = new MindAreaLink( linkInfo );
+	link -> open( session );
+
+	initMasterLinkToArea( link , linkInfo -> getSlaveAreaId() );
+	slaveArea -> initSlaveLinkToArea( link , linkInfo -> getMasterAreaId() );
+
+	areaLinkSet -> addSetItem( link );
+	return( link );
 }
 
 void MindArea::exit() {
@@ -44,26 +59,32 @@ void MindArea::destroy() {
 		delete regionLinkSet;
 		regionLinkSet = NULL;
 	}
+	if( areaLinkSet != NULL ) {
+		delete areaLinkSet;
+		areaLinkSet = NULL;
+	}
 }
 
 MindRegionSet *MindArea::getRegionSet() {
 	return( regionSet );
 }
 
-MindRegion *MindArea::openRegion( String group , String id ) {
+String MindArea::addRegion( String group , String id , MindRegion *region ) {
 	// generate id
 	String regionId = group + "." + id;
 
 	// check exists
-	MindRegion *region = regionSet -> getSetItemById( regionId );
-	if( region != NULL )
-		return( region );
+	ASSERTMSG( regionSet -> getSetItemById( regionId ) == NULL , "region id=" + regionId + " already exists" );
 
-	// create region - delegate to specific area
-	region = createGroupRegion( group );
+	// create region internals
 	region -> create( this , regionId );
 
 	regionSet -> addSetItem( region );
-	return( region );
+	return( regionId );
+}
+
+void MindArea::sendOutputData( MindRegion *region , neurovt *data , int size ) {
+	// by efferent links
+	areaLinkSet -> sendOutputData( region , data , size );
 }
 
