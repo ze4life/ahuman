@@ -544,7 +544,7 @@ void SensorFileSysWalker::sendSignal( neurovt type , String value ) {
 			next = pn;
 		}
 		else
-			next = p + 1;
+			next = pn + 1;
 
 		// check long name
 		int spaceSize = SENSOR_WIDTH_DATA - 1;
@@ -561,6 +561,7 @@ void SensorFileSysWalker::sendSignal( neurovt type , String value ) {
 			vout[ k ] = 0;
 
 		// produce item flow
+		logger.logDebug( String( "sendSignal: processSensorData - " ) + String( p , next - p ) );
 		MindSensor::processSensorData();
 		p = next;
 	}

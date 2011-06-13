@@ -43,5 +43,9 @@ String MindRegion::getRegionId() {
 }
 
 void MindRegion::sendOutputData( neurovt *data , int size ) {
-}
+	// intra-area links
+	regionLinkSet -> sendOutputData( this , data , size );
 
+	// inter-area links
+	area -> sendOutputData( this , data , size );
+}

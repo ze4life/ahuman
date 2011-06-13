@@ -30,11 +30,7 @@ MindTarget *EffectorArea::getTarget() {
 }
 
 // mind area lifecycle
-MindRegion *EffectorArea::createGroupRegion( String group ) {
-	return( NULL );
-}
-
-void EffectorArea::initRegionsInArea() {
+void EffectorArea::initRegionsInArea( MindTarget *target ) {
 }
 
 void EffectorArea::initMasterLinkToArea( MindAreaLink *link , String slaveAreaId ) {

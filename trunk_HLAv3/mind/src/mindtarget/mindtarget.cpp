@@ -50,11 +50,7 @@ void MindTarget::initService() {
 	ms -> addMindArea( effectorArea );
 
 	// create areas
-	sensorArea -> createSensorArea( this , sensors );
 	effectorArea -> createEffectorArea( this );
-
-	// create sensors
-	sensors -> createSensorSet( sensorArea );
 
 	// init areas
 	sensorArea -> initSensorArea();
@@ -117,6 +113,10 @@ void MindTarget::addSensor( MindSensor *sensor ) {
 		sensorsOffline -> addSetItem( sensor );
 		logger.logInfo( "addSensor: sensor is not configured to run - name=" + name );
 	}
+}
+
+MindSensorSet *MindTarget::getSensorSet() {
+	return( sensors );
 }
 
 MindSensor *MindTarget::getSensor( String name ) {

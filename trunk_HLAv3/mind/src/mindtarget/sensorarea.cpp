@@ -19,16 +19,6 @@ SensorArea::~SensorArea() {
 }
 
 // own functions
-void SensorArea::createSensorArea( MindTarget *p_target , MindSensorSet *sensorSet ) {
-	target = p_target;
-	MindRegionSet *set = MindArea::getRegionSet();
-
-	for( int k = 0; k < sensorSet -> getCount(); k++ ) {
-		MindSensor *sensor = sensorSet -> getSetItem( k );
-		set -> addSetItem( sensor );
-	}
-}
-
 void SensorArea::initSensorArea() {
 }
 
@@ -36,12 +26,13 @@ MindTarget *SensorArea::getTarget() {
 	return( target );
 }
 
-MindRegion *SensorArea::createGroupRegion( String group ) {
-	return( NULL );
-}
-
 // mind area lifecycle
-void SensorArea::initRegionsInArea() {
+void SensorArea::initRegionsInArea( MindTarget *p_target ) {
+	target = p_target;
+	MindSensorSet *sensorSet = target -> getSensorSet();
+
+	// create sensors
+	sensorSet -> createSensorSet( this );
 }
 
 void SensorArea::initMasterLinkToArea( MindAreaLink *link , String slaveAreaId ) {
@@ -61,15 +52,22 @@ void SensorArea::asleepArea() {
 void SensorArea::initLinksToPerceptionArea( MindAreaLink *link ) {
 	MindArea *dstArea = link -> getDestinationArea();
 
+	MindSensorSet *sensors = target -> getSensorSet();
+
 	// for each sensor create region link
-	MindRegionSet *set = MindArea::getRegionSet();
-	for( int k = 0; k < set -> getCount(); k++ ) {
+	MindRegionSet *srcset = MindArea::getRegionSet();
+	MindRegionSet *dstset = dstArea -> getRegionSet();
+	for( int k = 0; k < sensors -> getCount(); k++ ) {
 		// get regions
-		MindRegion *srcRegion = set -> getSetItem( k );
-		MindRegion *dstRegion = dstArea -> openRegion( "sensor" , srcRegion -> getRegionId() );
+		MindSensor *sensor = sensors -> getSetItem( k );
+		MindRegion *srcRegion = srcset -> getSetItemById( String( getClass() ) + "." + sensor -> getClass() );
+		ASSERTMSG( srcRegion != NULL , "initLinksToPerceptionArea: unknown source region for sensor=" + String( sensor -> getClass() ) );
+		MindRegion *dstRegion = dstset -> getSetItemById( String( dstArea -> getClass() ) + "." + sensor -> getClass() );
+		ASSERTMSG( dstRegion != NULL , "initLinksToPerceptionArea: unknown destination region for sensor=" + String( sensor -> getClass() ) );
 
 		// creater link
 		MindRegionLink *regionLink = new MindRegionLink();
+		regionLink -> createRegionLink( srcRegion , dstRegion );
 		link -> addRegionLink( regionLink );
 	}
 }

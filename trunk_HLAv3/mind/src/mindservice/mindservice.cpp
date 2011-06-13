@@ -19,6 +19,7 @@ MindService::MindService() {
 	linkSet = new MindAreaLinkSet();
 	activeMemory = new MindActiveMemory();
 
+	target = NULL;
 	session = NULL;
 	areaIdSeq = 0;
 	regionIdSeq = 0;
@@ -51,7 +52,7 @@ void MindService::createService() {
 
 void MindService::initService() {
 	// create regions in all areas
-	areaSet -> initRegionsInAreaSet();
+	areaSet -> initRegionsInAreaSet( target );
 
 	// create active memory
 	Xml xmlActiveMemory = config.getFirstChild( "ActiveMemory" );
@@ -182,7 +183,8 @@ void MindService::establishAreaLinks() {
 			continue;
 
 		// create link
-		createMindLink( info , masterArea , slaveArea );
+		MindAreaLink *link = masterArea -> createMindLink( slaveArea , info , session );
+		linkSet -> addSetItem( link );
 	}
 }
 
@@ -195,19 +197,6 @@ MindRegion *MindService::getMindRegion( String regionId ) {
 	MindRegion *region = regionSet -> getSetItemById( regionId );
 	ASSERTMSG( region != NULL , "getMindRegion: region is not found by id=" + regionId );
 	return( region );
-}
-
-// mind area links
-MindAreaLink *MindService::createMindLink( MindAreaLinkInfo *linkInfo , MindArea *masterArea , MindArea *slaveArea ) {
-	// create link
-	MindAreaLink *link = new MindAreaLink( linkInfo );
-	link -> open( session );
-	linkSet -> addSetItem( link );
-
-	masterArea -> initMasterLinkToArea( link , linkInfo -> getSlaveAreaId() );
-	slaveArea -> initSlaveLinkToArea( link , linkInfo -> getMasterAreaId() );
-
-	return( link );
 }
 
 MindArea *MindService::createThalamusArea() { return( NULL ); };

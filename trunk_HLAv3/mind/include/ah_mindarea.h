@@ -12,10 +12,13 @@ class MindAreaSet;
 /*#########################################################################*/
 /*#########################################################################*/
 
+class MindTarget;
 class MindAreaInfo;
+class MindAreaLinkInfo;
 class MindRegionSet;
 class MindRegionLinkSet;
 class MindAreaLink;
+class MessageSession;
 
 // brain provides implementation for mind areas
 // each mind area is implemented by module components - next level folder under mod...
@@ -33,8 +36,7 @@ public:
 
 public:
 	// mind area lifecycle
-	virtual MindRegion *createGroupRegion( String group ) = 0;
-	virtual void initRegionsInArea() = 0;
+	virtual void initRegionsInArea( MindTarget *target ) = 0;
 	virtual void initMasterLinkToArea( MindAreaLink *link , String slaveAreaId ) = 0;
 	virtual void initSlaveLinkToArea( MindAreaLink *link , String masterAreaId ) = 0;
 	virtual void wakeupArea( MindActiveMemory *activeMemory ) = 0;
@@ -46,15 +48,18 @@ public:
 	void create();
 	void exit();
 	void destroy();
-	MindRegion *openRegion( String group , String id );
+	MindAreaLink *createMindLink( MindArea *area , MindAreaLinkInfo *info , MessageSession *session );
+	void sendOutputData( MindRegion *region , neurovt *data , int size );
+	MindRegionSet *getRegionSet();
 
 protected:
-	MindRegionSet *getRegionSet();
+	String addRegion( String group , String id , MindRegion *region );
 
 private:
 	MindAreaInfo *info;
 	MindRegionSet *regionSet;
 	MindRegionLinkSet *regionLinkSet;
+	MindAreaLinkSet *areaLinkSet;
 };
 
 /*#########################################################################*/
@@ -69,7 +74,7 @@ public:
 	void addMindArea( MindArea *area );
 	MindArea *getMindArea( String id );
 
-	void initRegionsInAreaSet();
+	void initRegionsInAreaSet( MindTarget *target );
 	void wakeupAreaSet( MindActiveMemory *activeMemory );
 	void asleepAreaSet();
 	void exitAreaSet();

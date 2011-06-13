@@ -54,7 +54,10 @@ private:
 
 class NeuroLink : public Object {
 public:
+	NeuroLink();
 	const char *getClass() { return( "NeuroLink" ); };
+
+	virtual void sendData( neurovt *data , int size ) = 0;
 
 public:
 	NeuroPool *src;
@@ -67,6 +70,8 @@ public:
 class NeuroLinkSet : public Object {
 public:
 	const char *getClass() { return( "NeuroLinkSet" ); };
+
+	void sendData( neurovt *data , int size );
 
 public:
 	ClassList<NeuroLink> list;
@@ -113,7 +118,10 @@ public:
 
 class ExcitatoryLink : public NeuroLink {
 public:
+	ExcitatoryLink();
 	virtual const char *getClass() { return( "ExcitatoryLink" ); };
+
+	virtual void sendData( neurovt *data , int size );
 };
 
 /*#########################################################################*/
@@ -121,7 +129,10 @@ public:
 
 class InhibitoryLink : public NeuroLink {
 public:
+	InhibitoryLink();
 	virtual const char *getClass() { return( "InhibitoryLink" ); };
+
+	virtual void sendData( neurovt *data , int size );
 };
 
 /*#########################################################################*/
@@ -129,7 +140,10 @@ public:
 
 class ModulatoryLink : public NeuroLink {
 public:
+	ModulatoryLink();
 	virtual const char *getClass() { return( "ModulatoryLink" ); };
+
+	virtual void sendData( neurovt *data , int size );
 };
 
 /*#########################################################################*/

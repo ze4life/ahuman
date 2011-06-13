@@ -26,9 +26,13 @@ MindSensor *MindSensorSet::getSensor( String name ) {
 }
 
 void MindSensorSet::createSensorSet( MindArea *area ) {
+	MindRegionSet *set = area -> getRegionSet();
 	for( int k = 0; k < list.count(); k++ ) {
 		MindSensor *sensor = list.get( k );
-		sensor -> create( area , sensor -> getClass() );
+
+		String id = String( area -> getClass() ) + "." + sensor -> getClass();
+		sensor -> create( area , id );
+		set -> addSetItem( sensor );
 	}
 }
 

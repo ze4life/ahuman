@@ -13,9 +13,9 @@ MindArea *MindAreaSet::getMindArea( String id ) {
 	return( map.get( id ) );
 }
 
-void MindAreaSet::initRegionsInAreaSet() {
+void MindAreaSet::initRegionsInAreaSet( MindTarget *target ) {
 	for( int k = 0; k < list.count(); k++ )
-		list.get( k ) -> initRegionsInArea();
+		list.get( k ) -> initRegionsInArea( target );
 }
 
 void MindAreaSet::wakeupAreaSet( MindActiveMemory *activeMemory ) {
