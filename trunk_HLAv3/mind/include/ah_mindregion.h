@@ -8,6 +8,9 @@
 
 class MindRegion;
 class MindRegionSet;
+class CortexRegion;
+class NucleiRegion;
+class NerveRegion;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -24,6 +27,13 @@ public:
 	virtual void createRegion() = 0;
 	virtual void exitRegion() = 0;
 	virtual void destroyRegion() = 0;
+
+	// link creation
+	virtual void createNeuroLinks( MindRegion *dst ) = 0;
+	virtual void createNeuroLinksFromCortexRegion( CortexRegion *src ) = 0;
+	virtual void createNeuroLinksFromNucleiRegion( NucleiRegion *src ) = 0;
+	virtual void createNeuroLinksFromNerveRegion( NerveRegion *src ) = 0;
+	virtual void createNeuroLinksFromSensorRegion( MindSensor *src ) = 0;
 
 public:
 	void create( MindArea *area , String p_id );
@@ -76,6 +86,13 @@ public:
 	virtual void createRegion();
 	virtual void exitRegion();
 	virtual void destroyRegion();
+
+	// link creation
+	virtual void createNeuroLinks( MindRegion *dst );
+	virtual void createNeuroLinksFromCortexRegion( CortexRegion *src );
+	virtual void createNeuroLinksFromNucleiRegion( NucleiRegion *src );
+	virtual void createNeuroLinksFromNerveRegion( NerveRegion *src );
+	virtual void createNeuroLinksFromSensorRegion( MindSensor *src );
 };
 
 /*#########################################################################*/
@@ -83,7 +100,21 @@ public:
 
 class NucleiRegion : public MindRegion {
 public:
+	NucleiRegion();
 	virtual const char *getClass() { return( "NucleiRegion" ); };
+
+public:
+	// MindRegion interface
+	virtual void createRegion();
+	virtual void exitRegion();
+	virtual void destroyRegion();
+
+	// link creation
+	virtual void createNeuroLinks( MindRegion *dst );
+	virtual void createNeuroLinksFromCortexRegion( CortexRegion *src );
+	virtual void createNeuroLinksFromNucleiRegion( NucleiRegion *src );
+	virtual void createNeuroLinksFromNerveRegion( NerveRegion *src );
+	virtual void createNeuroLinksFromSensorRegion( MindSensor *src );
 };
 
 /*#########################################################################*/
@@ -91,7 +122,21 @@ public:
 
 class NerveRegion : public MindRegion {
 public:
+	NerveRegion();
 	virtual const char *getClass() { return( "NerveRegion" ); };
+
+public:
+	// MindRegion interface
+	virtual void createRegion();
+	virtual void exitRegion();
+	virtual void destroyRegion();
+
+	// link creation
+	virtual void createNeuroLinks( MindRegion *dst );
+	virtual void createNeuroLinksFromCortexRegion( CortexRegion *src );
+	virtual void createNeuroLinksFromNucleiRegion( NucleiRegion *src );
+	virtual void createNeuroLinksFromNerveRegion( NerveRegion *src );
+	virtual void createNeuroLinksFromSensorRegion( MindSensor *src );
 };
 
 /*#########################################################################*/

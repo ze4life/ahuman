@@ -138,6 +138,13 @@ private:
 	virtual void exitRegion();
 	virtual void destroyRegion();
 
+	// link creation
+	virtual void createNeuroLinks( MindRegion *dst );
+	virtual void createNeuroLinksFromCortexRegion( CortexRegion *src );
+	virtual void createNeuroLinksFromNucleiRegion( NucleiRegion *src );
+	virtual void createNeuroLinksFromNerveRegion( NerveRegion *src );
+	virtual void createNeuroLinksFromSensorRegion( MindSensor *src );
+
 public:
 	// memory allocation
 	neurovt *createSensoryDataMemoryNVT( int sizeNVT );
@@ -176,6 +183,9 @@ public:
 /*#########################################################################*/
 /*#########################################################################*/
 
+class MindRegion;
+class MindRegionLink;
+
 class SensorArea : public MindArea {
 public:
 	SensorArea();
@@ -196,6 +206,7 @@ public:
 
 private:
 	void initLinksToPerceptionArea( MindAreaLink *link );
+	void createPerceptionNeuroLinks( MindRegionLink *regionLink , MindRegion *srcRegion , MindRegion *dstRegion , MindSensor *sensor );
 
 private:
 	MindTarget *target;

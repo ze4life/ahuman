@@ -57,6 +57,7 @@ public:
 	NeuroLink();
 	const char *getClass() { return( "NeuroLink" ); };
 
+	virtual void createNeuroLink( MindRegionLink *regionLink ) = 0;
 	virtual void sendData( neurovt *data , int size ) = 0;
 
 public:
@@ -121,6 +122,7 @@ public:
 	ExcitatoryLink();
 	virtual const char *getClass() { return( "ExcitatoryLink" ); };
 
+	virtual void createNeuroLink( MindRegionLink *regionLink );
 	virtual void sendData( neurovt *data , int size );
 };
 
@@ -132,6 +134,7 @@ public:
 	InhibitoryLink();
 	virtual const char *getClass() { return( "InhibitoryLink" ); };
 
+	virtual void createNeuroLink( MindRegionLink *regionLink );
 	virtual void sendData( neurovt *data , int size );
 };
 
@@ -143,6 +146,7 @@ public:
 	ModulatoryLink();
 	virtual const char *getClass() { return( "ModulatoryLink" ); };
 
+	virtual void createNeuroLink( MindRegionLink *regionLink );
 	virtual void sendData( neurovt *data , int size );
 };
 

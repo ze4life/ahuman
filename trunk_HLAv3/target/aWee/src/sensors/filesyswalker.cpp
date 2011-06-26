@@ -561,7 +561,7 @@ void SensorFileSysWalker::sendSignal( neurovt type , String value ) {
 			vout[ k ] = 0;
 
 		// produce item flow
-		logger.logDebug( String( "sendSignal: processSensorData - " ) + String( p , next - p ) );
+		// logger.logDebug( String( "sendSignal: processSensorData - " ) + String( p , next - p ) );
 		MindSensor::processSensorData();
 		p = next;
 	}

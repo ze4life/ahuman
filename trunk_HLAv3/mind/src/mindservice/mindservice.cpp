@@ -199,6 +199,18 @@ MindRegion *MindService::getMindRegion( String regionId ) {
 	return( region );
 }
 
+ExcitatoryLink *MindService::createExcitatoryLink() {
+	return( new ExcitatoryLink() );
+}
+
+InhibitoryLink *MindService::createInhibitoryLink() {
+	return( new InhibitoryLink() );
+}
+
+ModulatoryLink *MindService::createModulatoryLink() {
+	return( new ModulatoryLink() );
+}
+
 MindArea *MindService::createThalamusArea() { return( NULL ); };
 MindArea *MindService::createHippocampusArea() { return( NULL ); };
 MindArea *MindService::createParietalArea() { return( NULL ); };
