@@ -23,6 +23,8 @@ MindRegion *MindRegionLink::getDstRegion() {
 void MindRegionLink::createRegionLink( MindRegion *srcRegion , MindRegion *dstRegion ) {
 	src = srcRegion;
 	dst = dstRegion;
+
+	srcRegion -> createNeuroLinks( dstRegion );
 }
 
 void MindRegionLink::exitRegionLink() {

@@ -62,3 +62,25 @@ bool MindSensor::getPollState() {
 int MindSensor::getPollIntervalMs( int timeNowMs ) {
 	return( pollNextMs - timeNowMs );
 }
+
+// link creation
+void MindSensor::createNeuroLinks( MindRegion *dst ) {
+	dst -> createNeuroLinksFromSensorRegion( this );
+}
+
+void MindSensor::createNeuroLinksFromCortexRegion( CortexRegion *src ) {
+	logger.logDebug( "createNeuroLinksFromCortexRegion" );
+}
+
+void MindSensor::createNeuroLinksFromNucleiRegion( NucleiRegion *src ) {
+	logger.logDebug( "createNeuroLinksFromNucleiRegion" );
+}
+
+void MindSensor::createNeuroLinksFromNerveRegion( NerveRegion *src ) {
+	logger.logDebug( "createNeuroLinksFromNerveRegion" );
+}
+
+void MindSensor::createNeuroLinksFromSensorRegion( MindSensor *src ) {
+	ASSERTFAILED( String( "Invalid sensor/sensor link requested - src=" ) + src -> getRegionId() + ", dst=" + getRegionId() );
+}
+

@@ -40,6 +40,7 @@ void SensorArea::initMasterLinkToArea( MindAreaLink *link , String slaveAreaId )
 		initLinksToPerceptionArea( link );
 }
 
+
 void SensorArea::initSlaveLinkToArea( MindAreaLink *link , String masterAreaId ) {
 }
 
@@ -69,5 +70,15 @@ void SensorArea::initLinksToPerceptionArea( MindAreaLink *link ) {
 		MindRegionLink *regionLink = new MindRegionLink();
 		regionLink -> createRegionLink( srcRegion , dstRegion );
 		link -> addRegionLink( regionLink );
+
+		// add neurolinks
+		createPerceptionNeuroLinks( regionLink , srcRegion , dstRegion , sensor );
 	}
 }
+
+void SensorArea::createPerceptionNeuroLinks( MindRegionLink *regionLink , MindRegion *srcRegion , MindRegion *dstRegion , MindSensor *sensor ) {
+	MindService *ms = MindService::getService();
+	NeuroLink *linkdirect = ms -> createExcitatoryLink();
+	linkdirect -> createNeuroLink( regionLink );
+}
+
