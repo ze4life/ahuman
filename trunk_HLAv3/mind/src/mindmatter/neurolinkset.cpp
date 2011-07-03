@@ -4,7 +4,11 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-void NeuroLinkSet::sendData( neurovt *data , int size ) {
+void NeuroLinkSet::addSetItem( NeuroLink *link ) {
+	list.add( link );
+}
+
+void NeuroLinkSet::projectData( neurovt *data , int size ) {
 	for( int k = 0; k < list.count(); k++ )
-		list.get( k ) -> sendData( data , size );
+		list.get( k ) -> projectData( data , size );
 }

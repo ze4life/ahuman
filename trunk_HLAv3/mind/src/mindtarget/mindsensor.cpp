@@ -64,23 +64,23 @@ int MindSensor::getPollIntervalMs( int timeNowMs ) {
 }
 
 // link creation
-void MindSensor::createNeuroLinks( MindRegion *dst ) {
-	dst -> createNeuroLinksFromSensorRegion( this );
+void MindSensor::createNeuroLinks( MindRegionLink *link , MindRegion *dst ) {
+	dst -> createNeuroLinksFromSensorRegion( link , this );
 }
 
-void MindSensor::createNeuroLinksFromCortexRegion( CortexRegion *src ) {
+void MindSensor::createNeuroLinksFromCortexRegion( MindRegionLink *link , CortexRegion *src ) {
 	logger.logDebug( "createNeuroLinksFromCortexRegion" );
 }
 
-void MindSensor::createNeuroLinksFromNucleiRegion( NucleiRegion *src ) {
+void MindSensor::createNeuroLinksFromNucleiRegion( MindRegionLink *link , NucleiRegion *src ) {
 	logger.logDebug( "createNeuroLinksFromNucleiRegion" );
 }
 
-void MindSensor::createNeuroLinksFromNerveRegion( NerveRegion *src ) {
+void MindSensor::createNeuroLinksFromNerveRegion( MindRegionLink *link , NerveRegion *src ) {
 	logger.logDebug( "createNeuroLinksFromNerveRegion" );
 }
 
-void MindSensor::createNeuroLinksFromSensorRegion( MindSensor *src ) {
+void MindSensor::createNeuroLinksFromSensorRegion( MindRegionLink *link , MindSensor *src ) {
 	ASSERTFAILED( String( "Invalid sensor/sensor link requested - src=" ) + src -> getRegionId() + ", dst=" + getRegionId() );
 }
 

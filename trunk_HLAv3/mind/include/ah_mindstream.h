@@ -78,7 +78,7 @@ class MindRegion;
 
 class MindRegionLink : public Object {
 public:
-	MindRegionLink();
+	MindRegionLink( MindAreaLink *areaLink );
 	const char *getClass() { return( "MindRegionLink" ); };
 
 	MindRegion *getSrcRegion();
@@ -87,9 +87,11 @@ public:
 	void createRegionLink( MindRegion *srcRegion , MindRegion *dstRegion );
 	void exitRegionLink();
 	void destroyRegionLink();
+	void addNeuroLink( NeuroLink *nt );
 	void sendOutputData( neurovt *data , int size );
 
 public:
+	MindAreaLink *areaLink;
 	MindRegion *src;
 	MindRegion *dst;
 	NeuroLinkSet *links;

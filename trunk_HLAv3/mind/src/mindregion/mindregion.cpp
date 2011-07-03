@@ -42,6 +42,11 @@ String MindRegion::getRegionId() {
 	return( id );
 }
 
+void MindRegion::addNeuroLink( MindRegionLink *link , NeuroLink *nt ) {
+	// add link to set
+	link -> addNeuroLink( nt );
+}
+
 void MindRegion::sendOutputData( neurovt *data , int size ) {
 	// intra-area links
 	regionLinkSet -> sendOutputData( this , data , size );

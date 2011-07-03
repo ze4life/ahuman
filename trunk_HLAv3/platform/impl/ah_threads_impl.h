@@ -9,6 +9,8 @@
 class ThreadData;
 class ThreadPool;
 class ThreadPoolItem;
+class ThreadPoolFixedTaskListItem;
+class ThreadPoolTaskQueueItem;
 class ThreadPoolTask;
 
 /*#########################################################################*/
@@ -97,6 +99,7 @@ private:
 public:
 	void configure( Xml config );
 	void create( ClassList<ThreadPoolTask>& tasks );
+	void create( ResourcePool<ThreadPoolTask>& tasks );
 	void ensureStopped();
 
 	void start();
@@ -128,16 +131,25 @@ public:
 	void stop();
 	void suspend();
 	void resume();
-
-	void run( void *p_arg );
 	void execute( ThreadPoolTask *task );
 
+protected:
+	virtual void run( void *p_arg ) = 0;
+
 public:
-	ThreadPoolItem( String name , int threadPoolItem , ClassList<ThreadPoolTask>& threadTasks );
+	ThreadPoolItem( String name , int threadPoolItem );
 	~ThreadPoolItem();
 	virtual const char *getClass() { return( "ThreadPoolItem" ); };
 
-private:
+public:
+	int ticksPerSecond;
+	int executionCount;
+	int ticksExecTimeTotal;
+	int ticksSleepTimeTotal;
+	int ticksWaitTimeRemained;
+	int executionTimeWindowTicks;
+
+protected:
 	String name;
 	ThreadState state;
 	RFC_HND thread;
@@ -147,16 +159,40 @@ private:
 	RFC_HND suspendEvent;
 	bool suspendSignal;
 	bool stopSignal;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class ThreadPoolFixedTaskListItem : public ThreadPoolItem {
+private:
 	ClassList<ThreadPoolTask> tasks;
-
 	int ticksPerSecond;
-
-public:
 	int executionCount;
 	int ticksExecTimeTotal;
 	int ticksSleepTimeTotal;
 	int ticksWaitTimeRemained;
 	int executionTimeWindowTicks;
+
+public:
+	ThreadPoolFixedTaskListItem( String name , int threadPoolItem , ClassList<ThreadPoolTask>& tasks );
+
+protected:
+	virtual void run( void *p_arg );
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class ThreadPoolTaskQueueItem : public ThreadPoolItem {
+private:
+	ResourcePool<ThreadPoolTask> *res;
+
+public:
+	ThreadPoolTaskQueueItem( String name , int threadPoolItem , ResourcePool<ThreadPoolTask>& res );
+
+protected:
+	virtual void run( void *p_arg );
 };
 
 /*#########################################################################*/

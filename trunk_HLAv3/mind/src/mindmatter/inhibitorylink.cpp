@@ -4,7 +4,7 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-InhibitoryLink::InhibitoryLink() {
+InhibitoryLink::InhibitoryLink( MindRegionLink *p_regionLink ) : NeuroLink( p_regionLink ) {
 	attachLogger();
 }
 
@@ -12,6 +12,6 @@ void InhibitoryLink::createNeuroLink( MindRegionLink *regionLink ) {
 	logger.logDebug( "createNeuroLink" );
 }
 
-void InhibitoryLink::sendData( neurovt *data , int size ) {
-	logger.logDebug( "sendData" );
+void InhibitoryLink::projectData( neurovt *data , int size ) {
+	logger.logDebug( "projectData" );
 }

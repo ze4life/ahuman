@@ -4,7 +4,7 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-ModulatoryLink::ModulatoryLink() {
+ModulatoryLink::ModulatoryLink( MindRegionLink *p_regionLink ) : NeuroLink( p_regionLink ) {
 	attachLogger();
 }
 
@@ -12,6 +12,6 @@ void ModulatoryLink::createNeuroLink( MindRegionLink *regionLink ) {
 	logger.logDebug( "createNeuroLink" );
 }
 
-void ModulatoryLink::sendData( neurovt *data , int size ) {
-	logger.logDebug( "sendData" );
+void ModulatoryLink::projectData( neurovt *data , int size ) {
+	logger.logDebug( "projectData" );
 }

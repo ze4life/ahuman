@@ -4,6 +4,7 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-NeuroLink::NeuroLink() {
+NeuroLink::NeuroLink( MindRegionLink *p_regionLink ) {
+	regionLink = p_regionLink;
 	src = dst = NULL;
 }

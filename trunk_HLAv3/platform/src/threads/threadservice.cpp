@@ -392,6 +392,20 @@ void ThreadService::waitAllThreads() {
 
 // thread pool operations
 void ThreadService::createThreadPool( String name , Xml configuration , ClassList<ThreadPoolTask>& tasks ) {
+	ThreadPool *tp = createThreadPool( name , configuration );
+
+	// create tasks
+	tp -> create( tasks );
+}
+
+void ThreadService::createThreadPool( String name , Xml configuration , ResourcePool<ThreadPoolTask>& tasks ) {
+	ThreadPool *tp = createThreadPool( name , configuration );
+
+	// create tasks
+	tp -> create( tasks );
+}
+
+ThreadPool *ThreadService::createThreadPool( String name , Xml configuration ) {
 	// check duplication
 	ASSERTMSG( threadpools.get( name ) == NULL , "Thread pool already exists with name=" + name );
 
@@ -401,9 +415,7 @@ void ThreadService::createThreadPool( String name , Xml configuration , ClassLis
 
 	// configure
 	tp -> configure( configuration );
-
-	// create tasks
-	tp -> create( tasks );
+	return( tp );
 }
 
 void ThreadService::startThreadPool( String name ) {

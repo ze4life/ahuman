@@ -139,11 +139,11 @@ private:
 	virtual void destroyRegion();
 
 	// link creation
-	virtual void createNeuroLinks( MindRegion *dst );
-	virtual void createNeuroLinksFromCortexRegion( CortexRegion *src );
-	virtual void createNeuroLinksFromNucleiRegion( NucleiRegion *src );
-	virtual void createNeuroLinksFromNerveRegion( NerveRegion *src );
-	virtual void createNeuroLinksFromSensorRegion( MindSensor *src );
+	virtual void createNeuroLinks( MindRegionLink *link , MindRegion *dst );
+	virtual void createNeuroLinksFromCortexRegion( MindRegionLink *link , CortexRegion *src );
+	virtual void createNeuroLinksFromNucleiRegion( MindRegionLink *link , NucleiRegion *src );
+	virtual void createNeuroLinksFromNerveRegion( MindRegionLink *link , NerveRegion *src );
+	virtual void createNeuroLinksFromSensorRegion( MindRegionLink *link , MindSensor *src );
 
 public:
 	// memory allocation

@@ -29,17 +29,17 @@ public:
 	virtual void destroyRegion() = 0;
 
 	// link creation
-	virtual void createNeuroLinks( MindRegion *dst ) = 0;
-	virtual void createNeuroLinksFromCortexRegion( CortexRegion *src ) = 0;
-	virtual void createNeuroLinksFromNucleiRegion( NucleiRegion *src ) = 0;
-	virtual void createNeuroLinksFromNerveRegion( NerveRegion *src ) = 0;
-	virtual void createNeuroLinksFromSensorRegion( MindSensor *src ) = 0;
+	virtual void createNeuroLinks( MindRegionLink *link , MindRegion *dst ) = 0;
+	virtual void createNeuroLinksFromCortexRegion( MindRegionLink *link , CortexRegion *src ) = 0;
+	virtual void createNeuroLinksFromNucleiRegion( MindRegionLink *link , NucleiRegion *src ) = 0;
+	virtual void createNeuroLinksFromNerveRegion( MindRegionLink *link , NerveRegion *src ) = 0;
+	virtual void createNeuroLinksFromSensorRegion( MindRegionLink *link , MindSensor *src ) = 0;
 
 public:
 	void create( MindArea *area , String p_id );
 	void exit();
 	void destroy();
-	void addRegionLink( MindRegion *src , MindRegion *dst , MindRegionLink *link );
+	void addNeuroLink( MindRegionLink *link , NeuroLink *nt );
 
 	String getRegionId();
 	void sendOutputData( neurovt *data , int size );
@@ -88,11 +88,11 @@ public:
 	virtual void destroyRegion();
 
 	// link creation
-	virtual void createNeuroLinks( MindRegion *dst );
-	virtual void createNeuroLinksFromCortexRegion( CortexRegion *src );
-	virtual void createNeuroLinksFromNucleiRegion( NucleiRegion *src );
-	virtual void createNeuroLinksFromNerveRegion( NerveRegion *src );
-	virtual void createNeuroLinksFromSensorRegion( MindSensor *src );
+	virtual void createNeuroLinks( MindRegionLink *link , MindRegion *dst );
+	virtual void createNeuroLinksFromCortexRegion( MindRegionLink *link , CortexRegion *src );
+	virtual void createNeuroLinksFromNucleiRegion( MindRegionLink *link , NucleiRegion *src );
+	virtual void createNeuroLinksFromNerveRegion( MindRegionLink *link , NerveRegion *src );
+	virtual void createNeuroLinksFromSensorRegion( MindRegionLink *link , MindSensor *src );
 };
 
 /*#########################################################################*/
@@ -110,11 +110,11 @@ public:
 	virtual void destroyRegion();
 
 	// link creation
-	virtual void createNeuroLinks( MindRegion *dst );
-	virtual void createNeuroLinksFromCortexRegion( CortexRegion *src );
-	virtual void createNeuroLinksFromNucleiRegion( NucleiRegion *src );
-	virtual void createNeuroLinksFromNerveRegion( NerveRegion *src );
-	virtual void createNeuroLinksFromSensorRegion( MindSensor *src );
+	virtual void createNeuroLinks( MindRegionLink *link , MindRegion *dst );
+	virtual void createNeuroLinksFromCortexRegion( MindRegionLink *link , CortexRegion *src );
+	virtual void createNeuroLinksFromNucleiRegion( MindRegionLink *link , NucleiRegion *src );
+	virtual void createNeuroLinksFromNerveRegion( MindRegionLink *link , NerveRegion *src );
+	virtual void createNeuroLinksFromSensorRegion( MindRegionLink *link , MindSensor *src );
 };
 
 /*#########################################################################*/
@@ -132,11 +132,11 @@ public:
 	virtual void destroyRegion();
 
 	// link creation
-	virtual void createNeuroLinks( MindRegion *dst );
-	virtual void createNeuroLinksFromCortexRegion( CortexRegion *src );
-	virtual void createNeuroLinksFromNucleiRegion( NucleiRegion *src );
-	virtual void createNeuroLinksFromNerveRegion( NerveRegion *src );
-	virtual void createNeuroLinksFromSensorRegion( MindSensor *src );
+	virtual void createNeuroLinks( MindRegionLink *link , MindRegion *dst );
+	virtual void createNeuroLinksFromCortexRegion( MindRegionLink *link , CortexRegion *src );
+	virtual void createNeuroLinksFromNucleiRegion( MindRegionLink *link , NucleiRegion *src );
+	virtual void createNeuroLinksFromNerveRegion( MindRegionLink *link , NerveRegion *src );
+	virtual void createNeuroLinksFromSensorRegion( MindRegionLink *link , MindSensor *src );
 };
 
 /*#########################################################################*/

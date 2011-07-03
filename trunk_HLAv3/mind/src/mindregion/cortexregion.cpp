@@ -18,23 +18,24 @@ void CortexRegion::destroyRegion() {
 }
 
 // link creation
-void CortexRegion::createNeuroLinks( MindRegion *dst ) {
-	dst -> createNeuroLinksFromCortexRegion( this );
+void CortexRegion::createNeuroLinks( MindRegionLink *link , MindRegion *dst ) {
+	dst -> createNeuroLinksFromCortexRegion( link , this );
 }
 
-void CortexRegion::createNeuroLinksFromCortexRegion( CortexRegion *src ) {
+void CortexRegion::createNeuroLinksFromCortexRegion( MindRegionLink *link , CortexRegion *src ) {
 	logger.logDebug( "createNeuroLinksFromCortexRegion" );
 }
 
-void CortexRegion::createNeuroLinksFromNucleiRegion( NucleiRegion *src ) {
+void CortexRegion::createNeuroLinksFromNucleiRegion( MindRegionLink *link , NucleiRegion *src ) {
 	logger.logDebug( "createNeuroLinksFromNucleiRegion" );
 }
 
-void CortexRegion::createNeuroLinksFromNerveRegion( NerveRegion *src ) {
+void CortexRegion::createNeuroLinksFromNerveRegion( MindRegionLink *link , NerveRegion *src ) {
 	logger.logDebug( "createNeuroLinksFromNerveRegion" );
 }
 
-void CortexRegion::createNeuroLinksFromSensorRegion( MindSensor *src ) {
+void CortexRegion::createNeuroLinksFromSensorRegion( MindRegionLink *link , MindSensor *src ) {
 	logger.logDebug( "createNeuroLinksFromSensorRegion" );
+	MindRegion::addNeuroLink( link , new ExcitatoryLink( link ) );
 }
 

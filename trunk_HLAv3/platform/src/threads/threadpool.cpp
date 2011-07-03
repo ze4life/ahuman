@@ -58,11 +58,27 @@ void ThreadPool::create( ClassList<ThreadPoolTask>& tasks ) {
 
 		// create thread (suspended) and add to the pool
 		String threadName = name + "#" + k;
-		ThreadPoolItem *thread = new ThreadPoolItem( threadName , k , threadTasks );
+		ThreadPoolItem *thread = new ThreadPoolFixedTaskListItem( threadName , k , threadTasks );
 		threads.add( thread );
 
 		// configure thread
 		nFrom += n;
+	}
+}
+
+void ThreadPool::create( ResourcePool<ThreadPoolTask>& tasks ) {
+	if( !runEnabled ) {
+		logger.logInfo( "Ignore threadPool=" + name + ", runEnabled=false" );
+		return;
+	}
+
+	ASSERTMSG( nThreads >= 1 , "nThreads is invalid" );
+
+	for( int k = 0; k < nThreads; k++ ) {
+		// create thread (suspended) and add to the pool
+		String threadName = name + "#" + k;
+		ThreadPoolItem *thread = new ThreadPoolTaskQueueItem( threadName , k , tasks );
+		threads.add( thread );
 	}
 }
 
