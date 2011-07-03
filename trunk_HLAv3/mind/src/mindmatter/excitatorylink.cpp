@@ -4,7 +4,7 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-ExcitatoryLink::ExcitatoryLink() {
+ExcitatoryLink::ExcitatoryLink( MindRegionLink *p_regionLink ) : NeuroLink( p_regionLink ) {
 	attachLogger();
 }
 
@@ -12,6 +12,6 @@ void ExcitatoryLink::createNeuroLink( MindRegionLink *regionLink ) {
 	logger.logDebug( "createNeuroLink" );
 }
 
-void ExcitatoryLink::sendData( neurovt *data , int size ) {
-	logger.logDebug( "sendData" );
+void ExcitatoryLink::projectData( neurovt *data , int size ) {
+	logger.logDebug( "projectData" );
 }

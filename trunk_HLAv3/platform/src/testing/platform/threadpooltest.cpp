@@ -39,6 +39,7 @@ public:
 
 	virtual void onCreate() {
 		ADD_METHOD( ThreadPoolTest::testWorkflow );
+		ADD_METHOD( ThreadPoolTest::testResPoolWorkflow );
 	}
 	
 // tests
@@ -82,6 +83,34 @@ public:
 
 		// drop tasks
 		tasks.destroy();
+		logger.logInfo( "Finished." );
+	}
+
+	void testResPoolWorkflow( XmlCall& call ) {
+		// parameters
+		String threadPoolName = call.getParam( "threadPoolName" );
+		int nTasks = call.getIntParam( "nTasks" );
+
+		// create and configure thread pool
+		logger.logInfo( "Create thread pool..." );
+		ThreadService *ts = ThreadService::getService();
+
+		ResourcePool<ThreadPoolTest_Task> tasks;
+		ts -> createThreadPool( threadPoolName , call.getXml().getChildNode( "threadpoolconfiguration" ) , ( ResourcePool<ThreadPoolTask>& ) tasks );
+
+		// workflow
+		logger.logInfo( "Start thread pool..." );
+		ts -> startThreadPool( threadPoolName );
+		logger.logInfo( "Suspend thread pool..." );
+		ts -> suspendThreadPool( threadPoolName );
+		logger.logInfo( "Resume thread pool..." );
+		ts -> resumeThreadPool( threadPoolName );
+		logger.logInfo( "Stop thread pool..." );
+		ts -> stopThreadPool( threadPoolName );
+		logger.logInfo( "Destroy thread pool..." );
+		ts -> destroyThreadPool( threadPoolName );
+
+		// drop tasks
 		logger.logInfo( "Finished." );
 	}
 };

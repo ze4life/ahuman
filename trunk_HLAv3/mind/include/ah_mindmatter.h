@@ -52,15 +52,18 @@ private:
 /*#########################################################################*/
 /*#########################################################################*/
 
+class MindRegionLink;
+
 class NeuroLink : public Object {
 public:
-	NeuroLink();
+	NeuroLink( MindRegionLink *regionLink );
 	const char *getClass() { return( "NeuroLink" ); };
 
 	virtual void createNeuroLink( MindRegionLink *regionLink ) = 0;
-	virtual void sendData( neurovt *data , int size ) = 0;
+	virtual void projectData( neurovt *data , int size ) = 0;
 
 public:
+	MindRegionLink *regionLink;
 	NeuroPool *src;
 	NeuroPool *dst;
 };
@@ -72,7 +75,8 @@ class NeuroLinkSet : public Object {
 public:
 	const char *getClass() { return( "NeuroLinkSet" ); };
 
-	void sendData( neurovt *data , int size );
+	void addSetItem( NeuroLink *link );
+	void projectData( neurovt *data , int size );
 
 public:
 	ClassList<NeuroLink> list;
@@ -119,11 +123,11 @@ public:
 
 class ExcitatoryLink : public NeuroLink {
 public:
-	ExcitatoryLink();
+	ExcitatoryLink( MindRegionLink *regionLink );
 	virtual const char *getClass() { return( "ExcitatoryLink" ); };
 
 	virtual void createNeuroLink( MindRegionLink *regionLink );
-	virtual void sendData( neurovt *data , int size );
+	virtual void projectData( neurovt *data , int size );
 };
 
 /*#########################################################################*/
@@ -131,11 +135,11 @@ public:
 
 class InhibitoryLink : public NeuroLink {
 public:
-	InhibitoryLink();
+	InhibitoryLink( MindRegionLink *regionLink );
 	virtual const char *getClass() { return( "InhibitoryLink" ); };
 
 	virtual void createNeuroLink( MindRegionLink *regionLink );
-	virtual void sendData( neurovt *data , int size );
+	virtual void projectData( neurovt *data , int size );
 };
 
 /*#########################################################################*/
@@ -143,11 +147,11 @@ public:
 
 class ModulatoryLink : public NeuroLink {
 public:
-	ModulatoryLink();
+	ModulatoryLink( MindRegionLink *regionLink );
 	virtual const char *getClass() { return( "ModulatoryLink" ); };
 
 	virtual void createNeuroLink( MindRegionLink *regionLink );
-	virtual void sendData( neurovt *data , int size );
+	virtual void projectData( neurovt *data , int size );
 };
 
 /*#########################################################################*/

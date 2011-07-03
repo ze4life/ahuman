@@ -67,7 +67,7 @@ void SensorArea::initLinksToPerceptionArea( MindAreaLink *link ) {
 		ASSERTMSG( dstRegion != NULL , "initLinksToPerceptionArea: unknown destination region for sensor=" + String( sensor -> getClass() ) );
 
 		// creater link
-		MindRegionLink *regionLink = new MindRegionLink();
+		MindRegionLink *regionLink = new MindRegionLink( link );
 		regionLink -> createRegionLink( srcRegion , dstRegion );
 		link -> addRegionLink( regionLink );
 
@@ -78,7 +78,7 @@ void SensorArea::initLinksToPerceptionArea( MindAreaLink *link ) {
 
 void SensorArea::createPerceptionNeuroLinks( MindRegionLink *regionLink , MindRegion *srcRegion , MindRegion *dstRegion , MindSensor *sensor ) {
 	MindService *ms = MindService::getService();
-	NeuroLink *linkdirect = ms -> createExcitatoryLink();
+	NeuroLink *linkdirect = ms -> createExcitatoryLink( regionLink );
 	linkdirect -> createNeuroLink( regionLink );
 }
 

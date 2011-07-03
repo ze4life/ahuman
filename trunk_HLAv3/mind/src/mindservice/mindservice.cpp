@@ -199,16 +199,16 @@ MindRegion *MindService::getMindRegion( String regionId ) {
 	return( region );
 }
 
-ExcitatoryLink *MindService::createExcitatoryLink() {
-	return( new ExcitatoryLink() );
+ExcitatoryLink *MindService::createExcitatoryLink( MindRegionLink *link ) {
+	return( new ExcitatoryLink( link ) );
 }
 
-InhibitoryLink *MindService::createInhibitoryLink() {
-	return( new InhibitoryLink() );
+InhibitoryLink *MindService::createInhibitoryLink( MindRegionLink *link ) {
+	return( new InhibitoryLink( link ) );
 }
 
-ModulatoryLink *MindService::createModulatoryLink() {
-	return( new ModulatoryLink() );
+ModulatoryLink *MindService::createModulatoryLink( MindRegionLink *link ) {
+	return( new ModulatoryLink( link ) );
 }
 
 MindArea *MindService::createThalamusArea() { return( NULL ); };

@@ -17,6 +17,7 @@ template<class TK , class TV> class MapPtrToClass;
 template<class T> class MapStringToClass;
 template<class T> class VectorMap;
 template<class TA, class TC> class Sort;
+template<class T> class ResourcePool;
 
 class PropertyContainer;
 
@@ -941,6 +942,94 @@ public:
 private:
 	TC *p;
 	PF pf;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+template<class T> class ResourcePool {
+public:
+	ResourcePool() {
+		fillpos = 0;
+		readpos = 0;
+		size = 0;
+		pool = rfc_pool_create( -1 );
+		lock = rfc_lock_create();
+		stopped = false;
+	};
+	~ResourcePool() {
+		stop();
+		rfc_lock_destroy( lock );
+	};
+
+	// get resource or wait
+	T *get() {
+		if( stopped )
+			return( NULL );
+
+		rfc_pool_get( pool );
+
+		rfc_lock_exclusive( lock );
+		if( stopped ) {
+			return( NULL );
+			rfc_lock_release( lock );
+		}
+
+		ASSERTMSG( size > 0 , "unexpected empty queue" );
+
+		// read current
+		T *v = items[ readpos ];
+
+		// reduce fillpos - move last filled item to last read place
+		// ensure list is filled from beginning to fillpos
+		fillpos--;
+		if( readpos != fillpos ) {
+			items[ readpos ] = items[ fillpos ];
+			readpos++;
+
+			if( readpos == fillpos )
+				readpos = 0;
+		}
+		else {
+			// shift and wrap readpos
+			readpos = 0;
+		}
+		items[ fillpos ] = NULL;
+
+		rfc_lock_release( lock );
+		return( v );
+	};
+
+	// fill next item
+	void put( T *v ) {
+		if( stopped )
+			return;
+
+		rfc_lock_exclusive( lock );
+		items.add( v );
+		rfc_lock_release( lock );
+		
+		rfc_pool_put( pool );
+	}
+
+	void stop() {
+		if( stopped )
+			return;
+
+		stopped = true;
+		rfc_pool_destroy( pool );
+		pool = NULL;
+	}
+
+public:
+	ClassList<T> items; // ring queue
+	int fillpos; // fill marker
+	int readpos; // next read marker
+	int size; // filled size
+	bool stopped;
+	
+	RFC_HND pool;
+	rfc_lock *lock;
 };
 
 /*#########################################################################*/

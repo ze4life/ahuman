@@ -30,6 +30,7 @@ class MindEffector;
 class CortexRegion;
 class NucleiRegion;
 class NerveRegion;
+class MindRegionLink;
 class NeuroNet;
 class LayeredNet;
 class CompactNet;
@@ -57,19 +58,19 @@ public:
 	MindRegion *getMindRegion( String regionId );
 	  
 	// create core items - regions
-	CortexRegion *createCortexRegion();
-	NucleiRegion *createNucleiRegion();
-	NerveRegion *createNerveRegion();
+	CortexRegion *createCortexRegion( MindArea *area );
+	NucleiRegion *createNucleiRegion( MindArea *area );
+	NerveRegion *createNerveRegion( MindArea *area );
 
 	// create core items - NeuroNet
-	LayeredNet *createLayeredNet();
-	CompactNet *createCompactNet();
-	SpreadNet *createSpreadNet();
+	LayeredNet *createLayeredNet( MindRegion *region );
+	CompactNet *createCompactNet( MindRegion *region );
+	SpreadNet *createSpreadNet( MindRegion *region );
 
 	// create core items - neurolinks
-	ExcitatoryLink *createExcitatoryLink();
-	InhibitoryLink *createInhibitoryLink();
-	ModulatoryLink *createModulatoryLink();
+	ExcitatoryLink *createExcitatoryLink( MindRegionLink *link );
+	InhibitoryLink *createInhibitoryLink( MindRegionLink *link );
+	ModulatoryLink *createModulatoryLink( MindRegionLink *link );
 
 // whole mind lifecycle
 public:

@@ -18,23 +18,23 @@ void NucleiRegion::destroyRegion() {
 }
 
 // link creation
-void NucleiRegion::createNeuroLinks( MindRegion *dst ) {
-	dst -> createNeuroLinksFromNucleiRegion( this );
+void NucleiRegion::createNeuroLinks( MindRegionLink *link , MindRegion *dst ) {
+	dst -> createNeuroLinksFromNucleiRegion( link , this );
 }
 
-void NucleiRegion::createNeuroLinksFromCortexRegion( CortexRegion *src ) {
+void NucleiRegion::createNeuroLinksFromCortexRegion( MindRegionLink *link , CortexRegion *src ) {
 	logger.logDebug( "createNeuroLinksFromCortexRegion" );
 }
 
-void NucleiRegion::createNeuroLinksFromNucleiRegion( NucleiRegion *src ) {
+void NucleiRegion::createNeuroLinksFromNucleiRegion( MindRegionLink *link , NucleiRegion *src ) {
 	logger.logDebug( "createNeuroLinksFromNucleiRegion" );
 }
 
-void NucleiRegion::createNeuroLinksFromNerveRegion( NerveRegion *src ) {
+void NucleiRegion::createNeuroLinksFromNerveRegion( MindRegionLink *link , NerveRegion *src ) {
 	logger.logDebug( "createNeuroLinksFromNerveRegion" );
 }
 
-void NucleiRegion::createNeuroLinksFromSensorRegion( MindSensor *src ) {
+void NucleiRegion::createNeuroLinksFromSensorRegion( MindRegionLink *link , MindSensor *src ) {
 	logger.logDebug( "createNeuroLinksFromSensorRegion" );
 }
 

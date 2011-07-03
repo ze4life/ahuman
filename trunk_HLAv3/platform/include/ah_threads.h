@@ -37,6 +37,7 @@ public:
 
 	// thread pool operations
 	void createThreadPool( String name , Xml configuration , ClassList<ThreadPoolTask>& tasks );
+	void createThreadPool( String name , Xml configuration , ResourcePool<ThreadPoolTask>& tasks );
 	void startThreadPool( String name );
 	void stopThreadPool( String name );
 	void suspendThreadPool( String name );
@@ -83,6 +84,7 @@ private:
 	void workerExited( int status );
 	void workerExited( ThreadData *threadData , int status );
 	String getActiveThreads();
+	ThreadPool *createThreadPool( String name , Xml configuration );
 
 private:
 	MapStringToClass<ThreadData> threads;

@@ -4,7 +4,8 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-MindRegionLink::MindRegionLink() {
+MindRegionLink::MindRegionLink( MindAreaLink *p_areaLink ) {
+	areaLink = p_areaLink;
 	src = NULL;
 	dst = NULL;
 	links = new NeuroLinkSet();
@@ -24,7 +25,7 @@ void MindRegionLink::createRegionLink( MindRegion *srcRegion , MindRegion *dstRe
 	src = srcRegion;
 	dst = dstRegion;
 
-	srcRegion -> createNeuroLinks( dstRegion );
+	srcRegion -> createNeuroLinks( this , dstRegion );
 }
 
 void MindRegionLink::exitRegionLink() {
@@ -36,6 +37,11 @@ void MindRegionLink::destroyRegionLink() {
 }
 
 void MindRegionLink::sendOutputData( neurovt *data , int size ) {
-	logger.logDebug( "sendOutputData: srcregion=" + src -> getRegionId() + ", dstregion=" + dst -> getRegionId() );
-	links -> sendData( data , size );
+	logger.logDebug( "sendOutputData: src=" + src -> getRegionId() + ", dst=" + dst -> getRegionId() );
+	links -> projectData( data , size );
 }
+
+void MindRegionLink::addNeuroLink( NeuroLink *nt ) {
+	links -> addSetItem( nt );
+}
+
