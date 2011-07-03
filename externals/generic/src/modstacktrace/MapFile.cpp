@@ -1,5 +1,4 @@
 #include "MapFile.h"
-#include "MapFileEntry.h"
 #include "TextFile.h"
 #include <string.h>
 #include <ctype.h>
