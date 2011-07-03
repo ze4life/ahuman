@@ -238,6 +238,12 @@ extern void			rfc_lock_exclusive( rfc_lock *p_lock );
 extern void			rfc_lock_release( rfc_lock *p_lock );
 extern void			rfc_lock_escalate( rfc_lock *p_lock );
 
+/* resource pool */
+extern RFC_HND		rfc_pool_create( int count /* -1 if not limited */ );
+extern int			rfc_pool_get( RFC_HND pool );
+extern int			rfc_pool_put( RFC_HND pool );
+extern void			rfc_pool_destroy( RFC_HND pool );
+
 /*#######################################################*/
 /*#######################################################*/
 /* threads */
