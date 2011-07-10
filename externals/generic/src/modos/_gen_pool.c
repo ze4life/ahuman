@@ -12,7 +12,7 @@
 /* resource pool */
 RFC_HND		rfc_pool_create( int count /* -1 if not limited */ ) {
 	if( count < 0 )
-		count = 0x0000FFFF;
+		count = 0x7FFFFFFF;
 	return( CreateSemaphore( NULL , 0 , count , NULL ) );
 }
 
