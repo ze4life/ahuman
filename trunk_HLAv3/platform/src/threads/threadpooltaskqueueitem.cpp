@@ -9,6 +9,10 @@ ThreadPoolTaskQueueItem::ThreadPoolTaskQueueItem( String p_name , int p_threadPo
 	res = &p_pool;
 }
 
-void ThreadPoolTaskQueueItem::run( void *p_arg ) {
+ThreadPoolTask *ThreadPoolTaskQueueItem::getThreadTask() {
+	return( res -> get() );
 }
 
+void ThreadPoolTaskQueueItem::executedThreadTask( ThreadPoolTask *task ) {
+	delete task;
+}

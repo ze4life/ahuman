@@ -70,6 +70,7 @@ public:
 		logger.logInfo( "Start thread pool..." );
 		ts -> startThreadPool( threadPoolName );
 		ts -> threadSleepMs( runTimeSec * 1000 );
+
 		logger.logInfo( "Suspend thread pool..." );
 		ts -> suspendThreadPool( threadPoolName );
 		ts -> threadSleepMs( suspendTimeSec * 1000 );
@@ -89,7 +90,7 @@ public:
 	void testResPoolWorkflow( XmlCall& call ) {
 		// parameters
 		String threadPoolName = call.getParam( "threadPoolName" );
-		int nTasks = call.getIntParam( "nTasks" );
+		int taskTimeSec = call.getIntParam( "taskTimeSec" );
 
 		// create and configure thread pool
 		logger.logInfo( "Create thread pool..." );
@@ -101,10 +102,24 @@ public:
 		// workflow
 		logger.logInfo( "Start thread pool..." );
 		ts -> startThreadPool( threadPoolName );
+
+		for( int k = 0; k < 100000; k++ ) {
+			logger.logInfo( String("put next task #=") + k + "..." );
+			tasks.put( new ThreadPoolTest_Task( String( "task#" ) + k , taskTimeSec ) );
+		}
+
+		rfc_thr_sleep( 30 );
 		logger.logInfo( "Suspend thread pool..." );
 		ts -> suspendThreadPool( threadPoolName );
+
+		for( int k = 0; k < 100000; k++ )
+			tasks.put( new ThreadPoolTest_Task( String( "task#" ) + k , taskTimeSec ) );
+
 		logger.logInfo( "Resume thread pool..." );
 		ts -> resumeThreadPool( threadPoolName );
+
+		rfc_thr_sleep( 30 );
+
 		logger.logInfo( "Stop thread pool..." );
 		ts -> stopThreadPool( threadPoolName );
 		logger.logInfo( "Destroy thread pool..." );

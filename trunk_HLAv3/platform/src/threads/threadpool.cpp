@@ -64,6 +64,8 @@ void ThreadPool::create( ClassList<ThreadPoolTask>& tasks ) {
 		// configure thread
 		nFrom += n;
 	}
+
+	logger.logInfo( String( "Threadpool created: name=" ) + name + ", nThreads=" + nThreads + ", nTasks=" + nTasks );
 }
 
 void ThreadPool::create( ResourcePool<ThreadPoolTask>& tasks ) {
@@ -80,6 +82,8 @@ void ThreadPool::create( ResourcePool<ThreadPoolTask>& tasks ) {
 		ThreadPoolItem *thread = new ThreadPoolTaskQueueItem( threadName , k , tasks );
 		threads.add( thread );
 	}
+
+	logger.logInfo( String( "Threadpool created: name=" ) + name + ", nThreads=" + nThreads );
 }
 
 void ThreadPool::ensureStopped() {

@@ -6,6 +6,7 @@
 
 ThreadPoolFixedTaskListItem::ThreadPoolFixedTaskListItem( String p_name , int p_threadPoolItem , ClassList<ThreadPoolTask>& p_tasks )
 :	ThreadPoolItem( p_name , p_threadPoolItem ) {
+	currentTask = 0;
 
 	// assign task list
 	for( int k = 0; k < p_tasks.count(); k++ ) {
@@ -15,55 +16,33 @@ ThreadPoolFixedTaskListItem::ThreadPoolFixedTaskListItem( String p_name , int p_
 	}
 }
 
-void ThreadPoolFixedTaskListItem::run( void *p_arg ) {
-	// cycled queue
-	int currentTask = 0;
+ThreadPoolTask *ThreadPoolFixedTaskListItem::getThreadTask() {
+	// no tasks - stop thread
+	if( tasks.count() == 0 ) {
+		stopSignal = true;
+		return( NULL );
+	}
 
-	int executionTimeWindowMs = ( int )( ( 1000. * executionTimeWindowTicks ) / ticksPerSecond );
-	logger.logInfo( String( "run: thread started - executionTimeWindowMs=" ) + executionTimeWindowMs );
+	// get execution object
+	for( int k = 0; k < tasks.count(); k++ ) {
+		// run given task while it has work
+		int nt = ( currentTask + k ) % tasks.count();
+		ThreadPoolTask *task = tasks.get( nt );
 
-	while( !stopSignal ) {
-		// ensure run enabled
-		rfc_hnd_waitevent( runEvent , -1 );
-
-		if( tasks.count() == 0 )
-			break;
-
-		// get execution object
-		ThreadPoolTask *task = tasks.get( currentTask );
-		if( !task -> needExecution() ) {
-			if( task -> finished() )
-				tasks.remove( currentTask );
-		}
-		else {
-			// execute one operation
-			execute( task );
-
-			// switch to next object
-			currentTask++;
-		}
-
-		// ensure current task is valid
-		if( currentTask == tasks.count() )
-			currentTask = 0;
-
-		if( suspendSignal ) {
-			// notify stopped
-			rfc_hnd_evsignal( suspendEvent );
-			logger.logInfo( String( "run: thread suspended" ) );
-
-			// wait till resumed
-			rfc_hnd_waitevent( runEvent , -1 );
-			if( !stopSignal )
-				logger.logInfo( String( "run: thread resumed" ) );
-
-			// next cycle
-			rfc_hnd_evreset( suspendEvent );
+		if( task -> needExecution() ) {
+			currentTask = nt;
+			return( task );
 		}
 	}
 
-	thread = NULL;
-	state.setState( ThreadState::THREAD_STATE_CREATED );
-	logger.logInfo( String( "run: thread stopped" ) );
+	// no active tasks - ensure sleep 100 ms
+	rfc_hnd_waitevent( suspendEvent , 100 );
+	return( NULL );
+}
+
+void ThreadPoolFixedTaskListItem::executedThreadTask( ThreadPoolTask *task ) {
+	// delete unneeded task
+	if( task -> finished() )
+		tasks.remove( currentTask );
 }
 

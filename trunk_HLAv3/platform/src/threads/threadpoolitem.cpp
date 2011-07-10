@@ -109,3 +109,42 @@ void ThreadPoolItem::execute( ThreadPoolTask *task ) {
 void ThreadPoolItem::setExecutionTimeWindowTicks( int ticks ) {
 	executionTimeWindowTicks = ticks;
 }
+
+void ThreadPoolItem::run( void *p_arg ) {
+	int executionTimeWindowMs = ( int )( ( 1000. * executionTimeWindowTicks ) / ticksPerSecond );
+	logger.logInfo( String( "run: thread started - executionTimeWindowMs=" ) + executionTimeWindowMs );
+
+	while( !stopSignal ) {
+		// ensure run enabled
+		rfc_hnd_waitevent( runEvent , -1 );
+
+		// get and execute task
+		ThreadPoolTask *task = getThreadTask();
+		if( task != NULL ) {
+			execute( task );
+
+			//  finish task execution
+			executedThreadTask( task );
+		}
+
+		// process suspend request
+		if( suspendSignal ) {
+			// notify stopped
+			rfc_hnd_evsignal( suspendEvent );
+			logger.logInfo( String( "run: thread suspended" ) );
+
+			// wait till resumed
+			rfc_hnd_waitevent( runEvent , -1 );
+			if( !stopSignal )
+				logger.logInfo( String( "run: thread resumed" ) );
+
+			// next cycle
+			rfc_hnd_evreset( suspendEvent );
+		}
+	}
+
+	thread = NULL;
+	state.setState( ThreadState::THREAD_STATE_CREATED );
+	logger.logInfo( String( "run: thread stopped" ) );
+}
+
