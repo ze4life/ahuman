@@ -287,6 +287,7 @@ public:
 	T *get( int index ) const { return( ( T * )( rfc_lst_get( data , index ) -> u_p ) ); };
 	void set( int index , T *value ) { rfc_lst_get( data , index ) -> u_p = value; };
 	T& getRef( int index ) const { return( *get( index ) ); };
+	T *& operator []( int index ) { return( ( T *& )rfc_lst_get( data , index ) -> u_p ); };
 	ClassList<T> copy() const { 
 		ClassList<T> x; 
 		int xn = rfc_lst_count( data );
@@ -959,6 +960,9 @@ public:
 	};
 	~ResourcePool() {
 		stop();
+
+		// destroy remaining items
+		items.destroy();
 		rfc_lock_destroy( lock );
 	};
 
@@ -996,6 +1000,7 @@ public:
 		}
 		items[ fillpos ] = NULL;
 
+		size--;
 		rfc_lock_release( lock );
 		return( v );
 	};
@@ -1007,6 +1012,8 @@ public:
 
 		rfc_lock_exclusive( lock );
 		items.add( v );
+		size++;
+		fillpos++;
 		rfc_lock_release( lock );
 		
 		rfc_pool_put( pool );

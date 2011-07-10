@@ -132,9 +132,11 @@ public:
 	void suspend();
 	void resume();
 	void execute( ThreadPoolTask *task );
+	void run( void *p_arg );
 
 protected:
-	virtual void run( void *p_arg ) = 0;
+	virtual ThreadPoolTask *getThreadTask() = 0;
+	virtual void executedThreadTask( ThreadPoolTask *task ) = 0;
 
 public:
 	ThreadPoolItem( String name , int threadPoolItem );
@@ -173,12 +175,14 @@ private:
 	int ticksSleepTimeTotal;
 	int ticksWaitTimeRemained;
 	int executionTimeWindowTicks;
+	int currentTask;
 
 public:
 	ThreadPoolFixedTaskListItem( String name , int threadPoolItem , ClassList<ThreadPoolTask>& tasks );
 
 protected:
-	virtual void run( void *p_arg );
+	virtual ThreadPoolTask *getThreadTask();
+	virtual void executedThreadTask( ThreadPoolTask *task );
 };
 
 /*#########################################################################*/
@@ -192,7 +196,8 @@ public:
 	ThreadPoolTaskQueueItem( String name , int threadPoolItem , ResourcePool<ThreadPoolTask>& res );
 
 protected:
-	virtual void run( void *p_arg );
+	virtual ThreadPoolTask *getThreadTask();
+	virtual void executedThreadTask( ThreadPoolTask *task );
 };
 
 /*#########################################################################*/
