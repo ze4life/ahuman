@@ -221,6 +221,22 @@ extern void			rfc_hnd_evdestroy( RFC_HND p_hnd );
 extern void			rfc_hnd_evsignal( RFC_HND p_hnd );
 extern void			rfc_hnd_evreset( RFC_HND p_hnd );
 
+/* interruptable semaphore */
+typedef struct { RFC_HND sem; RFC_HND ie; } RFC_SEM;
+extern int			rfc_int_semlock( RFC_SEM p_sem );
+extern void			rfc_int_semunlock( RFC_SEM p_sem );
+extern RFC_SEM 		rfc_int_semcreate( void );
+extern void			rfc_int_semstop( RFC_SEM p_sem );
+extern void			rfc_int_semdestroy( RFC_SEM p_sem );
+
+/* interruptable resource pool */
+typedef struct { RFC_HND sem; RFC_HND ie; } RFC_RPL;
+extern RFC_RPL 		rfc_int_poolcreate( int count /* -1 if not limited */ );
+extern int			rfc_int_poolget( RFC_RPL pool );
+extern int			rfc_int_poolput( RFC_RPL pool );
+extern void			rfc_int_poolstop( RFC_RPL p_pool );
+extern void			rfc_int_pooldestroy( RFC_RPL pool );
+
 /* p_timeout_ms<0 - INFINITE, p_timeout_ms=0 - check/no wait, p_timeout_ms>0 - wait timeout */
 extern short		rfc_hnd_waitevent( RFC_HND p_hnd , int p_timeout_ms );
 
@@ -237,12 +253,6 @@ extern void			rfc_lock_shared( rfc_lock *p_lock );
 extern void			rfc_lock_exclusive( rfc_lock *p_lock );
 extern void			rfc_lock_release( rfc_lock *p_lock );
 extern void			rfc_lock_escalate( rfc_lock *p_lock );
-
-/* resource pool */
-extern RFC_HND		rfc_pool_create( int count /* -1 if not limited */ );
-extern int			rfc_pool_get( RFC_HND pool );
-extern int			rfc_pool_put( RFC_HND pool );
-extern void			rfc_pool_destroy( RFC_HND pool );
 
 /*#######################################################*/
 /*#######################################################*/
