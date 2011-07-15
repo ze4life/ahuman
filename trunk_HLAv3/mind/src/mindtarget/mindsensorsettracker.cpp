@@ -50,10 +50,11 @@ void MindSensorSetTracker::pollIteration( int& sleepRemained ) {
 	else {
 		// buffered sleep time
 		sleepRemained += minMs;
-		int sleepSeconds = sleepRemained / 1000;
-		if( sleepSeconds > 0 ) {
-			rfc_thr_sleep( sleepSeconds );
-			sleepRemained %= 1000;
+
+		// do not sleep less than 50 ms
+		if( sleepRemained >= 50 ) {
+			ThreadService *ts = ThreadService::getService();
+			ts -> threadSleepMs( sleepRemained );
 		}
 	}
 }

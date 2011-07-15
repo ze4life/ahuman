@@ -60,20 +60,29 @@ void ThreadService::createService() {
 	addMainThread();
 }
 
-void ThreadService::exitService() {
+void ThreadService::stopService() {
 	// ensure all thread pools are stopped
 	for( int k = 0; k < threadpools.count(); k++ ) {
 		ThreadPool *tp = threadpools.getClassByIndex( k );
 		tp -> ensureStopped();
 	}
+}
 
-	// drop all
-	threadpools.destroy();
+void ThreadService::exitService() {
+	// stop all thread pools
+	logger.logInfo( String( "exitService: stop all thread pools..." ) );
+	for( int k = 0; k < threadpools.count(); k++ ) {
+		String name = threadpools.getKeyByIndex( k );
+		stopThreadPool( name );
+	}
 }
 
 void ThreadService::destroyService() {
 	rfc_hnd_semdestroy( lockExit );
 	rfc_hnd_evdestroy( eventExit );
+
+	// drop all
+	threadpools.destroy();
 }
 
 void ThreadService::addMainThread() {
@@ -362,6 +371,7 @@ void ThreadService::stopServicesBySignal( int status ) {
 	td -> name = "exit";
 	workerStarted( td );
 
+	// stop sleep all threads
 	threadSleepInterruptAll();
 
 	ServiceManager::getInstance().stopServices();
@@ -385,7 +395,7 @@ void ThreadService::waitAllThreads() {
 			break;
 
 		String activeThreadList = getActiveThreads();
-		logger.logInfo( String( "runInternal: Waiting for stopping " ) + count + " thread(s): " + activeThreadList );
+		logger.logInfo( String( "waitAllThreads: Waiting for stopping " ) + count + " thread(s): " + activeThreadList );
 		rfc_thr_sleep( 1 );
 	}
 }
@@ -421,7 +431,7 @@ ThreadPool *ThreadService::createThreadPool( String name , Xml configuration ) {
 void ThreadService::startThreadPool( String name ) {
 	// check exists
 	ThreadPool *tp = threadpools.get( name );
-	ASSERTMSG( tp != NULL , "Thread pool does not exist with name=" + name );
+	ASSERTMSG( tp != NULL , "thread pool does not exist with name=" + name );
 
 	// start
 	tp -> start();
@@ -430,7 +440,7 @@ void ThreadService::startThreadPool( String name ) {
 void ThreadService::stopThreadPool( String name ) {
 	// check exists
 	ThreadPool *tp = threadpools.get( name );
-	ASSERTMSG( tp != NULL , "Thread pool does not exist with name=" + name );
+	ASSERTMSG( tp != NULL , "thread pool does not exist with name=" + name );
 
 	// stop
 	tp -> stop();
@@ -439,7 +449,7 @@ void ThreadService::stopThreadPool( String name ) {
 void ThreadService::suspendThreadPool( String name ) {
 	// check exists
 	ThreadPool *tp = threadpools.get( name );
-	ASSERTMSG( tp != NULL , "Thread pool does not exist with name=" + name );
+	ASSERTMSG( tp != NULL , "thread pool does not exist with name=" + name );
 
 	// suspend
 	tp -> suspend();
@@ -448,7 +458,7 @@ void ThreadService::suspendThreadPool( String name ) {
 void ThreadService::resumeThreadPool( String name ) {
 	// check exists
 	ThreadPool *tp = threadpools.get( name );
-	ASSERTMSG( tp != NULL , "Thread pool does not exist with name=" + name );
+	ASSERTMSG( tp != NULL , "thread pool does not exist with name=" + name );
 
 	// resume
 	tp -> resume();
@@ -461,6 +471,7 @@ void ThreadService::destroyThreadPool( String name ) {
 		return;
 
 	// destroy
+	logger.logInfo( "destroy thread pool name=" + name );
 	tp -> ensureStopped();
 	threadpools.remove( name );
 	delete tp;
@@ -470,6 +481,10 @@ void ThreadService::destroyThreadPool( String name ) {
 void ThreadService::threadSleepMs( int ms ) {
 	ThreadData *threadData = getThreadData();
 	rfc_hnd_waitevent( threadData -> sleepEvent , ms );
+
+	// raise interrupt exception if stopped
+	if( threadData -> checkStopped() )
+		ASSERTFAILED( "thread was stopped, wait interrupted" );
 }
 
 void ThreadService::threadSleepInterrupt( ThreadData *td ) {
@@ -480,7 +495,7 @@ void ThreadService::threadSleepInterruptAll() {
 	rfc_hnd_semlock( lockExit );
 	for( int k = 0; k < threads.count(); k++ ) {
 		ThreadData *td = threads.getClassByIndex( k );
-		rfc_hnd_evsignal( td -> sleepEvent );
+		td -> stopThread();
 	}
 	rfc_hnd_semunlock( lockExit );
 }

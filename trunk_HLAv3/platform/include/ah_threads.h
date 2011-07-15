@@ -55,7 +55,7 @@ protected:
 	virtual void createService();
 	virtual void initService() {};
 	virtual void runService() {};
-	virtual void stopService() {};
+	virtual void stopService();
 	virtual void exitService();
 	virtual void destroyService();
 

@@ -86,10 +86,8 @@ int Timer::timeMsToTicks( int ms ) {
 	return( rfc_hpt_ms2ticks( ms ) );
 }
 
-int Timer::waitNextSecs() {
-	int secs = waitTimeMs / 1000;
-	if( secs == 0 )
-		secs = 1;
-	rfc_thr_sleep( secs );
+int Timer::waitNext() {
+	ThreadService *ts = ThreadService::getService();
+	ts -> threadSleepMs( waitTimeMs );
 	return( ++waitCount );
 }
