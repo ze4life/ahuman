@@ -954,7 +954,7 @@ public:
 		fillpos = 0;
 		readpos = 0;
 		size = 0;
-		pool = rfc_pool_create( -1 );
+		pool = rfc_int_poolcreate( -1 );
 		lock = rfc_lock_create();
 		stopped = false;
 	};
@@ -971,7 +971,7 @@ public:
 		if( stopped )
 			return( NULL );
 
-		rfc_pool_get( pool );
+		rfc_int_poolget( pool );
 
 		rfc_lock_exclusive( lock );
 		if( stopped ) {
@@ -1016,7 +1016,7 @@ public:
 		fillpos++;
 		rfc_lock_release( lock );
 		
-		rfc_pool_put( pool );
+		rfc_int_poolput( pool );
 	}
 
 	void stop() {
@@ -1024,8 +1024,8 @@ public:
 			return;
 
 		stopped = true;
-		rfc_pool_destroy( pool );
-		pool = NULL;
+		rfc_int_pooldestroy( pool );
+		memset( &pool , 0 , sizeof( RFC_RPL ) );
 	}
 
 public:
@@ -1035,7 +1035,7 @@ public:
 	int size; // filled size
 	bool stopped;
 	
-	RFC_HND pool;
+	RFC_RPL pool;
 	rfc_lock *lock;
 };
 

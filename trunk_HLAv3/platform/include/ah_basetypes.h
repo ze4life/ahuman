@@ -568,8 +568,8 @@ public:
 
 	// check current time is within run window
 	bool go();
-	// wait next interval, rounded to seconds
-	int waitNextSecs();
+	// wait next interval
+	int waitNext();
 
 private:
 	long timeStarted;

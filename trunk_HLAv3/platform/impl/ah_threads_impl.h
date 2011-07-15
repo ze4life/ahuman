@@ -25,23 +25,17 @@ public:
 	Object *object;
 	void ( Object::*objectFunction )( void *p_arg );
 	void *objectFunctionArg;
+	bool stopped;
 
 	RFC_HND sleepEvent;
 	MapStringToClass<ThreadObject> map;
 
 public:
-	ThreadData() {
-		memset( &threadExtId , 0 , sizeof( RFC_THREAD ) );
-		threadId = ( unsigned long )NULL;
-		object = NULL;
-		objectFunction = NULL;
-		objectFunctionArg = NULL;
-		sleepEvent = rfc_hnd_evcreate();
-	};
+	ThreadData();
+	~ThreadData();
 
-	~ThreadData() {
-		rfc_hnd_evdestroy( sleepEvent );
-	};
+	void stopThread();
+	bool checkStopped();
 };
 
 /*#########################################################################*/

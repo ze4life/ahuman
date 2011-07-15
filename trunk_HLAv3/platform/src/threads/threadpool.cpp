@@ -24,7 +24,7 @@ void ThreadPool::configure( Xml config ) {
 
 void ThreadPool::create( ClassList<ThreadPoolTask>& tasks ) {
 	if( !runEnabled ) {
-		logger.logInfo( "Ignore threadPool=" + name + ", runEnabled=false" );
+		logger.logInfo( "ignore threadPool=" + name + ", runEnabled=false" );
 		return;
 	}
 
@@ -65,12 +65,12 @@ void ThreadPool::create( ClassList<ThreadPoolTask>& tasks ) {
 		nFrom += n;
 	}
 
-	logger.logInfo( String( "Threadpool created: name=" ) + name + ", nThreads=" + nThreads + ", nTasks=" + nTasks );
+	logger.logInfo( String( "threadpool created: name=" ) + name + ", nThreads=" + nThreads + ", nTasks=" + nTasks );
 }
 
 void ThreadPool::create( ResourcePool<ThreadPoolTask>& tasks ) {
 	if( !runEnabled ) {
-		logger.logInfo( "Ignore threadPool=" + name + ", runEnabled=false" );
+		logger.logInfo( "ignore threadPool=" + name + ", runEnabled=false" );
 		return;
 	}
 
@@ -83,7 +83,7 @@ void ThreadPool::create( ResourcePool<ThreadPoolTask>& tasks ) {
 		threads.add( thread );
 	}
 
-	logger.logInfo( String( "Threadpool created: name=" ) + name + ", nThreads=" + nThreads );
+	logger.logInfo( String( "threadpool created: name=" ) + name + ", nThreads=" + nThreads );
 }
 
 void ThreadPool::ensureStopped() {
@@ -92,6 +92,7 @@ void ThreadPool::ensureStopped() {
 }
 
 void ThreadPool::start() {
+	logger.logInfo( "thread pool starting..." );
 	if( !runEnabled )
 		return;
 
@@ -115,6 +116,7 @@ void ThreadPool::start() {
 }
 
 void ThreadPool::suspend() {
+	logger.logInfo( "thread pool suspending..." );
 	if( !runEnabled )
 		return;
 
@@ -128,6 +130,7 @@ void ThreadPool::suspend() {
 }
 
 void ThreadPool::resume() {
+	logger.logInfo( "resume thread pool..." );
 	if( !runEnabled )
 		return;
 
@@ -141,6 +144,7 @@ void ThreadPool::resume() {
 }
 
 void ThreadPool::stop() {
+	logger.logInfo( "stop thread pool..." );
 	if( !runEnabled )
 		return;
 
