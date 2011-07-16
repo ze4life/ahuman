@@ -117,8 +117,13 @@ int rfc_thr_waitexit( RFC_THREAD *p_hnd )
 	if( WaitForSingleObject( p_hnd -> s_ih , INFINITE ) != WAIT_OBJECT_0 )
 		return( -1 );
 
-	CloseHandle( p_hnd -> s_ih );
 	return( 0 );
+}
+
+/* close thread handle */
+void rfc_thr_closehandle( RFC_THREAD *p_hnd )
+{
+	CloseHandle( p_hnd -> s_ih );
 }
 
 /* execution thread */
