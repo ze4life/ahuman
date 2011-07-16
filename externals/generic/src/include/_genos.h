@@ -259,6 +259,7 @@ extern void			rfc_lock_escalate( rfc_lock *p_lock );
 /* threads */
 
 extern int			rfc_thr_waitexit( RFC_THREAD *p_hnd );
+extern void			rfc_thr_closehandle( RFC_THREAD *p_hnd );
 extern int			rfc_thr_process( RFC_THREAD *p_thread , void *p_arg , RFC_THRFUNC p_action );
 extern void			rfc_thr_threxit( int p_exitcode );
 extern void			rfc_thr_sleep( int p_sec );
