@@ -144,9 +144,11 @@ void ThreadPool::resume() {
 }
 
 void ThreadPool::stop() {
-	logger.logInfo( "stop thread pool..." );
-	if( !runEnabled )
+	if( !state.isActive() )
 		return;
+
+	logger.logInfo( "stop thread pool..." );
+	state.setState( ThreadState::THREAD_STATE_STOPPING );
 
 	// iterate by threads
 	for( int k = threads.count() - 1; k >= 0; k-- ) {

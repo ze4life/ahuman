@@ -212,6 +212,7 @@ void MessageChannel::processMessages() {
 		delete message;
 	}
 
+	opened = false;
 	logger.logInfo( String( "processMessages: i/o channel closed id=" ) + Object::getInstance() );
 }
 

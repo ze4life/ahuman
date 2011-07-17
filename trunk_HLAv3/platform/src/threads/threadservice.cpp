@@ -31,7 +31,7 @@ static unsigned __stdcall threadMainFunction( void *p_arg ) {
 }
 
 static void UnhandledExceptionTranslator( unsigned int exceptionCode , struct _EXCEPTION_POINTERS *exceptionInfo ) {
-	throw RuntimeException( exceptionCode , 1 , exceptionInfo -> ExceptionRecord -> ExceptionAddress );
+	throw RuntimeException( exceptionCode , 3 , exceptionInfo -> ExceptionRecord -> ExceptionAddress );
 }
 
 /*#########################################################################*/
@@ -235,6 +235,9 @@ void ThreadService::workerExited( int status ) {
 }
 
 bool ThreadService::waitThreadExited( RFC_HND threadId ) {
+	if( threadId == NULL )
+		return( false );
+
 	RFC_THREAD th;
 	th.s_ih = threadId;
 	th.s_ip = NULL;
@@ -472,8 +475,8 @@ void ThreadService::destroyThreadPool( String name ) {
 
 	// destroy
 	logger.logInfo( "destroy thread pool name=" + name );
-	tp -> ensureStopped();
 	threadpools.remove( name );
+	tp -> ensureStopped();
 	delete tp;
 }
 

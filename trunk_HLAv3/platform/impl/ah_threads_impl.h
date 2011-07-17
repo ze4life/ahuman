@@ -44,9 +44,10 @@ public:
 class ThreadState {
 public:
 	typedef enum {
-		THREAD_STATE_CREATED = 1 ,	// start -> running
-		THREAD_STATE_RUNNING = 2 ,	// suspend -> suspended, stop -> created
-		THREAD_STATE_SUSPENDED = 3	// resume -> running, stop -> created
+		THREAD_STATE_CREATED = 1 ,		// start -> running
+		THREAD_STATE_RUNNING = 2 ,		// suspend -> suspended, stop -> stopping
+		THREAD_STATE_SUSPENDED = 3 ,	// resume -> running, stop -> stopping
+		THREAD_STATE_STOPPING = 4		// stop -> stopping -> created
 	} ThreadStateType;
 
 private:
@@ -56,16 +57,23 @@ public:
 	ThreadState() { state = THREAD_STATE_CREATED; };
 	ThreadStateType getState() { return( state ); };
 
+	bool isActive() {
+		return( state == THREAD_STATE_RUNNING || state == THREAD_STATE_SUSPENDED );
+	};
+
 	void setState( ThreadStateType value ) {
 		bool checkTransition = false;
 		if( state == THREAD_STATE_CREATED )
 			checkTransition = ( value == THREAD_STATE_RUNNING );
 		else
 		if( state == THREAD_STATE_RUNNING )
-			checkTransition = ( value == THREAD_STATE_CREATED || value == THREAD_STATE_SUSPENDED );
+			checkTransition = ( value == THREAD_STATE_STOPPING || value == THREAD_STATE_SUSPENDED );
 		else
 		if( state == THREAD_STATE_SUSPENDED )
-			checkTransition = ( value == THREAD_STATE_CREATED || value == THREAD_STATE_RUNNING );
+			checkTransition = ( value == THREAD_STATE_STOPPING || value == THREAD_STATE_RUNNING );
+		else
+		if( state == THREAD_STATE_STOPPING )
+			checkTransition = ( value == THREAD_STATE_CREATED );
 
 		ASSERTMSG( checkTransition , String( "Invalid state transition: stateFrom=" )  + state + ", stateTo=" + value );
 		state = value;

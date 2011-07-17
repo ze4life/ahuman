@@ -65,9 +65,11 @@ void ThreadPoolItem::resume() {
 void ThreadPoolItem::stop() {
 	stopSignal = true;
 	rfc_hnd_evsignal( runEvent );
-	if( thread != ( RFC_HND )NULL ) {
+
+	RFC_HND stopThread = thread;
+	if( stopThread != ( RFC_HND )NULL ) {
 		ThreadService *ts = ThreadService::getService();
-		ts -> waitThreadExited( thread );
+		ts -> waitThreadExited( stopThread );
 	}
 }
 
@@ -143,6 +145,7 @@ void ThreadPoolItem::run( void *p_arg ) {
 		}
 	}
 
+	state.setState( ThreadState::THREAD_STATE_STOPPING );
 	thread = NULL;
 	state.setState( ThreadState::THREAD_STATE_CREATED );
 	logger.logInfo( String( "run: thread stopped" ) );
