@@ -23,6 +23,9 @@ MessageSubscription::MessageSubscription( MessageSession *p_session , MessageCha
 	sub = p_sub;
 }
 
+MessageSubscription::~MessageSubscription() {
+}
+
 /*
  * Returns the channel.
  */
@@ -50,6 +53,9 @@ void MessageSubscription::processMessage( Message *msg ) {
 			return;
 
 	Logger logger = channel -> getLogger();
+	String channelName = channel -> getName();
+	String subName = name;
+
 	try {
 		switch( msg -> getBaseType() ) {
 			case Message::MsgType_Text :
@@ -70,12 +76,12 @@ void MessageSubscription::processMessage( Message *msg ) {
 		}
 	}
 	catch ( RuntimeException& e ) {
-		logger.logError( "processMessage: i/o channel id=" + channel -> getName() + ", subscription=" + name + ": exception when processing message" );
+		logger.logError( "processMessage: i/o channel id=" + channelName + ", subscription=" + subName + ": exception when processing message (see below)" );
 		logger.printStack( e );
 	}
 	catch ( ... ) {
+		logger.logError( "processMessage: i/o channel id=" + channelName + ", subscription=" + subName + ": unknown exception (see below)" );
 		logger.printStack();
-		logger.logError( "processMessage: i/o channel id=" + channel -> getName() + ", subscription=" + name + ": unknown exception" );
 	}
 }
 

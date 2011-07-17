@@ -81,8 +81,6 @@ public:
 		ts -> threadSleepMs( resumeTimeSec * 1000 );
 		logger.logInfo( "Stop thread pool..." );
 		ts -> stopThreadPool( threadPoolName );
-		logger.logInfo( "Destroy thread pool..." );
-		ts -> destroyThreadPool( threadPoolName );
 
 		// drop tasks
 		tasks.destroy();
@@ -104,25 +102,31 @@ public:
 		// workflow
 		ts -> startThreadPool( threadPoolName );
 
-		for( int z = 0; z < 10; z++ ) {
-			ts -> threadSleepMs( 30000 );
-			for( int k = 0; k < 1000; k++ ) {
-				String name = String( "task-" ) + z + "-" + k;
-				logger.logInfo( "put next task name=" + name + "..." );
-				tasks.put( new ThreadPoolTest_Task( name , taskTimeMs ) );
+		try {
+			for( int z = 0; z < 10; z++ ) {
+				ts -> threadSleepMs( 30000 );
+				for( int k = 0; k < 1000; k++ ) {
+					String name = String( "task-" ) + z + "-" + k;
+					logger.logInfo( "put next task name=" + name + "..." );
+					tasks.put( new ThreadPoolTest_Task( name , taskTimeMs ) );
+				}
 			}
+
+			ts -> suspendThreadPool( threadPoolName );
+
+			for( int k = 0; k < 1000; k++ )
+				tasks.put( new ThreadPoolTest_Task( String( "suspend#" ) + k , taskTimeMs ) );
+
+			ts -> resumeThreadPool( threadPoolName );
+			ts -> threadSleepMs( 30000 );
+		}
+		catch( RuntimeException& ) {
+			logger.logInfo( "test interrupted" );
 		}
 
-		ts -> suspendThreadPool( threadPoolName );
-
-		for( int k = 0; k < 1000; k++ )
-			tasks.put( new ThreadPoolTest_Task( String( "suspend#" ) + k , taskTimeMs ) );
-
-		ts -> resumeThreadPool( threadPoolName );
-		ts -> threadSleepMs( 30000 );
-
+		tasks.stop();
 		ts -> stopThreadPool( threadPoolName );
-		ts -> destroyThreadPool( threadPoolName );
+		logger.logInfo( "test finished" );
 	}
 
 	void testResPool_thread( ResourcePool<Object> *tmp ) {

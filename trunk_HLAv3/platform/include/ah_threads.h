@@ -42,7 +42,6 @@ public:
 	void stopThreadPool( String name );
 	void suspendThreadPool( String name );
 	void resumeThreadPool( String name );
-	void destroyThreadPool( String name );
 
 	// interruptable sleep
 	void threadSleepMs( int ms );
@@ -85,6 +84,7 @@ private:
 	void workerExited( ThreadData *threadData , int status );
 	String getActiveThreads();
 	ThreadPool *createThreadPool( String name , Xml configuration );
+	void destroyThreadPool( String name );
 
 private:
 	MapStringToClass<ThreadData> threads;

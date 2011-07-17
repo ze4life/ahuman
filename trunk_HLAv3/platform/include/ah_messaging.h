@@ -143,7 +143,7 @@ public:
 
 public:
 	MessageSubscription( MessageSession *session , MessageChannel *p_channel , String p_name , MessageSubscriber *p_sub );
-	~MessageSubscription() {};
+	~MessageSubscription();
 
 // internals
 public:
