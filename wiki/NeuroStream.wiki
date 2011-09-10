@@ -7,17 +7,18 @@ NeuroStream research covers dynamics of transmitting neural signals via !NeuroLi
 == Features == 
 
   * NeuroLink is bundle of fibers
-  * NeuroLink connects one set of neurons to another set of neurons
-  * NeuroLink source neurons are from the same region
-  * NeuroLink destination neurons are from the same region
-  * source region and destination region can be the same or different
-  * NeuroLink is unidirectional
+   * each fiber corresponds to part of axon starting after initial axon segment (which can be modulated by connection) and includes all axon endings, while dendrites with its receptors are part of NeuroSet
+   * one fiber is connected to the only source neuron
+   * one fiber is connected to the set of destination neurons topologically close to each other (receptive field)
+  * NeuroLink connects one NeuroSet (set of neurons) to another NeuroSet
+   * source NeuroSet and destination NeuroSet can be of the same of different NeuroRegion
+   * signal flows across NeuroLink in one direction
   * NeuroLink is using the same neurotransmitter for all fibers
   * neurotransmitter defines characteristics of transmission:
    * transmission speed
-   * energy of potentiation
    * affected receptors
-   * affecting other links targeting the same region
+   * how long is activation in time
   * one event - one transmission across all fibers
+   * activation blocks fired axon branch for a certain time
   * both NeuroLink ends are connected to source or destination region topologically - according to its geometry defined by design of region
   * each fiber on destination has certain receptive field, resulting from branching of corresponding axon
