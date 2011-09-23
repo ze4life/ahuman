@@ -15,10 +15,14 @@
    * transmission speed
    * affected receptors
    * receptor thresholds
+  * NeuroLink takes into account receptive field effect
+  * NeuroLink implements Hebb's learning
 
 == Implementation == 
 
   * NeuroLink connects one NeuroPool to another NeuroPool
+   * cortex inter-layer connections can be be explained as NeuroLink set
+   * implements intra-cortical, cortico-cortical, cortico-nuclei, inter-nuclei connections
    * signal flows across NeuroLink in one direction
    * source NeuroPool and destination NeuroPool can be of the same or of different MindRegion
   * NeuroLink uses the same neurotransmitter for all fibers
@@ -27,3 +31,6 @@
    * NeuroLink does not store any connection - only properties of mapping
   * each destination cell has equivalent receptive field - representing set of incoming fibers
    * strength of connections (weights) is part of [Neuron] information but not NeuroLink
+  * NeuroLink does not store connections
+   * source and destination neurons are selected dynamically based on topological projection
+   * axon terminal branches are replaced by destination neuron receptive field state set, which accumulates action potential until threshold
