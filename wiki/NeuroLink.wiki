@@ -11,9 +11,6 @@
    * each fiber corresponds to part of axon starting after initial axon segment (which can be modulated by connection) and includes all axon endings, while dendrite with its receptors is part of NeuroPool (set of neurons)
    * one fiber is connected to the only source neuron
    * one fiber is connected to the set of destination neurons topologically close to each other (receptive field)
-  * NeuroLink connects one NeuroPool to another NeuroPool
-   * signal flows across NeuroLink in one direction
-   * source NeuroPool and destination NeuroPool can be of the same or of different MindRegion
   * NeuroLink implements neurotransmitter which affects:
    * transmission speed
    * affected receptors
@@ -21,6 +18,9 @@
 
 == Implementation == 
 
+  * NeuroLink connects one NeuroPool to another NeuroPool
+   * signal flows across NeuroLink in one direction
+   * source NeuroPool and destination NeuroPool can be of the same or of different MindRegion
   * NeuroLink uses the same neurotransmitter for all fibers
   * one event - one transmission across all fibers
    * activation blocks fired axon branch for a certain time
