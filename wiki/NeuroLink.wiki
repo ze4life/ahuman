@@ -20,7 +20,8 @@
 
 == Implementation == 
 
-  * NeuroLink connects one NeuroPool to another NeuroPool
+  * NeuroLink connects NeuroVector to NeuroPool
+   * NeuroVector can be part of MindSensor or another NeuroPool
    * cortex inter-layer connections can be be specified as NeuroLink set
    * implements intra-cortical, cortico-cortical, cortico-nuclei, inter-nuclei connections
    * signal flows across NeuroLink in one direction
@@ -31,7 +32,7 @@
   * each destination cell has equivalent receptive field - representing set of incoming fibers
    * strength of connections (weights) is part of [Neuron] information but not NeuroLink
    * affected neuron is selected by receptive field size and maximum action potential
-  * NeuroLink does not store connections
+  * NeuroLink does not store individual axons
    * NeuroLink is stateless
    * NeuroLink stores only properties of mapping
    * source and destination neurons are selected dynamically based on topological projection
