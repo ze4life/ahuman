@@ -10,12 +10,14 @@
 ==== Primary mind layers ====
 
   * mind target interface
+   * MindTarget, MindSensor, MindEffector
+   * MindSensorArea, MindEffectorArea
 {{{
 class MindTarget : Service {MindSensorSet, MindEffectorSet, MindSensorArea, MindEffectorArea}
     (class SpecificMindTarget : MindTarget)
 class MindSensorSet {MindSensor[]}
 class MindEffectorSet {MindEffector[]}
-class MindSensor : MindRegion
+class MindSensor : MindRegion {NeuroVector}
     (class SpecificMindSensor : MindSensor)
 class MindEffector : MindRegion
     (class SpecificMindEffector : MindEffector)
@@ -23,10 +25,16 @@ class MindSensorArea : MindArea
 class MindEffectorArea : MindArea
 }}}
   * mind service
+   * MindService
 {{{
 class MindService : Service {MindSpace, MindMap, MindAreaSet, MindRegionSet, MindAreaLinkSet, MindActiveMemory}
 }}}
   * mind area
+   * MindArea
+   * PerceptionArea, ParietalArea, PrefrontalCortexArea
+   * ThalamusArea, HippocampusArea, BasalGangliaArea
+   * BrainStemArea, CranialNerveArea
+   * SpinalCordArea, MotorNerveArea
 {{{
 class MindArea {MindAreaInfo, MindRegionSet, MindRegionLinkSet}
     class ThalamusArea : MindArea
@@ -43,6 +51,8 @@ class MindArea {MindAreaInfo, MindRegionSet, MindRegionLinkSet}
 class MindAreaSet {MindArea[]};
 }}}
   * mind region
+   * MindRegion
+   * CortexRegion, NucleiRegion, NerveRegion
 {{{
 class MindRegion {NeuroNet, MindRegionLinkSet}
     class CortexRegion : MindRegion
@@ -51,9 +61,12 @@ class MindRegion {NeuroNet, MindRegionLinkSet}
 class MindRegionSet {MindRegion[]}
 }}}
   * mind matter
+   * NeuroVector, NeuroPool
+   * NeuroLink, ExcitatoryLink, InhibitoryLink, ModulatoryLink
+   * NeuroNet, CompactNet, SpreadNet
 {{{
-class Neuron;
-class NeuroPool {Neuron[]}
+class NeuroVector;
+class NeuroPool {NeuroVector[], NeuroVector}
 class NeuroPoolSet {NeuroPool[]}
 class NeuroLink {NeuroPool, NeuroPool}
     class ExcitatoryLink : NeuroLink
@@ -69,6 +82,8 @@ class NeuroNet {NeuroPoolSet, NeuroLinkSet}
 ==== Auxiliary mind objects ====
 
   * mind stream
+   * MindAreaLink, MindRegionLink
+   * MindActiveMemory, MindMessage
 {{{
 class MindAreaLink : MessageSubscriber {MindLinkInfo, MindArea, MindArea, MindRegionLinkSet}
 class MindAreaLinkSet {MindAreaLink[]}
@@ -78,6 +93,8 @@ class MindActiveMemory {NeuroLink[]};
 class MindMessage : BinaryMessage
 }}}
   * mind space
+   * MindLocation, MindSpace
+   * MindAreaInfo, MindAreaLinkInfo, MindMap
 {{{
 class MindLocation
 class MindAreaInfo {MindLocation}
