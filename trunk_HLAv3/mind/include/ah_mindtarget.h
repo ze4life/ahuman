@@ -21,6 +21,7 @@ class EffectorArea;
 
 class MindSensorSetTracker;
 class MindArea;
+class NeuroVector;
 
 class MindTarget : public Service {
 public:
@@ -145,12 +146,18 @@ private:
 	virtual void createNeuroLinksFromNerveRegion( MindRegionLink *link , NerveRegion *src );
 	virtual void createNeuroLinksFromSensorRegion( MindRegionLink *link , MindSensor *src );
 
+	// access to pools
+	virtual NeuroPool *getFeedForwardInputPool() { return( NULL ); };
+
 public:
 	// memory allocation
-	neurovt *createSensoryDataMemoryNVT( int sizeNVT );
-	neurovt *createSensoryControlMemoryNVT( int sizeNVT );
+	NeuroVector *createSensoryData( int sizeX , int sizeY );
+	NeuroVector *createSensoryControlState( int sizeX , int sizeY );
+	NeuroVector *getSensoryData();
 
 	// sensor operations
+	void setFeedForwardLink( NeuroLink *link );
+	// capture data and and send via NeuroLink
 	void processSensorData();
 
 	// poll handling
@@ -165,11 +172,11 @@ private:
 	int pollIntervalMs;
 
 	// memory
-	neurovt *memorySensoryData;
-	neurovt *memorySensoryControl;
-	int sizeSensoryData;
-	int sizeControlData;
-	int sizeControlFeedbackData;
+	NeuroVector *memorySensoryData;
+	NeuroVector *memorySensoryControlState;
+
+	// links
+	NeuroLink *linkFeedForward;
 };
 
 /*#########################################################################*/

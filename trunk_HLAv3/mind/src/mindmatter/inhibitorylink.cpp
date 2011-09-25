@@ -8,7 +8,7 @@ InhibitoryLink::InhibitoryLink( MindRegionLink *p_regionLink ) : NeuroLink( p_re
 	attachLogger();
 }
 
-void InhibitoryLink::createNeuroLink( MindRegionLink *regionLink ) {
+void InhibitoryLink::createNeuroLink() {
 	logger.logDebug( "createNeuroLink" );
 }
 

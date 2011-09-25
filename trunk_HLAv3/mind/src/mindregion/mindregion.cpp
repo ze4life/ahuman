@@ -33,9 +33,14 @@ void MindRegion::exit() {
 void MindRegion::destroy() {
 	destroyRegion();
 
-	delete regionLinkSet;
-	if( net != NULL )
+	if( regionLinkSet != NULL ) {
+		delete regionLinkSet;
+		regionLinkSet = NULL;
+	}
+	if( net != NULL ) {
 		delete net;
+		net = NULL;
+	}
 }
 
 String MindRegion::getRegionId() {
@@ -47,10 +52,6 @@ void MindRegion::addNeuroLink( MindRegionLink *link , NeuroLink *nt ) {
 	link -> addNeuroLink( nt );
 }
 
-void MindRegion::sendOutputData( neurovt *data , int size ) {
-	// intra-area links
-	regionLinkSet -> sendOutputData( this , data , size );
-
-	// inter-area links
-	area -> sendOutputData( this , data , size );
+void MindRegion::sendMessage( MindMessage *msg ) {
+	area -> sendMessage( msg );
 }

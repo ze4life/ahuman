@@ -4,7 +4,7 @@
 	</MindSpace>
 
 	<MindMap>
-		<MindArea id="ThalamusArea">
+		<MindArea id="ThalamusArea" enabled="false">
 			<property name="posX" value="0"/>
 			<property name="posY" value="0"/>
 			<property name="posZ" value="0"/>
@@ -12,7 +12,7 @@
 			<property name="sizeY" value="10000"/>
 			<property name="sizeZ" value="2"/>
 		</MindArea>
-		<MindArea id="PerceptionArea">
+		<MindArea id="PerceptionArea" enabled="true">
 			<property name="posX" value="0"/>
 			<property name="posY" value="0"/>
 			<property name="posZ" value="0"/>
@@ -20,7 +20,7 @@
 			<property name="sizeY" value="10000"/>
 			<property name="sizeZ" value="2"/>
 		</MindArea>
-		<MindArea id="HippocampusArea">
+		<MindArea id="HippocampusArea" enabled="false">
 			<property name="posX" value="0"/>
 			<property name="posY" value="0"/>
 			<property name="posZ" value="0"/>
@@ -28,7 +28,7 @@
 			<property name="sizeY" value="10000"/>
 			<property name="sizeZ" value="2"/>
 		</MindArea>
-		<MindArea id="ParietalArea">
+		<MindArea id="ParietalArea" enabled="false">
 			<property name="posX" value="0"/>
 			<property name="posY" value="0"/>
 			<property name="posZ" value="0"/>
@@ -36,7 +36,7 @@
 			<property name="sizeY" value="10000"/>
 			<property name="sizeZ" value="2"/>
 		</MindArea>
-		<MindArea id="PrefrontalCortexArea">
+		<MindArea id="PrefrontalCortexArea" enabled="false">
 			<property name="posX" value="0"/>
 			<property name="posY" value="0"/>
 			<property name="posZ" value="0"/>
@@ -44,7 +44,7 @@
 			<property name="sizeY" value="10000"/>
 			<property name="sizeZ" value="2"/>
 		</MindArea>
-		<MindArea id="BasalGangliaArea">
+		<MindArea id="BasalGangliaArea" enabled="false">
 			<property name="posX" value="0"/>
 			<property name="posY" value="0"/>
 			<property name="posZ" value="0"/>
@@ -52,7 +52,7 @@
 			<property name="sizeY" value="10000"/>
 			<property name="sizeZ" value="2"/>
 		</MindArea>
-		<MindArea id="BrainStemArea">
+		<MindArea id="BrainStemArea" enabled="false">
 			<property name="posX" value="0"/>
 			<property name="posY" value="0"/>
 			<property name="posZ" value="0"/>
@@ -60,7 +60,7 @@
 			<property name="sizeY" value="10000"/>
 			<property name="sizeZ" value="2"/>
 		</MindArea>
-		<MindArea id="CranialNerveArea">
+		<MindArea id="CranialNerveArea" enabled="false">
 			<property name="posX" value="0"/>
 			<property name="posY" value="0"/>
 			<property name="posZ" value="0"/>
@@ -68,7 +68,7 @@
 			<property name="sizeY" value="10000"/>
 			<property name="sizeZ" value="2"/>
 		</MindArea>
-		<MindArea id="SpinalCordArea">
+		<MindArea id="SpinalCordArea" enabled="false">
 			<property name="posX" value="0"/>
 			<property name="posY" value="0"/>
 			<property name="posZ" value="0"/>
@@ -76,7 +76,7 @@
 			<property name="sizeY" value="10000"/>
 			<property name="sizeZ" value="2"/>
 		</MindArea>
-		<MindArea id="MotorNerveArea">
+		<MindArea id="MotorNerveArea" enabled="false">
 			<property name="posX" value="0"/>
 			<property name="posY" value="0"/>
 			<property name="posZ" value="0"/>
@@ -84,7 +84,7 @@
 			<property name="sizeY" value="10000"/>
 			<property name="sizeZ" value="2"/>
 		</MindArea>
-		<MindArea id="BodyFeelingNerveArea">
+		<MindArea id="BodyFeelingNerveArea" enabled="false">
 			<property name="posX" value="0"/>
 			<property name="posY" value="0"/>
 			<property name="posZ" value="0"/>
@@ -92,7 +92,8 @@
 			<property name="sizeY" value="10000"/>
 			<property name="sizeZ" value="2"/>
 		</MindArea>
-		<MindArea id="SensorArea">
+    
+		<MindArea id="SensorArea" enabled="true">
 			<property name="posX" value="0"/>
 			<property name="posY" value="0"/>
 			<property name="posZ" value="0"/>
@@ -100,7 +101,7 @@
 			<property name="sizeY" value="10000"/>
 			<property name="sizeZ" value="2"/>
 		</MindArea>
-		<MindArea id="EffectorArea">
+		<MindArea id="EffectorArea" enabled="true">
 			<property name="posX" value="0"/>
 			<property name="posY" value="0"/>
 			<property name="posZ" value="0"/>
@@ -110,7 +111,7 @@
 		</MindArea>
 
 		<MindLinks>
-			<MindLink masterArea="SensorArea" slaveArea="PerceptionArea" channel="sensordata"/>
+			<MindLink masterArea="SensorArea" slaveArea="PerceptionArea" channel="SensorArea"/>
 		</MindLinks>
 	</MindMap>
 

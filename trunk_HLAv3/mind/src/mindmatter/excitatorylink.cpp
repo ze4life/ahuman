@@ -8,7 +8,7 @@ ExcitatoryLink::ExcitatoryLink( MindRegionLink *p_regionLink ) : NeuroLink( p_re
 	attachLogger();
 }
 
-void ExcitatoryLink::createNeuroLink( MindRegionLink *regionLink ) {
+void ExcitatoryLink::createNeuroLink() {
 	logger.logDebug( "createNeuroLink" );
 }
 

@@ -36,11 +36,6 @@ void MindRegionLink::destroyRegionLink() {
 	links = NULL;
 }
 
-void MindRegionLink::sendOutputData( neurovt *data , int size ) {
-	logger.logDebug( "sendOutputData: src=" + src -> getRegionId() + ", dst=" + dst -> getRegionId() );
-	links -> projectData( data , size );
-}
-
 void MindRegionLink::addNeuroLink( NeuroLink *nt ) {
 	links -> addSetItem( nt );
 }

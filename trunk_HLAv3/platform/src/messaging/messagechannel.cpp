@@ -18,7 +18,7 @@ MessageChannel::MessageChannel( String p_msgid , String p_name , bool p_sync ) {
 	messages = NULL;
 	channelLock = rfc_lock_create();
 
-	Object::setInstance( name );
+	Object::setInstance( "mc." + name );
 }
 
 MessageChannel::~MessageChannel() {
@@ -190,7 +190,7 @@ void MessageChannel::deletePublisher( String key ) {
 
 // executing in separate thread
 void MessageChannel::processMessages() {
-	logger.logInfo( String( "processMessages: i/o channel opened id=" ) + Object::getInstance() );
+	logger.logInfo( String( "processMessages: channel is opened" ) );
 	while( true ) {
 		// get next message
 		Message *message = messages -> getNextMessage();
@@ -204,8 +204,7 @@ void MessageChannel::processMessages() {
 		}
 
 		// log
-		logger.logInfo( String( "processMessages: message extracted from i/o channel id=" ) + Object::getInstance() + 
-			", channelMessageId=" + message -> getChannelMessageId() );
+		logger.logInfo( String( "processMessages: message extracted, msgid=" ) + message -> getChannelMessageId() );
 
 		// pass message
 		subscribeEvent( message );
@@ -213,7 +212,7 @@ void MessageChannel::processMessages() {
 	}
 
 	opened = false;
-	logger.logInfo( String( "processMessages: i/o channel closed id=" ) + Object::getInstance() );
+	logger.logInfo( "processMessages: closed channel" );
 }
 
 /*#########################################################################*/

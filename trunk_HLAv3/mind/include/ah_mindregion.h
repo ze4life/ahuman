@@ -17,6 +17,7 @@ class NerveRegion;
 
 class NeuroNet;
 class MindRegionLink;
+class MindMessage;
 
 class MindRegion : public Object {
 public:
@@ -35,14 +36,17 @@ public:
 	virtual void createNeuroLinksFromNerveRegion( MindRegionLink *link , NerveRegion *src ) = 0;
 	virtual void createNeuroLinksFromSensorRegion( MindRegionLink *link , MindSensor *src ) = 0;
 
+	// access to pools
+	virtual NeuroPool *getFeedForwardInputPool() = 0;
+
 public:
 	void create( MindArea *area , String p_id );
 	void exit();
 	void destroy();
 	void addNeuroLink( MindRegionLink *link , NeuroLink *nt );
+	void sendMessage( MindMessage *msg );
 
 	String getRegionId();
-	void sendOutputData( neurovt *data , int size );
 
 private:
 	MindArea *area;
@@ -93,6 +97,9 @@ public:
 	virtual void createNeuroLinksFromNucleiRegion( MindRegionLink *link , NucleiRegion *src );
 	virtual void createNeuroLinksFromNerveRegion( MindRegionLink *link , NerveRegion *src );
 	virtual void createNeuroLinksFromSensorRegion( MindRegionLink *link , MindSensor *src );
+
+	// access to pools
+	virtual NeuroPool *getFeedForwardInputPool();
 };
 
 /*#########################################################################*/
