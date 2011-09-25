@@ -156,8 +156,13 @@ SensorFileSysWalker::SensorFileSysWalker() {
 	actions[4] = FILE_NOTIFY_ACTION_RENAMEDTO;
 
 	// internal data
-	vout = MindSensor::createSensoryDataMemoryNVT( SENSOR_WIDTH_DATA );
-	vin = MindSensor::createSensoryControlMemoryNVT( SENSOR_WIDTH_CONTROL );
+	NeuroVector *nv = MindSensor::createSensoryData( SENSOR_WIDTH_DATA , 1 );
+	vout = nv -> getRawData();
+
+	nv = MindSensor::createSensoryControlState( SENSOR_WIDTH_CONTROL , 1 );
+	vin = nv -> getRawData();
+
+	// synchnonization
 	commandEvent = rfc_hnd_evcreate();
 	lockHandle = rfc_hnd_semcreate();
 	continueRunFlag = false;

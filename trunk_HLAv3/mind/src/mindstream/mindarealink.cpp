@@ -16,7 +16,6 @@ MindAreaLink::MindAreaLink( MindAreaLinkInfo *p_info ) {
 
 	session = NULL;
 	iosub = NULL;
-	iopub = NULL;
 	links = new MindRegionLinkSet();
 }
 
@@ -31,7 +30,6 @@ void MindAreaLink::open( MessageSession *p_session ) {
 
 	MessagingService *ms = MessagingService::getService();
 	iosub = ms -> subscribe( session , channelId , ioid , this );
-	iopub = ms -> createPublisher( session , channelId ,  ioid , "MindAreaLinkMsg" );
 }
 
 MessageSubscription *MindAreaLink::subscribeSelector( MessageSubscriber *handler , String name , String selector ) {
@@ -54,8 +52,4 @@ void MindAreaLink::onMessage( Message *msg ) {
 
 void MindAreaLink::addRegionLink( MindRegionLink *link ) {
 	links -> addSetItem( link );
-}
-
-void MindAreaLink::sendOutputData( MindRegion *region , neurovt *data , int size ) {
-	links -> sendOutputData( region , data , size );
 }

@@ -9,31 +9,23 @@ MindSensor::MindSensor() {
 	pollIntervalMs = 0;
 
 	memorySensoryData = NULL;
-	memorySensoryControl = NULL;
-
-	sizeSensoryData = 0;
-	sizeControlData = 0;
-	sizeControlFeedbackData = 0;
+	memorySensoryControlState = NULL;
 }
 
 void MindSensor::setPollState( bool state ) {
 	pollState = state;
 }
 
-neurovt *MindSensor::createSensoryDataMemoryNVT( int sizeNVT ) {
-	ASSERTMSG( sizeNVT > 0 , "createSensoryDataMemoryNVT: invalid value" );
-	sizeSensoryData = sizeNVT;
-
-	memorySensoryData = ( neurovt * )calloc( sizeNVT , sizeof( neurovt ) );
+NeuroVector *MindSensor::createSensoryData( int sizeX , int sizeY ) {
+	ASSERTMSG( sizeX > 0 && sizeY > 0 , "createSensoryData: invalid value" );
+	memorySensoryData = new  NeuroVector( sizeX , sizeY );
 	return( memorySensoryData );
 }
 
-neurovt *MindSensor::createSensoryControlMemoryNVT( int sizeNVT ) {
-	ASSERTMSG( sizeNVT > 0 , "createSensoryControlMemoryNVT: invalid value" );
-	sizeControlData = sizeNVT;
-
-	memorySensoryControl = ( neurovt * )calloc( sizeNVT , sizeof( neurovt ) );
-	return( memorySensoryControl );
+NeuroVector *MindSensor::createSensoryControlState( int sizeX , int sizeY ) {
+	ASSERTMSG( sizeX > 0 && sizeY > 0  , "createSensoryControl: invalid value" );
+	memorySensoryControlState = new  NeuroVector( sizeX , sizeY );
+	return( memorySensoryControlState );
 }
 
 void MindSensor::createRegion() {
@@ -46,13 +38,15 @@ void MindSensor::destroyRegion() {
 	if( memorySensoryData != NULL )
 		free( memorySensoryData );
 	memorySensoryData = NULL;
-	if( memorySensoryControl != NULL )
-		free( memorySensoryControl );
-	memorySensoryControl = NULL;
+	if( memorySensoryControlState != NULL )
+		free( memorySensoryControlState );
+	memorySensoryControlState = NULL;
 }
 
 void MindSensor::processSensorData() {
-	MindRegion::sendOutputData( memorySensoryData , sizeSensoryData );
+	NeuroVector *data = new NeuroVector( memorySensoryData );
+	MindMessage *msg = new MindMessage( linkFeedForward , data );
+	MindRegion::sendMessage( msg );
 }
 
 bool MindSensor::getPollState() {
@@ -61,6 +55,10 @@ bool MindSensor::getPollState() {
 
 int MindSensor::getPollIntervalMs( int timeNowMs ) {
 	return( pollNextMs - timeNowMs );
+}
+
+void MindSensor::setFeedForwardLink( NeuroLink *link ) {
+	linkFeedForward = link;
 }
 
 // link creation
@@ -82,5 +80,9 @@ void MindSensor::createNeuroLinksFromNerveRegion( MindRegionLink *link , NerveRe
 
 void MindSensor::createNeuroLinksFromSensorRegion( MindRegionLink *link , MindSensor *src ) {
 	ASSERTFAILED( String( "Invalid sensor/sensor link requested - src=" ) + src -> getRegionId() + ", dst=" + getRegionId() );
+}
+
+NeuroVector *MindSensor::getSensoryData() {
+	return( memorySensoryData );
 }
 

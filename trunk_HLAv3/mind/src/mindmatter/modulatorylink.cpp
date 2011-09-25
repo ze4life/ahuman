@@ -8,7 +8,7 @@ ModulatoryLink::ModulatoryLink( MindRegionLink *p_regionLink ) : NeuroLink( p_re
 	attachLogger();
 }
 
-void ModulatoryLink::createNeuroLink( MindRegionLink *regionLink ) {
+void ModulatoryLink::createNeuroLink() {
 	logger.logDebug( "createNeuroLink" );
 }
 

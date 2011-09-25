@@ -79,6 +79,7 @@ void SensorArea::initLinksToPerceptionArea( MindAreaLink *link ) {
 void SensorArea::createPerceptionNeuroLinks( MindRegionLink *regionLink , MindRegion *srcRegion , MindRegion *dstRegion , MindSensor *sensor ) {
 	MindService *ms = MindService::getService();
 	NeuroLink *linkdirect = ms -> createExcitatoryLink( regionLink );
-	linkdirect -> createNeuroLink( regionLink );
+
+	linkdirect -> create( sensor -> getSensoryData() , dstRegion -> getFeedForwardInputPool() );
 }
 

@@ -45,15 +45,9 @@ void MindService::createService() {
 	Xml xmlMindMap = config.getFirstChild( "MindMap" );
 	ASSERTMSG( xmlMindMap.exists() , "createService: MindMap is not present in mind configuration" );
 	mindMap -> createFromXml( xmlMindMap );
-
-	// create areas
-	createAreas();
 }
 
 void MindService::initService() {
-	// create regions in all areas
-	areaSet -> initRegionsInAreaSet( target );
-
 	// create active memory
 	Xml xmlActiveMemory = config.getFirstChild( "ActiveMemory" );
 	ASSERTMSG( xmlActiveMemory.exists() , "createService: ActiveMemory is not present in brain configuration file" );
@@ -62,6 +56,12 @@ void MindService::initService() {
 	// create messaging session for mind services
 	MessagingService *ms = MessagingService::getService();
 	session = ms -> createSession();
+
+	// create areas
+	createAreas();
+
+	// create regions in all areas
+	areaSet -> initRegionsInAreaSet( target );
 
 	// create links
 	establishAreaLinks();

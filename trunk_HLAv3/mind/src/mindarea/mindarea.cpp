@@ -9,6 +9,9 @@ MindArea::MindArea() {
 	regionSet = NULL;
 	regionLinkSet = NULL;
 	areaLinkSet = NULL;
+
+	iosession = NULL;
+	iopub = NULL;
 }
 
 MindArea::~MindArea() {
@@ -26,6 +29,10 @@ void MindArea::create() {
 	regionSet = new MindRegionSet;
 	regionLinkSet = new MindRegionLinkSet;
 	areaLinkSet = new MindAreaLinkSet;
+
+	MessagingService *ms = MessagingService::getService();
+	iosession = ms -> createSession();
+	iopub = ms -> createPublisher( iosession , getClass() ,  getClass() , "MindMessage" );
 }
 
 // mind area links
@@ -83,8 +90,7 @@ String MindArea::addRegion( String group , String id , MindRegion *region ) {
 	return( regionId );
 }
 
-void MindArea::sendOutputData( MindRegion *region , neurovt *data , int size ) {
-	// by efferent links
-	areaLinkSet -> sendOutputData( region , data , size );
+void MindArea::sendMessage( MindMessage *msg ) {
+	iopub -> publish( iosession , msg );
 }
 

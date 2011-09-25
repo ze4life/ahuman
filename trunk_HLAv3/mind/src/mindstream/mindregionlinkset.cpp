@@ -17,12 +17,3 @@ void MindRegionLinkSet::destroyRegionLinkSet() {
 void MindRegionLinkSet::addSetItem( MindRegionLink *link ) {
 	list.add( link );
 }
-
-void MindRegionLinkSet::sendOutputData( MindRegion *region , neurovt *data , int size ) {
-	for( int k = 0; k < list.count(); k++ ) {
-		MindRegionLink *link = list.get( k );
-		if( link -> getSrcRegion() == region )
-			list.get( k ) -> sendOutputData( data , size );
-	}
-}
-

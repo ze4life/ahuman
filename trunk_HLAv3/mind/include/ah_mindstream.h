@@ -40,9 +40,7 @@ public:
 
 	MindArea *getSourceArea() { return( sourceArea ); };
 	MindArea *getDestinationArea() { return( destinationArea ); };
-
 	void addRegionLink( MindRegionLink *link );
-	void sendOutputData( MindRegion *region , neurovt *data , int size );
 
 private:
 	MindAreaLinkInfo *info;
@@ -53,7 +51,6 @@ private:
 
 	MessageSession *session;
 	MessageSubscription *iosub;
-	MessagePublisher *iopub;
 };
 
 /*#########################################################################*/
@@ -64,7 +61,6 @@ public:
 	const char *getClass() { return( "MindAreaLinkSet" ); };
 
 	void addSetItem( MindAreaLink *link );
-	void sendOutputData( MindRegion *region , neurovt *data , int size );
 
 public:
 	ClassList<MindAreaLink> list;
@@ -88,7 +84,6 @@ public:
 	void exitRegionLink();
 	void destroyRegionLink();
 	void addNeuroLink( NeuroLink *nt );
-	void sendOutputData( neurovt *data , int size );
 
 public:
 	MindAreaLink *areaLink;
@@ -107,8 +102,6 @@ public:
 	const char *getClass() { return( "MindRegionLinkSet" ); };
 
 	void addSetItem( MindRegionLink *link );
-
-	void sendOutputData( MindRegion *region , neurovt *data , int size );
 	void exitRegionLinkSet();
 	void destroyRegionLinkSet();
 
@@ -122,22 +115,18 @@ public:
 // class to snapshot outputs from cortex and transfer to other cortexes
 class MindMessage : public Message {
 private:
-	unsigned size;
-	neurovt *data;
-	MindRegion *region;
+	NeuroLink *link;
+	NeuroVector *data;
 
 public:
-	MindMessage( MindRegion *p_region );
+	MindMessage( NeuroLink *p_link );
+	MindMessage( NeuroLink *p_link , NeuroVector *p_data );
 	virtual ~MindMessage();
 	virtual const char *getClass() { return( "MindMessage" ); };
 
 public:
-	MindRegion *getSourceRegion() { return( region ); };
-	void *getBuffer() { return( data ); };
-	int getSize() { return( ( int )size ); };
-
-	void capture();
-	void get( unsigned n , neurovt *values );
+	NeuroLink *getNeuroLink() { return( link ); };
+	NeuroVector *getMsgData();
 };
 
 /*#########################################################################*/

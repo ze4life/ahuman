@@ -36,6 +36,14 @@ void CortexRegion::createNeuroLinksFromNerveRegion( MindRegionLink *link , Nerve
 
 void CortexRegion::createNeuroLinksFromSensorRegion( MindRegionLink *link , MindSensor *src ) {
 	logger.logDebug( "createNeuroLinksFromSensorRegion" );
-	MindRegion::addNeuroLink( link , new ExcitatoryLink( link ) );
+
+	NeuroLink *linkFeedForward = new ExcitatoryLink( link );
+	src -> setFeedForwardLink( linkFeedForward );
+
+	MindRegion::addNeuroLink( link , linkFeedForward );
+}
+
+NeuroPool *CortexRegion::getFeedForwardInputPool() {
+	return( NULL );
 }
 

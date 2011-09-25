@@ -4,20 +4,25 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-MindMessage::MindMessage( MindRegion *p_region ) 
+MindMessage::MindMessage( NeuroLink *p_link )
 :	Message( Message::MsgType_Binary ) { 
-	region = p_region;
-	size = 0;
-	data = NULL; 
-	setMessageType( "MindMessage" );
+	link = p_link;
+	data = NULL;
+}
+
+MindMessage::MindMessage( NeuroLink *p_link , NeuroVector *p_data )
+:	Message( Message::MsgType_Binary ) { 
+	link = p_link;
+	data = p_data;
 }
 
 MindMessage::~MindMessage() {
 	if( data != NULL )
-		free( data );
+		delete data;
 }
 
-void MindMessage::get( unsigned n , neurovt *values ) {
-	ASSERTMSG( "message does not fit into buffer" , n >= size );
-	memcpy( values , data , size * sizeof( float ) );
+NeuroVector *MindMessage::getMsgData() { 
+	if( data != NULL )
+		return( data ); 
+	return( link -> getSourceData() );
 }

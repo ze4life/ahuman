@@ -19,6 +19,7 @@ class MindRegionSet;
 class MindRegionLinkSet;
 class MindAreaLink;
 class MessageSession;
+class MindMessage;
 
 // brain provides implementation for mind areas
 // each mind area is implemented by module components - next level folder under mod...
@@ -49,8 +50,8 @@ public:
 	void exit();
 	void destroy();
 	MindAreaLink *createMindLink( MindArea *area , MindAreaLinkInfo *info , MessageSession *session );
-	void sendOutputData( MindRegion *region , neurovt *data , int size );
 	MindRegionSet *getRegionSet();
+	void sendMessage( MindMessage *msg );
 
 protected:
 	String addRegion( String group , String id , MindRegion *region );
@@ -60,6 +61,9 @@ private:
 	MindRegionSet *regionSet;
 	MindRegionLinkSet *regionLinkSet;
 	MindAreaLinkSet *areaLinkSet;
+
+	MessageSession *iosession;
+	MessagePublisher *iopub;
 };
 
 /*#########################################################################*/
