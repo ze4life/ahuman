@@ -26,8 +26,11 @@ class MindEffectorArea : MindArea
 }}}
   * mind service
    * MindService
+   * MindNet, MindNetSet
 {{{
-class MindService : Service {MindSpace, MindMap, MindAreaSet, MindRegionSet, MindAreaLinkSet, MindActiveMemory}
+class MindService : Service {MindSpace, MindMap, MindAreaSet, MindRegionSet, MindAreaLinkSet, MindActiveMemory, MindNetSet}
+class MindNet
+class MindNetSet {MindNet[]}
 }}}
   * mind area
    * MindArea
@@ -37,7 +40,7 @@ class MindService : Service {MindSpace, MindMap, MindAreaSet, MindRegionSet, Min
    * BrainStemArea, CranialNerveArea
    * SpinalCordArea, MotorNerveArea
 {{{
-class MindArea {MindAreaInfo, MindRegionSet, MindRegionLinkSet}
+class MindArea {MindAreaInfo, MindRegionSet}
     class ThalamusArea : MindArea
     class PerceptionArea : MindArea
     class HippocampusArea : MindArea
@@ -58,7 +61,7 @@ class MindAreaSet {MindArea[]};
    * MindRegion
    * CortexRegion, NucleiRegion, NerveRegion
 {{{
-class MindRegion {NeuroNet, MindRegionLinkSet}
+class MindRegion {NeuroPoolSet, NeuroLinkSet}
     class CortexRegion : MindRegion
     class NucleiRegion : MindRegion
     class NerveRegion : MindRegion
@@ -77,10 +80,6 @@ class NeuroLink {NeuroPool, NeuroPool}
     class InhibitoryLink : NeuroLink
     class ModulatoryLink : NeuroLink
 class NeuroLinkSet {NeuroLink[]}
-class NeuroNet {NeuroPoolSet, NeuroLinkSet}
-    class LayeredNet : NeuroNet
-    class CompactNet : NeuroNet
-    class SpreadNet : NeuroNet
 }}}
 
 === Auxiliary mind objects ===
@@ -89,9 +88,9 @@ class NeuroNet {NeuroPoolSet, NeuroLinkSet}
    * MindAreaLink, MindRegionLink
    * MindActiveMemory, MindMessage
 {{{
-class MindAreaLink : MessageSubscriber {MindLinkInfo, MindArea, MindArea, MindRegionLinkSet}
+class MindAreaLink {MindLinkInfo, MindRegionLinkSet}
 class MindAreaLinkSet {MindAreaLink[]}
-class MindRegionLink {MindRegion, MindRegion, NeuroLinkSet}
+class MindRegionLink
 class MindRegionLinkSet {MindRegionLink[]}
 class MindActiveMemory {NeuroLink[]};
 class MindMessage : BinaryMessage
