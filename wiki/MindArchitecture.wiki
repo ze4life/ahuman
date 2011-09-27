@@ -13,24 +13,25 @@
    * MindTarget, MindSensor, MindEffector
    * MindSensorArea, MindEffectorArea
 {{{
-class MindTarget : Service {MindSensorSet, MindEffectorSet, MindSensorArea, MindEffectorArea}
+class MindTarget {MindSensorSet, MindEffectorSet,
+    MindSensorArea, MindEffectorArea} in(TOP)
     (class SpecificMindTarget : MindTarget)
-class MindSensorSet {MindSensor[]}
-class MindEffectorSet {MindEffector[]}
-class MindSensor : MindRegion {NeuroVector}
+class MindSensorSet {MindSensor[]} in(MindTarget)
+class MindEffectorSet {MindEffector[]} in(MindTarget)
+class MindSensor : MindRegion {NeuroVector} in(MindSensorSet)
     (class SpecificMindSensor : MindSensor)
-class MindEffector : MindRegion
+class MindEffector : MindRegion in(MindEffectorSet)
     (class SpecificMindEffector : MindEffector)
-class MindSensorArea : MindArea
-class MindEffectorArea : MindArea
+class MindSensorArea : MindArea in(MindService)
+class MindEffectorArea : MindArea in(MindService)
 }}}
   * mind service
    * MindService, MindNet
 {{{
-class MindService : Service {MindSpace, MindMap, MindAreaSet,
-    MindRegionSet, MindAreaLinkSet, MindActiveMemory, MindNetSet}
-class MindNet
-class MindNetSet {MindNet[]}
+class MindService {MindSpace, MindMap, MindAreaSet, MindRegionSet, 
+    MindAreaLinkSet, MindActiveMemory, MindNetSet} in(TOP)
+class MindNet in(MindNetSet)
+class MindNetSet {MindNet[]} in(MindService)
 }}}
   * mind area
    * MindArea
@@ -40,7 +41,7 @@ class MindNetSet {MindNet[]}
    * BrainStemArea, CranialNerveArea
    * SpinalCordArea, MotorNerveArea
 {{{
-class MindArea {MindAreaInfo, MindRegionSet}
+class MindArea {MindRegionSet, MindRegionLinkSet} in(MindAreaSet)
     class ThalamusArea : MindArea
     class PerceptionArea : MindArea
     class HippocampusArea : MindArea
@@ -55,30 +56,30 @@ class MindArea {MindAreaInfo, MindRegionSet}
     class BodyFeelingNerveArea : MindArea
     class CranialNerveArea : MindArea
     class MotorNerveArea : MindArea
-class MindAreaSet {MindArea[]};
+class MindAreaSet {MindArea[]} in(MindService)
 }}}
   * mind region
    * MindRegion
    * CortexRegion, NucleiRegion, NerveRegion
 {{{
-class MindRegion {NeuroPoolSet, NeuroLinkSet}
+class MindRegion {NeuroPoolSet, NeuroLinkSet, MindLocation} in(MindRegionSet)
     class CortexRegion : MindRegion
     class NucleiRegion : MindRegion
     class NerveRegion : MindRegion
-class MindRegionSet {MindRegion[]}
+class MindRegionSet {MindRegion[]} in(MindArea)
 }}}
   * mind matter
    * NeuroVector, NeuroPool
    * NeuroLink, ExcitatoryLink, InhibitoryLink, ModulatoryLink
 {{{
-class NeuroVector;
-class NeuroPool {NeuroVector[], NeuroVector}
-class NeuroPoolSet {NeuroPool[]}
-class NeuroLink {NeuroPool, NeuroPool}
+class NeuroVector in(MindSensor, NeuroPool, MindMessage)
+class NeuroPool {NeuroVector[], NeuroVector} in(NeuroPoolSet)
+class NeuroPoolSet {NeuroPool[]} in(MindRegion)
+class NeuroLink {NeuroPool, NeuroPool} in(NeuroLinkSet)
     class ExcitatoryLink : NeuroLink
     class InhibitoryLink : NeuroLink
     class ModulatoryLink : NeuroLink
-class NeuroLinkSet {NeuroLink[]}
+class NeuroLinkSet {NeuroLink[]} in(MindRegion)
 }}}
 
 === Auxiliary mind objects ===
@@ -87,22 +88,22 @@ class NeuroLinkSet {NeuroLink[]}
    * MindAreaLink, MindRegionLink
    * MindActiveMemory, MindMessage
 {{{
-class MindAreaLink {MindLinkInfo, MindRegionLinkSet}
-class MindAreaLinkSet {MindAreaLink[]}
-class MindRegionLink
-class MindRegionLinkSet {MindRegionLink[]}
-class MindActiveMemory {NeuroLink[]};
-class MindMessage : BinaryMessage
+class MindAreaLink {MindRegionLinkSet} in(MindAreaLinkSet)
+class MindAreaLinkSet {MindAreaLink[]} in(MindService)
+class MindRegionLink in(MindRegionLinkSet)
+class MindRegionLinkSet {MindRegionLink[]} in(MindArea, MindAreaLink)
+class MindActiveMemory in(MindService)
+class MindMessage : BinaryMessage {NeuroVector} in(TOP)
 }}}
   * mind space
    * MindLocation, MindSpace
    * MindAreaInfo, MindAreaLinkInfo, MindMap
 {{{
-class MindLocation
-class MindAreaInfo {MindLocation}
-class MindAreaLinkInfo
-class MindSpace {MindLocation[]}
-class MindMap {MindAreaInfo[], MindAreaLinkInfo[]}
+class MindLocation in(MindAreaInfo, MindRegion)
+class MindAreaInfo {MindLocation} in(MindMap)
+class MindAreaLinkInfo in(MindMap)
+class MindSpace in(MindService)
+class MindMap {MindAreaInfo[], MindAreaLinkInfo[]} in(MindService)
 }}}
   * mind base
 {{{
