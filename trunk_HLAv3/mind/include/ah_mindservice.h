@@ -97,6 +97,7 @@ private:
 	MindArea *createBodyFeelingNerveArea();
 
 	// routines
+	void createNetworks();
 	void createAreas();
 	void establishAreaLinks();
 
@@ -132,15 +133,30 @@ private:
 /*#########################################################################*/
 /*#########################################################################*/
 
+class MindNetInfo;
+
 class MindNet : public Object {
 public:
 	MindNet();
 	virtual ~MindNet();
 	virtual const char *getClass() { return( "MindNet" ); };
+
+public:
+	void setInfo( MindNetInfo *p_info );
+	String getName();
+
+public:
+// utilities
+	String name;
+
+// references
+	MindNetInfo *info;
 };
 
 /*#########################################################################*/
 /*#########################################################################*/
+
+class MindNetInfo;
 
 class MindNetSet : public Object {
 public:
@@ -148,6 +164,8 @@ public:
 	virtual ~MindNetSet();
 	virtual const char *getClass() { return( "MindNetSet" ); };
 
+	MindNet *createNet( MindNetInfo *info );
+	
 private:
 // own data
 	ClassList<MindNet> list;
