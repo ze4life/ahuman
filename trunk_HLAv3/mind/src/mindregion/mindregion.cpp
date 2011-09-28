@@ -8,7 +8,6 @@ MindRegion::MindRegion() {
 	attachLogger();
 
 	area = NULL;
-	net = NULL;
 	regionLinkSet = NULL;
 }
 
@@ -36,10 +35,6 @@ void MindRegion::destroy() {
 	if( regionLinkSet != NULL ) {
 		delete regionLinkSet;
 		regionLinkSet = NULL;
-	}
-	if( net != NULL ) {
-		delete net;
-		net = NULL;
 	}
 }
 

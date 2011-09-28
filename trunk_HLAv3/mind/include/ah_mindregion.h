@@ -15,9 +15,11 @@ class NerveRegion;
 /*#########################################################################*/
 /*#########################################################################*/
 
-class NeuroNet;
 class MindRegionLink;
 class MindMessage;
+class NeuroPoolSet;
+class NeuroLinkSet;
+class MindLocation;
 
 class MindRegion : public Object {
 public:
@@ -49,10 +51,16 @@ public:
 	String getRegionId();
 
 private:
-	MindArea *area;
+// utility
 	String id;
 
-	NeuroNet *net;
+// own data
+	NeuroPoolSet *poolSet;
+	NeuroLinkSet *linkSet;
+	MindLocation *location;
+
+// references
+	MindArea *area;
 	MindRegionLinkSet *regionLinkSet;
 };
 
@@ -73,7 +81,10 @@ public:
 	void destroyRegionSet();
 
 public:
+// own data
 	ClassList<MindRegion> list;
+
+// references
 	MapStringToClass<MindRegion> map;
 };
 

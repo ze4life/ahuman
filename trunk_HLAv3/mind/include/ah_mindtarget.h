@@ -64,15 +64,19 @@ public:
 	void addEffector( MindEffector *effector );
 
 private:
+// utility
 	Xml configSensors;
-	SensorArea *sensorArea;
+	Xml configEffectors;
+
+// own data
 	MindSensorSet *sensors;
+	MindEffectorSet *effectors;
+	SensorArea *sensorArea;
+	EffectorArea *effectorArea;
+
+// references
 	MindSensorSet *sensorsOffline;
 	MindSensorSetTracker *sensorTracker;
-
-	Xml configEffectors;
-	EffectorArea *effectorArea;
-	MindEffectorSet *effectors;
 };
 
 /*#########################################################################*/
@@ -95,7 +99,10 @@ public:
 	MindSensor *getSensor( String name );
 
 private:
+// own data
 	ClassList<MindSensor> list;
+
+// references
 	MapStringToClass<MindSensor> map;
 };
 
@@ -111,7 +118,10 @@ public:
 	void addEffector( MindEffector *effector );
 
 private:
+// own data
 	ClassList<MindEffector> list;
+
+// references
 	MapStringToClass<MindEffector> map;
 };
 
@@ -166,15 +176,18 @@ public:
 	int getPollIntervalMs( int timeNowMs );
 
 private:
+// utility
 	// auto-polling
 	bool pollState;
 	int pollNextMs;
 	int pollIntervalMs;
 
+// own data
 	// memory
 	NeuroVector *memorySensoryData;
 	NeuroVector *memorySensoryControlState;
 
+// references
 	// links
 	NeuroLink *linkFeedForward;
 };
@@ -216,6 +229,7 @@ private:
 	void createPerceptionNeuroLinks( MindRegionLink *regionLink , MindRegion *srcRegion , MindRegion *dstRegion , MindSensor *sensor );
 
 private:
+// references
 	MindTarget *target;
 };
 
@@ -242,6 +256,7 @@ public:
 	virtual void asleepArea();
 
 private:
+// references
 	MindTarget *target;
 };
 

@@ -7,6 +7,8 @@
 #include "ah_mindbase.h"
 
 class MindService;
+class MindNet;
+class MindNetSet;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -31,10 +33,6 @@ class CortexRegion;
 class NucleiRegion;
 class NerveRegion;
 class MindRegionLink;
-class NeuroNet;
-class LayeredNet;
-class CompactNet;
-class SpreadNet;
 class NeuroLink;
 class NeuroPool;
 class ExcitatoryLink;
@@ -49,7 +47,6 @@ public:
 	void setMindTarget( MindTarget *target );
 	void addMindArea( MindArea *area );
 	void addMindRegion( MindRegion *region , String regionId , MindArea *area , MindLocation& areaLocation );
-	void addNeuroNet( NeuroNet *net , MindRegion *region );
 	void addNeuroLink( NeuroLink *link , NeuroPool *src , NeuroPool *dst );
 
 	// get mind map, specific mind area, region
@@ -61,11 +58,6 @@ public:
 	CortexRegion *createCortexRegion( MindArea *area );
 	NucleiRegion *createNucleiRegion( MindArea *area );
 	NerveRegion *createNerveRegion( MindArea *area );
-
-	// create core items - NeuroNet
-	LayeredNet *createLayeredNet( MindRegion *region );
-	CompactNet *createCompactNet( MindRegion *region );
-	SpreadNet *createSpreadNet( MindRegion *region );
 
 	// create core items - neurolinks
 	ExcitatoryLink *createExcitatoryLink( MindRegionLink *link );
@@ -117,21 +109,51 @@ private:
 	void unlock() { rfc_hnd_semunlock( lockStructure );	}
 
 private:
+// utility
 	RFC_HND lockStructure;
 	Xml config;
-
-	MindTarget *target;
-	MindSpace *mindSpace;
-	MindMap *mindMap;
-
-	MindAreaSet *areaSet;
-	MindRegionSet *regionSet;
-	MindAreaLinkSet *linkSet;
-	MindActiveMemory *activeMemory;
-
-	MessageSession *session;
 	int areaIdSeq;
 	int regionIdSeq;
+
+// own data
+	MindSpace *mindSpace;
+	MindMap *mindMap;
+	MindAreaSet *areaSet;
+	MindAreaLinkSet *linkSet;
+	MindActiveMemory *activeMemory;
+	MindNetSet *netSet;
+
+// references
+	MindTarget *target;
+	MindRegionSet *regionSet;
+	MessageSession *session;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class MindNet : public Object {
+public:
+	MindNet();
+	virtual ~MindNet();
+	virtual const char *getClass() { return( "MindNet" ); };
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class MindNetSet : public Object {
+public:
+	MindNetSet();
+	virtual ~MindNetSet();
+	virtual const char *getClass() { return( "MindNetSet" ); };
+
+private:
+// own data
+	ClassList<MindNet> list;
+
+// references
+	MapStringToClass<MindNet> map;
 };
 
 /*#########################################################################*/
