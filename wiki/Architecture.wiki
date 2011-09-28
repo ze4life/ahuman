@@ -44,14 +44,14 @@ MIND is a sole part of aHuman and has its own layered HLA:
   * mind region is HTM region for neocortex or structure having similar role
   * neurolink implements excitatory and inhibitory neurotransmitters and neuromodulators, resulting in different timing and mode of signal propagation
 
-|| *Layer* || *Components* || *Implements* || *Notes* ||
+|| *Layer* || *Key Components* || *Implements* || *Notes* ||
 || mind target || MindTarget, MindSensor, MindEffector || mind target framework and lifecycle || Provides facade interfaces to specific target, isolates of mind and platform design ||
-|| mind service || MindService || high-level mind construction and service lifecycle implementation, factory for specific mind components || Handles mind birth, growth and wake/sleep cycle ||
-|| mind area || MindArea and specific areas in unified aHuman mind || lifecycle of mind areas, regional nature and structure of unified mind || Sole mind architecture based on underlying techonologies of next layers ||
-|| mind region || MindRegion || connectivity architecture of specific mind tissue types - cortex, nuclei and nerve system || Based on low-level neural components ||
-|| mind matter || NeuroVector, NeuroPool, NeuroLink, NeuroNet || neuron types, neural networks, neurotransmitters || Effective representation of low-level mind state ||
-|| mind space || MindSpace, MindLocation, MindMap || geometry of the mind || One more real dimension in brain modeling ||
-|| mind stream || MindAreaLink, MindRegionLink, MindActiveMemory, MindMessage || principal mind flow || Effective execution of network signal propagation ||
+|| mind service || MindService, MindNet || high-level mind construction and service lifecycle implementation, factory for specific mind components, establish and maintain wide neural networks || Handles mind birth, growth and wake/sleep cycle ||
+|| mind area || MindArea and specific areas in unified aHuman mind || lifecycle of mind areas, regional nature and structure of unified mind || Sole mind architecture based on underlying technologies of next layers ||
+|| mind region || MindRegion and specific region types of cytoarchitecture || connectivity architecture of specific mind tissue types - cortex, nuclei and nerve system || Based on low-level neural components ||
+|| mind matter || NeuroVector, NeuroPool, NeuroLink and specific neurolink implementations according to neurotransmitter systems || neuron types, neural networks, neurotransmitters || Effective representation of low-level mind state ||
+|| mind stream || MindAreaLink, MindRegionLink, MindActiveMemory, MindMessage || principal mind connectivity and thought flow || Effective execution of network signal propagation ||
+|| mind space || MindSpace, MindLocation, MindMap and classes for configuring of areas and inter-area links || geometry of the mind || One more real dimension in brain modeling ||
 
 == Platform HLA ==
 
