@@ -29,16 +29,6 @@ void MindAreaInfo::createFromXml( Xml xml ) {
 	dy = xml.getIntProperty( "sizeY" );
 	dz = xml.getIntProperty( "sizeZ" );
 	location.setDimensions( dx , dy , dz );
-
-	// child elements are MindLink
-	for( Xml xmlChild = xml.getFirstChild( "MindLink" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "MindLink" ) ) {
-		// construct MindArea from attributes
-		MindAreaLinkInfo *info = new MindAreaLinkInfo;
-		info -> createFromXml( xmlChild );
-
-		// add
-		links.add( info );
-	}
 }
 
 bool MindAreaInfo::runEnabled() {

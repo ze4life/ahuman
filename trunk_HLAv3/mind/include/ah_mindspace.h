@@ -9,6 +9,7 @@
 class MindSpace;
 class MindLocation;
 class MindMap;
+class MindNetInfo;
 class MindAreaInfo;
 class MindAreaLinkInfo;
 
@@ -65,6 +66,28 @@ private:
 	int dx;
 	int dy;
 	int dz;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class MindNetInfo : public Object {
+public:
+	MindNetInfo();
+	~MindNetInfo();
+	virtual const char *getClass() { return( "MindNetInfo" ); };
+
+// operations
+public:
+	void createFromXml( Xml xml );
+	String getName();
+	bool runEnabled();
+
+// data
+public:
+// utility
+	String name;
+	bool enabled;
 };
 
 /*#########################################################################*/
@@ -153,16 +176,20 @@ public:
 public:
 	void createFromXml( Xml xml );
 
+	ClassList<MindNetInfo>& getMindNets() { return( mindNets ); };
 	ClassList<MindAreaInfo>& getMindAreas() { return( mindAreas ); };
 	ClassList<MindAreaLinkInfo>& getLinks() { return( mindLinks ); }
+	MindNetInfo *getNetByName( String netName );
 	MindAreaInfo *getAreaById( String areaId );
 
 private:
 // own data
+	ClassList<MindNetInfo> mindNets;
 	ClassList<MindAreaInfo> mindAreas;
 	ClassList<MindAreaLinkInfo> mindLinks;
 
 // references
+	MapStringToClass<MindNetInfo> mindNetMap;
 	MapStringToClass<MindAreaInfo> mindAreaMap;
 };
 
