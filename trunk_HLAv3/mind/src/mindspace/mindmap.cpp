@@ -5,7 +5,15 @@
 /*#########################################################################*/
 
 MindMap::~MindMap() {
+	mindNets.destroy();
 	mindAreas.destroy();
+	mindLinks.destroy();
+}
+
+MindNetInfo *MindMap::getNetByName( String netName ) {
+	MindNetInfo *info = mindNetMap.get( netName );
+	ASSERTMSG( info != NULL , "Wrong net name=" + netName );
+	return( info );
 }
 
 MindAreaInfo *MindMap::getAreaById( String areaId ) {
@@ -43,5 +51,26 @@ void MindMap::createFromXml( Xml xml ) {
 		MindAreaLinkInfo *info = new MindAreaLinkInfo;
 		info -> createFromXml( xmlChild );
 		mindLinks.add( info );
+	}
+
+	// child elements are MindNetInfo
+	Xml xmlNets = xml.getFirstChild( "MindNetworks" );
+
+	Xml xmlNetChild;
+	if( xmlNets.exists() )
+		xmlNetChild = xmlNets.getFirstChild( "MindNet" );
+	for( ; xmlNetChild.exists(); xmlNetChild = xmlNetChild.getNextChild( "MindNet" ) ) {
+		// construct MindArea from attributes
+		MindNetInfo *info = new MindNetInfo;
+		info -> createFromXml( xmlNetChild );
+		mindNets.add( info );
+
+		// get areaId
+		String name = info -> getName();
+		ASSERTMSG( !name.isEmpty() , "network is not defined: " + xmlNetChild.serialize() );
+		ASSERTMSG( mindNetMap.get( name ) == NULL , name + ": net duplicate found for name=" + name );
+
+		// add
+		mindNetMap.add( name , info );
 	}
 }
