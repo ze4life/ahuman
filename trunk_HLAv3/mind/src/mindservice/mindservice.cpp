@@ -14,6 +14,7 @@ MindService::MindService() {
 	// construct items
 	mindSpace = new MindSpace();
 	mindMap = new MindMap();
+	netSet = new MindNetSet();
 	areaSet = new MindAreaSet();
 	regionSet = new MindRegionSet();
 	linkSet = new MindAreaLinkSet();
@@ -56,6 +57,9 @@ void MindService::initService() {
 	// create messaging session for mind services
 	MessagingService *ms = MessagingService::getService();
 	session = ms -> createSession();
+
+	// create networks
+	createNetworks();
 
 	// create areas
 	createAreas();
@@ -100,12 +104,21 @@ void MindService::destroyService() {
 
 	delete mindSpace;
 	delete mindMap;
+	delete netSet;
 	delete areaSet;
 	delete regionSet;
 	delete linkSet;
 	delete activeMemory;
 
 	rfc_hnd_semdestroy( lockStructure );
+}
+
+void MindService::createNetworks() {
+	ClassList<MindNetInfo>& list = mindMap -> getMindNets();
+	for( int k = 0; k < list.count(); k++ ) {
+		MindNetInfo *netinfo = list.get( k );
+		netSet -> createNet( netinfo );
+	}
 }
 
 void MindService::createAreas() {
