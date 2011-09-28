@@ -10,6 +10,7 @@ class MindAreaLink;
 class MindAreaLinkSet;
 class MindRegionLink;
 class MindRegionLinkSet;
+class MindActiveMemory;
 class MindMessage;
 
 /*#########################################################################*/
@@ -43,14 +44,17 @@ public:
 	void addRegionLink( MindRegionLink *link );
 
 private:
-	MindAreaLinkInfo *info;
-
-	MindArea *sourceArea;
-	MindArea *destinationArea;
-	MindRegionLinkSet *links;
-
+// utility
 	MessageSession *session;
 	MessageSubscription *iosub;
+
+// own data
+	MindRegionLinkSet *links;
+
+// references
+	MindAreaLinkInfo *info;
+	MindArea *sourceArea;
+	MindArea *destinationArea;
 };
 
 /*#########################################################################*/
@@ -63,6 +67,7 @@ public:
 	void addSetItem( MindAreaLink *link );
 
 public:
+// own data
 	ClassList<MindAreaLink> list;
 };
 
@@ -86,6 +91,7 @@ public:
 	void addNeuroLink( NeuroLink *nt );
 
 public:
+// references
 	MindAreaLink *areaLink;
 	MindRegion *src;
 	MindRegion *dst;
@@ -106,7 +112,33 @@ public:
 	void destroyRegionLinkSet();
 
 public:
+// own data
 	ClassList<MindRegionLink> list;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class MindActiveMemoryObject;
+
+class MindActiveMemory : public Object {
+public:
+	MindActiveMemory();
+	~MindActiveMemory();
+	const char *getClass() { return( "MindActiveMemory" ); };
+
+	// lifecycle
+	void create( Xml config );
+	void start();
+	void stop();
+	void destroy();
+
+public:
+// utility
+	String threadPoolName;
+
+// own data
+	ClassList<MindActiveMemoryObject> memoryObjects;
 };
 
 /*#########################################################################*/
@@ -114,10 +146,6 @@ public:
 
 // class to snapshot outputs from cortex and transfer to other cortexes
 class MindMessage : public Message {
-private:
-	NeuroLink *link;
-	NeuroVector *data;
-
 public:
 	MindMessage( NeuroLink *p_link );
 	MindMessage( NeuroLink *p_link , NeuroVector *p_data );
@@ -127,6 +155,13 @@ public:
 public:
 	NeuroLink *getNeuroLink() { return( link ); };
 	NeuroVector *getMsgData();
+
+private:
+// own data
+	NeuroVector *data;
+
+// references
+	NeuroLink *link;
 };
 
 /*#########################################################################*/

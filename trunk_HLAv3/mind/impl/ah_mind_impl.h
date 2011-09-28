@@ -6,29 +6,8 @@
 
 #include <platform/include/ah_platform.h>
 
-class MindActiveMemory;
 class MindActiveMemoryObject;
 class MindSensorSetTracker;
-
-/*#########################################################################*/
-/*#########################################################################*/
-
-class MindActiveMemory : public Object {
-public:
-	MindActiveMemory();
-	~MindActiveMemory();
-	const char *getClass() { return( "MindActiveMemory" ); };
-
-	// lifecycle
-	void create( Xml config );
-	void start();
-	void stop();
-	void destroy();
-
-public:
-	String threadPoolName;
-	ClassList<MindActiveMemoryObject> memoryObjects;
-};
 
 /*#########################################################################*/
 /*#########################################################################*/

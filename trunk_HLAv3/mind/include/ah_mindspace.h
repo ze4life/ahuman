@@ -26,17 +26,6 @@ class MindAreaLinkInfo;
 // to diminish rough shapes of mind areas and cortexes, distances are adjusted by factor equal to distance between cortex/area centers
 // brain controls that areas/cortexes do not overlap
 class MindLocation : public Object {
-private:
-	// lower corner position (relative to parent)
-	int x;
-	int y;
-	int z;
-
-	// dimensions
-	int dx;
-	int dy;
-	int dz;
-
 public:
 	MindLocation() {
 		x = y = z = 0;
@@ -64,6 +53,18 @@ public:
 
 private:
 	bool placeLocationFirst( MindLocation& cover , MindLocation& add ) const;
+
+private:
+// utility
+	// lower corner position (relative to parent)
+	int x;
+	int y;
+	int z;
+
+	// dimensions
+	int dx;
+	int dy;
+	int dz;
 };
 
 /*#########################################################################*/
@@ -87,9 +88,14 @@ public:
 	void addLink( MindAreaLinkInfo *link ) { links.add( link );	};
 
 private:
+// utility
 	String areaId;
 	bool enabled;
+
+// own data
 	MindLocation location;
+
+// references
 	ClassList<MindAreaLinkInfo> links;
 };
 
@@ -111,6 +117,7 @@ public:
 
 // data
 public:
+// utility
 	String masterAreaId;
 	String slaveAreaId;
 	String channelId;
@@ -128,10 +135,6 @@ public:
 // operations
 public:
 	void createFromXml( Xml xml );
-
-// data
-public:
-	ClassList<MindLocation> items;
 };
 
 /*#########################################################################*/
@@ -155,8 +158,11 @@ public:
 	MindAreaInfo *getAreaById( String areaId );
 
 private:
+// own data
 	ClassList<MindAreaInfo> mindAreas;
 	ClassList<MindAreaLinkInfo> mindLinks;
+
+// references
 	MapStringToClass<MindAreaInfo> mindAreaMap;
 };
 

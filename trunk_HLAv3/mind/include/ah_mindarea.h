@@ -57,13 +57,17 @@ protected:
 	String addRegion( String group , String id , MindRegion *region );
 
 private:
-	MindAreaInfo *info;
-	MindRegionSet *regionSet;
-	MindRegionLinkSet *regionLinkSet;
-	MindAreaLinkSet *areaLinkSet;
-
+// utility
 	MessageSession *iosession;
 	MessagePublisher *iopub;
+
+// own data
+	MindRegionSet *regionSet;
+	MindRegionLinkSet *regionLinkSet;
+
+// references
+	MindAreaInfo *info;
+	MindAreaLinkSet *areaLinkSet;
 };
 
 /*#########################################################################*/
@@ -85,7 +89,10 @@ public:
 	void destroyAreaSet();
 
 public:
+// own data
 	ClassList<MindArea> list;
+
+// references
 	MapStringToClass<MindArea> map;
 };
 

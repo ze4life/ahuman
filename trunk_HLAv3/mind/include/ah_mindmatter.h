@@ -11,10 +11,6 @@ class NeuroPool;
 class NeuroPoolSet;
 class NeuroLink;
 class NeuroLinkSet;
-class NeuroNet;
-class LayeredNet;
-class CompactNet;
-class SpreadNet;
 class ExcitatoryLink;
 class InhibitoryLink;
 class ModulatoryLink;
@@ -35,6 +31,7 @@ public:
 	TwoIndexArray<neurovt>& getVectorData();
 
 private:
+// utility
 	TwoIndexArray<neurovt> data;
 };
 
@@ -46,6 +43,7 @@ public:
 	virtual const char *getClass() { return( "NeuroPool" ); };
 
 private:
+// own data
 	NeuroVector *output;
 };
 
@@ -57,6 +55,7 @@ public:
 	virtual const char *getClass() { return( "NeuroPoolSet" ); };
 
 private:
+// own data
 	ClassList<NeuroPool> list;
 };
 
@@ -76,8 +75,8 @@ public:
 	virtual void createNeuroLink() = 0;
 
 public:
+// references
 	MindRegionLink *regionLink;
-
 	NeuroVector *src;
 	NeuroPool *dst;
 };
@@ -93,43 +92,8 @@ public:
 	void projectData( neurovt *data , int size );
 
 public:
+// own data
 	ClassList<NeuroLink> list;
-};
-
-/*#########################################################################*/
-/*#########################################################################*/
-
-class NeuroNet : public Object {
-public:
-	virtual const char *getClass() = 0;
-
-private:
-	NeuroPoolSet *pools;
-	NeuroLinkSet *links;
-};
-
-/*#########################################################################*/
-/*#########################################################################*/
-
-class LayeredNet : public NeuroNet {
-public:
-	virtual const char *getClass() { return( "LayeredNet" ); };
-};
-
-/*#########################################################################*/
-/*#########################################################################*/
-
-class CompactNet : public NeuroNet {
-public:
-	virtual const char *getClass() { return( "CompactNet" ); };
-};
-
-/*#########################################################################*/
-/*#########################################################################*/
-
-class SpreadNet : public NeuroNet {
-public:
-	virtual const char *getClass() { return( "SpreadNet" ); };
 };
 
 /*#########################################################################*/
