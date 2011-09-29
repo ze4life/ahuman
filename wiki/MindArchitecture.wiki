@@ -39,7 +39,7 @@ class MindNetSet {MindNet[]} in MindService
    * BrainStemArea, CranialNerveArea
    * SpinalCordArea, MotorNerveArea
 {{{
-class MindArea {MindRegionSet, MindRegionLinkSet} in MindAreaSet
+class MindArea {MindRegionSet, MindRegionLinkSet, MindAreNet} in MindAreaSet
     class ThalamusArea : MindArea
     class PerceptionArea : MindArea
     class HippocampusArea : MindArea
@@ -55,6 +55,7 @@ class MindArea {MindRegionSet, MindRegionLinkSet} in MindAreaSet
     class CranialNerveArea : MindArea
     class MotorNerveArea : MindArea
 class MindAreaSet {MindArea[]} in MindService
+class MindAreaNet in MindArea
 }}}
   * mind region
    * MindRegion
