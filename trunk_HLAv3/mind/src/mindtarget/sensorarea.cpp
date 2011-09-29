@@ -33,53 +33,34 @@ void SensorArea::initRegionsInArea( MindTarget *p_target ) {
 
 	// create sensors
 	sensorSet -> createSensorSet( this );
-}
 
-void SensorArea::initMasterLinkToArea( MindAreaLink *link , String slaveAreaId ) {
-	if( slaveAreaId.equals( "PerceptionArea" ) )
-		initLinksToPerceptionArea( link );
-}
-
-
-void SensorArea::initSlaveLinkToArea( MindAreaLink *link , String masterAreaId ) {
+	// create networks
+	for( int k = 0; k < sensorSet -> getCount(); k++ ) {
+		MindSensor *sensor = sensorSet -> getSetItem( k );
+		createSensoryNetwork( sensor );
+	}
 }
 
 void SensorArea::wakeupArea( MindActiveMemory *activeMemory ) {
 }
 
-void SensorArea::asleepArea() {
+void SensorArea::suspendArea() {
 }
 
-void SensorArea::initLinksToPerceptionArea( MindAreaLink *link ) {
-	MindArea *dstArea = link -> getDestinationArea();
-
-	MindSensorSet *sensors = target -> getSensorSet();
-
-	// for each sensor create region link
-	MindRegionSet *srcset = MindArea::getRegionSet();
-	MindRegionSet *dstset = dstArea -> getRegionSet();
-	for( int k = 0; k < sensors -> getCount(); k++ ) {
-		// get regions
-		MindSensor *sensor = sensors -> getSetItem( k );
-		MindRegion *srcRegion = srcset -> getSetItemById( String( getClass() ) + "." + sensor -> getClass() );
-		ASSERTMSG( srcRegion != NULL , "initLinksToPerceptionArea: unknown source region for sensor=" + String( sensor -> getClass() ) );
-		MindRegion *dstRegion = dstset -> getSetItemById( String( dstArea -> getClass() ) + "." + sensor -> getClass() );
-		ASSERTMSG( dstRegion != NULL , "initLinksToPerceptionArea: unknown destination region for sensor=" + String( sensor -> getClass() ) );
-
-		// creater link
-		MindRegionLink *regionLink = new MindRegionLink( link );
-		regionLink -> createRegionLink( srcRegion , dstRegion );
-		link -> addRegionLink( regionLink );
-
-		// add neurolinks
-		createPerceptionNeuroLinks( regionLink , srcRegion , dstRegion , sensor );
-	}
-}
-
-void SensorArea::createPerceptionNeuroLinks( MindRegionLink *regionLink , MindRegion *srcRegion , MindRegion *dstRegion , MindSensor *sensor ) {
+void SensorArea::createSensoryNetwork( MindSensor *sensor ) {
+	// create separate network for sensor - by its name
 	MindService *ms = MindService::getService();
-	NeuroLink *linkdirect = ms -> createExcitatoryLink( regionLink );
 
-	linkdirect -> create( sensor -> getSensoryData() , dstRegion -> getFeedForwardInputPool() );
+	// find mind network
+	String name = sensor -> getClass();
+	MindNet *net = ms -> getMindNet( name );
+
+	// create mind area network
+	MindAreaNet *areaNet = new MindAreaNet( net );
+
+	// add the only region
+	areaNet -> addRegion( sensor );
+
+	// add network to area network set
+	MindArea::addNet( areaNet );
 }
-

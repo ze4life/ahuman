@@ -8,7 +8,8 @@ MindArea::MindArea() {
 	info = NULL;
 	regionSet = NULL;
 	regionLinkSet = NULL;
-	areaLinkSet = NULL;
+	areaMasterLinkSet = NULL;
+	areaSlaveLinkSet = NULL;
 
 	iosession = NULL;
 	iopub = NULL;
@@ -28,24 +29,12 @@ MindAreaInfo *MindArea::getMindAreaInfo() {
 void MindArea::create() {
 	regionSet = new MindRegionSet;
 	regionLinkSet = new MindRegionLinkSet;
-	areaLinkSet = new MindAreaLinkSet;
+	areaMasterLinkSet = new MindAreaLinkSet;
+	areaSlaveLinkSet = new MindAreaLinkSet;
 
 	MessagingService *ms = MessagingService::getService();
 	iosession = ms -> createSession();
 	iopub = ms -> createPublisher( iosession , getClass() ,  getClass() , "MindMessage" );
-}
-
-// mind area links
-MindAreaLink *MindArea::createMindLink( MindArea *slaveArea , MindAreaLinkInfo *linkInfo , MessageSession *session ) {
-	// create link
-	MindAreaLink *link = new MindAreaLink( linkInfo );
-	link -> open( session );
-
-	initMasterLinkToArea( link , linkInfo -> getSlaveAreaId() );
-	slaveArea -> initSlaveLinkToArea( link , linkInfo -> getMasterAreaId() );
-
-	areaLinkSet -> addSetItem( link );
-	return( link );
 }
 
 void MindArea::exit() {
@@ -66,9 +55,13 @@ void MindArea::destroy() {
 		delete regionLinkSet;
 		regionLinkSet = NULL;
 	}
-	if( areaLinkSet != NULL ) {
-		delete areaLinkSet;
-		areaLinkSet = NULL;
+	if( areaMasterLinkSet != NULL ) {
+		delete areaMasterLinkSet;
+		areaMasterLinkSet = NULL;
+	}
+	if( areaSlaveLinkSet != NULL ) {
+		delete areaSlaveLinkSet;
+		areaSlaveLinkSet = NULL;
 	}
 }
 
@@ -94,3 +87,26 @@ void MindArea::sendMessage( MindMessage *msg ) {
 	iopub -> publish( iosession , msg );
 }
 
+void MindArea::getNetworks( StringList& list ) {
+	for( int k = 0; k < nets.count(); k++ ) {
+		String key = nets.getKeyByIndex( k );
+		list.add( key );
+	}
+}
+
+MindAreaNet *MindArea::getMindNet( String net ) {
+	return( nets.get( net ) );
+}
+
+void MindArea::addNet( MindAreaNet *areaNet ) {
+	MindNet *net = areaNet -> getNet();
+	nets.add( net -> getName() , areaNet );
+}
+
+void MindArea::addMasterLink( MindAreaLink *link ) {
+	areaMasterLinkSet -> addSetItem( link );
+}
+
+void MindArea::addSlaveLink( MindAreaLink *link ) {
+	areaSlaveLinkSet -> addSetItem( link );
+}

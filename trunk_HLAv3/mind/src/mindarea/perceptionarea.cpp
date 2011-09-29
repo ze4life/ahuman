@@ -12,10 +12,8 @@ public:
 public:
 	// mind area lifecycle
 	virtual void initRegionsInArea( MindTarget *target );
-	virtual void initMasterLinkToArea( MindAreaLink *link , String slaveAreaId ) {};
-	virtual void initSlaveLinkToArea( MindAreaLink *link , String masterAreaId ) {};
 	virtual void wakeupArea( MindActiveMemory *activeMemory ) {};
-	virtual void asleepArea() {};
+	virtual void suspendArea() {};
 
 private:
 	MindTarget *target;

@@ -205,6 +205,7 @@ public:
 
 class MindRegion;
 class MindRegionLink;
+class MindAreaNet;
 
 class SensorArea : public MindArea {
 public:
@@ -219,14 +220,11 @@ public:
 
 	// MindArea lifecycle
 	virtual void initRegionsInArea( MindTarget *target );
-	virtual void initMasterLinkToArea( MindAreaLink *link , String slaveAreaId );
-	virtual void initSlaveLinkToArea( MindAreaLink *link , String masterAreaId );
 	virtual void wakeupArea( MindActiveMemory *activeMemory );
-	virtual void asleepArea();
+	virtual void suspendArea();
 
 private:
-	void initLinksToPerceptionArea( MindAreaLink *link );
-	void createPerceptionNeuroLinks( MindRegionLink *regionLink , MindRegion *srcRegion , MindRegion *dstRegion , MindSensor *sensor );
+	void createSensoryNetwork( MindSensor *sensor );
 
 private:
 // references
@@ -250,10 +248,8 @@ public:
 
 	// mind area lifecycle
 	virtual void initRegionsInArea( MindTarget *target );
-	virtual void initMasterLinkToArea( MindAreaLink *link , String slaveAreaId );
-	virtual void initSlaveLinkToArea( MindAreaLink *link , String masterAreaId );
 	virtual void wakeupArea( MindActiveMemory *activeMemory );
-	virtual void asleepArea();
+	virtual void suspendArea();
 
 private:
 // references

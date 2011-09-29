@@ -20,6 +20,7 @@ class MindSpace;
 class MindLocation;
 class MindArea;
 class MindAreaSet;
+class MindAreaNet;
 class MindRegion;
 class MindRegionSet;
 class MindMap;
@@ -49,10 +50,11 @@ public:
 	void addMindRegion( MindRegion *region , String regionId , MindArea *area , MindLocation& areaLocation );
 	void addNeuroLink( NeuroLink *link , NeuroPool *src , NeuroPool *dst );
 
-	// get mind map, specific mind area, region
+	// get mind map, specific mind area, region, network
 	MindMap *getMindMap();
 	MindArea *getMindArea( String areaId );
 	MindRegion *getMindRegion( String regionId );
+	MindNet *getMindNet( String net );
 	  
 	// create core items - regions
 	CortexRegion *createCortexRegion( MindArea *area );
@@ -102,8 +104,10 @@ private:
 	void establishAreaLinks();
 
 	void createArea( String areaId , MindArea *(MindService::*pfn)() );
-	MindAreaLink *createMindLink( MindAreaLinkInfo *linkInfo , MindArea *masterArea , MindArea *slaveArea );
 	void addMindRegion( String regionId , MindRegion *region , const MindLocation& relativeLocation );
+	void createMindAreaLink( MindArea *masterArea , MindArea *slaveArea , MindAreaLinkInfo *linkInfo );
+	void createRegionLinks( MindAreaLink *link , MindAreaNet *masterNet , MindAreaNet *slaveNet );
+	void createRegionLink( MindAreaLink *link , MindRegion *masterRegion , MindRegion *slaveRegion );
 
 	// structure lock
 	void lock() { rfc_hnd_semlock( lockStructure );	}
@@ -165,6 +169,7 @@ public:
 	virtual const char *getClass() { return( "MindNetSet" ); };
 
 	MindNet *createNet( MindNetInfo *info );
+	MindNet *getNet( String net );
 	
 private:
 // own data

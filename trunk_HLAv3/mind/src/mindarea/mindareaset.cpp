@@ -23,9 +23,9 @@ void MindAreaSet::wakeupAreaSet( MindActiveMemory *activeMemory ) {
 		list.get( k ) -> wakeupArea( activeMemory );
 }
 
-void MindAreaSet::asleepAreaSet() {
+void MindAreaSet::suspendAreaSet() {
 	for( int k = 0; k < list.count(); k++ )
-		list.get( k ) -> asleepArea();
+		list.get( k ) -> suspendArea();
 }
 
 void MindAreaSet::exitAreaSet() {
