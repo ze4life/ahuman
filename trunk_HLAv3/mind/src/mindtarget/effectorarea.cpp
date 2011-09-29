@@ -33,14 +33,8 @@ MindTarget *EffectorArea::getTarget() {
 void EffectorArea::initRegionsInArea( MindTarget *target ) {
 }
 
-void EffectorArea::initMasterLinkToArea( MindAreaLink *link , String slaveAreaId ) {
-}
-
-void EffectorArea::initSlaveLinkToArea( MindAreaLink *link , String masterAreaId ) {
-}
-
 void EffectorArea::wakeupArea( MindActiveMemory *activeMemory ) {
 }
 
-void EffectorArea::asleepArea() {
+void EffectorArea::suspendArea() {
 }

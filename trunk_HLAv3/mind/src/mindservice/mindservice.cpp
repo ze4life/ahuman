@@ -81,7 +81,7 @@ void MindService::runService() {
 
 void MindService::stopService() {
 	// sent areas to sleep
-	areaSet -> asleepAreaSet();
+	areaSet -> suspendAreaSet();
 
 	// stop thinking
 	activeMemory -> stop();
@@ -196,8 +196,7 @@ void MindService::establishAreaLinks() {
 			continue;
 
 		// create link
-		MindAreaLink *link = masterArea -> createMindLink( slaveArea , info , session );
-		linkSet -> addSetItem( link );
+		createMindAreaLink( masterArea , slaveArea , info );
 	}
 }
 
@@ -210,6 +209,75 @@ MindRegion *MindService::getMindRegion( String regionId ) {
 	MindRegion *region = regionSet -> getSetItemById( regionId );
 	ASSERTMSG( region != NULL , "getMindRegion: region is not found by id=" + regionId );
 	return( region );
+}
+
+MindNet *MindService::getMindNet( String netName ) {
+	MindNet *net = netSet -> getNet( netName );
+	ASSERTMSG( net != NULL , "getMindNet: net is not found by name=" + netName );
+	return( net );
+}
+
+// mind area links
+void MindService::createMindAreaLink( MindArea *masterArea , MindArea *slaveArea , MindAreaLinkInfo *linkInfo ) {
+	// create link
+	MindAreaLink *link = new MindAreaLink( linkInfo );
+	link -> open( session );
+
+	// add to link set
+	masterArea -> addSlaveLink( link );
+	slaveArea -> addMasterLink( link );
+	linkSet -> addSetItem( link );
+
+	// create region mapping
+	StringList networks;
+	masterArea -> getNetworks( networks );
+	for( int k = 0; k < networks.count(); k++ ) {
+		String net = networks.get( k );
+		MindAreaNet *masterNet = masterArea -> getMindNet( net );
+		MindAreaNet *slaveNet = slaveArea -> getMindNet( net );
+		if( masterNet == NULL || slaveNet == NULL )
+			continue;
+
+		// create regional links
+		createRegionLinks( link , masterNet , slaveNet );
+	}
+}
+
+void MindService::createRegionLinks( MindAreaLink *link , MindAreaNet *masterNet , MindAreaNet *slaveNet ) {
+	ClassList<MindRegion>& masterRegions = masterNet -> getRegions();
+	ClassList<MindRegion>& slaveRegions = slaveNet -> getRegions();
+
+	// make linear topological mapping
+	int n1 = masterRegions.count();
+	int n2 = slaveRegions.count();
+	if( n1 == 0 || n2 == 0 )
+		return;
+
+	// mapping factor
+	int k2 = 0;
+	for( int k1 = 0; k1 < n1; k1++ ) {
+		MindRegion *masterRegion = masterRegions.get( k1 );
+
+		// find terminal index for k1 mapping
+		int n2k1 = 10 * n2 * k1 / n1;
+		if( n2k1 % 5 > 5 )
+			n2k1 = n2k1/10 + 1;
+		else
+			n2k1 = n2k1/10;
+		if( n2k1 >= n2 )
+			n2k1 = n2 - 1;
+
+		for( ; k2 <= n2k1; k2++ ) {
+			MindRegion *slaveRegion = slaveRegions.get( k1 );
+			createRegionLink( link , masterRegion , slaveRegion );
+		}
+	}
+}
+
+void MindService::createRegionLink( MindAreaLink *areaLink , MindRegion *masterRegion , MindRegion *slaveRegion ) {
+	MindRegionLink *link = new MindRegionLink( areaLink );
+	link -> createRegionLink( masterRegion , slaveRegion );
+	areaLink -> addRegionLink( link );
 }
 
 ExcitatoryLink *MindService::createExcitatoryLink( MindRegionLink *link ) {

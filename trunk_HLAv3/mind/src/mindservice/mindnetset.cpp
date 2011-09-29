@@ -18,3 +18,6 @@ MindNet *MindNetSet::createNet( MindNetInfo *info ) {
 	return( net );
 }
 
+MindNet *MindNetSet::getNet( String net ) {
+	return( map.get( net ) );
+}
