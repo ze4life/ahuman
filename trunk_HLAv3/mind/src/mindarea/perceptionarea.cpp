@@ -40,11 +40,8 @@ void PerceptionArea::initRegionsInArea( MindTarget *p_target ) {
 		// create region for cortex
 		CortexRegion *region = new CortexRegion();
 		MindArea::addRegion( getClass() , sensor -> getClass() , region );
-	}
 
-	// create networks
-	for( int k = 0; k < sensorSet -> getCount(); k++ ) {
-		MindSensor *sensor = sensorSet -> getSetItem( k );
+		// add to network
 		createSensoryNetwork( sensor );
 	}
 }
