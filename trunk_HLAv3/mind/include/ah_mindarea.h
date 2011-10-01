@@ -60,6 +60,7 @@ public:
 
 protected:
 	String addRegion( String group , String id , MindRegion *region );
+	MindRegion *getRegion( String group , String id );
 
 private:
 // utility

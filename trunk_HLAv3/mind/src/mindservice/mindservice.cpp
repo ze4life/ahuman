@@ -117,7 +117,7 @@ void MindService::createNetworks() {
 	ClassList<MindNetInfo>& list = mindMap -> getMindNets();
 	for( int k = 0; k < list.count(); k++ ) {
 		MindNetInfo *netinfo = list.get( k );
-		netSet -> createNet( netinfo );
+		netSet -> createMindNet( netinfo );
 	}
 }
 
@@ -212,7 +212,7 @@ MindRegion *MindService::getMindRegion( String regionId ) {
 }
 
 MindNet *MindService::getMindNet( String netName ) {
-	MindNet *net = netSet -> getNet( netName );
+	MindNet *net = netSet -> getMindNet( netName );
 	ASSERTMSG( net != NULL , "getMindNet: net is not found by name=" + netName );
 	return( net );
 }
@@ -221,29 +221,33 @@ MindNet *MindService::getMindNet( String netName ) {
 void MindService::createMindAreaLink( MindArea *masterArea , MindArea *slaveArea , MindAreaLinkInfo *linkInfo ) {
 	// create link
 	MindAreaLink *link = new MindAreaLink( linkInfo );
-	link -> open( session );
 
 	// add to link set
 	masterArea -> addSlaveLink( link );
 	slaveArea -> addMasterLink( link );
 	linkSet -> addSetItem( link );
+	logger.logInfo( "createMindAreaLink: create link masterArea=" + linkInfo -> getMasterAreaId() + ", slaveArea=" + linkInfo -> getSlaveAreaId() + "..." );
 
 	// create region mapping
 	StringList networks;
 	masterArea -> getNetworks( networks );
 	for( int k = 0; k < networks.count(); k++ ) {
-		String net = networks.get( k );
-		MindAreaNet *masterNet = masterArea -> getMindNet( net );
-		MindAreaNet *slaveNet = slaveArea -> getMindNet( net );
+		String netName = networks.get( k );
+		MindNet *net = getMindNet( netName );
+		MindAreaNet *masterNet = masterArea -> getMindNet( netName );
+		MindAreaNet *slaveNet = slaveArea -> getMindNet( netName );
 		if( masterNet == NULL || slaveNet == NULL )
 			continue;
 
 		// create regional links
-		createRegionLinks( link , masterNet , slaveNet );
+		createMindRegionLinks( link , net , masterNet , slaveNet );
 	}
+
+	// start process area link messages
+	link -> open( session );
 }
 
-void MindService::createRegionLinks( MindAreaLink *link , MindAreaNet *masterNet , MindAreaNet *slaveNet ) {
+void MindService::createMindRegionLinks( MindAreaLink *link , MindNet *net , MindAreaNet *masterNet , MindAreaNet *slaveNet ) {
 	ClassList<MindRegion>& masterRegions = masterNet -> getRegions();
 	ClassList<MindRegion>& slaveRegions = slaveNet -> getRegions();
 
@@ -269,12 +273,14 @@ void MindService::createRegionLinks( MindAreaLink *link , MindAreaNet *masterNet
 
 		for( ; k2 <= n2k1; k2++ ) {
 			MindRegion *slaveRegion = slaveRegions.get( k1 );
-			createRegionLink( link , masterRegion , slaveRegion );
+			createMindRegionLink( link , net , masterRegion , slaveRegion );
 		}
 	}
 }
 
-void MindService::createRegionLink( MindAreaLink *areaLink , MindRegion *masterRegion , MindRegion *slaveRegion ) {
+void MindService::createMindRegionLink( MindAreaLink *areaLink , MindNet *net , MindRegion *masterRegion , MindRegion *slaveRegion ) {
+	logger.logDebug( "createMindRegionLink: create link net=" + net -> getName() + ", masterRegion=" + masterRegion -> getRegionId() + ", slaveRegion=" + slaveRegion -> getRegionId() + "..." );
+
 	MindRegionLink *link = new MindRegionLink( areaLink );
 	link -> createRegionLink( masterRegion , slaveRegion );
 	areaLink -> addRegionLink( link );

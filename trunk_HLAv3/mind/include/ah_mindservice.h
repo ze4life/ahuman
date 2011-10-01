@@ -106,8 +106,8 @@ private:
 	void createArea( String areaId , MindArea *(MindService::*pfn)() );
 	void addMindRegion( String regionId , MindRegion *region , const MindLocation& relativeLocation );
 	void createMindAreaLink( MindArea *masterArea , MindArea *slaveArea , MindAreaLinkInfo *linkInfo );
-	void createRegionLinks( MindAreaLink *link , MindAreaNet *masterNet , MindAreaNet *slaveNet );
-	void createRegionLink( MindAreaLink *link , MindRegion *masterRegion , MindRegion *slaveRegion );
+	void createMindRegionLinks( MindAreaLink *link , MindNet *net , MindAreaNet *masterNet , MindAreaNet *slaveNet );
+	void createMindRegionLink( MindAreaLink *link , MindNet *net , MindRegion *masterRegion , MindRegion *slaveRegion );
 
 	// structure lock
 	void lock() { rfc_hnd_semlock( lockStructure );	}
@@ -168,8 +168,8 @@ public:
 	virtual ~MindNetSet();
 	virtual const char *getClass() { return( "MindNetSet" ); };
 
-	MindNet *createNet( MindNetInfo *info );
-	MindNet *getNet( String net );
+	MindNet *createMindNet( MindNetInfo *info );
+	MindNet *getMindNet( String net );
 	
 private:
 // own data
