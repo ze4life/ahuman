@@ -83,6 +83,11 @@ String MindArea::addRegion( String group , String id , MindRegion *region ) {
 	return( regionId );
 }
 
+MindRegion *MindArea::getRegion( String group , String id ) {
+	String regionId = group + "." + id;
+	return( regionSet -> getSetItemById( regionId ) );
+}
+
 void MindArea::sendMessage( MindMessage *msg ) {
 	iopub -> publish( iosession , msg );
 }

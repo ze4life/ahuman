@@ -5,19 +5,22 @@
 /*#########################################################################*/
 
 MindNetSet::MindNetSet() {
+	attachLogger();
 	list.destroy();
 }
 
 MindNetSet::~MindNetSet() {
 }
 
-MindNet *MindNetSet::createNet( MindNetInfo *info ) {
+MindNet *MindNetSet::createMindNet( MindNetInfo *info ) {
 	MindNet *net = new MindNet();
 	net -> setInfo( info );
 	map.set( net -> getName() , net );
+
+	logger.logInfo( "createMindNet: mind network created name=" + net -> getName() );
 	return( net );
 }
 
-MindNet *MindNetSet::getNet( String net ) {
+MindNet *MindNetSet::getMindNet( String net ) {
 	return( map.get( net ) );
 }
