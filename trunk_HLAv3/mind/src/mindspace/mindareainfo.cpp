@@ -15,8 +15,10 @@ MindAreaInfo::~MindAreaInfo() {
 
 void MindAreaInfo::createFromXml( Xml xml ) {
 	// attributes are properties
-	enabled = xml.getBooleanAttribute( "enabled" , true );
 	areaId = xml.getAttribute( "id" );
+	enabled = xml.getBooleanAttribute( "enabled" , true );
+	if( !enabled )
+		return;
 
 	int x , y , z;
 	x = xml.getIntProperty( "posX" );
@@ -29,6 +31,10 @@ void MindAreaInfo::createFromXml( Xml xml ) {
 	dy = xml.getIntProperty( "sizeY" );
 	dz = xml.getIntProperty( "sizeZ" );
 	location.setDimensions( dx , dy , dz );
+
+	String transmittersList = xml.getProperty( "transmitters" , "" );
+	transmittersList.split( transmitters , "," );
+	transmitters.trim();
 }
 
 bool MindAreaInfo::runEnabled() {

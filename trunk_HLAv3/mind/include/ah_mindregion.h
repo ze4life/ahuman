@@ -31,13 +31,6 @@ public:
 	virtual void exitRegion() = 0;
 	virtual void destroyRegion() = 0;
 
-	// link creation
-	virtual void createNeuroLinks( MindRegionLink *link , MindRegion *dst ) = 0;
-	virtual void createNeuroLinksFromCortexRegion( MindRegionLink *link , CortexRegion *src ) = 0;
-	virtual void createNeuroLinksFromNucleiRegion( MindRegionLink *link , NucleiRegion *src ) = 0;
-	virtual void createNeuroLinksFromNerveRegion( MindRegionLink *link , NerveRegion *src ) = 0;
-	virtual void createNeuroLinksFromSensorRegion( MindRegionLink *link , MindSensor *src ) = 0;
-
 	// access to pools
 	virtual NeuroPool *getFeedForwardInputPool() = 0;
 
@@ -102,13 +95,6 @@ public:
 	virtual void exitRegion();
 	virtual void destroyRegion();
 
-	// link creation
-	virtual void createNeuroLinks( MindRegionLink *link , MindRegion *dst );
-	virtual void createNeuroLinksFromCortexRegion( MindRegionLink *link , CortexRegion *src );
-	virtual void createNeuroLinksFromNucleiRegion( MindRegionLink *link , NucleiRegion *src );
-	virtual void createNeuroLinksFromNerveRegion( MindRegionLink *link , NerveRegion *src );
-	virtual void createNeuroLinksFromSensorRegion( MindRegionLink *link , MindSensor *src );
-
 	// access to pools
 	virtual NeuroPool *getFeedForwardInputPool();
 };
@@ -126,13 +112,6 @@ public:
 	virtual void createRegion();
 	virtual void exitRegion();
 	virtual void destroyRegion();
-
-	// link creation
-	virtual void createNeuroLinks( MindRegionLink *link , MindRegion *dst );
-	virtual void createNeuroLinksFromCortexRegion( MindRegionLink *link , CortexRegion *src );
-	virtual void createNeuroLinksFromNucleiRegion( MindRegionLink *link , NucleiRegion *src );
-	virtual void createNeuroLinksFromNerveRegion( MindRegionLink *link , NerveRegion *src );
-	virtual void createNeuroLinksFromSensorRegion( MindRegionLink *link , MindSensor *src );
 };
 
 /*#########################################################################*/
@@ -148,13 +127,6 @@ public:
 	virtual void createRegion();
 	virtual void exitRegion();
 	virtual void destroyRegion();
-
-	// link creation
-	virtual void createNeuroLinks( MindRegionLink *link , MindRegion *dst );
-	virtual void createNeuroLinksFromCortexRegion( MindRegionLink *link , CortexRegion *src );
-	virtual void createNeuroLinksFromNucleiRegion( MindRegionLink *link , NucleiRegion *src );
-	virtual void createNeuroLinksFromNerveRegion( MindRegionLink *link , NerveRegion *src );
-	virtual void createNeuroLinksFromSensorRegion( MindRegionLink *link , MindSensor *src );
 };
 
 /*#########################################################################*/

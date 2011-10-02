@@ -399,6 +399,7 @@ private:
 
 extern "C" static int lstcompareStringListAscend( void *p_userdata , const RFC_TYPE *p_e1 , const RFC_TYPE *p_e2 );
 extern "C" static int lstcompareStringListDescend( void *p_userdata , const RFC_TYPE *p_e1 , const RFC_TYPE *p_e2 );
+extern void trimString( char *p , const char *trimChars );
 
 class StringList {
 public:
@@ -428,11 +429,15 @@ public:
 		v.u_c = value;
 		rfc_lst_replace( data , index , &v );
 	}
-	int find( String file ) {
+	int find( String name ) {
 		for( int k = 0; k < data -> s_n; k++ )
-			if( file.equals( data -> s_p[ k ].u_c ) )
+			if( name.equals( data -> s_p[ k ].u_c ) )
 				return( k );
 		return( -1 );
+	}
+	void trim() {
+		for( int k = 0; k < data -> s_n; k++ )
+			trimString( data -> s_p[ k ].u_s , " \t\n\r\v" );
 	}
 
 	void sort() {

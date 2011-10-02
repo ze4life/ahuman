@@ -149,13 +149,6 @@ private:
 	virtual void exitRegion();
 	virtual void destroyRegion();
 
-	// link creation
-	virtual void createNeuroLinks( MindRegionLink *link , MindRegion *dst );
-	virtual void createNeuroLinksFromCortexRegion( MindRegionLink *link , CortexRegion *src );
-	virtual void createNeuroLinksFromNucleiRegion( MindRegionLink *link , NucleiRegion *src );
-	virtual void createNeuroLinksFromNerveRegion( MindRegionLink *link , NerveRegion *src );
-	virtual void createNeuroLinksFromSensorRegion( MindRegionLink *link , MindSensor *src );
-
 	// access to pools
 	virtual NeuroPool *getFeedForwardInputPool() { return( NULL ); };
 

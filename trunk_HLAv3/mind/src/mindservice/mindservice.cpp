@@ -282,7 +282,7 @@ void MindService::createMindRegionLink( MindAreaLink *areaLink , MindNet *net , 
 	logger.logDebug( "createMindRegionLink: create link net=" + net -> getName() + ", masterRegion=" + masterRegion -> getRegionId() + ", slaveRegion=" + slaveRegion -> getRegionId() + "..." );
 
 	MindRegionLink *link = new MindRegionLink( areaLink );
-	link -> createRegionLink( masterRegion , slaveRegion );
+	link -> createRegionLink( net , areaLink , masterRegion , slaveRegion );
 	areaLink -> addRegionLink( link );
 }
 
