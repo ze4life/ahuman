@@ -23,7 +23,16 @@ MindAreaInfo *MindMap::getAreaById( String areaId ) {
 }
 
 void MindMap::createFromXml( Xml xml ) {
-	// child elements are MindAreaInfo
+	createAreaSet( xml.getFirstChild( "MindAreaSet" ) );
+	createMindLinkSet( xml.getFirstChild( "MindLinkSet" ) );
+	createNetworkTypeSet( xml.getFirstChild( "MindNetworkTypeSet" ) );
+	createNetworkSet( xml.getFirstChild( "MindNetworkSet" ) );
+}
+
+void MindMap::createAreaSet( Xml xml ) {
+	if( !xml.exists() )
+		return;
+
 	for( Xml xmlChild = xml.getFirstChild( "MindArea" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "MindArea" ) ) {
 		// construct MindArea from attributes
 		MindAreaInfo *info = new MindAreaInfo;
@@ -39,27 +48,45 @@ void MindMap::createFromXml( Xml xml ) {
 		// add
 		mindAreaMap.add( id , info );
 	}
+}
 
-	// child elements are MindAreaInfo
-	Xml xmlLinks = xml.getFirstChild( "MindLinks" );
+void MindMap::createMindLinkSet( Xml xml ) {
+	if( !xml.exists() )
+		return;
 
-	Xml xmlChild;
-	if( xmlLinks.exists() )
-		xmlChild = xmlLinks.getFirstChild( "MindLink" );
-	for( ; xmlChild.exists(); xmlChild = xmlChild.getNextChild( "MindLink" ) ) {
+	for( Xml xmlChild = xml.getFirstChild( "MindLink" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "MindLink" ) ) {
 		// construct MindArea from attributes
 		MindAreaLinkInfo *info = new MindAreaLinkInfo;
 		info -> createFromXml( xmlChild );
 		mindLinks.add( info );
 	}
+}
 
-	// child elements are MindNetInfo
-	Xml xmlNets = xml.getFirstChild( "MindNetworks" );
+void MindMap::createNetworkTypeSet( Xml xml ) {
+	if( !xml.exists() )
+		return;
 
-	Xml xmlNetChild;
-	if( xmlNets.exists() )
-		xmlNetChild = xmlNets.getFirstChild( "MindNet" );
-	for( ; xmlNetChild.exists(); xmlNetChild = xmlNetChild.getNextChild( "MindNet" ) ) {
+	for( Xml xmlNetChild = xml.getFirstChild( "MindNetworkType" ); xmlNetChild.exists(); xmlNetChild = xmlNetChild.getNextChild( "MindNetworkType" ) ) {
+		// construct MindArea from attributes
+		MindNetworkType *netType = new MindNetworkType;
+		netType -> createFromXml( xmlNetChild );
+		netTypes.add( netType );
+
+		// get areaId
+		String name = netType -> getName();
+		ASSERTMSG( !name.isEmpty() , "network type is not defined: " + xmlNetChild.serialize() );
+		ASSERTMSG( netTypeMap.get( name ) == NULL , name + ": net type duplicate found for name=" + name );
+
+		// add
+		netTypeMap.add( name , netType );
+	}
+}
+
+void MindMap::createNetworkSet( Xml xml ) {
+	if( !xml.exists() )
+		return;
+
+	for( Xml xmlNetChild = xml.getFirstChild( "MindNet" ); xmlNetChild.exists(); xmlNetChild = xmlNetChild.getNextChild( "MindNet" ) ) {
 		// construct MindArea from attributes
 		MindNetInfo *info = new MindNetInfo;
 		info -> createFromXml( xmlNetChild );
@@ -69,6 +96,12 @@ void MindMap::createFromXml( Xml xml ) {
 		String name = info -> getName();
 		ASSERTMSG( !name.isEmpty() , "network is not defined: " + xmlNetChild.serialize() );
 		ASSERTMSG( mindNetMap.get( name ) == NULL , name + ": net duplicate found for name=" + name );
+
+		// set net type
+		String netTypeName = info -> getTypeName();
+		MindNetworkType *netType = netTypeMap.get( netTypeName );
+		ASSERTMSG( netType != NULL , "unknown network type: name=" + netTypeName );
+		info -> setNetType( netType );
 
 		// add
 		mindNetMap.add( name , info );

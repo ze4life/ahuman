@@ -521,3 +521,24 @@ String operator +( const String& s1 , bool value ) {
 	s += ( value )? "true" : "false";
 	return( s );
 }
+
+void trimString( char *p , const char *trimChars ) {
+	// start
+	char *pb = strtok( p , trimChars );
+	if( pb == NULL ) {
+		*p = 0;
+		return;
+	}
+
+	// end
+	int len = strlen( pb );
+	char *px = pb + len - 1;
+	for( ; len > 0; len-- , px-- )
+		if( strchr( trimChars , *px ) == NULL ) {
+			*++px = 0;
+			break;
+		}
+
+	// move
+	memmove( p , pb , px - pb + 1 );
+}

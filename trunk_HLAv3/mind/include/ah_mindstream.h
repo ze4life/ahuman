@@ -85,7 +85,7 @@ public:
 	MindRegion *getSrcRegion();
 	MindRegion *getDstRegion();
 
-	void createRegionLink( MindRegion *srcRegion , MindRegion *dstRegion );
+	void createRegionLink( MindNet *net , MindAreaLink *areaLink , MindRegion *srcRegion , MindRegion *dstRegion );
 	void exitRegionLink();
 	void destroyRegionLink();
 	void addNeuroLink( NeuroLink *nt );

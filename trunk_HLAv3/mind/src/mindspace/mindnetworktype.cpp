@@ -4,15 +4,12 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-NerveRegion::NerveRegion() {
-	attachLogger();
+void MindNetworkType::createFromXml( Xml xml ) {
+	// attributes area properties
+	name = xml.getAttribute( "name" );
 }
 
-void NerveRegion::createRegion() {
+String MindNetworkType::getName() {
+	return( name );
 }
 
-void NerveRegion::exitRegion() {
-}
-
-void NerveRegion::destroyRegion() {
-}

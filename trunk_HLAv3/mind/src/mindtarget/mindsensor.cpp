@@ -61,27 +61,6 @@ void MindSensor::setFeedForwardLink( NeuroLink *link ) {
 	linkFeedForward = link;
 }
 
-// link creation
-void MindSensor::createNeuroLinks( MindRegionLink *link , MindRegion *dst ) {
-	dst -> createNeuroLinksFromSensorRegion( link , this );
-}
-
-void MindSensor::createNeuroLinksFromCortexRegion( MindRegionLink *link , CortexRegion *src ) {
-	logger.logDebug( "createNeuroLinksFromCortexRegion" );
-}
-
-void MindSensor::createNeuroLinksFromNucleiRegion( MindRegionLink *link , NucleiRegion *src ) {
-	logger.logDebug( "createNeuroLinksFromNucleiRegion" );
-}
-
-void MindSensor::createNeuroLinksFromNerveRegion( MindRegionLink *link , NerveRegion *src ) {
-	logger.logDebug( "createNeuroLinksFromNerveRegion" );
-}
-
-void MindSensor::createNeuroLinksFromSensorRegion( MindRegionLink *link , MindSensor *src ) {
-	ASSERTFAILED( String( "Invalid sensor/sensor link requested - src=" ) + src -> getRegionId() + ", dst=" + getRegionId() );
-}
-
 NeuroVector *MindSensor::getSensoryData() {
 	return( memorySensoryData );
 }

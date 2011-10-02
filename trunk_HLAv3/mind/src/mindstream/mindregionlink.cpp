@@ -21,11 +21,11 @@ MindRegion *MindRegionLink::getDstRegion() {
 	return( dst );
 }
 
-void MindRegionLink::createRegionLink( MindRegion *srcRegion , MindRegion *dstRegion ) {
+void MindRegionLink::createRegionLink( MindNet *net , MindAreaLink *areaLink , MindRegion *srcRegion , MindRegion *dstRegion ) {
 	src = srcRegion;
 	dst = dstRegion;
 
-	srcRegion -> createNeuroLinks( this , dstRegion );
+	// create neuro links
 }
 
 void MindRegionLink::exitRegionLink() {
