@@ -10,6 +10,7 @@ MindSensor::MindSensor() {
 
 	memorySensoryData = NULL;
 	memorySensoryControlState = NULL;
+	memorySensoryControlFeedback = NULL;
 }
 
 void MindSensor::setPollState( bool state ) {
@@ -19,16 +20,28 @@ void MindSensor::setPollState( bool state ) {
 NeuroVector *MindSensor::createSensoryData( int sizeX , int sizeY ) {
 	ASSERTMSG( sizeX > 0 && sizeY > 0 , "createSensoryData: invalid value" );
 	memorySensoryData = new  NeuroVector( sizeX , sizeY );
+
+	sourceSensoryData.setSourceVector( memorySensoryData );
 	return( memorySensoryData );
 }
 
 NeuroVector *MindSensor::createSensoryControlState( int sizeX , int sizeY ) {
 	ASSERTMSG( sizeX > 0 && sizeY > 0  , "createSensoryControl: invalid value" );
 	memorySensoryControlState = new  NeuroVector( sizeX , sizeY );
+
 	return( memorySensoryControlState );
 }
 
+NeuroVector *MindSensor::createControlFeedbackData( int sizeX , int sizeY ) {
+	ASSERTMSG( sizeX > 0 && sizeY > 0 , "createControlFeedbackData: invalid value" );
+	memorySensoryControlFeedback = new  NeuroVector( sizeX , sizeY );
+
+	sourceSensoryData.setSourceVector( memorySensoryControlFeedback );
+	return( memorySensoryData );
+}
+
 void MindSensor::createRegion() {
+	targetSensoryControl.setHandler( this , ( MindRegion::NeuroLinkHandler )&MindSensor::applySensorControl );
 }
 
 void MindSensor::exitRegion() {
@@ -44,9 +57,7 @@ void MindSensor::destroyRegion() {
 }
 
 void MindSensor::processSensorData() {
-	NeuroVector *data = new NeuroVector( memorySensoryData );
-	MindMessage *msg = new MindMessage( linkFeedForward , data );
-	MindRegion::sendMessage( msg );
+	sourceSensoryData.sendMessage( this );
 }
 
 bool MindSensor::getPollState() {
@@ -57,11 +68,35 @@ int MindSensor::getPollIntervalMs( int timeNowMs ) {
 	return( pollNextMs - timeNowMs );
 }
 
-void MindSensor::setFeedForwardLink( NeuroLink *link ) {
-	linkFeedForward = link;
-}
-
 NeuroVector *MindSensor::getSensoryData() {
 	return( memorySensoryData );
 }
 
+NeuroLinkSource *MindSensor::getNeuroLinkSource( MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
+	String netType = netInfo -> getNetType() -> getName();
+	if( !netType.equals( "sensor-stream" ) )
+		return( NULL );
+
+	String name = linkInfo -> getName();
+	if( name.equals( "data" ) )
+		return( &sourceSensoryData );
+	if( name.equals( "control-feedback" ) )
+		return( &sourceSensoryControlFeedback );
+
+	return( NULL );
+}
+
+NeuroLinkTarget *MindSensor::getNeuroLinkTarget( MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
+	String netType = netInfo -> getNetType() -> getName();
+	if( !netType.equals( "sensor-stream" ) )
+		return( NULL );
+
+	String name = linkInfo -> getName();
+	if( name.equals( "control" ) )
+		return( &targetSensoryControl );
+
+	return( NULL );
+}
+
+void MindSensor::applySensorControl( NeuroLink *link , NeuroVector *srcData ) {
+}

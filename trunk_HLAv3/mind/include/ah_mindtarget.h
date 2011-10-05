@@ -7,6 +7,7 @@
 #include <platform/include/ah_services.h>
 #include "ah_mindarea.h"
 #include "ah_mindregion.h"
+#include "ah_mindmatter.h"
 
 class MindTarget;
 class MindSensorSet;
@@ -139,7 +140,6 @@ public:
 	virtual void startSensor() = 0;
 	virtual void stopSensor() = 0;
 	virtual void processSensorControl() = 0;
-	virtual bool executeSensorControl() = 0;
 	virtual void produceSensorData() = 0;
 	virtual void pollSensor() = 0;
 
@@ -149,19 +149,20 @@ private:
 	virtual void exitRegion();
 	virtual void destroyRegion();
 
-	// access to pools
-	virtual NeuroPool *getFeedForwardInputPool() { return( NULL ); };
+	// NeuroLink support
+	virtual NeuroLinkSource *getNeuroLinkSource( MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
+	virtual NeuroLinkTarget *getNeuroLinkTarget( MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
 
 public:
 	// memory allocation
 	NeuroVector *createSensoryData( int sizeX , int sizeY );
 	NeuroVector *createSensoryControlState( int sizeX , int sizeY );
+	NeuroVector *createControlFeedbackData( int sizeX , int sizeY );
 	NeuroVector *getSensoryData();
 
-	// sensor operations
-	void setFeedForwardLink( NeuroLink *link );
 	// capture data and and send via NeuroLink
 	void processSensorData();
+	void applySensorControl( NeuroLink *link , NeuroVector *srcData );
 
 	// poll handling
 	void setPollState( bool state );
@@ -179,10 +180,10 @@ private:
 	// memory
 	NeuroVector *memorySensoryData;
 	NeuroVector *memorySensoryControlState;
-
-// references
-	// links
-	NeuroLink *linkFeedForward;
+	NeuroVector *memorySensoryControlFeedback;
+	NeuroLinkSource sourceSensoryData;
+	NeuroLinkSource sourceSensoryControlFeedback;
+	NeuroLinkTarget targetSensoryControl;
 };
 
 /*#########################################################################*/

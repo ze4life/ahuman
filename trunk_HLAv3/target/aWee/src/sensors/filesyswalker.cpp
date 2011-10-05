@@ -93,11 +93,11 @@ public:
 	virtual void startSensor();
 	virtual void stopSensor();
 	virtual void processSensorControl();
-	virtual bool executeSensorControl();
 	virtual void produceSensorData();
 	virtual void pollSensor() {};
 
 private:
+	bool executeSensorControl();
 	void prepareWaitComputerInfo();
 	void prepareWaitDiskInfo();
 	void prepareWaitDirectoryInfo();

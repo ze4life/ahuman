@@ -4,10 +4,11 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-ExcitatoryLink::ExcitatoryLink( MindRegionLink *p_regionLink ) : NeuroLink( p_regionLink ) {
-	attachLogger();
+NeuroLinkTarget::NeuroLinkTarget() {
 }
 
-void ExcitatoryLink::apply( NeuroVector *srcData ) {
+void NeuroLinkTarget::setHandler( MindRegion *p_region , MindRegion::NeuroLinkHandler p_pfn ) {
+	region = p_region;
+	pfn = p_pfn;
 }
 

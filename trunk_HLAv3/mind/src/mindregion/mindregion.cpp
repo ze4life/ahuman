@@ -42,9 +42,9 @@ String MindRegion::getRegionId() {
 	return( id );
 }
 
-void MindRegion::addNeuroLink( MindRegionLink *link , NeuroLink *nt ) {
+void MindRegion::addPrivateNeuroLink( NeuroLink *nt ) {
 	// add link to set
-	link -> addNeuroLink( nt );
+	linkSet -> addSetItem( nt );
 }
 
 void MindRegion::sendMessage( MindMessage *msg ) {

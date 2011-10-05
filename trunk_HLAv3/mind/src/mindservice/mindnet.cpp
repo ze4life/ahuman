@@ -15,7 +15,10 @@ void MindNet::setInfo( MindNetInfo *p_info ) {
 	name = p_info -> getName();
 }
 
+MindNetInfo *MindNet::getInfo() {
+	return( info );
+}
+
 String MindNet::getName() {
 	return( name );
 }
-

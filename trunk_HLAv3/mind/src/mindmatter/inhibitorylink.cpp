@@ -8,10 +8,6 @@ InhibitoryLink::InhibitoryLink( MindRegionLink *p_regionLink ) : NeuroLink( p_re
 	attachLogger();
 }
 
-void InhibitoryLink::createNeuroLink() {
-	logger.logDebug( "createNeuroLink" );
+void InhibitoryLink::apply( NeuroVector *srcData ) {
 }
 
-void InhibitoryLink::projectData( neurovt *data , int size ) {
-	logger.logDebug( "projectData" );
-}
