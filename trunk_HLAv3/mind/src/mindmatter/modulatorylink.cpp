@@ -8,10 +8,6 @@ ModulatoryLink::ModulatoryLink( MindRegionLink *p_regionLink ) : NeuroLink( p_re
 	attachLogger();
 }
 
-void ModulatoryLink::createNeuroLink() {
-	logger.logDebug( "createNeuroLink" );
+void ModulatoryLink::apply( NeuroVector *srcData ) {
 }
 
-void ModulatoryLink::projectData( neurovt *data , int size ) {
-	logger.logDebug( "projectData" );
-}

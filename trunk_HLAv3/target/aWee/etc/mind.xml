@@ -4,62 +4,62 @@
 	</MindSpace>
 
 	<MindMap>
-    <MindAreaSet>
-      <MindArea id="ThalamusArea" enabled="false"/>
-		  <MindArea id="PerceptionArea" enabled="true">
-			  <property name="posX" value="0"/>
-			  <property name="posY" value="0"/>
-			  <property name="posZ" value="0"/>
-			  <property name="sizeX" value="10000"/>
-			  <property name="sizeY" value="10000"/>
-			  <property name="sizeZ" value="2"/>
-        <property name="transmitters" value="GLU"/>
-      </MindArea>
-		  <MindArea id="HippocampusArea" enabled="false"/>
-		  <MindArea id="ParietalArea" enabled="false"/>
-		  <MindArea id="PrefrontalCortexArea" enabled="false"/>
-		  <MindArea id="BasalGangliaArea" enabled="false"/>
-		  <MindArea id="BrainStemArea" enabled="false"/>
-		  <MindArea id="CranialNerveArea" enabled="false"/>
-		  <MindArea id="SpinalCordArea" enabled="false"/>
-		  <MindArea id="MotorNerveArea" enabled="false"/>
-		  <MindArea id="BodyFeelingNerveArea" enabled="false"/>
+		<MindNetworkTypeSet>
+			<MindNetworkType name="sensor-stream">
+				<NeuroLink name="data" type="ExcitatoryLink" transmitter="GLU" forward="true"/>
+				<NeuroLink name="control" type="ExcitatoryLink" transmitter="GLU" forward="false"/>
+				<NeuroLink name="control-feedback" type="ExcitatoryLink" transmitter="GLU" forward="true"/>
+			</MindNetworkType>
+		</MindNetworkTypeSet>
+
+		<MindNetworkSet>
+			<MindNet name="SensorFileSysWalker" type="sensor-stream"/>
+		</MindNetworkSet>
+
+		<MindAreaSet>
+			<MindArea id="ThalamusArea" enabled="false"/>
+			<MindArea id="PerceptionArea" enabled="true">
+				<property name="posX" value="0"/>
+				<property name="posY" value="0"/>
+				<property name="posZ" value="0"/>
+				<property name="sizeX" value="10000"/>
+				<property name="sizeY" value="10000"/>
+				<property name="sizeZ" value="2"/>
+				<property name="transmitters" value="GLU"/>
+			</MindArea>
+			<MindArea id="HippocampusArea" enabled="false"/>
+			<MindArea id="ParietalArea" enabled="false"/>
+			<MindArea id="PrefrontalCortexArea" enabled="false"/>
+			<MindArea id="BasalGangliaArea" enabled="false"/>
+			<MindArea id="BrainStemArea" enabled="false"/>
+			<MindArea id="CranialNerveArea" enabled="false"/>
+			<MindArea id="SpinalCordArea" enabled="false"/>
+			<MindArea id="MotorNerveArea" enabled="false"/>
+			<MindArea id="BodyFeelingNerveArea" enabled="false"/>
     
-		  <MindArea id="SensorArea" enabled="true">
-			  <property name="posX" value="0"/>
-			  <property name="posY" value="0"/>
-			  <property name="posZ" value="0"/>
-			  <property name="sizeX" value="10000"/>
-			  <property name="sizeY" value="10000"/>
-			  <property name="sizeZ" value="2"/>
-        <property name="transmitters" value="GLU"/>
-      </MindArea>
-		  <MindArea id="EffectorArea" enabled="true">
-			  <property name="posX" value="0"/>
-			  <property name="posY" value="0"/>
-			  <property name="posZ" value="0"/>
-			  <property name="sizeX" value="10000"/>
-			  <property name="sizeY" value="10000"/>
-			  <property name="sizeZ" value="2"/>
-        <property name="transmitters" value=""/>
-      </MindArea>
-    </MindAreaSet>
+			<MindArea id="SensorArea" enabled="true">
+				<property name="posX" value="0"/>
+				<property name="posY" value="0"/>
+				<property name="posZ" value="0"/>
+				<property name="sizeX" value="10000"/>
+				<property name="sizeY" value="10000"/>
+				<property name="sizeZ" value="2"/>
+				<property name="transmitters" value="GLU"/>
+			</MindArea>
+			<MindArea id="EffectorArea" enabled="true">
+				<property name="posX" value="0"/>
+				<property name="posY" value="0"/>
+				<property name="posZ" value="0"/>
+				<property name="sizeX" value="10000"/>
+				<property name="sizeY" value="10000"/>
+				<property name="sizeZ" value="2"/>
+				<property name="transmitters" value="GLU"/>
+			</MindArea>
+		</MindAreaSet>
 
 		<MindLinkSet>
 			<MindLink masterArea="SensorArea" slaveArea="PerceptionArea" channel="SensorArea"/>
 		</MindLinkSet>
-
-    <MindNetworkTypeSet>
-      <MindNetworkType name="sensor-stream">
-        <NeuroLink name="data" type="ExcitatoryLink" transmitter="GLU" forward="true"/>
-        <NeuroLink name="control" type="ExcitatoryLink" transmitter="GLU" forward="false"/>
-        <NeuroLink name="control-feedback" type="ExcitatoryLink" transmitter="GLU" forward="true"/>
-      </MindNetworkType>
-    </MindNetworkTypeSet>
-
-    <MindNetworkSet>
-			<MindNet name="SensorFileSysWalker" type="sensor-stream"/>
-		</MindNetworkSet>
 	</MindMap>
 
 	<ActiveMemory>

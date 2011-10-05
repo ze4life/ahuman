@@ -13,6 +13,7 @@ class MindNetInfo;
 class MindAreaInfo;
 class MindAreaLinkInfo;
 class MindNetworkType;
+class NeuroLinkInfo;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -178,9 +179,52 @@ public:
 public:
 	void createFromXml( Xml xml );
 	String getName();
+	int getNeuroLinkCount();
+	NeuroLinkInfo *getNeuroLinkInfo( int pos );
 
 private:
+// utilities
 	String name;
+
+// own
+	ClassList<NeuroLinkInfo> neuroLinks;
+
+// references
+	MapStringToClass<NeuroLinkInfo> neuroLinkMap;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class NeuroLink;
+
+class NeuroLinkInfo : public Object {
+public:
+	NeuroLinkInfo( MindNetworkType *netType );
+	~NeuroLinkInfo() {};
+	virtual const char *getClass() { return( "NeuroLinkInfo" ); };
+
+// operations
+public:
+	void createFromXml( Xml xml );
+
+	String getName() { return( name ); };
+	String getType() { return( type ); };
+	String getTransmitter() { return( transmitter ); };
+	bool getForward() { return( forward ); };
+
+	NeuroLink *createNeuroLink( MindRegionLink *regionLink );
+
+// data
+public:
+// utility
+	String name;
+	String type;
+	String transmitter;
+	bool forward;
+
+// references
+	MindNetworkType *netType;
 };
 
 /*#########################################################################*/

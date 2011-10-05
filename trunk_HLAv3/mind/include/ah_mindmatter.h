@@ -14,6 +14,8 @@ class NeuroLinkSet;
 class ExcitatoryLink;
 class InhibitoryLink;
 class ModulatoryLink;
+class NeuroLinkSource;
+class NeuroLinkTarget;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -63,22 +65,34 @@ private:
 /*#########################################################################*/
 
 class MindRegionLink;
+class NeuroLinkInfo;
 
 class NeuroLink : public Object {
 public:
 	NeuroLink( MindRegionLink *regionLink );
 	const char *getClass() { return( "NeuroLink" ); };
 
-	void create( NeuroVector *p_src , NeuroPool *p_dst );
-	NeuroVector *getSourceData();
+	// parameters
+	String getId();
+	NeuroLinkSource *getSource();
+	NeuroLinkTarget *getTarget();
 
-	virtual void createNeuroLink() = 0;
+	void setNeuroLinkInfo( NeuroLinkInfo *linkInfo );
+	void setTransmitter( String transmitter );
+	void create( NeuroLinkSource *p_source , NeuroLinkTarget *p_target );
+
+	virtual void apply( NeuroVector *srcData ) = 0;
 
 public:
+// utilities
+	String id;
+	String transmitter;
+
 // references
 	MindRegionLink *regionLink;
-	NeuroVector *src;
-	NeuroPool *dst;
+	NeuroLinkInfo *linkInfo;
+	NeuroLinkSource *source;
+	NeuroLinkTarget *target;
 };
 
 /*#########################################################################*/
@@ -89,7 +103,6 @@ public:
 	const char *getClass() { return( "NeuroLinkSet" ); };
 
 	void addSetItem( NeuroLink *link );
-	void projectData( neurovt *data , int size );
 
 public:
 // own data
@@ -104,8 +117,8 @@ public:
 	ExcitatoryLink( MindRegionLink *regionLink );
 	virtual const char *getClass() { return( "ExcitatoryLink" ); };
 
-	virtual void createNeuroLink();
-	virtual void projectData( neurovt *data , int size );
+public:
+	virtual void apply( NeuroVector *srcData );
 };
 
 /*#########################################################################*/
@@ -116,8 +129,8 @@ public:
 	InhibitoryLink( MindRegionLink *regionLink );
 	virtual const char *getClass() { return( "InhibitoryLink" ); };
 
-	virtual void createNeuroLink();
-	virtual void projectData( neurovt *data , int size );
+public:
+	virtual void apply( NeuroVector *srcData );
 };
 
 /*#########################################################################*/
@@ -128,8 +141,45 @@ public:
 	ModulatoryLink( MindRegionLink *regionLink );
 	virtual const char *getClass() { return( "ModulatoryLink" ); };
 
-	virtual void createNeuroLink();
-	virtual void projectData( neurovt *data , int size );
+public:
+	virtual void apply( NeuroVector *srcData );
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class NeuroLinkSource : public Object {
+public:
+	NeuroLinkSource();
+	virtual const char *getClass() { return( "NeuroLinkSource" ); };
+
+public:
+	void addNeuroLink( NeuroLink *link );
+	void setSourceVector( NeuroVector *data );
+	NeuroVector *getSourceVector();
+
+	void sendMessage( MindRegion *region );
+
+private:
+// references
+	NeuroVector *data;
+	ClassList<NeuroLink> links;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class NeuroLinkTarget : public Object {
+public:
+	NeuroLinkTarget();
+	virtual const char *getClass() { return( "NeuroLinkTarget" ); };
+
+public:
+	void setHandler( MindRegion *region , MindRegion::NeuroLinkHandler pfn );
+
+public:
+	MindRegion *region;
+	MindRegion::NeuroLinkHandler pfn;
 };
 
 /*#########################################################################*/

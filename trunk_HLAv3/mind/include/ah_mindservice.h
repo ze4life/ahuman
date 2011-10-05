@@ -147,6 +147,7 @@ public:
 
 public:
 	void setInfo( MindNetInfo *p_info );
+	MindNetInfo *getInfo();
 	String getName();
 
 public:

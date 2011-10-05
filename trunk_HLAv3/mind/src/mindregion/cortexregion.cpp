@@ -21,3 +21,11 @@ NeuroPool *CortexRegion::getFeedForwardInputPool() {
 	return( NULL );
 }
 
+NeuroLinkSource *CortexRegion::getNeuroLinkSource( MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
+	return( NULL );
+}
+
+NeuroLinkTarget *CortexRegion::getNeuroLinkTarget( MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
+	return( NULL );
+}
+

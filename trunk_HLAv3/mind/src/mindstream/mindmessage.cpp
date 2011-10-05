@@ -24,5 +24,7 @@ MindMessage::~MindMessage() {
 NeuroVector *MindMessage::getMsgData() { 
 	if( data != NULL )
 		return( data ); 
-	return( link -> getSourceData() );
+	
+	NeuroLinkSource *source = link -> getSource();
+	return( source -> getSourceVector() );
 }
