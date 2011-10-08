@@ -95,17 +95,25 @@ class MindActiveMemory in MindService
 class MindMessage : BinaryMessage {NeuroVector} in TOP
 }}}
   * mind space
-   * MindSpace, MindLocation
-   * MindMap, MindNetInfo, MindAreaInfo, MindAreaLinkInfo, MindNetworkType, NeuroLinkInfo
+   * MindSpace
+   * MindLocation, MindLocationInfo
 {{{
 class MindSpace in MindService
 class MindLocation in MindAreaInfo, MindRegion
+class MindLocationInfo in TOP
+}}}
+  * mind space
+   * MindMap
+   * MindNetInfo, MindNetworkType, NeuroLinkInfo
+   * MindAreaInfo, MindAreaLinkInfo, MindAreaNetInfo 
+{{{
 class MindMap {MindNetInfo[], MindAreaInfo[], MindAreaLinkInfo[], MindNetworkType[]} in MindService
 class MindNetInfo in MindMap
-class MindAreaInfo {MindLocation} in MindMap
-class MindAreaLinkInfo in MindMap
 class MindNetworkType {NeuroLinkInfo[]} in MindMap
 class NeuroLinkInfo in MindNetworkType
+class MindAreaInfo {MindLocation, MindAreaNetInfo[]} in MindMap
+class MindAreaNetInfo in MindAreaInfo
+class MindAreaLinkInfo in MindMap
 }}}
   * mind base
 {{{
