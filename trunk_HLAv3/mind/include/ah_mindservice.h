@@ -30,15 +30,9 @@ class MindAreaLinkSet;
 class MindAreaLinkInfo;
 class MindSensor;
 class MindEffector;
-class CortexRegion;
-class NucleiRegion;
-class NerveRegion;
 class MindRegionLink;
 class NeuroLink;
 class NeuroPool;
-class ExcitatoryLink;
-class InhibitoryLink;
-class ModulatoryLink;
 
 // factory and lifecycle support for mind components
 class MindService : public Service {
@@ -57,14 +51,14 @@ public:
 	MindNet *getMindNet( String net );
 	  
 	// create core items - regions
-	CortexRegion *createCortexRegion( MindArea *area );
-	NucleiRegion *createNucleiRegion( MindArea *area );
-	NerveRegion *createNerveRegion( MindArea *area );
+	MindRegion *createCortexRegion( MindArea *area );
+	MindRegion *createNucleiRegion( MindArea *area );
+	MindRegion *createNerveRegion( MindArea *area );
 
 	// create core items - neurolinks
-	ExcitatoryLink *createExcitatoryLink( MindRegionLink *link );
-	InhibitoryLink *createInhibitoryLink( MindRegionLink *link );
-	ModulatoryLink *createModulatoryLink( MindRegionLink *link );
+	NeuroLink *createExcitatoryLink( MindRegionLink *link );
+	NeuroLink *createInhibitoryLink( MindRegionLink *link );
+	NeuroLink *createModulatoryLink( MindRegionLink *link );
 
 // whole mind lifecycle
 public:
@@ -85,7 +79,7 @@ public:
 
 // internals:
 private:
-	// create core items - areas
+	// create core items
 	MindArea *createThalamusArea();
 	MindArea *createPerceptionArea();
 	MindArea *createHippocampusArea();

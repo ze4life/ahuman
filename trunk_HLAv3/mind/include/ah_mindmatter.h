@@ -11,9 +11,6 @@ class NeuroPool;
 class NeuroPoolSet;
 class NeuroLink;
 class NeuroLinkSet;
-class ExcitatoryLink;
-class InhibitoryLink;
-class ModulatoryLink;
 class NeuroLinkSource;
 class NeuroLinkTarget;
 
@@ -107,42 +104,6 @@ public:
 public:
 // own data
 	ClassList<NeuroLink> list;
-};
-
-/*#########################################################################*/
-/*#########################################################################*/
-
-class ExcitatoryLink : public NeuroLink {
-public:
-	ExcitatoryLink( MindRegionLink *regionLink );
-	virtual const char *getClass() { return( "ExcitatoryLink" ); };
-
-public:
-	virtual void apply( NeuroVector *srcData );
-};
-
-/*#########################################################################*/
-/*#########################################################################*/
-
-class InhibitoryLink : public NeuroLink {
-public:
-	InhibitoryLink( MindRegionLink *regionLink );
-	virtual const char *getClass() { return( "InhibitoryLink" ); };
-
-public:
-	virtual void apply( NeuroVector *srcData );
-};
-
-/*#########################################################################*/
-/*#########################################################################*/
-
-class ModulatoryLink : public NeuroLink {
-public:
-	ModulatoryLink( MindRegionLink *regionLink );
-	virtual const char *getClass() { return( "ModulatoryLink" ); };
-
-public:
-	virtual void apply( NeuroVector *srcData );
 };
 
 /*#########################################################################*/

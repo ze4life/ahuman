@@ -4,10 +4,10 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-class PerceptionArea : public MindArea {
+class ThalamusArea : public MindArea {
 public:
-	PerceptionArea();
-	virtual const char *getClass() { return( "PerceptionArea" ); };
+	ThalamusArea();
+	virtual const char *getClass() { return( "ThalamusArea" ); };
 
 public:
 	// mind area lifecycle
@@ -25,16 +25,16 @@ private:
 /*#########################################################################*/
 /*#########################################################################*/
 
-MindArea *MindService::createPerceptionArea() { return( new PerceptionArea() ); };
+MindArea *MindService::createThalamusArea() { return( new ThalamusArea() ); };
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-PerceptionArea::PerceptionArea() {
+ThalamusArea::ThalamusArea() {
 	target = NULL;
 }
 
-void PerceptionArea::initRegionsInArea( MindTarget *p_target ) {
+void ThalamusArea::initRegionsInArea( MindTarget *p_target ) {
 	target = p_target;
 	MindSensorSet *sensorSet = target -> getSensorSet();
 
@@ -43,8 +43,8 @@ void PerceptionArea::initRegionsInArea( MindTarget *p_target ) {
 	for( int k = 0; k < sensorSet -> getCount(); k++ ) {
 		MindSensor *sensor = sensorSet -> getSetItem( k );
 
-		// create region for cortex
-		MindRegion *region = ms -> createCortexRegion( this );
+		// create nucleous region for sensor
+		MindRegion *region = ms -> createNucleiRegion( this );
 		MindArea::addRegion( getClass() , sensor -> getClass() , region );
 
 		// add to network
@@ -52,7 +52,7 @@ void PerceptionArea::initRegionsInArea( MindTarget *p_target ) {
 	}
 }
 
-void PerceptionArea::createSensoryNetwork( MindSensor *sensor ) {
+void ThalamusArea::createSensoryNetwork( MindSensor *sensor ) {
 	// create separate network for sensor - by its name
 	MindService *ms = MindService::getService();
 
@@ -70,4 +70,3 @@ void PerceptionArea::createSensoryNetwork( MindSensor *sensor ) {
 	// add network to area network set
 	MindArea::addNet( areaNet );
 }
-
