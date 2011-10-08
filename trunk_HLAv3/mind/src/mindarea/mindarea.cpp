@@ -92,13 +92,6 @@ void MindArea::sendMessage( MindMessage *msg ) {
 	iopub -> publish( iosession , msg );
 }
 
-void MindArea::getNetworks( StringList& list ) {
-	for( int k = 0; k < netSet.count(); k++ ) {
-		String key = netSet.getKeyByIndex( k );
-		list.add( key );
-	}
-}
-
 MindAreaNet *MindArea::getMindNet( String net ) {
 	return( netSet.get( net ) );
 }
@@ -129,10 +122,6 @@ void MindArea::addSlaveLink( MindAreaLink *link ) {
 }
 
 MindAreaNetInfo *MindArea::getMindAreaNetInfo( String netName ) {
-	MindAreaNet *net = netSet.get( netName );
-	if( net == NULL )
-		return( NULL );
-
-	return( net -> getNetInfo() );
+	return( info -> getNetInfo( netName ) );
 }
 

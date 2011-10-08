@@ -229,10 +229,11 @@ void MindService::createMindAreaLink( MindArea *masterArea , MindArea *slaveArea
 	logger.logInfo( "createMindAreaLink: create link masterArea=" + linkInfo -> getMasterAreaId() + ", slaveArea=" + linkInfo -> getSlaveAreaId() + "..." );
 
 	// create region mapping
-	StringList networks;
-	masterArea -> getNetworks( networks );
-	for( int k = 0; k < networks.count(); k++ ) {
-		String netName = networks.get( k );
+	ClassList<MindAreaNetInfo>& netSet = masterArea -> getMindAreaInfo() -> getNetSet();
+	for( int k = 0; k < netSet.count(); k++ ) {
+		MindAreaNetInfo *netInfo = netSet.get( k );
+		String netName = netInfo -> getNetName();
+
 		MindNet *net = getMindNet( netName );
 		MindAreaNet *masterNet = masterArea -> getMindNet( netName );
 		MindAreaNet *slaveNet = slaveArea -> getMindNet( netName );

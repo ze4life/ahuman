@@ -109,6 +109,7 @@ public:
 	ClassList<MindAreaLinkInfo>& getLinkSet() { return( linkSet ); };
 	void addLink( MindAreaLinkInfo *link ) { linkSet.add( link );	};
 	ClassList<MindAreaNetInfo>& getNetSet() { return( netSet ); };
+	MindAreaNetInfo *getNetInfo( String name );
 
 private:
 // utility
@@ -120,6 +121,7 @@ private:
 	ClassList<MindAreaNetInfo> netSet;
 
 // references
+	MapStringToClass<MindAreaNetInfo> netMap;
 	ClassList<MindAreaLinkInfo> linkSet;
 };
 
@@ -245,9 +247,10 @@ public:
 	void createFromXml( Xml xml );
 
 	String getName() { return( name ); };
-	String getType() { return( type ); };
+	String getTypeName() { return( type ); };
 	String getTransmitter() { return( transmitter ); };
 	bool getForward() { return( forward ); };
+	MindLinkType *getLinkType() { return( linkType ); };
 
 	NeuroLink *createNeuroLink( MindRegionLink *regionLink );
 

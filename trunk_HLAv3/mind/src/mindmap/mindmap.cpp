@@ -109,6 +109,7 @@ void MindMap::createLinkTypeSet( Xml xml ) {
 		MindLinkType *linkType = new MindLinkType;
 		linkType -> createFromXml( xmlChild );
 		linkTypeSet.add( linkType );
+		linkTypeMap.add( linkType -> getName() , linkType );
 	}
 }
 
@@ -124,7 +125,7 @@ void MindMap::createMindLinkSet( Xml xml ) {
 		// set net type
 		String linkTypeName = info -> getTypeName();
 		MindLinkType *linkType = linkTypeMap.get( linkTypeName );
-		ASSERTMSG( linkType != NULL , "unknown network type: name=" + linkTypeName );
+		ASSERTMSG( linkType != NULL , "unknown mind link type: name=" + linkTypeName );
 		info -> setLinkType( linkType );
 
 		// add to set

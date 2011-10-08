@@ -39,15 +39,8 @@ void ThalamusArea::initRegionsInArea( MindTarget *p_target ) {
 	MindSensorSet *sensorSet = target -> getSensorSet();
 
 	// create regions for target
-	MindService *ms = MindService::getService();
 	for( int k = 0; k < sensorSet -> getCount(); k++ ) {
 		MindSensor *sensor = sensorSet -> getSetItem( k );
-
-		// create nucleous region for sensor
-		MindRegion *region = ms -> createNucleiRegion( this );
-		MindArea::addRegion( getClass() , sensor -> getClass() , region );
-
-		// add to network
 		createSensoryNetwork( sensor );
 	}
 }
@@ -61,6 +54,11 @@ void ThalamusArea::createSensoryNetwork( MindSensor *sensor ) {
 	if( net == NULL )
 		return;
 
+	// create nucleous region for sensor
+	MindService *ms = MindService::getService();
+	MindRegion *region = ms -> createNucleiRegion( this );
+	MindArea::addRegion( getClass() , sensor -> getClass() , region );
+
 	// add the only region
-	net -> addRegion( sensor );
+	net -> addRegion( region );
 }
