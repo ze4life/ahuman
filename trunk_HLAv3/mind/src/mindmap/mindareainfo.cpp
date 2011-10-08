@@ -7,10 +7,13 @@
 MindAreaInfo::MindAreaInfo() {
 	attachLogger();
 	enabled = false;
+	location = NULL;
 }
 
 MindAreaInfo::~MindAreaInfo() {
-	links.destroy();
+	linkSet.destroy();
+	if( location != NULL )
+		delete location;
 };
 
 void MindAreaInfo::createFromXml( Xml xml ) {
@@ -20,21 +23,9 @@ void MindAreaInfo::createFromXml( Xml xml ) {
 	if( !enabled )
 		return;
 
-	int x , y , z;
-	x = xml.getIntProperty( "posX" );
-	y = xml.getIntProperty( "posY" );
-	z = xml.getIntProperty( "posZ" );
-	location.setPosition( x , y , z );
-
-	int dx , dy , dz;
-	dx = xml.getIntProperty( "sizeX" );
-	dy = xml.getIntProperty( "sizeY" );
-	dz = xml.getIntProperty( "sizeZ" );
-	location.setDimensions( dx , dy , dz );
-
-	String transmittersList = xml.getProperty( "transmitters" , "" );
-	transmittersList.split( transmitters , "," );
-	transmitters.trim();
+	MindLocationInfo li;
+	li.createFromXml( xml.getChildNode( "MindLocation" ) );
+	location = li.createLocation();
 }
 
 bool MindAreaInfo::runEnabled() {

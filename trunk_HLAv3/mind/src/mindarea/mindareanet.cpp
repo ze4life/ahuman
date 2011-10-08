@@ -4,8 +4,9 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-MindAreaNet::MindAreaNet( MindNet *p_net ) {
+MindAreaNet::MindAreaNet( MindNet *p_net , MindAreaNetInfo *p_areaNetInfo ) {
 	net = p_net;
+	netInfo = p_areaNetInfo;
 }
 
 void MindAreaNet::addRegion( MindRegion *region ) {
@@ -18,4 +19,8 @@ ClassList<MindRegion>& MindAreaNet::getRegions() {
 
 MindNet *MindAreaNet::getNet() {
 	return( net );
+}
+
+MindAreaNetInfo *MindAreaNet::getNetInfo() {
+	return( netInfo );
 }

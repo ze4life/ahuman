@@ -93,19 +93,31 @@ void MindArea::sendMessage( MindMessage *msg ) {
 }
 
 void MindArea::getNetworks( StringList& list ) {
-	for( int k = 0; k < nets.count(); k++ ) {
-		String key = nets.getKeyByIndex( k );
+	for( int k = 0; k < netSet.count(); k++ ) {
+		String key = netSet.getKeyByIndex( k );
 		list.add( key );
 	}
 }
 
 MindAreaNet *MindArea::getMindNet( String net ) {
-	return( nets.get( net ) );
+	return( netSet.get( net ) );
 }
 
-void MindArea::addNet( MindAreaNet *areaNet ) {
-	MindNet *net = areaNet -> getNet();
-	nets.add( net -> getName() , areaNet );
+MindAreaNet *MindArea::createAreaNetwork( String name ) {
+	MindService *ms = MindService::getService();
+	MindNet *net = ms -> getMindNet( name );
+	MindAreaNetInfo *netInfo = getMindAreaNetInfo( name );
+
+	// check that network is available and registered in given area
+	if( net == NULL || netInfo == NULL )
+		return( NULL );
+
+	// create mind area network
+	MindAreaNet *areaNet = new MindAreaNet( net , netInfo );
+
+	// add network to area network set
+	netSet.add( name , areaNet );
+	return( areaNet );
 }
 
 void MindArea::addMasterLink( MindAreaLink *link ) {
@@ -115,3 +127,12 @@ void MindArea::addMasterLink( MindAreaLink *link ) {
 void MindArea::addSlaveLink( MindAreaLink *link ) {
 	areaSlaveLinkSet -> addSetItem( link );
 }
+
+MindAreaNetInfo *MindArea::getMindAreaNetInfo( String netName ) {
+	MindAreaNet *net = netSet.get( netName );
+	if( net == NULL )
+		return( NULL );
+
+	return( net -> getNetInfo() );
+}
+
