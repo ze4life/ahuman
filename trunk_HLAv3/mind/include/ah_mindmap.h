@@ -12,6 +12,7 @@ class MindAreaInfo;
 class MindAreaLinkInfo;
 class MindAreaNetInfo;
 class MindNetworkType;
+class MindLinkType;
 class NeuroLinkInfo;
 
 /*#########################################################################*/
@@ -23,38 +24,42 @@ class NeuroLinkInfo;
 class MindMap : public Object {
 public:
 	MindMap() {};
-	~MindMap();
+	virtual ~MindMap();
 	virtual const char *getClass() { return( "MindMap" ); };
 
 // operations
 public:
 	void createFromXml( Xml xml );
 
-	ClassList<MindNetInfo>& getMindNets() { return( mindNets ); };
-	ClassList<MindAreaInfo>& getMindAreas() { return( mindAreas ); };
-	ClassList<MindAreaLinkInfo>& getLinks() { return( mindLinks ); }
+	ClassList<MindNetInfo>& getMindNets() { return( mindNetSet ); };
+	ClassList<MindAreaInfo>& getMindAreas() { return( mindAreaSet ); };
+	ClassList<MindAreaLinkInfo>& getLinks() { return( mindLinkSet ); }
 	MindNetInfo *getNetByName( String netName );
 	MindAreaInfo *getAreaById( String areaId );
 	MindNetworkType *getNetTypeByName( String typeName );
+	MindLinkType *getLinkTypeByName( String typeName );
 
 private:
 	void createAreaSet( Xml xml );
-	void createMindLinkSet( Xml xml );
 	void createNetworkTypeSet( Xml xml );
 	void createNetworkSet( Xml xml );
+	void createLinkTypeSet( Xml xml );
+	void createMindLinkSet( Xml xml );
 	void linkAreaNet();
 
 private:
 // own data
-	ClassList<MindNetInfo> mindNets;
-	ClassList<MindAreaInfo> mindAreas;
-	ClassList<MindAreaLinkInfo> mindLinks;
-	ClassList<MindNetworkType> netTypes;
+	ClassList<MindNetworkType> netTypeSet;
+	ClassList<MindNetInfo> mindNetSet;
+	ClassList<MindAreaInfo> mindAreaSet;
+	ClassList<MindLinkType> linkTypeSet;
+	ClassList<MindAreaLinkInfo> mindLinkSet;
 
 // references
 	MapStringToClass<MindNetInfo> mindNetMap;
 	MapStringToClass<MindAreaInfo> mindAreaMap;
 	MapStringToClass<MindNetworkType> netTypeMap;
+	MapStringToClass<MindLinkType> linkTypeMap;
 };
 
 /*#########################################################################*/
@@ -63,7 +68,7 @@ private:
 class MindNetInfo : public Object {
 public:
 	MindNetInfo();
-	~MindNetInfo();
+	virtual ~MindNetInfo();
 	virtual const char *getClass() { return( "MindNetInfo" ); };
 
 // operations
@@ -90,7 +95,7 @@ public:
 class MindAreaInfo : public Object {
 public:
 	MindAreaInfo();
-	~MindAreaInfo();
+	virtual ~MindAreaInfo();
 	virtual const char *getClass() { return( "MindAreaInfo" ); };
 
 // operations
@@ -112,10 +117,10 @@ private:
 
 // own data
 	MindLocation *location;
+	ClassList<MindAreaNetInfo> netSet;
 
 // references
 	ClassList<MindAreaLinkInfo> linkSet;
-	ClassList<MindAreaNetInfo> netSet;
 };
 
 /*#########################################################################*/
@@ -124,22 +129,30 @@ private:
 class MindAreaLinkInfo : public Object {
 public:
 	MindAreaLinkInfo();
-	~MindAreaLinkInfo() {};
+	virtual ~MindAreaLinkInfo() {};
 	virtual const char *getClass() { return( "MindAreaLinkInfo" ); };
 
 // operations
 public:
 	void createFromXml( Xml xml );
+	String getTypeName() { return( typeName ); };
 	String getMasterAreaId() { return( masterAreaId ); };
 	String getSlaveAreaId() { return( slaveAreaId ); };
 	String getChannelId() { return( channelId ); };
 
+	void setLinkType( MindLinkType *linkType );
+	MindLinkType *getLinkType();
+
 // data
 public:
 // utility
+	String typeName;
 	String masterAreaId;
 	String slaveAreaId;
 	String channelId;
+
+// references
+	MindLinkType *linkType;
 };
 
 /*#########################################################################*/
@@ -148,7 +161,7 @@ public:
 class MindAreaNetInfo : public Object {
 public:
 	MindAreaNetInfo();
-	~MindAreaNetInfo();
+	virtual ~MindAreaNetInfo();
 	virtual const char *getClass() { return( "MindAreaNetInfo" ); };
 
 // operations
@@ -175,12 +188,33 @@ public:
 
 class MindNetworkType : public Object {
 public:
+	virtual ~MindNetworkType() {};
 	virtual const char *getClass() { return( "MindNetworkType" ); };
 
 // operations
 public:
 	void createFromXml( Xml xml );
 	String getName();
+
+private:
+// utilities
+	String name;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class MindLinkType : public Object {
+public:
+	MindLinkType();
+	virtual ~MindLinkType();
+	virtual const char *getClass() { return( "MindLinkType" ); };
+
+// operations
+public:
+	void createFromXml( Xml xml );
+
+	String getName() { return( name ); };
 	int getNeuroLinkCount();
 	NeuroLinkInfo *getNeuroLinkInfo( int pos );
 
@@ -202,8 +236,8 @@ class NeuroLink;
 
 class NeuroLinkInfo : public Object {
 public:
-	NeuroLinkInfo( MindNetworkType *netType );
-	~NeuroLinkInfo() {};
+	NeuroLinkInfo( MindLinkType *linkType );
+	virtual ~NeuroLinkInfo() {};
 	virtual const char *getClass() { return( "NeuroLinkInfo" ); };
 
 // operations
@@ -226,7 +260,7 @@ public:
 	bool forward;
 
 // references
-	MindNetworkType *netType;
+	MindLinkType *linkType;
 };
 
 /*#########################################################################*/

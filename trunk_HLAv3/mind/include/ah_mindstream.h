@@ -42,6 +42,7 @@ public:
 	MindArea *getSourceArea() { return( sourceArea ); };
 	MindArea *getDestinationArea() { return( destinationArea ); };
 	void addRegionLink( MindRegionLink *link );
+	MindAreaLinkInfo *getLinkInfo() { return( info ); };
 
 private:
 // utility
@@ -82,6 +83,7 @@ public:
 	MindRegionLink( MindAreaLink *areaLink );
 	const char *getClass() { return( "MindRegionLink" ); };
 
+	MindLinkType *getLinkType() { return( linkType ); };
 	MindRegion *getSrcRegion();
 	MindRegion *getDstRegion();
 
@@ -95,6 +97,8 @@ private:
 public:
 // references
 	MindAreaLink *areaLink;
+
+	MindLinkType *linkType;
 	MindRegion *src;
 	MindRegion *dst;
 	NeuroLinkSet *links;

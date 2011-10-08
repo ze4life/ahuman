@@ -6,17 +6,11 @@
 	<MindMap>
 
 		<MindNetworkTypeSet>
-
-			<MindNetworkType name="sensor-stream">
-				<NeuroLink name="data" type="ExcitatoryLink" transmitter="GLU" forward="true"/>
-				<NeuroLink name="control" type="ExcitatoryLink" transmitter="GLU" forward="false"/>
-				<NeuroLink name="control-feedback" type="ExcitatoryLink" transmitter="GLU" forward="true"/>
-			</MindNetworkType>
-
+			<MindNetworkType name="sensor"/>
 		</MindNetworkTypeSet>
 
 		<MindNetworkSet>
-			<MindNet name="SensorFileSysWalker" type="sensor-stream"/>
+			<MindNet name="SensorFileSysWalker" type="sensor"/>
 		</MindNetworkSet>
 
 		<MindAreaSet>
@@ -52,9 +46,19 @@
     
 		</MindAreaSet>
 
+		<MindLinkTypeSet>
+
+			<MindLinkType name="sensor-stream">
+				<NeuroLink name="data" type="ExcitatoryLink" transmitter="GLU" forward="true"/>
+				<NeuroLink name="control" type="ExcitatoryLink" transmitter="GLU" forward="false"/>
+				<NeuroLink name="control-feedback" type="ExcitatoryLink" transmitter="GLU" forward="true"/>
+			</MindLinkType>
+
+		</MindLinkTypeSet>
+
 		<MindLinkSet>
-			<MindLink masterArea="SensorArea" slaveArea="ThalamusArea" channel="SensorArea"/>
-			<MindLink masterArea="ThalamusArea" slaveArea="PerceptionArea" channel="ThalamusArea"/>
+			<MindLink type="sensor-stream" masterArea="SensorArea" slaveArea="ThalamusArea" channel="SensorArea"/>
+			<MindLink type="sensor-stream" masterArea="ThalamusArea" slaveArea="PerceptionArea" channel="ThalamusArea"/>
 		</MindLinkSet>
 
 	</MindMap>
