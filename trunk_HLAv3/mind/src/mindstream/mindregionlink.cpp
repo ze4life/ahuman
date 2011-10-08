@@ -6,6 +6,8 @@
 
 MindRegionLink::MindRegionLink( MindAreaLink *p_areaLink ) {
 	areaLink = p_areaLink;
+	linkType = areaLink -> getLinkInfo() -> getLinkType();
+
 	src = NULL;
 	dst = NULL;
 	links = new NeuroLinkSet();
@@ -27,9 +29,8 @@ void MindRegionLink::createRegionLink( MindNet *net , MindRegion *srcRegion , Mi
 
 	// create neuro links
 	MindNetInfo *netInfo = net -> getInfo();
-	MindNetworkType *netType = netInfo -> getNetType();
-	for( int k = 0; k < netType -> getNeuroLinkCount(); k++ ) {
-		NeuroLinkInfo *linkInfo = netType -> getNeuroLinkInfo( k );
+	for( int k = 0; k < linkType -> getNeuroLinkCount(); k++ ) {
+		NeuroLinkInfo *linkInfo = linkType -> getNeuroLinkInfo( k );
 		NeuroLink *link = createNeuroLink( net , linkInfo );
 		links -> addSetItem( link );
 	}

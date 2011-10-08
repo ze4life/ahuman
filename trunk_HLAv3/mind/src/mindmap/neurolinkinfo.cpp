@@ -4,8 +4,8 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-NeuroLinkInfo::NeuroLinkInfo( MindNetworkType *p_netType ) {
-	netType = p_netType;
+NeuroLinkInfo::NeuroLinkInfo( MindLinkType *p_linkType ) {
+	linkType = p_linkType;
 	forward = true;
 }
 
