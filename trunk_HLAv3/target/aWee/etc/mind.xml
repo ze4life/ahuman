@@ -4,12 +4,15 @@
 	</MindSpace>
 
 	<MindMap>
+
 		<MindNetworkTypeSet>
+
 			<MindNetworkType name="sensor-stream">
 				<NeuroLink name="data" type="ExcitatoryLink" transmitter="GLU" forward="true"/>
 				<NeuroLink name="control" type="ExcitatoryLink" transmitter="GLU" forward="false"/>
 				<NeuroLink name="control-feedback" type="ExcitatoryLink" transmitter="GLU" forward="true"/>
 			</MindNetworkType>
+
 		</MindNetworkTypeSet>
 
 		<MindNetworkSet>
@@ -17,7 +20,18 @@
 		</MindNetworkSet>
 
 		<MindAreaSet>
-			<MindArea id="ThalamusArea" enabled="false"/>
+
+			<MindArea id="ThalamusArea" enabled="true">
+				<property name="posX" value="0"/>
+				<property name="posY" value="0"/>
+				<property name="posZ" value="0"/>
+				<property name="sizeX" value="10000"/>
+				<property name="sizeY" value="10000"/>
+				<property name="sizeZ" value="2"/>
+				<property name="transmitters" value="GLU"/>
+				<MindAreaNetwork type="sensor-stream"/>
+			</MindArea>
+
 			<MindArea id="PerceptionArea" enabled="true">
 				<property name="posX" value="0"/>
 				<property name="posY" value="0"/>
@@ -26,7 +40,9 @@
 				<property name="sizeY" value="10000"/>
 				<property name="sizeZ" value="2"/>
 				<property name="transmitters" value="GLU"/>
+				<MindAreaNetwork type="sensor-stream"/>
 			</MindArea>
+
 			<MindArea id="HippocampusArea" enabled="false"/>
 			<MindArea id="ParietalArea" enabled="false"/>
 			<MindArea id="PrefrontalCortexArea" enabled="false"/>
@@ -45,7 +61,9 @@
 				<property name="sizeY" value="10000"/>
 				<property name="sizeZ" value="2"/>
 				<property name="transmitters" value="GLU"/>
+				<MindAreaNetwork type="sensor-stream"/>
 			</MindArea>
+
 			<MindArea id="EffectorArea" enabled="true">
 				<property name="posX" value="0"/>
 				<property name="posY" value="0"/>
@@ -55,11 +73,14 @@
 				<property name="sizeZ" value="2"/>
 				<property name="transmitters" value="GLU"/>
 			</MindArea>
+
 		</MindAreaSet>
 
 		<MindLinkSet>
-			<MindLink masterArea="SensorArea" slaveArea="PerceptionArea" channel="SensorArea"/>
+			<MindLink masterArea="SensorArea" slaveArea="ThalamusArea" channel="SensorArea"/>
+			<MindLink masterArea="ThalamusArea" slaveArea="PerceptionArea" channel="ThalamusArea"/>
 		</MindLinkSet>
+
 	</MindMap>
 
 	<ActiveMemory>

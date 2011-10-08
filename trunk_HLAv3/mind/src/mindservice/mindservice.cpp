@@ -286,19 +286,6 @@ void MindService::createMindRegionLink( MindAreaLink *areaLink , MindNet *net , 
 	areaLink -> addRegionLink( link );
 }
 
-ExcitatoryLink *MindService::createExcitatoryLink( MindRegionLink *link ) {
-	return( new ExcitatoryLink( link ) );
-}
-
-InhibitoryLink *MindService::createInhibitoryLink( MindRegionLink *link ) {
-	return( new InhibitoryLink( link ) );
-}
-
-ModulatoryLink *MindService::createModulatoryLink( MindRegionLink *link ) {
-	return( new ModulatoryLink( link ) );
-}
-
-MindArea *MindService::createThalamusArea() { return( NULL ); };
 MindArea *MindService::createHippocampusArea() { return( NULL ); };
 MindArea *MindService::createParietalArea() { return( NULL ); };
 MindArea *MindService::createPrefrontalCortexArea() { return( NULL ); };

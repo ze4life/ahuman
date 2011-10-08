@@ -4,7 +4,36 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-NucleiRegion::NucleiRegion() {
+class NucleiRegion : public MindRegion {
+public:
+	NucleiRegion( MindArea *area );
+	virtual const char *getClass() { return( "NucleiRegion" ); };
+
+public:
+	// MindRegion lifecycle
+	virtual void createRegion();
+	virtual void exitRegion();
+	virtual void destroyRegion();
+
+	// NeuroLink support
+	virtual NeuroLinkSource *getNeuroLinkSource( MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
+	virtual NeuroLinkTarget *getNeuroLinkTarget( MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
+
+private:
+// parent
+	MindArea *area;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+MindRegion *MindService::createNucleiRegion( MindArea *area ) { return( new NucleiRegion( area ) ); };
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+NucleiRegion::NucleiRegion( MindArea *p_area ) {
+	area = p_area;
 	attachLogger();
 }
 
@@ -16,3 +45,13 @@ void NucleiRegion::exitRegion() {
 
 void NucleiRegion::destroyRegion() {
 }
+
+// NeuroLink support
+NeuroLinkSource *NucleiRegion::getNeuroLinkSource( MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
+	return( NULL );
+}
+
+NeuroLinkTarget *NucleiRegion::getNeuroLinkTarget( MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
+	return( NULL );
+}
+

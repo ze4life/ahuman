@@ -19,14 +19,16 @@ void NeuroLinkInfo::createFromXml( Xml xml ) {
 
 NeuroLink *NeuroLinkInfo::createNeuroLink( MindRegionLink *regionLink ) {
 	NeuroLink *link = NULL;
+
+	MindService *ms = MindService::getService();
 	if( type.equals( "ExcitatoryLink" ) )
-		link = new ExcitatoryLink( regionLink );
+		link = ms -> createExcitatoryLink( regionLink );
 	else
 	if( type.equals( "InhibitoryLink" ) )
-		link = new InhibitoryLink( regionLink );
+		link = ms -> createInhibitoryLink( regionLink );
 	else
 	if( type.equals( "ModulatoryLink" ) )
-		link = new ModulatoryLink( regionLink );
+		link = ms -> createModulatoryLink( regionLink );
 	else
 		ASSERTFAILED( "Unknown NeuroLink type=" + type + ", name=" + name );
 	

@@ -8,9 +8,6 @@
 
 class MindRegion;
 class MindRegionSet;
-class CortexRegion;
-class NucleiRegion;
-class NerveRegion;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -90,69 +87,6 @@ public:
 
 // references
 	MapStringToClass<MindRegion> map;
-};
-
-/*#########################################################################*/
-/*#########################################################################*/
-
-class CortexRegion : public MindRegion {
-public:
-	CortexRegion();
-	virtual const char *getClass() { return( "CortexRegion" ); };
-
-public:
-	// MindRegion lifecycle
-	virtual void createRegion();
-	virtual void exitRegion();
-	virtual void destroyRegion();
-
-	// NeuroLink support
-	virtual NeuroLinkSource *getNeuroLinkSource( MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
-	virtual NeuroLinkTarget *getNeuroLinkTarget( MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
-
-	// access to pools
-	virtual NeuroPool *getFeedForwardInputPool();
-};
-
-/*#########################################################################*/
-/*#########################################################################*/
-
-class NucleiRegion : public MindRegion {
-public:
-	NucleiRegion();
-	virtual const char *getClass() { return( "NucleiRegion" ); };
-
-public:
-	// MindRegion lifecycle
-	virtual void createRegion();
-	virtual void exitRegion();
-	virtual void destroyRegion();
-
-	// NeuroLink support
-	virtual NeuroLinkSource *getNeuroLinkSource( MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
-	virtual NeuroLinkTarget *getNeuroLinkTarget( MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
-};
-
-/*#########################################################################*/
-/*#########################################################################*/
-
-class NeuroLinkSource;
-class NeuroLinkTarget;
-
-class NerveRegion : public MindRegion {
-public:
-	NerveRegion();
-	virtual const char *getClass() { return( "NerveRegion" ); };
-
-public:
-	// MindRegion lifecycle
-	virtual void createRegion();
-	virtual void exitRegion();
-	virtual void destroyRegion();
-
-	// NeuroLink support
-	virtual NeuroLinkSource *getNeuroLinkSource( MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
-	virtual NeuroLinkTarget *getNeuroLinkTarget( MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
 };
 
 /*#########################################################################*/
