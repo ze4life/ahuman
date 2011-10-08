@@ -104,16 +104,18 @@ class MindLocationInfo in TOP
 }}}
   * mind map
    * MindMap
-   * MindNetInfo, MindNetworkType, NeuroLinkInfo
-   * MindAreaInfo, MindAreaLinkInfo, MindAreaNetInfo 
+   * MindNetInfo, MindNetworkType
+   * MindLinkType, NeuroLinkInfo
+   * MindAreaInfo, MindAreaLinkInfo, MindAreaNetInfo
 {{{
-class MindMap {MindNetInfo[], MindAreaInfo[], MindAreaLinkInfo[], MindNetworkType[]} in MindService
+class MindMap {MindNetInfo[], MindAreaInfo[], MindAreaLinkInfo[], MindNetworkType[], MindLinkType[]} in MindService
 class MindNetInfo in MindMap
-class MindNetworkType {NeuroLinkInfo[]} in MindMap
-class NeuroLinkInfo in MindNetworkType
+class MindNetworkType in MindMap
 class MindAreaInfo {MindLocation, MindAreaNetInfo[]} in MindMap
 class MindAreaNetInfo in MindAreaInfo
 class MindAreaLinkInfo in MindMap
+class MindLinkType {NeuroLinkInfo[]} in MindMap
+class NeuroLinkInfo in MindLinkType
 }}}
   * mind base
 {{{
