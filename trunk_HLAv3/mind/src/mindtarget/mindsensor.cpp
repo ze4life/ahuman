@@ -73,8 +73,7 @@ NeuroVector *MindSensor::getSensoryData() {
 }
 
 NeuroLinkSource *MindSensor::getNeuroLinkSource( MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
-	String netType = netInfo -> getNetType() -> getName();
-	if( !netType.equals( "sensor-stream" ) )
+	if( !linkInfo -> getLinkType() -> getName().equals( "sensor-stream" ) )
 		return( NULL );
 
 	String name = linkInfo -> getName();
@@ -87,8 +86,7 @@ NeuroLinkSource *MindSensor::getNeuroLinkSource( MindNetInfo *netInfo , NeuroLin
 }
 
 NeuroLinkTarget *MindSensor::getNeuroLinkTarget( MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
-	String netType = netInfo -> getNetType() -> getName();
-	if( !netType.equals( "sensor-stream" ) )
+	if( !linkInfo -> getLinkType() -> getName().equals( "sensor-stream" ) )
 		return( NULL );
 
 	String name = linkInfo -> getName();

@@ -22,6 +22,8 @@ public:
 private:
 // parent
 	MindArea *area;
+	NeuroLinkSource source;
+	NeuroLinkTarget target;
 };
 
 /*#########################################################################*/
@@ -48,10 +50,11 @@ void NucleiRegion::destroyRegion() {
 
 // NeuroLink support
 NeuroLinkSource *NucleiRegion::getNeuroLinkSource( MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
-	return( NULL );
+	// allow any
+	return( &source );
 }
 
 NeuroLinkTarget *NucleiRegion::getNeuroLinkTarget( MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
-	return( NULL );
+	return( &target );
 }
 

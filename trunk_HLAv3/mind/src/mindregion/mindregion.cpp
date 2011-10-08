@@ -9,6 +9,9 @@ MindRegion::MindRegion() {
 
 	area = NULL;
 	regionLinkSet = NULL;
+	poolSet = NULL;
+	linkSet = NULL;
+	location = NULL;
 }
 
 MindRegion::~MindRegion() {

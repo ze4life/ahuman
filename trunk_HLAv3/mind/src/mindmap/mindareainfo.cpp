@@ -26,8 +26,29 @@ void MindAreaInfo::createFromXml( Xml xml ) {
 	MindLocationInfo li;
 	li.createFromXml( xml.getChildNode( "MindLocation" ) );
 	location = li.createLocation();
+
+	// mind area networks
+	for( Xml xmlChild = xml.getFirstChild( "MindAreaNetwork" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "MindAreaNetwork" ) ) {
+		// construct MindAreaNetwork from attributes
+		MindAreaNetInfo *info = new MindAreaNetInfo();
+		netSet.add( info );
+
+		info -> createFromXml( xmlChild );
+
+		// get link name
+		String name = info -> getNetName();
+		ASSERTMSG( !name.isEmpty() , "neurolink is not defined: " + xmlChild.serialize() );
+		ASSERTMSG( netMap.get( name ) == NULL , name + ": area network duplicate found for name=" + name );
+
+		// add
+		netMap.add( name , info );
+	}
 }
 
 bool MindAreaInfo::runEnabled() {
 	return( enabled );
+}
+
+MindAreaNetInfo *MindAreaInfo::getNetInfo( String name ) {
+	return( netMap.get( name ) );
 }

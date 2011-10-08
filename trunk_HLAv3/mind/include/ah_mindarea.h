@@ -49,7 +49,6 @@ public:
 	void destroy();
 
 	MindAreaInfo *getMindAreaInfo();
-	void getNetworks( StringList& list );
 	MindAreaNet *getMindNet( String net );
 	MindAreaNetInfo *getMindAreaNetInfo( String net );
 

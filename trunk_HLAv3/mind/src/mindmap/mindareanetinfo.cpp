@@ -14,7 +14,7 @@ MindAreaNetInfo::~MindAreaNetInfo() {
 
 void MindAreaNetInfo::createFromXml( Xml xml ) {
 	// attributes are properties
-	netName = xml.getAttribute( "name" );
+	netName = xml.getAttribute( "net" );
 	transmitters = xml.getAttribute( "transmitters" );
 }
 
