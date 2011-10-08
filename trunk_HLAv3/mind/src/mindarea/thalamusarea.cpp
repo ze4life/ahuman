@@ -54,19 +54,13 @@ void ThalamusArea::initRegionsInArea( MindTarget *p_target ) {
 
 void ThalamusArea::createSensoryNetwork( MindSensor *sensor ) {
 	// create separate network for sensor - by its name
-	MindService *ms = MindService::getService();
-
-	// find mind network
 	String name = sensor -> getClass();
-	MindNet *net = ms -> getMindNet( name );
 
-	// create mind area network
-	MindAreaNet *areaNet = new MindAreaNet( net );
+	// create area network if network is available and permitted in this area
+	MindAreaNet *net = MindArea::createAreaNetwork( name );
+	if( net == NULL )
+		return;
 
-	// find and add the only region
-	MindRegion *region = MindArea::getRegion( getClass() , sensor -> getClass() );
-	areaNet -> addRegion( region );
-
-	// add network to area network set
-	MindArea::addNet( areaNet );
+	// add the only region
+	net -> addRegion( sensor );
 }

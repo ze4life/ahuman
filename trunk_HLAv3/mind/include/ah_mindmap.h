@@ -42,6 +42,7 @@ private:
 	void createMindLinkSet( Xml xml );
 	void createNetworkTypeSet( Xml xml );
 	void createNetworkSet( Xml xml );
+	void linkAreaNet();
 
 private:
 // own data
@@ -99,22 +100,22 @@ public:
 	String getAreaId() { return( areaId ); };
 	bool runEnabled();
 
-	const MindLocation& getLocation() { return( location ); };
-	const ClassList<MindAreaLinkInfo>& getLinks() { return( links ); };
-	void addLink( MindAreaLinkInfo *link ) { links.add( link );	};
+	MindLocation *getLocation() { return( location ); };
+	ClassList<MindAreaLinkInfo>& getLinkSet() { return( linkSet ); };
+	void addLink( MindAreaLinkInfo *link ) { linkSet.add( link );	};
+	ClassList<MindAreaNetInfo>& getNetSet() { return( netSet ); };
 
 private:
 // utility
 	String areaId;
 	bool enabled;
-	StringList transmitters;
 
 // own data
-	MindLocation location;
+	MindLocation *location;
 
 // references
-	ClassList<MindAreaNetInfo> netInfoSet;
-	ClassList<MindAreaLinkInfo> links;
+	ClassList<MindAreaLinkInfo> linkSet;
+	ClassList<MindAreaNetInfo> netSet;
 };
 
 /*#########################################################################*/
@@ -153,7 +154,9 @@ public:
 // operations
 public:
 	void createFromXml( Xml xml );
-	String getName();
+	String getNetName();
+	String getTransmitters();
+
 	void setNetInfo( MindNetInfo *netInfo );
 	MindNetInfo *getNetInfo();
 
@@ -161,6 +164,9 @@ public:
 public:
 // utility
 	String netName;
+	String transmitters;
+
+// references
 	MindNetInfo *netInfo;
 };
 

@@ -27,6 +27,7 @@ void MindMap::createFromXml( Xml xml ) {
 	createMindLinkSet( xml.getFirstChild( "MindLinkSet" ) );
 	createNetworkTypeSet( xml.getFirstChild( "MindNetworkTypeSet" ) );
 	createNetworkSet( xml.getFirstChild( "MindNetworkSet" ) );
+	linkAreaNet();
 }
 
 void MindMap::createAreaSet( Xml xml ) {
@@ -105,5 +106,21 @@ void MindMap::createNetworkSet( Xml xml ) {
 
 		// add
 		mindNetMap.add( name , info );
+	}
+}
+
+void MindMap::linkAreaNet() {
+	// by area
+	for( int k = 0; k < mindAreaMap.count(); k++ ) {
+		MindAreaInfo *info = mindAreaMap.getClassByIndex( k );
+		ClassList<MindAreaNetInfo>& netSet = info -> getNetSet();
+		for( int y = 0; y < netSet.count(); y++ ) {
+			MindAreaNetInfo *areaNet = netSet.get( y );
+			String netName = areaNet -> getNetName();
+
+			MindNetInfo *net = mindNetMap.get( netName );
+			ASSERTMSG( net != NULL , "linkAreaNet: unable to find network by name=" + netName );
+			areaNet -> setNetInfo( net );
+		}
 	}
 }

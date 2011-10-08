@@ -8,6 +8,7 @@
 
 class MindSpace;
 class MindLocation;
+class MindLocationInfo;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -76,6 +77,25 @@ private:
 	int dx;
 	int dy;
 	int dz;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class MindLocationInfo : public Object {
+public:
+	MindLocationInfo();
+	virtual const char *getClass() { return( "MindLocationInfo" ); };
+
+// operations
+public:
+	void createFromXml( Xml xml );
+
+	MindLocation *createLocation();
+
+private:
+	int posX , posY, posZ;
+	int sizeX , sizeY , sizeZ;
 };
 
 /*#########################################################################*/

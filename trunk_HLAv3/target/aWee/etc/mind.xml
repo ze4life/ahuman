@@ -21,26 +21,23 @@
 
 		<MindAreaSet>
 
+			<MindArea id="SensorArea" enabled="true">
+				<MindLocation posX="0" posY="0" posZ="0" sizeX="10000" sizeY="10000" sizeZ="2"/>
+				<MindAreaNetwork net="SensorFileSysWalker" transmitters="GLU"/>
+			</MindArea>
+
+			<MindArea id="EffectorArea" enabled="true">
+				<MindLocation posX="0" posY="0" posZ="0" sizeX="10000" sizeY="10000" sizeZ="2"/>
+			</MindArea>
+
 			<MindArea id="ThalamusArea" enabled="true">
-				<property name="posX" value="0"/>
-				<property name="posY" value="0"/>
-				<property name="posZ" value="0"/>
-				<property name="sizeX" value="10000"/>
-				<property name="sizeY" value="10000"/>
-				<property name="sizeZ" value="2"/>
-				<property name="transmitters" value="GLU"/>
-				<MindAreaNetwork type="sensor-stream"/>
+				<MindLocation posX="0" posY="0" posZ="0" sizeX="10000" sizeY="10000" sizeZ="2"/>
+				<MindAreaNetwork net="SensorFileSysWalker" transmitters="GLU"/>
 			</MindArea>
 
 			<MindArea id="PerceptionArea" enabled="true">
-				<property name="posX" value="0"/>
-				<property name="posY" value="0"/>
-				<property name="posZ" value="0"/>
-				<property name="sizeX" value="10000"/>
-				<property name="sizeY" value="10000"/>
-				<property name="sizeZ" value="2"/>
-				<property name="transmitters" value="GLU"/>
-				<MindAreaNetwork type="sensor-stream"/>
+				<MindLocation posX="0" posY="0" posZ="0" sizeX="10000" sizeY="10000" sizeZ="2"/>
+				<MindAreaNetwork net="SensorFileSysWalker" transmitters="GLU"/>
 			</MindArea>
 
 			<MindArea id="HippocampusArea" enabled="false"/>
@@ -53,27 +50,6 @@
 			<MindArea id="MotorNerveArea" enabled="false"/>
 			<MindArea id="BodyFeelingNerveArea" enabled="false"/>
     
-			<MindArea id="SensorArea" enabled="true">
-				<property name="posX" value="0"/>
-				<property name="posY" value="0"/>
-				<property name="posZ" value="0"/>
-				<property name="sizeX" value="10000"/>
-				<property name="sizeY" value="10000"/>
-				<property name="sizeZ" value="2"/>
-				<property name="transmitters" value="GLU"/>
-				<MindAreaNetwork type="sensor-stream"/>
-			</MindArea>
-
-			<MindArea id="EffectorArea" enabled="true">
-				<property name="posX" value="0"/>
-				<property name="posY" value="0"/>
-				<property name="posZ" value="0"/>
-				<property name="sizeX" value="10000"/>
-				<property name="sizeY" value="10000"/>
-				<property name="sizeZ" value="2"/>
-				<property name="transmitters" value="GLU"/>
-			</MindArea>
-
 		</MindAreaSet>
 
 		<MindLinkSet>

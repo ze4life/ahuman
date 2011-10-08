@@ -51,14 +51,15 @@ public:
 	MindAreaInfo *getMindAreaInfo();
 	void getNetworks( StringList& list );
 	MindAreaNet *getMindNet( String net );
+	MindAreaNetInfo *getMindAreaNetInfo( String net );
 
-	void addNet( MindAreaNet *net );
 	MindRegionSet *getRegionSet();
 	void sendMessage( MindMessage *msg );
 	void addMasterLink( MindAreaLink *link );
 	void addSlaveLink( MindAreaLink *link );
 
 protected:
+	MindAreaNet *createAreaNetwork( String name );
 	String addRegion( String group , String id , MindRegion *region );
 	MindRegion *getRegion( String group , String id );
 
@@ -68,7 +69,7 @@ private:
 	MessagePublisher *iopub;
 
 // own data
-	MapStringToClass<MindAreaNet> nets;
+	MapStringToClass<MindAreaNet> netSet;
 	MindRegionSet *regionSet;
 	MindRegionLinkSet *regionLinkSet;
 
@@ -109,17 +110,21 @@ public:
 
 class MindAreaNet : public Object {
 public:
-	MindAreaNet( MindNet *net );
+	MindAreaNet( MindNet *net , MindAreaNetInfo *areaNetInfo );
 	virtual const char *getClass() { return( "MindAreaNet" ); };
 
 public:
 	MindNet *getNet();
+	MindAreaNetInfo *getNetInfo();
+
 	void addRegion( MindRegion *region );
 	ClassList<MindRegion>& getRegions();
 
 private:
 // references
 	MindNet *net;
+	MindAreaNetInfo *netInfo;
+
 	ClassList<MindRegion> regions;
 };
 
