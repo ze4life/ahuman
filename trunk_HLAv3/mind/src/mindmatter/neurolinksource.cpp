@@ -24,7 +24,9 @@ void NeuroLinkSource::sendMessage( MindRegion *region ) {
 	for( int k = 0; k < links.count(); k++ ) {
 		NeuroLink *link = links.get( k );
 
-		NeuroVector *msgdata = new NeuroVector( data );
+		NeuroVector *msgdata = NULL;
+		if( data != NULL )
+			msgdata = new NeuroVector( data );
 		MindMessage *msg = new MindMessage( link , msgdata );
 		region -> sendMessage( msg );
 	}

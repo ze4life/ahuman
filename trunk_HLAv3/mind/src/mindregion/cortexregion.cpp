@@ -19,15 +19,17 @@ public:
 	virtual NeuroLinkSource *getNeuroLinkSource( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
 	virtual NeuroLinkTarget *getNeuroLinkTarget( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
 
-	// access to pools
-	virtual NeuroPool *getFeedForwardInputPool();
+private:
+	// neurolink handlers
+	void handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroVector *data );
+	void handleFeedBackNeuroLinkMessage( NeuroLink *link , NeuroVector *data );
 
 private:
 // own data
 	NeuroLinkSource sourceFeedForward;
-	NeuroLinkSource sourceFeedback;
+	NeuroLinkSource sourceFeedBack;
 	NeuroLinkTarget targetFeedForward;
-	NeuroLinkTarget targetFeedback;
+	NeuroLinkTarget targetFeedBack;
 };
 
 /*#########################################################################*/
@@ -44,6 +46,8 @@ CortexRegion::CortexRegion( MindArea *p_area )
 }
 
 void CortexRegion::createRegion() {
+	targetFeedForward.setHandler( this , ( MindRegion::NeuroLinkHandler )&CortexRegion::handleFeedForwardNeuroLinkMessage );
+	targetFeedBack.setHandler( this , ( MindRegion::NeuroLinkHandler )&CortexRegion::handleFeedBackNeuroLinkMessage );
 }
 
 void CortexRegion::exitRegion() {
@@ -52,15 +56,28 @@ void CortexRegion::exitRegion() {
 void CortexRegion::destroyRegion() {
 }
 
-NeuroPool *CortexRegion::getFeedForwardInputPool() {
-	return( NULL );
-}
-
 NeuroLinkSource *CortexRegion::getNeuroLinkSource( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
+	if( entity.equals( "feed-forward" ) )
+		return( &sourceFeedForward );
+	if( entity.equals( "feed-back" ) )
+		return( &sourceFeedBack );
+
 	return( NULL );
 }
 
 NeuroLinkTarget *CortexRegion::getNeuroLinkTarget( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
+	if( entity.equals( "feed-forward" ) )
+		return( &targetFeedForward );
+	if( entity.equals( "feed-back" ) )
+		return( &targetFeedBack );
+
 	return( NULL );
 }
 
+void CortexRegion::handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroVector *data ) {
+	logger.logError( "handleFeedForwardNeuroLinkMessage: not implemented, NeuroLink id=" + link -> getId() );
+}
+
+void CortexRegion::handleFeedBackNeuroLinkMessage( NeuroLink *link , NeuroVector *data ) {
+	logger.logError( "handleFeedBackNeuroLinkMessage: not implemented, NeuroLink id=" + link -> getId() );
+}

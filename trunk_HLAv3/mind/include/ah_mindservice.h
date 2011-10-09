@@ -101,8 +101,6 @@ private:
 	void createArea( String areaId , MindArea *(MindService::*pfn)() );
 	void addMindRegion( String regionId , MindRegion *region , const MindLocation& relativeLocation );
 	void createMindAreaLink( MindArea *masterArea , MindArea *slaveArea , MindAreaLinkInfo *linkInfo );
-	void createMindRegionLinks( MindAreaLink *link , MindNet *net , MindAreaNet *masterNet , MindAreaNet *slaveNet );
-	void createMindRegionLink( MindAreaLink *link , MindNet *net , MindRegion *masterRegion , MindRegion *slaveRegion );
 
 	// structure lock
 	void lock() { rfc_hnd_semlock( lockStructure );	}

@@ -27,7 +27,7 @@ class MindRegion;
 // how inputs/outputs are connected to cortexes - it is defined by related component
 class MindAreaLink : public Object , public MessageSubscriber {
 public:
-	MindAreaLink( MindAreaLinkInfo *p_info );
+	MindAreaLink( MindAreaLinkInfo *p_info , MindArea *masterArea , MindArea *slaveArea );
 	~MindAreaLink();
 	const char *getClass() { return( "MindAreaLink" ); };
 
@@ -35,14 +35,20 @@ public:
 public:
 	virtual void onBinaryMessage( BinaryMessage *msg );
 
+public:
+	void createRegionLinks();
 	void open( MessageSession *session );
 	MessageSubscription *subscribe( MessageSubscriber *handler , String name );
 	MessageSubscription *subscribeSelector( MessageSubscriber *handler , String name , String selector );
 
-	MindArea *getSourceArea() { return( sourceArea ); };
-	MindArea *getDestinationArea() { return( destinationArea ); };
-	void addRegionLink( MindRegionLink *link );
+	MindArea *getMasterArea() { return( masterArea ); };
+	MindArea *getSlaveArea() { return( slaveArea ); };
 	MindAreaLinkInfo *getLinkInfo() { return( info ); };
+
+private:
+	void createNetRegionLinks( MindNet *net , MindAreaNet *masterNet , MindAreaNet *slaveNet );
+	void createNetRegionLink( MindNet *net , MindRegion *masterRegion , MindRegion *slaveRegion );
+	void addRegionLink( MindRegionLink *link );
 
 private:
 // utility
@@ -55,8 +61,8 @@ private:
 // references
 	MindActiveMemory *activeMemory;
 	MindAreaLinkInfo *info;
-	MindArea *sourceArea;
-	MindArea *destinationArea;
+	MindArea *masterArea;
+	MindArea *slaveArea;
 };
 
 /*#########################################################################*/

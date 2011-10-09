@@ -204,6 +204,23 @@ void MindService::establishAreaLinks() {
 	}
 }
 
+void MindService::createMindAreaLink( MindArea *masterArea , MindArea *slaveArea , MindAreaLinkInfo *linkInfo ) {
+	// create link
+	MindAreaLink *link = new MindAreaLink( linkInfo , masterArea , slaveArea );
+
+	// add to link set
+	masterArea -> addSlaveLink( link );
+	slaveArea -> addMasterLink( link );
+	linkSet -> addSetItem( link );
+	logger.logInfo( "createMindAreaLink: create link masterArea=" + linkInfo -> getMasterAreaId() + ", slaveArea=" + linkInfo -> getSlaveAreaId() + "..." );
+
+	// create region-to-region links
+	link -> createRegionLinks();
+
+	// start process area link messages
+	link -> open( session );
+}
+
 MindArea *MindService::getMindArea( String areaId ) {
 	return( areaSet -> getMindArea( areaId ) );
 }
@@ -219,76 +236,6 @@ MindNet *MindService::getMindNet( String netName ) {
 	MindNet *net = netSet -> getMindNet( netName );
 	ASSERTMSG( net != NULL , "getMindNet: net is not found by name=" + netName );
 	return( net );
-}
-
-// mind area links
-void MindService::createMindAreaLink( MindArea *masterArea , MindArea *slaveArea , MindAreaLinkInfo *linkInfo ) {
-	// create link
-	MindAreaLink *link = new MindAreaLink( linkInfo );
-
-	// add to link set
-	masterArea -> addSlaveLink( link );
-	slaveArea -> addMasterLink( link );
-	linkSet -> addSetItem( link );
-	logger.logInfo( "createMindAreaLink: create link masterArea=" + linkInfo -> getMasterAreaId() + ", slaveArea=" + linkInfo -> getSlaveAreaId() + "..." );
-
-	// create region mapping
-	ClassList<MindAreaNetInfo>& netSet = masterArea -> getMindAreaInfo() -> getNetSet();
-	for( int k = 0; k < netSet.count(); k++ ) {
-		MindAreaNetInfo *netInfo = netSet.get( k );
-		String netName = netInfo -> getNetName();
-
-		MindNet *net = getMindNet( netName );
-		MindAreaNet *masterNet = masterArea -> getMindNet( netName );
-		MindAreaNet *slaveNet = slaveArea -> getMindNet( netName );
-		if( masterNet == NULL || slaveNet == NULL )
-			continue;
-
-		// create regional links
-		createMindRegionLinks( link , net , masterNet , slaveNet );
-	}
-
-	// start process area link messages
-	link -> open( session );
-}
-
-void MindService::createMindRegionLinks( MindAreaLink *link , MindNet *net , MindAreaNet *masterNet , MindAreaNet *slaveNet ) {
-	ClassList<MindRegion>& masterRegions = masterNet -> getRegions();
-	ClassList<MindRegion>& slaveRegions = slaveNet -> getRegions();
-
-	// make linear topological mapping
-	int n1 = masterRegions.count();
-	int n2 = slaveRegions.count();
-	if( n1 == 0 || n2 == 0 )
-		return;
-
-	// mapping factor
-	int k2 = 0;
-	for( int k1 = 0; k1 < n1; k1++ ) {
-		MindRegion *masterRegion = masterRegions.get( k1 );
-
-		// find terminal index for k1 mapping
-		int n2k1 = 10 * n2 * k1 / n1;
-		if( n2k1 % 5 > 5 )
-			n2k1 = n2k1/10 + 1;
-		else
-			n2k1 = n2k1/10;
-		if( n2k1 >= n2 )
-			n2k1 = n2 - 1;
-
-		for( ; k2 <= n2k1; k2++ ) {
-			MindRegion *slaveRegion = slaveRegions.get( k1 );
-			createMindRegionLink( link , net , masterRegion , slaveRegion );
-		}
-	}
-}
-
-void MindService::createMindRegionLink( MindAreaLink *areaLink , MindNet *net , MindRegion *masterRegion , MindRegion *slaveRegion ) {
-	logger.logDebug( "createMindRegionLink: create link net=" + net -> getName() + ", masterRegion=" + masterRegion -> getRegionId() + ", slaveRegion=" + slaveRegion -> getRegionId() + "..." );
-
-	MindRegionLink *link = new MindRegionLink( areaLink );
-	link -> createRegionLink( net , masterRegion , slaveRegion );
-	areaLink -> addRegionLink( link );
 }
 
 MindArea *MindService::createHippocampusArea() { return( NULL ); };
