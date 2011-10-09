@@ -66,5 +66,7 @@ NeuroLinkTarget *NucleiRegion::getNeuroLinkTarget( String entity , MindNetInfo *
 void NucleiRegion::handleNeuroLinkMessage( NeuroLink *link , NeuroVector *data ) {
 	// execute default
 	link -> apply( data , &neuroPool );
-}
 
+	// forward further
+	source.sendMessage( this );
+}
