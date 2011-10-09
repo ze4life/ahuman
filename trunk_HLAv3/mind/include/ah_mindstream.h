@@ -33,7 +33,7 @@ public:
 
 // operations
 public:
-	virtual void onMessage( Message *msg );
+	virtual void onBinaryMessage( BinaryMessage *msg );
 
 	void open( MessageSession *session );
 	MessageSubscription *subscribe( MessageSubscriber *handler , String name );
@@ -53,6 +53,7 @@ private:
 	MindRegionLinkSet *links;
 
 // references
+	MindActiveMemory *activeMemory;
 	MindAreaLinkInfo *info;
 	MindArea *sourceArea;
 	MindArea *destinationArea;
@@ -138,6 +139,9 @@ public:
 	void start();
 	void stop();
 	void destroy();
+
+	// task execution
+	void execute( MindMessage *msg );
 
 public:
 // utility

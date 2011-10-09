@@ -78,7 +78,7 @@ public:
 	void setTransmitter( String transmitter );
 	void create( NeuroLinkSource *p_source , NeuroLinkTarget *p_target );
 
-	virtual void apply( NeuroVector *srcData ) = 0;
+	virtual void apply( NeuroVector *srcData , NeuroPool *dstPool ) = 0;
 
 public:
 // utilities
@@ -137,6 +137,9 @@ public:
 
 public:
 	void setHandler( MindRegion *region , MindRegion::NeuroLinkHandler pfn );
+	MindRegion *getRegion() { return( region ); };
+
+	void execute( NeuroLink *link , NeuroVector *sourceData );
 
 public:
 	MindRegion *region;

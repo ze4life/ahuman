@@ -109,7 +109,7 @@ public:
 
 class MindAreaNet : public Object {
 public:
-	MindAreaNet( MindNet *net , MindAreaNetInfo *areaNetInfo );
+	MindAreaNet( MindArea *area , MindNet *net , MindAreaNetInfo *areaNetInfo );
 	virtual const char *getClass() { return( "MindAreaNet" ); };
 
 public:
@@ -120,6 +120,9 @@ public:
 	ClassList<MindRegion>& getRegions();
 
 private:
+// parent
+	MindArea *area;
+
 // references
 	MindNet *net;
 	MindAreaNetInfo *netInfo;

@@ -225,10 +225,7 @@ private:
 	String name;
 
 // own
-	ClassList<NeuroLinkInfo> neuroLinks;
-
-// references
-	MapStringToClass<NeuroLinkInfo> neuroLinkMap;
+	ClassList<NeuroLinkInfo> neuroLinkSet;
 };
 
 /*#########################################################################*/
@@ -246,8 +243,9 @@ public:
 public:
 	void createFromXml( Xml xml );
 
-	String getName() { return( name ); };
 	String getTypeName() { return( type ); };
+	String getMasterEntity() { return( masterEntity ); };
+	String getSlaveEntity() { return( slaveEntity ); };
 	String getTransmitter() { return( transmitter ); };
 	bool getForward() { return( forward ); };
 	MindLinkType *getLinkType() { return( linkType ); };
@@ -257,8 +255,9 @@ public:
 // data
 public:
 // utility
-	String name;
 	String type;
+	String masterEntity;
+	String slaveEntity;
 	String transmitter;
 	bool forward;
 

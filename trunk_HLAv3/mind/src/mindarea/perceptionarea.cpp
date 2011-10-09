@@ -38,16 +38,9 @@ void PerceptionArea::initRegionsInArea( MindTarget *p_target ) {
 	target = p_target;
 	MindSensorSet *sensorSet = target -> getSensorSet();
 
-	// create regions for target
-	MindService *ms = MindService::getService();
+	// create regions for sensors
 	for( int k = 0; k < sensorSet -> getCount(); k++ ) {
 		MindSensor *sensor = sensorSet -> getSetItem( k );
-
-		// create region for cortex
-		MindRegion *region = ms -> createCortexRegion( this );
-		MindArea::addRegion( getClass() , sensor -> getClass() , region );
-
-		// add to network
 		createSensoryNetwork( sensor );
 	}
 }
@@ -61,6 +54,11 @@ void PerceptionArea::createSensoryNetwork( MindSensor *sensor ) {
 	if( net == NULL )
 		return;
 
+	// create cortex region for sensor
+	MindService *ms = MindService::getService();
+	MindRegion *region = ms -> createCortexRegion( this );
+	MindArea::addRegion( getClass() , sensor -> getClass() , region );
+
 	// add the only region
-	net -> addRegion( sensor );
+	net -> addRegion( region );
 }

@@ -9,16 +9,16 @@ public:
 
 	// target lifecycle
 	virtual void configureTarget( Xml config );
-	virtual void createTarget();
-	virtual void initSensorsTarget( MindArea *sensorArea );
-	virtual void initEffectorsTarget( MindArea *effectorArea );
+	virtual void createTarget( SensorArea *sensorArea , EffectorArea *effectorArea );
+	virtual void initSensorsTarget( SensorArea *sensorArea );
+	virtual void initEffectorsTarget( EffectorArea *effectorArea );
 	virtual void runTarget();
 	virtual void stopTarget();
 	virtual void exitTarget();
 	virtual void destroyTarget();
 
 public:
-	MindSensor *createFileSysWalker();
+	MindSensor *createFileSysWalker( SensorArea *area );
 };
 
 /*#########################################################################*/

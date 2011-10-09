@@ -39,3 +39,9 @@ void MindActiveMemory::stop() {
 	ts -> stopThreadPool( threadPoolName );
 }
 
+void MindActiveMemory::execute( MindMessage *msg ) {
+	NeuroLink *link = msg -> getNeuroLink();
+	NeuroVector *sourceData = msg -> getMsgData();
+	NeuroLinkTarget *target = link -> getTarget();
+	target -> execute( link , sourceData );
+}

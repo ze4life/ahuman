@@ -8,7 +8,7 @@ MindLinkType::MindLinkType() {
 }
 
 MindLinkType::~MindLinkType() {
-	neuroLinks.destroy();
+	neuroLinkSet.destroy();
 }
 
 void MindLinkType::createFromXml( Xml xml ) {
@@ -19,24 +19,16 @@ void MindLinkType::createFromXml( Xml xml ) {
 	for( Xml xmlChild = xml.getFirstChild( "NeuroLink" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "NeuroLink" ) ) {
 		// construct NeuroLink from attributes
 		NeuroLinkInfo *info = new NeuroLinkInfo( this );
-		neuroLinks.add( info );
+		neuroLinkSet.add( info );
 
 		info -> createFromXml( xmlChild );
-
-		// get link name
-		String name = info -> getName();
-		ASSERTMSG( !name.isEmpty() , "neurolink is not defined: " + xmlChild.serialize() );
-		ASSERTMSG( neuroLinkMap.get( name ) == NULL , name + ": neurolink duplicate found for name=" + name );
-
-		// add
-		neuroLinkMap.add( name , info );
 	}
 }
 
 int MindLinkType::getNeuroLinkCount() {
-	return( neuroLinkMap.count() );
+	return( neuroLinkSet.count() );
 }
 
 NeuroLinkInfo *MindLinkType::getNeuroLinkInfo( int pos ) {
-	return( neuroLinkMap.getClassByIndex( pos ) );
+	return( neuroLinkSet.get( pos ) );
 }

@@ -128,7 +128,7 @@ public:
 	virtual void onTextMessage( TextMessage *msg ) {};
 	virtual void onXmlMessage( XmlMessage *msg ) {};
 	virtual void onXmlCall( XmlCall *msg ) {};
-	virtual void onBinaryMessage( Message *msg ) {};
+	virtual void onBinaryMessage( BinaryMessage *msg ) {};
 };
 
 /*#########################################################################*/

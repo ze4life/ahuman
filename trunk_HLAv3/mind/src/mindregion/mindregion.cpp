@@ -4,10 +4,11 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-MindRegion::MindRegion() {
+MindRegion::MindRegion( MindArea *p_area ) {
 	attachLogger();
 
-	area = NULL;
+	area = p_area;
+
 	regionLinkSet = NULL;
 	poolSet = NULL;
 	linkSet = NULL;

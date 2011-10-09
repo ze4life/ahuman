@@ -38,7 +38,7 @@ void ThalamusArea::initRegionsInArea( MindTarget *p_target ) {
 	target = p_target;
 	MindSensorSet *sensorSet = target -> getSensorSet();
 
-	// create regions for target
+	// create regions for sensors
 	for( int k = 0; k < sensorSet -> getCount(); k++ ) {
 		MindSensor *sensor = sensorSet -> getSetItem( k );
 		createSensoryNetwork( sensor );

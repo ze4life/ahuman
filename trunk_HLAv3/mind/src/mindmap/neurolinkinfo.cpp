@@ -11,8 +11,9 @@ NeuroLinkInfo::NeuroLinkInfo( MindLinkType *p_linkType ) {
 
 void NeuroLinkInfo::createFromXml( Xml xml ) {
 	// attributes are properties
-	name = xml.getAttribute( "name" );
 	type = xml.getAttribute( "type" );
+	masterEntity = xml.getAttribute( "masterEntity" );
+	slaveEntity = xml.getAttribute( "slaveEntity" );
 	transmitter = xml.getAttribute( "transmitter" );
 	forward = xml.getBooleanAttribute( "forward" , true );
 }
@@ -30,7 +31,7 @@ NeuroLink *NeuroLinkInfo::createNeuroLink( MindRegionLink *regionLink ) {
 	if( type.equals( "ModulatoryLink" ) )
 		link = ms -> createModulatoryLink( regionLink );
 	else
-		ASSERTFAILED( "Unknown NeuroLink type=" + type + ", name=" + name );
+		ASSERTFAILED( "Unknown NeuroLink type=" + type + ", master=" + masterEntity + ", slave=" + slaveEntity );
 	
 	// set link info
 	link -> setNeuroLinkInfo( this );

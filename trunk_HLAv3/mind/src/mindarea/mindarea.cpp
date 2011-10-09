@@ -106,7 +106,7 @@ MindAreaNet *MindArea::createAreaNetwork( String name ) {
 		return( NULL );
 
 	// create mind area network
-	MindAreaNet *areaNet = new MindAreaNet( net , netInfo );
+	MindAreaNet *areaNet = new MindAreaNet( this , net , netInfo );
 
 	// add network to area network set
 	netSet.add( name , areaNet );

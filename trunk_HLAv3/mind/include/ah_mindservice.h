@@ -45,6 +45,7 @@ public:
 	void addNeuroLink( NeuroLink *link , NeuroPool *src , NeuroPool *dst );
 
 	// get mind map, specific mind area, region, network
+	MindActiveMemory *getActiveMemory();
 	MindMap *getMindMap();
 	MindArea *getMindArea( String areaId );
 	MindRegion *getMindRegion( String regionId );
