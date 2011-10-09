@@ -68,7 +68,7 @@ void MessageSubscription::processMessage( Message *msg ) {
 				sub -> onXmlCall( ( XmlCall * )msg );
 				break;
 			case Message::MsgType_Binary :
-				sub -> onBinaryMessage( msg );
+				sub -> onBinaryMessage( ( BinaryMessage * )msg );
 				break;
 			default:
 				sub -> onMessage( msg );

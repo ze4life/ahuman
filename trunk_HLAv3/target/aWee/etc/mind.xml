@@ -49,9 +49,12 @@
 		<MindLinkTypeSet>
 
 			<MindLinkType name="sensor-stream">
-				<NeuroLink name="data" type="ExcitatoryLink" transmitter="GLU" forward="true"/>
-				<NeuroLink name="control" type="ExcitatoryLink" transmitter="GLU" forward="false"/>
-				<NeuroLink name="control-feedback" type="ExcitatoryLink" transmitter="GLU" forward="true"/>
+				<NeuroLink type="ExcitatoryLink" masterEntity="data" slaveEntity="input" transmitter="GLU" forward="true"/>
+			</MindLinkType>
+
+			<MindLinkType name="control-stream">
+				<NeuroLink type="ExcitatoryLink" masterEntity="output" slaveEntity="control" transmitter="GLU" forward="true"/>
+				<NeuroLink type="ExcitatoryLink" masterEntity="input" slaveEntity="control-feedback" transmitter="GLU" forward="false"/>
 			</MindLinkType>
 
 		</MindLinkTypeSet>

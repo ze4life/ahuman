@@ -26,6 +26,10 @@ MindService::MindService() {
 	regionIdSeq = 0;
 }
 
+MindActiveMemory *MindService::getActiveMemory() {
+	return( activeMemory );
+}
+
 MindMap *MindService::getMindMap() {
 	return( mindMap );
 }

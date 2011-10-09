@@ -5,6 +5,7 @@
 /*#########################################################################*/
 
 MindAreaLink::MindAreaLink( MindAreaLinkInfo *p_info ) {
+	attachLogger();
 	info = p_info;
 
 	MindService *mm = MindService::getService();
@@ -28,26 +29,30 @@ void MindAreaLink::open( MessageSession *p_session ) {
 	String channelId = info -> getChannelId();
 	String ioid =  info -> getMasterAreaId() + "-" +  info -> getSlaveAreaId();
 
-	MessagingService *ms = MessagingService::getService();
-	iosub = ms -> subscribe( session , channelId , ioid , this );
+	MindService *ms = MindService::getService();
+	activeMemory = ms -> getActiveMemory();
+
+	MessagingService *msgs = MessagingService::getService();
+	iosub = msgs -> subscribe( NULL , channelId , ioid , this );
 }
 
 MessageSubscription *MindAreaLink::subscribeSelector( MessageSubscriber *handler , String name , String selector ) {
 	MessagingService *ms = MessagingService::getService();
 	String channelId = info -> getChannelId();
-	MessageSubscription *sub = ms -> subscribeSelector( session , channelId , selector , channelId + "-" + name , handler );
+	MessageSubscription *sub = ms -> subscribeSelector( NULL , channelId , selector , channelId + "-" + name , handler );
 	return( sub );
 }
 
 MessageSubscription *MindAreaLink::subscribe( MessageSubscriber *handler , String name ) {
 	MessagingService *ms = MessagingService::getService();
 	String channelId = info -> getChannelId();
-	MessageSubscription *sub = ms -> subscribe( session , channelId , channelId + "-" + name , handler );
+	MessageSubscription *sub = ms -> subscribe( NULL , channelId , channelId + "-" + name , handler );
 	return( sub );
 }
 
-void MindAreaLink::onMessage( Message *msg ) {
-	logger.logInfo( "MindAreaLink::onMessage - not implemented" );
+void MindAreaLink::onBinaryMessage( BinaryMessage *msg ) {
+	MindMessage *mm = ( MindMessage * )msg;
+	activeMemory -> execute( mm );
 }
 
 void MindAreaLink::addRegionLink( MindRegionLink *link ) {

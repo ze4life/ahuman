@@ -16,16 +16,13 @@ public:
 	virtual void destroyRegion();
 
 	// NeuroLink support
-	virtual NeuroLinkSource *getNeuroLinkSource( MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
-	virtual NeuroLinkTarget *getNeuroLinkTarget( MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
+	virtual NeuroLinkSource *getNeuroLinkSource( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
+	virtual NeuroLinkTarget *getNeuroLinkTarget( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
 
 	// access to pools
 	virtual NeuroPool *getFeedForwardInputPool();
 
 private:
-// parent
-	MindArea *area;
-
 // own data
 	NeuroLinkSource sourceFeedForward;
 	NeuroLinkSource sourceFeedback;
@@ -41,8 +38,8 @@ MindRegion *MindService::createCortexRegion( MindArea *area ) { return( new Cort
 /*#########################################################################*/
 /*#########################################################################*/
 
-CortexRegion::CortexRegion( MindArea *p_area ) {
-	area = p_area;
+CortexRegion::CortexRegion( MindArea *p_area )
+:	MindRegion( p_area ) {
 	attachLogger();
 }
 
@@ -59,11 +56,11 @@ NeuroPool *CortexRegion::getFeedForwardInputPool() {
 	return( NULL );
 }
 
-NeuroLinkSource *CortexRegion::getNeuroLinkSource( MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
+NeuroLinkSource *CortexRegion::getNeuroLinkSource( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
 	return( NULL );
 }
 
-NeuroLinkTarget *CortexRegion::getNeuroLinkTarget( MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
+NeuroLinkTarget *CortexRegion::getNeuroLinkTarget( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
 	return( NULL );
 }
 

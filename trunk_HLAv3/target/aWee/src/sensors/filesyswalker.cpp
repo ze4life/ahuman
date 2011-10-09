@@ -84,7 +84,7 @@ private:
 	bool continueRunFlag;
 
 public:
-	SensorFileSysWalker();
+	SensorFileSysWalker( SensorArea *area );
 	virtual ~SensorFileSysWalker();
 	virtual const char *getClass() { return( "SensorFileSysWalker" ); };
 
@@ -146,7 +146,8 @@ private:
 // #############################################################################
 // #############################################################################
 
-SensorFileSysWalker::SensorFileSysWalker() {
+SensorFileSysWalker::SensorFileSysWalker( SensorArea *p_area )
+:	MindSensor( p_area ) {
 	attachLogger();
 
 	actions[0] = FILE_NOTIFY_ACTION_ADDED; 
@@ -532,11 +533,10 @@ String SensorFileSysWalker::getCurFocusArea() {
 }
 
 void SensorFileSysWalker::sendSignal( neurovt type , String value ) {
-	logger.logDebug( String( "sendSignal: type=" ) + type + ", value=" + value );
-
 	// set value by chunks split by directory delimiter
 	char *p = value.getBuffer();
 	ASSERTMSG( p != NULL , "Unexpected" );
+	int nSent = 0;
 	while( *p ) {
 		// set type
 		vout[ 0 ] = type;
@@ -568,8 +568,11 @@ void SensorFileSysWalker::sendSignal( neurovt type , String value ) {
 		// produce item flow
 		// logger.logDebug( String( "sendSignal: processSensorData - " ) + String( p , next - p ) );
 		MindSensor::processSensorData();
+		nSent++;
 		p = next;
 	}
+
+	logger.logDebug( String( "sendSignal: type=" ) + type + ", nSent=" + nSent +", value=" + value );
 }
 
 // #############################################################################
@@ -889,7 +892,7 @@ void SensorFileSysWalker::continueRead() {
 // #############################################################################
 // #############################################################################
 
-MindSensor *AWeeTarget::createFileSysWalker() {
-	return( new SensorFileSysWalker() );
+MindSensor *AWeeTarget::createFileSysWalker( SensorArea *area ) {
+	return( new SensorFileSysWalker( area ) );
 }
 

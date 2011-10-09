@@ -27,7 +27,7 @@ public:
 	typedef void (MindRegion::*NeuroLinkHandler)( NeuroLink *link , NeuroVector *srcData );
 
 public:
-	MindRegion();
+	MindRegion( MindArea *area );
 	virtual ~MindRegion();
 	virtual const char *getClass() { return( "MindRegion" ); };
 
@@ -37,8 +37,8 @@ public:
 	virtual void destroyRegion() = 0;
 
 	// NeuroLink support
-	virtual NeuroLinkSource *getNeuroLinkSource( MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) = 0;
-	virtual NeuroLinkTarget *getNeuroLinkTarget( MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) = 0;
+	virtual NeuroLinkSource *getNeuroLinkSource( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) = 0;
+	virtual NeuroLinkTarget *getNeuroLinkTarget( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) = 0;
 
 public:
 	void create( MindArea *area , String p_id );
@@ -46,6 +46,7 @@ public:
 	void destroy();
 	void sendMessage( MindMessage *msg );
 
+	MindArea *getArea() { return( area ); };
 	String getRegionId();
 
 private:

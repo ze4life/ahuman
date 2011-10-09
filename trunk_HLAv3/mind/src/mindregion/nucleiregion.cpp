@@ -16,14 +16,18 @@ public:
 	virtual void destroyRegion();
 
 	// NeuroLink support
-	virtual NeuroLinkSource *getNeuroLinkSource( MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
-	virtual NeuroLinkTarget *getNeuroLinkTarget( MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
+	virtual NeuroLinkSource *getNeuroLinkSource( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
+	virtual NeuroLinkTarget *getNeuroLinkTarget( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
 
 private:
-// parent
-	MindArea *area;
+	// neurolink handler
+	void handleNeuroLinkMessage( NeuroLink *link , NeuroVector *data );
+
+private:
+// own data
 	NeuroLinkSource source;
 	NeuroLinkTarget target;
+	NeuroPool neuroPool;
 };
 
 /*#########################################################################*/
@@ -34,12 +38,13 @@ MindRegion *MindService::createNucleiRegion( MindArea *area ) { return( new Nucl
 /*#########################################################################*/
 /*#########################################################################*/
 
-NucleiRegion::NucleiRegion( MindArea *p_area ) {
-	area = p_area;
+NucleiRegion::NucleiRegion( MindArea *p_area )
+:	MindRegion( p_area ) {
 	attachLogger();
 }
 
 void NucleiRegion::createRegion() {
+	target.setHandler( this , ( MindRegion::NeuroLinkHandler )&NucleiRegion::handleNeuroLinkMessage );
 }
 
 void NucleiRegion::exitRegion() {
@@ -49,12 +54,17 @@ void NucleiRegion::destroyRegion() {
 }
 
 // NeuroLink support
-NeuroLinkSource *NucleiRegion::getNeuroLinkSource( MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
+NeuroLinkSource *NucleiRegion::getNeuroLinkSource( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
 	// allow any
 	return( &source );
 }
 
-NeuroLinkTarget *NucleiRegion::getNeuroLinkTarget( MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
+NeuroLinkTarget *NucleiRegion::getNeuroLinkTarget( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
 	return( &target );
+}
+
+void NucleiRegion::handleNeuroLinkMessage( NeuroLink *link , NeuroVector *data ) {
+	// execute default
+	link -> apply( data , &neuroPool );
 }
 

@@ -9,7 +9,6 @@ static int sequence_NL = 0;
 NeuroLink::NeuroLink( MindRegionLink *p_regionLink ) {
 	regionLink = p_regionLink;
 
-	regionLink = NULL;
 	linkInfo = NULL;
 	target = NULL;
 }

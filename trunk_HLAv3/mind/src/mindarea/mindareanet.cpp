@@ -4,12 +4,14 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-MindAreaNet::MindAreaNet( MindNet *p_net , MindAreaNetInfo *p_areaNetInfo ) {
+MindAreaNet::MindAreaNet( MindArea *p_area , MindNet *p_net , MindAreaNetInfo *p_areaNetInfo ) {
+	area = p_area;
 	net = p_net;
 	netInfo = p_areaNetInfo;
 }
 
 void MindAreaNet::addRegion( MindRegion *region ) {
+	ASSERTMSG( region -> getArea() == area , "Only owned regions can be added to area network" );
 	regions.add( region );
 }
 

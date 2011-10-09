@@ -3,7 +3,8 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-MindSensor::MindSensor() {
+MindSensor::MindSensor( SensorArea *p_area )
+:	MindRegion( p_area ) {
 	pollState = false;
 	pollNextMs = 0;
 	pollIntervalMs = 0;
@@ -72,25 +73,17 @@ NeuroVector *MindSensor::getSensoryData() {
 	return( memorySensoryData );
 }
 
-NeuroLinkSource *MindSensor::getNeuroLinkSource( MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
-	if( !linkInfo -> getLinkType() -> getName().equals( "sensor-stream" ) )
-		return( NULL );
-
-	String name = linkInfo -> getName();
-	if( name.equals( "data" ) )
+NeuroLinkSource *MindSensor::getNeuroLinkSource( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
+	if( entity.equals( "data" ) )
 		return( &sourceSensoryData );
-	if( name.equals( "control-feedback" ) )
+	if( entity.equals( "control-feedback" ) )
 		return( &sourceSensoryControlFeedback );
 
 	return( NULL );
 }
 
-NeuroLinkTarget *MindSensor::getNeuroLinkTarget( MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
-	if( !linkInfo -> getLinkType() -> getName().equals( "sensor-stream" ) )
-		return( NULL );
-
-	String name = linkInfo -> getName();
-	if( name.equals( "control" ) )
+NeuroLinkTarget *MindSensor::getNeuroLinkTarget( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
+	if( entity.equals( "control" ) )
 		return( &targetSensoryControl );
 
 	return( NULL );

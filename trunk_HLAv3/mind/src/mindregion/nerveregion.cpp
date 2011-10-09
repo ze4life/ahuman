@@ -16,12 +16,8 @@ public:
 	virtual void destroyRegion();
 
 	// NeuroLink support
-	virtual NeuroLinkSource *getNeuroLinkSource( MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
-	virtual NeuroLinkTarget *getNeuroLinkTarget( MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
-
-private:
-// parent
-	MindArea *area;
+	virtual NeuroLinkSource *getNeuroLinkSource( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
+	virtual NeuroLinkTarget *getNeuroLinkTarget( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
 };
 
 /*#########################################################################*/
@@ -32,8 +28,8 @@ MindRegion *MindService::createNerveRegion( MindArea *area ) { return( new Nerve
 /*#########################################################################*/
 /*#########################################################################*/
 
-NerveRegion::NerveRegion( MindArea *p_area ) {
-	area = p_area;
+NerveRegion::NerveRegion( MindArea *p_area )
+:	MindRegion( p_area ) {
 	attachLogger();
 }
 
@@ -44,5 +40,13 @@ void NerveRegion::exitRegion() {
 }
 
 void NerveRegion::destroyRegion() {
+}
+
+NeuroLinkSource *NerveRegion::getNeuroLinkSource( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
+	return( NULL );
+}
+
+NeuroLinkTarget *NerveRegion::getNeuroLinkTarget( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
+	return( NULL );
 }
 

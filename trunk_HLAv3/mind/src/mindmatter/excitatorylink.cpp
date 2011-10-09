@@ -10,7 +10,7 @@ public:
 	virtual const char *getClass() { return( "ExcitatoryLink" ); };
 
 public:
-	virtual void apply( NeuroVector *srcData );
+	virtual void apply( NeuroVector *srcData , NeuroPool *dstPool );
 };
 
 /*#########################################################################*/
@@ -25,5 +25,6 @@ ExcitatoryLink::ExcitatoryLink( MindRegionLink *p_regionLink ) : NeuroLink( p_re
 	attachLogger();
 }
 
-void ExcitatoryLink::apply( NeuroVector *srcData ) {
+void ExcitatoryLink::apply( NeuroVector *srcData , NeuroPool *dstPool ) {
+	logger.logError( "apply: apply message to NeuroPool - not implemented, NeuroLink id=" + getId() );
 }

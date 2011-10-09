@@ -29,9 +29,9 @@ public:
 	MindTarget();
 
 	virtual void configureTarget( Xml config ) = 0;
-	virtual void createTarget() = 0;
-	virtual void initSensorsTarget( MindArea *sensorArea ) = 0;
-	virtual void initEffectorsTarget( MindArea *effectorArea ) = 0;
+	virtual void createTarget( SensorArea *sensorArea , EffectorArea *effectorArea ) = 0;
+	virtual void initSensorsTarget( SensorArea *sensorArea ) = 0;
+	virtual void initEffectorsTarget( EffectorArea *effectorArea ) = 0;
 	virtual void runTarget() = 0;
 	virtual void stopTarget() = 0;
 	virtual void exitTarget() = 0;
@@ -131,7 +131,7 @@ private:
 
 class MindSensor : public MindRegion {
 public:
-	MindSensor();
+	MindSensor( SensorArea *p_area );
 
 	// Object
 	virtual const char *getClass() = 0;
@@ -150,8 +150,8 @@ private:
 	virtual void destroyRegion();
 
 	// NeuroLink support
-	virtual NeuroLinkSource *getNeuroLinkSource( MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
-	virtual NeuroLinkTarget *getNeuroLinkTarget( MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
+	virtual NeuroLinkSource *getNeuroLinkSource( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
+	virtual NeuroLinkTarget *getNeuroLinkTarget( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
 
 public:
 	// memory allocation

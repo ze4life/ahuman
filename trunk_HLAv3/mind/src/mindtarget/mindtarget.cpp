@@ -40,7 +40,7 @@ void MindTarget::createService() {
 	effectors = new MindEffectorSet();
 
 	// call target with sensors and effectors
-	createTarget();
+	createTarget( sensorArea , effectorArea );
 }
 
 void MindTarget::initService() {

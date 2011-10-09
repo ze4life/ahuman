@@ -48,14 +48,16 @@ NeuroLink *MindRegionLink::createNeuroLink( MindNet *net , NeuroLinkInfo *linkIn
 	bool forward = linkInfo -> getForward();
 	MindRegion *srcRegion = ( forward )? getSrcRegion() : getDstRegion();
 	MindRegion *dstRegion = ( forward )? getDstRegion() : getSrcRegion();
+	String sourceEntity = ( forward )? linkInfo -> getMasterEntity() : linkInfo -> getSlaveEntity();
+	String targetEntity = ( forward )? linkInfo -> getSlaveEntity() : linkInfo -> getMasterEntity();
 
 	// check neurolink is required
 	MindNetInfo *netInfo = net -> getInfo();
-	NeuroLinkSource *srcData = srcRegion -> getNeuroLinkSource( netInfo , linkInfo );
+	NeuroLinkSource *srcData = srcRegion -> getNeuroLinkSource( sourceEntity , netInfo , linkInfo );
 	if( srcData == NULL )
 		return( NULL );
 
-	NeuroLinkTarget *dstData = dstRegion -> getNeuroLinkTarget( netInfo , linkInfo );
+	NeuroLinkTarget *dstData = dstRegion -> getNeuroLinkTarget( targetEntity , netInfo , linkInfo );
 	if( dstData == NULL )
 		return( NULL );
 
@@ -63,6 +65,6 @@ NeuroLink *MindRegionLink::createNeuroLink( MindNet *net , NeuroLinkInfo *linkIn
 	srcData -> addNeuroLink( link );
 	link -> create( srcData , dstData );
 
-	logger.logInfo( "createNeuroLink: NeuroLink created name=" + linkInfo -> getName() + ", type=" + linkInfo -> getTypeName() + ", id=" + link -> getId() );
+	logger.logInfo( "createNeuroLink: NeuroLink created sourceEntity=" + sourceEntity + ", targetEntity=" + targetEntity + ", type=" + linkInfo -> getTypeName() + ", id=" + link -> getId() );
 	return( link );
 }
