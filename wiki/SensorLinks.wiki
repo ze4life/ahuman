@@ -15,6 +15,18 @@
   * control feedback - providing status of control command execution - executed completely or partially, or somehow in different way
   * exposed control state properties - emitted to external world to facilitate establishing direct communication channel with other subjects
 
+== Linking Sensors to Perception - HLAv3 ==
+
+  * *sensor/data* -> thalamus/input
+  * thalamus/output -> perception/feed-forward-input
+  * perception/feed-forward-output -> parietal/feed-forward-input
+  * perception/feed-back-output -> thalamus/input
+  * parietal/feed-forward-output -> *sensor/control*
+  * parietal/feed-back-output -> perception/feed-back-input
+  * *sensor/data* -> somatic/feed-forward-input
+  * somatic/feed-forward-output -> parietal/feed-forward-input
+  * somatic/feed-back-output -> parietal/feed-back-input
+
 == Linking Sensors to Perception ==
 
   * for each sensor there is perception belief network for processing sensor data
