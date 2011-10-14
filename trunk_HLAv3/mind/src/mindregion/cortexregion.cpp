@@ -57,27 +57,27 @@ void CortexRegion::destroyRegion() {
 }
 
 NeuroLinkSource *CortexRegion::getNeuroLinkSource( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
-	if( entity.equals( "feed-forward" ) )
+	if( entity.equals( "feed-forward-output" ) )
 		return( &sourceFeedForward );
-	if( entity.equals( "feed-back" ) )
+	if( entity.equals( "feed-back-output" ) )
 		return( &sourceFeedBack );
 
 	return( NULL );
 }
 
 NeuroLinkTarget *CortexRegion::getNeuroLinkTarget( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
-	if( entity.equals( "feed-forward" ) )
+	if( entity.equals( "feed-forward-input" ) )
 		return( &targetFeedForward );
-	if( entity.equals( "feed-back" ) )
+	if( entity.equals( "feed-back-input" ) )
 		return( &targetFeedBack );
 
 	return( NULL );
 }
 
 void CortexRegion::handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroVector *data ) {
-	logger.logError( "handleFeedForwardNeuroLinkMessage: not implemented, NeuroLink id=" + link -> getId() );
+	sourceFeedForward.sendMessage( this );
 }
 
 void CortexRegion::handleFeedBackNeuroLinkMessage( NeuroLink *link , NeuroVector *data ) {
-	logger.logError( "handleFeedBackNeuroLinkMessage: not implemented, NeuroLink id=" + link -> getId() );
+	sourceFeedBack.sendMessage( this );
 }

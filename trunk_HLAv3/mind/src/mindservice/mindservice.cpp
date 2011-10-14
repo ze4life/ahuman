@@ -12,13 +12,13 @@ MindService::MindService() {
 	lockStructure = rfc_hnd_semcreate();
 
 	// construct items
-	mindSpace = new MindSpace();
-	mindMap = new MindMap();
-	netSet = new MindNetSet();
-	areaSet = new MindAreaSet();
-	regionSet = new MindRegionSet();
-	linkSet = new MindAreaLinkSet();
-	activeMemory = new MindActiveMemory();
+	mindSpace = NULL;
+	mindMap = NULL;
+	netSet = NULL;
+	areaSet = NULL;
+	regionSet = NULL;
+	linkSet = NULL;
+	activeMemory = NULL;
 
 	target = NULL;
 	session = NULL;
@@ -39,6 +39,15 @@ void MindService::configureService( Xml p_config ) {
 }
 
 void MindService::createService() {
+	// construct items
+	mindSpace = new MindSpace();
+	mindMap = new MindMap();
+	netSet = new MindNetSet();
+	areaSet = new MindAreaSet();
+	regionSet = new MindRegionSet();
+	linkSet = new MindAreaLinkSet();
+	activeMemory = new MindActiveMemory();
+
 	// create mind space
 	logger.logInfo( "createService: creating mind space..." );
 	Xml xmlMindSpace = config.getFirstChild( "MindSpace" );
@@ -137,6 +146,7 @@ void MindService::createAreas() {
 	createArea( "CranialNerveArea" , &MindService::createCranialNerveArea );
 	createArea( "SpinalCordArea" , &MindService::createSpinalCordArea );
 	createArea( "MotorNerveArea" , &MindService::createMotorNerveArea );
+	createArea( "SomaticArea" , &MindService::createSomaticArea );
 	createArea( "BodyFeelingNerveArea" , &MindService::createBodyFeelingNerveArea );
 }
 
@@ -239,7 +249,6 @@ MindNet *MindService::getMindNet( String netName ) {
 }
 
 MindArea *MindService::createHippocampusArea() { return( NULL ); };
-MindArea *MindService::createParietalArea() { return( NULL ); };
 MindArea *MindService::createPrefrontalCortexArea() { return( NULL ); };
 MindArea *MindService::createBasalGangliaArea() { return( NULL ); };
 MindArea *MindService::createBrainStemArea() { return( NULL ); };

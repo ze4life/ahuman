@@ -107,6 +107,11 @@ MessageSubscription *MindAreaLink::subscribe( MessageSubscriber *handler , Strin
 
 void MindAreaLink::onBinaryMessage( BinaryMessage *msg ) {
 	MindMessage *mm = ( MindMessage * )msg;
+
+	// ignore foreign links
+	if( mm -> getAreaLink() != this )
+		return;
+
 	activeMemory -> execute( mm );
 }
 

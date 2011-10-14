@@ -93,6 +93,7 @@ public:
 	MindLinkType *getLinkType() { return( linkType ); };
 	MindRegion *getSrcRegion();
 	MindRegion *getDstRegion();
+	MindAreaLink *getAreaLink() { return( areaLink ); };
 
 	void createRegionLink( MindNet *net , MindRegion *srcRegion , MindRegion *dstRegion );
 	void exitRegionLink();
@@ -171,12 +172,14 @@ public:
 public:
 	NeuroLink *getNeuroLink() { return( link ); };
 	NeuroVector *getMsgData();
+	MindAreaLink *getAreaLink() { return( areaLink ); };
 
 private:
 // own data
 	NeuroVector *data;
 
 // references
+	MindAreaLink *areaLink;
 	NeuroLink *link;
 };
 

@@ -34,8 +34,17 @@
 				<MindAreaNetwork net="SensorFileSysWalker" transmitters="GLU"/>
 			</MindArea>
 
+			<MindArea id="ParietalArea" enabled="true">
+				<MindLocation posX="0" posY="0" posZ="0" sizeX="10000" sizeY="10000" sizeZ="2"/>
+				<MindAreaNetwork net="SensorFileSysWalker" transmitters="GLU"/>
+			</MindArea>
+
+			<MindArea id="SomaticArea" enabled="true">
+				<MindLocation posX="0" posY="0" posZ="0" sizeX="10000" sizeY="10000" sizeZ="2"/>
+				<MindAreaNetwork net="SensorFileSysWalker" transmitters="GLU"/>
+			</MindArea>
+
 			<MindArea id="HippocampusArea" enabled="false"/>
-			<MindArea id="ParietalArea" enabled="false"/>
 			<MindArea id="PrefrontalCortexArea" enabled="false"/>
 			<MindArea id="BasalGangliaArea" enabled="false"/>
 			<MindArea id="BrainStemArea" enabled="false"/>
@@ -50,13 +59,21 @@
 
 			<MindLinkType name="sensor-stream">
 				<NeuroLink type="ExcitatoryLink" masterEntity="data" slaveEntity="input" transmitter="GLU" forward="true"/>
-				<NeuroLink type="ExcitatoryLink" masterEntity="output" slaveEntity="feed-forward" transmitter="GLU" forward="true"/>
-				<NeuroLink type="ExcitatoryLink" masterEntity="input" slaveEntity="feed-back" transmitter="GLU" forward="false"/>
+				<NeuroLink type="ExcitatoryLink" masterEntity="output" slaveEntity="feed-forward-input" transmitter="GLU" forward="true"/>
+				<NeuroLink type="ExcitatoryLink" masterEntity="input" slaveEntity="feed-back-output" transmitter="GLU" forward="false"/>
 			</MindLinkType>
 
 			<MindLinkType name="control-stream">
-				<NeuroLink type="ExcitatoryLink" masterEntity="output" slaveEntity="control" transmitter="GLU" forward="true"/>
-				<NeuroLink type="ExcitatoryLink" masterEntity="input" slaveEntity="control-feedback" transmitter="GLU" forward="false"/>
+				<NeuroLink type="ExcitatoryLink" masterEntity="feed-forward-output" slaveEntity="control" transmitter="GLU" forward="true"/>
+			</MindLinkType>
+
+			<MindLinkType name="feeling-stream">
+				<NeuroLink type="ExcitatoryLink" masterEntity="control-feedback" slaveEntity="feed-forward-input" transmitter="GLU" forward="true"/>
+			</MindLinkType>
+
+			<MindLinkType name="cortex-stream">
+				<NeuroLink type="ExcitatoryLink" masterEntity="feed-forward-output" slaveEntity="feed-forward-input" transmitter="GLU" forward="true"/>
+				<NeuroLink type="ExcitatoryLink" masterEntity="feed-back-input" slaveEntity="feed-back-output" transmitter="GLU" forward="false"/>
 			</MindLinkType>
 
 		</MindLinkTypeSet>
@@ -64,6 +81,10 @@
 		<MindLinkSet>
 			<MindLink type="sensor-stream" masterArea="SensorArea" slaveArea="ThalamusArea" channel="SensorArea"/>
 			<MindLink type="sensor-stream" masterArea="ThalamusArea" slaveArea="PerceptionArea" channel="ThalamusArea"/>
+			<MindLink type="cortex-stream" masterArea="PerceptionArea" slaveArea="ParietalArea" channel="PerceptionArea"/>
+			<MindLink type="cortex-stream" masterArea="SomaticArea" slaveArea="ParietalArea" channel="ParietalArea"/>
+			<MindLink type="control-stream" masterArea="ParietalArea" slaveArea="SensorArea" channel="ParietalArea"/>
+			<MindLink type="feeling-stream" masterArea="SensorArea" slaveArea="SomaticArea" channel="SensorArea"/>
 		</MindLinkSet>
 
 	</MindMap>
