@@ -5,6 +5,7 @@
 /*#########################################################################*/
 
 MindActiveMemory::MindActiveMemory() {
+	attachLogger();
 }
 
 MindActiveMemory::~MindActiveMemory() {
@@ -43,5 +44,7 @@ void MindActiveMemory::execute( MindMessage *msg ) {
 	NeuroLink *link = msg -> getNeuroLink();
 	NeuroVector *sourceData = msg -> getMsgData();
 	NeuroLinkTarget *target = link -> getTarget();
+
+	logger.logDebug( "execute: process link=" + link -> getId() + ", message id=" + msg -> getChannelMessageId() );
 	target -> execute( link , sourceData );
 }

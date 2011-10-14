@@ -83,6 +83,7 @@ private:
 	// create core items
 	MindArea *createThalamusArea();
 	MindArea *createPerceptionArea();
+	MindArea *createSomaticArea();
 	MindArea *createHippocampusArea();
 	MindArea *createParietalArea();
 	MindArea *createPrefrontalCortexArea();

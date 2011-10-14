@@ -73,6 +73,7 @@ public:
 	String getId();
 	NeuroLinkSource *getSource();
 	NeuroLinkTarget *getTarget();
+	MindRegionLink *getRegionLink() { return( regionLink ); };
 
 	void setNeuroLinkInfo( NeuroLinkInfo *linkInfo );
 	void setTransmitter( String transmitter );

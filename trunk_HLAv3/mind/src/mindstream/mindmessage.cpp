@@ -8,12 +8,24 @@ MindMessage::MindMessage( NeuroLink *p_link )
 :	Message( Message::MsgType_Binary ) { 
 	link = p_link;
 	data = NULL;
+
+	MindRegionLink *regionLink = link -> getRegionLink();
+	if( link != NULL )
+		areaLink = regionLink -> getAreaLink();
+	else
+		areaLink = NULL;
 }
 
 MindMessage::MindMessage( NeuroLink *p_link , NeuroVector *p_data )
 :	Message( Message::MsgType_Binary ) { 
 	link = p_link;
 	data = p_data;
+
+	MindRegionLink *regionLink = link -> getRegionLink();
+	if( link != NULL )
+		areaLink = regionLink -> getAreaLink();
+	else
+		areaLink = NULL;
 }
 
 MindMessage::~MindMessage() {
