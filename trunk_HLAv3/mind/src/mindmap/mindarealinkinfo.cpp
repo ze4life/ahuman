@@ -9,6 +9,7 @@ MindAreaLinkInfo::MindAreaLinkInfo() {
 }
 
 void MindAreaLinkInfo::createFromXml( Xml xml ) {
+	enabled = xml.getBooleanAttribute( "enabled" , true );
 	typeName = xml.getAttribute( "type" );
 	masterAreaId = xml.getAttribute( "masterArea" );
 	slaveAreaId = xml.getAttribute( "slaveArea" );

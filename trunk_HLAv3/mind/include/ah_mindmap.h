@@ -137,6 +137,7 @@ public:
 // operations
 public:
 	void createFromXml( Xml xml );
+	bool isEnabled() { return( enabled ); };
 	String getTypeName() { return( typeName ); };
 	String getMasterAreaId() { return( masterAreaId ); };
 	String getSlaveAreaId() { return( slaveAreaId ); };
@@ -148,6 +149,7 @@ public:
 // data
 public:
 // utility
+	bool enabled;
 	String typeName;
 	String masterAreaId;
 	String slaveAreaId;

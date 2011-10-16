@@ -3,6 +3,9 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
+NeuroVector::NeuroVector() {
+}
+
 NeuroVector::NeuroVector( int sizeX , int sizeY ) {
 	data.create( sizeX , sizeY );
 }
@@ -14,6 +17,10 @@ NeuroVector::NeuroVector( NeuroVector *src ) {
 NeuroVector::~NeuroVector() {
 }
 
+void NeuroVector::create( int sizeX , int sizeY ) {
+	data.create( sizeX , sizeY );
+}
+
 neurovt *NeuroVector::getRawData() {
 	return( data.getData() );
 }
@@ -21,3 +28,9 @@ neurovt *NeuroVector::getRawData() {
 TwoIndexArray<neurovt>& NeuroVector::getVectorData() {
 	return( data );
 }
+
+void NeuroVector::getSizeInfo( int *nx , int *ny ) {
+	*nx = data.getN1();
+	*ny = data.getN2();
+}
+

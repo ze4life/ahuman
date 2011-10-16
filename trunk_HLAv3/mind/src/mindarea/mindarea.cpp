@@ -69,18 +69,8 @@ MindRegionSet *MindArea::getRegionSet() {
 	return( regionSet );
 }
 
-String MindArea::addRegion( String group , String id , MindRegion *region ) {
-	// generate id
-	String regionId = group + "." + id;
-
-	// check exists
-	ASSERTMSG( regionSet -> getSetItemById( regionId ) == NULL , "region id=" + regionId + " already exists" );
-
-	// create region internals
-	region -> create( this , regionId );
-
+void MindArea::addRegion( MindRegion *region ) {
 	regionSet -> addSetItem( region );
-	return( regionId );
 }
 
 MindRegion *MindArea::getRegion( String group , String id ) {

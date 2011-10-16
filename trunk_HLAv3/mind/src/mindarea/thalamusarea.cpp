@@ -56,8 +56,12 @@ void ThalamusArea::createSensoryNetwork( MindSensor *sensor ) {
 
 	// create nucleous region for sensor
 	MindService *ms = MindService::getService();
-	MindRegion *region = ms -> createNucleiRegion( this );
-	MindArea::addRegion( getClass() , sensor -> getClass() , region );
+	NucleiRegionInfo info;
+	info.setTotalSize( sensor -> getDataSize() );
+	MindRegion *region = ms -> createNucleiRegion( this , name , &info );
+
+	// create region
+	MindArea::addRegion( region );
 
 	// add the only region
 	net -> addRegion( region );

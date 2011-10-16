@@ -59,8 +59,8 @@ public:
 
 protected:
 	MindAreaNet *createAreaNetwork( String name );
-	String addRegion( String group , String id , MindRegion *region );
-	MindRegion *getRegion( String group , String id );
+	void addRegion( MindRegion *region );
+	MindRegion *getRegion( String group , String groupId );
 
 private:
 // utility

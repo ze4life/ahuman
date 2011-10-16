@@ -198,6 +198,10 @@ void MindService::establishAreaLinks() {
 	ClassList<MindAreaLinkInfo>& list = mindMap -> getLinks();
 	for( int k = 0; k < list.count(); k++ ) {
 		MindAreaLinkInfo *info = list.get( k );
+		// ignore link if disabled
+		if( !info -> isEnabled() )
+			continue;
+
 		String masterAreaId = info -> getMasterAreaId();
 		String slaveAreaId = info -> getSlaveAreaId();
 
