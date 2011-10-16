@@ -23,6 +23,7 @@ class MindEffector : MindRegion in MindEffectorSet
     (class SpecificMindEffector : MindEffector)
 class MindSensorArea : MindArea in MindTarget
 class MindEffectorArea : MindArea in MindTarget
+class MindSensorSetTracker in MindTarget
 }}}
   * mind service
    * MindService, MindNet
@@ -33,7 +34,7 @@ class MindNetSet {MindNet[]} in MindService
 }}}
   * mind area
    * MindArea, MindAreaNet
-   * PerceptionArea, ParietalArea
+   * PerceptionArea, ParietalArea, SomaticArea
    * LogicalCortexArea, FeelingCortexArea, PremotorCortexArea, MotorCortexArea
    * ThalamusArea, HippocampusArea, BasalGangliaArea
    * BrainStemArea, CranialNerveArea
@@ -42,6 +43,7 @@ class MindNetSet {MindNet[]} in MindService
 class MindArea {MindRegionSet, MindRegionLinkSet, MindAreaNet[]} in MindAreaSet
     class ThalamusArea : MindArea
     class PerceptionArea : MindArea
+    class SomaticArea : MindArea
     class HippocampusArea : MindArea
     class ParietalArea : MindArea
     class LogicalCortexArea : MindArea
@@ -66,6 +68,9 @@ class MindRegion {NeuroPoolSet, NeuroLinkSet, MindLocation} in MindRegionSet
     class NucleiRegion : MindRegion
     class NerveRegion : MindRegion
 class MindRegionSet {MindRegion[]} in MindArea
+class CortexRegionInfo in TOP
+class NucleiRegionInfo in TOP
+class NerveRegionInfo in TOP
 }}}
   * mind matter
    * NeuroVector, NeuroPool
@@ -79,6 +84,8 @@ class NeuroLink in NeuroLinkSet
     class InhibitoryLink : NeuroLink
     class ModulatoryLink : NeuroLink
 class NeuroLinkSet {NeuroLink[]} in MindRegion
+class NeuroLinkSource in MindRegion
+class NeuroLinkTarget in MindRegion
 }}}
 
 === Auxiliary mind objects ===
