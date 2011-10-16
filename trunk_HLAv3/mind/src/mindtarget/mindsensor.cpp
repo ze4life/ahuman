@@ -92,3 +92,9 @@ NeuroLinkTarget *MindSensor::getNeuroLinkTarget( String entity , MindNetInfo *ne
 void MindSensor::applySensorControl( NeuroLink *link , NeuroVector *srcData ) {
 	sourceSensoryControlFeedback.sendMessage( this );
 }
+
+int MindSensor::getDataSize() {
+	int nx , ny;
+	memorySensoryData -> getSizeInfo( &nx , &ny );
+	return( nx * ny );
+}

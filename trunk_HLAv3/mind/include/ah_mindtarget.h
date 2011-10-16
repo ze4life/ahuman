@@ -169,6 +169,9 @@ public:
 	bool getPollState();
 	int getPollIntervalMs( int timeNowMs );
 
+	// informational
+	int getDataSize();
+	
 private:
 // utility
 	// auto-polling

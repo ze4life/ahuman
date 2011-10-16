@@ -56,8 +56,9 @@ void ParietalArea::createSensoryNetwork( MindSensor *sensor ) {
 
 	// create cortex region for sensor
 	MindService *ms = MindService::getService();
-	MindRegion *region = ms -> createCortexRegion( this );
-	MindArea::addRegion( getClass() , sensor -> getClass() , region );
+	CortexRegionInfo info;
+	MindRegion *region = ms -> createCortexRegion( this , name , &info );
+	MindArea::addRegion( region );
 
 	// add the only region
 	net -> addRegion( region );

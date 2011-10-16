@@ -21,13 +21,17 @@ class NeuroVector : public Object {
 public:
 	virtual const char *getClass() { return( "NeuroVector" ); };
 
+	NeuroVector();
 	NeuroVector( int sizeX , int sizeY );
 	NeuroVector( NeuroVector *src );
 	~NeuroVector();
 
 public:
+	void create( int sizeX , int sizeY );
+
 	neurovt *getRawData();
 	TwoIndexArray<neurovt>& getVectorData();
+	void getSizeInfo( int *nx , int *ny );
 
 private:
 // utility
@@ -39,11 +43,21 @@ private:
 
 class NeuroPool : public Object {
 public:
+	NeuroPool();
+	virtual ~NeuroPool();
 	virtual const char *getClass() { return( "NeuroPool" ); };
+
+	void createNeurons( int nx , int ny );
+	void getNeuronDimensions( int *nx , int *ny );
+
+	void startProjection( NeuroLink *link );
+	void finishProjection( NeuroLink *link );
+	void executeProjection( NeuroLink *link , int  x , int y , neurovt v );
 
 private:
 // own data
-	NeuroVector *output;
+	NeuroVector *cellPotentials;
+	NeuroVector *cellOutputs;
 };
 
 /*#########################################################################*/

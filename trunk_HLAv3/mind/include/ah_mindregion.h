@@ -8,6 +8,9 @@
 
 class MindRegion;
 class MindRegionSet;
+class CortexRegionInfo;
+class NucleiRegionInfo;
+class NerveRegionInfo;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -32,6 +35,7 @@ public:
 	virtual const char *getClass() { return( "MindRegion" ); };
 
 	// MindRegion lifecycle
+public:
 	virtual void createRegion() = 0;
 	virtual void exitRegion() = 0;
 	virtual void destroyRegion() = 0;
@@ -41,7 +45,7 @@ public:
 	virtual NeuroLinkTarget *getNeuroLinkTarget( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) = 0;
 
 public:
-	void create( MindArea *area , String p_id );
+	void create( String id );
 	void exit();
 	void destroy();
 	void sendMessage( MindMessage *msg );
@@ -50,6 +54,7 @@ public:
 	String getRegionId();
 
 private:
+
 	void addPrivateNeuroLink( NeuroLink *nt );
 
 private:
@@ -88,6 +93,63 @@ public:
 
 // references
 	MapStringToClass<MindRegion> map;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class CortexRegionInfo : public Object {
+public:
+	CortexRegionInfo();
+	virtual ~CortexRegionInfo();
+	virtual const char *getClass() { return( "CortexRegionInfo" ); };
+
+public:
+	void setColumnCount( int nCols );
+	void setUsingSpatialPooler( bool useSpatialPooler );
+	void setUsingTemporalPooler( bool useTemporalPooler );
+	void setTemporalDepth( int nDepth );
+
+	int getColumnCount();
+	int getRegionSideSize();
+	bool isUsingSpatialPooler();
+	bool isUsingTemporalPooler();
+	int getTemporalDepth();
+
+private:
+	int nCols;
+	int regionSideSize;
+	bool useSpatialPooler;
+	bool useTemporalPooler;
+	int nTemporalDepth;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class NucleiRegionInfo : public Object {
+public:
+	NucleiRegionInfo();
+	virtual ~NucleiRegionInfo();
+	virtual const char *getClass() { return( "NucleiRegionInfo" ); };
+
+public:
+	void setTotalSize( int nNeurons );
+	int getTotalSize();
+	int getSideSize();
+
+private:
+	int totalNeurons;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class NerveRegionInfo : public Object {
+public:
+	NerveRegionInfo();
+	virtual ~NerveRegionInfo();
+	virtual const char *getClass() { return( "NerveRegionInfo" ); };
 };
 
 /*#########################################################################*/

@@ -33,6 +33,9 @@ class MindEffector;
 class MindRegionLink;
 class NeuroLink;
 class NeuroPool;
+class CortexRegionInfo;
+class NucleiRegionInfo;
+class NerveRegionInfo;
 
 // factory and lifecycle support for mind components
 class MindService : public Service {
@@ -52,9 +55,9 @@ public:
 	MindNet *getMindNet( String net );
 	  
 	// create core items - regions
-	MindRegion *createCortexRegion( MindArea *area );
-	MindRegion *createNucleiRegion( MindArea *area );
-	MindRegion *createNerveRegion( MindArea *area );
+	MindRegion *createCortexRegion( MindArea *area , String id , CortexRegionInfo *info );
+	MindRegion *createNucleiRegion( MindArea *area , String id , NucleiRegionInfo *info );
+	MindRegion *createNerveRegion( MindArea *area , String id , NerveRegionInfo *info );
 
 	// create core items - neurolinks
 	NeuroLink *createExcitatoryLink( MindRegionLink *link );

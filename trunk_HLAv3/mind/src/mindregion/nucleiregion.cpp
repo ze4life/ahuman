@@ -19,6 +19,9 @@ public:
 	virtual NeuroLinkSource *getNeuroLinkSource( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
 	virtual NeuroLinkTarget *getNeuroLinkTarget( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
 
+public:
+	void createNucleiRegion( NucleiRegionInfo *info );
+
 private:
 	// neurolink handler
 	void handleNeuroLinkMessage( NeuroLink *link , NeuroVector *data );
@@ -33,7 +36,12 @@ private:
 /*#########################################################################*/
 /*#########################################################################*/
 
-MindRegion *MindService::createNucleiRegion( MindArea *area ) { return( new NucleiRegion( area ) ); };
+MindRegion *MindService::createNucleiRegion( MindArea *area , String id , NucleiRegionInfo *info ) { 
+	NucleiRegion *region = new NucleiRegion( area ); 
+	region -> createNucleiRegion( info );
+	region -> create( id );
+	return( region );
+}
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -41,6 +49,12 @@ MindRegion *MindService::createNucleiRegion( MindArea *area ) { return( new Nucl
 NucleiRegion::NucleiRegion( MindArea *p_area )
 :	MindRegion( p_area ) {
 	attachLogger();
+}
+
+void NucleiRegion::createNucleiRegion( NucleiRegionInfo *info ) {
+	int sideSize = info -> getSideSize();
+	ASSERTMSG( sideSize > 0 , "invalid sideSize, positive value expected" );
+	neuroPool.createNeurons( sideSize , sideSize );
 }
 
 void NucleiRegion::createRegion() {

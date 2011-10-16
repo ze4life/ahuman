@@ -18,12 +18,20 @@ public:
 	// NeuroLink support
 	virtual NeuroLinkSource *getNeuroLinkSource( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
 	virtual NeuroLinkTarget *getNeuroLinkTarget( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
+
+public:
+	void createNerveRegion( NerveRegionInfo *info );
 };
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-MindRegion *MindService::createNerveRegion( MindArea *area ) { return( new NerveRegion( area ) ); };
+MindRegion *MindService::createNerveRegion( MindArea *area , String id , NerveRegionInfo *info ) { 
+	NerveRegion *region = new NerveRegion( area ); 
+	region -> createNerveRegion( info );
+	region -> create( id );
+	return( region );
+}
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -33,7 +41,11 @@ NerveRegion::NerveRegion( MindArea *p_area )
 	attachLogger();
 }
 
-void NerveRegion::createRegion() {
+void NerveRegion::createNerveRegion( NerveRegionInfo *info ) {
+	ASSERTFAILED( "createNerveRegion: not implemented" );
+}
+
+void NerveRegion::createRegion()  {
 }
 
 void NerveRegion::exitRegion() {

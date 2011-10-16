@@ -18,15 +18,13 @@ MindRegion::MindRegion( MindArea *p_area ) {
 MindRegion::~MindRegion() {
 }
 
-void MindRegion::create( MindArea *p_area , String p_id ) {
-	area = p_area;
-	id = p_id;
-
+void MindRegion::create( String p_id ) {
 	regionLinkSet = new MindRegionLinkSet();
-	logger.logDebug( "create: region created - id=" + p_id + ", area=" + area -> getClass() );
 
 	// call virtual
 	createRegion();
+
+	logger.logDebug( "create: region created - id=" + p_id + ", area=" + area -> getClass() );
 }
 
 void MindRegion::exit() {
