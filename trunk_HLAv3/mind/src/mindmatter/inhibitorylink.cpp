@@ -10,7 +10,7 @@ public:
 	virtual const char *getClass() { return( "InhibitoryLink" ); };
 
 public:
-	virtual void apply( NeuroVector *srcData , NeuroPool *dstPool );
+	virtual void apply( NeuroSignal *srcData , NeuroPool *dstPool );
 };
 
 /*#########################################################################*/
@@ -25,6 +25,6 @@ InhibitoryLink::InhibitoryLink( MindRegionLink *p_regionLink ) : NeuroLink( p_re
 	attachLogger();
 }
 
-void InhibitoryLink::apply( NeuroVector *srcData , NeuroPool *dstPool ) {
+void InhibitoryLink::apply( NeuroSignal *srcData , NeuroPool *dstPool ) {
 	logger.logError( "apply: apply message to NeuroPool - not implemented" );
 }

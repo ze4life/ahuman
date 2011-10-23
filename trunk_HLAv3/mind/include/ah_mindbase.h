@@ -9,7 +9,15 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-typedef float neurovt;
+// signal intensity: frequency, Hz, normal value=10, high frequency=100
+typedef unsigned char neurovt_signal;
+#define NEUROVT_NORMAL_SIGNAL_STRENGTH 10
+
+// membrane, action potential, absolute charge value in nQ
+// normal threshold to fire=200
+// state can be negative
+// also for intermediate calculation
+typedef signed short neurovt_state;
 
 /*#########################################################################*/
 /*#########################################################################*/

@@ -4,11 +4,14 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-NeuroLinkSource::NeuroLinkSource() {
+NeuroLinkSource::NeuroLinkSource( MindRegion *p_region ) {
+	attachLogger();
 	data = NULL;
+	region = p_region;
+	pfn = NULL;
 }
 
-void NeuroLinkSource::setSourceVector( NeuroVector *p_data ) {
+void NeuroLinkSource::setSourceSignal( NeuroSignal *p_data ) {
 	data = p_data;
 }
 
@@ -16,19 +19,36 @@ void NeuroLinkSource::addNeuroLink( NeuroLink *link ) {
 	links.add( link );
 }
 
-NeuroVector *NeuroLinkSource::getSourceVector() {
-	return( data );
+NeuroSignal *NeuroLinkSource::getSourceSignal( NeuroLink *link ) {
+	if( data != NULL )
+		return( data );
+
+	if( pfn == NULL )
+		return( NULL );
+
+	// execute target handler
+	try {
+		return( ( region ->* pfn )( link , this ) );
+	}
+	catch( RuntimeException& e ) {
+		logger.logError( "getSourceSignal: exception in handling message for NeuroLink id=" + link -> getId() );
+		logger.printStack( e );
+	}
+	catch( ... ) {
+		logger.logError( "getSourceSignal: unknown exception in handling message for NeuroLink id=" + link -> getId() );
+	}
+
+	return( NULL );
 }
 
-void NeuroLinkSource::sendMessage( MindRegion *region ) {
+void NeuroLinkSource::sendMessage() {
 	for( int k = 0; k < links.count(); k++ ) {
 		NeuroLink *link = links.get( k );
 
-		NeuroVector *msgdata = NULL;
+		NeuroSignal *msgdata = NULL;
 		if( data != NULL )
-			msgdata = new NeuroVector( data );
+			msgdata = new NeuroSignal( data );
 		MindMessage *msg = new MindMessage( link , msgdata );
 		region -> sendMessage( msg );
 	}
 }
-

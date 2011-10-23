@@ -6,7 +6,8 @@
 
 #include "ah_mindbase.h"
 
-class NeuroVector;
+class NeuroSignal;
+class NeuroState;
 class NeuroPool;
 class NeuroPoolSet;
 class NeuroLink;
@@ -17,25 +18,49 @@ class NeuroLinkTarget;
 /*#########################################################################*/
 /*#########################################################################*/
 
-class NeuroVector : public Object {
+class NeuroSignal : public Object {
 public:
-	virtual const char *getClass() { return( "NeuroVector" ); };
+	virtual const char *getClass() { return( "NeuroSignal" ); };
 
-	NeuroVector();
-	NeuroVector( int sizeX , int sizeY );
-	NeuroVector( NeuroVector *src );
-	~NeuroVector();
+	NeuroSignal();
+	NeuroSignal( int sizeX , int sizeY );
+	NeuroSignal( NeuroSignal *src );
+	~NeuroSignal();
 
 public:
 	void create( int sizeX , int sizeY );
 
-	neurovt *getRawData();
-	TwoIndexArray<neurovt>& getVectorData();
+	neurovt_signal *getRawData();
+	TwoIndexArray<neurovt_signal>& getVectorData();
 	void getSizeInfo( int *nx , int *ny );
 
 private:
 // utility
-	TwoIndexArray<neurovt> data;
+	TwoIndexArray<neurovt_signal> data;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class NeuroState : public Object {
+public:
+	virtual const char *getClass() { return( "NeuroState" ); };
+
+	NeuroState();
+	NeuroState( int sizeX , int sizeY );
+	NeuroState( NeuroState *src );
+	~NeuroState();
+
+public:
+	void create( int sizeX , int sizeY );
+
+	neurovt_state *getRawData();
+	TwoIndexArray<neurovt_state>& getVectorData();
+	void getSizeInfo( int *nx , int *ny );
+
+private:
+// utility
+	TwoIndexArray<neurovt_state> data;
 };
 
 /*#########################################################################*/
@@ -48,16 +73,24 @@ public:
 	virtual const char *getClass() { return( "NeuroPool" ); };
 
 	void createNeurons( int nx , int ny );
+
+	RFC_INT64 getLastExecutionTimeTicks();
+	void setLastExecutionTimeTicks( RFC_INT64 p_ticks );
+
 	void getNeuronDimensions( int *nx , int *ny );
+	NeuroState *getCellPotentials();
+	NeuroState *getCellOutputs();
 
 	void startProjection( NeuroLink *link );
 	void finishProjection( NeuroLink *link );
-	void executeProjection( NeuroLink *link , int  x , int y , neurovt v );
 
 private:
 // own data
-	NeuroVector *cellPotentials;
-	NeuroVector *cellOutputs;
+	NeuroState *cellPotentials;
+	NeuroState *cellOutputs;
+
+// utilities
+	RFC_INT64 lastExecutionTicks;
 };
 
 /*#########################################################################*/
@@ -93,7 +126,7 @@ public:
 	void setTransmitter( String transmitter );
 	void create( NeuroLinkSource *p_source , NeuroLinkTarget *p_target );
 
-	virtual void apply( NeuroVector *srcData , NeuroPool *dstPool ) = 0;
+	virtual void apply( NeuroSignal *srcData , NeuroPool *dstPool ) = 0;
 
 public:
 // utilities
@@ -126,20 +159,27 @@ public:
 
 class NeuroLinkSource : public Object {
 public:
-	NeuroLinkSource();
+	NeuroLinkSource( MindRegion *region );
 	virtual const char *getClass() { return( "NeuroLinkSource" ); };
 
 public:
-	void addNeuroLink( NeuroLink *link );
-	void setSourceVector( NeuroVector *data );
-	NeuroVector *getSourceVector();
+	void setHandler( MindRegion::NeuroLinkSourceHandler pfn );
+	MindRegion *getRegion() { return( region ); };
 
-	void sendMessage( MindRegion *region );
+	void addNeuroLink( NeuroLink *link );
+	void setSourceSignal( NeuroSignal *data );
+	NeuroSignal *getSourceSignal( NeuroLink *link );
+
+	void sendMessage();
 
 private:
 // references
-	NeuroVector *data;
+	MindRegion *region;
+	NeuroSignal *data;
 	ClassList<NeuroLink> links;
+
+// utilities
+	MindRegion::NeuroLinkSourceHandler pfn;
 };
 
 /*#########################################################################*/
@@ -147,18 +187,18 @@ private:
 
 class NeuroLinkTarget : public Object {
 public:
-	NeuroLinkTarget();
+	NeuroLinkTarget( MindRegion *region );
 	virtual const char *getClass() { return( "NeuroLinkTarget" ); };
 
 public:
-	void setHandler( MindRegion *region , MindRegion::NeuroLinkHandler pfn );
+	void setHandler( MindRegion::NeuroLinkTargetHandler pfn );
 	MindRegion *getRegion() { return( region ); };
 
-	void execute( NeuroLink *link , NeuroVector *sourceData );
+	void execute( NeuroLink *link , NeuroSignal *sourceData );
 
 public:
 	MindRegion *region;
-	MindRegion::NeuroLinkHandler pfn;
+	MindRegion::NeuroLinkTargetHandler pfn;
 };
 
 /*#########################################################################*/

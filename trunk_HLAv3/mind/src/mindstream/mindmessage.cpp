@@ -16,7 +16,7 @@ MindMessage::MindMessage( NeuroLink *p_link )
 		areaLink = NULL;
 }
 
-MindMessage::MindMessage( NeuroLink *p_link , NeuroVector *p_data )
+MindMessage::MindMessage( NeuroLink *p_link , NeuroSignal *p_data )
 :	Message( Message::MsgType_Binary ) { 
 	link = p_link;
 	data = p_data;
@@ -33,10 +33,12 @@ MindMessage::~MindMessage() {
 		delete data;
 }
 
-NeuroVector *MindMessage::getMsgData() { 
+NeuroSignal *MindMessage::getMsgData() { 
 	if( data != NULL )
 		return( data ); 
 	
 	NeuroLinkSource *source = link -> getSource();
-	return( source -> getSourceVector() );
+	NeuroSignal *ns = source -> getSourceSignal( link );
+	ASSERTMSG( ns != NULL , "MindMessage::getMsgData: returned NULL signal from NeuroLinkSource, NeuroLink id=" + link -> getId() );
+	return( ns );
 }

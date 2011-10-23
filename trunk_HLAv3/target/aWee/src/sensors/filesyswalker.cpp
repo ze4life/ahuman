@@ -4,29 +4,29 @@
 // #############################################################################
 
 // signals emitted
-#define SIGNAL_COMPUTER_NAME	( neurovt )1
-#define SIGNAL_DISK_LISTITEM	( neurovt )2
-#define SIGNAL_DIR_LISTITEM		( neurovt )3
-#define SIGNAL_FILE_NAME		( neurovt )4
-#define SIGNAL_FILE_TYPE		( neurovt )5
-#define SIGNAL_DISK_NAME		( neurovt )6
-#define SIGNAL_DISK_SPACETOTAL	( neurovt )7
-#define SIGNAL_DISK_SPACEUSED	( neurovt )8
-#define SIGNAL_DISK_SPACEFREE	( neurovt )9
+#define SIGNAL_COMPUTER_NAME	1
+#define SIGNAL_DISK_LISTITEM	2
+#define SIGNAL_DIR_LISTITEM		3
+#define SIGNAL_FILE_NAME		4
+#define SIGNAL_FILE_TYPE		5
+#define SIGNAL_DISK_NAME		6
+#define SIGNAL_DISK_SPACETOTAL	7
+#define SIGNAL_DISK_SPACEUSED	8
+#define SIGNAL_DISK_SPACEFREE	9
 
-#define FILE_NOTIFY_ACTION_ADDED		( neurovt )11
-#define FILE_NOTIFY_ACTION_REMOVED		( neurovt )12
-#define FILE_NOTIFY_ACTION_MODIFIED		( neurovt )13
-#define FILE_NOTIFY_ACTION_RENAMEDFROM	( neurovt )14
-#define FILE_NOTIFY_ACTION_RENAMEDTO	( neurovt )15
+// actions data
+#define FILE_NOTIFY_ACTION_ADDED		0x01
+#define FILE_NOTIFY_ACTION_REMOVED		0x02
+#define FILE_NOTIFY_ACTION_MODIFIED		0x03
+#define FILE_NOTIFY_ACTION_RENAMEDTO	0x11
+#define FILE_NOTIFY_ACTION_RENAMEDFROM	0x12
 
-#define NUMBER_TO_NEURAL( numMin , numMax , value ) ( ( (value) - (numMin) ) * 2.f / ( (numMax) - (numMin) ) - 1 )
-#define NEURAL_TO_NUMBER( numMin , numMax , value ) ( (numMin) + ( (value) + 1 ) * ( (numMax) - (numMin) ) / 2.f )
-
-static const int MAX_FILE_NOTIFY_ACTIONS = 5;
+// sensory sizes
 static const int FOCUS_DEPTH_LEVELS = 10;
-static const int SENSOR_WIDTH_CONTROL = 2;
-static const int SENSOR_WIDTH_DATA = 16;
+static const int SENSOR_WIDTH_CONTROL = 1;
+static const int SENSOR_WIDTH_ACTION = 1;
+static const int SENSOR_WIDTH_DATA = 128;
+static const int SENSOR_WIDTH_CONTROL_FEEDBACK = 1;
 
 // #############################################################################
 // #############################################################################
@@ -70,12 +70,7 @@ private:
 	//		deliver captured properties from external world and transfer to sensordata IO channel according to control state
 	//		deriver exposed properties from control state and deliver them to external world
 
-	neurovt actions[ MAX_FILE_NOTIFY_ACTIONS ];
-
 private:
-	neurovt *vin;
-
-	neurovt *vout;
 	RFC_HND thread;
 	RFC_HND commandEvent;
 	RFC_HND lockHandle;
@@ -90,14 +85,16 @@ public:
 
 public:
 	// sensor lifecycle
+	virtual void createSensor();
 	virtual void startSensor();
 	virtual void stopSensor();
-	virtual void processSensorControl();
+	virtual void processSensorControl( NeuroLink *link , NeuroSignal *signal );
 	virtual void produceSensorData();
 	virtual void pollSensor() {};
 
 private:
-	bool executeSensorControl();
+	bool executeSensorControl( NeuroSignal *signal );
+
 	void prepareWaitComputerInfo();
 	void prepareWaitDiskInfo();
 	void prepareWaitDirectoryInfo();
@@ -113,7 +110,7 @@ private:
 	bool commandFocusDecrease();
 	bool commandFocusChangeDepth();
 	String getCurFocusArea();
-	void sendSignal( neurovt type , String value );
+	void sendSignal( int action , String value );
 
 	String getComputerName();
 	String getFirstDisk();
@@ -141,6 +138,9 @@ private:
 
 	void runThreadReader( void *p_arg );
 	void continueRead();
+
+	unsigned char neuronToChar( neurovt_signal *sv , unsigned char *strength );
+	void charToNeuron( neurovt_signal *sv , int pos , unsigned char v );
 };
 
 // #############################################################################
@@ -149,19 +149,6 @@ private:
 SensorFileSysWalker::SensorFileSysWalker( SensorArea *p_area )
 :	MindSensor( p_area ) {
 	attachLogger();
-
-	actions[0] = FILE_NOTIFY_ACTION_ADDED; 
-	actions[1] = FILE_NOTIFY_ACTION_REMOVED; 
-	actions[2] = FILE_NOTIFY_ACTION_MODIFIED; 
-	actions[3] = FILE_NOTIFY_ACTION_RENAMEDFROM; 
-	actions[4] = FILE_NOTIFY_ACTION_RENAMEDTO;
-
-	// internal data
-	NeuroVector *nv = MindSensor::createSensoryData( SENSOR_WIDTH_DATA , 1 );
-	vout = nv -> getRawData();
-
-	nv = MindSensor::createSensoryControlState( SENSOR_WIDTH_CONTROL , 1 );
-	vin = nv -> getRawData();
 
 	// synchnonization
 	commandEvent = rfc_hnd_evcreate();
@@ -199,6 +186,13 @@ SensorFileSysWalker::~SensorFileSysWalker() {
 	rfc_hnd_semdestroy( lockHandle );
 };
 
+void SensorFileSysWalker::createSensor() {
+	// internal data
+	const int BYTE_SIZE=8;
+	MindSensor::createSensorySignal( ( SENSOR_WIDTH_ACTION + SENSOR_WIDTH_DATA ) , BYTE_SIZE );
+	MindSensor::createControlFeedbackSignal( SENSOR_WIDTH_CONTROL_FEEDBACK , BYTE_SIZE );
+}
+
 void SensorFileSysWalker::startSensor() {
 	// start reading thread
 	continueRunFlag = true;
@@ -220,25 +214,29 @@ void SensorFileSysWalker::stopSensor() {
 }
 
 // called when inputs updated - i.e. control commands
-void SensorFileSysWalker::processSensorControl() {
-	if( executeSensorControl() ) {
+void SensorFileSysWalker::processSensorControl( NeuroLink *link , NeuroSignal *signal ) {
+	if( executeSensorControl( signal ) ) {
 		produceSensorData();
 		rfc_hnd_evsignal( commandEvent );
 	}
 }
 
 // returns status - whether sensor data should be generated
-bool SensorFileSysWalker::executeSensorControl() {
+bool SensorFileSysWalker::executeSensorControl( NeuroSignal *signal ) {
 	lock();
 
 	bool res = false;
 	try {
 		// possible commands are - focus up, down, increase, decrease, changedepth (1-5)
-		// neuro-input is [-1,1]
-		curFocusCommand = ( FOCUS_COMMAND )( int )NEURAL_TO_NUMBER( 0 , COMMAND_LAST , vin[0] );
+		neurovt_signal *sv = signal -> getRawData();
+
+		unsigned char l_strength;
+		unsigned char l_cmd = neuronToChar( sv , &l_strength );
+
+		curFocusCommand = ( FOCUS_COMMAND )l_cmd;
 		if( curFocusCommand > COMMAND_LAST )
 			curFocusCommand = COMMAND_LAST;
-		curFocusCommandStrength = ( int )NEURAL_TO_NUMBER( 0 , 100 , vin[1] );
+		curFocusCommandStrength = ( int )l_strength;
 
 		switch( curFocusCommand ) {
 			case COMMAND_FOCUS_UP :			
@@ -283,7 +281,7 @@ bool SensorFileSysWalker::executeSensorControl() {
 void SensorFileSysWalker::produceSensorData() {
 	lock();
 	try {
-		logger.logInfo( "produceSensorData: produce sensor data..." );
+		logger.logDebug( "produceSensorData: produce sensor data..." );
 		
 		switch( curFocusType ) {
 			case FOCUS_COMPUTER :	sendNewComputerInfo(); break;
@@ -327,7 +325,7 @@ void SensorFileSysWalker::prepareWaitFileInfo() {
 
 // send initial information - as focus changed
 void SensorFileSysWalker::sendNewComputerInfo() {
-	logger.logDebug( "sendNewComputerInfo: execute" );
+	logger.logInfo( "sendNewComputerInfo: execute..." );
 	String name = getComputerName();
 	sendSignal( SIGNAL_COMPUTER_NAME , name );
 
@@ -339,7 +337,7 @@ void SensorFileSysWalker::sendNewComputerInfo() {
 }
 
 void SensorFileSysWalker::sendNewDiskInfo() {
-	logger.logDebug( "sendNewDiskInfo: execute" );
+	logger.logInfo( "sendNewDiskInfo: execute..." );
 
 	// send disk information
 	float diskSpaceTotalGB;
@@ -354,7 +352,7 @@ void SensorFileSysWalker::sendNewDiskInfo() {
 }
 
 void SensorFileSysWalker::sendNewDirectoryInfo() {
-	logger.logDebug( "sendNewDirectoryInfo: execute" );
+	logger.logInfo( "sendNewDirectoryInfo: execute..." );
 
 	// send current directory list
 	StringList files;
@@ -366,7 +364,7 @@ void SensorFileSysWalker::sendNewDirectoryInfo() {
 }
 
 void SensorFileSysWalker::sendNewFileInfo() {
-	logger.logDebug( "sendNewFileInfo: execute" );
+	logger.logInfo( "sendNewFileInfo: execute..." );
 
 	String file = getFileOnly( curFile );
 	sendSignal( SIGNAL_FILE_NAME , file );
@@ -532,15 +530,20 @@ String SensorFileSysWalker::getCurFocusArea() {
 	return( "" );
 }
 
-void SensorFileSysWalker::sendSignal( neurovt type , String value ) {
+void SensorFileSysWalker::sendSignal( int action , String value ) {
+	logger.logInfo( String( "sendSignal: action=" ) + action + ", value=" + value );
+
+	NeuroSignal *signal = MindSensor::getSensorySignal();
+	neurovt_signal *sv = signal -> getRawData();
+
+	// add action info
+	charToNeuron( sv , 0 , action );
+
 	// set value by chunks split by directory delimiter
 	char *p = value.getBuffer();
 	ASSERTMSG( p != NULL , "Unexpected" );
 	int nSent = 0;
 	while( *p ) {
-		// set type
-		vout[ 0 ] = type;
-
 		// find delimiter
 		char *next = NULL;
 		char *pn = strchr( p , '\\' );
@@ -561,9 +564,9 @@ void SensorFileSysWalker::sendSignal( neurovt type , String value ) {
 		// set chunk item
 		int len = pn - p;
 		for( int k = 0; k < len; k++ )
-			vout[ k + 1 ] = NUMBER_TO_NEURAL( 0 , 255 , p[ k ] );
+			charToNeuron( sv , k + 1 , p[ k ] );
 		for( int k = len + 1; k < SENSOR_WIDTH_DATA; k++ )
-			vout[ k ] = 0;
+			charToNeuron( sv , k , 0 );
 
 		// produce item flow
 		// logger.logDebug( String( "sendSignal: processSensorData - " ) + String( p , next - p ) );
@@ -571,8 +574,6 @@ void SensorFileSysWalker::sendSignal( neurovt type , String value ) {
 		nSent++;
 		p = next;
 	}
-
-	logger.logDebug( String( "sendSignal: type=" ) + type + ", nSent=" + nSent +", value=" + value );
 }
 
 // #############################################################################
@@ -798,7 +799,11 @@ void SensorFileSysWalker::readDirChanges( HANDLE handle , void *buf , DWORD bufL
 	FILE_NOTIFY_INFORMATION *pe = ( FILE_NOTIFY_INFORMATION * )buf;
 	while( true ) {
 		// use event
-		if( pe -> Action >= 1 && pe -> Action <= MAX_FILE_NOTIFY_ACTIONS ) {
+		if( pe -> Action == FILE_ACTION_ADDED ||
+			pe -> Action == FILE_ACTION_REMOVED ||
+			pe -> Action == FILE_ACTION_MODIFIED ||
+			pe -> Action == FILE_ACTION_RENAMED_OLD_NAME ||
+			pe -> Action == FILE_ACTION_RENAMED_NEW_NAME ) {
 			// convert widechar to ansi
 			char name[ 1024 ];
 			sprintf( name , "%S" , pe -> FileName );
@@ -815,8 +820,25 @@ void SensorFileSysWalker::readDirChanges( HANDLE handle , void *buf , DWORD bufL
 					continue;
 			}
 
+			// recode from windows action to mind action to bring more correlation
+			int l_action = 0;
+			if( pe -> Action == FILE_ACTION_ADDED )
+				l_action = FILE_NOTIFY_ACTION_ADDED;
+			else
+			if( pe -> Action == FILE_ACTION_REMOVED )
+				l_action = FILE_NOTIFY_ACTION_REMOVED;
+			else
+			if( pe -> Action == FILE_ACTION_MODIFIED )
+				l_action = FILE_NOTIFY_ACTION_MODIFIED;
+			else
+			if( pe -> Action == FILE_ACTION_RENAMED_OLD_NAME )
+				l_action = FILE_NOTIFY_ACTION_RENAMEDFROM;
+			else
+			if( pe -> Action == FILE_ACTION_RENAMED_NEW_NAME )
+				l_action = FILE_NOTIFY_ACTION_RENAMEDTO;
+
 			// send change event as signal
-			sendSignal( actions[ pe -> Action - 1 ] , name );
+			sendSignal( l_action , name );
 		}
 
 		// go to next record
@@ -845,6 +867,73 @@ void SensorFileSysWalker::waitChangeEventAndExecute() {
 	lock();
 	readDirChanges( changeHandle , buf , sizeof( buf ) , curFocusDepth );
 	unlock();
+}
+
+unsigned char SensorFileSysWalker::neuronToChar( neurovt_signal *sv , unsigned char *p_strength ) {
+	// 8 bytes, starting with lowest
+	unsigned char l_v = 0;
+	int l_strength = 0;
+	int l_n = 0;
+	if( sv[0] ) {
+		l_v |= ( unsigned char )0x01;
+		l_strength += sv[0];
+		l_n++;
+	}
+	if( sv[1] ) {
+		l_v |= ( unsigned char )0x02;
+		l_strength += sv[1];
+		l_n++;
+	}
+	if( sv[2] ) {
+		l_v |= ( unsigned char )0x04;
+		l_strength += sv[2];
+		l_n++;
+	}
+	if( sv[3] ) {
+		l_v |= ( unsigned char )0x08;
+		l_strength += sv[3];
+		l_n++;
+	}
+	if( sv[4] ) {
+		l_v |= ( unsigned char )0x10;
+		l_strength += sv[4];
+		l_n++;
+	}
+	if( sv[5] ) {
+		l_v |= ( unsigned char )0x20;
+		l_strength += sv[5];
+		l_n++;
+	}
+	if( sv[6] ) {
+		l_v |= ( unsigned char )0x40;
+		l_strength += sv[6];
+		l_n++;
+	}
+	if( sv[7] ) {
+		l_v |= ( unsigned char )0x80;
+		l_strength += sv[7];
+		l_n++;
+	}
+	if( l_n )
+		l_strength /= l_n;
+
+	*p_strength = l_strength;
+	return( l_v );
+}
+
+void SensorFileSysWalker::charToNeuron( neurovt_signal *sv , int pos , unsigned char v ) {
+	const int BYTE_SIZE=8;
+	sv += pos * BYTE_SIZE;
+
+	// NEUROVT_NORMAL_SIGNAL_STRENGTH
+	*sv++ = ( v & 0x01 )? NEUROVT_NORMAL_SIGNAL_STRENGTH : 0;
+	*sv++ = ( v & 0x02 )? NEUROVT_NORMAL_SIGNAL_STRENGTH : 0;
+	*sv++ = ( v & 0x04 )? NEUROVT_NORMAL_SIGNAL_STRENGTH : 0;
+	*sv++ = ( v & 0x08 )? NEUROVT_NORMAL_SIGNAL_STRENGTH : 0;
+	*sv++ = ( v & 0x10 )? NEUROVT_NORMAL_SIGNAL_STRENGTH : 0;
+	*sv++ = ( v & 0x20 )? NEUROVT_NORMAL_SIGNAL_STRENGTH : 0;
+	*sv++ = ( v & 0x40 )? NEUROVT_NORMAL_SIGNAL_STRENGTH : 0;
+	*sv++ = ( v & 0x80 )? NEUROVT_NORMAL_SIGNAL_STRENGTH : 0;
 }
 
 // #############################################################################
