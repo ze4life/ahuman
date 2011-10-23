@@ -24,12 +24,13 @@ public:
 
 private:
 	// neurolink handler
-	void handleNeuroLinkMessage( NeuroLink *link , NeuroVector *data );
+	void handleTargetMessage( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *data );
 
 private:
 // own data
-	NeuroLinkSource source;
-	NeuroLinkTarget target;
+	NeuroLinkSource *source;
+	NeuroLinkTarget *target;
+	NeuroSignal *sourceSignal;
 	NeuroPool neuroPool;
 };
 
@@ -49,6 +50,10 @@ MindRegion *MindService::createNucleiRegion( MindArea *area , String id , Nuclei
 NucleiRegion::NucleiRegion( MindArea *p_area )
 :	MindRegion( p_area ) {
 	attachLogger();
+
+	source = NULL;
+	target = NULL;
+	sourceSignal = NULL;
 }
 
 void NucleiRegion::createNucleiRegion( NucleiRegionInfo *info ) {
@@ -58,29 +63,47 @@ void NucleiRegion::createNucleiRegion( NucleiRegionInfo *info ) {
 }
 
 void NucleiRegion::createRegion() {
-	target.setHandler( this , ( MindRegion::NeuroLinkHandler )&NucleiRegion::handleNeuroLinkMessage );
+	source = new NeuroLinkSource( this );
+	target = new NeuroLinkTarget( this );
+	target -> setHandler( ( MindRegion::NeuroLinkTargetHandler )&NucleiRegion::handleTargetMessage );
+
+	int nx , ny;
+	neuroPool.getNeuronDimensions( &nx , &ny );
+	sourceSignal = new NeuroSignal();
+	sourceSignal -> create( nx , ny );
+	source -> setSourceSignal( sourceSignal );
 }
 
 void NucleiRegion::exitRegion() {
 }
 
 void NucleiRegion::destroyRegion() {
+	if( source != NULL )
+		delete source;
+	if( target != NULL )
+		delete target;
+	if( sourceSignal != NULL )
+		delete sourceSignal;
+
+	source = NULL;
+	target = NULL;
+	sourceSignal = NULL;
 }
 
 // NeuroLink support
 NeuroLinkSource *NucleiRegion::getNeuroLinkSource( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
 	// allow any
-	return( &source );
+	return( source );
 }
 
 NeuroLinkTarget *NucleiRegion::getNeuroLinkTarget( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
-	return( &target );
+	return( target );
 }
 
-void NucleiRegion::handleNeuroLinkMessage( NeuroLink *link , NeuroVector *data ) {
+void NucleiRegion::handleTargetMessage( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *data ) {
 	// execute default
 	link -> apply( data , &neuroPool );
 
 	// forward further
-	source.sendMessage( this );
+	source -> sendMessage();
 }

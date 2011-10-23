@@ -3,33 +3,33 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-NeuroVector::NeuroVector() {
+NeuroState::NeuroState() {
 }
 
-NeuroVector::NeuroVector( int sizeX , int sizeY ) {
+NeuroState::NeuroState( int sizeX , int sizeY ) {
 	data.create( sizeX , sizeY );
 }
 
-NeuroVector::NeuroVector( NeuroVector *src ) {
+NeuroState::NeuroState( NeuroState *src ) {
 	data.copy( src -> getVectorData() );
 }
 
-NeuroVector::~NeuroVector() {
+NeuroState::~NeuroState() {
 }
 
-void NeuroVector::create( int sizeX , int sizeY ) {
+void NeuroState::create( int sizeX , int sizeY ) {
 	data.create( sizeX , sizeY );
 }
 
-neurovt *NeuroVector::getRawData() {
+neurovt_state *NeuroState::getRawData() {
 	return( data.getData() );
 }
 
-TwoIndexArray<neurovt>& NeuroVector::getVectorData() {
+TwoIndexArray<neurovt_state>& NeuroState::getVectorData() {
 	return( data );
 }
 
-void NeuroVector::getSizeInfo( int *nx , int *ny ) {
+void NeuroState::getSizeInfo( int *nx , int *ny ) {
 	*nx = data.getN1();
 	*ny = data.getN2();
 }

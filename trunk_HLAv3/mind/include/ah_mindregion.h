@@ -21,13 +21,14 @@ class NeuroPoolSet;
 class NeuroLink;
 class NeuroLinkSet;
 class MindLocation;
-class NeuroVector;
+class NeuroSignal;
 class NeuroLinkSource;
 class NeuroLinkTarget;
 
 class MindRegion : public Object {
 public:
-	typedef void (MindRegion::*NeuroLinkHandler)( NeuroLink *link , NeuroVector *srcData );
+	typedef NeuroSignal *(MindRegion::*NeuroLinkSourceHandler)( NeuroLink *link , NeuroLinkSource *point );
+	typedef void (MindRegion::*NeuroLinkTargetHandler)( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *srcData );
 
 public:
 	MindRegion( MindArea *area );

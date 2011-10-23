@@ -42,7 +42,7 @@ void MindActiveMemory::stop() {
 
 void MindActiveMemory::execute( MindMessage *msg ) {
 	NeuroLink *link = msg -> getNeuroLink();
-	NeuroVector *sourceData = msg -> getMsgData();
+	NeuroSignal *sourceData = msg -> getMsgData();
 	NeuroLinkTarget *target = link -> getTarget();
 
 	logger.logDebug( "execute: process link=" + link -> getId() + ", message id=" + msg -> getChannelMessageId() );

@@ -24,22 +24,22 @@ public:
 
 private:
 	// neurolink handlers
-	void handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroVector *data );
-	void handleFeedBackNeuroLinkMessage( NeuroLink *link , NeuroVector *data );
-	void handleAttentionNeuroLinkMessage( NeuroLink *link , NeuroVector *data );
+	void handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *data );
+	void handleFeedBackNeuroLinkMessage( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *data );
+	void handleAttentionNeuroLinkMessage( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *data );
 
 private:
 // own data
-	NeuroLinkSource sourceFeedForward;
-	NeuroLinkSource sourceFeedBack;
-	NeuroLinkSource sourceAttention;
-	NeuroLinkTarget targetFeedForward;
-	NeuroLinkTarget targetFeedBack;
-	NeuroLinkTarget targetAttention;
+	NeuroLinkSource *sourceFeedForward;
+	NeuroLinkSource *sourceFeedBack;
+	NeuroLinkSource *sourceAttention;
+	NeuroLinkTarget *targetFeedForward;
+	NeuroLinkTarget *targetFeedBack;
+	NeuroLinkTarget *targetAttention;
 
-	NeuroVector vectorFeedForwardOutput;
-	NeuroVector vectorFeedBackOutput;
-	NeuroVector vectorAttentionOutput;
+	NeuroSignal vectorFeedForwardOutput;
+	NeuroSignal vectorFeedBackOutput;
+	NeuroSignal vectorAttentionOutput;
 
 	NeuroPool layerTemporalFeedback;	// layer 2
 	NeuroPool layerSpatial;				// layer 3
@@ -76,6 +76,13 @@ CortexRegion::CortexRegion( MindArea *p_area )
 	useSpatialPooler = false;
 	useTemporalPooler = false;
 	nTemporalDepth = false;
+
+	sourceFeedForward = NULL;
+	sourceFeedBack = NULL;
+	sourceAttention = NULL;
+	targetFeedForward = NULL;
+	targetFeedBack = NULL;
+	targetAttention = NULL;
 }
 
 void CortexRegion::createCortexRegion( CortexRegionInfo *info ) {
@@ -84,63 +91,87 @@ void CortexRegion::createCortexRegion( CortexRegionInfo *info ) {
 	useSpatialPooler = info -> isUsingSpatialPooler();
 	useTemporalPooler = info -> isUsingTemporalPooler();
 	nTemporalDepth = info -> getTemporalDepth();
-
-	// create input/output vectors
-	vectorFeedForwardOutput.create( nSideSize , nSideSize );
-	sourceFeedForward.setSourceVector( &vectorFeedForwardOutput );
-
-	vectorFeedBackOutput.create( nSideSize , nSideSize );
-	sourceFeedBack.setSourceVector( &vectorFeedBackOutput );
-
-	vectorAttentionOutput.create( nSideSize , nSideSize );
-	sourceAttention.setSourceVector( &vectorAttentionOutput );
-
-	// create pools
 }
 
 void CortexRegion::createRegion() {
-	targetFeedForward.setHandler( this , ( MindRegion::NeuroLinkHandler )&CortexRegion::handleFeedForwardNeuroLinkMessage );
-	targetFeedBack.setHandler( this , ( MindRegion::NeuroLinkHandler )&CortexRegion::handleFeedBackNeuroLinkMessage );
-	targetAttention.setHandler( this , ( MindRegion::NeuroLinkHandler )&CortexRegion::handleAttentionNeuroLinkMessage );
+	sourceFeedForward = new NeuroLinkSource( this );
+	sourceFeedBack = new NeuroLinkSource( this );
+	sourceAttention = new NeuroLinkSource( this );
+	targetFeedForward = new NeuroLinkTarget( this );
+	targetFeedBack = new NeuroLinkTarget( this );
+	targetAttention = new NeuroLinkTarget( this );
+
+	// create input/output vectors
+	vectorFeedForwardOutput.create( nSideSize , nSideSize );
+	sourceFeedForward -> setSourceSignal( &vectorFeedForwardOutput );
+
+	vectorFeedBackOutput.create( nSideSize , nSideSize );
+	sourceFeedBack -> setSourceSignal( &vectorFeedBackOutput );
+
+	vectorAttentionOutput.create( nSideSize , nSideSize );
+	sourceAttention -> setSourceSignal( &vectorAttentionOutput );
+
+	targetFeedForward -> setHandler( ( MindRegion::NeuroLinkTargetHandler )&CortexRegion::handleFeedForwardNeuroLinkMessage );
+	targetFeedBack -> setHandler( ( MindRegion::NeuroLinkTargetHandler )&CortexRegion::handleFeedBackNeuroLinkMessage );
+	targetAttention -> setHandler( ( MindRegion::NeuroLinkTargetHandler )&CortexRegion::handleAttentionNeuroLinkMessage );
 }
 
 void CortexRegion::exitRegion() {
 }
 
 void CortexRegion::destroyRegion() {
+	if( sourceFeedForward != NULL )
+		delete sourceFeedForward;
+	if( sourceFeedBack != NULL )
+		delete sourceFeedBack;
+	if( sourceAttention != NULL )
+		delete sourceAttention;
+	if( targetFeedForward != NULL )
+		delete targetFeedForward;
+	if( targetFeedBack != NULL )
+		delete targetFeedBack;
+	if( targetAttention != NULL )
+		delete targetAttention;
+
+	sourceFeedForward = NULL;
+	sourceFeedBack = NULL;
+	sourceAttention = NULL;
+	targetFeedForward = NULL;
+	targetFeedBack = NULL;
+	targetAttention = NULL;
 }
 
 NeuroLinkSource *CortexRegion::getNeuroLinkSource( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
 	if( entity.equals( "feed-forward-output" ) )
-		return( &sourceFeedForward );
+		return( sourceFeedForward );
 	if( entity.equals( "feed-back-output" ) )
-		return( &sourceFeedBack );
+		return( sourceFeedBack );
 	if( entity.equals( "attention-output" ) )
-		return( &sourceAttention );
+		return( sourceAttention );
 
 	return( NULL );
 }
 
 NeuroLinkTarget *CortexRegion::getNeuroLinkTarget( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
 	if( entity.equals( "feed-forward-input" ) )
-		return( &targetFeedForward );
+		return( targetFeedForward );
 	if( entity.equals( "feed-back-input" ) )
-		return( &targetFeedBack );
+		return( targetFeedBack );
 	if( entity.equals( "attention-input" ) )
-		return( &targetAttention );
+		return( targetAttention );
 
 	return( NULL );
 }
 
-void CortexRegion::handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroVector *data ) {
-	sourceFeedForward.sendMessage( this );
+void CortexRegion::handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *data ) {
+	sourceFeedForward -> sendMessage();
 }
 
-void CortexRegion::handleFeedBackNeuroLinkMessage( NeuroLink *link , NeuroVector *data ) {
-	sourceFeedBack.sendMessage( this );
+void CortexRegion::handleFeedBackNeuroLinkMessage( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *data ) {
+	sourceFeedBack -> sendMessage();
 }
 
-void CortexRegion::handleAttentionNeuroLinkMessage( NeuroLink *link , NeuroVector *data ) {
-	sourceAttention.sendMessage( this );
+void CortexRegion::handleAttentionNeuroLinkMessage( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *data ) {
+	sourceAttention -> sendMessage();
 }
 

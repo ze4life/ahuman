@@ -7,6 +7,7 @@
 NeuroPool::NeuroPool() {
 	cellPotentials = NULL;
 	cellOutputs = NULL;
+	lastExecutionTicks = ( RFC_INT64 )0;
 }
 
 NeuroPool::~NeuroPool() {
@@ -17,12 +18,20 @@ NeuroPool::~NeuroPool() {
 }
 
 void NeuroPool::createNeurons( int nx , int ny ) {
-	cellPotentials = new NeuroVector( nx , ny );
-	cellOutputs = new NeuroVector( nx , ny );
+	cellPotentials = new NeuroState( nx , ny );
+	cellOutputs = new NeuroState( nx , ny );
 }
 
 void NeuroPool::getNeuronDimensions( int *px , int *py ) {
 	cellOutputs -> getSizeInfo( px , py );
+}
+
+NeuroState *NeuroPool::getCellPotentials() {
+	return( cellPotentials );
+}
+
+NeuroState *NeuroPool::getCellOutputs() {
+	return( cellOutputs );
 }
 
 void NeuroPool::startProjection( NeuroLink *link ) {
@@ -31,6 +40,10 @@ void NeuroPool::startProjection( NeuroLink *link ) {
 void NeuroPool::finishProjection( NeuroLink *link ) {
 }
 
-void NeuroPool::executeProjection( NeuroLink *link , int  x , int y , neurovt v ) {
+RFC_INT64 NeuroPool::getLastExecutionTimeTicks() {
+	return( lastExecutionTicks );
 }
 
+void NeuroPool::setLastExecutionTimeTicks( RFC_INT64 p_ticks ) {
+	lastExecutionTicks = p_ticks;
+}

@@ -4,27 +4,27 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-NeuroLinkTarget::NeuroLinkTarget() {
+NeuroLinkTarget::NeuroLinkTarget( MindRegion *p_region ) {
 	attachLogger();
-	region = NULL;
+
+	region = p_region;
 	pfn = NULL;
 }
 
-void NeuroLinkTarget::setHandler( MindRegion *p_region , MindRegion::NeuroLinkHandler p_pfn ) {
-	region = p_region;
+void NeuroLinkTarget::setHandler( MindRegion::NeuroLinkTargetHandler p_pfn ) {
 	pfn = p_pfn;
 }
 
-void NeuroLinkTarget::execute( NeuroLink *link , NeuroVector *sourceData ) {
+void NeuroLinkTarget::execute( NeuroLink *link , NeuroSignal *sourceData ) {
 	// execute target handler
 	try {
-		( region ->* pfn )( link , sourceData );
+		( region ->* pfn )( link , this , sourceData );
 	}
 	catch( RuntimeException& e ) {
-		logger.logError( "Exception in handling message for NeuroLink id=" + link -> getId() );
+		logger.logError( "execute: exception in handling message for NeuroLink id=" + link -> getId() );
 		logger.printStack( e );
 	}
 	catch( ... ) {
-		logger.logError( "Unknown exception in handling message for NeuroLink id=" + link -> getId() );
+		logger.logError( "execute: unknown exception in handling message for NeuroLink id=" + link -> getId() );
 	}
 }

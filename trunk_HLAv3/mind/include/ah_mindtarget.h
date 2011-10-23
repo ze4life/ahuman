@@ -22,7 +22,6 @@ class EffectorArea;
 
 class MindSensorSetTracker;
 class MindArea;
-class NeuroVector;
 
 class MindTarget : public Service {
 public:
@@ -137,9 +136,10 @@ public:
 	virtual const char *getClass() = 0;
 
 	// MindSensor
+	virtual void createSensor() = 0;
 	virtual void startSensor() = 0;
 	virtual void stopSensor() = 0;
-	virtual void processSensorControl() = 0;
+	virtual void processSensorControl( NeuroLink *link , NeuroSignal *signal ) = 0;
 	virtual void produceSensorData() = 0;
 	virtual void pollSensor() = 0;
 
@@ -155,14 +155,14 @@ private:
 
 public:
 	// memory allocation
-	NeuroVector *createSensoryData( int sizeX , int sizeY );
-	NeuroVector *createSensoryControlState( int sizeX , int sizeY );
-	NeuroVector *createControlFeedbackData( int sizeX , int sizeY );
-	NeuroVector *getSensoryData();
+	void createSensorySignal( int sizeX , int sizeY );
+	void createControlFeedbackSignal( int sizeX , int sizeY );
+	NeuroSignal *getSensorySignal();
 
 	// capture data and and send via NeuroLink
 	void processSensorData();
-	void applySensorControl( NeuroLink *link , NeuroVector *srcData );
+	// handler
+	void applySensorControl( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *srcData );
 
 	// poll handling
 	void setPollState( bool state );
@@ -170,7 +170,7 @@ public:
 	int getPollIntervalMs( int timeNowMs );
 
 	// informational
-	int getDataSize();
+	int getSignalSize();
 	
 private:
 // utility
@@ -181,12 +181,11 @@ private:
 
 // own data
 	// memory
-	NeuroVector *memorySensoryData;
-	NeuroVector *memorySensoryControlState;
-	NeuroVector *memorySensoryControlFeedback;
-	NeuroLinkSource sourceSensoryData;
-	NeuroLinkSource sourceSensoryControlFeedback;
-	NeuroLinkTarget targetSensoryControl;
+	NeuroSignal *memorySensorySignal;
+	NeuroSignal *memorySensoryFeedbackSignal;
+	NeuroLinkSource *sourceSensoryData;
+	NeuroLinkSource *sourceSensoryControlFeedback;
+	NeuroLinkTarget *targetSensoryControl;
 };
 
 /*#########################################################################*/

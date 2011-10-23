@@ -165,18 +165,18 @@ public:
 class MindMessage : public Message {
 public:
 	MindMessage( NeuroLink *p_link );
-	MindMessage( NeuroLink *p_link , NeuroVector *p_data );
+	MindMessage( NeuroLink *p_link , NeuroSignal *p_data );
 	virtual ~MindMessage();
 	virtual const char *getClass() { return( "MindMessage" ); };
 
 public:
 	NeuroLink *getNeuroLink() { return( link ); };
-	NeuroVector *getMsgData();
+	NeuroSignal *getMsgData();
 	MindAreaLink *getAreaLink() { return( areaLink ); };
 
 private:
 // own data
-	NeuroVector *data;
+	NeuroSignal *data;
 
 // references
 	MindAreaLink *areaLink;
