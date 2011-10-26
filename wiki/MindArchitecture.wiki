@@ -17,7 +17,7 @@ class MindTarget {MindSensorSet, MindEffectorSet, MindSensorArea, MindEffectorAr
     (class SpecificMindTarget : MindTarget)
 class MindSensorSet {MindSensor[]} in MindTarget
 class MindEffectorSet {MindEffector[]} in MindTarget
-class MindSensor : MindRegion {NeuroVector} in MindSensorSet
+class MindSensor : MindRegion {NeuroState, NeuroSignal} in MindSensorSet
     (class SpecificMindSensor : MindSensor)
 class MindEffector : MindRegion in MindEffectorSet
     (class SpecificMindEffector : MindEffector)
@@ -78,7 +78,7 @@ class NerveRegionInfo in TOP
 {{{
 class NeuroState in MindSensor, specific MindRegion, NeuroPool
 class NeuroSignal in MindSensor, specific MindRegion, MindMessage
-class NeuroPool {NeuroVector[], NeuroVector} in NeuroPoolSet
+class NeuroPool {NeuroState[], NeuroState} in NeuroPoolSet
 class NeuroPoolSet {NeuroPool[]} in MindRegion
 class NeuroLink in NeuroLinkSet
     class ExcitatoryLink : NeuroLink
@@ -100,7 +100,7 @@ class MindAreaLinkSet {MindAreaLink[]} in MindService
 class MindRegionLink in MindRegionLinkSet
 class MindRegionLinkSet {MindRegionLink[]} in MindArea, MindAreaLink
 class MindActiveMemory in MindService
-class MindMessage : BinaryMessage {NeuroVector} in TOP
+class MindMessage : BinaryMessage {NeuroSignal} in TOP
 }}}
   * mind space
    * MindSpace
