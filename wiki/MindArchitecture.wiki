@@ -73,10 +73,11 @@ class NucleiRegionInfo in TOP
 class NerveRegionInfo in TOP
 }}}
   * mind matter
-   * NeuroVector, NeuroPool
+   * NeuroSignal, NeuroState, NeuroPool
    * NeuroLink, ExcitatoryLink, InhibitoryLink, ModulatoryLink
 {{{
-class NeuroVector in MindSensor, NeuroPool, MindMessage
+class NeuroState in MindSensor, specific MindRegion, NeuroPool
+class NeuroSignal in MindSensor, specific MindRegion, MindMessage
 class NeuroPool {NeuroVector[], NeuroVector} in NeuroPoolSet
 class NeuroPoolSet {NeuroPool[]} in MindRegion
 class NeuroLink in NeuroLinkSet
