@@ -5,15 +5,31 @@
 
 == Sensor Area Inputs ==
 
-  * primary input - external world properties captured by sensor
-  * sensor control - origination of control data and nature of inter-area link - to be understood, see sections below
-  * perception feedback - time-based expectation for sensory data from perception area
+  * *primary input* - external world properties captured by sensor
+  * *sensor control* - origination of control data and nature of inter-area link - to be understood, see sections below
+  * *perception feedback* - time-based expectation for sensory data from perception area
 
 == Sensor Area Outputs ==
 
-  * primary output - sensory data, sent to perception area
-  * control feedback - providing status of control command execution - executed completely or partially, or somehow in different way
-  * exposed control state properties - emitted to external world to facilitate establishing direct communication channel with other subjects
+  * *primary output* - sensory data, sent to perception area
+  * *control feedback* - providing status of control command execution - executed completely or partially, or somehow in different way
+  * *exposed control state properties* - emitted to external world to facilitate establishing direct communication channel with other subjects
+
+== Biological Eye Sensor Paths ==
+
+  * *primary input*
+   * rods (fast colorless contrast low-resolution receptors)
+   * cones (slow R/G/B high-resolution receptors)
+  * *sensor control*
+   * prefrontal cortex eye field -> superior colliculus -> horizontal gaze center
+   * prefrontal cortex eye field -> horizontal gaze center
+   * association cortex -> superior colliculus -> horizontal gaze center
+   * brain stem/midbrain/pretectum -> oculomotor, trochlear, abducent nerve (III, IV, VI cranial) -> superior colliculus -> Edinger-Westphal nucleus -> ciliary ganglion -> eye
+{code}
+constriction of pupil, accommodation of lens
+ciliary ganglion - parasympathetic ganglion
+Edinger-Westphal nucleus - parasympathetic cranial nerve nucleus
+{code}
 
 == Linking Sensors to Perception - HLAv3 ==
 
@@ -36,3 +52,7 @@
 == Interesting facts ==
 
   * when an animal attends to some features in its sensations, the neural representations even in the lowest cortical levels adapt mostly to those features and not to others
+
+== Links ==
+
+  * [http://www.acbrown.com/neuro/Lectures/EyeM/NrEyeM.htm Eye Movement]
