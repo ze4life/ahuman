@@ -9,6 +9,631 @@ Related findings are structured by other research themes.
 
 <wiki:toc max_depth="2" />
 
+= Biological Reduction =
+
+== Simplified Biological Overview ==
+
+http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/top.jpg
+
+  * head
+   * sensors
+   * sensor data tract
+   * sensor control tract
+   * brain
+  * body (spinal cord)
+   * effectors
+   * body feeling components
+   * body feeling data tract
+   * body feeling modulation tract
+   * effectors control tract
+   * effectors feedback tract
+   * effectors feeling tract
+
+== Biological Reduction Rationale ==
+
+  * reduction hierarchy contains only functions copied to aHuman
+  * visual brain functions are regarded as generic sensory approach
+  * motor is replaced by effector, movement is action
+  * body remained as term, but its nature is completely different for aHuman
+   * task performed for the mind is the same - default reward system and mandatory part for any action
+   * hence somatosensory brain elements remained predefined mandatory sensor, body feeling.
+  * single hemisphere is assumed to be enough
+  * blood and heart are regarded as regulatory functions, controlling resources spent by brain
+  * thalamic area is primarily considered as relay, and to simplify picture, some direct ways, e.g. ACA to HCA are treated as passing via THA
+  * limbic lobe was split into parts allocated to other modules, because parts of limbic system seem to me quite different while having strong connections to specific parts
+   * anterior cingulate cortex has strong bidirectional connections with anterior cortex and allocated to ACA, posterior cingulate - to PCA as well
+   * secondary role of thalamic area is spreading of modulatory activity (sleep-awake cycle, hormones, neurotransmitters and others), and because of that septal nuclei allocated to THA 
+   * hippocampus is strong aligned with memory formation functions of temporal lobe - enthorinal and perirhinal cortices and eventually allocated to HCA
+   * fornix is hippocampus communication facility and that's why allocated also to HCA
+   * basal ganglia is rational primitive motor system and needs to be separate module because it is one of major non-cortical functions
+   * amygdala is allocated to BGA because generating movements by emotional, but not rational signals
+
+= Biological Model =
+
+== Biological Paths ==
+
+  * [http://en.wikipedia.org/wiki/Arcuate_fasciculus neural pathway connecting the posterior part of the temporoparietal junction with the frontal cortex]
+  * [http://en.wikipedia.org/wiki/Dorsal_column-medial_lemniscus_pathway sensory pathway transmitting fine touch, vibration and conscious proprioceptive information from the body to the cerebral cortex]
+  * [http://en.wikipedia.org/wiki/Ventral_spinothalamic_tract sensory pathway originating in the spinal cord and transmitting pain, temperature, itch and crude touch to the thalamus]
+  * [http://en.wikipedia.org/wiki/Lateral_corticospinal_tract pathway arising from motor area of the cerebral cortex and controlling movement of ipsilateral limbs]
+  * [http://en.wikipedia.org/wiki/Anterior_corticospinal_tract pathway, conducting voluntary motor impulses from primary motor cortex to the motor centers of the cord]
+  * [http://en.wikipedia.org/wiki/Corticobulbar_tract pathway connecting the cerebral cortex to the medulla in brainstem, controlling muscles of the face, head and neck]
+  * [http://en.wikipedia.org/wiki/Corpus_callosum pathway connecting the left and right cerebral hemispheres and facilitating interhemispheric communication]
+  * [http://en.wikipedia.org/wiki/Mesocortical_pathway pathway connecting ventral tegmentum to frontal cerebral cortex, involved in motivation and emotional response]
+  * [http://en.wikipedia.org/wiki/Mesolimbic_pathway pathway begins in midbrain and connects to striatum, amygdala, hippocampus, medial prefrontal cortex]
+  * [http://en.wikipedia.org/wiki/Nigrostriatal_pathway pathway connecting substantia nigra with striatum, involved in production of movement]
+  * [http://en.wikipedia.org/wiki/Tuberoinfundibular_pathway intra-hypothalamus pathway, involved in regulation of lactation, menstrual cycle, vision, blood flow and sexual functions]
+  * [http://en.wikipedia.org/wiki/Ventral_stream ventral stream travels to the temporal lobe and is involved with object identification]
+  * [http://en.wikipedia.org/wiki/Ventral_stream dorsal stream stretches from the primary visual cortex (V1) in the occipital lobe forward into the parietal lobe]
+  * [http://en.wikipedia.org/wiki/Papez_circuit Papez circuit, one of major pathways of limbic system and is involved in cortical control of emotion]
+
+== Biological Module View ==
+
+http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/modules.jpg
+
+Modules are defined as follows:
+
+<table border="1" cellspacing="5">
+<tr>
+<th>Module and allocated areas</th>
+<th>Functions</th>
+<th>Flows</th>
+</tr>
+
+<tr>
+<td>
+*Head Sensors Area (HSA)*
+</td>
+<td>
+  * *Owned Functions*
+   * capture events from external world
+   * capture static data from external world
+   * expressing sensing behaviour
+  * *Involved in Functions*
+   * perceptions of various modalities
+   * pay attention to selected area / overt attention
+   * tracking objects / covert attention
+   * saccadic perception / covert attention
+</td>
+<td>
+  * *Inbound*
+   * (External World) -> sensor data
+   * PCA -> BSA -> low-level sensory control in perception
+   * ACA -> BSA -> attention area selection
+  * *Outbound*
+   * sensory data -> BSA
+   * perception control feedback -> THA -> PCA
+   * attention sensor control feedback -> THA -> ACA
+   * sensory state expression -> (External World)
+</td>
+</tr>
+
+<tr>
+<td>
+*Thalamus Area (THA)*
+  * diencephalon
+   * thalamus
+   * hypothalamus
+  * limbic system
+   * septal nuclei
+</td>
+<td>
+  * *Owned Functions*
+   * visceral control center of the body
+   * relaying sensation, spatial sense and motor signals to the cerebral cortex
+   * regulation of consciousness, sleep and alertness
+   * control memory, attention and alertness 
+   * controller of theta rhythm
+  * *Involved in Functions*
+   * effector control system
+   * perceptions of various modalities
+   * cortical regulation of the thalamic activity
+   * modulatory, life support and the sleep/wake cycle
+   * attention, planning, organization
+   * abstract thinking, multi-tasking and active memory
+</td>
+<td>
+  * *Relay*
+   * BSA -> sensor data -> PCA
+   * BSA -> sensor data (lateral posterior nucleus, pulvinar) -> HCA
+   * BSA -> perception (intralaminar) -> BGA
+   * BSA -> cerebellum effector control feedback -> ACA
+   * BSA -> body sensations -> ACA
+   * BSA -> pain -> PCA
+   * HCA -> alerts, (anterior/medial nuclei) -> ACA
+   * BGA -> sensory data (ventral posterolateral/posteromedial nucleus) -> ACA
+   * BGA -> striatum effector control feedback -> ACA
+  * *Reciprocal*
+   * PCA -> (medial nuclei) -> PCA
+   * HCA -> (anterior nuclei) -> HCA
+   * ACA -> (medial nuclei) -> ACA
+</td>
+</tr>
+
+<tr>
+<td>
+*Anterior Cortex Area (ACA)*
+  * frontal lobe
+  * parietal lobe
+   * primary somatosensory cortex
+  * limbic system
+   * cingulate cortex
+    * anterior cingulate cortex
+</td>
+<td>
+  * *Owned Functions*
+   * self-consciousness / personality / identity
+   * top-level complex planning / imagination
+   * inhibition control
+   * model of good ideal behaviour / morality
+   * top-level patterned effector actions
+   * cortex individual effector actions and sensor control
+   * top-level error and conflict detection
+   * guide task selection
+   * monitor progress
+   * basic sensations of the body
+   * working memory
+  * *Involved in Functions*
+   * sensory integration
+   * representing the affective value of reinforcers
+   * decision-making   
+</td>
+<td>
+  * *Inbound*
+   * BGA -> THA -> sensory data
+   * PCA -> perception data
+   * HCA -> past experience
+   * HCA -> reward signals (orbitomedial PFC)
+   * BSA -> THA -> body senses
+   * THA -> bioregulatory responses
+  * *Outbound*
+   * current converged sensory input (pcf) -> HCA
+   * motor/behavioral commands -> PCA
+   * reward, feedback to bias flow along expectation -> PCA
+   * motor control -> BSA
+   * anti-inhibitory emotional context -> BGA
+   * inhibitory emotional context -> BGA
+   * guidance of movement -> BGA
+   * (premotor) -> THA
+</td>
+</tr>
+
+<tr>
+<td>
+*Posterior Cortex Area (PCA)*
+  * occipital lobe
+  * parietal lobe
+   * superior parietal lobule
+   * inferior parietal lobule
+   * intraparietal sulcus
+   * general interpretation area
+  * limbic system
+   * cingulate cortex
+    * posterior cingulate cortex
+</td>
+<td>
+  * *Owned Functions*
+   * body sensations relationships / body image
+   * opinions
+   * simple specific sensor spatial primitives
+   * intermediate specific sensor spatial and temporal patterns
+   * object representation from specific sensor
+   * episodic memory, emotion, navigation, resting
+  * *Involved in Functions*
+   * semantics
+   * reading both in regards to meaning and phonology
+   * guidance of limb and eye movement
+</td>
+<td>
+  * *Inbound*
+   * HSA -> BSA -> THA -> sensory data
+   * HSA -> BSA -> THA -> sensory perception control feedback
+   * HCA -> THA -> long-term memory sequences
+   * BSA -> THA -> pain
+   * ACA -> reward, feedback to bias flow along expectation
+  * *Outbound*
+   * sensory data -> HCA
+   * associations -> THA -> ACA
+   * guide saccadic perception -> BSA -> HSA
+   * feelings -> ACA
+</td>
+</tr>
+
+<tr>
+<td>
+*Hippocampus Area (HCA)*
+  * temporal lobe
+  * limbic system
+   * hippocampus
+   * fornix
+</td>
+<td>
+  * *Owned Functions*
+   * specific sensor perception and memory
+   * working memory
+   * autobiographical/declarative/episodic memories
+   * formation and storing spatial declarative memory
+   * encoding and recognition of scenes, spatial relations
+   * detection of novel events, places and stimuli, spatial coding
+   * distinguishing multiple instances of similar events, multiple visits to the same location
+   * emotional and affective state
+   * distinguishing stress and depression
+   * assigning stimuli to categorical classes
+   * habits, visceral sensations
+  * *Involved in Functions*
+   * memory consolidation
+   * memory optimization in sleep
+   * recognition and identification of environmental stimuli
+</td>
+<td>
+  * *Inbound*
+   * PCA -> primary and secondary sensory perception
+   * PCA -> polymodal/associative sensory perception
+   * ACA -> converged sensory input
+   * BSA -> sensory input (hierarchical sensory pathway)
+   * THA -> emotional stimulus
+   * THA -> modulatory inputs
+   * THA (septum) -> (fornix) -> initiation of hippocampal thata-rithm
+  * *Outbound*
+   * sensory association -> BGA
+   * reward signals -> ACA
+   * past experience -> ACA
+   * mismatch signal (to raise ACh in HC to facilitate encoding) -> THA (septum)
+   * match signal (to attenuate ACh in HC to facilitate retrieval) -> THA (septum)
+</td>
+</tr>
+
+<tr>
+<td>
+*Basal Ganglia Area (BGA)*
+  * limbic system
+   * basal ganglia
+   * amygdala
+</td>
+<td>
+  * *Owned Functions*
+   * starting, stopping and monitoring movement
+   * inhibit unnecessary movement
+   * planning and modulation of actions, regulate actions
+   * reward, pleasure, addiction, fear
+   * reward and incentive motivation
+   * acquisition and maintenance of a new strategy
+   * mediate learning about irrelevant stimuli
+   * action selection
+   * block slow thinking
+   * quick threat assessment
+   * signalling cortex of motivationally significant stimuli
+  * *Involved in Functions*
+   * learning and memory system
+   * influence various types of learning
+</td>
+<td>
+  * *Inbound*
+   * ACA -> anti-inhibitory emotional context
+   * ACA -> inhibitory emotional context
+   * HCA -> sensory association
+  * *Outbound*
+   * regulation -> ACA
+   * cognition -> ACA
+   * instant actions -> BSA
+   * sensory data (auditory, dorsal auditory pathway) -> PCA
+</td>
+</tr>
+
+<tr>
+<td>
+*Brain Steam Area (BSA)*
+  * brain stem
+  * cerebellum
+</td>
+<td>
+  * *Owned Functions*
+   * autonomic behavior, autonomic, involuntary functions
+   * integrate sensors and effectors for precise timing of actions
+   * maintain wakefulness and attention
+   * modulation of outbound effectors information
+   * preliminary specific sensor processing
+   * complex actions, sequential thinking
+   * attention, coordination, precision, and accurate timing
+   * inhibits neuronal maturation
+  * *Involved in Functions*
+   * control of specific sensor
+   * many unconscious homeostatic and reflexive pathways
+   * sensor control, effector planning
+   * reward seeking, learning, and addiction
+   * sleep, equilibrium, sensor control, expressing emotions
+   * control actions power and coordination of multiple actions
+   * control cerebellum/basal ganglia/neocortex effector actions
+   * planning actions
+</td>
+<td>
+  * *Inbound*
+   * TBD
+  * *Outbound*
+   * TBD
+</td>
+</tr>
+
+<tr>
+<td>
+*Spinal Cord Area (SCA)* (Body)
+  * spinal cord
+  * (peripheral nervous system)
+</td>
+<td>
+  * *Owned Functions*
+   * body feeling
+   * affect general body state
+   * generating proprioceptive information
+   * conveys inconscient proprioceptive information
+  * *Involved in Functions*
+   * activate effectors
+   * distal effector actions
+</td>
+<td>
+  * *Inbound*
+   * TBD
+  * *Outbound*
+   * TBD
+</td>
+</tr>
+</table>
+
+== Scientific Biological Models ==
+
+As per Joaquin Fuster. The Prefrontal Cortex 4th edition (2007):
+
+Connectivity model for Prefrontal Cortex (PFC) with components involved in motor and emotional behavior:
+
+http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/motor_top.jpg
+
+http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/emotional_top.jpg
+
+== Biological Brain Hierarchy Reduction ==
+
+  * neocortex
+   * frontal lobe
+    * *prefrontal cortex* (personality, judgement, complex planning, inhibition, morality)
+     * *orbitofrontal cortex* (involved in sensory integration, in representing the affective value of reinforcers, and in decision-making and expectation)
+    * *premotor cortex* (patterned effector actions and planning)
+    * *primary motor cortex* (individual actions)
+     * *frontal eye fields* (control specific sensor)
+   * parietal lobe
+    * *primary somatosensory cortex* (anterior, basic sensations of the body)
+    * *superior parietal lobule* (posterior, body sensations relationships, locating objects in space)
+    * *inferior parietal lobule* (posterior, semantics, involved in reading both in regards to meaning and phonology)
+    * *intraparietal sulcus* (posterior, essential in guidance of limb and eye movement)
+    * *general interpretation area* (opinions)
+   * occipital lobe
+    * *primary visual cortex* (simple specific sensor spatial primitives)
+    * *visual associations* (intermediate specific sensor spatial and temporal patterns)
+    * *fusiform gyris* (object representation from specific sensor)
+   * temporal lobe
+    * *insula* (habits, visceral sensations)
+    * *parahippocampal gyrus* (formation of spatial memory, encoding and recognition of scenes)
+     * anterior parahippocampal gyrus
+      * *perirhinal cortex* (specific sensor perception and memory, facilitates recognition and identification of environmental stimuli)
+      * *entorhinal cortex* (hub in a widespread network for memory and navigation, autobiographical/declarative/episodic memories, memory formation, memory consolidation, and memory optimization in sleep)
+     * *posterior parahippocampal gyrus* (spatial declarative memory)
+  * limbic system
+   * *cingulate cortex* (life resources consumption control, cognitive and attentional processing)
+    * *anterior cingulate cortex* (error and conflict detection processes)
+    * *posterior cingulate cortex* (episodic memory, emotion, navigation, resting)
+   * *amygdala* (signalling cortex of motivationally significant stimuli)
+   * *hippocampus* (detection of novel events, places and stimuli, spatial coding)
+    * *dentate gyrus* (formation of memories, distinguishing multiple instances of similar events or multiple visits to the same location, stress and depression)
+    * *subiculum* (spatial relations, working memory)
+   * *fornix* (carries signals from the hippocampus)
+   * *septal nuclei* (controller of theta rhythm, major source of projections to hippocampus)
+   * *basal ganglia* (primitive effectors system)
+    * *striatum* (planning and modulation of actions)
+     * *caudate nucleus* (part of the learning and memory system)
+     * *putamen* (regulate actions and influence various types of learning)
+     * *nucleus accumbens* (reward, pleasure, addiction, fear)
+      * *nucleus accumbens core* (acquisition and maintenance of a new strategy)
+      * *nucleus accumbens shell* (mediate learning about irrelevant stimuli)
+    * *pallidum* (reward and incentive motivation)
+     * *globus pallidus externa* (main regulator of the basal ganglia system)
+     * *substantia nigra* (reward, addiction, and actions)
+    * *subthalamic nucleus* (action selection)
+  * diencephalon (relay system between sensory input neurons and other parts of the brain)
+   * *thalamus* (relaying sensation, spatial sense and motor signals to the cerebral cortex, regulation of consciousness, sleep and alertness)
+    * *specific relay nuclei* (project to/from specific functional area of neocortex)
+     * *lateral geniculate body* (specific sensor -> specific sensor cortex area)
+     * ventral posterior nucleus
+      * *ventral posterior lateral nucleus* (body sensations -> primary somesthetic area)
+     * *ventral lateral/anterior nucleus* (effector control feedback from cerebellum and striatum -> primary effector cortex)
+    * *association nuclei* (project to association areas)
+     * *anterior nucleus* (mammillary bodies, hypothalamus, cingulate gyrus -> cingulate gyrus, hypothalamus, and hippocampus)
+     * *medial nucleus* (somatic sensory input from hypothalamus, amygdala -> prefrontal cortex, hypothalamus, hippocampus, striatum)
+     * *lateral nucleus* (hypothalamus, cingulate gyrus -> cingulate gyrus)
+     * *posterior group nuclei* (pain from spinothalamic tract and 5th cranial nerve -> insula)
+     * *pulvinar nuclei* (reciprocal connections with association areas)
+    * non-specific nuclei
+     * *intralaminar nuclei* (basal ganglia, reticular formation -> all parts of neocortex, effector control system, perceptions of various modalities)
+     * *reticular nuclei* (from all fibers leaving and entering the thalamus -> all thalamic nuclei, cortical regulation of the thalamic activity)
+   * *hypothalamus* (modulatory, life support and the sleep/wake cycle)
+    * *mammillary body* (relay from the amygdala and hippocampus to thalamus)
+    * *median eminence* (stimulate or inhibit the release of hormones from the anterior pituitary)
+  * *brain stem* (main sensory innervation)
+   * *medulla oblongata* (autonomic, involuntary functions, relays nerve signals between the brain and spinal cord)
+   * midbrain
+    * tectum
+     * *superior colliculus* (preliminary specific sensor processing and control of specific sensor)
+    * cerebral peduncle
+     * *midbrain tegmentum* (involved in many unconscious homeostatic and reflexive pathways)
+     * *crus cerebri* (contains effector tracts)
+     * *substantia nigra* (sensor control, effector planning, reward seeking, learning, and addiction)
+   * *pons* (relay signals from the forebrain to the cerebellum, along with nuclei that deal primarily with sleep, equilibrium, sensor control, expressing emotions)
+    * cranial nerves
+     * 2 - *optic nerve* (transmits specific sensor information to the brain)
+     * 3 - *oculomotor nerve* (perform most sensor control)
+     * 4 - *trochlear nerve* (perform certain sensor control)
+     * 6 - *abducens nerve* (perform certain sensor control)
+  * *cerebellum* (complex actions, sequential thinking, attention, coordination, precision, and accurate timing)
+   * peduncles
+    * *inferior cerebellar peduncle* (to/from medulla/spinal cord)
+    * *middle cerebellar peduncle* (from pons)
+    * *superior cerebellar peduncle* (to midbrain)
+    * *arbor vitae* (brings sensory/motor information to/from cerebellum)
+   * *spinocerebellum* (control actions power and coordination of multiple actions, cerebellum/basal ganglia/neocortex effector actions)
+   * *cerebrocerebellum* (participates in planning actions, sensory/prefrontal -> cerebellum -> thalamus -> motor cortex -> effectors
+   * *choroid plexus* (inhibits neuronal maturation)
+  * spinal cord
+   * *anterolateral system* (body feeling pathway)
+   * *corticospinal tract* (effector pathway for upper effector neuronal signals coming from the cerebral cortex/basal ganglia)
+    * *lateral corticospinal tract* (distal effector actions)
+    * *anterior cortical spinal tract* (affect general body state)
+   * *ventral spinocerebellar tract* (proprioceptive information travels up the spinal cord)
+   * *dorsal spinocerebellar tract* (conveys inconscient proprioceptive information)
+
+= Full Biological Components Overview =
+
+  * neocortex
+   * frontal lobe
+    * *prefrontal cortex* (personality, judgement, complex planning, inhibition, morality, executive memory, preparatory set, organize actions in time domain)
+     * *lateral prefrontal cortex* - (executive function, evaluation of self-referential stimuli)
+      * *dorsolateral prefrontal cortex* - (executive function, evaluation of self-referential stimuli)
+      * *ventrolateral prefrontal cortex* - (executive function, evaluation of self-referential stimuli)
+     * *orbitomedial prefrontal cortex* (emotional processing, prepresentaion of self-referential stimuli), another name is orbitofrontal cortex
+      * *ventromedial prefrontal cortex* (humanity)
+      * *lie area* - (ability to lie)
+    * *premotor cortex* (patterned motor movements and planning)
+    * *primary motor cortex* (moves individual muscles)
+     * *frontal eye fields* (move muscles of the eye)
+     * *broka's area* (muscles for speech)
+   * parietal lobe
+    * *primary somatosensory cortex* (anterior, basic sensations of the body)
+    * *superior parietal lobule* (posterior)
+     * *somatosensory association* (posterior, Brodmann #5, size, texture and relationship)
+     * *brodmann area 7* (posterior, involved in locating objects in space, convergence between vision and proprioception)
+    * *inferior parietal lobule* (posterior)
+     * brodmann area #39 (semantics)
+     * *werniche's area* (brodmann area #40, involved in reading both in regards to meaning and phonology, sound and words)
+    * *intraparietal sulcus* (posterior, essential in guidance of limb and eye movement)
+     * *lateral intraparietal* (representing the saliency of spatial locations, and attention to these spatial locations, targeting eye movements)
+     * *ventral intraparietal* (receives input from a number of senses - visual, somatosensory, auditory, and vestibular)
+     * *medial intraparietal* (encode the location of a reach target in eye-centered coordinates)
+     * *anterior intraparietal* (responsive to shape, size, and orientation of objects to be grasped)
+    * *gestatory* (taste)
+    * *general interpretation area* (opinions)
+   * occipital lobe
+    * *primary visual cortex* (simple lines and shapes)
+    * *visual associations* (color, form and movement)
+    * *fusiform gyris* (recognise faces)
+   * temporal lobe
+    * *olfactory cortex* (sense of smell)
+    * *insula* (habits, visceral sensations)
+    * *primary auditory cortex* (basic hearing - pitch, rhythm, loudness)
+    * *auditory association cortex* (actual perception of sound)
+    * *parahippocampal gyrus* (formation of spatial memory, encoding and recognition of scenes)
+     * anterior parahippocampal gyrus
+      * *perirhinal cortex* (visual perception and memory, facilitates recognition and identification of environmental stimuli)
+      * *entorhinal cortex* (hub in a widespread network for memory and navigation, autobiographical/declarative/episodic memories, memory formation, memory consolidation, and memory optimization in sleep)
+     * *posterior parahippocampal gyrus* (spatial declarative memory)
+   * corpus callosum
+    * *splenium* (integrate sensory and cognitive activity between the left and right hemispheres)
+    * *genu* (integrate motor activity between the left and right hemispheres)
+  * limbic system
+   * *cingulate cortex* (regulating heart rate, blood pressure, cognitive and attentional processing)
+    * *anterior cingulate cortex* (error and conflict detection processes)
+    * *posterior cingulate cortex* (episodic memory, emotion, navigation , resting)
+   * *amygdala* (signaling cortex of motivationally significant stimuli, left reacts top direction of gaze, right reacts to eye-to-eye contact)
+   * *hippocampus* (detection of novel events, places and stimuli, spatial coding)
+    * *dentate gyrus* (formation of memories, distinguishing multiple instances of similar events or multiple visits to the same location, stress and depression)
+    * *subiculum* (spatial relations, working memory, drug addiction)
+   * *fornix* (carries signals from the hippocampus)
+   * *septal nuclei* (controller of theta rhythm, main source of cholinergic 
+projections to the hippocampus)
+   * *basal ganglia* (primitive motor system)
+    * *striatum* (planning and modulation of movement pathways)
+     * *caudate nucleus* (part of the learning and memory system)
+     * *putamen* (regulate movements and influence various types of learning)
+     * *nucleus accumbens* (reward, pleasure, laughter, addiction, aggression, fear, and the placebo effect)
+      * *nucleus accumbens core* (acquisition and maintenance of a new strategy)
+      * *nucleus accumbens shell* (mediate learning about irrelevant stimuli)
+    * *pallidum* (reward and incentive motivation)
+     * *globus pallidus externa* (main regulator of the basal ganglia system)
+     * *substantia nigra* (reward, addiction, and movement)
+    * *subthalamic nucleus* (action selection)
+  * diencephalon (relay system between sensory input neurons and other parts of the brain)
+   * *thalamus* (relaying sensation, spatial sense and motor signals to the cerebral cortex, regulation of consciousness, sleep and alertness)
+    * *specific relay nuclei* (project to/from specific functional area of neocortex)
+     * *medial geniculate body* (inferior colliculi -> auditory cortex)
+     * *lateral geniculate body* (optic tract -> calcarine cortex of the occipital lobe)
+     * ventral posterior nucleus
+      * *ventral posterior lateral nucleus* (pain, temperature, touch, pressure, vibration, and conscious proprioception -> primary somesthetic area)
+      * *ventral posterior medial nucleus* (face and head area via the 5th cranial nerve -> primary somesthetic area)
+      * *ventral medial nucleus* (sense of taste -> primary taste area)
+     * *ventral lateral/anterior nucleus* (motor control feedback from cerebellum and striatum -> primary motor cortex)
+    * *association nuclei* (project to association areas)
+     * *anterior nucleus* (mammillary bodies, hypothalamus, cingulate gyrus -> cingulate gyrus, hypothalamus, and hippocampus)
+     * *medial nucleus* (somatic sensory input from hypothalamus, amygdala -> prefrontal cortex, hypothalamus, hippocampus, striatum)
+     * *lateral nucleus* (hypothalamus, cingulate gyrus -> cingulate gyrus)
+     * *posterior group nuclei* (pain from spinothalamic tract and 5th cranial nerve -> insula)
+     * *pulvinar nuclei* (reciprocal connections with association areas)
+    * non-specific nuclei
+     * *intralaminar nuclei* (basal ganglia, reticular formation -> all parts of neocortex, motor control system, perceptions of various modalities)
+     * *reticular nuclei* (from all fibers leaving and entering the thalamus -> all thalamic nuclei, cortical regulation of the thalamic activity)
+   * *hypothalamus* (hormone production and release, affects and regulates blood pressure, heart rate, hunger, thirst, sexual arousal, and the sleep/wake cycle)
+    * *mammillary body* (relay from the amygdala and hippocampus to thalamus, add smell to memory)
+    * *pituitary gland* (hormone factory for growth, milk production and adrenalin)
+  * *brain stem* (main motor and sensory innervation to the face and neck)
+   * *medulla oblongata* (autonomic, involuntary functions, such as breathing, heart rate and blood pressure, relays nerve signals between the brain and spinal cord)
+   * midbrain
+    * tectum
+     * *superior colliculus* (preliminary visual processing and control of eye movements)
+     * *inferior colliculus* (auditory processing, receives input from various brain stem nuclei and relays auditory information to the primary auditory cortex)
+    * cerebral peduncle
+     * *midbrain tegmentum* (involved in many unconscious homeostatic and reflexive pathways)
+     * *crus cerebri* (contains motor tracts)
+     * *pretectum* (receives binocular sensory input from eyes)
+     * *substantia nigra* (eye movement, motor planning, reward seeking, learning, and addiction)
+   * *locus coeruleus* (mediating many of the sympathetic effects during stress - clinical depression, panic disorder, and anxiety) - alter cognitive function (through the prefrontal cortex), increase motivation (through nucleus accumbens), activate the hypothalamic-pituitary-adrenal axis, and increase the sympathetic discharge/inhibit parasympathetic tone (through the brainstem)
+   * *raphe nuclei* (inhibit pain sensation)
+   * *pons* (relay signals from the forebrain to the cerebellum, along with nuclei that deal primarily with sleep, respiration, swallowing, bladder control, hearing, equilibrium, taste, eye movement, facial expressions, facial sensation, and posture)
+    * cranial nerves
+     * 0 - *cranial nerve zero* (detection of pheromones)
+     * 1 - *olfactory nerve* (transmits the sense of smell)
+     * 2 - *optic nerve* (transmits visual information to the brain)
+     * 3 - *oculomotor nerve* (perform most eye movements)
+     * 4 - *trochlear nerve* (depresses, rotates laterally - around the optic axis, and intorts the eyeball)
+     * 5 - *trigeminal nerve* (receives sensation from the face and innervates the muscles of mastication)
+     * 6 - *abducens nerve* (abducts the eye)
+     * 7 - *facial nerve* (motor innervation to the muscles of facial expression, receives the special sense of taste from anterior tongue, secretomotor innervation to the salivary glands and lacrimal gland)
+     * 8 - *vestibulocochlear nerve* (senses sound, rotation and gravity, carries impulses for equilibrium)
+     * 9 - *glossopharyngeal nerve* (receives taste from the posterior tongue)
+     * 10 - *vagus nerve* (branchiomotor innervation to most laryngeal and all pharyngeal muscles, receives the special sense of taste from the epiglottis, controls muscles for voice and resonance and the soft palate)
+     * 11 - *accessory nerve* (controls sternocleidomastoid and trapezius muscles, overlaps with functions of the vagus)
+     * 12 - *hypoglossal nerve* (motor innervation to the muscles of the tongue, swallowing and speech articulation)
+  * *cerebellum* (complex motion behavior, sequential thinking, attention and language, coordination, precision, and accurate timing)
+   * peduncles
+    * *inferior cerebellar peduncle* (to/from medulla/spinal cord)
+    * *middle cerebellar peduncle* (from pons)
+    * *superior cerebellar peduncle* (to midbrain)
+    * *arbor vitae* (brings sensory/motor information to/from cerebellum)
+   * *vestibulocerebellum* (involved in eye movements and maintain balance)
+    * archicerebellum
+    * *flocculonodular lobe*
+     * flocculus
+     * nodule
+   * *spinocerebellum* (control of muscle tone and coordination of muscle movement on the same side of the body, sensomotory -> cerebellum -> musles, sensomotory -> cerebellum -> thalamus -> musles, sensomotory -> cerebellum -> motor cortex -> muscles)
+    * paleocerebellum
+    * vermis and intermediate zone
+   * *cerebrocerebellum* (participates in planning movements, sensory/prefrontal -> cerebellum -> thalamus -> motor cortex -> muscles
+    * neocerebellum
+    * lateral zone
+   * *fourth ventricle* (protects brain from trauma)
+   * *choroid plexus* (inhibits neuronal maturation)
+  * spinal cord
+   * *dorsal column-medial lemniscus tract* (touch/proprioception/vibration sensory pathway)
+   * *anterolateral system* (pain/temperature sensory pathway)
+   * *corticospinal tract* (motor pathway for upper motor neuronal signals coming from the cerebral cortex and from primitive brainstem motor nuclei)
+    * *lateral corticospinal tract* (distal limb control)
+    * *anterior cortical spinal tract* (control the large, postural muscles of the axial skeleton)
+   * *ventral spinocerebellar tract* (roprioceptive information travels up the spinal cord)
+   * *dorsal spinocerebellar tract* (ascend into the cerebellum)
+
 = Biological Life Pictures =
 
 Operating of the mind as a whole. Mind parts.
