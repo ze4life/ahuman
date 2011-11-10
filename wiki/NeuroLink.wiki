@@ -20,8 +20,12 @@
 
 == Implementation == 
 
-  * NeuroLink connects NeuroVector to NeuroPool
-   * NeuroVector can be part of MindSensor or another NeuroPool
+  * NeuroLink connects MindRegion to MindRegion
+   * NeuroRegion can be specific MindSensor, MindEffector or standard mind regions
+   * each pair of interconnected regions can have several NeuroLink items representing connections of different region parts with specific projection properties
+   * interface to source part of region is NeuroLinkSource
+   * interface to target part of region is NeuroLinkTarget
+   * when NeuroMessage delivers NeuroSignal to specific region referencing NeuroLink, region can decide to use default NeuroLink projection logic to apply NeuroSignal to specific NeuroPool within MindRegion
    * cortex inter-layer connections can be be specified as NeuroLink set
    * implements intra-cortical, cortico-cortical, cortico-nuclei, inter-nuclei connections
    * signal flows across NeuroLink in one direction
