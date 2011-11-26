@@ -18,6 +18,7 @@
 
 = Introduction =
 
+  * layout of V1-to-LGN feedback connections follows the structure of LGN-to-V1 feedforward connections
   * LGN cells have center-surround organization
   * LGN regions switch between bright- to dark-excitatory in 20 ms
    * what computational reason can change preferred simulus
@@ -32,3 +33,56 @@
    * explains end-stopping
 
 http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/LGN-V1.png
+
+= Results =
+
+== Hierarchical model of predictive coding ==
+
+  * two layers - LGN and V1
+  * Steps
+   * 1. V1 receives input from LGN
+   * 2. V1 neuron with receptive field best matched the input, feeds its prediction back to LGN
+   * 3. LGN neurons compute error between prediction and actual input
+   * 4. LGN sends error forward to correct prediction
+   * 5. process is repeated, single feedforward-feedback cycle takes around 20 milliseconds
+  * connection weights of the model are adapted to the input by minimizing the description length or entropy of the joint distribution of inputs and neural responses
+   * minimizes the model’s prediction errors
+   * improves the sparseness of the neural code
+   * model converges to a set of connection weights that is optimal for
+predicting that input
+
+== LGN-V1 connectivity structure after training ==
+
+  * feedforward connection weights from on-center type and off-center type LGN cells coding for the same spatial location are summed for each of the model’s 128 V1 cells
+   * V1 responses in the model are linear across their on and off inputs
+   * after training, the receptive fields show orientation tuning as found for simple cells in V1
+  * relation between the learned receptive fields in model V1 and the properties of LGN units:
+   * connections are initially random and are adjusted as a consequence of the model’s learning rule together with exposure to natural images
+   * after training, on- and off-center units are spatially aligned with the on- and off-zones of the model V1 receptive field
+
+== Reversal of polarity due to predictive feedback ==
+
+  * first consider a *model with non-biphasic inputs*
+   * spatio-temporal response of model on-center type geniculate cells is calculated using a reverse correlation algorithm
+   * as in cat LGN, model on-center type receptive fields are arranged in center and surround, and the bright-excitatory phase is followed by a dark-excitatory phase
+   * removing feedback in the model causes the previously biphasic responses to disappear
+  * then model is modified to *simulate biphasic retinal inputs*
+   * temporal response profile of model on-center type cells is obtained using reverse correlation
+   * predictive feedback interactions cause reversals of polarity in LGN to be more pronounced than the retinal input
+  * why *biphasic responses appear in the mapped model LGN receptive fields*
+   * reverse correlation leads to visual changes occurring much faster than most natural input the system would encode
+   * consider stimulus consisting primarily of bright regions
+   * on-center type LGN cells will respond to the onset of this stimulus
+   * on zones in the LGN are linked to on zones of receptive fields in V1, which soon start to increase activation and make predictions
+   * by the time that predictions of the first stimulus arrive in lower-level areas, areas, the initial representation of the bright stimulus has been replaced by a second white noise stimulus, and the prediction is compared against a new and unexpected stimulus representation
+   * in reverse correlation, predictive processing shows up as a comparison against this running average whitenoise stimulation
+   * predicted bright region is of higher luminance than the average second stimulus, causing off-center type cells to respond to the offset of the bright reference stimulus
+  * reversals in polarity of model LGN cells are most profound in a small time window after presentation of the reference stimulus but disappear gradually later on
+   * initial prediction is dynamically updated to include predictions of stimuli presented after the reference stimulus
+   * new predictions are closer to the average white-noise stimulation
+   * reversals in polarity will appear as long as predictions deviate from the average white-noise stimulation
+   * precise amount of overlap between prediction and stimulus is not critical
+  * simple cell off-zones mediate inhibitory influences to off-center LGN cells and excitatory influences to on-center LGN cells
+  * for all model on or off-center LGN receptive fields that are aligned over a V1 receptive field region of the same polarity, firing rates decrease due to feedback
+  * where the overlapping fields are of reversed polarity, there is an increase in firing rate
+  * neurophysiology: influence of V1 simple cells on LGN on- and off-cells is phase-reversed
