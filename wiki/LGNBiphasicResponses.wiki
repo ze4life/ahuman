@@ -7,5 +7,28 @@
 
 = Abstract =
 
-  * *biphasic neural response* - best response when switching between two opposite patterns - detected in LGN, V1, MT
-  * 
+  * *biphasic neural response* - best response when quick switching between two opposite patterns - detected in LGN, V1, MT
+  * article describes: *hierarchical model of predictive coding* and simulations that capture these temporal variations in neuronal response properties
+  * focus on the *LGN-V1 circuit*
+  * after training on natural images the model exhibits the brain’s LGN-V1 connectivity structure:
+   * structure of V1 receptive fields is linked to the spatial alignment and properties of center-surround cells in the LGN
+   * spatio-temporal response profile of LGN model neurons is biphasic in structure, resembling the biphasic response structure of neurons in cat LGN
+   * model displays a specific pattern of influence of feedback, where LGN receptive fields that are aligned over a simple cell receptive field zone of the same polarity decrease their responses while neurons of opposite polarity increase their responses with feedback
+  * predictive feedback is a general coding strategy in the brain
+
+= Introduction =
+
+  * LGN cells have center-surround organization
+  * LGN regions switch between bright- to dark-excitatory in 20 ms
+   * what computational reason can change preferred simulus
+   * biphasic dynamics follow from neural mechanisms of *predictive coding*
+  * to be efficient - early-level visual processing removes correlations in the input, resulting in a more sparse and statistically independent output
+   * early visual areas remove correlations by removing the predictable components in their input
+   * center-surround structure of LGN receptive fields can be explained using predictive coding mechanisms - center pixel intensity value can be replaced with the difference between the center value and a prediction from a linear weighted sum of its surrounding values
+  * works for interaction of lower-order and higher-order visual areas
+   * low-order and high-order visual areas are reciprocally connected
+   * higher-level receptive fields represent the predictions of the visual world
+   * lower-level areas signal the error between predictions and actual visual input
+   * explains end-stopping
+
+http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/LGN-V1.png
