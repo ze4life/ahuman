@@ -43,15 +43,14 @@ http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/LGN-V1.png
   * two layers - LGN and V1
   * Steps
    * 1. V1 receives input from LGN
-   * 2. V1 neuron with receptive field best matched the input, feeds its prediction back to LGN
+   * 2. V1 neuron with receptive field that best matched the input feeds its prediction back to LGN
    * 3. LGN neurons compute error between prediction and actual input
    * 4. LGN sends error forward to correct prediction
    * 5. process is repeated, single feedforward-feedback cycle takes around 20 milliseconds
   * connection weights of the model are adapted to the input by minimizing the description length or entropy of the joint distribution of inputs and neural responses
    * minimizes the model’s prediction errors
    * improves the sparseness of the neural code
-   * model converges to a set of connection weights that is optimal for
-predicting that input
+   * model converges to a set of connection weights that is optimal for predicting that input
 
 == LGN-V1 connectivity structure after training ==
 
