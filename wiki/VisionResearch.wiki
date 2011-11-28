@@ -43,6 +43,12 @@ Currently we are looking for a model that can create a eye like structure and ca
 
 == Biological Vision Flow ==
 
+*High-level Flow*
+  * retina -> LGN/thalamus -> PCA/V1 (primary sensory stream)
+  * retina -> brainstem (machanics)
+   * retina -> pretectum/brainstem (pupillary reflex)
+   * retina -> superior colliculus/brainstem (moving the eyes in saccades)
+
 *Retina*
   * *flow*: photoreceptors -> bipolar cells -> ganglion cells -> brain
    * photoreceptors - total ~130M
@@ -61,6 +67,9 @@ Currently we are looking for a model that can create a eye like structure and ca
    * final population that is used for eye movements
    
 *Thalamus / LGN*
+  * LGN separates retinal inputs into parallel streams, one containing color and fine structure, and the other containing contrast and motion
+   * color and fine structure - top 4 layers (PV)
+   * contrast and motion - lower 2 layers (MG)
   * *flow*
    * retina (eye ganglion cells) -> THA/LGN -> PCA/V1
     * only retina spike produces LGN relay spike
