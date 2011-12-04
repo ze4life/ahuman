@@ -71,20 +71,23 @@ Currently we are looking for a model that can create a eye like structure and ca
   * LGN separates retinal inputs into parallel streams, one containing color and fine structure, and the other containing contrast and motion
    * color and fine structure - top 4 layers (PV)
    * contrast and motion - lower 2 layers (MG)
+   * LGN cells are not selective for orientation or direction
   * *flow*
-   * retina (eye ganglion cells) -> THA/LGN -> PCA/V1
+   * feedforward: retina (eye ganglion cells) -> THA/LGN -> PCA/V1
+    * retina -> LGN (10% of synaptic input to relay cells)
     * only retina spike produces LGN relay spike
     * not every retina spike produces LGN relay spike
     * transmission is not constant, but rather fluctuates slowly
     * ipspilateral eye -> LGN 1 (2, 3, 5 layers) -> temporal optic radiations -> V1 (overlapping area)
     * contralateral eye -> LGN 2 (1, 4, 6 layers) -> parietal optic radiations -> V1
    * PCA/V1 -> THA/LGN
-  * LGN cells are not selective for orientation or direction
-  * feedforward: retina -> LGN (10% of synaptic input to relay cells)
   * feedforward: LGN -> V1/L4 (6-9% of layer 4 excitatory inputs)
   * feedforward: LGN -> V1/L6
-  * V1/L6 -> V1/L4/spiny stellate cells (45% of layer 4 excitatory inputs)
-  * feedback: V1/L6 (sensitive to stimulus orientation and direction of motion) -> LGN (30% of synatic input to relay cells, affects distal dendrites, also contact inhibitory interneurons in LGN)
+   * feedforward: V1/L6 -> V1/L4/spiny stellate cells (45% of layer 4 excitatory inputs)
+   * feedback: V1/L6 (sensitive to stimulus orientation and direction of motion) -> LGN (30% of synatic input to relay cells, affects distal dendrites, also contact inhibitory interneurons in LGN)
+   * feedback: pathway from V1/L6 is a property of all TH relay nuclei
+    * directly excites relay cells
+    * indirectly inhibits relay cells via the thalamic reticular nucleus (TRN)
 
 *Thalamus / PGN*
   * feedback: V1/L6 -> PGN
