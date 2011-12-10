@@ -42,6 +42,7 @@ public:
 	virtual void destroyRegion() = 0;
 
 	// NeuroLink support
+	virtual void getSourceSizes( String entity , int *sizeX , int *sizeY ) = 0;
 	virtual NeuroLinkSource *getNeuroLinkSource( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) = 0;
 	virtual NeuroLinkTarget *getNeuroLinkTarget( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) = 0;
 
@@ -106,23 +107,28 @@ public:
 	virtual const char *getClass() { return( "CortexRegionInfo" ); };
 
 public:
-	void setColumnCount( int nCols );
+	void setSizeInfo( int nx , int ny );
+	void getSizeInfo( int *nx , int *ny );
+	void setTemporalDepth( int nDepth );
 	void setUsingSpatialPooler( bool useSpatialPooler );
 	void setUsingTemporalPooler( bool useTemporalPooler );
-	void setTemporalDepth( int nDepth );
+	void setSpatialPoolerSize( int spatialPoolerSize );
+	void setTemporalPoolerSize( int temporalPoolerSize );
+	int getSpatialPoolerSize();
+	int getTemporalPoolerSize();
 
-	int getColumnCount();
-	int getRegionSideSize();
 	bool isUsingSpatialPooler();
 	bool isUsingTemporalPooler();
 	int getTemporalDepth();
 
 private:
-	int nCols;
-	int regionSideSize;
+	int sizeX;
+	int sizeY;
 	bool useSpatialPooler;
 	bool useTemporalPooler;
-	int nTemporalDepth;
+	int temporalDepth;
+	int spatialPoolerSize;
+	int temporalPoolerSize;
 };
 
 /*#########################################################################*/

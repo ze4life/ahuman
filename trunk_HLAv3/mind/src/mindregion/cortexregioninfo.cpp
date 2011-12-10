@@ -5,19 +5,14 @@
 /*#########################################################################*/
 
 CortexRegionInfo::CortexRegionInfo() {
-	nCols = 0;
-	regionSideSize = 0;
+	sizeX = 0;
+	sizeY = 0;
 	useSpatialPooler = true;
 	useTemporalPooler = true;
-	nTemporalDepth = 4;
+	temporalDepth = 0;
 }
 
 CortexRegionInfo::~CortexRegionInfo() {
-}
-
-void CortexRegionInfo::setColumnCount( int p_nCols ) {
-	nCols = p_nCols;
-	regionSideSize = ( int )sqrt( ( double )nCols );
 }
 
 void CortexRegionInfo::setUsingSpatialPooler( bool p_useSpatialPooler ) {
@@ -29,15 +24,17 @@ void CortexRegionInfo::setUsingTemporalPooler( bool p_useTemporalPooler ) {
 }
 
 void CortexRegionInfo::setTemporalDepth( int p_nDepth ) {
-	nTemporalDepth = p_nDepth;
+	temporalDepth = p_nDepth;
 }
 
-int CortexRegionInfo::getColumnCount() {
-	return( nCols );
+void CortexRegionInfo::setSizeInfo( int nx , int ny ) {
+	sizeX = nx;
+	sizeY = ny;
 }
 
-int CortexRegionInfo::getRegionSideSize() {
-	return( regionSideSize );
+void CortexRegionInfo::getSizeInfo( int *nx , int *ny ) {
+	*nx = sizeX;
+	*ny = sizeY;
 }
 
 bool CortexRegionInfo::isUsingSpatialPooler() {
@@ -49,6 +46,22 @@ bool CortexRegionInfo::isUsingTemporalPooler() {
 }
 
 int CortexRegionInfo::getTemporalDepth() {
-	return( nTemporalDepth );
+	return( temporalDepth );
+}
+
+void CortexRegionInfo::setSpatialPoolerSize( int size ) {
+	spatialPoolerSize = size;
+}
+
+void CortexRegionInfo::setTemporalPoolerSize( int size ) {
+	temporalPoolerSize = size;
+}
+
+int CortexRegionInfo::getSpatialPoolerSize() {
+		return( spatialPoolerSize );
+}
+
+int CortexRegionInfo::getTemporalPoolerSize() {
+		return( temporalPoolerSize );
 }
 

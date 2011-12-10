@@ -5,45 +5,40 @@
 /*#########################################################################*/
 
 NeuroPool::NeuroPool() {
-	cellPotentials = NULL;
-	cellOutputs = NULL;
-	lastExecutionTicks = ( RFC_INT64 )0;
 }
 
 NeuroPool::~NeuroPool() {
-	if( cellPotentials != NULL )
-		delete cellPotentials;
-	if( cellOutputs != NULL )
-		delete cellOutputs;
 }
 
 void NeuroPool::createNeurons( int nx , int ny ) {
-	cellPotentials = new NeuroState( nx , ny );
-	cellOutputs = new NeuroState( nx , ny );
+	neurons.create( nx , ny );
 }
 
 void NeuroPool::getNeuronDimensions( int *px , int *py ) {
-	cellOutputs -> getSizeInfo( px , py );
+	*px = neurons.getN1();
+	*py = neurons.getN2();
 }
 
-NeuroState *NeuroPool::getCellPotentials() {
-	return( cellPotentials );
-}
-
-NeuroState *NeuroPool::getCellOutputs() {
-	return( cellOutputs );
+TwoIndexArray<NEURON_DATA>& NeuroPool::getNeuronData() {
+	return( neurons );
 }
 
 void NeuroPool::startProjection( NeuroLink *link ) {
 }
 
 void NeuroPool::finishProjection( NeuroLink *link ) {
+	const neurovt_state NEURON_FIRE_THRESHOLD_pQ = ( neurovt_state )70;
+
+	// check potential, fire neurons
+	NEURON_DATA *data = neurons.getData();
+	int n = neurons.count();
+
+	for( int k = 0; k < n; k++ , data++ ) {
+		if( data -> potential > NEURON_FIRE_THRESHOLD_pQ ) {
+			// fire
+			data -> output = NEURON_FIRE_THRESHOLD_pQ;
+			data -> potential = 0;
+		}
+	}
 }
 
-RFC_INT64 NeuroPool::getLastExecutionTimeTicks() {
-	return( lastExecutionTicks );
-}
-
-void NeuroPool::setLastExecutionTimeTicks( RFC_INT64 p_ticks ) {
-	lastExecutionTicks = p_ticks;
-}

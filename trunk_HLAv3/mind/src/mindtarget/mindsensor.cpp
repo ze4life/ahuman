@@ -25,23 +25,37 @@ void MindSensor::setPollState( bool state ) {
 void MindSensor::createSensorySignal( int sizeX , int sizeY ) {
 	ASSERTMSG( sizeX > 0 && sizeY > 0 , "createSensorySignal: invalid value" );
 	memorySensorySignal = new NeuroSignal( sizeX , sizeY );
-	sourceSensoryData -> setSourceSignal( memorySensorySignal );
 }
 
 void MindSensor::createControlFeedbackSignal( int sizeX , int sizeY ) {
 	ASSERTMSG( sizeX > 0 && sizeY > 0 , "createControlFeedbackSignal: invalid value" );
 	memorySensoryFeedbackSignal = new NeuroSignal( sizeX , sizeY );
-	sourceSensoryControlFeedback -> setSourceSignal( memorySensoryFeedbackSignal );
+}
+
+void MindSensor::getSourceSizes( String entity , int *sizeX , int *sizeY ) {
+	if( entity.equals( "data" ) ) {
+		memorySensorySignal -> getSizeInfo( sizeX , sizeY );
+		return;
+	}
+
+	if( entity.equals( "control-feedback" ) ) {
+		memorySensoryFeedbackSignal -> getSizeInfo( sizeX , sizeY );
+		return;
+	}
 }
 
 void MindSensor::createRegion() {
-	sourceSensoryData = new NeuroLinkSource( this );
-	sourceSensoryControlFeedback = new NeuroLinkSource( this );
+	// call sensor creation
+	createSensor();
+
+	// construct event handlers
+	sourceSensoryData = new NeuroLinkSource( this , "data" );
+	sourceSensoryControlFeedback = new NeuroLinkSource( this , "control-feedback" );
 	targetSensoryControl = new NeuroLinkTarget( this );
 	targetSensoryControl -> setHandler( ( MindRegion::NeuroLinkTargetHandler )&MindSensor::applySensorControl );
 
-	// call sensor creation
-	createSensor();
+	sourceSensoryData -> setSourceSignal( memorySensorySignal );
+	sourceSensoryControlFeedback -> setSourceSignal( memorySensoryFeedbackSignal );
 }
 
 void MindSensor::exitRegion() {
