@@ -192,9 +192,28 @@ public:
 		for( int k = n1 * n2 - 1; k >= 0; k-- )
 			data[ k ] = value;
 	};
-	void copy( const TwoIndexArray<T>& src ) { memcpy( data , src.data , n1 * n2 * sizeof( T ) ); };
+
+	void resize( int p_n1 , int p_n2 ) { 
+		ASSERTMSG( p_n1 >= 0 && p_n2 >= 0 , "invalid parameters" );
+		if( p_n1 == 0 || p_n2 == 0 ) {
+			n1 = n2 = 0;
+			if( data != NULL ) {
+				free( data );
+				data = NULL;
+			}
+			return;
+		}
+		n1 = p_n1;
+		n2 = p_n2;
+		data = ( T * )realloc( data , n1 * n2 * sizeof( T ) );
+	};
+	void copy( const TwoIndexArray<T>& src ) { 
+		resize( src.n1 , src.n2 ); 
+		memcpy( data , src.data , n1 * n2 * sizeof( T ) ); 
+	};
 	int getN1() { return( n1 ); };
 	int getN2() { return( n2 ); };
+	int count() { return( n1 * n2 ); };
 	T *getData() { return( data ); };
 
 private:

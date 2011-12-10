@@ -57,6 +57,13 @@ void PerceptionArea::createSensoryNetwork( MindSensor *sensor ) {
 	// create cortex region for sensor
 	MindService *ms = MindService::getService();
 	CortexRegionInfo info;
+	info.setSpatialPoolerSize( 1000 );
+	info.setTemporalPoolerSize( 1000 );
+	info.setTemporalDepth( 4 );
+
+	int size = sensor -> getSignalSize();
+	int sideSize = 1 + ( int )sqrt( ( double )size );
+	info.setSizeInfo( sideSize , sideSize );
 	MindRegion *region = ms -> createCortexRegion( this , name , &info );
 	MindArea::addRegion( region );
 

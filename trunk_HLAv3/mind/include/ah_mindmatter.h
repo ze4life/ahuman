@@ -7,13 +7,21 @@
 #include "ah_mindbase.h"
 
 class NeuroSignal;
-class NeuroState;
 class NeuroPool;
 class NeuroPoolSet;
 class NeuroLink;
 class NeuroLinkSet;
 class NeuroLinkSource;
 class NeuroLinkTarget;
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+typedef struct {
+	neurovt_state potential;
+	neurovt_state output;
+	RFC_INT64 updated;
+} NEURON_DATA;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -29,6 +37,7 @@ public:
 
 public:
 	void create( int sizeX , int sizeY );
+	void createFromPool( NeuroPool *pool );
 
 	neurovt_signal *getRawData();
 	TwoIndexArray<neurovt_signal>& getVectorData();
@@ -42,30 +51,6 @@ private:
 /*#########################################################################*/
 /*#########################################################################*/
 
-class NeuroState : public Object {
-public:
-	virtual const char *getClass() { return( "NeuroState" ); };
-
-	NeuroState();
-	NeuroState( int sizeX , int sizeY );
-	NeuroState( NeuroState *src );
-	~NeuroState();
-
-public:
-	void create( int sizeX , int sizeY );
-
-	neurovt_state *getRawData();
-	TwoIndexArray<neurovt_state>& getVectorData();
-	void getSizeInfo( int *nx , int *ny );
-
-private:
-// utility
-	TwoIndexArray<neurovt_state> data;
-};
-
-/*#########################################################################*/
-/*#########################################################################*/
-
 class NeuroPool : public Object {
 public:
 	NeuroPool();
@@ -74,23 +59,14 @@ public:
 
 	void createNeurons( int nx , int ny );
 
-	RFC_INT64 getLastExecutionTimeTicks();
-	void setLastExecutionTimeTicks( RFC_INT64 p_ticks );
-
+	TwoIndexArray<NEURON_DATA>& getNeuronData();
 	void getNeuronDimensions( int *nx , int *ny );
-	NeuroState *getCellPotentials();
-	NeuroState *getCellOutputs();
-
 	void startProjection( NeuroLink *link );
 	void finishProjection( NeuroLink *link );
 
 private:
-// own data
-	NeuroState *cellPotentials;
-	NeuroState *cellOutputs;
-
 // utilities
-	RFC_INT64 lastExecutionTicks;
+	TwoIndexArray<NEURON_DATA> neurons;
 };
 
 /*#########################################################################*/
@@ -121,6 +97,8 @@ public:
 	NeuroLinkSource *getSource();
 	NeuroLinkTarget *getTarget();
 	MindRegionLink *getRegionLink() { return( regionLink ); };
+	int getSizeX();
+	int getSizeY();
 
 	void setNeuroLinkInfo( NeuroLinkInfo *linkInfo );
 	void setTransmitter( String transmitter );
@@ -132,6 +110,8 @@ public:
 // utilities
 	String id;
 	String transmitter;
+	int sizeX;
+	int sizeY;
 
 // references
 	MindRegionLink *regionLink;
@@ -159,15 +139,18 @@ public:
 
 class NeuroLinkSource : public Object {
 public:
-	NeuroLinkSource( MindRegion *region );
+	NeuroLinkSource( MindRegion *region , String entity );
 	virtual const char *getClass() { return( "NeuroLinkSource" ); };
 
 public:
 	void setHandler( MindRegion::NeuroLinkSourceHandler pfn );
 	MindRegion *getRegion() { return( region ); };
+	int getSizeX();
+	int getSizeY();
 
 	void addNeuroLink( NeuroLink *link );
 	void setSourceSignal( NeuroSignal *data );
+	void setSourcePool( NeuroPool *pool );
 	NeuroSignal *getSourceSignal( NeuroLink *link );
 
 	void sendMessage();
@@ -175,7 +158,11 @@ public:
 private:
 // references
 	MindRegion *region;
-	NeuroSignal *data;
+	String entity;
+	int sizeX;
+	int sizeY;
+	NeuroSignal *sourceSignal;
+	NeuroPool *sourcePool;
 	ClassList<NeuroLink> links;
 
 // utilities

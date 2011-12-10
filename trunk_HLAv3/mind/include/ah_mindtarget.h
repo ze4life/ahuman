@@ -150,6 +150,7 @@ private:
 	virtual void destroyRegion();
 
 	// NeuroLink support
+	virtual void getSourceSizes( String entity , int *sizeX , int *sizeY );
 	virtual NeuroLinkSource *getNeuroLinkSource( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
 	virtual NeuroLinkTarget *getNeuroLinkTarget( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
 

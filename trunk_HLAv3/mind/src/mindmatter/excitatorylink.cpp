@@ -26,7 +26,7 @@ ExcitatoryLink::ExcitatoryLink( MindRegionLink *p_regionLink ) : NeuroLink( p_re
 }
 
 void ExcitatoryLink::apply( NeuroSignal *srcData , NeuroPool *dstPool ) {
-	// value is encoded strength of neural impulse
+	// signal value is encoded strength of neural impulse
 	// in biology neuron it is frequency of spikes while signal itself has fixed electric voltage
 	// value equals to number of impulses combined in specific message
 	// spike increases cell potential and cell fires if potentials is greater that certain threshold
@@ -53,19 +53,15 @@ void ExcitatoryLink::apply( NeuroSignal *srcData , NeuroPool *dstPool ) {
 	// calculation:
 	// currentCharge=max( lastCharge - NEURON_DISCHARGE_RATE_pQ_per_ms * msTimePassed , 0 )
 
-	const neurovt_state NEURON_FIRE_THRESHOLD_pQ = ( neurovt_state )100;
+	const neurovt_state NEURON_FIRE_THRESHOLD_pQ = ( neurovt_state )70;
 	const neurovt_state NEURON_FIRE_IMPULSE_pQ = ( neurovt_state )10;
-	const neurovt_state NEURON_DISCHARGE_RATE_pQ_per_ms = ( neurovt_state )10;
+	const neurovt_state NEURON_DISCHARGE_RATE_pQ_per_ms = ( neurovt_state )1;
+	const RFC_INT64 NEURON_FULL_RELAX_ms = 1000;
 
 	// current timestamp
-	RFC_INT64 ticksLast = dstPool -> getLastExecutionTimeTicks();
 	RFC_INT64 ticksNow;
 	rfc_hpt_setpoint( &ticksNow );
-	dstPool -> setLastExecutionTimeTicks( ticksNow );
-
-	int msPassed = 0;
-	if( ticksLast )
-		msPassed = rfc_hpt_ticks2ms( ( int )( ticksNow - ticksLast ) );
+	RFC_INT64 msNow = rfc_hpt_ticks2ms( ticksNow );
 
 	// map source surface to target surface
 	int dnx , dny;
@@ -79,11 +75,8 @@ void ExcitatoryLink::apply( NeuroSignal *srcData , NeuroPool *dstPool ) {
 	srcData -> getSizeInfo( &snx , &sny );
 	neurovt_signal *sv = srcData -> getRawData();
 
-	NeuroState *dstPotentials = dstPool -> getCellPotentials();
-	neurovt_state *dv = dstPotentials -> getRawData();
-
-	NeuroState *dstOutputs = dstPool -> getCellOutputs();
-	neurovt_state *ov = dstOutputs -> getRawData();
+	TwoIndexArray<NEURON_DATA>& dstDataNeurons = dstPool -> getNeuronData();
+	NEURON_DATA *dv = dstDataNeurons.getData();
 
 	bool generateOutputs = false;
 
@@ -102,30 +95,46 @@ void ExcitatoryLink::apply( NeuroSignal *srcData , NeuroPool *dstPool ) {
 			int dy = ( srcDrivenY )? ( ky * dny / sny ) : ky;
 
 			// get value and project
-			neurovt_signal actionPotential = sv[ sy * snx + sx ];
+			int spos = sy * snx + sx;
+			neurovt_signal actionPotential = sv[ spos ];
 
-			// get current potential
-			neurovt_state lastCharge = dv[ dy * dnx + dx ];
+			// ignore absense of signal
+			if( actionPotential == 0 )
+				continue;
+
+			// get current potential and handle timestamps
+			int dpos = dy * dnx + dx;
+			neurovt_state lastCharge = dv[ dpos ].potential;
+			RFC_INT64 msPassed = msNow - dv[ dpos ].updated;
+			dv[ dpos ].updated = msNow;
 
 			// calculate current value of action potential
-			neurovt_state currentCharge = lastCharge - msPassed * NEURON_DISCHARGE_RATE_pQ_per_ms;
-			if( currentCharge < 0 )
+			neurovt_state currentCharge = lastCharge;
+			
+			if( msPassed < NEURON_FULL_RELAX_ms ) {
+				currentCharge -= ( ( neurovt_state )msPassed ) * NEURON_DISCHARGE_RATE_pQ_per_ms;
+				if( currentCharge < 0 )
+					currentCharge = 0;
+			}
+			else
 				currentCharge = 0;
 
 			// add action potential
 			currentCharge += actionPotential * NEURON_FIRE_IMPULSE_pQ;
 
 			// save new value
-			dv[ dy * dnx + dx ] = currentCharge;
+			dv[ dpos ].potential = currentCharge;
 
 			// check need to generate feed-forward
 			if( currentCharge > NEURON_FIRE_THRESHOLD_pQ )
 				generateOutputs = true;
+
+			logger.logDebug( String( "apply: spos=" ) + spos + ", dpos=" + dpos + ", lastCharge=" + lastCharge + ", newCharge=" + currentCharge + ", actionPotential=" + actionPotential + ", msPassed=" + ( int )msPassed );
 		}
 	}
 
 	// log 
-	logger.logDebug( "apply: NeuroLink projected, id=" + getId() + ", generateOutpus=" + generateOutputs );
+	logger.logDebug( "apply: NeuroLink projected, id=" + getId() + ", generateOutputs=" + generateOutputs );
 
 	// finish projection
 	dstPool -> finishProjection( this );

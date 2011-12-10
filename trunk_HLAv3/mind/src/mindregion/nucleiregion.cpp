@@ -16,6 +16,7 @@ public:
 	virtual void destroyRegion();
 
 	// NeuroLink support
+	virtual void getSourceSizes( String entity , int *sizeX , int *sizeY );
 	virtual NeuroLinkSource *getNeuroLinkSource( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
 	virtual NeuroLinkTarget *getNeuroLinkTarget( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
 
@@ -63,7 +64,7 @@ void NucleiRegion::createNucleiRegion( NucleiRegionInfo *info ) {
 }
 
 void NucleiRegion::createRegion() {
-	source = new NeuroLinkSource( this );
+	source = new NeuroLinkSource( this , "input" );
 	target = new NeuroLinkTarget( this );
 	target -> setHandler( ( MindRegion::NeuroLinkTargetHandler )&NucleiRegion::handleTargetMessage );
 
@@ -72,6 +73,10 @@ void NucleiRegion::createRegion() {
 	sourceSignal = new NeuroSignal();
 	sourceSignal -> create( nx , ny );
 	source -> setSourceSignal( sourceSignal );
+}
+
+void NucleiRegion::getSourceSizes( String entity , int *sizeX , int *sizeY ) {
+	neuroPool.getNeuronDimensions( sizeX , sizeY );
 }
 
 void NucleiRegion::exitRegion() {
