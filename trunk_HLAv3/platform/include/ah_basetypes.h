@@ -48,6 +48,7 @@ public:
 	String& append( int count , char c );
 	String& append( const char *s , int nChars );
 	String& assign( const char *s , int nChars );
+	void remove( int from );
 	void remove( int from , int n );
 	void insert( int from , const char *s );
 
@@ -70,6 +71,9 @@ public:
 	int split( StringList& parts , String delimiter ) const;
 	bool startsFrom( const char *substring ) const;
 	void trim();
+	void trim( char c );
+	void trimStarting( char c );
+	void trimTrailing( char c );
 	int toInteger();
 
 	static String parseStringLiteral( const char *p );

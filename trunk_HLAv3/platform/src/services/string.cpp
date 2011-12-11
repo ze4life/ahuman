@@ -112,6 +112,10 @@ String& String::append( const char *s ,  int n2 ) {
 	return( *this );
 }
 
+void String::remove( int from ) {
+	remove( from , -1 );
+}
+
 void String::remove( int from , int n ) {
 	if( v == NULL )
 		return;
@@ -119,6 +123,9 @@ void String::remove( int from , int n ) {
 	int len = strlen( v );
 	if( from >= len )
 		return;
+
+	if( n < 0 )
+		n = len - from;
 
 	if( n >= len - from ) {
 		v[ from ] = 0;
@@ -457,6 +464,41 @@ int String::toInteger() {
 	ASSERTMSG( argc == 1 , String( "cannot get integer from string=" ) + v );
 
 	return( value );
+}
+
+void String::trim( char c ) {
+	trimTrailing( c );
+	trimStarting( c );
+}
+
+void String::trimStarting( char c ) {
+	if( v == NULL )
+		return;
+
+	int n = strlen( v );
+	int nd = 0;
+	char *xv = v;
+	for( ; n; n-- , nd++ )
+		if( *xv++ != c )
+			break;
+
+	if( nd > 0 )
+		remove( 0 , nd );
+}
+
+void String::trimTrailing( char c ) {
+	if( v == NULL )
+		return;
+
+	int n = strlen( v );
+	int nd = 0;
+	char *xv = v + n - 1;
+	for( ; n; n-- , nd++ )
+		if( *xv-- != c )
+			break;
+
+	if( nd > 0 )
+		remove( n );
 }
 
 // #############################################################################

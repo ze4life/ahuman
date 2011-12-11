@@ -27,8 +27,6 @@ void NeuroPool::startProjection( NeuroLink *link ) {
 }
 
 void NeuroPool::finishProjection( NeuroLink *link ) {
-	const neurovt_state NEURON_FIRE_THRESHOLD_pQ = ( neurovt_state )70;
-
 	// check potential, fire neurons
 	NEURON_DATA *data = neurons.getData();
 	int n = neurons.count();

@@ -67,6 +67,7 @@ NeuroLink *MindRegionLink::createNeuroLink( MindNet *net , NeuroLinkInfo *linkIn
 	srcData -> addNeuroLink( link );
 	link -> create( srcData , dstData );
 
-	logger.logInfo( "createNeuroLink: NeuroLink created sourceEntity=" + sourceEntity + ", targetEntity=" + targetEntity + ", type=" + linkInfo -> getTypeName() + ", id=" + link -> getId() );
+	logger.logInfo( String( "createNeuroLink: NeuroLink created id=" ) + link -> getId() + ", sourceEntity=" + sourceEntity + ", targetEntity=" + targetEntity + 
+		", type=" + linkInfo -> getTypeName() + ", width=" + link -> getSize() );
 	return( link );
 }

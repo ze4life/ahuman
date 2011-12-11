@@ -64,34 +64,6 @@ private:
 	int temporalDepth;
 };
 
-class SpatialPooler : public Object {
-public:
-	SpatialPooler();
-	virtual const char *getClass() { return( "SpatialPooler" ); };
-	
-	void create( int poolSize , int sizeX , int sizeY );
-	void setMatchTolerance( int matchTolerance );
-	void setProtectedUsage( int usage );
-
-	int matchPattern( NeuroPool *pool , int *patternForgotten );
-	bool getPattern( int pattern , NeuroPool *feedbackPool );
-
-private:
-	int poolSize;
-	int patternSizeX;
-	int patternSizeY;
-};
-
-class TemporalPooler : public Object {
-public:
-	TemporalPooler();
-	virtual const char *getClass() { return( "TemporalPooler" ); };
-
-	void create( int poolSize , int depth );
-	void forgetSpatialPattern( int spatialPattern );
-	int matchPattern( int spatialPattern ,  int *temporalPatternForgotten , int *spatialPatternPredicted );
-};
-
 /*#########################################################################*/
 /*#########################################################################*/
 
@@ -241,13 +213,14 @@ void CortexRegion::handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroLin
 	//		- keep usage count for each pattern: usageCount
 	//		- forget pattern only if usage is less than PROTECTED_SPATIAL_PATTERN_USAGE
 	//		- forget least used stored pattern when adding new pattern and all spacial pooler slots are already filled in
-
 	int spatialPatternForgotten = -1;
 	int spatialPatternMatched = spatialPooler -> matchPattern( &inputPool , &spatialPatternForgotten );
 
 	//	3. execute temporal pooler
 	//		- max number of patterns, spatial pooler slots: MAX_TEMPORAL_PATTERNS
-	//		- used length: temporalDepth
+	//		- use length: temporalDepth
+	//		- use complete (max depth) and incomplete (less than depth) patterns
+	//		- clear forgotten spatial pattern if any from temporal patterns
 	//		- clear forgotten temporal pattern
 	if( spatialPatternForgotten >= 0 )
 		temporalPooler -> forgetSpatialPattern( spatialPatternForgotten );
@@ -255,9 +228,8 @@ void CortexRegion::handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroLin
 	if( spatialPatternMatched < 0 )
 		return;
 
-	int temporalPatternForgotten = -1;
 	int spatialPatternPredicted = -1;
-	int temporalspatialPatternMatched = temporalPooler -> matchPattern( spatialPatternMatched , &temporalPatternForgotten , &spatialPatternPredicted );
+	int temporalspatialPatternMatched = temporalPooler -> matchPattern( spatialPatternMatched , &spatialPatternPredicted );
 
 	if( spatialPatternPredicted < 0 )
 		return;
@@ -277,44 +249,3 @@ void CortexRegion::handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroLin
 // 	sourceAttention -> sendMessage();
 // }
 
-/*#########################################################################*/
-/*#########################################################################*/
-
-SpatialPooler::SpatialPooler() {
-}
-
-void SpatialPooler::create( int p_poolSize , int sizeX , int sizeY ) {
-	poolSize = p_poolSize;
-	patternSizeX = sizeX;
-	patternSizeY = sizeY;
-}
-
-void SpatialPooler::setMatchTolerance( int matchTolerance ) {
-}
-
-void SpatialPooler::setProtectedUsage( int usage ) {
-}
-
-int SpatialPooler::matchPattern( NeuroPool *pool , int *patternForgotten ) {
-	return( -1 );
-}
-
-bool SpatialPooler::getPattern( int pattern , NeuroPool *feedbackPool ) {
-	return( false );
-}
-
-/*#########################################################################*/
-/*#########################################################################*/
-
-TemporalPooler::TemporalPooler() {
-}
-
-void TemporalPooler::create( int poolSize , int depth ) {
-}
-
-void TemporalPooler::forgetSpatialPattern( int spatialPattern ) {
-}
-
-int TemporalPooler::matchPattern( int spatialPattern ,  int *temporalPatternForgotten , int *spatialPatternPredicted ) {
-	return( -1 );
-}

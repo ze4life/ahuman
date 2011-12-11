@@ -109,6 +109,9 @@ void NucleiRegion::handleTargetMessage( NeuroLink *link , NeuroLinkTarget *point
 	// execute default
 	link -> apply( data , &neuroPool );
 
+	// update neurosignal
+	sourceSignal -> createFromPool( &neuroPool );
+
 	// forward further
 	source -> sendMessage();
 }

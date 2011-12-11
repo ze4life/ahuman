@@ -42,6 +42,7 @@ public:
 	neurovt_signal *getRawData();
 	TwoIndexArray<neurovt_signal>& getVectorData();
 	void getSizeInfo( int *nx , int *ny );
+	int getSize();
 
 private:
 // utility
@@ -97,6 +98,7 @@ public:
 	NeuroLinkSource *getSource();
 	NeuroLinkTarget *getTarget();
 	MindRegionLink *getRegionLink() { return( regionLink ); };
+	int getSize();
 	int getSizeX();
 	int getSizeY();
 

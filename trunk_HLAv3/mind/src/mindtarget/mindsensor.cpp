@@ -1,4 +1,5 @@
 #include <ah_mind.h>
+#include <ah_mind_impl.h>
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -83,6 +84,25 @@ void MindSensor::destroyRegion() {
 }
 
 void MindSensor::processSensorData() {
+	// log sensor message
+	neurovt_signal *s = memorySensorySignal -> getRawData();
+	int sn = memorySensorySignal -> getSize();
+	String logmsg = "processSensorData: send signal=";
+	for( int k = 0; k < sn; k++ ) {
+			char x;
+			if( s[ k ] == 0 )
+				x = '0';
+			else
+			if( s[ k ] < NEURON_FIRE_IMPULSE_pQ )
+				x = 'l';
+			else
+				x = 'h';
+
+			logmsg += x;
+	}
+	logmsg.trimTrailing( '0' );
+
+	logger.logDebug( logmsg );
 	sourceSensoryData -> sendMessage();
 }
 
@@ -121,7 +141,5 @@ void MindSensor::applySensorControl( NeuroLink *link , NeuroLinkTarget *point , 
 }
 
 int MindSensor::getSignalSize() {
-	int nx , ny;
-	memorySensorySignal -> getSizeInfo( &nx , &ny );
-	return( nx * ny );
+	return( memorySensorySignal -> getSize() );
 }

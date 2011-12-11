@@ -86,6 +86,7 @@ public:
 public:
 	// sensor lifecycle
 	virtual void createSensor();
+	virtual void configureSensor( Xml config );
 	virtual void startSensor();
 	virtual void stopSensor();
 	virtual void processSensorControl( NeuroLink *link , NeuroSignal *signal );
@@ -191,6 +192,16 @@ void SensorFileSysWalker::createSensor() {
 	const int BYTE_SIZE=8;
 	MindSensor::createSensorySignal( ( SENSOR_WIDTH_ACTION + SENSOR_WIDTH_DATA ) , BYTE_SIZE );
 	MindSensor::createControlFeedbackSignal( SENSOR_WIDTH_CONTROL_FEEDBACK , BYTE_SIZE );
+}
+
+void SensorFileSysWalker::configureSensor( Xml config ) {
+	String focusDir = config.getProperty( "focusDir" , "" );
+	if( !focusDir.isEmpty() ) {
+		curDisk = focusDir.getMid( 0 , 1 );
+		curDir = focusDir;
+		curFocusType = FOCUS_DIR;
+		logger.logInfo( String( "configureSensor: " ) + "sensor=" + getClass() + " configured with focusDir=" + focusDir );
+	}
 }
 
 void SensorFileSysWalker::startSensor() {

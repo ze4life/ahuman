@@ -53,3 +53,6 @@ int NeuroLink::getSizeY() {
 	return( sizeY );
 }
 
+int NeuroLink::getSize() {
+	return( sizeX * sizeY );
+}

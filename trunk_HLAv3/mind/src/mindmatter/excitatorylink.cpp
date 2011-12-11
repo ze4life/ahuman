@@ -11,6 +11,9 @@ public:
 
 public:
 	virtual void apply( NeuroSignal *srcData , NeuroPool *dstPool );
+
+private:
+	int opid;
 };
 
 /*#########################################################################*/
@@ -23,9 +26,12 @@ NeuroLink *MindService::createExcitatoryLink( MindRegionLink *link ) { return( n
 
 ExcitatoryLink::ExcitatoryLink( MindRegionLink *p_regionLink ) : NeuroLink( p_regionLink ) {
 	attachLogger();
+	opid = 0;
 }
 
 void ExcitatoryLink::apply( NeuroSignal *srcData , NeuroPool *dstPool ) {
+	opid++;
+
 	// signal value is encoded strength of neural impulse
 	// in biology neuron it is frequency of spikes while signal itself has fixed electric voltage
 	// value equals to number of impulses combined in specific message
@@ -53,88 +59,72 @@ void ExcitatoryLink::apply( NeuroSignal *srcData , NeuroPool *dstPool ) {
 	// calculation:
 	// currentCharge=max( lastCharge - NEURON_DISCHARGE_RATE_pQ_per_ms * msTimePassed , 0 )
 
-	const neurovt_state NEURON_FIRE_THRESHOLD_pQ = ( neurovt_state )70;
-	const neurovt_state NEURON_FIRE_IMPULSE_pQ = ( neurovt_state )10;
-	const neurovt_state NEURON_DISCHARGE_RATE_pQ_per_ms = ( neurovt_state )1;
-	const RFC_INT64 NEURON_FULL_RELAX_ms = 1000;
+	// project source to target
+	dstPool -> startProjection( this );
+
+	// log 
+	logger.logDebug( String( "apply " ) + opid + ": projecting NeuroLink, id=" + getId() + "..." );
 
 	// current timestamp
 	RFC_INT64 ticksNow;
 	rfc_hpt_setpoint( &ticksNow );
 	RFC_INT64 msNow = rfc_hpt_ticks2ms( ticksNow );
 
-	// map source surface to target surface
+	// map source surface to target surface - as linear arrays
 	int dnx , dny;
 	dstPool -> getNeuronDimensions( &dnx , &dny );
-
-	// project source to target
-	dstPool -> startProjection( this );
+	int dn = dnx * dny;
+	TwoIndexArray<NEURON_DATA>& dstDataNeurons = dstPool -> getNeuronData();
+	NEURON_DATA *dvdata = dstDataNeurons.getData();
 
 	// project specific values
 	int snx , sny;
 	srcData -> getSizeInfo( &snx , &sny );
+	int sn = snx * sny;
 	neurovt_signal *sv = srcData -> getRawData();
 
-	TwoIndexArray<NEURON_DATA>& dstDataNeurons = dstPool -> getNeuronData();
-	NEURON_DATA *dv = dstDataNeurons.getData();
-
 	bool generateOutputs = false;
+	for( int sk = 0; sk < sn; sk++ , sv++ ) {
+		// get value and project
+		int dk = ( int )( ( sk * (RFC_INT64)dn ) / sn );
+		neurovt_signal actionPotential = *sv;
 
-	bool srcDrivenX = ( snx < dnx );
-	bool srcDrivenY = ( sny < dny );
-	int maxX = ( srcDrivenX )? snx : dnx;
-	int maxY = ( srcDrivenY )? sny : dny;
-	for( int kx = 0; kx < maxX; kx++ ) {
-		// map x position
-		int sx = ( srcDrivenX )? kx : ( kx * snx / dnx );
-		int dx = ( srcDrivenX )? ( kx * dnx / snx ) : kx;
+		// ignore absense of signal
+		if( actionPotential == 0 )
+			continue;
 
-		for( int ky = 0; ky < maxY; ky++ ) {
-			// map y position
-			int sy = ( srcDrivenY )? ky : ( ky * sny / dny );
-			int dy = ( srcDrivenY )? ( ky * dny / sny ) : ky;
+		// get current potential and handle timestamps
+		NEURON_DATA *dv = dvdata + dk;
+		neurovt_state lastCharge = dv -> potential;
+		RFC_INT64 msPassed = msNow - dv -> updated;
+		dv -> updated = msNow;
 
-			// get value and project
-			int spos = sy * snx + sx;
-			neurovt_signal actionPotential = sv[ spos ];
-
-			// ignore absense of signal
-			if( actionPotential == 0 )
-				continue;
-
-			// get current potential and handle timestamps
-			int dpos = dy * dnx + dx;
-			neurovt_state lastCharge = dv[ dpos ].potential;
-			RFC_INT64 msPassed = msNow - dv[ dpos ].updated;
-			dv[ dpos ].updated = msNow;
-
-			// calculate current value of action potential
-			neurovt_state currentCharge = lastCharge;
+		// calculate current value of action potential
+		neurovt_state currentCharge = lastCharge;
 			
-			if( msPassed < NEURON_FULL_RELAX_ms ) {
-				currentCharge -= ( ( neurovt_state )msPassed ) * NEURON_DISCHARGE_RATE_pQ_per_ms;
-				if( currentCharge < 0 )
-					currentCharge = 0;
-			}
-			else
+		if( msPassed < NEURON_FULL_RELAX_ms ) {
+			currentCharge -= ( ( neurovt_state )msPassed ) * NEURON_DISCHARGE_RATE_pQ_per_ms;
+			if( currentCharge < 0 )
 				currentCharge = 0;
-
-			// add action potential
-			currentCharge += actionPotential * NEURON_FIRE_IMPULSE_pQ;
-
-			// save new value
-			dv[ dpos ].potential = currentCharge;
-
-			// check need to generate feed-forward
-			if( currentCharge > NEURON_FIRE_THRESHOLD_pQ )
-				generateOutputs = true;
-
-			logger.logDebug( String( "apply: spos=" ) + spos + ", dpos=" + dpos + ", lastCharge=" + lastCharge + ", newCharge=" + currentCharge + ", actionPotential=" + actionPotential + ", msPassed=" + ( int )msPassed );
 		}
+		else
+			currentCharge = 0;
+
+		// add action potential
+		currentCharge += actionPotential * NEURON_FIRE_IMPULSE_pQ;
+
+		// save new value
+		dv -> potential = currentCharge;
+
+		// check need to generate feed-forward
+		if( currentCharge > NEURON_FIRE_THRESHOLD_pQ )
+			generateOutputs = true;
+
+		logger.logDebug( String( "apply " ) + opid + ": spos=" + sk + ", dpos=" + dk + ", lastCharge=" + lastCharge + ", newCharge=" + currentCharge + ", actionPotential=" + actionPotential + ", msPassed=" + ( int )msPassed );
 	}
 
 	// log 
-	logger.logDebug( "apply: NeuroLink projected, id=" + getId() + ", generateOutputs=" + generateOutputs );
+	logger.logDebug( String( "apply " ) + opid + ": NeuroLink projected, id=" + getId() + ", generateOutputs=" + generateOutputs );
 
 	// finish projection
 	dstPool -> finishProjection( this );
