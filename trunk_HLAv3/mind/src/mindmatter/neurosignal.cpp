@@ -1,4 +1,5 @@
 #include <ah_mind.h>
+#include <ah_mind_impl.h>
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -34,44 +35,32 @@ void NeuroSignal::getSizeInfo( int *nx , int *ny ) {
 	*ny = data.getN2();
 }
 
-void NeuroSignal::createFromPool( NeuroPool *pool ) {
-	const neurovt_state NEURON_FIRE_IMPULSE_pQ = ( neurovt_state )10;
+int NeuroSignal::getSize() {
+	return( data.getN1() * data.getN2() );
+}
 
+void NeuroSignal::createFromPool( NeuroPool *pool ) {
 	int snx , sny;
 	pool -> getNeuronDimensions( &snx , &sny );
+	int sn = snx * sny;
 	TwoIndexArray<NEURON_DATA>& poolData = pool -> getNeuronData();
 
 	int dnx = data.getN1();
 	int dny = data.getN2();
+	int dn = dnx * dny;
 
 	// project pool data to signal data
 	NEURON_DATA *sv = poolData.getData();
 	neurovt_signal *dv = data.getData();
 
-	bool generateOutputs = false;
+	for( int sk = 0; sk < sn; sk++ , sv++ ) {
+		// map position
+		int dk = ( int )( ( sk * (RFC_INT64)dn ) / sn );
 
-	bool srcDrivenX = ( snx < dnx );
-	bool srcDrivenY = ( sny < dny );
-	int maxX = ( srcDrivenX )? snx : dnx;
-	int maxY = ( srcDrivenY )? sny : dny;
-	for( int kx = 0; kx < maxX; kx++ ) {
-		// map x position
-		int sx = ( srcDrivenX )? kx : ( kx * snx / dnx );
-		int dx = ( srcDrivenX )? ( kx * dnx / snx ) : kx;
+		// ignore absense of signal
+		dv[ dk ] = ( sv -> output == 0 )? 0 : NEURON_FIRE_IMPULSE_pQ;
 
-		for( int ky = 0; ky < maxY; ky++ ) {
-			// map y position
-			int sy = ( srcDrivenY )? ky : ( ky * sny / dny );
-			int dy = ( srcDrivenY )? ( ky * dny / sny ) : ky;
-
-			// get value and project
-			int spos = sy * snx + sx;
-			NEURON_DATA& actionPotential = sv[ spos ];
-
-			// ignore absense of signal
-			int dpos = dy * dnx + dx;
-			dv[ dpos ] = ( actionPotential.output == 0 )? 0 : NEURON_FIRE_IMPULSE_pQ;
-		}
+		// clear fire state
+		sv -> output = 0;
 	}
 }
-

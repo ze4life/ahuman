@@ -55,7 +55,7 @@ int Timer::timePassedClocks() {
 
 // time passed - in ticks
 int Timer::timePassedTicks() {
-	return( rfc_hpt_timepassed( &timeStartedTicks ) );
+	return( ( int )rfc_hpt_timepassed( &timeStartedTicks ) );
 }
 
 // convert clocks to ms
@@ -78,12 +78,12 @@ bool Timer::go() {
 
 // convert ticks to ms
 int Timer::timeTicksToMs( int ticks ) {
-	return( rfc_hpt_ticks2ms( ticks ) );
+	return( ( int )rfc_hpt_ticks2ms( ticks ) );
 }
 
 // convert ms to ticks
 int Timer::timeMsToTicks( int ms ) {
-	return( rfc_hpt_ms2ticks( ms ) );
+	return( ( int )rfc_hpt_ms2ticks( ms ) );
 }
 
 int Timer::waitNext() {

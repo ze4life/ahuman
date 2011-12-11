@@ -107,6 +107,7 @@ void MindTarget::addSensor( MindSensor *sensor ) {
 
 	if( config.exists() && config.getBooleanAttribute( "run" , true ) ) {
 		sensors -> addSetItem( sensor );
+		sensor -> configureSensor( config );
 		logger.logInfo( "addSensor: sensor added - name=" + name );
 	}
 	else {

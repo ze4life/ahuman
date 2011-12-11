@@ -137,6 +137,7 @@ public:
 
 	// MindSensor
 	virtual void createSensor() = 0;
+	virtual void configureSensor( Xml config ) = 0;
 	virtual void startSensor() = 0;
 	virtual void stopSensor() = 0;
 	virtual void processSensorControl( NeuroLink *link , NeuroSignal *signal ) = 0;
