@@ -143,7 +143,6 @@ public:
 public:
 	void setTotalSize( int nNeurons );
 	int getTotalSize();
-	int getSideSize();
 
 private:
 	int totalNeurons;
