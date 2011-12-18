@@ -63,35 +63,110 @@ private:
 // #############################################################################
 // #############################################################################
 
-class SpatialPooler : public Object {
+class CortexSpatialPoolerItem : public Object {
 public:
-	SpatialPooler();
-	virtual const char *getClass() { return( "SpatialPooler" ); };
+	CortexSpatialPoolerItem();
+	virtual const char *getClass() { return( "CortexSpatialPoolerItem" ); };
+
+	int getId();
+	int getUsage();
+	void addUsage();
+	void setId( int p_id );
+	void setStateFromPool( NeuroPool *pool );
+	void getPoolFromState( NeuroPool *pool );
+	int getDifferencePercentage( CortexSpatialPoolerItem *item , neurovt_state toleranceNeuronState );
+	void logItem();
+
+private:
+	int id;
+	int usage;
+	FlatList<neurovt_state> state;
+};
+
+class CortexSpatialPooler : public Object {
+public:
+	CortexSpatialPooler();
+	virtual ~CortexSpatialPooler();
+	virtual const char *getClass() { return( "CortexSpatialPooler" ); };
 	
 	void create( int poolSize , int sizeX , int sizeY );
-	void setMatchTolerance( int matchTolerance );
+	void setMatchTolerance( int tolerancePattern , int toleranceNeuronState );
 	void setProtectedUsage( int usage );
 
 	int matchPattern( NeuroPool *pool , int *patternForgotten );
-	bool getPattern( int pattern , NeuroPool *feedbackPool );
+	bool getPattern( int pattern , NeuroPool *pool );
+	CortexSpatialPoolerItem *findBestMatch( CortexSpatialPoolerItem *data , int *difference );
+	CortexSpatialPoolerItem *findLeastUsed();
+	void logItems();
 
 private:
-	int poolSize;
+	int maxPoolSize;
 	int patternSizeX;
 	int patternSizeY;
+
+	int matchTolerancePattern;
+	int matchToleranceNeuronState;
+	int protectedUsage;
+
+	ClassList<CortexSpatialPoolerItem> items;
 };
 
 // #############################################################################
 // #############################################################################
 
-class TemporalPooler : public Object {
+class CortexTemporalPoolerItem : public Object {
 public:
-	TemporalPooler();
-	virtual const char *getClass() { return( "TemporalPooler" ); };
+	CortexTemporalPoolerItem( int p_maxDepth );
+	virtual ~CortexTemporalPoolerItem();
+	virtual const char *getClass() { return( "CortexTemporalPoolerItem" ); };
+
+	int getId();
+	void setId( int p_id );
+	void deleteSpatialPatternIfAny( int spatialPattern );
+	void addUsage();
+	int getUsage();
+	void setUsage( int p_usage );
+	void setData( int *data , int dataSize );
+	int getDifferencePercentage( int *data , int dataSize );
+	int getDataSize();
+	int getSpatialPattern( int index );
+	void logItem();
+
+private:
+	int id;
+	int usage;
+	int maxDepth;
+	int *streamData;
+	int streamDataSize;
+};
+
+class CortexTemporalPooler : public Object {
+public:
+	CortexTemporalPooler();
+	virtual ~CortexTemporalPooler();
+	virtual const char *getClass() { return( "CortexTemporalPooler" ); };
 
 	void create( int poolSize , int depth );
+	void setMatchTolerance( int tolerancePattern );
+	void setProtectedUsage( int usage );
+	void setPredictionProbabilityTolerance( int tolerance );
 	void forgetSpatialPattern( int spatialPattern );
-	int matchPattern( int spatialPattern ,  int *spatialPatternPredicted );
+	int matchPattern( int spatialPattern ,  int *spatialPatternPredicted , int *predictionProbability , int *temporalPatternForgotten );
+	CortexTemporalPoolerItem *matchFillPattern( int *data , int datasize , int spatialPattern , int *temporalPatternForgotten );
+	int predictPattern( int *data , int datasize , int *spatialPatternPredicted , int *predictionProbability );
+	CortexTemporalPoolerItem *findBestMatch( int minSize , int *data , int dataSize , int *difference , int *matchedCount );
+	CortexTemporalPoolerItem *findLeastUsed();
+	void logItems();
+
+private:
+	int maxPoolSize;
+	int maxDepth;
+	int protectedUsage;
+	ClassList<CortexTemporalPoolerItem> items;
+	int *streamData;
+	int streamDataSize;
+	int matchTolerancePattern;
+	int predictionProbabilityTolerance;
 };
 
 // #############################################################################

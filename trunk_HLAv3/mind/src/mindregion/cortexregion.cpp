@@ -4,8 +4,8 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-class SpatialPooler;
-class TemporalPooler;
+class CortexSpatialPooler;
+class CortexTemporalPooler;
 
 class CortexRegion : public MindRegion {
 public:
@@ -53,8 +53,8 @@ private:
 
 	NeuroPool inputPool;
 	NeuroPool feedbackPool;
-	SpatialPooler *spatialPooler;
-	TemporalPooler *temporalPooler;
+	CortexSpatialPooler *spatialPooler;
+	CortexTemporalPooler *temporalPooler;
 
 // utilities
 	int sizeX;
@@ -94,13 +94,17 @@ CortexRegion::CortexRegion( MindArea *p_area )
 	// targetFeedBack = NULL;
 	// targetAttention = NULL;
 
-	spatialPooler = new SpatialPooler();
-	temporalPooler = new TemporalPooler();
+	spatialPooler = new CortexSpatialPooler();
+	temporalPooler = new CortexTemporalPooler();
 }
 
 void CortexRegion::createCortexRegion( CortexRegionInfo *info ) {
-	const int SPACIAL_MATCH_TOLERANCE = 10;
-	const int PROTECTED_SPATIAL_PATTERN_USAGE = 100;
+	const int SPACIAL_MATCH_PATTERN_TOLERANCE = 10;
+	const int SPACIAL_MATCH_NEURONSTATE_TOLERANCE = 30;
+	const int SPATIAL_PROTECTED_PATTERN_USAGE = 100;
+	const int TEMPORAL_MATCH_PATTERN_TOLERANCE = 20;
+	const int TEMPORAL_PREDICTION_PROBABILITY_TOLERANCE = 50;
+	const int TEMPORAL_PROTECTED_PATTERN_USAGE = 100;
 
 	// get parameters
 	info -> getSizeInfo( &sizeX , &sizeY );
@@ -114,9 +118,13 @@ void CortexRegion::createCortexRegion( CortexRegionInfo *info ) {
 
 	// create and setup spatial and temporal poolers
 	spatialPooler -> create( info -> getSpatialPoolerSize() , sizeX , sizeY );
-	spatialPooler -> setMatchTolerance( SPACIAL_MATCH_TOLERANCE );
-	spatialPooler -> setProtectedUsage( PROTECTED_SPATIAL_PATTERN_USAGE );
+	spatialPooler -> setMatchTolerance( SPACIAL_MATCH_PATTERN_TOLERANCE , SPACIAL_MATCH_NEURONSTATE_TOLERANCE );
+	spatialPooler -> setProtectedUsage( SPATIAL_PROTECTED_PATTERN_USAGE );
+
 	temporalPooler -> create( info -> getTemporalPoolerSize() , temporalDepth );
+	temporalPooler -> setMatchTolerance( TEMPORAL_MATCH_PATTERN_TOLERANCE );
+	temporalPooler -> setPredictionProbabilityTolerance( TEMPORAL_PREDICTION_PROBABILITY_TOLERANCE );
+	temporalPooler -> setProtectedUsage( TEMPORAL_PROTECTED_PATTERN_USAGE );
 }
 
 void CortexRegion::getSourceSizes( String entity , int *p_sizeX , int *p_sizeY ) {
@@ -146,6 +154,8 @@ void CortexRegion::createRegion() {
 	targetFeedForward -> setHandler( ( MindRegion::NeuroLinkTargetHandler )&CortexRegion::handleFeedForwardNeuroLinkMessage );
 	// targetFeedBack -> setHandler( ( MindRegion::NeuroLinkTargetHandler )&CortexRegion::handleFeedBackNeuroLinkMessage );
 	// targetAttention -> setHandler( ( MindRegion::NeuroLinkTargetHandler )&CortexRegion::handleAttentionNeuroLinkMessage );
+
+	logger.logDebug( String( "createRegion: created cortex region: sizeX=" ) + sizeX + ", sizeY=" + sizeY );
 }
 
 void CortexRegion::exitRegion() {
@@ -208,7 +218,7 @@ void CortexRegion::handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroLin
 
 	//	2. execute spacial pooler
 	//		- max number of patterns, spatial pooler slots: MAX_SPACIAL_PATTERNS
-	//		- size is defined by area, differs from neurolink width: nSideSize
+	//		- size is defined by area, differs from neurolink width
 	//		- add new patterns only if not matched for more than SPACIAL_MATCH_TOLERANCE=10
 	//		- keep usage count for each pattern: usageCount
 	//		- forget pattern only if usage is less than PROTECTED_SPATIAL_PATTERN_USAGE
@@ -225,20 +235,33 @@ void CortexRegion::handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroLin
 	if( spatialPatternForgotten >= 0 )
 		temporalPooler -> forgetSpatialPattern( spatialPatternForgotten );
 
-	if( spatialPatternMatched < 0 )
+	if( spatialPatternMatched < 0 ) {
+		logger.logInfo( String( "handleFeedForwardNeuroLinkMessage: " ) + " not matched, ignored" );
+		spatialPooler -> logItems();
+		temporalPooler -> logItems();
 		return;
+	}
 
 	int spatialPatternPredicted = -1;
-	int temporalspatialPatternMatched = temporalPooler -> matchPattern( spatialPatternMatched , &spatialPatternPredicted );
+	int predictionProbability;
+	int temporalPatternForgotten;
+	int temporalspatialPatternMatched = temporalPooler -> matchPattern( spatialPatternMatched , &spatialPatternPredicted , &predictionProbability , &temporalPatternForgotten );
 
-	if( spatialPatternPredicted < 0 )
+	if( spatialPatternPredicted < 0 ) {
+		logger.logInfo( String( "handleFeedForwardNeuroLinkMessage: spatialMatched=" ) + spatialPatternMatched + ", spatialForgotten=" + spatialPatternForgotten + ", temporalMatched=" + temporalspatialPatternMatched + ", no prediction" );
+		spatialPooler -> logItems();
+		temporalPooler -> logItems();
 		return;
+	}
 
 	// 4. generate feedback
 	//		- get predicted pattern
 	//		- generate feedback message
 	spatialPooler -> getPattern( spatialPatternPredicted , &feedbackPool );
+	logger.logInfo( String( "handleFeedForwardNeuroLinkMessage: spatialMatched=" ) + spatialPatternMatched + ", spatialForgotten=" + spatialPatternForgotten + ", temporalMatched=" + temporalspatialPatternMatched + ", spatialPredicted=" + spatialPatternPredicted );
 	sourceFeedBack -> sendMessage();
+	spatialPooler -> logItems();
+	temporalPooler -> logItems();
 }
 
 // void CortexRegion::handleFeedBackNeuroLinkMessage( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *data ) {

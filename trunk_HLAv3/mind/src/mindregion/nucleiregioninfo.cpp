@@ -18,7 +18,3 @@ void NucleiRegionInfo::setTotalSize( int nNeurons ) {
 int NucleiRegionInfo::getTotalSize() {
 	return( totalNeurons );
 }
-
-int NucleiRegionInfo::getSideSize() {
-	return( ( int )sqrt( ( double )totalNeurons ) );
-}

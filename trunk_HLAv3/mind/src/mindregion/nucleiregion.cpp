@@ -58,8 +58,9 @@ NucleiRegion::NucleiRegion( MindArea *p_area )
 }
 
 void NucleiRegion::createNucleiRegion( NucleiRegionInfo *info ) {
-	int sideSize = info -> getSideSize();
-	ASSERTMSG( sideSize > 0 , "invalid sideSize, positive value expected" );
+	int totalSize = info -> getTotalSize();
+	ASSERTMSG( totalSize > 0 , "invalid totalSize, positive value expected" );
+	int sideSize = 2 * ( int )sqrt( ( double )totalSize );
 	neuroPool.createNeurons( sideSize , sideSize );
 }
 
@@ -73,6 +74,7 @@ void NucleiRegion::createRegion() {
 	sourceSignal = new NeuroSignal();
 	sourceSignal -> create( nx , ny );
 	source -> setSourceSignal( sourceSignal );
+	logger.logDebug( String( "createRegion: create nuclei region: nx=" ) + nx + ", ny=" + ny );
 }
 
 void NucleiRegion::getSourceSizes( String entity , int *sizeX , int *sizeY ) {

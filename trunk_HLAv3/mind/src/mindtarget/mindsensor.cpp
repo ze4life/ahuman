@@ -57,6 +57,10 @@ void MindSensor::createRegion() {
 
 	sourceSensoryData -> setSourceSignal( memorySensorySignal );
 	sourceSensoryControlFeedback -> setSourceSignal( memorySensoryFeedbackSignal );
+
+	int sizeX , sizeY;
+	memorySensorySignal -> getSizeInfo( &sizeX , &sizeY );
+	logger.logDebug( String( "createRegion: created sensor region: signalSize=" ) + getSignalSize() );
 }
 
 void MindSensor::exitRegion() {
@@ -89,16 +93,16 @@ void MindSensor::processSensorData() {
 	int sn = memorySensorySignal -> getSize();
 	String logmsg = "processSensorData: send signal=";
 	for( int k = 0; k < sn; k++ ) {
-			char x;
-			if( s[ k ] == 0 )
-				x = '0';
-			else
-			if( s[ k ] < NEURON_FIRE_IMPULSE_pQ )
-				x = 'l';
-			else
-				x = 'h';
+		char x;
+		if( s[ k ] == 0 )
+			x = '0';
+		else
+		if( s[ k ] < NEURON_FIRE_IMPULSE_pQ )
+			x = 'l';
+		else
+			x = 'h';
 
-			logmsg += x;
+		logmsg += x;
 	}
 	logmsg.trimTrailing( '0' );
 

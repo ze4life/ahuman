@@ -41,7 +41,10 @@ public:
 	int count() const { return( n ); };
 	int size() const { return( a ); };
 
-	void setCount( int count ) { n = count; };
+	void setCount( int count ) { 
+		allocate( count );
+		n = count; 
+	};
 
 	T *getAll() const { return( data ); };
 	T *getAt( int index ) const { ASSERT( index >= 0 && index < a ); return( &data[ index ] ); };
