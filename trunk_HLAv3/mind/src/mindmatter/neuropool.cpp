@@ -32,9 +32,9 @@ void NeuroPool::finishProjection( NeuroLink *link ) {
 	int n = neurons.count();
 
 	for( int k = 0; k < n; k++ , data++ ) {
-		if( data -> potential > NEURON_FIRE_THRESHOLD_pQ ) {
-			// fire
-			data -> output = NEURON_FIRE_THRESHOLD_pQ;
+		if( data -> potential >= NEURON_FIRE_POTENTIAL_THRESHOLD_pQ ) {
+			// fire, keep update timestamp not changed - the same for action potential and state
+			data -> output = NEURON_FIRE_OUTPUT_BY_POTENTIAL_pQ;
 			data -> potential = 0;
 		}
 	}

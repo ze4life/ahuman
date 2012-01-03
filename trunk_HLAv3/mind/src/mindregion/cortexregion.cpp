@@ -103,8 +103,9 @@ void CortexRegion::createCortexRegion( CortexRegionInfo *info ) {
 	const int SPACIAL_MATCH_NEURONSTATE_TOLERANCE = 30;
 	const int SPATIAL_PROTECTED_PATTERN_USAGE = 100;
 	const int TEMPORAL_MATCH_PATTERN_TOLERANCE = 20;
-	const int TEMPORAL_PREDICTION_PROBABILITY_TOLERANCE = 50;
 	const int TEMPORAL_PROTECTED_PATTERN_USAGE = 100;
+	const int TEMPORAL_PREDICTION_PROBABILITY_TOLERANCE = 50;
+	const int TEMPORAL_PREDICTION_MATCH_TOLERANCE = 75;
 
 	// get parameters
 	info -> getSizeInfo( &sizeX , &sizeY );
@@ -123,8 +124,9 @@ void CortexRegion::createCortexRegion( CortexRegionInfo *info ) {
 
 	temporalPooler -> create( info -> getTemporalPoolerSize() , temporalDepth );
 	temporalPooler -> setMatchTolerance( TEMPORAL_MATCH_PATTERN_TOLERANCE );
-	temporalPooler -> setPredictionProbabilityTolerance( TEMPORAL_PREDICTION_PROBABILITY_TOLERANCE );
 	temporalPooler -> setProtectedUsage( TEMPORAL_PROTECTED_PATTERN_USAGE );
+	temporalPooler -> setPredictionProbabilityTolerance( TEMPORAL_PREDICTION_PROBABILITY_TOLERANCE );
+	temporalPooler -> setPredictionMatchTolerance( TEMPORAL_PREDICTION_MATCH_TOLERANCE );
 }
 
 void CortexRegion::getSourceSizes( String entity , int *p_sizeX , int *p_sizeY ) {
@@ -258,7 +260,7 @@ void CortexRegion::handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroLin
 	//		- get predicted pattern
 	//		- generate feedback message
 	spatialPooler -> getPattern( spatialPatternPredicted , &feedbackPool );
-	logger.logInfo( String( "handleFeedForwardNeuroLinkMessage: spatialMatched=" ) + spatialPatternMatched + ", spatialForgotten=" + spatialPatternForgotten + ", temporalMatched=" + temporalspatialPatternMatched + ", spatialPredicted=" + spatialPatternPredicted );
+	logger.logInfo( String( "handleFeedForwardNeuroLinkMessage: spatialMatched=" ) + spatialPatternMatched + ", spatialForgotten=" + spatialPatternForgotten + ", temporalMatched=" + temporalspatialPatternMatched + ", spatialPredicted=" + spatialPatternPredicted + ", probability=" + predictionProbability );
 	sourceFeedBack -> sendMessage();
 	spatialPooler -> logItems();
 	temporalPooler -> logItems();

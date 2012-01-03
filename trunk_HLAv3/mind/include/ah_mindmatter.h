@@ -46,6 +46,7 @@ public:
 
 private:
 // utility
+	RFC_INT64 ts;
 	TwoIndexArray<neurovt_signal> data;
 };
 

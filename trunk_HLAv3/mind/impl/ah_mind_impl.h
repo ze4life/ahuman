@@ -9,10 +9,13 @@
 class MindActiveMemoryObject;
 class MindSensorSetTracker;
 
-#define NEURON_FIRE_THRESHOLD_pQ			(( neurovt_state )70)
-#define NEURON_FIRE_IMPULSE_pQ				(( neurovt_state )10)
-#define NEURON_DISCHARGE_RATE_pQ_per_ms		(( neurovt_state )1)
-#define NEURON_FULL_RELAX_ms				(( RFC_INT64 )1000)
+#define NEURON_FIRE_POTENTIAL_THRESHOLD_pQ				(( neurovt_state )70)
+#define NEURON_FIRE_OUTPUT_BY_POTENTIAL_pQ				(( neurovt_state )90)
+#define NEURON_FIRE_OUTPUT_THRESHOLD_pQ					(( neurovt_state )70)
+#define NEURON_FIRE_IMPULSE_pQ							(( neurovt_state )10)
+#define NEURON_POTENTIAL_DISCHARGE_RATE_pQ_per_ms		(( neurovt_state )1)
+#define NEURON_OUTPUT_DISCHARGE_RATE_pQ_per_ms			(( neurovt_state )1)
+#define NEURON_FULL_RELAX_ms							(( RFC_INT64 )1000)
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -128,6 +131,7 @@ public:
 	void setUsage( int p_usage );
 	void setData( int *data , int dataSize );
 	int getDifferencePercentage( int *data , int dataSize );
+	int getPartialDifferencePercentage( int *data , int dataSize );
 	int getDataSize();
 	int getSpatialPattern( int index );
 	void logItem();
@@ -150,11 +154,13 @@ public:
 	void setMatchTolerance( int tolerancePattern );
 	void setProtectedUsage( int usage );
 	void setPredictionProbabilityTolerance( int tolerance );
+	void setPredictionMatchTolerance( int tolerance );
 	void forgetSpatialPattern( int spatialPattern );
 	int matchPattern( int spatialPattern ,  int *spatialPatternPredicted , int *predictionProbability , int *temporalPatternForgotten );
 	CortexTemporalPoolerItem *matchFillPattern( int *data , int datasize , int spatialPattern , int *temporalPatternForgotten );
 	int predictPattern( int *data , int datasize , int *spatialPatternPredicted , int *predictionProbability );
 	CortexTemporalPoolerItem *findBestMatch( int minSize , int *data , int dataSize , int *difference , int *matchedCount );
+	CortexTemporalPoolerItem *findPartialBestMatch( int minSize , int *data , int dataSize , int *difference , int *matchedCount );
 	CortexTemporalPoolerItem *findLeastUsed();
 	void logItems();
 
@@ -167,6 +173,7 @@ private:
 	int streamDataSize;
 	int matchTolerancePattern;
 	int predictionProbabilityTolerance;
+	int predictionMatchTolerance;
 };
 
 // #############################################################################
