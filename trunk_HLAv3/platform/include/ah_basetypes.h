@@ -551,8 +551,10 @@ public:
 	// initial adjustments
 	static void startAdjustment();
 	static void stopAdjustment();
-	// time passed from process start - in ms
-	static int timeSinceProcessStartMs();
+	// time passed from process start - in ms, using clock()
+	static int clockSinceProcessStartMs();
+	// time passed from process start - in ms, using rfc_hpt_setpoint
+	static RFC_INT64 getCurrentTimeMillis();
 
 public:
 	// timestamp of timer construction - in ms

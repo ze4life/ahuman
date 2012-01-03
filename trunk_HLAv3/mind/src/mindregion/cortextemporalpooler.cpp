@@ -13,6 +13,7 @@ CortexTemporalPooler::CortexTemporalPooler() {
 	streamDataSize = 0;
 	matchTolerancePattern = 0;
 	predictionProbabilityTolerance = 0;
+	predictionMatchTolerance = 0;
 	protectedUsage = 0;
 }
 
@@ -131,7 +132,34 @@ CortexTemporalPoolerItem *CortexTemporalPooler::findBestMatch( int minSize , int
 			continue;
 
 		int diff = item -> getDifferencePercentage( data , dataSize );
-		if( minDiffItem == NULL || diff < minDiffValue ) {
+		if( minDiffItem == NULL || diff <= minDiffValue ) {
+			if( minDiffItem != NULL && diff == minDiffValue )
+				diffMatchCount++;
+			else
+				diffMatchCount = 1;
+
+			minDiffItem = item;
+			minDiffValue = diff;
+		}
+	}
+
+	*difference = minDiffValue;
+	*matchedCount = diffMatchCount;
+	return( minDiffItem );
+}
+
+CortexTemporalPoolerItem *CortexTemporalPooler::findPartialBestMatch( int minSize , int *data , int dataSize , int *difference , int *matchedCount ) {
+	int minDiffValue = 0;
+	CortexTemporalPoolerItem *minDiffItem = NULL;
+	int diffMatchCount = 0;
+	for( int k = 0; k < items.count(); k++ ) {
+		// get difference
+		CortexTemporalPoolerItem *item = items[ k ];
+		if( item -> getDataSize() < minSize )
+			continue;
+
+		int diff = item -> getPartialDifferencePercentage( data , dataSize );
+		if( minDiffItem == NULL || diff <= minDiffValue ) {
 			if( minDiffItem != NULL && diff == minDiffValue )
 				diffMatchCount++;
 			else
@@ -175,11 +203,15 @@ int CortexTemporalPooler::predictPattern( int *data , int dataSize , int *spatia
 	int matchItems;
 	for( int k = 0; k < dataSize; k++ ) {
 		int minSize = dataSize - k + 1;
-		nextItem = findBestMatch( minSize , data + k , dataSize - k , &difference , &matchItems );
+		nextItem = findPartialBestMatch( minSize , data + k , dataSize - k , &difference , &matchItems );
 
 		if( nextItem != NULL ) {
-			*spatialPatternPredicted = nextItem -> getSpatialPattern( dataSize - k );
-			break;
+			if( difference <= predictionMatchTolerance ) {
+				*spatialPatternPredicted = nextItem -> getSpatialPattern( dataSize - k );
+				break;
+			}
+			else
+				nextItem = NULL;
 		}
 	}
 
@@ -208,10 +240,23 @@ void CortexTemporalPooler::setPredictionProbabilityTolerance( int tolerance ) {
 	predictionProbabilityTolerance = tolerance;
 }
 
+void CortexTemporalPooler::setPredictionMatchTolerance( int tolerance ) {
+	predictionMatchTolerance = tolerance;
+}
+
 void CortexTemporalPooler::logItems() {
 	logger.logDebug( String( "logItems: temporal pooler items, total=" ) + items.count() );
 	for( int k = 0; k < items.count(); k++ ) {
 		CortexTemporalPoolerItem *item = items[ k ];
 		item -> logItem();
 	}
+
+	// stream data
+	String logmsg = "stream data: ";
+	for( int k = 0; k < streamDataSize; k++ ) {
+		if( k > 0 )
+			logmsg += ".";
+		logmsg += streamData[ k ];
+	}
+	logger.logDebug( logmsg );
 }

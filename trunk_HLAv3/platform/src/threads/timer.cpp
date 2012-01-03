@@ -26,9 +26,16 @@ void Timer::createRunWindowSec( int p_waitTimeSec ) {
 }
 
 // time passed from process start - in ms
-int Timer::timeSinceProcessStartMs() {
+int Timer::clockSinceProcessStartMs() {
 	long timeNow = clock();
 	return( ( int )( timeNow * 1000 / CLOCKS_PER_SEC ) );
+}
+
+RFC_INT64 Timer::getCurrentTimeMillis() {
+	RFC_INT64 ticksNow;
+	rfc_hpt_setpoint( &ticksNow );
+	RFC_INT64 msNow = rfc_hpt_ticks2ms( ticksNow );
+	return( msNow );
 }
 
 int Timer::timeCreatedMs() {

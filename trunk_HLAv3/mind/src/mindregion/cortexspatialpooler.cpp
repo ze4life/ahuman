@@ -43,6 +43,8 @@ int CortexSpatialPooler::matchPattern( NeuroPool *p_pool , int *patternForgotten
 	int difference;
 	CortexSpatialPoolerItem *bestItem = findBestMatch( item , &difference );
 	if( bestItem != NULL ) {
+		logger.logDebug( String( "matchPattern: matched item id=" ) + bestItem -> getId() + ", difference=" + difference );
+
 		if( difference <= matchTolerancePattern ) {
 			delete item;
 			bestItem -> addUsage();

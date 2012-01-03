@@ -57,6 +57,18 @@ int CortexTemporalPoolerItem::getDifferencePercentage( int *data , int dataSize 
 	return( diffPercentage );
 }
 
+int CortexTemporalPoolerItem::getPartialDifferencePercentage( int *data , int dataSize ) {
+	int len = min( dataSize , streamDataSize );
+	int diff = 0;
+
+	for( int k = 0; k < len; k++ )
+		if( data[ k ] != streamData[ k ] )
+			diff++;
+
+	int diffPercentage = ( diff * 100 ) / dataSize;
+	return( diffPercentage );
+}
+
 void CortexTemporalPoolerItem::addUsage() {
 	usage++;
 }

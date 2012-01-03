@@ -66,9 +66,7 @@ void ExcitatoryLink::apply( NeuroSignal *srcData , NeuroPool *dstPool ) {
 	logger.logDebug( String( "apply " ) + opid + ": projecting NeuroLink, id=" + getId() + "..." );
 
 	// current timestamp
-	RFC_INT64 ticksNow;
-	rfc_hpt_setpoint( &ticksNow );
-	RFC_INT64 msNow = rfc_hpt_ticks2ms( ticksNow );
+	RFC_INT64 msNow = Timer::getCurrentTimeMillis();
 
 	// map source surface to target surface - as linear arrays
 	int dnx , dny;
@@ -103,7 +101,7 @@ void ExcitatoryLink::apply( NeuroSignal *srcData , NeuroPool *dstPool ) {
 		neurovt_state currentCharge = lastCharge;
 			
 		if( msPassed < NEURON_FULL_RELAX_ms ) {
-			currentCharge -= ( ( neurovt_state )msPassed ) * NEURON_DISCHARGE_RATE_pQ_per_ms;
+			currentCharge -= ( ( neurovt_state )msPassed ) * NEURON_POTENTIAL_DISCHARGE_RATE_pQ_per_ms;
 			if( currentCharge < 0 )
 				currentCharge = 0;
 		}
@@ -117,7 +115,7 @@ void ExcitatoryLink::apply( NeuroSignal *srcData , NeuroPool *dstPool ) {
 		dv -> potential = currentCharge;
 
 		// check need to generate feed-forward
-		if( currentCharge > NEURON_FIRE_THRESHOLD_pQ )
+		if( currentCharge >= NEURON_FIRE_POTENTIAL_THRESHOLD_pQ )
 			generateOutputs = true;
 
 		logger.logDebug( String( "apply " ) + opid + ": spos=" + sk + ", dpos=" + dk + ", lastCharge=" + lastCharge + ", newCharge=" + currentCharge + ", actionPotential=" + actionPotential + ", msPassed=" + ( int )msPassed );

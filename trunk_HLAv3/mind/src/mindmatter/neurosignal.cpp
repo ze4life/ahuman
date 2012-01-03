@@ -53,12 +53,28 @@ void NeuroSignal::createFromPool( NeuroPool *pool ) {
 	NEURON_DATA *sv = poolData.getData();
 	neurovt_signal *dv = data.getData();
 
+	RFC_INT64 msNow = Timer::getCurrentTimeMillis();
+	ts = msNow;
+
 	for( int sk = 0; sk < sn; sk++ , sv++ ) {
 		// map position
 		int dk = ( int )( ( sk * (RFC_INT64)dn ) / sn );
 
+		// get current state and update timestamp
+		RFC_INT64 msPassed = msNow - sv -> updated;
+		neurovt_state state = sv -> output;
+
+		// adjust state by timestamp
+		if( msPassed < NEURON_FULL_RELAX_ms ) {
+			state -= ( ( neurovt_state )msPassed ) * NEURON_OUTPUT_DISCHARGE_RATE_pQ_per_ms;
+			if( state < 0 )
+				state = 0;
+		}
+		else
+			state = 0;
+
 		// ignore absense of signal
-		dv[ dk ] = ( sv -> output == 0 )? 0 : NEURON_FIRE_IMPULSE_pQ;
+		dv[ dk ] = ( state < NEURON_FIRE_OUTPUT_THRESHOLD_pQ )? 0 : NEURON_FIRE_IMPULSE_pQ;
 
 		// clear fire state
 		sv -> output = 0;
