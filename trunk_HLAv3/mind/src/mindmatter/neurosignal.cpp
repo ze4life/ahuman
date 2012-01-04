@@ -1,42 +1,69 @@
 #include <ah_mind.h>
 #include <ah_mind_impl.h>
 
+static const int DEFAULT_ARRAY_SIZE = 256;
+
 /*#########################################################################*/
 /*#########################################################################*/
 
 NeuroSignal::NeuroSignal() {
+	ts = 0;
+	sizeX = 0;
+	sizeY = 0;
 }
 
-NeuroSignal::NeuroSignal( int sizeX , int sizeY ) {
-	data.create( sizeX , sizeY );
+NeuroSignal::NeuroSignal( int p_sizeX , int p_sizeY ) {
+	ts = 0;
+	sizeX = p_sizeX;
+	sizeY = p_sizeY;
+	data.allocate( DEFAULT_ARRAY_SIZE );
 }
 
 NeuroSignal::NeuroSignal( NeuroSignal *src ) {
-	data.copy( src -> getVectorData() );
+	extId = src -> extId;
+	ts = src -> ts;
+	sizeX = src -> sizeX;
+	sizeY = src -> sizeY;
+	data.copy( src -> data );
 }
 
 NeuroSignal::~NeuroSignal() {
 }
 
-void NeuroSignal::create( int sizeX , int sizeY ) {
-	data.create( sizeX , sizeY );
+int *NeuroSignal::getIndexRawData() {
+	return( data.getAll() );
 }
 
-neurovt_signal *NeuroSignal::getRawData() {
-	return( data.getData() );
+void NeuroSignal::create( int p_sizeX , int p_sizeY ) {
+	sizeX = p_sizeX;
+	sizeY = p_sizeY;
+	data.allocate( DEFAULT_ARRAY_SIZE );
+	data.clear();
 }
 
-TwoIndexArray<neurovt_signal>& NeuroSignal::getVectorData() {
-	return( data );
+void NeuroSignal::setTs( RFC_INT64 p_ts ) {
+	ts = p_ts;
+}
+
+void NeuroSignal::setExtId( String id ) {
+	extId = id;
+}
+
+String NeuroSignal::getExtId() {
+	return( extId );
 }
 
 void NeuroSignal::getSizeInfo( int *nx , int *ny ) {
-	*nx = data.getN1();
-	*ny = data.getN2();
+	*nx = sizeX;
+	*ny = sizeY;
 }
 
-int NeuroSignal::getSize() {
-	return( data.getN1() * data.getN2() );
+int NeuroSignal::getMaxSize() {
+	return( sizeX * sizeY );
+}
+
+int NeuroSignal::getDataSize() {
+	return( data.count() );
 }
 
 void NeuroSignal::createFromPool( NeuroPool *pool ) {
@@ -45,21 +72,19 @@ void NeuroSignal::createFromPool( NeuroPool *pool ) {
 	int sn = snx * sny;
 	TwoIndexArray<NEURON_DATA>& poolData = pool -> getNeuronData();
 
-	int dnx = data.getN1();
-	int dny = data.getN2();
-	int dn = dnx * dny;
+	create( snx , sny );
+	data.clear();
+	int *dv = data.getAll();
+	int aSig = data.size();
+	int nSig = 0;
 
-	// project pool data to signal data
+	// copy activated pool data to signal data
 	NEURON_DATA *sv = poolData.getData();
-	neurovt_signal *dv = data.getData();
 
 	RFC_INT64 msNow = Timer::getCurrentTimeMillis();
 	ts = msNow;
 
 	for( int sk = 0; sk < sn; sk++ , sv++ ) {
-		// map position
-		int dk = ( int )( ( sk * (RFC_INT64)dn ) / sn );
-
 		// get current state and update timestamp
 		RFC_INT64 msPassed = msNow - sv -> updated;
 		neurovt_state state = sv -> output;
@@ -73,10 +98,66 @@ void NeuroSignal::createFromPool( NeuroPool *pool ) {
 		else
 			state = 0;
 
-		// ignore absense of signal
-		dv[ dk ] = ( state < NEURON_FIRE_OUTPUT_THRESHOLD_pQ )? 0 : NEURON_FIRE_IMPULSE_pQ;
+		// process only at or above threshold
+		if( state >= NEURON_FIRE_OUTPUT_THRESHOLD_pQ ) {
+			// clear fire state
+			sv -> output = 0;
 
-		// clear fire state
-		sv -> output = 0;
+			// allocate signal data
+			if( nSig == aSig ) {
+				aSig *= 2;
+				data.allocate( aSig );
+				dv = data.getAll();
+			}
+
+			// add to signal
+			*dv++ = sk;
+			nSig++;
+		}
 	}
+
+	data.setCount( nSig );
 }
+
+String NeuroSignal::getBinaryDataString() {
+	int sn = data.count();
+	String ds;
+
+	String sz = "0";
+	for( int k = 0; k < sn; k++ ) {
+		int idx = data.get( k );
+
+		// zeros before
+		int nz = ( k == 0 )? data.get( k ) : data.get( k ) - data.get( k - 1 ) - 1; 
+		if( nz > 0 )
+			ds += sz.replicate( nz );
+
+		ds += '1';
+	}
+
+	return( ds );
+}
+
+String NeuroSignal::getNumberDataString() {
+	int sn = data.count();
+	String ds;
+
+	for( int k = 0; k < sn; k++ ) {
+		int idx = data.get( k );
+		if( k > 0 )
+			ds += ".";
+
+		ds += idx;
+	}
+
+	return( ds );
+}
+
+void NeuroSignal::clearData() {
+	data.clear();
+}
+
+void NeuroSignal::addIndexData( int index ) {
+	data.add( index );
+}
+

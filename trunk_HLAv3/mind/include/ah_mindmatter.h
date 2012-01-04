@@ -39,15 +39,30 @@ public:
 	void create( int sizeX , int sizeY );
 	void createFromPool( NeuroPool *pool );
 
-	neurovt_signal *getRawData();
-	TwoIndexArray<neurovt_signal>& getVectorData();
+	void setTs( RFC_INT64 ts );
+	void setExtId( String id );
+	String getExtId();
 	void getSizeInfo( int *nx , int *ny );
-	int getSize();
+	int getMaxSize();
+	int getDataSize();
+	String getBinaryDataString();
+	String getNumberDataString();
+	int *getIndexRawData();
+
+	void clearData();
+	void addIndexData( int index );
 
 private:
 // utility
+	String extId;
 	RFC_INT64 ts;
-	TwoIndexArray<neurovt_signal> data;
+
+	// original 2D index space
+	int sizeX;
+	int sizeY;
+
+	// sorted list of activated 1D-indexes in source data
+	FlatList<int> data;
 };
 
 /*#########################################################################*/
@@ -64,7 +79,7 @@ public:
 	TwoIndexArray<NEURON_DATA>& getNeuronData();
 	void getNeuronDimensions( int *nx , int *ny );
 	void startProjection( NeuroLink *link );
-	void finishProjection( NeuroLink *link );
+	void finishProjection( NeuroLink *link , NeuroSignal *signal );
 
 private:
 // utilities
@@ -107,7 +122,7 @@ public:
 	void setTransmitter( String transmitter );
 	void create( NeuroLinkSource *p_source , NeuroLinkTarget *p_target );
 
-	virtual void apply( NeuroSignal *srcData , NeuroPool *dstPool ) = 0;
+	virtual NeuroSignal *apply( NeuroSignal *srcData , NeuroPool *dstPool ) = 0;
 
 public:
 // utilities
@@ -152,11 +167,9 @@ public:
 	int getSizeY();
 
 	void addNeuroLink( NeuroLink *link );
-	void setSourceSignal( NeuroSignal *data );
 	void setSourcePool( NeuroPool *pool );
-	NeuroSignal *getSourceSignal( NeuroLink *link );
-
-	void sendMessage();
+	void sendMessage( NeuroSignal *sourceSignal );
+	NeuroSignal *getLinkSignal( NeuroLink *link );
 
 private:
 // references
@@ -164,7 +177,6 @@ private:
 	String entity;
 	int sizeX;
 	int sizeY;
-	NeuroSignal *sourceSignal;
 	NeuroPool *sourcePool;
 	ClassList<NeuroLink> links;
 

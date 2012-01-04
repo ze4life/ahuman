@@ -99,16 +99,15 @@ int CortexTemporalPoolerItem::getSpatialPattern( int index ) {
 }
 
 void CortexTemporalPoolerItem::logItem() {
-	String logmsg = "id=";
-	logmsg += id;
-	logmsg += ", usage=";
-	logmsg += usage;
-	logmsg += ", state=";
+	LOGDEBUG( String( "id=" ) + id + ", usage=" + usage + ", state=" + getNumberedState() );
+}
 
+String CortexTemporalPoolerItem::getNumberedState() {
+	String ps;
 	for( int k = 0; k < streamDataSize; k++ ) {
 		if( k > 0 )
-			logmsg += ".";
-		logmsg += streamData[ k ];
+			ps += ".";
+		ps += streamData[ k ];
 	}
-	logger.logDebug( logmsg );
+	return( ps );
 }

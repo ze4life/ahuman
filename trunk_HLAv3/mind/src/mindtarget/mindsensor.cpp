@@ -7,6 +7,7 @@
 MindSensor::MindSensor( SensorArea *p_area )
 :	MindRegion( p_area )
 {
+	msgId = 0;
 	pollState = false;
 	pollNextMs = 0;
 	pollIntervalMs = 0;
@@ -55,9 +56,6 @@ void MindSensor::createRegion() {
 	targetSensoryControl = new NeuroLinkTarget( this );
 	targetSensoryControl -> setHandler( ( MindRegion::NeuroLinkTargetHandler )&MindSensor::applySensorControl );
 
-	sourceSensoryData -> setSourceSignal( memorySensorySignal );
-	sourceSensoryControlFeedback -> setSourceSignal( memorySensoryFeedbackSignal );
-
 	int sizeX , sizeY;
 	memorySensorySignal -> getSizeInfo( &sizeX , &sizeY );
 	logger.logDebug( String( "createRegion: created sensor region: signalSize=" ) + getSignalSize() );
@@ -87,27 +85,19 @@ void MindSensor::destroyRegion() {
 	targetSensoryControl = NULL;
 }
 
-void MindSensor::processSensorData() {
+void MindSensor::processSensorData( String id ) {
+	++msgId;
+	memorySensorySignal -> setExtId( id );
+	memorySensorySignal -> setTs( Timer::getCurrentTimeMillis() );
+
 	// log sensor message
-	neurovt_signal *s = memorySensorySignal -> getRawData();
-	int sn = memorySensorySignal -> getSize();
-	String logmsg = "processSensorData: send signal=";
-	for( int k = 0; k < sn; k++ ) {
-		char x;
-		if( s[ k ] == 0 )
-			x = '0';
-		else
-		if( s[ k ] < NEURON_FIRE_IMPULSE_pQ )
-			x = 'l';
-		else
-			x = 'h';
-
-		logmsg += x;
+	logger.logInfo( "processSensorData: send signal id=" + id );
+	if( logger.isLogAll() ) {
+		String logmsg = "processSensorData: send data signal id=" + id + ", data=" + memorySensorySignal -> getNumberDataString();
+		logger.logDebug( logmsg );
 	}
-	logmsg.trimTrailing( '0' );
 
-	logger.logDebug( logmsg );
-	sourceSensoryData -> sendMessage();
+	sourceSensoryData -> sendMessage( memorySensorySignal );
 }
 
 bool MindSensor::getPollState() {
@@ -141,9 +131,9 @@ NeuroLinkTarget *MindSensor::getNeuroLinkTarget( String entity , MindNetInfo *ne
 void MindSensor::applySensorControl( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *srcData ) {
 	// TBD: process control signal
 	// generate control feedback message
-	sourceSensoryControlFeedback -> sendMessage();
+	sourceSensoryControlFeedback -> sendMessage( memorySensoryFeedbackSignal );
 }
 
 int MindSensor::getSignalSize() {
-	return( memorySensorySignal -> getSize() );
+	return( memorySensorySignal -> getMaxSize() );
 }

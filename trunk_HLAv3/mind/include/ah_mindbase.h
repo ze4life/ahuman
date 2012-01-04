@@ -9,8 +9,7 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-// signal intensity: frequency, Hz, normal value=10, high frequency=100
-typedef unsigned char neurovt_signal;
+// signal intensity
 #define NEUROVT_NORMAL_SIGNAL_STRENGTH 10
 
 // membrane, action potential, absolute charge value in nQ

@@ -79,6 +79,8 @@ public:
 	void getPoolFromState( NeuroPool *pool );
 	int getDifferencePercentage( CortexSpatialPoolerItem *item , neurovt_state toleranceNeuronState );
 	void logItem();
+	String getBinaryState();
+	String getNumberedState();
 
 private:
 	int id;
@@ -134,6 +136,7 @@ public:
 	int getPartialDifferencePercentage( int *data , int dataSize );
 	int getDataSize();
 	int getSpatialPattern( int index );
+	String getNumberedState();
 	void logItem();
 
 private:

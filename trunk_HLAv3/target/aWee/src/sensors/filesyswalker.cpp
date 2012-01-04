@@ -77,6 +77,7 @@ private:
 
 	HANDLE changeHandle;
 	bool continueRunFlag;
+	int sensorDataId;
 
 public:
 	SensorFileSysWalker( SensorArea *area );
@@ -140,8 +141,8 @@ private:
 	void runThreadReader( void *p_arg );
 	void continueRead();
 
-	unsigned char neuronToChar( neurovt_signal *sv , unsigned char *strength );
-	void charToNeuron( neurovt_signal *sv , int pos , unsigned char v );
+	unsigned char getCommand( NeuroSignal *signal , unsigned char *strength );
+	void charToSignal( NeuroSignal *signal , int pos , unsigned char v );
 };
 
 // #############################################################################
@@ -180,6 +181,8 @@ SensorFileSysWalker::SensorFileSysWalker( SensorArea *p_area )
 	curDisk = getFirstDisk();
 	curDir = getRootDiskDirectory( curDisk );
 	curFocusType = FOCUS_DIR;
+
+	sensorDataId = 0;
 }
 
 SensorFileSysWalker::~SensorFileSysWalker() {
@@ -239,10 +242,8 @@ bool SensorFileSysWalker::executeSensorControl( NeuroSignal *signal ) {
 	bool res = false;
 	try {
 		// possible commands are - focus up, down, increase, decrease, changedepth (1-5)
-		neurovt_signal *sv = signal -> getRawData();
-
 		unsigned char l_strength;
-		unsigned char l_cmd = neuronToChar( sv , &l_strength );
+		unsigned char l_cmd = getCommand( signal , &l_strength );
 
 		curFocusCommand = ( FOCUS_COMMAND )l_cmd;
 		if( curFocusCommand > COMMAND_LAST )
@@ -542,13 +543,14 @@ String SensorFileSysWalker::getCurFocusArea() {
 }
 
 void SensorFileSysWalker::sendSignal( int action , String value ) {
-	logger.logInfo( String( "sendSignal: action=" ) + action + ", value=" + value );
+	sensorDataId++;
+	logger.logInfo( String( "sendSignal: sensory data id=" ) + sensorDataId + ", action=" + action + ", value=" + value );
 
 	NeuroSignal *signal = MindSensor::getSensorySignal();
-	neurovt_signal *sv = signal -> getRawData();
+	signal -> clearData();
 
 	// add action info
-	charToNeuron( sv , 0 , action );
+	charToSignal( signal , 0 , action );
 
 	// set value by chunks split by directory delimiter
 	char *p = value.getBuffer();
@@ -575,13 +577,13 @@ void SensorFileSysWalker::sendSignal( int action , String value ) {
 		// set chunk item
 		int len = pn - p;
 		for( int k = 0; k < len; k++ )
-			charToNeuron( sv , k + 1 , p[ k ] );
+			charToSignal( signal , k + 1 , p[ k ] );
 		for( int k = len + 1; k < SENSOR_WIDTH_DATA; k++ )
-			charToNeuron( sv , k , 0 );
+			charToSignal( signal , k , 0 );
 
 		// produce item flow
-		// logger.logDebug( String( "sendSignal: processSensorData - " ) + String( p , next - p ) );
-		MindSensor::processSensorData();
+		String msgId = String( "s" ) + sensorDataId + "m" + nSent;
+		MindSensor::processSensorData( msgId );
 		nSent++;
 		p = next;
 	}
@@ -880,71 +882,21 @@ void SensorFileSysWalker::waitChangeEventAndExecute() {
 	unlock();
 }
 
-unsigned char SensorFileSysWalker::neuronToChar( neurovt_signal *sv , unsigned char *p_strength ) {
-	// 8 bytes, starting with lowest
+unsigned char SensorFileSysWalker::getCommand( NeuroSignal *signal , unsigned char *p_strength ) {
 	unsigned char l_v = 0;
 	int l_strength = 0;
-	int l_n = 0;
-	if( sv[0] ) {
-		l_v |= ( unsigned char )0x01;
-		l_strength += sv[0];
-		l_n++;
-	}
-	if( sv[1] ) {
-		l_v |= ( unsigned char )0x02;
-		l_strength += sv[1];
-		l_n++;
-	}
-	if( sv[2] ) {
-		l_v |= ( unsigned char )0x04;
-		l_strength += sv[2];
-		l_n++;
-	}
-	if( sv[3] ) {
-		l_v |= ( unsigned char )0x08;
-		l_strength += sv[3];
-		l_n++;
-	}
-	if( sv[4] ) {
-		l_v |= ( unsigned char )0x10;
-		l_strength += sv[4];
-		l_n++;
-	}
-	if( sv[5] ) {
-		l_v |= ( unsigned char )0x20;
-		l_strength += sv[5];
-		l_n++;
-	}
-	if( sv[6] ) {
-		l_v |= ( unsigned char )0x40;
-		l_strength += sv[6];
-		l_n++;
-	}
-	if( sv[7] ) {
-		l_v |= ( unsigned char )0x80;
-		l_strength += sv[7];
-		l_n++;
-	}
-	if( l_n )
-		l_strength /= l_n;
-
 	*p_strength = l_strength;
 	return( l_v );
 }
 
-void SensorFileSysWalker::charToNeuron( neurovt_signal *sv , int pos , unsigned char v ) {
+void SensorFileSysWalker::charToSignal( NeuroSignal *signal , int pos , unsigned char v ) {
 	const int BYTE_SIZE=8;
-	sv += pos * BYTE_SIZE;
 
-	// NEUROVT_NORMAL_SIGNAL_STRENGTH
-	*sv++ = ( v & 0x01 )? NEUROVT_NORMAL_SIGNAL_STRENGTH : 0;
-	*sv++ = ( v & 0x02 )? NEUROVT_NORMAL_SIGNAL_STRENGTH : 0;
-	*sv++ = ( v & 0x04 )? NEUROVT_NORMAL_SIGNAL_STRENGTH : 0;
-	*sv++ = ( v & 0x08 )? NEUROVT_NORMAL_SIGNAL_STRENGTH : 0;
-	*sv++ = ( v & 0x10 )? NEUROVT_NORMAL_SIGNAL_STRENGTH : 0;
-	*sv++ = ( v & 0x20 )? NEUROVT_NORMAL_SIGNAL_STRENGTH : 0;
-	*sv++ = ( v & 0x40 )? NEUROVT_NORMAL_SIGNAL_STRENGTH : 0;
-	*sv++ = ( v & 0x80 )? NEUROVT_NORMAL_SIGNAL_STRENGTH : 0;
+	// lowest bit has minimal index
+	unsigned int x = 1;
+	for( int k = 0; k < 8; k++ , x <<= 1 )
+		if( v & x )
+			signal -> addIndexData( pos * BYTE_SIZE + k );
 }
 
 // #############################################################################

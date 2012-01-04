@@ -26,17 +26,19 @@ TwoIndexArray<NEURON_DATA>& NeuroPool::getNeuronData() {
 void NeuroPool::startProjection( NeuroLink *link ) {
 }
 
-void NeuroPool::finishProjection( NeuroLink *link ) {
+void NeuroPool::finishProjection( NeuroLink *link , NeuroSignal *signal ) {
 	// check potential, fire neurons
-	NEURON_DATA *data = neurons.getData();
-	int n = neurons.count();
+	NEURON_DATA *dv = neurons.getData();
+	int n = signal -> getDataSize();
+	int *sv = signal -> getIndexRawData();
 
-	for( int k = 0; k < n; k++ , data++ ) {
-		if( data -> potential >= NEURON_FIRE_POTENTIAL_THRESHOLD_pQ ) {
-			// fire, keep update timestamp not changed - the same for action potential and state
-			data -> output = NEURON_FIRE_OUTPUT_BY_POTENTIAL_pQ;
-			data -> potential = 0;
-		}
+	for( int k = 0; k < n; k++ ) {
+		int index = *sv++;
+
+		// fire, keep update timestamp not changed - the same for action potential and state
+		NEURON_DATA *data = dv + index;
+		data -> output = NEURON_FIRE_OUTPUT_BY_POTENTIAL_pQ;
+		data -> potential = 0;
 	}
 }
 

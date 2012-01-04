@@ -10,7 +10,7 @@ public:
 	virtual const char *getClass() { return( "ExcitatoryLink" ); };
 
 public:
-	virtual void apply( NeuroSignal *srcData , NeuroPool *dstPool );
+	virtual NeuroSignal *apply( NeuroSignal *srcData , NeuroPool *dstPool );
 
 private:
 	int opid;
@@ -29,7 +29,7 @@ ExcitatoryLink::ExcitatoryLink( MindRegionLink *p_regionLink ) : NeuroLink( p_re
 	opid = 0;
 }
 
-void ExcitatoryLink::apply( NeuroSignal *srcData , NeuroPool *dstPool ) {
+NeuroSignal *ExcitatoryLink::apply( NeuroSignal *srcData , NeuroPool *dstPool ) {
 	opid++;
 
 	// signal value is encoded strength of neural impulse
@@ -63,7 +63,7 @@ void ExcitatoryLink::apply( NeuroSignal *srcData , NeuroPool *dstPool ) {
 	dstPool -> startProjection( this );
 
 	// log 
-	logger.logDebug( String( "apply " ) + opid + ": projecting NeuroLink, id=" + getId() + "..." );
+	LOGDEBUG( String( "apply " ) + opid + ": projecting NeuroLink, id=" + getId() + "..." );
 
 	// current timestamp
 	RFC_INT64 msNow = Timer::getCurrentTimeMillis();
@@ -79,17 +79,16 @@ void ExcitatoryLink::apply( NeuroSignal *srcData , NeuroPool *dstPool ) {
 	int snx , sny;
 	srcData -> getSizeInfo( &snx , &sny );
 	int sn = snx * sny;
-	neurovt_signal *sv = srcData -> getRawData();
 
-	bool generateOutputs = false;
-	for( int sk = 0; sk < sn; sk++ , sv++ ) {
+	// read activated indexes
+	int n = srcData -> getDataSize();
+	int *sv = srcData -> getIndexRawData();
+
+	NeuroSignal *ffSignal = new NeuroSignal( dnx , dny );
+	for( int k = 0; k < n; k++ ) {
 		// get value and project
+		int sk = *sv++;
 		int dk = ( int )( ( sk * (RFC_INT64)dn ) / sn );
-		neurovt_signal actionPotential = *sv;
-
-		// ignore absense of signal
-		if( actionPotential == 0 )
-			continue;
 
 		// get current potential and handle timestamps
 		NEURON_DATA *dv = dvdata + dk;
@@ -109,21 +108,29 @@ void ExcitatoryLink::apply( NeuroSignal *srcData , NeuroPool *dstPool ) {
 			currentCharge = 0;
 
 		// add action potential
-		currentCharge += actionPotential * NEURON_FIRE_IMPULSE_pQ;
+		currentCharge += NEURON_FIRE_POTENTIAL_THRESHOLD_pQ;
 
 		// save new value
 		dv -> potential = currentCharge;
 
 		// check need to generate feed-forward
 		if( currentCharge >= NEURON_FIRE_POTENTIAL_THRESHOLD_pQ )
-			generateOutputs = true;
+			ffSignal -> addIndexData( dk );
 
-		logger.logDebug( String( "apply " ) + opid + ": spos=" + sk + ", dpos=" + dk + ", lastCharge=" + lastCharge + ", newCharge=" + currentCharge + ", actionPotential=" + actionPotential + ", msPassed=" + ( int )msPassed );
+		LOGDEBUG( String( "apply " ) + opid + ": spos=" + sk + ", dpos=" + dk + ", lastCharge=" + lastCharge + ", newCharge=" + currentCharge + ", msPassed=" + ( int )msPassed );
 	}
 
 	// log 
-	logger.logDebug( String( "apply " ) + opid + ": NeuroLink projected, id=" + getId() + ", generateOutputs=" + generateOutputs );
+	LOGDEBUG( String( "apply " ) + opid + ": NeuroLink projected, id=" + getId() + ", neurons affected count=" + ffSignal -> getDataSize() );
 
 	// finish projection
-	dstPool -> finishProjection( this );
+	dstPool -> finishProjection( this , ffSignal );
+
+	// check signal is required
+	if( ffSignal -> getDataSize() == 0 ) {
+		delete ffSignal;
+		return( NULL );
+	}
+
+	return( ffSignal );
 }

@@ -43,6 +43,12 @@ void MindActiveMemory::stop() {
 void MindActiveMemory::execute( MindMessage *msg ) {
 	NeuroLink *link = msg -> getNeuroLink();
 	NeuroSignal *sourceData = msg -> getMsgData();
+	String extId = sourceData -> getExtId();
+	if( extId.isEmpty() ) {
+		extId = msg -> getSourceMessageId();
+		sourceData -> setExtId( extId );
+	}
+
 	NeuroLinkTarget *target = link -> getTarget();
 
 	logger.logDebug( "execute: process link=" + link -> getId() + ", message id=" + msg -> getChannelMessageId() );

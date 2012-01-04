@@ -21,10 +21,10 @@ void NeuroLinkTarget::execute( NeuroLink *link , NeuroSignal *sourceData ) {
 		( region ->* pfn )( link , this , sourceData );
 	}
 	catch( RuntimeException& e ) {
-		logger.logError( "execute: exception in handling message for NeuroLink id=" + link -> getId() );
+		logger.logError( "execute: exception in handling signal id=" + sourceData -> getExtId() + " for NeuroLink id=" + link -> getId() );
 		logger.printStack( e );
 	}
 	catch( ... ) {
-		logger.logError( "execute: unknown exception in handling message for NeuroLink id=" + link -> getId() );
+		logger.logError( "execute: unknown exception in handling signal id=" + sourceData -> getExtId() + " for NeuroLink id=" + link -> getId() );
 	}
 }

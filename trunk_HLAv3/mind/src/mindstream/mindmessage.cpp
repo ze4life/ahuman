@@ -38,7 +38,9 @@ NeuroSignal *MindMessage::getMsgData() {
 		return( data ); 
 	
 	NeuroLinkSource *source = link -> getSource();
-	NeuroSignal *ns = source -> getSourceSignal( link );
+	NeuroSignal *ns = source -> getLinkSignal( link );
+
+	data = ns;
 	ASSERTMSG( ns != NULL , "MindMessage::getMsgData: returned NULL signal from NeuroLinkSource, NeuroLink id=" + link -> getId() );
 	return( ns );
 }

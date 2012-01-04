@@ -51,6 +51,10 @@ public:
 	T& getRef( int index ) const { ASSERT( index >= 0 && index < a ); return( data[ index ] ); };
 	T get( int index ) const { ASSERT( index >= 0 && index < a ); return( data[ index ] ); };
 
+	void copy( FlatList<T>& src ) {
+		set( src.data , src.n );
+	};
+
 	void insert( int index , const T& v ) {
 		ASSERT( index >= 0 && index <= n );
 		allocate( n + 1 );

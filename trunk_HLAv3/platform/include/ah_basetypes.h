@@ -75,6 +75,7 @@ public:
 	void trimStarting( char c );
 	void trimTrailing( char c );
 	int toInteger();
+	String replicate( int count ) const;
 
 	static String parseStringLiteral( const char *p );
 
