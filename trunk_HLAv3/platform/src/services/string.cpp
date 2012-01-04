@@ -501,6 +501,26 @@ void String::trimTrailing( char c ) {
 		remove( n );
 }
 
+String String::replicate( int count ) const {
+	String s;
+	if( v == NULL )
+		return( s );
+
+	ASSERTMSG( count >= 0 , "invalid count" );
+	int len = strlen( v );
+	if( len == 0 )
+		return( s );
+
+	int total = len * count;
+	s.resize( total );
+
+	for( int k = 0; k < count; k++ )
+		for( int m = k * len , z = 0; z < len; z++ )
+			s.v[ m + z ] = v[ z ];
+	s.v[ total ] = 0;
+	return( s );
+}
+
 // #############################################################################
 // #############################################################################
 

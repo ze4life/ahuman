@@ -99,11 +99,11 @@ void CortexSpatialPoolerItem::getPoolFromState( NeuroPool *pool ) {
 }
 
 void CortexSpatialPoolerItem::logItem() {
-	String logmsg = "id=";
-	logmsg += id;
-	logmsg += ", usage=";
-	logmsg += usage;
-	logmsg += ", state=";
+	LOGDEBUG( String( "id=" ) +  id + ", usage=" + usage + ", state=" + getBinaryState() );
+}
+
+String CortexSpatialPoolerItem::getBinaryState() {
+	String ps;
 
 	neurovt_state *s = state.getAll();
 	int n = state.count();
@@ -117,9 +117,33 @@ void CortexSpatialPoolerItem::logItem() {
 		else
 			x = 'h';
 
-		logmsg += x;
+		ps += x;
 	}
 	
-	logmsg.trimTrailing( '0' );
-	logger.logDebug( logmsg );
+	ps.trimTrailing( '0' );
+	return( ps );
+}
+
+String CortexSpatialPoolerItem::getNumberedState() {
+	String ps;
+
+	neurovt_state *s = state.getAll();
+
+	bool first = true;
+	int n = state.count();
+	for( int k = 0; k < n; k++ ) {
+		if( s[ k ] == 0 )
+			continue;
+
+		if( first )
+			first = false;
+		else
+			ps += ".";
+
+		ps += k;
+		if( s[ k ] < NEURON_FIRE_OUTPUT_THRESHOLD_pQ )
+			ps += 'l';
+	}
+	
+	return( ps );
 }

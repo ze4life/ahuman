@@ -245,18 +245,20 @@ void CortexTemporalPooler::setPredictionMatchTolerance( int tolerance ) {
 }
 
 void CortexTemporalPooler::logItems() {
-	logger.logDebug( String( "logItems: temporal pooler items, total=" ) + items.count() );
+	if( !logger.isLogAll() )
+		return;
+
+	// stream data
+	String sd;
+	for( int k = 0; k < streamDataSize; k++ ) {
+		if( k > 0 )
+			sd += ".";
+		sd += streamData[ k ];
+	}
+
+	logger.logDebug( String( "logItems: temporal pooler items, total=" ) + items.count() + ", streamData=" + sd );
 	for( int k = 0; k < items.count(); k++ ) {
 		CortexTemporalPoolerItem *item = items[ k ];
 		item -> logItem();
 	}
-
-	// stream data
-	String logmsg = "stream data: ";
-	for( int k = 0; k < streamDataSize; k++ ) {
-		if( k > 0 )
-			logmsg += ".";
-		logmsg += streamData[ k ];
-	}
-	logger.logDebug( logmsg );
 }

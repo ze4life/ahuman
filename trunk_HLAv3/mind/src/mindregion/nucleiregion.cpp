@@ -31,7 +31,6 @@ private:
 // own data
 	NeuroLinkSource *source;
 	NeuroLinkTarget *target;
-	NeuroSignal *sourceSignal;
 	NeuroPool neuroPool;
 };
 
@@ -54,7 +53,6 @@ NucleiRegion::NucleiRegion( MindArea *p_area )
 
 	source = NULL;
 	target = NULL;
-	sourceSignal = NULL;
 }
 
 void NucleiRegion::createNucleiRegion( NucleiRegionInfo *info ) {
@@ -71,9 +69,6 @@ void NucleiRegion::createRegion() {
 
 	int nx , ny;
 	neuroPool.getNeuronDimensions( &nx , &ny );
-	sourceSignal = new NeuroSignal();
-	sourceSignal -> create( nx , ny );
-	source -> setSourceSignal( sourceSignal );
 	logger.logDebug( String( "createRegion: create nuclei region: nx=" ) + nx + ", ny=" + ny );
 }
 
@@ -89,12 +84,9 @@ void NucleiRegion::destroyRegion() {
 		delete source;
 	if( target != NULL )
 		delete target;
-	if( sourceSignal != NULL )
-		delete sourceSignal;
 
 	source = NULL;
 	target = NULL;
-	sourceSignal = NULL;
 }
 
 // NeuroLink support
@@ -108,12 +100,14 @@ NeuroLinkTarget *NucleiRegion::getNeuroLinkTarget( String entity , MindNetInfo *
 }
 
 void NucleiRegion::handleTargetMessage( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *data ) {
-	// execute default
-	link -> apply( data , &neuroPool );
+	logger.logInfo( "handleTargetMessage: handle signal id=" + data -> getExtId() + " for NeuroLink id=" + link -> getId() );
 
-	// update neurosignal
-	sourceSignal -> createFromPool( &neuroPool );
+	// execute default
+	NeuroSignal *signal = link -> apply( data , &neuroPool );
+	signal -> setExtId( data -> getExtId() );
 
 	// forward further
-	source -> sendMessage();
+	LOGDEBUG( "handleTargetMessage: send data signal id=" + signal -> getExtId() + ", data=" + signal -> getNumberDataString() );
+	source -> sendMessage( signal );
+	delete signal;
 }

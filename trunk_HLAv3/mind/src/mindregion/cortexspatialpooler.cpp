@@ -38,14 +38,16 @@ void CortexSpatialPooler::setProtectedUsage( int usage ) {
 int CortexSpatialPooler::matchPattern( NeuroPool *p_pool , int *patternForgotten ) {
 	CortexSpatialPoolerItem *item = new CortexSpatialPoolerItem();
 	item -> setStateFromPool( p_pool );
+	LOGDEBUG( String( "matchPattern: input=" ) + item -> getNumberedState() );
 
 	// find closest match
 	int difference;
 	CortexSpatialPoolerItem *bestItem = findBestMatch( item , &difference );
 	if( bestItem != NULL ) {
-		logger.logDebug( String( "matchPattern: matched item id=" ) + bestItem -> getId() + ", difference=" + difference );
-
 		if( difference <= matchTolerancePattern ) {
+			LOGDEBUG( String( "matchPattern: matched item id=" ) + bestItem -> getId() + ", difference=" + difference );
+			LOGDEBUG( String( "matchPattern: matched item data id=" ) + bestItem -> getId() + ", data=" + bestItem -> getNumberedState() );
+
 			delete item;
 			bestItem -> addUsage();
 			*patternForgotten = -1;
@@ -60,12 +62,14 @@ int CortexSpatialPooler::matchPattern( NeuroPool *p_pool , int *patternForgotten
 		item -> setId( id );
 		item -> addUsage();
 		*patternForgotten = -1;
+		LOGDEBUG( String( "matchPattern: not matched, added id=" ) + id );
 		return( id );
 	}
 
 	// check can free some
 	CortexSpatialPoolerItem *leastUsed = findLeastUsed();
 	if( leastUsed -> getUsage() >= protectedUsage ) {
+		LOGDEBUG( String( "matchPattern: not matched, unable to replace id=" ) + leastUsed -> getId() + ", usage=" + leastUsed -> getUsage() );
 		delete item;
 		*patternForgotten = -1;
 		return( -1 );
@@ -76,6 +80,7 @@ int CortexSpatialPooler::matchPattern( NeuroPool *p_pool , int *patternForgotten
 	item -> setId( id );
 	item -> addUsage();
 	items.set( id , item );
+	LOGDEBUG( String( "matchPattern: not matched, replaced id=" ) + leastUsed -> getId() + ", usage=" + leastUsed -> getUsage() );
 	delete leastUsed;
 
 	*patternForgotten = id;
@@ -124,6 +129,9 @@ CortexSpatialPoolerItem *CortexSpatialPooler::findLeastUsed() {
 }
 
 void CortexSpatialPooler::logItems() {
+	if( !logger.isLogAll() )
+		return;
+
 	logger.logDebug( String( "logItems: spatial pooler items, total=" ) + items.count() );
 	for( int k = 0; k < items.count(); k++ ) {
 		CortexSpatialPoolerItem *item = items[ k ];

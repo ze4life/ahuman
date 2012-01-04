@@ -162,7 +162,7 @@ public:
 	NeuroSignal *getSensorySignal();
 
 	// capture data and and send via NeuroLink
-	void processSensorData();
+	void processSensorData( String id );
 	// handler
 	void applySensorControl( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *srcData );
 
@@ -176,6 +176,7 @@ public:
 	
 private:
 // utility
+	int msgId;
 	// auto-polling
 	bool pollState;
 	int pollNextMs;
