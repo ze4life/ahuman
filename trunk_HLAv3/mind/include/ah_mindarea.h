@@ -48,6 +48,7 @@ public:
 	void exit();
 	void destroy();
 
+	String getId();
 	MindAreaInfo *getMindAreaInfo();
 	MindAreaNet *getMindNet( String net );
 	MindAreaNetInfo *getMindAreaNetInfo( String net );

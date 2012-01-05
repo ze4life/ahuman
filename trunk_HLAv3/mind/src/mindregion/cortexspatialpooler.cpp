@@ -35,9 +35,14 @@ void CortexSpatialPooler::setProtectedUsage( int usage ) {
 	protectedUsage = usage;
 }
 
-int CortexSpatialPooler::matchPattern( NeuroPool *p_pool , int *patternForgotten ) {
+int CortexSpatialPooler::matchPattern( NeuroSignal *excitedSignal , NeuroPool *p_pool , int *patternForgotten ) {
 	CortexSpatialPoolerItem *item = new CortexSpatialPoolerItem();
-	item -> setStateFromPool( p_pool );
+
+	// create item data from current pool state and generated signal
+	int cn = item -> setStateFromPool( p_pool );
+	cn += item -> addSignalState( excitedSignal );
+	ASSERTMSG( cn > 0 , "adding item without firing neurons" );
+
 	LOGDEBUG( String( "matchPattern: input=" ) + item -> getNumberedState() );
 
 	// find closest match

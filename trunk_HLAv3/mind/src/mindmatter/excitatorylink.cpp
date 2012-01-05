@@ -84,7 +84,10 @@ NeuroSignal *ExcitatoryLink::apply( NeuroSignal *srcData , NeuroPool *dstPool ) 
 	int n = srcData -> getDataSize();
 	int *sv = srcData -> getIndexRawData();
 
+	// create generated feed forward signal
 	NeuroSignal *ffSignal = new NeuroSignal( dnx , dny );
+	ffSignal -> setId( srcData -> getId() );
+
 	for( int k = 0; k < n; k++ ) {
 		// get value and project
 		int sk = *sv++;
@@ -93,8 +96,8 @@ NeuroSignal *ExcitatoryLink::apply( NeuroSignal *srcData , NeuroPool *dstPool ) 
 		// get current potential and handle timestamps
 		NEURON_DATA *dv = dvdata + dk;
 		neurovt_state lastCharge = dv -> potential;
-		RFC_INT64 msPassed = msNow - dv -> updated;
-		dv -> updated = msNow;
+		RFC_INT64 msPassed = msNow - dv -> updated_mp;
+		dv -> updated_mp = msNow;
 
 		// calculate current value of action potential
 		neurovt_state currentCharge = lastCharge;

@@ -21,7 +21,7 @@ public:
 	virtual NeuroLinkTarget *getNeuroLinkTarget( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
 
 public:
-	void createNucleiRegion( NucleiRegionInfo *info );
+	void createNucleiRegion( NucleiRegionInfo *info , String id );
 
 private:
 	// neurolink handler
@@ -39,8 +39,7 @@ private:
 
 MindRegion *MindService::createNucleiRegion( MindArea *area , String id , NucleiRegionInfo *info ) { 
 	NucleiRegion *region = new NucleiRegion( area ); 
-	region -> createNucleiRegion( info );
-	region -> create( id );
+	region -> createNucleiRegion( info , id );
 	return( region );
 }
 
@@ -55,11 +54,17 @@ NucleiRegion::NucleiRegion( MindArea *p_area )
 	target = NULL;
 }
 
-void NucleiRegion::createNucleiRegion( NucleiRegionInfo *info ) {
+void NucleiRegion::createNucleiRegion( NucleiRegionInfo *info , String p_id ) {
 	int totalSize = info -> getTotalSize();
 	ASSERTMSG( totalSize > 0 , "invalid totalSize, positive value expected" );
 	int sideSize = 2 * ( int )sqrt( ( double )totalSize );
+
+	neuroPool.setParent( this );
 	neuroPool.createNeurons( sideSize , sideSize );
+
+	// set identity
+	MindRegion::create( p_id );
+	neuroPool.setId( p_id + ".ff" );
 }
 
 void NucleiRegion::createRegion() {
@@ -100,14 +105,14 @@ NeuroLinkTarget *NucleiRegion::getNeuroLinkTarget( String entity , MindNetInfo *
 }
 
 void NucleiRegion::handleTargetMessage( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *data ) {
-	logger.logInfo( "handleTargetMessage: handle signal id=" + data -> getExtId() + " for NeuroLink id=" + link -> getId() );
+	logger.logInfo( "handleTargetMessage: handle signal id=" + data -> getId() + " for NeuroLink id=" + link -> getId() );
 
 	// execute default
 	NeuroSignal *signal = link -> apply( data , &neuroPool );
-	signal -> setExtId( data -> getExtId() );
+	signal -> setId( data -> getId() );
 
 	// forward further
-	LOGDEBUG( "handleTargetMessage: send data signal id=" + signal -> getExtId() + ", data=" + signal -> getNumberDataString() );
+	LOGDEBUG( "handleTargetMessage: send data signal id=" + signal -> getId() + ", data=" + signal -> getNumberDataString() );
 	source -> sendMessage( signal );
 	delete signal;
 }

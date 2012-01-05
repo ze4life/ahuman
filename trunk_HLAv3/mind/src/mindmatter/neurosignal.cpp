@@ -20,7 +20,7 @@ NeuroSignal::NeuroSignal( int p_sizeX , int p_sizeY ) {
 }
 
 NeuroSignal::NeuroSignal( NeuroSignal *src ) {
-	extId = src -> extId;
+	id = src -> id;
 	ts = src -> ts;
 	sizeX = src -> sizeX;
 	sizeY = src -> sizeY;
@@ -45,12 +45,12 @@ void NeuroSignal::setTs( RFC_INT64 p_ts ) {
 	ts = p_ts;
 }
 
-void NeuroSignal::setExtId( String id ) {
-	extId = id;
+void NeuroSignal::setId( String p_id ) {
+	id = p_id;
 }
 
-String NeuroSignal::getExtId() {
-	return( extId );
+String NeuroSignal::getId() {
+	return( id );
 }
 
 void NeuroSignal::getSizeInfo( int *nx , int *ny ) {
@@ -86,7 +86,7 @@ void NeuroSignal::createFromPool( NeuroPool *pool ) {
 
 	for( int sk = 0; sk < sn; sk++ , sv++ ) {
 		// get current state and update timestamp
-		RFC_INT64 msPassed = msNow - sv -> updated;
+		RFC_INT64 msPassed = msNow - sv -> updated_fs;
 		neurovt_state state = sv -> output;
 
 		// adjust state by timestamp
@@ -101,7 +101,7 @@ void NeuroSignal::createFromPool( NeuroPool *pool ) {
 		// process only at or above threshold
 		if( state >= NEURON_FIRE_OUTPUT_THRESHOLD_pQ ) {
 			// clear fire state
-			sv -> output = 0;
+			sv -> output = -NEURON_OUTPUT_DISCHARGE_RATE_pQ_per_ms * NEURON_FIRE_OUTPUT_SILENT_ms;
 
 			// allocate signal data
 			if( nSig == aSig ) {
@@ -161,3 +161,33 @@ void NeuroSignal::addIndexData( int index ) {
 	data.add( index );
 }
 
+void NeuroSignal::removeNotFiringIndexes() {
+	int *rp = data.getAll();
+	int *wp = rp;
+	int n = data.count();
+
+	// skip equal
+	while( n ) {
+		if( *rp++ < 0 ) {
+			rp--;
+			break;
+		}
+		n--;
+	}
+
+	wp = rp;
+
+	// remove count
+	int rc = 0;
+	int v;
+
+	while( n-- ) {
+		if( ( v = *rp++ ) >= 0 )
+			*wp++ = v;
+		else
+			rc++;
+	}
+
+	if( rc > 0 )
+		data.setCount( data.count() - rc );
+}

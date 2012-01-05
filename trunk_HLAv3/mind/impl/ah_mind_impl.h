@@ -10,8 +10,9 @@ class MindActiveMemoryObject;
 class MindSensorSetTracker;
 
 #define NEURON_FIRE_POTENTIAL_THRESHOLD_pQ				(( neurovt_state )70)
-#define NEURON_FIRE_OUTPUT_BY_POTENTIAL_pQ				(( neurovt_state )90)
-#define NEURON_FIRE_OUTPUT_THRESHOLD_pQ					(( neurovt_state )70)
+#define NEURON_FIRE_OUTPUT_BY_POTENTIAL_pQ				(( neurovt_state )70)
+#define NEURON_FIRE_OUTPUT_THRESHOLD_pQ					(( neurovt_state )65)
+#define NEURON_FIRE_OUTPUT_SILENT_ms					(( neurovt_state )10)
 #define NEURON_FIRE_IMPULSE_pQ							(( neurovt_state )10)
 #define NEURON_POTENTIAL_DISCHARGE_RATE_pQ_per_ms		(( neurovt_state )1)
 #define NEURON_OUTPUT_DISCHARGE_RATE_pQ_per_ms			(( neurovt_state )1)
@@ -75,7 +76,8 @@ public:
 	int getUsage();
 	void addUsage();
 	void setId( int p_id );
-	void setStateFromPool( NeuroPool *pool );
+	int setStateFromPool( NeuroPool *pool );
+	int addSignalState( NeuroSignal *signal );
 	void getPoolFromState( NeuroPool *pool );
 	int getDifferencePercentage( CortexSpatialPoolerItem *item , neurovt_state toleranceNeuronState );
 	void logItem();
@@ -98,7 +100,7 @@ public:
 	void setMatchTolerance( int tolerancePattern , int toleranceNeuronState );
 	void setProtectedUsage( int usage );
 
-	int matchPattern( NeuroPool *pool , int *patternForgotten );
+	int matchPattern( NeuroSignal *excitedSignal , NeuroPool *pool , int *patternForgotten );
 	bool getPattern( int pattern , NeuroPool *pool );
 	CortexSpatialPoolerItem *findBestMatch( CortexSpatialPoolerItem *data , int *difference );
 	CortexSpatialPoolerItem *findLeastUsed();

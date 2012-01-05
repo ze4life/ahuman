@@ -65,6 +65,10 @@ void MindArea::destroy() {
 	}
 }
 
+String MindArea::getId() {
+	return( info -> getAreaId() );
+}
+
 MindRegionSet *MindArea::getRegionSet() {
 	return( regionSet );
 }
