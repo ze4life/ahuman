@@ -13,5 +13,31 @@
 == Setup development environment ==
 
   * IDE - MS VisualStudio 2010 Express - see [DevelopmentEnvironment] (out of date, needs new IDE and project information)
-  * High Level Architecture has version, last is HLAv3 - it defines how code is split into build targets, codebase folders, and defines core set of classes. All classes, folders and build targets have been created and included into project build.
-  * Build is local from IDE, 
+  * High Level Architecture has version, last is HLAv3 - it defines how code is split into build targets, codebase folders, and defines core set of classes. All classes, folders and build targets projects have been created and included into build
+  * Build is local from IDE, contains 3 separate build targets - platform, mind, aWee
+  * Platform services are ready for use - providing generic functions like startup/shutdown, logging, configuring, thread management and alike
+  * Mind is sole part of codebase, and is a long-term target for coding
+  * aWee - is partial prototype of corresponding target from starting [aHuman] page
+
+== Freeze Vision ==
+
+  * High-level features of aHuman are available at [ProjectVision]
+  * Implementation vision is to use neurobiology data:
+   * high-level patterns - mind areas, their roles, connectivity and circuits
+   * middle-level design - copy from well-known building blocks of human mind - cortex region, nucleus, bundles of fibers
+   * low-level design - columnar design of cortex, temporal dynamics from action potentials, membrane potentials, firing spikes, fire delay
+
+== High-level design ==
+
+  * see [Architecture] - as a whole view, including component diagram
+  * see [MindArchitecture] - for mind architecture
+
+== Choose AI technology set for each of the component ==
+
+  * finally decided to ignore findings in classical AI technology, because it is side-shifted, using old-fashion neural networks, crude models, aimed to build practical applications in the field of weak AI
+  * aHuman neural networks need time dimension, two-way connectivity and specific middle-level design, which will direct networks to be effective and useful
+
+== Specify component interface ==
+
+  * it appears to be quite naive to build exact interface from the very beginning
+  * still for the platform, mind area, mind region, neural links the certain interface was created
