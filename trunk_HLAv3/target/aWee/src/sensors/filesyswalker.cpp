@@ -547,10 +547,6 @@ void SensorFileSysWalker::sendSignal( int action , String value ) {
 	logger.logInfo( String( "sendSignal: sensory data id=" ) + sensorDataId + ", action=" + action + ", value=" + value );
 
 	NeuroSignal *signal = MindSensor::getSensorySignal();
-	signal -> clearData();
-
-	// add action info
-	charToSignal( signal , 0 , action );
 
 	// set value by chunks split by directory delimiter
 	char *p = value.getBuffer();
@@ -573,6 +569,12 @@ void SensorFileSysWalker::sendSignal( int action , String value ) {
 			pn = p + spaceSize;
 			next = pn;
 		}
+
+		// create chunk signal
+		signal -> clearData();
+
+		// add action info
+		charToSignal( signal , 0 , action );
 
 		// set chunk item
 		int len = pn - p;
