@@ -266,7 +266,7 @@ void CortexRegion::handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroLin
 	int temporalspatialPatternMatched = temporalPooler -> matchPattern( spatialPatternMatched , &spatialPatternPredicted , &predictionProbability , &temporalPatternForgotten );
 
 	if( spatialPatternPredicted < 0 ) {
-		logger.logInfo( String( "handleFeedForwardNeuroLinkMessage: id=" ) + data -> getId() + ", spatialMatched=" + spatialPatternMatched + ", spatialExpected=" + spatialPatternExpected + ", temporalMatched=" + temporalspatialPatternMatched + ", no prediction" );
+		logger.logInfo( String( "handleFeedForwardNeuroLinkMessage: id=" ) + data -> getId() + ", spatialMatched=" + spatialPatternMatched + ", spatialExpected=" + spatialPatternExpected + ", temporalMatched=" + temporalspatialPatternMatched + ", spatialPredicted=-1, probability=" + matchProbability + "/-1" );
 
 		if( logger.isLogAll() ) {
 			spatialPooler -> logItems();
