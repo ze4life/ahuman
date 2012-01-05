@@ -15,21 +15,22 @@ void CortexSpatialPoolerItem::setId( int p_id ) {
 	id = p_id;
 }
 
-void CortexSpatialPoolerItem::setStateFromPool( NeuroPool *pool ) {
+int CortexSpatialPoolerItem::setStateFromPool( NeuroPool *pool ) {
 	TwoIndexArray<NEURON_DATA>& nd = pool -> getNeuronData();
 	int n = nd.getN1() * nd.getN2();
-	NEURON_DATA *pv = nd.getData();
+	NEURON_DATA *sv = nd.getData();
 
 	state.setCount( n );
-	neurovt_state *sv = state.getAll();
+	neurovt_state *dv = state.getAll();
 
 	RFC_INT64 msNow = Timer::getCurrentTimeMillis();
+	int cn = 0;
 	while( n-- ) {
 		// get state
-		neurovt_state state = pv -> output;
+		neurovt_state state = sv -> output;
 
 		// adjust by timestamp
-		RFC_INT64 msPassed = msNow - pv -> updated;
+		RFC_INT64 msPassed = msNow - sv -> updated_fs;
 		if( msPassed < NEURON_FULL_RELAX_ms ) {
 			state -= ( ( neurovt_state )msPassed ) * NEURON_OUTPUT_DISCHARGE_RATE_pQ_per_ms;
 			if( state < 0 )
@@ -38,11 +39,30 @@ void CortexSpatialPoolerItem::setStateFromPool( NeuroPool *pool ) {
 		else
 			state = 0;
 
-		pv++;
+		sv++;
 
 		// copy state
-		*sv++ = state;
+		*dv++ = state;
+		if( state > 0 )
+			cn++;
 	}
+
+	return( cn );
+}
+
+int CortexSpatialPoolerItem::addSignalState( NeuroSignal *signal ) {
+	int cn = 0;
+	int *sv = signal -> getIndexRawData();
+	int n = signal -> getDataSize();
+	cn = n;
+	neurovt_state *dv = state.getAll();
+
+	while( n-- ) {
+		int index = *sv++;
+		dv[ index ] = NEURON_FIRE_OUTPUT_THRESHOLD_pQ;
+	}
+
+	return( cn );
 }
 
 int CortexSpatialPoolerItem::getDifferencePercentage( CortexSpatialPoolerItem *item , neurovt_state toleranceNeuronState ) {
@@ -67,6 +87,7 @@ int CortexSpatialPoolerItem::getDifferencePercentage( CortexSpatialPoolerItem *i
 			d++;
 	}
 
+	ASSERTMSG( cn > 0 , "all item neurons are silent" );
 	int pt = ( d * 100 ) / cn;
 	return( pt );
 }
@@ -94,7 +115,7 @@ void CortexSpatialPoolerItem::getPoolFromState( NeuroPool *pool ) {
 	RFC_INT64 msNow = Timer::getCurrentTimeMillis();
 	while( n-- ) {
 		sv -> output = *dv++;
-		sv++ -> updated = msNow;
+		sv++ -> updated_fs = msNow;
 	}
 }
 

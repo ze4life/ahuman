@@ -65,7 +65,7 @@ void NeuroLinkSource::sendMessage( NeuroSignal *sourceSignal ) {
 	// check empty signal
 	if( sourceSignal != NULL ) {
 		if( sourceSignal -> getDataSize() == 0 ) {
-			logger.logInfo( "sendMessage: ignore empty signal id=" + sourceSignal -> getExtId() );
+			logger.logInfo( "sendMessage: ignore empty signal id=" + sourceSignal -> getId() );
 			return;
 		}
 	}

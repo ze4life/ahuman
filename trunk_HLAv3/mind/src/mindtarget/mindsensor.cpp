@@ -87,7 +87,7 @@ void MindSensor::destroyRegion() {
 
 void MindSensor::processSensorData( String id ) {
 	++msgId;
-	memorySensorySignal -> setExtId( id );
+	memorySensorySignal -> setId( id );
 	memorySensorySignal -> setTs( Timer::getCurrentTimeMillis() );
 
 	// log sensor message

@@ -20,7 +20,8 @@ class NeuroLinkTarget;
 typedef struct {
 	neurovt_state potential;
 	neurovt_state output;
-	RFC_INT64 updated;
+	RFC_INT64 updated_mp;	// membrane potential updated timestamp
+	RFC_INT64 updated_fs;	// fire state updated timestamp
 } NEURON_DATA;
 
 /*#########################################################################*/
@@ -40,8 +41,8 @@ public:
 	void createFromPool( NeuroPool *pool );
 
 	void setTs( RFC_INT64 ts );
-	void setExtId( String id );
-	String getExtId();
+	void setId( String id );
+	String getId();
 	void getSizeInfo( int *nx , int *ny );
 	int getMaxSize();
 	int getDataSize();
@@ -51,10 +52,11 @@ public:
 
 	void clearData();
 	void addIndexData( int index );
+	void removeNotFiringIndexes();
 
 private:
 // utility
-	String extId;
+	String id;
 	RFC_INT64 ts;
 
 	// original 2D index space
@@ -75,14 +77,24 @@ public:
 	virtual const char *getClass() { return( "NeuroPool" ); };
 
 	void createNeurons( int nx , int ny );
+	void setParent( MindRegion *p_region );
+	void setId( String id );
+	String getId();
+	MindRegion *getRegion();
 
 	TwoIndexArray<NEURON_DATA>& getNeuronData();
 	void getNeuronDimensions( int *nx , int *ny );
 	void startProjection( NeuroLink *link );
 	void finishProjection( NeuroLink *link , NeuroSignal *signal );
 
+	String getNumberedPoolState();
+
 private:
+// references
+	MindRegion *region;
+
 // utilities
+	String id;
 	TwoIndexArray<NEURON_DATA> neurons;
 };
 
