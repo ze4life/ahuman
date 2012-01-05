@@ -234,7 +234,8 @@ void CortexRegion::handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroLin
 	//		- forget pattern only if usage is less than PROTECTED_SPATIAL_PATTERN_USAGE
 	//		- forget least used stored pattern when adding new pattern and all spacial pooler slots are already filled in
 	int spatialPatternForgotten = -1;
-	int spatialPatternMatched = spatialPooler -> matchPattern( excitedSignal , &inputPool , &spatialPatternForgotten );
+	int matchProbability;
+	int spatialPatternMatched = spatialPooler -> matchPattern( excitedSignal , &inputPool , &matchProbability , &spatialPatternForgotten );
 
 	// ignore excited signal for now
 	if( excitedSignal != NULL )
@@ -276,7 +277,7 @@ void CortexRegion::handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroLin
 
 	// 4. generate feedback
 	//		- get predicted pattern
-	logger.logInfo( String( "handleFeedForwardNeuroLinkMessage: id=" ) + data -> getId() + ", spatialMatched=" + spatialPatternMatched + ", spatialExpected=" + spatialPatternExpected + ", temporalMatched=" + temporalspatialPatternMatched + ", spatialPredicted=" + spatialPatternPredicted + ", probability=" + predictionProbability );
+	logger.logInfo( String( "handleFeedForwardNeuroLinkMessage: id=" ) + data -> getId() + ", spatialMatched=" + spatialPatternMatched + ", spatialExpected=" + spatialPatternExpected + ", temporalMatched=" + temporalspatialPatternMatched + ", spatialPredicted=" + spatialPatternPredicted + ", probability=" + matchProbability + "/" + predictionProbability );
 	spatialPatternExpected = spatialPatternPredicted;
 
 	//		- generate feedback message

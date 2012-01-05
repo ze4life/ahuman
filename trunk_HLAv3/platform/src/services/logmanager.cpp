@@ -370,7 +370,7 @@ bool LogManager::get( bool p_autolock ) {
 		if( p_autolock )
 			rfc_hnd_semlock( lock );
 
-		if( n2f || n4f )
+		if( n2f || n4f || n5f )
 			break;
 
 		// do not wait in sync mode
