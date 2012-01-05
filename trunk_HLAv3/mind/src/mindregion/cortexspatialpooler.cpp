@@ -35,7 +35,7 @@ void CortexSpatialPooler::setProtectedUsage( int usage ) {
 	protectedUsage = usage;
 }
 
-int CortexSpatialPooler::matchPattern( NeuroSignal *excitedSignal , NeuroPool *p_pool , int *patternForgotten ) {
+int CortexSpatialPooler::matchPattern( NeuroSignal *excitedSignal , NeuroPool *p_pool , int *matchProbability , int *patternForgotten ) {
 	CortexSpatialPoolerItem *item = new CortexSpatialPoolerItem();
 
 	// create item data from current pool state and generated signal
@@ -56,9 +56,12 @@ int CortexSpatialPooler::matchPattern( NeuroSignal *excitedSignal , NeuroPool *p
 			delete item;
 			bestItem -> addUsage();
 			*patternForgotten = -1;
+			*matchProbability = 100 - difference;
 			return( bestItem -> getId() );
 		}
 	}
+
+	*matchProbability = -1;
 
 	// check free space
 	if( items.count() < maxPoolSize ) {

@@ -8,6 +8,13 @@
 
 class MindActiveMemoryObject;
 class MindSensorSetTracker;
+class CortexSpatialPoolerItem;
+class CortexSpatialPooler;
+class CortexTemporalPoolerItem;
+class CortexTemporalPooler;
+
+/*#########################################################################*/
+/*#########################################################################*/
 
 #define NEURON_FIRE_POTENTIAL_THRESHOLD_pQ				(( neurovt_state )70)
 #define NEURON_FIRE_OUTPUT_BY_POTENTIAL_pQ				(( neurovt_state )70)
@@ -100,7 +107,7 @@ public:
 	void setMatchTolerance( int tolerancePattern , int toleranceNeuronState );
 	void setProtectedUsage( int usage );
 
-	int matchPattern( NeuroSignal *excitedSignal , NeuroPool *pool , int *patternForgotten );
+	int matchPattern( NeuroSignal *excitedSignal , NeuroPool *pool , int *matchProbability , int *patternForgotten );
 	bool getPattern( int pattern , NeuroPool *pool );
 	CortexSpatialPoolerItem *findBestMatch( CortexSpatialPoolerItem *data , int *difference );
 	CortexSpatialPoolerItem *findLeastUsed();
