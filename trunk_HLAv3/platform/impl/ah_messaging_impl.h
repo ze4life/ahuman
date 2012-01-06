@@ -35,7 +35,7 @@ public:
 	void processMessages();
 
 public:
-	MessageChannel( String msgid , String name , bool sync );
+	MessageChannel( String msgid , String name , bool sync , bool ignore );
 	~MessageChannel();
 
 	virtual const char *getClass() { return( "MessageChannel" ); };
@@ -53,6 +53,7 @@ private:
 	String name;
 	bool opened;
 	bool sync;
+	bool ignore;
 	bool running;
 	bool stopping;
 	int queueMessageId;

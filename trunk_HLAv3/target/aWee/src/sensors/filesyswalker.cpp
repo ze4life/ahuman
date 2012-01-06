@@ -821,7 +821,14 @@ void SensorFileSysWalker::readDirChanges( HANDLE handle , void *buf , DWORD bufL
 			pe -> Action == FILE_ACTION_RENAMED_NEW_NAME ) {
 			// convert widechar to ansi
 			char name[ 1024 ];
-			sprintf( name , "%S" , pe -> FileName );
+			int len = 1024;
+			int filelen = pe -> FileNameLength / 2;
+			if( !WideCharToMultiByte( CP_ACP , 0 , ( const WCHAR * )pe -> FileName , filelen , name , len , NULL , NULL ) )
+				ASSERTFAILED( "Unable to convert file name" );
+			name[ filelen ] = 0;
+
+			printf( name );
+			printf( "\n" );
 
 			// verify depth filter
 			if( depth >= 0 ) {
