@@ -40,7 +40,8 @@ int CortexSpatialPooler::matchPattern( NeuroSignal *excitedSignal , NeuroPool *p
 
 	// create item data from current pool state and generated signal
 	int cn = item -> setStateFromPool( p_pool );
-	cn += item -> addSignalState( excitedSignal );
+	if( excitedSignal != NULL )
+		cn += item -> addSignalState( excitedSignal );
 	ASSERTMSG( cn > 0 , "adding item without firing neurons" );
 
 	LOGDEBUG( String( "matchPattern: input=" ) + item -> getNumberedState() );

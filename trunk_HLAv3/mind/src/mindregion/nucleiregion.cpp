@@ -109,9 +109,11 @@ void NucleiRegion::handleTargetMessage( NeuroLink *link , NeuroLinkTarget *point
 
 	// execute default
 	NeuroSignal *signal = link -> apply( data , &neuroPool );
-	signal -> setId( data -> getId() );
+	if( signal == NULL )
+		return;
 
 	// forward further
+	signal -> setId( data -> getId() );
 	LOGDEBUG( "handleTargetMessage: send data signal id=" + signal -> getId() + ", data=" + signal -> getNumberDataString() );
 	source -> sendMessage( signal );
 	delete signal;

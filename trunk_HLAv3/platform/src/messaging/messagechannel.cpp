@@ -6,11 +6,13 @@
 
 // input/output messages
 // class AIIODuplexChannel
-MessageChannel::MessageChannel( String p_msgid , String p_name , bool p_sync ) {
+MessageChannel::MessageChannel( String p_msgid , String p_name , bool p_sync , bool p_ignore ) {
 	name = p_name;
 
 	opened = false;
 	sync = p_sync;
+	ignore = p_ignore;
+
 	running = false;
 	stopping = false;
 	queueMessageId = 0;
@@ -219,15 +221,17 @@ void MessageChannel::processMessages() {
 /*#########################################################################*/
 
 void MessageChannel::subscribeEvent( Message *p_msg ) {
-	lock();
-	MessageSession *l_session = p_msg -> getSession();
-	for( int k = 0; k < subs.count(); k++ ) {
-		MessageSubscription *sub = subs.getClassByIndex( k );
-		MessageSession *l_sub_session = sub -> session;
-		if( l_sub_session == NULL || l_session == l_sub_session )
-			sub -> processMessage( p_msg );
+	if( !ignore ) {
+		lock();
+		MessageSession *l_session = p_msg -> getSession();
+		for( int k = 0; k < subs.count(); k++ ) {
+			MessageSubscription *sub = subs.getClassByIndex( k );
+			MessageSession *l_sub_session = sub -> session;
+			if( l_sub_session == NULL || l_session == l_sub_session )
+				sub -> processMessage( p_msg );
+		}
+		unlock();
 	}
-	unlock();
 
 	// after all executions
 	p_msg -> postExecute();

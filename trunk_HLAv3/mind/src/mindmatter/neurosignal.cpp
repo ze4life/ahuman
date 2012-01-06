@@ -30,6 +30,10 @@ NeuroSignal::NeuroSignal( NeuroSignal *src ) {
 NeuroSignal::~NeuroSignal() {
 }
 
+void NeuroSignal::copyDataFromSignal( NeuroSignal *src ) {
+	data.copy( src -> data );
+}
+
 int *NeuroSignal::getIndexRawData() {
 	return( data.getAll() );
 }
@@ -161,7 +165,7 @@ void NeuroSignal::addIndexData( int index ) {
 	data.add( index );
 }
 
-void NeuroSignal::removeNotFiringIndexes() {
+void NeuroSignal::removeNotFiringIndexData() {
 	int *rp = data.getAll();
 	int *wp = rp;
 	int n = data.count();
@@ -190,4 +194,54 @@ void NeuroSignal::removeNotFiringIndexes() {
 
 	if( rc > 0 )
 		data.setCount( data.count() - rc );
+}
+
+void NeuroSignal::addIndexDataSorted( NeuroSignal *srcSignal ) {
+	int dn = data.count();
+	int sn = srcSignal -> data.count();
+	int *dv = data.getAll();
+	int *sv = srcSignal -> data.getAll();
+
+	// get duplicate count
+	int ndup = 0;
+	int sk = 0;
+	int dk = 0;
+	while( sk < sn && dk < dn ) {
+		int cc = sv[ sk ] - dv[ dk ];
+		if( cc < 0 )
+			sk++;
+		else
+		if( cc > 0 )
+			dk++;
+		else {
+			ndup++;
+			sk++;
+			dk++;
+		}
+	}
+
+	// check need to add smth
+	int nadd = sn - ndup;
+	if( nadd == 0 )
+		return;
+
+	// resize
+	data.setCount( dn + nadd );
+	dv = data.getAll();
+
+	// fill index data
+	sk = sn - 1;
+	dk = dn - 1;
+	int wk = dk + nadd;
+	while( sk >= 0 ) {
+		if( dk < 0 )
+			dv[ wk-- ] = dv[ sk-- ];
+		else {
+			int cc = sv[ sk ] - dv[ dk ];
+			if( cc > 0 )
+				dv[ wk-- ] = dv[ sk-- ];
+			else
+				dv[ wk-- ] = dv[ dk-- ];
+		}
+	}
 }

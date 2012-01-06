@@ -141,8 +141,9 @@ MessageChannel *MessagingService::createChannel( Xml config ) {
 	String msgid = config.getProperty( "msgid" );
 	bool auth = config.getBooleanProperty( "auth" );
 	bool sync = config.getBooleanProperty( "sync" );
+	bool ignore = config.getBooleanProperty( "ignore" , false );
 
-	MessageChannel *channel = new MessageChannel( msgid , name , sync );
+	MessageChannel *channel = new MessageChannel( msgid , name , sync , ignore );
 	
 	ASSERT( auth == false );
 

@@ -39,6 +39,7 @@ public:
 public:
 	void create( int sizeX , int sizeY );
 	void createFromPool( NeuroPool *pool );
+	void copyDataFromSignal( NeuroSignal *signal );
 
 	void setTs( RFC_INT64 ts );
 	void setId( String id );
@@ -52,7 +53,8 @@ public:
 
 	void clearData();
 	void addIndexData( int index );
-	void removeNotFiringIndexes();
+	void addIndexDataSorted( NeuroSignal *srcSignal );
+	void removeNotFiringIndexData();
 
 private:
 // utility
@@ -90,6 +92,13 @@ public:
 	String getNumberedPoolState();
 
 private:
+	void applySignal( NeuroSignal *signal , bool pending );
+	void updatePendingData( NeuroSignal *signal );
+
+private:
+// own data
+	NeuroSignal *pendingSignal;
+
 // references
 	MindRegion *region;
 
