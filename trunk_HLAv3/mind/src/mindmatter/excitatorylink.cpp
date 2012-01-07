@@ -36,7 +36,7 @@ NeuroSignal *ExcitatoryLink::apply( NeuroSignal *srcData , NeuroPool *dstPool ) 
 	dstPool -> startProjection( this );
 
 	// log 
-	LOGDEBUG( String( "apply " ) + opid + ": projecting NeuroLink, id=" + getId() + "..." );
+	LOGDEBUG( String( "apply: projected NeuroLink id=" ) + getId() + ", NeuroSignal id=" + srcData -> getId() + "..." );
 
 	// current timestamp
 	RFC_INT64 msNow = Timer::getCurrentTimeMillis();
@@ -93,14 +93,14 @@ NeuroSignal *ExcitatoryLink::apply( NeuroSignal *srcData , NeuroPool *dstPool ) 
 		if( currentCharge >= NEURON_FIRE_POTENTIAL_THRESHOLD_pQ )
 			ffSignal -> addIndexData( dk );
 
-		LOGDEBUG( String( "apply " ) + opid + ": spos=" + sk + ", dpos=" + dk + ", lastCharge=" + lastCharge + ", newCharge=" + currentCharge + ", msPassed=" + ( int )msPassed );
+		LOGDEBUG( String( "apply: projected NeuroLink id=" ) + getId() + ", NeuroSignal id=" + srcData -> getId() + ", spos=" + sk + ", dpos=" + dk + ", lastCharge=" + lastCharge + ", newCharge=" + currentCharge + ", msPassed=" + ( int )msPassed );
 	}
-
-	// log 
-	LOGDEBUG( String( "apply " ) + opid + ": NeuroLink projected, id=" + getId() + ", neurons affected count=" + ffSignal -> getDataSize() );
 
 	// finish projection
 	dstPool -> finishProjection( this , ffSignal );
+
+	// log 
+	logger.logInfo( String( "apply: projected NeuroLink id=" ) + getId() + ", NeuroSignal id=" + srcData -> getId() + ", signalCount=" + srcData -> getDataSize() + ", affectedCount=" + ffSignal -> getDataSize() );
 
 	// check signal is required
 	if( ffSignal -> getDataSize() == 0 ) {

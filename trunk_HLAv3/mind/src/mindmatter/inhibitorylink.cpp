@@ -36,7 +36,7 @@ NeuroSignal *InhibitoryLink::apply( NeuroSignal *srcData , NeuroPool *dstPool ) 
 	dstPool -> startProjection( this );
 
 	// log 
-	LOGDEBUG( String( "apply " ) + opid + ": projecting NeuroLink, id=" + getId() + "..." );
+	LOGDEBUG( String( "apply: projected NeuroLink id=" ) + getId() + ", NeuroSignal id=" + srcData -> getId() + "..." );
 
 	// current timestamp
 	RFC_INT64 msNow = Timer::getCurrentTimeMillis();
@@ -86,11 +86,11 @@ NeuroSignal *InhibitoryLink::apply( NeuroSignal *srcData , NeuroPool *dstPool ) 
 		// save new value
 		dv -> potential = currentCharge;
 
-		LOGDEBUG( String( "apply " ) + opid + ": spos=" + sk + ", dpos=" + dk + ", lastCharge=" + lastCharge + ", newCharge=" + currentCharge + ", msPassed=" + ( int )msPassed );
+		LOGDEBUG( String( "apply: projected NeuroLink id=" ) + getId() + ", NeuroSignal id=" + srcData -> getId() + ", spos=" + sk + ", dpos=" + dk + ", lastCharge=" + lastCharge + ", newCharge=" + currentCharge + ", msPassed=" + ( int )msPassed );
 	}
 
 	// log 
-	LOGDEBUG( String( "apply " ) + opid + ": NeuroLink projected, id=" + getId() );
+	logger.logInfo( String( "apply: projected NeuroLink id=" ) + getId() + ", NeuroSignal id=" + srcData -> getId() + ", signalCount=" + srcData -> getDataSize() );
 
 	// finish projection
 	dstPool -> finishProjection( this , NULL );
