@@ -110,11 +110,16 @@ public:
 	void addLink( MindAreaLinkInfo *link ) { linkSet.add( link );	};
 	ClassList<MindAreaNetInfo>& getNetSet() { return( netSet ); };
 	MindAreaNetInfo *getNetInfo( String name );
+	String getChannelId();
+
+private:
+	void setChannelInfo( Xml xml );
 
 private:
 // utility
 	String areaId;
 	bool enabled;
+	String channelId;
 
 // own data
 	MindLocation *location;
@@ -141,7 +146,8 @@ public:
 	String getTypeName() { return( typeName ); };
 	String getMasterAreaId() { return( masterAreaId ); };
 	String getSlaveAreaId() { return( slaveAreaId ); };
-	String getChannelId() { return( channelId ); };
+	String getMasterChannelId() { return( masterChannelId ); };
+	String getSlaveChannelId() { return( slaveChannelId ); };
 
 	void setLinkType( MindLinkType *linkType );
 	MindLinkType *getLinkType();
@@ -153,7 +159,8 @@ public:
 	String typeName;
 	String masterAreaId;
 	String slaveAreaId;
-	String channelId;
+	String masterChannelId;
+	String slaveChannelId;
 
 // references
 	MindLinkType *linkType;

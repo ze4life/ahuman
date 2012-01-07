@@ -13,7 +13,8 @@ void MindAreaLinkInfo::createFromXml( Xml xml ) {
 	typeName = xml.getAttribute( "type" );
 	masterAreaId = xml.getAttribute( "masterArea" );
 	slaveAreaId = xml.getAttribute( "slaveArea" );
-	channelId = xml.getAttribute( "channel" );
+	masterChannelId = xml.getAttribute( "masterChannel" , "" );
+	slaveChannelId = xml.getAttribute( "slaveChannel" , "" );
 }
 
 void MindAreaLinkInfo::setLinkType( MindLinkType *p_linkType ) {

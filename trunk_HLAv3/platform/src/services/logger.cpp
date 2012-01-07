@@ -121,16 +121,15 @@ void Logger::printStackInternal( rfc_threadstack *stack , int skipTop , bool pri
 	if( skipLast )
 		lines.add( "\t...skipped..." );
 
+	// create final string
+	String output;
 	for( int k = 0; k < lines.count(); k++ ) {
-		LogOutputMode mode = Logger::LogLine;
-		if( !printInplace )
-			if( k == 0 )
-				mode = Logger::LogStart;
-			else
-			if( k == lines.count() - 1 )
-				mode = Logger::LogStop;
-		logInternal( lines.get( k ) , mode , Logger::LogLevelInfo );
+		if( k > 0 )
+			output += "\n";
+		output += lines.get( k );
 	}
+	LogOutputMode mode = ( printInplace )? Logger::LogLine : Logger::LogDefault;
+	logInternal( output , mode , Logger::LogLevelInfo );
 }
 
 // log calls

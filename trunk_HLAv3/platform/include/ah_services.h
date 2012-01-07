@@ -21,13 +21,13 @@ class ServiceState {
 public:
 	typedef enum {
 		AH_COLD = 1 ,			// enabled: create->CREATING->CREATED
-		AH_CREATING = 2 ,		// enabled: create->CREATED, exit->EXITING->COLD
-		AH_CREATED = 3 ,		// enabled: init->INITIALIZING->INITIALIZED, exit->EXITING->COLD
-		AH_INITIALIZING = 4 ,	// enabled: init->INITIALIZED, exit->EXITING->COLD
-		AH_INITIALIZED = 5 ,	// enabled: run->RUNNING,exit->EXITING->COLD
+		AH_CREATING = 2 ,		// enabled: create->CREATED, destroy->COLD
+		AH_CREATED = 3 ,		// enabled: init->INITIALIZING->INITIALIZED, destroy->COLD
+		AH_INITIALIZING = 4 ,	// enabled: init->INITIALIZED, exit->EXITING->CREATED
+		AH_INITIALIZED = 5 ,	// enabled: run->RUNNING, exit->EXITING->CREATED
 		AH_RUNNING = 6 ,		// enabled: stop->STOPPED
-		AH_STOPPED = 7 ,		// enabled: exit->EXITING->COLD
-		AH_EXITING = 8			// enabled: exit->COLD
+		AH_STOPPED = 7 ,		// enabled: exit->EXITING->CREATED
+		AH_EXITING = 8			// enabled: exit->CREATED
 	} ServiceStateType;
 
 private:
@@ -43,10 +43,10 @@ public:
 			checkTransition = ( value == AH_CREATING );
 		else
 		if( state == AH_CREATING )
-			checkTransition = ( value == AH_CREATED || value == AH_EXITING );
+			checkTransition = ( value == AH_CREATED || value == AH_COLD );
 		else
 		if( state == AH_CREATED )
-			checkTransition = ( value == AH_INITIALIZING || value == AH_EXITING );
+			checkTransition = ( value == AH_INITIALIZING || value == AH_COLD );
 		else
 		if( state == AH_INITIALIZING )
 			checkTransition = ( value == AH_INITIALIZED || value == AH_EXITING );
@@ -61,16 +61,22 @@ public:
 			checkTransition = ( value == AH_EXITING );
 		else
 		if( state == AH_EXITING )
-			checkTransition = ( value == AH_COLD );
+			checkTransition = ( value == AH_CREATED );
 
 		ASSERTMSG( checkTransition , String( "Invalid state transition: stateFrom=" )  + state + ", stateTo=" + value );
 		state = value;
 	};
 
 	bool readyForExit() {
-		if( state == AH_CREATING || state == AH_CREATED || state == AH_INITIALIZING || state == AH_INITIALIZED || state == AH_STOPPED )
+		if( state == AH_INITIALIZING || state == AH_INITIALIZED || state == AH_STOPPED || state == AH_EXITING )
 			return( true );
 		return( false );
+	};
+
+	bool exitRequired() {
+		if( state == AH_COLD || state == AH_CREATING || state == AH_CREATED )
+			return( false );
+		return( true );
 	};
 };
 

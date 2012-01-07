@@ -32,33 +32,6 @@ ExcitatoryLink::ExcitatoryLink( MindRegionLink *p_regionLink ) : NeuroLink( p_re
 NeuroSignal *ExcitatoryLink::apply( NeuroSignal *srcData , NeuroPool *dstPool ) {
 	opid++;
 
-	// signal value is encoded strength of neural impulse
-	// in biology neuron it is frequency of spikes while signal itself has fixed electric voltage
-	// value equals to number of impulses combined in specific message
-	// spike increases cell potential and cell fires if potentials is greater that certain threshold
-	// cell discharges if no spikes arrived
-	// reaching threshold takes a time
-	// assuming linear rate of charge and discharge
-	// charge parameters
-	// spike: I=Q/t=~200mkA, U=100mV, t=10ms, charge threshold=I*t=0.0002A*10ms=0.000002Q=0.002Q/ms
-	// frequency: 0-100Hz
-	// discharge speed=charge speed=NEURON_CHARGE_SPEED=0.002Q/ms
-	// last charge change timestamp lastChargeChangeTimestamp
-	// last charge state=lastCharge
-	// current timestamp=currentTimestamp
-	// current charge=max( lastCharge - chargeSpeed * (currentTimestamp-lastChargeChangeTimestamp) , 0 )
-	// action potential charge= (50mV*1ms) 0.002Q/ms*0.5*0.1 = ...
-	// arrived charge=value * 
-	// new potential=current charge + arrived charge
-
-	// data:
-	// msTimePassed
-	// lastCharge
-	// NEURON_DISCHARGE_RATE_pQ_per_ms
-
-	// calculation:
-	// currentCharge=max( lastCharge - NEURON_DISCHARGE_RATE_pQ_per_ms * msTimePassed , 0 )
-
 	// project source to target
 	dstPool -> startProjection( this );
 

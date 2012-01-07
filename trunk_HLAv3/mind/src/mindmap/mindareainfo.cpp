@@ -27,6 +27,8 @@ void MindAreaInfo::createFromXml( Xml xml ) {
 	li.createFromXml( xml.getChildNode( "MindLocation" ) );
 	location = li.createLocation();
 
+	setChannelInfo( xml.getChildNode( "MindAreaChannel" ) );
+
 	// mind area networks
 	for( Xml xmlChild = xml.getFirstChild( "MindAreaNetwork" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "MindAreaNetwork" ) ) {
 		// construct MindAreaNetwork from attributes
@@ -45,10 +47,21 @@ void MindAreaInfo::createFromXml( Xml xml ) {
 	}
 }
 
+void MindAreaInfo::setChannelInfo( Xml xml ) {
+	if( !xml.exists() )
+		return;
+
+	channelId = xml.getAttribute( "name" );
+}
+
 bool MindAreaInfo::runEnabled() {
 	return( enabled );
 }
 
 MindAreaNetInfo *MindAreaInfo::getNetInfo( String name ) {
 	return( netMap.get( name ) );
+}
+
+String MindAreaInfo::getChannelId() {
+	return( channelId );
 }

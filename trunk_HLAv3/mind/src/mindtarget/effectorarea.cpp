@@ -12,6 +12,7 @@ EffectorArea *MindTarget::createEffectorArea() {
 /*#########################################################################*/
 
 EffectorArea::EffectorArea() {
+	target = NULL;
 }
 
 EffectorArea::~EffectorArea() {

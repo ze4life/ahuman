@@ -44,7 +44,6 @@ void MediaService::destroyService() {
 	activeSockets.destroy();
 
 	SocketProtocol::exitSocketLib();
-	delete this;
 }
 
 /*#########################################################################*/

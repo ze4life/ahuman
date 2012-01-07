@@ -12,7 +12,8 @@ MindAreaLink::MindAreaLink( MindAreaLinkInfo *p_info , MindArea *p_masterArea , 
 	slaveArea = p_slaveArea;
 
 	session = NULL;
-	iosub = NULL;
+	masterSubscription = NULL;
+	slaveSubscription = NULL;
 	links = new MindRegionLinkSet();
 }
 
@@ -81,27 +82,52 @@ void MindAreaLink::createNetRegionLink( MindNet *net , MindRegion *masterRegion 
 
 void MindAreaLink::open( MessageSession *p_session ) {
 	session = p_session;
-	String channelId = info -> getChannelId();
-	String ioid =  info -> getMasterAreaId() + "-" +  info -> getSlaveAreaId();
 
 	MindService *ms = MindService::getService();
 	activeMemory = ms -> getActiveMemory();
 
 	MessagingService *msgs = MessagingService::getService();
-	iosub = msgs -> subscribe( NULL , channelId , ioid , this );
+
+	// open master channel
+	String masterChannelId = info -> getMasterChannelId();
+	if( !masterChannelId.isEmpty() ) {
+		String masterIOId =  info -> getMasterAreaId() + "-" +  info -> getSlaveAreaId();
+		masterSubscription = msgs -> subscribe( NULL , masterChannelId , masterIOId , this );
+	}
+
+	// open slave channel
+	String slaveChannelId = info -> getSlaveChannelId();
+	if( !slaveChannelId.isEmpty() ) {
+		String slaveIOId =  info -> getSlaveAreaId() + "-" +  info -> getMasterAreaId();
+		slaveSubscription = msgs -> subscribe( NULL , slaveChannelId , slaveIOId , this );
+	}
 }
 
-MessageSubscription *MindAreaLink::subscribeSelector( MessageSubscriber *handler , String name , String selector ) {
+MessageSubscription *MindAreaLink::subscribeMaster( MessageSubscriber *handler , String name ) {
 	MessagingService *ms = MessagingService::getService();
-	String channelId = info -> getChannelId();
+	String channelId = info -> getMasterChannelId();
+	MessageSubscription *sub = ms -> subscribe( NULL , channelId , channelId + "-" + name , handler );
+	return( sub );
+}
+
+MessageSubscription *MindAreaLink::subscribeMasterSelector( MessageSubscriber *handler , String name , String selector ) {
+	MessagingService *ms = MessagingService::getService();
+	String channelId = info -> getMasterChannelId();
 	MessageSubscription *sub = ms -> subscribeSelector( NULL , channelId , selector , channelId + "-" + name , handler );
 	return( sub );
 }
 
-MessageSubscription *MindAreaLink::subscribe( MessageSubscriber *handler , String name ) {
+MessageSubscription *MindAreaLink::subscribeSlave( MessageSubscriber *handler , String name ) {
 	MessagingService *ms = MessagingService::getService();
-	String channelId = info -> getChannelId();
+	String channelId = info -> getSlaveChannelId();
 	MessageSubscription *sub = ms -> subscribe( NULL , channelId , channelId + "-" + name , handler );
+	return( sub );
+}
+
+MessageSubscription *MindAreaLink::subscribeSlaveSelector( MessageSubscriber *handler , String name , String selector ) {
+	MessagingService *ms = MessagingService::getService();
+	String channelId = info -> getSlaveChannelId();
+	MessageSubscription *sub = ms -> subscribeSelector( NULL , channelId , selector , channelId + "-" + name , handler );
 	return( sub );
 }
 

@@ -51,8 +51,6 @@ void MessagingService::destroyService() {
 
 	mapChannels.destroy();
 	sessions.destroy();
-
-	delete this;
 }
 
 /*#########################################################################*/
