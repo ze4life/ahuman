@@ -153,21 +153,19 @@ void MindService::createAreas() {
 void MindService::createArea( String areaId , MindArea *(MindService::*pfn)() ) {
 	// find area configuration
 	MindAreaInfo *areaInfo = mindMap -> getAreaById( areaId );
-	ASSERTMSG( areaInfo != NULL , "constructArea: warning - " + areaId + " mind area is not configured in mind configuration" );
+	ASSERTMSG( areaInfo != NULL , "constructArea: warning - mind area is not present in mind configuration name=" + areaId );
 
 	// check need running
 	if( !areaInfo -> runEnabled() ) {
-		logger.logInfo( "constructArea: " + areaId + " mind area is skipped from running" );
+		logger.logInfo( "constructArea: mind area is ignored, disabled in mind configuration name=" + areaId );
 		return;
 	}
 
 	// construct area
 	MindArea *area = (this ->* pfn)();
-	if( area == NULL ) {
-		logger.logInfo( "constructArea: " + areaId + " mind area is not created - ignore" );
-		return;
-	}
+	ASSERTMSG( area != NULL , "constructArea: mind area construction failed name=" + areaId );
 
+	// add to list
 	addMindArea( area );
 }
 
@@ -178,7 +176,13 @@ void MindService::setMindTarget( MindTarget *p_target ) {
 void MindService::addMindArea( MindArea *area ) {
 	// add mind area
 	MindAreaInfo *areaInfo = mindMap -> getAreaById( area -> getClass() );
-	ASSERTMSG( areaInfo != NULL , "constructArea: areas is not present in mind configuration" );
+	ASSERTMSG( areaInfo != NULL , String( "addMindArea: mind area is not present in mind configuration name=" ) + area -> getClass() );
+
+	// ignore area if configured not enabled
+	if( !areaInfo -> runEnabled() ) {
+		logger.logInfo( "addMindArea: mind area is ignored, disabled  in configuration name=" + areaInfo -> getAreaId() );
+		return;
+	}
 
 	// configure area
 	area -> configure( areaInfo );
@@ -189,7 +193,7 @@ void MindService::addMindArea( MindArea *area ) {
 	// add to set
 	areaSet -> addMindArea( area );
 
-	logger.logInfo( "addMindArea: MindArea added name=" + areaInfo -> getAreaId() );
+	logger.logInfo( "addMindArea: mind area added name=" + areaInfo -> getAreaId() );
 }
 
 // mind links

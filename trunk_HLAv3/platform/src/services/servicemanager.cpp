@@ -218,44 +218,44 @@ void ServiceManager::exitServices() {
 	// set logging to sync mode
 	logManager -> setSyncMode( true );
 
-	if( !isCreated() )
+	if( !state.readyForExit() )
 		return;
 
 	logger.logInfo( "exitServices: exit services..." );
 	state.setState( ServiceState::AH_EXITING );
 
 	// in back order
-	bool everyCold = true;
+	bool everyExited = true;
 	for( int k = serviceList.count() - 1; k >= 0 ; k-- ) {
 		// exit sepately from each other
 		Service *svc = NULL;
 		try {
 			svc = serviceList.get( k );
 			if( !svc -> state.readyForExit() ) {
-				if( svc -> state.getState() != ServiceState::AH_COLD )
-					everyCold = false;
+				if( svc -> state.exitRequired() )
+					everyExited = false;
 				continue;
 			}
 
 			logger.logInfo( String( "exitServices: exit service name=" ) + svc -> getServiceName() + String( "..." ) );
 			svc -> state.setState( ServiceState::AH_EXITING );
 			svc -> exitService();
-			svc -> state.setState( ServiceState::AH_COLD );
+			svc -> state.setState( ServiceState::AH_CREATED );
 			logger.logInfo( String( "exitServices: exit service name=" ) + svc -> getServiceName() + String( " - done" ) );
 		}
 		catch( RuntimeException& e ) {
-			everyCold = false;
+			everyExited = false;
 			logger.printStack( e );
 			logger.logInfo( String( "exitServices: exception while exiting service name=" ) + svc -> getServiceName() );
 		}
 		catch( ... ) {
-			everyCold = false;
+			everyExited = false;
 			logger.logInfo( String( "exitServices: unknown exception while exiting service name=" ) + svc -> getServiceName() );
 		}
 	}
 
-	if( everyCold ) {
-		state.setState( ServiceState::AH_COLD );
+	if( everyExited ) {
+		state.setState( ServiceState::AH_CREATED );
 		logger.logInfo( "exitServices: exit services - done" );
 	}
 	else {
@@ -275,12 +275,13 @@ void ServiceManager::destroyServices() {
 
 			// clear in service map
 			services.set( svc -> getServiceName() , NULL );
-			if( svc -> state.getState() != ServiceState::AH_COLD )
+			if( svc -> state.getState() == ServiceState::AH_COLD )
 				continue;
 
 			String name = svc -> getServiceName();
 			logger.logInfo( String( "destroyServices: destroy service name= " ) + name + String( "..." ) );
 			svc -> destroyService();
+			svc -> state.setState( ServiceState::AH_COLD );
 			logger.logInfo( String( "destroyServices: destroy service name=" ) + name + String( " - done" ) );
 		}
 		catch( RuntimeException& e ) {
@@ -295,6 +296,7 @@ void ServiceManager::destroyServices() {
 
 	services.clear();
 	serviceList.clear();
+	state.setState( ServiceState::AH_COLD );
 	logger.logInfo( "destroyServices: destroy services - done" );
 }
 

@@ -35,12 +35,12 @@ void MindSensor::createControlFeedbackSignal( int sizeX , int sizeY ) {
 }
 
 void MindSensor::getSourceSizes( String entity , int *sizeX , int *sizeY ) {
-	if( entity.equals( "data" ) ) {
+	if( entity.equals( "sensor.data" ) ) {
 		memorySensorySignal -> getSizeInfo( sizeX , sizeY );
 		return;
 	}
 
-	if( entity.equals( "control-feedback" ) ) {
+	if( entity.equals( "sensor.control-feedback" ) ) {
 		memorySensoryFeedbackSignal -> getSizeInfo( sizeX , sizeY );
 		return;
 	}
@@ -113,16 +113,16 @@ NeuroSignal *MindSensor::getSensorySignal() {
 }
 
 NeuroLinkSource *MindSensor::getNeuroLinkSource( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
-	if( entity.equals( "data" ) )
+	if( entity.equals( "sensor.data" ) )
 		return( sourceSensoryData );
-	if( entity.equals( "control-feedback" ) )
+	if( entity.equals( "sensor.control-feedback" ) )
 		return( sourceSensoryControlFeedback );
 
 	return( NULL );
 }
 
 NeuroLinkTarget *MindSensor::getNeuroLinkTarget( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
-	if( entity.equals( "control" ) )
+	if( entity.equals( "sensor.control" ) )
 		return( targetSensoryControl );
 
 	return( NULL );

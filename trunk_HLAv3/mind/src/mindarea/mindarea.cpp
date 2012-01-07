@@ -34,7 +34,9 @@ void MindArea::create() {
 
 	MessagingService *ms = MessagingService::getService();
 	iosession = ms -> createSession();
-	iopub = ms -> createPublisher( iosession , getClass() ,  getClass() , "MindMessage" );
+
+	String channel = info -> getChannelId();
+	iopub = ms -> createPublisher( iosession , channel ,  getClass() , "MindMessage" );
 }
 
 void MindArea::exit() {

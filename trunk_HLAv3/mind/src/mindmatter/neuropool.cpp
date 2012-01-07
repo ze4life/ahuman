@@ -47,14 +47,16 @@ void NeuroPool::startProjection( NeuroLink *link ) {
 
 void NeuroPool::finishProjection( NeuroLink *link , NeuroSignal *signal ) {
 	// process new and pending signals
-	applySignal( signal , false );
-	applySignal( pendingSignal , true );
+	if( signal != NULL ) {
+		applySignal( signal , false );
+		applySignal( pendingSignal , true );
 
-	// update pending signal
-	updatePendingData( signal );
+		// update pending signal
+		updatePendingData( signal );
 
-	MindArea *area = region -> getArea();
-	LOGDEBUG( "finishProjection: MindArea id=" + area -> getId() + " NeuroPool id=" + id + " state after signal id=" + signal -> getId() + " data=" + getNumberedPoolState() );
+		MindArea *area = region -> getArea();
+		LOGDEBUG( "finishProjection: MindArea id=" + area -> getId() + " NeuroPool id=" + id + " state after signal id=" + signal -> getId() + " data=" + getNumberedPoolState() );
+	}
 }
 
 void NeuroPool::applySignal( NeuroSignal *signal , bool pending ) {

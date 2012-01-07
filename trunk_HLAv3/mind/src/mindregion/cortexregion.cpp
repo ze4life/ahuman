@@ -144,7 +144,7 @@ void CortexRegion::getSourceSizes( String entity , int *p_sizeX , int *p_sizeY )
 
 void CortexRegion::createRegion() {
 	// sourceFeedForward = new NeuroLinkSource( this );
-	sourceFeedBack = new NeuroLinkSource( this , "feed-back-output" );
+	sourceFeedBack = new NeuroLinkSource( this , "cortex.fb-output" );
 	sourceFeedBack -> setSourcePool( &feedbackPool );
 	// sourceAttention = new NeuroLinkSource( this );
 	targetFeedForward = new NeuroLinkTarget( this );
@@ -202,7 +202,7 @@ void CortexRegion::destroyRegion() {
 NeuroLinkSource *CortexRegion::getNeuroLinkSource( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
 	// if( entity.equals( "feed-forward-output" ) )
 	// 	return( sourceFeedForward );
-	if( entity.equals( "feed-back-output" ) )
+	if( entity.equals( "cortex.fb-output" ) )
 		return( sourceFeedBack );
 	// if( entity.equals( "attention-output" ) )
 	// 	return( sourceAttention );
@@ -211,7 +211,7 @@ NeuroLinkSource *CortexRegion::getNeuroLinkSource( String entity , MindNetInfo *
 }
 
 NeuroLinkTarget *CortexRegion::getNeuroLinkTarget( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
-	if( entity.equals( "feed-forward-input" ) )
+	if( entity.equals( "cortex.ff-input" ) )
 		return( targetFeedForward );
 	// if( entity.equals( "feed-back-input" ) )
 	// 	return( targetFeedBack );
@@ -276,6 +276,11 @@ void CortexRegion::handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroLin
 		return;
 	}
 
+	if( logger.isLogAll() ) {
+		spatialPooler -> logItems();
+		temporalPooler -> logItems();
+	}
+
 	// 4. generate feedback
 	//		- get predicted pattern
 	logger.logInfo( String( "handleFeedForwardNeuroLinkMessage: id=" ) + inputSignal -> getId() + ", spatialMatched=" + spatialPatternMatched + ", spatialExpected=" + spatialPatternExpected + ", temporalMatched=" + temporalspatialPatternMatched + ", spatialPredicted=" + spatialPatternPredicted + ", probability=" + matchProbability + "/" + predictionProbability );
@@ -285,14 +290,11 @@ void CortexRegion::handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroLin
 	int fnx , fny;
 	feedbackPool.getNeuronDimensions( &fnx , &fny );
 	NeuroSignal *feedbackSignal = new NeuroSignal( fnx , fny );
-	feedbackSignal -> setId( inputSignal -> getId() );
 	spatialPooler -> getPattern( spatialPatternPredicted , feedbackSignal );
-	sourceFeedBack -> sendMessage( feedbackSignal );
+	feedbackSignal -> setId( inputSignal -> getId() );
+	feedbackSignal -> setTs( Timer::getCurrentTimeMillis() );
 
-	if( logger.isLogAll() ) {
-		spatialPooler -> logItems();
-		temporalPooler -> logItems();
-	}
+	sourceFeedBack -> sendMessage( feedbackSignal );
 }
 
 // void CortexRegion::handleFeedBackNeuroLinkMessage( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *data ) {

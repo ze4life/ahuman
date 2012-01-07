@@ -38,8 +38,10 @@ public:
 public:
 	void createRegionLinks();
 	void open( MessageSession *session );
-	MessageSubscription *subscribe( MessageSubscriber *handler , String name );
-	MessageSubscription *subscribeSelector( MessageSubscriber *handler , String name , String selector );
+	MessageSubscription *subscribeMaster( MessageSubscriber *handler , String name );
+	MessageSubscription *subscribeMasterSelector( MessageSubscriber *handler , String name , String selector );
+	MessageSubscription *subscribeSlave( MessageSubscriber *handler , String name );
+	MessageSubscription *subscribeSlaveSelector( MessageSubscriber *handler , String name , String selector );
 
 	MindArea *getMasterArea() { return( masterArea ); };
 	MindArea *getSlaveArea() { return( slaveArea ); };
@@ -53,7 +55,8 @@ private:
 private:
 // utility
 	MessageSession *session;
-	MessageSubscription *iosub;
+	MessageSubscription *masterSubscription;
+	MessageSubscription *slaveSubscription;
 
 // own data
 	MindRegionLinkSet *links;
