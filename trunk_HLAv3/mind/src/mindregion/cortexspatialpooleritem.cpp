@@ -20,11 +20,7 @@ int CortexSpatialPoolerItem::setStateFromPool( NeuroPool *pool ) {
 	int n = nd.getN1() * nd.getN2();
 	NEURON_DATA *sv = nd.getData();
 
-	state.setCount( n );
-	neurovt_state *dv = state.getAll();
-
 	RFC_INT64 msNow = Timer::getCurrentTimeMillis();
-	int cn = 0;
 	while( n-- ) {
 		// get state
 		neurovt_state state = sv -> output;
@@ -42,12 +38,11 @@ int CortexSpatialPoolerItem::setStateFromPool( NeuroPool *pool ) {
 		sv++;
 
 		// copy state
-		*dv++ = state;
-		if( state > 0 )
-			cn++;
+		if( state >= NEURON_FIRE_OUTPUT_THRESHOLD_pQ )
+			indexList.add( state );
 	}
 
-	return( cn );
+	return( indexList.count() );
 }
 
 void CortexSpatialPoolerItem::setStateFromSignal( NeuroSignal *signal ) {
@@ -55,52 +50,44 @@ void CortexSpatialPoolerItem::setStateFromSignal( NeuroSignal *signal ) {
 	int sn = signal -> getDataSize();
 	ASSERTMSG( sn > 0 , "invalid signal" );
 
-	// resize and init to zero values
-	state.setCount( sv[ sn - 1 ] + 1 );
-	state.set( 0 );
-
-	// update from signal
-	neurovt_state *dv = state.getAll();
-	while( sn-- ) {
-		int index = *sv++;
-		dv[ index ] = NEURON_FIRE_OUTPUT_THRESHOLD_pQ;
-	}
+	// copy from signal
+	indexList.set( sv , sn );
 }
 
 int CortexSpatialPoolerItem::getDifferencePercentage( CortexSpatialPoolerItem *item , neurovt_state toleranceNeuronState ) {
-	int sn = item -> state.count();
-	int vn = state.count();
-	neurovt_state *sv = item -> state.getAll();
-	neurovt_state *dv = state.getAll();
+	int sn = item -> indexList.count();
+	int *sv = item -> indexList.getAll();
+	int vn = indexList.count();
+	int *dv = indexList.getAll();
 
+	// number of union items
+	int cn = sn + vn;
+	// number of different items
 	int d = 0;
-	int maxn = max( sn , vn );
-	int minn = min( sn , vn );
-	neurovt_state vx;
-	neurovt_state dx;
-	int cn = maxn;
-	for( int k = 0; k < maxn; k++ ) {
-		if( k < minn ) {
-			dx = ( vx = *sv++ ) - *dv++;
-			if( dx < 0 )
-				dx = -dx;
-		}
-		else {
-			vx = 0;
-			if( k >= sn ) 
-				dx = *dv++;
-			else
-				dx = *sv++;
-		}
 
-		if( dx == 0 ) {
-			if( vx == 0 )
-				cn--;
+	// read both ascending
+	while( sn > 0 && vn > 0 ) {
+		int sk = *sv;
+		int vk = *dv;
+
+		if( sk == vk ) {
+			cn--;
+			sn--; sv++;
+			vn--; dv++;
 		}
 		else
-		if( dx > toleranceNeuronState )
+		if( sk < vk ) {
 			d++;
+			sn--; sv++;
+		}
+		else {
+			d++;
+			vn--; dv++;
+		}
 	}
+
+	// add remaining to difference
+	d += sn + vn;
 
 	ASSERTMSG( cn > 0 , "all item neurons are silent" );
 	int pt = ( d * 100 ) / cn;
@@ -123,26 +110,21 @@ void CortexSpatialPoolerItem::getPoolFromState( NeuroPool *pool ) {
 	TwoIndexArray<NEURON_DATA>& nd = pool -> getNeuronData();
 	NEURON_DATA *dv = nd.getData();
 
-	neurovt_state *sv = state.getAll();
-	int n = state.count();
+	int *sv = indexList.getAll();
+	int n = indexList.count();
 
 	RFC_INT64 msNow = Timer::getCurrentTimeMillis();
 	while( n-- ) {
-		dv -> output = *sv++;
-		dv++ -> updated_fs = msNow;
+		int index = *sv++;
+		dv[ index ].output = NEURON_FIRE_OUTPUT_BY_POTENTIAL_pQ;
+		dv[ index ].updated_fs = msNow;
 	}
 }
 
 void CortexSpatialPoolerItem::getSignalFromState( NeuroSignal *signal ) {
-	neurovt_state *dv = state.getAll();
-
-	RFC_INT64 msNow = Timer::getCurrentTimeMillis();
-	int n = state.count();
-	
-	for( int k = 0; k < n; k++ , dv++ ) {
-		if( *dv >= NEURON_FIRE_OUTPUT_THRESHOLD_pQ )
-			signal -> addIndexData( k );
-	}
+	int *dv = indexList.getAll();
+	int n = indexList.count();
+	signal -> setIndexData( dv , n );
 }
 
 void CortexSpatialPoolerItem::logItem() {
@@ -152,44 +134,37 @@ void CortexSpatialPoolerItem::logItem() {
 String CortexSpatialPoolerItem::getBinaryState() {
 	String ps;
 
-	neurovt_state *s = state.getAll();
-	int n = state.count();
+	int *s = indexList.getAll();
+	int n = indexList.count();
+	String zs = "0";
 	for( int k = 0; k < n; k++ ) {
-		char x;
-		if( s[ k ] == 0 )
-			x = '0';
+		// add intermediate zeros
+		if( k == 0 )
+			ps += zs.replicate( s[ k ] );
 		else
-		if( s[ k ] < NEURON_FIRE_OUTPUT_THRESHOLD_pQ )
-			x = 'l';
-		else
-			x = 'h';
+			ps += zs.replicate( s[ k ] - s[ k - 1 ] - 1 );
 
-		ps += x;
+		// add item
+		ps += "1";
 	}
 	
-	ps.trimTrailing( '0' );
 	return( ps );
 }
 
 String CortexSpatialPoolerItem::getNumberedState() {
 	String ps;
 
-	neurovt_state *s = state.getAll();
+	int *s = indexList.getAll();
 
 	bool first = true;
-	int n = state.count();
+	int n = indexList.count();
 	for( int k = 0; k < n; k++ ) {
-		if( s[ k ] == 0 )
-			continue;
-
 		if( first )
 			first = false;
 		else
 			ps += ".";
 
-		ps += k;
-		if( s[ k ] < NEURON_FIRE_OUTPUT_THRESHOLD_pQ )
-			ps += 'l';
+		ps += s[ k ];
 	}
 	
 	return( ps );
