@@ -95,7 +95,7 @@ public:
 private:
 	int id;
 	int usage;
-	FlatList<neurovt_state> state;
+	FlatList<int> indexList;
 };
 
 class CortexSpatialPooler : public Object {

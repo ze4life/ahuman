@@ -245,3 +245,8 @@ void NeuroSignal::addIndexDataSorted( NeuroSignal *srcSignal ) {
 		}
 	}
 }
+
+void NeuroSignal::setIndexData( int *indexData , int n ) {
+	ASSERTMSG( n > 0 , "invalid count" );
+	data.set( indexData , n );
+}

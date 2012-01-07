@@ -40,6 +40,7 @@ public:
 	void create( int sizeX , int sizeY );
 	void createFromPool( NeuroPool *pool );
 	void copyDataFromSignal( NeuroSignal *signal );
+	void setIndexData( int *indexData , int n );
 
 	void setTs( RFC_INT64 ts );
 	void setId( String id );
