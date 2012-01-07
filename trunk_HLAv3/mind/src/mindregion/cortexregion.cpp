@@ -221,10 +221,12 @@ NeuroLinkTarget *CortexRegion::getNeuroLinkTarget( String entity , MindNetInfo *
 	return( NULL );
 }
 
-void CortexRegion::handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *data ) {
+void CortexRegion::handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *inputSignal ) {
 	// mock algorithm:
 	//	1. project neurolink
-	NeuroSignal *excitedSignal = link -> apply( data , &inputPool );
+	NeuroSignal *forwardSignal = link -> apply( inputSignal , &inputPool );
+	if( forwardSignal == NULL )
+		return;
 
 	//	2. execute spacial pooler
 	//		- max number of patterns, spatial pooler slots: MAX_SPACIAL_PATTERNS
@@ -235,11 +237,10 @@ void CortexRegion::handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroLin
 	//		- forget least used stored pattern when adding new pattern and all spacial pooler slots are already filled in
 	int spatialPatternForgotten = -1;
 	int matchProbability;
-	int spatialPatternMatched = spatialPooler -> matchPattern( excitedSignal , &inputPool , &matchProbability , &spatialPatternForgotten );
+	int spatialPatternMatched = spatialPooler -> matchPattern( forwardSignal , &matchProbability , &spatialPatternForgotten );
 
 	// ignore excited signal for now
-	if( excitedSignal != NULL )
-		delete excitedSignal;
+	delete forwardSignal;
 
 	//	3. execute temporal pooler
 	//		- max number of patterns, spatial pooler slots: MAX_TEMPORAL_PATTERNS
@@ -251,7 +252,7 @@ void CortexRegion::handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroLin
 		temporalPooler -> forgetSpatialPattern( spatialPatternForgotten );
 
 	if( spatialPatternMatched < 0 ) {
-		logger.logInfo( String( "handleFeedForwardNeuroLinkMessage: id=" ) + data -> getId() + " - not matched, ignored" );
+		logger.logInfo( String( "handleFeedForwardNeuroLinkMessage: id=" ) + inputSignal -> getId() + " - not matched, ignored" );
 
 		if( logger.isLogAll() ) {
 			spatialPooler -> logItems();
@@ -266,7 +267,7 @@ void CortexRegion::handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroLin
 	int temporalspatialPatternMatched = temporalPooler -> matchPattern( spatialPatternMatched , &spatialPatternPredicted , &predictionProbability , &temporalPatternForgotten );
 
 	if( spatialPatternPredicted < 0 ) {
-		logger.logInfo( String( "handleFeedForwardNeuroLinkMessage: id=" ) + data -> getId() + ", spatialMatched=" + spatialPatternMatched + ", spatialExpected=" + spatialPatternExpected + ", temporalMatched=" + temporalspatialPatternMatched + ", spatialPredicted=-1, probability=" + matchProbability + "/-1" );
+		logger.logInfo( String( "handleFeedForwardNeuroLinkMessage: id=" ) + inputSignal -> getId() + ", spatialMatched=" + spatialPatternMatched + ", spatialExpected=" + spatialPatternExpected + ", temporalMatched=" + temporalspatialPatternMatched + ", spatialPredicted=-1, probability=" + matchProbability + "/-1" );
 
 		if( logger.isLogAll() ) {
 			spatialPooler -> logItems();
@@ -277,12 +278,16 @@ void CortexRegion::handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroLin
 
 	// 4. generate feedback
 	//		- get predicted pattern
-	logger.logInfo( String( "handleFeedForwardNeuroLinkMessage: id=" ) + data -> getId() + ", spatialMatched=" + spatialPatternMatched + ", spatialExpected=" + spatialPatternExpected + ", temporalMatched=" + temporalspatialPatternMatched + ", spatialPredicted=" + spatialPatternPredicted + ", probability=" + matchProbability + "/" + predictionProbability );
+	logger.logInfo( String( "handleFeedForwardNeuroLinkMessage: id=" ) + inputSignal -> getId() + ", spatialMatched=" + spatialPatternMatched + ", spatialExpected=" + spatialPatternExpected + ", temporalMatched=" + temporalspatialPatternMatched + ", spatialPredicted=" + spatialPatternPredicted + ", probability=" + matchProbability + "/" + predictionProbability );
 	spatialPatternExpected = spatialPatternPredicted;
 
 	//		- generate feedback message
-	spatialPooler -> getPattern( spatialPatternPredicted , &feedbackPool );
-	sourceFeedBack -> sendMessage( NULL );
+	int fnx , fny;
+	feedbackPool.getNeuronDimensions( &fnx , &fny );
+	NeuroSignal *feedbackSignal = new NeuroSignal( fnx , fny );
+	feedbackSignal -> setId( inputSignal -> getId() );
+	spatialPooler -> getPattern( spatialPatternPredicted , feedbackSignal );
+	sourceFeedBack -> sendMessage( feedbackSignal );
 
 	if( logger.isLogAll() ) {
 		spatialPooler -> logItems();
