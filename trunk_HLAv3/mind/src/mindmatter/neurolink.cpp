@@ -9,6 +9,7 @@ static int sequence_NL = 0;
 NeuroLink::NeuroLink( MindRegionLink *p_regionLink ) {
 	regionLink = p_regionLink;
 
+	id = String( "NL" ) + ( ++sequence_NL );
 	linkInfo = NULL;
 	target = NULL;
 	sizeX = 0;
@@ -32,7 +33,6 @@ void NeuroLink::setTransmitter( String p_transmitter ) {
 }
 
 void NeuroLink::create( NeuroLinkSource *p_source , NeuroLinkTarget *p_target ) {
-	id = String( "NL" ) + ( ++sequence_NL );
 	source = p_source;
 	target = p_target;
 
