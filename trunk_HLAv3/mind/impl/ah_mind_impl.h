@@ -84,8 +84,9 @@ public:
 	void addUsage();
 	void setId( int p_id );
 	int setStateFromPool( NeuroPool *pool );
-	int addSignalState( NeuroSignal *signal );
+	void setStateFromSignal( NeuroSignal *signal );
 	void getPoolFromState( NeuroPool *pool );
+	void getSignalFromState( NeuroSignal *signal );
 	int getDifferencePercentage( CortexSpatialPoolerItem *item , neurovt_state toleranceNeuronState );
 	void logItem();
 	String getBinaryState();
@@ -107,8 +108,8 @@ public:
 	void setMatchTolerance( int tolerancePattern , int toleranceNeuronState );
 	void setProtectedUsage( int usage );
 
-	int matchPattern( NeuroSignal *excitedSignal , NeuroPool *pool , int *matchProbability , int *patternForgotten );
-	bool getPattern( int pattern , NeuroPool *pool );
+	int matchPattern( NeuroSignal *signal , int *matchProbability , int *patternForgotten );
+	bool getPattern( int pattern , NeuroSignal *signal );
 	CortexSpatialPoolerItem *findBestMatch( CortexSpatialPoolerItem *data , int *difference );
 	CortexSpatialPoolerItem *findLeastUsed();
 	void logItems();

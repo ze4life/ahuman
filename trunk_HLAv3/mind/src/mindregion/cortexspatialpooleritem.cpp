@@ -50,34 +50,49 @@ int CortexSpatialPoolerItem::setStateFromPool( NeuroPool *pool ) {
 	return( cn );
 }
 
-int CortexSpatialPoolerItem::addSignalState( NeuroSignal *signal ) {
-	int cn = 0;
+void CortexSpatialPoolerItem::setStateFromSignal( NeuroSignal *signal ) {
 	int *sv = signal -> getIndexRawData();
-	int n = signal -> getDataSize();
-	cn = n;
-	neurovt_state *dv = state.getAll();
+	int sn = signal -> getDataSize();
+	ASSERTMSG( sn > 0 , "invalid signal" );
 
-	while( n-- ) {
+	// resize and init to zero values
+	state.setCount( sv[ sn - 1 ] + 1 );
+	state.set( 0 );
+
+	// update from signal
+	neurovt_state *dv = state.getAll();
+	while( sn-- ) {
 		int index = *sv++;
 		dv[ index ] = NEURON_FIRE_OUTPUT_THRESHOLD_pQ;
 	}
-
-	return( cn );
 }
 
 int CortexSpatialPoolerItem::getDifferencePercentage( CortexSpatialPoolerItem *item , neurovt_state toleranceNeuronState ) {
-	int n = item -> state.count();
-	ASSERTMSG( n == state.count() , "invalid size" );
+	int sn = item -> state.count();
+	int vn = state.count();
 	neurovt_state *sv = item -> state.getAll();
 	neurovt_state *dv = state.getAll();
 
 	int d = 0;
-	int cn = n;
+	int maxn = max( sn , vn );
+	int minn = min( sn , vn );
 	neurovt_state vx;
-	for( int k = 0; k < n; k++ ) {
-		neurovt_state dx = ( vx = *sv++ ) - *dv++;
-		if( dx < 0 )
-			dx = -dx;
+	neurovt_state dx;
+	int cn = maxn;
+	for( int k = 0; k < maxn; k++ ) {
+		if( k < minn ) {
+			dx = ( vx = *sv++ ) - *dv++;
+			if( dx < 0 )
+				dx = -dx;
+		}
+		else {
+			vx = 0;
+			if( k >= sn ) 
+				dx = *dv++;
+			else
+				dx = *sv++;
+		}
+
 		if( dx == 0 ) {
 			if( vx == 0 )
 				cn--;
@@ -106,16 +121,27 @@ void CortexSpatialPoolerItem::addUsage() {
 
 void CortexSpatialPoolerItem::getPoolFromState( NeuroPool *pool ) {
 	TwoIndexArray<NEURON_DATA>& nd = pool -> getNeuronData();
-	int n = nd.getN1() * nd.getN2();
-	NEURON_DATA *sv = nd.getData();
+	NEURON_DATA *dv = nd.getData();
 
-	state.setCount( n );
-	neurovt_state *dv = state.getAll();
+	neurovt_state *sv = state.getAll();
+	int n = state.count();
 
 	RFC_INT64 msNow = Timer::getCurrentTimeMillis();
 	while( n-- ) {
-		sv -> output = *dv++;
-		sv++ -> updated_fs = msNow;
+		dv -> output = *sv++;
+		dv++ -> updated_fs = msNow;
+	}
+}
+
+void CortexSpatialPoolerItem::getSignalFromState( NeuroSignal *signal ) {
+	neurovt_state *dv = state.getAll();
+
+	RFC_INT64 msNow = Timer::getCurrentTimeMillis();
+	int n = state.count();
+	
+	for( int k = 0; k < n; k++ , dv++ ) {
+		if( *dv >= NEURON_FIRE_OUTPUT_THRESHOLD_pQ )
+			signal -> addIndexData( k );
 	}
 }
 
