@@ -4,11 +4,21 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-NeuroLinkTarget::NeuroLinkTarget( MindRegion *p_region ) {
+NeuroLinkTarget::NeuroLinkTarget() {
+	attachLogger();
+
+	region = NULL;
+	pfn = NULL;
+}
+
+void NeuroLinkTarget::create( MindRegion *p_region , String p_entity ) {
 	attachLogger();
 
 	region = p_region;
-	pfn = NULL;
+	entity = p_entity;
+
+	// setup connector
+	p_region -> addTargetEntity( p_entity , this );
 }
 
 void NeuroLinkTarget::setHandler( MindRegion::NeuroLinkTargetHandler p_pfn ) {

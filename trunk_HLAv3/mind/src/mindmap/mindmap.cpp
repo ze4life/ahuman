@@ -5,11 +5,18 @@
 /*#########################################################################*/
 
 MindMap::~MindMap() {
+	regionTypeSet.destroy();
 	netTypeSet.destroy();
 	mindNetSet.destroy();
 	mindAreaSet.destroy();
 	linkTypeSet.destroy();
 	mindLinkSet.destroy();
+}
+
+MindRegionType *MindMap::getRegionTypeByName( String regionTypeName ) {
+	MindRegionType *info = regionTypeMap.get( regionTypeName );
+	ASSERTMSG( info != NULL , "Wrong region type name=" + regionTypeName );
+	return( info );
 }
 
 MindNetInfo *MindMap::getNetByName( String netName ) {
@@ -25,12 +32,34 @@ MindAreaInfo *MindMap::getAreaById( String areaId ) {
 }
 
 void MindMap::createFromXml( Xml xml ) {
+	createRegionTypeSet( xml.getFirstChild( "MindRegionTypeSet" ) );
 	createAreaSet( xml.getFirstChild( "MindAreaSet" ) );
 	createNetworkTypeSet( xml.getFirstChild( "MindNetworkTypeSet" ) );
 	createNetworkSet( xml.getFirstChild( "MindNetworkSet" ) );
 	createLinkTypeSet( xml.getFirstChild( "MindLinkTypeSet" ) );
 	createMindLinkSet( xml.getFirstChild( "MindLinkSet" ) );
 	linkAreaNet();
+}
+
+void MindMap::createRegionTypeSet( Xml xml ) {
+	if( !xml.exists() )
+		return;
+
+	for( Xml xmlChild = xml.getFirstChild( "MindRegionType" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "MindRegionType" ) ) {
+		// construct MindRegionType from attributes
+		MindRegionType *info = new MindRegionType;
+		regionTypeSet.add( info );
+
+		info -> createFromXml( xmlChild );
+
+		// get region type name
+		String name = info -> getName();
+		ASSERTMSG( !name.isEmpty() , "region type is not defined: " + xmlChild.serialize() );
+		ASSERTMSG( regionTypeMap.get( name ) == NULL , name + ": region type duplicate found for name=" + name );
+
+		// add
+		regionTypeMap.add( name , info );
+	}
 }
 
 void MindMap::createAreaSet( Xml xml ) {

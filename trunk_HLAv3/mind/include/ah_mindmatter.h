@@ -143,6 +143,7 @@ public:
 	void setNeuroLinkInfo( NeuroLinkInfo *linkInfo );
 	void setTransmitter( String transmitter );
 	void create( NeuroLinkSource *p_source , NeuroLinkTarget *p_target );
+	void createInternal( MindRegion *region );
 
 	virtual NeuroSignal *apply( NeuroSignal *srcData , NeuroPool *dstPool ) = 0;
 
@@ -155,6 +156,7 @@ public:
 
 // references
 	MindRegionLink *regionLink;
+	MindRegion *region;
 	NeuroLinkInfo *linkInfo;
 	NeuroLinkSource *source;
 	NeuroLinkTarget *target;
@@ -179,10 +181,11 @@ public:
 
 class NeuroLinkSource : public Object {
 public:
-	NeuroLinkSource( MindRegion *region , String entity );
+	NeuroLinkSource();
 	virtual const char *getClass() { return( "NeuroLinkSource" ); };
 
 public:
+	void create( MindRegion *region , String entity );
 	void setHandler( MindRegion::NeuroLinkSourceHandler pfn );
 	MindRegion *getRegion() { return( region ); };
 	int getSizeX();
@@ -211,10 +214,11 @@ private:
 
 class NeuroLinkTarget : public Object {
 public:
-	NeuroLinkTarget( MindRegion *region );
+	NeuroLinkTarget();
 	virtual const char *getClass() { return( "NeuroLinkTarget" ); };
 
 public:
+	void create( MindRegion *region , String entity );
 	void setHandler( MindRegion::NeuroLinkTargetHandler pfn );
 	MindRegion *getRegion() { return( region ); };
 
@@ -222,6 +226,7 @@ public:
 
 public:
 	MindRegion *region;
+	String entity;
 	MindRegion::NeuroLinkTargetHandler pfn;
 };
 

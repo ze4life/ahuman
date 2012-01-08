@@ -16,9 +16,8 @@ public:
 	virtual void destroyRegion();
 
 	// NeuroLink support
+	virtual String getRegionType();
 	virtual void getSourceSizes( String entity , int *sizeX , int *sizeY );
-	virtual NeuroLinkSource *getNeuroLinkSource( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
-	virtual NeuroLinkTarget *getNeuroLinkTarget( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
 
 public:
 	void createNerveRegion( NerveRegionInfo *info );
@@ -42,6 +41,10 @@ NerveRegion::NerveRegion( MindArea *p_area )
 	attachLogger();
 }
 
+String NerveRegion::getRegionType() {
+	return( "NerveRegion" );
+}
+
 void NerveRegion::createNerveRegion( NerveRegionInfo *info ) {
 	ASSERTFAILED( "createNerveRegion: not implemented" );
 }
@@ -54,12 +57,3 @@ void NerveRegion::exitRegion() {
 
 void NerveRegion::destroyRegion() {
 }
-
-NeuroLinkSource *NerveRegion::getNeuroLinkSource( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
-	return( NULL );
-}
-
-NeuroLinkTarget *NerveRegion::getNeuroLinkTarget( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
-	return( NULL );
-}
-
