@@ -16,9 +16,8 @@ public:
 	virtual void destroyRegion();
 
 	// NeuroLink support
+	virtual String getRegionType();
 	virtual void getSourceSizes( String entity , int *sizeX , int *sizeY );
-	virtual NeuroLinkSource *getNeuroLinkSource( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
-	virtual NeuroLinkTarget *getNeuroLinkTarget( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
 
 public:
 	void createNucleiRegion( NucleiRegionInfo *info , String id );
@@ -30,9 +29,9 @@ private:
 
 private:
 // own data
-	NeuroLinkSource *source;
-	NeuroLinkTarget *targetSub;
-	NeuroLinkTarget *targetInterNeurons;
+	NeuroLinkSource source;
+	NeuroLinkTarget targetSub;
+	NeuroLinkTarget targetInterNeurons;
 	NeuroLink *linkInterNeuronsToSub;
 
 	NeuroPool neuroPoolSub;
@@ -54,11 +53,11 @@ MindRegion *MindService::createNucleiRegion( MindArea *area , String id , Nuclei
 NucleiRegion::NucleiRegion( MindArea *p_area )
 :	MindRegion( p_area ) {
 	attachLogger();
-
-	source = NULL;
-	targetSub = NULL;
-	targetInterNeurons = NULL;
 	linkInterNeuronsToSub = NULL;
+}
+
+String NucleiRegion::getRegionType() {
+	return( "NucleiRegion" );
 }
 
 void NucleiRegion::createNucleiRegion( NucleiRegionInfo *info , String p_id ) {
@@ -77,17 +76,18 @@ void NucleiRegion::createNucleiRegion( NucleiRegionInfo *info , String p_id ) {
 	neuroPoolInterNeurons.setId( p_id + ".in" );
 
 	// create internal link
-	MindService *ms = MindService::getService();
-	linkInterNeuronsToSub = ms -> createInhibitoryLink( NULL );
+	MindRegionType *regionType = MindRegion::getRegionTypeInfo();
+	NeuroLinkInfo *linkInfo = regionType -> getLink( "interneurons" );
+	linkInterNeuronsToSub = linkInfo -> createInternalNeuroLink( this );
 }
 
 void NucleiRegion::createRegion() {
-	source = new NeuroLinkSource( this , "nucleus.input" );
+	source.create( this , "nucleus.output" );
 
-	targetSub = new NeuroLinkTarget( this );
-	targetSub -> setHandler( ( MindRegion::NeuroLinkTargetHandler )&NucleiRegion::handleSubTargetMessage );
-	targetInterNeurons = new NeuroLinkTarget( this );
-	targetInterNeurons -> setHandler( ( MindRegion::NeuroLinkTargetHandler )&NucleiRegion::handleInterNeuronsTargetMessage );
+	targetSub.create( this , "nucleus.input" );
+	targetSub.setHandler( ( MindRegion::NeuroLinkTargetHandler )&NucleiRegion::handleSubTargetMessage );
+	targetInterNeurons.create( this , "nucleus.interneurons-input" );
+	targetInterNeurons.setHandler( ( MindRegion::NeuroLinkTargetHandler )&NucleiRegion::handleInterNeuronsTargetMessage );
 
 	int nx , ny;
 	neuroPoolSub.getNeuronDimensions( &nx , &ny );
@@ -102,35 +102,10 @@ void NucleiRegion::exitRegion() {
 }
 
 void NucleiRegion::destroyRegion() {
-	if( source != NULL )
-		delete source;
-	if( targetSub != NULL )
-		delete targetSub;
-	if( targetInterNeurons != NULL )
-		delete targetInterNeurons;
 	if( linkInterNeuronsToSub != NULL )
 		delete linkInterNeuronsToSub;
 
-	source = NULL;
-	targetSub = NULL;
-	targetInterNeurons = NULL;
 	linkInterNeuronsToSub = NULL;
-}
-
-// NeuroLink support
-NeuroLinkSource *NucleiRegion::getNeuroLinkSource( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
-	// allow any
-	if( entity.equals( "nucleus.output" ) )
-		return( source );
-	return( NULL );
-}
-
-NeuroLinkTarget *NucleiRegion::getNeuroLinkTarget( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
-	if( entity.equals( "nucleus.input" ) )
-		return( targetSub );
-	if( entity.equals( "nucleus.interneurons-input" ) )
-		return( targetInterNeurons );
-	return( NULL );
 }
 
 void NucleiRegion::handleSubTargetMessage( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *data ) {
@@ -144,7 +119,7 @@ void NucleiRegion::handleSubTargetMessage( NeuroLink *link , NeuroLinkTarget *po
 	// forward further
 	signal -> setId( data -> getId() );
 	LOGDEBUG( "handleInputTargetMessage: send data signal id=" + signal -> getId() + ", data=" + signal -> getNumberDataString() );
-	source -> sendMessage( signal );
+	source.sendMessage( signal );
 	delete signal;
 }
 

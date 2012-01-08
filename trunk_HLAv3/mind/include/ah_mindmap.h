@@ -7,6 +7,8 @@
 #include "ah_mindbase.h"
 
 class MindMap;
+class MindRegionType;
+class MindRegionConnector;
 class MindNetInfo;
 class MindAreaInfo;
 class MindAreaLinkInfo;
@@ -34,12 +36,15 @@ public:
 	ClassList<MindNetInfo>& getMindNets() { return( mindNetSet ); };
 	ClassList<MindAreaInfo>& getMindAreas() { return( mindAreaSet ); };
 	ClassList<MindAreaLinkInfo>& getLinks() { return( mindLinkSet ); }
+
+	MindRegionType *getRegionTypeByName( String regionTypeName );
 	MindNetInfo *getNetByName( String netName );
 	MindAreaInfo *getAreaById( String areaId );
 	MindNetworkType *getNetTypeByName( String typeName );
 	MindLinkType *getLinkTypeByName( String typeName );
 
 private:
+	void createRegionTypeSet( Xml xml );
 	void createAreaSet( Xml xml );
 	void createNetworkTypeSet( Xml xml );
 	void createNetworkSet( Xml xml );
@@ -49,6 +54,7 @@ private:
 
 private:
 // own data
+	ClassList<MindRegionType> regionTypeSet;
 	ClassList<MindNetworkType> netTypeSet;
 	ClassList<MindNetInfo> mindNetSet;
 	ClassList<MindAreaInfo> mindAreaSet;
@@ -56,10 +62,66 @@ private:
 	ClassList<MindAreaLinkInfo> mindLinkSet;
 
 // references
+	MapStringToClass<MindRegionType> regionTypeMap;
 	MapStringToClass<MindNetInfo> mindNetMap;
 	MapStringToClass<MindAreaInfo> mindAreaMap;
 	MapStringToClass<MindNetworkType> netTypeMap;
 	MapStringToClass<MindLinkType> linkTypeMap;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class MindRegionType : public Object {
+public:
+	virtual ~MindRegionType();
+	virtual const char *getClass() { return( "MindRegionType" ); };
+
+// operations
+public:
+	void createFromXml( Xml xml );
+
+	String getName();
+	MindRegionConnector *getConnector( String id );
+	NeuroLinkInfo *getLink( String id );
+
+private:
+	void createConnectorSetFromXml( Xml xml );
+	void createLinkSetFromXml( Xml xml );
+
+private:
+// utilities
+	String name;
+
+// own data
+	ClassList<MindRegionConnector> connectorSet;
+	ClassList<NeuroLinkInfo> linkSet;
+
+// references
+	MapStringToClass<MindRegionConnector> connectorMap;
+	MapStringToClass<NeuroLinkInfo> linkMap;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class MindRegionConnector : public Object {
+public:
+	MindRegionConnector();
+	virtual ~MindRegionConnector() {};
+	virtual const char *getClass() { return( "MindRegionConnector" ); };
+
+// operations
+public:
+	void createFromXml( Xml xml );
+
+	String getId();
+	bool isSourceConnector();
+
+private:
+// utilities
+	String id;
+	bool sourceConnector;
 };
 
 /*#########################################################################*/
@@ -74,6 +136,7 @@ public:
 // operations
 public:
 	void createFromXml( Xml xml );
+
 	String getName();
 	String getTypeName();
 	bool runEnabled();
@@ -142,6 +205,7 @@ public:
 // operations
 public:
 	void createFromXml( Xml xml );
+
 	bool isEnabled() { return( enabled ); };
 	String getTypeName() { return( typeName ); };
 	String getMasterAreaId() { return( masterAreaId ); };
@@ -178,6 +242,7 @@ public:
 // operations
 public:
 	void createFromXml( Xml xml );
+
 	String getNetName();
 	String getTransmitters();
 
@@ -205,6 +270,7 @@ public:
 // operations
 public:
 	void createFromXml( Xml xml );
+
 	String getName();
 
 private:
@@ -241,9 +307,12 @@ private:
 /*#########################################################################*/
 
 class NeuroLink;
+class NeuroLinkSource;
+class NeuroLinkTarget;
 
 class NeuroLinkInfo : public Object {
 public:
+	NeuroLinkInfo( MindRegionType *regionType );
 	NeuroLinkInfo( MindLinkType *linkType );
 	virtual ~NeuroLinkInfo() {};
 	virtual const char *getClass() { return( "NeuroLinkInfo" ); };
@@ -252,6 +321,7 @@ public:
 public:
 	void createFromXml( Xml xml );
 
+	String getId() { return( id ); };
 	String getTypeName() { return( type ); };
 	String getMasterEntity() { return( masterEntity ); };
 	String getSlaveEntity() { return( slaveEntity ); };
@@ -259,11 +329,13 @@ public:
 	bool getForward() { return( forward ); };
 	MindLinkType *getLinkType() { return( linkType ); };
 
-	NeuroLink *createNeuroLink( MindRegionLink *regionLink );
+	NeuroLink *createNeuroLink( MindRegionLink *regionLink , NeuroLinkSource *srcData , NeuroLinkTarget *dstData );
+	NeuroLink *createInternalNeuroLink( MindRegion *region );
 
 // data
 public:
 // utility
+	String id;
 	String type;
 	String masterEntity;
 	String slaveEntity;
@@ -271,6 +343,7 @@ public:
 	bool forward;
 
 // references
+	MindRegionType *regionType;
 	MindLinkType *linkType;
 };
 

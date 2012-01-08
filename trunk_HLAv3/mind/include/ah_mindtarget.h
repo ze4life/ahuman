@@ -151,9 +151,8 @@ private:
 	virtual void destroyRegion();
 
 	// NeuroLink support
+	virtual String getRegionType();
 	virtual void getSourceSizes( String entity , int *sizeX , int *sizeY );
-	virtual NeuroLinkSource *getNeuroLinkSource( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
-	virtual NeuroLinkTarget *getNeuroLinkTarget( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
 
 public:
 	// memory allocation
@@ -186,9 +185,9 @@ private:
 	// memory
 	NeuroSignal *memorySensorySignal;
 	NeuroSignal *memorySensoryFeedbackSignal;
-	NeuroLinkSource *sourceSensoryData;
-	NeuroLinkSource *sourceSensoryControlFeedback;
-	NeuroLinkTarget *targetSensoryControl;
+	NeuroLinkSource sourceSensoryData;
+	NeuroLinkSource sourceSensoryControlFeedback;
+	NeuroLinkTarget targetSensoryControl;
 };
 
 /*#########################################################################*/

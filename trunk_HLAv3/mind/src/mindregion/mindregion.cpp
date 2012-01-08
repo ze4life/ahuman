@@ -19,7 +19,14 @@ MindRegion::~MindRegion() {
 }
 
 void MindRegion::create( String p_id ) {
+	id = p_id;
 	regionLinkSet = new MindRegionLinkSet();
+
+	// map region type
+	MindService *ms = MindService::getService();
+	MindMap *mm = ms -> getMindMap();
+	regionType = mm -> getRegionTypeByName( getRegionType() );
+	ASSERTMSG( regionType != NULL , String( "Unknown region type name=" ) + getClass() );
 
 	// call virtual
 	createRegion();
@@ -52,3 +59,30 @@ void MindRegion::addPrivateNeuroLink( NeuroLink *nt ) {
 void MindRegion::sendMessage( MindMessage *msg ) {
 	area -> sendMessage( msg );
 }
+
+NeuroLinkSource *MindRegion::getNeuroLinkSource( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
+	NeuroLinkSource *connector = sourceConnectorMap.get( entity );
+	return( connector );
+}
+
+NeuroLinkTarget *MindRegion::getNeuroLinkTarget( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
+	NeuroLinkTarget *connector = targetConnectorMap.get( entity );
+	return( connector );
+}
+
+void MindRegion::addSourceEntity( String entity , NeuroLinkSource *connector ) {
+	ASSERTMSG( sourceConnectorMap.get( entity ) == NULL , "Duplicate entity=" + entity + " in region id=" + id );
+	// check metadata
+	MindRegionConnector *connectorInfo = regionType -> getConnector( entity );
+	ASSERTMSG( connectorInfo -> isSourceConnector() == true , "connector exists but is not source, entity=" + entity );
+	sourceConnectorMap.add( entity , connector );
+}
+
+void MindRegion::addTargetEntity( String entity , NeuroLinkTarget *connector ) {
+	ASSERTMSG( targetConnectorMap.get( entity ) == NULL , "Duplicate entity=" + entity + " in region id=" + id );
+	// check metadata
+	MindRegionConnector *connectorInfo = regionType -> getConnector( entity );
+	ASSERTMSG( connectorInfo -> isSourceConnector() == false , "connector exists but is not target, entity=" + entity );
+	targetConnectorMap.add( entity , connector );
+}
+

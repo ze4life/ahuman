@@ -41,10 +41,8 @@ public:
 	virtual void exitRegion() = 0;
 	virtual void destroyRegion() = 0;
 
-	// NeuroLink support
+	virtual String getRegionType() = 0;
 	virtual void getSourceSizes( String entity , int *sizeX , int *sizeY ) = 0;
-	virtual NeuroLinkSource *getNeuroLinkSource( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) = 0;
-	virtual NeuroLinkTarget *getNeuroLinkTarget( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) = 0;
 
 public:
 	void create( String id );
@@ -54,6 +52,12 @@ public:
 
 	MindArea *getArea() { return( area ); };
 	String getRegionId();
+	MindRegionType *getRegionTypeInfo() { return( regionType ); };
+
+	void addSourceEntity( String entity , NeuroLinkSource *connector );
+	void addTargetEntity( String entity , NeuroLinkTarget *connector );
+	NeuroLinkSource *getNeuroLinkSource( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
+	NeuroLinkTarget *getNeuroLinkTarget( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
 
 private:
 
@@ -69,8 +73,11 @@ private:
 	MindLocation *location;
 
 // references
+	MindRegionType *regionType;
 	MindArea *area;
 	MindRegionLinkSet *regionLinkSet;
+	MapStringToClass<NeuroLinkSource> sourceConnectorMap;
+	MapStringToClass<NeuroLinkTarget> targetConnectorMap;
 };
 
 /*#########################################################################*/

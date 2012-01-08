@@ -19,9 +19,8 @@ public:
 	virtual void destroyRegion();
 
 	// NeuroLink support
+	virtual String getRegionType();
 	virtual void getSourceSizes( String entity , int *sizeX , int *sizeY );
-	virtual NeuroLinkSource *getNeuroLinkSource( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
-	virtual NeuroLinkTarget *getNeuroLinkTarget( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
 
 public:
 	void createCortexRegion( CortexRegionInfo *info , String p_id );
@@ -34,16 +33,8 @@ private:
 
 private:
 // own data
-	// NeuroLinkSource *sourceFeedForward;
-	NeuroLinkSource *sourceFeedBack;
-	// NeuroLinkSource *sourceAttention;
-	NeuroLinkTarget *targetFeedForward;
-	// NeuroLinkTarget *targetFeedBack;
-	// NeuroLinkTarget *targetAttention;
-
-	// NeuroSignal vectorFeedForwardOutput;
-	// NeuroSignal vectorFeedBackOutput;
-	// NeuroSignal vectorAttentionOutput;
+	NeuroLinkSource sourceFeedBack;
+	NeuroLinkTarget targetFeedForward;
 
 	// NeuroPool layerTemporalFeedback;	// layer 2
 	// NeuroPool layerSpatial;				// layer 3
@@ -88,15 +79,12 @@ CortexRegion::CortexRegion( MindArea *p_area )
 	temporalDepth = false;
 	spatialPatternExpected = -1;
 
-	// sourceFeedForward = NULL;
-	sourceFeedBack = NULL;
-	// sourceAttention = NULL;
-	targetFeedForward = NULL;
-	// targetFeedBack = NULL;
-	// targetAttention = NULL;
-
 	spatialPooler = new CortexSpatialPooler();
 	temporalPooler = new CortexTemporalPooler();
+}
+
+String CortexRegion::getRegionType() {
+	return( "CortexRegion" );
 }
 
 void CortexRegion::createCortexRegion( CortexRegionInfo *info , String p_id ) {
@@ -143,25 +131,19 @@ void CortexRegion::getSourceSizes( String entity , int *p_sizeX , int *p_sizeY )
 }
 
 void CortexRegion::createRegion() {
+	targetFeedForward.create( this , "cortex.ff-input" );
+	targetFeedForward.setHandler( ( MindRegion::NeuroLinkTargetHandler )&CortexRegion::handleFeedForwardNeuroLinkMessage );
+	sourceFeedBack.create( this , "cortex.fb-output" );
+	sourceFeedBack.setSourcePool( &feedbackPool );
+
 	// sourceFeedForward = new NeuroLinkSource( this );
-	sourceFeedBack = new NeuroLinkSource( this , "cortex.fb-output" );
-	sourceFeedBack -> setSourcePool( &feedbackPool );
 	// sourceAttention = new NeuroLinkSource( this );
-	targetFeedForward = new NeuroLinkTarget( this );
 	// targetFeedBack = new NeuroLinkTarget( this );
 	// targetAttention = new NeuroLinkTarget( this );
-
 	// create input/output vectors
-	// vectorFeedForwardOutput.create( sideSize , sideSize );
 	// sourceFeedForward -> setSourceSignal( &vectorFeedForwardOutput );
-
-	// vectorFeedBackOutput.create( sideSize , sideSize );
 	// sourceFeedBack -> setSourceSignal( &vectorFeedBackOutput );
-
-	// vectorAttentionOutput.create( sideSize , sideSize );
 	// sourceAttention -> setSourceSignal( &vectorAttentionOutput );
-
-	targetFeedForward -> setHandler( ( MindRegion::NeuroLinkTargetHandler )&CortexRegion::handleFeedForwardNeuroLinkMessage );
 	// targetFeedBack -> setHandler( ( MindRegion::NeuroLinkTargetHandler )&CortexRegion::handleFeedBackNeuroLinkMessage );
 	// targetAttention -> setHandler( ( MindRegion::NeuroLinkTargetHandler )&CortexRegion::handleAttentionNeuroLinkMessage );
 
@@ -172,53 +154,11 @@ void CortexRegion::exitRegion() {
 }
 
 void CortexRegion::destroyRegion() {
-	// if( sourceFeedForward != NULL )
-	// 	delete sourceFeedForward;
-	if( sourceFeedBack != NULL )
-		delete sourceFeedBack;
-	// if( sourceAttention != NULL )
-	// 	delete sourceAttention;
-	if( targetFeedForward != NULL )
-		delete targetFeedForward;
-	// if( targetFeedBack != NULL )
-	// 	delete targetFeedBack;
-	// if( targetAttention != NULL )
-	// 	delete targetAttention;
-
-	// sourceFeedForward = NULL;
-	sourceFeedBack = NULL;
-	// sourceAttention = NULL;
-	targetFeedForward = NULL;
-	// targetFeedBack = NULL;
-	// targetAttention = NULL;
-
 	delete spatialPooler;
 	spatialPooler = NULL;
 
 	delete temporalPooler;
 	temporalPooler = NULL;
-}
-
-NeuroLinkSource *CortexRegion::getNeuroLinkSource( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
-	// if( entity.equals( "feed-forward-output" ) )
-	// 	return( sourceFeedForward );
-	if( entity.equals( "cortex.fb-output" ) )
-		return( sourceFeedBack );
-	// if( entity.equals( "attention-output" ) )
-	// 	return( sourceAttention );
-
-	return( NULL );
-}
-
-NeuroLinkTarget *CortexRegion::getNeuroLinkTarget( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
-	if( entity.equals( "cortex.ff-input" ) )
-		return( targetFeedForward );
-	// if( entity.equals( "feed-back-input" ) )
-	// 	return( targetFeedBack );
-	// if( entity.equals( "attention-input" ) )
-	// 	return( targetAttention );
-
-	return( NULL );
 }
 
 void CortexRegion::handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *inputSignal ) {
@@ -294,7 +234,7 @@ void CortexRegion::handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroLin
 	feedbackSignal -> setId( inputSignal -> getId() );
 	feedbackSignal -> setTs( Timer::getCurrentTimeMillis() );
 
-	sourceFeedBack -> sendMessage( feedbackSignal );
+	sourceFeedBack.sendMessage( feedbackSignal );
 }
 
 // void CortexRegion::handleFeedBackNeuroLinkMessage( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *data ) {

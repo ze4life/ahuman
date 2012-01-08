@@ -93,6 +93,7 @@ public:
 	MindRegionLink( MindAreaLink *areaLink );
 	const char *getClass() { return( "MindRegionLink" ); };
 
+	String getId() { return( id ); };
 	MindLinkType *getLinkType() { return( linkType ); };
 	MindRegion *getSrcRegion();
 	MindRegion *getDstRegion();
@@ -113,6 +114,9 @@ public:
 	MindRegion *src;
 	MindRegion *dst;
 	NeuroLinkSet *links;
+
+// utilities
+	String id;
 };
 
 /*#########################################################################*/

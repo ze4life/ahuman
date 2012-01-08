@@ -4,15 +4,23 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-NeuroLinkSource::NeuroLinkSource( MindRegion *p_region , String p_entity ) {
+NeuroLinkSource::NeuroLinkSource() {
 	attachLogger();
 
-	entity = p_entity;
+	region = NULL;
+	pfn = NULL;
 	sourcePool = NULL;
+}
+
+void NeuroLinkSource::create( MindRegion *p_region , String p_entity ) {
 	region = p_region;
+	entity = p_entity;
 	pfn = NULL;
 
 	region -> getSourceSizes( entity , &sizeX , &sizeY );
+
+	// setup connector
+	p_region -> addSourceEntity( p_entity , this );
 }
 
 void NeuroLinkSource::setSourcePool( NeuroPool *p_data ) {

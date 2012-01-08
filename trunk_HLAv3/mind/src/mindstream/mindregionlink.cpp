@@ -1,18 +1,20 @@
 #include <ah_mind.h>
 #include <ah_mind_impl.h>
 
+static int lastRegionId = 0;
+
 /*#########################################################################*/
 /*#########################################################################*/
 
 MindRegionLink::MindRegionLink( MindAreaLink *p_areaLink ) {
+	attachLogger();
+
 	areaLink = p_areaLink;
 	linkType = areaLink -> getLinkInfo() -> getLinkType();
 
 	src = NULL;
 	dst = NULL;
 	links = new NeuroLinkSet();
-
-	attachLogger();
 }
 
 MindRegion *MindRegionLink::getSrcRegion() {
@@ -24,6 +26,7 @@ MindRegion *MindRegionLink::getDstRegion() {
 }
 
 void MindRegionLink::createRegionLink( MindNet *net , MindRegion *srcRegion , MindRegion *dstRegion ) {
+	id = String( "RL" ) + ++lastRegionId;
 	src = srcRegion;
 	dst = dstRegion;
 
@@ -36,6 +39,7 @@ void MindRegionLink::createRegionLink( MindNet *net , MindRegion *srcRegion , Mi
 		if( link != NULL )
 			links -> addSetItem( link );
 	}
+	logger.logInfo( "createRegionLink: region link created id=" + id + " from region id=" + srcRegion -> getRegionId() + "to region id=" + dstRegion -> getRegionId()  );
 }
 
 void MindRegionLink::exitRegionLink() {
@@ -63,11 +67,10 @@ NeuroLink *MindRegionLink::createNeuroLink( MindNet *net , NeuroLinkInfo *linkIn
 	if( dstData == NULL )
 		return( NULL );
 
-	NeuroLink *link = linkInfo -> createNeuroLink( this );
-	srcData -> addNeuroLink( link );
-	link -> create( srcData , dstData );
+	NeuroLink *link = linkInfo -> createNeuroLink( this , srcData , dstData );
 
-	logger.logInfo( String( "createNeuroLink: NeuroLink created id=" ) + link -> getId() + ", sourceEntity=" + sourceEntity + ", targetEntity=" + targetEntity + 
-		", type=" + linkInfo -> getTypeName() + ", width=" + link -> getSize() );
+	// add to link source
+	srcData -> addNeuroLink( link );
+
 	return( link );
 }

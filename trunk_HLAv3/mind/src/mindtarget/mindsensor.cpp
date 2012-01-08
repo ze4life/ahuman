@@ -14,10 +14,10 @@ MindSensor::MindSensor( SensorArea *p_area )
 
 	memorySensorySignal = NULL;
 	memorySensoryFeedbackSignal = NULL;
+}
 
-	sourceSensoryData = NULL;
-	sourceSensoryControlFeedback = NULL;
-	targetSensoryControl = NULL;
+String MindSensor::getRegionType() {
+	return( "MindSensor" );
 }
 
 void MindSensor::setPollState( bool state ) {
@@ -51,10 +51,10 @@ void MindSensor::createRegion() {
 	createSensor();
 
 	// construct event handlers
-	sourceSensoryData = new NeuroLinkSource( this , "data" );
-	sourceSensoryControlFeedback = new NeuroLinkSource( this , "control-feedback" );
-	targetSensoryControl = new NeuroLinkTarget( this );
-	targetSensoryControl -> setHandler( ( MindRegion::NeuroLinkTargetHandler )&MindSensor::applySensorControl );
+	sourceSensoryData.create( this , "sensor.data" );
+	sourceSensoryControlFeedback.create( this , "sensor.control-feedback" );
+	targetSensoryControl.create( this , "sensor.control" );
+	targetSensoryControl.setHandler( ( MindRegion::NeuroLinkTargetHandler )&MindSensor::applySensorControl );
 
 	int sizeX , sizeY;
 	memorySensorySignal -> getSizeInfo( &sizeX , &sizeY );
@@ -72,17 +72,6 @@ void MindSensor::destroyRegion() {
 
 	memorySensorySignal = NULL;
 	memorySensoryFeedbackSignal = NULL;
-
-	if( sourceSensoryData != NULL )
-		delete sourceSensoryData;
-	if( sourceSensoryControlFeedback != NULL )
-		delete sourceSensoryControlFeedback;
-	if( targetSensoryControl != NULL )
-		delete targetSensoryControl;
-
-	sourceSensoryData = NULL;
-	sourceSensoryControlFeedback = NULL;
-	targetSensoryControl = NULL;
 }
 
 void MindSensor::processSensorData( String id ) {
@@ -97,7 +86,7 @@ void MindSensor::processSensorData( String id ) {
 		logger.logDebug( logmsg );
 	}
 
-	sourceSensoryData -> sendMessage( memorySensorySignal );
+	sourceSensoryData.sendMessage( memorySensorySignal );
 }
 
 bool MindSensor::getPollState() {
@@ -112,26 +101,10 @@ NeuroSignal *MindSensor::getSensorySignal() {
 	return( memorySensorySignal );
 }
 
-NeuroLinkSource *MindSensor::getNeuroLinkSource( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
-	if( entity.equals( "sensor.data" ) )
-		return( sourceSensoryData );
-	if( entity.equals( "sensor.control-feedback" ) )
-		return( sourceSensoryControlFeedback );
-
-	return( NULL );
-}
-
-NeuroLinkTarget *MindSensor::getNeuroLinkTarget( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo ) {
-	if( entity.equals( "sensor.control" ) )
-		return( targetSensoryControl );
-
-	return( NULL );
-}
-
 void MindSensor::applySensorControl( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *srcData ) {
 	// TBD: process control signal
 	// generate control feedback message
-	sourceSensoryControlFeedback -> sendMessage( memorySensoryFeedbackSignal );
+	sourceSensoryControlFeedback.sendMessage( memorySensoryFeedbackSignal );
 }
 
 int MindSensor::getSignalSize() {
