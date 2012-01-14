@@ -15,6 +15,7 @@
 class LogSettingsItem;
 class LogSettings;
 class LogManager;
+class LogDispatcher;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -25,7 +26,11 @@ public:
 	~LogSettingsItem();
 
 public:
-	void configure( Xml config , String defaultLevel );
+	void configure( Xml config , String defaultLevel , String logger );
+
+	void setLogManager( LogManager *manager );
+	void attachLogManagers( LogDispatcher *dispatcher );
+	LogManager *getLogManager();
 
 	bool logDisabled( Logger::LogLevel level );
 	bool isExcluded( const char *s );
@@ -37,10 +42,16 @@ public:
 	void setLevelByName( String level );
 
 private:
+	void attachOwnLogManager( LogDispatcher *dispatcher );
+
+private:
 	Xml settings;
 	Logger::LogLevel level;
+	String logger;
 	MapStringToClass<LogSettingsItem> instanceSettings;
 	MapStringToClass<LogSettingsItem> excludeList;
+
+	LogManager *logManager;
 };
 
 /*#########################################################################*/
@@ -53,25 +64,19 @@ public:
 
 	void load( Xml config );
 
-	bool getSyncMode();
+	void attachLogManagers( LogDispatcher *dispatcher );
 
-	String getFileName();
-	String getFormat();
-
-	static LogSettingsItem *createRootSettings( Logger::LogLevel p_logLevel );
 	LogSettingsItem *getDefaultSettings();
 	LogSettingsItem *getCustomDefaultSettings();
 	LogSettingsItem *getObjectSettings( const char *className , const char *instance );
 	LogSettingsItem *getServiceSettings( const char *className );
 	LogSettingsItem *getCustomSettings( const char *loggerName );
 
-	static void readLevels( Xml config , const char *listName , MapStringToClass<LogSettingsItem>& map , LogSettingsItem& settings );
+private:
+	void readLevels( Xml config , const char *listName , MapStringToClass<LogSettingsItem>& map , LogSettingsItem& settings );
+	void attachLogManagers( LogDispatcher *dispatcher , MapStringToClass<LogSettingsItem>& map , LogSettingsItem& settings );
 
 private:
-	bool syncMode;
-	String logFile;
-	String logFormat;
-
 	LogSettingsItem defaultSettings;
 	LogSettingsItem defaultObjectSettings;
 	LogSettingsItem defaultServiceSettings;
@@ -101,8 +106,6 @@ public:
 	LogManager();
 	~LogManager();
 
-	virtual const char *getClass() { return( "LogManager" ); };
-
 	// main run function
 	void configure( Xml config );
 	void run( void * );
@@ -122,13 +125,6 @@ public:
 	bool get( bool p_autolock );
 	int getLogRecordsPending();
 
-	// log level
-	static LogSettingsItem *getRootSettings();
-	LogSettingsItem *getCustomDefaultLogSettings();
-	LogSettingsItem *getObjectLogSettings( const char *className , const char *classInstance );
-	LogSettingsItem *getServiceLogSettings( const char *serviceName );
-	LogSettingsItem *getCustomLogSettings( const char *loggerName );
-
 private:
 	void set( LogRecord *p , bool copy , const char **chunkLines , int count , Logger::LogLevel logLevel , const char *postfix );
 	void clear( LogRecord *p );
@@ -136,11 +132,14 @@ private:
 	void showAsyncMessages();
 
 private:
-	static LogSettingsItem *rootSettings;
+	// configuration
+	bool configSyncMode;
+	String configLogFile;
+	String configLogFormat;
 
+	// data
 	Logger logger;
 	FILE *logFileStream;
-	LogSettings logSettings;
 	bool isFileLoggingEnabled;
 	bool stopAll;
 
@@ -152,7 +151,6 @@ private:
 	int va;
 	bool extraMode;
 	bool syncMode;
-	bool syncModeConfigured;
 	RFC_THREAD asyncThread;
 
 	int n1e;	// empty
@@ -166,6 +164,44 @@ private:
 	int startGet;	// next get pos
 
 	static RFC_HND stopEvent;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class LogDispatcher {
+public:
+	LogDispatcher();
+	~LogDispatcher();
+
+public:
+	void configure( Xml config );
+
+	// start/stop
+	bool start();
+	void stop();
+
+	// get log manager
+	LogManager *getDefaultLogManager();
+	LogManager *getLogManager( String name );
+
+	void enableAsyncMode();
+	void disableAsyncMode();
+
+	// log level
+	static LogSettingsItem *getRootSettings();
+	LogSettingsItem *getCustomDefaultLogSettings();
+	LogSettingsItem *getObjectLogSettings( const char *className , const char *classInstance );
+	LogSettingsItem *getServiceLogSettings( const char *serviceName );
+	LogSettingsItem *getCustomLogSettings( const char *loggerName );
+
+private:
+// own data
+	bool configured;
+	LogManager defaultLog;
+	MapStringToClass<LogManager> logMap;
+	LogSettings logSettings;
+	static LogSettingsItem *rootSettings;
 };
 
 /*#########################################################################*/

@@ -18,6 +18,7 @@ class CortexTemporalPooler;
 
 #define NEURON_FIRE_POTENTIAL_THRESHOLD_pQ				(( neurovt_state )70)
 #define NEURON_FIRE_OUTPUT_BY_POTENTIAL_pQ				(( neurovt_state )70)
+#define NEURON_INHIBIT_OUTPUT_BY_POTENTIAL_pQ			(( neurovt_state )40)
 #define NEURON_FIRE_OUTPUT_THRESHOLD_pQ					(( neurovt_state )65)
 #define NEURON_FIRE_OUTPUT_SILENT_ms					(( neurovt_state )10)
 #define NEURON_FIRE_IMPULSE_pQ							(( neurovt_state )10)

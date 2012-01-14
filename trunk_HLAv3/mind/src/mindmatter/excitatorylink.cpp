@@ -76,15 +76,22 @@ NeuroSignal *ExcitatoryLink::apply( NeuroSignal *srcData , NeuroPool *dstPool ) 
 		neurovt_state currentCharge = lastCharge;
 			
 		if( msPassed < NEURON_FULL_RELAX_ms ) {
-			currentCharge -= ( ( neurovt_state )msPassed ) * NEURON_POTENTIAL_DISCHARGE_RATE_pQ_per_ms;
-			if( currentCharge < 0 )
-				currentCharge = 0;
+			if( currentCharge >= 0 ) {
+				currentCharge -= ( ( neurovt_state )msPassed ) * NEURON_POTENTIAL_DISCHARGE_RATE_pQ_per_ms;
+				if( currentCharge < 0 )
+					currentCharge = 0;
+			}
+			else {
+				currentCharge += ( ( neurovt_state )msPassed ) * NEURON_POTENTIAL_DISCHARGE_RATE_pQ_per_ms;
+				if( currentCharge > 0 )
+					currentCharge = 0;
+			}
 		}
 		else
 			currentCharge = 0;
 
 		// add action potential
-		currentCharge += NEURON_FIRE_POTENTIAL_THRESHOLD_pQ;
+		currentCharge += NEURON_FIRE_OUTPUT_BY_POTENTIAL_pQ;
 
 		// save new value
 		dv -> potential = currentCharge;

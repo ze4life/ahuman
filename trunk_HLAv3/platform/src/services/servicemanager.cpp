@@ -16,21 +16,29 @@ static void UnhandledExceptionTranslator( unsigned int exceptionCode , struct _E
 /*#########################################################################*/
 
 void ServiceManager::configureDefault( String etcpath ) {
-	EnvService *es = ( EnvService * )findServiceByName( "EnvService" );
-	ASSERTMSG( es != NULL , "EnvService was not added to the list of services" );
-	es -> configureAll( etcpath );
+	try {
+		EnvService *es = ( EnvService * )findServiceByName( "EnvService" );
+		ASSERTMSG( es != NULL , "EnvService was not added to the list of services" );
+		es -> configureAll( etcpath );
+	}
+	catch( RuntimeException& e ) {
+		logger.printStack( e );
+	}
+	catch( ... ) {
+		logger.logError( "createServices: unknown exception" );
+	}
 }
 
 void ServiceManager::configureLifecycle( Xml config ) {
 }
 
 void ServiceManager::configureLogging( Xml config ) {
-	logManager -> configure( config );
-	logManager -> start();
+	logDispatcher -> configure( config );
+	logDispatcher -> start();
 }
 
 void ServiceManager::setRootLogLevel( Logger::LogLevel p_logLevel ) {
-	LogSettingsItem *rootSettings = LogManager::getRootSettings();
+	LogSettingsItem *rootSettings = LogDispatcher::getRootSettings();
 	rootSettings -> setLevel( p_logLevel );
 }
 
@@ -157,9 +165,7 @@ void ServiceManager::initServices() {
 }
 
 void ServiceManager::runServices() {
-	// set logging to configured mode
-	if( !logManager -> getConfiguredSyncMode() )
-		logManager -> setSyncMode( false );
+	logDispatcher -> enableAsyncMode();
 
 	logger.logInfo( "runServices: run services..." );
 	state.setState( ServiceState::AH_RUNNING );
@@ -215,8 +221,7 @@ void ServiceManager::stopServices() {
 }
 
 void ServiceManager::exitServices() {
-	// set logging to sync mode
-	logManager -> setSyncMode( true );
+	logDispatcher -> disableAsyncMode();
 
 	if( !state.readyForExit() )
 		return;
@@ -300,8 +305,8 @@ void ServiceManager::destroyServices() {
 	logger.logInfo( "destroyServices: destroy services - done" );
 }
 
-LogManager *ServiceManager::getLogManager() {
-	return( logManager );
+LogDispatcher *ServiceManager::getLogDispatcher() {
+	return( logDispatcher );
 }
 
 bool ServiceManager::canStartThread() {
@@ -323,7 +328,7 @@ bool ServiceManager::isCreated() {
 ServiceManager::ServiceManager() {
 	ServiceManager::instance = this;
 
-	logManager = new LogManager();
+	logDispatcher = new LogDispatcher();
 	logger.attachRoot();
 
 	// enable exception handling
@@ -332,7 +337,7 @@ ServiceManager::ServiceManager() {
 }
 
 ServiceManager::~ServiceManager() {
-	delete logManager;
+	delete logDispatcher;
 
 	rfc_thr_exitstackhandle();
 }
@@ -346,8 +351,8 @@ void ServiceManager::logStart( Xml configLogging ) {
 	ASSERTMSG( configLogging.exists() , "logStart: logging is not configured, empty configuration" );
 
 	// open file
-	logManager -> configure( configLogging );
-	if( !logManager -> start() )
+	logDispatcher -> configure( configLogging );
+	if( !logDispatcher -> start() )
 		throw RuntimeError( "logStart: cannot initialize logging - unknown reason" );
 
 	logger.logInfo( "logStart: LOGGING STARTED" );
@@ -356,12 +361,7 @@ void ServiceManager::logStart( Xml configLogging ) {
 void ServiceManager::logStop() {
 	// stop logging
 	logger.logInfo( "logStop: LOGGING STOPPED" );
-	logManager -> stop();
-}
-
-void ServiceManager::logStopAsync() {
-	// stop async logging
-	logManager -> stopAsync();
+	logDispatcher -> stop();
 }
 
 void ServiceManager::execute() {

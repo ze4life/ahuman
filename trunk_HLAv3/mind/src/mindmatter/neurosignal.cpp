@@ -235,13 +235,16 @@ void NeuroSignal::addIndexDataSorted( NeuroSignal *srcSignal ) {
 	int wk = dk + nadd;
 	while( sk >= 0 ) {
 		if( dk < 0 )
-			dv[ wk-- ] = dv[ sk-- ];
+			dv[ wk-- ] = sv[ sk-- ];
 		else {
 			int cc = sv[ sk ] - dv[ dk ];
 			if( cc > 0 )
-				dv[ wk-- ] = dv[ sk-- ];
-			else
+				dv[ wk-- ] = sv[ sk-- ];
+			else {
 				dv[ wk-- ] = dv[ dk-- ];
+				if( cc == 0 )
+					sk--;
+			}
 		}
 	}
 }
