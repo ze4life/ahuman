@@ -81,10 +81,7 @@ void MindSensor::processSensorData( String id ) {
 
 	// log sensor message
 	logger.logInfo( "processSensorData: send signal id=" + id );
-	if( logger.isLogAll() ) {
-		String logmsg = "processSensorData: send data signal id=" + id + ", data=" + memorySensorySignal -> getNumberDataString();
-		logger.logDebug( logmsg );
-	}
+	LOGDEBUG( "processSensorData: data signal id=" + id + ", data=" + memorySensorySignal -> getNumberDataString() );
 
 	sourceSensoryData.sendMessage( memorySensorySignal );
 }

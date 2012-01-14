@@ -14,20 +14,9 @@ LogSettings::~LogSettings() {
 	customData.destroy();
 }
 
-LogSettingsItem *LogSettings::createRootSettings( Logger::LogLevel p_logLevel ) {
-	LogSettingsItem *s = new LogSettingsItem();
-	s -> setLevel( p_logLevel );
-	return( s );
-}
-
 void LogSettings::load( Xml config ) {
 	// read
-	String defaultLevel = config.getProperty( "defaultLevel" );
-	syncMode = config.getBooleanProperty( "syncMode" );
-	logFile = config.getProperty( "filename" );
-	logFormat = config.getProperty( "format" );
-
-	defaultSettings.configure( config , defaultLevel );
+	defaultSettings.configure( config , "DEBUG" , "" );
 	readLevels( config , "objectLogLevel" , objectData , defaultObjectSettings );
 	readLevels( config , "serviceLogLevel" , serviceData , defaultServiceSettings );
 	readLevels( config , "customLogLevel" , customData , defaultCustomSettings );
@@ -42,7 +31,8 @@ void LogSettings::readLevels( Xml config , const char *listName , MapStringToCla
 
 	// default settings
 	String level = list.getAttribute( "level" );
-	p_defaultSettings.configure( list , level );
+	String logger = list.getAttribute( "logger" , "" );
+	p_defaultSettings.configure( list , level , logger );
 
 	// read list
 	for( Xml item = list.getFirstChild( "class" ); item.exists(); item = item.getNextChild( "class" ) ) {
@@ -50,7 +40,8 @@ void LogSettings::readLevels( Xml config , const char *listName , MapStringToCla
 
 		LogSettingsItem *lsi = new LogSettingsItem;
 		String level = item.getAttribute( "level" );
-		lsi -> configure( item , level );
+		String logger = list.getAttribute( "logger" , "" );
+		lsi -> configure( item , level , logger );
 		map.add( name , lsi );
 	}
 }
@@ -89,15 +80,18 @@ LogSettingsItem *LogSettings::getCustomSettings( const char *loggerName ) {
 	return( item );
 }
 
-String LogSettings::getFileName() {
-	return( logFile );
+void LogSettings::attachLogManagers( LogDispatcher *dispatcher ) {
+	defaultSettings.attachLogManagers( dispatcher );
+	attachLogManagers( dispatcher , objectData , defaultObjectSettings );
+	attachLogManagers( dispatcher , serviceData , defaultServiceSettings );
+	attachLogManagers( dispatcher , customData , defaultCustomSettings );
 }
 
-String LogSettings::getFormat() {
-	return( logFormat );
-}
-
-bool LogSettings::getSyncMode() {
-	return( syncMode );
+void LogSettings::attachLogManagers( LogDispatcher *dispatcher , MapStringToClass<LogSettingsItem>& map , LogSettingsItem& settings ) {
+	settings.attachLogManagers( dispatcher );
+	for( int k = 0; k < map.count(); k++ ) {
+		LogSettingsItem *item = map.getClassByIndex( k );
+		item -> attachLogManagers( dispatcher );
+	}
 }
 

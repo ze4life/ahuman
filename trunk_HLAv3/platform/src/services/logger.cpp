@@ -16,7 +16,7 @@ Logger::~Logger() {
 
 void Logger::attachRoot() {
 	loggerName = ".";
-	settings = LogManager::getRootSettings();
+	settings = LogDispatcher::getRootSettings();
 }
 
 void Logger::setLoggerName( const char *name ) {
@@ -25,33 +25,33 @@ void Logger::setLoggerName( const char *name ) {
 
 void Logger::attachService( const char *p_s , const char *p_loggerName ) {
 	loggerName = ( p_loggerName != NULL && *p_loggerName != 0 )? p_loggerName : p_s;
-	LogManager *logManager = ServiceManager::getInstance().getLogManager();
-	settings = logManager -> getServiceLogSettings( p_s );
+	LogDispatcher *logDispatcher = ServiceManager::getInstance().getLogDispatcher();
+	settings = logDispatcher -> getServiceLogSettings( p_s );
 }
 
 void Logger::attachObjectInstance( const char *className , const char *classInstance , const char *p_loggerName ) {
 	loggerName = ( p_loggerName != NULL && *p_loggerName != 0 )? p_loggerName : ( ( classInstance == NULL || *classInstance == 0 )? className : classInstance );
-	LogManager *logManager = ServiceManager::getInstance().getLogManager();
-	settings = logManager -> getObjectLogSettings( className , classInstance );
+	LogDispatcher *logDispatcher = ServiceManager::getInstance().getLogDispatcher();
+	settings = logDispatcher -> getObjectLogSettings( className , classInstance );
 }
 
 void Logger::attachObject( const char *className , const char *p_loggerName ) {
 	loggerName = ( p_loggerName != NULL && *p_loggerName != 0 )? p_loggerName : className;
-	LogManager *logManager = ServiceManager::getInstance().getLogManager();
-	settings = logManager -> getObjectLogSettings( className , NULL );
+	LogDispatcher *logDispatcher = ServiceManager::getInstance().getLogDispatcher();
+	settings = logDispatcher -> getObjectLogSettings( className , NULL );
 }
 
 void Logger::attachCustom( const char *customName , const char *p_loggerName ) {
 	loggerName = ( p_loggerName != NULL && *p_loggerName != 0 )? p_loggerName : customName;
-	LogManager *logManager = ServiceManager::getInstance().getLogManager();
+	LogDispatcher *logDispatcher = ServiceManager::getInstance().getLogDispatcher();
 
 	// attach custom only if set
-	LogSettingsItem *settingsNew = logManager -> getCustomLogSettings( customName );
+	LogSettingsItem *settingsNew = logDispatcher -> getCustomLogSettings( customName );
 
 	// set to default if none currently
 	if( settingsNew == NULL )
 		if( settings == NULL )
-			settingsNew = logManager -> getCustomDefaultLogSettings();
+			settingsNew = logDispatcher -> getCustomDefaultLogSettings();
 
 	if( settingsNew != NULL )
 		settings = settingsNew;
@@ -162,7 +162,7 @@ void Logger::logInternal( const char *s , LogOutputMode mode , Logger::LogLevel 
 	if( settings -> isExcluded( s ) )
 		return;
 
-	LogManager *logManager = ServiceManager::getInstance().getLogManager();
+	LogManager *logManager = settings -> getLogManager();
 	ThreadHelper *logTail = ThreadHelper::getThreadObject();
 	if( logTail == NULL ) {
 		logManager -> add( &s , 1 , p_logLevel , getPostfix() );

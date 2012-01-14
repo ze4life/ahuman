@@ -74,8 +74,19 @@ void NeuroPool::applySignal( NeuroSignal *signal , bool pending ) {
 		// update values if active
 		if( pending ) {
 			if( msPassed > NEURON_FIRE_OUTPUT_SILENT_ms ) {
-				dv -> updated_fs = msNow;
-				dv -> output = 0;
+				if( msPassed >= NEURON_FULL_RELAX_ms ) {
+					// ignore too late pending signal, do not update signal timestamp
+					dv -> output = -1;
+					LOGDEBUG( String( "apply pending: forget too late index=" ) + index + ", msPassed=" + ( int )msPassed );
+				}
+				else {
+					dv -> updated_fs = msNow;
+					dv -> output = 0;
+					LOGDEBUG( String( "apply pending: fire index=" ) + index + ", msPassed=" + ( int )msPassed );
+				}
+			}
+			else {
+				LOGDEBUG( String( "apply pending: do not change, index=" ) + index + ", msPassed=" + ( int )msPassed );
 			}
 		}
 		else {
@@ -83,10 +94,17 @@ void NeuroPool::applySignal( NeuroSignal *signal , bool pending ) {
 			dv -> potential = 0;
 			dv -> updated_mp = msNow;
 
-			// do not fire if fired recently (zero means signal contains fire state and neuron state is cleared, otherwise - output is set and index is in pending signal)
+			// update output
+			dv -> updated_fs = msNow;
 			if( msPassed <= NEURON_FIRE_OUTPUT_SILENT_ms ) {
-				dv -> updated_fs = msNow;
+				// do not fire if fired recently - output is set and index will be added to pending signal
 				dv -> output = NEURON_FIRE_OUTPUT_BY_POTENTIAL_pQ;
+				LOGDEBUG( String( "apply active: add to pending index=" ) + index + ", msPassed=" + ( int )msPassed );
+			}
+			else {
+				// output set to zero - means signal will contain fire state and neuron state is cleared
+				dv -> output = 0;
+				LOGDEBUG( String( "apply active: fire index=" ) + index + ", msPassed=" + ( int )msPassed );
 			}
 		}
 	}
@@ -109,6 +127,9 @@ void NeuroPool::updatePendingData( NeuroSignal *signal ) {
 
 		if( dv -> output > 0 )
 			*sv = -1;
+		else
+		if( dv -> output < 0 )
+			*sv = *pv = -1;
 		else
 			*pv = -1;
 	}

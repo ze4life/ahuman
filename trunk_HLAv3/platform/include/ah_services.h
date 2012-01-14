@@ -15,7 +15,7 @@ class PropertyContainer;
 /*#########################################################################*/
 /*#########################################################################*/
 
-class LogManager;
+class LogDispatcher;
 
 class ServiceState {
 public:
@@ -108,7 +108,7 @@ public:
 	void waitRunDefault();
 	bool canStartThread();
 	void setRootLogLevel( Logger::LogLevel p_logLevel );
-	LogManager *getLogManager();
+	LogDispatcher *getLogDispatcher();
 
 public:
 	ServiceManager();
@@ -120,7 +120,6 @@ private:
 	// log manager
 	void logStart( Xml configLogging );
 	void logStop();
-	void logStopAsync();
 
 	Service *findServiceByName( String name );	
 
@@ -130,7 +129,7 @@ private:
 
 	ServiceState state;
 	String logLineFormat;
-	LogManager *logManager;
+	LogDispatcher *logDispatcher;
 	Logger logger;
 
 	// services

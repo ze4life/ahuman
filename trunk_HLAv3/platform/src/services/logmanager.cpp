@@ -8,7 +8,6 @@
 // #############################################################################
 
 RFC_HND LogManager::stopEvent = NULL;
-LogSettingsItem *LogManager::rootSettings = NULL;
 
 static unsigned __stdcall async_logger( void *p_arg ) {
 	LogManager *lm = ( LogManager * )p_arg;
@@ -20,6 +19,8 @@ static unsigned __stdcall async_logger( void *p_arg ) {
 // #############################################################################
 
 LogManager::LogManager() {
+	configSyncMode = false;
+
 	logFileStream = NULL;
 	lock = rfc_hnd_semcreate();
 	stopEvent = rfc_hnd_evcreate();
@@ -32,7 +33,6 @@ LogManager::LogManager() {
 	v = ( LogRecord * )calloc( va , sizeof( LogRecord ) );
 	extraMode = false;
 	syncMode = true;
-	syncModeConfigured = true;
 	memset( &asyncThread , 0 , sizeof( RFC_THREAD ) );
 
 	n1e = 0; n3e = va;
@@ -54,32 +54,9 @@ LogManager::~LogManager() {
 }
 
 void LogManager::configure( Xml config ) {
-	logSettings.load( config );
-
-	syncModeConfigured = logSettings.getSyncMode();
-	LogManager::rootSettings = logSettings.getDefaultSettings();
-}
-
-LogSettingsItem *LogManager::getRootSettings() {
-	if( LogManager::rootSettings == NULL )
-		LogManager::rootSettings = LogSettings::createRootSettings( Logger::LogLevelInfo );
-	return( LogManager::rootSettings );
-}
-
-LogSettingsItem *LogManager::getObjectLogSettings( const char *className , const char *classInstance ) {
-	return( logSettings.getObjectSettings( className , classInstance ) );
-}
-
-LogSettingsItem  *LogManager::getServiceLogSettings( const char *serviceName ) {
-	return( logSettings.getServiceSettings( serviceName ) );
-}
-
-LogSettingsItem *LogManager::getCustomLogSettings( const char *loggerName ) {
-	return( logSettings.getCustomSettings( loggerName ) );
-}
-
-LogSettingsItem *LogManager::getCustomDefaultLogSettings() {
-	return( logSettings.getCustomDefaultSettings() );
+	configSyncMode = config.getBooleanProperty( "syncMode" );
+	configLogFile = config.getProperty( "filename" );
+	configLogFormat = config.getProperty( "format" );
 }
 
 // sync/async mode
@@ -110,11 +87,11 @@ bool LogManager::getSyncMode() {
 }
 
 bool LogManager::getConfiguredSyncMode() {
-	return( syncModeConfigured );
+	return( configSyncMode );
 }
 
 bool LogManager::start() {
-	String fileName = logSettings.getFileName();
+	String fileName = configLogFile;
 
 	logFileStream = NULL;
 	logFileStream = fopen( fileName , "at" );
