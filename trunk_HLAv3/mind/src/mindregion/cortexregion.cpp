@@ -176,8 +176,11 @@ void CortexRegion::handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroLin
 	//		- forget pattern only if usage is less than PROTECTED_SPATIAL_PATTERN_USAGE
 	//		- forget least used stored pattern when adding new pattern and all spacial pooler slots are already filled in
 	int spatialPatternForgotten = -1;
-	int matchProbability;
+	int matchProbability = 0;
 	int spatialPatternMatched = spatialPooler -> matchPattern( forwardSignal , &matchProbability , &spatialPatternForgotten );
+
+	StatService *ss = StatService::getService();
+	ss -> addMetricValue( "cortex.spatialmatch.rate" , matchProbability );
 
 	// ignore excited signal for now
 	delete forwardSignal;
@@ -202,9 +205,13 @@ void CortexRegion::handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroLin
 	}
 
 	int spatialPatternPredicted = -1;
-	int predictionProbability;
+	int predictionProbability = 0;
 	int temporalPatternForgotten;
 	int temporalspatialPatternMatched = temporalPooler -> matchPattern( spatialPatternMatched , &spatialPatternPredicted , &predictionProbability , &temporalPatternForgotten );
+	
+	ss -> addMetricValue( "cortex.temporalmatch.rate" , predictionProbability );
+	int predictionRate = ( spatialPatternPredicted >= 0 && spatialPatternPredicted == spatialPatternExpected )? 100 : 0;
+	ss -> addMetricValue( "cortex.prediction.rate" , predictionProbability );
 
 	if( spatialPatternPredicted < 0 ) {
 		logger.logInfo( String( "handleFeedForwardNeuroLinkMessage: id=" ) + inputSignal -> getId() + ", spatialMatched=" + spatialPatternMatched + ", spatialExpected=" + spatialPatternExpected + ", temporalMatched=" + temporalspatialPatternMatched + ", spatialPredicted=-1, probability=" + matchProbability + "/-1" );

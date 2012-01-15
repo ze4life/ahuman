@@ -1,4 +1,5 @@
 #include <ah_platform.h>
+#include <ah_scheduler_impl.h>
 
 // #############################################################################
 // #############################################################################
@@ -9,12 +10,13 @@ SchedulerTask::SchedulerTask( MessagePublisher *p_notifyPublisher ) {
 	notifyPublisher = p_notifyPublisher;
 	intervalSec = 0;
 	taskThread = ( RFC_HND )NULL;
-	stopEvent = ( RFC_HND )NULL;
+	stopEvent = rfc_hnd_evcreate();
 	stopSignal = false;
 }
 
 SchedulerTask::~SchedulerTask() {
 	ASSERTMSG( taskThread == ( RFC_HND )NULL , "thread is running for task name=" + name );
+	rfc_hnd_evdestroy( stopEvent );
 }
 
 void SchedulerTask::setName( String p_name ) {
@@ -25,14 +27,11 @@ void SchedulerTask::setIntervalSec( int nSec ) {
 	intervalSec = nSec;
 }
 
-void SchedulerTask::setStopSignal() {
-	stopSignal = true;
-}
-
-void SchedulerTask::start( RFC_HND stopEvent ) {
+void SchedulerTask::start() {
 	ASSERTMSG( taskThread == ( RFC_HND )NULL , "thread is running for task name=" + name );
 	ThreadService *ts = ThreadService::getService();
 	stopSignal = false;
+	rfc_hnd_evreset( stopEvent );
 	taskThread = ts -> runThread( "scheduler." + name , this , ( ObjectThreadFunction )&SchedulerTask::runSchedulerTask , NULL );
 }
 
@@ -41,8 +40,10 @@ void SchedulerTask::stop() {
 		return;
 
 	stopSignal = true;
+	rfc_hnd_evsignal( stopEvent );
 	ThreadService *ts = ThreadService::getService();
 	ts -> waitThreadExited( taskThread );
+	taskThread = ( RFC_HND )NULL;
 }
 
 void SchedulerTask::runSchedulerTask( void *p_arg ) {

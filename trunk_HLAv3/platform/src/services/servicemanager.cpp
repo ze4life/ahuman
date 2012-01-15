@@ -65,6 +65,7 @@ void ServiceManager::addPlatformServices() {
 	addService( PersistingService::newService() );
 	addService( MathService::newService() );
 	addService( SchedulerService::newService() );
+	addService( StatService::newService() );
 	addService( TestService::newService() );
 }
 
