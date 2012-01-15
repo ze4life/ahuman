@@ -245,9 +245,6 @@ void CortexTemporalPooler::setPredictionMatchTolerance( int tolerance ) {
 }
 
 void CortexTemporalPooler::logItems() {
-	if( !logger.isLogAll() )
-		return;
-
 	// stream data
 	String sd;
 	for( int k = 0; k < streamDataSize; k++ ) {
@@ -256,7 +253,7 @@ void CortexTemporalPooler::logItems() {
 		sd += streamData[ k ];
 	}
 
-	logger.logDebug( String( "logItems: temporal pooler items, total=" ) + items.count() + ", streamData=" + sd );
+	logger.logInfo( String( "logItems: temporal pooler items, total=" ) + items.count() + ", streamData=" + sd );
 	for( int k = 0; k < items.count(); k++ ) {
 		CortexTemporalPoolerItem *item = items[ k ];
 		item -> logItem();

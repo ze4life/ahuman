@@ -64,6 +64,7 @@ void ServiceManager::addPlatformServices() {
 	addService( MediaService::newService() );
 	addService( PersistingService::newService() );
 	addService( MathService::newService() );
+	addService( SchedulerService::newService() );
 	addService( TestService::newService() );
 }
 

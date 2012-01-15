@@ -134,10 +134,7 @@ CortexSpatialPoolerItem *CortexSpatialPooler::findLeastUsed() {
 }
 
 void CortexSpatialPooler::logItems() {
-	if( !logger.isLogAll() )
-		return;
-
-	logger.logDebug( String( "logItems: spatial pooler items, total=" ) + items.count() );
+	logger.logInfo( String( "logItems: spatial pooler items, total=" ) + items.count() );
 	for( int k = 0; k < items.count(); k++ ) {
 		CortexSpatialPoolerItem *item = items[ k ];
 		item -> logItem();

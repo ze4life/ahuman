@@ -128,7 +128,7 @@ void CortexSpatialPoolerItem::getSignalFromState( NeuroSignal *signal ) {
 }
 
 void CortexSpatialPoolerItem::logItem() {
-	LOGDEBUG( String( "id=" ) +  id + ", usage=" + usage + ", state=" + getNumberedState() );
+	logger.logInfo( String( "id=" ) +  id + ", usage=" + usage + ", state=" + getNumberedState() );
 }
 
 String CortexSpatialPoolerItem::getBinaryState() {

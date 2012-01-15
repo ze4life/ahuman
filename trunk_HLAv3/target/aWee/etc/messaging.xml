@@ -1,6 +1,7 @@
 <service>
 	<topics>
 
+		<!-- platform topics -->
 		<topic name="test.commands.in">
 			<property name="msgid" value="TESTREQUEST"/>
 			<property name="auth" value="false"/>
@@ -25,6 +26,13 @@
 			<property name="sync" value="true"/>
 		</topic>
 
+		<topic name="scheduler">
+			<property name="msgid" value="SCHD"/>
+			<property name="auth" value="false"/>
+			<property name="sync" value="true"/>
+		</topic>
+
+		<!-- mind topics -->
 		<topic name="ThalamusArea">
 			<property name="msgid" value="TH"/>
 			<property name="auth" value="false"/>
