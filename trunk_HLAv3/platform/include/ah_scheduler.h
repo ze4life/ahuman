@@ -65,7 +65,7 @@ public:
 	void stop();
 
 private:
-	void runThreadTask( void *p_arg );
+	void runSchedulerTask( void *p_arg );
 
 private:
 	MessagePublisher *notifyPublisher;
