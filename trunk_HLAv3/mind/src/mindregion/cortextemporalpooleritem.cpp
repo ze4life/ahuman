@@ -99,7 +99,7 @@ int CortexTemporalPoolerItem::getSpatialPattern( int index ) {
 }
 
 void CortexTemporalPoolerItem::logItem() {
-	LOGDEBUG( String( "id=" ) + id + ", usage=" + usage + ", state=" + getNumberedState() );
+	logger.logInfo( String( "id=" ) + id + ", usage=" + usage + ", state=" + getNumberedState() );
 }
 
 String CortexTemporalPoolerItem::getNumberedState() {
