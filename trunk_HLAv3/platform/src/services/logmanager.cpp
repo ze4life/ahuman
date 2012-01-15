@@ -46,14 +46,17 @@ LogManager::~LogManager() {
 	// check no filled data
 	ASSERT( n2f == 0 && n4f == 0 && n5f == 0 );
 
-	if( logFileStream != NULL )
+	if( logFileStream != NULL ) {
+		fprintf( logFileStream , "--------------\nStopped logger name=" + name + "\n" );
 		fclose( logFileStream );
+	}
 
 	rfc_hnd_semdestroy( lock );
 	rfc_hnd_evdestroy( stopEvent );
 }
 
 void LogManager::configure( Xml config ) {
+	name = config.getAttribute( "name" );
 	configSyncMode = config.getBooleanProperty( "syncMode" );
 	configLogFile = config.getProperty( "filename" );
 	configLogFormat = config.getProperty( "format" );
@@ -104,6 +107,8 @@ bool LogManager::start() {
 	// enable logging to screen and to file
 	isFileLoggingEnabled = true;
 	stopAll = false;
+	fprintf( logFileStream , "Started logger name=" + name + "\n--------------\n" );
+	fflush( logFileStream );
 
 	return( true );
 }

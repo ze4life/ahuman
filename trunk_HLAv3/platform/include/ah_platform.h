@@ -13,6 +13,7 @@
 #include "ah_math.h"
 #include "ah_environment.h"
 #include "ah_scheduler.h"
+#include "ah_statistics.h"
 #include "ah_testing.h"
 #include "ah_adminapi.h"
 

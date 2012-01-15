@@ -1,0 +1,19 @@
+<service>
+
+	<metrics>
+		<metric name="link.projection.rate" type="percentage"/>
+		<metric name="cortex.prediction.rate" type="percentage"/>
+		<metric name="cortex.spatialmatch.rate" type="percentage"/>
+		<metric name="cortex.temporalmatch.rate" type="percentage"/>
+	</metrics>
+
+	<logging>
+		<logTask name="projection" intervalSec="60">
+			<logRecord metric="link.projection.rate" aggregate="average"/>
+			<logRecord metric="cortex.prediction.rate" aggregate="average"/>
+			<logRecord metric="cortex.spatialmatch.rate" aggregate="average"/>
+			<logRecord metric="cortex.temporalmatch.rate" aggregate="average"/>
+		</logTask>
+	</logging>
+
+</service>

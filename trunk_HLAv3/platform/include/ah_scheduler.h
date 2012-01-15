@@ -7,10 +7,14 @@
 #include "ah_services.h"
 
 class SchedulerService;
-class SchedulerTask;
 
 /*#########################################################################*/
 /*#########################################################################*/
+
+class SchedulerTask;
+class MessageSubscription;
+class MessageSubscriber;
+class MessagePublisher;
 
 class SchedulerService : public Service {
 public:
@@ -40,40 +44,11 @@ public:
 private:
 // utility
 	Xml config;
-	RFC_HND stopEvent;
 	String notifyChannel;
 	MessagePublisher *notifyPublisher;
 
 // own data
 	MapStringToClass<SchedulerTask> taskMap;
-};
-
-/*#########################################################################*/
-/*#########################################################################*/
-
-class SchedulerTask : public Object {
-public:
-	SchedulerTask( MessagePublisher *notifyPublisher );
-	~SchedulerTask();
-	virtual const char *getClass() { return( "SchedulerTask" ); };
-
-	void setName( String name );
-	void setIntervalSec( int nSec );
-	void setStopSignal();
-
-	void start( RFC_HND stopEvent );
-	void stop();
-
-private:
-	void runSchedulerTask( void *p_arg );
-
-private:
-	MessagePublisher *notifyPublisher;
-	String name;
-	int intervalSec;
-	RFC_HND taskThread;
-	RFC_HND stopEvent;
-	bool stopSignal;
 };
 
 /*#########################################################################*/

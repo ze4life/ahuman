@@ -21,6 +21,10 @@ Logger::LogLevel LogSettingsItem::getLevel() {
 	return( level );
 }
 
+void LogSettingsItem::setName( String p_name ) {
+	name = p_name;
+}
+
 void LogSettingsItem::setLevel( Logger::LogLevel p_level ) {
 	level = p_level;
 }
@@ -49,22 +53,25 @@ void LogSettingsItem::configure( Xml xml , String defaultLevel , String p_logger
 
 	// read exclude settings if any
 	for( Xml item = xml.getFirstChild( "exclude" ); item.exists(); item = item.getNextChild( "exclude" ) ) {
-		String name = item.getAttribute( "string" );
-		excludeList.add( name , this );
+		String value = item.getAttribute( "string" );
+		excludeList.add( value , this );
 	}
 
 	// read instances if any
 	for( Xml instance = xml.getFirstChild( "instance" ); instance.exists(); instance = instance.getNextChild( "instance" ) ) {
-		String name = instance.getAttribute( "name" );
+		String value = instance.getAttribute( "name" );
 
 		LogSettingsItem *lsi = new LogSettingsItem;
+		lsi -> name = name;
+		lsi -> instance = value;
+
 		String level = instance.getAttribute( "level" );
 		String instanceLogger = instance.getAttribute( "logger" , "" );
 		if( instanceLogger.isEmpty() )
 			instanceLogger = logger;
 
 		lsi -> configure( instance , level , logger );
-		instanceSettings.add( name , lsi );
+		instanceSettings.add( value , lsi );
 	}
 }
 

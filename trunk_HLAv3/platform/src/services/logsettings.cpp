@@ -39,8 +39,10 @@ void LogSettings::readLevels( Xml config , const char *listName , MapStringToCla
 		String name = item.getAttribute( "name" );
 
 		LogSettingsItem *lsi = new LogSettingsItem;
+		lsi -> setName( name );
+
 		String level = item.getAttribute( "level" );
-		String logger = list.getAttribute( "logger" , "" );
+		String logger = item.getAttribute( "logger" , "" );
 		lsi -> configure( item , level , logger );
 		map.add( name , lsi );
 	}

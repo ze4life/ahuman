@@ -1,10 +1,10 @@
 #include <ah_platform.h>
+#include <ah_scheduler_impl.h>
 
 // #############################################################################
 // #############################################################################
 
 SchedulerService::SchedulerService() {
-	stopEvent = ( RFC_HND )NULL;
 }
 
 Service *SchedulerService::newService() {
@@ -17,7 +17,6 @@ void SchedulerService::configureService( Xml p_config ) {
 }
 
 void SchedulerService::createService() {
-	stopEvent = rfc_hnd_evcreate();
 }
 
 void SchedulerService::initService() {
@@ -32,13 +31,6 @@ void SchedulerService::runService() {
 void SchedulerService::stopService() {
 	for( int k = 0; k < taskMap.count(); k++ ) {
 		SchedulerTask *task = taskMap.getClassByIndex( k );
-		task -> setStopSignal();
-	}
-
-	rfc_hnd_evsignal( stopEvent );
-
-	for( int k = 0; k < taskMap.count(); k++ ) {
-		SchedulerTask *task = taskMap.getClassByIndex( k );
 		task -> stop();
 	}
 }
@@ -48,7 +40,6 @@ void SchedulerService::exitService() {
 
 void SchedulerService::destroyService() {
 	taskMap.destroy();
-	rfc_hnd_evdestroy( stopEvent );
 }
 
 /*#########################################################################*/
@@ -77,13 +68,12 @@ void SchedulerService::createTimerTask( String taskName , int intervalSec ) {
 	SchedulerTask *task = new SchedulerTask( notifyPublisher );
 	task -> setName( taskName );
 	task -> setIntervalSec( intervalSec );
-	task -> start( stopEvent );
+	task -> start();
 	taskMap.add( taskName , task );
 }
 
 void SchedulerService::dropTimerTask( String taskName ) {
 	SchedulerTask *task = taskMap.get( taskName );
-	task -> setStopSignal();
 	task -> stop();
 	taskMap.remove( taskName );
 	delete task;

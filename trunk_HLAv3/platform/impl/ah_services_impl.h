@@ -40,6 +40,7 @@ public:
 	Xml getXml();
 	void setLevel( Logger::LogLevel level );
 	void setLevelByName( String level );
+	void setName( String name );
 
 private:
 	void attachOwnLogManager( LogDispatcher *dispatcher );
@@ -52,6 +53,8 @@ private:
 	MapStringToClass<LogSettingsItem> excludeList;
 
 	LogManager *logManager;
+	String name;
+	String instance;
 };
 
 /*#########################################################################*/
@@ -132,6 +135,8 @@ private:
 	void showAsyncMessages();
 
 private:
+	String name;
+
 	// configuration
 	bool configSyncMode;
 	String configLogFile;
