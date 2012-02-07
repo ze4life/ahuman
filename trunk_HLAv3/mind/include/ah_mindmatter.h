@@ -18,10 +18,10 @@ class NeuroLinkTarget;
 /*#########################################################################*/
 
 typedef struct {
-	neurovt_state potential;
-	neurovt_state output;
-	RFC_INT64 updated_mp;	// membrane potential updated timestamp
-	RFC_INT64 updated_fs;	// fire state updated timestamp
+	neurovt_state potential;	// accumulated potential
+	neurovt_state firestate;	// on if fired
+	RFC_INT64 updated_mp;		// membrane potential updated timestamp
+	RFC_INT64 silent_till;		// should be silent till given timestamp
 } NEURON_DATA;
 
 /*#########################################################################*/
@@ -90,7 +90,7 @@ public:
 	void startProjection( NeuroLink *link );
 	void finishProjection( NeuroLink *link , NeuroSignal *signal );
 
-	String getNumberedPoolState();
+	String getNumberedPoolState( NeuroSignal *signal );
 
 private:
 	void applySignal( NeuroSignal *signal , bool pending );

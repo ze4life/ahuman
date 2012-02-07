@@ -65,35 +65,9 @@ NeuroSignal *InhibitoryLink::apply( NeuroSignal *srcData , NeuroPool *dstPool ) 
 
 		// get current potential and handle timestamps
 		NEURON_DATA *dv = dvdata + dk;
-		neurovt_state lastCharge = dv -> potential;
-		RFC_INT64 msPassed = msNow - dv -> updated_mp;
-		dv -> updated_mp = msNow;
+		dv -> silent_till = msNow + NEURON_INHIBIT_DELAY_ms;
 
-		// calculate current value of action potential
-		neurovt_state currentCharge = lastCharge;
-			
-		if( msPassed < NEURON_FULL_RELAX_ms ) {
-			if( currentCharge >= 0 ) {
-				currentCharge -= ( ( neurovt_state )msPassed ) * NEURON_POTENTIAL_DISCHARGE_RATE_pQ_per_ms;
-				if( currentCharge < 0 )
-					currentCharge = 0;
-			}
-			else {
-				currentCharge += ( ( neurovt_state )msPassed ) * NEURON_POTENTIAL_DISCHARGE_RATE_pQ_per_ms;
-				if( currentCharge > 0 )
-					currentCharge = 0;
-			}
-		}
-		else
-			currentCharge = 0;
-
-		// add action potential
-		currentCharge -= NEURON_INHIBIT_OUTPUT_BY_POTENTIAL_pQ;
-
-		// save new value
-		dv -> potential = currentCharge;
-
-		LOGDEBUG( String( "apply: projected NeuroLink id=" ) + getId() + ", NeuroSignal id=" + srcData -> getId() + ", spos=" + sk + ", dpos=" + dk + ", lastCharge=" + lastCharge + ", newCharge=" + currentCharge + ", msPassed=" + ( int )msPassed );
+		LOGDEBUG( String( "apply: projected NeuroLink id=" ) + getId() + ", NeuroSignal id=" + srcData -> getId() + ", spos=" + sk + ", dpos=" + dk + ", inhibited" );
 	}
 
 	// log 

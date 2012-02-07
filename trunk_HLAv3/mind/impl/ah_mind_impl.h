@@ -17,8 +17,9 @@ class CortexTemporalPooler;
 /*#########################################################################*/
 
 #define NEURON_FIRE_POTENTIAL_THRESHOLD_pQ				(( neurovt_state )70)
-#define NEURON_FIRE_OUTPUT_BY_POTENTIAL_pQ				(( neurovt_state )70)
+#define NEURON_FIRE_OUTPUT_BY_POTENTIAL_pQ				(( neurovt_state )80)
 #define NEURON_INHIBIT_OUTPUT_BY_POTENTIAL_pQ			(( neurovt_state )40)
+#define NEURON_INHIBIT_DELAY_ms							(( neurovt_state )100)
 #define NEURON_FIRE_OUTPUT_THRESHOLD_pQ					(( neurovt_state )65)
 #define NEURON_FIRE_OUTPUT_SILENT_ms					(( neurovt_state )10)
 #define NEURON_FIRE_IMPULSE_pQ							(( neurovt_state )10)
@@ -86,7 +87,7 @@ public:
 	void setId( int p_id );
 	int setStateFromPool( NeuroPool *pool );
 	void setStateFromSignal( NeuroSignal *signal );
-	void getPoolFromState( NeuroPool *pool );
+	void setPoolState( NeuroPool *pool );
 	void getSignalFromState( NeuroSignal *signal );
 	int getDifferencePercentage( CortexSpatialPoolerItem *item , neurovt_state toleranceNeuronState );
 	void logItem();
