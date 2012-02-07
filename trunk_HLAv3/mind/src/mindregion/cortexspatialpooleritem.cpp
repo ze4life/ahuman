@@ -23,18 +23,7 @@ int CortexSpatialPoolerItem::setStateFromPool( NeuroPool *pool ) {
 	RFC_INT64 msNow = Timer::getCurrentTimeMillis();
 	while( n-- ) {
 		// get state
-		neurovt_state state = sv -> output;
-
-		// adjust by timestamp
-		RFC_INT64 msPassed = msNow - sv -> updated_fs;
-		if( msPassed < NEURON_FULL_RELAX_ms ) {
-			state -= ( ( neurovt_state )msPassed ) * NEURON_OUTPUT_DISCHARGE_RATE_pQ_per_ms;
-			if( state < 0 )
-				state = 0;
-		}
-		else
-			state = 0;
-
+		neurovt_state state = sv -> firestate;
 		sv++;
 
 		// copy state
@@ -106,7 +95,7 @@ void CortexSpatialPoolerItem::addUsage() {
 	usage++;
 }
 
-void CortexSpatialPoolerItem::getPoolFromState( NeuroPool *pool ) {
+void CortexSpatialPoolerItem::setPoolState( NeuroPool *pool ) {
 	TwoIndexArray<NEURON_DATA>& nd = pool -> getNeuronData();
 	NEURON_DATA *dv = nd.getData();
 
@@ -116,8 +105,8 @@ void CortexSpatialPoolerItem::getPoolFromState( NeuroPool *pool ) {
 	RFC_INT64 msNow = Timer::getCurrentTimeMillis();
 	while( n-- ) {
 		int index = *sv++;
-		dv[ index ].output = NEURON_FIRE_OUTPUT_BY_POTENTIAL_pQ;
-		dv[ index ].updated_fs = msNow;
+		dv[ index ].firestate = NEURON_FIRE_OUTPUT_BY_POTENTIAL_pQ;
+		dv[ index ].silent_till = msNow;
 	}
 }
 

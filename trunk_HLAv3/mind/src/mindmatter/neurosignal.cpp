@@ -89,23 +89,13 @@ void NeuroSignal::createFromPool( NeuroPool *pool ) {
 	ts = msNow;
 
 	for( int sk = 0; sk < sn; sk++ , sv++ ) {
-		// get current state and update timestamp
-		RFC_INT64 msPassed = msNow - sv -> updated_fs;
-		neurovt_state state = sv -> output;
-
-		// adjust state by timestamp
-		if( msPassed < NEURON_FULL_RELAX_ms ) {
-			state -= ( ( neurovt_state )msPassed ) * NEURON_OUTPUT_DISCHARGE_RATE_pQ_per_ms;
-			if( state < 0 )
-				state = 0;
-		}
-		else
-			state = 0;
+		// get current state
+		neurovt_state state = sv -> firestate;
 
 		// process only at or above threshold
 		if( state >= NEURON_FIRE_OUTPUT_THRESHOLD_pQ ) {
 			// clear fire state
-			sv -> output = -NEURON_OUTPUT_DISCHARGE_RATE_pQ_per_ms * NEURON_FIRE_OUTPUT_SILENT_ms;
+			sv -> firestate = 0;
 
 			// allocate signal data
 			if( nSig == aSig ) {
