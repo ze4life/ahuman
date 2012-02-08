@@ -2,6 +2,8 @@
 
 	<metrics>
 		<metric name="link.projection.rate" type="percentage"/>
+		<metric name="link.projection.srcsize" type="int"/>
+		<metric name="link.projection.dstsize" type="int"/>
 		<metric name="cortex.prediction.rate" type="percentage"/>
 		<metric name="cortex.spatialmatch.rate" type="percentage"/>
 		<metric name="cortex.temporalmatch.rate" type="percentage"/>
@@ -9,7 +11,7 @@
 
 	<logging>
 		<logTask name="projection" intervalSec="60">
-			<logRecord metric="link.projection.rate" aggregate="average"/>
+			<logRecord metric="link.projection.rate" aggregate="derived" function="sumbysum2percentage" metric1="link.projection.dstsize" metric2="link.projection.srcsize"/>
 			<logRecord metric="cortex.prediction.rate" aggregate="average"/>
 			<logRecord metric="cortex.spatialmatch.rate" aggregate="average"/>
 			<logRecord metric="cortex.temporalmatch.rate" aggregate="average"/>
