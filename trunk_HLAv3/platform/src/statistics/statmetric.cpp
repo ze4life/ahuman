@@ -22,7 +22,10 @@ void StatMetric::configure( Xml config ) {
 	if( typeName.equals( "percentage" ) )
 		type = StatMetric::MetricType_Percentage;
 	else
-		ASSERTFAILED( "Cannot parse type for metric name=" + name + ", value= " + typeName );
+	if( typeName.equals( "int" ) )
+		type = StatMetric::MetricType_Int;
+	else
+		ASSERTFAILED( "Cannot parse type for metric name=" + name + ", value=" + typeName );
 }
 
 void StatMetric::addMetricValue( int value ) {
@@ -33,6 +36,9 @@ void StatMetric::addMetricValue( int value ) {
 
 void StatMetric::prepareCalculate( MetricAggregate aggregateType ) {
 	if( aggregateType == MetricAggregate_Average )
+		calculateSum = true;
+	else
+	if( aggregateType == MetricAggregate_Sum )
 		calculateSum = true;
 }
 
@@ -46,6 +52,11 @@ int StatMetric::calculate( MetricAggregate aggregateType ) {
 			return( 0 );
 
 		int value = ( int )( sumValues / count );
+		return( value );
+	}
+
+	if( aggregateType == MetricAggregate_Sum ) {
+		int value = ( int )sumValues;
 		return( value );
 	}
 

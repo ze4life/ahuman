@@ -109,11 +109,12 @@ NeuroSignal *ExcitatoryLink::apply( NeuroSignal *srcData , NeuroPool *dstPool ) 
 	// log 
 	int signalSize = srcData -> getDataSize();
 	int affectedCount = ffSignal -> getDataSize();
-	logger.logInfo( String( "apply: projected NeuroLink id=" ) + getId() + ", NeuroSignal id=" + srcData -> getId() + ", signalCount=" + signalSize + ", affectedCount=" + affectedCount );
+	int projectionRate = ( affectedCount * 100 ) / signalSize;
+	logger.logInfo( String( "apply: projected NeuroLink id=" ) + getId() + ", NeuroSignal id=" + srcData -> getId() + ", signalCount=" + signalSize + ", affectedCount=" + affectedCount + ", projectionRate=" + projectionRate );
 
 	StatService *ss = StatService::getService();
-	int projectionRate = ( affectedCount * 100 ) / signalSize;
-	ss -> addMetricValue( "link.projection.rate" , projectionRate );
+	ss -> addMetricValue( "link.projection.srcsize" , signalSize );
+	ss -> addMetricValue( "link.projection.dstsize" , affectedCount );
 
 	// check signal is required
 	if( ffSignal -> getDataSize() == 0 ) {

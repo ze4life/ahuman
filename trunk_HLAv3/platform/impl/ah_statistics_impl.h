@@ -18,12 +18,14 @@ class StatMetric : public Object {
 public:
 	typedef enum {
 		MetricType_Unknown = 0 ,
-		MetricType_Percentage = 1
+		MetricType_Percentage = 1 ,
+		MetricType_Int = 2
 	} MetricType;
 
 	typedef enum {
 		MetricAggregate_Unknown = 0 ,
-		MetricAggregate_Average = 1
+		MetricAggregate_Average = 1 ,
+		MetricAggregate_Sum = 2
 	} MetricAggregate;
 
 public:
@@ -86,16 +88,24 @@ private:
 
 class StatLogRecord : public Object {
 public:
+	typedef enum {
+		MetricFunction_Unknown = 0 ,
+		MetricFunction_SumBySum2Percentage = 1
+	} MetricFunction;
+
+public:
 	StatLogRecord();
 	~StatLogRecord();
 	virtual const char *getClass() { return( "StatLogRecord" ); };
 
 public:
 	void configure( Xml config );
+	void configureFunction( Xml config );
 
 	void create();
 	String getLogString();
 	void resetMetric();
+	int calculateDerivedValue();
 
 private:
 // utility
@@ -103,8 +113,15 @@ private:
 	String aggregateTypeName;
 	StatMetric::MetricAggregate aggregateType;
 
+	bool derived;
+	MetricFunction function;
+	String functionMetric1Name;
+	String functionMetric2Name;
+
 // references
 	StatMetric *metric;
+	StatMetric *functionMetric1;
+	StatMetric *functionMetric2;
 };
 
 /*#########################################################################*/
