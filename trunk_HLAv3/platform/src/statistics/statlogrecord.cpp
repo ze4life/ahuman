@@ -23,6 +23,9 @@ void StatLogRecord::configure( Xml config ) {
 	if( aggregateTypeName.equals( "average" ) )
 		aggregateType = StatMetric::MetricAggregate_Average;
 	else
+	if( aggregateTypeName.equals( "sum" ) )
+		aggregateType = StatMetric::MetricAggregate_Sum;
+	else
 	if( aggregateTypeName.equals( "derived" ) ) {
 		derived = true;
 		configureFunction( config );
@@ -79,6 +82,10 @@ String StatLogRecord::getLogString() {
 
 void StatLogRecord::resetMetric() {
 	metric -> reset();
+	if( functionMetric1 != NULL )
+		functionMetric1 -> reset();
+	if( functionMetric2 != NULL )
+		functionMetric2 -> reset();
 }
 
 int StatLogRecord::calculateDerivedValue() {
@@ -86,6 +93,9 @@ int StatLogRecord::calculateDerivedValue() {
 	if( function == StatLogRecord::MetricFunction_SumBySum2Percentage ) {
 		RFC_INT64 value1 = functionMetric1 -> calculate( StatMetric::MetricAggregate_Sum );
 		RFC_INT64 value2 = functionMetric2 -> calculate( StatMetric::MetricAggregate_Sum );
+		if( value2 == 0 )
+			return( 0 );
+
 		int value = ( int )( ( value1 * 100 ) / value2 );
 		return( value );
 	}
