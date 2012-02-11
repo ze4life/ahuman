@@ -54,13 +54,13 @@ Mind is a sole part of aHuman and has its own layered HLA:
 
 Platform contains multiple services and split on HLA level to components as well:
 
-|| *Component* || *Key Components* || *Implements* || *Depends on* ||
+|| *Component* || *Main Class* || *Implements* || *Depends on* ||
 || services || ServiceManager || base types, plain and template classes, logging, exception handling, service and platform lifecycle || - ||
 || environment || EnvService || Handling environment, including configuring, deployed instance, operating system and other available resources || - ||
 || objects || ObjectService || Unified objects and object persistence, object types || - ||
 || math || MathService || Specific mathematical calculations || - ||
 || persisting || PersistingService || Persistence of memory in filesystem space || objects ||
-|| threads || multi-threading environment, CPU management, performance monitoring || objects ||
+|| threads || ThreadService || multi-threading environment, CPU management, performance monitoring || objects ||
 || messaging || MessagingService || Internal decoupling mechanism to arrange manageable numerous interactions among components || objects, threads ||
 || media || MediaService || Communicating with external world using standard protocols with non-aHuman services or internal aHuman protocol with aHuman tools || objects, threads, messages ||
 || scheduling || SchedulerService || Running configured tasks regularly || objects, threads, messages ||
