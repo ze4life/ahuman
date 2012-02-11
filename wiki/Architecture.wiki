@@ -54,17 +54,19 @@ Mind is a sole part of aHuman and has its own layered HLA:
 
 Platform contains multiple services and split on HLA level to components as well:
 
-|| *Component* || *Implements* || *Depends on* ||
-|| services || base types, plain and template classes, logging, exception handling, service and platform lifecycle || - ||
-|| environment || Handling environment, including configuring, deployed instance, operating system and other available resources || - ||
-|| objects || Unified objects and object persistence, object types || - ||
-|| math || Specific mathematical calculations || - ||
-|| persisting || Persistence of memory in filesystem space || objects ||
+|| *Component* || *Key Components* || *Implements* || *Depends on* ||
+|| services || ServiceManager || base types, plain and template classes, logging, exception handling, service and platform lifecycle || - ||
+|| environment || EnvService || Handling environment, including configuring, deployed instance, operating system and other available resources || - ||
+|| objects || ObjectService || Unified objects and object persistence, object types || - ||
+|| math || MathService || Specific mathematical calculations || - ||
+|| persisting || PersistingService || Persistence of memory in filesystem space || objects ||
 || threads || multi-threading environment, CPU management, performance monitoring || objects ||
-|| messaging || Internal decoupling mechanism to arrange manageable numerous interactions among components || objects, threads ||
-|| media || Communicating with external world using standard protocols with non-aHuman services or internal aHuman protocol with aHuman tools || objects, threads, messages ||
-|| adminapi || API to access internal aHuman components and run tests or specific operations || media ||
-|| testing || Testing and debugging support || objects, messaging ||
+|| messaging || MessagingService || Internal decoupling mechanism to arrange manageable numerous interactions among components || objects, threads ||
+|| media || MediaService || Communicating with external world using standard protocols with non-aHuman services or internal aHuman protocol with aHuman tools || objects, threads, messages ||
+|| scheduling || SchedulerService || Running configured tasks regularly || objects, threads, messages ||
+|| statistics || StatService || Collecting performance statistics || objects, scheduling, messages ||
+|| adminapi || AdminApi || API to access internal aHuman components and run tests or specific operations || media ||
+|| testing || TestService || Testing and debugging support || objects, messaging ||
 
 == HLA State and Development ==
 
