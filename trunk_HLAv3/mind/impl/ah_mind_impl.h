@@ -16,16 +16,15 @@ class CortexTemporalPooler;
 /*#########################################################################*/
 /*#########################################################################*/
 
-#define NEURON_FIRE_POTENTIAL_THRESHOLD_pQ				(( neurovt_state )70)
-#define NEURON_FIRE_OUTPUT_BY_POTENTIAL_pQ				(( neurovt_state )80)
-#define NEURON_INHIBIT_OUTPUT_BY_POTENTIAL_pQ			(( neurovt_state )40)
-#define NEURON_INHIBIT_DELAY_ms							(( neurovt_state )100)
-#define NEURON_FIRE_OUTPUT_THRESHOLD_pQ					(( neurovt_state )65)
-#define NEURON_FIRE_OUTPUT_SILENT_ms					(( neurovt_state )10)
-#define NEURON_FIRE_IMPULSE_pQ							(( neurovt_state )10)
-#define NEURON_POTENTIAL_DISCHARGE_RATE_pQ_per_ms		(( neurovt_state )1)
-#define NEURON_OUTPUT_DISCHARGE_RATE_pQ_per_ms			(( neurovt_state )1)
-#define NEURON_FULL_RELAX_ms							(( RFC_INT64 )1000)
+extern neurovt_state	NEURON_FIRE_POTENTIAL_THRESHOLD_pQ;
+extern neurovt_state	NEURON_FIRE_OUTPUT_BY_POTENTIAL_pQ;
+extern neurovt_state	NEURON_INHIBIT_DELAY_ms;
+extern neurovt_state	NEURON_FIRE_OUTPUT_THRESHOLD_pQ;
+extern neurovt_state	NEURON_FIRE_OUTPUT_SILENT_ms;
+extern neurovt_state	NEURON_FIRE_IMPULSE_pQ;
+extern neurovt_state	NEURON_POTENTIAL_DISCHARGE_RATE_pQ_per_ms;
+extern neurovt_state	NEURON_OUTPUT_DISCHARGE_RATE_pQ_per_ms;
+extern RFC_INT64		NEURON_FULL_RELAX_ms;
 
 /*#########################################################################*/
 /*#########################################################################*/
