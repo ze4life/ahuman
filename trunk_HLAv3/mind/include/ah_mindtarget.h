@@ -76,6 +76,7 @@ private:
 
 // references
 	MindSensorSet *sensorsOffline;
+	MindEffectorSet *effectorsOffline;
 	MindSensorSetTracker *sensorTracker;
 };
 
@@ -115,7 +116,11 @@ public:
 	virtual const char *getClass() { return( "MindEffectorSet" ); };
 
 public:
-	void addEffector( MindEffector *effector );
+	int getCount();
+	MindEffector *getSetItem( int k );
+	void addSetItem( MindEffector *effector );
+
+	MindEffector *getEffector( String name );
 
 private:
 // own data
@@ -195,7 +200,27 @@ private:
 
 class MindEffector : public MindRegion {
 public:
+	MindEffector( EffectorArea *p_area );
+
+	// Object
 	virtual const char *getClass() = 0;
+
+	// MindEffector
+	virtual void createEffector() = 0;
+	virtual void configureEffector( Xml config ) = 0;
+	virtual void startEffector() = 0;
+	virtual void stopEffector() = 0;
+	virtual void processEffectorControl( NeuroLink *link , NeuroSignal *signal ) = 0;
+
+private:
+	// MindRegion
+	virtual void createRegion();
+	virtual void exitRegion();
+	virtual void destroyRegion();
+
+	// NeuroLink support
+	virtual String getRegionType();
+	virtual void getSourceSizes( String entity , int *sizeX , int *sizeY );
 };
 
 /*#########################################################################*/

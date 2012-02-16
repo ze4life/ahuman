@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{97B70AAC-8CB1-4594-8A5B-DA6C3D53F885}</ProjectGuid>
+    <ProjectGuid>{42B305E1-DCE2-41E6-B037-6E8540859801}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>aWee</RootNamespace>
+    <RootNamespace>aRobot</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -57,17 +57,18 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <GenerateMapFile>true</GenerateMapFile>
-      <BaseAddress>0x00400000</BaseAddress>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <FixedBaseAddress>true</FixedBaseAddress>
       <AdditionalDependencies>kernel32.lib;Ws2_32.lib</AdditionalDependencies>
+      <GenerateMapFile>true</GenerateMapFile>
+      <FixedBaseAddress>true</FixedBaseAddress>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <BaseAddress>0x00400000</BaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -81,34 +82,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Library Include="..\..\library\generic\lib\generic.lib" />
-    <Library Include="..\..\mind\lib\mind.lib" />
-    <Library Include="..\..\platform\lib\platform.lib" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="etc\logging.xml" />
-    <None Include="etc\main.xml" />
-    <None Include="etc\media.xml" />
-    <None Include="etc\messaging.xml">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="etc\mind.xml">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="etc\target.xml" />
-    <None Include="etc\testing.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\aweetarget.cpp" />
+    <ClCompile Include="src\arobottarget.cpp" />
+    <ClCompile Include="src\effectors\wheeledlegs.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\sensors\filesyswalker.cpp" />
+    <ClCompile Include="src\sensors\eye.cpp" />
     <ClCompile Include="src\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\aweetarget.h" />
+    <ClInclude Include="include\arobottarget.h" />
     <ClInclude Include="include\stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\library\generic\lib\generic.lib" />
+    <Library Include="..\..\mind\lib\mind.lib" />
+    <Library Include="..\..\platform\lib\platform.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

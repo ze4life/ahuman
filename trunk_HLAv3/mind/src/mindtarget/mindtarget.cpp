@@ -10,6 +10,7 @@ MindTarget::MindTarget() {
 	sensorArea = NULL;
 	sensors = NULL;
 	sensorsOffline = NULL;
+	effectorsOffline = NULL;
 	sensorTracker = NULL;
 
 	effectorArea = NULL;
@@ -34,6 +35,7 @@ void MindTarget::createService() {
 
 	sensors = new MindSensorSet();
 	sensorsOffline = new MindSensorSet();
+	effectorsOffline = new MindEffectorSet();
 	sensorTracker = new MindSensorSetTracker( sensors );
 
 	effectorArea = MindTarget::createEffectorArea();
@@ -113,6 +115,21 @@ void MindTarget::addSensor( MindSensor *sensor ) {
 	else {
 		sensorsOffline -> addSetItem( sensor );
 		logger.logInfo( "addSensor: sensor is not configured to run - name=" + name );
+	}
+}
+
+void MindTarget::addEffector( MindEffector *effector ) {
+	String name = effector -> getClass();
+	Xml config = configEffectors.getChildNamedNode( "effector" , name );
+
+	if( config.exists() && config.getBooleanAttribute( "run" , true ) ) {
+		effectors -> addSetItem( effector );
+		effector -> configureEffector( config );
+		logger.logInfo( "addEffector: effector added - name=" + name );
+	}
+	else {
+		effectorsOffline -> addSetItem( effector );
+		logger.logInfo( "addEffector: effector is not configured to run - name=" + name );
 	}
 }
 

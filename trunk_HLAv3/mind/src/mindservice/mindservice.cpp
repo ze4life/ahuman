@@ -4,6 +4,19 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
+neurovt_state	NEURON_FIRE_POTENTIAL_THRESHOLD_pQ;
+neurovt_state	NEURON_FIRE_OUTPUT_BY_POTENTIAL_pQ;
+neurovt_state	NEURON_INHIBIT_DELAY_ms;
+neurovt_state	NEURON_FIRE_OUTPUT_THRESHOLD_pQ;
+neurovt_state	NEURON_FIRE_OUTPUT_SILENT_ms;
+neurovt_state	NEURON_FIRE_IMPULSE_pQ;
+neurovt_state	NEURON_POTENTIAL_DISCHARGE_RATE_pQ_per_ms;
+neurovt_state	NEURON_OUTPUT_DISCHARGE_RATE_pQ_per_ms;
+RFC_INT64		NEURON_FULL_RELAX_ms;
+
+/*#########################################################################*/
+/*#########################################################################*/
+
 Service *MindService::newService() {
 	return( new MindService() );
 }
@@ -36,6 +49,18 @@ MindMap *MindService::getMindMap() {
 
 void MindService::configureService( Xml p_config ) {
 	config = p_config;
+
+	// variables
+	Xml configVar = config.getChildNode( "NeuralNetworks" );
+	NEURON_FIRE_POTENTIAL_THRESHOLD_pQ = configVar.getIntProperty( "NEURON_FIRE_POTENTIAL_THRESHOLD_pQ" );
+	NEURON_FIRE_OUTPUT_BY_POTENTIAL_pQ = configVar.getIntProperty( "NEURON_FIRE_OUTPUT_BY_POTENTIAL_pQ" );
+	NEURON_INHIBIT_DELAY_ms = configVar.getIntProperty( "NEURON_INHIBIT_DELAY_ms" );
+	NEURON_FIRE_OUTPUT_THRESHOLD_pQ = configVar.getIntProperty( "NEURON_FIRE_OUTPUT_THRESHOLD_pQ" );
+	NEURON_FIRE_OUTPUT_SILENT_ms = configVar.getIntProperty( "NEURON_FIRE_OUTPUT_SILENT_ms" );
+	NEURON_FIRE_IMPULSE_pQ = configVar.getIntProperty( "NEURON_FIRE_IMPULSE_pQ" );
+	NEURON_POTENTIAL_DISCHARGE_RATE_pQ_per_ms = configVar.getIntProperty( "NEURON_POTENTIAL_DISCHARGE_RATE_pQ_per_ms" );
+	NEURON_OUTPUT_DISCHARGE_RATE_pQ_per_ms = configVar.getIntProperty( "NEURON_OUTPUT_DISCHARGE_RATE_pQ_per_ms" );
+	NEURON_FULL_RELAX_ms = configVar.getIntProperty( "NEURON_FULL_RELAX_ms" );
 }
 
 void MindService::createService() {
