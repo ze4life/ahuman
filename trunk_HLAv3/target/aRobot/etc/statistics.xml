@@ -14,14 +14,6 @@
 	</metrics>
 
 	<logging>
-		<logTask name="projection" intervalSec="60">
-			<logRecord metric="NL2.link.projection.rate" aggregate="derived" function="sumbysum2percentage" metric1="NL2.link.projection.dstsize" metric2="NL2.link.projection.srcsize"/>
-			<logRecord metric="NL2.link.projection.srcsize" aggregate="sum"/>
-			<logRecord metric="NL2.link.projection.dstsize" aggregate="sum"/>
-			<logRecord metric="cortex.prediction.rate" aggregate="average"/>
-			<logRecord metric="cortex.spatialmatch.rate" aggregate="average"/>
-			<logRecord metric="cortex.temporalmatch.rate" aggregate="average"/>
-		</logTask>
 	</logging>
 
 </service>
