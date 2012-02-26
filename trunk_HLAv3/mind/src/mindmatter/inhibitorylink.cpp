@@ -32,9 +32,6 @@ InhibitoryLink::InhibitoryLink( MindRegionLink *p_regionLink ) : NeuroLink( p_re
 NeuroSignal *InhibitoryLink::apply( NeuroSignal *srcData , NeuroPool *dstPool ) {
 	opid++;
 
-	// project source to target
-	dstPool -> startProjection( this );
-
 	// log 
 	LOGDEBUG( String( "apply: projected NeuroLink id=" ) + getId() + ", NeuroSignal id=" + srcData -> getId() + "..." );
 
@@ -42,16 +39,12 @@ NeuroSignal *InhibitoryLink::apply( NeuroSignal *srcData , NeuroPool *dstPool ) 
 	RFC_INT64 msNow = Timer::getCurrentTimeMillis();
 
 	// map source surface to target surface - as linear arrays
-	int dnx , dny;
-	dstPool -> getNeuronDimensions( &dnx , &dny );
-	int dn = dnx * dny;
+	int dn = dstPool -> getNeuronDataSize();
 	TwoIndexArray<NEURON_DATA>& dstDataNeurons = dstPool -> getNeuronData();
 	NEURON_DATA *dvdata = dstDataNeurons.getData();
 
 	// project specific values
-	int snx , sny;
-	srcData -> getSizeInfo( &snx , &sny );
-	int sn = snx * sny;
+	int sn = srcData -> getMaxSize();
 
 	// read activated indexes
 	int n = srcData -> getDataSize();
@@ -73,7 +66,5 @@ NeuroSignal *InhibitoryLink::apply( NeuroSignal *srcData , NeuroPool *dstPool ) 
 	// log 
 	logger.logInfo( String( "apply: projected NeuroLink id=" ) + getId() + ", NeuroSignal id=" + srcData -> getId() + ", signalCount=" + srcData -> getDataSize() );
 
-	// finish projection
-	dstPool -> finishProjection( this , NULL );
 	return( NULL );
 }

@@ -90,12 +90,12 @@ void NeuroSignal::createFromPool( NeuroPool *pool ) {
 
 	for( int sk = 0; sk < sn; sk++ , sv++ ) {
 		// get current state
-		neurovt_state state = sv -> firestate;
+		neurovt_state state = sv -> firepower;
 
 		// process only at or above threshold
 		if( state >= NEURON_FIRE_OUTPUT_THRESHOLD_pQ ) {
 			// clear fire state
-			sv -> firestate = 0;
+			sv -> firepower = 0;
 
 			// allocate signal data
 			if( nSig == aSig ) {
@@ -242,4 +242,51 @@ void NeuroSignal::addIndexDataSorted( NeuroSignal *srcSignal ) {
 void NeuroSignal::setIndexData( int *indexData , int n ) {
 	ASSERTMSG( n > 0 , "invalid count" );
 	data.set( indexData , n );
+}
+
+String NeuroSignal::getCombinedState( NeuroSignal *srcSignal1 , NeuroSignal *srcSignal2 ) {
+	NeuroSignal data;
+	data.addIndexDataSorted( srcSignal1 );
+	data.addIndexDataSorted( srcSignal2 );
+
+	String ps;
+
+	int *sd = srcSignal1 -> getIndexRawData();
+	int sdn = srcSignal1 -> getDataSize();
+
+	int *pd = srcSignal2 -> getIndexRawData();
+	int pdn = srcSignal2 -> getDataSize();
+
+	bool first = true;
+	int ks = 0;
+	int kp = 0;
+	for( ; ks < sdn || kp < pdn; ) {
+		if( first  )
+			first = false;
+		else
+			ps += ".";
+
+		if( ks >= sdn ) {
+			ps += pd[ kp++ ];
+			ps += "p";
+		}
+		else
+		if( kp >= pdn )
+			ps += sd[ ks++ ];
+		else {
+			if( pd[ kp ] < sd[ ks ] ) {
+				ps += pd[ kp++ ];
+				ps += "p";
+			}
+			else
+			if( pd[ kp ] > sd[ ks ] )
+				ps += sd[ ks++ ];
+			else {
+				ps += sd[ ks++ ];
+				kp++;
+			}
+		}
+	}
+
+	return( ps );
 }
