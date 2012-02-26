@@ -18,10 +18,13 @@ class NeuroLinkTarget;
 /*#########################################################################*/
 
 typedef struct {
-	neurovt_state potential;	// accumulated potential
-	neurovt_state firestate;	// on if fired
-	RFC_INT64 updated_mp;		// membrane potential updated timestamp
-	RFC_INT64 silent_till;		// should be silent till given timestamp
+	neurovt_state synaptic_potential;	// accumulated action potential in axon terminal
+	neurovt_state synaptic_threshold;	// synapse penetration threshold of accumulated action potential, initially NEURON_SYNAPTIC_THRESHOLD_pQ
+	neurovt_state membrane_potential;	// accumulated membrane potential
+	neurovt_state membrane_threshold;	// fire threshold of membrane potential, depends on neuron type and size
+	neurovt_state firepower;			// if fired, output signal power
+	RFC_INT64 updated_mp;				// membrane potential updated timestamp
+	RFC_INT64 silent_till;				// should be silent till given timestamp
 } NEURON_DATA;
 
 /*#########################################################################*/
@@ -51,6 +54,7 @@ public:
 	String getBinaryDataString();
 	String getNumberDataString();
 	int *getIndexRawData();
+	String getCombinedState( NeuroSignal *srcSignal1 , NeuroSignal *srcSignal2 );
 
 	void clearData();
 	void addIndexData( int index );
@@ -80,26 +84,18 @@ public:
 	virtual const char *getClass() { return( "NeuroPool" ); };
 
 	void createNeurons( int nx , int ny );
+	void setDefaultThreshold();
 	void setParent( MindRegion *p_region );
 	void setId( String id );
 	String getId();
 	MindRegion *getRegion();
 
 	TwoIndexArray<NEURON_DATA>& getNeuronData();
+	int getNeuronDataSize();
 	void getNeuronDimensions( int *nx , int *ny );
-	void startProjection( NeuroLink *link );
-	void finishProjection( NeuroLink *link , NeuroSignal *signal );
-
-	String getNumberedPoolState( NeuroSignal *signal );
+	NeuroSignal *fire( NeuroSignal *srcSignal );
 
 private:
-	void applySignal( NeuroSignal *signal , bool pending );
-	void updatePendingData( NeuroSignal *signal );
-
-private:
-// own data
-	NeuroSignal *pendingSignal;
-
 // references
 	MindRegion *region;
 

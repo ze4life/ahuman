@@ -23,7 +23,7 @@ int CortexSpatialPoolerItem::setStateFromPool( NeuroPool *pool ) {
 	RFC_INT64 msNow = Timer::getCurrentTimeMillis();
 	while( n-- ) {
 		// get state
-		neurovt_state state = sv -> firestate;
+		neurovt_state state = sv -> firepower;
 		sv++;
 
 		// copy state
@@ -105,7 +105,7 @@ void CortexSpatialPoolerItem::setPoolState( NeuroPool *pool ) {
 	RFC_INT64 msNow = Timer::getCurrentTimeMillis();
 	while( n-- ) {
 		int index = *sv++;
-		dv[ index ].firestate = NEURON_FIRE_OUTPUT_BY_POTENTIAL_pQ;
+		dv[ index ].firepower = NEURON_FIRE_OUTPUT_THRESHOLD_pQ;
 		dv[ index ].silent_till = msNow;
 	}
 }
