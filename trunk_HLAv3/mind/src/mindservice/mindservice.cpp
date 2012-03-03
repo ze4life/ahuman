@@ -4,16 +4,18 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-neurovt_state	NEURON_SYNAPTIC_THRESHOLD_pQ;
+neurovt_state	NEURON_SYNAPTIC_THRESHOLD_INITIAL_pQ;
 neurovt_state	NEURON_ACTION_POTENTIAL_BY_SIGNAL_pQ;
 neurovt_state	NEURON_MEMBRANE_POTENTIAL_BY_ACTION_POTENTIAL_pQ;
+neurovt_state	NEURON_MEMBRANE_THRESHOLD_INITIAL_pQ;
+neurovt_state	NEURON_MEMBRANE_THRESHOLD_MIN_pQ;
 neurovt_state	NEURON_FIRE_OUTPUT_BY_MEMBRANE_POTENTIAL_pQ;
 neurovt_state	NEURON_INHIBIT_DELAY_ms;
-neurovt_state	NEURON_FIRE_OUTPUT_THRESHOLD_pQ;
 neurovt_state	NEURON_FIRE_OUTPUT_SILENT_ms;
 neurovt_state	NEURON_FIRE_IMPULSE_pQ;
 neurovt_state	NEURON_POTENTIAL_DISCHARGE_RATE_pQ_per_ms;
 neurovt_state	NEURON_OUTPUT_DISCHARGE_RATE_pQ_per_ms;
+int				NEURON_CONNECTIVITY_UPDATE_FACTOR;
 RFC_INT64		NEURON_FULL_RELAX_ms;
 
 /*#########################################################################*/
@@ -54,16 +56,18 @@ void MindService::configureService( Xml p_config ) {
 
 	// variables
 	Xml configVar = config.getChildNode( "NeuralNetworks" );
-	NEURON_SYNAPTIC_THRESHOLD_pQ = configVar.getIntProperty( "NEURON_SYNAPTIC_THRESHOLD_pQ" );
+	NEURON_SYNAPTIC_THRESHOLD_INITIAL_pQ = configVar.getIntProperty( "NEURON_SYNAPTIC_THRESHOLD_INITIAL_pQ" );
 	NEURON_ACTION_POTENTIAL_BY_SIGNAL_pQ = configVar.getIntProperty( "NEURON_ACTION_POTENTIAL_BY_SIGNAL_pQ" );
 	NEURON_MEMBRANE_POTENTIAL_BY_ACTION_POTENTIAL_pQ = configVar.getIntProperty( "NEURON_MEMBRANE_POTENTIAL_BY_ACTION_POTENTIAL_pQ" );
+	NEURON_MEMBRANE_THRESHOLD_INITIAL_pQ = configVar.getIntProperty( "NEURON_MEMBRANE_THRESHOLD_INITIAL_pQ" );
+	NEURON_MEMBRANE_THRESHOLD_MIN_pQ = configVar.getIntProperty( "NEURON_MEMBRANE_THRESHOLD_MIN_pQ" );
 	NEURON_FIRE_OUTPUT_BY_MEMBRANE_POTENTIAL_pQ = configVar.getIntProperty( "NEURON_FIRE_OUTPUT_BY_MEMBRANE_POTENTIAL_pQ" );
 	NEURON_INHIBIT_DELAY_ms = configVar.getIntProperty( "NEURON_INHIBIT_DELAY_ms" );
-	NEURON_FIRE_OUTPUT_THRESHOLD_pQ = configVar.getIntProperty( "NEURON_FIRE_OUTPUT_THRESHOLD_pQ" );
 	NEURON_FIRE_OUTPUT_SILENT_ms = configVar.getIntProperty( "NEURON_FIRE_OUTPUT_SILENT_ms" );
 	NEURON_FIRE_IMPULSE_pQ = configVar.getIntProperty( "NEURON_FIRE_IMPULSE_pQ" );
 	NEURON_POTENTIAL_DISCHARGE_RATE_pQ_per_ms = configVar.getIntProperty( "NEURON_POTENTIAL_DISCHARGE_RATE_pQ_per_ms" );
 	NEURON_OUTPUT_DISCHARGE_RATE_pQ_per_ms = configVar.getIntProperty( "NEURON_OUTPUT_DISCHARGE_RATE_pQ_per_ms" );
+	NEURON_CONNECTIVITY_UPDATE_FACTOR = configVar.getIntProperty( "NEURON_CONNECTIVITY_UPDATE_FACTOR" );
 	NEURON_FULL_RELAX_ms = configVar.getIntProperty( "NEURON_FULL_RELAX_ms" );
 }
 

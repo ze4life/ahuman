@@ -1,17 +1,19 @@
 <service>
 
 	<NeuralNetworks>
-		<property name="NEURON_SYNAPTIC_THRESHOLD_pQ" value="70"/>
+		<property name="NEURON_SYNAPTIC_THRESHOLD_INITIAL_pQ" value="70"/>
 		<property name="NEURON_ACTION_POTENTIAL_BY_SIGNAL_pQ" value="80"/>
-		<property name="NEURON_MEMBRANE_POTENTIAL_BY_ACTION_POTENTIAL_pQ" value="80"/>
+		<property name="NEURON_MEMBRANE_POTENTIAL_BY_ACTION_POTENTIAL_pQ" value="20"/>
+		<property name="NEURON_MEMBRANE_THRESHOLD_INITIAL_pQ" value="70"/>
+		<property name="NEURON_MEMBRANE_THRESHOLD_MIN_pQ" value="10"/>
 		<property name="NEURON_FIRE_OUTPUT_BY_MEMBRANE_POTENTIAL_pQ" value="80"/>
 		<property name="NEURON_INHIBIT_DELAY_ms" value="10"/>
-		<property name="NEURON_FIRE_OUTPUT_THRESHOLD_pQ" value="65"/>
 		<property name="NEURON_FIRE_OUTPUT_SILENT_ms" value="10"/>
 		<property name="NEURON_FIRE_IMPULSE_pQ" value="2"/>
 		<property name="NEURON_POTENTIAL_DISCHARGE_RATE_pQ_per_ms" value="1"/>
 		<property name="NEURON_OUTPUT_DISCHARGE_RATE_pQ_per_ms" value="1"/>
 		<property name="NEURON_FULL_RELAX_ms" value="1000"/>
+		<property name="NEURON_CONNECTIVITY_UPDATE_FACTOR" value="95"/>
 	</NeuralNetworks>
 
 	<MindSpace>

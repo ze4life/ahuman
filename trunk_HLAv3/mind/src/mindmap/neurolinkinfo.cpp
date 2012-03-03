@@ -50,7 +50,7 @@ NeuroLink *NeuroLinkInfo::createNeuroLink( MindRegionLink *regionLink , NeuroLin
 	link -> setNeuroLinkInfo( this );
 	link -> setTransmitter( transmitter );
 
-	logger.logInfo( String( "createNeuroLink: NeuroLink created id=" ) + link -> getId() + ", type=" + type + " in MindRegionLink id=" + regionLink -> getId() );
+	logger.logInfo( String( "createNeuroLink: NeuroLink created id=" ) + link -> getId() + ", type=" + type + " in MindRegionLink id=" + regionLink -> getId() + ", master=" + masterEntity + ", slave=" + slaveEntity + ", forward=" + forward );
 	return( link );
 }
 
@@ -74,6 +74,6 @@ NeuroLink *NeuroLinkInfo::createInternalNeuroLink( MindRegion *region ) {
 	link -> setNeuroLinkInfo( this );
 	link -> setTransmitter( transmitter );
 
-	logger.logInfo( String( "createNeuroLink: NeuroLink created id=" ) + link -> getId() + ", type=" + type + ", in MindRegion id=" + region -> getRegionId() );
+	logger.logInfo( String( "createNeuroLink: NeuroLink created id=" ) + link -> getId() + ", type=" + type + ", in MindRegion id=" + region -> getFullRegionId() );
 	return( link );
 }

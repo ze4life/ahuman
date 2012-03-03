@@ -27,7 +27,7 @@ int CortexSpatialPoolerItem::setStateFromPool( NeuroPool *pool ) {
 		sv++;
 
 		// copy state
-		if( state >= NEURON_FIRE_OUTPUT_THRESHOLD_pQ )
+		if( state >= sv -> membrane_threshold )
 			indexList.add( state );
 	}
 
@@ -105,7 +105,7 @@ void CortexSpatialPoolerItem::setPoolState( NeuroPool *pool ) {
 	RFC_INT64 msNow = Timer::getCurrentTimeMillis();
 	while( n-- ) {
 		int index = *sv++;
-		dv[ index ].firepower = NEURON_FIRE_OUTPUT_THRESHOLD_pQ;
+		dv[ index ].firepower = NEURON_FIRE_OUTPUT_BY_MEMBRANE_POTENTIAL_pQ;
 		dv[ index ].silent_till = msNow;
 	}
 }

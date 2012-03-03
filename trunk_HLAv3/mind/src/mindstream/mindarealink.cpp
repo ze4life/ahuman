@@ -73,7 +73,7 @@ void MindAreaLink::createNetRegionLinks( MindNet *net , MindAreaNet *masterNet ,
 }
 
 void MindAreaLink::createNetRegionLink( MindNet *net , MindRegion *masterRegion , MindRegion *slaveRegion ) {
-	logger.logDebug( "createNetRegionLink: create link net=" + net -> getName() + ", masterRegion=" + masterRegion -> getRegionId() + ", slaveRegion=" + slaveRegion -> getRegionId() + "..." );
+	logger.logDebug( "createNetRegionLink: create link net=" + net -> getName() + ", masterRegion=" + masterRegion -> getFullRegionId() + ", slaveRegion=" + slaveRegion -> getFullRegionId() + "..." );
 
 	MindRegionLink *link = new MindRegionLink( this );
 	link -> createRegionLink( net , masterRegion , slaveRegion );
