@@ -22,8 +22,8 @@ void NeuroPool::setDefaultThreshold() {
 	NEURON_DATA *data = neurons.getData();
 	int size = neurons.count();
 	while( size-- ) {
-		data -> synaptic_threshold = NEURON_SYNAPTIC_THRESHOLD_pQ;
-		data -> membrane_threshold = NEURON_FIRE_OUTPUT_THRESHOLD_pQ;
+		data -> synaptic_threshold = NEURON_SYNAPTIC_THRESHOLD_INITIAL_pQ;
+		data -> membrane_threshold = NEURON_MEMBRANE_THRESHOLD_INITIAL_pQ;
 		data++;
 	}
 }
@@ -78,12 +78,17 @@ NeuroSignal *NeuroPool::fire( NeuroSignal *srcSignal ) {
 		RFC_INT64 msSilentTill = dv -> silent_till;
 
 		// check membrane potential
-		if( dv -> membrane_potential < dv -> membrane_threshold )
+		if( dv -> membrane_potential < dv -> membrane_threshold ) {
+			LOGDEBUG( String( "fire: do not fire index=" ) + dk + ", membrane_potential=" + dv -> membrane_potential + ", membrane_threshold=" + dv -> membrane_threshold );
 			continue;
+		}
 
-		// do not fire if in silent time
+		// do not fire if in silent time - improve connectivity
 		if( msNow < msSilentTill ) {
-			LOGDEBUG( String( "apply pending: do not fire index=" ) + dk + ", msRemained=" + ( int )( msSilentTill - msNow ) );
+			dv -> membrane_threshold = ( dv -> membrane_threshold * NEURON_CONNECTIVITY_UPDATE_FACTOR ) / 100;
+			if( dv -> membrane_threshold < NEURON_MEMBRANE_THRESHOLD_MIN_pQ )
+				dv -> membrane_threshold = NEURON_MEMBRANE_THRESHOLD_MIN_pQ;
+			LOGDEBUG( String( "fire: do not fire index=" ) + dk + ", msRemained=" + ( int )( msSilentTill - msNow ) + ", new membrane_threshold=" + dv -> membrane_threshold );
 			continue;
 		}
 
@@ -91,7 +96,7 @@ NeuroSignal *NeuroPool::fire( NeuroSignal *srcSignal ) {
 		dv -> silent_till = msNow + NEURON_FIRE_OUTPUT_SILENT_ms;
 		dv -> firepower = NEURON_FIRE_OUTPUT_BY_MEMBRANE_POTENTIAL_pQ;
 		ffSignal -> addIndexData( dk );
-		LOGDEBUG( String( "apply pending: fire index=" ) + dk );
+		LOGDEBUG( String( "fire: done index=" ) + dk );
 	}
 
 	MindArea *area = region -> getArea();

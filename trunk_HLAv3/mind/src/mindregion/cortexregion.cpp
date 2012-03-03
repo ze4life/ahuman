@@ -211,7 +211,7 @@ void CortexRegion::handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroLin
 	
 	ss -> addMetricValue( "cortex.temporalmatch.rate" , predictionProbability );
 	int predictionRate = ( spatialPatternPredicted >= 0 && spatialPatternPredicted == spatialPatternExpected )? 100 : 0;
-	ss -> addMetricValue( "cortex.prediction.rate" , predictionProbability );
+	ss -> addMetricValue( "cortex.prediction.rate" , predictionRate );
 
 	if( spatialPatternPredicted < 0 ) {
 		logger.logInfo( String( "handleFeedForwardNeuroLinkMessage: id=" ) + inputSignal -> getId() + ", spatialMatched=" + spatialPatternMatched + ", spatialExpected=" + spatialPatternExpected + ", temporalMatched=" + temporalspatialPatternMatched + ", spatialPredicted=-1, probability=" + matchProbability + "/-1" );

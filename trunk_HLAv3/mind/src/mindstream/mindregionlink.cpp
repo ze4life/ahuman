@@ -39,7 +39,7 @@ void MindRegionLink::createRegionLink( MindNet *net , MindRegion *srcRegion , Mi
 		if( link != NULL )
 			links -> addSetItem( link );
 	}
-	logger.logInfo( "createRegionLink: region link created id=" + id + " from region id=" + srcRegion -> getRegionId() + "to region id=" + dstRegion -> getRegionId()  );
+	logger.logInfo( "createRegionLink: region link created id=" + id + " from region id=" + srcRegion -> getFullRegionId() + " to region id=" + dstRegion -> getFullRegionId()  );
 }
 
 void MindRegionLink::exitRegionLink() {

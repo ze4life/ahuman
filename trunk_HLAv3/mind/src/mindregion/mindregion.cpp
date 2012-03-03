@@ -51,6 +51,10 @@ String MindRegion::getRegionId() {
 	return( id );
 }
 
+String MindRegion::getFullRegionId() {
+	return( area -> getId() + "." + id );
+}
+
 void MindRegion::addPrivateNeuroLink( NeuroLink *nt ) {
 	// add link to set
 	linkSet -> addSetItem( nt );

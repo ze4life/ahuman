@@ -52,6 +52,7 @@ public:
 
 	MindArea *getArea() { return( area ); };
 	String getRegionId();
+	String getFullRegionId();
 	MindRegionType *getRegionTypeInfo() { return( regionType ); };
 
 	void addSourceEntity( String entity , NeuroLinkSource *connector );

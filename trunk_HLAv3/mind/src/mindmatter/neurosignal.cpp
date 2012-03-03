@@ -93,7 +93,7 @@ void NeuroSignal::createFromPool( NeuroPool *pool ) {
 		neurovt_state state = sv -> firepower;
 
 		// process only at or above threshold
-		if( state >= NEURON_FIRE_OUTPUT_THRESHOLD_pQ ) {
+		if( state >= NEURON_FIRE_OUTPUT_BY_MEMBRANE_POTENTIAL_pQ ) {
 			// clear fire state
 			sv -> firepower = 0;
 
