@@ -40,6 +40,7 @@ NeuroSignal *ExcitatoryLink::apply( NeuroSignal *srcData , NeuroPool *dstPool ) 
 	LOGDEBUG( String( "apply: project NeuroLink id=" ) + getId() + ", NeuroSignal id=" + srcData -> getId() + "..." );
 
 	// 1. recalculate accumulated pre-synaptic action potential
+	int signalSize = srcData -> getDataSize();
 	recalculateActionPotential( srcData , dstPool );
 
 	// 2. recalculate membrane potential
@@ -49,7 +50,6 @@ NeuroSignal *ExcitatoryLink::apply( NeuroSignal *srcData , NeuroPool *dstPool ) 
 	NeuroSignal *ffSignal = dstPool -> fire( srcData );
 
 	// log 
-	int signalSize = srcData -> getDataSize();
 	int affectedCount = ffSignal -> getDataSize();
 	int projectionRate = ( affectedCount * 100 ) / signalSize;
 	logger.logInfo( String( "apply: projected NeuroLink id=" ) + getId() + ", NeuroSignal id=" + srcData -> getId() + ", signalCount=" + signalSize + ", affectedCount=" + affectedCount + ", projectionRate=" + projectionRate );
@@ -116,7 +116,7 @@ void ExcitatoryLink::recalculateActionPotential( NeuroSignal *srcData , NeuroPoo
 		// save new value
 		dv -> synaptic_potential = currentCharge;
 
-		LOGDEBUG( String( "recalculateActionPotential: projected NeuroLink id=" ) + getId() + ", NeuroSignal id=" + srcData -> getId() + ", spos=" + sk + ", dpos=" + dk + ", lastCharge=" + lastCharge + ", newCharge=" + currentCharge + ", msPassed=" + ( int )msPassed );
+		LOGDEBUG( String( "recalculateActionPotential: projected NeuroLink id=" ) + getId() + ", NeuroSignal id=" + srcData -> getId() + ", spos=" + sk + ", dpos=" + dk + ", potential=" + dv -> synaptic_potential + ", threshold=" + dv -> synaptic_threshold );
 	}
 }
 
@@ -130,9 +130,9 @@ void ExcitatoryLink::activateMembranePotential( NeuroSignal *srcData , NeuroPool
 
 	RFC_INT64 msNow = Timer::getCurrentTimeMillis();
 
-	for( int k = 0; k < sn; k++ ) {
+	for( int k = 0; k < sn; k++ , sv++ ) {
 		// get value and project
-		int sk = *sv++;
+		int sk = *sv;
 		int dk = ( int )( ( sk * (RFC_INT64)dtotal ) / stotal );
 		NEURON_DATA *dv = dvdata + dk;
 
@@ -147,7 +147,9 @@ void ExcitatoryLink::activateMembranePotential( NeuroSignal *srcData , NeuroPool
 				dv -> synaptic_threshold = ( dv -> synaptic_threshold * NEURON_CONNECTIVITY_UPDATE_FACTOR ) / 100;
 				if( dv -> synaptic_threshold < NEURON_SYNAPTIC_THRESHOLD_MIN_pQ )
 					dv -> synaptic_threshold = NEURON_SYNAPTIC_THRESHOLD_MIN_pQ;
-				LOGDEBUG( String( "activateMembranePotential: do not fire index=" ) + dk + ", msRemained=" + ( int )( msSilentTill - msNow ) + ", new synaptic_threshold=" + dv -> synaptic_threshold );
+				// clear from fire
+				*sv = -1;
+				LOGDEBUG( String( "activateMembranePotential: do not fire index=" ) + dk + ", msRemained=" + ( int )( msSilentTill - msNow ) + ", new threshold=" + dv -> synaptic_threshold );
 				continue;
 			}
 
@@ -155,8 +157,15 @@ void ExcitatoryLink::activateMembranePotential( NeuroSignal *srcData , NeuroPool
 			dv -> membrane_potential += NEURON_MEMBRANE_POTENTIAL_BY_ACTION_POTENTIAL_pQ;
 			dv -> synaptic_potential = 0;
 
-			LOGDEBUG( String( "activateMembranePotential: NeuroLink id=" ) + getId() + ", NeuroSignal id=" + srcData -> getId() + ", spos=" + sk + ", dpos=" + dk + ", membrane_potential=" + dv -> membrane_potential + ", threshold=" + dv -> membrane_threshold );
+			LOGDEBUG( String( "activateMembranePotential: NeuroLink id=" ) + getId() + ", NeuroSignal id=" + srcData -> getId() + ", spos=" + sk + ", dpos=" + dk + ", membrane=" + dv -> membrane_potential + ", threshold=" + dv -> membrane_threshold );
+		}
+		else {
+			// clear from fire
+			*sv = -1;
+			LOGDEBUG( String( "activateMembranePotential: do not fire index=" ) + dk + ", potential=" + dv -> synaptic_potential + ", threshold=" + dv -> synaptic_threshold );
 		}
 	}
+
+	srcData -> removeNotFiringIndexData();
 }
 

@@ -81,7 +81,7 @@ NeuroSignal *NeuroPool::fire( NeuroSignal *srcSignal ) {
 
 		// check membrane potential
 		if( dv -> membrane_potential < dv -> membrane_threshold ) {
-			LOGDEBUG( String( "fire: pending fire index=" ) + dk + ", membrane_potential=" + dv -> membrane_potential + ", membrane_threshold=" + dv -> membrane_threshold );
+			LOGDEBUG( String( "fire: pending fire index=" ) + dk + ", membrane_potential=" + dv -> membrane_potential + ", threshold=" + dv -> membrane_threshold );
 			pendingFire -> addIndexData( dk );
 			continue;
 		}
