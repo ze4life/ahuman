@@ -6,6 +6,7 @@
 
 NeuroPool::NeuroPool() {
 	attachLogger();
+	pendingFire = NULL;
 }
 
 NeuroPool::~NeuroPool() {
@@ -13,6 +14,7 @@ NeuroPool::~NeuroPool() {
 
 void NeuroPool::createNeurons( int nx , int ny ) {
 	neurons.create( nx , ny );
+	pendingFire = new NeuroSignal( nx , ny );
 
 	// set initial level of threshold
 	setDefaultThreshold();
@@ -79,16 +81,8 @@ NeuroSignal *NeuroPool::fire( NeuroSignal *srcSignal ) {
 
 		// check membrane potential
 		if( dv -> membrane_potential < dv -> membrane_threshold ) {
-			LOGDEBUG( String( "fire: do not fire index=" ) + dk + ", membrane_potential=" + dv -> membrane_potential + ", membrane_threshold=" + dv -> membrane_threshold );
-			continue;
-		}
-
-		// do not fire if in silent time - improve connectivity
-		if( msNow < msSilentTill ) {
-			dv -> membrane_threshold = ( dv -> membrane_threshold * NEURON_CONNECTIVITY_UPDATE_FACTOR ) / 100;
-			if( dv -> membrane_threshold < NEURON_MEMBRANE_THRESHOLD_MIN_pQ )
-				dv -> membrane_threshold = NEURON_MEMBRANE_THRESHOLD_MIN_pQ;
-			LOGDEBUG( String( "fire: do not fire index=" ) + dk + ", msRemained=" + ( int )( msSilentTill - msNow ) + ", new membrane_threshold=" + dv -> membrane_threshold );
+			LOGDEBUG( String( "fire: pending fire index=" ) + dk + ", membrane_potential=" + dv -> membrane_potential + ", membrane_threshold=" + dv -> membrane_threshold );
+			pendingFire -> addIndexData( dk );
 			continue;
 		}
 
@@ -99,8 +93,32 @@ NeuroSignal *NeuroPool::fire( NeuroSignal *srcSignal ) {
 		LOGDEBUG( String( "fire: done index=" ) + dk );
 	}
 
+	// clear pending if fired
+	int dn = pendingFire -> getDataSize();
+	int *pendingFireData = pendingFire -> getIndexRawData();
+	for( int k = 0; k < dn; k++ ) {
+		int dk = *pendingFireData++;
+		NEURON_DATA *dv = data + dk;
+
+		// clear from pending
+		if( dv -> firepower > 0 )
+			pendingFireData[ -1 ] = -1;
+	}
+
+	// sort, remove duplicates and deleted items
+	pendingFire -> arrangeNormal();
+
+	// clear fire state
+	int fn = ffSignal -> getDataSize();
+	int *fireData = ffSignal -> getIndexRawData();
+	for( int k = 0; k < fn; k++ ) {
+		int dk = *fireData++;
+		NEURON_DATA *dv = data + dk;
+		dv -> firepower = 0;
+	}
+
 	MindArea *area = region -> getArea();
-	LOGDEBUG( "finishProjection: MindArea id=" + area -> getId() + " NeuroPool id=" + id + " state after signal id=" + srcSignal -> getId() + " data=" + ffSignal -> getNumberDataString() );
+	LOGDEBUG( "finishProjection: MindArea id=" + area -> getId() + " NeuroPool id=" + id + " state after signal id=" + srcSignal -> getId() + ", pendingSize=" + pendingFire -> getDataSize() + ", signal=" + ffSignal -> getNumberDataString() );
 
 	return( ffSignal );
 }
