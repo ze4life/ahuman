@@ -144,10 +144,10 @@ void ExcitatoryLink::activateMembranePotential( NeuroSignal *srcData , NeuroPool
 			if( msNow < msSilentTill ) {
 				// use energy to improve connectivity
 				dv -> synaptic_potential = 0;
-				dv -> membrane_threshold = ( dv -> membrane_threshold * NEURON_CONNECTIVITY_UPDATE_FACTOR ) / 100;
-				if( dv -> membrane_threshold < NEURON_MEMBRANE_THRESHOLD_MIN_pQ )
-					dv -> membrane_threshold = NEURON_MEMBRANE_THRESHOLD_MIN_pQ;
-				LOGDEBUG( String( "activateMembranePotential: do not fire index=" ) + dk + ", msRemained=" + ( int )( msSilentTill - msNow ) + ", new membrane_threshold=" + dv -> membrane_threshold );
+				dv -> synaptic_threshold = ( dv -> synaptic_threshold * NEURON_CONNECTIVITY_UPDATE_FACTOR ) / 100;
+				if( dv -> synaptic_threshold < NEURON_SYNAPTIC_THRESHOLD_MIN_pQ )
+					dv -> synaptic_threshold = NEURON_SYNAPTIC_THRESHOLD_MIN_pQ;
+				LOGDEBUG( String( "activateMembranePotential: do not fire index=" ) + dk + ", msRemained=" + ( int )( msSilentTill - msNow ) + ", new synaptic_threshold=" + dv -> synaptic_threshold );
 				continue;
 			}
 
