@@ -60,8 +60,6 @@ public:
 	void addIndexData( int index );
 	void addIndexDataSorted( NeuroSignal *srcSignal );
 	void arrangeNormal();
-
-private:
 	void removeNotFiringIndexData();
 
 private:
