@@ -59,6 +59,9 @@ public:
 	void clearData();
 	void addIndexData( int index );
 	void addIndexDataSorted( NeuroSignal *srcSignal );
+	void arrangeNormal();
+
+private:
 	void removeNotFiringIndexData();
 
 private:
@@ -96,6 +99,9 @@ public:
 	NeuroSignal *fire( NeuroSignal *srcSignal );
 
 private:
+// own data
+	NeuroSignal *pendingFire;
+
 // references
 	MindRegion *region;
 

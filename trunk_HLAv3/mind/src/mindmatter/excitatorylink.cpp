@@ -128,18 +128,34 @@ void ExcitatoryLink::activateMembranePotential( NeuroSignal *srcData , NeuroPool
 	TwoIndexArray<NEURON_DATA>& dstDataNeurons = dstPool -> getNeuronData();
 	NEURON_DATA *dvdata = dstDataNeurons.getData();
 
+	RFC_INT64 msNow = Timer::getCurrentTimeMillis();
+
 	for( int k = 0; k < sn; k++ ) {
 		// get value and project
 		int sk = *sv++;
 		int dk = ( int )( ( sk * (RFC_INT64)dtotal ) / stotal );
 		NEURON_DATA *dv = dvdata + dk;
 
+		RFC_INT64 msSilentTill = dv -> silent_till;
+
 		// check need to generate membrane potential
 		if( dv -> synaptic_potential >= dv -> synaptic_threshold ) {
+			// cannot increase membrane potential in silent time
+			if( msNow < msSilentTill ) {
+				// use energy to improve connectivity
+				dv -> synaptic_potential = 0;
+				dv -> membrane_threshold = ( dv -> membrane_threshold * NEURON_CONNECTIVITY_UPDATE_FACTOR ) / 100;
+				if( dv -> membrane_threshold < NEURON_MEMBRANE_THRESHOLD_MIN_pQ )
+					dv -> membrane_threshold = NEURON_MEMBRANE_THRESHOLD_MIN_pQ;
+				LOGDEBUG( String( "activateMembranePotential: do not fire index=" ) + dk + ", msRemained=" + ( int )( msSilentTill - msNow ) + ", new membrane_threshold=" + dv -> membrane_threshold );
+				continue;
+			}
+
+			// affect membrane potential
 			dv -> membrane_potential += NEURON_MEMBRANE_POTENTIAL_BY_ACTION_POTENTIAL_pQ;
 			dv -> synaptic_potential = 0;
 
-			LOGDEBUG( String( "activateMembranePotential: NeuroLink id=" ) + getId() + ", NeuroSignal id=" + srcData -> getId() + ", spos=" + sk + ", dpos=" + dk + ", membrane_potential=" + dv -> membrane_potential );
+			LOGDEBUG( String( "activateMembranePotential: NeuroLink id=" ) + getId() + ", NeuroSignal id=" + srcData -> getId() + ", spos=" + sk + ", dpos=" + dk + ", membrane_potential=" + dv -> membrane_potential + ", threshold=" + dv -> membrane_threshold );
 		}
 	}
 }

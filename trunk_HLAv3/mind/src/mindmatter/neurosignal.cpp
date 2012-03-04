@@ -155,35 +155,20 @@ void NeuroSignal::addIndexData( int index ) {
 	data.add( index );
 }
 
+void NeuroSignal::arrangeNormal() {
+	// sort
+	data.sort();
+
+	// remove duplicates
+	data.removeDuplicates();
+
+	// remove not firing
+	data.removeValue( -1 );
+}
+
 void NeuroSignal::removeNotFiringIndexData() {
-	int *rp = data.getAll();
-	int *wp = rp;
-	int n = data.count();
-
-	// skip equal
-	while( n ) {
-		if( *rp++ < 0 ) {
-			rp--;
-			break;
-		}
-		n--;
-	}
-
-	wp = rp;
-
-	// remove count
-	int rc = 0;
-	int v;
-
-	while( n-- ) {
-		if( ( v = *rp++ ) >= 0 )
-			*wp++ = v;
-		else
-			rc++;
-	}
-
-	if( rc > 0 )
-		data.setCount( data.count() - rc );
+	// remove not firing
+	data.removeValue( -1 );
 }
 
 void NeuroSignal::addIndexDataSorted( NeuroSignal *srcSignal ) {

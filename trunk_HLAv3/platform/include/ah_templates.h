@@ -24,6 +24,8 @@ class PropertyContainer;
 // #############################################################################
 // #############################################################################
 
+extern "C" extern int sortFlatList( void *p_userdata , const void *p_el1 , const void *p_el2 );
+
 // generic struct/simple type list, flat sequential storage
 template<typename T> class FlatList
 {
@@ -120,11 +122,10 @@ public:
 	};
 
 	void cut( int p_from ) {
-		if( n > p_from )
-			{
-				memset( &data[ p_from ] , 0 , ( n - p_from ) * sizeof( T ) );
-				n = p_from;
-			}
+		if( n > p_from ) {
+			memset( &data[ p_from ] , 0 , ( n - p_from ) * sizeof( T ) );
+			n = p_from;
+		}
 	};
 
 	void create( int p_n ) { ASSERT( p_n >= 0 ); allocate( p_n ); n = p_n; };
@@ -138,6 +139,44 @@ public:
 		create( p_n );
 		for( int k = 0; k < p_n; k++ )
 			data[ k ] = *values++;
+	};
+
+	void sort() {
+		int itemSize = sizeof( T );
+		rfc_qsort( &itemSize , data , n , sizeof( T ) , sortFlatList );
+	};
+
+	void removeValue( T value ) {
+		int wp = 0;
+		for( int k = 0; k < n; k++ ) {
+			if( memcmp( data + k , &value , sizeof( T ) ) != 0 ) {
+				if( k == wp )
+					wp++;
+				else
+					data[ wp++ ] = data[ k ];
+			}
+		}
+
+		n = wp;
+	};
+
+	void removeDuplicates() {
+		if( n <= 1 )
+			return;
+
+		int wp = 1;
+
+		// remove duplicates if go together only
+		for( int k = 1; k < n; k++ ) {
+			if( memcmp( data + k , data + k - 1 , sizeof( T ) ) != 0 ) {
+				if( k == wp )
+					wp++;
+				else
+					data[ wp++ ] = data[ k ];
+			}
+		}
+
+		n = wp;
 	};
 
 	void allocate( int an ) { 
@@ -157,11 +196,10 @@ public:
 
 		if( data == NULL )
 			data = ( T * )calloc( an , sizeof( T ) );
-		else
-			{
-				data = ( T * )realloc( data , sizeof( T ) * an );
-				memset( &data[ a ] , 0 , sizeof( T ) * ( an - a ) );
-			}
+		else {
+			data = ( T * )realloc( data , sizeof( T ) * an );
+			memset( &data[ a ] , 0 , sizeof( T ) * ( an - a ) );
+		}
 		a = an;
 	};
 
