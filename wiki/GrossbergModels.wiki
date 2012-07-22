@@ -236,6 +236,35 @@ http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/grossberg-valdo.j
    * how does brain learn what object is under both unsupervised and supervised learning conditions?
    * how does brain learn to bind multiple views of object into view-invariant and positionally invariant object category while scanning its parts with eye movements?
    * as eyes scan a scene, two successive eye movements may focus on different parts of same object or on different objects - how does brain avoid erroneously classifying views of different objects together, even before brain knows what object is?
-  * *ARTSCAN* model clarifies how brain uses scanning saccadic eye movements to learn view-invariant object categories
 
 http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/grossberg-artscan.jpg
+
+  * *ARTSCAN* model clarifies how brain uses scanning saccadic eye movements to learn view-invariant object categories
+   * explains how object attention works with spatial attention in *where* cortical stream to direct eye movements that explore object surfaces
+   * as eyes move around object surface, multiple view-specific categories are learned of object (e.g. in ITp) and are associated with emerging view-invariant object category (e.g. in ITa)
+   * how does brain know which view-specific categories should be associated with given view-invariant category?
+  * ARTSCAN predicts that pre-attentively formed surface representation activates attentional *shroud* - *form-fitting distribution of spatial attention*, even before brain can recognize surface as representing particular object
+   * shroud persists within *where* stream during active scanning of object
+   * shroud protects view-invariant category from getting reset, even while view-specific categories are reset, as eyes explore object
+   * shroud does this by *inhibiting ITa reset mechanism*
+  * how does shroud persist during active scanning of object?
+   * surface-shroud resonance arises owing to feedback interactions between surface representation (e.g. in area V4) and spatial attention (e.g. in PPC), and focuses spatial attention upon object to be learned
+   * when shroud collapses as eyes move to another surface, its view-invariant object category is reset as well
+   * spatial attention can increase perceived brightness of surface
+
+= 14. LEARNING OF SENSORY MOTOR MAPS AND GAINS =
+
+  * learning of object representations in *what* stream uses excitatory matching and match-based learning to solve stability–plasticity dilemma
+  * *where* stream learning uses inhibitory matching and mismatch-based learning
+   * inhibitory matching is often between brain representations of target position and present position of motor effector
+   * inhibitory matching computes difference vector that represents distance and direction of intended movement
+   * difference vector is volitionally gated by GO signal that determines when and how fast movement will occur
+  * during motor learning, difference vector can also generate error signals when same target position and present position are encoded but not properly calibrated
+   * error signals eliminate source of mismatch through time by recalibrating system maps and gains
+   * below model predicts how mismatch learning may tune spatial representations and adaptive motor gains in BG, CR, MC, PPC and PFC
+
+http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/grossberg-bginteractions.jpg
+
+  * perceptual/cognitive processes often use excitatory matching and match-based learning to create stable predictive representations of objects and events
+  * complementary spatial/motor processes often use inhibitory matching and mismatch-based learning to continually update spatial maps and sensory motor gains
+  * together, these complementary predictive and learning mechanisms create self-stabilizing perceptual/cognitive front end for activating more labile spatial/motor processes that control our changing bodies as they act upon objects in world
