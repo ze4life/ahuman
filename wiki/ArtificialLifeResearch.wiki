@@ -14,21 +14,18 @@ Approach of implementing aHuman project is to reuse fundamental architecture of 
 
 = Artificial Mind Overview =
 
-Biological mind can be modeled using set of cortices, nuclei, glands and bundles of fibers, connecting brain components to each other. Cortices and nuclei receive, process and relay information. Glands extract peptides to affect wide brain areas, or hormones to affect body via blood system.
+Biological mind can be modeled using set of cortices, nuclei, glands and bundles of fibers, connecting brain components to each other
+  * cortices and nuclei receive, process and relay information
+  * glands extract peptides to affect wide brain areas, or hormones to affect body via blood system
 
 Bundles of fibers connecting different pairs of components can be grouped in tracts, which can go in the same direction to a long distance.
+  * fibers transfer fast signals as ion waves and mechanically transport molecular strucutres containing neurotransmitters and neuromodulators which affect connectivity between presynaptic and postsynaptic neurons
+  * various types of neurotransmitters and neuromodulators exert different influence on connectivity and signal relay from one neuron to another
 
-Fibers transfer fast signals as ion waves and mechanically transport molecular strucutres containing neurotransmitters and neuromodulators which affect connectivity between presynaptic and postsynaptic neurons.
-Various types of neurotransmitters and neuromodulators exert different influence on connectivity and signal relay from one neuron to another.
-
-Artifical Mind is modeled using [MindArea], [MindRegion] and !MindLink objects. 
-
-!MindArea is roughly corresponds to a group of mind components, defined by biological research. Area contains set of regions.
-
-!MindRegion is artificial representation of brain component of one of 3 types - cortex, nucleus or gland.
-
-[MindAreaLink] corresponds to the tract and plays as signal transmission controller.
-
-[MindRegionLink] represents bundle of fibers having specific properties of component-to-component mapping and also can be of different types depending on transmitter used.
+Artifical Mind is modeled using [MindArea], [MindRegion] and !MindLink objects
+  * !MindArea is roughly corresponds to a group of mind components, defined by biological research. Area contains set of regions.
+  * !MindRegion is artificial representation of brain component of one of 3 types - cortex, nucleus or gland
+  * [MindAreaLink] corresponds to the tract and plays as signal transmission controller
+  * [MindRegionLink] represents bundle of fibers having specific properties of component-to-component mapping and also can be of different types depending on transmitter used
 
 = Artificial Mind Areas =
