@@ -4,12 +4,11 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-MindAreaLink::MindAreaLink( MindAreaLinkInfo *p_info , MindArea *p_masterArea , MindArea *p_slaveArea ) {
+MindAreaLink::MindAreaLink() {
 	attachLogger();
-	info = p_info;
 
-	masterArea = p_masterArea;
-	slaveArea = p_slaveArea;
+	masterArea = NULL;
+	slaveArea = NULL;
 
 	session = NULL;
 	masterSubscription = NULL;
@@ -21,49 +20,15 @@ MindAreaLink::~MindAreaLink() {
 	delete links;
 }
 
+void MindAreaLink::create( MindArea *p_masterArea , MindArea *p_slaveArea ) {
+	masterArea = p_masterArea;
+	slaveArea = p_slaveArea;
+}
+
 void MindAreaLink::createRegionLinks() {
 	MindService *ms = MindService::getService();
 
 	// create region mapping
-}
-
-void MindAreaLink::createNetRegionLinks( MindNet *net , MindAreaNet *masterNet , MindAreaNet *slaveNet ) {
-	ClassList<MindRegion>& masterRegions = masterNet -> getRegions();
-	ClassList<MindRegion>& slaveRegions = slaveNet -> getRegions();
-
-	// make linear topological mapping
-	int n1 = masterRegions.count();
-	int n2 = slaveRegions.count();
-	if( n1 == 0 || n2 == 0 )
-		return;
-
-	// mapping factor
-	int k2 = 0;
-	for( int k1 = 0; k1 < n1; k1++ ) {
-		MindRegion *masterRegion = masterRegions.get( k1 );
-
-		// find terminal index for k1 mapping
-		int n2k1 = 10 * n2 * k1 / n1;
-		if( n2k1 % 5 > 5 )
-			n2k1 = n2k1/10 + 1;
-		else
-			n2k1 = n2k1/10;
-		if( n2k1 >= n2 )
-			n2k1 = n2 - 1;
-
-		for( ; k2 <= n2k1; k2++ ) {
-			MindRegion *slaveRegion = slaveRegions.get( k1 );
-			createNetRegionLink( net , masterRegion , slaveRegion );
-		}
-	}
-}
-
-void MindAreaLink::createNetRegionLink( MindNet *net , MindRegion *masterRegion , MindRegion *slaveRegion ) {
-	logger.logDebug( "createNetRegionLink: create link net=" + net -> getName() + ", masterRegion=" + masterRegion -> getFullRegionId() + ", slaveRegion=" + slaveRegion -> getFullRegionId() + "..." );
-
-	MindRegionLink *link = new MindRegionLink( this );
-	link -> createRegionLink( net , masterRegion , slaveRegion );
-	addRegionLink( link );
 }
 
 void MindAreaLink::open( MessageSession *p_session ) {

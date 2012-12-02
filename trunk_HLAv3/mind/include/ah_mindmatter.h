@@ -17,6 +17,13 @@ class NeuroLinkTarget;
 /*#########################################################################*/
 /*#########################################################################*/
 
+class MindCircuitLinkTypeDef;
+class MindRegionLink;
+class MindRegion;
+
+/*#########################################################################*/
+/*#########################################################################*/
+
 typedef struct {
 	neurovt_state synaptic_potential;	// accumulated action potential in axon terminal
 	neurovt_state synaptic_threshold;	// synapse penetration threshold of accumulated action potential, initially NEURON_SYNAPTIC_THRESHOLD_pQ
@@ -123,9 +130,6 @@ private:
 /*#########################################################################*/
 /*#########################################################################*/
 
-class MindRegionLink;
-class NeuroLinkInfo;
-
 class NeuroLink : public Object {
 public:
 	NeuroLink( MindRegionLink *regionLink );
@@ -140,12 +144,12 @@ public:
 	int getSizeX();
 	int getSizeY();
 
-	void setNeuroLinkInfo( NeuroLinkInfo *linkInfo );
-	void setTransmitter( String transmitter );
-	void create( NeuroLinkSource *p_source , NeuroLinkTarget *p_target );
-	void createInternal( MindRegion *region );
+	void configure( MindCircuitLinkDef *linkInfo );
+	void create( MindCircuitLinkTypeDef *linkType , NeuroLinkSource *p_source , NeuroLinkTarget *p_target );
 
 	virtual NeuroSignal *apply( NeuroSignal *srcData , NeuroPool *dstPool ) = 0;
+
+	void createInternal( MindRegion *region );
 
 public:
 // utilities
@@ -157,7 +161,7 @@ public:
 // references
 	MindRegionLink *regionLink;
 	MindRegion *region;
-	NeuroLinkInfo *linkInfo;
+	MindCircuitLinkDef *linkInfo;
 	NeuroLinkSource *source;
 	NeuroLinkTarget *target;
 };

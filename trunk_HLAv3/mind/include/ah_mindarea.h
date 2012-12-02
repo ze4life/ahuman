@@ -8,19 +8,21 @@
 
 class MindArea;
 class MindAreaSet;
-class MindAreaNet;
 
 /*#########################################################################*/
 /*#########################################################################*/
 
 class MindTarget;
-class MindAreaInfo;
-class MindAreaLinkInfo;
 class MindRegionSet;
 class MindRegionLinkSet;
 class MindAreaLink;
-class MessageSession;
 class MindMessage;
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class MindAreaDef;
+class MessageSession;
 
 // brain provides implementation for mind areas
 // each mind area is implemented by module components - next level folder under mod...
@@ -34,24 +36,22 @@ class MindArea : public Object {
 public:
 	MindArea();
 	virtual ~MindArea();
-	virtual const char *getClass() = 0;
+	virtual const char *getClass() { return areaId; };
 
 public:
 	// mind area lifecycle
-	virtual void initRegionsInArea( MindTarget *target ) = 0;
-	virtual void wakeupArea( MindActiveMemory *activeMemory ) = 0;
-	virtual void suspendArea() = 0;
+	void createAreaRegions( MindTarget *target );
+	void wakeupArea( MindActiveMemory *activeMemory );
+	void suspendArea();
 
 public:
-	void configure( MindAreaInfo *info );
+	void configure( MindAreaDef *info );
 	void create();
 	void exit();
 	void destroy();
 
 	String getId();
-	MindAreaInfo *getMindAreaInfo();
-	MindAreaNet *getMindNet( String net );
-	MindAreaNetInfo *getMindAreaNetInfo( String net );
+	MindAreaDef *getMindAreaDef();
 
 	MindRegionSet *getRegionSet();
 	void sendMessage( MindMessage *msg );
@@ -59,7 +59,6 @@ public:
 	void addSlaveLink( MindAreaLink *link );
 
 protected:
-	MindAreaNet *createAreaNetwork( String name );
 	void addRegion( MindRegion *region );
 	MindRegion *getRegion( String group , String groupId );
 
@@ -69,12 +68,12 @@ private:
 	MessagePublisher *iopub;
 
 // own data
-	MapStringToClass<MindAreaNet> netSet;
+	String areaId;
 	MindRegionSet *regionSet;
 	MindRegionLinkSet *regionLinkSet;
 
 // references
-	MindAreaInfo *info;
+	MindAreaDef *info;
 	MindAreaLinkSet *areaMasterLinkSet;
 	MindAreaLinkSet *areaSlaveLinkSet;
 };
@@ -103,32 +102,6 @@ public:
 
 // references
 	MapStringToClass<MindArea> map;
-};
-
-/*#########################################################################*/
-/*#########################################################################*/
-
-class MindAreaNet : public Object {
-public:
-	MindAreaNet( MindArea *area , MindNet *net , MindAreaNetInfo *areaNetInfo );
-	virtual const char *getClass() { return( "MindAreaNet" ); };
-
-public:
-	MindNet *getNet();
-	MindAreaNetInfo *getNetInfo();
-
-	void addRegion( MindRegion *region );
-	ClassList<MindRegion>& getRegions();
-
-private:
-// parent
-	MindArea *area;
-
-// references
-	MindNet *net;
-	MindAreaNetInfo *netInfo;
-
-	ClassList<MindRegion> regions;
 };
 
 /*#########################################################################*/
