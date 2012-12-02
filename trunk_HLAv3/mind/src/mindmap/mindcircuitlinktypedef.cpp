@@ -4,31 +4,31 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-MindLinkType::MindLinkType() {
+MindCircuitLinkTypeDef::MindCircuitLinkTypeDef() {
 }
 
-MindLinkType::~MindLinkType() {
+MindCircuitLinkTypeDef::~MindCircuitLinkTypeDef() {
 	neuroLinkSet.destroy();
 }
 
-void MindLinkType::createFromXml( Xml xml ) {
+void MindCircuitLinkTypeDef::createFromXml( Xml xml ) {
 	// attributes
 	name = xml.getAttribute( "name" );
 
 	// neurolinks
 	for( Xml xmlChild = xml.getFirstChild( "NeuroLink" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "NeuroLink" ) ) {
 		// construct NeuroLink from attributes
-		NeuroLinkInfo *info = new NeuroLinkInfo( this );
+		MindCircuitLinkDef *info = new MindCircuitLinkDef( this );
 		neuroLinkSet.add( info );
 
 		info -> createFromXml( xmlChild );
 	}
 }
 
-int MindLinkType::getNeuroLinkCount() {
+int MindCircuitLinkTypeDef::getNeuroLinkCount() {
 	return( neuroLinkSet.count() );
 }
 
-NeuroLinkInfo *MindLinkType::getNeuroLinkInfo( int pos ) {
+MindCircuitLinkDef *MindCircuitLinkTypeDef::getMindCircuitLinkDef( int pos ) {
 	return( neuroLinkSet.get( pos ) );
 }

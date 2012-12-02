@@ -4,7 +4,7 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-NeuroLinkInfo::NeuroLinkInfo( MindRegionType *p_regionType ) {
+MindCircuitLinkDef::MindCircuitLinkDef( MindRegionType *p_regionType ) {
 	attachLogger();
 
 	linkType = NULL;
@@ -12,7 +12,7 @@ NeuroLinkInfo::NeuroLinkInfo( MindRegionType *p_regionType ) {
 	forward = true;
 }
 
-NeuroLinkInfo::NeuroLinkInfo( MindLinkType *p_linkType ) {
+MindCircuitLinkDef::MindCircuitLinkDef( MindCircuitLinkTypeDef *p_linkType ) {
 	attachLogger();
 
 	linkType = p_linkType;
@@ -20,7 +20,7 @@ NeuroLinkInfo::NeuroLinkInfo( MindLinkType *p_linkType ) {
 	forward = true;
 }
 
-void NeuroLinkInfo::createFromXml( Xml xml ) {
+void MindCircuitLinkDef::createFromXml( Xml xml ) {
 	// attributes are properties
 	id = xml.getAttribute( "id" , "" );
 	type = xml.getAttribute( "type" );
@@ -30,7 +30,7 @@ void NeuroLinkInfo::createFromXml( Xml xml ) {
 	forward = xml.getBooleanAttribute( "forward" , true );
 }
 
-NeuroLink *NeuroLinkInfo::createNeuroLink( MindRegionLink *regionLink , NeuroLinkSource *srcData , NeuroLinkTarget *dstData ) {
+NeuroLink *MindCircuitLinkDef::createNeuroLink( MindRegionLink *regionLink , NeuroLinkSource *srcData , NeuroLinkTarget *dstData ) {
 	NeuroLink *link = NULL;
 
 	MindService *ms = MindService::getService();
@@ -47,14 +47,14 @@ NeuroLink *NeuroLinkInfo::createNeuroLink( MindRegionLink *regionLink , NeuroLin
 	
 	// set link info
 	link -> create( srcData , dstData );
-	link -> setNeuroLinkInfo( this );
+	link -> setMindCircuitLinkDef( this );
 	link -> setTransmitter( transmitter );
 
 	logger.logInfo( String( "createNeuroLink: NeuroLink created id=" ) + link -> getId() + ", type=" + type + " in MindRegionLink id=" + regionLink -> getId() + ", master=" + masterEntity + ", slave=" + slaveEntity + ", forward=" + forward );
 	return( link );
 }
 
-NeuroLink *NeuroLinkInfo::createInternalNeuroLink( MindRegion *region ) {
+NeuroLink *MindCircuitLinkDef::createInternalNeuroLink( MindRegion *region ) {
 	NeuroLink *link = NULL;
 
 	MindService *ms = MindService::getService();
@@ -71,7 +71,7 @@ NeuroLink *NeuroLinkInfo::createInternalNeuroLink( MindRegion *region ) {
 	
 	// set link info
 	link -> createInternal( region );
-	link -> setNeuroLinkInfo( this );
+	link -> setMindCircuitLinkDef( this );
 	link -> setTransmitter( transmitter );
 
 	logger.logInfo( String( "createNeuroLink: NeuroLink created id=" ) + link -> getId() + ", type=" + type + ", in MindRegion id=" + region -> getFullRegionId() );

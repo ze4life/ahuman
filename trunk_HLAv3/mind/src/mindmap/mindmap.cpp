@@ -6,48 +6,35 @@
 
 MindMap::~MindMap() {
 	regionTypeSet.destroy();
-	netTypeSet.destroy();
-	mindNetSet.destroy();
 	mindAreaSet.destroy();
 	linkTypeSet.destroy();
-	mindLinkSet.destroy();
 }
 
-MindRegionType *MindMap::getRegionTypeByName( String regionTypeName ) {
-	MindRegionType *info = regionTypeMap.get( regionTypeName );
+MindRegionTypeDef *MindMap::getRegionTypeByName( String regionTypeName ) {
+	MindRegionTypeDef *info = regionTypeMap.get( regionTypeName );
 	ASSERTMSG( info != NULL , "Wrong region type name=" + regionTypeName );
 	return( info );
 }
 
-MindNetInfo *MindMap::getNetByName( String netName ) {
-	MindNetInfo *info = mindNetMap.get( netName );
-	ASSERTMSG( info != NULL , "Wrong net name=" + netName );
-	return( info );
-}
-
-MindAreaInfo *MindMap::getAreaById( String areaId ) {
-	MindAreaInfo *info = mindAreaMap.get( areaId );
+MindAreaDef *MindMap::getAreaById( String areaId ) {
+	MindAreaDef *info = mindAreaMap.get( areaId );
 	ASSERTMSG( info != NULL , "Wrong area id=" + areaId );
 	return( info );
 }
 
 void MindMap::createFromXml( Xml xml ) {
-	createRegionTypeSet( xml.getFirstChild( "MindRegionTypeSet" ) );
-	createAreaSet( xml.getFirstChild( "MindAreaSet" ) );
-	createNetworkTypeSet( xml.getFirstChild( "MindNetworkTypeSet" ) );
-	createNetworkSet( xml.getFirstChild( "MindNetworkSet" ) );
-	createLinkTypeSet( xml.getFirstChild( "MindLinkTypeSet" ) );
-	createMindLinkSet( xml.getFirstChild( "MindLinkSet" ) );
-	linkAreaNet();
+	createRegionTypeDefSet( xml.getFirstChild( "MindRegionTypeSet" ) );
+	createAreaDefSet( xml.getFirstChild( "MindAreaSet" ) );
+	createCircuitLinkTypeDefSet( xml.getFirstChild( "MindCircuitLinkTypeSet" ) );
 }
 
-void MindMap::createRegionTypeSet( Xml xml ) {
+void MindMap::createRegionTypeDefSet( Xml xml ) {
 	if( !xml.exists() )
 		return;
 
 	for( Xml xmlChild = xml.getFirstChild( "MindRegionType" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "MindRegionType" ) ) {
 		// construct MindRegionType from attributes
-		MindRegionType *info = new MindRegionType;
+		MindRegionTypeDef *info = new MindRegionTypeDef;
 		regionTypeSet.add( info );
 
 		info -> createFromXml( xmlChild );
@@ -62,13 +49,13 @@ void MindMap::createRegionTypeSet( Xml xml ) {
 	}
 }
 
-void MindMap::createAreaSet( Xml xml ) {
+void MindMap::createAreaDefSet( Xml xml ) {
 	if( !xml.exists() )
 		return;
 
 	for( Xml xmlChild = xml.getFirstChild( "MindArea" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "MindArea" ) ) {
 		// construct MindArea from attributes
-		MindAreaInfo *info = new MindAreaInfo;
+		MindAreaDef *info = new MindAreaDef;
 		mindAreaSet.add( info );
 
 		info -> createFromXml( xmlChild );
@@ -83,97 +70,15 @@ void MindMap::createAreaSet( Xml xml ) {
 	}
 }
 
-void MindMap::createNetworkTypeSet( Xml xml ) {
+void MindMap::createCircuitLinkTypeDefSet( Xml xml ) {
 	if( !xml.exists() )
 		return;
 
-	for( Xml xmlNetChild = xml.getFirstChild( "MindNetworkType" ); xmlNetChild.exists(); xmlNetChild = xmlNetChild.getNextChild( "MindNetworkType" ) ) {
+	for( Xml xmlChild = xml.getFirstChild( "MindCircuitLinkTypeDef" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "MindCircuitLinkTypeDef" ) ) {
 		// construct MindArea from attributes
-		MindNetworkType *netType = new MindNetworkType;
-		netType -> createFromXml( xmlNetChild );
-		netTypeSet.add( netType );
-
-		// get areaId
-		String name = netType -> getName();
-		ASSERTMSG( !name.isEmpty() , "network type is not defined: " + xmlNetChild.serialize() );
-		ASSERTMSG( netTypeMap.get( name ) == NULL , name + ": net type duplicate found for name=" + name );
-
-		// add
-		netTypeMap.add( name , netType );
-	}
-}
-
-void MindMap::createNetworkSet( Xml xml ) {
-	if( !xml.exists() )
-		return;
-
-	for( Xml xmlNetChild = xml.getFirstChild( "MindNet" ); xmlNetChild.exists(); xmlNetChild = xmlNetChild.getNextChild( "MindNet" ) ) {
-		// construct MindArea from attributes
-		MindNetInfo *info = new MindNetInfo;
-		info -> createFromXml( xmlNetChild );
-		mindNetSet.add( info );
-
-		// get areaId
-		String name = info -> getName();
-		ASSERTMSG( !name.isEmpty() , "network is not defined: " + xmlNetChild.serialize() );
-		ASSERTMSG( mindNetMap.get( name ) == NULL , name + ": net duplicate found for name=" + name );
-
-		// set net type
-		String netTypeName = info -> getTypeName();
-		MindNetworkType *netType = netTypeMap.get( netTypeName );
-		ASSERTMSG( netType != NULL , "unknown network type: name=" + netTypeName );
-		info -> setNetType( netType );
-
-		// add
-		mindNetMap.add( name , info );
-	}
-}
-
-void MindMap::createLinkTypeSet( Xml xml ) {
-	if( !xml.exists() )
-		return;
-
-	for( Xml xmlChild = xml.getFirstChild( "MindLinkType" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "MindLinkType" ) ) {
-		// construct MindArea from attributes
-		MindLinkType *linkType = new MindLinkType;
+		MindCircuitLinkTypeDef *linkType = new MindCircuitLinkTypeDef;
 		linkType -> createFromXml( xmlChild );
 		linkTypeSet.add( linkType );
 		linkTypeMap.add( linkType -> getName() , linkType );
-	}
-}
-
-void MindMap::createMindLinkSet( Xml xml ) {
-	if( !xml.exists() )
-		return;
-
-	for( Xml xmlChild = xml.getFirstChild( "MindLink" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "MindLink" ) ) {
-		// construct MindArea from attributes
-		MindAreaLinkInfo *info = new MindAreaLinkInfo;
-		info -> createFromXml( xmlChild );
-
-		// set net type
-		String linkTypeName = info -> getTypeName();
-		MindLinkType *linkType = linkTypeMap.get( linkTypeName );
-		ASSERTMSG( linkType != NULL , "unknown mind link type: name=" + linkTypeName );
-		info -> setLinkType( linkType );
-
-		// add to set
-		mindLinkSet.add( info );
-	}
-}
-
-void MindMap::linkAreaNet() {
-	// by area
-	for( int k = 0; k < mindAreaMap.count(); k++ ) {
-		MindAreaInfo *info = mindAreaMap.getClassByIndex( k );
-		ClassList<MindAreaNetInfo>& netSet = info -> getNetSet();
-		for( int y = 0; y < netSet.count(); y++ ) {
-			MindAreaNetInfo *areaNet = netSet.get( y );
-			String netName = areaNet -> getNetName();
-
-			MindNetInfo *net = mindNetMap.get( netName );
-			ASSERTMSG( net != NULL , "linkAreaNet: unable to find network by name=" + netName );
-			areaNet -> setNetInfo( net );
-		}
 	}
 }
