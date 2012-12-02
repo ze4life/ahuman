@@ -7,8 +7,6 @@
 #include "ah_mindbase.h"
 
 class MindService;
-class MindNet;
-class MindNetSet;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -20,19 +18,18 @@ class MindSpace;
 class MindLocation;
 class MindArea;
 class MindAreaSet;
-class MindAreaNet;
 class MindRegion;
 class MindRegionSet;
 class MindMap;
 class MindActiveMemory;
 class MindAreaLink;
 class MindAreaLinkSet;
-class MindAreaLinkInfo;
 class MindSensor;
 class MindEffector;
 class MindRegionLink;
 class NeuroLink;
 class NeuroPool;
+class MindAreaDef;
 class CortexRegionInfo;
 class NucleiRegionInfo;
 class NerveRegionInfo;
@@ -52,7 +49,6 @@ public:
 	MindMap *getMindMap();
 	MindArea *getMindArea( String areaId );
 	MindRegion *getMindRegion( String regionId );
-	MindNet *getMindNet( String net );
 	  
 	// create core items - regions
 	MindRegion *createCortexRegion( MindArea *area , String id , CortexRegionInfo *info );
@@ -83,28 +79,13 @@ public:
 
 // internals:
 private:
-	// create core items
-	MindArea *createThalamusArea();
-	MindArea *createPerceptionArea();
-	MindArea *createSomaticArea();
-	MindArea *createHippocampusArea();
-	MindArea *createParietalArea();
-	MindArea *createPrefrontalCortexArea();
-	MindArea *createBasalGangliaArea();
-	MindArea *createBrainStemArea();
-	MindArea *createCranialNerveArea();
-	MindArea *createSpinalCordArea();
-	MindArea *createMotorNerveArea();
-	MindArea *createBodyFeelingNerveArea();
-
 	// routines
-	void createNetworks();
 	void createAreas();
 	void establishAreaLinks();
 
-	void createArea( String areaId , MindArea *(MindService::*pfn)() );
+	void createArea( MindAreaDef *areaInfo );
 	void addMindRegion( String regionId , MindRegion *region , const MindLocation& relativeLocation );
-	void createMindAreaLink( MindArea *masterArea , MindArea *slaveArea , MindAreaLinkInfo *linkInfo );
+	void createMindAreaLink( MindArea *masterArea , MindArea *slaveArea );
 
 	// structure lock
 	void lock() { rfc_hnd_semlock( lockStructure );	}
@@ -123,58 +104,11 @@ private:
 	MindAreaSet *areaSet;
 	MindAreaLinkSet *linkSet;
 	MindActiveMemory *activeMemory;
-	MindNetSet *netSet;
 
 // references
 	MindTarget *target;
 	MindRegionSet *regionSet;
 	MessageSession *session;
-};
-
-/*#########################################################################*/
-/*#########################################################################*/
-
-class MindNetInfo;
-
-class MindNet : public Object {
-public:
-	MindNet();
-	virtual ~MindNet();
-	virtual const char *getClass() { return( "MindNet" ); };
-
-public:
-	void setInfo( MindNetInfo *p_info );
-	MindNetInfo *getInfo();
-	String getName();
-
-public:
-// utilities
-	String name;
-
-// references
-	MindNetInfo *info;
-};
-
-/*#########################################################################*/
-/*#########################################################################*/
-
-class MindNetInfo;
-
-class MindNetSet : public Object {
-public:
-	MindNetSet();
-	virtual ~MindNetSet();
-	virtual const char *getClass() { return( "MindNetSet" ); };
-
-	MindNet *createMindNet( MindNetInfo *info );
-	MindNet *getMindNet( String net );
-	
-private:
-// own data
-	ClassList<MindNet> list;
-
-// references
-	MapStringToClass<MindNet> map;
 };
 
 /*#########################################################################*/

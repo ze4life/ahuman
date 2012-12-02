@@ -40,21 +40,36 @@ void MindRegionLink::destroyRegionLink() {
 	links = NULL;
 }
 
-NeuroLink *MindRegionLink::createNeuroLink() {
+NeuroLink *MindRegionLink::createNeuroLink( MindCircuitLinkDef *linkDef ) {
 	String sourceEntity = "default";
 	String targetEntity = "default";
 
 	// check neurolink is required
-	NeuroLinkSource *srcData = src -> getNeuroLinkSource( sourceEntity , linkType );
+	NeuroLinkSource *srcData = src -> getNeuroLinkSource( sourceEntity , linkDef );
 	if( srcData == NULL )
 		return( NULL );
 
-	NeuroLinkTarget *dstData = dst -> getNeuroLinkTarget( targetEntity , linkType );
+	NeuroLinkTarget *dstData = dst -> getNeuroLinkTarget( targetEntity , linkDef );
 	if( dstData == NULL )
 		return( NULL );
 
 	MindService *service = MindService::getService();
-	NeuroLink *link = service -> createNeuroLink( this , srcData , dstData );
+
+	// check neurotransmitter
+	String linkType = linkDef -> getTypeName();
+	MindMap *map = service -> getMindMap();
+	MindCircuitLinkTypeDef *linkTypeDef = map -> getLinkTypeDefByName( linkType );
+	
+	NeuroLink *link = NULL;
+	if( linkTypeDef -> isExcitatory() )
+		link = service -> createExcitatoryLink( this );
+	else if( linkTypeDef -> isInhibitory() )
+		link = service -> createInhibitoryLink( this );
+	else
+		link = service -> createModulatoryLink( this );
+
+	link -> configure( linkDef );
+	link -> create( linkTypeDef , srcData , dstData );
 
 	// add to link source
 	srcData -> addNeuroLink( link );

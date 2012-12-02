@@ -241,14 +241,6 @@ public:
 	void initSensorArea();
 	MindTarget *getTarget();
 
-	// MindArea lifecycle
-	virtual void initRegionsInArea( MindTarget *target );
-	virtual void wakeupArea( MindActiveMemory *activeMemory );
-	virtual void suspendArea();
-
-private:
-	void createSensoryNetwork( MindSensor *sensor );
-
 private:
 // references
 	MindTarget *target;

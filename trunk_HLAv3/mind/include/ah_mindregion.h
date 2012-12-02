@@ -53,12 +53,12 @@ public:
 	MindArea *getArea() { return( area ); };
 	String getRegionId();
 	String getFullRegionId();
-	MindRegionType *getRegionTypeInfo() { return( regionType ); };
+	MindRegionTypeDef *getRegionTypeInfo() { return( regionType ); };
 
 	void addSourceEntity( String entity , NeuroLinkSource *connector );
 	void addTargetEntity( String entity , NeuroLinkTarget *connector );
-	NeuroLinkSource *getNeuroLinkSource( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
-	NeuroLinkTarget *getNeuroLinkTarget( String entity , MindNetInfo *netInfo , NeuroLinkInfo *linkInfo );
+	NeuroLinkSource *getNeuroLinkSource( String entity , MindCircuitLinkDef *linkInfo );
+	NeuroLinkTarget *getNeuroLinkTarget( String entity , MindCircuitLinkDef *linkInfo );
 
 private:
 
@@ -74,7 +74,7 @@ private:
 	MindLocation *location;
 
 // references
-	MindRegionType *regionType;
+	MindRegionTypeDef *regionType;
 	MindArea *area;
 	MindRegionLinkSet *regionLinkSet;
 	MapStringToClass<NeuroLinkSource> sourceConnectorMap;

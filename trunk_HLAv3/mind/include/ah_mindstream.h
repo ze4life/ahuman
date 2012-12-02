@@ -27,9 +27,11 @@ class MindRegion;
 // how inputs/outputs are connected to cortexes - it is defined by related component
 class MindAreaLink : public Object , public MessageSubscriber {
 public:
-	MindAreaLink( MindAreaLinkInfo *p_info , MindArea *masterArea , MindArea *slaveArea );
+	MindAreaLink();
 	~MindAreaLink();
 	const char *getClass() { return( "MindAreaLink" ); };
+
+	void create( MindArea *p_masterArea , MindArea *p_slaveArea );
 
 // operations
 public:
@@ -45,11 +47,8 @@ public:
 
 	MindArea *getMasterArea() { return( masterArea ); };
 	MindArea *getSlaveArea() { return( slaveArea ); };
-	MindAreaLinkInfo *getLinkInfo() { return( info ); };
 
 private:
-	void createNetRegionLinks( MindNet *net , MindAreaNet *masterNet , MindAreaNet *slaveNet );
-	void createNetRegionLink( MindNet *net , MindRegion *masterRegion , MindRegion *slaveRegion );
 	void addRegionLink( MindRegionLink *link );
 
 private:
@@ -63,7 +62,6 @@ private:
 
 // references
 	MindActiveMemory *activeMemory;
-	MindAreaLinkInfo *info;
 	MindArea *masterArea;
 	MindArea *slaveArea;
 };
@@ -94,23 +92,21 @@ public:
 	const char *getClass() { return( "MindRegionLink" ); };
 
 	String getId() { return( id ); };
-	MindLinkType *getLinkType() { return( linkType ); };
 	MindRegion *getSrcRegion();
 	MindRegion *getDstRegion();
 	MindAreaLink *getAreaLink() { return( areaLink ); };
 
-	void createRegionLink( MindNet *net , MindRegion *srcRegion , MindRegion *dstRegion );
+	void createRegionLink( MindRegion *srcRegion , MindRegion *dstRegion );
 	void exitRegionLink();
 	void destroyRegionLink();
 
 private:
-	NeuroLink *createNeuroLink( MindNet *net , NeuroLinkInfo *linkInfo );
+	NeuroLink *createNeuroLink( MindCircuitLinkDef *linkDef );
 
 public:
 // references
 	MindAreaLink *areaLink;
 
-	MindLinkType *linkType;
 	MindRegion *src;
 	MindRegion *dst;
 	NeuroLinkSet *links;
