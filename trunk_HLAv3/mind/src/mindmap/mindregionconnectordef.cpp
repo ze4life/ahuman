@@ -4,21 +4,21 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-MindRegionConnector::MindRegionConnector() {
+MindRegionConnectorDef::MindRegionConnectorDef() {
 	sourceConnector = true;
 }
 
-void MindRegionConnector::createFromXml( Xml xml ) {
+void MindRegionConnectorDef::createFromXml( Xml xml ) {
 	// attributes
 	id = xml.getAttribute( "id" );
 	sourceConnector = xml.getBooleanAttribute( "source" );
 }
 
-String MindRegionConnector::getId() {
+String MindRegionConnectorDef::getId() {
 	return( id );
 }
 
-bool MindRegionConnector::isSourceConnector() {
+bool MindRegionConnectorDef::isSourceConnector() {
 	return( sourceConnector );
 }
 

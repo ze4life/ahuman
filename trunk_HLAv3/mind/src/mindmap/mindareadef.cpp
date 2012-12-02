@@ -4,19 +4,19 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-MindAreaInfo::MindAreaInfo() {
+MindAreaDef::MindAreaDef() {
 	attachLogger();
 	enabled = false;
 	location = NULL;
 }
 
-MindAreaInfo::~MindAreaInfo() {
+MindAreaDef::~MindAreaDef() {
 	linkSet.destroy();
 	if( location != NULL )
 		delete location;
 };
 
-void MindAreaInfo::createFromXml( Xml xml ) {
+void MindAreaDef::createFromXml( Xml xml ) {
 	// attributes are properties
 	areaId = xml.getAttribute( "id" );
 	enabled = xml.getBooleanAttribute( "enabled" , true );
@@ -47,21 +47,21 @@ void MindAreaInfo::createFromXml( Xml xml ) {
 	}
 }
 
-void MindAreaInfo::setChannelInfo( Xml xml ) {
+void MindAreaDef::setChannelInfo( Xml xml ) {
 	if( !xml.exists() )
 		return;
 
 	channelId = xml.getAttribute( "name" );
 }
 
-bool MindAreaInfo::runEnabled() {
+bool MindAreaDef::runEnabled() {
 	return( enabled );
 }
 
-MindAreaNetInfo *MindAreaInfo::getNetInfo( String name ) {
+MindAreaNetInfo *MindAreaDef::getNetInfo( String name ) {
 	return( netMap.get( name ) );
 }
 
-String MindAreaInfo::getChannelId() {
+String MindAreaDef::getChannelId() {
 	return( channelId );
 }

@@ -4,12 +4,12 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-MindRegionType::~MindRegionType() {
+MindRegionTypeDef::~MindRegionTypeDef() {
 	connectorSet.destroy();
 	linkSet.destroy();
 }
 
-void MindRegionType::createFromXml( Xml xml ) {
+void MindRegionTypeDef::createFromXml( Xml xml ) {
 	if( !xml.exists() )
 		return;
 
@@ -21,7 +21,7 @@ void MindRegionType::createFromXml( Xml xml ) {
 	createLinkSetFromXml( xml.getFirstChild( "MindRegionInternalLinkSet" ) );
 }
 
-void MindRegionType::createConnectorSetFromXml( Xml xml ) {
+void MindRegionTypeDef::createConnectorSetFromXml( Xml xml ) {
 	if( !xml.exists() )
 		return;
 
@@ -39,13 +39,13 @@ void MindRegionType::createConnectorSetFromXml( Xml xml ) {
 	}
 }
 
-void MindRegionType::createLinkSetFromXml( Xml xml ) {
+void MindRegionTypeDef::createLinkSetFromXml( Xml xml ) {
 	if( !xml.exists() )
 		return;
 
 	for( Xml xmlChild = xml.getFirstChild( "NeuroLink" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "NeuroLink" ) ) {
 		// construct MindArea from attributes
-		NeuroLinkInfo *info = new NeuroLinkInfo( this );
+		MindCircuitLinkDef *info = new MindCircuitLinkDef( this );
 		info -> createFromXml( xmlChild );
 
 		String id = info -> getId();
@@ -57,18 +57,18 @@ void MindRegionType::createLinkSetFromXml( Xml xml ) {
 	}
 }
 
-String MindRegionType::getName() {
+String MindRegionTypeDef::getName() {
 	return( name );
 }
 
-MindRegionConnector *MindRegionType::getConnector( String p_id ) {
+MindRegionConnector *MindRegionTypeDef::getConnector( String p_id ) {
 	MindRegionConnector *connector = connectorMap.get( p_id );
 	ASSERTMSG( connector != NULL , "unknown connector id=" + p_id );
 	return( connector );
 }
 
-NeuroLinkInfo *MindRegionType::getLink( String p_id ) {
-	NeuroLinkInfo *info = linkMap.get( p_id );
+MindCircuitLinkDef *MindRegionTypeDef::getLink( String p_id ) {
+	MindCircuitLinkDef *info = linkMap.get( p_id );
 	ASSERTMSG( info != NULL , "unknown NeuroLink id=" + p_id );
 	return( info );
 }
