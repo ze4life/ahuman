@@ -6,7 +6,7 @@
 
 void MindAreaSet::addMindArea( MindArea *area ) {
 	list.add( area );
-	map.add( area -> getMindAreaInfo() -> getAreaId() , area );
+	map.add( area -> getMindAreaDef() -> getAreaId() , area );
 }
 
 MindArea *MindAreaSet::getMindArea( String id ) {
@@ -15,7 +15,7 @@ MindArea *MindAreaSet::getMindArea( String id ) {
 
 void MindAreaSet::initRegionsInAreaSet( MindTarget *target ) {
 	for( int k = 0; k < list.count(); k++ )
-		list.get( k ) -> initRegionsInArea( target );
+		list.get( k ) -> createAreaRegions( target );
 }
 
 void MindAreaSet::wakeupAreaSet( MindActiveMemory *activeMemory ) {

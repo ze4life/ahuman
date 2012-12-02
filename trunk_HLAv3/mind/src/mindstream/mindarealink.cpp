@@ -25,20 +25,6 @@ void MindAreaLink::createRegionLinks() {
 	MindService *ms = MindService::getService();
 
 	// create region mapping
-	ClassList<MindAreaNetInfo>& netSet = masterArea -> getMindAreaInfo() -> getNetSet();
-	for( int k = 0; k < netSet.count(); k++ ) {
-		MindAreaNetInfo *netInfo = netSet.get( k );
-		String netName = netInfo -> getNetName();
-
-		MindNet *net = ms -> getMindNet( netName );
-		MindAreaNet *masterNet = masterArea -> getMindNet( netName );
-		MindAreaNet *slaveNet = slaveArea -> getMindNet( netName );
-		if( masterNet == NULL || slaveNet == NULL )
-			continue;
-
-		// create regional links
-		createNetRegionLinks( net , masterNet , slaveNet );
-	}
 }
 
 void MindAreaLink::createNetRegionLinks( MindNet *net , MindAreaNet *masterNet , MindAreaNet *slaveNet ) {

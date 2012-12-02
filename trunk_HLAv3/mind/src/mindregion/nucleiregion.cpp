@@ -76,8 +76,8 @@ void NucleiRegion::createNucleiRegion( NucleiRegionInfo *info , String p_id ) {
 	neuroPoolInterNeurons.setId( p_id + ".in" );
 
 	// create internal link
-	MindRegionType *regionType = MindRegion::getRegionTypeInfo();
-	NeuroLinkInfo *linkInfo = regionType -> getLink( "interneurons" );
+	MindRegionTypeDef *regionType = MindRegion::getRegionTypeInfo();
+	MindCircuitLinkDef *linkInfo = regionType -> getLink( "interneurons" );
 	linkInterNeuronsToSub = linkInfo -> createInternalNeuroLink( this );
 }
 

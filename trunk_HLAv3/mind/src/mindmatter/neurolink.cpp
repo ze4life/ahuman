@@ -25,7 +25,7 @@ NeuroLinkTarget *NeuroLink::getTarget() {
 	return( target );
 }
 
-void NeuroLink::setNeuroLinkInfo( NeuroLinkInfo *p_linkInfo ) {
+void NeuroLink::setMindCircuitLinkDef( MindCircuitLinkDef *p_linkInfo ) {
 	linkInfo = p_linkInfo;
 }
 
@@ -44,7 +44,7 @@ void NeuroLink::create( NeuroLinkSource *p_source , NeuroLinkTarget *p_target ) 
 	source = p_source;
 	target = p_target;
 
-	// set sizes if not defined by neurolinkinfo
+	// set sizes if not defined by MindCircuitLinkDef
 	sizeX = source -> getSizeX();
 	sizeY = source -> getSizeY();
 }
