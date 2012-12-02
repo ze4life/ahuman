@@ -40,13 +40,12 @@ public:
 
 public:
 	// mind area lifecycle
-	void createAreaRegions( MindTarget *target );
 	void wakeupArea( MindActiveMemory *activeMemory );
 	void suspendArea();
 
 public:
 	void configure( MindAreaDef *info );
-	void create();
+	void create( MindTarget *target );
 	void exit();
 	void destroy();
 
@@ -90,7 +89,7 @@ public:
 	void addMindArea( MindArea *area );
 	MindArea *getMindArea( String id );
 
-	void initRegionsInAreaSet( MindTarget *target );
+	void create( MindTarget *target );
 	void wakeupAreaSet( MindActiveMemory *activeMemory );
 	void suspendAreaSet();
 	void exitAreaSet();

@@ -10,13 +10,13 @@ MindMap::~MindMap() {
 	linkTypeSet.destroy();
 }
 
-MindRegionTypeDef *MindMap::getRegionTypeByName( String regionTypeName ) {
+MindRegionTypeDef *MindMap::getRegionTypeDefByName( String regionTypeName ) {
 	MindRegionTypeDef *info = regionTypeMap.get( regionTypeName );
 	ASSERTMSG( info != NULL , "Wrong region type name=" + regionTypeName );
 	return( info );
 }
 
-MindAreaDef *MindMap::getAreaById( String areaId ) {
+MindAreaDef *MindMap::getAreaDefById( String areaId ) {
 	MindAreaDef *info = mindAreaMap.get( areaId );
 	ASSERTMSG( info != NULL , "Wrong area id=" + areaId );
 	return( info );
@@ -82,3 +82,8 @@ void MindMap::createCircuitLinkTypeDefSet( Xml xml ) {
 		linkTypeMap.add( linkType -> getName() , linkType );
 	}
 }
+
+MindCircuitLinkTypeDef *MindMap::getLinkTypeDefByName( String typeName ) {
+	return( linkTypeMap.get( typeName ) );
+}
+

@@ -25,7 +25,7 @@ void MindRegion::create( String p_id ) {
 	// map region type
 	MindService *ms = MindService::getService();
 	MindMap *mm = ms -> getMindMap();
-	regionType = mm -> getRegionTypeByName( getRegionType() );
+	regionType = mm -> getRegionTypeDefByName( getRegionType() );
 	ASSERTMSG( regionType != NULL , String( "Unknown region type name=" ) + getClass() );
 
 	// call virtual
@@ -64,12 +64,12 @@ void MindRegion::sendMessage( MindMessage *msg ) {
 	area -> sendMessage( msg );
 }
 
-NeuroLinkSource *MindRegion::getNeuroLinkSource( String entity , MindNetInfo *netInfo , MindCircuitLinkDef *linkInfo ) {
+NeuroLinkSource *MindRegion::getNeuroLinkSource( String entity , MindCircuitLinkDef *linkInfo ) {
 	NeuroLinkSource *connector = sourceConnectorMap.get( entity );
 	return( connector );
 }
 
-NeuroLinkTarget *MindRegion::getNeuroLinkTarget( String entity , MindNetInfo *netInfo , MindCircuitLinkDef *linkInfo ) {
+NeuroLinkTarget *MindRegion::getNeuroLinkTarget( String entity , MindCircuitLinkDef *linkInfo ) {
 	NeuroLinkTarget *connector = targetConnectorMap.get( entity );
 	return( connector );
 }

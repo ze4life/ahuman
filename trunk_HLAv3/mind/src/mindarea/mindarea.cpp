@@ -26,7 +26,7 @@ MindAreaDef *MindArea::getMindAreaDef() {
 	return( info );
 }
 
-void MindArea::create() {
+void MindArea::create( MindTarget *target ) {
 	regionSet = new MindRegionSet;
 	regionLinkSet = new MindRegionLinkSet;
 	areaMasterLinkSet = new MindAreaLinkSet;
@@ -37,6 +37,14 @@ void MindArea::create() {
 
 	String channel = info -> getChannelId();
 	iopub = ms -> createPublisher( iosession , channel ,  getClass() , "MindMessage" );
+
+	// create regions
+}
+
+void MindArea::wakeupArea( MindActiveMemory *activeMemory ) {
+}
+
+void MindArea::suspendArea() {
 }
 
 void MindArea::exit() {
