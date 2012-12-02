@@ -18,11 +18,11 @@ MindArea::MindArea() {
 MindArea::~MindArea() {
 }
 
-void MindArea::configure( MindAreaInfo *p_info ) {
+void MindArea::configure( MindAreaDef *p_info ) {
 	info = p_info;
 }
 
-MindAreaInfo *MindArea::getMindAreaInfo() {
+MindAreaDef *MindArea::getMindAreaDef() {
 	return( info );
 }
 
@@ -88,27 +88,6 @@ void MindArea::sendMessage( MindMessage *msg ) {
 	iopub -> publish( iosession , msg );
 }
 
-MindAreaNet *MindArea::getMindNet( String net ) {
-	return( netSet.get( net ) );
-}
-
-MindAreaNet *MindArea::createAreaNetwork( String name ) {
-	MindService *ms = MindService::getService();
-	MindNet *net = ms -> getMindNet( name );
-	MindAreaNetInfo *netInfo = getMindAreaNetInfo( name );
-
-	// check that network is available and registered in given area
-	if( net == NULL || netInfo == NULL )
-		return( NULL );
-
-	// create mind area network
-	MindAreaNet *areaNet = new MindAreaNet( this , net , netInfo );
-
-	// add network to area network set
-	netSet.add( name , areaNet );
-	return( areaNet );
-}
-
 void MindArea::addMasterLink( MindAreaLink *link ) {
 	areaMasterLinkSet -> addSetItem( link );
 }
@@ -116,8 +95,3 @@ void MindArea::addMasterLink( MindAreaLink *link ) {
 void MindArea::addSlaveLink( MindAreaLink *link ) {
 	areaSlaveLinkSet -> addSetItem( link );
 }
-
-MindAreaNetInfo *MindArea::getMindAreaNetInfo( String netName ) {
-	return( info -> getNetInfo( netName ) );
-}
-

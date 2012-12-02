@@ -31,7 +31,6 @@ MindService::MindService() {
 	// construct items
 	mindSpace = NULL;
 	mindMap = NULL;
-	netSet = NULL;
 	areaSet = NULL;
 	regionSet = NULL;
 	linkSet = NULL;
@@ -75,7 +74,6 @@ void MindService::createService() {
 	// construct items
 	mindSpace = new MindSpace();
 	mindMap = new MindMap();
-	netSet = new MindNetSet();
 	areaSet = new MindAreaSet();
 	regionSet = new MindRegionSet();
 	linkSet = new MindAreaLinkSet();
@@ -103,9 +101,6 @@ void MindService::initService() {
 	// create messaging session for mind services
 	MessagingService *ms = MessagingService::getService();
 	session = ms -> createSession();
-
-	// create networks
-	createNetworks();
 
 	// create areas
 	createAreas();
@@ -150,7 +145,6 @@ void MindService::destroyService() {
 
 	delete mindSpace;
 	delete mindMap;
-	delete netSet;
 	delete areaSet;
 	delete regionSet;
 	delete linkSet;
@@ -159,44 +153,25 @@ void MindService::destroyService() {
 	rfc_hnd_semdestroy( lockStructure );
 }
 
-void MindService::createNetworks() {
-	ClassList<MindNetInfo>& list = mindMap -> getMindNets();
-	for( int k = 0; k < list.count(); k++ ) {
-		MindNetInfo *netinfo = list.get( k );
-		netSet -> createMindNet( netinfo );
+void MindService::createAreas() {
+	// construct configured area set
+	ClassList<MindAreaDef>& areaSet = mindMap -> getMindAreas();
+	for( int k = 0; k < areaSet.count(); k++ ) {
+		MindAreaDef *areaInfo = areaSet.get( k );
+		createArea( areaInfo );
 	}
 }
 
-void MindService::createAreas() {
-	// construct only those that are configured
-	createArea( "ThalamusArea" , &MindService::createThalamusArea );
-	createArea( "PerceptionArea" , &MindService::createPerceptionArea );
-	createArea( "HippocampusArea" , &MindService::createHippocampusArea );
-	createArea( "ParietalArea" , &MindService::createParietalArea );
-	createArea( "PrefrontalCortexArea" , &MindService::createPrefrontalCortexArea );
-	createArea( "BasalGangliaArea" , &MindService::createBasalGangliaArea );
-	createArea( "BrainStemArea" , &MindService::createBrainStemArea );
-	createArea( "CranialNerveArea" , &MindService::createCranialNerveArea );
-	createArea( "SpinalCordArea" , &MindService::createSpinalCordArea );
-	createArea( "MotorNerveArea" , &MindService::createMotorNerveArea );
-	createArea( "SomaticArea" , &MindService::createSomaticArea );
-	createArea( "BodyFeelingNerveArea" , &MindService::createBodyFeelingNerveArea );
-}
-
-void MindService::createArea( String areaId , MindArea *(MindService::*pfn)() ) {
-	// find area configuration
-	MindAreaInfo *areaInfo = mindMap -> getAreaById( areaId );
-	ASSERTMSG( areaInfo != NULL , "constructArea: warning - mind area is not present in mind configuration name=" + areaId );
-
+void MindService::createArea( MindAreaDef *areaInfo ) {
 	// check need running
 	if( !areaInfo -> runEnabled() ) {
-		logger.logInfo( "constructArea: mind area is ignored, disabled in mind configuration name=" + areaId );
+		logger.logInfo( "constructArea: mind area is ignored, disabled in mind configuration name=" + areaInfo -> getAreaId() );
 		return;
 	}
 
 	// construct area
-	MindArea *area = (this ->* pfn)();
-	ASSERTMSG( area != NULL , "constructArea: mind area construction failed name=" + areaId );
+	MindArea *area = new MindArea();
+	area -> configure( areaInfo );
 
 	// add to list
 	addMindArea( area );
@@ -208,7 +183,7 @@ void MindService::setMindTarget( MindTarget *p_target ) {
 
 void MindService::addMindArea( MindArea *area ) {
 	// add mind area
-	MindAreaInfo *areaInfo = mindMap -> getAreaById( area -> getClass() );
+	MindAreaDef *areaInfo = mindMap -> getAreaById( area -> getClass() );
 	ASSERTMSG( areaInfo != NULL , String( "addMindArea: mind area is not present in mind configuration name=" ) + area -> getClass() );
 
 	// ignore area if configured not enabled
@@ -216,12 +191,6 @@ void MindService::addMindArea( MindArea *area ) {
 		logger.logInfo( "addMindArea: mind area is ignored, disabled  in configuration name=" + areaInfo -> getAreaId() );
 		return;
 	}
-
-	// configure area
-	area -> configure( areaInfo );
-
-	// create area independent content 
-	area -> create();
 
 	// add to set
 	areaSet -> addMindArea( area );
@@ -289,11 +258,3 @@ MindNet *MindService::getMindNet( String netName ) {
 	return( net );
 }
 
-MindArea *MindService::createHippocampusArea() { return( NULL ); };
-MindArea *MindService::createPrefrontalCortexArea() { return( NULL ); };
-MindArea *MindService::createBasalGangliaArea() { return( NULL ); };
-MindArea *MindService::createBrainStemArea() { return( NULL ); };
-MindArea *MindService::createCranialNerveArea() { return( NULL ); };
-MindArea *MindService::createSpinalCordArea() { return( NULL ); };
-MindArea *MindService::createMotorNerveArea() { return( NULL ); };
-MindArea *MindService::createBodyFeelingNerveArea() { return( NULL ); };
