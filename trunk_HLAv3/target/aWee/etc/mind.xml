@@ -21,42 +21,42 @@
 
 	<MindMap>
 
-		<MindRegionTypeSet>
+		<MindRegionTypeDefSet>
 
-			<MindRegionType name="MindSensor">
+			<MindRegionTypeDef name="MindSensor">
 
-				<MindRegionConnectorSet>
-					<MindRegionConnector id="sensor.data" source="true"/>
-					<MindRegionConnector id="sensor.control" source="false"/>
-					<MindRegionConnector id="sensor.control-feedback" source="true"/>	
-				</MindRegionConnectorSet>
+				<MindRegionConnectorDefSet>
+					<MindRegionConnectorDef id="sensor.data" source="true"/>
+					<MindRegionConnectorDef id="sensor.control" source="false"/>
+					<MindRegionConnectorDef id="sensor.control-feedback" source="true"/>	
+				</MindRegionConnectorDefSet>
 
-			</MindRegionType>
+			</MindRegionTypeDef>
 
-			<MindRegionType name="NucleiRegion">
+			<MindRegionTypeDef name="NucleiRegion">
 
-				<MindRegionConnectorSet>
-					<MindRegionConnector id="nucleus.input" source="false"/>
-					<MindRegionConnector id="nucleus.output" source="true"/>
-					<MindRegionConnector id="nucleus.interneurons-input" source="false"/>
-				</MindRegionConnectorSet>
+				<MindRegionConnectorDefSet>
+					<MindRegionConnectorDef id="nucleus.input" source="false"/>
+					<MindRegionConnectorDef id="nucleus.output" source="true"/>
+					<MindRegionConnectorDef id="nucleus.interneurons-input" source="false"/>
+				</MindRegionConnectorDefSet>
 
 				<MindRegionInternalLinkSet>
 					<NeuroLink id="interneurons" type="InhibitoryLink" transmitter="GLU"/>
 				</MindRegionInternalLinkSet>
 
-			</MindRegionType>
+			</MindRegionTypeDef>
 
-			<MindRegionType name="CortexRegion">
+			<MindRegionTypeDef name="CortexRegion">
 
-				<MindRegionConnectorSet>
-					<MindRegionConnector id="cortex.ff-input" source="false"/>
-					<MindRegionConnector id="cortex.fb-output" source="true"/>
-				</MindRegionConnectorSet>
+				<MindRegionConnectorDefSet>
+					<MindRegionConnectorDef id="cortex.ff-input" source="false"/>
+					<MindRegionConnectorDef id="cortex.fb-output" source="true"/>
+				</MindRegionConnectorDefSet>
 
-			</MindRegionType>
+			</MindRegionTypeDef>
 
-		</MindRegionTypeSet>
+		</MindRegionTypeDefSet>
 
 		<MindNetworkTypeSet>
 			<MindNetworkType name="sensor"/>
@@ -111,15 +111,15 @@
     
 		</MindAreaSet>
 
-		<MindLinkTypeSet>
+		<MindCircuitLinkTypeDefSet>
 
-			<MindLinkType name="sensor-stream">
+			<MindCircuitLinkTypeDef name="sensor-stream">
 				<NeuroLink type="ExcitatoryLink" masterEntity="sensor.data" slaveEntity="nucleus.input" transmitter="GLU" forward="true"/>
 				<NeuroLink type="ExcitatoryLink" masterEntity="nucleus.output" slaveEntity="cortex.ff-input" transmitter="GLU" forward="true"/>
 				<NeuroLink type="ExcitatoryLink" slaveEntity="cortex.fb-output" masterEntity="nucleus.interneurons-input" transmitter="GLU" forward="false"/>
-			</MindLinkType>
+			</MindCircuitLinkTypeDef>
 
-		</MindLinkTypeSet>
+		</MindCircuitLinkTypeDefSet>
 
 		<MindLinkSet>
 			<MindLink type="sensor-stream" masterArea="SensorArea" slaveArea="ThalamusArea" masterChannel="SensorArea" enabled="true"/>

@@ -162,6 +162,7 @@ public:
 	MindRegionLink *regionLink;
 	MindRegion *region;
 	MindCircuitLinkDef *linkInfo;
+	MindCircuitLinkTypeDef *linkType;
 	NeuroLinkSource *source;
 	NeuroLinkTarget *target;
 };

@@ -106,7 +106,7 @@ void MindService::initService() {
 	createAreas();
 
 	// create regions in all areas
-	areaSet -> initRegionsInAreaSet( target );
+	areaSet -> create( target );
 
 	// create links
 	establishAreaLinks();
@@ -183,7 +183,7 @@ void MindService::setMindTarget( MindTarget *p_target ) {
 
 void MindService::addMindArea( MindArea *area ) {
 	// add mind area
-	MindAreaDef *areaInfo = mindMap -> getAreaById( area -> getClass() );
+	MindAreaDef *areaInfo = mindMap -> getAreaDefById( area -> getClass() );
 	ASSERTMSG( areaInfo != NULL , String( "addMindArea: mind area is not present in mind configuration name=" ) + area -> getClass() );
 
 	// ignore area if configured not enabled
@@ -200,45 +200,24 @@ void MindService::addMindArea( MindArea *area ) {
 
 // mind links
 void MindService::establishAreaLinks() {
-	// create area links
-	ClassList<MindAreaLinkInfo>& list = mindMap -> getLinks();
-	for( int k = 0; k < list.count(); k++ ) {
-		MindAreaLinkInfo *info = list.get( k );
-		// ignore link if disabled
-		if( !info -> isEnabled() )
-			continue;
-
-		String masterAreaId = info -> getMasterAreaId();
-		String slaveAreaId = info -> getSlaveAreaId();
-
-		// check presense of areas
-		MindArea *masterArea = areaSet -> getMindArea( masterAreaId );
-		MindArea *slaveArea = areaSet -> getMindArea( slaveAreaId );
-		
-		// ignore link if area is not configured to start
-		if( masterArea == NULL || slaveArea == NULL )
-			continue;
-
-		// create link
-		createMindAreaLink( masterArea , slaveArea , info );
-	}
 }
 
-void MindService::createMindAreaLink( MindArea *masterArea , MindArea *slaveArea , MindAreaLinkInfo *linkInfo ) {
+void MindService::createMindAreaLink( MindArea *masterArea , MindArea *slaveArea ) {
 	// create link
-	MindAreaLink *link = new MindAreaLink( linkInfo , masterArea , slaveArea );
+	MindAreaLink *link = new MindAreaLink();
+	link -> create( masterArea , slaveArea );
 
 	// add to link set
 	masterArea -> addSlaveLink( link );
 	slaveArea -> addMasterLink( link );
 	linkSet -> addSetItem( link );
-	logger.logInfo( "createMindAreaLink: create link masterArea=" + linkInfo -> getMasterAreaId() + ", slaveArea=" + linkInfo -> getSlaveAreaId() + "..." );
+	logger.logInfo( "createMindAreaLink: create link masterArea=" + masterArea -> getId() + ", slaveArea=" + slaveArea -> getId() + "..." );
 
 	// create region-to-region links
 	link -> createRegionLinks();
 
 	// start process area link messages
-	link -> open( session );
+	link -> open( session , masterArea -> getId() );
 }
 
 MindArea *MindService::getMindArea( String areaId ) {
@@ -251,10 +230,3 @@ MindRegion *MindService::getMindRegion( String regionId ) {
 	ASSERTMSG( region != NULL , "getMindRegion: region is not found by id=" + regionId );
 	return( region );
 }
-
-MindNet *MindService::getMindNet( String netName ) {
-	MindNet *net = netSet -> getMindNet( netName );
-	ASSERTMSG( net != NULL , "getMindNet: net is not found by name=" + netName );
-	return( net );
-}
-

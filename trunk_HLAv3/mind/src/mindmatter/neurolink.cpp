@@ -25,12 +25,8 @@ NeuroLinkTarget *NeuroLink::getTarget() {
 	return( target );
 }
 
-void NeuroLink::setMindCircuitLinkDef( MindCircuitLinkDef *p_linkInfo ) {
+void NeuroLink::configure( MindCircuitLinkDef *p_linkInfo ) {
 	linkInfo = p_linkInfo;
-}
-
-void NeuroLink::setTransmitter( String p_transmitter ) {
-	transmitter = p_transmitter;
 }
 
 void NeuroLink::createInternal( MindRegion *p_region ) {
@@ -38,9 +34,10 @@ void NeuroLink::createInternal( MindRegion *p_region ) {
 	region = p_region;
 }
 
-void NeuroLink::create( NeuroLinkSource *p_source , NeuroLinkTarget *p_target ) {
+void NeuroLink::create( MindCircuitLinkTypeDef *p_linkType , NeuroLinkSource *p_source , NeuroLinkTarget *p_target ) {
 	id = String( "NL" ) + ( ++sequence_NL );
 
+	linkType = p_linkType;
 	source = p_source;
 	target = p_target;
 
