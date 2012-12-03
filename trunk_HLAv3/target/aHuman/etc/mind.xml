@@ -1,0 +1,124 @@
+<service>
+
+	<neural-networks>
+		<property name="NEURON_SYNAPTIC_THRESHOLD_INITIAL_pQ" value="70"/>
+		<property name="NEURON_SYNAPTIC_THRESHOLD_MIN_pQ" value="10"/>
+		<property name="NEURON_ACTION_POTENTIAL_BY_SIGNAL_pQ" value="20"/>
+		<property name="NEURON_MEMBRANE_POTENTIAL_BY_ACTION_POTENTIAL_pQ" value="65"/>
+		<property name="NEURON_MEMBRANE_THRESHOLD_INITIAL_pQ" value="60"/>
+		<property name="NEURON_FIRE_OUTPUT_BY_MEMBRANE_POTENTIAL_pQ" value="80"/>
+		<property name="NEURON_INHIBIT_DELAY_ms" value="10"/>
+		<property name="NEURON_FIRE_OUTPUT_SILENT_ms" value="10"/>
+		<property name="NEURON_FIRE_IMPULSE_pQ" value="2"/>
+		<property name="NEURON_POTENTIAL_DISCHARGE_RATE_pQ_per_ms" value="1"/>
+		<property name="NEURON_OUTPUT_DISCHARGE_RATE_pQ_per_ms" value="1"/>
+		<property name="NEURON_FULL_RELAX_ms" value="1000"/>
+		<property name="NEURON_CONNECTIVITY_UPDATE_FACTOR" value="95"/>
+	</neural-networks>
+
+	<mind-space>
+	</mind-space>
+
+	<mind-map>
+
+		<components>
+
+			<area name="VCA">
+				<region name="VCA.FT.V1" type="neocortex"/>
+				<region name="VCA.FT.V2" type="neocortex"/>
+				<region name="VCA.FT.V3" type="neocortex"/>
+				<region name="VCA.FT.V4" type="neocortex"/>
+				<region name="VCA.FT.MT" type="neocortex"/>
+				<region name="VCA.FT.PO" type="neocortex"/>
+				<region name="VCA.FT.IT.TEO" type="neocortex"/>
+				<region name="VCA.FT.IT.TE" type="neocortex"/>
+			</area>
+
+			<area name="ACA">
+				<region name="ACA.FT.A1" type="neocortex"/>
+				<region name="ACA.FT.A2" type="neocortex"/>
+				<region name="ACA.FT.A3" type="neocortex"/>
+				<region name="ACA.FT.A4" type="neocortex"/>
+			</area>
+
+			<area name="MCA">
+				<region name="MCA.FT.SMC" type="neocortex"/>
+				<region name="MCA.FT.PMC" type="neocortex"/>
+				<region name="MCA.FT.MC" type="neocortex"/>
+				<region name="MCA.FT.S1" type="neocortex"/>
+				<region name="MCA.FT.INS" type="neocortex"/>
+				<region name="MCA.FT.TPC" type="neocortex"/>
+				<region name="MCA.FD.VA" type="excitatory-nucleus"/>
+				<region name="MCA.FD.VL" type="excitatory-nucleus"/>
+				<region name="MCA.FD.VP" type="excitatory-nucleus"/>
+			</area>
+
+			<area name="PCA">
+				<region name="PCA.FT.SPL.SA" type="neocortex"/>
+				<region name="PCA.FT.SPL.PR" type="neocortex"/>
+				<region name="PCA.FT.IPL" type="neocortex"/>
+				<region name="PCA.FT.IPS" type="neocortex"/>
+				<region name="PCA.FT.RSC" type="neocortex"/>
+				<region name="PCA.FT.PCG" type="neocortex"/>
+				<region name="PCA.FD.TH.RIL" type="excitatory-nucleus"/>
+				<region name="PCA.FD.TH.LP" type="excitatory-nucleus"/>
+				<region name="PCA.FD.TH.SG" type="excitatory-nucleus"/>
+				<region name="PCA.FD.TH.PO" type="excitatory-nucleus"/>
+			</area>
+
+			<area name="HCA">
+				<region name="HCA.FT.PH.PPG" type="neocortex"/>
+				<region name="HCA.FT.PH.PRR" type="neocortex"/>
+				<region name="HCA.FT.PH.ET" type="neocortex"/>
+				<region name="HCA.FT.HC.CA1" type="allocortex"/>
+				<region name="HCA.FT.HC.CA2" type="allocortex"/>
+				<region name="HCA.FT.HC.CA3" type="allocortex"/>
+				<region name="HCA.FT.HC.CA4" type="allocortex"/>
+				<region name="HCA.FT.DG" type="allocortex"/>
+				<region name="HCA.FT.PRS" type="neocortex"/>
+				<region name="HCA.FT.PAS" type="neocortex"/>
+				<region name="HCA.FT.PSS" type="allocortex"/>
+				<region name="HCA.FT.SUB" type="allocortex"/>
+				<region name="PCA.FD.LMB" type="excitatory-nucleus"/>
+				<region name="PCA.FD.MMB" type="excitatory-nucleus"/>
+				<region name="PCA.FD.TH.AN" type="excitatory-nucleus"/>
+				<region name="PCA.FD.TH.LD" type="excitatory-nucleus"/>
+				<region name="PCA.FD.TH.RE" type="excitatory-nucleus"/>
+				<region name="PCA.FD.TH.RH" type="excitatory-nucleus"/>
+			</area>
+
+			<area name="FCA">
+				<region name="FCA.FT.LPFC" type="neocortex"/>
+				<region name="FCA.FT.OMPFC" type="neocortex"/>
+				<region name="FCA.FT.ACG" type="neocortex"/>
+				<region name="FCA.FT.SGC" type="neocortex"/>
+				<region name="FCA.FT.BRA" type="neocortex"/>
+				<region name="PCA.FD.TH.RH" type="excitatory-nucleus"/>
+				<region name="FCA.FD.TH.MD" type="excitatory-nucleus"/>
+				<region name="FCA.FD.TH.SM" type="excitatory-nucleus"/>
+			</area>
+
+			<circuits>
+			</circuits>
+
+		</components>
+
+
+	</mind-map>
+
+	<active-memory>
+		<memory-focus>
+			<property name="objectCount" value="100"/>
+		</memory-focus>
+
+		<thread-pool>
+			<property name="name" value="AMT"/>
+			<property name="run" value="false"/>
+			<property name="threadCount" value="20"/>
+			<property name="operationsPerSecond" value="100"/>
+			<property name="secondsPerCycle" value="1"/>
+			<property name="maxLoad" value="10"/>
+		</thread-pool>
+	</active-memory>
+
+</service>
