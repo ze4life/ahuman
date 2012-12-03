@@ -13,9 +13,7 @@ MindCircuitLinkDef::MindCircuitLinkDef( MindCircuitDef *p_circuit ) {
 void MindCircuitLinkDef::createFromXml( Xml xml ) {
 	// attributes are properties
 	typeName = xml.getAttribute( "type" );
-	srcArea = xml.getAttribute( "srcArea" , "" );
-	srcRegion = xml.getAttribute( "srcRegion" , "" );
-	dstArea = xml.getAttribute( "dstArea" , "" );
-	dstRegion = xml.getAttribute( "dstRegion" , "" );
+	srcRegion = xml.getAttribute( "src" );
+	dstRegion = xml.getAttribute( "dst" );
 }
 
