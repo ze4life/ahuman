@@ -23,17 +23,10 @@ void MindAreaDef::createFromXml( Xml xml ) {
 		return;
 
 	MindLocationInfo li;
-	li.createFromXml( xml.getChildNode( "MindLocation" ) );
+	li.createFromXml( xml.getChildNode( "location" ) );
 	location = li.createLocation();
 
-	setChannelInfo( xml.getChildNode( "MindAreaChannel" ) );
-}
-
-void MindAreaDef::setChannelInfo( Xml xml ) {
-	if( !xml.exists() )
-		return;
-
-	channelId = xml.getAttribute( "name" );
+	channelId = areaId;
 }
 
 bool MindAreaDef::runEnabled() {

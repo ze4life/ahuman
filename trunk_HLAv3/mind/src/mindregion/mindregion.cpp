@@ -78,7 +78,6 @@ void MindRegion::addSourceEntity( String entity , NeuroLinkSource *connector ) {
 	ASSERTMSG( sourceConnectorMap.get( entity ) == NULL , "Duplicate entity=" + entity + " in region id=" + id );
 	// check metadata
 	MindRegionConnectorDef *connectorInfo = regionType -> getConnector( entity );
-	ASSERTMSG( connectorInfo -> isSourceConnector() == true , "connector exists but is not source, entity=" + entity );
 	sourceConnectorMap.add( entity , connector );
 }
 
@@ -86,7 +85,6 @@ void MindRegion::addTargetEntity( String entity , NeuroLinkTarget *connector ) {
 	ASSERTMSG( targetConnectorMap.get( entity ) == NULL , "Duplicate entity=" + entity + " in region id=" + id );
 	// check metadata
 	MindRegionConnectorDef *connectorInfo = regionType -> getConnector( entity );
-	ASSERTMSG( connectorInfo -> isSourceConnector() == false , "connector exists but is not target, entity=" + entity );
 	targetConnectorMap.add( entity , connector );
 }
 

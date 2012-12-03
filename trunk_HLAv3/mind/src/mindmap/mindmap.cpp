@@ -10,29 +10,19 @@ MindMap::~MindMap() {
 	linkTypeSet.destroy();
 }
 
-MindRegionTypeDef *MindMap::getRegionTypeDefByName( String regionTypeName ) {
-	MindRegionTypeDef *info = regionTypeMap.get( regionTypeName );
-	ASSERTMSG( info != NULL , "Wrong region type name=" + regionTypeName );
-	return( info );
-}
-
-MindAreaDef *MindMap::getAreaDefById( String areaId ) {
-	MindAreaDef *info = mindAreaMap.get( areaId );
-	ASSERTMSG( info != NULL , "Wrong area id=" + areaId );
-	return( info );
-}
-
 void MindMap::createFromXml( Xml xml ) {
-	createRegionTypeDefSet( xml.getFirstChild( "MindRegionTypeSet" ) );
-	createAreaDefSet( xml.getFirstChild( "MindAreaSet" ) );
-	createCircuitLinkTypeDefSet( xml.getFirstChild( "MindCircuitLinkTypeSet" ) );
+	// load mind definition
+	createRegionTypeDefSet( xml.getFirstChild( "region-type-set" ) );
+	createAreaDefSet( xml.getFirstChild( "component-set" ) );
+	createCircuitLinkTypeDefSet( xml.getFirstChild( "link-type-set" ) );
+	createCircuitDefSet( xml.getFirstChild( "circuit-set" ) );
 }
 
 void MindMap::createRegionTypeDefSet( Xml xml ) {
 	if( !xml.exists() )
 		return;
 
-	for( Xml xmlChild = xml.getFirstChild( "MindRegionType" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "MindRegionType" ) ) {
+	for( Xml xmlChild = xml.getFirstChild( "region-type" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "region-type" ) ) {
 		// construct MindRegionType from attributes
 		MindRegionTypeDef *info = new MindRegionTypeDef;
 		regionTypeSet.add( info );
@@ -53,7 +43,7 @@ void MindMap::createAreaDefSet( Xml xml ) {
 	if( !xml.exists() )
 		return;
 
-	for( Xml xmlChild = xml.getFirstChild( "MindArea" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "MindArea" ) ) {
+	for( Xml xmlChild = xml.getFirstChild( "area" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "area" ) ) {
 		// construct MindArea from attributes
 		MindAreaDef *info = new MindAreaDef;
 		mindAreaSet.add( info );
@@ -67,6 +57,9 @@ void MindMap::createAreaDefSet( Xml xml ) {
 
 		// add
 		mindAreaMap.add( id , info );
+
+		// add regions to map
+		createRegionMap( info );
 	}
 }
 
@@ -74,7 +67,7 @@ void MindMap::createCircuitLinkTypeDefSet( Xml xml ) {
 	if( !xml.exists() )
 		return;
 
-	for( Xml xmlChild = xml.getFirstChild( "MindCircuitLinkTypeDef" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "MindCircuitLinkTypeDef" ) ) {
+	for( Xml xmlChild = xml.getFirstChild( "link-type" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "link-type" ) ) {
 		// construct MindArea from attributes
 		MindCircuitLinkTypeDef *linkType = new MindCircuitLinkTypeDef;
 		linkType -> createFromXml( xmlChild );
@@ -83,7 +76,40 @@ void MindMap::createCircuitLinkTypeDefSet( Xml xml ) {
 	}
 }
 
+void MindMap::createCircuitDefSet( Xml xml ) {
+	if( !xml.exists() )
+		return;
+
+	for( Xml xmlChild = xml.getFirstChild( "circuit" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "circuit" ) ) {
+		// construct MindArea from attributes
+		MindCircuitDef *circuit = new MindCircuitDef;
+		circuit -> createFromXml( xmlChild );
+		mindCircuitSet.add( circuit );
+		mindCircuitMap.add( circuit -> getName() , circuit );
+	}
+}
+
+void MindMap::createRegionMap( MindAreaDef *info ) {
+	ClassList<MindRegionDef>& regions = info -> getRegions();
+	for( int k = 0; k < regions.count(); k++ ) {
+		MindRegionDef *region = regions.get( k );
+		mindRegionMap.add( region -> getName() , region );
+	}
+}
+
 MindCircuitLinkTypeDef *MindMap::getLinkTypeDefByName( String typeName ) {
 	return( linkTypeMap.get( typeName ) );
+}
+
+MindRegionTypeDef *MindMap::getRegionTypeDefByName( String regionTypeName ) {
+	MindRegionTypeDef *info = regionTypeMap.get( regionTypeName );
+	ASSERTMSG( info != NULL , "Wrong region type name=" + regionTypeName );
+	return( info );
+}
+
+MindAreaDef *MindMap::getAreaDefById( String areaId ) {
+	MindAreaDef *info = mindAreaMap.get( areaId );
+	ASSERTMSG( info != NULL , "Wrong area id=" + areaId );
+	return( info );
 }
 
