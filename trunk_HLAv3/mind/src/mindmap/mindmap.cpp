@@ -67,7 +67,7 @@ void MindMap::createCircuitLinkTypeDefSet( Xml xml ) {
 	if( !xml.exists() )
 		return;
 
-	for( Xml xmlChild = xml.getFirstChild( "link-type" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "link-type" ) ) {
+	for( Xml xmlChild = xml.getFirstChild( "connection-type" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "connection-type" ) ) {
 		// construct MindArea from attributes
 		MindCircuitLinkTypeDef *linkType = new MindCircuitLinkTypeDef;
 		linkType -> createFromXml( xmlChild );
