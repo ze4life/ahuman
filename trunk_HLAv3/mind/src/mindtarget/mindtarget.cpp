@@ -48,8 +48,6 @@ void MindTarget::createService() {
 void MindTarget::initService() {
 	MindService *ms = MindService::getService();
 	ms -> setMindTarget( this );
-	ms -> addMindArea( sensorArea );
-	ms -> addMindArea( effectorArea );
 
 	// create areas
 	effectorArea -> createEffectorArea( this );

@@ -25,7 +25,7 @@ NeuroLinkTarget *NeuroLink::getTarget() {
 	return( target );
 }
 
-void NeuroLink::configure( MindCircuitLinkDef *p_linkInfo ) {
+void NeuroLink::configure( MindCircuitConnectionDef *p_linkInfo ) {
 	linkInfo = p_linkInfo;
 }
 
@@ -34,7 +34,7 @@ void NeuroLink::createInternal( MindRegion *p_region ) {
 	region = p_region;
 }
 
-void NeuroLink::create( MindCircuitLinkTypeDef *p_linkType , NeuroLinkSource *p_source , NeuroLinkTarget *p_target ) {
+void NeuroLink::create( MindCircuitConnectionTypeDef *p_linkType , NeuroLinkSource *p_source , NeuroLinkTarget *p_target ) {
 	id = String( "NL" ) + ( ++sequence_NL );
 
 	linkType = p_linkType;

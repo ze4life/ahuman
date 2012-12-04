@@ -1,5 +1,6 @@
 <service>
 
+	<!-- ================= basic neural networks parameters =============== -->
 	<neural-networks>
 		<property name="NEURON_SYNAPTIC_THRESHOLD_INITIAL_pQ" value="70"/>
 		<property name="NEURON_SYNAPTIC_THRESHOLD_MIN_pQ" value="10"/>
@@ -16,14 +17,39 @@
 		<property name="NEURON_CONNECTIVITY_UPDATE_FACTOR" value="95"/>
 	</neural-networks>
 
+	<!-- ================= mind geometry =============== -->
 	<mind-space>
 	</mind-space>
 
+	<!-- ================= mind components and circuits =============== -->
 	<mind-map>
 
-		<components>
+		<region-type-set>
 
-			<area name="VCA">
+			<region-type name="sensor">
+				<connector id="sensor.data"/>
+				<connector id="sensor.control"/>
+				<connector id="sensor.control-feedback"/>	
+			</region-type>
+
+			<region-type name="nucleus">
+				<connector id="nucleus.input"/>
+				<connector id="nucleus.output"/>
+				<connector id="nucleus.interneurons"/>
+			</region-type>
+
+			<region-type name="neocortex">
+				<connector id="neocortex.ff-in"/>
+				<connector id="neocortex.ff-out"/>
+				<connector id="neocortex.fb-in"/>
+				<connector id="neocortex.fb-out"/>
+			</region-type>
+
+		</region-type-set>
+
+		<component-set>
+
+			<area name="VCA" enabled="true">
 				<region name="VCA.FT.V1" type="neocortex"/>
 				<region name="VCA.FT.V2" type="neocortex"/>
 				<region name="VCA.FT.V3" type="neocortex"/>
@@ -34,39 +60,39 @@
 				<region name="VCA.FT.IT.TE" type="neocortex"/>
 			</area>
 
-			<area name="ACA">
+			<area name="ACA" enabled="true">
 				<region name="ACA.FT.A1" type="neocortex"/>
 				<region name="ACA.FT.A2" type="neocortex"/>
 				<region name="ACA.FT.A3" type="neocortex"/>
 				<region name="ACA.FT.A4" type="neocortex"/>
 			</area>
 
-			<area name="MCA">
+			<area name="MCA" enabled="true">
 				<region name="MCA.FT.SMC" type="neocortex"/>
 				<region name="MCA.FT.PMC" type="neocortex"/>
 				<region name="MCA.FT.MC" type="neocortex"/>
 				<region name="MCA.FT.S1" type="neocortex"/>
 				<region name="MCA.FT.INS" type="neocortex"/>
 				<region name="MCA.FT.TPC" type="neocortex"/>
-				<region name="MCA.FD.VA" type="excitatory-nucleus"/>
-				<region name="MCA.FD.VL" type="excitatory-nucleus"/>
-				<region name="MCA.FD.VP" type="excitatory-nucleus"/>
+				<region name="MCA.FD.VA" type="nucleus"/>
+				<region name="MCA.FD.VL" type="nucleus"/>
+				<region name="MCA.FD.VP" type="nucleus"/>
 			</area>
 
-			<area name="PCA">
+			<area name="PCA" enabled="true">
 				<region name="PCA.FT.SPL.SA" type="neocortex"/>
 				<region name="PCA.FT.SPL.PR" type="neocortex"/>
 				<region name="PCA.FT.IPL" type="neocortex"/>
 				<region name="PCA.FT.IPS" type="neocortex"/>
 				<region name="PCA.FT.RSC" type="neocortex"/>
 				<region name="PCA.FT.PCG" type="neocortex"/>
-				<region name="PCA.FD.TH.RIL" type="excitatory-nucleus"/>
-				<region name="PCA.FD.TH.LP" type="excitatory-nucleus"/>
-				<region name="PCA.FD.TH.SG" type="excitatory-nucleus"/>
-				<region name="PCA.FD.TH.PO" type="excitatory-nucleus"/>
+				<region name="PCA.FD.TH.RIL" type="nucleus"/>
+				<region name="PCA.FD.TH.LP" type="nucleus"/>
+				<region name="PCA.FD.TH.SG" type="nucleus"/>
+				<region name="PCA.FD.TH.PO" type="nucleus"/>
 			</area>
 
-			<area name="HCA">
+			<area name="HCA" enabled="true">
 				<region name="HCA.FT.PH.PPG" type="neocortex"/>
 				<region name="HCA.FT.PH.PRR" type="neocortex"/>
 				<region name="HCA.FT.PH.ET" type="neocortex"/>
@@ -79,33 +105,51 @@
 				<region name="HCA.FT.PAS" type="neocortex"/>
 				<region name="HCA.FT.PSS" type="allocortex"/>
 				<region name="HCA.FT.SUB" type="allocortex"/>
-				<region name="PCA.FD.LMB" type="excitatory-nucleus"/>
-				<region name="PCA.FD.MMB" type="excitatory-nucleus"/>
-				<region name="PCA.FD.TH.AN" type="excitatory-nucleus"/>
-				<region name="PCA.FD.TH.LD" type="excitatory-nucleus"/>
-				<region name="PCA.FD.TH.RE" type="excitatory-nucleus"/>
-				<region name="PCA.FD.TH.RH" type="excitatory-nucleus"/>
+				<region name="HCA.FD.LMB" type="nucleus"/>
+				<region name="HCA.FD.MMB" type="nucleus"/>
+				<region name="HCA.FD.TH.AN" type="nucleus"/>
+				<region name="HCA.FD.TH.LD" type="nucleus"/>
+				<region name="HCA.FD.TH.RE" type="nucleus"/>
+				<region name="HCA.FD.TH.RH" type="nucleus"/>
 			</area>
 
-			<area name="FCA">
+			<area name="FCA" enabled="true">
 				<region name="FCA.FT.LPFC" type="neocortex"/>
 				<region name="FCA.FT.OMPFC" type="neocortex"/>
 				<region name="FCA.FT.ACG" type="neocortex"/>
 				<region name="FCA.FT.SGC" type="neocortex"/>
 				<region name="FCA.FT.BRA" type="neocortex"/>
-				<region name="PCA.FD.TH.RH" type="excitatory-nucleus"/>
-				<region name="FCA.FD.TH.MD" type="excitatory-nucleus"/>
-				<region name="FCA.FD.TH.SM" type="excitatory-nucleus"/>
+				<region name="FCA.FD.TH.MD" type="nucleus"/>
+				<region name="FCA.FD.TH.SM" type="nucleus"/>
 			</area>
 
-			<circuits>
-			</circuits>
+		</component-set>
 
-		</components>
 
+		<connection-type-set>
+			<connection-type name="cortex-forward" nt="GLU" src="neocortex.ff-out" dst="neocortex.ff-in"/>
+			<connection-type name="cortex-feedback" nt="GLU" src="neocortex.fb-out" dst="neocortex.fb-in"/>
+		</connection-type-set>
+
+
+		<circuit-set>
+
+			<circuit name="visual-objects" enabled="true">
+				<connection type="cortex-forward" src="VCA.FT.V1" dst="VCA.FT.V2"/>
+				<connection type="cortex-forward" src="VCA.FT.V2" dst="VCA.FT.V4"/>
+				<connection type="cortex-forward" src="VCA.FT.V4" dst="VCA.FT.IT.TEO"/>
+				<connection type="cortex-forward" src="VCA.FT.V4" dst="VCA.FT.IT.TE"/>
+				<connection type="cortex-forward" src="VCA.FT.IT.TEO" dst="VCA.FT.IT.TE"/>
+				<connection type="cortex-forward" src="VCA.FT.IT.TE" dst="HCA.FT.PH.ET"/>
+				<connection type="cortex-feedback" src="VCA.FT.V2" dst="VCA.FT.V1"/>
+				<connection type="cortex-feedback" src="VCA.FT.V4" dst="VCA.FT.V2"/>
+			</circuit>
+
+		</circuit-set>
 
 	</mind-map>
 
+	<!-- ================= memory state =============== -->
 	<active-memory>
 		<memory-focus>
 			<property name="objectCount" value="100"/>

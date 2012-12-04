@@ -7,26 +7,28 @@
 MindAreaDef::MindAreaDef() {
 	attachLogger();
 	enabled = false;
-	location = NULL;
 }
 
 MindAreaDef::~MindAreaDef() {
-	if( location != NULL )
-		delete location;
 };
 
 void MindAreaDef::createFromXml( Xml xml ) {
 	// attributes are properties
-	areaId = xml.getAttribute( "id" );
+	areaId = xml.getAttribute( "name" );
 	enabled = xml.getBooleanAttribute( "enabled" , true );
 	if( !enabled )
 		return;
 
-	MindLocationInfo li;
-	li.createFromXml( xml.getChildNode( "location" ) );
-	location = li.createLocation();
-
 	channelId = areaId;
+
+	// read regions
+	for( Xml xmlChild = xml.getFirstChild( "region" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "region" ) ) {
+		// construct MindArea from attributes
+		MindRegionDef *region = new MindRegionDef( this );
+		region -> createFromXml( xmlChild );
+		regions.add( region );
+		regionMap.add( region -> getName() , region );
+	}
 }
 
 bool MindAreaDef::runEnabled() {
@@ -35,4 +37,8 @@ bool MindAreaDef::runEnabled() {
 
 String MindAreaDef::getChannelId() {
 	return( channelId );
+}
+
+ClassList<MindRegionDef>& MindAreaDef::getRegions() {
+	return( regions );
 }

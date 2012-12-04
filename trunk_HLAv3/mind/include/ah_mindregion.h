@@ -57,8 +57,8 @@ public:
 
 	void addSourceEntity( String entity , NeuroLinkSource *connector );
 	void addTargetEntity( String entity , NeuroLinkTarget *connector );
-	NeuroLinkSource *getNeuroLinkSource( String entity , MindCircuitLinkDef *linkInfo );
-	NeuroLinkTarget *getNeuroLinkTarget( String entity , MindCircuitLinkDef *linkInfo );
+	NeuroLinkSource *getNeuroLinkSource( String entity , MindCircuitConnectionDef *linkInfo );
+	NeuroLinkTarget *getNeuroLinkTarget( String entity , MindCircuitConnectionDef *linkInfo );
 
 private:
 

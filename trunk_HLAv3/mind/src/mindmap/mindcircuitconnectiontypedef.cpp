@@ -4,26 +4,26 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-MindCircuitLinkTypeDef::MindCircuitLinkTypeDef() {
+MindCircuitConnectionTypeDef::MindCircuitConnectionTypeDef() {
 }
 
-MindCircuitLinkTypeDef::~MindCircuitLinkTypeDef() {
+MindCircuitConnectionTypeDef::~MindCircuitConnectionTypeDef() {
 }
 
-void MindCircuitLinkTypeDef::createFromXml( Xml xml ) {
+void MindCircuitConnectionTypeDef::createFromXml( Xml xml ) {
 	// attributes
 	name = xml.getAttribute( "name" );
 }
 
-bool MindCircuitLinkTypeDef::isExcitatory() {
+bool MindCircuitConnectionTypeDef::isExcitatory() {
 	return( true );
 }
 
-bool MindCircuitLinkTypeDef::isInhibitory() {
+bool MindCircuitConnectionTypeDef::isInhibitory() {
 	return( false );
 }
 
-bool MindCircuitLinkTypeDef::isModulatory() {
+bool MindCircuitConnectionTypeDef::isModulatory() {
 	return( false );
 }
 

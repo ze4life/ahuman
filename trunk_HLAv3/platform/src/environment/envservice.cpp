@@ -75,7 +75,7 @@ void EnvService::configureServices() {
 		// if section is not present, service is ignored
 		if( !svcSection.exists() ) {
 			svc -> isCreate = svc -> isInit = svc -> isRun = false;
-			logger.logInfo( "Service is not present in configuration and hence ignored - name=" + name );
+			logger.logInfo( "Service is not present in configuration, skipped - name=" + name );
 			continue;
 		}
 

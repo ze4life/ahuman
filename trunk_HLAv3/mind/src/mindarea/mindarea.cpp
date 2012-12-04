@@ -20,6 +20,7 @@ MindArea::~MindArea() {
 
 void MindArea::configure( MindAreaDef *p_info ) {
 	info = p_info;
+	areaId = info -> getAreaId();
 }
 
 MindAreaDef *MindArea::getMindAreaDef() {

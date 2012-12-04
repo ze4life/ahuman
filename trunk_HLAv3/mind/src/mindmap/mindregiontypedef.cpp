@@ -16,14 +16,14 @@ void MindRegionTypeDef::createFromXml( Xml xml ) {
 	name = xml.getAttribute( "name" );
 
 	// childs
-	createConnectorSetFromXml( xml.getFirstChild( "MindRegionConnectorSet" ) );
+	createConnectorSetFromXml( xml );
 }
 
 void MindRegionTypeDef::createConnectorSetFromXml( Xml xml ) {
 	if( !xml.exists() )
 		return;
 
-	for( Xml xmlChild = xml.getFirstChild( "MindRegionConnector" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "MindRegionConnector" ) ) {
+	for( Xml xmlChild = xml.getFirstChild( "connector" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "connector" ) ) {
 		// construct MindArea from attributes
 		MindRegionConnectorDef *connector = new MindRegionConnectorDef;
 		connector -> createFromXml( xmlChild );

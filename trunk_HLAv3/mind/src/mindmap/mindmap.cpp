@@ -14,7 +14,7 @@ void MindMap::createFromXml( Xml xml ) {
 	// load mind definition
 	createRegionTypeDefSet( xml.getFirstChild( "region-type-set" ) );
 	createAreaDefSet( xml.getFirstChild( "component-set" ) );
-	createCircuitLinkTypeDefSet( xml.getFirstChild( "link-type-set" ) );
+	createCircuitLinkTypeDefSet( xml.getFirstChild( "connection-type-set" ) );
 	createCircuitDefSet( xml.getFirstChild( "circuit-set" ) );
 }
 
@@ -69,7 +69,7 @@ void MindMap::createCircuitLinkTypeDefSet( Xml xml ) {
 
 	for( Xml xmlChild = xml.getFirstChild( "connection-type" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "connection-type" ) ) {
 		// construct MindArea from attributes
-		MindCircuitLinkTypeDef *linkType = new MindCircuitLinkTypeDef;
+		MindCircuitConnectionTypeDef *linkType = new MindCircuitConnectionTypeDef;
 		linkType -> createFromXml( xmlChild );
 		linkTypeSet.add( linkType );
 		linkTypeMap.add( linkType -> getName() , linkType );
@@ -97,7 +97,7 @@ void MindMap::createRegionMap( MindAreaDef *info ) {
 	}
 }
 
-MindCircuitLinkTypeDef *MindMap::getLinkTypeDefByName( String typeName ) {
+MindCircuitConnectionTypeDef *MindMap::getConnectionTypeDefByName( String typeName ) {
 	return( linkTypeMap.get( typeName ) );
 }
 

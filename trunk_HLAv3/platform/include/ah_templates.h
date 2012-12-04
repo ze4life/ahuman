@@ -642,7 +642,7 @@ public:
 	int add( int key , T *value ) {
 		T *l_value;
 		if( rfc_map_ptrcheck( mapData , ( void * )key , ( unsigned long * )&l_value ) >= 0 )
-			throw RuntimeError( "MapIntToClass::add - key already exists" );
+			throw RuntimeError( String( "MapIntToClass::add - duplicate key=" ) + key );
 
 		int index = rfc_map_ptrsetkey( mapData , ( void * )key , ( unsigned long )value );
 		return( index );
@@ -739,7 +739,7 @@ public:
 	int add( TK *key , TV *value ) {
 		TV *l_value;
 		if( rfc_map_ptrcheck( mapData , ( void * )key , ( unsigned long * )&l_value ) >= 0 )
-			throw RuntimeError( "MapPtrToClass::add - key already exists" );
+			throw RuntimeError( "MapPtrToClass::add - duplicate key" );
 
 		int index = rfc_map_ptrsetkey( mapData , ( void * )key , ( unsigned long )value );
 		return( index );
@@ -815,7 +815,7 @@ public:
 	int add( const char *key , T *value ) {
 		T *l_value;
 		if( rfc_map_strcheck( mapData , key , ( void ** )&l_value ) >= 0 )
-			throw RuntimeError( "MapStringToClass::add - key already exists" );
+			throw RuntimeError( "MapStringToClass::add - duplicate key=" + String( key ) );
 
 		int index = rfc_map_strsetkey( mapData , key , value );
 		return( index );
