@@ -13,10 +13,10 @@ MindActiveMemory::~MindActiveMemory() {
 }
 
 void MindActiveMemory::create( Xml config ) {
-	Xml xmlTP = config.getFirstChild( "ThreadPool" );
+	Xml xmlTP = config.getFirstChild( "thread-pool" );
 	threadPoolName = xmlTP.getProperty( "name" );
 
-	Xml xmlFocus = config.getFirstChild( "MemoryFocus" );
+	Xml xmlFocus = config.getFirstChild( "memory-focus" );
 	int focusSize = xmlFocus.getIntProperty( "objectCount" );
 
 	// create memory objects

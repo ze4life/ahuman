@@ -40,7 +40,7 @@ void MindRegionLink::destroyRegionLink() {
 	links = NULL;
 }
 
-NeuroLink *MindRegionLink::createNeuroLink( MindCircuitLinkDef *linkDef ) {
+NeuroLink *MindRegionLink::createNeuroLink( MindCircuitConnectionDef *linkDef ) {
 	String sourceEntity = "default";
 	String targetEntity = "default";
 
@@ -58,7 +58,7 @@ NeuroLink *MindRegionLink::createNeuroLink( MindCircuitLinkDef *linkDef ) {
 	// check neurotransmitter
 	String linkType = linkDef -> getTypeName();
 	MindMap *map = service -> getMindMap();
-	MindCircuitLinkTypeDef *linkTypeDef = map -> getLinkTypeDefByName( linkType );
+	MindCircuitConnectionTypeDef *linkTypeDef = map -> getConnectionTypeDefByName( linkType );
 	
 	NeuroLink *link = NULL;
 	if( linkTypeDef -> isExcitatory() )

@@ -54,7 +54,7 @@ void MindService::configureService( Xml p_config ) {
 	config = p_config;
 
 	// variables
-	Xml configVar = config.getChildNode( "NeuralNetworks" );
+	Xml configVar = config.getChildNode( "neural-networks" );
 	NEURON_SYNAPTIC_THRESHOLD_INITIAL_pQ = configVar.getIntProperty( "NEURON_SYNAPTIC_THRESHOLD_INITIAL_pQ" );
 	NEURON_SYNAPTIC_THRESHOLD_MIN_pQ = configVar.getIntProperty( "NEURON_SYNAPTIC_THRESHOLD_MIN_pQ" );
 	NEURON_ACTION_POTENTIAL_BY_SIGNAL_pQ = configVar.getIntProperty( "NEURON_ACTION_POTENTIAL_BY_SIGNAL_pQ" );
@@ -81,21 +81,21 @@ void MindService::createService() {
 
 	// create mind space
 	logger.logInfo( "createService: creating mind space..." );
-	Xml xmlMindSpace = config.getFirstChild( "MindSpace" );
-	ASSERTMSG( xmlMindSpace.exists() , "createService: MindSpace is not present in mind configuration" );
+	Xml xmlMindSpace = config.getFirstChild( "mind-space" );
+	ASSERTMSG( xmlMindSpace.exists() , "createService: mind-space is not present in mind configuration" );
 	mindSpace -> createFromXml( xmlMindSpace );
 
 	// load mind map
 	logger.logInfo( "createService: creating mind map..." );
-	Xml xmlMindMap = config.getFirstChild( "MindMap" );
-	ASSERTMSG( xmlMindMap.exists() , "createService: MindMap is not present in mind configuration" );
+	Xml xmlMindMap = config.getFirstChild( "mind-map" );
+	ASSERTMSG( xmlMindMap.exists() , "createService: mind-map is not present in mind configuration" );
 	mindMap -> createFromXml( xmlMindMap );
 }
 
 void MindService::initService() {
 	// create active memory
-	Xml xmlActiveMemory = config.getFirstChild( "ActiveMemory" );
-	ASSERTMSG( xmlActiveMemory.exists() , "createService: ActiveMemory is not present in brain configuration file" );
+	Xml xmlActiveMemory = config.getFirstChild( "active-memory" );
+	ASSERTMSG( xmlActiveMemory.exists() , "createService: active-memory is not present in brain configuration file" );
 	activeMemory -> create( xmlActiveMemory );
 
 	// create messaging session for mind services

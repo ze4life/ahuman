@@ -1,0 +1,38 @@
+#include <ah_mind.h>
+#include <ah_mind_impl.h>
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+MindCircuitDef::MindCircuitDef() {
+	attachLogger();
+	enabled = false;
+}
+
+MindCircuitDef::~MindCircuitDef() {
+};
+
+void MindCircuitDef::createFromXml( Xml xml ) {
+	// attributes are properties
+	name = xml.getAttribute( "name" );
+	enabled = xml.getBooleanAttribute( "enabled" , true );
+	if( !enabled )
+		return;
+
+	// read connections
+	for( Xml xmlChild = xml.getFirstChild( "connection" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "connection" ) ) {
+		// construct MindArea from attributes
+		MindCircuitConnectionDef *connection = new MindCircuitConnectionDef( this );
+		connection -> createFromXml( xmlChild );
+		connections.add( connection );
+	}
+}
+
+String MindCircuitDef::getName() {
+	return( name );
+}
+
+bool MindCircuitDef::runEnabled() {
+	return( enabled );
+}
+

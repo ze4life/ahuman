@@ -64,12 +64,12 @@ void MindRegion::sendMessage( MindMessage *msg ) {
 	area -> sendMessage( msg );
 }
 
-NeuroLinkSource *MindRegion::getNeuroLinkSource( String entity , MindCircuitLinkDef *linkInfo ) {
+NeuroLinkSource *MindRegion::getNeuroLinkSource( String entity , MindCircuitConnectionDef *linkInfo ) {
 	NeuroLinkSource *connector = sourceConnectorMap.get( entity );
 	return( connector );
 }
 
-NeuroLinkTarget *MindRegion::getNeuroLinkTarget( String entity , MindCircuitLinkDef *linkInfo ) {
+NeuroLinkTarget *MindRegion::getNeuroLinkTarget( String entity , MindCircuitConnectionDef *linkInfo ) {
 	NeuroLinkTarget *connector = targetConnectorMap.get( entity );
 	return( connector );
 }

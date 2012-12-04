@@ -16,30 +16,6 @@
 	</listeners>
 
 	<directchannels>
-    
-		<channel name="web" run="true">
-			<property name="protocol" value="http"/>
-			<property name="protocol.showmessages" value="false"/>
-			<property name="protocol.showpackets" value="false"/>
-			<property name="msgtype" value="text"/>
-			<property name="connection" value="single"/>
-			<property name="session" value="permanent"/>
-			<property name="port" value="80"/> 
-			<property name="redirect-in-topic" value="http.response"/> 
-			<property name="redirect-out-topic" value="http.request"/> 
-		</channel>
-
-		<channel name="google" run="true">
-			<property name="protocol" value="http"/>
-			<property name="protocol.showmessages" value="false"/>
-			<property name="protocol.showpackets" value="false"/>
-			<property name="msgtype" value="text"/>
-			<property name="connection" value="multiple"/>
-			<property name="session" value="request-response"/>
-			<property name="host" value="www.google.com"/> 
-			<property name="port" value="80"/> 
-		</channel>
-
 	</directchannels>
 
 </service>

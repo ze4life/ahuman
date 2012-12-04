@@ -96,7 +96,7 @@ public:
 	void destroyRegionLink();
 
 private:
-	NeuroLink *createNeuroLink( MindCircuitLinkDef *linkDef );
+	NeuroLink *createNeuroLink( MindCircuitConnectionDef *linkDef );
 
 public:
 // references

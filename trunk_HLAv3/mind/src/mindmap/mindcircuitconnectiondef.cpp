@@ -4,13 +4,13 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-MindCircuitLinkDef::MindCircuitLinkDef( MindCircuitDef *p_circuit ) {
+MindCircuitConnectionDef::MindCircuitConnectionDef( MindCircuitDef *p_circuit ) {
 	attachLogger();
 
 	circuitInfo = p_circuit;
 }
 
-void MindCircuitLinkDef::createFromXml( Xml xml ) {
+void MindCircuitConnectionDef::createFromXml( Xml xml ) {
 	// attributes are properties
 	typeName = xml.getAttribute( "type" );
 	srcRegion = xml.getAttribute( "src" );

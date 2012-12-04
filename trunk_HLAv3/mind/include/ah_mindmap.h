@@ -8,11 +8,12 @@
 
 class MindMap;
 class MindRegionTypeDef;
+class MindRegionDef;
 class MindRegionConnectorDef;
 class MindCircuitDef;
 class MindAreaDef;
-class MindCircuitLinkTypeDef;
-class MindCircuitLinkDef;
+class MindCircuitConnectionTypeDef;
+class MindCircuitConnectionDef;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -43,25 +44,28 @@ public:
 	MindRegionTypeDef *getRegionTypeDefByName( String regionTypeName );
 	MindCircuitDef *getCircuitDefByName( String circuitName );
 	MindAreaDef *getAreaDefById( String areaId );
-	MindCircuitLinkTypeDef *getLinkTypeDefByName( String typeName );
+	MindCircuitConnectionTypeDef *getConnectionTypeDefByName( String typeName );
 
 private:
 	void createRegionTypeDefSet( Xml xml );
 	void createAreaDefSet( Xml xml );
 	void createCircuitLinkTypeDefSet( Xml xml );
+	void createCircuitDefSet( Xml xml );
+	void createRegionMap( MindAreaDef *info );
 
 private:
 // own data
 	ClassList<MindRegionTypeDef> regionTypeSet;
-	ClassList<MindCircuitDef> mindCircuitSet;
 	ClassList<MindAreaDef> mindAreaSet;
-	ClassList<MindCircuitLinkTypeDef> linkTypeSet;
+	ClassList<MindCircuitConnectionTypeDef> linkTypeSet;
+	ClassList<MindCircuitDef> mindCircuitSet;
 
 // references
 	MapStringToClass<MindRegionTypeDef> regionTypeMap;
 	MapStringToClass<MindAreaDef> mindAreaMap;
+	MapStringToClass<MindCircuitConnectionTypeDef> linkTypeMap;
 	MapStringToClass<MindCircuitDef> mindCircuitMap;
-	MapStringToClass<MindCircuitLinkTypeDef> linkTypeMap;
+	MapStringToClass<MindRegionDef> mindRegionMap;
 };
 
 /*#########################################################################*/
@@ -96,6 +100,35 @@ private:
 /*#########################################################################*/
 /*#########################################################################*/
 
+class MindRegionDef : public Object {
+public:
+	MindRegionDef( MindAreaDef *area );
+	virtual ~MindRegionDef();
+	virtual const char *getClass() { return( "MindRegionDef" ); };
+
+// operations
+public:
+	void createFromXml( Xml xml );
+
+	String getName();
+	String getTypeName();
+
+	void setType( MindRegionTypeDef *type );
+	MindRegionTypeDef *getType();
+
+private:
+// utilities
+	String name;
+	String typeName;
+
+// references
+	MindAreaDef *area;
+	MindRegionTypeDef *type;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
 class MindRegionConnectorDef : public Object {
 public:
 	MindRegionConnectorDef();
@@ -107,12 +140,10 @@ public:
 	void createFromXml( Xml xml );
 
 	String getId();
-	bool isSourceConnector();
 
 private:
 // utilities
 	String id;
-	bool sourceConnector;
 };
 
 /*#########################################################################*/
@@ -136,6 +167,9 @@ public:
 // utility
 	String name;
 	bool enabled;
+
+// own data
+	ClassList<MindCircuitConnectionDef> connections;
 };
 
 /*#########################################################################*/
@@ -154,11 +188,8 @@ public:
 	String getAreaId() { return( areaId ); };
 	bool runEnabled();
 
-	MindLocation *getLocation() { return( location ); };
+	ClassList<MindRegionDef>& getRegions();
 	String getChannelId();
-
-private:
-	void setChannelInfo( Xml xml );
 
 private:
 // utility
@@ -167,17 +198,20 @@ private:
 	String channelId;
 
 // own data
-	MindLocation *location;
+	ClassList<MindRegionDef> regions;
+
+// references
+	MapStringToClass<MindRegionDef> regionMap;
 };
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-class MindCircuitLinkTypeDef : public Object {
+class MindCircuitConnectionTypeDef : public Object {
 public:
-	MindCircuitLinkTypeDef();
-	virtual ~MindCircuitLinkTypeDef();
-	virtual const char *getClass() { return( "MindCircuitLinkTypeDef" ); };
+	MindCircuitConnectionTypeDef();
+	virtual ~MindCircuitConnectionTypeDef();
+	virtual const char *getClass() { return( "MindCircuitConnectionTypeDef" ); };
 
 // operations
 public:
@@ -198,29 +232,25 @@ private:
 /*#########################################################################*/
 /*#########################################################################*/
 
-class MindCircuitLinkDef : public Object {
+class MindCircuitConnectionDef : public Object {
 public:
-	MindCircuitLinkDef( MindCircuitDef *circuitInfo );
-	virtual ~MindCircuitLinkDef() {};
-	virtual const char *getClass() { return( "MindCircuitLinkDef" ); };
+	MindCircuitConnectionDef( MindCircuitDef *circuitInfo );
+	virtual ~MindCircuitConnectionDef() {};
+	virtual const char *getClass() { return( "MindCircuitConnectionDef" ); };
 
 // operations
 public:
 	void createFromXml( Xml xml );
 
 	String getTypeName() { return( typeName ); };
-	String getSrcArea() { return( srcArea ); };
 	String getSrcRegion() { return( srcRegion ); };
-	String getDstArea() { return( dstArea ); };
 	String getDstRegion() { return( dstRegion ); };
 
 // data
 public:
 // utility
 	String typeName;
-	String srcArea;
 	String srcRegion;
-	String dstArea;
 	String dstRegion;
 
 // references
