@@ -13,7 +13,6 @@ MindRegionLink::MindRegionLink( MindAreaLink *p_areaLink ) {
 
 	src = NULL;
 	dst = NULL;
-	links = new NeuroLinkSet();
 }
 
 MindRegion *MindRegionLink::getSrcRegion() {
@@ -36,40 +35,57 @@ void MindRegionLink::exitRegionLink() {
 }
 
 void MindRegionLink::destroyRegionLink() {
-	delete links;
-	links = NULL;
+	links.destroy();
 }
 
-NeuroLink *MindRegionLink::createNeuroLink( MindCircuitConnectionDef *linkDef ) {
-	String sourceEntity = "default";
-	String targetEntity = "default";
+void MindRegionLink::createNeuroLinks( MindCircuitConnectionDef *linkDef ) {
+	connectionDef = linkDef;
 
-	// check neurolink is required
-	NeuroLinkSource *srcData = src -> getNeuroLinkSource( sourceEntity , linkDef );
+	MindService *service = MindService::getService();
+	String linkType = linkDef -> getTypeName();
+	MindMap *map = service -> getMindMap();
+	MindCircuitConnectionTypeDef *connectionTypeDef = map -> getConnectionTypeDefByName( linkType );
+
+	// create links
+	ClassList<MindCircuitLinkTypeDef>& linkDefs = connectionTypeDef -> getLinks();
+	for( int k = 0; k < links.count(); k++ ) {
+		MindCircuitLinkTypeDef *linkDef = linkDefs.get( k );
+		NeuroLink *link = createNeuroLink( linkDef );
+		links.add( link );
+	}
+}
+
+NeuroLink *MindRegionLink::createNeuroLink( MindCircuitLinkTypeDef *linkDef ) {
+	String sourceEntity = linkDef -> getSrcConnector();
+	String targetEntity = linkDef -> getDstConnector();
+
+	MindRegion *xsrc = src;
+	MindRegion *xdst = dst;
+	if( linkDef -> isBackward() ) {
+		xsrc = dst;
+		xdst = src;
+	}
+
+	// check connectors
+	NeuroLinkSource *srcData = xsrc -> getNeuroLinkSource( sourceEntity );
 	if( srcData == NULL )
 		return( NULL );
 
-	NeuroLinkTarget *dstData = dst -> getNeuroLinkTarget( targetEntity , linkDef );
+	NeuroLinkTarget *dstData = xdst -> getNeuroLinkTarget( targetEntity );
 	if( dstData == NULL )
 		return( NULL );
 
-	MindService *service = MindService::getService();
-
 	// check neurotransmitter
-	String linkType = linkDef -> getTypeName();
-	MindMap *map = service -> getMindMap();
-	MindCircuitConnectionTypeDef *linkTypeDef = map -> getConnectionTypeDefByName( linkType );
-	
+	MindService *service = MindService::getService();
 	NeuroLink *link = NULL;
-	if( linkTypeDef -> isExcitatory() )
+	if( linkDef -> isExcitatory() )
 		link = service -> createExcitatoryLink( this );
-	else if( linkTypeDef -> isInhibitory() )
+	else if( linkDef -> isInhibitory() )
 		link = service -> createInhibitoryLink( this );
 	else
 		link = service -> createModulatoryLink( this );
 
-	link -> configure( linkDef );
-	link -> create( linkTypeDef , srcData , dstData );
+	link -> create( linkDef , srcData , dstData );
 
 	// add to link source
 	srcData -> addNeuroLink( link );
