@@ -17,7 +17,7 @@ class NeuroLinkTarget;
 /*#########################################################################*/
 /*#########################################################################*/
 
-class MindCircuitConnectionTypeDef;
+class MindConnectionTypeDef;
 class MindRegionLink;
 class MindRegion;
 
@@ -144,9 +144,7 @@ public:
 	int getSizeX();
 	int getSizeY();
 
-	void configure( MindCircuitConnectionDef *linkInfo );
-	void create( MindCircuitConnectionTypeDef *linkType , NeuroLinkSource *p_source , NeuroLinkTarget *p_target );
-
+	void create( MindConnectionLinkTypeDef *linkType , NeuroLinkSource *p_source , NeuroLinkTarget *p_target );
 	virtual NeuroSignal *apply( NeuroSignal *srcData , NeuroPool *dstPool ) = 0;
 
 	void createInternal( MindRegion *region );
@@ -161,8 +159,7 @@ public:
 // references
 	MindRegionLink *regionLink;
 	MindRegion *region;
-	MindCircuitConnectionDef *linkInfo;
-	MindCircuitConnectionTypeDef *linkType;
+	MindConnectionLinkTypeDef *linkType;
 	NeuroLinkSource *source;
 	NeuroLinkTarget *target;
 };

@@ -19,6 +19,9 @@ void MindRegionTypeDef::createFromXml( Xml xml ) {
 	createConnectorSetFromXml( xml );
 }
 
+void MindRegionTypeDef::resolveReferences( MindMap *map ) {
+}
+
 void MindRegionTypeDef::createConnectorSetFromXml( Xml xml ) {
 	if( !xml.exists() )
 		return;

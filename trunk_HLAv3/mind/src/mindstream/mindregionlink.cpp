@@ -44,18 +44,18 @@ void MindRegionLink::createNeuroLinks( MindCircuitConnectionDef *linkDef ) {
 	MindService *service = MindService::getService();
 	String linkType = linkDef -> getTypeName();
 	MindMap *map = service -> getMindMap();
-	MindCircuitConnectionTypeDef *connectionTypeDef = map -> getConnectionTypeDefByName( linkType );
+	MindConnectionTypeDef *connectionTypeDef = map -> getConnectionTypeDefByName( linkType );
 
 	// create links
-	ClassList<MindCircuitLinkTypeDef>& linkDefs = connectionTypeDef -> getLinks();
+	ClassList<MindConnectionLinkTypeDef>& linkDefs = connectionTypeDef -> getLinks();
 	for( int k = 0; k < links.count(); k++ ) {
-		MindCircuitLinkTypeDef *linkDef = linkDefs.get( k );
+		MindConnectionLinkTypeDef *linkDef = linkDefs.get( k );
 		NeuroLink *link = createNeuroLink( linkDef );
 		links.add( link );
 	}
 }
 
-NeuroLink *MindRegionLink::createNeuroLink( MindCircuitLinkTypeDef *linkDef ) {
+NeuroLink *MindRegionLink::createNeuroLink( MindConnectionLinkTypeDef *linkDef ) {
 	String sourceEntity = linkDef -> getSrcConnector();
 	String targetEntity = linkDef -> getDstConnector();
 

@@ -28,6 +28,11 @@ void MindCircuitDef::createFromXml( Xml xml ) {
 	}
 }
 
+void MindCircuitDef::resolveReferences( MindMap *map ) {
+	for( int k = 0; k < connections.count(); k++ )
+		connections.get( k ) -> resolveReferences( map );
+}
+
 String MindCircuitDef::getName() {
 	return( name );
 }

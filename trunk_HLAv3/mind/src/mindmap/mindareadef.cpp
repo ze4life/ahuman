@@ -42,3 +42,9 @@ String MindAreaDef::getChannelId() {
 ClassList<MindRegionDef>& MindAreaDef::getRegions() {
 	return( regions );
 }
+
+void MindAreaDef::resolveReferences( MindMap *map ) {
+	for( int k = 0; k < regions.count(); k++ )
+		regions.get( k ) -> resolveReferences( map );
+}
+

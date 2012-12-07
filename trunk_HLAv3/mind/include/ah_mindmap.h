@@ -12,7 +12,8 @@ class MindRegionDef;
 class MindRegionConnectorDef;
 class MindCircuitDef;
 class MindAreaDef;
-class MindCircuitConnectionTypeDef;
+class MindConnectionTypeDef;
+class MindConnectionLinkTypeDef;
 class MindCircuitConnectionDef;
 
 /*#########################################################################*/
@@ -44,12 +45,12 @@ public:
 	MindRegionTypeDef *getRegionTypeDefByName( String regionTypeName );
 	MindCircuitDef *getCircuitDefByName( String circuitName );
 	MindAreaDef *getAreaDefById( String areaId );
-	MindCircuitConnectionTypeDef *getConnectionTypeDefByName( String typeName );
+	MindConnectionTypeDef *getConnectionTypeDefByName( String typeName );
 
 private:
 	void createRegionTypeDefSet( Xml xml );
 	void createAreaDefSet( Xml xml );
-	void createCircuitLinkTypeDefSet( Xml xml );
+	void createConnectionTypeDefSet( Xml xml );
 	void createCircuitDefSet( Xml xml );
 	void createRegionMap( MindAreaDef *info );
 
@@ -57,13 +58,13 @@ private:
 // own data
 	ClassList<MindRegionTypeDef> regionTypeSet;
 	ClassList<MindAreaDef> mindAreaSet;
-	ClassList<MindCircuitConnectionTypeDef> linkTypeSet;
+	ClassList<MindConnectionTypeDef> connectionTypeSet;
 	ClassList<MindCircuitDef> mindCircuitSet;
 
 // references
 	MapStringToClass<MindRegionTypeDef> regionTypeMap;
 	MapStringToClass<MindAreaDef> mindAreaMap;
-	MapStringToClass<MindCircuitConnectionTypeDef> linkTypeMap;
+	MapStringToClass<MindConnectionTypeDef> connectionTypeMap;
 	MapStringToClass<MindCircuitDef> mindCircuitMap;
 	MapStringToClass<MindRegionDef> mindRegionMap;
 };
@@ -79,6 +80,7 @@ public:
 // operations
 public:
 	void createFromXml( Xml xml );
+	void resolveReferences( MindMap *map );
 
 	String getName();
 	MindRegionConnectorDef *getConnector( String id );
@@ -109,11 +111,10 @@ public:
 // operations
 public:
 	void createFromXml( Xml xml );
+	void resolveReferences( MindMap *map );
 
 	String getName();
 	String getTypeName();
-
-	void setType( MindRegionTypeDef *type );
 	MindRegionTypeDef *getType();
 
 private:
@@ -158,6 +159,7 @@ public:
 // operations
 public:
 	void createFromXml( Xml xml );
+	void resolveReferences( MindMap *map );
 
 	String getName();
 	bool runEnabled();
@@ -184,6 +186,7 @@ public:
 // operations
 public:
 	void createFromXml( Xml xml );
+	void resolveReferences( MindMap *map );
 
 	String getAreaId() { return( areaId ); };
 	bool runEnabled();
@@ -207,11 +210,39 @@ private:
 /*#########################################################################*/
 /*#########################################################################*/
 
-class MindCircuitConnectionTypeDef : public Object {
+class MindConnectionTypeDef : public Object {
 public:
-	MindCircuitConnectionTypeDef();
-	virtual ~MindCircuitConnectionTypeDef();
-	virtual const char *getClass() { return( "MindCircuitConnectionTypeDef" ); };
+	MindConnectionTypeDef();
+	virtual ~MindConnectionTypeDef();
+	virtual const char *getClass() { return( "MindConnectionTypeDef" ); };
+
+// operations
+public:
+	void createFromXml( Xml xml );
+	void resolveReferences( MindMap *map );
+
+	String getName() { return( name ); };
+	ClassList<MindConnectionLinkTypeDef>& getLinks();
+
+private:
+// utilities
+	String name;
+
+// own data
+	ClassList<MindConnectionLinkTypeDef> links;
+
+// references
+	MapStringToClass<MindConnectionLinkTypeDef> linkMap;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class MindConnectionLinkTypeDef : public Object {
+public:
+	MindConnectionLinkTypeDef( MindConnectionTypeDef *connectionDef );
+	virtual ~MindConnectionLinkTypeDef();
+	virtual const char *getClass() { return( "MindConnectionLinkTypeDef" ); };
 
 // operations
 public:
@@ -219,14 +250,24 @@ public:
 
 	String getName() { return( name ); };
 	String getNeurotransmitter() { return( neurotransmitter ); };
+	String getSrcConnector() { return( srcConnector ); };
+	String getDstConnector() { return( dstConnector ); };
+
 	bool isExcitatory();
 	bool isInhibitory();
 	bool isModulatory();
+	bool isBackward();
 
 private:
 // utilities
 	String name;
 	String neurotransmitter;
+	String srcConnector;
+	String dstConnector;
+	bool back;
+
+// references
+	MindConnectionTypeDef *connectionDef;
 };
 
 /*#########################################################################*/
@@ -241,10 +282,12 @@ public:
 // operations
 public:
 	void createFromXml( Xml xml );
+	void resolveReferences( MindMap *map );
 
 	String getTypeName() { return( typeName ); };
 	String getSrcRegion() { return( srcRegion ); };
 	String getDstRegion() { return( dstRegion ); };
+	MindConnectionTypeDef *getType() { return( type ); };
 
 // data
 public:
@@ -255,6 +298,7 @@ public:
 
 // references
 	MindCircuitDef *circuitInfo;
+	MindConnectionTypeDef *type;
 };
 
 /*#########################################################################*/

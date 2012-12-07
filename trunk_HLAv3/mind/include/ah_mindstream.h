@@ -18,6 +18,11 @@ class MindMessage;
 
 class MindArea;
 class MindRegion;
+class NeuroLinkSet;
+class MindActiveMemoryObject;
+
+/*#########################################################################*/
+/*#########################################################################*/
 
 // created by static setup on start
 // however each inter-area connection has its own lifecycle in terms of connection details
@@ -78,9 +83,6 @@ public:
 /*#########################################################################*/
 /*#########################################################################*/
 
-class NeuroLinkSet;
-class MindRegion;
-
 class MindRegionLink : public Object {
 public:
 	MindRegionLink( MindAreaLink *areaLink );
@@ -96,15 +98,19 @@ public:
 	void destroyRegionLink();
 
 private:
-	NeuroLink *createNeuroLink( MindCircuitConnectionDef *linkDef );
+	void createNeuroLinks( MindCircuitConnectionDef *linkDef );
+	NeuroLink *createNeuroLink( MindConnectionLinkTypeDef *linkDef );
 
 public:
 // references
 	MindAreaLink *areaLink;
+	MindCircuitConnectionDef *connectionDef;
 
 	MindRegion *src;
 	MindRegion *dst;
-	NeuroLinkSet *links;
+
+	// links within region link
+	ClassList<NeuroLink> links;
 
 // utilities
 	String id;
@@ -112,8 +118,6 @@ public:
 
 /*#########################################################################*/
 /*#########################################################################*/
-
-class MindRegion;
 
 class MindRegionLinkSet : public Object {
 public:
@@ -130,8 +134,6 @@ public:
 
 /*#########################################################################*/
 /*#########################################################################*/
-
-class MindActiveMemoryObject;
 
 class MindActiveMemory : public Object {
 public:

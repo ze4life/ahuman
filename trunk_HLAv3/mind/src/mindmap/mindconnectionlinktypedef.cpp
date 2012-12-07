@@ -4,15 +4,15 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-MindCircuitLinkTypeDef::MindCircuitLinkTypeDef( MindCircuitConnectionTypeDef *p_connectionDef ) {
+MindConnectionLinkTypeDef::MindConnectionLinkTypeDef( MindConnectionTypeDef *p_connectionDef ) {
 	connectionDef = p_connectionDef;
 	back = true;
 }
 
-MindCircuitLinkTypeDef::~MindCircuitLinkTypeDef() {
+MindConnectionLinkTypeDef::~MindConnectionLinkTypeDef() {
 }
 
-void MindCircuitLinkTypeDef::createFromXml( Xml xml ) {
+void MindConnectionLinkTypeDef::createFromXml( Xml xml ) {
 	// attributes
 	name = xml.getAttribute( "name" );
 	neurotransmitter = xml.getAttribute( "nt" );
@@ -21,23 +21,23 @@ void MindCircuitLinkTypeDef::createFromXml( Xml xml ) {
 	back = xml.getBooleanAttribute( "dst" , false );
 }
 
-bool MindCircuitLinkTypeDef::isBackward() {
+bool MindConnectionLinkTypeDef::isBackward() {
 	return( back );
 }
 
-bool MindCircuitLinkTypeDef::isExcitatory() {
+bool MindConnectionLinkTypeDef::isExcitatory() {
 	if( neurotransmitter.equals( "GLU" ) )
 		return( true );
 	return( false );
 }
 
-bool MindCircuitLinkTypeDef::isInhibitory() {
+bool MindConnectionLinkTypeDef::isInhibitory() {
 	if( neurotransmitter.equals( "GABA" ) )
 		return( true );
 	return( false );
 }
 
-bool MindCircuitLinkTypeDef::isModulatory() {
+bool MindConnectionLinkTypeDef::isModulatory() {
 	if( isExcitatory() || isInhibitory() )
 		return( false );
 	return( true );

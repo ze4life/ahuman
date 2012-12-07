@@ -29,7 +29,7 @@ void NeuroLink::createInternal( MindRegion *p_region ) {
 	region = p_region;
 }
 
-void NeuroLink::create( MindCircuitLinkTypeDef *p_linkType , NeuroLinkSource *p_source , NeuroLinkTarget *p_target ) {
+void NeuroLink::create( MindConnectionLinkTypeDef *p_linkType , NeuroLinkSource *p_source , NeuroLinkTarget *p_target ) {
 	id = String( "NL" ) + ( ++sequence_NL );
 
 	linkType = p_linkType;
