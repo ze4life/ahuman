@@ -29,7 +29,7 @@
 			<region-type name="sensor">
 				<connector id="sensor.data"/>
 				<connector id="sensor.control"/>
-				<connector id="sensor.control-feedback"/>	
+				<connector id="sensor.feedback"/>
 			</region-type>
 
 			<region-type name="nucleus">
@@ -39,10 +39,17 @@
 			</region-type>
 
 			<region-type name="neocortex">
-				<connector id="neocortex.ff-in"/>
-				<connector id="neocortex.ff-out"/>
-				<connector id="neocortex.fb-in"/>
-				<connector id="neocortex.fb-out"/>
+				<connector id="neocortex.ffin"/>
+				<connector id="neocortex.ffout"/>
+				<connector id="neocortex.fbin"/>
+				<connector id="neocortex.fbout"/>
+			</region-type>
+
+			<region-type name="allocortex">
+				<connector id="allocortex.ffin"/>
+				<connector id="allocortex.ffout"/>
+				<connector id="allocortex.fbin"/>
+				<connector id="allocortex.fbout"/>
 			</region-type>
 
 		</region-type-set>
@@ -125,24 +132,25 @@
 
 		</component-set>
 
-
+		<!-- ================= typical links =============== -->
 		<connection-type-set>
-			<connection-type name="cortex-forward" nt="GLU" src="neocortex.ff-out" dst="neocortex.ff-in"/>
-			<connection-type name="cortex-feedback" nt="GLU" src="neocortex.fb-out" dst="neocortex.fb-in"/>
-		</connection-type-set>
 
+			<connection-type name="cortex-direct">
+				<link-type name="cortex-forward" nt="GLU" src="neocortex.ffout" dst="neocortex.ffin"/>
+				<link-type name="cortex-feedback" nt="GLU" src="neocortex.fbout" dst="neocortex.fbin" back="true"/>
+			</connection-type>
+
+		</connection-type-set>
 
 		<circuit-set>
 
 			<circuit name="visual-objects" enabled="true">
-				<connection type="cortex-forward" src="VCA.FT.V1" dst="VCA.FT.V2"/>
-				<connection type="cortex-forward" src="VCA.FT.V2" dst="VCA.FT.V4"/>
-				<connection type="cortex-forward" src="VCA.FT.V4" dst="VCA.FT.IT.TEO"/>
-				<connection type="cortex-forward" src="VCA.FT.V4" dst="VCA.FT.IT.TE"/>
-				<connection type="cortex-forward" src="VCA.FT.IT.TEO" dst="VCA.FT.IT.TE"/>
-				<connection type="cortex-forward" src="VCA.FT.IT.TE" dst="HCA.FT.PH.ET"/>
-				<connection type="cortex-feedback" src="VCA.FT.V2" dst="VCA.FT.V1"/>
-				<connection type="cortex-feedback" src="VCA.FT.V4" dst="VCA.FT.V2"/>
+				<connection type="cortex-direct" src="VCA.FT.V1" dst="VCA.FT.V2"/>
+				<connection type="cortex-direct" src="VCA.FT.V2" dst="VCA.FT.V4"/>
+				<connection type="cortex-direct" src="VCA.FT.V4" dst="VCA.FT.IT.TEO"/>
+				<connection type="cortex-direct" src="VCA.FT.V4" dst="VCA.FT.IT.TE"/>
+				<connection type="cortex-direct" src="VCA.FT.IT.TEO" dst="VCA.FT.IT.TE"/>
+				<connection type="cortex-direct" src="VCA.FT.IT.TE" dst="HCA.FT.PH.ET"/>
 			</circuit>
 
 		</circuit-set>

@@ -4,27 +4,30 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-MindCircuitConnectionTypeDef::MindCircuitConnectionTypeDef() {
+MindConnectionTypeDef::MindConnectionTypeDef() {
 }
 
-MindCircuitConnectionTypeDef::~MindCircuitConnectionTypeDef() {
+MindConnectionTypeDef::~MindConnectionTypeDef() {
 }
 
-void MindCircuitConnectionTypeDef::createFromXml( Xml xml ) {
+void MindConnectionTypeDef::createFromXml( Xml xml ) {
 	// attributes
 	name = xml.getAttribute( "name" );
 
 	// links
 	for( Xml xmlChild = xml.getFirstChild( "link-type" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "link-type" ) ) {
 		// construct MindArea from attributes
-		MindCircuitLinkTypeDef *link = new MindCircuitLinkTypeDef( this );
+		MindConnectionLinkTypeDef *link = new MindConnectionLinkTypeDef( this );
 		link -> createFromXml( xmlChild );
 		links.add( link );
 		linkMap.add( link -> getName() , link );
 	}
 }
 
-ClassList<MindCircuitLinkTypeDef>& MindCircuitConnectionTypeDef::getLinks() {
+void MindConnectionTypeDef::resolveReferences( MindMap *map ) {
+}
+
+ClassList<MindConnectionLinkTypeDef>& MindConnectionTypeDef::getLinks() {
 	return( links );
 }
 

@@ -18,16 +18,16 @@ void MindRegionDef::createFromXml( Xml xml ) {
 	typeName = xml.getAttribute( "type" );
 }
 
+void MindRegionDef::resolveReferences( MindMap *map ) {
+	type = map -> getRegionTypeDefByName( typeName );
+}
+
 String MindRegionDef::getName() {
 	return( name );
 }
 
 String MindRegionDef::getTypeName() {
 	return( typeName );
-}
-
-void MindRegionDef::setType( MindRegionTypeDef *p_type ) {
-	type = p_type;
 }
 
 MindRegionTypeDef *MindRegionDef::getType() {

@@ -7,15 +7,25 @@
 MindMap::~MindMap() {
 	regionTypeSet.destroy();
 	mindAreaSet.destroy();
-	linkTypeSet.destroy();
+	connectionTypeSet.destroy();
 }
 
 void MindMap::createFromXml( Xml xml ) {
 	// load mind definition
 	createRegionTypeDefSet( xml.getFirstChild( "region-type-set" ) );
 	createAreaDefSet( xml.getFirstChild( "component-set" ) );
-	createCircuitLinkTypeDefSet( xml.getFirstChild( "connection-type-set" ) );
+	createConnectionTypeDefSet( xml.getFirstChild( "connection-type-set" ) );
 	createCircuitDefSet( xml.getFirstChild( "circuit-set" ) );
+
+	// resolve definition references
+	for( int k = 0; k < regionTypeSet.count(); k++ )
+		regionTypeSet.get( k ) -> resolveReferences( this );
+	for( int k = 0; k < mindAreaSet.count(); k++ )
+		mindAreaSet.get( k ) -> resolveReferences( this );
+	for( int k = 0; k < connectionTypeSet.count(); k++ )
+		connectionTypeSet.get( k ) -> resolveReferences( this );
+	for( int k = 0; k < mindCircuitSet.count(); k++ )
+		mindCircuitSet.get( k ) -> resolveReferences( this );
 }
 
 void MindMap::createRegionTypeDefSet( Xml xml ) {
@@ -63,16 +73,16 @@ void MindMap::createAreaDefSet( Xml xml ) {
 	}
 }
 
-void MindMap::createCircuitLinkTypeDefSet( Xml xml ) {
+void MindMap::createConnectionTypeDefSet( Xml xml ) {
 	if( !xml.exists() )
 		return;
 
 	for( Xml xmlChild = xml.getFirstChild( "connection-type" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "connection-type" ) ) {
 		// construct MindArea from attributes
-		MindCircuitConnectionTypeDef *linkType = new MindCircuitConnectionTypeDef;
+		MindConnectionTypeDef *linkType = new MindConnectionTypeDef;
 		linkType -> createFromXml( xmlChild );
-		linkTypeSet.add( linkType );
-		linkTypeMap.add( linkType -> getName() , linkType );
+		connectionTypeSet.add( linkType );
+		connectionTypeMap.add( linkType -> getName() , linkType );
 	}
 }
 
@@ -93,12 +103,15 @@ void MindMap::createRegionMap( MindAreaDef *info ) {
 	ClassList<MindRegionDef>& regions = info -> getRegions();
 	for( int k = 0; k < regions.count(); k++ ) {
 		MindRegionDef *region = regions.get( k );
-		mindRegionMap.add( region -> getName() , region );
+		String name = region -> getName();
+
+		ASSERTMSG( mindRegionMap.get( name ) == NULL , "duplicate region ID=" + name );
+		mindRegionMap.add( name , region );
 	}
 }
 
-MindCircuitConnectionTypeDef *MindMap::getConnectionTypeDefByName( String typeName ) {
-	return( linkTypeMap.get( typeName ) );
+MindConnectionTypeDef *MindMap::getConnectionTypeDefByName( String typeName ) {
+	return( connectionTypeMap.get( typeName ) );
 }
 
 MindRegionTypeDef *MindMap::getRegionTypeDefByName( String regionTypeName ) {
