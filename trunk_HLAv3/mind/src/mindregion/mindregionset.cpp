@@ -13,6 +13,16 @@ void MindRegionSet::addSetItem( MindRegion *region ) {
 	map.add( region -> getRegionId() , region );
 }
 
+void MindRegionSet::addRegionSet( MindRegionSet *set ) {
+	for( int k = 0; k < set -> getCount(); k++ ) {
+		MindRegion *region = set -> getSetItem( k );
+		if( map.get( region -> getRegionId() ) == NULL ) {
+			list.add( region );
+			map.add( region -> getRegionId() , region );
+		}
+	}
+}
+
 void MindRegionSet::exitRegionSet() {
 	for( int k = 0; k < list.count(); k++ )
 		list.get( k ) -> exit();

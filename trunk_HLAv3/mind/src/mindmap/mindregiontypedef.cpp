@@ -40,10 +40,6 @@ void MindRegionTypeDef::createConnectorSetFromXml( Xml xml ) {
 	}
 }
 
-String MindRegionTypeDef::getName() {
-	return( name );
-}
-
 MindRegionConnectorDef *MindRegionTypeDef::getConnector( String p_id ) {
 	MindRegionConnectorDef *connector = connectorMap.get( p_id );
 	ASSERTMSG( connector != NULL , "unknown connector id=" + p_id );

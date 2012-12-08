@@ -31,7 +31,7 @@ void MindSensorSet::createSensorSet( MindArea *area ) {
 		MindSensor *sensor = list.get( k );
 
 		String id = String( area -> getClass() ) + "." + sensor -> getClass();
-		sensor -> create( id );
+		// sensor -> create( id );
 		set -> addSetItem( sensor );
 	}
 }

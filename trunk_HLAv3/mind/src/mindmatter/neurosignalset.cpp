@@ -4,9 +4,10 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-NerveRegionInfo::NerveRegionInfo() {
+void NeuroSignalSet::destroy() {
+	signalMap.destroy();
 }
 
-NerveRegionInfo::~NerveRegionInfo() {
+void NeuroSignalSet::addSetItem( String connector , NeuroSignal *signal ) {
+	signalMap.add( connector , signal );
 }
-

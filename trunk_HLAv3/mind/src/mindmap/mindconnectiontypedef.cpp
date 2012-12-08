@@ -26,8 +26,3 @@ void MindConnectionTypeDef::createFromXml( Xml xml ) {
 
 void MindConnectionTypeDef::resolveReferences( MindMap *map ) {
 }
-
-ClassList<MindConnectionLinkTypeDef>& MindConnectionTypeDef::getLinks() {
-	return( links );
-}
-

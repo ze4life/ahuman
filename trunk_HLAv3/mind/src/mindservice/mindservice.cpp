@@ -105,9 +105,6 @@ void MindService::initService() {
 	// create areas
 	createAreas();
 
-	// create regions in all areas
-	areaSet -> create( target );
-
 	// create links
 	establishAreaLinks();
 }
@@ -155,9 +152,9 @@ void MindService::destroyService() {
 
 void MindService::createAreas() {
 	// construct configured area set
-	ClassList<MindAreaDef>& areaSet = mindMap -> getMindAreas();
-	for( int k = 0; k < areaSet.count(); k++ ) {
-		MindAreaDef *areaInfo = areaSet.get( k );
+	ClassList<MindAreaDef>& areaDefSet = mindMap -> getMindAreas();
+	for( int k = 0; k < areaDefSet.count(); k++ ) {
+		MindAreaDef *areaInfo = areaDefSet.get( k );
 		createArea( areaInfo );
 	}
 }
@@ -174,38 +171,133 @@ void MindService::createArea( MindAreaDef *areaInfo ) {
 	area -> configure( areaInfo );
 
 	// add to list
-	addMindArea( area );
+	area -> createRegions( target );
+	MindRegionSet *areaRegions = area -> getRegionSet();
+	regionSet -> addRegionSet( areaRegions );
+
+	logger.logInfo( "addMindArea: created mind area name=" + areaInfo -> getAreaId() );
+	areaSet -> addMindArea( area );
 }
 
 void MindService::setMindTarget( MindTarget *p_target ) {
 	target = p_target;
 }
 
-void MindService::addMindArea( MindArea *area ) {
-	// add mind area
-	MindAreaDef *areaInfo = mindMap -> getAreaDefById( area -> getClass() );
-	ASSERTMSG( areaInfo != NULL , String( "addMindArea: mind area is not present in mind configuration name=" ) + area -> getClass() );
-
-	// ignore area if configured not enabled
-	if( !areaInfo -> runEnabled() ) {
-		logger.logInfo( "addMindArea: mind area is ignored, disabled  in configuration name=" + areaInfo -> getAreaId() );
-		return;
-	}
-
-	// add to set
-	areaSet -> addMindArea( area );
-
-	logger.logInfo( "addMindArea: mind area added name=" + areaInfo -> getAreaId() );
-}
-
 // mind links
 void MindService::establishAreaLinks() {
+	ClassList<MindCircuitDef>& circuits = mindMap -> getMindCircuits();
+	for( int k = 0; k < circuits.count(); k++ )
+		addCircuitLinks( circuits.get( k ) );
 }
 
-void MindService::createMindAreaLink( MindArea *masterArea , MindArea *slaveArea ) {
+void MindService::addCircuitLinks( MindCircuitDef *circuitDef ) {
+	ClassList<MindCircuitConnectionDef>& connections = circuitDef -> getConnections();
+	for( int k = 0; k < connections.count(); k++ )
+		addCircuitConnection( circuitDef , connections.get( k ) );
+}
+
+void MindService::addCircuitConnection( MindCircuitDef *circuitDef , MindCircuitConnectionDef *connectionDef ) {
+	// get/create area link
+	String srcRegionName = connectionDef -> getSrcRegion();
+	MindRegion *srcRegion = regionSet -> getSetItemById( srcRegionName );
+	ASSERTMSG( srcRegion != NULL , "circuit=" + circuitDef -> getName() + ": unknown region=" + srcRegionName );
+	String dstRegionName = connectionDef -> getDstRegion();
+	MindRegion *dstRegion = regionSet -> getSetItemById( dstRegionName );
+	ASSERTMSG( dstRegion != NULL , "circuit=" + circuitDef -> getName() + ": unknown region=" + dstRegionName );
+	ASSERTMSG( srcRegion != dstRegion , "circuit=" + circuitDef -> getName() + ": cannot connect region to itself, name=" + dstRegionName );
+
+	// check link like this is already created
+	String type = connectionDef -> getTypeName();
+	String key = type + "." + srcRegionName + "." + dstRegionName;
+	if( regionConnectionMap.get( key ) != NULL )
+		return;
+
+	// create
+	MindConnectionTypeDef *connectionType = connectionDef -> getType();
+	createRegionConnection( connectionType , srcRegion , dstRegion );
+
+	// add to map
+	regionConnectionMap.add( key , connectionType );
+}
+
+void MindService::createRegionConnection( MindConnectionTypeDef *connectionType , MindRegion *srcRegion , MindRegion *dstRegion ) {
+	ClassList<MindConnectionLinkTypeDef>& links = connectionType -> getLinks();
+	for( int k = 0; k < links.count(); k++ )
+		createNeuroLink( links.get( k ) , srcRegion , dstRegion );
+}
+
+NeuroLink *MindService::createNeuroLink( MindConnectionLinkTypeDef *linkDef , MindRegion *srcRegion , MindRegion *dstRegion ) {
+	// handle direction
+	MindRegion *linkSrcRegion = ( linkDef -> isBackward() )? dstRegion : srcRegion;
+	MindRegion *linkDstRegion = ( linkDef -> isBackward() )? srcRegion : dstRegion;
+
+	// check pools
+	NeuroLinkSource *srcConnector = linkSrcRegion -> getNeuroLinkSource( linkDef -> getSrcConnector() );
+	NeuroLinkTarget *dstConnector = linkDstRegion -> getNeuroLinkTarget( linkDef -> getDstConnector() );
+
+	// ignore if any connector is not present
+	if( srcConnector == NULL || dstConnector == NULL )
+		return( NULL );
+
+	// create region link
+	MindRegionLink *regionLink = createRegionLink( linkSrcRegion , linkDstRegion );
+
+	// check neurolink exists
+	String linkType = linkDef -> getName();
+	String key = linkType + "." + linkSrcRegion -> getRegionId() + "." + linkDstRegion -> getRegionId();
+	if( regionNeuroLinkMap.get( key ) != NULL )
+		return( NULL );
+
+	// create neurolink
+	NeuroLinkInfo info;
+	NeuroLink *neurolink = createNeuroLink( linkDef -> getType() , srcConnector , dstConnector , &info );
+	if( neurolink == NULL )
+		return( NULL );
+
+	regionNeuroLinkMap.add( key , neurolink );
+	regionLink -> addNeuroLink( neurolink );
+
+	logger.logInfo( "createNeuroLink: neurolink created type=" + linkDef -> getType() + ", srcRegion=" + linkSrcRegion -> getRegionId() + ", dstRegion=" + linkDstRegion -> getRegionId() );
+	return( neurolink );
+}
+
+MindRegionLink *MindService::createRegionLink( MindRegion *srcRegion , MindRegion *dstRegion ) {
+	// create area link if areas are different
+	MindArea *linkSrcArea = srcRegion -> getArea();
+	MindArea *linkDstArea = dstRegion -> getArea();
+	MindAreaLink *areaLink = NULL;
+	if( linkSrcArea != linkDstArea )
+		areaLink = createAreaLink( linkSrcArea , linkDstArea );
+
+	// check already created
+	String key = srcRegion -> getRegionId() + "." + dstRegion -> getRegionId();
+	MindRegionLink *regionLink = regionLinkMap.get( key );
+	if( regionLink != NULL )
+		return( regionLink );
+
+	// create region link
+	regionLink = new MindRegionLink( areaLink );
+	regionLink -> createRegionLink( srcRegion , dstRegion );
+	regionLinkMap.add( key , regionLink );
+	
+	// add to area link
+	if( areaLink != NULL )
+		areaLink -> addRegionLink( regionLink );
+
+	return( regionLink );
+}
+
+MindAreaLink *MindService::createAreaLink( MindArea *masterArea , MindArea *slaveArea ) {
+	// check area link exists
+	String key = masterArea -> getId() + "." + slaveArea -> getId();
+	MindAreaLink *link = areaLinkMap.get( key );
+	if( link != NULL )
+		return( link );
+
 	// create link
-	MindAreaLink *link = new MindAreaLink();
+	link = new MindAreaLink;
 	link -> create( masterArea , slaveArea );
+	areaLinkMap.add( key , link );
 
 	// add to link set
 	masterArea -> addSlaveLink( link );
@@ -213,11 +305,9 @@ void MindService::createMindAreaLink( MindArea *masterArea , MindArea *slaveArea
 	linkSet -> addSetItem( link );
 	logger.logInfo( "createMindAreaLink: create link masterArea=" + masterArea -> getId() + ", slaveArea=" + slaveArea -> getId() + "..." );
 
-	// create region-to-region links
-	link -> createRegionLinks();
-
 	// start process area link messages
 	link -> open( session , masterArea -> getId() );
+	return( link );
 }
 
 MindArea *MindService::getMindArea( String areaId ) {
@@ -230,3 +320,36 @@ MindRegion *MindService::getMindRegion( String regionId ) {
 	ASSERTMSG( region != NULL , "getMindRegion: region is not found by id=" + regionId );
 	return( region );
 }
+
+MindRegion *MindService::createRegion( String type , MindArea *area , MindRegionInfo *info ) {
+	MindRegion *region = NULL;
+	if( type.equals( "neocortex" ) )
+		region = new NeocortexRegion( area );
+	else if( type.equals( "allocortex" ) )
+		region = new AllocortexRegion( area );
+	else if( type.equals( "nucleus" ) )
+		region = new NucleiRegion( area );
+	else
+		ASSERTFAILED( "unknown region type=" + type );
+
+	region -> createRegion( info );
+
+	return( region );
+}
+
+NeuroLink *MindService::createNeuroLink( String type , NeuroLinkSource *src , NeuroLinkTarget *dst , NeuroLinkInfo *info ) {
+	NeuroLink *link = NULL;
+	if( type.equals( "excitatory" ) )
+		link = new ExcitatoryLink( src , dst );
+	else if( type.equals( "inhibitory" ) )
+		link = new InhibitoryLink( src , dst );
+	else if( type.equals( "modulatory" ) )
+		link = new ModulatoryLink( src , dst );
+	else
+		ASSERTFAILED( "unknown region type=" + type );
+
+	link -> createNeuroLink( info );
+
+	return( link );
+}
+
