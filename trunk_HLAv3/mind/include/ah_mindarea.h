@@ -45,27 +45,22 @@ public:
 
 public:
 	void configure( MindAreaDef *info );
-	void create( MindTarget *target );
+	void createRegions( MindTarget *target );
 	void exit();
 	void destroy();
 
 	String getId();
 	MindAreaDef *getMindAreaDef();
-
 	MindRegionSet *getRegionSet();
-	void sendMessage( MindMessage *msg );
+	MindRegion *getRegion( String group , String groupId );
+
 	void addMasterLink( MindAreaLink *link );
 	void addSlaveLink( MindAreaLink *link );
 
-protected:
-	void addRegion( MindRegion *region );
-	MindRegion *getRegion( String group , String groupId );
+private:
+	void createRegion( MindTarget *target , MindRegionDef *regionDef );
 
 private:
-// utility
-	MessageSession *iosession;
-	MessagePublisher *iopub;
-
 // own data
 	String areaId;
 	MindRegionSet *regionSet;
@@ -89,7 +84,6 @@ public:
 	void addMindArea( MindArea *area );
 	MindArea *getMindArea( String id );
 
-	void create( MindTarget *target );
 	void wakeupAreaSet( MindActiveMemory *activeMemory );
 	void suspendAreaSet();
 	void exitAreaSet();

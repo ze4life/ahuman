@@ -12,6 +12,22 @@ class CortexSpatialPoolerItem;
 class CortexSpatialPooler;
 class CortexTemporalPoolerItem;
 class CortexTemporalPooler;
+class AllocortexRegion;
+class NeocortexRegion;
+class NucleiRegion;
+class NerveRegion;
+class MindRegionInfo;
+class ExcitatoryLink;
+class InhibitoryLink;
+class ModulatoryLink;
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class NeuroLink;
+class NeuroSignal;
+class NeuroSignalSet;
+class MindSensorSet;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -33,8 +49,6 @@ extern RFC_INT64		NEURON_FULL_RELAX_ms;								// period of guaranteed full disc
 /*#########################################################################*/
 /*#########################################################################*/
 
-class NeuroLink;
-
 class MindActiveMemoryObject : public ThreadPoolTask {
 public:
 	MindActiveMemoryObject( int id );
@@ -54,8 +68,6 @@ private:
 
 /*#########################################################################*/
 /*#########################################################################*/
-
-class MindSensorSet;
 
 class MindSensorSetTracker : public Object {
 public:
@@ -194,7 +206,230 @@ private:
 	int predictionMatchTolerance;
 };
 
+/*#########################################################################*/
+/*#########################################################################*/
+
+class NeocortexRegion : public MindRegion {
+public:
+	NeocortexRegion( MindArea *area );
+	virtual const char *getClass() { return( "NeocortexRegion" ); };
+
+public:
+	// MindRegion lifecycle
+	virtual void createRegion( MindRegionInfo *info );
+	virtual void exitRegion();
+	virtual void destroyRegion();
+
+	// NeuroLink support
+	virtual String getRegionType();
+	virtual void getSourceSizes( String entity , int *sizeX , int *sizeY );
+
+private:
+	// neurolink handlers
+	NeuroSignalSet *handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *data );
+	NeuroSignalSet *handleFeedBackNeuroLinkMessage( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *data );
+	// NeuroSignalSet *handleAttentionNeuroLinkMessage( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *data );
+
+private:
+// own data
+	NeuroLinkSource sourceFeedForward;
+	NeuroLinkSource sourceFeedBack;
+	NeuroLinkTarget targetFeedForward;
+	NeuroLinkTarget targetFeedBack;
+
+	// NeuroPool layerTemporalFeedback;	// layer 2
+	// NeuroPool layerSpatial;				// layer 3
+	// NeuroPool layerTemporal;			// layer 4
+	// NeuroPool layerAttention;			// layer 5
+	// NeuroPool layerSpatialFeedback;		// layer 6
+
+	NeuroPool inputPool;
+	NeuroPool feedbackPool;
+	CortexSpatialPooler *spatialPooler;
+	CortexTemporalPooler *temporalPooler;
+
+// utilities
+	int sizeX;
+	int sizeY;
+	bool useSpatialPooler;
+	bool useTemporalPooler;
+	int temporalDepth;
+	int spatialPatternExpected;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class AllocortexRegion : public MindRegion {
+public:
+	AllocortexRegion( MindArea *area );
+	virtual const char *getClass() { return( "AllocortexRegion" ); };
+
+public:
+	// MindRegion lifecycle
+	virtual void createRegion( MindRegionInfo *info );
+	virtual void exitRegion();
+	virtual void destroyRegion();
+
+	// NeuroLink support
+	virtual String getRegionType();
+	virtual void getSourceSizes( String entity , int *sizeX , int *sizeY );
+
+private:
+	// neurolink handlers
+	void handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *data );
+	// void handleFeedBackNeuroLinkMessage( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *data );
+	// void handleAttentionNeuroLinkMessage( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *data );
+
+private:
+};
+
 // #############################################################################
 // #############################################################################
+
+class NucleiRegion : public MindRegion {
+public:
+	NucleiRegion( MindArea *area );
+	virtual const char *getClass() { return( "NucleiRegion" ); };
+
+public:
+	// MindRegion lifecycle
+	virtual void createRegion( MindRegionInfo *info );
+	virtual void exitRegion();
+	virtual void destroyRegion();
+
+	// NeuroLink support
+	virtual String getRegionType();
+	virtual void getSourceSizes( String entity , int *sizeX , int *sizeY );
+
+private:
+	// neurolink handler
+	void handleSubTargetMessage( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *data );
+	void handleInterNeuronsTargetMessage( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *data );
+
+private:
+// own data
+	NeuroLinkSource source;
+	NeuroLinkTarget targetSub;
+	NeuroLinkTarget targetInterNeurons;
+	NeuroLink *linkInterNeuronsToSub;
+
+	NeuroPool neuroPoolSub;
+	NeuroPool neuroPoolInterNeurons;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class NerveRegion : public MindRegion {
+public:
+	NerveRegion( MindArea *area );
+	virtual const char *getClass() { return( "NerveRegion" ); };
+
+public:
+	// MindRegion lifecycle
+	virtual void createRegion( MindRegionInfo *info );
+	virtual void exitRegion();
+	virtual void destroyRegion();
+
+	// NeuroLink support
+	virtual String getRegionType();
+	virtual void getSourceSizes( String entity , int *sizeX , int *sizeY );
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class MindRegionInfo : public Object {
+public:
+MindRegionInfo();
+	virtual ~MindRegionInfo();
+	virtual const char *getClass() { return( "MindRegionInfo" ); };
+
+public:
+	void setId( String id );
+	void setType( MindRegionTypeDef *typeDef );
+
+	void setSizeInfo( int nx , int ny );
+	void setTemporalDepth( int nDepth );
+	void setUsingSpatialPooler( bool useSpatialPooler );
+	void setUsingTemporalPooler( bool useTemporalPooler );
+	void setSpatialPoolerSize( int spatialPoolerSize );
+	void setTemporalPoolerSize( int temporalPoolerSize );
+
+	String getId() { return( id ); };
+	MindRegionTypeDef *getType() { return( typeDef ); };
+	int getSpatialPoolerSize() { return( spatialPoolerSize ); };
+	int getTemporalPoolerSize() { return( temporalPoolerSize ); };
+	bool isUsingSpatialPooler() { return( useSpatialPooler ); };
+	bool isUsingTemporalPooler() { return( useTemporalPooler ); };
+	int getTemporalDepth() { return( temporalDepth ); };
+
+	void getSizeInfo( int *nx , int *ny );
+
+private:
+	String id;
+	MindRegionTypeDef *typeDef;
+
+	int sizeX;
+	int sizeY;
+	bool useSpatialPooler;
+	bool useTemporalPooler;
+	int temporalDepth;
+	int spatialPoolerSize;
+	int temporalPoolerSize;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class ExcitatoryLink : public NeuroLink {
+public:
+	ExcitatoryLink( NeuroLinkSource *src , NeuroLinkTarget *dst );
+	virtual const char *getClass() { return( "ExcitatoryLink" ); };
+
+public:
+	virtual void createNeuroLink( NeuroLinkInfo *info );
+	virtual NeuroSignal *apply( NeuroSignal *srcData , NeuroPool *dstPool );
+
+private:
+	void recalculateActionPotential( NeuroSignal *srcData , NeuroPool *dstPool );
+	void activateMembranePotential( NeuroSignal *srcData , NeuroPool *dstPool );
+
+private:
+	int opid;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class InhibitoryLink : public NeuroLink {
+public:
+	InhibitoryLink( NeuroLinkSource *src , NeuroLinkTarget *dst );
+	virtual const char *getClass() { return( "InhibitoryLink" ); };
+
+public:
+	virtual void createNeuroLink( NeuroLinkInfo *info );
+	virtual NeuroSignal *apply( NeuroSignal *srcData , NeuroPool *dstPool );
+
+private:
+	int opid;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class ModulatoryLink : public NeuroLink {
+public:
+	ModulatoryLink( NeuroLinkSource *src , NeuroLinkTarget *dst );
+	virtual const char *getClass() { return( "ModulatoryLink" ); };
+
+public:
+	virtual void createNeuroLink( NeuroLinkInfo *info );
+	virtual NeuroSignal *apply( NeuroSignal *srcData , NeuroPool *dstPool );
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
 
 #endif // INCLUDE_AH_MIND_IMPL_H

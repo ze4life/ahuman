@@ -30,19 +30,20 @@ class MindRegionLink;
 class NeuroLink;
 class NeuroPool;
 class MindAreaDef;
-class CortexRegionInfo;
-class NucleiRegionInfo;
-class NerveRegionInfo;
+class MindCircuitDef;
+class MindCircuitConnectionDef;
+class MindConnectionTypeDef;
+class MindConnectionLinkTypeDef;
+class MindRegionInfo;
+class NeuroLinkSource;
+class NeuroLinkTarget;
+class NeuroLinkInfo;
 
 // factory and lifecycle support for mind components
 class MindService : public Service {
 // interface
 public:
-	// let mind know about created core items
 	void setMindTarget( MindTarget *target );
-	void addMindArea( MindArea *area );
-	void addMindRegion( MindRegion *region , String regionId , MindArea *area , MindLocation& areaLocation );
-	void addNeuroLink( NeuroLink *link , NeuroPool *src , NeuroPool *dst );
 
 	// get mind map, specific mind area, region, network
 	MindActiveMemory *getActiveMemory();
@@ -50,15 +51,9 @@ public:
 	MindArea *getMindArea( String areaId );
 	MindRegion *getMindRegion( String regionId );
 	  
-	// create core items - regions
-	MindRegion *createCortexRegion( MindArea *area , String id , CortexRegionInfo *info );
-	MindRegion *createNucleiRegion( MindArea *area , String id , NucleiRegionInfo *info );
-	MindRegion *createNerveRegion( MindArea *area , String id , NerveRegionInfo *info );
-
-	// create core items - neurolinks
-	NeuroLink *createExcitatoryLink( MindRegionLink *link );
-	NeuroLink *createInhibitoryLink( MindRegionLink *link );
-	NeuroLink *createModulatoryLink( MindRegionLink *link );
+	// create core items
+	MindRegion *createRegion( String type , MindArea *area , MindRegionInfo *info );
+	NeuroLink *createNeuroLink( String type , NeuroLinkSource *src , NeuroLinkTarget *dst , NeuroLinkInfo *info );
 
 // whole mind lifecycle
 public:
@@ -79,13 +74,15 @@ public:
 
 // internals:
 private:
-	// routines
 	void createAreas();
-	void establishAreaLinks();
-
 	void createArea( MindAreaDef *areaInfo );
-	void addMindRegion( String regionId , MindRegion *region , const MindLocation& relativeLocation );
-	void createMindAreaLink( MindArea *masterArea , MindArea *slaveArea );
+	void establishAreaLinks();
+	void addCircuitLinks( MindCircuitDef *circuitDef );
+	void addCircuitConnection( MindCircuitDef *circuitDef , MindCircuitConnectionDef *connectionDef );
+	void createRegionConnection( MindConnectionTypeDef *connectionType , MindRegion *srcRegion , MindRegion *dstRegion );
+	NeuroLink *createNeuroLink( MindConnectionLinkTypeDef *linkDef , MindRegion *srcRegion , MindRegion *dstRegion );
+	MindRegionLink *createRegionLink( MindRegion *srcRegion , MindRegion *dstRegion );
+	MindAreaLink *createAreaLink( MindArea *masterArea , MindArea *slaveArea );
 
 	// structure lock
 	void lock() { rfc_hnd_semlock( lockStructure );	}
@@ -109,6 +106,10 @@ private:
 	MindTarget *target;
 	MindRegionSet *regionSet;
 	MessageSession *session;
+	MapStringToClass<MindConnectionTypeDef> regionConnectionMap;
+	MapStringToClass<NeuroLink> regionNeuroLinkMap;
+	MapStringToClass<MindAreaLink> areaLinkMap;
+	MapStringToClass<MindRegionLink> regionLinkMap;
 };
 
 /*#########################################################################*/

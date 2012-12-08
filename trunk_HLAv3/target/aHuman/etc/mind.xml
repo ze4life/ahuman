@@ -81,9 +81,9 @@
 				<region name="MCA.FT.S1" type="neocortex"/>
 				<region name="MCA.FT.INS" type="neocortex"/>
 				<region name="MCA.FT.TPC" type="neocortex"/>
-				<region name="MCA.FD.VA" type="nucleus"/>
-				<region name="MCA.FD.VL" type="nucleus"/>
-				<region name="MCA.FD.VP" type="nucleus"/>
+				<region name="MCA.FD.VA" type="nucleus" size="100"/>
+				<region name="MCA.FD.VL" type="nucleus" size="100"/>
+				<region name="MCA.FD.VP" type="nucleus" size="100"/>
 			</area>
 
 			<area name="PCA" enabled="true">
@@ -93,10 +93,10 @@
 				<region name="PCA.FT.IPS" type="neocortex"/>
 				<region name="PCA.FT.RSC" type="neocortex"/>
 				<region name="PCA.FT.PCG" type="neocortex"/>
-				<region name="PCA.FD.TH.RIL" type="nucleus"/>
-				<region name="PCA.FD.TH.LP" type="nucleus"/>
-				<region name="PCA.FD.TH.SG" type="nucleus"/>
-				<region name="PCA.FD.TH.PO" type="nucleus"/>
+				<region name="PCA.FD.TH.RIL" type="nucleus" size="100"/>
+				<region name="PCA.FD.TH.LP" type="nucleus" size="100"/>
+				<region name="PCA.FD.TH.SG" type="nucleus" size="100"/>
+				<region name="PCA.FD.TH.PO" type="nucleus" size="100"/>
 			</area>
 
 			<area name="HCA" enabled="true">
@@ -112,12 +112,12 @@
 				<region name="HCA.FT.PAS" type="neocortex"/>
 				<region name="HCA.FT.PSS" type="allocortex"/>
 				<region name="HCA.FT.SUB" type="allocortex"/>
-				<region name="HCA.FD.LMB" type="nucleus"/>
-				<region name="HCA.FD.MMB" type="nucleus"/>
-				<region name="HCA.FD.TH.AN" type="nucleus"/>
-				<region name="HCA.FD.TH.LD" type="nucleus"/>
-				<region name="HCA.FD.TH.RE" type="nucleus"/>
-				<region name="HCA.FD.TH.RH" type="nucleus"/>
+				<region name="HCA.FD.LMB" type="nucleus" size="100"/>
+				<region name="HCA.FD.MMB" type="nucleus" size="100"/>
+				<region name="HCA.FD.TH.AN" type="nucleus" size="100"/>
+				<region name="HCA.FD.TH.LD" type="nucleus" size="100"/>
+				<region name="HCA.FD.TH.RE" type="nucleus" size="100"/>
+				<region name="HCA.FD.TH.RH" type="nucleus" size="100"/>
 			</area>
 
 			<area name="FCA" enabled="true">
@@ -126,8 +126,8 @@
 				<region name="FCA.FT.ACG" type="neocortex"/>
 				<region name="FCA.FT.SGC" type="neocortex"/>
 				<region name="FCA.FT.BRA" type="neocortex"/>
-				<region name="FCA.FD.TH.MD" type="nucleus"/>
-				<region name="FCA.FD.TH.SM" type="nucleus"/>
+				<region name="FCA.FD.TH.MD" type="nucleus" size="100"/>
+				<region name="FCA.FD.TH.SM" type="nucleus" size="100"/>
 			</area>
 
 		</component-set>
@@ -136,8 +136,8 @@
 		<connection-type-set>
 
 			<connection-type name="cortex-direct">
-				<link-type name="cortex-forward" nt="GLU" src="neocortex.ffout" dst="neocortex.ffin"/>
-				<link-type name="cortex-feedback" nt="GLU" src="neocortex.fbout" dst="neocortex.fbin" back="true"/>
+				<link-type name="cortex-forward" type="excitatory" nt="GLU" src="neocortex.ffout" dst="neocortex.ffin"/>
+				<link-type name="cortex-feedback" type="excitatory" nt="GLU" src="neocortex.fbout" dst="neocortex.fbin" back="true"/>
 			</connection-type>
 
 		</connection-type-set>
