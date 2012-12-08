@@ -6,14 +6,15 @@ static int sequence_NL = 0;
 /*#########################################################################*/
 /*#########################################################################*/
 
-NeuroLink::NeuroLink( MindRegionLink *p_regionLink ) {
-	regionLink = p_regionLink;
-
+NeuroLink::NeuroLink( NeuroLinkSource *src , NeuroLinkTarget *dst ) {
 	region = NULL;
-	source = NULL;
-	target = NULL;
+	source = src;
+	target = dst;
 	sizeX = 0;
 	sizeY = 0;
+}
+
+void NeuroLink::createNeuroLink( NeuroLinkInfo *info ) {
 }
 
 NeuroLinkSource *NeuroLink::getSource() {

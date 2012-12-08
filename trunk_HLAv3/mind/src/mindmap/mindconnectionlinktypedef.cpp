@@ -15,31 +15,13 @@ MindConnectionLinkTypeDef::~MindConnectionLinkTypeDef() {
 void MindConnectionLinkTypeDef::createFromXml( Xml xml ) {
 	// attributes
 	name = xml.getAttribute( "name" );
+	type = xml.getAttribute( "type" );
 	neurotransmitter = xml.getAttribute( "nt" );
 	srcConnector = xml.getAttribute( "src" );
 	dstConnector = xml.getAttribute( "dst" );
-	back = xml.getBooleanAttribute( "dst" , false );
+	back = xml.getBooleanAttribute( "back" , false );
 }
 
 bool MindConnectionLinkTypeDef::isBackward() {
 	return( back );
 }
-
-bool MindConnectionLinkTypeDef::isExcitatory() {
-	if( neurotransmitter.equals( "GLU" ) )
-		return( true );
-	return( false );
-}
-
-bool MindConnectionLinkTypeDef::isInhibitory() {
-	if( neurotransmitter.equals( "GABA" ) )
-		return( true );
-	return( false );
-}
-
-bool MindConnectionLinkTypeDef::isModulatory() {
-	if( isExcitatory() || isInhibitory() )
-		return( false );
-	return( true );
-}
-

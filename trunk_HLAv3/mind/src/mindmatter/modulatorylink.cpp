@@ -4,25 +4,11 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-class ModulatoryLink : public NeuroLink {
-public:
-	ModulatoryLink( MindRegionLink *regionLink );
-	virtual const char *getClass() { return( "ModulatoryLink" ); };
-
-public:
-	virtual NeuroSignal *apply( NeuroSignal *srcData , NeuroPool *dstPool );
-};
-
-/*#########################################################################*/
-/*#########################################################################*/
-
-NeuroLink *MindService::createModulatoryLink( MindRegionLink *link ) { return( new ModulatoryLink( link ) ); };
-
-/*#########################################################################*/
-/*#########################################################################*/
-
-ModulatoryLink::ModulatoryLink( MindRegionLink *p_regionLink ) : NeuroLink( p_regionLink ) {
+ModulatoryLink::ModulatoryLink( NeuroLinkSource *src , NeuroLinkTarget *dst ) : NeuroLink( src , dst ) {
 	attachLogger();
+}
+
+void ModulatoryLink::createNeuroLink( NeuroLinkInfo *info ) {
 }
 
 NeuroSignal *ModulatoryLink::apply( NeuroSignal *srcData , NeuroPool *dstPool ) {

@@ -19,8 +19,6 @@ void MindAreaDef::createFromXml( Xml xml ) {
 	if( !enabled )
 		return;
 
-	channelId = areaId;
-
 	// read regions
 	for( Xml xmlChild = xml.getFirstChild( "region" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "region" ) ) {
 		// construct MindArea from attributes
@@ -29,18 +27,6 @@ void MindAreaDef::createFromXml( Xml xml ) {
 		regions.add( region );
 		regionMap.add( region -> getName() , region );
 	}
-}
-
-bool MindAreaDef::runEnabled() {
-	return( enabled );
-}
-
-String MindAreaDef::getChannelId() {
-	return( channelId );
-}
-
-ClassList<MindRegionDef>& MindAreaDef::getRegions() {
-	return( regions );
 }
 
 void MindAreaDef::resolveReferences( MindMap *map ) {

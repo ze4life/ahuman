@@ -4,29 +4,12 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-class InhibitoryLink : public NeuroLink {
-public:
-	InhibitoryLink( MindRegionLink *regionLink );
-	virtual const char *getClass() { return( "InhibitoryLink" ); };
-
-public:
-	virtual NeuroSignal *apply( NeuroSignal *srcData , NeuroPool *dstPool );
-
-private:
-	int opid;
-};
-
-/*#########################################################################*/
-/*#########################################################################*/
-
-NeuroLink *MindService::createInhibitoryLink( MindRegionLink *link ) { return( new InhibitoryLink( link ) ); };
-
-/*#########################################################################*/
-/*#########################################################################*/
-
-InhibitoryLink::InhibitoryLink( MindRegionLink *p_regionLink ) : NeuroLink( p_regionLink ) {
+InhibitoryLink::InhibitoryLink( NeuroLinkSource *src , NeuroLinkTarget *dst ) : NeuroLink( src , dst ) {
 	attachLogger();
 	opid = 0;
+}
+
+void InhibitoryLink::createNeuroLink( NeuroLinkInfo *info ) {
 }
 
 NeuroSignal *InhibitoryLink::apply( NeuroSignal *srcData , NeuroPool *dstPool ) {

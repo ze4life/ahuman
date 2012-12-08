@@ -24,12 +24,6 @@ void MindAreaLink::create( MindArea *p_masterArea , MindArea *p_slaveArea ) {
 	slaveArea = p_slaveArea;
 }
 
-void MindAreaLink::createRegionLinks() {
-	MindService *ms = MindService::getService();
-
-	// create region mapping
-}
-
 void MindAreaLink::open( MessageSession *p_session , String channel ) {
 	session = p_session;
 

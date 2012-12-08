@@ -4,33 +4,13 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-class ExcitatoryLink : public NeuroLink {
-public:
-	ExcitatoryLink( MindRegionLink *regionLink );
-	virtual const char *getClass() { return( "ExcitatoryLink" ); };
-
-public:
-	virtual NeuroSignal *apply( NeuroSignal *srcData , NeuroPool *dstPool );
-
-private:
-	void recalculateActionPotential( NeuroSignal *srcData , NeuroPool *dstPool );
-	void activateMembranePotential( NeuroSignal *srcData , NeuroPool *dstPool );
-
-private:
-	int opid;
-};
-
-/*#########################################################################*/
-/*#########################################################################*/
-
-NeuroLink *MindService::createExcitatoryLink( MindRegionLink *link ) { return( new ExcitatoryLink( link ) ); };
-
-/*#########################################################################*/
-/*#########################################################################*/
-
-ExcitatoryLink::ExcitatoryLink( MindRegionLink *p_regionLink ) : NeuroLink( p_regionLink ) {
+ExcitatoryLink::ExcitatoryLink( NeuroLinkSource *src , NeuroLinkTarget *dst ) : NeuroLink( src , dst ) {
 	attachLogger();
 	opid = 0;
+}
+
+void ExcitatoryLink::createNeuroLink( NeuroLinkInfo *info ) {
+	NeuroLink::createNeuroLink( info );
 }
 
 NeuroSignal *ExcitatoryLink::apply( NeuroSignal *srcData , NeuroPool *dstPool ) {

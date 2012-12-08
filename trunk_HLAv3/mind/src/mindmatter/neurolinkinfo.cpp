@@ -4,10 +4,6 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-MindRegionConnectorDef::MindRegionConnectorDef() {
+NeuroLinkInfo::NeuroLinkInfo() {
 }
 
-void MindRegionConnectorDef::createFromXml( Xml xml ) {
-	// attributes
-	id = xml.getAttribute( "id" );
-}

@@ -31,14 +31,6 @@ void NeuroLinkSource::addNeuroLink( NeuroLink *link ) {
 	links.add( link );
 }
 
-int NeuroLinkSource::getSizeX() {
-	return( sizeX );
-}
-
-int NeuroLinkSource::getSizeY() {
-	return( sizeY );
-}
-
 NeuroSignal *NeuroLinkSource::getLinkSignal( NeuroLink *link ) {
 	// use callback function
 	if( pfn != NULL ) {

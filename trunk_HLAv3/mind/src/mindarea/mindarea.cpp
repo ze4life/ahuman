@@ -6,16 +6,17 @@
 
 MindArea::MindArea() {
 	info = NULL;
-	regionSet = NULL;
-	regionLinkSet = NULL;
-	areaMasterLinkSet = NULL;
-	areaSlaveLinkSet = NULL;
-
-	iosession = NULL;
-	iopub = NULL;
+	regionSet = new MindRegionSet;
+	regionLinkSet = new MindRegionLinkSet;
+	areaMasterLinkSet = new MindAreaLinkSet;
+	areaSlaveLinkSet = new MindAreaLinkSet;
 }
 
 MindArea::~MindArea() {
+	delete regionSet;
+	delete regionLinkSet;
+	delete areaMasterLinkSet;
+	delete areaSlaveLinkSet;
 }
 
 void MindArea::configure( MindAreaDef *p_info ) {
@@ -27,19 +28,31 @@ MindAreaDef *MindArea::getMindAreaDef() {
 	return( info );
 }
 
-void MindArea::create( MindTarget *target ) {
-	regionSet = new MindRegionSet;
-	regionLinkSet = new MindRegionLinkSet;
-	areaMasterLinkSet = new MindAreaLinkSet;
-	areaSlaveLinkSet = new MindAreaLinkSet;
-
-	MessagingService *ms = MessagingService::getService();
-	iosession = ms -> createSession();
-
-	String channel = info -> getChannelId();
-	iopub = ms -> createPublisher( iosession , channel ,  getClass() , "MindMessage" );
-
+void MindArea::createRegions( MindTarget *target ) {
 	// create regions
+	ClassList<MindRegionDef>& regionDefs = info -> getRegions();
+	for( int k = 0; k < regionDefs.count(); k++ )
+		createRegion( target , regionDefs.get( k ) );
+}
+
+void MindArea::createRegion( MindTarget *target , MindRegionDef *regionDef ) {
+	MindService *ms = MindService::getService();
+	MindRegionTypeDef *typeDef = regionDef -> getType();
+
+	String type = typeDef -> getName();
+
+	// create region depending from type
+	MindRegion *region = NULL;
+	MindRegionInfo info;
+	info.setId( regionDef -> getName() );
+	info.setType( regionDef -> getType() );
+	region = ms -> createRegion( type , this , &info );
+
+	if( region == NULL )
+		return;
+
+	// add to collections
+	regionSet -> addSetItem( region );
 }
 
 void MindArea::wakeupArea( MindActiveMemory *activeMemory ) {
@@ -56,24 +69,10 @@ void MindArea::exit() {
 }
 
 void MindArea::destroy() {
-	if( regionSet != NULL ) {
+	if( regionSet != NULL )
 		regionSet -> destroyRegionSet();
-		delete regionSet;
-		regionSet = NULL;
-	}
-	if( regionLinkSet != NULL ) {
+	if( regionLinkSet != NULL )
 		regionLinkSet -> destroyRegionLinkSet();
-		delete regionLinkSet;
-		regionLinkSet = NULL;
-	}
-	if( areaMasterLinkSet != NULL ) {
-		delete areaMasterLinkSet;
-		areaMasterLinkSet = NULL;
-	}
-	if( areaSlaveLinkSet != NULL ) {
-		delete areaSlaveLinkSet;
-		areaSlaveLinkSet = NULL;
-	}
 }
 
 String MindArea::getId() {
@@ -84,17 +83,9 @@ MindRegionSet *MindArea::getRegionSet() {
 	return( regionSet );
 }
 
-void MindArea::addRegion( MindRegion *region ) {
-	regionSet -> addSetItem( region );
-}
-
 MindRegion *MindArea::getRegion( String group , String id ) {
 	String regionId = group + "." + id;
 	return( regionSet -> getSetItemById( regionId ) );
-}
-
-void MindArea::sendMessage( MindMessage *msg ) {
-	iopub -> publish( iosession , msg );
 }
 
 void MindArea::addMasterLink( MindAreaLink *link ) {

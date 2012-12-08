@@ -4,71 +4,7 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-class CortexSpatialPooler;
-class CortexTemporalPooler;
-
-class CortexRegion : public MindRegion {
-public:
-	CortexRegion( MindArea *area );
-	virtual const char *getClass() { return( "CortexRegion" ); };
-
-public:
-	// MindRegion lifecycle
-	virtual void createRegion();
-	virtual void exitRegion();
-	virtual void destroyRegion();
-
-	// NeuroLink support
-	virtual String getRegionType();
-	virtual void getSourceSizes( String entity , int *sizeX , int *sizeY );
-
-public:
-	void createCortexRegion( CortexRegionInfo *info , String p_id );
-
-private:
-	// neurolink handlers
-	void handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *data );
-	// void handleFeedBackNeuroLinkMessage( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *data );
-	// void handleAttentionNeuroLinkMessage( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *data );
-
-private:
-// own data
-	NeuroLinkSource sourceFeedBack;
-	NeuroLinkTarget targetFeedForward;
-
-	// NeuroPool layerTemporalFeedback;	// layer 2
-	// NeuroPool layerSpatial;				// layer 3
-	// NeuroPool layerTemporal;			// layer 4
-	// NeuroPool layerAttention;			// layer 5
-	// NeuroPool layerSpatialFeedback;		// layer 6
-
-	NeuroPool inputPool;
-	NeuroPool feedbackPool;
-	CortexSpatialPooler *spatialPooler;
-	CortexTemporalPooler *temporalPooler;
-
-// utilities
-	int sizeX;
-	int sizeY;
-	bool useSpatialPooler;
-	bool useTemporalPooler;
-	int temporalDepth;
-	int spatialPatternExpected;
-};
-
-/*#########################################################################*/
-/*#########################################################################*/
-
-MindRegion *MindService::createCortexRegion( MindArea *area , String id , CortexRegionInfo *info ) { 
-	CortexRegion *region = new CortexRegion( area ); 
-	region -> createCortexRegion( info , id );
-	return( region );
-}
-
-/*#########################################################################*/
-/*#########################################################################*/
-
-CortexRegion::CortexRegion( MindArea *p_area )
+NeocortexRegion::NeocortexRegion( MindArea *p_area )
 :	MindRegion( p_area ) {
 	attachLogger();
 
@@ -83,11 +19,13 @@ CortexRegion::CortexRegion( MindArea *p_area )
 	temporalPooler = new CortexTemporalPooler();
 }
 
-String CortexRegion::getRegionType() {
-	return( "CortexRegion" );
+String NeocortexRegion::getRegionType() {
+	return( "NeocortexRegion" );
 }
 
-void CortexRegion::createCortexRegion( CortexRegionInfo *info , String p_id ) {
+void NeocortexRegion::createRegion( MindRegionInfo *info ) {
+	MindRegion::createRegion( info );
+
 	const int SPACIAL_MATCH_PATTERN_TOLERANCE = 10;
 	const int SPACIAL_MATCH_NEURONSTATE_TOLERANCE = 30;
 	const int SPATIAL_PROTECTED_PATTERN_USAGE = 100;
@@ -120,21 +58,18 @@ void CortexRegion::createCortexRegion( CortexRegionInfo *info , String p_id ) {
 	temporalPooler -> setPredictionMatchTolerance( TEMPORAL_PREDICTION_MATCH_TOLERANCE );
 
 	// set identity
-	MindRegion::create( p_id );
-	inputPool.setId( p_id + ".ff" );
-	feedbackPool.setId( p_id + ".fb" );
-}
+	// MindRegion::create( p_id );
+	// inputPool.setId( p_id + ".ff" );
+	// feedbackPool.setId( p_id + ".fb" );
 
-void CortexRegion::getSourceSizes( String entity , int *p_sizeX , int *p_sizeY ) {
-	*p_sizeX = sizeX;
-	*p_sizeY = sizeY;
-}
-
-void CortexRegion::createRegion() {
-	targetFeedForward.create( this , "cortex.ff-input" );
-	targetFeedForward.setHandler( ( MindRegion::NeuroLinkTargetHandler )&CortexRegion::handleFeedForwardNeuroLinkMessage );
-	sourceFeedBack.create( this , "cortex.fb-output" );
+	sourceFeedForward.create( this , "neocortex.ffout" );
+	sourceFeedBack.setSourcePool( &inputPool );
+	sourceFeedBack.create( this , "neocortex.fbout" );
 	sourceFeedBack.setSourcePool( &feedbackPool );
+	targetFeedForward.create( this , "neocortex.ffin" );
+	targetFeedForward.setHandler( ( MindRegion::NeuroLinkTargetHandler )&NeocortexRegion::handleFeedForwardNeuroLinkMessage );
+	targetFeedBack.create( this , "neocortex.fbin" );
+	targetFeedBack.setHandler( ( MindRegion::NeuroLinkTargetHandler )&NeocortexRegion::handleFeedBackNeuroLinkMessage );
 
 	// sourceFeedForward = new NeuroLinkSource( this );
 	// sourceAttention = new NeuroLinkSource( this );
@@ -144,16 +79,21 @@ void CortexRegion::createRegion() {
 	// sourceFeedForward -> setSourceSignal( &vectorFeedForwardOutput );
 	// sourceFeedBack -> setSourceSignal( &vectorFeedBackOutput );
 	// sourceAttention -> setSourceSignal( &vectorAttentionOutput );
-	// targetFeedBack -> setHandler( ( MindRegion::NeuroLinkTargetHandler )&CortexRegion::handleFeedBackNeuroLinkMessage );
-	// targetAttention -> setHandler( ( MindRegion::NeuroLinkTargetHandler )&CortexRegion::handleAttentionNeuroLinkMessage );
+	// targetFeedBack -> setHandler( ( MindRegion::NeuroLinkTargetHandler )&NeocortexRegion::handleFeedBackNeuroLinkMessage );
+	// targetAttention -> setHandler( ( MindRegion::NeuroLinkTargetHandler )&NeocortexRegion::handleAttentionNeuroLinkMessage );
 
-	logger.logDebug( String( "createRegion: created cortex region: sizeX=" ) + sizeX + ", sizeY=" + sizeY );
+	logger.logDebug( String( "createRegion: created neocortex region: sizeX=" ) + sizeX + ", sizeY=" + sizeY );
 }
 
-void CortexRegion::exitRegion() {
+void NeocortexRegion::getSourceSizes( String entity , int *p_sizeX , int *p_sizeY ) {
+	*p_sizeX = sizeX;
+	*p_sizeY = sizeY;
 }
 
-void CortexRegion::destroyRegion() {
+void NeocortexRegion::exitRegion() {
+}
+
+void NeocortexRegion::destroyRegion() {
 	delete spatialPooler;
 	spatialPooler = NULL;
 
@@ -161,12 +101,15 @@ void CortexRegion::destroyRegion() {
 	temporalPooler = NULL;
 }
 
-void CortexRegion::handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *inputSignal ) {
+NeuroSignalSet *NeocortexRegion::handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *inputSignal ) {
 	// mock algorithm:
 	//	1. project neurolink
 	NeuroSignal *forwardSignal = link -> apply( inputSignal , &inputPool );
 	if( forwardSignal == NULL )
-		return;
+		return( NULL );
+
+	NeuroSignalSet *signalSet = new NeuroSignalSet;
+	signalSet -> addSetItem( sourceFeedForward.getEntity() , forwardSignal );
 
 	//	2. execute spacial pooler
 	//		- max number of patterns, spatial pooler slots: MAX_SPACIAL_PATTERNS
@@ -181,9 +124,6 @@ void CortexRegion::handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroLin
 
 	StatService *ss = StatService::getService();
 	ss -> addMetricValue( "cortex.spatialmatch.rate" , matchProbability );
-
-	// ignore excited signal for now
-	delete forwardSignal;
 
 	//	3. execute temporal pooler
 	//		- max number of patterns, spatial pooler slots: MAX_TEMPORAL_PATTERNS
@@ -201,7 +141,7 @@ void CortexRegion::handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroLin
 			spatialPooler -> logItems();
 			temporalPooler -> logItems();
 		}
-		return;
+		return( signalSet );
 	}
 
 	int spatialPatternPredicted = -1;
@@ -220,7 +160,7 @@ void CortexRegion::handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroLin
 			spatialPooler -> logItems();
 			temporalPooler -> logItems();
 		}
-		return;
+		return( signalSet );
 	}
 
 	if( logger.isLogAll() ) {
@@ -241,14 +181,15 @@ void CortexRegion::handleFeedForwardNeuroLinkMessage( NeuroLink *link , NeuroLin
 	feedbackSignal -> setId( inputSignal -> getId() );
 	feedbackSignal -> setTs( Timer::getCurrentTimeMillis() );
 
-	sourceFeedBack.sendMessage( feedbackSignal );
+	signalSet -> addSetItem( sourceFeedBack.getEntity() , feedbackSignal );
+	return( signalSet );
 }
 
-// void CortexRegion::handleFeedBackNeuroLinkMessage( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *data ) {
-// 	sourceFeedBack -> sendMessage();
-// }
+NeuroSignalSet *NeocortexRegion::handleFeedBackNeuroLinkMessage( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *data ) {
+	return( NULL );
+}
 
-// void CortexRegion::handleAttentionNeuroLinkMessage( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *data ) {
+// void NeocortexRegion::handleAttentionNeuroLinkMessage( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *data ) {
 // 	sourceAttention -> sendMessage();
 // }
 
