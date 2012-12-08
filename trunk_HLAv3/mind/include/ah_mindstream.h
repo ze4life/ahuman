@@ -12,6 +12,7 @@ class MindRegionLink;
 class MindRegionLinkSet;
 class MindActiveMemory;
 class MindMessage;
+class NeuroLinkInfo;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -43,18 +44,16 @@ public:
 	virtual void onBinaryMessage( BinaryMessage *msg );
 
 public:
-	void createRegionLinks();
+	void addRegionLink( MindRegionLink *link );
 	void open( MessageSession *session , String channel );
 
 	MindArea *getMasterArea() { return( masterArea ); };
 	MindArea *getSlaveArea() { return( slaveArea ); };
 
 private:
-	void addRegionLink( MindRegionLink *link );
-
-private:
 // utility
 	MessageSession *session;
+	MessagePublisher *iopub;
 	MessageSubscription *listenSubscription;
 
 // own data
@@ -97,11 +96,9 @@ public:
 	void exitRegionLink();
 	void destroyRegionLink();
 
-private:
-	void createNeuroLinks( MindCircuitConnectionDef *linkDef );
-	NeuroLink *createNeuroLink( MindConnectionLinkTypeDef *linkDef );
+	void addNeuroLink( NeuroLink *link );
 
-public:
+private:
 // references
 	MindAreaLink *areaLink;
 	MindCircuitConnectionDef *connectionDef;

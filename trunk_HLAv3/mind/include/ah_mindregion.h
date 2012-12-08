@@ -8,9 +8,7 @@
 
 class MindRegion;
 class MindRegionSet;
-class CortexRegionInfo;
-class NucleiRegionInfo;
-class NerveRegionInfo;
+class MindRegionInfo;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -22,13 +20,14 @@ class NeuroLink;
 class NeuroLinkSet;
 class MindLocation;
 class NeuroSignal;
+class NeuroSignalSet;
 class NeuroLinkSource;
 class NeuroLinkTarget;
 
 class MindRegion : public Object {
 public:
 	typedef NeuroSignal *(MindRegion::*NeuroLinkSourceHandler)( NeuroLink *link , NeuroLinkSource *point );
-	typedef void (MindRegion::*NeuroLinkTargetHandler)( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *srcData );
+	typedef NeuroSignalSet *(MindRegion::*NeuroLinkTargetHandler)( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *srcData );
 
 public:
 	MindRegion( MindArea *area );
@@ -37,7 +36,7 @@ public:
 
 	// MindRegion lifecycle
 public:
-	virtual void createRegion() = 0;
+	virtual void createRegion( MindRegionInfo *info );
 	virtual void exitRegion() = 0;
 	virtual void destroyRegion() = 0;
 
@@ -45,7 +44,6 @@ public:
 	virtual void getSourceSizes( String entity , int *sizeX , int *sizeY ) = 0;
 
 public:
-	void create( String id );
 	void exit();
 	void destroy();
 	void sendMessage( MindMessage *msg );
@@ -93,6 +91,7 @@ public:
 
 	MindRegion *getSetItemById( String regionId );
 	void addSetItem( MindRegion *region );
+	void addRegionSet( MindRegionSet *regions );
 
 	void exitRegionSet();
 	void destroyRegionSet();
@@ -103,67 +102,6 @@ public:
 
 // references
 	MapStringToClass<MindRegion> map;
-};
-
-/*#########################################################################*/
-/*#########################################################################*/
-
-class CortexRegionInfo : public Object {
-public:
-	CortexRegionInfo();
-	virtual ~CortexRegionInfo();
-	virtual const char *getClass() { return( "CortexRegionInfo" ); };
-
-public:
-	void setSizeInfo( int nx , int ny );
-	void getSizeInfo( int *nx , int *ny );
-	void setTemporalDepth( int nDepth );
-	void setUsingSpatialPooler( bool useSpatialPooler );
-	void setUsingTemporalPooler( bool useTemporalPooler );
-	void setSpatialPoolerSize( int spatialPoolerSize );
-	void setTemporalPoolerSize( int temporalPoolerSize );
-	int getSpatialPoolerSize();
-	int getTemporalPoolerSize();
-
-	bool isUsingSpatialPooler();
-	bool isUsingTemporalPooler();
-	int getTemporalDepth();
-
-private:
-	int sizeX;
-	int sizeY;
-	bool useSpatialPooler;
-	bool useTemporalPooler;
-	int temporalDepth;
-	int spatialPoolerSize;
-	int temporalPoolerSize;
-};
-
-/*#########################################################################*/
-/*#########################################################################*/
-
-class NucleiRegionInfo : public Object {
-public:
-	NucleiRegionInfo();
-	virtual ~NucleiRegionInfo();
-	virtual const char *getClass() { return( "NucleiRegionInfo" ); };
-
-public:
-	void setTotalSize( int nNeurons );
-	int getTotalSize();
-
-private:
-	int totalNeurons;
-};
-
-/*#########################################################################*/
-/*#########################################################################*/
-
-class NerveRegionInfo : public Object {
-public:
-	NerveRegionInfo();
-	virtual ~NerveRegionInfo();
-	virtual const char *getClass() { return( "NerveRegionInfo" ); };
 };
 
 /*#########################################################################*/

@@ -82,7 +82,8 @@ public:
 	void createFromXml( Xml xml );
 	void resolveReferences( MindMap *map );
 
-	String getName();
+	String getName() { return( name ); };
+
 	MindRegionConnectorDef *getConnector( String id );
 
 private:
@@ -113,14 +114,16 @@ public:
 	void createFromXml( Xml xml );
 	void resolveReferences( MindMap *map );
 
-	String getName();
-	String getTypeName();
-	MindRegionTypeDef *getType();
+	String getName() { return( name ); };
+	String getTypeName() { return( typeName ); };
+	MindRegionTypeDef *getType() { return( type ); };
+	int getSize() { return( size ); };
 
 private:
 // utilities
 	String name;
 	String typeName;
+	int size;
 
 // references
 	MindAreaDef *area;
@@ -140,7 +143,7 @@ public:
 public:
 	void createFromXml( Xml xml );
 
-	String getId();
+	String getId() { return( id ); };
 
 private:
 // utilities
@@ -161,8 +164,9 @@ public:
 	void createFromXml( Xml xml );
 	void resolveReferences( MindMap *map );
 
-	String getName();
-	bool runEnabled();
+	String getName() { return( name ); };
+	bool runEnabled() { return( enabled ); };
+	ClassList<MindCircuitConnectionDef>& getConnections() { return( connections ); };
 
 // data
 public:
@@ -189,16 +193,13 @@ public:
 	void resolveReferences( MindMap *map );
 
 	String getAreaId() { return( areaId ); };
-	bool runEnabled();
-
-	ClassList<MindRegionDef>& getRegions();
-	String getChannelId();
+	bool runEnabled() { return( enabled ); };
+	ClassList<MindRegionDef>& getRegions() { return( regions ); };
 
 private:
 // utility
 	String areaId;
 	bool enabled;
-	String channelId;
 
 // own data
 	ClassList<MindRegionDef> regions;
@@ -222,7 +223,7 @@ public:
 	void resolveReferences( MindMap *map );
 
 	String getName() { return( name ); };
-	ClassList<MindConnectionLinkTypeDef>& getLinks();
+	ClassList<MindConnectionLinkTypeDef>& getLinks() { return( links ); };
 
 private:
 // utilities
@@ -249,18 +250,17 @@ public:
 	void createFromXml( Xml xml );
 
 	String getName() { return( name ); };
+	String getType() { return( type ); };
 	String getNeurotransmitter() { return( neurotransmitter ); };
 	String getSrcConnector() { return( srcConnector ); };
 	String getDstConnector() { return( dstConnector ); };
 
-	bool isExcitatory();
-	bool isInhibitory();
-	bool isModulatory();
 	bool isBackward();
 
 private:
 // utilities
 	String name;
+	String type;
 	String neurotransmitter;
 	String srcConnector;
 	String dstConnector;

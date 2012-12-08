@@ -7,12 +7,14 @@
 #include "ah_mindbase.h"
 
 class NeuroSignal;
+class NeuroSignalSet;
 class NeuroPool;
 class NeuroPoolSet;
 class NeuroLink;
 class NeuroLinkSet;
 class NeuroLinkSource;
 class NeuroLinkTarget;
+class NeuroLinkInfo;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -85,6 +87,21 @@ private:
 /*#########################################################################*/
 /*#########################################################################*/
 
+class NeuroSignalSet : public Object {
+public:
+	virtual const char *getClass() { return( "NeuroSignalSet" ); };
+	void destroy();
+
+	void addSetItem( String connector , NeuroSignal *signal );
+
+private:
+// own data
+	MapStringToClass<NeuroSignal> signalMap;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
 class NeuroPool : public Object {
 public:
 	NeuroPool();
@@ -132,8 +149,13 @@ private:
 
 class NeuroLink : public Object {
 public:
-	NeuroLink( MindRegionLink *regionLink );
+	NeuroLink( NeuroLinkSource *src , NeuroLinkTarget *dst );
 	const char *getClass() { return( "NeuroLink" ); };
+
+	virtual void createNeuroLink( NeuroLinkInfo *info ) = 0;
+	virtual NeuroSignal *apply( NeuroSignal *srcData , NeuroPool *dstPool ) = 0;
+
+public:
 
 	// parameters
 	String getId();
@@ -145,11 +167,10 @@ public:
 	int getSizeY();
 
 	void create( MindConnectionLinkTypeDef *linkType , NeuroLinkSource *p_source , NeuroLinkTarget *p_target );
-	virtual NeuroSignal *apply( NeuroSignal *srcData , NeuroPool *dstPool ) = 0;
 
 	void createInternal( MindRegion *region );
 
-public:
+protected:
 // utilities
 	String id;
 	String transmitter;
@@ -189,9 +210,11 @@ public:
 public:
 	void create( MindRegion *region , String entity );
 	void setHandler( MindRegion::NeuroLinkSourceHandler pfn );
+
 	MindRegion *getRegion() { return( region ); };
-	int getSizeX();
-	int getSizeY();
+	int getSizeX() { return( sizeX ); };
+	int getSizeY() { return( sizeY ); };
+	String getEntity() { return( entity ); };
 
 	void addNeuroLink( NeuroLink *link );
 	void setSourcePool( NeuroPool *pool );
@@ -230,6 +253,21 @@ public:
 	MindRegion *region;
 	String entity;
 	MindRegion::NeuroLinkTargetHandler pfn;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class NeuroLinkInfo : public Object {
+public:
+	NeuroLinkInfo();
+	virtual const char *getClass() { return( "NeuroLinkInfo" ); };
+
+public:
+	void setNeuroTransmitter( String nt );
+
+public:
+	String nt;
 };
 
 /*#########################################################################*/
