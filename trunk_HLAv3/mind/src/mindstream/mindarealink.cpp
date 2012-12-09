@@ -33,7 +33,7 @@ void MindAreaLink::open( MessageSession *p_session , String channel ) {
 	MessagingService *msgs = MessagingService::getService();
 
 	// open master channel
-	String subid = masterArea -> getId() + "-" + slaveArea -> getId();
+	String subid = "SUB." + masterArea -> getId() + "." + slaveArea -> getId();
 	listenSubscription = msgs -> subscribe( p_session , channel , subid , this );
 }
 

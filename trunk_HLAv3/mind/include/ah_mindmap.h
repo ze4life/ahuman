@@ -74,6 +74,7 @@ private:
 
 class MindRegionTypeDef : public Object {
 public:
+	MindRegionTypeDef();
 	virtual ~MindRegionTypeDef();
 	virtual const char *getClass() { return( "MindRegionTypeDef" ); };
 
@@ -83,6 +84,10 @@ public:
 	void resolveReferences( MindMap *map );
 
 	String getName() { return( name ); };
+	String getImplementation() { return( implementation ); };
+	MindRegionTypeDef *getOriginalTypeDef() { return( originalTypeDef ); };
+
+	ClassList<MindRegionConnectorDef>& getConnectors() { return( connectorSet ); };
 
 	MindRegionConnectorDef *getConnector( String id );
 
@@ -92,12 +97,14 @@ private:
 private:
 // utilities
 	String name;
+	String implementation;
 
 // own data
 	ClassList<MindRegionConnectorDef> connectorSet;
 
 // references
 	MapStringToClass<MindRegionConnectorDef> connectorMap;
+	MindRegionTypeDef *originalTypeDef;
 };
 
 /*#########################################################################*/
@@ -144,10 +151,12 @@ public:
 	void createFromXml( Xml xml );
 
 	String getId() { return( id ); };
+	String getType() { return( type ); };
 
 private:
 // utilities
 	String id;
+	String type;
 };
 
 /*#########################################################################*/
@@ -250,16 +259,17 @@ public:
 	void createFromXml( Xml xml );
 
 	String getName() { return( name ); };
+	String getImplementation() { return( implementation ); };
 	String getType() { return( type ); };
 	String getNeurotransmitter() { return( neurotransmitter ); };
 	String getSrcConnector() { return( srcConnector ); };
 	String getDstConnector() { return( dstConnector ); };
-
-	bool isBackward();
+	bool isBackward() { return( back ); };
 
 private:
 // utilities
 	String name;
+	String implementation;
 	String type;
 	String neurotransmitter;
 	String srcConnector;

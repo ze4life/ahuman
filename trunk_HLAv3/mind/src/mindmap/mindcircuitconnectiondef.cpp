@@ -20,4 +20,5 @@ void MindCircuitConnectionDef::createFromXml( Xml xml ) {
 
 void MindCircuitConnectionDef::resolveReferences( MindMap *map ) {
 	type = map -> getConnectionTypeDefByName( typeName );
+	ASSERTMSG( type != NULL , "connection type=" + typeName + " not found in circuit connection src=" + srcRegion + ", dst=" + dstRegion );
 }

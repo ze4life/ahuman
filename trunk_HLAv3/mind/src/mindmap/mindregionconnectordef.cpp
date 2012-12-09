@@ -10,4 +10,5 @@ MindRegionConnectorDef::MindRegionConnectorDef() {
 void MindRegionConnectorDef::createFromXml( Xml xml ) {
 	// attributes
 	id = xml.getAttribute( "id" );
+	type = xml.getAttribute( "type" );
 }

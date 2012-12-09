@@ -26,35 +26,50 @@
 
 		<region-type-set>
 
-			<region-type name="sensor">
-				<connector id="sensor.data"/>
-				<connector id="sensor.control"/>
-				<connector id="sensor.feedback"/>
+			<region-type name="sensor" implementation="mock">
+				<connector id="sensor.data" type="source"/>
+				<connector id="sensor.control" type="target"/>
+				<connector id="sensor.feedback" type="source"/>
 			</region-type>
 
-			<region-type name="nucleus">
-				<connector id="nucleus.input"/>
-				<connector id="nucleus.output"/>
-				<connector id="nucleus.interneurons"/>
+			<region-type name="nucleus" implementation="mock">
+				<connector id="nucleus.input" type="target"/>
+				<connector id="nucleus.output" type="source"/>
+				<connector id="nucleus.interneurons" type="target"/>
 			</region-type>
 
-			<region-type name="neocortex">
-				<connector id="neocortex.ffin"/>
-				<connector id="neocortex.ffout"/>
-				<connector id="neocortex.fbin"/>
-				<connector id="neocortex.fbout"/>
+			<region-type name="neocortex" implementation="mock">
+				<connector id="neocortex.ffin" type="source"/>
+				<connector id="neocortex.ffout" type="target"/>
+				<connector id="neocortex.fbin" type="source"/>
+				<connector id="neocortex.fbout" type="target"/>
 			</region-type>
 
-			<region-type name="allocortex">
-				<connector id="allocortex.ffin"/>
-				<connector id="allocortex.ffout"/>
-				<connector id="allocortex.fbin"/>
-				<connector id="allocortex.fbout"/>
+			<region-type name="allocortex" implementation="mock">
 			</region-type>
 
 		</region-type-set>
 
 		<component-set>
+
+			<area name="VBA" enabled="true">
+				<region name="VBA.FD.RT" type="nucleus"/>
+				<region name="VBA.FD.TH.LGN" type="nucleus"/>
+				<region name="VBA.FD.TH.IPV" type="nucleus"/>
+				<region name="VBA.FD.TH.LPV" type="nucleus"/>
+				<region name="VBA.FD.TH.MPV" type="nucleus"/>
+				<region name="VBA.FD.TH.OPV" type="nucleus"/>
+				<region name="VBA.MM.SC" type="nucleus"/>
+				<region name="VBA.MM.PT.NOT" type="nucleus"/>
+				<region name="VBA.MM.PT.PON" type="nucleus"/>
+				<region name="VBA.MM.PT.PR" type="nucleus"/>
+				<region name="VBA.MM.PT.SL" type="nucleus"/>
+				<region name="VBA.MM.TRH" type="nucleus"/>
+				<region name="VBA.MM.OCN" type="nucleus"/>
+				<region name="VBA.MM.DK" type="nucleus"/>
+				<region name="VBA.HP.ABD" type="nucleus"/>
+				<region name="VBA.HM.NPH" type="nucleus"/>
+			</area>
 
 			<area name="VCA" enabled="true">
 				<region name="VCA.FT.V1" type="neocortex"/>
@@ -135,22 +150,49 @@
 		<!-- ================= typical links =============== -->
 		<connection-type-set>
 
-			<connection-type name="cortex-direct">
-				<link-type name="cortex-forward" type="excitatory" nt="GLU" src="neocortex.ffout" dst="neocortex.ffin"/>
-				<link-type name="cortex-feedback" type="excitatory" nt="GLU" src="neocortex.fbout" dst="neocortex.fbin" back="true"/>
+			<connection-type name="nucleus-nucleus">
+				<link-type name="positive" implementation="mock" type="excitatory" nt="GLU" src="nucleus.output" dst="nucleus.input"/>
+			</connection-type>
+
+			<connection-type name="nucleus-neocortex">
+				<link-type name="primary-input" implementation="mock" type="excitatory" nt="GLU" src="nucleus.output" dst="neocortex.ffin"/>
+			</connection-type>
+
+			<connection-type name="neocortex-nucleus">
+				<link-type name="primary-input" implementation="mock" type="excitatory" nt="GLU" src="neocortex.ffout" dst="nucleus.input"/>
+			</connection-type>
+
+			<connection-type name="neocortex-neocortex">
+				<link-type name="cortex-forward" implementation="mock" type="excitatory" nt="GLU" src="neocortex.ffout" dst="neocortex.ffin"/>
+				<link-type name="cortex-feedback" implementation="mock" type="excitatory" nt="GLU" src="neocortex.fbout" dst="neocortex.fbin" back="true"/>
 			</connection-type>
 
 		</connection-type-set>
 
 		<circuit-set>
 
+			<!-- ================= eye sensor -> subcortical -> cortex -> subcortical -> eye sensor =============== -->
+			<circuit name="vision" enabled="true">
+				<connection type="nucleus-nucleus" src="VBA.FD.RT" dst="VBA.FD.TH.LGN"/>
+				<connection type="nucleus-nucleus" src="VBA.FD.RT" dst="VBA.MM.SC"/>
+				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="VBA.FD.TH.LGN"/>
+				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="VBA.FD.TH.IPV"/>
+				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="VBA.FD.TH.LPV"/>
+				<connection type="nucleus-neocortex" src="VBA.FD.TH.LGN" dst="VCA.FT.V1"/>
+				<connection type="nucleus-neocortex" src="VBA.FD.TH.IPV" dst="PCA.FT.IPL"/>
+				<connection type="nucleus-neocortex" src="VBA.FD.TH.LPV" dst="VCA.FT.V2"/>
+				<connection type="neocortex-nucleus" src="PCA.FT.IPL" dst="VBA.MM.SC"/>
+				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="VBA.MM.OCN"/>
+			</circuit>
+
+			<!-- ================= intracortical visual "what" stream processing =============== -->
 			<circuit name="visual-objects" enabled="true">
-				<connection type="cortex-direct" src="VCA.FT.V1" dst="VCA.FT.V2"/>
-				<connection type="cortex-direct" src="VCA.FT.V2" dst="VCA.FT.V4"/>
-				<connection type="cortex-direct" src="VCA.FT.V4" dst="VCA.FT.IT.TEO"/>
-				<connection type="cortex-direct" src="VCA.FT.V4" dst="VCA.FT.IT.TE"/>
-				<connection type="cortex-direct" src="VCA.FT.IT.TEO" dst="VCA.FT.IT.TE"/>
-				<connection type="cortex-direct" src="VCA.FT.IT.TE" dst="HCA.FT.PH.ET"/>
+				<connection type="neocortex-neocortex" src="VCA.FT.V1" dst="VCA.FT.V2"/>
+				<connection type="neocortex-neocortex" src="VCA.FT.V2" dst="VCA.FT.V4"/>
+				<connection type="neocortex-neocortex" src="VCA.FT.V4" dst="VCA.FT.IT.TEO"/>
+				<connection type="neocortex-neocortex" src="VCA.FT.V4" dst="VCA.FT.IT.TE"/>
+				<connection type="neocortex-neocortex" src="VCA.FT.IT.TEO" dst="VCA.FT.IT.TE"/>
+				<connection type="neocortex-neocortex" src="VCA.FT.IT.TE" dst="HCA.FT.PH.ET"/>
 			</circuit>
 
 		</circuit-set>

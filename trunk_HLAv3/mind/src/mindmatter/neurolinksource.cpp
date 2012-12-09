@@ -23,6 +23,10 @@ void NeuroLinkSource::create( MindRegion *p_region , String p_entity ) {
 	p_region -> addSourceEntity( p_entity , this );
 }
 
+void NeuroLinkSource::setHandler( MindRegion::NeuroLinkSourceHandler p_pfn ) {
+	pfn = p_pfn;
+}
+
 void NeuroLinkSource::setSourcePool( NeuroPool *p_data ) {
 	sourcePool = p_data;
 }

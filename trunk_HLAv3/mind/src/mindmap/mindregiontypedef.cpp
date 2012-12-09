@@ -4,6 +4,10 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
+MindRegionTypeDef::MindRegionTypeDef() {
+	originalTypeDef = NULL;
+}
+
 MindRegionTypeDef::~MindRegionTypeDef() {
 	connectorSet.destroy();
 }
@@ -14,12 +18,15 @@ void MindRegionTypeDef::createFromXml( Xml xml ) {
 
 	// attributes
 	name = xml.getAttribute( "name" );
+	implementation = xml.getAttribute( "implementation" );
 
 	// childs
 	createConnectorSetFromXml( xml );
 }
 
 void MindRegionTypeDef::resolveReferences( MindMap *map ) {
+	if( implementation.equals( "mock" ) )
+		originalTypeDef = map -> getRegionTypeDefByName( name );
 }
 
 void MindRegionTypeDef::createConnectorSetFromXml( Xml xml ) {

@@ -52,8 +52,8 @@ public:
 	MindRegion *getMindRegion( String regionId );
 	  
 	// create core items
-	MindRegion *createRegion( String type , MindArea *area , MindRegionInfo *info );
-	NeuroLink *createNeuroLink( String type , NeuroLinkSource *src , NeuroLinkTarget *dst , NeuroLinkInfo *info );
+	MindRegion *createRegion( String implementation , String type , MindArea *area , MindRegionInfo *info );
+	NeuroLink *createNeuroLink( String implementation , String type , NeuroLinkSource *src , NeuroLinkTarget *dst , NeuroLinkInfo *info );
 
 // whole mind lifecycle
 public:

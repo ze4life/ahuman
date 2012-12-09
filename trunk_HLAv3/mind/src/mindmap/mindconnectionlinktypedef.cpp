@@ -15,13 +15,10 @@ MindConnectionLinkTypeDef::~MindConnectionLinkTypeDef() {
 void MindConnectionLinkTypeDef::createFromXml( Xml xml ) {
 	// attributes
 	name = xml.getAttribute( "name" );
+	implementation = xml.getAttribute( "implementation" );
 	type = xml.getAttribute( "type" );
 	neurotransmitter = xml.getAttribute( "nt" );
 	srcConnector = xml.getAttribute( "src" );
 	dstConnector = xml.getAttribute( "dst" );
 	back = xml.getBooleanAttribute( "back" , false );
-}
-
-bool MindConnectionLinkTypeDef::isBackward() {
-	return( back );
 }
