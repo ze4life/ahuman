@@ -209,6 +209,38 @@ private:
 /*#########################################################################*/
 /*#########################################################################*/
 
+class MockRegion : public MindRegion {
+public:
+	MockRegion( String typeName , MindArea *area );
+	virtual const char *getClass() { return( "MockRegion" ); };
+
+public:
+	// MindRegion lifecycle
+	virtual void createRegion( MindRegionInfo *info );
+	virtual void exitRegion();
+	virtual void destroyRegion();
+
+	// NeuroLink support
+	virtual String getRegionType();
+	virtual void getSourceSizes( String entity , int *sizeX , int *sizeY );
+
+private:
+	// neurolink handlers
+	NeuroSignalSet *handleApplyNeuroLinkMessage( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *data );
+	NeuroSignal *handleGetNeuroLinkMessage( NeuroLink *link , NeuroLinkSource *point );
+
+private:
+	// utilities
+	String typeName;
+
+	// own data
+	ClassList<NeuroLinkSource> sourceConnectors;
+	ClassList<NeuroLinkTarget> targetConnectors;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
 class NeocortexRegion : public MindRegion {
 public:
 	NeocortexRegion( MindArea *area );
@@ -378,6 +410,24 @@ private:
 	int temporalDepth;
 	int spatialPoolerSize;
 	int temporalPoolerSize;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class MockLink : public NeuroLink {
+public:
+	MockLink( String type , NeuroLinkSource *src , NeuroLinkTarget *dst );
+	virtual const char *getClass() { return( "MockLink" ); };
+
+public:
+	virtual void createNeuroLink( NeuroLinkInfo *info );
+	virtual NeuroSignal *apply( NeuroSignal *srcData , NeuroPool *dstPool );
+
+private:
+// utilities
+	String type;
+	int opid;
 };
 
 /*#########################################################################*/

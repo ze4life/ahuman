@@ -191,6 +191,8 @@ void MindService::establishAreaLinks() {
 }
 
 void MindService::addCircuitLinks( MindCircuitDef *circuitDef ) {
+	logger.logInfo( "addCircuitLinks: create cicuit name=" + circuitDef -> getName() );
+
 	ClassList<MindCircuitConnectionDef>& connections = circuitDef -> getConnections();
 	for( int k = 0; k < connections.count(); k++ )
 		addCircuitConnection( circuitDef , connections.get( k ) );
@@ -250,14 +252,16 @@ NeuroLink *MindService::createNeuroLink( MindConnectionLinkTypeDef *linkDef , Mi
 
 	// create neurolink
 	NeuroLinkInfo info;
-	NeuroLink *neurolink = createNeuroLink( linkDef -> getType() , srcConnector , dstConnector , &info );
+	NeuroLink *neurolink = createNeuroLink( linkDef -> getImplementation() , linkDef -> getType() , srcConnector , dstConnector , &info );
 	if( neurolink == NULL )
 		return( NULL );
 
 	regionNeuroLinkMap.add( key , neurolink );
 	regionLink -> addNeuroLink( neurolink );
 
-	logger.logInfo( "createNeuroLink: neurolink created type=" + linkDef -> getType() + ", srcRegion=" + linkSrcRegion -> getRegionId() + ", dstRegion=" + linkDstRegion -> getRegionId() );
+	logger.logInfo( "createNeuroLink: neurolink created type=" + linkDef -> getType() + 
+		", implementation=" + linkDef -> getImplementation() + ", srcRegion=" + linkSrcRegion -> getRegionId() + 
+		", dstRegion=" + linkDstRegion -> getRegionId() );
 	return( neurolink );
 }
 
@@ -306,7 +310,8 @@ MindAreaLink *MindService::createAreaLink( MindArea *masterArea , MindArea *slav
 	logger.logInfo( "createMindAreaLink: create link masterArea=" + masterArea -> getId() + ", slaveArea=" + slaveArea -> getId() + "..." );
 
 	// start process area link messages
-	link -> open( session , masterArea -> getId() );
+	String channel = "CHANNEL." + masterArea -> getId() + "." + slaveArea -> getId();
+	link -> open( session , channel );
 	return( link );
 }
 
@@ -321,32 +326,42 @@ MindRegion *MindService::getMindRegion( String regionId ) {
 	return( region );
 }
 
-MindRegion *MindService::createRegion( String type , MindArea *area , MindRegionInfo *info ) {
+MindRegion *MindService::createRegion( String implementation , String type , MindArea *area , MindRegionInfo *info ) {
 	MindRegion *region = NULL;
-	if( type.equals( "neocortex" ) )
-		region = new NeocortexRegion( area );
-	else if( type.equals( "allocortex" ) )
-		region = new AllocortexRegion( area );
-	else if( type.equals( "nucleus" ) )
-		region = new NucleiRegion( area );
-	else
-		ASSERTFAILED( "unknown region type=" + type );
+	if( implementation.equals( "original" ) ) {
+		if( type.equals( "neocortex" ) )
+			region = new NeocortexRegion( area );
+		else if( type.equals( "allocortex" ) )
+			region = new AllocortexRegion( area );
+		else if( type.equals( "nucleus" ) )
+			region = new NucleiRegion( area );
+		else
+			ASSERTFAILED( "unknown region type=" + type );
+	}
+	else if( implementation.equals( "mock" ) ) {
+		region = new MockRegion( type , area );
+	}
 
 	region -> createRegion( info );
 
 	return( region );
 }
 
-NeuroLink *MindService::createNeuroLink( String type , NeuroLinkSource *src , NeuroLinkTarget *dst , NeuroLinkInfo *info ) {
+NeuroLink *MindService::createNeuroLink( String implementation , String typeName , NeuroLinkSource *src , NeuroLinkTarget *dst , NeuroLinkInfo *info ) {
 	NeuroLink *link = NULL;
-	if( type.equals( "excitatory" ) )
-		link = new ExcitatoryLink( src , dst );
-	else if( type.equals( "inhibitory" ) )
-		link = new InhibitoryLink( src , dst );
-	else if( type.equals( "modulatory" ) )
-		link = new ModulatoryLink( src , dst );
-	else
-		ASSERTFAILED( "unknown region type=" + type );
+	if( implementation.equals( "original" ) ) {
+		if( typeName.equals( "excitatory" ) )
+			link = new ExcitatoryLink( src , dst );
+		else if( typeName.equals( "inhibitory" ) )
+			link = new InhibitoryLink( src , dst );
+		else if( typeName.equals( "modulatory" ) )
+			link = new ModulatoryLink( src , dst );
+		else
+			ASSERTFAILED( "unknown region type=" + typeName );
+	}
+	else if( implementation.equals( "mock" ) ) {
+		link = new MockLink( typeName , src , dst );
+	}
 
 	link -> createNeuroLink( info );
 

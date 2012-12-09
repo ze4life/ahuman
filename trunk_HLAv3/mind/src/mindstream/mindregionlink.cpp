@@ -28,7 +28,7 @@ void MindRegionLink::createRegionLink( MindRegion *srcRegion , MindRegion *dstRe
 	src = srcRegion;
 	dst = dstRegion;
 
-	logger.logInfo( "createRegionLink: region link created id=" + id + " from region id=" + srcRegion -> getFullRegionId() + " to region id=" + dstRegion -> getFullRegionId()  );
+	logger.logDebug( "createRegionLink: region link created id=" + id + " from region id=" + srcRegion -> getFullRegionId() + " to region id=" + dstRegion -> getFullRegionId()  );
 }
 
 void MindRegionLink::addNeuroLink( NeuroLink *link ) {
