@@ -21,6 +21,7 @@ MindRegion::~MindRegion() {
 
 void MindRegion::createRegion( MindRegionInfo *info ) {
 	id = info -> getId();
+	Object::setInstance( id );
 	regionType = info -> getType();
 }
 

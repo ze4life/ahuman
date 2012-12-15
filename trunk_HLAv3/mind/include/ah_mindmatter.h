@@ -56,7 +56,11 @@ public:
 
 	void setTs( RFC_INT64 ts );
 	void setId( String id );
-	String getId();
+	void setSource( NeuroLinkSource *source );
+
+	String getId() { return( id ); };
+	NeuroLinkSource *getSource() { return( source ); };
+
 	void getSizeInfo( int *nx , int *ny );
 	int getMaxSize();
 	int getDataSize();
@@ -82,6 +86,9 @@ private:
 
 	// sorted list of activated 1D-indexes in source data
 	FlatList<int> data;
+
+// references
+	NeuroLinkSource *source;
 };
 
 /*#########################################################################*/
@@ -90,13 +97,25 @@ private:
 class NeuroSignalSet : public Object {
 public:
 	virtual const char *getClass() { return( "NeuroSignalSet" ); };
+
+	NeuroSignalSet();
+	~NeuroSignalSet();
+
+public:
+	void addSetItem( NeuroSignal *signal );
+	void addSetItem( NeuroLinkSource *source , NeuroSignal *signal );
+	void addSetItem( MindRegion *region , String sourceConnector , NeuroSignal *signal );
+	void addSet( NeuroSignalSet *signalSet );
+	void moveTo( NeuroSignalSet *signalSet );
+	void clear();
 	void destroy();
 
-	void addSetItem( String connector , NeuroSignal *signal );
+	bool isEmpty();
+	ClassList<NeuroSignal>& getSignals() { return( signals ); };
 
 private:
 // own data
-	MapStringToClass<NeuroSignal> signalMap;
+	ClassList<NeuroSignal> signals;
 };
 
 /*#########################################################################*/
@@ -158,17 +177,15 @@ public:
 public:
 
 	// parameters
-	String getId();
-	NeuroLinkSource *getSource();
-	NeuroLinkTarget *getTarget();
+	String getId() { return( id ); };
+	String getTransmitter() { return( transmitter ); };
+	NeuroLinkSource *getSource() { return( source ); };
+	NeuroLinkTarget *getTarget() { return( target ); };
 	MindRegionLink *getRegionLink() { return( regionLink ); };
+	int getSizeX() { return( sizeX ); };
+	int getSizeY() { return( sizeY ); };
+
 	int getSize();
-	int getSizeX();
-	int getSizeY();
-
-	void create( MindConnectionLinkTypeDef *linkType , NeuroLinkSource *p_source , NeuroLinkTarget *p_target );
-
-	void createInternal( MindRegion *region );
 
 protected:
 // utilities
@@ -215,6 +232,7 @@ public:
 	int getSizeX() { return( sizeX ); };
 	int getSizeY() { return( sizeY ); };
 	String getEntity() { return( entity ); };
+	ClassList<NeuroLink>& getLinks() { return( links ); };
 
 	void addNeuroLink( NeuroLink *link );
 	void setSourcePool( NeuroPool *pool );
@@ -245,11 +263,13 @@ public:
 public:
 	void create( MindRegion *region , String entity );
 	void setHandler( MindRegion::NeuroLinkTargetHandler pfn );
+
+	String getEntity() { return( entity ); };
 	MindRegion *getRegion() { return( region ); };
 
-	void execute( NeuroLink *link , NeuroSignal *sourceData );
+	NeuroSignalSet *execute( NeuroLink *link , NeuroSignal *sourceData );
 
-public:
+private:
 	MindRegion *region;
 	String entity;
 	MindRegion::NeuroLinkTargetHandler pfn;
@@ -265,9 +285,17 @@ public:
 
 public:
 	void setNeuroTransmitter( String nt );
+	void setLinkDef( MindConnectionLinkTypeDef *linkDef );
+	void setRegionLink( MindRegionLink *regionLink );
 
-public:
+	String getNeuroTransmitter() { return( nt ); };
+	MindConnectionLinkTypeDef *getLinkDef() { return( linkDef ); };
+	MindRegionLink *getRegionLink() { return( regionLink ); };
+
+private:
 	String nt;
+	MindConnectionLinkTypeDef *linkDef;
+	MindRegionLink *regionLink;
 };
 
 /*#########################################################################*/

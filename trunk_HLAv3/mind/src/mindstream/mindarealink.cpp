@@ -11,7 +11,9 @@ MindAreaLink::MindAreaLink() {
 	slaveArea = NULL;
 
 	session = NULL;
-	listenSubscription = NULL;
+	iopub = NULL;
+	iosub = NULL;
+
 	links = new MindRegionLinkSet();
 }
 
@@ -22,6 +24,7 @@ MindAreaLink::~MindAreaLink() {
 void MindAreaLink::create( MindArea *p_masterArea , MindArea *p_slaveArea ) {
 	masterArea = p_masterArea;
 	slaveArea = p_slaveArea;
+	Object::setInstance( masterArea -> getId() + "-" + slaveArea -> getId() );
 }
 
 void MindAreaLink::open( MessageSession *p_session , String channel ) {
@@ -32,12 +35,20 @@ void MindAreaLink::open( MessageSession *p_session , String channel ) {
 
 	MessagingService *msgs = MessagingService::getService();
 
+	// open source publisher
+	String pubid = String( "PUB-" ) + getInstance();
+	iopub = msgs -> createPublisher( session , channel , pubid , "xml" );
+
 	// open master channel
-	String subid = "SUB." + masterArea -> getId() + "." + slaveArea -> getId();
-	listenSubscription = msgs -> subscribe( p_session , channel , subid , this );
+	String subid = String( "SUB-" ) + getInstance();
+	iosub = msgs -> subscribe( p_session , channel , subid , this );
 }
 
-void MindAreaLink::onBinaryMessage( BinaryMessage *msg ) {
+void MindAreaLink::sendMessage( MindMessage *msg ) {
+	iopub -> publish( session , msg );
+}
+
+void MindAreaLink::onMessage( Message *msg ) {
 	MindMessage *mm = ( MindMessage * )msg;
 
 	// ignore foreign links

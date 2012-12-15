@@ -5,7 +5,7 @@
 
 class AHumanTarget : public MindTarget {
 public:
-	AHumanTarget();
+	AHumanTarget( String component , String connector );
 
 	// target lifecycle
 	virtual void configureTarget( Xml config );
@@ -18,6 +18,8 @@ public:
 	virtual void destroyTarget();
 
 public:
+	String component;
+	String connector;
 };
 
 /*#########################################################################*/

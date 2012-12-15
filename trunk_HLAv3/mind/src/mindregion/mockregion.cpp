@@ -8,6 +8,8 @@ MockRegion::MockRegion( String p_typeName , MindArea *p_area )
 :	MindRegion( p_area ) {
 	typeName = p_typeName;
 	attachLogger();
+	msLast = 0;
+	msLastModulation = 0;
 }
 
 String MockRegion::getRegionType() {
@@ -55,9 +57,50 @@ void MockRegion::destroyRegion() {
 }
 
 NeuroSignalSet *MockRegion::handleApplyNeuroLinkMessage( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *inputSignal ) {
-	return( NULL );
+	String entity = point -> getEntity();
+
+	RFC_INT64 msNow = Timer::getCurrentTimeMillis();
+	RFC_INT64 msDelta = msNow - msLast;
+	msLast = msNow;
+
+	// handle by region type
+	NeuroSignalSet *set = NULL;
+	if( typeName.equals( "neocortex" ) ) {
+		// do not generate repeated signal within NEURON_FULL_RELAX_ms
+		if( msDelta < NEURON_FULL_RELAX_ms )
+			return( NULL );
+
+		set = new NeuroSignalSet;
+		if( entity.equals( "neocortex.ffin" ) ) {
+			set -> addSetItem( getNeuroLinkSource( "neocortex.ffout" ) , new NeuroSignal() );
+		}
+		else if( entity.equals( "neocortex.ffbn" ) ) {
+			set -> addSetItem( getNeuroLinkSource( "neocortex.fbout" ) , new NeuroSignal() );
+		}
+	}
+	else if( typeName.equals( "nucleus" ) ) {
+		if( entity.equals( "nucleus.input" ) ) {
+			// do not generate repeated signal within NEURON_FULL_RELAX_ms
+			if( msDelta < NEURON_FULL_RELAX_ms )
+				return( NULL );
+
+			// ignore if modulation exists
+			RFC_INT64 msDeltaModulation = msNow - msLastModulation;
+			if( msDeltaModulation < NEURON_INHIBIT_DELAY_ms )
+				return( NULL );
+
+			set = new NeuroSignalSet;
+			set -> addSetItem( getNeuroLinkSource( "nucleus.output" ) , new NeuroSignal() );
+		}
+		else if( entity.equals( "nucleus.interneurons" ) ) {
+			msLastModulation = msNow;
+			return( NULL );
+		}
+	}
+
+	return( set );
 }
 
 NeuroSignal *MockRegion::handleGetNeuroLinkMessage( NeuroLink *link , NeuroLinkSource *point ) {
-	return( NULL );
+	return( new NeuroSignal() );
 }

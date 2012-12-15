@@ -16,6 +16,7 @@ void NeuroLinkTarget::create( MindRegion *p_region , String p_entity ) {
 
 	region = p_region;
 	entity = p_entity;
+	Object::setInstance( region -> getRegionId() + "-" + entity );
 
 	// setup connector
 	p_region -> addTargetEntity( p_entity , this );
@@ -25,10 +26,11 @@ void NeuroLinkTarget::setHandler( MindRegion::NeuroLinkTargetHandler p_pfn ) {
 	pfn = p_pfn;
 }
 
-void NeuroLinkTarget::execute( NeuroLink *link , NeuroSignal *sourceData ) {
+NeuroSignalSet *NeuroLinkTarget::execute( NeuroLink *link , NeuroSignal *sourceData ) {
 	// execute target handler
 	try {
-		( region ->* pfn )( link , this , sourceData );
+		NeuroSignalSet *set = ( region ->* pfn )( link , this , sourceData );
+		return( set );
 	}
 	catch( RuntimeException& e ) {
 		logger.logError( "execute: exception in handling signal id=" + sourceData -> getId() + " for NeuroLink id=" + link -> getId() );
@@ -37,4 +39,6 @@ void NeuroLinkTarget::execute( NeuroLink *link , NeuroSignal *sourceData ) {
 	catch( ... ) {
 		logger.logError( "execute: unknown exception in handling signal id=" + sourceData -> getId() + " for NeuroLink id=" + link -> getId() );
 	}
+
+	return( NULL );
 }

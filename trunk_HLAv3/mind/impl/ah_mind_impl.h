@@ -232,6 +232,8 @@ private:
 private:
 	// utilities
 	String typeName;
+	RFC_INT64 msLast;
+	RFC_INT64 msLastModulation;
 
 	// own data
 	ClassList<NeuroLinkSource> sourceConnectors;

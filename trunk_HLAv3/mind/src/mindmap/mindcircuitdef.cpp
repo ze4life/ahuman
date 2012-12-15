@@ -15,6 +15,8 @@ MindCircuitDef::~MindCircuitDef() {
 void MindCircuitDef::createFromXml( Xml xml ) {
 	// attributes are properties
 	name = xml.getAttribute( "name" );
+	Object::setInstance( name );
+
 	enabled = xml.getBooleanAttribute( "enabled" , true );
 	if( !enabled )
 		return;

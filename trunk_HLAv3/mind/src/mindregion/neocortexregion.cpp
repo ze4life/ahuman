@@ -109,7 +109,7 @@ NeuroSignalSet *NeocortexRegion::handleFeedForwardNeuroLinkMessage( NeuroLink *l
 		return( NULL );
 
 	NeuroSignalSet *signalSet = new NeuroSignalSet;
-	signalSet -> addSetItem( sourceFeedForward.getEntity() , forwardSignal );
+	signalSet -> addSetItem( &sourceFeedForward , forwardSignal );
 
 	//	2. execute spacial pooler
 	//		- max number of patterns, spatial pooler slots: MAX_SPACIAL_PATTERNS
@@ -181,7 +181,7 @@ NeuroSignalSet *NeocortexRegion::handleFeedForwardNeuroLinkMessage( NeuroLink *l
 	feedbackSignal -> setId( inputSignal -> getId() );
 	feedbackSignal -> setTs( Timer::getCurrentTimeMillis() );
 
-	signalSet -> addSetItem( sourceFeedBack.getEntity() , feedbackSignal );
+	signalSet -> addSetItem( &sourceFeedBack , feedbackSignal );
 	return( signalSet );
 }
 
