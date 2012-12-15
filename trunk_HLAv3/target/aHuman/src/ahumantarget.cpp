@@ -36,14 +36,16 @@ void AHumanTarget::runTarget() {
 	signal -> setId( String( "TM" ) + (++z) );
 	logger.logInfo( "send message to component=" + component + ", connector=" + connector + ", signal id=" + signal -> getId() + " ..." );
 	NeuroSignalSet *set = target -> execute( NULL , signal );
-	if( set == NULL )
+	if( set == NULL ) {
+		logger.logDebug( signal -> getId() + ": there are no derived signals from signal id=" + signal -> getId() );
 		return;
+	}
 
 	// define IDs
 	ClassList<NeuroSignal>& signals = set -> getSignals();
 	for( int k = 0; k < signals.count(); k++ ) {
 		NeuroSignal *signalExecuted = signals.get( k );
-		signalExecuted -> setId( signal ->getId() + "." + (k+1) );
+		signalExecuted -> setId( signal -> getId() + ".S" + (k+1) );
 	}
 
 	// follow links
