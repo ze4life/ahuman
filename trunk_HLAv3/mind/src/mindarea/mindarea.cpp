@@ -167,7 +167,7 @@ void MindArea::followLinksInternalOne( String spykeTrainId , int& signalNum , Ne
 		MindArea *targetArea = targetRegion -> getArea();
 		if( targetArea != this ) {
 			NeuroSignal *sentSignal = new NeuroSignal( signal );
-			sentSignal -> setId( spykeTrainId + (++signalNum) );
+			sentSignal -> setId( spykeTrainId + ".T" + (++signalNum) );
 			MindMessage *msg = new MindMessage( link , sentSignal );
 
 			remoteMessages.add( msg );
@@ -185,7 +185,7 @@ void MindArea::followLinksInternalOne( String spykeTrainId , int& signalNum , Ne
 		ClassList<NeuroSignal>& signals = set -> getSignals();
 		for( int k = 0; k < signals.count(); k++ ) {
 			NeuroSignal *signalExecuted = signals.get( k );
-			signalExecuted -> setId( spykeTrainId + "." + (++signalNum) );
+			signalExecuted -> setId( spykeTrainId + ".X" + (++signalNum) );
 			logger.logInfo( spykeTrainId + ": executed local signal id=" + signalExecuted -> getId() + " from signal id=" + signal -> getId() + ", link id=" + link -> getId() );
 		}
 

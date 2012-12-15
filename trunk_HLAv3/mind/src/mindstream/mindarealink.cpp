@@ -52,9 +52,13 @@ void MindAreaLink::onMessage( Message *msg ) {
 	MindMessage *mm = ( MindMessage * )msg;
 
 	// ignore foreign links
-	if( mm -> getAreaLink() != this )
+	NeuroSignal *signal = mm ->getMsgData();
+	if( mm -> getAreaLink() != this ) {
+		logger.logInfo( "ignore different area link message id=" + mm -> getChannelMessageId() + ", signal id=" + signal -> getId() );
 		return;
+	}
 
+	logger.logInfo( "execute area link message id=" + mm -> getChannelMessageId() + ", signal id=" + signal -> getId() );
 	activeMemory -> execute( mm );
 }
 

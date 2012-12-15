@@ -42,15 +42,33 @@ void MindActiveMemory::stop() {
 
 void MindActiveMemory::execute( MindMessage *msg ) {
 	NeuroLink *link = msg -> getNeuroLink();
-	NeuroSignal *sourceData = msg -> getMsgData();
-	String extId = sourceData -> getId();
+	NeuroSignal *signal = msg -> getMsgData();
+
+	String extId = signal -> getId();
 	if( extId.isEmpty() ) {
 		extId = msg -> getSourceMessageId();
-		sourceData -> setId( extId );
+		signal -> setId( extId );
 	}
 
-	NeuroLinkTarget *target = link -> getTarget();
-
 	logger.logDebug( "execute: process link=" + link -> getId() + ", message id=" + msg -> getChannelMessageId() );
-	target -> execute( link , sourceData );
+
+	NeuroLinkTarget *target = link -> getTarget();
+	NeuroSignalSet *set = target -> execute( link , signal );
+	if( set == NULL ) {
+		logger.logDebug( signal -> getId() + ": there are no derived signals from signal id=" + signal -> getId() + ", link id=" + link -> getId() );
+		return;
+	}
+
+	// define IDs
+	ClassList<NeuroSignal>& signals = set -> getSignals();
+	for( int k = 0; k < signals.count(); k++ ) {
+		NeuroSignal *signalExecuted = signals.get( k );
+		signalExecuted -> setId( signal -> getId() + ".S" + (k+1) );
+	}
+
+	// follow links
+	MindRegion *region = target -> getRegion();
+	MindArea *area = region -> getArea();
+	area -> followLinks( signal -> getId() , region , set );
+	set -> destroy();
 }
