@@ -26,12 +26,6 @@
 
 		<region-type-set>
 
-			<region-type name="sensor" implementation="mock">
-				<connector id="sensor.data" type="source"/>
-				<connector id="sensor.control" type="target"/>
-				<connector id="sensor.feedback" type="source"/>
-			</region-type>
-
 			<region-type name="nucleus" implementation="mock">
 				<connector id="nucleus.input" type="target"/>
 				<connector id="nucleus.output" type="source"/>
@@ -39,10 +33,10 @@
 			</region-type>
 
 			<region-type name="neocortex" implementation="mock">
-				<connector id="neocortex.ffin" type="source"/>
-				<connector id="neocortex.ffout" type="target"/>
-				<connector id="neocortex.fbin" type="source"/>
-				<connector id="neocortex.fbout" type="target"/>
+				<connector id="neocortex.ffin" type="target"/>
+				<connector id="neocortex.ffout" type="source"/>
+				<connector id="neocortex.fbin" type="target"/>
+				<connector id="neocortex.fbout" type="source"/>
 			</region-type>
 
 			<region-type name="allocortex" implementation="mock">

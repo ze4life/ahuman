@@ -5,24 +5,24 @@
 /*#########################################################################*/
 
 MindMessage::MindMessage( NeuroLink *p_link )
-:	Message( Message::MsgType_Binary ) { 
+:	Message( Message::MsgType_Default ) { 
 	link = p_link;
 	data = NULL;
 
 	MindRegionLink *regionLink = link -> getRegionLink();
-	if( link != NULL )
+	if( regionLink != NULL )
 		areaLink = regionLink -> getAreaLink();
 	else
 		areaLink = NULL;
 }
 
 MindMessage::MindMessage( NeuroLink *p_link , NeuroSignal *p_data )
-:	Message( Message::MsgType_Binary ) { 
+:	Message( Message::MsgType_Default ) { 
 	link = p_link;
 	data = p_data;
 
 	MindRegionLink *regionLink = link -> getRegionLink();
-	if( link != NULL )
+	if( regionLink != NULL )
 		areaLink = regionLink -> getAreaLink();
 	else
 		areaLink = NULL;
@@ -44,3 +44,8 @@ NeuroSignal *MindMessage::getMsgData() {
 	ASSERTMSG( ns != NULL , "MindMessage::getMsgData: returned NULL signal from NeuroLinkSource, NeuroLink id=" + link -> getId() );
 	return( ns );
 }
+
+void MindMessage::send() {
+	areaLink -> sendMessage( this );
+}
+

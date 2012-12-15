@@ -15,6 +15,8 @@ MindConnectionLinkTypeDef::~MindConnectionLinkTypeDef() {
 void MindConnectionLinkTypeDef::createFromXml( Xml xml ) {
 	// attributes
 	name = xml.getAttribute( "name" );
+	Object::setInstance( name );
+
 	implementation = xml.getAttribute( "implementation" );
 	type = xml.getAttribute( "type" );
 	neurotransmitter = xml.getAttribute( "nt" );

@@ -10,7 +10,7 @@ SocketServer::SocketServer( String p_name )
 	continueConnecting = true;
 	shutdownInProgress = false;
 	listenThread = ( RFC_HND )NULL;
-	SocketListener::setMsgType( Message::MsgType_Unknown );
+	SocketListener::setMsgType( Message::MsgType_Default );
 
 	setInstance( p_name );
 	attachLogger();

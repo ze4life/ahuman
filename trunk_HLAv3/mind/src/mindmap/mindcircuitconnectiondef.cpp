@@ -14,6 +14,8 @@ MindCircuitConnectionDef::MindCircuitConnectionDef( MindCircuitDef *p_circuit ) 
 void MindCircuitConnectionDef::createFromXml( Xml xml ) {
 	// attributes are properties
 	typeName = xml.getAttribute( "type" );
+	Object::setInstance( typeName );
+
 	srcRegion = xml.getAttribute( "src" );
 	dstRegion = xml.getAttribute( "dst" );
 }

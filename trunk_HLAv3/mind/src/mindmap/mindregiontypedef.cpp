@@ -18,6 +18,8 @@ void MindRegionTypeDef::createFromXml( Xml xml ) {
 
 	// attributes
 	name = xml.getAttribute( "name" );
+	Object::setInstance( name );
+
 	implementation = xml.getAttribute( "implementation" );
 
 	// childs

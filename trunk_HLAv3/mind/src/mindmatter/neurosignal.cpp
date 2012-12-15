@@ -10,12 +10,14 @@ NeuroSignal::NeuroSignal() {
 	ts = 0;
 	sizeX = 0;
 	sizeY = 0;
+	source = NULL;
 }
 
 NeuroSignal::NeuroSignal( int p_sizeX , int p_sizeY ) {
 	ts = 0;
 	sizeX = p_sizeX;
 	sizeY = p_sizeY;
+	source = NULL;
 	data.allocate( DEFAULT_ARRAY_SIZE );
 }
 
@@ -24,6 +26,7 @@ NeuroSignal::NeuroSignal( NeuroSignal *src ) {
 	ts = src -> ts;
 	sizeX = src -> sizeX;
 	sizeY = src -> sizeY;
+	source = src -> source;
 	data.copy( src -> data );
 }
 
@@ -51,10 +54,11 @@ void NeuroSignal::setTs( RFC_INT64 p_ts ) {
 
 void NeuroSignal::setId( String p_id ) {
 	id = p_id;
+	Object::setInstance( id );
 }
 
-String NeuroSignal::getId() {
-	return( id );
+void NeuroSignal::setSource( NeuroLinkSource *p_source ) {
+	source = p_source;
 }
 
 void NeuroSignal::getSizeInfo( int *nx , int *ny ) {

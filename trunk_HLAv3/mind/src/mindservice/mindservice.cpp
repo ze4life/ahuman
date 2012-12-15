@@ -179,6 +179,37 @@ void MindService::createArea( MindAreaDef *areaInfo ) {
 	areaSet -> addMindArea( area );
 }
 
+MindArea *MindService::getMindArea( String areaId ) {
+	return( areaSet -> getMindArea( areaId ) );
+}
+
+MindRegion *MindService::getMindRegion( String regionId ) {
+	MindRegion *region = regionSet -> getSetItemById( regionId );
+	ASSERTMSG( region != NULL , "getMindRegion: region is not found by id=" + regionId );
+	return( region );
+}
+
+MindRegion *MindService::createRegion( String implementation , String type , MindArea *area , MindRegionInfo *info ) {
+	MindRegion *region = NULL;
+	if( implementation.equals( "original" ) ) {
+		if( type.equals( "neocortex" ) )
+			region = new NeocortexRegion( area );
+		else if( type.equals( "allocortex" ) )
+			region = new AllocortexRegion( area );
+		else if( type.equals( "nucleus" ) )
+			region = new NucleiRegion( area );
+		else
+			ASSERTFAILED( "unknown region type=" + type );
+	}
+	else if( implementation.equals( "mock" ) ) {
+		region = new MockRegion( type , area );
+	}
+
+	region -> createRegion( info );
+
+	return( region );
+}
+
 void MindService::setMindTarget( MindTarget *p_target ) {
 	target = p_target;
 }
@@ -246,12 +277,15 @@ NeuroLink *MindService::createNeuroLink( MindConnectionLinkTypeDef *linkDef , Mi
 
 	// check neurolink exists
 	String linkType = linkDef -> getName();
-	String key = linkType + "." + linkSrcRegion -> getRegionId() + "." + linkDstRegion -> getRegionId();
+	String key = linkType + "-" + linkSrcRegion -> getRegionId() + "-" + linkDstRegion -> getRegionId();
 	if( regionNeuroLinkMap.get( key ) != NULL )
 		return( NULL );
 
 	// create neurolink
 	NeuroLinkInfo info;
+	info.setLinkDef( linkDef );
+	info.setNeuroTransmitter( linkDef -> getNeurotransmitter() );
+	info.setRegionLink( regionLink );
 	NeuroLink *neurolink = createNeuroLink( linkDef -> getImplementation() , linkDef -> getType() , srcConnector , dstConnector , &info );
 	if( neurolink == NULL )
 		return( NULL );
@@ -315,38 +349,6 @@ MindAreaLink *MindService::createAreaLink( MindArea *masterArea , MindArea *slav
 	return( link );
 }
 
-MindArea *MindService::getMindArea( String areaId ) {
-	return( areaSet -> getMindArea( areaId ) );
-}
-
-// cortex
-MindRegion *MindService::getMindRegion( String regionId ) {
-	MindRegion *region = regionSet -> getSetItemById( regionId );
-	ASSERTMSG( region != NULL , "getMindRegion: region is not found by id=" + regionId );
-	return( region );
-}
-
-MindRegion *MindService::createRegion( String implementation , String type , MindArea *area , MindRegionInfo *info ) {
-	MindRegion *region = NULL;
-	if( implementation.equals( "original" ) ) {
-		if( type.equals( "neocortex" ) )
-			region = new NeocortexRegion( area );
-		else if( type.equals( "allocortex" ) )
-			region = new AllocortexRegion( area );
-		else if( type.equals( "nucleus" ) )
-			region = new NucleiRegion( area );
-		else
-			ASSERTFAILED( "unknown region type=" + type );
-	}
-	else if( implementation.equals( "mock" ) ) {
-		region = new MockRegion( type , area );
-	}
-
-	region -> createRegion( info );
-
-	return( region );
-}
-
 NeuroLink *MindService::createNeuroLink( String implementation , String typeName , NeuroLinkSource *src , NeuroLinkTarget *dst , NeuroLinkInfo *info ) {
 	NeuroLink *link = NULL;
 	if( implementation.equals( "original" ) ) {
@@ -364,6 +366,7 @@ NeuroLink *MindService::createNeuroLink( String implementation , String typeName
 	}
 
 	link -> createNeuroLink( info );
+	src -> addNeuroLink( link );
 
 	return( link );
 }

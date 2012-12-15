@@ -15,6 +15,7 @@ NeuroLinkSource::NeuroLinkSource() {
 void NeuroLinkSource::create( MindRegion *p_region , String p_entity ) {
 	region = p_region;
 	entity = p_entity;
+	Object::setInstance( region -> getRegionId() + "-" + entity );
 	pfn = NULL;
 
 	region -> getSourceSizes( entity , &sizeX , &sizeY );

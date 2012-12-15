@@ -13,6 +13,7 @@ MindConnectionTypeDef::~MindConnectionTypeDef() {
 void MindConnectionTypeDef::createFromXml( Xml xml ) {
 	// attributes
 	name = xml.getAttribute( "name" );
+	Object::setInstance( name );
 
 	// links
 	for( Xml xmlChild = xml.getFirstChild( "link-type" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "link-type" ) ) {

@@ -17,6 +17,7 @@ MindRegionInfo::~MindRegionInfo() {
 
 void MindRegionInfo::setId( String p_id ) {
 	id = p_id;
+	Object::setInstance( id );
 }
 
 void MindRegionInfo::setType( MindRegionTypeDef *p_typeDef ) {

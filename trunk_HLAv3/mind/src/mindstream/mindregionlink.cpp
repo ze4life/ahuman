@@ -25,6 +25,7 @@ MindRegion *MindRegionLink::getDstRegion() {
 
 void MindRegionLink::createRegionLink( MindRegion *srcRegion , MindRegion *dstRegion ) {
 	id = String( "RL" ) + ++lastRegionId;
+	Object::setInstance( id );
 	src = srcRegion;
 	dst = dstRegion;
 

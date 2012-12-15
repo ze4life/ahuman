@@ -41,20 +41,22 @@ public:
 
 // operations
 public:
-	virtual void onBinaryMessage( BinaryMessage *msg );
+	virtual void onMessage( Message *msg );
 
 public:
 	void addRegionLink( MindRegionLink *link );
 	void open( MessageSession *session , String channel );
+	void sendMessage( MindMessage *msg );
 
 	MindArea *getMasterArea() { return( masterArea ); };
 	MindArea *getSlaveArea() { return( slaveArea ); };
-
+	MessagePublisher *getPublisher() { return( iopub ); };
+	
 private:
 // utility
 	MessageSession *session;
 	MessagePublisher *iopub;
-	MessageSubscription *listenSubscription;
+	MessageSubscription *iosub;
 
 // own data
 	MindRegionLinkSet *links;
@@ -170,6 +172,8 @@ public:
 	NeuroLink *getNeuroLink() { return( link ); };
 	NeuroSignal *getMsgData();
 	MindAreaLink *getAreaLink() { return( areaLink ); };
+
+	void send();
 
 private:
 // own data

@@ -17,12 +17,15 @@ class MindRegionSet;
 class MindRegionLinkSet;
 class MindAreaLink;
 class MindMessage;
-
-/*#########################################################################*/
-/*#########################################################################*/
-
 class MindAreaDef;
 class MessageSession;
+class NeuroLinkSource;
+class NeuroSignal;
+class NeuroSignalSet;
+class MindActiveMemory;
+
+/*#########################################################################*/
+/*#########################################################################*/
 
 // brain provides implementation for mind areas
 // each mind area is implemented by module components - next level folder under mod...
@@ -36,7 +39,7 @@ class MindArea : public Object {
 public:
 	MindArea();
 	virtual ~MindArea();
-	virtual const char *getClass() { return areaId; };
+	virtual const char *getClass() { return "MindArea"; };
 
 public:
 	// mind area lifecycle
@@ -49,6 +52,8 @@ public:
 	void exit();
 	void destroy();
 
+	void followLinks( String spykeTrainId , MindRegion *region , NeuroSignalSet *signalSet );
+
 	String getId();
 	MindAreaDef *getMindAreaDef();
 	MindRegionSet *getRegionSet();
@@ -59,6 +64,11 @@ public:
 
 private:
 	void createRegion( MindTarget *target , MindRegionDef *regionDef );
+	void followLinkSource( String spykeTrainId , NeuroLinkSource *linkSource , NeuroSignal *signal );
+	void followLinksInternalSet( String spykeTrainId , int& signalNum , NeuroSignalSet *signalSet , MapStringToClass<MindRegion>& regionsExecuted , 
+			NeuroSignalSet& setLocalExecuted , ClassList<MindMessage>& remoteMessages );
+	void followLinksInternalOne( String spykeTrainId , int& signalNum , NeuroSignal *signal , ClassList<NeuroLink>& links , MapStringToClass<MindRegion>& regionsExecuted ,
+			NeuroSignalSet& setAwaitingLocalExecution , ClassList<MindMessage>& remoteMessages );
 
 private:
 // own data
@@ -74,8 +84,6 @@ private:
 
 /*#########################################################################*/
 /*#########################################################################*/
-
-class MindActiveMemory;
 
 class MindAreaSet : public Object {
 public:

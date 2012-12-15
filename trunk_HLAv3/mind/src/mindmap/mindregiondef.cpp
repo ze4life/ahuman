@@ -15,6 +15,8 @@ MindRegionDef::~MindRegionDef() {
 void MindRegionDef::createFromXml( Xml xml ) {
 	// attributes are properties
 	name = xml.getAttribute( "name" );
+	Object::setInstance( name );
+
 	typeName = xml.getAttribute( "type" );
 	size = xml.getIntAttribute( "size" , 0 );
 }

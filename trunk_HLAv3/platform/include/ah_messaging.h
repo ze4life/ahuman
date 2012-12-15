@@ -167,7 +167,7 @@ public:
 class Message : public Object {
 public:
 	typedef enum {
-		MsgType_Unknown = 0 ,
+		MsgType_Default = 0 ,
 		MsgType_Text = 1 ,
 		MsgType_Xml = 2 ,
 		MsgType_XmlCall = 3 ,
