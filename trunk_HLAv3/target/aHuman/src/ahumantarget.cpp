@@ -3,10 +3,8 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-AHumanTarget::AHumanTarget( String p_component , String p_connector ) {
+AHumanTarget::AHumanTarget() {
 	attachLogger();
-	component = p_component;
-	connector = p_connector;
 }
 
 void AHumanTarget::configureTarget( Xml config ) {
@@ -22,8 +20,29 @@ void AHumanTarget::initEffectorsTarget( EffectorArea *effectorArea ) {
 }
 
 void AHumanTarget::runTarget() {
+	// subscribe command channel
+	MessagingService *ms = MessagingService::getService();
+	ms -> subscribe( NULL , "target.commands" , "target.commands.sub" , this );
+}
+
+void AHumanTarget::onXmlMessage( XmlMessage *msg ) {
+	Xml xml = msg -> getXml();
+	String cmdName = xml.getAttribute( "name" );
+
+	logger.logInfo( "onXmlMessage: execute request=" + xml.getValue() );
+	if( cmdName.equals( "PlayCircuit" ) )
+		cmdPlayCircuit( xml );
+	else
+		logger.logError( "unknown cmd=" + cmdName );
+}
+
+void AHumanTarget::cmdPlayCircuit( Xml cmd ) {
 	// find target connector
 	MindService *ms = MindService::getService();
+
+	String component = cmd.getProperty( "component" );
+	String connector = cmd.getProperty( "connector" );
+
 	MindRegion *region = ms -> getMindRegion( component );
 	ASSERTMSG( region != NULL , "unknown region=" + component );
 

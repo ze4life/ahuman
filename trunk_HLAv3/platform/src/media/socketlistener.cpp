@@ -17,18 +17,6 @@ SocketListener::~SocketListener() {
 	connections.destroy();
 }
 
-void SocketListener::setMsgType( Message::MsgType p_msgType ) {
-	msgType = p_msgType;
-}
-
-Message::MsgType SocketListener::getMsgType() {
-	return( msgType );
-}
-
-String SocketListener::getName() { 
-	return( name ); 
-}
-
 void SocketListener::addListenerConnection( ListenerSocketConnection *connection ) {
 	String key = getName() + "." + (++lastConnectionId);
 

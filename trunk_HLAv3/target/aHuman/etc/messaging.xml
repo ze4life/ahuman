@@ -1,67 +1,73 @@
 <service>
-	<topics>
+        <topics>
 
-		<!-- platform topics -->
-		<topic name="test.commands.in">
-			<property name="msgid" value="TESTREQUEST"/>
-			<property name="auth" value="false"/>
-			<property name="sync" value="false"/>
-		</topic>
+                <!-- platform topics -->
+                <topic name="target.commands">
+                        <property name="msgid" value="H"/>
+                        <property name="auth" value="false"/>
+                        <property name="sync" value="false"/>
+                </topic>
 
-		<topic name="test.commands.out">
-			<property name="msgid" value="TESTRESPONSE"/>
-			<property name="auth" value="false"/>
-			<property name="sync" value="false"/>
-		</topic>
+                <topic name="test.commands.in">
+                        <property name="msgid" value="TESTREQUEST"/>
+                        <property name="auth" value="false"/>
+                        <property name="sync" value="false"/>
+                </topic>
 
-		<topic name="http.request">
-			<property name="msgid" value="HTTP.IN"/>
-			<property name="auth" value="false"/>
-			<property name="sync" value="true"/>
-		</topic>
+                <topic name="test.commands.out">
+                        <property name="msgid" value="TESTRESPONSE"/>
+                        <property name="auth" value="false"/>
+                        <property name="sync" value="false"/>
+                </topic>
 
-		<topic name="http.response">
-			<property name="msgid" value="HTTP.OUT"/>
-			<property name="auth" value="false"/>
-			<property name="sync" value="true"/>
-		</topic>
+                <topic name="http.request">
+                        <property name="msgid" value="HTTP.IN"/>
+                        <property name="auth" value="false"/>
+                        <property name="sync" value="true"/>
+                </topic>
 
-		<topic name="scheduler">
-			<property name="msgid" value="SCHD"/>
-			<property name="auth" value="false"/>
-			<property name="sync" value="true"/>
-		</topic>
+                <topic name="http.response">
+                        <property name="msgid" value="HTTP.OUT"/>
+                        <property name="auth" value="false"/>
+                        <property name="sync" value="true"/>
+                </topic>
 
-		<!-- mind topics -->
-		<topic name="CHANNEL.VCA.HCA">
-			<property name="msgid" value="vca2hca"/>
-			<property name="auth" value="false"/>
-			<property name="sync" value="false"/>
-		</topic>
+                <topic name="scheduler">
+                        <property name="msgid" value="SCHD"/>
+                        <property name="auth" value="false"/>
+                        <property name="sync" value="true"/>
+                </topic>
 
-		<topic name="CHANNEL.HCA.VCA">
-			<property name="msgid" value="hca2vca"/>
-			<property name="auth" value="false"/>
-			<property name="sync" value="false"/>
-		</topic>
+                <!-- mind topics -->
+                <topic name="CHANNEL.VCA.HCA">
+                        <property name="msgid" value="vca2hca"/>
+                        <property name="auth" value="false"/>
+                        <property name="sync" value="false"/>
+                </topic>
 
-		<topic name="CHANNEL.VBA.VCA">
-			<property name="msgid" value="vba2vca"/>
-			<property name="auth" value="false"/>
-			<property name="sync" value="false"/>
-		</topic>
+                <topic name="CHANNEL.HCA.VCA">
+                        <property name="msgid" value="hca2vca"/>
+                        <property name="auth" value="false"/>
+                        <property name="sync" value="false"/>
+                </topic>
 
-		<topic name="CHANNEL.VBA.PCA">
-			<property name="msgid" value="vba2pca"/>
-			<property name="auth" value="false"/>
-			<property name="sync" value="false"/>
-		</topic>
+                <topic name="CHANNEL.VBA.VCA">
+                        <property name="msgid" value="vba2vca"/>
+                        <property name="auth" value="false"/>
+                        <property name="sync" value="false"/>
+                </topic>
 
-		<topic name="CHANNEL.PCA.VBA">
-			<property name="msgid" value="pca2vba"/>
-			<property name="auth" value="false"/>
-			<property name="sync" value="false"/>
-		</topic>
+                <topic name="CHANNEL.VBA.PCA">
+                        <property name="msgid" value="vba2pca"/>
+                        <property name="auth" value="false"/>
+                        <property name="sync" value="false"/>
+                </topic>
 
-	</topics>
+                <topic name="CHANNEL.PCA.VBA">
+                        <property name="msgid" value="pca2vba"/>
+                        <property name="auth" value="false"/>
+                        <property name="sync" value="false"/>
+                </topic>
+
+        </topics>
 </service>

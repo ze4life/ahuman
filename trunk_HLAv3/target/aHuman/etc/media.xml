@@ -13,6 +13,16 @@
 			<property name="topic-out" value="test.commands.out"/> 
 		</listener>
 
+		<listener name="target" run="true">
+			<property name="direction" value="in"/> 
+			<property name="protocol" value="text-messages"/>
+			<property name="protocol.delimiter" value="\1"/>
+			<property name="auth" value="false"/>
+			<property name="port" value="20002"/> 
+			<property name="msgtype" value="xml"/> 
+			<property name="topic-in" value="target.commands"/> 
+		</listener>
+
 	</listeners>
 
 	<directchannels>

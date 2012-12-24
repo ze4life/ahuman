@@ -23,7 +23,8 @@ public:
 
 // internals
 private:
-	int executeCommands( FILE *sin , FILE *sout );
+	int executeRequests( FILE *sin , FILE *sout );
+
 	void logGreeting( FILE *sout );
 	String readNextRequest( FILE *f );
 	void logXml( FILE *f , String prefix , Xml& xml );
@@ -35,6 +36,7 @@ private:
 private:
 	String name;
 	AdminApi *api;
+	bool cmdMode;
 };
 
 /*#########################################################################*/

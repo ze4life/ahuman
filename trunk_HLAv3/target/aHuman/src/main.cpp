@@ -3,13 +3,13 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-void execute( String etcpath , String component , String connector ) {
+void execute( String etcpath ) {
 	// create service manager
 	ServiceManager sm;
 	sm.setRootLogLevel( Logger::LogLevelDebug );
 
 	// add services
-	sm.addService( new AHumanTarget( component , connector ) );
+	sm.addService( new AHumanTarget() );
 	sm.addService( MindService::newService() );
 	sm.addPlatformServices();
 
@@ -26,6 +26,6 @@ int main(int argc, char** argv) {
 		return( -1 );
 	}
 
-	execute( argv[1] , argv[2] , argv[3] );
+	execute( argv[1] );
 }
 

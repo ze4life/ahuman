@@ -134,6 +134,7 @@ private:
 	SocketProtocol protocol;
 	int lastConnectionId;
 	Message::MsgType msgType;
+	String contentType;
 	String name;
 	MapStringToClass<ListenerSocketConnection> connections;
 
@@ -152,9 +153,12 @@ public:
 	virtual const char *getClass() { return( "SocketListener" ); };
 
 public:
-	void setMsgType( Message::MsgType msgType );
-	Message::MsgType getMsgType();
-	String getName();
+	void setMsgType( Message::MsgType p_msgType ) { msgType = p_msgType; };
+	Message::MsgType getMsgType() { return( msgType ); };
+	void setContentType( String p_contentType ) { contentType = p_contentType; };
+	String getContentType() { return( contentType ); };
+
+	String getName() { return( name ); };
 	SocketProtocol& getProtocol() { return( protocol ); };
 
 	void addListenerConnection( ListenerSocketConnection *connection );
@@ -369,11 +373,13 @@ public:
 	virtual String getAddress();
 
 public:
-	String getTopicIn();
-	String getTopicOut();
-	bool getAuth();
-	bool getWayIn();
-	bool getWayOut();
+	String getTopicIn() { return( topicIn ); };
+	String getTopicOut() { return( topicOut ); };
+	String getContentType() { return( contentType ); };
+
+	bool getAuth() { return( auth ); };
+	bool getWayIn() { return( wayIn ); };
+	bool getWayOut() { return( wayOut ); };
 
 	void acceptConnectionLoop();
 	bool openListeningPort();
@@ -398,6 +404,7 @@ private:
 	bool wayOut;
 	String topicIn;
 	String topicOut;
+	String contentType;
 
 	RFC_HND listenThread;
 	SOCKET listenSocket;

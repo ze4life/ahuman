@@ -20,7 +20,9 @@ public:
 	void connect( String url );
 	void disconnect();
 	bool isConnected();
+	
 	Xml execute( Xml req );
+	void send( Xml req );
 
 private:
 	String setXmlRequestId( Xml req );
