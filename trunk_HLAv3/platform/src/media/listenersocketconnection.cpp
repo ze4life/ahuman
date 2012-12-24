@@ -65,7 +65,7 @@ bool ListenerSocketConnection::startConnection() {
 	session = ms -> createSession();
 	if( server -> getWayIn() ) {
 		String topicIn = server -> getTopicIn();
-		pub = ms -> createPublisher( session , topicIn , getName() , "generic" );
+		pub = ms -> createPublisher( session , topicIn , getName() , server -> getContentType() );
 	}
 
 	if( server -> getWayOut() ) {
@@ -182,7 +182,7 @@ void ListenerSocketConnection::processMessage( const char *p_msg ) {
 	if( msgType == Message::MsgType_Xml ) {
 		XmlMessage *l_msg = new XmlMessage( p_msg );
 		l_msg -> setXmlFromMessage( pub -> getMsgType() );
-		pub -> publish( session , p_msg );
+		pub -> publish( session , l_msg );
 	}
 	else
 	if( msgType == Message::MsgType_XmlCall ) {

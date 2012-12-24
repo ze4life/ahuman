@@ -61,6 +61,22 @@ Xml AdminApiSocket::execute( Xml req ) {
 	return( xml );
 }
 
+void AdminApiSocket::send( Xml req ) {
+	ASSERTMSG( connected , "Not connected" );
+
+	// get request ID
+	String requestId = req.getAttribute( "requestId" , "" );
+	if( requestId.isEmpty() )
+		requestId = setXmlRequestId( req );
+	String request = req.serialize();
+
+	bool disconnected = false;
+	protocol.writeMessage( socket , request , disconnected );
+	if( disconnected )
+		connected = false;
+	ASSERTMSG( connected , "Connection is closed from server side while making request" );
+}
+
 void AdminApiSocket::connect( String url ) {
 	lastRequestNumber = 0;
 

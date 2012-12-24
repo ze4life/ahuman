@@ -19,26 +19,6 @@ SocketServer::SocketServer( String p_name )
 SocketServer::~SocketServer() {
 }
 
-String SocketServer::getTopicIn() {
-	return( topicIn );
-}
-
-String SocketServer::getTopicOut() {
-	return( topicOut );
-}
-
-bool SocketServer::getAuth() {
-	return( auth );
-}
-
-bool SocketServer::getWayIn() {
-	return( wayIn );
-}
-
-bool SocketServer::getWayOut() {
-	return( wayOut );
-}
-
 void SocketServer::configure( Xml config ) {
 	SocketListener::getProtocol().create( config );
 
@@ -52,15 +32,14 @@ void SocketServer::configure( Xml config ) {
 	if( wayOut )
 		topicOut = config.getProperty( "topic-out" );
 
-	String smsgType = config.getProperty( "msgtype" , "text" );
-	if( smsgType.equals( "text" ) )
+	contentType = config.getProperty( "msgtype" , "text" );
+	if( contentType.equals( "text" ) )
 		SocketListener::setMsgType( Message::MsgType_Text );
 	else
-	if( smsgType.equals( "xml" ) )
-		SocketListener::setMsgType( Message::MsgType_Xml );
-	else
-	if( smsgType.equals( "xmlcall" ) )
+	if( contentType.equals( "xmlcall" ) )
 		SocketListener::setMsgType( Message::MsgType_XmlCall );
+	else
+		SocketListener::setMsgType( Message::MsgType_Xml );
 
 	port = atoi( config.getProperty( "port" ) );
 

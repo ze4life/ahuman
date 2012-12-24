@@ -7,10 +7,10 @@
 
 ConsoleTool::ConsoleTool()
 :	ToolBase( "ConsoleTool" ) {
+	cmdMode = false;
 }
 
 ConsoleTool::~ConsoleTool() {
-	logger.attachRoot();
 }
 
 int ConsoleTool::execute( int nargs , char **args ) {
@@ -20,11 +20,16 @@ int ConsoleTool::execute( int nargs , char **args ) {
 	String fout;
 	for( int k = 0; k < nargs; k++ ) {
 		String arg = args[ k ];
+		if( arg.equals( "-c" ) ) {
+			cmdMode = true;
+			continue;
+		}
+			
 		if( arg.equals( "-s" ) ) {
 			url = args[ ++k ];
 			continue;
 		}
-			
+
 		if( arg.equals( "-i" ) ) {
 			fin = args[ ++k ];
 			continue;
@@ -71,16 +76,23 @@ int ConsoleTool::execute( int nargs , char **args ) {
 		api -> connect( url );
 		logInfo( sout , String( "connected to " ) + url );
 
-		result = executeCommands( sin , sout );
+		result = executeRequests( sin , sout );
 	}
 	catch( RuntimeException& e ) {
-		logger.printStack( e );
+		String errormsg = e.printStackToString();
+		logError( sout , errormsg );
+
 		result = -1;
 	}
 	catch( ... ) {
 		logError( sout , "cannot connect for unknown reason" );
 		result = -1;
 	}
+
+	if( sin != NULL )
+		fclose( sin );
+	if( sout != NULL )
+		fclose( sout );
 
 	return( 0 );
 }
@@ -137,44 +149,46 @@ void ConsoleTool::logException( FILE *f , String s ) {
 }
 
 bool ConsoleTool::makeRequest( FILE *sin , FILE *sout ) {
+	logInfo( sout , "read next request from file ..." );
 	String msg = readNextRequest( sin );
 	if( msg.isEmpty() )
 		return( false );
 
 	Xml request;
 	try {
-		request = api -> createXmlRequest( msg );
+		logInfo( sout , "execute request: " + msg );
+		String xmlType = ( cmdMode )? "xmlcall" : "xml";
+		request = api -> createXmlRequest( msg , xmlType );
 	}
 	catch( RuntimeException& e ) {
-		logger.printStack( e );
+		String errormsg = e.printStackToString();
+		logError( sout , errormsg );
 		return( true );
 	}
 
-	if( sin == NULL )
-		logXml( stdout , "REQUEST" , request );
-	if( sout != NULL )
-		logXml( sout , "REQUEST" , request );
-	
 	Xml response;
 	try {
-		response = api -> execute();
+		// continue requests - no responses required
+		if( cmdMode ) {
+			response = api -> execute( request );
+			logInfo( sout , "response: " + response.getValue() );
+
+			String status = response.getAttribute( "status" );
+			if( status.equals( "Exception" ) ) {
+				String exception = response.getValue();
+				logException( sout , exception );
+			}
+		}
+		else
+			api -> send( request );
 	}
 	catch( RuntimeException& e ) {
-		logger.printStack( e );
-		return( true );
+		String errormsg = e.printStackToString();
+		logError( sout , errormsg );
 	}
 
-	if( sout != NULL )
-		logXml( sout , "RESPONSE" , response );
-	else
-		logXml( stdout , "RESPONSE" , response );
-
-	String status = response.getAttribute( "status" );
-	if( status.equals( "Exception" ) ) {
-		String exception = response.getValue();
-		logException( sout , exception );
-	}
-
+	request.destroy();
+	response.destroy();
 	return( true );
 }
 
@@ -183,7 +197,7 @@ void ConsoleTool::logGreeting( FILE *sout ) {
 	logInfo( sout , "AI console" );
 }
 
-int ConsoleTool::executeCommands( FILE *sin , FILE *sout ) {
+int ConsoleTool::executeRequests( FILE *sin , FILE *sout ) {
 	int retval = 0;
 	while( api -> isConnected() ) {
 		try {

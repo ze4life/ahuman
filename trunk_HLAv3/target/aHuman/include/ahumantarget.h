@@ -3,9 +3,9 @@
 
 #include <mind/include/ah_mind.h>
 
-class AHumanTarget : public MindTarget {
+class AHumanTarget : public MindTarget , public MessageSubscriber {
 public:
-	AHumanTarget( String component , String connector );
+	AHumanTarget();
 
 	// target lifecycle
 	virtual void configureTarget( Xml config );
@@ -17,9 +17,12 @@ public:
 	virtual void exitTarget();
 	virtual void destroyTarget();
 
+protected:
+	// commands
+	void onXmlMessage( XmlMessage *msg );
+	void cmdPlayCircuit( Xml cmd );
+
 public:
-	String component;
-	String connector;
 };
 
 /*#########################################################################*/

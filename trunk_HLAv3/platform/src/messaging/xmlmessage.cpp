@@ -25,6 +25,7 @@ void XmlMessage::setXmlFromMessage( const char *contentType ) {
 		xml = Xml::read( TextMessage::getText() , contentType );
 
 	ASSERT( xml.getName().equals( contentType ) );
+	Message::setMessageType( contentType );
 }
 
 void XmlMessage::setMessageFromXml() {
