@@ -48,13 +48,15 @@ void WikiMaker::updateHierarchyPage_WalkTree( Xml wiki , Xml hmind , int level ,
 
 	for( Xml xmlChild = hmind.getFirstChild( "element" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "element" ) ) {
 		// handle mapping
-		bool mapRegionNext = false;
+		bool mapRegionNext = mapRegion;
 		MindRegion *region = NULL;
 		if( mapRegion ) {
 			String id = xmlChild.getAttribute( "id" , "" );
-			region = ms -> getMindRegion( id );
-			if( region != NULL )
-				mapRegionNext = false;
+			if( !id.isEmpty() ) {
+				region = ms -> getMindRegion( id );
+				if( region != NULL )
+					mapRegionNext = false;
+			}
 		}
 
 		// add item string
@@ -86,17 +88,19 @@ String WikiMaker::updateHierarchyPage_getElementString( Xml wiki , Xml item , Mi
 	}
 
 	// ref section
-	String refs = item.getAttribute( "refs" );
-	StringList refList;
-	refs.split( refList , "," );
-	for( int k = 0; k < refList.count(); k++ ) {
-		String ref = refList.get( k );
-		ref.trim();
+	String refs = item.getAttribute( "refs" , "" );
+	if( !refs.isEmpty() ) {
+		StringList refList;
+		refs.split( refList , "," );
+		for( int k = 0; k < refList.count(); k++ ) {
+			String ref = refList.get( k );
+			ref.trim();
 
-		if( !value.isEmpty() )
-			value += " = ";
+			if( !value.isEmpty() )
+				value += " = ";
 
-		value += ref;
+			value += ref;
+		}
 	}
 
 	// mapping section
