@@ -3,6 +3,14 @@
 
 #include <mind/include/ah_mind.h>
 
+class AHumanTarget;
+class ScenarioPlayer;
+class ModelVerifier;
+class WikiMaker;
+
+/*#########################################################################*/
+/*#########################################################################*/
+
 class AHumanTarget : public MindTarget , public MessageSubscriber {
 public:
 	AHumanTarget();
@@ -21,9 +29,50 @@ protected:
 	// commands
 	void onXmlMessage( XmlMessage *msg );
 	void cmdPlayCircuit( Xml scenario );
-	void cmdPlaySignal( Xml cmd );
+	void cmdVerifyModel( Xml modelArea );
+	void cmdCreateWikiPages( Xml wiki );
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class ScenarioPlayer : public Object {
+public:
+	ScenarioPlayer();
+	virtual ~ScenarioPlayer();
+	virtual const char *getClass() { return "ScenarioPlayer"; };
 
 public:
+	void play( Xml scenario );
+
+private:
+	void playSignal( Xml cmd );
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class ModelVerifier : public Object {
+public:
+	ModelVerifier();
+	virtual ~ModelVerifier();
+	virtual const char *getClass() { return "ModelVerifier"; };
+
+public:
+	void verify( Xml modelArea );
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class WikiMaker : public Object {
+public:
+	WikiMaker();
+	virtual ~WikiMaker();
+	virtual const char *getClass() { return "WikiMaker"; };
+
+public:
+	void createPages( Xml wiki );
 };
 
 /*#########################################################################*/
