@@ -36,10 +36,17 @@ void AHumanTarget::onXmlMessage( XmlMessage *msg ) {
 		logger.logError( "unknown cmd=" + cmdName );
 }
 
-void AHumanTarget::cmdPlayCircuit( Xml cmd ) {
+void AHumanTarget::cmdPlayCircuit( Xml scenario ) {
+	logger.logInfo( "process scenario ..." );
+	for( Xml xmlChild = scenario.getFirstChild( "xmlsignal" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "xmlsignal" ) )
+		cmdPlaySignal( xmlChild );
+}
+
+void AHumanTarget::cmdPlaySignal( Xml cmd ) {
 	// find target connector
 	MindService *ms = MindService::getService();
 
+	String name = cmd.getAttribute( "name" );
 	String component = cmd.getProperty( "component" );
 	String connector = cmd.getProperty( "connector" );
 
@@ -53,7 +60,7 @@ void AHumanTarget::cmdPlayCircuit( Xml cmd ) {
 	NeuroSignal *signal = new NeuroSignal();
 	static int z = 0;
 	signal -> setId( String( "TM" ) + (++z) );
-	logger.logInfo( "send message to component=" + component + ", connector=" + connector + ", signal id=" + signal -> getId() + " ..." );
+	logger.logInfo( "send signal name=" + name + " to component=" + component + ", connector=" + connector + ", signal id=" + signal -> getId() + " ..." );
 	NeuroSignalSet *set = target -> execute( NULL , signal );
 	if( set == NULL ) {
 		logger.logDebug( signal -> getId() + ": there are no derived signals from signal id=" + signal -> getId() );
