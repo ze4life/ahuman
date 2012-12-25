@@ -67,27 +67,33 @@ NeuroSignalSet *MockRegion::handleApplyNeuroLinkMessage( NeuroLink *link , Neuro
 	NeuroSignalSet *set = NULL;
 	if( typeName.equals( "neocortex" ) ) {
 		// do not generate repeated signal within NEURON_FULL_RELAX_ms
-		if( msDelta < NEURON_FULL_RELAX_ms )
+		if( msDelta < NEURON_FULL_RELAX_ms ) {
+			logger.logInfo( inputSignal -> getId() + ": signal is ignored, as coming just immediately after another one" );
 			return( NULL );
+		}
 
 		set = new NeuroSignalSet;
 		if( entity.equals( "neocortex.ffin" ) ) {
 			set -> addSetItem( getNeuroLinkSource( "neocortex.ffout" ) , new NeuroSignal() );
 		}
-		else if( entity.equals( "neocortex.ffbn" ) ) {
+		else if( entity.equals( "neocortex.fbin" ) ) {
 			set -> addSetItem( getNeuroLinkSource( "neocortex.fbout" ) , new NeuroSignal() );
 		}
 	}
 	else if( typeName.equals( "nucleus" ) ) {
 		if( entity.equals( "nucleus.input" ) ) {
 			// do not generate repeated signal within NEURON_FULL_RELAX_ms
-			if( msDelta < NEURON_FULL_RELAX_ms )
+			if( msDelta < NEURON_FULL_RELAX_ms ) {
+				logger.logInfo( inputSignal -> getId() + ": signal is ignored, as coming just immediately after another one" );
 				return( NULL );
+			}
 
 			// ignore if modulation exists
 			RFC_INT64 msDeltaModulation = msNow - msLastModulation;
-			if( msDeltaModulation < NEURON_INHIBIT_DELAY_ms )
+			if( msDeltaModulation < NEURON_INHIBIT_DELAY_ms ) {
+				logger.logInfo( inputSignal -> getId() + ": signal is ignored, as blocked by modulatory signal" );
 				return( NULL );
+			}
 
 			set = new NeuroSignalSet;
 			set -> addSetItem( getNeuroLinkSource( "nucleus.output" ) , new NeuroSignal() );

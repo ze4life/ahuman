@@ -20,7 +20,8 @@ public:
 protected:
 	// commands
 	void onXmlMessage( XmlMessage *msg );
-	void cmdPlayCircuit( Xml cmd );
+	void cmdPlayCircuit( Xml scenario );
+	void cmdPlaySignal( Xml cmd );
 
 public:
 };
