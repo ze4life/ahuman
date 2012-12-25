@@ -29,7 +29,7 @@ void AHumanTarget::onXmlMessage( XmlMessage *msg ) {
 	Xml xml = msg -> getXml();
 	String cmdName = xml.getAttribute( "name" );
 
-	logger.logInfo( "onXmlMessage: execute request=" + xml.getValue() );
+	logger.logInfo( "onXmlMessage: execute request=" + cmdName );
 
 	if( cmdName.equals( "PlayCircuit" ) )
 		cmdPlayCircuit( xml );
