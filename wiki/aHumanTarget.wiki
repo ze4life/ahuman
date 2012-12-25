@@ -33,12 +33,20 @@ Full biological high-level model with all nucleus, cortices and related circuits
    * component aggregations
    * component elements
 
-*Rules to be verified:*
+*Mapping rules:*
+
+  * each component is presented in mind element hierarchy
+  * each leaf hierarchy element is either component or part of component
+
+*Local connectivity rules:*
 
   * each component connector is connected by links to other components
   * there are several inputs or several outputs
-  * sensory and motor components are defined
   * all component connectors are in use
+  * sensory and motor components are defined
+
+*Global connectivity rules:*
+
   * for every sensor output connector there is excitatory path to at least some one motor input
   * for every sensor output connector there is excitatory path to at least some input of the same sensor
   * for every motor output connector there is excitatory path to at least some input of the same motor
