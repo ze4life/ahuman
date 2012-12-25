@@ -20,3 +20,17 @@ Full biological high-level model with all nucleus, cortices and related circuits
   * target itself does not contain sensors or effectors
   * all regions are stubs and produce stub messages
   * all neurolinks are stubs and affect regions as a whole, not individual neurons
+
+= Mind Model Verification =
+
+*Rules to be verified:*
+
+  * each component has inputs and outputs
+  * there are several inputs or several outputs
+  * sensory and motor components are defined
+  * all component connectors are in use
+  * for every sensor output connector there is excitatory path to at least some one motor input
+  * for every sensor output connector there is excitatory path to at least some input of the same sensor
+  * for every motor output connector there is excitatory path to at least some input of the same motor
+  * every component input has path to some sensor or motor output
+  * every component output has path to some sensor or motor input
