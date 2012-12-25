@@ -33,8 +33,9 @@ public:
 	static Service *newService();
 	static EnvService *getService() { return( ( EnvService * )ServiceManager::getInstance().getService( "EnvService" ) ); };
 
-private:
 	Xml loadXml( String fileName );
+
+private:
 	Xml getConfigurationData( Xml section , String objectType , String objectName );
 
 private:

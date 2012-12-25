@@ -73,6 +73,16 @@ public:
 
 public:
 	void createPages( Xml wiki );
+
+private:
+	void updateHierarchyPage( Xml wiki , Xml hmind );
+	void updateHierarchyPage_WalkTree( Xml wiki , Xml hmind , int level , StringList& lines , bool mapRegion );
+	String updateHierarchyPage_getElementString( Xml wiki , Xml item , MindRegion *region );
+
+	void createAreaPages( Xml wiki , Xml hmind );
+	void createComponentPages( Xml wiki , Xml hmind );
+
+	void updateFileSection( String fileName , String section , StringList& lines );
 };
 
 /*#########################################################################*/
