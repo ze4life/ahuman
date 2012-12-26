@@ -42,6 +42,9 @@
 			<region-type name="allocortex" implementation="mock">
 			</region-type>
 
+			<region-type name="ganglion" implementation="mock">
+			</region-type>
+
 		</region-type-set>
 
 		<component-set>
@@ -72,9 +75,9 @@
 				<region name="MCA.FT.S1" type="neocortex"/>
 				<region name="MCA.FT.INS" type="neocortex"/>
 				<region name="MCA.FT.TPC" type="neocortex"/>
-				<region name="MCA.FD.VA" type="nucleus" size="100"/>
-				<region name="MCA.FD.VL" type="nucleus" size="100"/>
-				<region name="MCA.FD.VP" type="nucleus" size="100"/>
+				<region name="MCA.FD.TH.VA" type="nucleus" size="100"/>
+				<region name="MCA.FD.TH.VL" type="nucleus" size="100"/>
+				<region name="MCA.FD.TH.VP" type="nucleus" size="100"/>
 			</area>
 
 			<area name="PCA" enabled="true">
@@ -174,10 +177,126 @@
 				<region name="BFA.FT.EPF" type="nucleus"/>
 				<region name="BFA.FT.IPAC" type="nucleus"/>
 				<region name="BFA.FD.HB" type="nucleus"/>
-				<region name="BFA.FD.PG" type="nucleus"/>
+				<region name="BFA.FD.PNG" type="nucleus"/>
 				<region name="BFA.FD.TH.SF" type="nucleus"/>
 				<region name="BFA.FD.TH.PT" type="nucleus"/>
 				<region name="BFA.FD.TH.PV" type="nucleus"/>
+			</area>
+
+			<!-- ================= hindbrain =============== -->
+			<area name="MBA" enabled="true">
+				<region name="MBA.MM.RD" type="nucleus"/>
+				<region name="MBA.MM.TG.LDT" type="nucleus"/>
+				<region name="MBA.MM.RF.MES" type="nucleus"/>
+				<region name="MBA.HP.CR" type="nucleus"/>
+				<region name="MBA.HP.BR" type="nucleus"/>
+				<region name="MBA.HP.PN.PBB" type="nucleus"/>
+				<region name="MBA.HP.PN.RP" type="nucleus"/>
+				<region name="MBA.HM.RF.MED" type="nucleus"/>
+			</area>
+
+			<area name="FBA" enabled="true">
+				<region name="FBA.MM.RP.MRN" type="nucleus"/>
+				<region name="FBA.MM.RP.DRN" type="nucleus"/>
+				<region name="FBA.MM.PAG" type="nucleus"/>
+				<region name="FBA.MM.CNF" type="nucleus"/>
+				<region name="FBA.MM.VTA" type="nucleus"/>
+				<region name="FBA.HP.RP.PRN" type="nucleus"/>
+				<region name="FBA.HP.RP.LI" type="nucleus"/>
+				<region name="FBA.HP.RP.MRN" type="nucleus"/>
+				<region name="FBA.HP.NI" type="nucleus"/>
+				<region name="FBA.HP.LC" type="nucleus"/>
+				<region name="FBA.HM.RP" type="nucleus"/>
+			</area>
+
+			<area name="HTA" enabled="true">
+				<region name="HTA.FD.HT.AH" type="nucleus"/>
+				<region name="HTA.FD.HT.AR" type="nucleus"/>
+				<region name="HTA.FD.HT.AVPV" type="nucleus"/>
+				<region name="HTA.FD.HT.DM" type="nucleus"/>
+				<region name="HTA.FD.HT.LT" type="nucleus"/>
+				<region name="HTA.FD.HT.PO" type="nucleus"/>
+				<region name="HTA.FD.HT.PN" type="nucleus"/>
+				<region name="HTA.FD.HT.PV" type="nucleus"/>
+				<region name="HTA.FD.HT.PVI" type="nucleus"/>
+				<region name="HTA.FD.HT.RCH" type="nucleus"/>
+				<region name="HTA.FD.HT.SCN" type="nucleus"/>
+				<region name="HTA.FD.HT.SO" type="nucleus"/>
+				<region name="HTA.FD.HT.TBC" type="nucleus"/>
+				<region name="HTA.FD.HT.VM" type="nucleus"/>
+				<region name="HTA.FD.HYP" type="nucleus"/>
+			</area>
+
+			<!-- ================= motor =============== -->
+			<area name="HMA" enabled="true">
+				<region name="HMA.MM.CJ" type="nucleus"/>
+				<region name="HMA.MM.MSTR" type="nucleus"/>
+				<region name="HMA.HP.FCM" type="nucleus"/>
+				<region name="HMA.HP.TRM" type="nucleus"/>
+				<region name="HMA.HP.PN.KFN" type="nucleus"/>
+				<region name="HMA.HP.PN.SC" type="nucleus"/>
+				<region name="HMA.HP.GCR" type="nucleus"/>
+				<region name="HMA.HP.CRF" type="nucleus"/>
+				<region name="HMA.HP.RPO" type="nucleus"/>
+				<region name="HMA.HP.PDT" type="nucleus"/>
+				<region name="HMA.HP.PTR" type="nucleus"/>
+				<region name="HMA.HM.PE5" type="nucleus"/>
+				<region name="HMA.HM.PA5" type="nucleus"/>
+				<region name="HMA.HM.STR" type="nucleus"/>
+				<region name="HMA.HM.SOL" type="nucleus"/>
+				<region name="HMA.HM.HYG" type="nucleus"/>
+				<region name="HMA.HM.INM" type="nucleus"/>
+				<region name="HMA.HM.AMB" type="nucleus"/>
+				<region name="HMA.SC.ISL" type="nucleus"/>
+			</area>
+
+			<area name="BMA" enabled="true">
+				<region name="BMA.MM.PT.PTA" type="nucleus"/>
+				<region name="BMA.HP.PVR" type="nucleus"/>
+				<region name="BMA.HP.VB" type="nucleus"/>
+				<region name="BMA.HP.PB" type="nucleus"/>
+				<region name="BMA.HM.IO" type="nucleus"/>
+				<region name="BMA.HM.ARC" type="nucleus"/>
+				<region name="BMA.HM.CU" type="nucleus"/>
+				<region name="BMA.HM.GR" type="nucleus"/>
+				<region name="BMA.SC.CL" type="nucleus"/>
+				<region name="BMA.SC.MG" type="nucleus"/>
+				<region name="BMA.SC.SG" type="nucleus"/>
+				<region name="BMA.SC.NP" type="nucleus"/>
+				<region name="BMA.SC.LCV" type="nucleus"/>
+				<region name="BMA.SC.LSN" type="nucleus"/>
+				<region name="BMA.SC.CCV" type="nucleus"/>
+				<region name="BMA.SC.SPCR" type="nucleus"/>
+				<region name="BMA.SC.CBS" type="nucleus"/>
+				<region name="BMA.SC.RPL" type="nucleus"/>
+				<region name="BMA.SC.PM" type="nucleus"/>
+				<region name="BMA.SC.MM" type="nucleus"/>
+				<region name="BMA.SC.PL" type="nucleus"/>
+				<region name="BMA.SC.LM" type="nucleus"/>
+				<region name="BMA.SC.PHR" type="nucleus"/>
+			</area>
+
+			<area name="AVA" enabled="true">
+				<region name="AVA.MM.EWN" type="nucleus"/>
+				<region name="AVA.HM.SSL" type="nucleus"/>
+				<region name="AVA.HM.ISL" type="nucleus"/>
+				<region name="AVA.HM.VG" type="nucleus"/>
+				<region name="AVA.SC.ON" type="nucleus"/>
+				<region name="AVA.SC.IML" type="nucleus"/>
+				<region name="AVA.SC.IMM" type="nucleus"/>
+				<region name="AVA.SC.DCN" type="nucleus"/>
+				<region name="AVA.SC.SCG" type="ganglion"/>
+				<region name="AVA.SC.STG" type="ganglion"/>
+				<region name="AVA.SC.CEG" type="ganglion"/>
+				<region name="AVA.SC.SMG" type="ganglion"/>
+				<region name="AVA.SC.IMG" type="ganglion"/>
+				<region name="AVA.SC.CLG" type="ganglion"/>
+				<region name="AVA.SC.EPG" type="ganglion"/>
+				<region name="AVA.SC.SPG" type="ganglion"/>
+				<region name="AVA.SC.SXG" type="ganglion"/>
+				<region name="AVA.SC.OTG" type="ganglion"/>
+				<region name="AVA.SC.CPG" type="ganglion"/>
+				<region name="AVA.SC.PPG" type="ganglion"/>
 			</area>
 
 		</component-set>

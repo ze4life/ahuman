@@ -76,8 +76,10 @@ public:
 
 private:
 	void updateHierarchyPage( Xml wiki , Xml hmind );
-	void updateHierarchyPage_WalkTree( Xml wiki , Xml hmind , int level , StringList& lines , bool mapRegion );
-	String updateHierarchyPage_getElementString( Xml wiki , Xml item , MindRegion *region );
+	void updateHierarchyPage_WalkTree( Xml wiki , Xml hmind , int level , StringList& lines , MindArea *parentArea , MindRegion *parentRegion );
+	String updateHierarchyPage_getElementString( Xml wiki , Xml item , MindArea *parentArea , MindRegion *parentRegion , MindArea *ownArea , MindRegion *ownRegion );
+	MindArea *updateHierarchyPage_getArea( Xml item );
+	MindRegion *updateHierarchyPage_getRegion( Xml item );
 
 	void createAreaPages( Xml wiki , Xml hmind );
 	void createComponentPages( Xml wiki , Xml hmind );
