@@ -226,7 +226,10 @@
 		</element>
 
 		<element name="Caudate Nucleus" id="BGA.FT.CN" refs="NL:[http://neurolex.org/wiki/Category:Caudate_nucleus Caudate nucleus]"/>
-		<element name="Dentate Gyrus" id="HCA.FT.DG" refs="NL:[http://neurolex.org/wiki/Category:Dentate_gyrus Dentate gyrus]"/>
+		<element name="Dentate Gyrus" id="HCA.FT.DG" type="Allocortex"
+			refs="NL:[http://neurolex.org/wiki/Category:Dentate_gyrus Dentate gyrus]"
+			function="Distinguishing multiple instances of similar events"
+			/>
 		<element name="Endopiriform Nucleus" id="BFA.FT.EPF" refs="NL:[http://neurolex.org/wiki/Category:Endopiriform_nucleus Endopiriform nucleus]"/>
 
 		<element name="Globus Pallidus" refs="NL:[http://neurolex.org/wiki/Category:Globus_pallidus Globus pallidus]">
@@ -238,10 +241,25 @@
 		</element>
 
 		<element name="Hippocampus" refs="NL:[http://neurolex.org/wiki/Category:Hippocampus Hippocampus]">
-			<element name="Ventrolateral Cornu Ammonis of Hippocampus" id="HCA.FT.HC.CA1" refs="NL:[http://neurolex.org/wiki/Category:CA1 CA1]"/>
-			<element name="Dorsolateral Cornu Ammonis of Hippocampus" id="HCA.FT.HC.CA2" refs="NL:[http://neurolex.org/wiki/Category:CA2 CA2]"/>
-			<element name="Dorsomedial Cornu Ammonis of Hippocampus" id="HCA.FT.HC.CA3" refs="NL:[http://neurolex.org/wiki/Category:CA3 CA3]"/>
-			<element name="Ventromedial Cornu Ammonis of Hippocampus" id="HCA.FT.HC.CA4"/>
+			<element name="Ventrolateral Cornu Ammonis of Hippocampus" id="HCA.FT.HC.CA1" type="Allocortex"
+				refs="NL:[http://neurolex.org/wiki/Category:CA1 CA1]"
+				function="Representing sequences of episodic memory - long-term"
+				notes="Hippocampus"
+				/>
+			<element name="Dorsolateral Cornu Ammonis of Hippocampus" id="HCA.FT.HC.CA2" type="Allocortex"
+				refs="NL:[http://neurolex.org/wiki/Category:CA2 CA2]"
+				function="Gate controlled by the activity of the supramammillary nucleus to control signal propagation between HC lamines"
+				notes="Hippocampus. Receives theta rithm input from Septum Nucleus"
+				/>
+			<element name="Dorsomedial Cornu Ammonis of Hippocampus" id="HCA.FT.HC.CA3" type="Allocortex"
+				refs="NL:[http://neurolex.org/wiki/Category:CA3 CA3]"
+				function="Representing sequences of episodic memory - short-term"
+				notes="Hippocampus"
+				/>
+			<element name="Ventromedial Cornu Ammonis of Hippocampus" id="HCA.FT.HC.CA4" type="Allocortex"
+				function="Mediate dynamic regulation of pattern separation in the dentate gyrus"
+				notes="Hippocampus"
+				/>
 		</element>
 
 		<element name="Interstitial Anterior Commissural Nucleus" id="BFA.FT.IPAC" refs="NL:[http://neurolex.org/wiki/Category:Interstitial_nucleus_of_the_posterior_limb_of_the_anterior_commissure Interstitial nucleus of the posterior limb of the anterior commissure]"/>
@@ -266,8 +284,15 @@
 		</element>
 
 		<element name="Subicular Complex" refs="NL:[http://neurolex.org/wiki/Category:Subicular_complex Subicular complex]">
-			<element name="Postsubiculum" id="HCA.FT.PSS" refs="NL:[http://neurolex.org/wiki/Category:Postsubiculum Postsubiculum]"/>
-			<element name="Subiculum" id="HCA.FT.SUB" refs="NL:[http://neurolex.org/wiki/Category:Subiculum Subiculum]">
+			<element name="Postsubiculum" id="HCA.FT.PSS" 
+				refs="NL:[http://neurolex.org/wiki/Category:Postsubiculum Postsubiculum]" type="Allocortex"
+				function="Integrate visual landmarks with internal representations of environments"
+				notes="as measured by hippocampal place cells, fear conditioning"
+				/>
+			<element name="Subiculum" id="HCA.FT.SUB" type="Allocortex"
+				refs="NL:[http://neurolex.org/wiki/Category:Subiculum Subiculum]"
+				function="Spatial navigation and mnemonic processing"
+				>
 				<element refs="NL:[http://neurolex.org/wiki/Category:Subiculum_alveus Subiculum alveus]"/>
 				<element refs="NL:[http://neurolex.org/wiki/Category:Subiculum_molecular_layer Subiculum molecular layer]"/>
 				<element refs="NL:[http://neurolex.org/wiki/Category:Subiculum_pyramidal_cell_layer Subiculum pyramidal cell layer]"/>
@@ -383,8 +408,16 @@
 		</element>
 
 		<element name="Mammillary Body" refs="NL:[http://neurolex.org/wiki/Category:Mammillary_body Mammillary body]">
-			<element name="Lateral Mammillary Nucleus" id="HCA.FD.LMB" refs="NL:[http://neurolex.org/wiki/Category:Lateral_mammillary_nucleus Lateral mammillary nucleus]"/>
-			<element name="Medial Mammillary Nucleus" id="HCA.FD.MMB" refs="NL:[http://neurolex.org/wiki/Category:Medial_mammillary_nucleus Medial mammillary nucleus]">
+			<element name="Lateral Mammillary Nucleus" id="HCA.FD.LMB" type="Excitatory Nucleus"
+				refs="NL:[http://neurolex.org/wiki/Category:Lateral_mammillary_nucleus Lateral mammillary nucleus]"
+				function="Generate theta rythm and relay to HC"
+				notes="Memory, recognition, spatial awareness, and interpreting the context of events"
+				/>
+			<element name="Medial Mammillary Nucleus" id="HCA.FD.MMB" type="Excitatory Nucleus"
+				refs="NL:[http://neurolex.org/wiki/Category:Medial_mammillary_nucleus Medial mammillary nucleus]"
+				function="Relay for impulses coming from AM and HC"
+				notes="Memory, recognition, spatial awareness, and interpreting the context of events"
+				>
 				<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_part_of_medial_mammillary_nucleus Lateral part of medial mammillary nucleus]"/>
 				<element refs="NL:[http://neurolex.org/wiki/Category:Medial_part_of_medial_mammillary_nucleus Medial part of medial mammillary nucleus]"/>
 			</element>
@@ -435,7 +468,11 @@
 		</element>
 
 		<element name="Thalamus" refs="NL:[http://neurolex.org/wiki/Category:Thalamus Thalamus];NL:[http://neurolex.org/wiki/Category:Nuclei_of_the_thalamus Nuclei of the thalamus]">
-			<element name="Anterior Nucleus of Thalamus" id="HCA.FD.TH.AN" refs="NL:[http://neurolex.org/wiki/Category:Anterior_nuclear_group Anterior nuclear group]">
+			<element name="Anterior Nucleus of Thalamus" id="HCA.FD.TH.AN" type="Excitatory Nucleus"
+				refs="NL:[http://neurolex.org/wiki/Category:Anterior_nuclear_group Anterior nuclear group]"
+				function="Extended hippocampal system"
+				notes="Projects to L4 of presubiculum and receives from postsubiculum, also to CG, RSP; spatial learning and memory; attentional processes; head direction"
+				>
 				<element refs="NL:[http://neurolex.org/wiki/Category:Anterodorsal_nucleus Anterodorsal nucleus]"/>
 				<element refs="NL:[http://neurolex.org/wiki/Category:Anteromedial_nucleus Anteromedial nucleus]"/>
 				<element refs="NL:[http://neurolex.org/wiki/Category:Anteroventral_nucleus Anteroventral nucleus]"/>
@@ -448,7 +485,11 @@
 				<element name="Parafascicular Nucleus of Thalamus" id="BGA.FD.TH.PF" refs="NL:[http://neurolex.org/wiki/Category:Parafascicular_nucleus Parafascicular nucleus]">
 					<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_part_of_the_parafascicular_thalamic_nucleus Lateral part of the parafascicular thalamic nucleus]"/>
 				</element>
-				<element name="Rostral Intralaminar Nucleus of Thalamus" id="PCA.FD.TH.RIL" refs="NL:[http://neurolex.org/wiki/Category:Rostral_intralaminar_nuclei Rostral intralaminar nuclei]">
+				<element name="Rostral Intralaminar Nucleus of Thalamus" id="PCA.FD.TH.RIL" type="Excitatory Nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Rostral_intralaminar_nuclei Rostral intralaminar nuclei]"
+					function="Stimulate memory-guided response"
+					notes="from brainstem to SPL.SA"
+					>
 					<element refs="NL:[http://neurolex.org/wiki/Category:Central_dorsal_nucleus Central dorsal nucleus]"/>
 					<element refs="NL:[http://neurolex.org/wiki/Category:Central_lateral_nucleus Central lateral nucleus]"/>
 					<element refs="NL:[http://neurolex.org/wiki/Category:Central_medial_nucleus Central medial nucleus]"/>
@@ -456,10 +497,22 @@
 				</element>
 			</element>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_nuclear_group Lateral nuclear group];NL:[http://neurolex.org/wiki/Category:Lateral_thalamus Lateral thalamus]">
-				<element name="Lateral Dorsal Nucleus of Thalamus" id="HCA.FD.TH.LD" refs="NL:[http://neurolex.org/wiki/Category:Lateral_dorsal_nucleus Lateral dorsal nucleus]"/>
-				<element name="Lateral Posterior Nucleus of Thalamus" id="PCA.FD.TH.LP" refs="NL:[http://neurolex.org/wiki/Category:Lateral_posterior_nucleus Lateral posterior nucleus]"/>
+				<element name="Lateral Dorsal Nucleus of Thalamus" id="HCA.FD.TH.LD" type="Excitatory Nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Lateral_dorsal_nucleus Lateral dorsal nucleus]"
+					function="Head direction, spatial learning"
+					notes="From RSP L5,6 BA17,18, RT, LGN"
+					/>
+				<element name="Lateral Posterior Nucleus of Thalamus" id="PCA.FD.TH.LP" type="Excitatory Nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Lateral_posterior_nucleus Lateral posterior nucleus]"
+					function="Visual association cortex"
+					notes="from superior colliculus, pretectum"
+					/>
 			</element>
-			<element name="Mediodorsal Nucleus of Thalamus" id="FCA.FD.TH.MD" refs="NL:[http://neurolex.org/wiki/Category:Medial_dorsal_nucleus Medial dorsal nucleus];NL:[http://neurolex.org/wiki/Category:Mediodorsal_thalamus Mediodorsal thalamus]">
+			<element name="Mediodorsal Nucleus of Thalamus" id="FCA.FD.TH.MD" type="Excitatory Nucleus"
+				refs="NL:[http://neurolex.org/wiki/Category:Medial_dorsal_nucleus Medial dorsal nucleus];NL:[http://neurolex.org/wiki/Category:Mediodorsal_thalamus Mediodorsal thalamus]"
+				function="Attention, planning, organization, abstract thinking, multi-tasking, and active memory"
+				notes="Relay AM to FCA.LPFC, FCA.OMPFC"
+				>
 				<element refs="NL:[http://neurolex.org/wiki/Category:Densocellular_part_of_medial_dorsal_nucleus Densocellular part of medial dorsal nucleus]"/>
 				<element refs="NL:[http://neurolex.org/wiki/Category:Magnocellular_part_of_medial_dorsal_nucleus Magnocellular part of medial dorsal nucleus]"/>
 				<element refs="NL:[http://neurolex.org/wiki/Category:Medial_mediodorsal_nucleus Medial mediodorsal nucleus]"/>
@@ -470,32 +523,64 @@
 				<element refs="NL:[http://neurolex.org/wiki/Category:Nucleus_rotundus_of_thalamus Nucleus rotundus of thalamus]" ignore="true" comment="birds-only equivalent of Pulvinar for motion processing"/>
 				<element name="Paratenial Nucleus of Thalamus" id="BFA.FD.TH.PT" refs="NL:[http://neurolex.org/wiki/Category:Paratenial_nucleus Paratenial nucleus]"/>
 				<element name="Paraventricular Nucleus of Thalamus" id="BFA.FD.TH.PV" refs="NL:[http://neurolex.org/wiki/Category:Paraventricular_nucleus_of_thalamus Paraventricular nucleus of thalamus]"/>
-				<element name="Reuniens Nucleus of Thalamus" id="HCA.FD.TH.RE" refs="NL:[http://neurolex.org/wiki/Category:Reuniens_nucleus Reuniens nucleus]"/>
-				<element name="Rhomboidal Nucleus of Thalamus" id="HCA.FD.TH.RH" refs="NL:[http://neurolex.org/wiki/Category:Rhomboidal_nucleus Rhomboidal nucleus]"/>
+				<element name="Reuniens Nucleus of Thalamus" id="HCA.FD.TH.RE" type="Excitatory Nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Reuniens_nucleus Reuniens nucleus]"
+					function="Gate information between OMPFC and HC dependent upon attentive/arousal states"
+					notes="Regulate amount of neural traffic with changes in attentiveness"
+					/>
+				<element name="Rhomboidal Nucleus of Thalamus" id="HCA.FD.TH.RH" type="Excitatory Nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Rhomboidal_nucleus Rhomboidal nucleus]"
+					function="Communication of information across memory delays to guide memory responses"
+					notes="like RE, return projection from PFC to HC, spatial working memory"
+					/>
 				<element name="Subfascicular Nucleus of Thalamus" id="BFA.FD.TH.SF" refs="NL:[http://neurolex.org/wiki/Category:Subfascicular_nucleus Subfascicular nucleus]"/>
 			</element>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Posterior_nuclear_complex Posterior nuclear complex];NL:[http://neurolex.org/wiki/Category:Posterior_thalamus Posterior thalamus]">
 				<element name="Limitans Nucleus of Thalamus" id="BGA.FD.TH.LI" refs="NL:[http://neurolex.org/wiki/Category:Limitans_nucleus Limitans nucleus]">
 					<element refs="NL:[http://neurolex.org/wiki/Category:Posterior_limitans_nucleus Posterior limitans nucleus]"/>
 				</element>
-				<element name="Posterior Nucleus of Thalamus" id="PCA.FD.TH.PO" refs="NL:[http://neurolex.org/wiki/Category:Posterior_nucleus_of_thalamus Posterior nucleus of thalamus]"/>
-				<element name="Suprageniculate Nucleus of Thalamus" id="PCA.FD.TH.SG" refs="NL:[http://neurolex.org/wiki/Category:Suprageniculate_nucleus Suprageniculate nucleus]"/>
+				<element name="Posterior Nucleus of Thalamus" id="PCA.FD.TH.PO" type="Excitatory Nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Posterior_nucleus_of_thalamus Posterior nucleus of thalamus]"
+					function="Somatic markers for spatial coding"
+					notes="To parietal association cortices"
+					/>
+				<element name="Suprageniculate Nucleus of Thalamus" id="PCA.FD.TH.SG" type="Excitatory Nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Suprageniculate_nucleus Suprageniculate nucleus]"
+					function="Spatial coding of auditory information"
+					notes="From tectum, somatic sensations"
+					/>
 			</element>
-			<element name="Submedial Nucleus of Thalamus" id="FCA.FD.TH.SM" refs="NL:[http://neurolex.org/wiki/Category:Submedial_nucleus Submedial nucleus]"/>
+			<element name="Submedial Nucleus of Thalamus" id="FCA.FD.TH.SM" type="Excitatory Nucleus"
+				refs="NL:[http://neurolex.org/wiki/Category:Submedial_nucleus Submedial nucleus]"
+				function="Pain center"
+				notes="Projections from SC Lamina I, trigeminal nucleus to ACC"
+				/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Thalamic_reticular_nucleus Thalamic reticular nucleus]" ignore="true" comment="generic signal to noice improvement"/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Ventral_nuclear_group Ventral nuclear group];NL:[http://neurolex.org/wiki/Category:Ventral_thalamic Ventral thalamic]">
-				<element name="Ventral Anterior Nucleus" id="MCA.FD.TH.VA" refs="NL:[http://neurolex.org/wiki/Category:Ventral_anterior_nucleus Ventral anterior nucleus]">
+				<element name="Ventral Anterior Nucleus" id="MCA.FD.TH.VA" type="Excitatory Nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Ventral_anterior_nucleus Ventral anterior nucleus]"
+					function="Relay BGA.SN, BGA.GPI, FCA.OMPFC, FCA.CG to MCA.PMC, MCA.SMC"
+					notes="Cognitive motor"
+					>
 					<element refs="NL:[http://neurolex.org/wiki/Category:Magnocellular_part_of_ventral_anterior_nucleus Magnocellular part of ventral anterior nucleus]"/>
 					<element refs="NL:[http://neurolex.org/wiki/Category:Parvicellular_part_of_ventral_anterior_nucleus Parvicellular part of ventral anterior nucleus]"/>
 				</element>
-				<element name="Ventral Lateral Nucleus" id="MCA.FD.TH.VL" refs="NL:[http://neurolex.org/wiki/Category:Ventral_lateral_nucleus Ventral lateral nucleus]">
+				<element name="Ventral Lateral Nucleus" id="MCA.FD.TH.VL" type="Excitatory Nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Ventral_lateral_nucleus Ventral lateral nucleus]"
+					function="Relay BSA.CR to MCA.MC"
+					notes="Executive motor"
+					>
 					<element refs="NL:[http://neurolex.org/wiki/Category:Area_X Area X]"/>
 					<element refs="NL:[http://neurolex.org/wiki/Category:Caudal_part_of_ventral_lateral_nucleus Caudal part of ventral lateral nucleus]"/>
 					<element refs="NL:[http://neurolex.org/wiki/Category:Medial_part_of_ventral_lateral_nucleus Medial part of ventral lateral nucleus]"/>
 					<element refs="NL:[http://neurolex.org/wiki/Category:Oral_part_of_ventral_lateral_nucleus Oral part of ventral lateral nucleus]"/>
 					<element refs="NL:[http://neurolex.org/wiki/Category:Pars_postrema_of_ventral_lateral_nucleus Pars postrema of ventral lateral nucleus]"/>
 				</element>
-				<element name="Ventral Posterior Nucleus" id="MCA.FD.TH.VP" refs="NL:[http://neurolex.org/wiki/Category:Ventral_posterior_nucleus Ventral posterior nucleus]">
+				<element name="Ventral Posterior Nucleus" id="MCA.FD.TH.VP" type="Excitatory Nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Ventral_posterior_nucleus Ventral posterior nucleus]"
+					function="Relays somatic information to MCA.SSC"
+					notes="VPL and VPM"
+					>
 					<element refs="NL:[http://neurolex.org/wiki/Category:Ventral_posteroinferior_nucleus Ventral posteroinferior nucleus]"/>
 					<element refs="NL:[http://neurolex.org/wiki/Category:Ventral_posterolateral_nucleus Ventral posterolateral nucleus]">
 						<element refs="NL:[http://neurolex.org/wiki/Category:Caudal_part_of_ventral_posterolateral_nucleus Caudal part of ventral posterolateral nucleus]"/>
