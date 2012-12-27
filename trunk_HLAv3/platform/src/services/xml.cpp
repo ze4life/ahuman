@@ -145,7 +145,7 @@ String Xml::getProperty( String name ) {
 		if( nameFound.equals( name ) )
 			break;
 
-		xmlChild = xmlChild -> NextSiblingElement();
+		xmlChild = xmlChild -> NextSiblingElement( "property" );
 	}
 
 	ASSERTMSG( xmlChild != NULL , String( "property " ) + name + " not found" );
@@ -211,7 +211,7 @@ String Xml::getProperty( String name , String defaultValue ) {
 		if( nameFound.equals( name ) )
 			break;
 
-		xmlChild = xmlChild -> NextSiblingElement();
+		xmlChild = xmlChild -> NextSiblingElement( "property" );
 	}
 
 	if( xmlChild == NULL )
@@ -293,7 +293,7 @@ void Xml::getProperties( MapStringToString& map ) {
 		String value = xmlChild -> Attribute( "value" );
 		map.add( name , value );
 
-		xmlChild = xmlChild -> NextSiblingElement();
+		xmlChild = xmlChild -> NextSiblingElement( "property" );
 	}
 }
 
