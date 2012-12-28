@@ -322,20 +322,20 @@ extern RFC_INT64	rfc_hpt_ms2ticks( RFC_INT64 ms );
 /*#######################################################*/
 
 typedef struct {
-	// false in first call
+	/* false in first call */
 	short initialized;
 
-	// current counter values
+	/* current counter values */
 	RFC_INT64 idle;
 	RFC_INT64 user;
 	RFC_INT64 kernel;
 	int clocks;
-	// previous counter values
+	/* previous counter values */
 	RFC_INT64 pidle;
 	RFC_INT64 puser;
 	RFC_INT64 pkernel;
 	int pclocks;
-	// anchor counter values to calculate CPU load
+	/* anchor counter values to calculate CPU load */
 	RFC_INT64 aidle; 
 	RFC_INT64 auser;
 	RFC_INT64 akernel;
@@ -343,6 +343,17 @@ typedef struct {
 } CPULOADINFO;
 
 extern float		rfc_sys_getcpuload( CPULOADINFO *info );
+
+/*#######################################################*/
+/*#######################################################*/
+
+typedef struct {
+	RFC_INT64	timeCreated;	/* number of 100-nanosecond intervals since January 1, 1601 */
+	RFC_INT64	timeUpdated;	/* number of 100-nanosecond intervals since January 1, 1601 */
+	RFC_INT64	size;			/* number of bytes */
+} RFC_FILEINFO;
+
+extern short		rfc_sys_getfileinfo( const char *path , RFC_FILEINFO *info );
 
 /*#######################################################*/
 /*#######################################################*/
