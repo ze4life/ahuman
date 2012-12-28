@@ -184,13 +184,19 @@
 
 	<division name="Forebrain Telencephalon">
 
-		<element name="Accumbens Nucleus" id="BGA.FT.ACC" refs="NL:[http://neurolex.org/wiki/Category:Nucleus_accumbens Nucleus accumbens]">
+		<element name="Accumbens Nucleus" id="BGA.FT.ACC" type="Inhibitory Nucleus"
+			refs="NL:[http://neurolex.org/wiki/Category:Nucleus_accumbens Nucleus accumbens]"
+			function="Activate motor functions under attention"
+			>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Core_of_nucleus_accumbens Core of nucleus accumbens]"/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Medial_nucleus_accumbens Medial nucleus accumbens]"/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Shell_of_nucleus_accumbens Shell of nucleus accumbens]"/>
 		</element>
 
-		<element name="Amygdala" id="BFA.FT.AM" refs="NL:[http://neurolex.org/wiki/Category:Amygdala Amygdala]">
+		<element name="Amygdala" id="BFA.FT.AM" type="Mixed Nucleus"
+			refs="NL:[http://neurolex.org/wiki/Category:Amygdala Amygdala]"
+			function="Experiencing and recognizing emotions"
+			>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Basolateral_nuclear_complex Basolateral nuclear complex]">
 				<element refs="NL:[http://neurolex.org/wiki/Category:Accessory_basal_amygdaloid_nucleus Accessory basal amygdaloid nucleus]"/>
 				<element refs="NL:[http://neurolex.org/wiki/Category:Basal_amygdaloid_nucleus Basal amygdaloid nucleus]">
@@ -217,26 +223,48 @@
 			<element refs="NL:[http://neurolex.org/wiki/Category:Medial_amygdala Medial amygdala]"/>
 		</element>
 
-		<element name="Basal Nucleus of Meynert" id="BFA.FT.NBM" refs="NL:[http://neurolex.org/wiki/Category:Basal_nucleus Basal nucleus];NL:[http://neurolex.org/wiki/Category:Substantia_innominata Substantia innominata]"/>
+		<element name="Basal Nucleus of Meynert" id="BFA.FT.NBM" type="Modulatory Nucleus"
+			refs="NL:[http://neurolex.org/wiki/Category:Basal_nucleus Basal nucleus];NL:[http://neurolex.org/wiki/Category:Substantia_innominata Substantia innominata]"
+			function="Control imagination vs perception"
+			notes="ACh source, attention"
+			/>
 
-		<element name="Bed Nucleus of Stria Terminalis" id="BFA.FT.BNST" refs="NL:[http://neurolex.org/wiki/Category:Bed_nucleus_of_stria_terminalis Bed nucleus of stria terminalis]">
+		<element name="Bed Nucleus of Stria Terminalis" id="BFA.FT.BNST" type="Mixed Nucleus"
+			refs="NL:[http://neurolex.org/wiki/Category:Bed_nucleus_of_stria_terminalis Bed nucleus of stria terminalis]"
+			function="Mediate slow longer-lasting responses that accompany sustained threats"
+			notes="Major output from AM to HT, part of extended amygdala"
+			>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Bed_nuclei_of_the_stria_terminalis_oval_nucleus Bed nuclei of the stria terminalis oval nucleus]"/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_nucleus_of_stria_terminalis Lateral nucleus of stria terminalis]"/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Medial_nucleus_of_stria_terminalis Medial nucleus of stria terminalis]"/>
 		</element>
 
-		<element name="Caudate Nucleus" id="BGA.FT.CN" refs="NL:[http://neurolex.org/wiki/Category:Caudate_nucleus Caudate nucleus]"/>
+		<element name="Caudate Nucleus" id="BGA.FT.CN" type="Inhibitory Nucleus"
+			refs="NL:[http://neurolex.org/wiki/Category:Caudate_nucleus Caudate nucleus]"
+			function="Excitation of correct action schemas and selection of appropriate sub-goals based on evaluation of action-outcomes"
+			notes="One of neural correlates of romantic love"
+			/>
 		<element name="Dentate Gyrus" id="HCA.FT.DG" type="Allocortex"
 			refs="NL:[http://neurolex.org/wiki/Category:Dentate_gyrus Dentate gyrus]"
 			function="Distinguishing multiple instances of similar events"
 			/>
-		<element name="Endopiriform Nucleus" id="BFA.FT.EPF" refs="NL:[http://neurolex.org/wiki/Category:Endopiriform_nucleus Endopiriform nucleus]"/>
+		<element name="Endopiriform Nucleus" id="BFA.FT.EPF" type="Excitatory Nucleus"
+			refs="NL:[http://neurolex.org/wiki/Category:Endopiriform_nucleus Endopiriform nucleus]"
+			function="Putative relay of limbic-associated cortical-like areas subserving affective information"
+			/>
 
 		<element name="Globus Pallidus" refs="NL:[http://neurolex.org/wiki/Category:Globus_pallidus Globus pallidus]">
 			<element refs="NL:[http://neurolex.org/wiki/Category:Caudal_globus_pallidus Caudal globus pallidus]" ignore="true" comment="secondary nuclei grouping"/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Dorsal_globus_pallidus Dorsal globus pallidus]" ignore="true" comment="secondary nuclei grouping"/>
-			<element name="Globus Pallidus External" id="BGA.FT.GPE" refs="NL:[http://neurolex.org/wiki/Category:Globus_pallidus_external_segment Globus pallidus external segment]"/>
-			<element name="Globus Pallidus Internal" id="BGA.FT.GPI" refs="NL:[http://neurolex.org/wiki/Category:Globus_pallidus_internal_segment Globus pallidus internal segment]"/>
+			<element name="Globus Pallidus External" id="BGA.FT.GPE" type="Inhibitory Nucleus"
+				refs="NL:[http://neurolex.org/wiki/Category:Globus_pallidus_external_segment Globus pallidus external segment]"
+				function="Regulate and focus activity patterns in striatum, STN, GPi, and SNpr"
+				/>
+			<element name="Globus Pallidus Internal" id="BGA.FT.GPI" type="Inhibitory Nucleus"
+				refs="NL:[http://neurolex.org/wiki/Category:Globus_pallidus_internal_segment Globus pallidus internal segment]"
+				function="Output nuclei of basal ganglia to neocortex"
+				notes="Balance of direct and indirect paths"
+				/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Rostral_globus_pallidus Rostral globus pallidus]" ignore="true" comment="no nuclei"/>
 		</element>
 
@@ -262,9 +290,17 @@
 				/>
 		</element>
 
-		<element name="Interstitial Anterior Commissural Nucleus" id="BFA.FT.IPAC" refs="NL:[http://neurolex.org/wiki/Category:Interstitial_nucleus_of_the_posterior_limb_of_the_anterior_commissure Interstitial nucleus of the posterior limb of the anterior commissure]"/>
+		<element name="Interstitial Anterior Commissural Nucleus" id="BFA.FT.IPAC" type="Excitatory Nucleus" 
+			refs="NL:[http://neurolex.org/wiki/Category:Interstitial_nucleus_of_the_posterior_limb_of_the_anterior_commissure Interstitial nucleus of the posterior limb of the anterior commissure]"
+			function="Sharp, acute pain sensation"
+			notes="Related to the central extended amygdala"
+			/>
 
-		<element name="Putamen" id="BGA.FT.PU" refs="NL:[http://neurolex.org/wiki/Category:Putamen Putamen]">
+		<element name="Putamen" id="BGA.FT.PU" type="Inhibitory Nucleus"
+			refs="NL:[http://neurolex.org/wiki/Category:Putamen Putamen]"
+			function="Stimulus-response, or habit, learning"
+			notes="Regulate movements and influence various types of learning"
+			>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Caudal_putamen Caudal putamen]"/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Matrix_compartment_of_putamen Matrix compartment of putamen]"/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Rostral_putamen Rostral putamen]"/>
@@ -272,7 +308,10 @@
 			<element refs="NL:[http://neurolex.org/wiki/Category:Ventral_putamen Ventral putamen]"/>
 		</element>
 
-		<element name="Septal Nucleus" id="BFA.FT.SEP" refs="NL:[http://neurolex.org/wiki/Category:Septal_nuclear_complex Septal nuclear complex]">
+		<element name="Septal Nucleus" id="BFA.FT.SEP" type="Mixed Nucleus"
+			refs="NL:[http://neurolex.org/wiki/Category:Septal_nuclear_complex Septal nuclear complex]"
+			function="Inhibition of fear and expression of pleasurable responses"
+			>
 			<element name="Diagonal Band of Broca" refs="NL:[http://neurolex.org/wiki/Category:Nuclei_of_the_diagonal_band Nuclei of the diagonal band]"/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Medial_septal_nucleus Medial septal nucleus]"/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Dorsal_septal_nucleus Dorsal septal nucleus]"/>
@@ -301,22 +340,36 @@
 		</element>
 
 		<element name="Substantia Nigra" refs="NL:[http://neurolex.org/wiki/Category:Substantia_nigra Substantia nigra]">
-			<element name="Substantia Nigra Pars Compacta" id="BGA.FT.SN.PC" refs="NL:[http://neurolex.org/wiki/Category:Substantia_nigra_pars_compacta Substantia nigra pars compacta]">
+			<element name="Substantia Nigra Pars Compacta" id="BGA.FT.SN.PC" type="Mixed Nucleus"
+				refs="NL:[http://neurolex.org/wiki/Category:Substantia_nigra_pars_compacta Substantia nigra pars compacta]"
+				function="Fine motor control, temporal processing"
+				notes="Supply striatum with dopamine, input to Basal Ganglia"
+				>
 				<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_substantia_nigra_pars_compacta Lateral substantia nigra pars compacta]"/>
 				<element refs="NL:[http://neurolex.org/wiki/Category:Medial_substantia_nigra_pars_compacta Medial substantia nigra pars compacta]"/>
 			</element>
-			<element name="Substantia Nigra Pars Reticulata" id="BGA.FT.SN.PR" refs="NL:[http://neurolex.org/wiki/Category:Substantia_nigra_pars_reticulata Substantia nigra pars reticulata]">
+			<element name="Substantia Nigra Pars Reticulata" id="BGA.FT.SN.PR" type="Inhibitory Nucleus"
+				refs="NL:[http://neurolex.org/wiki/Category:Substantia_nigra_pars_reticulata Substantia nigra pars reticulata]"
+				function="Convey final processed signals of basal ganglia to thalamus and superior colliculus"
+				>
 				<element refs="NL:[http://neurolex.org/wiki/Category:Substantia_nigra_pars_lateralis Substantia nigra pars lateralis]"/>
 			</element>
 		</element>
 
-		<element name="Ventral Pallidum" id="BGA.FT.VP" refs="NL:[http://neurolex.org/wiki/Category:Ventral_pallidum Ventral pallidum]"/>
+		<element name="Ventral Pallidum" id="BGA.FT.VP" type="Inhibitory Nucleus"
+			refs="NL:[http://neurolex.org/wiki/Category:Ventral_pallidum Ventral pallidum]"
+			function="Distinguish _wanting_ versus _liking_ enhancements"
+			notes="Necessary for reward learning and performance"
+			/>
 
 	</division>
 
 	<division name="Forebrain Diencephalon">
 
-		<element name="Habenula" id="BFA.FD.HB" refs="NL:[http://neurolex.org/wiki/Category:Habenula Habenula]">
+		<element name="Habenula" id="BFA.FD.HB" type="Excitatory Nucleus" 
+			refs="NL:[http://neurolex.org/wiki/Category:Habenula Habenula]"
+			function="Encoding negative feedback"
+			>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_habenular_nucleus Lateral habenular nucleus]"/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Medial_habenular_nucleus Medial habenular nucleus]"/>
 		</element>
@@ -443,7 +496,10 @@
 			</element>
 		</element>
 
-		<element name="Pineal Gland" id="BFA.FD.PNG" refs="NL:[http://neurolex.org/wiki/Category:Pineal_body Pineal body]"/>
+		<element name="Pineal Gland" id="BFA.FD.PNG" type="Hormone Nucleus" 
+			refs="NL:[http://neurolex.org/wiki/Category:Pineal_body Pineal body]"
+			function="Control of sexual development"
+			/>
 
 		<element name="Pituitary Gland" id="HTA.FD.HYP" refs="NL:[http://neurolex.org/wiki/Category:Hypophysis Hypophysis]">
 			<element refs="NL:[http://neurolex.org/wiki/Category:Adenohypophysis Adenohypophysis]">
@@ -490,7 +546,11 @@
 				/>
 		</element>
 
-		<element name="Subthalamus" id="BGA.FD.STN" refs="NL:[http://neurolex.org/wiki/Category:Subthalamus Subthalamus]">
+		<element name="Subthalamus" id="BGA.FD.STN" type="Excitatory Nucleus"
+			refs="NL:[http://neurolex.org/wiki/Category:Subthalamus Subthalamus]"
+			function="Perform action selection"
+			notes="Dysfunction increases impulsivity in case of two equally rewarded stimuli"
+			>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Nucleus_of_field_H_of_Forel Nucleus of field H of Forel]"/>
 			<element name="Subthalamic Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Subthalamic_nucleus Subthalamic nucleus]"/>
 			<element name="Zona Incerta" refs="NL:[http://neurolex.org/wiki/Category:Zona_incerta Zona incerta]"/>
@@ -510,8 +570,16 @@
 			<element refs="NL:[http://neurolex.org/wiki/Category:Interanterodorsal_nucleus_of_the_thalamus Interanterodorsal nucleus of the thalamus]" ignore="true" comment="left and right integration"/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Intermediodorsal_nucleus_of_the_thalamus Intermediodorsal nucleus of the thalamus]" ignore="true" comment="left and right integration"/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Intralaminar_nuclear_group Intralaminar nuclear group]">
-				<element name="Centromedian Nucleus of Thalamus" id="BGA.FD.TH.CM" refs="NL:[http://neurolex.org/wiki/Category:Centromedian_nucleus Centromedian nucleus]"/>
-				<element name="Parafascicular Nucleus of Thalamus" id="BGA.FD.TH.PF" refs="NL:[http://neurolex.org/wiki/Category:Parafascicular_nucleus Parafascicular nucleus]">
+				<element name="Centromedian Nucleus of Thalamus" id="BGA.FD.TH.CM" type="Excitatory Nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Centromedian_nucleus Centromedian nucleus]"
+					function="Control of level of cortical activity"
+					notes="Lesions lead to persistent vegetative state"
+					/>
+				<element name="Parafascicular Nucleus of Thalamus" id="BGA.FD.TH.PF" type="Excitatory Nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Parafascicular_nucleus Parafascicular nucleus]"
+					function="Stimulation of acetylcholine release in dorsal striata"
+					notes="Part of ascending activating system"
+					>
 					<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_part_of_the_parafascicular_thalamic_nucleus Lateral part of the parafascicular thalamic nucleus]"/>
 				</element>
 				<element name="Rostral Intralaminar Nucleus of Thalamus" id="PCA.FD.TH.RIL" type="Excitatory Nucleus"
@@ -550,8 +618,16 @@
 			</element>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Midline_nuclear_group Midline nuclear group]">
 				<element refs="NL:[http://neurolex.org/wiki/Category:Nucleus_rotundus_of_thalamus Nucleus rotundus of thalamus]" ignore="true" comment="birds-only equivalent of Pulvinar for motion processing"/>
-				<element name="Paratenial Nucleus of Thalamus" id="BFA.FD.TH.PT" refs="NL:[http://neurolex.org/wiki/Category:Paratenial_nucleus Paratenial nucleus]"/>
-				<element name="Paraventricular Nucleus of Thalamus" id="BFA.FD.TH.PV" refs="NL:[http://neurolex.org/wiki/Category:Paraventricular_nucleus_of_thalamus Paraventricular nucleus of thalamus]"/>
+				<element name="Paratenial Nucleus of Thalamus" id="BFA.FD.TH.PT" type="Excitatory Nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Paratenial_nucleus Paratenial nucleus]"
+					function="Direct behavior toward a particular outcome over a range of outcomes"
+					notes="Projects to BNST, AM, OMPFC, ET"
+					/>
+				<element name="Paraventricular Nucleus of Thalamus" id="BFA.FD.TH.PV" type="Excitatory Nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Paraventricular_nucleus_of_thalamus Paraventricular nucleus of thalamus]"
+					function="Direct behavior toward a particular outcome over a range of outcomes"
+					notes="Projects like PT, but more to BNST, AM"
+					/>
 				<element name="Reuniens Nucleus of Thalamus" id="HCA.FD.TH.RE" type="Excitatory Nucleus"
 					refs="NL:[http://neurolex.org/wiki/Category:Reuniens_nucleus Reuniens nucleus]"
 					function="Gate information between OMPFC and HC dependent upon attentive/arousal states"
@@ -562,10 +638,17 @@
 					function="Communication of information across memory delays to guide memory responses"
 					notes="like RE, return projection from PFC to HC, spatial working memory"
 					/>
-				<element name="Subfascicular Nucleus of Thalamus" id="BFA.FD.TH.SF" refs="NL:[http://neurolex.org/wiki/Category:Subfascicular_nucleus Subfascicular nucleus]"/>
+				<element name="Subfascicular Nucleus of Thalamus" id="BFA.FD.TH.SF" type="Excitatory Nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Subfascicular_nucleus Subfascicular nucleus]"
+					function="Relays from PAG to Rhape nuclei, Inferior olive nucleus"
+					/>
 			</element>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Posterior_nuclear_complex Posterior nuclear complex];NL:[http://neurolex.org/wiki/Category:Posterior_thalamus Posterior thalamus]">
-				<element name="Limitans Nucleus of Thalamus" id="BGA.FD.TH.LI" refs="NL:[http://neurolex.org/wiki/Category:Limitans_nucleus Limitans nucleus]">
+				<element name="Limitans Nucleus of Thalamus" id="BGA.FD.TH.LI" type="Excitatory Nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Limitans_nucleus Limitans nucleus]"
+					function="Multisensory projection to striatum"
+					notes="From SC, trigeminal nucleus, superior and inferior colliculus"
+					>
 					<element refs="NL:[http://neurolex.org/wiki/Category:Posterior_limitans_nucleus Posterior limitans nucleus]"/>
 				</element>
 				<element name="Posterior Nucleus of Thalamus" id="PCA.FD.TH.PO" type="Excitatory Nucleus"
@@ -802,7 +885,10 @@
 			<element refs="NL:[http://neurolex.org/wiki/Category:Medial_parabrachial_nucleus Medial parabrachial nucleus]"/>
 		</element>
 
-		<element name="Pedunculopontine Nucleus" id="BGA.HP.PPN" refs="NL:[http://neurolex.org/wiki/Category:Pedunculopontine_tegmental_nucleus Pedunculopontine tegmental nucleus]">
+		<element name="Pedunculopontine Nucleus" id="BGA.HP.PPN" type="Excitatory Nucleus"
+			refs="NL:[http://neurolex.org/wiki/Category:Pedunculopontine_tegmental_nucleus Pedunculopontine tegmental nucleus]"
+			function="Provide sensory feedback to cerebral cortex"
+			>
 			<element name="Entopeduncular Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Entopeduncular_nucleus Entopeduncular nucleus]"/>
 			<element name="Interpeduncular Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Interpeduncular_nucleus Interpeduncular nucleus]"/>
 			<element name="Peripeduncular Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Peripeduncular_nucleus Peripeduncular nucleus]"/>
@@ -871,7 +957,7 @@
 		<element name="Cochlear Nucleus" id="ABA.HM.COCH" type="Sensory Relay Nucleus"
 			refs="NL:[http://neurolex.org/wiki/Category:Cochlear_nuclear_complex Cochlear nuclear complex]"
 			function="Divergence in representation of auditory information"
-			notes="Carry sound information from organ of corti"
+			notes="Carry sound information from organ of Corti"
 			>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Dorsal_cochlear_nucleus Dorsal cochlear nucleus]"/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Ventral_cochlear_nucleus Ventral cochlear nucleus]">
@@ -879,11 +965,6 @@
 				<element refs="NL:[http://neurolex.org/wiki/Category:Posteroventral_cochlear_nucleus Posteroventral cochlear nucleus]"/>
 			</element>
 		</element>
-
-		<element name="Organ of Corti" id="ABA.HM.CORTI" type="1-order Sensory Nucleus"
-			function="Tonotopic mapping"
-			notes="Contains outer (OHC) and inner (IHC) hair cells in cochlea, inner ear"
-			/>
 
 		<element name="Cuneate Nucleus" id="BMA.HM.CU" refs="NL:[http://neurolex.org/wiki/Category:Cuneate_nucleus Cuneate nucleus]">
 			<element refs="NL:[http://neurolex.org/wiki/Category:Accessory_cuneate_nucleus Accessory cuneate nucleus]"/>
@@ -908,6 +989,11 @@
 			<element name="Central Medullary Reticular Nucleus"/>
 			<element name="Lateral Reticular Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_reticular_nucleus Lateral reticular nucleus]"/>
 		</element>
+
+		<element name="Organ of Corti" id="ABA.HM.CORTI" type="1-order Sensory Nucleus"
+			function="Tonotopic mapping"
+			notes="Contains outer (OHC) and inner (IHC) hair cells in cochlea, inner ear"
+			/>
 
 		<element name="Prepositus Nucleus" id="VBA.HM.NPH" type="Sensory Control Nucleus"
 			refs="NL:[http://neurolex.org/wiki/Category:Nucleus_prepositus Nucleus prepositus]"
