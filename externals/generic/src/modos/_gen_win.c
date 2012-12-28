@@ -246,24 +246,24 @@ void
 	QueryPerformanceCounter( ( LARGE_INTEGER * )pv );
 }
 
-int	
+RFC_INT64
 	rfc_hpt_timepassed( RFC_INT64 *pv )
 {
 	LARGE_INTEGER hpt_stop_ticks;
 	QueryPerformanceCounter( &hpt_stop_ticks );
-	return( ( int )( hpt_stop_ticks.QuadPart - *pv ) );
+	return( hpt_stop_ticks.QuadPart - *pv );
 }
 
-int	
-	rfc_hpt_ticks2ms( int ticks )
+RFC_INT64
+	rfc_hpt_ticks2ms( RFC_INT64 ticks )
 {
-	return( ( int )( ( ticks * hpt_window_clocks ) / hpt_window_ticks ) );
+	return( ( ticks * hpt_window_clocks ) / hpt_window_ticks );
 }
 
-int	
-	rfc_hpt_ms2ticks( int ms )
+RFC_INT64
+	rfc_hpt_ms2ticks( RFC_INT64 ms )
 {
-	return( ( int )( ( ms * hpt_window_ticks ) / hpt_window_clocks ) );
+	return( ( ms * hpt_window_ticks ) / hpt_window_clocks );
 }
 
 /*#######################################################*/
@@ -326,5 +326,28 @@ float
 
 	cpuLoad = 100.f * ( 1.f - ( float )( timeFree / timeBusy ) );
 	return( cpuLoad );
+}
+
+short
+	rfc_sys_getfileinfo( const char *path , RFC_FILEINFO *info )
+{
+	WIN32_FIND_DATA findFileData;
+	HANDLE hFind;
+	RFC_MONEY value;
+
+	hFind = FindFirstFile( path , &findFileData );
+	if( hFind == INVALID_HANDLE_VALUE )
+		return( 0 );
+
+	/* form structure */
+	info -> timeCreated = *( RFC_INT64 * )&findFileData.ftCreationTime;
+	info -> timeUpdated = *( RFC_INT64 * )&findFileData.ftLastWriteTime;
+
+	value.s_part.s_hi = findFileData.nFileSizeHigh;
+	value.s_part.s_low = findFileData.nFileSizeLow;
+	info -> size = value.s_int64;
+
+	FindClose( hFind );
+	return( 1 );
 }
 
