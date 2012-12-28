@@ -1,4 +1,5 @@
 #include <ah_platform.h>
+#include <ah_env_impl.h>
 
 static int write_chunk( char *p_b , FILE *f , int maxread );
 

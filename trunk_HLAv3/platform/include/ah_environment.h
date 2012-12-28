@@ -6,8 +6,12 @@
 
 #include "ah_services.h"
 
+class EnvService;
+
 /*#########################################################################*/
 /*#########################################################################*/
+
+class EnvXmlDoc;
 
 class EnvService : public Service {
 public:
@@ -43,7 +47,7 @@ private:
 	Xml config;
 
 	// configurations loaded
-	MapStringToClass<Xml> configs;
+	MapStringToClass<EnvXmlDoc> configs;
 };
 
 /*#########################################################################*/

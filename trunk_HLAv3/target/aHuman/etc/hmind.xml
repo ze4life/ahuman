@@ -401,7 +401,11 @@
 			<element refs="NL:[http://neurolex.org/wiki/Category:Ventromedial_hypothalamic_region Ventromedial hypothalamic region];NL:[http://neurolex.org/wiki/Category:Ventromedial_hypothalamus Ventromedial hypothalamus]" ignore="true" comment="secondary nuclei grouping"/>
 		</element>
 		
-		<element name="Lateral Geniculate Nucleus" id="VBA.FD.TH.LGN" refs="NL:[http://neurolex.org/wiki/Category:Lateral_geniculate_body Lateral geniculate body]">
+		<element name="Lateral Geniculate Nucleus" id="VBA.FD.TH.LGN" type="Sensory Relay Nucleus"
+			refs="NL:[http://neurolex.org/wiki/Category:Lateral_geniculate_body Lateral geniculate body]"
+			function="Temporal decorrelation"
+			notes="Only 10% of inputs to LGN come from the retina. 90% are modulatory inputs from cortex and the brainstem"
+			>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Dorsal_nucleus_of_lateral_geniculate_body Dorsal nucleus of lateral geniculate body]"/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Intergeniculate_leaflet_of_the_lateral_geniculate_complex Intergeniculate leaflet of the lateral geniculate complex]"/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Ventral_nucleus_of_lateral_geniculate_body Ventral nucleus of lateral geniculate body]"/>
@@ -423,7 +427,11 @@
 			</element>
 		</element>
 
-		<element name="Medial Geniculate Body" id="ABA.FD.TH.MGB" refs="NL:[http://neurolex.org/wiki/Category:Medial_geniculate_body Medial geniculate body]">
+		<element name="Medial Geniculate Body" id="ABA.FD.TH.MGB" type="Sensory Relay Nucleus"
+			refs="NL:[http://neurolex.org/wiki/Category:Medial_geniculate_body Medial geniculate body]"
+				function="Detection of the relative intensity and duration of a sound, relay to Auditory Cortex"
+				notes="Thalamus"
+			>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Anterodorsal_nucleus_of_medial_geniculate_body Anterodorsal nucleus of medial geniculate body]"/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Dorsal_nucleus_of_medial_geniculate_body Dorsal nucleus of medial geniculate body]"/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Magnocellular_nucleus_of_medial_geniculate_body Magnocellular nucleus of medial geniculate body]"/>
@@ -454,11 +462,32 @@
 			</element>
 		</element>
 
+		<element name="Retina" id="VBA.FD.RT" type="1-order Sensory Nucleus"
+			function="Spatial decorrelation through center surround inhibition"
+			notes="100:1 cones/rods to ganglion cells aggregation, edge extraction"
+			/>
+
 		<element name="Pulvinar" refs="NL:[http://neurolex.org/wiki/Category:Pulvinar Pulvinar]">
-			<element name="Inferior Pulvinar" id="VBA.FD.TH.IPV" refs="NL:[http://neurolex.org/wiki/Category:Inferior_pulvinar_nucleus Inferior pulvinar nucleus]"/>
-			<element name="Lateral Pulvinar" id="VBA.FD.TH.LPV" refs="NL:[http://neurolex.org/wiki/Category:Lateral_pulvinar_nucleus Lateral pulvinar nucleus]"/>
-			<element name="Medial Pulvinar" id="VBA.FD.TH.MPV" refs="NL:[http://neurolex.org/wiki/Category:Medial_pulvinar Medial pulvinar];NL:[http://neurolex.org/wiki/Category:Medial_pulvinar_nucleus Medial pulvinar nucleus]"/>
-			<element name="Oral Pulvinar" id="VBA.FD.TH.OPV" refs="NL:[http://neurolex.org/wiki/Category:Oral_pulvinar_nucleus Oral pulvinar nucleus]"/>
+			<element name="Inferior Pulvinar" id="VBA.FD.TH.IPV" type="Sensory Relay Nucleus"
+				refs="NL:[http://neurolex.org/wiki/Category:Inferior_pulvinar_nucleus Inferior pulvinar nucleus]"
+				function="Dorsal =Where= Stream"
+				notes="Thalamus"
+				/>
+			<element name="Lateral Pulvinar" id="VBA.FD.TH.LPV" type="Sensory Relay Nucleus"
+				refs="NL:[http://neurolex.org/wiki/Category:Lateral_pulvinar_nucleus Lateral pulvinar nucleus]"
+				function="Ventral =What= Stream"
+				notes="Thalamus"
+				/>
+			<element name="Medial Pulvinar" id="VBA.FD.TH.MPV" type="Sensory Relay Nucleus"
+				refs="NL:[http://neurolex.org/wiki/Category:Medial_pulvinar Medial pulvinar];NL:[http://neurolex.org/wiki/Category:Medial_pulvinar_nucleus Medial pulvinar nucleus]"
+				function="Integration of associative cortical information and projects to visuomotor-related cortex"
+				notes="CG, PMC, PFC connections"
+				/>
+			<element name="Oral Pulvinar" id="VBA.FD.TH.OPV" type="Sensory Relay Nucleus"
+				refs="NL:[http://neurolex.org/wiki/Category:Oral_pulvinar_nucleus Oral pulvinar nucleus]"
+				function="Somatosensory functions"
+				notes="Thalamus, connected with parietal cortex"
+				/>
 		</element>
 
 		<element name="Subthalamus" id="BGA.FD.STN" refs="NL:[http://neurolex.org/wiki/Category:Subthalamus Subthalamus]">
@@ -604,10 +633,17 @@
 			<element name="Subcuneiform Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Subcuneiform_nucleus Subcuneiform nucleus]"/>
 		</element>
 
-		<element name="Darkschewitsch Nucleus" id="VBA.MM.DSCH" refs="NL:[http://neurolex.org/wiki/Category:Nucleus_of_Darkschewitsch Nucleus of Darkschewitsch]"/>
+		<element name="Darkschewitsch Nucleus" id="VBA.MM.DSCH" type="Sensory Control Nucleus"
+			refs="NL:[http://neurolex.org/wiki/Category:Nucleus_of_Darkschewitsch Nucleus of Darkschewitsch]"
+			function="Mediate the consensual pupillary light reflex"
+			notes="Light in one eye results in pupil changes in another eye"
+			/>
 		<element name="Edinger-Westphal Nucleus" id="AVA.MM.EWN" refs="NL:[http://neurolex.org/wiki/Category:Parvocellular_oculomotor_nucleus Parvocellular oculomotor nucleus]"/>
 
-		<element name="Inferior Colliculus" id="ABA.MM.IC" refs="NL:[http://neurolex.org/wiki/Category:Inferior_colliculus Inferior colliculus]">
+		<element name="Inferior Colliculus" id="ABA.MM.IC" type="Sensory Relay Nucleus"
+			refs="NL:[http://neurolex.org/wiki/Category:Inferior_colliculus Inferior colliculus]"
+			function="Reflex centres of hearing"
+			>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Central_nucleus_of_inferior_colliculus Central nucleus of inferior colliculus]"/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:External_nucleus_of_inferior_colliculus External nucleus of inferior colliculus]"/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Pericentral_nucleus_of_inferior_colliculus Pericentral nucleus of inferior colliculus]"/>
@@ -615,7 +651,11 @@
 
 		<element name="Mesencephalic Trigeminal Nucleus" id="HMA.MM.MSTR" refs="NL:[http://neurolex.org/wiki/Category:Mesencephalic_nucleus_of_trigeminal_nerve Mesencephalic nucleus of trigeminal nerve]"/>
 
-		<element name="Oculomotor Nucleus" id="VBA.MM.OCN" refs="NL:[http://neurolex.org/wiki/Category:Oculomotor_nuclear_complex Oculomotor nuclear complex]">
+		<element name="Oculomotor Nucleus" id="VBA.MM.OCN" type="Motor Relay Nucleus"
+			refs="NL:[http://neurolex.org/wiki/Category:Oculomotor_nuclear_complex Oculomotor nuclear complex]"
+			function="Change Eye Direction"
+			notes="Muscle nucleus"
+			>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Anterior_median_oculomotor_nucleus Anterior median oculomotor nucleus]"/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Caudal_central_oculomotor_nucleus Caudal central oculomotor nucleus]"/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Central_oculomotor_nucleus Central oculomotor nucleus]"/>
@@ -629,10 +669,26 @@
 
 		<element name="Pretectum" refs="NL:[http://neurolex.org/wiki/Category:Pretectum Pretectum]">
 			<element name="Anterior Pretectum Nucleus" id="BMA.MM.PT.PTA" refs="NL:[http://neurolex.org/wiki/Category:Anterior_pretectal_nucleus Anterior pretectal nucleus]"/>
-			<element name="Nucleus of Optic Tract" id="VBA.MM.PT.NOT" refs="NL:[http://neurolex.org/wiki/Category:Nucleus_of_optic_tract Nucleus of optic tract]"/>
-			<element name="Pretectal Olivary Nucleus" id="VBA.MM.PT.PON" refs="NL:[http://neurolex.org/wiki/Category:Olivary_pretectal_nucleus Olivary pretectal nucleus]"/>
-			<element name="Principal Pretectal Nucleus" id="VBA.MM.PT.PR" refs="NL:[http://neurolex.org/wiki/Category:Principal_pretectal_nucleus Principal pretectal nucleus]"/>
-			<element name="Sublentiform Nucleus" id="VBA.MM.PT.SL" refs="NL:[http://neurolex.org/wiki/Category:Sublentiform_nucleus Sublentiform nucleus]"/>
+			<element name="Nucleus of Optic Tract" id="VBA.MM.PT.NOT" type="Sensory Relay Nucleus"
+				refs="NL:[http://neurolex.org/wiki/Category:Nucleus_of_optic_tract Nucleus of optic tract]"
+				function="Encode retinal error information during smooth pursuit eye movements"
+				notes="Guide motor learning during horizontal SP"
+				/>
+			<element name="Pretectal Olivary Nucleus" id="VBA.MM.PT.PON" type="Sensory Control Nucleus"
+				refs="NL:[http://neurolex.org/wiki/Category:Olivary_pretectal_nucleus Olivary pretectal nucleus]"
+				function="Pupillary light reflex and modulating subcortical nuclei involved in circadian rhythms"
+				notes="Primary visual centre, involved in the pupillary light reflex, receives retinal input"
+				/>
+			<element name="Principal Pretectal Nucleus" id="VBA.MM.PT.PR" type="Sensory Control Nucleus"
+				refs="NL:[http://neurolex.org/wiki/Category:Principal_pretectal_nucleus Principal pretectal nucleus]"
+				function="Pupillary light reflex"
+				notes="Affected by visual cortex and projects to EWN"
+				/>
+			<element name="Sublentiform Nucleus" id="VBA.MM.PT.SL" type="Sensory Control Nucleus"
+				refs="NL:[http://neurolex.org/wiki/Category:Sublentiform_nucleus Sublentiform nucleus]"
+				function="Accomodation reflex"
+				notes="Combines visual cortex and retinal input to project to OCN, receives retinal input"
+				/>
 		</element>
 
 		<element name="Raphe Nuclei of Midbrain" refs="NL:[http://neurolex.org/wiki/Category:Midbrain_raphe_nuclei Midbrain raphe nuclei]">
@@ -648,7 +704,11 @@
 			<element refs="NL:[http://neurolex.org/wiki/Category:Parvocellular_part_of_red_nucleus Parvocellular part of red nucleus]"/>
 		</element>
 
-		<element name="Superior Colliculus" id="VBA.MM.SC" refs="NL:[http://neurolex.org/wiki/Category:Superior_colliculus Superior colliculus]">
+		<element name="Superior Colliculus" id="VBA.MM.SC" type="Sensory Control Nucleus"
+			refs="NL:[http://neurolex.org/wiki/Category:Superior_colliculus Superior colliculus]"
+			function="Direct behavioral responses toward specific points in egocentric space, induce saccadic eye movement"
+			notes="Superficial layers are sensory-related, deep layers are motor-related"
+			>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_superior_colliculus Lateral superior colliculus]"/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Medial_superior_colliculus Medial superior colliculus]"/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Rostral_half_of_the_superior_colliculus Rostral half of the superior colliculus]"/>
@@ -658,7 +718,11 @@
 			<element refs="NL:[http://neurolex.org/wiki/Category:Superior_colliculus_superficial_gray_layer Superior colliculus superficial gray layer]"/>
 		</element>
 
-		<element name="Superior Olivary Complex" id="ABA.MM.SOC" refs="NL:[http://neurolex.org/wiki/Category:Superior_olivary_complex Superior olivary complex]">
+		<element name="Superior Olivary Complex" id="ABA.MM.SOC" type="Sensory Control Nucleus"
+			refs="NL:[http://neurolex.org/wiki/Category:Superior_olivary_complex Superior olivary complex]"
+			function="Bilateral Audition"
+			notes="Projections from both left and right ABA.CN"
+			>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Periolivary_nucleus Periolivary nucleus]"/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Preolivary_nucleus Preolivary nucleus]"/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Superior_olive Superior olive]">
@@ -673,7 +737,11 @@
 			</element>
 		</element>
 
-		<element name="Trochlear Nucleus" id="VBA.MM.TRH" refs="NL:[http://neurolex.org/wiki/Category:Trochlear_nucleus Trochlear nucleus]"/>
+		<element name="Trochlear Nucleus" id="VBA.MM.TRH" type="Motor Relay Nucleus"
+			refs="NL:[http://neurolex.org/wiki/Category:Trochlear_nucleus Trochlear nucleus]"
+			function="Change Eye Direction"
+			notes="Muscle nucleus"
+			/>
 
 		<element name="Ventral Tegmental Area" id="FBA.MM.VTA" refs="NL:[http://neurolex.org/wiki/Category:Ventral_tegmental_nucleus Ventral tegmental nucleus];NL:[http://neurolex.org/wiki/Category:Ventral_tegmental_area Ventral tegmental area]">
 			<element refs="NL:[http://neurolex.org/wiki/Category:Medial_ventral_tegmental_area Medial ventral tegmental area]"/>
@@ -685,7 +753,11 @@
 
 	<division name="Hindbrain Metencephalon">
 
-		<element name="Abducens Nucleus" id="VBA.HP.ABD" refs="NL:[http://neurolex.org/wiki/Category:Accessory_abducens_nucleus Accessory abducens nucleus]"/>
+		<element name="Abducens Nucleus" id="VBA.HP.ABD" type="Motor Relay Nucleus"
+			refs="NL:[http://neurolex.org/wiki/Category:Accessory_abducens_nucleus Accessory abducens nucleus]"
+			function="Conjugated movements of both eyes"
+			notes="Motoneurons - to muscle, interneurons - to OCN"
+			/>
 		<element name="Barrington's Nucleus" id="MBA.HP.BR" refs="NL:[http://neurolex.org/wiki/Category:Barrington%27s_nucleus Barrington's nucleus]"/>
 
 		<element name="Cerebellum" id="MBA.HP.CR" refs="[BrainComponentCerebellum Cerebellum]">
@@ -742,7 +814,11 @@
 			<element name="Pontobulbar Body" id="MBA.HP.PN.PBB" refs="NL:[http://neurolex.org/wiki/Category:Pontobulbar_nucleus Pontobulbar nucleus]"/>
 			<element name="Rostral Pontine Nucleus" id="MBA.HP.PN.RP" refs="NL:[http://neurolex.org/wiki/Category:Rostral_pontine_nuclei Rostral pontine nuclei]"/>
 			<element name="Kolliker-Fuse Nucleus" id="HMA.HP.PN.KFN" refs="NL:[http://neurolex.org/wiki/Category:Kolliker-Fuse_nucleus Kolliker-Fuse nucleus]"/>
-			<element name="Nuclei of Lateral Lemniscus" id="ABA.HP.PN.LL" refs="NL:[http://neurolex.org/wiki/Category:Nuclei_of_the_lateral_lemniscus Nuclei of the lateral lemniscus]">
+			<element name="Nuclei of Lateral Lemniscus" id="ABA.HP.PN.LL" type="Sensory Relay Nucleus"
+				refs="NL:[http://neurolex.org/wiki/Category:Nuclei_of_the_lateral_lemniscus Nuclei of the lateral lemniscus]"
+				function="Decoding of amplitude modulated sounds"
+				notes="Prominent columnar organization, cochlea to IC"
+				>
 				<element refs="NL:[http://neurolex.org/wiki/Category:Dorsal_nucleus_of_lateral_lemniscus Dorsal nucleus of lateral lemniscus]"/>
 				<element refs="NL:[http://neurolex.org/wiki/Category:Ventral_nucleus_of_lateral_lemniscus Ventral nucleus of lateral lemniscus]"/>
 				<element name="Intermediate nucleus of lateral lemniscus"/>
@@ -792,13 +868,22 @@
 
 		<element name="Arcuate Nucleus of Medulla" id="BMA.HM.ARC" refs="NL:[http://neurolex.org/wiki/Category:Arcuate_nucleus_of_medulla Arcuate nucleus of medulla]"/>
 
-		<element name="Cochlear Nucleus" id="ABA.HM.COCH" refs="NL:[http://neurolex.org/wiki/Category:Cochlear_nuclear_complex Cochlear nuclear complex]">
+		<element name="Cochlear Nucleus" id="ABA.HM.COCH" type="Sensory Relay Nucleus"
+			refs="NL:[http://neurolex.org/wiki/Category:Cochlear_nuclear_complex Cochlear nuclear complex]"
+			function="Divergence in representation of auditory information"
+			notes="Carry sound information from organ of corti"
+			>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Dorsal_cochlear_nucleus Dorsal cochlear nucleus]"/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Ventral_cochlear_nucleus Ventral cochlear nucleus]">
 				<element refs="NL:[http://neurolex.org/wiki/Category:Anteroventral_cochlear_nucleus Anteroventral cochlear nucleus]"/>
 				<element refs="NL:[http://neurolex.org/wiki/Category:Posteroventral_cochlear_nucleus Posteroventral cochlear nucleus]"/>
 			</element>
 		</element>
+
+		<element name="Organ of Corti" id="ABA.HM.CORTI" type="1-order Sensory Nucleus"
+			function="Tonotopic mapping"
+			notes="Contains outer (OHC) and inner (IHC) hair cells in cochlea, inner ear"
+			/>
 
 		<element name="Cuneate Nucleus" id="BMA.HM.CU" refs="NL:[http://neurolex.org/wiki/Category:Cuneate_nucleus Cuneate nucleus]">
 			<element refs="NL:[http://neurolex.org/wiki/Category:Accessory_cuneate_nucleus Accessory cuneate nucleus]"/>
@@ -824,7 +909,11 @@
 			<element name="Lateral Reticular Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_reticular_nucleus Lateral reticular nucleus]"/>
 		</element>
 
-		<element name="Prepositus Nucleus" id="VBA.HM.NPH" refs="NL:[http://neurolex.org/wiki/Category:Nucleus_prepositus Nucleus prepositus]"/>
+		<element name="Prepositus Nucleus" id="VBA.HM.NPH" type="Sensory Control Nucleus"
+			refs="NL:[http://neurolex.org/wiki/Category:Nucleus_prepositus Nucleus prepositus]"
+			function="Integrate PPRF phasic signal to provide tonic signal of abducens"
+			notes="Part of horizontal gaze holding system"
+			/>
 
 		<element name="Raphe Nucleus of Medulla" id="FBA.HM.RP" refs="NL:[http://neurolex.org/wiki/Category:Medullary_raphe_nuclear_complex Medullary raphe nuclear complex]">
 			<element name="Raphe Magnus Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Nucleus_raphe_magnus Nucleus raphe magnus]"/>
