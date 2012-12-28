@@ -1,4 +1,5 @@
 #include <ah_platform.h>
+#include <ah_env_impl.h>
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -8,10 +9,6 @@ Service *EnvService::newService() {
 }
 
 void EnvService::destroyService() {
-	for( int k = 0; k < configs.count(); k++ ) {
-		Xml *doc = configs.getClassByIndex( k );
-		doc -> destroy();
-	}
 	configs.destroy();
 }
 
@@ -91,17 +88,34 @@ void EnvService::configureServices() {
 }
 
 Xml EnvService::loadXml( String fileName ) {
-	// check whether already loaded
-	Xml *doc = configs.get( fileName );
-	if( doc == NULL ) {
-		// init instance
-		String path = getConfigurationPath( fileName );
-		doc = new Xml( Xml::load( path ) );
+	// get full path
+	String path = getConfigurationPath( fileName );
 
-		configs.add( fileName , doc );
+	// get file info
+	RFC_FILEINFO fi;
+	if( !rfc_sys_getfileinfo( path , &fi ) ) {
+		ASSERTFAILED( "unable to find file=" + path );
 	}
 
-	return( *doc );
+	// check whether already loaded
+	EnvXmlDoc *doc = configs.get( fileName );
+
+	// check if modified since last load
+	if( doc != NULL ) {
+		if( !doc -> isModified( fi.timeUpdated ) )
+			return( doc -> getXml() );
+
+		// delete doc
+		configs.remove( fileName );
+		delete doc;
+	}
+
+	// init instance
+	Xml *xml = new Xml( Xml::load( path ) );
+	doc = new EnvXmlDoc( *xml , fi.timeUpdated );
+	configs.add( fileName , doc );
+
+	return( *xml );
 }
 
 Xml EnvService::getConfigurationData( Xml section , String objectType , String objectName ) {
