@@ -106,6 +106,7 @@ Xml EnvService::loadXml( String fileName ) {
 			return( doc -> getXml() );
 
 		// delete doc
+		logger.logInfo( "loadXml: reload configuration file " + fileName + "..." );
 		configs.remove( fileName );
 		delete doc;
 	}
