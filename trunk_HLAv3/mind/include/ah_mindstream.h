@@ -125,6 +125,7 @@ public:
 	void addSetItem( MindRegionLink *link );
 	void exitRegionLinkSet();
 	void destroyRegionLinkSet();
+	int getCount();
 
 public:
 // own data

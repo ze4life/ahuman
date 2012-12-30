@@ -1,7 +1,42 @@
 <service>
+
 	<sensors>
+
+		<sensor name="eye">
+			<connector name="edge-output">
+				<send component="VBA.FD.RT" comment="after on-center/off-center edge extraction and zipping 100:1"/>
+			</connector>
+			<connector name="somatic">
+				<send component="HMA.HP.PTR" comment="eye -> semilunar ganglion/ophthalmic -> PTR"/>
+			</connector>
+			<connector name="visceral">
+				<send component="HMA.HM.STR" comment="eye -> semilunar ganglion/ophthalmic -> STR, proprioception"/>
+			</connector>
+
+			<connector name="muscle-rotate-major" notes="levator palpebrae superioris, the inferior oblique, and the superior, medial, and inferior rectus muscles">
+				<receive component="VBA.MM.OCN"/>
+			</connector>
+			<connector name="muscle-rotate-minor" notes="superior oblique, rotation in a vertical plane – looking down and up, rotation in the plane of the face">
+				<receive component="VBA.MM.TRH"/>
+			</connector>
+
+			<connector name="muscle-rotate-vestibular" notes="lateral rectus, quick turn to the right -> compensatory reflex turning of two eyes to the left">
+				<receive component="VBA.HP.ABD" notes="vestibular nucleus -> PPRF -> ABD -> this, larger motor neurons, c.n. VI"/>
+			</connector>
+			<connector name="muscle-curvature">
+				<receive component="AVA.SC.CLG" notes="to ciliary muscle to accomodate eye"/>
+			</connector>
+			<connector name="muscle-pupil-close" notes="sphincter pupillae is situated along the edge of the iris contracts to close the opening in the pupil">
+				<receive component="AVA.SC.EPG" notes="to sphincter pupillae to close pupil"/>
+			</connector>
+			<connector name="muscle-pupil-open" notes="dilator pupillae runs radially, like the spokes of a wheel, through the iris, and when it contracts this opens the pupil">
+				<receive component="AVA.SC.SCG" notes="to dilator pupillae to open pupil"/>
+			</connector>
+		</sensor>
+
 	</sensors>
 
 	<effectors>
 	</effectors>
+
 </service>

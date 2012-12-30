@@ -17,3 +17,7 @@ void MindRegionLinkSet::destroyRegionLinkSet() {
 void MindRegionLinkSet::addSetItem( MindRegionLink *link ) {
 	list.add( link );
 }
+
+int MindRegionLinkSet::getCount() {
+	return( list.count() );
+}

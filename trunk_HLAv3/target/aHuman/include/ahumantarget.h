@@ -11,6 +11,11 @@ class WikiMaker;
 /*#########################################################################*/
 /*#########################################################################*/
 
+class MindRegionDef;
+
+/*#########################################################################*/
+/*#########################################################################*/
+
 class AHumanTarget : public MindTarget , public MessageSubscriber {
 public:
 	AHumanTarget();
@@ -60,6 +65,18 @@ public:
 
 public:
 	void verify( Xml modelArea );
+
+private:
+	void checkHierarchy( Xml modelArea , Xml hmind );
+	void checkMindModel( Xml modelArea , Xml hmind );
+
+	bool checkHierarchy_verifyChild( Xml modelArea , Xml xmlChild , bool checkMapping );
+	bool checkMindModel_verifyRegion( Xml modelArea , Xml hmind , MindRegionDef *regionDef );
+	bool checkMindModel_verifyLinkedConnectors( Xml modelArea , Xml hmind , MindRegionDef *regionDef , MindRegion *region );
+
+private:
+	MapStringToClass<MindRegionDef> regionMap;
+	MapStringToClass<MindRegionDef> hierarchyMap;
 };
 
 /*#########################################################################*/

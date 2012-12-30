@@ -263,14 +263,20 @@ public:
 public:
 	void create( MindRegion *region , String entity );
 	void setHandler( MindRegion::NeuroLinkTargetHandler pfn );
+	void addNeuroLink( NeuroLink *link );
 
 	String getEntity() { return( entity ); };
 	MindRegion *getRegion() { return( region ); };
+	ClassList<NeuroLink>& getLinks() { return( links ); };
 
 	NeuroSignalSet *execute( NeuroLink *link , NeuroSignal *sourceData );
 
 private:
+// references
 	MindRegion *region;
+	ClassList<NeuroLink> links;
+
+// utilities
 	String entity;
 	MindRegion::NeuroLinkTargetHandler pfn;
 };

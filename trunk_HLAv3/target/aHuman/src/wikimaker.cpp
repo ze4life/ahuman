@@ -230,6 +230,9 @@ void WikiMaker::updateHierarchyPage_getNeocortexLobeLines( Xml wiki , Xml neocor
 		sprintf( banum.getBuffer() , "%2.2d" , k );
 		String baline = balines.get( banum );
 
+		if( baline.isEmpty() && k < 99 )
+			continue;
+
 		// first
 		if( lastnumset.isEmpty() ) {
 			if( baline.isEmpty() )

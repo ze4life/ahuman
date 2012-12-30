@@ -23,6 +23,7 @@ void MindRegion::createRegion( MindRegionInfo *info ) {
 	id = info -> getId();
 	Object::setInstance( id );
 	regionType = info -> getType();
+	regionLinkSet = new MindRegionLinkSet();
 }
 
 void MindRegion::exit() {
@@ -36,10 +37,6 @@ void MindRegion::destroy() {
 		delete regionLinkSet;
 		regionLinkSet = NULL;
 	}
-}
-
-String MindRegion::getRegionId() {
-	return( id );
 }
 
 String MindRegion::getFullRegionId() {
@@ -76,5 +73,9 @@ void MindRegion::addTargetEntity( String entity , NeuroLinkTarget *connector ) {
 }
 
 void MindRegion::sendMessage( MindMessage *msg ) {
+}
+
+void MindRegion::addRegionLink( MindRegionLink *link ) {
+	regionLinkSet -> addSetItem( link );
 }
 

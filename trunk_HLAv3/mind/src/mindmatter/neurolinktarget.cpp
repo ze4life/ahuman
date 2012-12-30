@@ -26,6 +26,10 @@ void NeuroLinkTarget::setHandler( MindRegion::NeuroLinkTargetHandler p_pfn ) {
 	pfn = p_pfn;
 }
 
+void NeuroLinkTarget::addNeuroLink( NeuroLink *link ) {
+	links.add( link );
+}
+
 NeuroSignalSet *NeuroLinkTarget::execute( NeuroLink *link , NeuroSignal *sourceData ) {
 	// execute target handler
 	try {
