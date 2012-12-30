@@ -126,3 +126,15 @@ MindAreaDef *MindMap::getAreaDefById( String areaId ) {
 	return( info );
 }
 
+void MindMap::getMapRegions( MapStringToClass<MindRegionDef>& regionMap ) {
+	ClassList<MindAreaDef>& arealist = getMindAreas();
+	for( int k = 0; k < arealist.count(); k++ ) {
+		MindAreaDef *areaDef = arealist.get( k );
+		ClassList<MindRegionDef>& regionlist = areaDef -> getRegions();
+		for( int m = 0; m < regionlist.count(); m++ ) {
+			MindRegionDef *regionDef = regionlist.get( m );
+			regionMap.add( regionDef -> getName() , regionDef );
+		}
+	}
+}
+

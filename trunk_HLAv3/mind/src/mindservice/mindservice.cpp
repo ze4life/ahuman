@@ -322,6 +322,10 @@ MindRegionLink *MindService::createRegionLink( MindRegion *srcRegion , MindRegio
 	if( areaLink != NULL )
 		areaLink -> addRegionLink( regionLink );
 
+	// add to region link
+	srcRegion -> addRegionLink( regionLink );
+	dstRegion -> addRegionLink( regionLink );
+
 	return( regionLink );
 }
 
@@ -367,6 +371,7 @@ NeuroLink *MindService::createNeuroLink( String implementation , String typeName
 
 	link -> createNeuroLink( info );
 	src -> addNeuroLink( link );
+	dst -> addNeuroLink( link );
 
 	return( link );
 }

@@ -46,12 +46,17 @@ public:
 public:
 	void exit();
 	void destroy();
+
+	void addRegionLink( MindRegionLink *link );
+	String getFullRegionId();
 	void sendMessage( MindMessage *msg );
 
 	MindArea *getArea() { return( area ); };
-	String getRegionId();
-	String getFullRegionId();
+	String getRegionId() { return( id ); };
 	MindRegionTypeDef *getRegionTypeInfo() { return( regionType ); };
+	MapStringToClass<NeuroLinkSource>& getSourceConnectorMap() { return( sourceConnectorMap ); };
+	MapStringToClass<NeuroLinkTarget>& getTargetConnectorMap() { return( targetConnectorMap ); };
+	MindRegionLinkSet *getRegionLinkSet() { return( regionLinkSet ); };
 
 	void addSourceEntity( String entity , NeuroLinkSource *connector );
 	void addTargetEntity( String entity , NeuroLinkTarget *connector );

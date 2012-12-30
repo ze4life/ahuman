@@ -46,6 +46,7 @@ public:
 	MindCircuitDef *getCircuitDefByName( String circuitName );
 	MindAreaDef *getAreaDefById( String areaId );
 	MindConnectionTypeDef *getConnectionTypeDefByName( String typeName );
+	void getMapRegions( MapStringToClass<MindRegionDef>& regionMap );
 
 private:
 	void createRegionTypeDefSet( Xml xml );
