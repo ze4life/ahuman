@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "ahumantarget.h"
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -47,13 +48,13 @@ void AHumanTarget::cmdPlayCircuit( Xml scenario ) {
 }
 
 void AHumanTarget::cmdVerifyModel( Xml modelArea ) {
-	ModelVerifier verifier;
-	verifier.verify( modelArea );
+	ModelVerifier verifier( modelArea );
+	verifier.verify();
 }
 
 void AHumanTarget::cmdCreateWikiPages( Xml wiki ) {
-	WikiMaker maker;
-	maker.createPages( wiki );
+	WikiMaker maker( wiki );
+	maker.createPages();
 }
 
 void AHumanTarget::stopTarget() {

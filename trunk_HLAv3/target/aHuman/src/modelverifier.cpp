@@ -1,40 +1,43 @@
 #include "stdafx.h"
+#include "ahumantarget.h"
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-ModelVerifier::ModelVerifier() {
+ModelVerifier::ModelVerifier( Xml p_modelArea ) {
 	attachLogger();
-
-	// collect mind regions
-	MindService *ms = MindService::getService();
-	MindMap *mm = ms -> getMindMap();
-	mm -> getMapRegions( regionMap );
+	modelArea = p_modelArea;
 }
 
 ModelVerifier::~ModelVerifier() {
 }
 
-void ModelVerifier::verify( Xml modelArea ) {
+void ModelVerifier::verify() {
 	logger.logInfo( "verify: VERIFY MIND SETUP..." );
 	
-	// read hierarchy
-	EnvService *es = EnvService::getService();
-	Xml hmind = es -> loadXml( "hmind.xml" );
-	ASSERTMSG( hmind.exists() , "unable to read file hmind.xml" );
+	// collect mind regions
+	MindService *ms = MindService::getService();
+	MindMap *mm = ms -> getMindMap();
+	mm -> getMapRegions( regionMap );
 
-	checkHierarchy( modelArea , hmind );
-	checkMindModel( modelArea , hmind );
+	// read hierarchy
+	hmind.load();
+	checkHierarchy();
+	checkMindModel();
 }
 
-void ModelVerifier::checkHierarchy( Xml modelArea , Xml hmind ) {
+void ModelVerifier::checkHierarchy() {
 	logger.logInfo( "checkHierarchy: CHECK HIERARCHY..." );
 
 	hierarchyMap.clear();
 
 	bool regionsMappedAll = true;
-	for( Xml xmlChild = hmind.getFirstChild( "division" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "division" ) ) {
-		bool regionsMapped = checkHierarchy_verifyChild( modelArea , xmlChild , true );
+	StringList divisions;
+	hmind.getDivisions( divisions );
+
+	for( int k = 0; k < divisions.count(); k++ ) {
+		String division = divisions.get( k );
+		bool regionsMapped = checkHierarchy_verifyChild( division , true );
 		if( regionsMapped == false )
 			regionsMappedAll = false;
 	}
@@ -45,41 +48,49 @@ void ModelVerifier::checkHierarchy( Xml modelArea , Xml hmind ) {
 		logger.logInfo( "checkHierarchy: HIERARCHY HAS MAPPING ERRORS" );
 }
 
-bool ModelVerifier::checkHierarchy_verifyChild( Xml modelArea , Xml element , bool checkMapping ) {
-	String name = element.getAttribute( "name" , "" );
+bool ModelVerifier::checkHierarchy_verifyChild( String parentNode , bool checkMapping ) {
+	XmlHMindElementInfo info;
+	hmind.getElementInfo( parentNode , info );
 
 	bool mappedOwn = false;
 	if( checkMapping ) {
 		// verify mind mapping
-		String id = element.getAttribute( "id" , "" );
-		if( !id.isEmpty() ) {
-			MindRegionDef *rd = regionMap.get( id );
+		if( info.mapped ) {
+			MindRegionDef *rd = regionMap.get( info.id );
 
 			if( rd == NULL ) {
-				logger.logError( "checkHierarchy_verifyChild: " + name + " - hierarchy region with id=" + id + " is not mapped to mind model" );
+				logger.logError( "checkHierarchy_verifyChild: " + info.name + " - hierarchy region with id=" + info.id + " is not mapped to mind model" );
 				return( false );
 			}
 
-			hierarchyMap.add( id , rd );
+			hierarchyMap.add( info.id , rd );
 		}
 
 		// verify coverage
-		mappedOwn = ( id.isEmpty() )? false : true;
+		mappedOwn = info.mapped;
 	}
 
 	bool mappedChildsAll = false;
-	if( element.getFirstChild( "element" ).exists() ) {
+
+	// check all childs
+	StringList elements;
+	hmind.getElements( parentNode , elements );
+
+	if( elements.count() > 0 ) {
 		mappedChildsAll = true;
 
-		for( Xml xmlChild = element.getFirstChild( "element" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "element" ) ) {
-			bool checkMappingChilds = ( checkMapping == false || mappedOwn == true )? false : true;
-			bool ignore = xmlChild.getBooleanAttribute( "ignore" , false );
+		for( int k = 0; k < elements.count(); k++ ) {
+			String node = elements.get( k );
+			XmlHMindElementInfo childinfo;
+			hmind.getElementInfo( node , childinfo );
 
-			if( ignore )
+			bool checkMappingChilds = ( checkMapping == false || mappedOwn == true )? false : true;
+
+			if( childinfo.ignore )
 				checkMappingChilds = false;
 
-			bool regionsMappedChilds = checkHierarchy_verifyChild( modelArea , xmlChild , checkMappingChilds );
-			if( ignore == false && regionsMappedChilds == false )
+			bool regionsMappedChilds = checkHierarchy_verifyChild( node , checkMappingChilds );
+			if( childinfo.ignore == false && regionsMappedChilds == false )
 				mappedChildsAll = false;
 		}
 	}
@@ -91,21 +102,21 @@ bool ModelVerifier::checkHierarchy_verifyChild( Xml modelArea , Xml element , bo
 		return( true );
 
 	if( checkMapping )
-		logger.logError( "checkHierarchy_verifyChild:" + name + " - region has no complete mapping to mind map" );
+		logger.logError( "checkHierarchy_verifyChild:" + info.name + " - region has no complete mapping to mind map" );
 	return( false );
 }
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-void ModelVerifier::checkMindModel( Xml modelArea , Xml hmind ) {
+void ModelVerifier::checkMindModel() {
 	logger.logInfo( "checkMindModel: CHECK MIND MODEL ..." );
 
 	// check all regions
 	bool regionsOkAll = true;
 	for( int k = 0; k < regionMap.count(); k++ ) {
 		MindRegionDef *regionDef = regionMap.getClassByIndex( k );
-		bool regionOk = checkMindModel_verifyRegion( modelArea , hmind , regionDef );
+		bool regionOk = checkMindModel_verifyRegion( regionDef );
 		if( regionOk == false )
 			regionsOkAll = false;
 	}
@@ -116,7 +127,7 @@ void ModelVerifier::checkMindModel( Xml modelArea , Xml hmind ) {
 		logger.logInfo( "checkMindModel: MIND MODEL HAS ERRORS" );
 }
 
-bool ModelVerifier::checkMindModel_verifyRegion( Xml modelArea , Xml hmind , MindRegionDef *regionDef ) {
+bool ModelVerifier::checkMindModel_verifyRegion( MindRegionDef *regionDef ) {
 	String name = regionDef -> getName();
 
 	bool checkRegion = true;
@@ -130,13 +141,13 @@ bool ModelVerifier::checkMindModel_verifyRegion( Xml modelArea , Xml hmind , Min
 	}
 
 	// check region connectors are linked
-	if( !checkMindModel_verifyLinkedConnectors( modelArea , hmind , regionDef , region ) )
+	if( !checkMindModel_verifyLinkedConnectors( regionDef , region ) )
 		checkRegion = false;
 
 	return( checkRegion );
 }
 
-bool ModelVerifier::checkMindModel_verifyLinkedConnectors( Xml modelArea , Xml hmind , MindRegionDef *regionDef , MindRegion *region ) {
+bool ModelVerifier::checkMindModel_verifyLinkedConnectors( MindRegionDef *regionDef , MindRegion *region ) {
 	String name = regionDef -> getName();
 
 	// check region has no connections at all

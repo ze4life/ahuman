@@ -19,6 +19,7 @@ class Xml;
 class MultiIndexIterator;
 class MapStringToInt;
 class MapStringToString;
+class MapStringToPtr;
 class StringList;
 class Value;
 class Random;
@@ -145,6 +146,9 @@ public:
 	static Xml create( const char *contentName );
 	static Xml load( const char *path );
 
+	void *getDoc() { return( doc ); };
+	void *getNode() { return( node ); };
+
 	// direct data
 	String getName();
 	String getValue();
@@ -211,7 +215,7 @@ public:
 	int add( const char *key , int value ) {
 		int l_value;
 		if( rfc_map_strcheck( mapData , key , ( void ** )&l_value ) >= 0 )
-			throw RuntimeError( "MapStringToInt::add - key already exists" );
+			throw RuntimeError( "MapStringToInt::add - duplicate key=" + String( key ) );
 
 		int index = rfc_map_strsetkey( mapData , key , ( void * )value );
 		return( index );
@@ -308,7 +312,7 @@ public:
 		ASSERTMSG( value != NULL , "value should not be NULL" );
 		char *l_value;
 		if( rfc_map_strcheck( mapData , key , ( void ** )&l_value ) >= 0 )
-			throw RuntimeError( "MapStringToInt::add - key already exists" );
+			throw RuntimeError( "MapStringToString::add - duplicate key=" + String( key ) );
 
 		char *setValue = _strdup( value );
 		int index = rfc_map_strsetkey( mapData , key , ( void * )setValue );
@@ -383,14 +387,114 @@ public:
 
 	const char *getClassByIndex( int k ) {
 		if( k < 0 || k >= rfc_map_strcount( mapData ) )
-			throw RuntimeError( "MapStringToInt::getByIndex - invalid index" );
+			throw RuntimeError( "MapStringToString::getByIndex - invalid index" );
 
 		return( ( const char * )mapData -> s_p[ k ].s_y );
 	};
 			
 	const char *getKeyByIndex( int k ) {
 		if( k < 0 || k >= rfc_map_strcount( mapData ) )
-			throw RuntimeError( "MapStringToInt::getByIndex - invalid index" );
+			throw RuntimeError( "MapStringToString::getByIndex - invalid index" );
+
+		return( mapData -> s_p[ k ].s_x );
+	};
+			
+private:
+	rfc_strmap *mapData;
+};
+
+// #############################################################################
+// #############################################################################
+
+// map String to void *
+class MapStringToPtr {
+public:
+	MapStringToPtr() { mapData = rfc_map_strcreate(); };
+	~MapStringToPtr() {
+		destroy();
+		rfc_map_strdrop( mapData );
+	};
+
+public:
+	void allocate( int count ) { rfc_map_stralloc( mapData , count ); };
+
+	int add( const char *key , void *value ) {
+		ASSERTMSG( value != NULL , "value should not be NULL" );
+		void *l_value;
+		if( rfc_map_strcheck( mapData , key , ( void ** )&l_value ) >= 0 )
+			throw RuntimeError( "MapStringToPtr::add - duplicate key=" + String( key ) );
+
+		int index = rfc_map_strsetkey( mapData , key , value );
+		return( index );
+	};
+
+	void add( MapStringToPtr& a ) {
+		rfc_strmap *s = a.mapData;
+		for( int k = 0; k < rfc_map_strcount( s ); k++ ) {
+			void *setValue = s -> s_p[ k ].s_y;
+			rfc_map_stradd( mapData , s -> s_p[ k ].s_x , setValue );
+		}
+	};
+
+	void set( const char *key , void *value ) {
+		ASSERTMSG( value != NULL , "value should not be NULL" );
+		rfc_map_strsetkey( mapData , key , value );
+	};
+
+	void *get( const char *key ) {
+		void *l_value;
+		if( rfc_map_strcheck( mapData , key , ( void ** )&l_value ) < 0 )
+			return( NULL );
+
+		return( l_value );
+	};
+
+	// return item from which given string begins
+	const void *getPartial( const char *key ) {
+		int n = rfc_map_strcount( mapData );
+		if( n == 0 )
+			return( NULL );
+
+		int fp = rfc_map_strinsertpos( mapData , key );
+
+		// check returned - it could be equal to required
+		if( fp < n ) {
+			const char *kfp = mapData -> s_p[ fp ].s_x;
+			if( !strcmp( kfp , key ) )
+				return( mapData -> s_p[ fp ].s_y );
+		}
+
+		// check previous - it could be partially equal to returned
+		if( fp > 0 ) {
+			fp--;
+			const char *kfp = mapData -> s_p[ fp ].s_x;
+			if( !strncmp( kfp , key , strlen( kfp ) ) )
+				return( mapData -> s_p[ fp ].s_y );
+		}
+
+		return( NULL );
+	};
+
+	void remove( const char *key ) {
+		rfc_map_strremove( mapData , key );
+	};
+
+	int count() { return( rfc_map_strcount( mapData ) ); };
+
+	void destroy() {
+		rfc_map_strclear( mapData );
+	};
+
+	const void *getClassByIndex( int k ) {
+		if( k < 0 || k >= rfc_map_strcount( mapData ) )
+			throw RuntimeError( "MapStringToPtr::getByIndex - invalid index" );
+
+		return( mapData -> s_p[ k ].s_y );
+	};
+			
+	const char *getKeyByIndex( int k ) {
+		if( k < 0 || k >= rfc_map_strcount( mapData ) )
+			throw RuntimeError( "MapStringToString::getByIndex - invalid index" );
 
 		return( mapData -> s_p[ k ].s_x );
 	};
