@@ -8,5 +8,3 @@
 
 #include <platform\include\ah_platform.h>
 #include <mind\include\ah_mind.h>
-
-#include "ahumantarget.h"

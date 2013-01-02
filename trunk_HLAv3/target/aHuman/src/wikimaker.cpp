@@ -1,34 +1,32 @@
 #include "stdafx.h"
+#include "ahumantarget.h"
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-WikiMaker::WikiMaker() {
+WikiMaker::WikiMaker( Xml p_wiki ) {
 	attachLogger();
+	wiki = p_wiki;
 }
 
 WikiMaker::~WikiMaker() {
 }
 
-void WikiMaker::createPages( Xml wiki ) {
+void WikiMaker::createPages() {
 	logger.logInfo( "create mind model wiki pages..." );
 
-	// read hierarchy
-	EnvService *es = EnvService::getService();
-	Xml hmind = es -> loadXml( "hmind.xml" );
-	ASSERTMSG( hmind.exists() , "unable to read file hmind.xml" );
-
 	// create pages
-	updateHierarchyPage( wiki , hmind );
-	createAreaPages( wiki , hmind );
-	createComponentPages( wiki , hmind );
+	hmind.load();
+	updateHierarchyPage();
+	createAreaPages();
+	createComponentPages();
 }
 
 /*#########################################################################*/
 /*#########################################################################*/
 // heirarchy pages
 
-void WikiMaker::updateHierarchyPage( Xml wiki , Xml hmind ) {
+void WikiMaker::updateHierarchyPage() {
 	bool createPageHierarchy = wiki.getBooleanProperty( "createPageHierarchy" , true );
 	if( createPageHierarchy == false ) {
 		logger.logInfo( "skip creating hierarchy page" );
@@ -40,31 +38,38 @@ void WikiMaker::updateHierarchyPage( Xml wiki , Xml hmind ) {
 	String wikiPage = wiki.getProperty( "wikiPageHierarchy" );
 
 	// create hierarchy section
-	for( Xml xmlChild = hmind.getFirstChild( "division" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "division" ) ) {
-		String sectionName = xmlChild.getAttribute( "name" );
-		if( sectionName.equals( "Neocortex" ) )
-			updateHierarchyPage_walkNeocortex( wiki , xmlChild , wikiDir , wikiPage );
+	StringList divisions;
+	hmind.getDivisions( divisions );
+	for( int k = 0; k < divisions.count(); k++ ) {
+		String division = divisions.get( k );
+		if( division.equals( "Neocortex" ) )
+			updateHierarchyPage_walkNeocortex( division , wikiDir , wikiPage );
 		else {
 			StringList lines;
-			updateHierarchyPage_walkTree( wiki , xmlChild , 0 , lines , NULL , NULL );
-			updateFileSection( wikiDir , wikiPage , sectionName , lines );
+			updateHierarchyPage_walkTree( division , 0 , lines , NULL , NULL );
+			updateFileSection( wikiDir , wikiPage , division , lines );
 		}
 	}
 }
 
-void WikiMaker::updateHierarchyPage_walkTree( Xml wiki , Xml hmind , int level , StringList& lines , MindArea *parentArea , MindRegion *parentRegion ) {
-	for( Xml xmlChild = hmind.getFirstChild( "element" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "element" ) ) {
+void WikiMaker::updateHierarchyPage_walkTree( String parentNode , int level , StringList& lines , MindArea *parentArea , MindRegion *parentRegion ) {
+	StringList elements;
+	hmind.getElements( parentNode , elements );
+
+	for( int k = 0; k < elements.count(); k++ ) {
+		String node = elements.get( k );
+
 		// handle mapping
 		MindArea *ownArea = NULL;
 		MindRegion *ownRegion = NULL;
 
 		if( parentArea == NULL )
-			ownArea = updateHierarchyPage_getArea( xmlChild );
+			ownArea = updateHierarchyPage_getArea( node );
 		if( parentRegion == NULL )
-			ownRegion = updateHierarchyPage_getRegion( xmlChild );
+			ownRegion = updateHierarchyPage_getRegion( node );
 
 		// add item string
-		String itemString = updateHierarchyPage_getElementString( wiki , xmlChild , parentArea , parentRegion , ownArea , ownRegion );
+		String itemString = updateHierarchyPage_getElementString( node , parentArea , parentRegion , ownArea , ownRegion );
 		lines.add( String( " " ).replicate( 2 + level ) + "* " + itemString );
 
 		// walk down
@@ -73,34 +78,40 @@ void WikiMaker::updateHierarchyPage_walkTree( Xml wiki , Xml hmind , int level ,
 		if( ownRegion == NULL )
 			ownRegion = parentRegion;
 
-		updateHierarchyPage_walkTree( wiki , xmlChild , level + 1 , lines , ownArea , ownRegion );
+		updateHierarchyPage_walkTree( node , level + 1 , lines , ownArea , ownRegion );
 	}
 }
 
-MindArea *WikiMaker::updateHierarchyPage_getArea( Xml item ) {
+MindArea *WikiMaker::updateHierarchyPage_getArea( String parentNode ) {
 	MindService *ms = MindService::getService();
 
+	XmlHMindElementInfo info;
+	hmind.getElementInfo( parentNode , info );
+
 	// check ignored
-	bool ignore = item.getBooleanAttribute( "ignore" , false );
-	if( ignore == true )
+	if( info.ignore == true )
 		return( NULL );
 
 	// check direct
-	String id = item.getAttribute( "id" , "" );
-	if( !id.isEmpty() ) {
-		MindRegion *region = ms -> getMindRegion( id );
+	if( info.mapped ) {
+		MindRegion *region = ms -> getMindRegion( info.id );
 		return( region -> getArea() );
 	}
 
 	// check all childs
 	MindArea *area = NULL;
-	for( Xml xmlChild = item.getFirstChild( "element" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "element" ) ) {
+	StringList elements;
+	hmind.getElements( parentNode , elements );
+
+	for( int k = 0; k < elements.count(); k++ ) {
+		String node = elements.get( k );
+
 		// check ignored
-		ignore = xmlChild.getBooleanAttribute( "ignore" , false );
-		if( ignore == true )
+		hmind.getElementInfo( node , info );
+		if( info.ignore == true )
 			continue;
 
-		MindArea *one = updateHierarchyPage_getArea( xmlChild );
+		MindArea *one = updateHierarchyPage_getArea( node );
 		if( area == NULL )
 			area = one;
 		else if( one != area )
@@ -110,30 +121,36 @@ MindArea *WikiMaker::updateHierarchyPage_getArea( Xml item ) {
 	return( area );
 }
 
-MindRegion *WikiMaker::updateHierarchyPage_getRegion( Xml item ) {
+MindRegion *WikiMaker::updateHierarchyPage_getRegion( String parentNode ) {
 	MindRegion *region = NULL;
 	MindService *ms = MindService::getService();
 
+	XmlHMindElementInfo info;
+	hmind.getElementInfo( parentNode , info );
+
 	// check ignored
-	bool ignore = item.getBooleanAttribute( "ignore" , false );
-	if( ignore == true )
+	if( info.ignore == true )
 		return( NULL );
 
 	// check direct
-	String id = item.getAttribute( "id" , "" );
-	if( !id.isEmpty() ) {
-		region = ms -> getMindRegion( id );
+	if( info.mapped ) {
+		region = ms -> getMindRegion( info.id );
 		return( region );
 	}
 
 	// check all childs
-	for( Xml xmlChild = item.getFirstChild( "element" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "element" ) ) {
+	StringList elements;
+	hmind.getElements( parentNode , elements );
+
+	for( int k = 0; k < elements.count(); k++ ) {
+		String node = elements.get( k );
+
 		// check ignored
-		ignore = xmlChild.getBooleanAttribute( "ignore" , false );
-		if( ignore == true )
+		hmind.getElementInfo( node , info );
+		if( info.ignore == true )
 			continue;
 
-		MindRegion *one = updateHierarchyPage_getRegion( xmlChild );
+		MindRegion *one = updateHierarchyPage_getRegion( node );
 		if( region == NULL )
 			region = one;
 		else if( one != region )
@@ -143,30 +160,27 @@ MindRegion *WikiMaker::updateHierarchyPage_getRegion( Xml item ) {
 	return( region );
 }
 
-String WikiMaker::updateHierarchyPage_getElementString( Xml wiki , Xml item , MindArea *parentArea , MindRegion *parentRegion , MindArea *ownArea , MindRegion *ownRegion ) {
+String WikiMaker::updateHierarchyPage_getElementString( String node , MindArea *parentArea , MindRegion *parentRegion , MindArea *ownArea , MindRegion *ownRegion ) {
 	String value;
 
-	// own name if any
-	String id = item.getAttribute( "id" , "" );
-	String name = item.getAttribute( "name" , "" );
-	if( name.isEmpty() ) {
-		ASSERTMSG( id.isEmpty() , "unexpected not empty id=" + id );
-	}
-	else {
-		value += "*";
-		value += name;
+	XmlHMindElementInfo info;
+	hmind.getElementInfo( node , info );
 
-		if( !id.isEmpty() )
-			value += " (" + id + ")";
+	// own name if any
+	if( !info.name.isEmpty() ) {
+		value += "*";
+		value += info.name;
+
+		if( !info.id.isEmpty() )
+			value += " (" + info.id + ")";
 
 		value += "*";
 	}
 
 	// ref section
-	String refs = item.getAttribute( "refs" , "" );
-	if( !refs.isEmpty() ) {
+	if( !info.refs.isEmpty() ) {
 		StringList refList;
-		refs.split( refList , ";" );
+		info.refs.split( refList , ";" );
 		for( int k = 0; k < refList.count(); k++ ) {
 			String ref = refList.get( k );
 			ref.trim();
@@ -183,33 +197,35 @@ String WikiMaker::updateHierarchyPage_getElementString( Xml wiki , Xml item , Mi
 		value += " -> [BrainArea" + ownArea -> getId() + "]";
 
 	// ignore section
-	bool ignore = item.getBooleanAttribute( "ignore" , false );
-	String comment = item.getAttribute( "comment" , "" );
-
-	if( ignore == true ) {
+	if( info.ignore == true ) {
 		value += " (ignore";
-		if( !comment.isEmpty() )
-			value += ", " + comment;
+		if( !info.comment.isEmpty() )
+			value += ", " + info.comment;
 		value += ")";
 	}
-	else if( !comment.isEmpty() )
-		value += " (" + comment + ")";
+	else if( !info.comment.isEmpty() )
+		value += " (" + info.comment + ")";
 
 	return( value );
 }
 
-void WikiMaker::updateHierarchyPage_walkNeocortex( Xml wiki , Xml neocortexDivision , String wikiDir , String wikiPage ) {
-	// group by major lobes
-	for( Xml xmlChild = neocortexDivision.getFirstChild( "element" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "element" ) ) {
-		String wikiNeoCortexSection = xmlChild.getAttribute( "name" );
-		StringList lines;
+void WikiMaker::updateHierarchyPage_walkNeocortex( String neocortexDivision , String wikiDir , String wikiPage ) {
+	XmlHMindElementInfo info;
+	StringList elements;
+	hmind.getElements( neocortexDivision , elements );
 
-		updateHierarchyPage_getNeocortexLobeLines( wiki , xmlChild , lines );
-		updateFileSection( wikiDir , wikiPage , wikiNeoCortexSection , lines );
+	// group by major lobes
+	for( int k = 0; k < elements.count(); k++ ) {
+		String node = elements.get( k );
+		hmind.getElementInfo( node , info );
+
+		StringList lines;
+		updateHierarchyPage_getNeocortexLobeLines( node , lines );
+		updateFileSection( wikiDir , wikiPage , info.name , lines );
 	}
 }
 
-void WikiMaker::updateHierarchyPage_getNeocortexLobeLines( Xml wiki , Xml neocortexLobe , StringList& lines ) {
+void WikiMaker::updateHierarchyPage_getNeocortexLobeLines( String neocortexLobe , StringList& lines ) {
 	String banum;
 	banum.resize( 10 );
 
@@ -218,7 +234,7 @@ void WikiMaker::updateHierarchyPage_getNeocortexLobeLines( Xml wiki , Xml neocor
 	for( int k = 1; k < 100; k++ ) {
 		sprintf( banum.getBuffer() , "%2.2d" , k );
 
-		String baline = updateHierarchyPage_getNeocortexBrodmannLine( wiki , neocortexLobe , banum );
+		String baline = updateHierarchyPage_getNeocortexBrodmannLine( neocortexLobe , banum );
 		if( !baline.isEmpty() )
 			balines.add( banum , baline );
 	}
@@ -265,10 +281,10 @@ void WikiMaker::updateHierarchyPage_getNeocortexLobeLines( Xml wiki , Xml neocor
 	}
 }
 
-String WikiMaker::updateHierarchyPage_getNeocortexBrodmannLine( Xml wiki , Xml neocortexDivision , String banum ) {
+String WikiMaker::updateHierarchyPage_getNeocortexBrodmannLine( String neocortexDivision , String banum ) {
 	// check all childs
 	StringList items;
-	updateHierarchyPage_walkNeocortexBrodmannLine( wiki , neocortexDivision , banum , items );
+	updateHierarchyPage_walkNeocortexBrodmannLine( neocortexDivision , banum , items );
 
 	// no items
 	if( items.count() == 0 )
@@ -285,38 +301,40 @@ String WikiMaker::updateHierarchyPage_getNeocortexBrodmannLine( Xml wiki , Xml n
 	return( value );
 }
 
-void WikiMaker::updateHierarchyPage_walkNeocortexBrodmannLine( Xml wiki , Xml item , String banum , StringList& items ) {
-	String brodmannid = item.getAttribute( "brodmannid" , "" );
-	if( brodmannid.isEmpty() ) {
+void WikiMaker::updateHierarchyPage_walkNeocortexBrodmannLine( String node , String banum , StringList& items ) {
+	XmlHMindElementInfo info;
+	hmind.getElementInfo( node , info );
+
+	if( info.brodmannid.isEmpty() ) {
 		// check childs
-		for( Xml xmlChild = item.getFirstChild( "element" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "element" ) )
-			updateHierarchyPage_walkNeocortexBrodmannLine( wiki , xmlChild , banum , items );
+		StringList elements;
+		hmind.getElements( node , elements );
+
+		// group by major lobes
+		for( int k = 0; k < elements.count(); k++ ) {
+			String nodeChild = elements.get( k );
+			updateHierarchyPage_walkNeocortexBrodmannLine( nodeChild , banum , items );
+		}
 		return;
 	}
 
 	// check itself
-	if( brodmannid.find( banum ) < 0 )
+	if( info.brodmannid.find( banum ) < 0 )
 		return;
 
 	// add string
 	String value;
-	bool ignore = item.getBooleanAttribute( "ignore" , false );
-	String comment = item.getAttribute( "comment" , "" );
-
-	if( ignore ) {
+	if( info.ignore ) {
 		value = "ignored";
-		if( !comment.isEmpty() )
-			value += ", " + comment;
+		if( !info.comment.isEmpty() )
+			value += ", " + info.comment;
 	}
 	else {
-		String id = item.getAttribute( "id" );
-		String name = item.getAttribute( "name" );
-
 		MindService *ms = MindService::getService();
-		MindRegion *region = ms -> getMindRegion( id );
+		MindRegion *region = ms -> getMindRegion( info.id );
 		MindArea *area = region -> getArea();
 
-		value = "[BrainArea" + area -> getId() + " " + name + " (" + id + ")]";
+		value = "[BrainArea" + area -> getId() + " " + info.name + " (" + info.id + ")]";
 	}
 
 	items.add( value );
@@ -326,7 +344,7 @@ void WikiMaker::updateHierarchyPage_walkNeocortexBrodmannLine( Xml wiki , Xml it
 /*#########################################################################*/
 // create area pages
 
-void WikiMaker::createAreaPages( Xml wiki , Xml hmind ) {
+void WikiMaker::createAreaPages() {
 	bool createPageHierarchy = wiki.getBooleanProperty( "createAreaPages" , true );
 	if( createPageHierarchy == false ) {
 		logger.logInfo( "skip creating area pages" );
@@ -345,11 +363,11 @@ void WikiMaker::createAreaPages( Xml wiki , Xml hmind ) {
 		MindAreaDef *areaDef = areaList.get( k );
 
 		String wikiPage = "BrainArea" + areaDef -> getAreaId();
-		createAreaPages_makeAreaPageFile( wiki , hmind , wikiDir , wikiPage , areaDef );
+		createAreaPages_createRegionTableSection( wikiDir , wikiPage , areaDef );
 	}
 }
 
-void WikiMaker::createAreaPages_makeAreaPageFile( Xml wiki , Xml hmind , String wikiDir , String wikiPage , MindAreaDef *areaDef ) {
+void WikiMaker::createAreaPages_createRegionTableSection( String wikiDir , String wikiPage , MindAreaDef *areaDef ) {
 	String selectedArea = wiki.getProperty( "selectedArea" , "" );
 	if( !selectedArea.isEmpty() ) {
 		if( !selectedArea.equals( areaDef -> getAreaId() ) )
@@ -359,14 +377,14 @@ void WikiMaker::createAreaPages_makeAreaPageFile( Xml wiki , Xml hmind , String 
 	StringList lines;
 
 	// heading
-	String s = createAreaPages_getRegionTableRow( wiki , hmind , NULL );
+	String s = createAreaPages_getRegionTableRow( NULL );
 	lines.add( s );
 
 	// regions
 	ClassList<MindRegionDef>& regionList = areaDef -> getRegions();
 	for( int k = 0; k < regionList.count(); k++ ) {
 		MindRegionDef *regionDef = regionList.get( k );
-		s = createAreaPages_getRegionTableRow( wiki , hmind , regionDef );
+		s = createAreaPages_getRegionTableRow( regionDef );
 		lines.add( s );
 	}
 
@@ -374,7 +392,7 @@ void WikiMaker::createAreaPages_makeAreaPageFile( Xml wiki , Xml hmind , String 
 	updateFileSection( wikiDir , wikiPage , sectionName , lines );
 }
 
-String WikiMaker::createAreaPages_getRegionTableRow( Xml wiki , Xml hmind , MindRegionDef *regionDef ) {
+String WikiMaker::createAreaPages_getRegionTableRow( MindRegionDef *regionDef ) {
 	String value;
 
 	// heading
@@ -385,21 +403,20 @@ String WikiMaker::createAreaPages_getRegionTableRow( Xml wiki , Xml hmind , Mind
 
 	// region row
 	String regionId = regionDef -> getName();
-	Xml regionXml = findHMindRegion( hmind , regionId );
-	ASSERTMSG( regionXml.exists() , "unable to find region id=" + regionId + " in hierarchy" );
+	XmlHMindElementInfo info;
+	hmind.getElementInfo( regionId , info );
 	
 	value = "|| *" + regionId + "* || " + 
-		createAreaPages_getTableCellAttribute( wiki , regionXml , "name" , true , 0 ) + " || " + 
-		createAreaPages_getTableCellAttribute( wiki , regionXml , "type" , true , 0 ) + " || " + 
-		createAreaPages_getTableCellAttribute( wiki , regionXml , "function" , true , 80 ) + " || " + 
-		createAreaPages_getTableCellAttribute( wiki , regionXml , "notes" , false , 50 ) + " ||";
+		createAreaPages_getTableCellAttribute( info , "name" , info.name , true , 0 ) + " || " + 
+		createAreaPages_getTableCellAttribute( info , "type" , info.type , true , 0 ) + " || " + 
+		createAreaPages_getTableCellAttribute( info , "function" , info.function , true , 80 ) + " || " + 
+		createAreaPages_getTableCellAttribute( info , "notes" , info.notes , false , 50 ) + " ||";
 
 	return( value );
 }
 
-String WikiMaker::createAreaPages_getTableCellAttribute( Xml wiki , Xml regionXml , String attribute , bool required , int columnWidth ) {
-	String value = regionXml.getAttribute( attribute , "" );
-	ASSERTMSG( ( required == false ) || ( value.isEmpty() == false ) , "attribute=" + attribute + " is empty for region=" + regionXml.getAttribute( "id" , "" ) );
+String WikiMaker::createAreaPages_getTableCellAttribute( XmlHMindElementInfo& info , String attribute , String value , bool required , int columnWidth ) {
+	ASSERTMSG( ( required == false ) || ( value.isEmpty() == false ) , "attribute=" + attribute + " is empty for region=" + info.id );
 
 	if( columnWidth == 0 )
 		return( value );
@@ -435,11 +452,17 @@ String WikiMaker::createAreaPages_getTableCellAttribute( Xml wiki , Xml regionXm
 	return( value );
 }
 
+void WikiMaker::createAreaPages_createCircuitsSection( String wikiDir , String wikiPage , MindAreaDef *areaDef ) {
+}
+
+void WikiMaker::createAreaPages_createReferencesSection( String wikiDir , String wikiPage , MindAreaDef *areaDef ) {
+}
+
 /*#########################################################################*/
 /*#########################################################################*/
 // create component pages
 
-void WikiMaker::createComponentPages( Xml wiki , Xml hmind ) {
+void WikiMaker::createComponentPages() {
 }
 
 /*#########################################################################*/
@@ -515,33 +538,4 @@ void WikiMaker::updateFileSection( String wikiDir , String wikiPage , String sec
 	rename( fileNameNew , fileName );
 
 	logger.logInfo( "page " + wikiPage + " - replaced section " + section + " total nlines=" + lines.count() );
-}
-
-Xml WikiMaker::findHMindRegion( Xml hmind , String regionId ) {
-	// walk childs
-	for( Xml xmlChild = hmind.getFirstChild( "division" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "division" ) ) {
-		Xml item = findHMindRegionElement( xmlChild , regionId );
-		if( item.exists() )
-			return( item );
-	}
-
-	Xml itemEmpty;
-	return( itemEmpty );
-}
-
-Xml WikiMaker::findHMindRegionElement( Xml element , String regionId ) {
-	// walk childs
-	for( Xml xmlChild = element.getFirstChild( "element" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "element" ) ) {
-		// check this
-		if( regionId.equals( xmlChild.getAttribute( "id" , "" ) ) )
-			return( xmlChild );
-
-		// check childs
-		Xml item = findHMindRegionElement( xmlChild , regionId );
-		if( item.exists() )
-			return( item );
-	}
-
-	Xml itemEmpty;
-	return( itemEmpty );
 }

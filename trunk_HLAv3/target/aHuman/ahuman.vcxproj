@@ -76,6 +76,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="etc\circuits.xml" />
     <None Include="etc\hmind.xml" />
     <None Include="etc\logging.xml" />
     <None Include="etc\main.xml" />
@@ -90,6 +91,7 @@
   <ItemGroup>
     <ClInclude Include="include\ahumantarget.h" />
     <ClInclude Include="include\stdafx.h" />
+    <ClInclude Include="include\xmlhuman.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ahumantarget.cpp" />
@@ -100,6 +102,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\wikimaker.cpp" />
+    <ClCompile Include="src\xmlhmind.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\library\generic\lib\generic.lib" />
