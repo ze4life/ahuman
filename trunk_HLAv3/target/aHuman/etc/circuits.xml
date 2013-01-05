@@ -2,26 +2,7 @@
 
 	<category name="perception">
 
-		<circuit id="CP.BASE-VISUAL-CORTEX-FLOWS" name="3 Visual Cortex Paths"
-			image="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/visual-streams.jpg"
-			reference="article:Biological/2008-dorsal-stream.pdf"
-			components="LPC=FCA.NC.LPFC pre-SMA=MCA.NC.SMC dPM=MCA.NC.PMC vPM=MCA.NC.PMC MI=MCA.NC.MC SPL=PCA.NC.SPL IPL=PCA.NC.IPL IT=VCA.NC.IT OCC=NC.LOBE.OCC"
-			>
-			<link src="OCC" dst="IT" function="ventral stream"/>
-			<link src="OCC" dst="IPL" function="ventro-dorsal stream"/>
-			<link src="OCC" dst="SPL" function="dorsal stream"/>
-			<link src="IT" dst="IPL"/>
-			<link src="IT" dst="LPC"/>
-			<link src="IPL" dst="vPM"/>
-			<link src="IPL" dst="LPC"/>
-			<link src="SPL" dst="dPM"/>
-			<link src="LPC" dst="pre-SMA"/>
-			<link src="LPC" dst="vPM"/>
-			<link src="pre-SMA" dst="vPM"/>
-			<link src="pre-SMA" dst="dPM"/>
-			<link src="vPM" dst="MI"/>
-			<link src="dPM" dst="MI"/>
-		</circuit>
+		<circuit id="CP.BASE-VISUAL-CORTEX-FLOWS" file="circuits/CP.BASE-VISUAL-CORTEX-FLOWS.xml"/>
 
 	</category>
 
@@ -32,6 +13,9 @@
 	</category>
 
 	<category name="thinking">
+	</category>
+
+	<category name="lifecycle">
 	</category>
 
 </circuits>

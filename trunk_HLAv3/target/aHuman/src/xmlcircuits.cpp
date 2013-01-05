@@ -8,6 +8,7 @@ XmlCircuits::XmlCircuits() {
 }
 
 XmlCircuits::~XmlCircuits() {
+	nodes.destroy();
 }
 
 void XmlCircuits::load() {
@@ -20,15 +21,39 @@ void XmlCircuits::load() {
 	for( Xml xmlCategory = xml.getFirstChild( "category" ); xmlCategory.exists(); xmlCategory = xmlCategory.getNextChild( "category" ) ) {
 		for( Xml xmlChild = xmlCategory.getFirstChild( "circuit" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "circuit" ) ) {
 			String id = xmlChild.getAttribute( "id" , "" );
-			bool ignore = xmlChild.getBooleanAttribute( "id" , false );
+			bool ignore = xmlChild.getBooleanAttribute( "ignore" , false );
 
-			if( id.isEmpty() ) {
-				ASSERTMSG( ignore == true , "circuit is not ignored but has no ID attribute" );
-			}
-			else
-				nodes.add( id , xmlChild.getNode() );
+			if( ignore == true )
+				continue;
+			
+			ASSERTMSG( !id.isEmpty() , "circuit is not ignored but has no ID attribute" );
+
+			// get direct of from separate file
+			Xml xmlsrc = xmlChild;
+			String file = xmlChild.getAttribute( "file" , "" );
+			if( !file.isEmpty() )
+				xmlsrc = getCircuitFromFile( id , file );
+
+			Xml *xmlitem = new Xml( xmlsrc );
+			nodes.add( id , xmlitem );
 		}
 	}
+}
+
+Xml XmlCircuits::getCircuitFromFile( String id , String file ) {
+	// load	file
+	EnvService *es = EnvService::getService();
+	Xml xmlfile = es -> loadXml( file );
+	ASSERTMSG( xmlfile.exists() , "unable to open circuit file " + file );
+
+	// find circuit in file
+	for( Xml xmlChild = xmlfile.getFirstChild( "circuit" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "circuit" ) ) {
+		String itemid = xmlChild.getAttribute( "id" , "" );
+		if( itemid.equals( id ) )
+			return( xmlChild );
+	}
+
+	return( Xml() );
 }
 
 void XmlCircuits::getCircuitList( StringList& circuits ) {
@@ -40,12 +65,10 @@ void XmlCircuits::getCircuitList( StringList& circuits ) {
 }
 
 Xml XmlCircuits::getCircuitXml( String id ) {
-	void *nodePtr = nodes.get( id );
-	ASSERTMSG( nodePtr != NULL , "unable to find circuit with ID=" + id );
+	Xml *nodeXml = nodes.get( id );
+	ASSERTMSG( nodeXml != NULL , "unable to find circuit with ID=" + id );
 
-	Xml xmlitem;
-	xmlitem.attach( xml.getDoc() , nodePtr );
-	return( xmlitem );
+	return( *nodeXml );
 }
 
 void XmlCircuits::getCircuitInfo( String circuit , XmlCircuitInfo& info ) {

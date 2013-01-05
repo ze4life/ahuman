@@ -74,10 +74,11 @@ public:
 
 private:
 	Xml getCircuitXml( String id );
+	Xml getCircuitFromFile( String id , String file );
 
 private:
 	Xml xml;
-	MapStringToPtr nodes;
+	MapStringToClass<Xml> nodes;
 };
 
 /*#########################################################################*/
