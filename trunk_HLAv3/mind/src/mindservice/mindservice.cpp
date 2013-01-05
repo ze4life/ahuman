@@ -162,11 +162,12 @@ void MindService::createAreas() {
 void MindService::createArea( MindAreaDef *areaInfo ) {
 	// check need running
 	if( !areaInfo -> runEnabled() ) {
-		logger.logInfo( "constructArea: mind area is ignored, disabled in mind configuration name=" + areaInfo -> getAreaId() );
+		logger.logInfo( "createArea: mind area is ignored, disabled in mind configuration name=" + areaInfo -> getAreaId() );
 		return;
 	}
 
 	// construct area
+	logger.logInfo( "createArea: create mind area id=" + areaInfo -> getAreaId() + " ..." );
 	MindArea *area = new MindArea();
 	area -> configure( areaInfo );
 
@@ -175,7 +176,6 @@ void MindService::createArea( MindAreaDef *areaInfo ) {
 	MindRegionSet *areaRegions = area -> getRegionSet();
 	regionSet -> addRegionSet( areaRegions );
 
-	logger.logInfo( "addMindArea: created mind area name=" + areaInfo -> getAreaId() );
 	areaSet -> addMindArea( area );
 }
 
@@ -189,7 +189,16 @@ MindRegion *MindService::getMindRegion( String regionId ) {
 	return( region );
 }
 
+bool MindService::isMindRegion( String regionId ) {
+	MindRegion *region = regionSet -> getSetItemById( regionId );
+	if( region == NULL )
+		return( false );
+	return( true );
+}
+
 MindRegion *MindService::createRegion( String implementation , String type , MindArea *area , MindRegionInfo *info ) {
+	logger.logInfo( "createRegion: create mind region id=" + info -> getId() + " ..." );
+
 	MindRegion *region = NULL;
 	if( implementation.equals( "original" ) ) {
 		if( type.equals( "neocortex" ) )

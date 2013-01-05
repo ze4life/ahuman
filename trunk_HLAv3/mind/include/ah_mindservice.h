@@ -50,6 +50,7 @@ public:
 	MindMap *getMindMap();
 	MindArea *getMindArea( String areaId );
 	MindRegion *getMindRegion( String regionId );
+	bool isMindRegion( String regionId );
 	  
 	// create core items
 	MindRegion *createRegion( String implementation , String type , MindArea *area , MindRegionInfo *info );
