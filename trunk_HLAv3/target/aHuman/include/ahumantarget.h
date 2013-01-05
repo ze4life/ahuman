@@ -14,6 +14,7 @@ class WikiMaker;
 
 class MindRegionDef;
 class XmlHMind;
+class XmlCircuits;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -70,15 +71,20 @@ public:
 
 private:
 	void checkHierarchy();
+	void checkCircuits();
 	void checkMindModel();
 
 	bool checkHierarchy_verifyChild( String node , bool checkMapping );
+	bool checkCircuits_verifyComponents( String circuit );
+	bool checkCircuits_verifyLinks( String circuit );
+	bool checkCircuits_verifyCircuitLink( XmlCircuitInfo& circuit , XmlCircuitLinkInfo& link );
 	bool checkMindModel_verifyRegion( MindRegionDef *regionDef );
 	bool checkMindModel_verifyLinkedConnectors( MindRegionDef *regionDef , MindRegion *region );
 
 private:
 	Xml modelArea;
-	XmlHMind hmind;
+	XmlHMind hmindxml;
+	XmlCircuits circuitsxml;
 
 	MapStringToClass<MindRegionDef> regionMap;
 	MapStringToClass<MindRegionDef> hierarchyMap;
@@ -120,7 +126,7 @@ private:
 
 private:
 	Xml wiki;
-	XmlHMind hmind;
+	XmlHMind hmindxml;
 };
 
 /*#########################################################################*/

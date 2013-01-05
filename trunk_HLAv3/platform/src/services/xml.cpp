@@ -69,6 +69,26 @@ Xml Xml::getChildNode( String s ) {
 	return( x );
 }
 
+Xml Xml::getParentNode() {
+	ASSERT( node != NULL );
+
+	TiXmlNode *xml = ( TiXmlNode * )node;
+	TiXmlNode *xmlParent = NULL;
+	try {
+		xmlParent = xml -> Parent();
+		if( xmlParent -> Type() == TiXmlNode::DOCUMENT )
+			xmlParent = NULL;
+	}
+	catch( ... ) {
+		// ignore - handle by null value returned
+	}
+
+	Xml x;
+	x.attach( doc , xmlParent );
+
+	return( x );
+}
+
 Xml Xml::getChildNamedNode( String element , String name ) {
 	return( findChildByPathAttr( element , "name" , name ) );
 }

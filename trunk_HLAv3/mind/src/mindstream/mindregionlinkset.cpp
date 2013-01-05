@@ -21,3 +21,7 @@ void MindRegionLinkSet::addSetItem( MindRegionLink *link ) {
 int MindRegionLinkSet::getCount() {
 	return( list.count() );
 }
+
+MindRegionLink *MindRegionLinkSet::getSetItem( int k ) {
+	return( list.get( k ) );
+}

@@ -156,6 +156,7 @@ public:
 	String getHeading();
 
 	// navigation
+	Xml getParentNode();
 	Xml getChildNode( String s );
 	Xml getChildNamedNode( String element , String name );
 	Xml getFirstChild( String name );

@@ -16,7 +16,7 @@ void WikiMaker::createPages() {
 	logger.logInfo( "create mind model wiki pages..." );
 
 	// create pages
-	hmind.load();
+	hmindxml.load();
 	updateHierarchyPage();
 	createAreaPages();
 	createComponentPages();
@@ -39,7 +39,7 @@ void WikiMaker::updateHierarchyPage() {
 
 	// create hierarchy section
 	StringList divisions;
-	hmind.getDivisions( divisions );
+	hmindxml.getDivisions( divisions );
 	for( int k = 0; k < divisions.count(); k++ ) {
 		String division = divisions.get( k );
 		if( division.equals( "Neocortex" ) )
@@ -54,7 +54,7 @@ void WikiMaker::updateHierarchyPage() {
 
 void WikiMaker::updateHierarchyPage_walkTree( String parentNode , int level , StringList& lines , MindArea *parentArea , MindRegion *parentRegion ) {
 	StringList elements;
-	hmind.getElements( parentNode , elements );
+	hmindxml.getElements( parentNode , elements );
 
 	for( int k = 0; k < elements.count(); k++ ) {
 		String node = elements.get( k );
@@ -86,7 +86,7 @@ MindArea *WikiMaker::updateHierarchyPage_getArea( String parentNode ) {
 	MindService *ms = MindService::getService();
 
 	XmlHMindElementInfo info;
-	hmind.getElementInfo( parentNode , info );
+	hmindxml.getElementInfo( parentNode , info );
 
 	// check ignored
 	if( info.ignore == true )
@@ -101,13 +101,13 @@ MindArea *WikiMaker::updateHierarchyPage_getArea( String parentNode ) {
 	// check all childs
 	MindArea *area = NULL;
 	StringList elements;
-	hmind.getElements( parentNode , elements );
+	hmindxml.getElements( parentNode , elements );
 
 	for( int k = 0; k < elements.count(); k++ ) {
 		String node = elements.get( k );
 
 		// check ignored
-		hmind.getElementInfo( node , info );
+		hmindxml.getElementInfo( node , info );
 		if( info.ignore == true )
 			continue;
 
@@ -126,7 +126,7 @@ MindRegion *WikiMaker::updateHierarchyPage_getRegion( String parentNode ) {
 	MindService *ms = MindService::getService();
 
 	XmlHMindElementInfo info;
-	hmind.getElementInfo( parentNode , info );
+	hmindxml.getElementInfo( parentNode , info );
 
 	// check ignored
 	if( info.ignore == true )
@@ -140,13 +140,13 @@ MindRegion *WikiMaker::updateHierarchyPage_getRegion( String parentNode ) {
 
 	// check all childs
 	StringList elements;
-	hmind.getElements( parentNode , elements );
+	hmindxml.getElements( parentNode , elements );
 
 	for( int k = 0; k < elements.count(); k++ ) {
 		String node = elements.get( k );
 
 		// check ignored
-		hmind.getElementInfo( node , info );
+		hmindxml.getElementInfo( node , info );
 		if( info.ignore == true )
 			continue;
 
@@ -164,7 +164,7 @@ String WikiMaker::updateHierarchyPage_getElementString( String node , MindArea *
 	String value;
 
 	XmlHMindElementInfo info;
-	hmind.getElementInfo( node , info );
+	hmindxml.getElementInfo( node , info );
 
 	// own name if any
 	if( !info.name.isEmpty() ) {
@@ -212,12 +212,12 @@ String WikiMaker::updateHierarchyPage_getElementString( String node , MindArea *
 void WikiMaker::updateHierarchyPage_walkNeocortex( String neocortexDivision , String wikiDir , String wikiPage ) {
 	XmlHMindElementInfo info;
 	StringList elements;
-	hmind.getElements( neocortexDivision , elements );
+	hmindxml.getElements( neocortexDivision , elements );
 
 	// group by major lobes
 	for( int k = 0; k < elements.count(); k++ ) {
 		String node = elements.get( k );
-		hmind.getElementInfo( node , info );
+		hmindxml.getElementInfo( node , info );
 
 		StringList lines;
 		updateHierarchyPage_getNeocortexLobeLines( node , lines );
@@ -303,12 +303,12 @@ String WikiMaker::updateHierarchyPage_getNeocortexBrodmannLine( String neocortex
 
 void WikiMaker::updateHierarchyPage_walkNeocortexBrodmannLine( String node , String banum , StringList& items ) {
 	XmlHMindElementInfo info;
-	hmind.getElementInfo( node , info );
+	hmindxml.getElementInfo( node , info );
 
 	if( info.brodmannid.isEmpty() ) {
 		// check childs
 		StringList elements;
-		hmind.getElements( node , elements );
+		hmindxml.getElements( node , elements );
 
 		// group by major lobes
 		for( int k = 0; k < elements.count(); k++ ) {
@@ -404,7 +404,7 @@ String WikiMaker::createAreaPages_getRegionTableRow( MindRegionDef *regionDef ) 
 	// region row
 	String regionId = regionDef -> getName();
 	XmlHMindElementInfo info;
-	hmind.getElementInfo( regionId , info );
+	hmindxml.getElementInfo( regionId , info );
 	
 	value = "|| *" + regionId + "* || " + 
 		createAreaPages_getTableCellAttribute( info , "name" , info.name , true , 0 ) + " || " + 

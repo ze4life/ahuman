@@ -87,34 +87,22 @@
 				<region name="PCA.NC.RSC" type="neocortex"/>
 				<region name="PCA.NC.PCG" type="neocortex"/>
 				<region name="PCA.FD.TH.RIL" type="nucleus" size="100"/>
+				<region name="PCA.FD.TH.LD" type="nucleus" size="100"/>
 				<region name="PCA.FD.TH.LP" type="nucleus" size="100"/>
 				<region name="PCA.FD.TH.SG" type="nucleus" size="100"/>
 				<region name="PCA.FD.TH.PO" type="nucleus" size="100"/>
 			</area>
 
-			<area name="HCA" enabled="true">
-				<region name="HCA.NC.CLC" type="neocortex"/>
-				<region name="HCA.NC.HR" type="neocortex"/>
-				<region name="HCA.NC.PH.PPG" type="neocortex"/>
-				<region name="HCA.NC.PH.PRR" type="neocortex"/>
-				<region name="HCA.NC.PH.ET" type="neocortex"/>
-				<region name="HCA.NC.PAS" type="neocortex"/>
-				<region name="HCA.NC.PRI" type="neocortex"/>
-				<region name="HCA.NC.PRS" type="neocortex"/>
-				<region name="HCA.NC.RSB" type="neocortex"/>
-				<region name="HCA.FT.DG" type="allocortex"/>
-				<region name="HCA.FT.HC.CA1" type="allocortex"/>
-				<region name="HCA.FT.HC.CA2" type="allocortex"/>
-				<region name="HCA.FT.HC.CA3" type="allocortex"/>
-				<region name="HCA.FT.HC.CA4" type="allocortex"/>
-				<region name="HCA.FT.SC.PSS" type="allocortex"/>
-				<region name="HCA.FT.SC.SUB" type="allocortex"/>
-				<region name="HCA.FD.MB.LMB" type="nucleus" size="100"/>
-				<region name="HCA.FD.MB.MMB" type="nucleus" size="100"/>
-				<region name="HCA.FD.TH.AN" type="nucleus" size="100"/>
-				<region name="HCA.FD.TH.LD" type="nucleus" size="100"/>
-				<region name="HCA.FD.TH.RE" type="nucleus" size="100"/>
-				<region name="HCA.FD.TH.RH" type="nucleus" size="100"/>
+			<area name="PHA" enabled="true">
+				<region name="PHA.NC.CLC" type="neocortex"/>
+				<region name="PHA.NC.HR" type="neocortex"/>
+				<region name="PHA.NC.PH.PPG" type="neocortex"/>
+				<region name="PHA.NC.PH.PRR" type="neocortex"/>
+				<region name="PHA.NC.PH.ET" type="neocortex"/>
+				<region name="PHA.NC.PAS" type="neocortex"/>
+				<region name="PHA.NC.PRI" type="neocortex"/>
+				<region name="PHA.NC.PRS" type="neocortex"/>
+				<region name="PHA.NC.RSB" type="neocortex"/>
 			</area>
 
 			<area name="FCA" enabled="true">
@@ -157,6 +145,21 @@
 				<region name="ABA.HP.PN.LL" type="nucleus"/>
 				<region name="ABA.HM.COCH" type="nucleus"/>
 				<region name="ABA.HM.CORTI" type="nucleus"/>
+			</area>
+
+			<area name="HBA" enabled="true">
+				<region name="HBA.FT.DG" type="allocortex"/>
+				<region name="HBA.FT.HC.CA1" type="allocortex"/>
+				<region name="HBA.FT.HC.CA2" type="allocortex"/>
+				<region name="HBA.FT.HC.CA3" type="allocortex"/>
+				<region name="HBA.FT.HC.CA4" type="allocortex"/>
+				<region name="HBA.FT.SC.PSS" type="allocortex"/>
+				<region name="HBA.FT.SC.SUB" type="allocortex"/>
+				<region name="HBA.FD.MB.LMB" type="nucleus" size="100"/>
+				<region name="HBA.FD.MB.MMB" type="nucleus" size="100"/>
+				<region name="HBA.FD.TH.AN" type="nucleus" size="100"/>
+				<region name="HBA.FD.TH.RE" type="nucleus" size="100"/>
+				<region name="HBA.FD.TH.RH" type="nucleus" size="100"/>
 			</area>
 
 			<area name="BGA" enabled="true">
@@ -352,7 +355,7 @@
 				<connection type="neocortex-neocortex" src="VCA.NC.V4" dst="VCA.NC.IT.TEO"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.V4" dst="VCA.NC.IT.TE"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.IT.TEO" dst="VCA.NC.IT.TE"/>
-				<connection type="neocortex-neocortex" src="VCA.NC.IT.TE" dst="HCA.NC.PH.ET"/>
+				<connection type="neocortex-neocortex" src="VCA.NC.IT.TE" dst="PHA.NC.PH.ET"/>
 			</circuit>
 
 		</circuit-set>
