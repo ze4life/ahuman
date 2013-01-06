@@ -94,3 +94,22 @@ String XmlHMind::getMappedRegion( String node ) {
 
 	return( "" );
 }
+
+void XmlHMind::getChildRegions( String node , StringList& regions ) {
+	Xml item = getNodeXml( node );
+	scanChildRegions( item , regions );
+}
+
+void XmlHMind::scanChildRegions( Xml item , StringList& regions ) {
+	for( Xml xmlChild = item.getFirstChild( "element" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "element" ) ) {
+		String id = xmlChild.getAttribute( "id" , "" );
+		if( id.isEmpty() )
+			continue;
+
+		if( xmlChild.getBooleanAttribute( "mapped" , false ) == true )
+			regions.add( id );
+		else
+			scanChildRegions( xmlChild , regions );
+	}
+}
+

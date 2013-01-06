@@ -70,9 +70,13 @@
 
 			<area name="MCA" enabled="true">
 				<region name="MCA.NC.SMC" type="neocortex"/>
-				<region name="MCA.NC.PMC" type="neocortex"/>
+				<region name="MCA.NC.PMC.F2" type="neocortex"/>
+				<region name="MCA.NC.PMC.F7" type="neocortex"/>
+				<region name="MCA.NC.PMC.F4" type="neocortex"/>
+				<region name="MCA.NC.PMC.F5" type="neocortex"/>
+				<region name="MCA.NC.PMC.FEF" type="neocortex"/>
 				<region name="MCA.NC.MC" type="neocortex"/>
-				<region name="MCA.NC.S1" type="neocortex"/>
+				<region name="MCA.NC.PG.S1" type="neocortex"/>
 				<region name="MCA.NC.TPC" type="neocortex"/>
 				<region name="MCA.FD.TH.VA" type="nucleus" size="100"/>
 				<region name="MCA.FD.TH.VL" type="nucleus" size="100"/>
@@ -81,11 +85,16 @@
 
 			<area name="PCA" enabled="true">
 				<region name="PCA.NC.SPL.SA" type="neocortex"/>
-				<region name="PCA.NC.SPL.PR" type="neocortex"/>
-				<region name="PCA.NC.IPL" type="neocortex"/>
-				<region name="PCA.NC.IPS" type="neocortex"/>
-				<region name="PCA.NC.RSC" type="neocortex"/>
-				<region name="PCA.NC.PCG" type="neocortex"/>
+				<region name="PCA.NC.SPL.PF" type="neocortex"/>
+				<region name="PCA.NC.SPL.PG" type="neocortex"/>
+				<region name="PCA.NC.PO.PCC" type="neocortex"/>
+				<region name="PCA.NC.IPS.PEF" type="neocortex"/>
+				<region name="PCA.NC.IPS.VIP" type="neocortex"/>
+				<region name="PCA.NC.IPS.AIP" type="neocortex"/>
+				<region name="PCA.NC.MPL.RSC" type="neocortex"/>
+				<region name="PCA.NC.MPL.PCG" type="neocortex"/>
+				<region name="PCA.NC.IPL.MST" type="neocortex"/>
+				<region name="PCA.NC.IPL.SMW" type="neocortex"/>
 				<region name="PCA.FD.TH.RIL" type="nucleus" size="100"/>
 				<region name="PCA.FD.TH.LD" type="nucleus" size="100"/>
 				<region name="PCA.FD.TH.LP" type="nucleus" size="100"/>
@@ -112,7 +121,6 @@
 				<region name="FCA.NC.IPG" type="neocortex"/>
 				<region name="FCA.NC.LPFC" type="neocortex"/>
 				<region name="FCA.NC.OMPFC" type="neocortex"/>
-				<region name="FCA.NC.PRE" type="neocortex"/>
 				<region name="FCA.NC.SGC" type="neocortex"/>
 				<region name="FCA.FD.TH.MD" type="nucleus" size="100"/>
 				<region name="FCA.FD.TH.SM" type="nucleus" size="100"/>
@@ -335,27 +343,55 @@
 		<circuit-set>
 
 			<!-- ================= eye sensor -> subcortical -> cortex -> subcortical -> eye sensor =============== -->
-			<circuit name="vision" enabled="true">
+			<circuit name="vision-primary" enabled="true">
 				<connection type="nucleus-nucleus" src="VBA.FD.RT" dst="VBA.FD.LGN"/>
 				<connection type="nucleus-nucleus" src="VBA.FD.RT" dst="VBA.MM.SC"/>
 				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="VBA.FD.LGN"/>
 				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="VBA.FD.PV.IPV"/>
 				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="VBA.FD.PV.LPV"/>
 				<connection type="nucleus-neocortex" src="VBA.FD.LGN" dst="VCA.NC.V1"/>
-				<connection type="nucleus-neocortex" src="VBA.FD.PV.IPV" dst="PCA.NC.IPL"/>
+				<connection type="nucleus-neocortex" src="VBA.FD.PV.IPV" dst="PCA.NC.IPL.MST"/>
 				<connection type="nucleus-neocortex" src="VBA.FD.PV.LPV" dst="VCA.NC.V2"/>
-				<connection type="neocortex-nucleus" src="PCA.NC.IPL" dst="VBA.MM.SC"/>
+				<connection type="neocortex-nucleus" src="PCA.NC.IPL.MST" dst="VBA.MM.SC"/>
 				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="VBA.MM.OCN"/>
+				<!-- from CP.CP.EYE-FIELDS -->
+				<connection type="neocortex-nucleus" src="PCA.NC.IPS.PEF" dst="VBA.MM.SC"/>
+				<connection type="neocortex-neocortex" src="PCA.NC.IPS.PEF" dst="MCA.NC.PMC.FEF"/>
+				<connection type="neocortex-neocortex" src="PCA.NC.IPS.PEF" dst="FCA.NC.LPFC"/>
+				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="HMA.HP.PRF.RPO"/>
+				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="HMA.MM.INMLF"/>
+				<connection type="neocortex-nucleus" src="MCA.NC.PMC.FEF" dst="VBA.MM.SC"/>
+				<connection type="neocortex-nucleus" src="MCA.NC.PMC.FEF" dst="HMA.MM.INMLF"/>
+				<connection type="neocortex-neocortex" src="FCA.NC.LPFC" dst="MCA.NC.PMC.FEF"/>
+				<connection type="neocortex-neocortex" src="FCA.NC.LPFC" dst="MCA.NC.SMC"/>
+				<connection type="neocortex-nucleus" src="MCA.NC.SMC" dst="MCA.NC.PMC.FEF"/>
 			</circuit>
 
 			<!-- ================= intracortical visual "what" stream processing =============== -->
-			<circuit name="visual-objects" enabled="true">
+			<circuit name="visual-perception" enabled="true">
 				<connection type="neocortex-neocortex" src="VCA.NC.V1" dst="VCA.NC.V2"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.V2" dst="VCA.NC.V4"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.V4" dst="VCA.NC.IT.TEO"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.V4" dst="VCA.NC.IT.TE"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.IT.TEO" dst="VCA.NC.IT.TE"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.IT.TE" dst="PHA.NC.PH.ET"/>
+				<!-- from CP.PRIMARY-VISUAL-FORWARD-FLOWS -->
+				<connection type="neocortex-neocortex" src="VCA.NC.V2" dst="VCA.NC.V3"/>
+				<connection type="neocortex-neocortex" src="VCA.NC.V3" dst="VCA.NC.V4"/>
+				<connection type="neocortex-neocortex" src="VCA.NC.V1" dst="VCA.NC.MT"/>
+				<connection type="neocortex-neocortex" src="VCA.NC.V2" dst="VCA.NC.MT"/>
+				<connection type="neocortex-neocortex" src="VCA.NC.V3" dst="VCA.NC.MT"/>
+				<connection type="neocortex-neocortex" src="VCA.NC.V4" dst="VCA.NC.MT"/>
+				<connection type="neocortex-neocortex" src="VCA.NC.V2" dst="VCA.NC.PO"/>
+				<connection type="neocortex-neocortex" src="VCA.NC.V3" dst="VCA.NC.PO"/>
+				<connection type="neocortex-neocortex" src="VCA.NC.MT" dst="PCA.NC.IPS.VIP"/>
+				<connection type="neocortex-neocortex" src="VCA.NC.MT" dst="PCA.NC.IPS.PEF"/>
+				<connection type="neocortex-neocortex" src="VCA.NC.MT" dst="PCA.NC.IPL.MST"/>
+				<connection type="neocortex-neocortex" src="VCA.NC.PO" dst="PCA.NC.IPS.PEF"/>
+				<connection type="neocortex-neocortex" src="VCA.NC.PO" dst="PCA.NC.IPL.MST"/>
+				<connection type="neocortex-neocortex" src="PCA.NC.IPS.VIP" dst="PCA.NC.SPL.PG"/>
+				<connection type="neocortex-neocortex" src="PCA.NC.IPS.PEF" dst="PCA.NC.SPL.PG"/>
+				<connection type="neocortex-neocortex" src="PCA.NC.IPL.MST" dst="PCA.NC.SPL.PG"/>
 			</circuit>
 
 		</circuit-set>

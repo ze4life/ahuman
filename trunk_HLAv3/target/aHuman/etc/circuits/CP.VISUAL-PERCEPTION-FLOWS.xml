@@ -1,0 +1,54 @@
+<circuits>
+
+	<circuit id="CP.BASE-VISUAL-CORTEX-FLOWS" name="3 Visual Cortex Paths"
+		image="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/visual-streams.jpg"
+		reference="article:Biological/2008-dorsal-stream.pdf"
+		components="LPC=FCA.NC.LPFC pre-SMA=MCA.NC.SMC dPM=MCA.NC.DPMC vPM=MCA.NC.VPMC MI=MCA.NC.MC SPL=PCA.NC.SPL IPL=PCA.NC.IPL IT=VCA.NC.IT OCC=NC.LOBE.OCC"
+		>
+		<link src="OCC" dst="IT" function="ventral stream"/>
+		<link src="OCC" dst="IPL" function="ventro-dorsal stream"/>
+		<link src="OCC" dst="SPL" function="dorsal stream"/>
+		<link src="IT" dst="IPL"/>
+		<link src="IT" dst="LPC"/>
+		<link src="IPL" dst="vPM"/>
+		<link src="IPL" dst="LPC"/>
+		<link src="SPL" dst="dPM"/>
+		<link src="LPC" dst="pre-SMA"/>
+		<link src="LPC" dst="vPM"/>
+		<link src="pre-SMA" dst="vPM"/>
+		<link src="pre-SMA" dst="dPM"/>
+		<link src="vPM" dst="MI"/>
+		<link src="dPM" dst="MI"/>
+	</circuit>
+
+	<circuit id="CP.PRIMARY-VISUAL-FORWARD-FLOWS" name="Paths from Retina to Parietal Cortex and IT"
+		image="http://thebrain.mcgill.ca/flash/a/a_02/a_02_cr/a_02_cr_vis/a_02_cr_vis_3a.jpg"
+		reference="http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html"
+		components="Retina=VBA.FD.RT LGN=VBA.FD.LGN V1=VCA.NC.V1 V2=VCA.NC.V2 V3=VCA.NC.V3 V4=VCA.NC.V4 MT=VCA.NC.MT PO=VCA.NC.PO VIP=PCA.NC.IPS.VIP MST=PCA.NC.IPL.MST LIP=PCA.NC.IPS.LIP 7a=PCA.NC.SPL.PG TEO=VCA.NC.IT.TEO TE=VCA.NC.IT.TE"
+		>
+		<link src="Retina" dst="LGN"/>
+		<link src="LGN" dst="V1"/>
+		<link src="V1" dst="V2"/>
+		<link src="V2" dst="V3"/>
+		<link src="V2" dst="V4"/>
+		<link src="V3" dst="V4"/>
+		<link src="V1" dst="MT"/>
+		<link src="V2" dst="MT"/>
+		<link src="V3" dst="MT"/>
+		<link src="V4" dst="MT"/>
+		<link src="V2" dst="PO"/>
+		<link src="V3" dst="PO"/>
+		<link src="V4" dst="TEO"/>
+		<link src="V4" dst="TE"/>
+		<link src="TEO" dst="TE"/>
+		<link src="MT" dst="VIP"/>
+		<link src="MT" dst="MST"/>
+		<link src="MT" dst="LIP"/>
+		<link src="PO" dst="VIP"/>
+		<link src="PO" dst="MST"/>
+		<link src="VIP" dst="7a"/>
+		<link src="MST" dst="7a"/>
+		<link src="LIP" dst="7a"/>
+	</circuit>
+
+</circuits>
