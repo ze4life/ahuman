@@ -63,6 +63,8 @@ public:
 	NeuroLinkSource *getNeuroLinkSource( String entity );
 	NeuroLinkTarget *getNeuroLinkTarget( String entity );
 
+	bool checkLinkedTo( MindRegion *dst );
+
 private:
 
 	void addPrivateNeuroLink( NeuroLink *nt );

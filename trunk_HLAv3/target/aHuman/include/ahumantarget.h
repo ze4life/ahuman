@@ -78,8 +78,10 @@ private:
 	bool checkCircuits_verifyComponents( String circuit );
 	bool checkCircuits_verifyLinks( String circuit );
 	bool checkCircuits_verifyCircuitLink( XmlCircuitInfo& circuit , XmlCircuitLinkInfo& link );
+	bool checkCircuits_verifyCircuitChildLinks( String compSrc , String compDst , String regionSrcId , String regionDstId );
 	bool checkMindModel_verifyRegion( MindRegionDef *regionDef );
 	bool checkMindModel_verifyLinkedConnectors( MindRegionDef *regionDef , MindRegion *region );
+	bool checkMindModel_verifyRegionCircuits( MindRegionDef *regionDef , MindRegion *region );
 
 private:
 	Xml modelArea;

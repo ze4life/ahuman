@@ -79,3 +79,12 @@ void MindRegion::addRegionLink( MindRegionLink *link ) {
 	regionLinkSet -> addSetItem( link );
 }
 
+bool MindRegion::checkLinkedTo( MindRegion *dst ) {
+	for( int k = 0; k < regionLinkSet -> getCount(); k++ ) {
+		MindRegionLink *link = regionLinkSet -> getSetItem( k );
+		if( link -> getSrcRegion() == this && link -> getDstRegion() == dst )
+			return( true );
+	}
+
+	return( false );
+}

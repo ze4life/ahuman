@@ -114,3 +114,16 @@ String XmlCircuits::mapComponent( XmlCircuitInfo& circuit , String circuitCompon
 	ASSERTMSG( !value.isEmpty() , "unknown circuit link component=" + circuitComponent );
 	return( value );
 }
+
+bool XmlCircuits::checkRegionUsedByCircuit( String region , String circuit ) {
+	// region is covered by circuit if region is exactly mentioned in circuit
+	XmlCircuitInfo info;
+	getCircuitInfo( circuit , info );
+
+	// check amond mapping
+	for( int k = 0; k < info.componentMapping.count(); k++ )
+		if( region.equals( info.componentMapping.getClassByIndex( k ) ) )
+			return( true );
+
+	return( false );
+}

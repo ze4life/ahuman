@@ -28,53 +28,134 @@
 			<element id="FCA.NC.OMPFC" name="Orbitomedial Prefrontal Cortex" mapped="true" brodmannid="10,11,12" type="Neocortex"
 				function="Personality" 
 				/>
-			<element id="FCA.NC.PRE" name="Precentral Cortex" mapped="true" brodmannid="43" type="Neocortex"
-				function="Gustatory cortical area"
-				/>
-			<element id="MCA.NC.PMC" name="Premotor Cortex" mapped="true" brodmannid="06" type="Neocortex"
+
+			<element id="MCA.NC.PMC" name="Premotor Cortex"
 				function="Selection of appropriate motor plans for voluntary movements" 
-				/>
+				>
+				<element id="MCA.NC.DPMC" name="Dorsal Premotor Cortex">
+					<element id="MCA.NC.PMC.F2" name="Dorsal Caudal Premotor Cortex" mapped="true" brodmannid="06" type="Neocortex"
+						function="Guiding reaching"
+						notes="Active during preparation for reach and also during reach itself"
+						/>
+					<element id="MCA.NC.PMC.F7" name="Dorsal Rostral Premotor Cortex" mapped="true" brodmannid="06" type="Neocortex"
+						function="Associate arbitrary sensory stimuli with specific movements"
+						notes="Can evoke eye movements"
+						/>
+				</element>
+				<element id="MCA.NC.VPMC" name="Ventral Premotor Cortex">
+					<element id="MCA.NC.PMC.F4" name="Ventral Caudal Premotor Cortex" mapped="true" brodmannid="06" type="Neocortex"
+						function="Sensory guidance of movement"
+						notes="Neurons are especially sensitive to objects in space immediately surrounding body"
+						/>
+					<element id="MCA.NC.PMC.F5" name="Ventral Rostral Premotor Cortex" mapped="true" brodmannid="06" type="Neocortex"
+						function="Shaping hand during grasping"
+						notes="Mirror neurons - both sensory and motor"
+						/>
+				</element>
+				<element id="MCA.NC.PMC.FEF" name="Frontal Eye Field" mapped="true" brodmannid="08" type="Neocortex"
+					function="Initiation of eye movements"
+					notes="Voluntary saccades and pursuit eye movements"
+					/>
+			</element>
+
 			<element id="FCA.NC.SGC" name="Subgenual Cortex" mapped="true" brodmannid="25" type="Neocortex"
 				function="Influences changes in appetite and sleep" 
 				notes="Subdivision of cytoarchitecturally defined cingulate region"
 				/>
+
 			<element id="MCA.NC.SMC" name="Supplementary Motor Cortex" mapped="true" brodmannid="06" type="Neocortex"
 				function="Process sequences of movements and coordinate bilateral movements" 
-				/>
+				>
+				<element id="MCA.NC.SMC.SEF" name="Supplementary Eye Field"
+					function="high level aspects of saccade control"
+					notes="Complex spatial transformations, learned transformations, and executive cognitive functions"
+					/>
+			</element>
 		</element>
 
 		<element id="NC.LOBE.PAR" name="Parietal Lobe">
-			<element id="MCA.NC.S1" name="Somatosensory Cortex" mapped="true" brodmannid="01,02,03" type="Neocortex"
-				function="Muscle and skin receptors" 
-				/>
+			<element id="PCA.NC.PG" name="Postcentral Gyrus">
+				<element id="MCA.NC.PG.S1" name="Somatosensory Cortex" mapped="true" brodmannid="01,02,03" type="Neocortex"
+					function="Muscle and skin receptors" 
+					/>
+			</element>
+
+			<element id="PCA.NC.PO" name="Parietal Operculum"
+				notes="Postcentral gyrus"
+				>
+				<element id="PCA.NC.PO.PCC" name="Precentral Cortex" mapped="true" brodmannid="43" type="Neocortex"
+					function="Gustatory cortical area"
+					/>
+			</element>
 
 			<element id="PCA.NC.SPL" name="Superior Parietal Lobule">
 				<element id="PCA.NC.SPL.SA" name="Somatosensory Association Cortex" mapped="true" brodmannid="05" type="Neocortex"
 					function="Locating objects in space" 
-					notes="Superior parietal lobule"
+					notes="PE, somatosensory, guiding movement by providing information about limb position"
 					/>
-				<element id="PCA.NC.SPL.PR" name="Precuneus" mapped="true" brodmannid="07" type="Neocortex"
-					function="Spatial orientation, Representation of the self" 
-					notes="Superior parietal lobule"
+				<element id="PCA.NC.SPL.PF" name="Rostral Precuneus" mapped="true" brodmannid="07" type="Neocortex"
+					function="Spatial orientation, representation of the self"
+					notes="rostral, 7B=PF, heavy somatosensory input"
+					/>
+				<element id="PCA.NC.SPL.PG" name="Caudal Precuneus" mapped="true" brodmannid="07" type="Neocortex"
+					function="Controlling spatially guided behavior with respect to visual and tactile information" 
+					notes="caudal, 7A=PG+Opt"
 					/>
 			</element>
 
-			<element id="PCA.NC.IPL" name="Inferior Parietal Lobule" mapped="true" brodmannid="40" type="Neocortex"
+			<element id="PCA.NC.IPL" name="Inferior Parietal Lobule">
 				function="Perception of emotions in facial stimuli and interpretation of sensory information" 
 				notes="SMG, Represent spoken words, tool use"
-				/>
-			<element id="PCA.NC.IPS" name="Intraparietal Sulcus" mapped="true" brodmannid="39" type="Neocortex"
-				function="Perceptual-motor coordination and visual attention, eye movements and reaching" 
-				notes="AG, Represent written words"
-				/>
-			<element id="PCA.NC.RSC" name="Retrosplenial Cortex" mapped="true" brodmannid="26,29,30" type="Neocortex"
-				function="Processing of emotionally salient stimuli" 
-				notes="Medial parietal lobe"
-				/>
-			<element id="PCA.NC.PCG" name="Posterior Cingulate Cortex" mapped="true" brodmannid="23,31" type="Neocortex"
-				function="Self-awareness, pain and episodic memory retrieval" 
-				notes="Medial parietal lobe"
-				/>
+				>
+				<element id="PCA.NC.IPL.AG" name="Angular Gyrus"
+					notes="Surrounds Superior Temporal Sulcus (STS)"
+					>
+					<element id="PCA.NC.IPL.MST" name="Medial Superior Temporal Area" mapped="true" brodmannid="39" type="Neocortex"
+						function="Image stabilization, predictive target tracking" 
+						notes="PG, Ventro-dorsal stream"
+						/>
+				</element>
+				<element id="PCA.NC.IPL.SMG" name="Supramarginal Gyrus">
+					<element id="PCA.NC.IPL.SMW" name="Supramarginal Wernike Cortex" mapped="true" brodmannid="40" type="Neocortex"
+						function="Phonological and articulatory processing of words" 
+						notes="PF, Computing sound of word, tactile learning and memory"
+						/>
+				</element>
+				<element id="PCA.NC.IPS" name="Intraparietal Sulcus"
+					function="Perceptual-motor coordination and visual attention, eye movements and reaching" 
+					notes="PG, Control of saccadic eye movements, visual control of grasping"
+					>
+					<element id="PCA.NC.IPS.PEF" name="Posterior Eye Field" mapped="true" brodmannid="39" type="Neocortex"
+						function="Reflexive saccade triggering"
+						>
+						<element id="PCA.NC.IPS.MIP" name="Medial Intraparietal Sulcus" 
+							function="Encode location of reach target in nose-centered coordinates"
+							/>
+						<element id="PCA.NC.IPS.LIP" name="Lateral Intraparietal Sulcus"
+							function="Representing saliency of spatial locations, and attention to locations"
+							notes="Targeting eye movements"
+							/>
+					</element>
+					<element id="PCA.NC.IPS.VIP" name="Ventral Intraparietal Sulcus" mapped="true" brodmannid="39" type="Neocortex"
+						function="Merge visual, somatosensory, auditory, and vestibular senses"
+						notes="V6, Represent space in head-centered reference frame"
+						/>
+					<element id="PCA.NC.IPS.AIP" name="Anterior Intraparietal Sulcus" mapped="true" brodmannid="39" type="Neocortex"
+						function="Represent shape, size, and orientation of objects to be grasped"
+						notes="Both to viewed and remembered stimuli, grasping and manipulating objects through motor and visual inputs"
+						/>
+				</element>
+			</element>
+
+			<element id="PCA.NC.MPL" name="Medial Parietal Lobule">
+				<element id="PCA.NC.MPL.RSC" name="Retrosplenial Cortex" mapped="true" brodmannid="26,29,30" type="Neocortex"
+					function="Processing of emotionally salient stimuli" 
+					/>
+				<element id="PCA.NC.MPL.PCG" name="Posterior Cingulate Cortex" mapped="true" brodmannid="23,31" type="Neocortex"
+					function="Self-awareness, pain and episodic memory retrieval" 
+					/>
+			</element>
+
 		</element>
 
 		<element id="NC.LOBE.OCC" name="Occipital Lobe">

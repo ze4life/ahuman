@@ -113,7 +113,7 @@ bool ModelVerifier::checkHierarchy_verifyChild( String parentNode , bool checkMa
 		return( true );
 
 	if( checkMapping )
-		logger.logError( "checkHierarchy_verifyChild: " + info.id + " - region has no complete mapping to mind map" );
+		logger.logError( "checkHierarchy_verifyChild: id=" + info.id + ", name=" + info.name + " - region has no complete mapping to mind map" );
 	return( false );
 }
 
@@ -204,9 +204,13 @@ bool ModelVerifier::checkCircuits_verifyCircuitLink( XmlCircuitInfo& circuit , X
 	String regionSrcId = hmindxml.getMappedRegion( compSrc );
 	String regionDstId = hmindxml.getMappedRegion( compDst );
 
-	// ignore check if mapped to upper items
-	if( regionSrcId.isEmpty() || regionDstId.isEmpty() )
-		return( true );
+	// specific check if mapped to upper items
+	if( regionSrcId.isEmpty() || regionDstId.isEmpty() ) {
+		bool check = checkCircuits_verifyCircuitChildLinks( compSrc , compDst , regionSrcId , regionDstId );
+		if( check == false )
+			logger.logError( "checkCircuits_verifyCircuitLink: not found covering child link element=" + compSrc + " to element=" + compDst + ", from circuit component=" + link.compSrc + " to component=" + link.compDst );
+		return( check );
+	}
 
 	MindService *ms = MindService::getService();
 
@@ -218,15 +222,47 @@ bool ModelVerifier::checkCircuits_verifyCircuitLink( XmlCircuitInfo& circuit , X
 	MindRegion *regionDst = ms -> getMindRegion( regionDstId );
 
 	// check link exists from src to dst
-	MindRegionLinkSet *linkSet = regionSrc -> getRegionLinkSet();
-	for( int k = 0; k < linkSet -> getCount(); k++ ) {
-		MindRegionLink *link = linkSet -> getSetItem( k );
-		if( link -> getSrcRegion() == regionSrc && link -> getDstRegion() == regionDst )
-			return( true );
-	}
+	if( regionSrc -> checkLinkedTo( regionDst ) )
+		return( true );
 
 	// this link does not exist in mind model
 	logger.logError( "checkCircuits_verifyCircuitLink: not found link from region=" + regionSrcId + " to region=" + regionDstId + ", from circuit component=" + link.compSrc + " to component=" + link.compDst );
+	return( false );
+}
+
+bool ModelVerifier::checkCircuits_verifyCircuitChildLinks( String compSrc , String compDst , String regionSrcId , String regionDstId ) {
+	// collect sets of child regions
+	StringList srcRegions;
+	if( regionSrcId.isEmpty() )
+		hmindxml.getChildRegions( compSrc , srcRegions );
+	else
+		srcRegions.add( regionSrcId );
+
+	StringList dstRegions;
+	if( regionDstId.isEmpty() )
+		hmindxml.getChildRegions( compDst , dstRegions );
+	else
+		dstRegions.add( regionDstId );
+
+	// check mapping
+	MindService *ms = MindService::getService();
+	for( int k1 = 0; k1 < srcRegions.count(); k1++ ) {
+		String srcRegionId = srcRegions.get( k1 );
+		if( !ms -> isMindRegion( srcRegionId ) )
+			continue;
+
+		MindRegion *srcRegion = ms -> getMindRegion( srcRegionId );
+		for( int k2 = 0; k2 < dstRegions.count(); k2++ ) {
+			String dstRegionId = dstRegions.get( k2 );
+			if( !ms -> isMindRegion( dstRegionId ) )
+				continue;
+
+			MindRegion *dstRegion = ms -> getMindRegion( dstRegionId );
+			if( srcRegion -> checkLinkedTo( dstRegion ) )
+				return( true );
+		}
+	}
+
 	return( false );
 }
 
@@ -264,9 +300,14 @@ bool ModelVerifier::checkMindModel_verifyRegion( MindRegionDef *regionDef ) {
 		logger.logError( "checkMindModel_verifyRegion: " + name + " - region is not mapped to hierarchy" );
 	}
 
-	// check region connectors are linked
-	if( !checkMindModel_verifyLinkedConnectors( regionDef , region ) )
+	// check region in circuits
+	if( !checkMindModel_verifyRegionCircuits( regionDef , region ) )
 		checkRegion = false;
+
+	// check region connectors are linked
+	if( checkRegion )
+		if( !checkMindModel_verifyLinkedConnectors( regionDef , region ) )
+			checkRegion = false;
 
 	return( checkRegion );
 }
@@ -309,3 +350,24 @@ bool ModelVerifier::checkMindModel_verifyLinkedConnectors( MindRegionDef *region
 
 	return( checkRegion );
 }
+
+bool ModelVerifier::checkMindModel_verifyRegionCircuits( MindRegionDef *regionDef , MindRegion *region ) {
+	String name = regionDef -> getName();
+
+	// ignore unknown region
+	if( !hmindxml.isComponent( name ) )
+		return( true );
+
+	// find circuit which references given region
+	StringList circuits;
+	circuitsxml.getCircuitList( circuits );
+	for( int k = 0; k < circuits.count(); k++ ) {
+		String circuit = circuits.get( k );
+		if( circuitsxml.checkRegionUsedByCircuit( name , circuit ) )
+			return( true );
+	}
+
+	logger.logError( "checkMindModel_verifyRegionCircuits: region=" + name + " is not covered by circuit collection" );
+	return( false );
+}
+

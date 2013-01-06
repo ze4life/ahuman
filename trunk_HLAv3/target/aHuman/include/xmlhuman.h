@@ -28,9 +28,11 @@ public:
 	void getElements( String parentNode , StringList& elements );
 	void getElementInfo( String node , XmlHMindElementInfo& info );
 	String getMappedRegion( String node );
+	void getChildRegions( String node , StringList& regions );
 
 private:
 	void scanChildItems( Xml xmlChild );
+	void scanChildRegions( Xml xmlChild , StringList& regions );
 
 private:
 	Xml xml;
@@ -71,6 +73,7 @@ public:
 	void getCircuitLinks( String circuit , FlatList<Xml>& links );
 	void getCircuitLinkInfo( Xml link , XmlCircuitLinkInfo& info );
 	String mapComponent( XmlCircuitInfo& circuit , String circuitComponent );
+	bool checkRegionUsedByCircuit( String region , String circuit );
 
 private:
 	Xml getCircuitXml( String id );
