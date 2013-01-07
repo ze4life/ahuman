@@ -51,4 +51,20 @@
 		<link src="LIP" dst="7a"/>
 	</circuit>
 
+	<circuit id="CP.VISUAL-PATH-TO-HC" name="Visual Path to Hippocampus"
+		image="http://www.scholarpedia.org/w/images/thumb/f/f2/ITCortex_pathway.jpg/400px-ITCortex_pathway.jpg"
+		reference="http://www.scholarpedia.org/article/Inferior_temporal_cortex"
+		components="V1=VCA.NC.V1 V2=VCA.NC.V2 V4=VCA.NC.V4 TEO=VCA.NC.IT.TEO IT=VCA.NC.IT.TE PRPH=PHA.NC.PH.PRR ER=PHA.NC.PH.ET H=HBA.FT.HF A=BFA.FT.AM"
+		>
+		<link src="V1" dst="V2"/>
+		<link src="V2" dst="V4"/>
+		<link src="V4" dst="TEO"/>
+		<link src="V4" dst="IT"/>
+		<link src="TEO" dst="IT"/>
+		<link src="IT" dst="PRPH"/>
+		<link src="PRPH" dst="ER"/>
+		<link src="ER" dst="H"/>
+		<link src="IT" dst="A"/>
+	</circuit>
+
 </circuits>
