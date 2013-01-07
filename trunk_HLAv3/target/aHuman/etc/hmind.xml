@@ -247,6 +247,11 @@
 				function="Spatial navigation and the integration of head-directional information" 
 				notes="Major projects to ET, from CA1,AM"
 				/>
+			<element id="PHA.NC.PH.PIR" name="Piriform Cortex" mapped="true" brodmannid="27" type="Neocortex"
+				refs="NL:[http://neurolex.org/wiki/Category:Piriform_cortex_frontal_area Piriform cortex frontal area]" 
+				function="Perception of smells" 
+				notes="Olfaction"
+				/>
 			<element id="PHA.NC.PH.PRR" name="Perirhinal Cortex" mapped="true" brodmannid="35" type="Neocortex"
 				function="Associate different visual views of objects and their various nonvisual attributes" 
 				notes="Parahippocampal gyrus"
@@ -272,110 +277,158 @@
 
 	<division name="Forebrain Telencephalon">
 
-		<element id="BGA.FT.ACC" name="Accumbens Nucleus" mapped="true" type="Inhibitory Nucleus"
-			refs="NL:[http://neurolex.org/wiki/Category:Nucleus_accumbens Nucleus accumbens]"
-			function="Activate motor functions under attention"
-			>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Core_of_nucleus_accumbens Core of nucleus accumbens]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Medial_nucleus_accumbens Medial nucleus accumbens]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Shell_of_nucleus_accumbens Shell of nucleus accumbens]"/>
-		</element>
-
-		<element id="BFA.FT.AM" name="Amygdala" mapped="true" type="Mixed Nucleus"
-			refs="NL:[http://neurolex.org/wiki/Category:Amygdala Amygdala]"
-			function="Experiencing and recognizing emotions"
-			>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Basolateral_nuclear_complex Basolateral nuclear complex]">
-				<element refs="NL:[http://neurolex.org/wiki/Category:Accessory_basal_amygdaloid_nucleus Accessory basal amygdaloid nucleus]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Basal_amygdaloid_nucleus Basal amygdaloid nucleus]">
-					<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_part_of_basal_amygdaloid_nucleus Lateral part of basal amygdaloid nucleus]"/>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Medial_part_of_basal_amygdaloid_nucleus Medial part of basal amygdaloid nucleus]"/>
+		<element id="BFA.FT.EXTAM" name="Extended Amygdala">
+			<element id="BFA.FT.AM" name="Amygdala" mapped="true" type="Mixed Nucleus"
+				refs="NL:[http://neurolex.org/wiki/Category:Amygdala Amygdala]"
+				function="Experiencing and recognizing emotions"
+				>
+				<element refs="NL:[http://neurolex.org/wiki/Category:Basolateral_nuclear_complex Basolateral nuclear complex]">
+					<element refs="NL:[http://neurolex.org/wiki/Category:Accessory_basal_amygdaloid_nucleus Accessory basal amygdaloid nucleus]"/>
+					<element refs="NL:[http://neurolex.org/wiki/Category:Basal_amygdaloid_nucleus Basal amygdaloid nucleus]">
+						<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_part_of_basal_amygdaloid_nucleus Lateral part of basal amygdaloid nucleus]"/>
+						<element refs="NL:[http://neurolex.org/wiki/Category:Medial_part_of_basal_amygdaloid_nucleus Medial part of basal amygdaloid nucleus]"/>
+					</element>
+					<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_amygdaloid_nucleus Lateral amygdaloid nucleus]">
+						<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_amygdaloid_nucleus,_dorsolateral_part Lateral amygdaloid nucleus, dorsolateral part]"/>
+						<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_amygdaloid_nucleus,_ventrolateral_part Lateral amygdaloid nucleus, ventrolateral part]"/>
+						<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_amygdaloid_nucleus,_ventromedial_part Lateral amygdaloid nucleus, ventromedial part]"/>
+					</element>
 				</element>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_amygdaloid_nucleus Lateral amygdaloid nucleus]">
-					<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_amygdaloid_nucleus,_dorsolateral_part Lateral amygdaloid nucleus, dorsolateral part]"/>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_amygdaloid_nucleus,_ventrolateral_part Lateral amygdaloid nucleus, ventrolateral part]"/>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_amygdaloid_nucleus,_ventromedial_part Lateral amygdaloid nucleus, ventromedial part]"/>
+				<element refs="NL:[http://neurolex.org/wiki/Category:Central_amygdaloid_nucleus Central amygdaloid nucleus]">
+					<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_central_nucleus_of_the_amygdala Lateral central nucleus of the amygdala]"/>
+					<element refs="NL:[http://neurolex.org/wiki/Category:Medial_central_nucleus_of_the_amygdala Medial central nucleus of the amygdala]"/>
+				</element>
+				<element refs="NL:[http://neurolex.org/wiki/Category:Corticomedial_nuclear_complex Corticomedial nuclear complex]">
+					<element refs="NL:[http://neurolex.org/wiki/Category:Anterior_amygdaloid_area Anterior amygdaloid area]"/>
+					<element refs="NL:[http://neurolex.org/wiki/Category:Cortical_amygdaloid_nucleus Cortical amygdaloid nucleus]"/>
+					<element refs="NL:[http://neurolex.org/wiki/Category:Medial_amygdaloid_nucleus Medial amygdaloid nucleus]"/>
+					<element refs="NL:[http://neurolex.org/wiki/Category:Periamygdaloid_cortex Periamygdaloid cortex]"/>
+				</element>
+				<element refs="NL:[http://neurolex.org/wiki/Category:Intercalated_amygdaloid_nuclei Intercalated amygdaloid nuclei]"/>
+				<element refs="NL:[http://neurolex.org/wiki/Category:Medial_amygdala Medial amygdala]"/>
+			</element>
+			<element id="BFA.FT.ACC" name="Accumbens Nucleus" mapped="true" type="Inhibitory Nucleus"
+				refs="NL:[http://neurolex.org/wiki/Category:Nucleus_accumbens Nucleus accumbens]"
+				function="Activate motor functions under attention"
+				>
+				<element refs="NL:[http://neurolex.org/wiki/Category:Core_of_nucleus_accumbens Core of nucleus accumbens]"/>
+				<element refs="NL:[http://neurolex.org/wiki/Category:Medial_nucleus_accumbens Medial nucleus accumbens]"/>
+				<element refs="NL:[http://neurolex.org/wiki/Category:Shell_of_nucleus_accumbens Shell of nucleus accumbens]"/>
+			</element>
+			<element id="FT.SIN" name="Substantia innominata">
+				<element id="BFA.FT.NBM" name="Basal Nucleus of Meynert" mapped="true" type="Modulatory Nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Basal_nucleus Basal nucleus];NL:[http://neurolex.org/wiki/Category:Substantia_innominata Substantia innominata]"
+					function="Control imagination vs perception"
+					notes="ACh source, attention"
+					/>
+			</element>
+			<element id="BFA.FT.BNST" name="Bed Nucleus of Stria Terminalis" mapped="true" type="Mixed Nucleus"
+				refs="NL:[http://neurolex.org/wiki/Category:Bed_nucleus_of_stria_terminalis Bed nucleus of stria terminalis]"
+				function="Mediate slow longer-lasting responses that accompany sustained threats"
+				notes="Major output from AM to HT, part of extended amygdala"
+				>
+				<element refs="NL:[http://neurolex.org/wiki/Category:Bed_nuclei_of_the_stria_terminalis_oval_nucleus Bed nuclei of the stria terminalis oval nucleus]"/>
+				<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_nucleus_of_stria_terminalis Lateral nucleus of stria terminalis]"/>
+				<element refs="NL:[http://neurolex.org/wiki/Category:Medial_nucleus_of_stria_terminalis Medial nucleus of stria terminalis]"/>
+			</element>
+		</element>
+
+		<element id="BGA.FT.BG" name="Basal Ganglia">
+			<element id="BGA.FT.CN" name="Caudate Nucleus" mapped="true" type="Inhibitory Nucleus"
+				refs="NL:[http://neurolex.org/wiki/Category:Caudate_nucleus Caudate nucleus]"
+				function="Excitation of correct action schemas and selection of appropriate sub-goals based on evaluation of action-outcomes"
+				notes="One of neural correlates of romantic love"
+				/>
+			<element id="BGA.FT.GP" name="Globus Pallidus" refs="NL:[http://neurolex.org/wiki/Category:Globus_pallidus Globus pallidus]">
+				<element refs="NL:[http://neurolex.org/wiki/Category:Caudal_globus_pallidus Caudal globus pallidus]" ignore="true" comment="secondary nuclei grouping"/>
+				<element refs="NL:[http://neurolex.org/wiki/Category:Dorsal_globus_pallidus Dorsal globus pallidus]" ignore="true" comment="secondary nuclei grouping"/>
+				<element id="BGA.FT.GPE" name="Globus Pallidus External" mapped="true" type="Inhibitory Nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Globus_pallidus_external_segment Globus pallidus external segment]"
+					function="Regulate and focus activity patterns in striatum, STN, GPi, and SNpr"
+					/>
+				<element id="BGA.FT.GPI" name="Globus Pallidus Internal" mapped="true" type="Inhibitory Nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Globus_pallidus_internal_segment Globus pallidus internal segment]"
+					function="Output nuclei of basal ganglia to neocortex"
+					notes="Balance of direct and indirect paths"
+					/>
+				<element refs="NL:[http://neurolex.org/wiki/Category:Rostral_globus_pallidus Rostral globus pallidus]" ignore="true" comment="no nuclei"/>
+			</element>
+			<element id="BGA.FT.PU" name="Putamen" mapped="true" type="Inhibitory Nucleus"
+				refs="NL:[http://neurolex.org/wiki/Category:Putamen Putamen]"
+				function="Stimulus-response, or habit, learning"
+				notes="Regulate movements and influence various types of learning"
+				>
+				<element refs="NL:[http://neurolex.org/wiki/Category:Caudal_putamen Caudal putamen]"/>
+				<element refs="NL:[http://neurolex.org/wiki/Category:Matrix_compartment_of_putamen Matrix compartment of putamen]"/>
+				<element refs="NL:[http://neurolex.org/wiki/Category:Rostral_putamen Rostral putamen]"/>
+				<element refs="NL:[http://neurolex.org/wiki/Category:Striosomal_part_of_putamen Striosomal part of putamen]"/>
+				<element refs="NL:[http://neurolex.org/wiki/Category:Ventral_putamen Ventral putamen]"/>
+			</element>
+			<element id="BGA.FT.SN" name="Substantia Nigra" refs="NL:[http://neurolex.org/wiki/Category:Substantia_nigra Substantia nigra]">
+				<element id="BGA.FT.SN.PC" name="Substantia Nigra Pars Compacta" mapped="true" type="Mixed Nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Substantia_nigra_pars_compacta Substantia nigra pars compacta]"
+					function="Fine motor control, temporal processing"
+					notes="Supply striatum with dopamine, input to Basal Ganglia"
+					>
+					<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_substantia_nigra_pars_compacta Lateral substantia nigra pars compacta]"/>
+					<element refs="NL:[http://neurolex.org/wiki/Category:Medial_substantia_nigra_pars_compacta Medial substantia nigra pars compacta]"/>
+				</element>
+				<element id="BGA.FT.SN.PR" name="Substantia Nigra Pars Reticulata" mapped="true" type="Inhibitory Nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Substantia_nigra_pars_reticulata Substantia nigra pars reticulata]"
+					function="Convey final processed signals of basal ganglia to thalamus and superior colliculus"
+					>
+					<element refs="NL:[http://neurolex.org/wiki/Category:Substantia_nigra_pars_lateralis Substantia nigra pars lateralis]"/>
 				</element>
 			</element>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Central_amygdaloid_nucleus Central amygdaloid nucleus]">
-				<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_central_nucleus_of_the_amygdala Lateral central nucleus of the amygdala]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Medial_central_nucleus_of_the_amygdala Medial central nucleus of the amygdala]"/>
-			</element>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Corticomedial_nuclear_complex Corticomedial nuclear complex]">
-				<element refs="NL:[http://neurolex.org/wiki/Category:Anterior_amygdaloid_area Anterior amygdaloid area]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Cortical_amygdaloid_nucleus Cortical amygdaloid nucleus]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Medial_amygdaloid_nucleus Medial amygdaloid nucleus]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Periamygdaloid_cortex Periamygdaloid cortex]"/>
-			</element>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Intercalated_amygdaloid_nuclei Intercalated amygdaloid nuclei]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Medial_amygdala Medial amygdala]"/>
 		</element>
 
-		<element id="BFA.FT.NBM" name="Basal Nucleus of Meynert" mapped="true" type="Modulatory Nucleus"
-			refs="NL:[http://neurolex.org/wiki/Category:Basal_nucleus Basal nucleus];NL:[http://neurolex.org/wiki/Category:Substantia_innominata Substantia innominata]"
-			function="Control imagination vs perception"
-			notes="ACh source, attention"
-			/>
-
-		<element id="BFA.FT.BNST" name="Bed Nucleus of Stria Terminalis" mapped="true" type="Mixed Nucleus"
-			refs="NL:[http://neurolex.org/wiki/Category:Bed_nucleus_of_stria_terminalis Bed nucleus of stria terminalis]"
-			function="Mediate slow longer-lasting responses that accompany sustained threats"
-			notes="Major output from AM to HT, part of extended amygdala"
-			>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Bed_nuclei_of_the_stria_terminalis_oval_nucleus Bed nuclei of the stria terminalis oval nucleus]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_nucleus_of_stria_terminalis Lateral nucleus of stria terminalis]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Medial_nucleus_of_stria_terminalis Medial nucleus of stria terminalis]"/>
-		</element>
-
-		<element id="BGA.FT.CN" name="Caudate Nucleus" mapped="true" type="Inhibitory Nucleus"
-			refs="NL:[http://neurolex.org/wiki/Category:Caudate_nucleus Caudate nucleus]"
-			function="Excitation of correct action schemas and selection of appropriate sub-goals based on evaluation of action-outcomes"
-			notes="One of neural correlates of romantic love"
-			/>
-		<element id="HBA.FT.DG" name="Dentate Gyrus" mapped="true" type="Allocortex"
-			refs="NL:[http://neurolex.org/wiki/Category:Dentate_gyrus Dentate gyrus]"
-			function="Distinguishing multiple instances of similar events"
-			/>
 		<element id="BFA.FT.EPF" name="Endopiriform Nucleus" mapped="true" type="Excitatory Nucleus"
 			refs="NL:[http://neurolex.org/wiki/Category:Endopiriform_nucleus Endopiriform nucleus]"
 			function="Putative relay of limbic-associated cortical-like areas subserving affective information"
 			/>
 
-		<element id="BGA.FT.GP" name="Globus Pallidus" refs="NL:[http://neurolex.org/wiki/Category:Globus_pallidus Globus pallidus]">
-			<element refs="NL:[http://neurolex.org/wiki/Category:Caudal_globus_pallidus Caudal globus pallidus]" ignore="true" comment="secondary nuclei grouping"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Dorsal_globus_pallidus Dorsal globus pallidus]" ignore="true" comment="secondary nuclei grouping"/>
-			<element id="BGA.FT.GPE" name="Globus Pallidus External" mapped="true" type="Inhibitory Nucleus"
-				refs="NL:[http://neurolex.org/wiki/Category:Globus_pallidus_external_segment Globus pallidus external segment]"
-				function="Regulate and focus activity patterns in striatum, STN, GPi, and SNpr"
+		<element id="HBA.FT.HF" name="Hippocampal Formation">
+			<element id="HBA.FT.DG" name="Dentate Gyrus" mapped="true" type="Allocortex"
+				refs="NL:[http://neurolex.org/wiki/Category:Dentate_gyrus Dentate gyrus]"
+				function="Distinguishing multiple instances of similar events"
 				/>
-			<element id="BGA.FT.GPI" name="Globus Pallidus Internal" mapped="true" type="Inhibitory Nucleus"
-				refs="NL:[http://neurolex.org/wiki/Category:Globus_pallidus_internal_segment Globus pallidus internal segment]"
-				function="Output nuclei of basal ganglia to neocortex"
-				notes="Balance of direct and indirect paths"
-				/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Rostral_globus_pallidus Rostral globus pallidus]" ignore="true" comment="no nuclei"/>
-		</element>
-
-		<element id="HBA.FT.HC" name="Hippocampus" refs="NL:[http://neurolex.org/wiki/Category:Hippocampus Hippocampus]">
-			<element id="HBA.FT.HC.CA1" name="Ventrolateral Cornu Ammonis of Hippocampus" mapped="true" type="Allocortex"
-				refs="NL:[http://neurolex.org/wiki/Category:CA1 CA1]"
-				function="Representing sequences of episodic memory - long-term"
-				notes="Hippocampus"
-				/>
-			<element id="HBA.FT.HC.CA2" name="Dorsolateral Cornu Ammonis of Hippocampus" mapped="true" type="Allocortex"
-				refs="NL:[http://neurolex.org/wiki/Category:CA2 CA2]"
-				function="Gate controlled by the activity of the supramammillary nucleus to control signal propagation between HC lamines"
-				notes="Hippocampus. Receives theta rithm input from Septum Nucleus"
-				/>
-			<element id="HBA.FT.HC.CA3" name="Dorsomedial Cornu Ammonis of Hippocampus" mapped="true" type="Allocortex"
-				refs="NL:[http://neurolex.org/wiki/Category:CA3 CA3]"
-				function="Representing sequences of episodic memory - short-term"
-				notes="Hippocampus"
-				/>
-			<element id="HBA.FT.HC.CA4" name="Ventromedial Cornu Ammonis of Hippocampus" mapped="true" type="Allocortex"
-				function="Mediate dynamic regulation of pattern separation in the dentate gyrus"
-				notes="Hippocampus"
-				/>
+			<element id="HBA.FT.HC" name="Hippocampus" refs="NL:[http://neurolex.org/wiki/Category:Hippocampus Hippocampus]">
+				<element id="HBA.FT.HC.CA1" name="Ventrolateral Cornu Ammonis of Hippocampus" mapped="true" type="Allocortex"
+					refs="NL:[http://neurolex.org/wiki/Category:CA1 CA1]"
+					function="Representing sequences of episodic memory - long-term"
+					notes="Hippocampus"
+					/>
+				<element id="HBA.FT.HC.CA2" name="Dorsolateral Cornu Ammonis of Hippocampus" mapped="true" type="Allocortex"
+					refs="NL:[http://neurolex.org/wiki/Category:CA2 CA2]"
+					function="Gate controlled by the activity of the supramammillary nucleus to control signal propagation between HC lamines"
+					notes="Hippocampus. Receives theta rithm input from Septum Nucleus"
+					/>
+				<element id="HBA.FT.HC.CA3" name="Dorsomedial Cornu Ammonis of Hippocampus" mapped="true" type="Allocortex"
+					refs="NL:[http://neurolex.org/wiki/Category:CA3 CA3]"
+					function="Representing sequences of episodic memory - short-term"
+					notes="Hippocampus"
+					/>
+				<element id="HBA.FT.HC.CA4" name="Ventromedial Cornu Ammonis of Hippocampus" mapped="true" type="Allocortex"
+					function="Mediate dynamic regulation of pattern separation in the dentate gyrus"
+					notes="Hippocampus"
+					/>
+			</element>
+			<element id="HBA.FT.SC" name="Subicular Complex" refs="NL:[http://neurolex.org/wiki/Category:Subicular_complex Subicular complex]">
+				<element id="HBA.FT.SC.PSS" name="Postsubiculum" mapped="true" 
+					refs="NL:[http://neurolex.org/wiki/Category:Postsubiculum Postsubiculum]" type="Allocortex"
+					function="Integrate visual landmarks with internal representations of environments"
+					notes="As measured by hippocampal place cells, fear conditioning"
+					/>
+				<element id="HBA.FT.SC.SUB" name="Subiculum" mapped="true" type="Allocortex"
+					refs="NL:[http://neurolex.org/wiki/Category:Subiculum Subiculum]"
+					function="Spatial navigation and mnemonic processing"
+					>
+					<element refs="NL:[http://neurolex.org/wiki/Category:Subiculum_alveus Subiculum alveus]"/>
+					<element refs="NL:[http://neurolex.org/wiki/Category:Subiculum_molecular_layer Subiculum molecular layer]"/>
+					<element refs="NL:[http://neurolex.org/wiki/Category:Subiculum_pyramidal_cell_layer Subiculum pyramidal cell layer]"/>
+					<element refs="NL:[http://neurolex.org/wiki/Category:Ventral_subiculum Ventral subiculum]"/>
+				</element>
+			</element>
 		</element>
 
 		<element id="BFA.FT.IPAC" name="Interstitial Anterior Commissural Nucleus" mapped="true" type="Excitatory Nucleus" 
@@ -383,18 +436,6 @@
 			function="Sharp, acute pain sensation"
 			notes="Related to the central extended amygdala"
 			/>
-
-		<element id="BGA.FT.PU" name="Putamen" mapped="true" type="Inhibitory Nucleus"
-			refs="NL:[http://neurolex.org/wiki/Category:Putamen Putamen]"
-			function="Stimulus-response, or habit, learning"
-			notes="Regulate movements and influence various types of learning"
-			>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Caudal_putamen Caudal putamen]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Matrix_compartment_of_putamen Matrix compartment of putamen]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Rostral_putamen Rostral putamen]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Striosomal_part_of_putamen Striosomal part of putamen]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Ventral_putamen Ventral putamen]"/>
-		</element>
 
 		<element id="BFA.FT.SEP" name="Septal Nucleus" mapped="true" type="Mixed Nucleus"
 			refs="NL:[http://neurolex.org/wiki/Category:Septal_nuclear_complex Septal nuclear complex]"
@@ -408,40 +449,6 @@
 			<element refs="NL:[http://neurolex.org/wiki/Category:Septofimbrial_nucleus Septofimbrial nucleus]"/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Septohippocampal_nucleus Septohippocampal nucleus]"/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Triangular_septal_nucleus Triangular septal nucleus]"/>
-		</element>
-
-		<element id="HBA.FT.SC" name="Subicular Complex" refs="NL:[http://neurolex.org/wiki/Category:Subicular_complex Subicular complex]">
-			<element id="HBA.FT.SC.PSS" name="Postsubiculum" mapped="true" 
-				refs="NL:[http://neurolex.org/wiki/Category:Postsubiculum Postsubiculum]" type="Allocortex"
-				function="Integrate visual landmarks with internal representations of environments"
-				notes="as measured by hippocampal place cells, fear conditioning"
-				/>
-			<element id="HBA.FT.SC.SUB" name="Subiculum" mapped="true" type="Allocortex"
-				refs="NL:[http://neurolex.org/wiki/Category:Subiculum Subiculum]"
-				function="Spatial navigation and mnemonic processing"
-				>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Subiculum_alveus Subiculum alveus]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Subiculum_molecular_layer Subiculum molecular layer]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Subiculum_pyramidal_cell_layer Subiculum pyramidal cell layer]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Ventral_subiculum Ventral subiculum]"/>
-			</element>
-		</element>
-
-		<element id="BGA.FT.SN" name="Substantia Nigra" refs="NL:[http://neurolex.org/wiki/Category:Substantia_nigra Substantia nigra]">
-			<element id="BGA.FT.SN.PC" name="Substantia Nigra Pars Compacta" mapped="true" type="Mixed Nucleus"
-				refs="NL:[http://neurolex.org/wiki/Category:Substantia_nigra_pars_compacta Substantia nigra pars compacta]"
-				function="Fine motor control, temporal processing"
-				notes="Supply striatum with dopamine, input to Basal Ganglia"
-				>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_substantia_nigra_pars_compacta Lateral substantia nigra pars compacta]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Medial_substantia_nigra_pars_compacta Medial substantia nigra pars compacta]"/>
-			</element>
-			<element id="BGA.FT.SN.PR" name="Substantia Nigra Pars Reticulata" mapped="true" type="Inhibitory Nucleus"
-				refs="NL:[http://neurolex.org/wiki/Category:Substantia_nigra_pars_reticulata Substantia nigra pars reticulata]"
-				function="Convey final processed signals of basal ganglia to thalamus and superior colliculus"
-				>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Substantia_nigra_pars_lateralis Substantia nigra pars lateralis]"/>
-			</element>
 		</element>
 
 		<element id="BGA.FT.VP" name="Ventral Pallidum" mapped="true" type="Inhibitory Nucleus"

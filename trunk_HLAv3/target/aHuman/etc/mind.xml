@@ -32,20 +32,49 @@
 				<connector id="nucleus.interneurons" type="target"/>
 			</region-type>
 
-			<region-type name="neocortex" implementation="mock">
+			<region-type name="neocortex" implementation="mock" notes="feed-forward and feed-back">
 				<connector id="neocortex.ffin" type="target"/>
 				<connector id="neocortex.ffout" type="source"/>
 				<connector id="neocortex.fbin" type="target"/>
 				<connector id="neocortex.fbout" type="source"/>
 			</region-type>
 
-			<region-type name="allocortex" implementation="mock">
+			<region-type name="allocortex" implementation="mock" notes="feed-forward-only">
+				<connector id="allocortex.input.direct" type="target" notes="polymorphic in HF/climbing fibers to molecular in CR"/>
+				<connector id="allocortex.input.indirect" type="target" notes="molecular in HF/mossy fibers to granular in CR"/>
+				<connector id="allocortex.output" type="source" notes="mossy fibers from polymorphic in HF/purkinje in CR"/>
 			</region-type>
 
 			<region-type name="ganglion" implementation="mock">
 			</region-type>
 
 		</region-type-set>
+
+		<!-- ================= typical links =============== -->
+		<connection-type-set>
+
+			<connection-type name="nucleus-nucleus">
+				<link-type name="positive" implementation="mock" type="excitatory" nt="GLU" src="nucleus.output" dst="nucleus.input"/>
+			</connection-type>
+
+			<connection-type name="nucleus-neocortex">
+				<link-type name="primary-input" implementation="mock" type="excitatory" nt="GLU" src="nucleus.output" dst="neocortex.ffin"/>
+			</connection-type>
+
+			<connection-type name="neocortex-nucleus">
+				<link-type name="primary-input" implementation="mock" type="excitatory" nt="GLU" src="neocortex.ffout" dst="nucleus.input"/>
+			</connection-type>
+
+			<connection-type name="neocortex-neocortex">
+				<link-type name="cortex-forward" implementation="mock" type="excitatory" nt="GLU" src="neocortex.ffout" dst="neocortex.ffin"/>
+				<link-type name="cortex-feedback" implementation="mock" type="excitatory" nt="GLU" src="neocortex.fbout" dst="neocortex.fbin" back="true"/>
+			</connection-type>
+
+			<connection-type name="neocortex-allocortex">
+				<link-type name="light" implementation="mock" type="excitatory" nt="GLU" src="neocortex.ffout" dst="allocortex.input.indirect"/>
+			</connection-type>
+
+		</connection-type-set>
 
 		<component-set>
 
@@ -105,9 +134,10 @@
 			<area name="PHA" enabled="true">
 				<region name="PHA.NC.CLC" type="neocortex"/>
 				<region name="PHA.NC.HR" type="neocortex"/>
+				<region name="PHA.NC.PH.ET" type="neocortex"/>
 				<region name="PHA.NC.PH.PPG" type="neocortex"/>
 				<region name="PHA.NC.PH.PRR" type="neocortex"/>
-				<region name="PHA.NC.PH.ET" type="neocortex"/>
+				<region name="PHA.NC.PH.PIR" type="neocortex"/>
 				<region name="PHA.NC.PAS" type="neocortex"/>
 				<region name="PHA.NC.PRI" type="neocortex"/>
 				<region name="PHA.NC.PRS" type="neocortex"/>
@@ -171,7 +201,6 @@
 			</area>
 
 			<area name="BGA" enabled="true">
-				<region name="BGA.FT.ACC" type="nucleus"/>
 				<region name="BGA.FT.VP" type="nucleus"/>
 				<region name="BGA.FT.CN" type="nucleus"/>
 				<region name="BGA.FT.PU" type="nucleus"/>
@@ -187,6 +216,7 @@
 			</area>
 
 			<area name="BFA" enabled="true">
+				<region name="BFA.FT.ACC" type="nucleus"/>
 				<region name="BFA.FT.AM" type="nucleus"/>
 				<region name="BFA.FT.NBM" type="nucleus"/>
 				<region name="BFA.FT.BNST" type="nucleus"/>
@@ -318,28 +348,6 @@
 
 		</component-set>
 
-		<!-- ================= typical links =============== -->
-		<connection-type-set>
-
-			<connection-type name="nucleus-nucleus">
-				<link-type name="positive" implementation="mock" type="excitatory" nt="GLU" src="nucleus.output" dst="nucleus.input"/>
-			</connection-type>
-
-			<connection-type name="nucleus-neocortex">
-				<link-type name="primary-input" implementation="mock" type="excitatory" nt="GLU" src="nucleus.output" dst="neocortex.ffin"/>
-			</connection-type>
-
-			<connection-type name="neocortex-nucleus">
-				<link-type name="primary-input" implementation="mock" type="excitatory" nt="GLU" src="neocortex.ffout" dst="nucleus.input"/>
-			</connection-type>
-
-			<connection-type name="neocortex-neocortex">
-				<link-type name="cortex-forward" implementation="mock" type="excitatory" nt="GLU" src="neocortex.ffout" dst="neocortex.ffin"/>
-				<link-type name="cortex-feedback" implementation="mock" type="excitatory" nt="GLU" src="neocortex.fbout" dst="neocortex.fbin" back="true"/>
-			</connection-type>
-
-		</connection-type-set>
-
 		<circuit-set>
 
 			<!-- ================= eye sensor -> subcortical -> cortex -> subcortical -> eye sensor =============== -->
@@ -364,7 +372,7 @@
 				<connection type="neocortex-nucleus" src="MCA.NC.PMC.FEF" dst="HMA.MM.INMLF"/>
 				<connection type="neocortex-neocortex" src="FCA.NC.LPFC" dst="MCA.NC.PMC.FEF"/>
 				<connection type="neocortex-neocortex" src="FCA.NC.LPFC" dst="MCA.NC.SMC"/>
-				<connection type="neocortex-nucleus" src="MCA.NC.SMC" dst="MCA.NC.PMC.FEF"/>
+				<connection type="neocortex-neocortex" src="MCA.NC.SMC" dst="MCA.NC.PMC.FEF"/>
 			</circuit>
 
 			<!-- ================= intracortical visual "what" stream processing =============== -->
@@ -387,11 +395,30 @@
 				<connection type="neocortex-neocortex" src="VCA.NC.MT" dst="PCA.NC.IPS.VIP"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.MT" dst="PCA.NC.IPS.PEF"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.MT" dst="PCA.NC.IPL.MST"/>
-				<connection type="neocortex-neocortex" src="VCA.NC.PO" dst="PCA.NC.IPS.PEF"/>
+				<connection type="neocortex-neocortex" src="VCA.NC.PO" dst="PCA.NC.IPS.VIP"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.PO" dst="PCA.NC.IPL.MST"/>
 				<connection type="neocortex-neocortex" src="PCA.NC.IPS.VIP" dst="PCA.NC.SPL.PG"/>
 				<connection type="neocortex-neocortex" src="PCA.NC.IPS.PEF" dst="PCA.NC.SPL.PG"/>
 				<connection type="neocortex-neocortex" src="PCA.NC.IPL.MST" dst="PCA.NC.SPL.PG"/>
+			</circuit>
+
+			<!-- ================= intracortical sensory integration to generate memory items in hippocampus =============== -->
+			<circuit name="memory-sensory-integration" enabled="true">
+				<connection type="neocortex-neocortex" src="VCA.NC.IT.TE" dst="PHA.NC.PH.PRR"/>
+				<connection type="neocortex-neocortex" src="PHA.NC.PH.PRR" dst="PHA.NC.PH.ET"/>
+			</circuit>
+
+			<!-- ================= motivation stimuli =============== -->
+			<circuit name="motivation-stimuli-acquisition" enabled="true">
+				<connection type="neocortex-nucleus" src="VCA.NC.IT.TE" dst="BFA.FT.AM"/>
+				<connection type="neocortex-nucleus" src="PHA.NC.PH.ET" dst="BFA.FT.AM"/>
+			</circuit>
+
+			<!-- ================= hippocampus activity =============== -->
+			<circuit name="hippocampal-memory-generation" enabled="true">
+				<connection type="neocortex-allocortex" src="PHA.NC.PH.ET" dst="HBA.FT.DG"/>
+				<connection type="neocortex-allocortex" src="PHA.NC.PH.ET" dst="HBA.FT.HC.CA1"/>
+				<connection type="neocortex-allocortex" src="PHA.NC.PH.ET" dst="HBA.FT.SC.SUB"/>
 			</circuit>
 
 		</circuit-set>
