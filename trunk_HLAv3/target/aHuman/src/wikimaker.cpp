@@ -7,6 +7,7 @@
 WikiMaker::WikiMaker( Xml p_wiki ) {
 	attachLogger();
 	wiki = p_wiki;
+
 }
 
 WikiMaker::~WikiMaker() {
@@ -17,6 +18,8 @@ void WikiMaker::createPages() {
 
 	// create pages
 	hmindxml.load();
+	circuitsxml.load();
+
 	updateHierarchyPage();
 	createAreaPages();
 	createComponentPages();
@@ -345,14 +348,15 @@ void WikiMaker::updateHierarchyPage_walkNeocortexBrodmannLine( String node , Str
 // create area pages
 
 void WikiMaker::createAreaPages() {
-	bool createPageHierarchy = wiki.getBooleanProperty( "createAreaPages" , true );
-	if( createPageHierarchy == false ) {
+	bool createAreaPages = wiki.getBooleanProperty( "createAreaPages" , true );
+	if( createAreaPages == false ) {
 		logger.logInfo( "skip creating area pages" );
 		return;
 	}
 
 	// get wiki file
 	String wikiDir = wiki.getProperty( "wikiPath" );
+	String selectedArea = wiki.getProperty( "selectedArea" , "" );
 
 	MindService *ms = MindService::getService();
 	MindMap *mm = ms -> getMindMap();
@@ -363,17 +367,18 @@ void WikiMaker::createAreaPages() {
 		MindAreaDef *areaDef = areaList.get( k );
 
 		String wikiPage = "BrainArea" + areaDef -> getAreaId();
+		if( !selectedArea.isEmpty() ) {
+			if( !selectedArea.equals( areaDef -> getAreaId() ) )
+				continue;
+		}
+
 		createAreaPages_createRegionTableSection( wikiDir , wikiPage , areaDef );
+		createAreaPages_createConnectivityTableSection( wikiDir , wikiPage , areaDef );
+		createAreaPages_createCircuitsAndReferencesTableSection( wikiDir , wikiPage , areaDef );
 	}
 }
 
 void WikiMaker::createAreaPages_createRegionTableSection( String wikiDir , String wikiPage , MindAreaDef *areaDef ) {
-	String selectedArea = wiki.getProperty( "selectedArea" , "" );
-	if( !selectedArea.isEmpty() ) {
-		if( !selectedArea.equals( areaDef -> getAreaId() ) )
-			return;
-	}
-
 	StringList lines;
 
 	// heading
@@ -452,10 +457,296 @@ String WikiMaker::createAreaPages_getTableCellAttribute( XmlHMindElementInfo& in
 	return( value );
 }
 
-void WikiMaker::createAreaPages_createCircuitsSection( String wikiDir , String wikiPage , MindAreaDef *areaDef ) {
+void WikiMaker::createAreaPages_createConnectivityTableSection( String wikiDir , String wikiPage , MindAreaDef *areaDef ) {
+	StringList lines;
+	MapStringToClass<MindCircuitConnectionDef> connections;
+
+	// internal connections
+	createAreaPages_getInternalConnections( areaDef , connections );
+	createAreaPages_getInternalConnectionTableLine( areaDef , NULL , lines );
+	for( int k = 0; k < connections.count(); k++ ) {
+		MindCircuitConnectionDef *c = connections.getClassByIndex( k );
+		createAreaPages_getInternalConnectionTableLine( areaDef , c , lines );
+	}
+
+	// external connections - in
+	lines.add( "" );
+	connections.clear();
+	createAreaPages_getExternalConnections( areaDef , connections , true );
+	createAreaPages_getExternalConnectionTableLine( areaDef , NULL , lines , true );
+	for( int k = 0; k < connections.count(); k++ ) {
+		MindCircuitConnectionDef *c = connections.getClassByIndex( k );
+		createAreaPages_getExternalConnectionTableLine( areaDef , c , lines , true );
+	}
+
+	// external connections - out
+	lines.add( "" );
+	connections.clear();
+	createAreaPages_getExternalConnections( areaDef , connections , false );
+	createAreaPages_getExternalConnectionTableLine( areaDef , NULL , lines , false );
+	for( int k = 0; k < connections.count(); k++ ) {
+		MindCircuitConnectionDef *c = connections.getClassByIndex( k );
+		createAreaPages_getExternalConnectionTableLine( areaDef , c , lines , false );
+	}
+
+	String sectionName = "Connectivity";
+	updateFileSection( wikiDir , wikiPage , sectionName , lines );
 }
 
-void WikiMaker::createAreaPages_createReferencesSection( String wikiDir , String wikiPage , MindAreaDef *areaDef ) {
+void WikiMaker::createAreaPages_getInternalConnections( MindAreaDef *areaDef , MapStringToClass<MindCircuitConnectionDef>& connections ) {
+	MindService *ms = MindService::getService();
+	MindMap *mm = ms -> getMindMap();
+	ClassList<MindCircuitDef>& circuits = mm -> getMindCircuits();
+
+	MindArea *area = ms -> getMindArea( areaDef -> getAreaId() );
+	for( int k1 = 0; k1 < circuits.count(); k1++ ) {
+		MindCircuitDef *circuit = circuits.get( k1 );
+		ClassList<MindCircuitConnectionDef>& links = circuit -> getConnections();
+		for( int k2 = 0; k2 < links.count(); k2++ ) {
+			MindCircuitConnectionDef *c = links.get( k2 );
+			MindArea *srcArea = ms -> getMindRegion( c -> getSrcRegion() ) -> getArea();
+			MindArea *dstArea = ms -> getMindRegion( c -> getDstRegion() ) -> getArea();
+
+			if( srcArea == area && dstArea == area ) {
+				String key = c -> getSrcRegion() + "#" + c -> getDstRegion();
+				if( connections.get( key ) == NULL )
+					connections.add( key , c );
+			}
+		}
+	}
+
+	// create dot file
+	String dotDir = wiki.getProperty( "dotPath" );
+	String fileName = dotDir + "/" + areaDef -> getAreaId() + ".dot";
+	StringList text;
+
+	// header
+	text.add( "digraph \"" + areaDef -> getAreaId() + "\" {" );
+	String defaultDotSetup = wiki.getProperty( "defaultDotSetup" );
+	text.add( defaultDotSetup );
+	text.add( "" );
+
+	// list nodes
+	ClassList<MindRegionDef>& regions = areaDef -> getRegions();
+	for( int k = 0; k < regions.count(); k++ ) {
+		MindRegionDef *regionDef = regions.get( k );
+
+		// find region in htree
+		XmlHMindElementInfo info;
+		hmindxml.getElementInfo( regionDef -> getName() , info );
+
+		String nodeline = "\t\"" + info.id + "\"";
+		if( !info.dotdef.isEmpty() )
+			nodeline += "[" + info.dotdef + "]";
+		nodeline += ";";
+		text.add( nodeline );
+	}
+
+	// list connections
+	text.add( "" );
+	for( int k = 0; k < connections.count(); k++ ) {
+		MindCircuitConnectionDef *c = connections.getClassByIndex( k );
+		String linkline = "\t\"" + c -> getSrcRegion() + "\" -> \"" + c -> getDstRegion() + "\";";
+		text.add( linkline );
+	}
+
+	// footer
+	text.add( "}" );
+
+	// out to file
+	FILE *f = fopen( fileName , "wt" );
+	ASSERTMSG( f != NULL , "Unable to open file=" + fileName );
+	for( int k = 0; k < text.count(); k++ ) {
+		String s = text.get( k ) + "\n";
+		s = s.replace( "\\t" , "\t" );
+		s = s.replace( "\\n" , "\n" );
+		fputs( s , f );
+	}
+	fclose( f );
+}
+
+void WikiMaker::createAreaPages_getExternalConnections( MindAreaDef *areaDef , MapStringToClass<MindCircuitConnectionDef>& connections , bool isin ) {
+	MindService *ms = MindService::getService();
+	MindMap *mm = ms -> getMindMap();
+	ClassList<MindCircuitDef>& circuits = mm -> getMindCircuits();
+
+	MindArea *area = ms -> getMindArea( areaDef -> getAreaId() );
+	for( int k1 = 0; k1 < circuits.count(); k1++ ) {
+		MindCircuitDef *circuit = circuits.get( k1 );
+		ClassList<MindCircuitConnectionDef>& links = circuit -> getConnections();
+		for( int k2 = 0; k2 < links.count(); k2++ ) {
+			MindCircuitConnectionDef *c = links.get( k2 );
+			MindArea *srcArea = ms -> getMindRegion( c -> getSrcRegion() ) -> getArea();
+			MindArea *dstArea = ms -> getMindRegion( c -> getDstRegion() ) -> getArea();
+
+			if( srcArea != dstArea && ( srcArea == area || dstArea == area ) ) {
+				String key;
+				if( area == srcArea ) {
+					if( isin == false ) {
+						key = dstArea -> getId() + "#" + c -> getSrcRegion() + "#" + c -> getDstRegion() + "#1";
+						if( connections.get( key ) == NULL )
+							connections.add( key , c );
+					}
+				}
+				else {
+					if( isin == true ) {
+						key = srcArea -> getId() + "#" + c -> getDstRegion() + "#" + c -> getSrcRegion() + "#2";
+						if( connections.get( key ) == NULL )
+							connections.add( key , c );
+					}
+				}
+			}
+		}
+	}
+}
+
+void WikiMaker::createAreaPages_getInternalConnectionTableLine( MindAreaDef *areaDef , MindCircuitConnectionDef *link , StringList& lines ) {
+	String line;
+	if( link == NULL ) {
+		// add heading
+		line = "*Internal Region Connections:*";
+		lines.add( line );
+		lines.add( "" );
+		String dotImageWikiPath = wiki.getProperty( "imageWikiPath" );
+		line = dotImageWikiPath + "/" + areaDef -> getAreaId() + ".dot.jpg";
+		lines.add( line );
+		lines.add( "" );
+		line = "|| *Source Region* || *Target Region* || *Type* ||";
+		lines.add( line );
+		return;
+	}
+
+	// table row
+	line = "|| " + link -> getSrcRegion() + " || " + link -> getDstRegion() + " || " + link -> getTypeName() + " ||";
+	lines.add( line );
+}
+
+void WikiMaker::createAreaPages_getExternalConnectionTableLine( MindAreaDef *areaDef , MindCircuitConnectionDef *link , StringList& lines , bool isin ) {
+	String line;
+	if( link == NULL ) {
+		// add heading
+		if( isin )
+			line = "*External Inbound Region Connections:*";
+		else
+			line = "*External Outbound Region Connections:*";
+		lines.add( line );
+
+		if( isin )
+			line = "|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* ||";
+		else
+			line = "|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* ||";
+		lines.add( line );
+		return;
+	}
+
+	// table row
+	MindService *ms = MindService::getService();
+	MindRegion *srcRegion = ms -> getMindRegion( link -> getSrcRegion() );
+	MindRegion *dstRegion = ms -> getMindRegion( link -> getDstRegion() );
+	String area = areaDef -> getAreaId();
+
+	XmlHMindElementInfo info;
+	if( area.equals( srcRegion -> getArea() -> getId() ) ) {
+		hmindxml.getElementInfo( link -> getDstRegion() , info );
+		line = "|| " + dstRegion -> getArea() -> getId() + " || " + 
+			link -> getSrcRegion() + " || " + link -> getDstRegion() + " || " + info.name + " || " + link -> getTypeName() + " || ";
+	}
+	else {
+		hmindxml.getElementInfo( link -> getSrcRegion() , info );
+		line = "|| " + srcRegion -> getArea() -> getId() + " || " + 
+			link -> getDstRegion() + " || " + link -> getSrcRegion() + " || " + info.name + " || " + link -> getTypeName() + " || ";
+	}
+	lines.add( line );
+}
+
+void WikiMaker::createAreaPages_createCircuitsAndReferencesTableSection( String wikiDir , String wikiPage , MindAreaDef *areaDef ) {
+	// collect circuits which reference any of area regions
+	MindService *ms = MindService::getService();
+
+	StringList circuits;
+	circuitsxml.getCircuitList( circuits );
+
+	MindArea *area = ms -> getMindArea( areaDef -> getAreaId() );
+	MapStringToString circuitKeys;
+	for( int k = 0; k < circuits.count(); k++ ) {
+		String circuitId = circuits.get( k );
+		XmlCircuitInfo info;
+		circuitsxml.getCircuitInfo( circuitId , info );
+
+		String key = createAreaPages_getCircuitKey( areaDef , info );
+		if( key.isEmpty() )
+			continue;
+
+		circuitKeys.add( key , circuitId );
+	}
+
+	// add circuits section
+	StringList lines;
+	for( int k = 0; k < circuitKeys.count(); k++ ) {
+		String circuitId = circuitKeys.getClassByIndex( k );
+		XmlCircuitInfo info;
+		circuitsxml.getCircuitInfo( circuitId , info );
+		createAreaPages_getCircuitLines( info , lines );
+	}
+
+	String sectionName = "Circuits";
+	updateFileSection( wikiDir , wikiPage , sectionName , lines );
+	lines.clear();
+
+	// add unique and sorted references
+	MapStringToClass<MindArea> refs;
+	for( int k = 0; k < circuitKeys.count(); k++ ) {
+		String circuitId = circuitKeys.getClassByIndex( k );
+		XmlCircuitInfo info;
+		circuitsxml.getCircuitInfo( circuitId , info );
+
+		if( refs.get( info.reference ) == NULL )
+			refs.add( info.reference , area );
+	}
+
+	for( int k = 0; k < refs.count(); k++ )
+		lines.add( String( "  * " ) + refs.getKeyByIndex( k ) );
+
+	sectionName = "References";
+	updateFileSection( wikiDir , wikiPage , sectionName , lines );
+}
+
+String WikiMaker::createAreaPages_getCircuitKey( MindAreaDef *areaDef , XmlCircuitInfo& info ) {
+	// get circuit regions
+	StringList comps;
+	circuitsxml.getCircuitComponents( info , comps );
+
+	// check circuit mentions area regions
+	StringList compUsed;
+	for( int k = 0; k < comps.count(); k++ ) {
+		String comp = comps.get( k );
+		String region = hmindxml.getMappedRegion( comp );
+		if( areaDef -> findRegion( region ) != NULL )
+			compUsed.add( region );
+	}
+
+	if( compUsed.count() == 0 )
+		return( "" );
+
+	// make key
+	compUsed.sort();
+	char l_buf[ 10 ];
+	sprintf( l_buf , "%3.3d" , compUsed.count() );
+
+	String key = l_buf;
+	for( int k = 0; k < compUsed.count(); k++ )
+		key += "." + compUsed.get( k );
+
+	// ensure unique
+	key += "." + info.id;
+	return( key );
+}
+
+void WikiMaker::createAreaPages_getCircuitLines( XmlCircuitInfo& info , StringList& lines ) {
+	lines.add( "  * [" + info.image + " " + info.name + "] - see [" + info.reference + " Reference]" );
+	lines.add( "" );
+	lines.add( info.image );
+	lines.add( "" );
 }
 
 /*#########################################################################*/
@@ -503,7 +794,7 @@ void WikiMaker::updateFileSection( String wikiDir , String wikiPage , String sec
 	if( !found ) {
 		fclose( fr );
 		fclose( fw );
-		ASSERTFAILED( "unable to find section=" + section );
+		ASSERTFAILED( "unable to find section=" + section + " in page=" + wikiPage );
 	}
 
 	// write section lines

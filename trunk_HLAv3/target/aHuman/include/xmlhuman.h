@@ -54,6 +54,7 @@ public:
 	String type;
 	String function;
 	String notes;
+	String dotdef;
 };
 
 /*#########################################################################*/
@@ -74,6 +75,7 @@ public:
 	void getCircuitLinkInfo( Xml link , XmlCircuitLinkInfo& info );
 	String mapComponent( XmlCircuitInfo& circuit , String circuitComponent );
 	bool checkRegionUsedByCircuit( String region , String circuit );
+	void getCircuitComponents( XmlCircuitInfo& circuit , StringList& components );
 
 private:
 	Xml getCircuitXml( String id );

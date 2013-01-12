@@ -206,6 +206,8 @@ public:
 	bool runEnabled() { return( enabled ); };
 	ClassList<MindRegionDef>& getRegions() { return( regions ); };
 
+	MindRegionDef *findRegion( String region );
+
 private:
 // utility
 	String areaId;
@@ -266,6 +268,7 @@ public:
 	String getSrcConnector() { return( srcConnector ); };
 	String getDstConnector() { return( dstConnector ); };
 	bool isBackward() { return( back ); };
+	MindConnectionTypeDef *getConnectionDef() { return( connectionDef ); };
 
 private:
 // utilities
@@ -298,6 +301,8 @@ public:
 	String getTypeName() { return( typeName ); };
 	String getSrcRegion() { return( srcRegion ); };
 	String getDstRegion() { return( dstRegion ); };
+
+	MindCircuitDef *getCircuitDef() { return( circuitDef ); };
 	MindConnectionTypeDef *getType() { return( type ); };
 
 // data
@@ -308,7 +313,7 @@ public:
 	String dstRegion;
 
 // references
-	MindCircuitDef *circuitInfo;
+	MindCircuitDef *circuitDef;
 	MindConnectionTypeDef *type;
 };
 

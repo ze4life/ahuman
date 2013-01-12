@@ -77,6 +77,7 @@ public:
 	void trimTrailing( char c );
 	int toInteger();
 	String replicate( int count ) const;
+	String replace( const char *textFrom , const char *textTo ) const;
 
 	static String parseStringLiteral( const char *p );
 
@@ -552,6 +553,10 @@ public:
 
 	void sort() {
 		rfc_lst_sort( data , NULL , NULL );
+	}
+
+	void clear() {
+		rfc_lst_clear( data );
 	}
 
 	rfc_list *data;

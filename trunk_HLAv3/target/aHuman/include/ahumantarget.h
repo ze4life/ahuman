@@ -117,10 +117,16 @@ private:
 
 	void createAreaPages();
 	void createAreaPages_createRegionTableSection( String wikiDir , String wikiPage , MindAreaDef *areaDef );
-	void createAreaPages_createCircuitsSection( String wikiDir , String wikiPage , MindAreaDef *areaDef );
-	void createAreaPages_createReferencesSection( String wikiDir , String wikiPage , MindAreaDef *areaDef );
+	void createAreaPages_createConnectivityTableSection( String wikiDir , String wikiPage , MindAreaDef *areaDef );
+	void createAreaPages_createCircuitsAndReferencesTableSection( String wikiDir , String wikiPage , MindAreaDef *areaDef );
+	String createAreaPages_getCircuitKey( MindAreaDef *areaDef , XmlCircuitInfo& info );
+	void createAreaPages_getCircuitLines( XmlCircuitInfo& info , StringList& lines );
 	String createAreaPages_getRegionTableRow( MindRegionDef *regionDef );
 	String createAreaPages_getTableCellAttribute( XmlHMindElementInfo& info , String attribute , String value , bool required , int columnWidth );
+	void createAreaPages_getInternalConnections( MindAreaDef *areaDef , MapStringToClass<MindCircuitConnectionDef>& connections );
+	void createAreaPages_getInternalConnectionTableLine( MindAreaDef *areaDef , MindCircuitConnectionDef *link , StringList& lines );
+	void createAreaPages_getExternalConnections( MindAreaDef *areaDef , MapStringToClass<MindCircuitConnectionDef>& connections , bool isin );
+	void createAreaPages_getExternalConnectionTableLine( MindAreaDef *areaDef , MindCircuitConnectionDef *link , StringList& lines , bool isin );
 
 	void createComponentPages();
 
@@ -128,7 +134,9 @@ private:
 
 private:
 	Xml wiki;
+
 	XmlHMind hmindxml;
+	XmlCircuits circuitsxml;
 };
 
 /*#########################################################################*/

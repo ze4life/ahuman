@@ -7,7 +7,7 @@
 MindCircuitConnectionDef::MindCircuitConnectionDef( MindCircuitDef *p_circuit ) {
 	attachLogger();
 
-	circuitInfo = p_circuit;
+	circuitDef = p_circuit;
 	type = NULL;
 }
 

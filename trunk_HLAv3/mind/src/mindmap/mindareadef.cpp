@@ -36,3 +36,7 @@ void MindAreaDef::resolveReferences( MindMap *map ) {
 		regions.get( k ) -> resolveReferences( map );
 }
 
+MindRegionDef *MindAreaDef::findRegion( String region ) {
+	return( regionMap.get( region ) );
+}
+

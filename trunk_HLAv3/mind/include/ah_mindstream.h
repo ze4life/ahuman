@@ -93,8 +93,9 @@ public:
 	MindRegion *getSrcRegion();
 	MindRegion *getDstRegion();
 	MindAreaLink *getAreaLink() { return( areaLink ); };
+	MindConnectionTypeDef *getConnectionType() { return( connectionType ); };
 
-	void createRegionLink( MindRegion *srcRegion , MindRegion *dstRegion );
+	void createRegionLink( MindConnectionTypeDef *def , MindRegion *srcRegion , MindRegion *dstRegion );
 	void exitRegionLink();
 	void destroyRegionLink();
 
@@ -103,7 +104,7 @@ public:
 private:
 // references
 	MindAreaLink *areaLink;
-	MindCircuitConnectionDef *connectionDef;
+	MindConnectionTypeDef *connectionType;
 
 	MindRegion *src;
 	MindRegion *dst;

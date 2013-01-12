@@ -521,6 +521,27 @@ String String::replicate( int count ) const {
 	return( s );
 }
 
+String String::replace( const char *textFrom , const char *textTo ) const {
+	String res;
+
+	int pos = 0;
+	while( true ) {
+		int next = find( pos , textFrom );
+		if( next < 0 ) {
+			res += getMid( pos );
+			break;
+		}
+
+		if( next > pos )
+			res += getMid( pos , next - pos );
+
+		res += textTo;
+		pos = next + strlen( textFrom );
+	}
+
+	return( res );
+}
+
 // #############################################################################
 // #############################################################################
 
