@@ -265,10 +265,10 @@ void MindService::addCircuitConnection( MindCircuitDef *circuitDef , MindCircuit
 void MindService::createRegionConnection( MindConnectionTypeDef *connectionType , MindRegion *srcRegion , MindRegion *dstRegion ) {
 	ClassList<MindConnectionLinkTypeDef>& links = connectionType -> getLinks();
 	for( int k = 0; k < links.count(); k++ )
-		createNeuroLink( links.get( k ) , srcRegion , dstRegion );
+		createNeuroLink( connectionType , links.get( k ) , srcRegion , dstRegion );
 }
 
-NeuroLink *MindService::createNeuroLink( MindConnectionLinkTypeDef *linkDef , MindRegion *srcRegion , MindRegion *dstRegion ) {
+NeuroLink *MindService::createNeuroLink( MindConnectionTypeDef *connectionType , MindConnectionLinkTypeDef *linkDef , MindRegion *srcRegion , MindRegion *dstRegion ) {
 	// handle direction
 	MindRegion *linkSrcRegion = ( linkDef -> isBackward() )? dstRegion : srcRegion;
 	MindRegion *linkDstRegion = ( linkDef -> isBackward() )? srcRegion : dstRegion;
@@ -282,7 +282,7 @@ NeuroLink *MindService::createNeuroLink( MindConnectionLinkTypeDef *linkDef , Mi
 		return( NULL );
 
 	// create region link
-	MindRegionLink *regionLink = createRegionLink( linkSrcRegion , linkDstRegion );
+	MindRegionLink *regionLink = createRegionLink( connectionType , linkSrcRegion , linkDstRegion );
 
 	// check neurolink exists
 	String linkType = linkDef -> getName();
@@ -308,7 +308,7 @@ NeuroLink *MindService::createNeuroLink( MindConnectionLinkTypeDef *linkDef , Mi
 	return( neurolink );
 }
 
-MindRegionLink *MindService::createRegionLink( MindRegion *srcRegion , MindRegion *dstRegion ) {
+MindRegionLink *MindService::createRegionLink( MindConnectionTypeDef *connectionType , MindRegion *srcRegion , MindRegion *dstRegion ) {
 	// create area link if areas are different
 	MindArea *linkSrcArea = srcRegion -> getArea();
 	MindArea *linkDstArea = dstRegion -> getArea();
@@ -324,7 +324,7 @@ MindRegionLink *MindService::createRegionLink( MindRegion *srcRegion , MindRegio
 
 	// create region link
 	regionLink = new MindRegionLink( areaLink );
-	regionLink -> createRegionLink( srcRegion , dstRegion );
+	regionLink -> createRegionLink( connectionType , srcRegion , dstRegion );
 	regionLinkMap.add( key , regionLink );
 	
 	// add to area link

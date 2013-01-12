@@ -200,6 +200,10 @@ bool ModelVerifier::checkCircuits_verifyCircuitLink( XmlCircuitInfo& circuit , X
 	if( hmindxml.isComponent( compSrc ) == false || hmindxml.isComponent( compDst ) == false )
 		return( true );
 	
+	// ignore if it is connection from one component part to another, not listed in mind tree
+	if( compSrc.equals( compDst ) )
+		return( true );
+
 	// find mapped regions
 	String regionSrcId = hmindxml.getMappedRegion( compSrc );
 	String regionDstId = hmindxml.getMappedRegion( compDst );

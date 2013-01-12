@@ -127,3 +127,12 @@ bool XmlCircuits::checkRegionUsedByCircuit( String region , String circuit ) {
 
 	return( false );
 }
+
+void XmlCircuits::getCircuitComponents( XmlCircuitInfo& info , StringList& components ) {
+	for( int k = 0; k < info.componentMapping.count(); k++ ) {
+		String component = info.componentMapping.getClassByIndex( k );
+		if( components.find( component ) < 0 )
+			components.add( component );
+	}
+}
+

@@ -362,7 +362,6 @@
 				<connection type="nucleus-neocortex" src="VBA.FD.PV.LPV" dst="VCA.NC.V2"/>
 				<connection type="neocortex-nucleus" src="PCA.NC.IPL.MST" dst="VBA.MM.SC"/>
 				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="VBA.MM.OCN"/>
-				<!-- from CP.CP.EYE-FIELDS -->
 				<connection type="neocortex-nucleus" src="PCA.NC.IPS.PEF" dst="VBA.MM.SC"/>
 				<connection type="neocortex-neocortex" src="PCA.NC.IPS.PEF" dst="MCA.NC.PMC.FEF"/>
 				<connection type="neocortex-neocortex" src="PCA.NC.IPS.PEF" dst="FCA.NC.LPFC"/>
@@ -375,31 +374,39 @@
 				<connection type="neocortex-neocortex" src="MCA.NC.SMC" dst="MCA.NC.PMC.FEF"/>
 			</circuit>
 
-			<!-- ================= intracortical visual "what" stream processing =============== -->
+			<!-- ================= intracortical visual stream processing =============== -->
 			<circuit name="visual-perception" enabled="true">
 				<connection type="neocortex-neocortex" src="VCA.NC.V1" dst="VCA.NC.V2"/>
+				<connection type="neocortex-neocortex" src="VCA.NC.V1" dst="VCA.NC.MT"/>
+				<connection type="neocortex-neocortex" src="VCA.NC.V2" dst="VCA.NC.V3"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.V2" dst="VCA.NC.V4"/>
+				<connection type="neocortex-neocortex" src="VCA.NC.V2" dst="VCA.NC.MT"/>
+				<connection type="neocortex-neocortex" src="VCA.NC.V2" dst="VCA.NC.PO"/>
+				<connection type="neocortex-neocortex" src="VCA.NC.V3" dst="VCA.NC.V4"/>
+				<connection type="neocortex-neocortex" src="VCA.NC.V3" dst="VCA.NC.MT"/>
+				<connection type="neocortex-neocortex" src="VCA.NC.V3" dst="VCA.NC.PO"/>
+				<connection type="neocortex-neocortex" src="VCA.NC.V4" dst="VCA.NC.MT"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.V4" dst="VCA.NC.IT.TEO"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.V4" dst="VCA.NC.IT.TE"/>
+				<connection type="neocortex-neocortex" src="VCA.NC.MT" dst="PCA.NC.IPS.VIP"/>
+				<connection type="neocortex-neocortex" src="VCA.NC.MT" dst="PCA.NC.IPL.MST"/>
+				<connection type="neocortex-neocortex" src="VCA.NC.MT" dst="PCA.NC.IPS.PEF"/>
+				<connection type="neocortex-neocortex" src="VCA.NC.PO" dst="PCA.NC.IPS.VIP"/>
+				<connection type="neocortex-neocortex" src="VCA.NC.PO" dst="PCA.NC.SPL.PG"/>
+				<connection type="neocortex-neocortex" src="VCA.NC.PO" dst="PCA.NC.IPL.MST"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.IT.TEO" dst="VCA.NC.IT.TE"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.IT.TE" dst="PHA.NC.PH.ET"/>
-				<!-- from CP.PRIMARY-VISUAL-FORWARD-FLOWS -->
-				<connection type="neocortex-neocortex" src="VCA.NC.V2" dst="VCA.NC.V3"/>
-				<connection type="neocortex-neocortex" src="VCA.NC.V3" dst="VCA.NC.V4"/>
-				<connection type="neocortex-neocortex" src="VCA.NC.V1" dst="VCA.NC.MT"/>
-				<connection type="neocortex-neocortex" src="VCA.NC.V2" dst="VCA.NC.MT"/>
-				<connection type="neocortex-neocortex" src="VCA.NC.V3" dst="VCA.NC.MT"/>
-				<connection type="neocortex-neocortex" src="VCA.NC.V4" dst="VCA.NC.MT"/>
-				<connection type="neocortex-neocortex" src="VCA.NC.V2" dst="VCA.NC.PO"/>
-				<connection type="neocortex-neocortex" src="VCA.NC.V3" dst="VCA.NC.PO"/>
-				<connection type="neocortex-neocortex" src="VCA.NC.MT" dst="PCA.NC.IPS.VIP"/>
-				<connection type="neocortex-neocortex" src="VCA.NC.MT" dst="PCA.NC.IPS.PEF"/>
-				<connection type="neocortex-neocortex" src="VCA.NC.MT" dst="PCA.NC.IPL.MST"/>
-				<connection type="neocortex-neocortex" src="VCA.NC.PO" dst="PCA.NC.IPS.VIP"/>
-				<connection type="neocortex-neocortex" src="VCA.NC.PO" dst="PCA.NC.IPL.MST"/>
+				<connection type="neocortex-neocortex" src="VCA.NC.IT.TE" dst="PCA.NC.IPS.PEF"/>
 				<connection type="neocortex-neocortex" src="PCA.NC.IPS.VIP" dst="PCA.NC.SPL.PG"/>
+				<connection type="neocortex-neocortex" src="PCA.NC.IPS.VIP" dst="PCA.NC.IPL.SMW"/>
 				<connection type="neocortex-neocortex" src="PCA.NC.IPS.PEF" dst="PCA.NC.SPL.PG"/>
 				<connection type="neocortex-neocortex" src="PCA.NC.IPL.MST" dst="PCA.NC.SPL.PG"/>
+				<connection type="neocortex-neocortex" src="PCA.NC.IPL.MST" dst="PCA.NC.IPL.SMW"/>
+			</circuit>
+
+			<!-- ================= intracortical visual stream processing =============== -->
+			<circuit name="auditory-perception" enabled="true">
+				<connection type="neocortex-neocortex" src="ACA.NC.A3" dst="PCA.NC.IPL.SMW"/>
 			</circuit>
 
 			<!-- ================= intracortical sensory integration to generate memory items in hippocampus =============== -->

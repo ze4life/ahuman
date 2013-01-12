@@ -80,6 +80,7 @@ void XmlHMind::getElementInfo( String node , XmlHMindElementInfo& info ) {
 	info.type = item.getAttribute( "type" , "" );
 	info.function = item.getAttribute( "function" , "" );
 	info.notes = item.getAttribute( "notes" , "" );
+	info.dotdef = item.getAttribute( "dotdef" , "" );
 }
 
 String XmlHMind::getMappedRegion( String node ) {

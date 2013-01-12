@@ -89,6 +89,10 @@
 			</element>
 
 			<element id="PCA.NC.SPL" name="Superior Parietal Lobule">
+				function="Perception of emotions in facial stimuli and interpretation of sensory information" 
+				comments="in human=BA7"
+				notes="SMG, Represent spoken words, tool use"
+				>
 				<element id="PCA.NC.SPL.SA" name="Somatosensory Association Cortex" mapped="true" brodmannid="05" type="Neocortex"
 					function="Locating objects in space" 
 					notes="PE, somatosensory, guiding movement by providing information about limb position"
@@ -103,9 +107,8 @@
 					/>
 			</element>
 
-			<element id="PCA.NC.IPL" name="Inferior Parietal Lobule">
-				function="Perception of emotions in facial stimuli and interpretation of sensory information" 
-				notes="SMG, Represent spoken words, tool use"
+			<element id="PCA.NC.IPL" name="Inferior Parietal Lobule"
+				notes="in humans=BA39,40, in monkey=BA7"
 				>
 				<element id="PCA.NC.IPL.AG" name="Angular Gyrus"
 					notes="Surrounds Superior Temporal Sulcus (STS)"
@@ -121,30 +124,31 @@
 						notes="PF, Computing sound of word, tactile learning and memory"
 						/>
 				</element>
-				<element id="PCA.NC.IPS" name="Intraparietal Sulcus"
-					function="Perceptual-motor coordination and visual attention, eye movements and reaching" 
-					notes="PG, Control of saccadic eye movements, visual control of grasping"
+			</element>
+
+			<element id="PCA.NC.IPS" name="Intraparietal Sulcus"
+				function="Perceptual-motor coordination and visual attention, eye movements and reaching" 
+				notes="PG, Control of saccadic eye movements, visual control of grasping"
+				>
+				<element id="PCA.NC.IPS.PEF" name="Posterior Eye Field" mapped="true" brodmannid="39" type="Neocortex"
+					function="Reflexive saccade triggering"
 					>
-					<element id="PCA.NC.IPS.PEF" name="Posterior Eye Field" mapped="true" brodmannid="39" type="Neocortex"
-						function="Reflexive saccade triggering"
-						>
-						<element id="PCA.NC.IPS.MIP" name="Medial Intraparietal Sulcus" 
-							function="Encode location of reach target in nose-centered coordinates"
-							/>
-						<element id="PCA.NC.IPS.LIP" name="Lateral Intraparietal Sulcus"
-							function="Representing saliency of spatial locations, and attention to locations"
-							notes="Targeting eye movements"
-							/>
-					</element>
-					<element id="PCA.NC.IPS.VIP" name="Ventral Intraparietal Sulcus" mapped="true" brodmannid="39" type="Neocortex"
-						function="Merge visual, somatosensory, auditory, and vestibular senses"
-						notes="V6, Represent space in head-centered reference frame"
+					<element id="PCA.NC.IPS.MIP" name="Medial Intraparietal Sulcus" 
+						function="Encode location of reach target in nose-centered coordinates"
 						/>
-					<element id="PCA.NC.IPS.AIP" name="Anterior Intraparietal Sulcus" mapped="true" brodmannid="39" type="Neocortex"
-						function="Represent shape, size, and orientation of objects to be grasped"
-						notes="Both to viewed and remembered stimuli, grasping and manipulating objects through motor and visual inputs"
+					<element id="PCA.NC.IPS.LIP" name="Lateral Intraparietal Sulcus"
+						function="Representing saliency of spatial locations, and attention to locations"
+						notes="Targeting eye movements"
 						/>
 				</element>
+				<element id="PCA.NC.IPS.VIP" name="Ventral Intraparietal Sulcus" mapped="true" brodmannid="39" type="Neocortex"
+					function="Merge visual, somatosensory, auditory, and vestibular senses"
+					notes="Represent space in head-centered reference frame"
+					/>
+				<element id="PCA.NC.IPS.AIP" name="Anterior Intraparietal Sulcus" mapped="true" brodmannid="39" type="Neocortex"
+					function="Represent shape, size, and orientation of objects to be grasped"
+					notes="Both to viewed and remembered stimuli, grasping and manipulating objects through motor and visual inputs"
+					/>
 			</element>
 
 			<element id="PCA.NC.MPL" name="Medial Parietal Lobule">
@@ -162,26 +166,32 @@
 			<element id="VCA.NC.V1" name="Primary Visual Cortex" mapped="true" brodmannid="17" type="Neocortex"
 				function="Detect color, shape and movements" 
 				notes="Striate Cortex, phyletic memory"
+				dotdef="color=darkolivegreen2"
 				/>
 			<element id="VCA.NC.V2" name="Secondary Visual Cortex" mapped="true" brodmannid="18" type="Neocortex"
 				function="Storage of Object Recognition Memory" 
 				notes="Prestriate Cortex"
+				dotdef="color=darkolivegreen2"
 				/>
 			<element id="VCA.NC.V3" name="Associative Visual Cortex" mapped="true" brodmannid="19" type="Neocortex"
 				function="Processing of global motion, dynamic shapes" 
 				notes="Dorsal Extrastriate Cortex"
+				dotdef="color=darkolivegreen2"
 				/>
 			<element id="VCA.NC.V4" name="Fusiform Gyrus" mapped="true" brodmannid="37" type="Neocortex"
 				function="Recognizing shapes and colors" 
 				notes="Ventral stream"
+				dotdef="color=darkolivegreen2"
 				/>
 			<element id="VCA.NC.MT" name="Middle Temporal Area" mapped="true" brodmannid="19" type="Neocortex"
 				function="Integration of local motion signals into global percepts" 
 				notes="V5, Ventro-dorsal stream"
+				dotdef="color=darkolivegreen2"
 				/>
 			<element id="VCA.NC.PO" name="Parietooccipital Area" mapped="true" brodmannid="19" type="Neocortex"
 				function="Analyzing self-motion relative to the environment" 
 				notes="V6, DM, Dorsomedial Area, Dorsal stream"
+				dotdef="color=darkolivegreen2"
 				/>
 		</element>
 
@@ -189,32 +199,39 @@
 			<element id="ACA.NC.A2" name="Auditory Association Area" mapped="true" brodmannid="42" type="Neocortex"
 				function="Classify with respect to function" 
 				notes="Belt"
+				dotdef="color=salmon"
 				/>
 
 			<element id="VCA.NC.IT" name="Inferotemporal Area">
 				<element id="VCA.NC.IT.TE" name="Inferotemporal Cortex" mapped="true" brodmannid="20" type="Neocortex"
 					function="Represent different views of objects" 
 					notes="Face recognition, high level visual processing"
+					dotdef="color=salmon"
 					/>
 				<element id="VCA.NC.IT.TEO" name="Preoccipital Inferotemporal Area" mapped="true" brodmannid="21" type="Neocortex"
 					function="Represent different features of objects" 
 					notes="Part of IT Cortex"
+					dotdef="color=salmon"
 					/>
 			</element>
 
 			<element id="ACA.NC.A1" name="Primary Auditory Cortex" mapped="true" brodmannid="41" type="Neocortex"
 				function="Main topotonic map, extract phonemes" 
 				notes="Core"
+				dotdef="color=salmon"
 				/>
 			<element id="MCA.NC.TPC" name="Temporopolar Cortex" mapped="true" brodmannid="38" type="Neocortex"
 				function="Self representation, semantic (left) and autobiographic (right)" 
+				dotdef="color=salmon"
 				/>
 			<element id="ACA.NC.A3" name="Wernicke's area A3" mapped="true" brodmannid="22" type="Neocortex"
 				function="Classify with respect to content" 
+				dotdef="color=salmon"
 				/>
 			<element id="ACA.NC.A4" name="Wernicke's area A4" mapped="true" brodmannid="22" type="Neocortex"
 				function="Coordinate the activation or deactivation of grammar areas" 
 				notes="Grammatical areas"
+				dotdef="color=salmon"
 				/>
 		</element>
 
