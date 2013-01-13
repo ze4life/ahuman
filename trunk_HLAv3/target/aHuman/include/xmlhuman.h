@@ -29,6 +29,7 @@ public:
 	void getElementInfo( String node , XmlHMindElementInfo& info );
 	String getMappedRegion( String node );
 	void getChildRegions( String node , StringList& regions );
+	String getDotDef( String node );
 
 private:
 	void scanChildItems( Xml xmlChild );

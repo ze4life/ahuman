@@ -114,3 +114,17 @@ void XmlHMind::scanChildRegions( Xml item , StringList& regions ) {
 	}
 }
 
+String XmlHMind::getDotDef( String node ) {
+	Xml item = getNodeXml( node );
+	while( item.exists() ) {
+		String dotdef = item.getAttribute( "dotdef" , "" );
+		if( !dotdef.isEmpty() )
+			return( dotdef );
+
+		// go up
+		item = item.getParentNode();
+	}
+
+	return( "" );
+}
+

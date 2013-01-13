@@ -8,6 +8,10 @@ class AHumanTarget;
 class ScenarioPlayer;
 class ModelVerifier;
 class WikiMaker;
+class WikiMainPage;
+class WikiCircuitPages;
+class WikiHierarchyPage;
+class WikiAreaPages;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -103,9 +107,81 @@ public:
 
 public:
 	void createPages();
+	void updateFileHeading( String wikiDir , String wikiPage , StringList& lines );
+	void updateFileSection( String wikiDir , String wikiPage , String section , StringList& lines );
+	void createFileContent( String fileName , StringList& lines );
+	String setSpecialCharacters( String data );
 
 private:
+	void createMainPage();
+	void createCircuitPages();
 	void updateHierarchyPage();
+	void createAreaPages();
+	void createComponentPages();
+
+
+public:
+	Xml wiki;
+	XmlHMind hmindxml;
+	XmlCircuits circuitsxml;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class WikiMainPage : public Object {
+public:
+	WikiMainPage( WikiMaker *wm );
+	virtual ~WikiMainPage();
+	virtual const char *getClass() { return "WikiMainPage"; };
+
+public:
+	void execute();
+
+private:
+	WikiMaker *wm;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class WikiCircuitPages : public Object {
+public:
+	WikiCircuitPages( WikiMaker *wm );
+	virtual ~WikiCircuitPages();
+	virtual const char *getClass() { return "WikiMainPage"; };
+
+public:
+	void execute();
+
+private:
+	void createCircuitPage( String wikiDir , String wikiPage , MindCircuitDef *cd );
+	void createCircuitPage_getHeading( String wikiPage , MindCircuitDef *cd , StringList& lines );
+	void createCircuitPage_getLinkList( MindCircuitDef *cd , MapStringToClass<MindCircuitConnectionDef>& links );
+	void createCircuitPage_getLinkSection( MindCircuitDef *cd , MapStringToClass<MindCircuitConnectionDef>& links , StringList& lines );
+	void createCircuitPage_getLinksRow( MindCircuitDef *cd , MindCircuitConnectionDef *link , StringList& lines );
+	void createCircuitPage_getDiagram( MindCircuitDef *cd , MapStringToClass<MindRegion>& nodes , MapStringToClass<MindCircuitConnectionDef>& links , StringList& lines );
+	void createCircuitPage_getNodeList( MindCircuitDef *cd , MapStringToClass<MindRegion>& nodes );
+	void createCircuitPage_getNodeSection( MindCircuitDef *cd , MapStringToClass<MindRegion>& nodes , StringList& lines );
+	void createCircuitPage_getNodesRow( MindCircuitDef *cd , MindRegion *region , StringList& lines );
+
+private:
+	WikiMaker *wm;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class WikiHierarchyPage : public Object {
+public:
+	WikiHierarchyPage( WikiMaker *wm );
+	virtual ~WikiHierarchyPage();
+	virtual const char *getClass() { return "WikiHierarchyPage"; };
+
+public:
+	void execute();
+
+private:
 	void updateHierarchyPage_walkTree( String parentNode , int level , StringList& lines , MindArea *parentArea , MindRegion *parentRegion );
 	void updateHierarchyPage_walkNeocortex( String neocortexDivision , String wikiDir , String wikiPage );
 	void updateHierarchyPage_getNeocortexLobeLines( String neocortexLobe , StringList& lines );
@@ -115,7 +191,23 @@ private:
 	String updateHierarchyPage_getNeocortexBrodmannLine( String neocortexDivision , String banum );
 	void updateHierarchyPage_walkNeocortexBrodmannLine( String node , String banum , StringList& items );
 
-	void createAreaPages();
+private:
+	WikiMaker *wm;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class WikiAreaPages : public Object {
+public:
+	WikiAreaPages( WikiMaker *wm );
+	virtual ~WikiAreaPages();
+	virtual const char *getClass() { return "WikiAreaPages"; };
+
+public:
+	void execute();
+
+private:
 	void createAreaPages_createRegionTableSection( String wikiDir , String wikiPage , MindAreaDef *areaDef );
 	void createAreaPages_createConnectivityTableSection( String wikiDir , String wikiPage , MindAreaDef *areaDef );
 	void createAreaPages_createCircuitsAndReferencesTableSection( String wikiDir , String wikiPage , MindAreaDef *areaDef );
@@ -128,15 +220,8 @@ private:
 	void createAreaPages_getExternalConnections( MindAreaDef *areaDef , MapStringToClass<MindCircuitConnectionDef>& connections , bool isin );
 	void createAreaPages_getExternalConnectionTableLine( MindAreaDef *areaDef , MindCircuitConnectionDef *link , StringList& lines , bool isin );
 
-	void createComponentPages();
-
-	void updateFileSection( String wikiDir , String wikiPage , String section , StringList& lines );
-
 private:
-	Xml wiki;
-
-	XmlHMind hmindxml;
-	XmlCircuits circuitsxml;
+	WikiMaker *wm;
 };
 
 /*#########################################################################*/
