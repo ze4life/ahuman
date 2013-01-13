@@ -14,6 +14,7 @@ MindCircuitDef::~MindCircuitDef() {
 
 void MindCircuitDef::createFromXml( Xml xml ) {
 	// attributes are properties
+	id = xml.getAttribute( "id" );
 	name = xml.getAttribute( "name" );
 	Object::setInstance( name );
 

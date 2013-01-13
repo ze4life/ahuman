@@ -351,7 +351,7 @@
 		<circuit-set>
 
 			<!-- ================= eye sensor -> subcortical -> cortex -> subcortical -> eye sensor =============== -->
-			<circuit name="vision-primary" enabled="true">
+			<circuit id="CircuitVisionSub" name="Subcortical Vision Processing" enabled="true">
 				<connection type="nucleus-nucleus" src="VBA.FD.RT" dst="VBA.FD.LGN"/>
 				<connection type="nucleus-nucleus" src="VBA.FD.RT" dst="VBA.MM.SC"/>
 				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="VBA.FD.LGN"/>
@@ -375,7 +375,7 @@
 			</circuit>
 
 			<!-- ================= intracortical visual stream processing =============== -->
-			<circuit name="visual-perception" enabled="true">
+			<circuit id="CircuitVisionNeocortex" name="Vision Perception in Neocortex" enabled="true">
 				<connection type="neocortex-neocortex" src="VCA.NC.V1" dst="VCA.NC.V2"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.V1" dst="VCA.NC.MT"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.V2" dst="VCA.NC.V3"/>
@@ -405,24 +405,24 @@
 			</circuit>
 
 			<!-- ================= intracortical visual stream processing =============== -->
-			<circuit name="auditory-perception" enabled="true">
+			<circuit id="CircuitAuditionNeocortex" name="Audition Perception in Neocortex" enabled="true">
 				<connection type="neocortex-neocortex" src="ACA.NC.A3" dst="PCA.NC.IPL.SMW"/>
 			</circuit>
 
 			<!-- ================= intracortical sensory integration to generate memory items in hippocampus =============== -->
-			<circuit name="memory-sensory-integration" enabled="true">
+			<circuit id="CircuitSensoryIntegration" name="Multisensory Intergration for Hippocampus" enabled="true">
 				<connection type="neocortex-neocortex" src="VCA.NC.IT.TE" dst="PHA.NC.PH.PRR"/>
 				<connection type="neocortex-neocortex" src="PHA.NC.PH.PRR" dst="PHA.NC.PH.ET"/>
 			</circuit>
 
 			<!-- ================= motivation stimuli =============== -->
-			<circuit name="motivation-stimuli-acquisition" enabled="true">
+			<circuit id="CircuitReflexMotivations" name="Establish Reflexive Motivational Associations" enabled="true">
 				<connection type="neocortex-nucleus" src="VCA.NC.IT.TE" dst="BFA.FT.AM"/>
 				<connection type="neocortex-nucleus" src="PHA.NC.PH.ET" dst="BFA.FT.AM"/>
 			</circuit>
 
 			<!-- ================= hippocampus activity =============== -->
-			<circuit name="hippocampal-memory-generation" enabled="true">
+			<circuit id="CircuitMemoryProcess" name="Memory Process" enabled="true">
 				<connection type="neocortex-allocortex" src="PHA.NC.PH.ET" dst="HBA.FT.DG"/>
 				<connection type="neocortex-allocortex" src="PHA.NC.PH.ET" dst="HBA.FT.HC.CA1"/>
 				<connection type="neocortex-allocortex" src="PHA.NC.PH.ET" dst="HBA.FT.SC.SUB"/>

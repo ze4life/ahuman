@@ -174,6 +174,7 @@ public:
 	void createFromXml( Xml xml );
 	void resolveReferences( MindMap *map );
 
+	String getId() { return( id ); };
 	String getName() { return( name ); };
 	bool runEnabled() { return( enabled ); };
 	ClassList<MindCircuitConnectionDef>& getConnections() { return( connections ); };
@@ -181,6 +182,7 @@ public:
 // data
 public:
 // utility
+	String id;
 	String name;
 	bool enabled;
 
