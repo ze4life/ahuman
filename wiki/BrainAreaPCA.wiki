@@ -13,7 +13,7 @@
 || *PCA.NC.SPL.PG* || Caudal Precuneus || Neocortex || Controlling spatially guided behavior with respect to visual and tactile<BR>information || caudal, 7A=PG+Opt ||
 || *PCA.NC.PO.PCC* || Precentral Cortex || Neocortex || Gustatory cortical area ||  ||
 || *PCA.NC.IPS.PEF* || Posterior Eye Field || Neocortex || Reflexive saccade triggering ||  ||
-|| *PCA.NC.IPS.VIP* || Ventral Intraparietal Sulcus || Neocortex || Merge visual, somatosensory, auditory, and vestibular senses || V6, Represent space in head-centered reference<BR>frame ||
+|| *PCA.NC.IPS.VIP* || Ventral Intraparietal Sulcus || Neocortex || Merge visual, somatosensory, auditory, and vestibular senses || Represent space in head-centered reference frame ||
 || *PCA.NC.IPS.AIP* || Anterior Intraparietal Sulcus || Neocortex || Represent shape, size, and orientation of objects to be grasped || Both to viewed and remembered stimuli, grasping and<BR>manipulating objects through motor and visual<BR>inputs ||
 || *PCA.NC.MPL.RSC* || Retrosplenial Cortex || Neocortex || Processing of emotionally salient stimuli ||  ||
 || *PCA.NC.MPL.PCG* || Posterior Cingulate Cortex || Neocortex || Self-awareness, pain and episodic memory retrieval ||  ||
@@ -28,6 +28,72 @@
 = Groupings and Subdivisions  =
 
   * PCA.IPS is divided into MIP, LIP, VIP, AIP
+
+= Connectivity =
+(generated)
+
+*Internal Region Connections:*
+
+http://ahuman.googlecode.com/svn/images/dot/aHuman/PCA.dot.jpg
+
+|| *Source Region* || *Target Region* || *Type* ||
+|| PCA.NC.IPL.MST || PCA.NC.IPL.SMW || neocortex-neocortex ||  ||
+|| PCA.NC.IPL.MST || PCA.NC.SPL.PG || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (linkinfo.compSrc -> linkinfo.compDst) ||
+|| PCA.NC.IPS.PEF || PCA.NC.SPL.PG || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (linkinfo.compSrc -> linkinfo.compDst) ||
+|| PCA.NC.IPS.VIP || PCA.NC.IPL.SMW || neocortex-neocortex ||  ||
+|| PCA.NC.IPS.VIP || PCA.NC.SPL.PG || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (linkinfo.compSrc -> linkinfo.compDst) ||
+
+*External Inbound Region Connections:*
+|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| ACA || PCA.NC.IPL.SMW || ACA.NC.A3 || Wernicke's area A3 || neocortex-neocortex ||  ||
+|| VBA || PCA.NC.IPL.MST || VBA.FD.PV.IPV || Inferior Pulvinar || nucleus-neocortex ||  ||
+|| VCA || PCA.NC.IPL.MST || VCA.NC.MT || Middle Temporal Area || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (linkinfo.compSrc -> linkinfo.compDst) ||
+|| VCA || PCA.NC.IPL.MST || VCA.NC.PO || Parietooccipital Area || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (linkinfo.compSrc -> linkinfo.compDst) ||
+|| VCA || PCA.NC.IPS.PEF || VCA.NC.IT.TE || Inferotemporal Cortex || neocortex-neocortex ||  ||
+|| VCA || PCA.NC.IPS.PEF || VCA.NC.MT || Middle Temporal Area || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (linkinfo.compSrc -> linkinfo.compDst) ||
+|| VCA || PCA.NC.IPS.VIP || VCA.NC.MT || Middle Temporal Area || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (linkinfo.compSrc -> linkinfo.compDst) ||
+|| VCA || PCA.NC.IPS.VIP || VCA.NC.PO || Parietooccipital Area || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (linkinfo.compSrc -> linkinfo.compDst) ||
+|| VCA || PCA.NC.SPL.PG || VCA.NC.PO || Parietooccipital Area || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0166223697010679 Parietal Association Cortex (linkinfo.compSrc -> linkinfo.compDst) ||
+
+*External Outbound Region Connections:*
+|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| FCA || PCA.NC.IPS.PEF || FCA.NC.LPFC || Lateral Prefrontal Cortex || neocortex-neocortex || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (linkinfo.compSrc -> linkinfo.compDst) ||
+|| MCA || PCA.NC.IPS.PEF || MCA.NC.PMC.FEF || Frontal Eye Field || neocortex-neocortex || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (linkinfo.compSrc -> linkinfo.compDst) ||
+|| VBA || PCA.NC.IPL.MST || VBA.MM.SC || Superior Colliculus || neocortex-nucleus ||  ||
+|| VBA || PCA.NC.IPS.PEF || VBA.MM.SC || Superior Colliculus || neocortex-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (linkinfo.compSrc -> linkinfo.compDst) ||
+
+= Thirdparty Circuits =
+(generated)
+
+  * [http://www.hindawi.com/journals/nri/2012/719056.fig.001.jpg Visual Dorsal Pathway] - see [http://www.hindawi.com/journals/nri/2012/719056 Reference]
+
+http://www.hindawi.com/journals/nri/2012/719056.fig.001.jpg
+
+  * [http://www.cixip.com/Public/kindeditor/attached/image/20121030/20121030134649_52795.jpg Summary of eye movement control] - see [http://www.cixip.com/index.php/page/content/id/1190 Reference]
+
+http://www.cixip.com/Public/kindeditor/attached/image/20121030/20121030134649_52795.jpg
+
+  * [http://www.nature.com/nrn/journal/v3/n2/images/nrn726-f3.jpg McNaughton Spatial Processing Network] - see [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html Reference]
+
+http://www.nature.com/nrn/journal/v3/n2/images/nrn726-f3.jpg
+
+  * [http://thebrain.mcgill.ca/flash/a/a_02/a_02_cr/a_02_cr_vis/a_02_cr_vis_3a.jpg Paths from Retina to Parietal Cortex and IT] - see [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Reference]
+
+http://thebrain.mcgill.ca/flash/a/a_02/a_02_cr/a_02_cr_vis/a_02_cr_vis_3a.jpg
+
+  * [http://ars.els-cdn.com/content/image/1-s2.0-S0166223697010679-gr6.gif Parietal Association Cortex] - see [http://www.sciencedirect.com/science/article/pii/S0166223697010679 Reference]
+
+http://ars.els-cdn.com/content/image/1-s2.0-S0166223697010679-gr6.gif
+
+
+= References =
+(generated)
+
+  * http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html
+  * http://www.cixip.com/index.php/page/content/id/1190
+  * http://www.hindawi.com/journals/nri/2012/719056
+  * http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html
+  * http://www.sciencedirect.com/science/article/pii/S0166223697010679
 
 = Diagrams =
 
@@ -57,7 +123,7 @@ http://ars.els-cdn.com/content/image/1-s2.0-S0028393205003568-gr1.jpg
 - PPC cells have been shown to encode sequences of behaviors
 }}}
 
-= References =
+= References2 =
 
   * http://www.sciencedirect.com/science/article/pii/S0149763409002061
   * http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full
