@@ -17,4 +17,121 @@
 		<link src="SEF" dst="FEF"/>
 	</circuit>
 
+	<circuit id="CP.RETINA-SUPERIOR-COLLICULUS" name="Retina and superior colliculus targets"
+		image="http://2.bp.blogspot.com/-mjoruMnWeaU/TVp_YcF7meI/AAAAAAAAAsQ/8oZIVJrZVnw/s1600/Gray722.png"
+		reference="http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html"
+		components="Retina=VBA.FD.RT Pulvinar=VBA.FD.PV LGB=VBA.FD.LGN SC=VBA.MM.SC Oculomotor=VBA.MM.OCN Trochlear=VBA.MM.TRH Abducens=VBA.HP.ABD OCC=NC.LOBE.OCC"
+		>
+		<link src="Retina" dst="LGB"/>
+		<link src="Retina" dst="Pulvinar"/>
+		<link src="Retina" dst="SC"/>
+		<link src="SC" dst="Oculomotor"/>
+		<link src="SC" dst="Trochlear"/>
+		<link src="SC" dst="Abducens"/>
+		<link src="LGB" dst="OCC"/>
+		<link src="Pulvinar" dst="OCC"/>
+	</circuit>
+
+	<circuit id="CP.RETINA-OUTPUTS" name="Targets of retina neurons"
+		image="http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision_files/image022.jpg"
+		reference="http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm"
+		components="Retina=VBA.FD.RT LGB=VBA.FD.LGN SC=VBA.MM.SC Pretectum=MM.PT HT=HTA.FD.HT"
+		>
+		<link src="Retina" dst="LGB"/>
+		<link src="Retina" dst="HT"/>
+		<link src="Retina" dst="SC"/>
+		<link src="Retina" dst="Pretectum"/>
+	</circuit>
+
+	<circuit id="CP.SACCADIC-VISION" name="Saccadic Vision"
+		image="http://www.nature.com/nrn/journal/v5/n3/images/nrn1345-i1.jpg"
+		reference="http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html"
+		components="FrontalCortex=NC.LOBE.ANT LIP=PCA.NC.IPS.LIP SCi=VBA.MM.SC SCs=VBA.MM.SC Thalamus=FD.TH BG=BGA.FT.BG CN=BGA.FT.CN GPe=BGA.FT.GPE STN=BGA.FD.STN SNpr=BGA.FT.SN.PR CR=MBA.HP.CR RF=HP.PRF Retina=VBA.FD.RT LGN=VBA.FD.LGN VisualCortex=NC.LOBE.OCC"
+		>
+		<link src="Retina" dst="LGN"/>
+		<link src="Retina" dst="SCs"/>
+		<link src="LGN" dst="VisualCortex"/>
+		<link src="VisualCortex" dst="LIP"/>
+		<link src="VisualCortex" dst="SCs"/>
+		<link src="LIP" dst="SCi"/>
+		<link src="LIP" dst="FrontalCortex"/>
+		<link src="SCi" dst="RF"/>
+		<link src="SCi" dst="CR"/>
+		<link src="SCi" dst="Thalamus"/>
+		<link src="CR" dst="RF"/>
+		<link src="FrontalCortex" dst="CR"/>
+		<link src="FrontalCortex" dst="RF"/>
+		<link src="FrontalCortex" dst="BG"/>
+		<link src="BG" dst="SCi"/>
+		<link src="BG" dst="Thalamus"/>
+		<link src="Thalamus" dst="FrontalCortex"/>
+		<link src="CN" dst="GPe"/>
+		<link src="CN" dst="SNpr"/>
+		<link src="GPe" dst="STN"/>
+		<link src="STN" dst="SNpr"/>
+	</circuit>
+
+	<circuit id="CP.GENICULATE-PATHS" name="Geniculate and Extyrageniculate Paths"
+		image="http://ars.els-cdn.com/content/image/1-s2.0-S0387760401003308-gr2.jpg"
+		reference="http://www.sciencedirect.com/science/article/pii/S0387760401003308"
+		components="Retina=VBA.FD.RT SC=VBA.MM.SC LGN=VBA.FD.LGN PPN=BGA.HP.PPN RF=HP.PRF VC=NC.LOBE.OCC"
+		>
+		<link src="Retina" dst="LGN"/>
+		<link src="Retina" dst="SC"/>
+		<link src="PPN" dst="SC"/>
+		<link src="PPN" dst="LGN"/>
+		<link src="LGN" dst="VC"/>
+		<link src="SC" dst="RF"/>
+	</circuit>
+
+	<circuit id="CP.VISION-COMPONENTS" name="Vision Components"
+		image="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/vision-subcortical.jpg"
+		reference="http://neuroscience.uth.tmc.edu/s3/chapter07.html"
+		components="CG=AVA.SC.PSYM.CLG OCN=VBA.MM.OCN SOA=VBA.MM.SOA LGN=VBA.FD.LGN EWN=AVA.MM.EWN VC=NC.LOBE.OCC VAC=PCA.NC.IPS.PEF"
+		>
+		<link src="OCN" dst="CG"/>
+		<link src="EWN" dst="CG"/>
+		<link src="VAC" dst="SOA"/>
+		<link src="SOA" dst="OCN"/>
+		<link src="LGN" dst="VC"/>
+	</circuit>
+
+	<circuit id="CP.VISION-SACCADES" name="Horizontal saccades and smooth pursuit movements"
+		image="http://ars.els-cdn.com/content/image/1-s2.0-S0006899301025987-gr1.gif"
+		reference="http://www.sciencedirect.com/science/article/pii/S0006899301025987"
+		components="LGB=VBA.FD.LGN VisualAssociation=VCA.NC.V3 PrimaryVisual=VCA.NC.V1 FEFSEF=NC.LOBE.ANT SC=VBA.MM.SC Striatum=BGA.FT.ST RIP=VBA.MM.RP.RIP Bechterew=HMA.HP.PRF.PDT CR=MBA.HP.CR PPRF=HP.PRF Vestibular=BMA.HP.VB"
+		>
+		<link src="VisualAssociation" dst="FEFSEF"/>
+		<link src="LGB" dst="PrimaryVisual"/>
+		<link src="PrimaryVisual" dst="VisualAssociation"/>
+		<link src="FEFSEF" dst="SC"/>
+		<link src="FEFSEF" dst="Striatum"/>
+		<link src="FEFSEF" dst="RIP"/>
+		<link src="FEFSEF" dst="Bechterew"/>
+		<link src="FEFSEF" dst="PPRF"/>
+		<link src="SC" dst="Bechterew"/>
+		<link src="Striatum" dst="CR"/>
+		<link src="RIP" dst="PPRF"/>
+		<link src="SC" dst="RIP"/>
+		<link src="SC" dst="PPRF"/>
+		<link src="SC" dst="Vestibular"/>
+	</circuit>
+
+	<circuit id="CP.SACCADIC-MOTOR-CONTROL" name="Horizontal saccades and smooth pursuit movements"
+		image="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/oculomotor.jpg"
+		reference="http://neuroscience.uth.tmc.edu/s3/chapter07.html"
+		components="SpinalTrigeminal=HMA.HM.TGM.STR Oculomotor=VBA.MM.OCN Abducens=VBA.HP.ABD Facial=HMA.HP.FCM RF=HP.PRF PrincipalTrigeminal=HMA.HP.PTP.PTR Ciliary=AVA.SC.PSYM.CLG EWN=AVA.MM.EWN Pretectum=MM.PT VAC=VCA.NC.V3 SupraOculomotor=VBA.MM.SOA"
+		>
+		<link src="Facial" dst="Abducens"/>
+		<link src="RF" dst="Facial"/>
+		<link src="SpinalTrigeminal" dst="RF"/>
+		<link src="PrincipalTrigeminal" dst="SpinalTrigeminal"/>
+		<link src="SpinalTrigeminal" dst="Oculomotor"/>
+		<link src="EWN" dst="Ciliary"/>
+		<link src="Pretectum" dst="EWN"/>
+		<link src="VAC" dst="SupraOculomotor"/>
+		<link src="SupraOculomotor" dst="EWN"/>
+		<link src="SupraOculomotor" dst="Oculomotor"/>
+	</circuit>
+
 </circuits>

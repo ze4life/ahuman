@@ -171,7 +171,9 @@
 				<region name="VBA.MM.PT.SL" type="nucleus"/>
 				<region name="VBA.MM.TRH" type="nucleus"/>
 				<region name="VBA.MM.OCN" type="nucleus"/>
+				<region name="VBA.MM.SOA" type="nucleus"/>
 				<region name="VBA.MM.DSCH" type="nucleus"/>
+				<region name="VBA.MM.RP.RIP" type="nucleus"/>
 				<region name="VBA.HP.ABD" type="nucleus"/>
 				<region name="VBA.HM.NPH" type="nucleus"/>
 			</area>
@@ -404,7 +406,7 @@
 				<connection type="neocortex-neocortex" src="PCA.NC.IPL.MST" dst="PCA.NC.IPL.SMW"/>
 			</circuit>
 
-			<!-- ================= intracortical visual stream processing =============== -->
+			<!-- ================= intracortical auditory stream processing =============== -->
 			<circuit id="CircuitAuditionNeocortex" name="Audition Perception in Neocortex" enabled="true">
 				<connection type="neocortex-neocortex" src="ACA.NC.A3" dst="PCA.NC.IPL.SMW"/>
 			</circuit>
@@ -426,6 +428,16 @@
 				<connection type="neocortex-allocortex" src="PHA.NC.PH.ET" dst="HBA.FT.DG"/>
 				<connection type="neocortex-allocortex" src="PHA.NC.PH.ET" dst="HBA.FT.HC.CA1"/>
 				<connection type="neocortex-allocortex" src="PHA.NC.PH.ET" dst="HBA.FT.SC.SUB"/>
+			</circuit>
+
+			<!-- ================= basal ganglia activity =============== -->
+			<circuit id="CircuitPlannedActions" name="Planned Actions Control" enabled="true">
+				<connection type="nucleus-nucleus" src="BGA.HP.PPN" dst="VBA.MM.SC"/>
+				<connection type="nucleus-nucleus" src="BGA.HP.PPN" dst="VBA.FD.LGN"/>
+				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="BGA.FT.SN.PC"/>
+				<connection type="nucleus-nucleus" src="BGA.FT.SN.PR" dst="BGA.FT.SN.PC"/>
+				<connection type="nucleus-nucleus" src="BGA.FT.SN.PR" dst="VBA.MM.SC"/>
+				<connection type="nucleus-nucleus" src="BGA.FT.GPI" dst="BGA.FT.SN.PR"/>
 			</circuit>
 
 		</circuit-set>

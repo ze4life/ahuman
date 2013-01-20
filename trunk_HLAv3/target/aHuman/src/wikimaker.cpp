@@ -189,3 +189,49 @@ String WikiMaker::setSpecialCharacters( String data ) {
 	s = s.replace( "\\n" , "\n" );
 	return( s );
 }
+
+String WikiMaker::findReference( MindCircuitConnectionDef *link ) {
+	XmlCircuitInfo info;
+	String circuitLink;
+
+	// scan thirdparty circuits
+	StringList circuits;
+	circuitsxml.getCircuitList( circuits );
+	for( int k = 0; k < circuits.count(); k++ ) {
+		circuitsxml.getCircuitInfo( circuits.get( k ) , info );
+		if( findReferenceCircuitLink( link , info , circuitLink ) ) {
+			String reference = info.reference;
+			if( reference.startsFrom( "article:" ) )
+				reference = "http://ahuman.googlecode.com/svn/research/articles/" + reference.getMid( 8 );
+
+			String res = "[" + reference + " " + info.name + " (" + circuitLink + ")]";
+			return( res );
+		}
+	}
+
+	return( "" );
+}
+
+bool WikiMaker::findReferenceCircuitLink( MindCircuitConnectionDef *link , XmlCircuitInfo& info , String& circuitLink ) {
+	FlatList<Xml> links;
+	XmlCircuitLinkInfo linkinfo;
+	circuitsxml.getCircuitLinks( info.id , links );
+
+	String checkSrcRegion = link -> getSrcRegion();
+	String checkDstRegion = link -> getDstRegion();
+	for( int k = 0; k < links.count(); k++ ) {
+		circuitsxml.getCircuitLinkInfo( links.get( k ) , linkinfo );
+		String srcComponent = circuitsxml.mapComponent( info , linkinfo.compSrc );
+		String dstComponent = circuitsxml.mapComponent( info , linkinfo.compDst );
+		String srcRegion = hmindxml.getMappedRegion( srcComponent );
+		String dstRegion = hmindxml.getMappedRegion( dstComponent );
+
+		if( srcRegion.equals( checkSrcRegion ) && dstRegion.equals( checkDstRegion ) ) {
+			circuitLink = linkinfo.compSrc + " -> " + linkinfo.compDst;
+			return( true );
+		}
+	}
+
+	return( false );
+}
+
