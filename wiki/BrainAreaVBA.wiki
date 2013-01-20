@@ -21,6 +21,7 @@
 || *VBA.MM.PT.SL* || Sublentiform Nucleus || Sensory Control Nucleus || Accomodation reflex || Combines visual cortex and retinal input to project<BR>to OCN, receives retinal input ||
 || *VBA.MM.TRH* || Trochlear Nucleus || Motor Relay Nucleus || Change Eye Direction || Muscle nucleus ||
 || *VBA.MM.OCN* || Oculomotor Nucleus || Motor Relay Nucleus || Change Eye Direction || Muscle nucleus ||
+|| *VBA.MM.SOA* || Supraoculomotor Area || Motor Control || Control of vergence || Dorsal to OCN, send premotor commands to OCN ||
 || *VBA.MM.DSCH* || Darkschewitsch Nucleus || Sensory Control Nucleus || Mediate the consensual pupillary light reflex || Light in one eye results in pupil changes in<BR>another eye ||
 || *VBA.MM.RP.RIP* || Raphe Interpositus Nucleus || Excitatory Nucleus || Premotor network for saccades || Gate activity of burst neurons for vertical and<BR>horizontal saccades ||
 || *VBA.HP.ABD* || Abducens Nucleus || Motor Relay Nucleus || Conjugated movements of both eyes || Motoneurons - to muscle, interneurons - to OCN ||
@@ -36,7 +37,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/VBA.dot.jpg
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || VBA.FD.RT || VBA.FD.LGN || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (Retina -> LGN)] ||
 || VBA.FD.RT || VBA.MM.SC || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (Retina -> SC)] ||
-|| VBA.MM.SC || VBA.FD.LGN || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Global visual system (SCs -> LGN)] ||
+|| VBA.MM.SC || VBA.FD.LGN || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCs -> LGN)] ||
 || VBA.MM.SC || VBA.FD.PV.IPV || nucleus-nucleus ||  ||
 || VBA.MM.SC || VBA.FD.PV.LPV || nucleus-nucleus ||  ||
 || VBA.MM.SC || VBA.MM.OCN || nucleus-nucleus || [http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html Retina and superior colliculus targets (SC -> Oculomotor)] ||
@@ -44,7 +45,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/VBA.dot.jpg
 *External Inbound Region Connections:*
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || BGA || VBA.FD.LGN || BGA.HP.PPN || Pedunculopontine Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (PPN -> LGN)] ||
-|| BGA || VBA.MM.SC || BGA.FT.SN.PR || Substantia Nigra Pars Reticulata || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Global visual system (SNr -> SCi)] ||
+|| BGA || VBA.MM.SC || BGA.FT.SN.PR || Substantia Nigra Pars Reticulata || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SNr -> SCi)] ||
 || BGA || VBA.MM.SC || BGA.HP.PPN || Pedunculopontine Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (PPN -> SC)] ||
 || MCA || VBA.MM.SC || MCA.NC.PMC.FEF || Frontal Eye Field || neocortex-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (FEF -> SC)] ||
 || PCA || VBA.MM.SC || PCA.NC.IPL.MST || Medial Superior Temporal Area || neocortex-nucleus ||  ||
@@ -52,7 +53,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/VBA.dot.jpg
 
 *External Outbound Region Connections:*
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
-|| BGA || VBA.MM.SC || BGA.FT.SN.PC || Substantia Nigra Pars Compacta || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Global visual system (SCi -> SNc)] ||
+|| BGA || VBA.MM.SC || BGA.FT.SN.PC || Substantia Nigra Pars Compacta || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCi -> SNc)] ||
 || HMA || VBA.MM.SC || HMA.HP.PRF.RPO || Oral Pontine Reticular Nucleus || nucleus-nucleus ||  ||
 || HMA || VBA.MM.SC || HMA.MM.INMLF || Interstitial Nucleus of Medial Longitudinal Fasciculus || nucleus-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (SC -> riMLF)] ||
 || PCA || VBA.FD.PV.IPV || PCA.NC.IPL.MST || Medial Superior Temporal Area || nucleus-neocortex ||  ||
@@ -82,10 +83,6 @@ http://thebrain.mcgill.ca/flash/a/a_02/a_02_cr/a_02_cr_vis/a_02_cr_vis_3a.jpg
 
 http://www.hindawi.com/journals/nri/2012/719056.fig.001.jpg
 
-  * [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/vision-subcortical.jpg Vision Components] - see [http://neuroscience.uth.tmc.edu/s3/chapter07.html Reference]
-
-http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/vision-subcortical.jpg
-
   * [http://ars.els-cdn.com/content/image/1-s2.0-S0387760401003308-gr2.jpg Geniculate and Extyrageniculate Paths] - see [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Reference]
 
 http://ars.els-cdn.com/content/image/1-s2.0-S0387760401003308-gr2.jpg
@@ -102,11 +99,19 @@ http://www.nature.com/nrn/journal/v5/n3/images/nrn1345-i1.jpg
 
 http://asweknowit.ca/evcult/NatIntel/Fig12.GIF
 
+  * [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/vision-subcortical.jpg Vision Components] - see [http://neuroscience.uth.tmc.edu/s3/chapter07.html Reference]
+
+http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/vision-subcortical.jpg
+
   * [http://ars.els-cdn.com/content/image/1-s2.0-S0006899301025987-gr1.gif Horizontal saccades and smooth pursuit movements] - see [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Reference]
 
 http://ars.els-cdn.com/content/image/1-s2.0-S0006899301025987-gr1.gif
 
-  * [http://ars.els-cdn.com/content/image/1-s2.0-S0959438808001566-gr1.jpg Global visual system] - see [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Reference]
+  * [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/oculomotor.jpg Horizontal saccades and smooth pursuit movements] - see [http://neuroscience.uth.tmc.edu/s3/chapter07.html Reference]
+
+http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/oculomotor.jpg
+
+  * [http://ars.els-cdn.com/content/image/1-s2.0-S0959438808001566-gr1.jpg Global visual system] - see [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Reference]
 
 http://ars.els-cdn.com/content/image/1-s2.0-S0959438808001566-gr1.jpg
 
@@ -129,6 +134,7 @@ http://2.bp.blogspot.com/-mjoruMnWeaU/TVp_YcF7meI/AAAAAAAAAsQ/8oZIVJrZVnw/s1600/
   * http://www.sciencedirect.com/science/article/pii/S0006899301025987
   * http://www.sciencedirect.com/science/article/pii/S0166223697010679
   * http://www.sciencedirect.com/science/article/pii/S0387760401003308
+  * http://www.sciencedirect.com/science/article/pii/S0959438808001566
 
 = Diagrams =
 
