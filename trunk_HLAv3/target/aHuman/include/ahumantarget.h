@@ -111,6 +111,7 @@ public:
 	void updateFileSection( String wikiDir , String wikiPage , String section , StringList& lines );
 	void createFileContent( String fileName , StringList& lines );
 	String setSpecialCharacters( String data );
+	String findReference( MindCircuitConnectionDef *link );
 
 private:
 	void createMainPage();
@@ -119,6 +120,7 @@ private:
 	void createAreaPages();
 	void createComponentPages();
 
+	bool findReferenceCircuitLink( MindCircuitConnectionDef *link , XmlCircuitInfo& info , String& circuitLink );
 
 public:
 	Xml wiki;

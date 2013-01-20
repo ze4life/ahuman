@@ -3,7 +3,7 @@
 	<division name="Neocortex">
 
 		<element id="NC.LOBE.ANT" name="Anterior Lobe"
-			dotdef="color=rosybrown2"
+			dotdef="color=skyblue"
 			>
 			<element id="FCA.NC.ACG" name="Anterior Cingulate Cortex" mapped="true" brodmannid="24,32,33" type="Neocortex"
 				function="Error Correction" 
@@ -350,11 +350,25 @@
 		</element>
 
 		<element id="BGA.FT.BG" name="Basal Ganglia">
-			<element id="BGA.FT.CN" name="Caudate Nucleus" mapped="true" type="Inhibitory Nucleus"
-				refs="NL:[http://neurolex.org/wiki/Category:Caudate_nucleus Caudate nucleus]"
-				function="Excitation of correct action schemas and selection of appropriate sub-goals based on evaluation of action-outcomes"
-				notes="One of neural correlates of romantic love"
-				/>
+			<element id="BGA.FT.ST" name="Striatum"
+				>
+				<element id="BGA.FT.CN" name="Caudate Nucleus" mapped="true" type="Inhibitory Nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Caudate_nucleus Caudate nucleus]"
+					function="Excitation of correct action schemas and selection of appropriate sub-goals based on evaluation of action-outcomes"
+					notes="One of neural correlates of romantic love"
+					/>
+				<element id="BGA.FT.PU" name="Putamen" mapped="true" type="Inhibitory Nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Putamen Putamen]"
+					function="Stimulus-response, or habit, learning"
+					notes="Regulate movements and influence various types of learning"
+					>
+					<element refs="NL:[http://neurolex.org/wiki/Category:Caudal_putamen Caudal putamen]"/>
+					<element refs="NL:[http://neurolex.org/wiki/Category:Matrix_compartment_of_putamen Matrix compartment of putamen]"/>
+					<element refs="NL:[http://neurolex.org/wiki/Category:Rostral_putamen Rostral putamen]"/>
+					<element refs="NL:[http://neurolex.org/wiki/Category:Striosomal_part_of_putamen Striosomal part of putamen]"/>
+					<element refs="NL:[http://neurolex.org/wiki/Category:Ventral_putamen Ventral putamen]"/>
+				</element>
+			</element>
 			<element id="BGA.FT.GP" name="Globus Pallidus" refs="NL:[http://neurolex.org/wiki/Category:Globus_pallidus Globus pallidus]">
 				<element refs="NL:[http://neurolex.org/wiki/Category:Caudal_globus_pallidus Caudal globus pallidus]" ignore="true" comment="secondary nuclei grouping"/>
 				<element refs="NL:[http://neurolex.org/wiki/Category:Dorsal_globus_pallidus Dorsal globus pallidus]" ignore="true" comment="secondary nuclei grouping"/>
@@ -368,17 +382,6 @@
 					notes="Balance of direct and indirect paths"
 					/>
 				<element refs="NL:[http://neurolex.org/wiki/Category:Rostral_globus_pallidus Rostral globus pallidus]" ignore="true" comment="no nuclei"/>
-			</element>
-			<element id="BGA.FT.PU" name="Putamen" mapped="true" type="Inhibitory Nucleus"
-				refs="NL:[http://neurolex.org/wiki/Category:Putamen Putamen]"
-				function="Stimulus-response, or habit, learning"
-				notes="Regulate movements and influence various types of learning"
-				>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Caudal_putamen Caudal putamen]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Matrix_compartment_of_putamen Matrix compartment of putamen]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Rostral_putamen Rostral putamen]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Striosomal_part_of_putamen Striosomal part of putamen]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Ventral_putamen Ventral putamen]"/>
 			</element>
 			<element id="BGA.FT.SN" name="Substantia Nigra" refs="NL:[http://neurolex.org/wiki/Category:Substantia_nigra Substantia nigra]">
 				<element id="BGA.FT.SN.PC" name="Substantia Nigra Pars Compacta" mapped="true" type="Mixed Nucleus"
@@ -764,7 +767,7 @@
 				<element id="PCA.FD.TH.LP" name="Lateral Posterior Nucleus of Thalamus" mapped="true" type="Excitatory Nucleus"
 					refs="NL:[http://neurolex.org/wiki/Category:Lateral_posterior_nucleus Lateral posterior nucleus]"
 					function="Visual association cortex"
-					notes="from superior colliculus, pretectum"
+					notes="From superior colliculus, pretectum"
 					/>
 			</element>
 			<element id="FCA.FD.TH.MD" name="Mediodorsal Nucleus of Thalamus" mapped="true" type="Excitatory Nucleus"
@@ -933,6 +936,11 @@
 				<element refs="NL:[http://neurolex.org/wiki/Category:Medial_oculomotor_nucleus Medial oculomotor nucleus]"/>
 				<element refs="NL:[http://neurolex.org/wiki/Category:Ventral_oculomotor_nucleus Ventral oculomotor nucleus]"/>
 			</element>
+			<element id="VBA.MM.SOA" name="Supraoculomotor Area" mapped="true" type="Motor Control"
+				refs="NL:[http://neurolex.org/wiki/Category:Oculomotor_nuclear_complex Oculomotor nuclear complex]"
+				function="Control of vergence"
+				notes="Dorsal to OCN, send premotor commands to OCN"
+				/>
 		</element>
 
 		<element id="FBA.MM.PAG" name="Periaqueductal Gray Matter" mapped="true" type="Modulatory Nucleus"
@@ -982,6 +990,11 @@
 				<element name="Serotonergic cell group B6"/>
 				<element refs="NL:[http://neurolex.org/wiki/Category:Serotonergic_cell_group_B7 Serotonergic cell group B7]"/>
 			</element>
+			<element id="VBA.MM.RP.RIP" name="Raphe Interpositus Nucleus" mapped="true" type="Excitatory Nucleus" 
+				refs="NL:[http://neurolex.org/wiki/Category:Raphe_interpositus_nucleus_of_PHT00 Raphe interpositus nucleus]"
+				function="Premotor network for saccades"
+				notes="Gate activity of burst neurons for vertical and horizontal saccades"
+				/>
 		</element>
 
 		<element id="MBA.MM.RD" name="Red Nucleus" mapped="true" type="Excitatory Nucleus" 
@@ -1181,6 +1194,7 @@
 					refs="NL:[http://neurolex.org/wiki/Category:Reticulotegmental_nucleus Reticulotegmental nucleus]"
 					function="Mediate saccadic eye movements"
 					notes="Inactivation leads to deficit of expression, but not learning"
+					comments="Nucleus of Bechterew, tegmentopontine reticular nucleus"
 					/>
 				<element id="HMA.HP.PRF.GCR" name="Gigantocellular Reticular Nucleus" mapped="true" type="Premotor Nucleus"
 					refs="NL:[http://neurolex.org/wiki/Category:Lateral_paragigantocellular_nucleus Lateral paragigantocellular nucleus]"
