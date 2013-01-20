@@ -134,4 +134,28 @@
 		<link src="SupraOculomotor" dst="Oculomotor"/>
 	</circuit>
 
+	<circuit id="CP.SACCADIC-VOLUNTARY-AND-PURSUIT" name="Saccades and smooth movements"
+		image="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg"
+		reference="(unknown)"
+		components="FEF=MCA.NC.PMC.FEF PPC=PCA.NC.IPS.PEF CN=BGA.FT.CN SN=BGA.FT.SN VGC=HMA.MM.INMLF SC=VBA.MM.SC PPRF=HP.PRF TEF=VCA.NC.IT Extrastriate=VCA.NC.V3 Striate=VCA.NC.V1 CR=MBA.HP.CR Vestibular=BMA.HP.VB DLPN=HMA.HP.PRF.RPO"
+		>
+		<!-- voluntary saccades circuit -->
+		<link src="FEF" dst="SC"/>
+		<link src="PPC" dst="FEF"/>
+		<link src="PPC" dst="SC"/>
+		<link src="FEF" dst="CN"/>
+		<link src="CN" dst="SN"/>
+		<link src="SN" dst="SC"/>
+		<link src="SC" dst="VGC"/>
+		<link src="SC" dst="PPRF"/>
+		<!-- smooth purcuit circuit -->
+		<link src="TEF" dst="FEF"/>
+		<link src="Striate" dst="Extrastriate"/>
+		<link src="Extrastriate" dst="TEF"/>
+		<link src="TEF" dst="DLPN"/>
+		<link src="FEF" dst="DLPN"/>
+		<link src="DLPN" dst="CR"/>
+		<link src="CR" dst="Vestibular"/>
+	</circuit>
+
 </circuits>
