@@ -1,0 +1,32 @@
+#summary Planned Actions Control
+@@[Home] -> [BiologicalLifeResearch] -> [CircuitPlannedActions]
+----
+
+This page covers components and connections of circuit Planned Actions Control.
+Circuit is part of aHuman target integrated biological model.
+
+(generated)
+= Components =
+(generated)
+
+|| *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||
+|| [BrainAreaBGA BGA] || BGA.FT.GPI || Globus Pallidus Internal || Inhibitory Nucleus || Output nuclei of basal ganglia to neocortex ||
+|| [BrainAreaBGA BGA] || BGA.FT.SN.PC || Substantia Nigra Pars Compacta || Mixed Nucleus || Fine motor control, temporal processing ||
+|| [BrainAreaBGA BGA] || BGA.FT.SN.PR || Substantia Nigra Pars Reticulata || Inhibitory Nucleus || Convey final processed signals of basal ganglia to thalamus and superior colliculus ||
+|| [BrainAreaBGA BGA] || BGA.HP.PPN || Pedunculopontine Nucleus || Excitatory Nucleus || Provide sensory feedback to cerebral cortex ||
+|| [BrainAreaVBA VBA] || VBA.FD.LGN || Lateral Geniculate Nucleus || Sensory Relay Nucleus || Temporal decorrelation ||
+|| [BrainAreaVBA VBA] || VBA.MM.SC || Superior Colliculus || Sensory Control Nucleus || Direct behavioral responses toward specific points in egocentric space, induce saccadic eye movement ||
+
+= Connections =
+(generated)
+
+http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitPlannedActions.dot.jpg
+
+|| *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| BGA.FT.GPI || BGA.FT.SN.PR || nucleus-nucleus ||  ||
+|| BGA.FT.SN.PR || BGA.FT.SN.PC || nucleus-nucleus ||  ||
+|| BGA.FT.SN.PR || VBA.MM.SC || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Global visual system (SNr -> SCi)] ||
+|| BGA.HP.PPN || VBA.FD.LGN || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (PPN -> LGN)] ||
+|| BGA.HP.PPN || VBA.MM.SC || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (PPN -> SC)] ||
+|| VBA.MM.SC || BGA.FT.SN.PC || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Global visual system (SCi -> SNc)] ||
+
