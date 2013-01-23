@@ -13,10 +13,15 @@ Circuit is part of aHuman target integrated biological model.
 || [BrainAreaFCA FCA] || FCA.NC.LPFC || Lateral Prefrontal Cortex || Neocortex || Temporal Integration ||
 || [BrainAreaHMA HMA] || HMA.HP.PRF.RPO || Oral Pontine Reticular Nucleus || Premotor Nucleus || Mediation of changing to and from REM sleep ||
 || [BrainAreaHMA HMA] || HMA.MM.INMLF || Interstitial Nucleus of Medial Longitudinal Fasciculus || Motor Relay Nucleus || Controls vertical gaze ||
+|| [BrainAreaMCA MCA] || MCA.NC.MC || Motor Cortex || Neocortex || Execution of required voluntary movements ||
+|| [BrainAreaMCA MCA] || MCA.NC.PMC.F2 || Dorsal Caudal Premotor Cortex || Neocortex || Guiding reaching ||
+|| [BrainAreaMCA MCA] || MCA.NC.PMC.F4 || Ventral Caudal Premotor Cortex || Neocortex || Sensory guidance of movement ||
+|| [BrainAreaMCA MCA] || MCA.NC.PMC.F5 || Ventral Rostral Premotor Cortex || Neocortex || Shaping hand during grasping ||
 || [BrainAreaMCA MCA] || MCA.NC.PMC.FEF || Frontal Eye Field || Neocortex || Initiation of eye movements ||
 || [BrainAreaMCA MCA] || MCA.NC.SMC || Supplementary Motor Cortex || Neocortex || Process sequences of movements and coordinate bilateral movements ||
 || [BrainAreaPCA PCA] || PCA.NC.IPL.MST || Medial Superior Temporal Area || Neocortex || Image stabilization, predictive target tracking ||
 || [BrainAreaPCA PCA] || PCA.NC.IPS.PEF || Posterior Eye Field || Neocortex || Reflexive saccade triggering ||
+|| [BrainAreaPCA PCA] || PCA.NC.SPL.PG || Caudal Precuneus || Neocortex || Controlling spatially guided behavior with respect to visual and tactile information ||
 || [BrainAreaVBA VBA] || VBA.FD.LGN || Lateral Geniculate Nucleus || Sensory Relay Nucleus || Temporal decorrelation ||
 || [BrainAreaVBA VBA] || VBA.FD.PV.IPV || Inferior Pulvinar || Sensory Relay Nucleus || Dorsal =Where= Stream ||
 || [BrainAreaVBA VBA] || VBA.FD.PV.LPV || Lateral Pulvinar || Sensory Relay Nucleus || Ventral =What= Stream ||
@@ -32,15 +37,23 @@ Circuit is part of aHuman target integrated biological model.
 http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitVisionSub.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| FCA.NC.LPFC || MCA.NC.PMC.F5 || neocortex-neocortex || (unknown reference) ||
 || FCA.NC.LPFC || MCA.NC.PMC.FEF || neocortex-neocortex || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (DLPFC -> FEF)] ||
 || FCA.NC.LPFC || MCA.NC.SMC || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (LPC -> pre-SMA)] ||
+|| MCA.NC.PMC.F2 || MCA.NC.MC || neocortex-neocortex || (unknown reference) ||
+|| MCA.NC.PMC.F5 || MCA.NC.MC || neocortex-neocortex || (unknown reference) ||
 || MCA.NC.PMC.FEF || HMA.MM.INMLF || neocortex-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (FEF -> riMLF)] ||
 || MCA.NC.PMC.FEF || VBA.MM.SC || neocortex-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (FEF -> SC)] ||
+|| MCA.NC.SMC || MCA.NC.PMC.F2 || neocortex-neocortex || (unknown reference) ||
+|| MCA.NC.SMC || MCA.NC.PMC.F5 || neocortex-neocortex || (unknown reference) ||
 || MCA.NC.SMC || MCA.NC.PMC.FEF || neocortex-neocortex || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (SEF -> FEF)] ||
+|| PCA.NC.IPL.MST || FCA.NC.LPFC || neocortex-neocortex || (unknown reference) ||
+|| PCA.NC.IPL.MST || MCA.NC.PMC.F4 || neocortex-neocortex || (unknown reference) ||
 || PCA.NC.IPL.MST || VBA.MM.SC || neocortex-nucleus || (unknown reference) ||
 || PCA.NC.IPS.PEF || FCA.NC.LPFC || neocortex-neocortex || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (PEF -> DLPFC)] ||
 || PCA.NC.IPS.PEF || MCA.NC.PMC.FEF || neocortex-neocortex || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (PEF -> FEF)] ||
 || PCA.NC.IPS.PEF || VBA.MM.SC || neocortex-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (PEF -> SC)] ||
+|| PCA.NC.SPL.PG || MCA.NC.PMC.F2 || neocortex-neocortex || (unknown reference) ||
 || VBA.FD.LGN || VCA.NC.V1 || nucleus-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (LGN -> V1)] ||
 || VBA.FD.PV.IPV || PCA.NC.IPL.MST || nucleus-neocortex || (unknown reference) ||
 || VBA.FD.PV.LPV || VCA.NC.V2 || nucleus-neocortex || (unknown reference) ||
