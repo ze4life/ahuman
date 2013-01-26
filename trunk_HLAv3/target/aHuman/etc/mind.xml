@@ -303,6 +303,7 @@
 				<region name="BMA.MM.PT.PTA" type="nucleus"/>
 				<region name="BMA.HP.PRF.PVR" type="nucleus"/>
 				<region name="BMA.HP.VB" type="nucleus"/>
+				<region name="BMA.HP.VG" type="nucleus"/>
 				<region name="BMA.HP.PB" type="nucleus"/>
 				<region name="BMA.HM.IO" type="nucleus"/>
 				<region name="BMA.HM.ARC" type="nucleus"/>
@@ -356,6 +357,8 @@
 			<circuit id="CircuitVisionSub" name="Subcortical Vision Processing" enabled="true">
 				<connection type="nucleus-nucleus" src="VBA.FD.RT" dst="VBA.FD.LGN"/>
 				<connection type="nucleus-nucleus" src="VBA.FD.RT" dst="VBA.MM.SC"/>
+				<connection type="neocortex-nucleus" src="VCA.NC.V1" dst="VBA.MM.SC"/>
+				<connection type="neocortex-nucleus" src="VCA.NC.V2" dst="VBA.MM.SC"/>
 				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="VBA.FD.LGN"/>
 				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="VBA.FD.PV.IPV"/>
 				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="VBA.FD.PV.LPV"/>
@@ -363,6 +366,8 @@
 				<connection type="nucleus-neocortex" src="VBA.FD.PV.IPV" dst="PCA.NC.IPL.MST"/>
 				<connection type="nucleus-neocortex" src="VBA.FD.PV.LPV" dst="VCA.NC.V2"/>
 				<connection type="neocortex-nucleus" src="PCA.NC.IPL.MST" dst="VBA.MM.SC"/>
+				<connection type="neocortex-neocortex" src="PCA.NC.IPL.MST" dst="MCA.NC.PMC.F4"/>
+				<connection type="neocortex-neocortex" src="PCA.NC.IPL.MST" dst="FCA.NC.LPFC"/>
 				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="VBA.MM.OCN"/>
 				<connection type="neocortex-nucleus" src="PCA.NC.IPS.PEF" dst="VBA.MM.SC"/>
 				<connection type="neocortex-neocortex" src="PCA.NC.IPS.PEF" dst="MCA.NC.PMC.FEF"/>
@@ -372,8 +377,14 @@
 				<connection type="neocortex-nucleus" src="MCA.NC.PMC.FEF" dst="VBA.MM.SC"/>
 				<connection type="neocortex-nucleus" src="MCA.NC.PMC.FEF" dst="HMA.MM.INMLF"/>
 				<connection type="neocortex-neocortex" src="FCA.NC.LPFC" dst="MCA.NC.PMC.FEF"/>
+				<connection type="neocortex-neocortex" src="FCA.NC.LPFC" dst="MCA.NC.PMC.F5"/>
 				<connection type="neocortex-neocortex" src="FCA.NC.LPFC" dst="MCA.NC.SMC"/>
 				<connection type="neocortex-neocortex" src="MCA.NC.SMC" dst="MCA.NC.PMC.FEF"/>
+				<connection type="neocortex-neocortex" src="MCA.NC.SMC" dst="MCA.NC.PMC.F5"/>
+				<connection type="neocortex-neocortex" src="MCA.NC.SMC" dst="MCA.NC.PMC.F2"/>
+				<connection type="neocortex-neocortex" src="PCA.NC.SPL.PG" dst="MCA.NC.PMC.F2"/>
+				<connection type="neocortex-neocortex" src="MCA.NC.PMC.F5" dst="MCA.NC.MC"/>
+				<connection type="neocortex-neocortex" src="MCA.NC.PMC.F2" dst="MCA.NC.MC"/>
 			</circuit>
 
 			<!-- ================= intracortical visual stream processing =============== -->
@@ -432,12 +443,40 @@
 
 			<!-- ================= basal ganglia activity =============== -->
 			<circuit id="CircuitPlannedActions" name="Planned Actions Control" enabled="true">
+				<connection type="neocortex-nucleus" src="MCA.NC.MC" dst="BGA.FD.STN"/>
+				<connection type="neocortex-nucleus" src="MCA.NC.PMC.F2" dst="BGA.FT.PU"/>
+				<connection type="neocortex-nucleus" src="MCA.NC.SMC" dst="BGA.FT.PU"/>
 				<connection type="nucleus-nucleus" src="BGA.HP.PPN" dst="VBA.MM.SC"/>
 				<connection type="nucleus-nucleus" src="BGA.HP.PPN" dst="VBA.FD.LGN"/>
 				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="BGA.FT.SN.PC"/>
-				<connection type="nucleus-nucleus" src="BGA.FT.SN.PR" dst="BGA.FT.SN.PC"/>
 				<connection type="nucleus-nucleus" src="BGA.FT.SN.PR" dst="VBA.MM.SC"/>
+				<connection type="nucleus-nucleus" src="BGA.FT.SN.PR" dst="BGA.FT.SN.PC"/>
+				<connection type="nucleus-nucleus" src="BGA.FT.SN.PC" dst="BGA.FT.PU"/>
 				<connection type="nucleus-nucleus" src="BGA.FT.GPI" dst="BGA.FT.SN.PR"/>
+				<connection type="nucleus-nucleus" src="BGA.FT.PU" dst="BGA.FT.GPE"/>
+				<connection type="nucleus-nucleus" src="BGA.FT.PU" dst="BGA.FT.GPI"/>
+				<connection type="nucleus-nucleus" src="BGA.FT.PU" dst="BGA.FT.SN.PR"/>
+				<connection type="nucleus-nucleus" src="BGA.FT.PU" dst="HBA.FD.TH.AN"/>
+				<connection type="nucleus-nucleus" src="BGA.FT.GPE" dst="BGA.FT.GPI"/>
+				<connection type="nucleus-neocortex" src="HBA.FD.TH.AN" dst="FCA.NC.ACG"/>
+				<connection type="nucleus-nucleus" src="BGA.FT.GPE" dst="BGA.FD.STN"/>
+				<connection type="nucleus-nucleus" src="BGA.FD.STN" dst="BGA.FT.GPE"/>
+				<connection type="nucleus-nucleus" src="BGA.FD.STN" dst="BGA.FT.SN.PC"/>
+				<connection type="nucleus-nucleus" src="BGA.FD.STN" dst="BGA.FT.SN.PR"/>
+				<connection type="nucleus-nucleus" src="BGA.FD.STN" dst="BGA.HP.PPN"/>
+				<connection type="nucleus-nucleus" src="BGA.HP.PPN" dst="BGA.FD.STN"/>
+			</circuit>
+
+			<!-- ================= intracortical cognitive processing =============== -->
+			<circuit id="CircuitCognition" name="Cognitive Processing" enabled="true">
+				<connection type="neocortex-neocortex" src="VCA.NC.IT.TE" dst="FCA.NC.LPFC"/>
+				<connection type="nucleus-neocortex" src="VBA.MM.SC" dst="MCA.FD.TH.VA"/>
+			</circuit>
+
+			<!-- ================= alertness =============== -->
+			<circuit id="CircuitConsciousAlertness" name="Conscious Alertness" enabled="true">
+				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="HBA.FD.TH.AN"/>
+				<connection type="nucleus-neocortex" src="HBA.FD.TH.AN" dst="FCA.NC.ACG"/>
 			</circuit>
 
 		</circuit-set>

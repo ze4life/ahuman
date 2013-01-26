@@ -136,7 +136,7 @@
 
 	<circuit id="CP.SACCADIC-VOLUNTARY-AND-PURSUIT" name="Saccades and smooth movements"
 		image="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg"
-		reference="(unknown)"
+		reference="UNKNOWN"
 		components="FEF=MCA.NC.PMC.FEF PPC=PCA.NC.IPS.PEF CN=BGA.FT.CN SN=BGA.FT.SN VGC=HMA.MM.INMLF SC=VBA.MM.SC PPRF=HP.PRF TEF=VCA.NC.IT Extrastriate=VCA.NC.V3 Striate=VCA.NC.V1 CR=MBA.HP.CR Vestibular=BMA.HP.VB DLPN=HMA.HP.PRF.RPO"
 		>
 		<!-- voluntary saccades circuit -->
@@ -157,5 +157,35 @@
 		<link src="DLPN" dst="CR"/>
 		<link src="CR" dst="Vestibular"/>
 	</circuit>
+
+	<circuit id="CP.VESTIBULO-OCULAR-REFLEX" name="Vestibulo-ocular reflex (VOR)"
+		image="http://www.neuroanatomy.wisc.edu/virtualbrain/Images/13R.jpg"
+		reference="http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html"
+		components="VestibularGanglion=BMA.HP.VG VestibularNuclei=BMA.HP.VB PPRF=HP.PRF Abducens=VBA.HP.ABD Oculomotor=VBA.MM.OCN FEF=MCA.NC.PMC.FEF"
+		>
+		<link src="VestibularGanglion" dst="VestibularNuclei"/>
+		<link src="VestibularNuclei" dst="PPRF"/>
+		<link src="FEF" dst="PPRF"/>
+		<link src="PPRF" dst="Abducens"/>
+		<link src="Abducens" dst="Oculomotor"/>
+	</circuit>
+
+	<circuit id="CP.EYE-MOVEMENT-TERMINOLOGY" name="Eye movement terminology"
+		image="http://meded.ucsd.edu/clinicalmed/Eye_Move_Terminol.jpg"
+		reference="http://meded.ucsd.edu/clinicalmed/eyes.htm"
+		components="Retina=VBA.FD.RT"
+		/>
+
+	<circuit id="CP.EYE-MUSCLE-DIRECTIONS" name="Eye muscle directions"
+		image="http://meded.ucsd.edu/clinicalmed/CN_Musc_eye.jpg"
+		reference="http://meded.ucsd.edu/clinicalmed/eyes.htm"
+		components="Retina=VBA.FD.RT"
+		/>
+
+	<circuit id="CP.EYE-MUSCLES" name="Eye muscles"
+		image="http://etc.usf.edu/clipart/53700/53763/53763_eye_md.gif"
+		reference="http://etc.usf.edu/clipart/53700/53763/53763_eye.htm"
+		components="Retina=VBA.FD.RT"
+		/>
 
 </circuits>
