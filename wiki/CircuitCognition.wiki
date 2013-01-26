@@ -11,6 +11,8 @@ Circuit is part of aHuman target integrated biological model.
 
 || *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||
 || [BrainAreaFCA FCA] || FCA.NC.LPFC || Lateral Prefrontal Cortex || Neocortex || Temporal Integration ||
+|| [BrainAreaMCA MCA] || MCA.FD.TH.VA || Ventral Anterior Nucleus || Excitatory Nucleus || Relay BGA.SN, BGA.GPI, FCA.OMPFC, FCA.CG to MCA.PMC, MCA.SMC ||
+|| [BrainAreaVBA VBA] || VBA.MM.SC || Superior Colliculus || Sensory Control Nucleus || Direct behavioral responses toward specific points in egocentric space, induce saccadic eye movement ||
 || [BrainAreaVCA VCA] || VCA.NC.IT.TE || Inferotemporal Cortex || Neocortex || Represent different views of objects ||
 
 = Connections =
@@ -19,5 +21,6 @@ Circuit is part of aHuman target integrated biological model.
 http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitCognition.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| VBA.MM.SC || MCA.FD.TH.VA || nucleus-neocortex || (unknown reference) ||
 || VCA.NC.IT.TE || FCA.NC.LPFC || neocortex-neocortex || (unknown reference) ||
 
