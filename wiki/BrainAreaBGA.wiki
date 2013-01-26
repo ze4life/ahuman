@@ -29,15 +29,29 @@
 http://ahuman.googlecode.com/svn/images/dot/aHuman/BGA.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| BGA.FD.STN || BGA.FT.GPE || nucleus-nucleus || (unknown reference) ||
+|| BGA.FD.STN || BGA.FT.SN.PC || nucleus-nucleus || (unknown reference) ||
+|| BGA.FD.STN || BGA.FT.SN.PR || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (STN -> SNpr)] ||
+|| BGA.FD.STN || BGA.HP.PPN || nucleus-nucleus || (unknown reference) ||
+|| BGA.FT.GPE || BGA.FD.STN || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (GPe -> STN)] ||
 || BGA.FT.GPI || BGA.FT.SN.PR || nucleus-nucleus || (unknown reference) ||
+|| BGA.FT.PU || BGA.FT.GPE || nucleus-nucleus || (unknown reference) ||
+|| BGA.FT.PU || BGA.FT.GPI || nucleus-nucleus || (unknown reference) ||
+|| BGA.FT.PU || BGA.FT.SN.PR || nucleus-nucleus || (unknown reference) ||
+|| BGA.FT.SN.PC || BGA.FT.PU || nucleus-nucleus || (unknown reference) ||
 || BGA.FT.SN.PR || BGA.FT.SN.PC || nucleus-nucleus || (unknown reference) ||
+|| BGA.HP.PPN || BGA.FD.STN || nucleus-nucleus || (unknown reference) ||
 
 *External Inbound Region Connections:*
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| MCA || BGA.FD.STN || MCA.NC.MC || Motor Cortex || neocortex-nucleus || (unknown reference) ||
+|| MCA || BGA.FT.PU || MCA.NC.PMC.F2 || Dorsal Caudal Premotor Cortex || neocortex-nucleus || (unknown reference) ||
+|| MCA || BGA.FT.PU || MCA.NC.SMC || Supplementary Motor Cortex || neocortex-nucleus || (unknown reference) ||
 || VBA || BGA.FT.SN.PC || VBA.MM.SC || Superior Colliculus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCi -> SNc)] ||
 
 *External Outbound Region Connections:*
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| HBA || BGA.FT.PU || HBA.FD.TH.AN || Anterior Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
 || VBA || BGA.FT.SN.PR || VBA.MM.SC || Superior Colliculus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SNr -> SCi)] ||
 || VBA || BGA.HP.PPN || VBA.FD.LGN || Lateral Geniculate Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (PPN -> LGN)] ||
 || VBA || BGA.HP.PPN || VBA.MM.SC || Superior Colliculus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (PPN -> SC)] ||
