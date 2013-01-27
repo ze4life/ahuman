@@ -203,13 +203,13 @@ String WikiMaker::findReference( MindCircuitConnectionDef *link ) {
 			String reference = info.reference;
 			if( reference.startsFrom( "article:" ) )
 				reference = "http://ahuman.googlecode.com/svn/research/articles/" + reference.getMid( 8 );
-
-			String res = "[" + reference + " " + info.name + " (" + circuitLink + ")]";
-			return( res );
+			
+			if( !reference.equals( "UNKNOWN" ) )
+				return( "[" + reference + " " + info.name + " (" + circuitLink + ")]" );
 		}
 	}
 
-	return( "" );
+	return( "(unknown reference)" );
 }
 
 bool WikiMaker::findReferenceCircuitLink( MindCircuitConnectionDef *link , XmlCircuitInfo& info , String& circuitLink ) {
