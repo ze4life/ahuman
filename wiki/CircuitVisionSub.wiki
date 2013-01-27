@@ -10,9 +10,13 @@ Circuit is part of aHuman target integrated biological model.
 (generated)
 
 || *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||
+|| [BrainAreaAVA AVA] || AVA.MM.EWN || Edinger-Westphal Nucleus || Preganglionic Nucleus || Change Eye Pupil ||
+|| [BrainAreaBMA BMA] || BMA.SC.IZ.RPL || Retroposterolateral Nucleus || 1-order Motor Nucleus || Innervation of limbs muscles ||
 || [BrainAreaFCA FCA] || FCA.NC.LPFC || Lateral Prefrontal Cortex || Neocortex || Temporal Integration ||
+|| [BrainAreaHMA HMA] || HMA.HP.PRF.GCR || Gigantocellular Reticular Nucleus || Premotor Nucleus || Mediate head movements ||
 || [BrainAreaHMA HMA] || HMA.HP.PRF.RPO || Oral Pontine Reticular Nucleus || Premotor Nucleus || Mediation of changing to and from REM sleep ||
 || [BrainAreaHMA HMA] || HMA.MM.INMLF || Interstitial Nucleus of Medial Longitudinal Fasciculus || Motor Relay Nucleus || Controls vertical gaze ||
+|| [BrainAreaHMA HMA] || HMA.SC.VH.ISL || Spinal Accessory Nucleus || Premotor Nucleus || Control of neck ||
 || [BrainAreaMCA MCA] || MCA.NC.MC || Motor Cortex || Neocortex || Execution of required voluntary movements ||
 || [BrainAreaMCA MCA] || MCA.NC.PMC.F2 || Dorsal Caudal Premotor Cortex || Neocortex || Guiding reaching ||
 || [BrainAreaMCA MCA] || MCA.NC.PMC.F4 || Ventral Caudal Premotor Cortex || Neocortex || Sensory guidance of movement ||
@@ -25,9 +29,14 @@ Circuit is part of aHuman target integrated biological model.
 || [BrainAreaVBA VBA] || VBA.FD.LGN || Lateral Geniculate Nucleus || Sensory Relay Nucleus || Temporal decorrelation ||
 || [BrainAreaVBA VBA] || VBA.FD.PV.IPV || Inferior Pulvinar || Sensory Relay Nucleus || Dorsal =Where= Stream ||
 || [BrainAreaVBA VBA] || VBA.FD.PV.LPV || Lateral Pulvinar || Sensory Relay Nucleus || Ventral =What= Stream ||
+|| [BrainAreaVBA VBA] || VBA.FD.PV.MPV || Medial Pulvinar || Sensory Relay Nucleus || Integration of associative cortical information and projects to visuomotor-related cortex ||
 || [BrainAreaVBA VBA] || VBA.FD.RT || Retina || 1-order Sensory Nucleus || Spatial decorrelation through center surround inhibition ||
+|| [BrainAreaVBA VBA] || VBA.HP.ABD || Abducens Nucleus || Motor Relay Nucleus || Conjugated movements of both eyes ||
 || [BrainAreaVBA VBA] || VBA.MM.OCN || Oculomotor Nucleus || Motor Relay Nucleus || Change Eye Direction ||
+|| [BrainAreaVBA VBA] || VBA.MM.PT.NOT || Nucleus of Optic Tract || Sensory Relay Nucleus || Encode retinal error information during smooth pursuit eye movements ||
+|| [BrainAreaVBA VBA] || VBA.MM.PT.PON || Pretectal Olivary Nucleus || Sensory Control Nucleus || Pupillary light reflex and modulating subcortical nuclei involved in circadian rhythms ||
 || [BrainAreaVBA VBA] || VBA.MM.SC || Superior Colliculus || Sensory Control Nucleus || Direct behavioral responses toward specific points in egocentric space, induce saccadic eye movement ||
+|| [BrainAreaVBA VBA] || VBA.MM.TRH || Trochlear Nucleus || Motor Relay Nucleus || Change Eye Direction ||
 || [BrainAreaVCA VCA] || VCA.NC.V1 || Primary Visual Cortex || Neocortex || Detect color, shape and movements ||
 || [BrainAreaVCA VCA] || VCA.NC.V2 || Secondary Visual Cortex || Neocortex || Storage of Object Recognition Memory ||
 
@@ -40,8 +49,16 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitVisionSub.dot.jpg
 || FCA.NC.LPFC || MCA.NC.PMC.F5 || neocortex-neocortex || (unknown reference) ||
 || FCA.NC.LPFC || MCA.NC.PMC.FEF || neocortex-neocortex || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (DLPFC -> FEF)] ||
 || FCA.NC.LPFC || MCA.NC.SMC || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (LPC -> pre-SMA)] ||
+|| HMA.HP.PRF.GCR || BMA.SC.IZ.RPL || nucleus-nucleus || (unknown reference) ||
+|| HMA.HP.PRF.RPO || HMA.SC.VH.ISL || nucleus-nucleus || (unknown reference) ||
+|| HMA.HP.PRF.RPO || VBA.HP.ABD || nucleus-nucleus || (unknown reference) ||
+|| HMA.HP.PRF.RPO || VBA.MM.OCN || nucleus-nucleus || (unknown reference) ||
+|| HMA.MM.INMLF || VBA.MM.OCN || neocortex-nucleus || (unknown reference) ||
+|| HMA.MM.INMLF || VBA.MM.TRH || neocortex-nucleus || (unknown reference) ||
 || MCA.NC.PMC.F2 || MCA.NC.MC || neocortex-neocortex || (unknown reference) ||
 || MCA.NC.PMC.F5 || MCA.NC.MC || neocortex-neocortex || (unknown reference) ||
+|| MCA.NC.PMC.FEF || HMA.HP.PRF.GCR || neocortex-nucleus || (unknown reference) ||
+|| MCA.NC.PMC.FEF || HMA.HP.PRF.RPO || neocortex-nucleus || (unknown reference) ||
 || MCA.NC.PMC.FEF || HMA.MM.INMLF || neocortex-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (FEF -> riMLF)] ||
 || MCA.NC.PMC.FEF || VBA.MM.SC || neocortex-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (FEF -> SC)] ||
 || MCA.NC.SMC || MCA.NC.PMC.F2 || neocortex-neocortex || (unknown reference) ||
@@ -58,13 +75,21 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitVisionSub.dot.jpg
 || VBA.FD.PV.IPV || PCA.NC.IPL.MST || nucleus-neocortex || (unknown reference) ||
 || VBA.FD.PV.LPV || VCA.NC.V2 || nucleus-neocortex || (unknown reference) ||
 || VBA.FD.RT || VBA.FD.LGN || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (Retina -> LGN)] ||
+|| VBA.FD.RT || VBA.FD.PV.MPV || nucleus-nucleus || (unknown reference) ||
+|| VBA.FD.RT || VBA.MM.PT.PON || nucleus-nucleus || (unknown reference) ||
 || VBA.FD.RT || VBA.MM.SC || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (Retina -> SC)] ||
+|| VBA.MM.PT.PON || AVA.MM.EWN || nucleus-nucleus || (unknown reference) ||
+|| VBA.MM.PT.PON || VBA.FD.LGN || nucleus-nucleus || (unknown reference) ||
 || VBA.MM.SC || HMA.HP.PRF.RPO || nucleus-nucleus || (unknown reference) ||
 || VBA.MM.SC || HMA.MM.INMLF || nucleus-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (SC -> riMLF)] ||
+|| VBA.MM.SC || HMA.SC.VH.ISL || nucleus-nucleus || (unknown reference) ||
 || VBA.MM.SC || VBA.FD.LGN || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCs -> LGN)] ||
 || VBA.MM.SC || VBA.FD.PV.IPV || nucleus-nucleus || (unknown reference) ||
 || VBA.MM.SC || VBA.FD.PV.LPV || nucleus-nucleus || (unknown reference) ||
+|| VBA.MM.SC || VBA.HP.ABD || nucleus-nucleus || [http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html Retina and superior colliculus targets (SC -> Abducens)] ||
 || VBA.MM.SC || VBA.MM.OCN || nucleus-nucleus || [http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html Retina and superior colliculus targets (SC -> Oculomotor)] ||
+|| VBA.MM.SC || VBA.MM.PT.NOT || nucleus-nucleus || (unknown reference) ||
+|| VBA.MM.SC || VBA.MM.TRH || nucleus-nucleus || [http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html Retina and superior colliculus targets (SC -> Trochlear)] ||
 || VCA.NC.V1 || VBA.MM.SC || neocortex-nucleus || (unknown reference) ||
 || VCA.NC.V2 || VBA.MM.SC || neocortex-nucleus || (unknown reference) ||
 
