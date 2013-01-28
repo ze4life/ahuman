@@ -1,8 +1,8 @@
-#summary Vision Perception in Neocortex
-@@[Home] -> [BiologicalLifeResearch] -> [CircuitVisionNeocortex]
+#summary Vision Perception
+@@[Home] -> [BiologicalLifeResearch] -> [CircuitVisionPerception]
 ----
 
-This page covers components and connections of circuit Vision Perception in Neocortex.
+This page covers components and connections of circuit Vision Perception.
 Circuit is part of aHuman target integrated biological model.
 
 (generated)
@@ -10,19 +10,19 @@ Circuit is part of aHuman target integrated biological model.
 (generated)
 
 || *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||
-|| [BrainAreaFCA FCA] || FCA.NC.LPFC || Lateral Prefrontal Cortex || Neocortex || Temporal Integration ||
-|| [BrainAreaMCA MCA] || MCA.NC.MC || Motor Cortex || Neocortex || Execution of required voluntary movements ||
-|| [BrainAreaMCA MCA] || MCA.NC.PMC.F2 || Dorsal Caudal Premotor Cortex || Neocortex || Guiding reaching ||
-|| [BrainAreaMCA MCA] || MCA.NC.PMC.F4 || Ventral Caudal Premotor Cortex || Neocortex || Sensory guidance of movement ||
-|| [BrainAreaMCA MCA] || MCA.NC.PMC.F5 || Ventral Rostral Premotor Cortex || Neocortex || Shaping hand during grasping ||
-|| [BrainAreaMCA MCA] || MCA.NC.PMC.FEF || Frontal Eye Field || Neocortex || Initiation of eye movements ||
-|| [BrainAreaMCA MCA] || MCA.NC.SMC || Supplementary Motor Cortex || Neocortex || Process sequences of movements and coordinate bilateral movements ||
 || [BrainAreaPCA PCA] || PCA.NC.IPL.MST || Medial Superior Temporal Area || Neocortex || Image stabilization, predictive target tracking ||
 || [BrainAreaPCA PCA] || PCA.NC.IPL.SMW || Supramarginal Wernike Cortex || Neocortex || Phonological and articulatory processing of words ||
 || [BrainAreaPCA PCA] || PCA.NC.IPS.PEF || Posterior Eye Field || Neocortex || Reflexive saccade triggering ||
 || [BrainAreaPCA PCA] || PCA.NC.IPS.VIP || Ventral Intraparietal Sulcus || Neocortex || Merge visual, somatosensory, auditory, and vestibular senses ||
 || [BrainAreaPCA PCA] || PCA.NC.SPL.PG || Caudal Precuneus || Neocortex || Controlling spatially guided behavior with respect to visual and tactile information ||
 || [BrainAreaPHA PHA] || PHA.NC.PH.ET || Enthorhinal Cortex || Neocortex || Memory consolidation ||
+|| [BrainAreaVBA VBA] || VBA.FD.LGN || Lateral Geniculate Nucleus || Sensory Relay Nucleus || Temporal decorrelation ||
+|| [BrainAreaVBA VBA] || VBA.FD.PV.IPV || Inferior Pulvinar || Sensory Relay Nucleus || Dorsal =Where= Stream ||
+|| [BrainAreaVBA VBA] || VBA.FD.PV.LPV || Lateral Pulvinar || Sensory Relay Nucleus || Ventral =What= Stream ||
+|| [BrainAreaVBA VBA] || VBA.FD.PV.MPV || Medial Pulvinar || Sensory Relay Nucleus || Integration of associative cortical information and projects to visuomotor-related cortex ||
+|| [BrainAreaVBA VBA] || VBA.FD.RT || Retina || 1-order Sensory Nucleus || Spatial decorrelation through center surround inhibition ||
+|| [BrainAreaVBA VBA] || VBA.MM.PT.PON || Pretectal Olivary Nucleus || Sensory Control Nucleus || Pupillary light reflex and modulating subcortical nuclei involved in circadian rhythms ||
+|| [BrainAreaVBA VBA] || VBA.MM.SC || Superior Colliculus || Sensory Control Nucleus || Direct behavioral responses toward specific points in egocentric space, induce saccadic eye movement ||
 || [BrainAreaVCA VCA] || VCA.NC.IT.TE || Inferotemporal Cortex || Neocortex || Represent different views of objects ||
 || [BrainAreaVCA VCA] || VCA.NC.IT.TEO || Preoccipital Inferotemporal Area || Neocortex || Represent different features of objects ||
 || [BrainAreaVCA VCA] || VCA.NC.MT || Middle Temporal Area || Neocortex || Integration of local motion signals into global percepts ||
@@ -35,30 +35,25 @@ Circuit is part of aHuman target integrated biological model.
 = Connections =
 (generated)
 
-http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitVisionNeocortex.dot.jpg
+http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitVisionPerception.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| FCA.NC.LPFC || MCA.NC.PMC.F5 || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (LPC -> vPM, abstract)] ||
-|| FCA.NC.LPFC || MCA.NC.PMC.FEF || neocortex-neocortex || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (DLPFC -> FEF)] ||
-|| FCA.NC.LPFC || MCA.NC.SMC || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (LPC -> pre-SMA)] ||
-|| MCA.NC.PMC.F2 || MCA.NC.MC || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (dPM -> MI, abstract)] ||
-|| MCA.NC.PMC.F5 || MCA.NC.MC || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (vPM -> MI, abstract)] ||
-|| MCA.NC.SMC || MCA.NC.PMC.F2 || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (pre-SMA -> dPM, abstract)] ||
-|| MCA.NC.SMC || MCA.NC.PMC.F5 || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (pre-SMA -> vPM, abstract)] ||
-|| MCA.NC.SMC || MCA.NC.PMC.FEF || neocortex-neocortex || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (SEF -> FEF)] ||
-|| PCA.NC.IPL.MST || FCA.NC.LPFC || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (IPL -> LPC, abstract)] ||
-|| PCA.NC.IPL.MST || MCA.NC.PMC.F4 || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (IPL -> vPM, abstract)] ||
 || PCA.NC.IPL.MST || PCA.NC.IPL.SMW || neocortex-neocortex || [http://www.hindawi.com/journals/nri/2012/719056 Visual Dorsal Pathway (MST -> IPL, abstract)] ||
 || PCA.NC.IPL.MST || PCA.NC.SPL.PG || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (MST -> 7a)] ||
-|| PCA.NC.IPS.PEF || FCA.NC.LPFC || neocortex-neocortex || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (PEF -> DLPFC)] ||
-|| PCA.NC.IPS.PEF || MCA.NC.PMC.FEF || neocortex-neocortex || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (PEF -> FEF)] ||
 || PCA.NC.IPS.PEF || PCA.NC.SPL.PG || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (LIP -> 7a)] ||
 || PCA.NC.IPS.VIP || PCA.NC.IPL.SMW || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (IPS -> IPL, abstract)] ||
 || PCA.NC.IPS.VIP || PCA.NC.SPL.PG || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (VIP -> 7a)] ||
-|| PCA.NC.SPL.PG || MCA.NC.PMC.F2 || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (SPL -> dPM, abstract)] ||
-|| VCA.NC.IT.TE || MCA.NC.PMC.FEF || neocortex-neocortex || not linked reference, circuit=Saccades and smooth movements (TEF -> FEF, abstract) ||
+|| VBA.FD.LGN || VCA.NC.V1 || nucleus-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (LGN -> V1)] ||
+|| VBA.FD.PV.IPV || PCA.NC.IPL.MST || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (Pulvinar -> ParietalCortex, abstract)] ||
+|| VBA.FD.PV.LPV || VCA.NC.V2 || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (Pulvinar -> VisualCortex, abstract)] ||
+|| VBA.FD.RT || VBA.FD.LGN || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (Retina -> LGN)] ||
+|| VBA.FD.RT || VBA.FD.PV.MPV || nucleus-nucleus || [http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html Retina and superior colliculus targets (Retina -> Pulvinar, abstract)] ||
+|| VBA.FD.RT || VBA.MM.PT.PON || nucleus-nucleus || [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm Targets of retina neurons (Retina -> Pretectum, abstract)] ||
+|| VBA.MM.PT.PON || VBA.FD.LGN || nucleus-nucleus || (unknown reference) ||
+|| VBA.MM.SC || VBA.FD.LGN || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCs -> LGN)] ||
+|| VBA.MM.SC || VBA.FD.PV.IPV || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCs -> Pulvinar, abstract)] ||
+|| VBA.MM.SC || VBA.FD.PV.LPV || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCs -> Pulvinar, abstract)] ||
 || VCA.NC.IT.TE || PHA.NC.PH.ET || neocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (ITCortex -> EnthCortex, abstract)] ||
-|| VCA.NC.IT.TEO || PCA.NC.IPS.PEF || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (IT -> IPS, abstract)] ||
 || VCA.NC.IT.TEO || VCA.NC.IT.TE || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (TEO -> TE)] ||
 || VCA.NC.MT || PCA.NC.IPL.MST || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (MT -> MST)] ||
 || VCA.NC.MT || PCA.NC.IPS.PEF || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (MT -> LIP)] ||
