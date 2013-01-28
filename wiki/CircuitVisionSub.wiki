@@ -12,6 +12,7 @@ Circuit is part of aHuman target integrated biological model.
 || *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||
 || [BrainAreaAVA AVA] || AVA.MM.EWN || Edinger-Westphal Nucleus || Preganglionic Nucleus || Change Eye Pupil ||
 || [BrainAreaAVA AVA] || AVA.PN.PSYM.CLG || Ciliary Ganglion || Parasymp. Gang. || Control pupillary diameter ||
+|| [BrainAreaBGA BGA] || BGA.FT.CN || Caudate Nucleus || Inhibitory Nucleus || Excitation of correct action schemas and selection of appropriate sub-goals based on evaluation of action-outcomes ||
 || [BrainAreaBMA BMA] || BMA.SC.IZ.RPL || Retroposterolateral Nucleus || 1-order Motor Nucleus || Innervation of limbs muscles ||
 || [BrainAreaHMA HMA] || HMA.HM.TGM.PA5 || Paratrigeminal Nucleus || 1-order Sensory Nucleus || Orofacial nociceptive sensory processing ||
 || [BrainAreaHMA HMA] || HMA.HM.TGM.STR || Spinal Trigeminal Nucleus || 1-order Sensory Nucleus || Discriminative sensation and light touch of face, conscious proprioception ||
@@ -39,6 +40,7 @@ Circuit is part of aHuman target integrated biological model.
 || [BrainAreaVBA VBA] || VBA.MM.SC || Superior Colliculus || Sensory Control Nucleus || Direct behavioral responses toward specific points in egocentric space, induce saccadic eye movement ||
 || [BrainAreaVBA VBA] || VBA.MM.SOA || Supraoculomotor Area || Motor Control || Control of vergence ||
 || [BrainAreaVBA VBA] || VBA.MM.TRH || Trochlear Nucleus || Motor Relay Nucleus || Change Eye Direction ||
+|| [BrainAreaVCA VCA] || VCA.NC.IT.TE || Inferotemporal Cortex || Neocortex || Represent different views of objects ||
 || [BrainAreaVCA VCA] || VCA.NC.V1 || Primary Visual Cortex || Neocortex || Detect color, shape and movements ||
 || [BrainAreaVCA VCA] || VCA.NC.V2 || Secondary Visual Cortex || Neocortex || Storage of Object Recognition Memory ||
 || [BrainAreaVCA VCA] || VCA.NC.V3 || Associative Visual Cortex || Neocortex || Processing of global motion, dynamic shapes ||
@@ -64,8 +66,9 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitVisionSub.dot.jpg
 || HMA.MM.INMLF || VBA.MM.TRH || neocortex-nucleus || (unknown reference) ||
 || MCA.NC.MC || HMA.HP.PRF.PDT || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> RF, abstract)] ||
 || MCA.NC.PG.S1 || HMA.HM.TGM.PA5 || neocortex-nucleus || (unknown reference) ||
+|| MCA.NC.PMC.FEF || BGA.FT.CN || neocortex-nucleus || not linked reference, circuit=Saccades and smooth movements (FEF -> CN) ||
 || MCA.NC.PMC.FEF || HMA.HP.PRF.GCR || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> RF, abstract)] ||
-|| MCA.NC.PMC.FEF || HMA.HP.PRF.RPO || neocortex-nucleus || not specified reference, circuit=Saccades and smooth movements (FEF -> DLPN) ||
+|| MCA.NC.PMC.FEF || HMA.HP.PRF.RPO || neocortex-nucleus || not linked reference, circuit=Saccades and smooth movements (FEF -> DLPN) ||
 || MCA.NC.PMC.FEF || HMA.MM.INMLF || neocortex-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (FEF -> riMLF)] ||
 || MCA.NC.PMC.FEF || VBA.MM.SC || neocortex-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (FEF -> SC)] ||
 || PCA.NC.IPL.MST || VBA.MM.SC || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> SCi, abstract)] ||
@@ -91,6 +94,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitVisionSub.dot.jpg
 || VBA.MM.SC || VBA.MM.TRH || nucleus-nucleus || [http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html Retina and superior colliculus targets (SC -> Trochlear)] ||
 || VBA.MM.SOA || AVA.MM.EWN || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SupraOculomotor -> EWN)] ||
 || VBA.MM.SOA || VBA.MM.OCN || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SupraOculomotor -> Oculomotor)] ||
+|| VCA.NC.IT.TE || HMA.HP.PRF.RPO || neocortex-nucleus || not linked reference, circuit=Saccades and smooth movements (TEF -> DLPN, abstract) ||
 || VCA.NC.V1 || VBA.MM.SC || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (VisualCortex -> SCs, abstract)] ||
 || VCA.NC.V2 || VBA.MM.SC || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (VisualCortex -> SCs, abstract)] ||
 || VCA.NC.V3 || VBA.MM.SOA || neocortex-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (VAC -> SupraOculomotor)] ||
