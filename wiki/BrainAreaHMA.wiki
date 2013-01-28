@@ -38,20 +38,20 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/HMA.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || HMA.HM.TGM.PA5 || HMA.HP.FCM || nucleus-nucleus || (unknown reference) ||
-|| HMA.HM.TGM.STR || HMA.HP.PRF.GCR || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex ()] ||
-|| HMA.HP.PRF.PDT || HMA.HP.FCM || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex ()] ||
-|| HMA.HP.PRF.RPO || HMA.SC.VH.ISL || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system ()] ||
+|| HMA.HM.TGM.STR || HMA.HP.PRF.GCR || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SpinalTrigeminal -> RF, abstract)] ||
+|| HMA.HP.PRF.PDT || HMA.HP.FCM || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (RF -> Facial, abstract)] ||
+|| HMA.HP.PRF.RPO || HMA.SC.VH.ISL || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (RF -> SpinalCord, abstract)] ||
 || HMA.HP.PTP.PTR || HMA.HM.TGM.STR || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (PrincipalTrigeminal -> SpinalTrigeminal)] ||
 
 *External Inbound Region Connections:*
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
-|| MBA || HMA.HP.PRF.CRF || MBA.HP.CR || Cerebellum || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision ()] ||
+|| MBA || HMA.HP.PRF.CRF || MBA.HP.CR || Cerebellum || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (CR -> RF, abstract)] ||
 || MCA || HMA.HM.TGM.PA5 || MCA.NC.PG.S1 || Somatosensory Cortex || neocortex-nucleus || (unknown reference) ||
-|| MCA || HMA.HP.PRF.GCR || MCA.NC.PMC.FEF || Frontal Eye Field || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system ()] ||
-|| MCA || HMA.HP.PRF.PDT || MCA.NC.MC || Motor Cortex || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system ()] ||
+|| MCA || HMA.HP.PRF.GCR || MCA.NC.PMC.FEF || Frontal Eye Field || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> RF, abstract)] ||
+|| MCA || HMA.HP.PRF.PDT || MCA.NC.MC || Motor Cortex || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> RF, abstract)] ||
 || MCA || HMA.HP.PRF.RPO || MCA.NC.PMC.FEF || Frontal Eye Field || neocortex-nucleus || not specified reference, circuit=Saccades and smooth movements (FEF -> DLPN ||
 || MCA || HMA.MM.INMLF || MCA.NC.PMC.FEF || Frontal Eye Field || neocortex-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (FEF -> riMLF)] ||
-|| VBA || HMA.HP.PRF.RPO || VBA.MM.SC || Superior Colliculus || nucleus-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control ()] ||
+|| VBA || HMA.HP.PRF.RPO || VBA.MM.SC || Superior Colliculus || nucleus-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (SC -> PPRF, abstract)] ||
 || VBA || HMA.MM.INMLF || VBA.MM.SC || Superior Colliculus || nucleus-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (SC -> riMLF)] ||
 || VBA || HMA.SC.VH.ISL || VBA.MM.SC || Superior Colliculus || nucleus-nucleus || (unknown reference) ||
 
@@ -60,8 +60,8 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/HMA.dot.jpg
 || BMA || HMA.HP.PRF.GCR || BMA.SC.IZ.RPL || Retroposterolateral Nucleus || nucleus-nucleus || (unknown reference) ||
 || VBA || HMA.HM.TGM.STR || VBA.MM.OCN || Oculomotor Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SpinalTrigeminal -> Oculomotor)] ||
 || VBA || HMA.HP.FCM || VBA.HP.ABD || Abducens Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Facial -> Abducens)] ||
-|| VBA || HMA.HP.PRF.RPO || VBA.HP.ABD || Abducens Nucleus || nucleus-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) ()] ||
-|| VBA || HMA.HP.PRF.RPO || VBA.MM.OCN || Oculomotor Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system ()] ||
+|| VBA || HMA.HP.PRF.RPO || VBA.HP.ABD || Abducens Nucleus || nucleus-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) (PPRF -> Abducens, abstract)] ||
+|| VBA || HMA.HP.PRF.RPO || VBA.MM.OCN || Oculomotor Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (RF -> OPN, abstract)] ||
 || VBA || HMA.MM.INMLF || VBA.MM.OCN || Oculomotor Nucleus || neocortex-nucleus || (unknown reference) ||
 || VBA || HMA.MM.INMLF || VBA.MM.TRH || Trochlear Nucleus || neocortex-nucleus || (unknown reference) ||
 
