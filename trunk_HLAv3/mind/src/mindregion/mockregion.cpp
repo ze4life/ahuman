@@ -103,6 +103,29 @@ NeuroSignalSet *MockRegion::handleApplyNeuroLinkMessage( NeuroLink *link , Neuro
 			return( NULL );
 		}
 	}
+	else if( typeName.equals( "ganglion" ) ) {
+		if( entity.equals( "ganglion.input" ) ) {
+			// do not generate repeated signal within NEURON_FULL_RELAX_ms
+			if( msDelta < NEURON_FULL_RELAX_ms ) {
+				logger.logInfo( inputSignal -> getId() + ": signal is ignored, as coming just immediately after another one" );
+				return( NULL );
+			}
+
+			// ignore if modulation exists
+			RFC_INT64 msDeltaModulation = msNow - msLastModulation;
+			if( msDeltaModulation < NEURON_INHIBIT_DELAY_ms ) {
+				logger.logInfo( inputSignal -> getId() + ": signal is ignored, as blocked by modulatory signal" );
+				return( NULL );
+			}
+
+			set = new NeuroSignalSet;
+			set -> addSetItem( getNeuroLinkSource( "ganglion.output" ) , new NeuroSignal() );
+		}
+		else if( entity.equals( "ganglion.feedback" ) ) {
+			msLastModulation = msNow;
+			return( NULL );
+		}
+	}
 
 	return( set );
 }

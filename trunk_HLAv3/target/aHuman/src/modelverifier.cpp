@@ -14,15 +14,13 @@ ModelVerifier::~ModelVerifier() {
 
 void ModelVerifier::verify() {
 	logger.logInfo( "verify: VERIFY MIND SETUP..." );
-	
+
+	MindModel::load();
+
 	// collect mind regions
 	MindService *ms = MindService::getService();
 	MindMap *mm = ms -> getMindMap();
 	mm -> getMapRegions( regionMap );
-
-	// read definitions
-	hmindxml.load();
-	circuitsxml.load();
 
 	bool verifyHierarchy = modelArea.getBooleanProperty( "verifyHierarchy" , true );
 	bool verifyCircuits = modelArea.getBooleanProperty( "verifyCircuits" , true );
@@ -210,7 +208,7 @@ bool ModelVerifier::checkCircuits_verifyCircuitLink( XmlCircuitInfo& circuit , X
 
 	// specific check if mapped to upper items
 	if( regionSrcId.isEmpty() || regionDstId.isEmpty() ) {
-		bool check = checkCircuits_verifyCircuitChildLinks( compSrc , compDst , regionSrcId , regionDstId );
+		bool check = checkCircuitCoveredByModel( compSrc , compDst );
 		if( check == false )
 			logger.logError( "checkCircuits_verifyCircuitLink: not found covering child link element=" + compSrc + " to element=" + compDst + ", from circuit component=" + link.compSrc + " to component=" + link.compDst );
 		return( check );
@@ -231,42 +229,6 @@ bool ModelVerifier::checkCircuits_verifyCircuitLink( XmlCircuitInfo& circuit , X
 
 	// this link does not exist in mind model
 	logger.logError( "checkCircuits_verifyCircuitLink: not found link from region=" + regionSrcId + " to region=" + regionDstId + ", from circuit component=" + link.compSrc + " to component=" + link.compDst );
-	return( false );
-}
-
-bool ModelVerifier::checkCircuits_verifyCircuitChildLinks( String compSrc , String compDst , String regionSrcId , String regionDstId ) {
-	// collect sets of child regions
-	StringList srcRegions;
-	if( regionSrcId.isEmpty() )
-		hmindxml.getChildRegions( compSrc , srcRegions );
-	else
-		srcRegions.add( regionSrcId );
-
-	StringList dstRegions;
-	if( regionDstId.isEmpty() )
-		hmindxml.getChildRegions( compDst , dstRegions );
-	else
-		dstRegions.add( regionDstId );
-
-	// check mapping
-	MindService *ms = MindService::getService();
-	for( int k1 = 0; k1 < srcRegions.count(); k1++ ) {
-		String srcRegionId = srcRegions.get( k1 );
-		if( !ms -> isMindRegion( srcRegionId ) )
-			continue;
-
-		MindRegion *srcRegion = ms -> getMindRegion( srcRegionId );
-		for( int k2 = 0; k2 < dstRegions.count(); k2++ ) {
-			String dstRegionId = dstRegions.get( k2 );
-			if( !ms -> isMindRegion( dstRegionId ) )
-				continue;
-
-			MindRegion *dstRegion = ms -> getMindRegion( dstRegionId );
-			if( srcRegion -> checkLinkedTo( dstRegion ) )
-				return( true );
-		}
-	}
-
 	return( false );
 }
 

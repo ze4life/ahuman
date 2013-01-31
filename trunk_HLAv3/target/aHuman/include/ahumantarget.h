@@ -5,6 +5,7 @@
 /*#########################################################################*/
 
 class AHumanTarget;
+class MindModel;
 class ScenarioPlayer;
 class ModelVerifier;
 class WikiMaker;
@@ -48,7 +49,27 @@ protected:
 /*#########################################################################*/
 /*#########################################################################*/
 
-class ScenarioPlayer : public Object {
+class MindModel : public Object {
+public:
+	MindModel();
+	virtual ~MindModel();
+	virtual const char *getClass() { return "MindModel"; };
+
+public:
+	void load();
+
+	bool checkCircuitCoveredByModel( String compSrc , String compDst );
+	bool checkCircuitCoveredByModelLink( String compSrc , String compDst , String linkRegionSrc , String linkRegionDst );
+
+public:
+	XmlHMind hmindxml;
+	XmlCircuits circuitsxml;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class ScenarioPlayer : public MindModel {
 public:
 	ScenarioPlayer();
 	virtual ~ScenarioPlayer();
@@ -64,7 +85,7 @@ private:
 /*#########################################################################*/
 /*#########################################################################*/
 
-class ModelVerifier : public Object {
+class ModelVerifier : public MindModel {
 public:
 	ModelVerifier( Xml modelArea );
 	virtual ~ModelVerifier();
@@ -82,15 +103,12 @@ private:
 	bool checkCircuits_verifyComponents( String circuit );
 	bool checkCircuits_verifyLinks( String circuit );
 	bool checkCircuits_verifyCircuitLink( XmlCircuitInfo& circuit , XmlCircuitLinkInfo& link );
-	bool checkCircuits_verifyCircuitChildLinks( String compSrc , String compDst , String regionSrcId , String regionDstId );
 	bool checkMindModel_verifyRegion( MindRegionDef *regionDef );
 	bool checkMindModel_verifyLinkedConnectors( MindRegionDef *regionDef , MindRegion *region );
 	bool checkMindModel_verifyRegionCircuits( MindRegionDef *regionDef , MindRegion *region );
 
 private:
 	Xml modelArea;
-	XmlHMind hmindxml;
-	XmlCircuits circuitsxml;
 
 	MapStringToClass<MindRegionDef> regionMap;
 	MapStringToClass<MindRegionDef> hierarchyMap;
@@ -99,7 +117,7 @@ private:
 /*#########################################################################*/
 /*#########################################################################*/
 
-class WikiMaker : public Object {
+class WikiMaker : public MindModel {
 public:
 	WikiMaker( Xml wiki );
 	virtual ~WikiMaker();
@@ -120,12 +138,10 @@ private:
 	void createAreaPages();
 	void createComponentPages();
 
-	bool findReferenceCircuitLink( MindCircuitConnectionDef *link , XmlCircuitInfo& info , String& circuitLink );
+	bool findReferenceCircuitLink( MindCircuitConnectionDef *link , XmlCircuitInfo& info , String& circuitLink , bool directOnly );
 
 public:
 	Xml wiki;
-	XmlHMind hmindxml;
-	XmlCircuits circuitsxml;
 };
 
 /*#########################################################################*/
