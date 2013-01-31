@@ -9,7 +9,7 @@
 				function="Error Correction" 
 				notes="Part of limbic lobe"
 				/>
-			<element id="FCA.NC.BRA" name="Broca's Area" mapped="true" brodmannid="44,45" type="Neocortex"
+			<element id="FCA.NC.BRA" name="Broca's Area" mapped="true" brodmannid="44" type="Neocortex"
 				function="Speech Engine" 
 				/>
 			<element id="FCA.NC.IPG" name="Inferior Prefrontal Gyrus" mapped="true" brodmannid="47" type="Neocortex"
@@ -19,9 +19,9 @@
 				function="Visceral representation, pain, habits" 
 				notes="Interoception, merges tactile and auditory streams"
 				/>
-			<element id="FCA.NC.LPFC" name="Lateral Prefrontal Cortex" mapped="true" brodmannid="08,09,46" type="Neocortex"
+			<element id="FCA.NC.LPFC" name="Lateral Prefrontal Cortex" mapped="true" brodmannid="09,46" type="Neocortex"
 				function="Temporal Integration" 
-				notes="Includes FEF"
+				notes="FEF is in PMC"
 				/>
 			<element id="MCA.NC.MC" name="Motor Cortex" mapped="true" brodmannid="04" type="Neocortex"
 				function="Execution of required voluntary movements" 
@@ -54,9 +54,10 @@
 						notes="Mirror neurons - both sensory and motor"
 						/>
 				</element>
-				<element id="MCA.NC.PMC.FEF" name="Frontal Eye Field" mapped="true" brodmannid="08" type="Neocortex"
+				<element id="MCA.NC.PMC.FEF" name="Frontal Eye Field" mapped="true" brodmannid="08,45" type="Neocortex"
 					function="Initiation of eye movements"
 					notes="Voluntary saccades and pursuit eye movements"
+					comments="Ventral FEF=BA-45, dorsal FEF=BA-08"
 					/>
 			</element>
 
@@ -1041,8 +1042,8 @@
 
 		<element id="VBA.MM.TRH" name="Trochlear Nucleus" mapped="true" type="Motor Relay Nucleus"
 			refs="NL:[http://neurolex.org/wiki/Category:Trochlear_nucleus Trochlear nucleus]"
-			function="Change Eye Direction"
-			notes="Muscle nucleus"
+			function="Control superior oblique muscles of eyes"
+			notes="Muscle nucleus, change eye direction"
 			/>
 
 		<element id="FBA.MM.VTA" name="Ventral Tegmental Area" mapped="true" type="Excitatory Nucleus"
@@ -1180,26 +1181,28 @@
 
 		<element id="HP.PRF" name="Pontine Reticular Formation" refs="NL:[http://neurolex.org/wiki/Category:Pontine_reticular_formation Pontine reticular formation]">
 			<element id="HP.PRF.MPRF" refs="NL:[http://neurolex.org/wiki/Category:Medial_pontine_reticular_formation Medial pontine reticular formation]">
-				<element id="HMA.HP.PRF.CRF" name="Caudal Pontine Reticular Nucleus" mapped="true" type="Premotor Nucleus"
-					refs="NL:[http://neurolex.org/wiki/Category:Caudal_pontine_reticular_nucleus Caudal pontine reticular nucleus]"
+				<element id="HP.PRF.PPRF" name="Paramedian Pontine Reticular Formation">
+					<element id="HMA.HP.PRF.RPO" name="Oral Pontine Reticular Nucleus" mapped="true" type="Premotor Nucleus"
+						refs="NL:[http://neurolex.org/wiki/Category:Oral_pontine_reticular_nucleus Oral pontine reticular nucleus]"
+						function="Mediation of changing to and from REM sleep"
+						notes="Part of horizontal gaze center, projects to spinal cord and abducens"
+						/>
+					<element id="HMA.HP.PRF.CRF" name="Caudal Pontine Reticular Nucleus" mapped="true" type="Premotor Nucleus"
+						refs="NL:[http://neurolex.org/wiki/Category:Caudal_pontine_reticular_nucleus Caudal pontine reticular nucleus]"
+						function="Mediate head movements"
+						notes="Grinding of the teeth in sleep, projections from superior colliculus, to spinal cord, extends to facial"
+						/>
+				</element>
+				<element id="HMA.HP.PRF.GCR" name="Gigantocellular Reticular Nucleus" mapped="true" type="Premotor Nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Lateral_paragigantocellular_nucleus Lateral paragigantocellular nucleus]"
 					function="Mediate head movements"
-					notes="Grinding of the teeth in sleep"
-					/>
-				<element id="HMA.HP.PRF.RPO" name="Oral Pontine Reticular Nucleus" mapped="true" type="Premotor Nucleus"
-					refs="NL:[http://neurolex.org/wiki/Category:Oral_pontine_reticular_nucleus Oral pontine reticular nucleus]"
-					function="Mediation of changing to and from REM sleep"
-					notes="Part of horizontal gaze center"
+					notes="Projects to hypoglossal nucleus, abducens"
 					/>
 				<element id="HMA.HP.PRF.PDT" name="Pontine Reticulotegmental Nucleus" mapped="true" type="Premotor Nucleus"
 					refs="NL:[http://neurolex.org/wiki/Category:Reticulotegmental_nucleus Reticulotegmental nucleus]"
 					function="Mediate saccadic eye movements"
 					notes="Inactivation leads to deficit of expression, but not learning"
-					comments="Nucleus of Bechterew, tegmentopontine reticular nucleus"
-					/>
-				<element id="HMA.HP.PRF.GCR" name="Gigantocellular Reticular Nucleus" mapped="true" type="Premotor Nucleus"
-					refs="NL:[http://neurolex.org/wiki/Category:Lateral_paragigantocellular_nucleus Lateral paragigantocellular nucleus]"
-					function="Mediate head movements"
-					notes="Projects to hypoglossal nucleus"
+					comments="Nucleus of Bechterew, tegmentopontine reticular nucleus, projections from superior colliculus"
 					/>
 			</element>
 			<element id="BMA.HP.PRF.PVR" name="Parvocellular Reticular Nucleus" mapped="true" type="Premotor Nucleus"
@@ -1253,6 +1256,7 @@
 			<element refs="NL:[http://neurolex.org/wiki/Category:Medial_vestibular_nucleus Medial vestibular nucleus]"/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Superior_vestibular_nucleus Superior vestibular nucleus]"/>
 		</element>
+
 		<element id="BMA.HP.VG" name="Vestibular Ganglion" mapped="true" type="1-order Sensory Nucleus"
 			refs="NL:[http://neurolex.org/wiki/Category:Vestibular_ganglion Vestibular ganglion]"
 			function="Contact with hair cells of vestibular sensory end organs"
@@ -1553,54 +1557,60 @@
 			</element>
 		</element>
 
-		<element id="SC.SYM" name="Sympathetic Nuclei">
-			<element id="AVA.SC.SYM.SCG" name="Superior Cervical Ganglion" mapped="true" type="Symp. Gang."
+	</division>
+
+	<division name="Peripheral Nervous System"
+		dotdef="color=darkorange"
+		>
+
+		<element id="PN.SYM" name="Sympathetic Nuclei">
+			<element id="AVA.PN.SYM.SCG" name="Superior Cervical Ganglion" mapped="true" type="Symp. Gang."
 				function="Eye, tear and salivatory glands"
 				notes="Th 1-5"
 				/>
-			<element id="AVA.SC.SYM.STG" name="Stellate Ganglion" mapped="true" type="Symp. Gang."
+			<element id="AVA.PN.SYM.STG" name="Stellate Ganglion" mapped="true" type="Symp. Gang."
 				function="Heart, Lung"
 				notes="Th 5-12"
 				/>
-			<element id="AVA.SC.SYM.CEG" name="Coelic Ganglion" mapped="true" type="Symp. Gang."
+			<element id="AVA.PN.SYM.CEG" name="Coelic Ganglion" mapped="true" type="Symp. Gang."
 				function="Liver, stomach, pancreas, small intestine"
 				notes="L 1-5"
 				/>
-			<element id="AVA.SC.SYM.SMG" name="Superior Mesenteric Ganglion" mapped="true" type="Symp. Gang."
+			<element id="AVA.PN.SYM.SMG" name="Superior Mesenteric Ganglion" mapped="true" type="Symp. Gang."
 				function="Large intestine, rectum"
 				notes="S 1-4"
 				/>
-			<element id="AVA.SC.SYM.IMG" name="Inferior Mesenteric Ganglion" mapped="true" type="Symp. Gang."
+			<element id="AVA.PN.SYM.IMG" name="Inferior Mesenteric Ganglion" mapped="true" type="Symp. Gang."
 				function="Bladder, reproductive organs"
 				notes="S 1-4"
 				/>
 		</element>
 
-		<element id="SC.PSYM" name="Parasympathetic Nuclei">
-			<element id="AVA.SC.PSYM.CLG" name="Ciliary Ganglion" mapped="true" type="Parasymp. Gang."
+		<element id="PN.PSYM" name="Parasympathetic Nuclei">
+			<element id="AVA.PN.PSYM.CLG" name="Ciliary Ganglion" mapped="true" type="Parasymp. Gang."
 				function="Control pupillary diameter"
 				notes="Sphincter muscles of the iris"
 				/>
-			<element id="AVA.SC.PSYM.EPG" name="Episcleral Ganglion" mapped="true" type="Parasymp. Gang."
+			<element id="AVA.PN.PSYM.EPG" name="Episcleral Ganglion" mapped="true" type="Parasymp. Gang."
 				function="Control curvature of lens"
 				notes="Sphincter muscles of the iris"
 				/>
-			<element id="AVA.SC.PSYM.SPG" name="Sphenopalatine Ganglion" mapped="true" type="Parasymp. Gang."
+			<element id="AVA.PN.PSYM.SPG" name="Sphenopalatine Ganglion" mapped="true" type="Parasymp. Gang."
 				function="Lacrimal gland and mucous membranes"
 				notes="Head and neck region"
 				/>
-			<element id="AVA.SC.PSYM.SXG" name="Submaxillary Ganglion" mapped="true" type="Parasymp. Gang."
+			<element id="AVA.PN.PSYM.SXG" name="Submaxillary Ganglion" mapped="true" type="Parasymp. Gang."
 				function="Submaxillary and sublingual salivary glands"
 				notes="Head and neck region"
 				/>
-			<element id="AVA.SC.PSYM.OTG" name="Otic Ganglion" mapped="true" type="Parasymp. Gang."
+			<element id="AVA.PN.PSYM.OTG" name="Otic Ganglion" mapped="true" type="Parasymp. Gang."
 				function="Parotid gland"
 				/>
-			<element id="AVA.SC.PSYM.CPG" name="Cranial Peripheral Ganglion" mapped="true" type="Parasymp. Gang."
+			<element id="AVA.PN.PSYM.CPG" name="Cranial Peripheral Ganglion" mapped="true" type="Parasymp. Gang."
 				function="Thoracic and abdominal organs, glands, and some blood vessels"
 				notes="c.n. X"
 				/>
-			<element id="AVA.SC.PSYM.PPG" name="Pelvic Peripheral Ganglion" mapped="true" type="Parasymp. Gang."
+			<element id="AVA.PN.PSYM.PPG" name="Pelvic Peripheral Ganglion" mapped="true" type="Parasymp. Gang."
 				function="Sigmoid, rectum, bladder, and external genitalia"
 				notes="Pelvic nerve fibers"
 				/>
