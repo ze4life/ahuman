@@ -5,15 +5,27 @@
 		<element id="NC.LOBE.ANT" name="Anterior Lobe"
 			dotdef="color=skyblue"
 			>
-			<element id="FCA.NC.ACG" name="Anterior Cingulate Cortex" mapped="true" brodmannid="24,32,33" type="Neocortex"
+			<element id="FCA.NC.ACG" name="Anterior Cingulate Cortex" type="Neocortex"
 				function="Error Correction" 
 				notes="Part of limbic lobe"
-				/>
+				>
+				<element id="FCA.NC.VACG" name="Ventral Anterior Cingulate Area" mapped="true" brodmannid="24" type="Neocortex"
+					function="Seat of Free Will" 
+					/>
+				<element id="FCA.NC.DACG" name="Dorsal Anterior Cingulate Area" mapped="true" brodmannid="32" type="Neocortex"
+					function="Rational Thought Processes" 
+					/>
+				<element id="FCA.NC.PACG" name="Pregenual Area" mapped="true" brodmannid="33" type="Neocortex"
+					function="Sensation of Emotion" 
+					notes="Storage of emotional memory"
+					/>
+			</element>
 			<element id="FCA.NC.BRA" name="Broca's Area" mapped="true" brodmannid="44" type="Neocortex"
 				function="Speech Engine" 
 				/>
 			<element id="FCA.NC.IPG" name="Inferior Prefrontal Gyrus" mapped="true" brodmannid="47" type="Neocortex"
-				function="Processing of syntax in oral and sign languages" 
+				function="Processing of syntax in oral and sign languages"
+				notes="Personality, endurance"
 				/>
 			<element id="FCA.NC.INS" name="Insular Cortex" mapped="true" brodmannid="13,14" type="Neocortex"
 				function="Visceral representation, pain, habits" 
@@ -54,10 +66,20 @@
 						notes="Mirror neurons - both sensory and motor"
 						/>
 				</element>
-				<element id="MCA.NC.PMC.FEF" name="Frontal Eye Field" mapped="true" brodmannid="08,45" type="Neocortex"
+				<element id="MCA.NC.PMC.FEF" name="Frontal Eye Field" type="Neocortex"
 					function="Initiation of eye movements"
 					notes="Voluntary saccades and pursuit eye movements"
-					comments="Ventral FEF=BA-45, dorsal FEF=BA-08"
+					>
+					<element id="MCA.NC.PMC.CFEF" name="Caudal Frontal Eye Field" mapped="true" brodmannid="08" type="Neocortex"
+						function="Head and eye movements toward visual stimuli"
+						/>
+					<element id="MCA.NC.PMC.AFEF" name="Anterior Frontal Eye Field" mapped="true" brodmannid="08" type="Neocortex"
+						function="Head and eye movements toward auditory stimuli"
+						/>
+				</element>
+				<element id="MCA.NC.PMC.IFG" name="Inferior Frontal Gyrus" mapped="true" brodmannid="45" type="Neocortex"
+					function="Language production and prefrontal associational integration"
+					notes="Switching between semantic sub-categories in word retrieval"
 					/>
 			</element>
 
@@ -224,10 +246,11 @@
 				/>
 			<element id="ACA.NC.A3" name="Wernicke's area A3" mapped="true" brodmannid="22" type="Neocortex"
 				function="Classify with respect to content" 
+				notes="22a, Melody perception, sequences of tones"
 				/>
 			<element id="ACA.NC.A4" name="Wernicke's area A4" mapped="true" brodmannid="22" type="Neocortex"
 				function="Coordinate the activation or deactivation of grammar areas" 
-				notes="Grammatical areas"
+				notes="22b, Grammatical areas, phonemic sequences, word comprehension"
 				/>
 		</element>
 
