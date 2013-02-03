@@ -8,10 +8,12 @@
 (generated)
 
 || *Component ID* || *Component Name* || *Type* || *Function* || *Comments* ||
-|| *FCA.NC.ACG* || Anterior Cingulate Cortex || Neocortex || Error Correction || Part of limbic lobe ||
+|| *FCA.NC.VACG* || Ventral Anterior Cingulate Area || Neocortex || Seat of Free Will ||  ||
+|| *FCA.NC.DACG* || Dorsal Anterior Cingulate Area || Neocortex || Rational Thought Processes ||  ||
+|| *FCA.NC.PACG* || Pregenual Area || Neocortex || Sensation of Emotion || Storage of emotional memory ||
 || *FCA.NC.BRA* || Broca's Area || Neocortex || Speech Engine ||  ||
 || *FCA.NC.INS* || Insular Cortex || Neocortex || Visceral representation, pain, habits || Interoception, merges tactile and auditory streams ||
-|| *FCA.NC.IPG* || Inferior Prefrontal Gyrus || Neocortex || Processing of syntax in oral and sign languages ||  ||
+|| *FCA.NC.IPG* || Inferior Prefrontal Gyrus || Neocortex || Processing of syntax in oral and sign languages || Personality, endurance ||
 || *FCA.NC.LPFC* || Lateral Prefrontal Cortex || Neocortex || Temporal Integration || FEF is in PMC ||
 || *FCA.NC.OMPFC* || Orbitomedial Prefrontal Cortex || Neocortex || Personality ||  ||
 || *FCA.NC.SGC* || Subgenual Cortex || Neocortex || Influences changes in appetite and sleep || Subdivision of cytoarchitecturally defined<BR>cingulate region ||
@@ -29,19 +31,23 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/FCA.dot.jpg
 
 *External Inbound Region Connections:*
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
-|| HBA || FCA.NC.ACG || HBA.FD.TH.AN || Anterior Nucleus of Thalamus || nucleus-neocortex || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (Thalamus -> FrontalCortex, abstract)] ||
+|| HBA || FCA.NC.VACG || HBA.FD.TH.AN || Anterior Nucleus of Thalamus || nucleus-neocortex || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (Thalamus -> FrontalCortex, abstract)] ||
 || PCA || FCA.NC.LPFC || PCA.NC.IPL.MST || Medial Superior Temporal Area || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (IPL -> LPC, abstract)] ||
 || PCA || FCA.NC.LPFC || PCA.NC.IPS.PEF || Posterior Eye Field || neocortex-neocortex || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (PEF -> DLPFC)] ||
 || VCA || FCA.NC.LPFC || VCA.NC.IT.TE || Inferotemporal Cortex || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (IT -> LPC, abstract)] ||
 
 *External Outbound Region Connections:*
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| MCA || FCA.NC.LPFC || MCA.NC.PMC.CFEF || Caudal Frontal Eye Field || neocortex-neocortex || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (DLPFC -> FEF, abstract)] ||
 || MCA || FCA.NC.LPFC || MCA.NC.PMC.F5 || Ventral Rostral Premotor Cortex || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (LPC -> vPM, abstract)] ||
-|| MCA || FCA.NC.LPFC || MCA.NC.PMC.FEF || Frontal Eye Field || neocortex-neocortex || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (DLPFC -> FEF)] ||
 || MCA || FCA.NC.LPFC || MCA.NC.SMC || Supplementary Motor Cortex || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (LPC -> pre-SMA)] ||
 
 = Thirdparty Circuits =
 (generated)
+
+  * [http://www.nature.com/neuro/journal/v12/n6/images/nn.2331-F5.jpg Cortical Auditory System] - see [http://www.nature.com/neuro/journal/v12/n6/fig_tab/nn.2331_F5.html Reference]
+
+http://www.nature.com/neuro/journal/v12/n6/images/nn.2331-F5.jpg
 
   * [http://ars.els-cdn.com/content/image/1-s2.0-S0149763401000215-gr4a.gif Gustatory sensory system of rat and macaque] - see [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Reference]
 
@@ -59,12 +65,18 @@ http://www.cixip.com/Public/kindeditor/attached/image/20121030/20121030134649_52
 
 http://ars.els-cdn.com/content/image/1-s2.0-S0959438807000323-gr1.jpg
 
+  * [http://c431376.r76.cf2.rackcdn.com/10053/fnana-05-00034-r1/image_m/fnana-05-00034-g002.jpg Vocal Control] - see [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Reference]
+
+http://c431376.r76.cf2.rackcdn.com/10053/fnana-05-00034-r1/image_m/fnana-05-00034-g002.jpg
+
 
 = References =
 (generated)
 
   * article:Biological/2008-dorsal-stream.pdf
   * http://www.cixip.com/index.php/page/content/id/1190
+  * http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full
+  * http://www.nature.com/neuro/journal/v12/n6/fig_tab/nn.2331_F5.html
   * http://www.sciencedirect.com/science/article/pii/S0149763401000215
   * http://www.sciencedirect.com/science/article/pii/S0959438807000323
 

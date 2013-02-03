@@ -16,10 +16,10 @@ Circuit is part of aHuman target integrated biological model.
 || [BrainAreaHMA HMA] || HMA.HP.PRF.RPO || Oral Pontine Reticular Nucleus || Premotor Nucleus || Mediation of changing to and from REM sleep ||
 || [BrainAreaHMA HMA] || HMA.MM.INMLF || Interstitial Nucleus of Medial Longitudinal Fasciculus || Motor Relay Nucleus || Controls vertical gaze ||
 || [BrainAreaMCA MCA] || MCA.NC.MC || Motor Cortex || Neocortex || Execution of required voluntary movements ||
+|| [BrainAreaMCA MCA] || MCA.NC.PMC.CFEF || Caudal Frontal Eye Field || Neocortex || Head and eye movements toward visual stimuli ||
 || [BrainAreaMCA MCA] || MCA.NC.PMC.F2 || Dorsal Caudal Premotor Cortex || Neocortex || Guiding reaching ||
 || [BrainAreaMCA MCA] || MCA.NC.PMC.F4 || Ventral Caudal Premotor Cortex || Neocortex || Sensory guidance of movement ||
 || [BrainAreaMCA MCA] || MCA.NC.PMC.F5 || Ventral Rostral Premotor Cortex || Neocortex || Shaping hand during grasping ||
-|| [BrainAreaMCA MCA] || MCA.NC.PMC.FEF || Frontal Eye Field || Neocortex || Initiation of eye movements ||
 || [BrainAreaMCA MCA] || MCA.NC.SMC || Supplementary Motor Cortex || Neocortex || Process sequences of movements and coordinate bilateral movements ||
 || [BrainAreaPCA PCA] || PCA.NC.IPL.MST || Medial Superior Temporal Area || Neocortex || Image stabilization, predictive target tracking ||
 || [BrainAreaPCA PCA] || PCA.NC.IPS.PEF || Posterior Eye Field || Neocortex || Reflexive saccade triggering ||
@@ -33,23 +33,23 @@ Circuit is part of aHuman target integrated biological model.
 http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitVisionFrontal.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| FCA.NC.LPFC || MCA.NC.PMC.CFEF || neocortex-neocortex || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (DLPFC -> FEF, abstract)] ||
 || FCA.NC.LPFC || MCA.NC.PMC.F5 || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (LPC -> vPM, abstract)] ||
-|| FCA.NC.LPFC || MCA.NC.PMC.FEF || neocortex-neocortex || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (DLPFC -> FEF)] ||
 || FCA.NC.LPFC || MCA.NC.SMC || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (LPC -> pre-SMA)] ||
+|| MCA.NC.PMC.CFEF || BGA.FT.CN || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> BGA, abstract)] ||
+|| MCA.NC.PMC.CFEF || HMA.HP.PRF.GCR || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> RF, abstract)] ||
+|| MCA.NC.PMC.CFEF || HMA.HP.PRF.RPO || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> RF, abstract)] ||
+|| MCA.NC.PMC.CFEF || HMA.MM.INMLF || neocortex-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (FEF -> riMLF, abstract)] ||
+|| MCA.NC.PMC.CFEF || VBA.MM.SC || neocortex-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (FEF -> SC, abstract)] ||
 || MCA.NC.PMC.F2 || MCA.NC.MC || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (dPM -> MI, abstract)] ||
 || MCA.NC.PMC.F5 || MCA.NC.MC || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (vPM -> MI, abstract)] ||
-|| MCA.NC.PMC.FEF || BGA.FT.CN || neocortex-nucleus || not linked reference, circuit=Saccades and smooth movements (FEF -> CN) ||
-|| MCA.NC.PMC.FEF || HMA.HP.PRF.GCR || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> RF, abstract)] ||
-|| MCA.NC.PMC.FEF || HMA.HP.PRF.RPO || neocortex-nucleus || not linked reference, circuit=Saccades and smooth movements (FEF -> DLPN) ||
-|| MCA.NC.PMC.FEF || HMA.MM.INMLF || neocortex-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (FEF -> riMLF)] ||
-|| MCA.NC.PMC.FEF || VBA.MM.SC || neocortex-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (FEF -> SC)] ||
+|| MCA.NC.SMC || MCA.NC.PMC.CFEF || neocortex-neocortex || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (SEF -> FEF, abstract)] ||
 || MCA.NC.SMC || MCA.NC.PMC.F2 || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (pre-SMA -> dPM, abstract)] ||
 || MCA.NC.SMC || MCA.NC.PMC.F5 || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (pre-SMA -> vPM, abstract)] ||
-|| MCA.NC.SMC || MCA.NC.PMC.FEF || neocortex-neocortex || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (SEF -> FEF)] ||
 || PCA.NC.IPL.MST || FCA.NC.LPFC || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (IPL -> LPC, abstract)] ||
 || PCA.NC.IPL.MST || MCA.NC.PMC.F4 || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (IPL -> vPM, abstract)] ||
 || PCA.NC.IPS.PEF || FCA.NC.LPFC || neocortex-neocortex || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (PEF -> DLPFC)] ||
-|| PCA.NC.IPS.PEF || MCA.NC.PMC.FEF || neocortex-neocortex || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (PEF -> FEF)] ||
+|| PCA.NC.IPS.PEF || MCA.NC.PMC.CFEF || neocortex-neocortex || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (PEF -> FEF, abstract)] ||
 || PCA.NC.SPL.PG || MCA.NC.PMC.F2 || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (SPL -> dPM, abstract)] ||
-|| VCA.NC.IT.TE || MCA.NC.PMC.FEF || neocortex-neocortex || not linked reference, circuit=Saccades and smooth movements (TEF -> FEF, abstract) ||
+|| VCA.NC.IT.TE || MCA.NC.PMC.CFEF || neocortex-neocortex || not linked reference, circuit=Saccades and smooth movements (TEF -> FEF, abstract) ||
 
