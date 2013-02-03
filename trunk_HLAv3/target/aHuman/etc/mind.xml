@@ -114,7 +114,9 @@
 				<region name="MCA.NC.PMC.F7" type="neocortex"/>
 				<region name="MCA.NC.PMC.F4" type="neocortex"/>
 				<region name="MCA.NC.PMC.F5" type="neocortex"/>
-				<region name="MCA.NC.PMC.FEF" type="neocortex"/>
+				<region name="MCA.NC.PMC.AFEF" type="neocortex"/>
+				<region name="MCA.NC.PMC.CFEF" type="neocortex"/>
+				<region name="MCA.NC.PMC.IFG" type="neocortex"/>
 				<region name="MCA.NC.MC" type="neocortex"/>
 				<region name="MCA.NC.PG.S1" type="neocortex"/>
 				<region name="MCA.NC.TPC" type="neocortex"/>
@@ -156,7 +158,9 @@
 			</area>
 
 			<area name="FCA" enabled="true">
-				<region name="FCA.NC.ACG" type="neocortex"/>
+				<region name="FCA.NC.VACG" type="neocortex"/>
+				<region name="FCA.NC.DACG" type="neocortex"/>
+				<region name="FCA.NC.PACG" type="neocortex"/>
 				<region name="FCA.NC.BRA" type="neocortex"/>
 				<region name="FCA.NC.INS" type="neocortex"/>
 				<region name="FCA.NC.IPG" type="neocortex"/>
@@ -412,15 +416,15 @@
 			</circuit>
 
 			<circuit id="CircuitVisionFrontal" name="Vision Frontal Networks" enabled="true">
-				<connection type="neocortex-nucleus" src="MCA.NC.PMC.FEF" dst="VBA.MM.SC"/>
-				<connection type="neocortex-nucleus" src="MCA.NC.PMC.FEF" dst="HMA.HP.PRF.RPO"/>
-				<connection type="neocortex-nucleus" src="MCA.NC.PMC.FEF" dst="HMA.HP.PRF.GCR"/>
-				<connection type="neocortex-nucleus" src="MCA.NC.PMC.FEF" dst="HMA.MM.INMLF"/>
-				<connection type="neocortex-nucleus" src="MCA.NC.PMC.FEF" dst="BGA.FT.CN"/>
-				<connection type="neocortex-neocortex" src="FCA.NC.LPFC" dst="MCA.NC.PMC.FEF"/>
+				<connection type="neocortex-nucleus" src="MCA.NC.PMC.CFEF" dst="VBA.MM.SC"/>
+				<connection type="neocortex-nucleus" src="MCA.NC.PMC.CFEF" dst="HMA.HP.PRF.RPO"/>
+				<connection type="neocortex-nucleus" src="MCA.NC.PMC.CFEF" dst="HMA.HP.PRF.GCR"/>
+				<connection type="neocortex-nucleus" src="MCA.NC.PMC.CFEF" dst="HMA.MM.INMLF"/>
+				<connection type="neocortex-nucleus" src="MCA.NC.PMC.CFEF" dst="BGA.FT.CN"/>
+				<connection type="neocortex-neocortex" src="FCA.NC.LPFC" dst="MCA.NC.PMC.CFEF"/>
 				<connection type="neocortex-neocortex" src="FCA.NC.LPFC" dst="MCA.NC.PMC.F5"/>
 				<connection type="neocortex-neocortex" src="FCA.NC.LPFC" dst="MCA.NC.SMC"/>
-				<connection type="neocortex-neocortex" src="MCA.NC.SMC" dst="MCA.NC.PMC.FEF"/>
+				<connection type="neocortex-neocortex" src="MCA.NC.SMC" dst="MCA.NC.PMC.CFEF"/>
 				<connection type="neocortex-neocortex" src="MCA.NC.SMC" dst="MCA.NC.PMC.F5"/>
 				<connection type="neocortex-neocortex" src="MCA.NC.SMC" dst="MCA.NC.PMC.F2"/>
 				<connection type="neocortex-neocortex" src="PCA.NC.SPL.PG" dst="MCA.NC.PMC.F2"/>
@@ -428,9 +432,9 @@
 				<connection type="neocortex-neocortex" src="MCA.NC.PMC.F2" dst="MCA.NC.MC"/>
 				<connection type="neocortex-neocortex" src="PCA.NC.IPL.MST" dst="MCA.NC.PMC.F4"/>
 				<connection type="neocortex-neocortex" src="PCA.NC.IPL.MST" dst="FCA.NC.LPFC"/>
-				<connection type="neocortex-neocortex" src="PCA.NC.IPS.PEF" dst="MCA.NC.PMC.FEF"/>
+				<connection type="neocortex-neocortex" src="PCA.NC.IPS.PEF" dst="MCA.NC.PMC.CFEF"/>
 				<connection type="neocortex-neocortex" src="PCA.NC.IPS.PEF" dst="FCA.NC.LPFC"/>
-				<connection type="neocortex-neocortex" src="VCA.NC.IT.TE" dst="MCA.NC.PMC.FEF"/>
+				<connection type="neocortex-neocortex" src="VCA.NC.IT.TE" dst="MCA.NC.PMC.CFEF"/>
 			</circuit>
 
 			<circuit id="CircuitVisionEyeControl" name="Vision Eye Control" enabled="true">
@@ -515,7 +519,7 @@
 				<connection type="neocortex-nucleus" src="MCA.NC.MC" dst="BGA.FD.STN"/>
 				<connection type="neocortex-nucleus" src="MCA.NC.PMC.F2" dst="BGA.FT.PU"/>
 				<connection type="neocortex-nucleus" src="MCA.NC.SMC" dst="BGA.FT.PU"/>
-				<connection type="neocortex-nucleus" src="MCA.NC.PMC.FEF" dst="BGA.FT.CN"/>
+				<connection type="neocortex-nucleus" src="MCA.NC.PMC.CFEF" dst="BGA.FT.CN"/>
 				<connection type="nucleus-nucleus" src="BGA.HP.PPN" dst="VBA.MM.SC"/>
 				<connection type="nucleus-nucleus" src="BGA.HP.PPN" dst="VBA.FD.LGN"/>
 				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="BGA.FT.SN.PC"/>
@@ -528,7 +532,7 @@
 				<connection type="nucleus-nucleus" src="BGA.FT.PU" dst="BGA.FT.SN.PR"/>
 				<connection type="nucleus-nucleus" src="BGA.FT.PU" dst="HBA.FD.TH.AN"/>
 				<connection type="nucleus-nucleus" src="BGA.FT.GPE" dst="BGA.FT.GPI"/>
-				<connection type="nucleus-neocortex" src="HBA.FD.TH.AN" dst="FCA.NC.ACG"/>
+				<connection type="nucleus-neocortex" src="HBA.FD.TH.AN" dst="FCA.NC.VACG"/>
 				<connection type="nucleus-nucleus" src="BGA.FT.GPE" dst="BGA.FD.STN"/>
 				<connection type="nucleus-nucleus" src="BGA.FD.STN" dst="BGA.FT.GPE"/>
 				<connection type="nucleus-nucleus" src="BGA.FD.STN" dst="BGA.FT.SN.PC"/>
@@ -549,7 +553,7 @@
 			<!-- ================= alertness =============== -->
 			<circuit id="CircuitConsciousAlertness" name="Conscious Alertness" enabled="true">
 				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="HBA.FD.TH.AN"/>
-				<connection type="nucleus-neocortex" src="HBA.FD.TH.AN" dst="FCA.NC.ACG"/>
+				<connection type="nucleus-neocortex" src="HBA.FD.TH.AN" dst="FCA.NC.VACG"/>
 			</circuit>
 
 			<!-- ================= sleep-wake cycle =============== -->
