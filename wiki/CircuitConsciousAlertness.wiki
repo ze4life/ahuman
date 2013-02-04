@@ -10,8 +10,12 @@ Circuit is part of aHuman target integrated biological model.
 (generated)
 
 || *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||
+|| [BrainAreaBFA BFA] || BFA.FT.AM || Amygdala || Mixed Nucleus || Experiencing and recognizing emotions ||
+|| [BrainAreaFBA FBA] || FBA.HP.LC || Locus Coeruleus || Inhibitory Nucleus || Regulate the intensity of responses to salient stimuli ||
+|| [BrainAreaFCA FCA] || FCA.NC.OMPFC || Orbitomedial Prefrontal Cortex || Neocortex || Personality ||
 || [BrainAreaFCA FCA] || FCA.NC.VACG || Ventral Anterior Cingulate Area || Neocortex || Seat of Free Will ||
 || [BrainAreaHBA HBA] || HBA.FD.TH.AN || Anterior Nucleus of Thalamus || Excitatory Nucleus || Extended hippocampal system ||
+|| [BrainAreaMBA MBA] || MBA.HM.RF.MED || Medullary Reticular Formation || Mixed Nucleus || Somatic motor control, cardiovascular control, pain modulation, sleep and consciousness, habituation ||
 || [BrainAreaVBA VBA] || VBA.MM.SC || Superior Colliculus || Sensory Control Nucleus || Direct behavioral responses toward specific points in egocentric space, induce saccadic eye movement ||
 
 = Connections =
@@ -20,6 +24,10 @@ Circuit is part of aHuman target integrated biological model.
 http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitConsciousAlertness.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| BFA.FT.AM || FBA.HP.LC || nucleus-nucleus || (unknown reference) ||
+|| FCA.NC.OMPFC || FBA.HP.LC || neocortex-nucleus || (unknown reference) ||
+|| FCA.NC.VACG || FBA.HP.LC || neocortex-nucleus || (unknown reference) ||
 || HBA.FD.TH.AN || FCA.NC.VACG || nucleus-neocortex || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (Thalamus -> FrontalCortex, abstract)] ||
+|| MBA.HM.RF.MED || FBA.HP.LC || nucleus-nucleus || (unknown reference) ||
 || VBA.MM.SC || HBA.FD.TH.AN || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCi -> ATH)] ||
 
