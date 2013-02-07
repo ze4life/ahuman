@@ -10,6 +10,7 @@ Circuit is part of aHuman target integrated biological model.
 (generated)
 
 || *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||
+|| [BrainAreaBMA BMA] || BMA.HP.PRF.PVR || Parvocellular Reticular Nucleus || Premotor Nucleus || Flow of respiratory current out of organism ||
 || [BrainAreaBMA BMA] || BMA.HP.VB || Vestibular Nucleus || Premotor Nucleus || Equilibrium, Postural Reflexes ||
 || [BrainAreaBMA BMA] || BMA.HP.VG || Vestibular Ganglion || 1-order Sensory Nucleus || Contact with hair cells of vestibular sensory end organs ||
 || [BrainAreaBMA BMA] || BMA.SC.IZ.RPL || Retroposterolateral Nucleus || 1-order Motor Nucleus || Innervation of limbs muscles ||
@@ -21,7 +22,9 @@ Circuit is part of aHuman target integrated biological model.
 || [BrainAreaHMA HMA] || HMA.HP.PRF.PDT || Pontine Reticulotegmental Nucleus || Premotor Nucleus || Mediate saccadic eye movements ||
 || [BrainAreaHMA HMA] || HMA.HP.PRF.RPO || Oral Pontine Reticular Nucleus || Premotor Nucleus || Mediation of changing to and from REM sleep ||
 || [BrainAreaHMA HMA] || HMA.HP.PTP.PTR || Principal Trigeminal Nucleus || 1-order Sensory Nucleus || Facial Somatic Sensations ||
+|| [BrainAreaHMA HMA] || HMA.HP.PTP.TRM || Trigeminal Motor Nucleus || 1-order Motor Nucleus || Muscles of first branchial arch ||
 || [BrainAreaHMA HMA] || HMA.MM.INMLF || Interstitial Nucleus of Medial Longitudinal Fasciculus || Motor Relay Nucleus || Controls vertical gaze ||
+|| [BrainAreaHMA HMA] || HMA.MM.MSTR || Mesencephalic Trigeminal Nucleus || 1-order Sensory Nucleus || Facial Somatic Sensations ||
 || [BrainAreaHMA HMA] || HMA.SC.VH.ISL || Spinal Accessory Nucleus || Premotor Nucleus || Control of neck ||
 || [BrainAreaMCA MCA] || MCA.NC.MC || Motor Cortex || Neocortex || Execution of required voluntary movements ||
 || [BrainAreaMCA MCA] || MCA.NC.PG.S1 || Somatosensory Cortex || Neocortex || Muscle and skin receptors ||
@@ -38,6 +41,8 @@ Circuit is part of aHuman target integrated biological model.
 http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitVisionHeadControl.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| BMA.HP.PRF.PVR || HMA.HP.FCM || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorVII, abstract)] ||
+|| BMA.HP.PRF.PVR || HMA.HP.PTP.TRM || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorV, abstract)] ||
 || BMA.HP.VB || HMA.HP.PRF.CRF || nucleus-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) (VestibularNuclei -> PPRF, abstract)] ||
 || BMA.HP.VG || BMA.HP.VB || nucleus-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) (VestibularGanglion -> VestibularNuclei)] ||
 || HMA.HM.TGM.PA5 || HMA.HP.FCM || nucleus-nucleus || (unknown reference) ||
@@ -45,9 +50,10 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitVisionHeadControl.dot.
 || HMA.HM.TGM.STR || VBA.MM.OCN || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SpinalTrigeminal -> Oculomotor)] ||
 || HMA.HP.FCM || VBA.HP.ABD || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Facial -> Abducens)] ||
 || HMA.HP.PRF.GCR || BMA.SC.IZ.RPL || nucleus-nucleus || (unknown reference) ||
-|| HMA.HP.PRF.PDT || HMA.HP.FCM || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (RF -> Facial, abstract)] ||
+|| HMA.HP.PRF.PDT || HMA.HP.FCM || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorVII, abstract)] ||
 || HMA.HP.PRF.RPO || HMA.SC.VH.ISL || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (RF -> SpinalCord, abstract)] ||
 || HMA.HP.PTP.PTR || HMA.HM.TGM.STR || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (PrincipalTrigeminal -> SpinalTrigeminal)] ||
+|| HMA.MM.MSTR || HMA.HP.PTP.TRM || nucleus-nucleus || (unknown reference) ||
 || MCA.NC.MC || HMA.HP.PRF.PDT || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> RF, abstract)] ||
 || MCA.NC.PG.S1 || HMA.HM.TGM.PA5 || neocortex-nucleus || (unknown reference) ||
 || MCA.NC.SMC || VBA.MM.RP.RIP || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (FEFSEF -> RIP, abstract)] ||

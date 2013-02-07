@@ -16,9 +16,10 @@ Circuit is part of aHuman target integrated biological model.
 || [BrainAreaACA ACA] || ACA.NC.A4 || Wernicke's area A4 || Neocortex || Coordinate the activation or deactivation of grammar areas ||
 || [BrainAreaFCA FCA] || FCA.NC.BRA || Broca's Area || Neocortex || Speech Engine ||
 || [BrainAreaMCA MCA] || MCA.NC.PMC.AFEF || Anterior Frontal Eye Field || Neocortex || Head and eye movements toward auditory stimuli ||
+|| [BrainAreaMCA MCA] || MCA.NC.PMC.F2 || Dorsal Caudal Premotor Cortex || Neocortex || Guiding reaching ||
 || [BrainAreaMCA MCA] || MCA.NC.PMC.F4 || Ventral Caudal Premotor Cortex || Neocortex || Sensory guidance of movement ||
 || [BrainAreaMCA MCA] || MCA.NC.PMC.F5 || Ventral Rostral Premotor Cortex || Neocortex || Shaping hand during grasping ||
-|| [BrainAreaMCA MCA] || MCA.NC.PMC.IFG || Inferior Frontal Gyrus || Neocortex || Language production and prefrontal associational integration ||
+|| [BrainAreaMCA MCA] || MCA.NC.PMC.F7 || Dorsal Rostral Premotor Cortex || Neocortex || Associate arbitrary sensory stimuli with specific movements ||
 || [BrainAreaPCA PCA] || PCA.NC.IPL.SMW || Supramarginal Wernike Cortex || Neocortex || Phonological and articulatory processing of words ||
 
 = Connections =
@@ -28,15 +29,20 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitAuditionNeocortex.dot.
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || ACA.NC.A1 || ACA.NC.A2 || neocortex-neocortex || [http://www.nature.com/neuro/journal/v12/n6/fig_tab/nn.2331_F5.html Cortical Auditory System (Core41 -> Belt42)] ||
+|| ACA.NC.A1 || ACA.NC.A3 || neocortex-neocortex || [http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2846110/ Dual Auditory Processing (A1 -> ST)] ||
 || ACA.NC.A1 || ACA.NC.A4 || neocortex-neocortex || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (A1 -> Wernike)] ||
+|| ACA.NC.A1 || MCA.NC.PMC.F7 || neocortex-neocortex || [http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2846110/ Dual Auditory Processing (A1 -> DLPFC, abstract)] ||
+|| ACA.NC.A1 || PCA.NC.IPL.SMW || neocortex-neocortex || [http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2846110/ Dual Auditory Processing (A1 -> PPC, abstract)] ||
 || ACA.NC.A2 || ACA.NC.A4 || neocortex-neocortex || [http://www.nature.com/neuro/journal/v12/n6/fig_tab/nn.2331_F5.html Cortical Auditory System (Belt42 -> AC22)] ||
-|| ACA.NC.A3 || MCA.NC.PMC.IFG || neocortex-neocortex || [http://www.nature.com/neuro/journal/v12/n6/fig_tab/nn.2331_F5.html Cortical Auditory System (STS22 -> IFC45)] ||
+|| ACA.NC.A3 || FCA.NC.BRA || neocortex-neocortex || [http://www.nature.com/neuro/journal/v12/n6/fig_tab/nn.2331_F5.html Cortical Auditory System (STS22 -> IFC45)] ||
+|| ACA.NC.A3 || MCA.NC.PMC.F4 || neocortex-neocortex || [http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2846110/ Dual Auditory Processing (ST -> VLPFC, abstract)] ||
 || ACA.NC.A3 || PCA.NC.IPL.SMW || neocortex-neocortex || (unknown reference) ||
 || ACA.NC.A4 || ACA.NC.A3 || neocortex-neocortex || [http://www.nature.com/neuro/journal/v12/n6/fig_tab/nn.2331_F5.html Cortical Auditory System (AC22 -> STS22)] ||
+|| ACA.NC.A4 || FCA.NC.BRA || neocortex-neocortex || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (Wernike -> Broca)] ||
 || ACA.NC.A4 || PCA.NC.IPL.SMW || neocortex-neocortex || [http://www.nature.com/neuro/journal/v12/n6/fig_tab/nn.2331_F5.html Cortical Auditory System (AC22 -> IPL40, abstract)] ||
 || FCA.NC.BRA || MCA.NC.PMC.AFEF || neocortex-neocortex || [http://www.nature.com/neuro/journal/v12/n6/fig_tab/nn.2331_F5.html Cortical Auditory System (IFC44 -> PMC8)] ||
 || FCA.NC.BRA || PCA.NC.IPL.SMW || neocortex-neocortex || [http://www.nature.com/neuro/journal/v12/n6/fig_tab/nn.2331_F5.html Cortical Auditory System (IFC44 -> IPL40, abstract)] ||
 || MCA.NC.PMC.AFEF || MCA.NC.PMC.F5 || neocortex-neocortex || [http://www.nature.com/neuro/journal/v12/n6/fig_tab/nn.2331_F5.html Cortical Auditory System (PMC8 -> PMC6, abstract)] ||
-|| MCA.NC.PMC.IFG || FCA.NC.BRA || neocortex-neocortex || [http://www.nature.com/neuro/journal/v12/n6/fig_tab/nn.2331_F5.html Cortical Auditory System (IFC45 -> IFC44)] ||
+|| PCA.NC.IPL.SMW || MCA.NC.PMC.F2 || neocortex-neocortex || [http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2846110/ Dual Auditory Processing (PPC -> DLPFC, abstract)] ||
 || PCA.NC.IPL.SMW || MCA.NC.PMC.F4 || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (IPL -> vPM, abstract)] ||
 
