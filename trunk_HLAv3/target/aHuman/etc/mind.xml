@@ -116,7 +116,6 @@
 				<region name="MCA.NC.PMC.F5" type="neocortex"/>
 				<region name="MCA.NC.PMC.AFEF" type="neocortex"/>
 				<region name="MCA.NC.PMC.CFEF" type="neocortex"/>
-				<region name="MCA.NC.PMC.IFG" type="neocortex"/>
 				<region name="MCA.NC.MC" type="neocortex"/>
 				<region name="MCA.NC.PG.S1" type="neocortex"/>
 				<region name="MCA.NC.TPC" type="neocortex"/>
@@ -487,11 +486,47 @@
 				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="BMA.HP.VB"/>
 				<connection type="neocortex-nucleus" src="MCA.NC.SMC" dst="VBA.MM.RP.RIP"/>
 				<connection type="nucleus-nucleus" src="VBA.MM.RP.RIP" dst="HMA.HP.PRF.RPO"/>
+				<connection type="nucleus-nucleus" src="HMA.MM.MSTR" dst="HMA.HP.PTP.TRM"/>
+				<connection type="nucleus-nucleus" src="BMA.HP.PRF.PVR" dst="HMA.HP.PTP.TRM"/>
+				<connection type="nucleus-nucleus" src="BMA.HP.PRF.PVR" dst="HMA.HP.FCM"/>
 			</circuit>
 
 			<!-- ================= intracortical auditory stream processing =============== -->
 			<circuit id="CircuitAuditionNeocortex" name="Audition Perception in Neocortex" enabled="true">
+				<connection type="neocortex-neocortex" src="ACA.NC.A1" dst="ACA.NC.A2"/>
+				<connection type="neocortex-neocortex" src="ACA.NC.A1" dst="ACA.NC.A4"/>
+				<connection type="neocortex-neocortex" src="ACA.NC.A1" dst="PCA.NC.IPL.SMW"/>
+				<connection type="neocortex-neocortex" src="ACA.NC.A1" dst="ACA.NC.A3"/>
+				<connection type="neocortex-neocortex" src="ACA.NC.A1" dst="MCA.NC.PMC.F7"/>
+				<connection type="neocortex-neocortex" src="ACA.NC.A2" dst="ACA.NC.A4"/>
 				<connection type="neocortex-neocortex" src="ACA.NC.A3" dst="PCA.NC.IPL.SMW"/>
+				<connection type="neocortex-neocortex" src="ACA.NC.A3" dst="FCA.NC.BRA"/>
+				<connection type="neocortex-neocortex" src="ACA.NC.A3" dst="MCA.NC.PMC.F4"/>
+				<connection type="neocortex-neocortex" src="ACA.NC.A4" dst="ACA.NC.A3"/>
+				<connection type="neocortex-neocortex" src="ACA.NC.A4" dst="PCA.NC.IPL.SMW"/>
+				<connection type="neocortex-neocortex" src="ACA.NC.A4" dst="FCA.NC.BRA"/>
+				<connection type="neocortex-neocortex" src="FCA.NC.BRA" dst="PCA.NC.IPL.SMW"/>
+				<connection type="neocortex-neocortex" src="FCA.NC.BRA" dst="MCA.NC.PMC.AFEF"/>
+				<connection type="neocortex-neocortex" src="PCA.NC.IPL.SMW" dst="MCA.NC.PMC.F4"/>
+				<connection type="neocortex-neocortex" src="PCA.NC.IPL.SMW" dst="MCA.NC.PMC.F2"/>
+				<connection type="neocortex-neocortex" src="MCA.NC.PMC.AFEF" dst="MCA.NC.PMC.F5"/>
+				<connection type="neocortex-neocortex" src="ACA.NC.A2" dst="FCA.NC.DACG"/>
+			</circuit>
+
+			<!-- ================= subcortical auditory stream processing =============== -->
+			<circuit id="CircuitAuditionNuclei" name="Audition Perception in Subcortical Nuclei" enabled="true">
+				<connection type="nucleus-nucleus" src="ABA.HM.COCH" dst="HMA.MM.CJ"/>
+				<connection type="nucleus-nucleus" src="BGA.FT.SN.PC" dst="BMA.HP.PRF.PVR"/>
+				<connection type="nucleus-nucleus" src="MCA.NC.MC" dst="HMA.HP.PRF.CRF"/>
+				<connection type="nucleus-nucleus" src="MCA.NC.SMC" dst="HMA.HP.PRF.CRF"/>
+				<connection type="nucleus-nucleus" src="FCA.NC.BRA" dst="HMA.HP.PRF.RPO"/>
+				<connection type="nucleus-nucleus" src="HMA.HP.PRF.CRF" dst="HMA.HP.FCM"/>
+				<connection type="nucleus-nucleus" src="HMA.HP.PRF.CRF" dst="HMA.HP.PTP.TRM"/>
+				<connection type="nucleus-nucleus" src="HMA.HP.PRF.CRF" dst="HMA.HM.AMB"/>
+				<connection type="nucleus-nucleus" src="HMA.HP.PRF.CRF" dst="HMA.HM.HYG"/>
+				<connection type="neocortex-nucleus" src="FCA.NC.VACG" dst="HMA.HP.PRF.PDT"/>
+				<connection type="neocortex-nucleus" src="MCA.NC.SMC" dst="HMA.HP.PRF.PDT"/>
+				<connection type="neocortex-nucleus" src="FCA.NC.BRA" dst="HMA.HP.PRF.PDT"/>
 			</circuit>
 
 			<!-- ================= intracortical sensory integration to generate memory items in hippocampus =============== -->
@@ -504,6 +539,9 @@
 			<circuit id="CircuitReflexMotivations" name="Establish Reflexive Motivational Associations" enabled="true">
 				<connection type="neocortex-nucleus" src="VCA.NC.IT.TE" dst="BFA.FT.AM"/>
 				<connection type="neocortex-nucleus" src="PHA.NC.PH.ET" dst="BFA.FT.AM"/>
+				<connection type="nucleus-neocortex" src="BFA.FT.AM" dst="FCA.NC.VACG"/>
+				<connection type="neocortex-neocortex" src="FCA.NC.OMPFC" dst="FCA.NC.PACG"/>
+				<connection type="nucleus-neocortex" src="FCA.FD.TH.MD" dst="FCA.NC.PACG"/>
 			</circuit>
 
 			<!-- ================= hippocampus activity =============== -->
@@ -542,9 +580,24 @@
 				<connection type="nucleus-nucleus" src="BGA.FT.CN" dst="BGA.FT.GPE"/>
 				<connection type="nucleus-nucleus" src="BGA.FT.CN" dst="BGA.FT.GPI"/>
 				<connection type="nucleus-nucleus" src="BGA.FT.CN" dst="BGA.FT.SN.PR"/>
+				<connection type="neocortex-nucleus" src="FCA.NC.VACG" dst="BGA.FT.CN"/>
+				<connection type="neocortex-nucleus" src="FCA.NC.PACG" dst="BGA.FT.PU"/>
 			</circuit>
 
-			<!-- ================= intracortical cognitive processing =============== -->
+			<!-- ================= gustatory-olfactory perception =============== -->
+			<circuit id="CircuitGustatoryOlfactory" name="Gustatory and Olfactory Perception" enabled="true">
+				<connection type="neocortex-nucleus" src="PHA.NC.PH.PIR" dst="BFA.FT.EPF"/>
+				<connection type="neocortex-neocortex" src="PHA.NC.PH.PIR" dst="FCA.NC.INS"/>
+				<connection type="nucleus-neocortex" src="BFA.FT.EPF" dst="FCA.NC.INS"/>
+				<connection type="neocortex-neocortex" src="FCA.NC.INS" dst="PHA.NC.PH.PRR"/>
+				<connection type="nucleus-nucleus" src="HMA.HM.SOL" dst="BMA.HP.PB"/>
+				<connection type="nucleus-nucleus" src="BMA.HP.PB" dst="MCA.FD.TH.VP"/>
+				<connection type="nucleus-neocortex" src="BMA.HP.PB" dst="FCA.NC.INS"/>
+				<connection type="nucleus-neocortex" src="MCA.FD.TH.VP" dst="FCA.NC.INS"/>
+				<connection type="neocortex-allocortex" src="PHA.NC.PH.PRR" dst="HBA.FT.DG"/>
+			</circuit>
+
+			<!-- ================= cognitive processing =============== -->
 			<circuit id="CircuitCognition" name="Cognitive Processing" enabled="true">
 				<connection type="neocortex-neocortex" src="VCA.NC.IT.TE" dst="FCA.NC.LPFC"/>
 				<connection type="nucleus-neocortex" src="VBA.MM.SC" dst="MCA.FD.TH.VA"/>
@@ -554,6 +607,10 @@
 			<circuit id="CircuitConsciousAlertness" name="Conscious Alertness" enabled="true">
 				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="HBA.FD.TH.AN"/>
 				<connection type="nucleus-neocortex" src="HBA.FD.TH.AN" dst="FCA.NC.VACG"/>
+				<connection type="neocortex-nucleus" src="FCA.NC.VACG" dst="FBA.HP.LC"/>
+				<connection type="neocortex-nucleus" src="FCA.NC.OMPFC" dst="FBA.HP.LC"/>
+				<connection type="nucleus-nucleus" src="MBA.HM.RF.MED" dst="FBA.HP.LC"/>
+				<connection type="nucleus-nucleus" src="BFA.FT.AM" dst="FBA.HP.LC"/>
 			</circuit>
 
 			<!-- ================= sleep-wake cycle =============== -->
@@ -578,6 +635,7 @@
 				<connection type="nucleus-neocortex" src="MCA.FD.TH.VL" dst="MCA.NC.MC"/>
 				<connection type="nucleus-nucleus" src="MBA.MM.RD" dst="BMA.HM.IO"/>
 				<connection type="nucleus-nucleus" src="HMA.HP.PRF.RPO" dst="MBA.HP.CR"/>
+				<connection type="neocortex-nucleus" src="FCA.NC.VACG" dst="MBA.MM.RD"/>
 			</circuit>
 
 		</circuit-set>

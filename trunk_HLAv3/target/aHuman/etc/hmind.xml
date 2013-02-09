@@ -9,20 +9,35 @@
 				function="Error Correction" 
 				notes="Part of limbic lobe"
 				>
+				<!-- ========= motor, attentional and cognitive functions ========= -->
 				<element id="FCA.NC.VACG" name="Ventral Anterior Cingulate Area" mapped="true" brodmannid="24" type="Neocortex"
 					function="Seat of Free Will" 
 					/>
 				<element id="FCA.NC.DACG" name="Dorsal Anterior Cingulate Area" mapped="true" brodmannid="32" type="Neocortex"
 					function="Rational Thought Processes" 
 					/>
+				<!-- ========= emotions, mood and autonomic functions ========= -->
 				<element id="FCA.NC.PACG" name="Pregenual Area" mapped="true" brodmannid="33" type="Neocortex"
 					function="Sensation of Emotion" 
 					notes="Storage of emotional memory"
 					/>
+				<element id="FCA.NC.SGC" name="Subgenual Cortex" mapped="true" brodmannid="25" type="Neocortex"
+					function="Influences changes in appetite and sleep" 
+					notes="Subdivision of cytoarchitecturally defined cingulate region"
+					/>
 			</element>
-			<element id="FCA.NC.BRA" name="Broca's Area" mapped="true" brodmannid="44" type="Neocortex"
+			<element id="FCA.NC.BRA" name="Broca's Area" mapped="true" brodmannid="44,45" type="Neocortex"
 				function="Speech Engine" 
-				/>
+				>
+				<element id="FCA.NC.BRA.PO" name="Broca's Area Pars Opercularis" brodmannid="44" type="Neocortex"
+					function="Speech Engine" 
+					notes="Orbital Inferior Frontal Gyrus"
+					/>
+				<element id="FCA.NC.BRA.PT" name="Broca's Area Pars Triangularis" brodmannid="45" type="Neocortex"
+					function="Language production and prefrontal associational integration, propositional language comprehension"
+					notes="Triangular Inferior Frontal Gyrus, switching between semantic sub-categories in word retrieval"
+					/>
+			</element>
 			<element id="FCA.NC.IPG" name="Inferior Prefrontal Gyrus" mapped="true" brodmannid="47" type="Neocortex"
 				function="Processing of syntax in oral and sign languages"
 				notes="Personality, endurance"
@@ -77,16 +92,7 @@
 						function="Head and eye movements toward auditory stimuli"
 						/>
 				</element>
-				<element id="MCA.NC.PMC.IFG" name="Inferior Frontal Gyrus" mapped="true" brodmannid="45" type="Neocortex"
-					function="Language production and prefrontal associational integration"
-					notes="Switching between semantic sub-categories in word retrieval"
-					/>
 			</element>
-
-			<element id="FCA.NC.SGC" name="Subgenual Cortex" mapped="true" brodmannid="25" type="Neocortex"
-				function="Influences changes in appetite and sleep" 
-				notes="Subdivision of cytoarchitecturally defined cingulate region"
-				/>
 
 			<element id="MCA.NC.SMC" name="Supplementary Motor Cortex" mapped="true" brodmannid="06" type="Neocortex"
 				function="Process sequences of movements and coordinate bilateral movements" 
@@ -134,25 +140,6 @@
 					/>
 			</element>
 
-			<element id="PCA.NC.IPL" name="Inferior Parietal Lobule"
-				notes="in humans=BA39,40, in monkey=BA7"
-				>
-				<element id="PCA.NC.IPL.AG" name="Angular Gyrus"
-					notes="Surrounds Superior Temporal Sulcus (STS)"
-					>
-					<element id="PCA.NC.IPL.MST" name="Medial Superior Temporal Area" mapped="true" brodmannid="39" type="Neocortex"
-						function="Image stabilization, predictive target tracking" 
-						notes="PG, Ventro-dorsal stream"
-						/>
-				</element>
-				<element id="PCA.NC.IPL.SMG" name="Supramarginal Gyrus">
-					<element id="PCA.NC.IPL.SMW" name="Supramarginal Wernike Cortex" mapped="true" brodmannid="40" type="Neocortex"
-						function="Phonological and articulatory processing of words" 
-						notes="PF, Computing sound of word, tactile learning and memory"
-						/>
-				</element>
-			</element>
-
 			<element id="PCA.NC.IPS" name="Intraparietal Sulcus"
 				function="Perceptual-motor coordination and visual attention, eye movements and reaching" 
 				notes="PG, Control of saccadic eye movements, visual control of grasping"
@@ -176,6 +163,25 @@
 					function="Represent shape, size, and orientation of objects to be grasped"
 					notes="Both to viewed and remembered stimuli, grasping and manipulating objects through motor and visual inputs"
 					/>
+			</element>
+
+			<element id="PCA.NC.IPL" name="Inferior Parietal Lobule"
+				notes="in humans=BA39,40, in monkey=BA7"
+				>
+				<element id="PCA.NC.IPL.AG" name="Angular Gyrus"
+					notes="Surrounds Superior Temporal Sulcus (STS)"
+					>
+					<element id="PCA.NC.IPL.MST" name="Medial Superior Temporal Area" mapped="true" brodmannid="39" type="Neocortex"
+						function="Image stabilization, predictive target tracking" 
+						notes="PG, Ventro-dorsal stream"
+						/>
+				</element>
+				<element id="PCA.NC.IPL.SMG" name="Supramarginal Gyrus">
+					<element id="PCA.NC.IPL.SMW" name="Supramarginal Wernike Cortex" mapped="true" brodmannid="40" type="Neocortex"
+						function="Phonological and articulatory processing of words" 
+						notes="PF, Computing sound of word, tactile learning and memory"
+						/>
+				</element>
 			</element>
 
 			<element id="PCA.NC.MPL" name="Medial Parietal Lobule">
@@ -221,11 +227,6 @@
 		<element id="NC.LOBE.TEMP" name="Temporal Lobe"
 			dotdef="color=salmon"
 			>
-			<element id="ACA.NC.A2" name="Auditory Association Area" mapped="true" brodmannid="42" type="Neocortex"
-				function="Classify with respect to function" 
-				notes="Belt"
-				/>
-
 			<element id="VCA.NC.IT" name="Inferotemporal Area">
 				<element id="VCA.NC.IT.TE" name="Inferotemporal Cortex" mapped="true" brodmannid="20" type="Neocortex"
 					function="Represent different views of objects" 
@@ -241,8 +242,9 @@
 				function="Main topotonic map, extract phonemes" 
 				notes="Core"
 				/>
-			<element id="MCA.NC.TPC" name="Temporopolar Cortex" mapped="true" brodmannid="38" type="Neocortex"
-				function="Self representation, semantic (left) and autobiographic (right)" 
+			<element id="ACA.NC.A2" name="Auditory Association Area" mapped="true" brodmannid="42" type="Neocortex"
+				function="Classify with respect to function" 
+				notes="Belt"
 				/>
 			<element id="ACA.NC.A3" name="Wernicke's area A3" mapped="true" brodmannid="22" type="Neocortex"
 				function="Classify with respect to content" 
@@ -251,6 +253,9 @@
 			<element id="ACA.NC.A4" name="Wernicke's area A4" mapped="true" brodmannid="22" type="Neocortex"
 				function="Coordinate the activation or deactivation of grammar areas" 
 				notes="22b, Grammatical areas, phonemic sequences, word comprehension"
+				/>
+			<element id="MCA.NC.TPC" name="Temporopolar Cortex" mapped="true" brodmannid="38" type="Neocortex"
+				function="Self representation, semantic (left) and autobiographic (right)" 
 				/>
 		</element>
 
