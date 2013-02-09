@@ -11,15 +11,15 @@ Circuit is part of aHuman target integrated biological model.
 
 || *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||
 || [BrainAreaABA ABA] || ABA.HM.COCH || Cochlear Nucleus || Sensory Relay Nucleus || Divergence in representation of auditory information ||
-|| [BrainAreaACA ACA] || ACA.NC.A2 || Auditory Association Area || Neocortex || Classify with respect to function ||
 || [BrainAreaBGA BGA] || BGA.FT.SN.PC || Substantia Nigra Pars Compacta || Mixed Nucleus || Fine motor control, temporal processing ||
 || [BrainAreaBMA BMA] || BMA.HP.PRF.PVR || Parvocellular Reticular Nucleus || Premotor Nucleus || Flow of respiratory current out of organism ||
 || [BrainAreaFCA FCA] || FCA.NC.BRA || Broca's Area || Neocortex || Speech Engine ||
-|| [BrainAreaFCA FCA] || FCA.NC.DACG || Dorsal Anterior Cingulate Area || Neocortex || Rational Thought Processes ||
+|| [BrainAreaFCA FCA] || FCA.NC.VACG || Ventral Anterior Cingulate Area || Neocortex || Seat of Free Will ||
 || [BrainAreaHMA HMA] || HMA.HM.AMB || Ambiguus Nucleus || Premotor Nucleus || Control muscles of pharynx ||
 || [BrainAreaHMA HMA] || HMA.HM.HYG || Hypoglossal Motor Nucleus || 1-order Motor Nucleus || Control of tongue ||
 || [BrainAreaHMA HMA] || HMA.HP.FCM || Facial Motor Nucleus || 1-order Motor Nucleus || Control of face ||
 || [BrainAreaHMA HMA] || HMA.HP.PRF.CRF || Caudal Pontine Reticular Nucleus || Premotor Nucleus || Mediate head movements ||
+|| [BrainAreaHMA HMA] || HMA.HP.PRF.PDT || Pontine Reticulotegmental Nucleus || Premotor Nucleus || Mediate saccadic eye movements ||
 || [BrainAreaHMA HMA] || HMA.HP.PRF.RPO || Oral Pontine Reticular Nucleus || Premotor Nucleus || Mediation of changing to and from REM sleep ||
 || [BrainAreaHMA HMA] || HMA.HP.PTP.TRM || Trigeminal Motor Nucleus || 1-order Motor Nucleus || Muscles of first branchial arch ||
 || [BrainAreaHMA HMA] || HMA.MM.CJ || Cajal Nucleus || Premotor Nucleus || Integration of head and eye movements ||
@@ -33,13 +33,15 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitAuditionNuclei.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || ABA.HM.COCH || HMA.MM.CJ || nucleus-nucleus || (unknown reference) ||
-|| ACA.NC.A2 || FCA.NC.DACG || neocortex-neocortex || (unknown reference) ||
 || BGA.FT.SN.PC || BMA.HP.PRF.PVR || nucleus-nucleus || (unknown reference) ||
+|| FCA.NC.BRA || HMA.HP.PRF.PDT || neocortex-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (Broca -> RF, abstract)] ||
 || FCA.NC.BRA || HMA.HP.PRF.RPO || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (Broca -> RF, abstract)] ||
+|| FCA.NC.VACG || HMA.HP.PRF.PDT || neocortex-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (Premotor24 -> RF, abstract)] ||
 || HMA.HP.PRF.CRF || HMA.HM.AMB || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> NucleusAmbiguus, abstract)] ||
 || HMA.HP.PRF.CRF || HMA.HM.HYG || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> NucleusXII, abstract)] ||
 || HMA.HP.PRF.CRF || HMA.HP.FCM || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorVII, abstract)] ||
 || HMA.HP.PRF.CRF || HMA.HP.PTP.TRM || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorV, abstract)] ||
 || MCA.NC.MC || HMA.HP.PRF.CRF || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> RF, abstract)] ||
 || MCA.NC.SMC || HMA.HP.PRF.CRF || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (M2 -> RF, abstract)] ||
+|| MCA.NC.SMC || HMA.HP.PRF.PDT || neocortex-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (M2 -> RF, abstract)] ||
 

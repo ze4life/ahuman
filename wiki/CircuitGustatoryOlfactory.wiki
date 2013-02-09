@@ -1,0 +1,37 @@
+#summary Gustatory and Olfactory Perception
+@@[Home] -> [BiologicalLifeResearch] -> [CircuitGustatoryOlfactory]
+----
+
+This page covers components and connections of circuit Gustatory and Olfactory Perception.
+Circuit is part of aHuman target integrated biological model.
+
+(generated)
+= Components =
+(generated)
+
+|| *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||
+|| [BrainAreaBFA BFA] || BFA.FT.EPF || Endopiriform Nucleus || Excitatory Nucleus || Putative relay of limbic-associated cortical-like areas subserving affective information ||
+|| [BrainAreaBMA BMA] || BMA.HP.PB || Parabrachial Nucleus || Sensory Relay Nucleus || Source of short-latency nociceptive input ||
+|| [BrainAreaFCA FCA] || FCA.NC.INS || Insular Cortex || Neocortex || Visceral representation, pain, habits ||
+|| [BrainAreaHBA HBA] || HBA.FT.DG || Dentate Gyrus || Allocortex || Distinguishing multiple instances of similar events ||
+|| [BrainAreaHMA HMA] || HMA.HM.SOL || Solitary Nucleus || 1-order Sensory Nucleus || Carry taste buds, thoracic and abdominal viscera ||
+|| [BrainAreaMCA MCA] || MCA.FD.TH.VP || Ventral Posterior Nucleus || Excitatory Nucleus || Relays somatic information to MCA.SSC ||
+|| [BrainAreaPHA PHA] || PHA.NC.PH.PIR || Piriform Cortex || Neocortex || Perception of smells ||
+|| [BrainAreaPHA PHA] || PHA.NC.PH.PRR || Perirhinal Cortex || Neocortex || Associate different visual views of objects and their various nonvisual attributes ||
+
+= Connections =
+(generated)
+
+http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitGustatoryOlfactory.dot.jpg
+
+|| *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| BFA.FT.EPF || FCA.NC.INS || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (EnP -> Iav)] ||
+|| BMA.HP.PB || FCA.NC.INS || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PB -> Gud)] ||
+|| BMA.HP.PB || MCA.FD.TH.VP || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PB -> VPMpc)] ||
+|| FCA.NC.INS || PHA.NC.PH.PRR || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (Iav -> PrC)] ||
+|| HMA.HM.SOL || BMA.HP.PB || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (NST -> PB)] ||
+|| MCA.FD.TH.VP || FCA.NC.INS || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (VPMpc -> Gug)] ||
+|| PHA.NC.PH.PIR || BFA.FT.EPF || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PiR -> EnP)] ||
+|| PHA.NC.PH.PIR || FCA.NC.INS || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PiR -> Iav)] ||
+|| PHA.NC.PH.PRR || HBA.FT.DG || neocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PrC -> HF, abstract)] ||
+
