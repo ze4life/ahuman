@@ -30,4 +30,22 @@
 		<link src="PPC" dst="DLPFC"/>
 	</circuit>
 
+	<circuit id="CP.VISUAL-AUDITORY-INTERACTIONS" name="Visual-Auditory Interactions in Tectum"
+		image="http://cdn.f1000r.com.s3.amazonaws.com/manuscripts/1181/d6e9eca8-bb85-4382-8286-723b00f8b36f_figure7.gif" imageHeight="200" imageWidth="200"
+		reference="http://f1000research.com/articles/2-20/v1"
+		components="PM=MCA.NC.PMC MGB=ABA.FD.TH.MGB AM=BFA.FT.AM SC=VBA.MM.SC AC=ACA.NC.A1 IC=ABA.MM.IC OC=ABA.MM.SOC CN=ABA.HM.COCH"
+		>
+		<link src="CN" dst="OC"/>
+		<link src="OC" dst="IC"/>
+		<link src="IC" dst="OC"/>
+		<link src="IC" dst="MGB"/>
+		<link src="MGB" dst="AC"/>
+		<link src="AC" dst="IC"/>
+		<link src="PM" dst="SC"/>
+		<link src="SC" dst="IC"/>
+		<link src="IC" dst="SC"/>
+		<link src="AM" dst="AC"/>
+		<link src="AM" dst="IC"/>
+	</circuit>
+
 </circuits>
