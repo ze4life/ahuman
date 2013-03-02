@@ -106,6 +106,7 @@
 				<region name="ACA.NC.A2" type="neocortex"/>
 				<region name="ACA.NC.A3" type="neocortex"/>
 				<region name="ACA.NC.A4" type="neocortex"/>
+				<region name="ACA.NC.TPC" type="neocortex"/>
 			</area>
 
 			<area name="MCA" enabled="true">
@@ -118,7 +119,6 @@
 				<region name="MCA.NC.PMC.CFEF" type="neocortex"/>
 				<region name="MCA.NC.MC" type="neocortex"/>
 				<region name="MCA.NC.PG.S1" type="neocortex"/>
-				<region name="MCA.NC.TPC" type="neocortex"/>
 				<region name="MCA.FD.TH.VA" type="nucleus" size="100"/>
 				<region name="MCA.FD.TH.VL" type="nucleus" size="100"/>
 				<region name="MCA.FD.TH.VP" type="nucleus" size="100"/>
@@ -515,7 +515,18 @@
 
 			<!-- ================= subcortical auditory stream processing =============== -->
 			<circuit id="CircuitAuditionNuclei" name="Audition Perception in Subcortical Nuclei" enabled="true">
+				<connection type="nucleus-nucleus" src="ABA.HM.CORTI" dst="ABA.HM.COCH"/>
+				<connection type="nucleus-nucleus" src="ABA.HM.COCH" dst="ABA.MM.SOC"/>
+				<connection type="nucleus-nucleus" src="ABA.HM.COCH" dst="ABA.HP.PN.LL"/>
+				<connection type="nucleus-nucleus" src="ABA.MM.SOC" dst="ABA.MM.IC"/>
+				<connection type="nucleus-nucleus" src="ABA.MM.IC" dst="ABA.FD.TH.MGB"/>
+				<connection type="nucleus-neocortex" src="ABA.FD.TH.MGB" dst="ACA.NC.A1"/>
+				<connection type="nucleus-nucleus" src="ABA.HP.PN.LL" dst="ABA.MM.IC"/>
 				<connection type="nucleus-nucleus" src="ABA.HM.COCH" dst="HMA.MM.CJ"/>
+				<connection type="neocortex-nucleus" src="ACA.NC.A1" dst="ABA.MM.IC"/>
+				<connection type="nucleus-nucleus" src="ABA.MM.IC" dst="ABA.HP.PN.LL"/>
+				<connection type="nucleus-nucleus" src="ABA.HP.PN.LL" dst="ABA.MM.SOC"/>
+				<connection type="nucleus-nucleus" src="ABA.MM.SOC" dst="ABA.HM.CORTI"/>
 				<connection type="nucleus-nucleus" src="BGA.FT.SN.PC" dst="BMA.HP.PRF.PVR"/>
 				<connection type="nucleus-nucleus" src="MCA.NC.MC" dst="HMA.HP.PRF.CRF"/>
 				<connection type="nucleus-nucleus" src="MCA.NC.SMC" dst="HMA.HP.PRF.CRF"/>
