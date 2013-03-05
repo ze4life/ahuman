@@ -610,7 +610,18 @@
 			<!-- ================= cognitive processing =============== -->
 			<circuit id="CircuitCognition" name="Cognitive Processing" enabled="true">
 				<connection type="neocortex-neocortex" src="VCA.NC.IT.TE" dst="FCA.NC.LPFC"/>
-				<connection type="nucleus-neocortex" src="VBA.MM.SC" dst="MCA.FD.TH.VA"/>
+				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="MCA.FD.TH.VA"/>
+				<connection type="nucleus-neocortex" src="MCA.FD.TH.VA" dst="MCA.NC.PMC.F2"/>
+				<connection type="nucleus-neocortex" src="MCA.FD.TH.VA" dst="MCA.NC.SMC"/>
+				<connection type="neocortex-neocortex" src="MCA.NC.PMC.F2" dst="MCA.NC.PMC.F7"/>
+				<connection type="neocortex-neocortex" src="MCA.NC.PMC.CFEF" dst="MCA.NC.PMC.F7"/>
+				<connection type="neocortex-neocortex" src="FCA.NC.LPFC" dst="MCA.NC.PMC.F7"/>
+				<connection type="neocortex-neocortex" src="MCA.NC.PMC.F7" dst="MCA.NC.PMC.F2"/>
+				<connection type="neocortex-neocortex" src="MCA.NC.PMC.F4" dst="MCA.NC.PMC.F2"/>
+				<connection type="neocortex-neocortex" src="MCA.NC.PMC.F5" dst="MCA.NC.PMC.F2"/>
+				<connection type="neocortex-neocortex" src="MCA.NC.MC" dst="MCA.NC.PMC.F2"/>
+				<connection type="neocortex-neocortex" src="MCA.NC.PMC.F2" dst="MCA.NC.SMC" notes="to F3"/>
+				<connection type="neocortex-neocortex" src="MCA.NC.PMC.F4" dst="MCA.NC.SMC" notes="to F3"/>
 			</circuit>
 
 			<!-- ================= alertness =============== -->
@@ -646,6 +657,18 @@
 				<connection type="nucleus-nucleus" src="MBA.MM.RD" dst="BMA.HM.IO"/>
 				<connection type="nucleus-nucleus" src="HMA.HP.PRF.RPO" dst="MBA.HP.CR"/>
 				<connection type="neocortex-nucleus" src="FCA.NC.VACG" dst="MBA.MM.RD"/>
+			</circuit>
+
+			<!-- ================= muscle control =============== -->
+			<circuit id="CircuitMuscleControl" name="Muscle Control" enabled="true">
+				<connection type="nucleus-nucleus" src="MBA.HP.CR" dst="MCA.FD.TH.VL"/>
+				<connection type="nucleus-nucleus" src="BGA.FT.GPI" dst="MCA.FD.TH.VL"/>
+				<connection type="nucleus-neocortex" src="MCA.FD.TH.VL" dst="MCA.NC.MC"/>
+				<connection type="nucleus-neocortex" src="MCA.FD.TH.VP" dst="MCA.NC.PG.S1"/>
+				<connection type="nucleus-nucleus" src="HMA.MM.MSTR" dst="MCA.FD.TH.VP" notes="to VPM"/>
+				<connection type="neocortex-neocortex" src="MCA.NC.MC" dst="MCA.NC.PG.S1"/>
+				<connection type="neocortex-neocortex" src="MCA.NC.PG.S1" dst="MCA.NC.SMC" notes="to F3"/>
+				<connection type="neocortex-neocortex" src="MCA.NC.PG.S1" dst="PHA.NC.PH.PRR"/>
 			</circuit>
 
 		</circuit-set>
