@@ -29,8 +29,13 @@
 http://ahuman.googlecode.com/svn/images/dot/aHuman/MCA.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| MCA.FD.TH.VA || MCA.NC.PMC.F2 || nucleus-neocortex || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (Thalamus -> FrontalCortex, abstract)] ||
+|| MCA.FD.TH.VA || MCA.NC.SMC || nucleus-neocortex || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (Thalamus -> FrontalCortex, abstract)] ||
 || MCA.FD.TH.VL || MCA.NC.MC || nucleus-neocortex || [http://brainmind.com/BasalGanglia.html Basal Ganglia Activity (VLo -> M1)] ||
+|| MCA.FD.TH.VP || MCA.NC.PG.S1 || nucleus-neocortex || (unknown reference) ||
+|| MCA.NC.MC || MCA.NC.PG.S1 || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> ParietalCortex, abstract)] ||
 || MCA.NC.MC || MCA.NC.PMC.F2 || neocortex-neocortex || (unknown reference) ||
+|| MCA.NC.PG.S1 || MCA.NC.SMC || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> FrontalCortex, abstract)] ||
 || MCA.NC.PMC.AFEF || MCA.NC.PMC.F5 || neocortex-neocortex || [http://www.nature.com/neuro/journal/v12/n6/fig_tab/nn.2331_F5.html Cortical Auditory System (PMC8 -> PMC6, abstract)] ||
 || MCA.NC.PMC.CFEF || MCA.NC.PMC.F7 || neocortex-neocortex || (unknown reference) ||
 || MCA.NC.PMC.F2 || MCA.NC.MC || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (dPM -> MI, abstract)] ||
@@ -49,19 +54,21 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/MCA.dot.jpg
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || ACA || MCA.NC.PMC.F4 || ACA.NC.A3 || Wernicke's area A3 || neocortex-neocortex || [http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2846110/ Dual Auditory Processing (ST -> VLPFC, abstract)] ||
 || ACA || MCA.NC.PMC.F7 || ACA.NC.A1 || Primary Auditory Cortex || neocortex-neocortex || [http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2846110/ Dual Auditory Processing (A1 -> DLPFC, abstract)] ||
+|| BGA || MCA.FD.TH.VL || BGA.FT.GPI || Globus Pallidus Internal || nucleus-nucleus || [http://brainmind.com/BasalGanglia.html Basal Ganglia Activity (GPi -> VLo)] ||
 || BMA || MCA.FD.TH.VP || BMA.HP.PB || Parabrachial Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PB -> VPMpc)] ||
 || FCA || MCA.NC.PMC.AFEF || FCA.NC.BRA || Broca's Area || neocortex-neocortex || [http://www.nature.com/neuro/journal/v12/n6/fig_tab/nn.2331_F5.html Cortical Auditory System (IFC44 -> PMC8)] ||
 || FCA || MCA.NC.PMC.CFEF || FCA.NC.LPFC || Lateral Prefrontal Cortex || neocortex-neocortex || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (DLPFC -> FEF, abstract)] ||
 || FCA || MCA.NC.PMC.F5 || FCA.NC.LPFC || Lateral Prefrontal Cortex || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (LPC -> vPM, abstract)] ||
 || FCA || MCA.NC.PMC.F7 || FCA.NC.LPFC || Lateral Prefrontal Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438807000323 Two extended parallel pathways for decision making (DLPFC -> PM, abstract)] ||
 || FCA || MCA.NC.SMC || FCA.NC.LPFC || Lateral Prefrontal Cortex || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (LPC -> pre-SMA)] ||
+|| HMA || MCA.FD.TH.VP || HMA.MM.MSTR || Mesencephalic Trigeminal Nucleus || nucleus-nucleus || (unknown reference) ||
 || MBA || MCA.FD.TH.VL || MBA.HP.CR || Cerebellum || nucleus-nucleus || (unknown reference) ||
 || PCA || MCA.NC.PMC.CFEF || PCA.NC.IPS.PEF || Posterior Eye Field || neocortex-neocortex || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (PEF -> FEF, abstract)] ||
 || PCA || MCA.NC.PMC.F2 || PCA.NC.IPL.SMW || Supramarginal Wernike Cortex || neocortex-neocortex || [http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2846110/ Dual Auditory Processing (PPC -> DLPFC, abstract)] ||
 || PCA || MCA.NC.PMC.F2 || PCA.NC.SPL.PG || Caudal Precuneus || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (SPL -> dPM, abstract)] ||
 || PCA || MCA.NC.PMC.F4 || PCA.NC.IPL.MST || Medial Superior Temporal Area || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (IPL -> vPM, abstract)] ||
 || PCA || MCA.NC.PMC.F4 || PCA.NC.IPL.SMW || Supramarginal Wernike Cortex || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (IPL -> vPM, abstract)] ||
-|| VBA || MCA.FD.TH.VA || VBA.MM.SC || Superior Colliculus || nucleus-neocortex || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (SCi -> Thalamus, abstract)] ||
+|| VBA || MCA.FD.TH.VA || VBA.MM.SC || Superior Colliculus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (SCi -> Thalamus, abstract)] ||
 || VCA || MCA.NC.PMC.CFEF || VCA.NC.IT.TE || Inferotemporal Cortex || neocortex-neocortex || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (TEF -> FEF, abstract)] ||
 
 *External Outbound Region Connections:*
@@ -80,6 +87,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/MCA.dot.jpg
 || HMA || MCA.NC.SMC || HMA.HP.PRF.CRF || Caudal Pontine Reticular Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (M2 -> RF, abstract)] ||
 || HMA || MCA.NC.SMC || HMA.HP.PRF.PDT || Pontine Reticulotegmental Nucleus || neocortex-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (M2 -> RF, abstract)] ||
 || PCA || MCA.NC.PG.S1 || PCA.NC.SPL.PG || Caudal Precuneus || neocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (SomSensCortex -> PosteriorParietalCortex)] ||
+|| PHA || MCA.NC.PG.S1 || PHA.NC.PH.PRR || Perirhinal Cortex || neocortex-neocortex || (unknown reference) ||
 || VBA || MCA.NC.PMC.CFEF || VBA.MM.SC || Superior Colliculus || neocortex-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (FEF -> SC, abstract)] ||
 || VBA || MCA.NC.SMC || VBA.MM.RP.RIP || Raphe Interpositus Nucleus || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (FEFSEF -> RIP, abstract)] ||
 
@@ -196,6 +204,10 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/MCA.dot.jpg
 - S1/BA1 - Skin, rapidly adapting receptors
 - S1/BA2 - Skin, complex touch - pressure and joint position
 }}}
+
+
+
+
 
 
 

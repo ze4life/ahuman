@@ -1,0 +1,37 @@
+#summary Muscle Control
+@@[Home] -> [BiologicalLifeResearch] -> [CircuitMuscleControl]
+----
+
+This page covers components and connections of circuit Muscle Control.
+Circuit is part of aHuman target integrated biological model.
+
+(generated)
+= Components =
+(generated)
+
+|| *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||
+|| [BrainAreaBGA BGA] || BGA.FT.GPI || Globus Pallidus Internal || Inhibitory Nucleus || Output nuclei of basal ganglia to neocortex ||
+|| [BrainAreaHMA HMA] || HMA.MM.MSTR || Mesencephalic Trigeminal Nucleus || 1-order Sensory Nucleus || Facial Somatic Sensations ||
+|| [BrainAreaMBA MBA] || MBA.HP.CR || Cerebellum || Excitatory Nucleus || Motor coordination ||
+|| [BrainAreaMCA MCA] || MCA.FD.TH.VL || Ventral Lateral Nucleus || Excitatory Nucleus || Relay BSA.CR to MCA.MC ||
+|| [BrainAreaMCA MCA] || MCA.FD.TH.VP || Ventral Posterior Nucleus || Excitatory Nucleus || Relays somatic information to MCA.SSC ||
+|| [BrainAreaMCA MCA] || MCA.NC.MC || Motor Cortex || Neocortex || Execution of required voluntary movements ||
+|| [BrainAreaMCA MCA] || MCA.NC.PG.S1 || Somatosensory Cortex || Neocortex || Muscle and skin receptors ||
+|| [BrainAreaMCA MCA] || MCA.NC.SMC || Supplementary Motor Cortex || Neocortex || Process sequences of movements and coordinate bilateral movements ||
+|| [BrainAreaPHA PHA] || PHA.NC.PH.PRR || Perirhinal Cortex || Neocortex || Associate different visual views of objects and their various nonvisual attributes ||
+
+= Connections =
+(generated)
+
+http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitMuscleControl.dot.jpg
+
+|| *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| BGA.FT.GPI || MCA.FD.TH.VL || nucleus-nucleus || [http://brainmind.com/BasalGanglia.html Basal Ganglia Activity (GPi -> VLo)] ||
+|| HMA.MM.MSTR || MCA.FD.TH.VP || nucleus-nucleus || (unknown reference) ||
+|| MBA.HP.CR || MCA.FD.TH.VL || nucleus-nucleus || (unknown reference) ||
+|| MCA.FD.TH.VL || MCA.NC.MC || nucleus-neocortex || [http://brainmind.com/BasalGanglia.html Basal Ganglia Activity (VLo -> M1)] ||
+|| MCA.FD.TH.VP || MCA.NC.PG.S1 || nucleus-neocortex || (unknown reference) ||
+|| MCA.NC.MC || MCA.NC.PG.S1 || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> ParietalCortex, abstract)] ||
+|| MCA.NC.PG.S1 || MCA.NC.SMC || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> FrontalCortex, abstract)] ||
+|| MCA.NC.PG.S1 || PHA.NC.PH.PRR || neocortex-neocortex || (unknown reference) ||
+
