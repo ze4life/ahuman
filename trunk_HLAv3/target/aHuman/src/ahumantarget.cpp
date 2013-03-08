@@ -45,16 +45,19 @@ void AHumanTarget::onXmlMessage( XmlMessage *msg ) {
 void AHumanTarget::cmdPlayCircuit( Xml scenario ) {
 	ScenarioPlayer player;
 	player.play( scenario );
+	logger.logInfo( "cmdPlayCircuit: SUCCESSFULLY FINISHED" );
 }
 
 void AHumanTarget::cmdVerifyModel( Xml modelArea ) {
 	ModelVerifier verifier( modelArea );
 	verifier.verify();
+	logger.logInfo( "cmdVerifyModel: SUCCESSFULLY FINISHED" );
 }
 
 void AHumanTarget::cmdCreateWikiPages( Xml wiki ) {
 	WikiMaker maker( wiki );
 	maker.createPages();
+	logger.logInfo( "cmdCreateWikiPages: SUCCESSFULLY FINISHED" );
 }
 
 void AHumanTarget::stopTarget() {

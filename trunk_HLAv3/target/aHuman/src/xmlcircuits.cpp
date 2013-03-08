@@ -80,6 +80,8 @@ void XmlCircuits::getCircuitInfo( String circuit , XmlCircuitInfo& info ) {
 	info.name = xmlitem.getAttribute( "name" , "" );
 	info.image = xmlitem.getAttribute( "image" , "" );
 	info.reference = xmlitem.getAttribute( "reference" , "" );
+	info.imageHeight = xmlitem.getIntAttribute( "imageHeight" , 0 );
+	info.imageWidth = xmlitem.getIntAttribute( "imageWidth" , 0 );
 
 	info.componentMapping.destroy();
 	String mapping = xmlitem.getAttribute( "components" , "" );

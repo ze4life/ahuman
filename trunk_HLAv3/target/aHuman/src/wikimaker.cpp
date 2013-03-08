@@ -223,8 +223,12 @@ String WikiMaker::findReference( MindCircuitConnectionDef *link ) {
 	if( reference.startsFrom( "article:" ) )
 		reference = "http://ahuman.googlecode.com/svn/research/articles/" + reference.getMid( 8 );
 			
-	if( reference.equals( "UNKNOWN" ) )
-		return( "not linked reference, circuit=" + info.name + " (" + circuitLink + ")" );
+	if( reference.equals( "UNKNOWN" ) ) {
+		if( info.image.isEmpty() )
+			return( "not linked reference, circuit=" + info.name + " (" + circuitLink + ")" );
+
+		reference = info.image;
+	}
 
 	return( "[" + reference + " " + info.name + " (" + circuitLink + ")]" );
 }
