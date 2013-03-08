@@ -101,6 +101,9 @@ public:
 	String image;
 	String reference;
 	MapStringToString componentMapping;
+
+	int imageHeight;
+	int imageWidth;
 };
 
 /*#########################################################################*/
