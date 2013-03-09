@@ -122,6 +122,7 @@ public:
 	void createFromXml( Xml xml );
 	void resolveReferences( MindMap *map );
 
+	MindAreaDef *getArea() { return( area ); };
 	String getName() { return( name ); };
 	String getTypeName() { return( typeName ); };
 	MindRegionTypeDef *getType() { return( type ); };

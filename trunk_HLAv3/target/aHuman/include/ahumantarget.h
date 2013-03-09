@@ -130,6 +130,8 @@ public:
 	void createFileContent( String fileName , StringList& lines );
 	String setSpecialCharacters( String data );
 	String findReference( MindCircuitConnectionDef *link );
+	String getAreaPage( String area );
+	String getRegionPage( String region );
 
 private:
 	void createMainPage();
@@ -226,9 +228,10 @@ public:
 	void execute();
 
 private:
-	void createAreaPages_createRegionTableSection( String wikiDir , String wikiPage , MindAreaDef *areaDef );
-	void createAreaPages_createConnectivityTableSection( String wikiDir , String wikiPage , MindAreaDef *areaDef );
-	void createAreaPages_createCircuitsAndReferencesTableSection( String wikiDir , String wikiPage , MindAreaDef *areaDef );
+	void createAreaPages_createRegionTableSection( String wikiDir , MindAreaDef *areaDef );
+	void createAreaPages_createConnectivityTableSection( String wikiDir , MindAreaDef *areaDef );
+	void createAreaPages_createCircuitsAndReferencesTableSection( String wikiDir , MindAreaDef *areaDef );
+	void createAreaPages_createRegionPages( String wikiDir , MindAreaDef *areaDef );
 	String createAreaPages_getCircuitKey( MindAreaDef *areaDef , XmlCircuitInfo& info );
 	void createAreaPages_getCircuitLines( XmlCircuitInfo& info , StringList& lines );
 	String createAreaPages_getRegionTableRow( MindRegionDef *regionDef );
@@ -240,6 +243,31 @@ private:
 
 private:
 	WikiMaker *wm;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class WikiRegionPage : public Object {
+public:
+	WikiRegionPage( WikiMaker *wm , String wikiDir , MindRegionDef *region );
+	virtual ~WikiRegionPage();
+	virtual const char *getClass() { return "WikiRegionPage"; };
+
+public:
+	void execute();
+
+private:
+	void createHeading();
+	void createChildTableSection();
+	void createConnectivitySection();
+	void createThirdpartyAndReferencesSection();
+
+private:
+	WikiMaker *wm;
+	String wikiDir;
+	MindRegionDef *region;
+	XmlHMindElementInfo info;
 };
 
 /*#########################################################################*/
