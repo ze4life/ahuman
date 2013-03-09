@@ -15,11 +15,12 @@ static void UnhandledExceptionTranslator( unsigned int exceptionCode , struct _E
 /*#########################################################################*/
 /*#########################################################################*/
 
-void ServiceManager::configureDefault( String etcpath ) {
+bool ServiceManager::configureDefault( String etcpath ) {
 	try {
 		EnvService *es = ( EnvService * )findServiceByName( "EnvService" );
 		ASSERTMSG( es != NULL , "EnvService was not added to the list of services" );
 		es -> configureAll( etcpath );
+		return( true );
 	}
 	catch( RuntimeException& e ) {
 		logger.printStack( e );
@@ -27,6 +28,8 @@ void ServiceManager::configureDefault( String etcpath ) {
 	catch( ... ) {
 		logger.logError( "createServices: unknown exception" );
 	}
+
+	return( false );
 }
 
 void ServiceManager::configureLifecycle( Xml config ) {

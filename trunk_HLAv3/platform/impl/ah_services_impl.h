@@ -168,7 +168,7 @@ private:
 	int startAdd;	// next add pos
 	int startGet;	// next get pos
 
-	static RFC_HND stopEvent;
+	RFC_HND stopEvent;
 };
 
 /*#########################################################################*/

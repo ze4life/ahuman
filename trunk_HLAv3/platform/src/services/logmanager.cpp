@@ -7,8 +7,6 @@
 // #############################################################################
 // #############################################################################
 
-RFC_HND LogManager::stopEvent = NULL;
-
 static unsigned __stdcall async_logger( void *p_arg ) {
 	LogManager *lm = ( LogManager * )p_arg;
 	lm -> run( NULL );
@@ -24,6 +22,7 @@ LogManager::LogManager() {
 	logFileStream = NULL;
 	lock = rfc_hnd_semcreate();
 	stopEvent = rfc_hnd_evcreate();
+
 	rfc_hnd_evsignal( stopEvent );
 
 	isFileLoggingEnabled = false;
