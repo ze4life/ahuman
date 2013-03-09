@@ -94,7 +94,7 @@ Xml Xml::getChildNamedNode( String element , String name ) {
 }
 
 String Xml::getAttribute( String a ) {
-	ASSERT( node != NULL );
+	ASSERTMSG( node != NULL , a + " attribute parent node is null" );
 
 	TiXmlElement *xml = ( TiXmlElement * )node;
 	const char *v = xml -> Attribute( a );
@@ -104,7 +104,7 @@ String Xml::getAttribute( String a ) {
 }
 
 String Xml::getAttribute( String a , String defaultValue ) {
-	ASSERT( node != NULL );
+	ASSERTMSG( node != NULL , a + " attribute parent node is null" );
 
 	TiXmlElement *xml = ( TiXmlElement * )node;
 	const char *v = xml -> Attribute( a );
@@ -116,28 +116,28 @@ String Xml::getAttribute( String a , String defaultValue ) {
 }
 
 bool Xml::getBooleanAttribute( String a ) {
-	ASSERT( node != NULL );
+	ASSERTMSG( node != NULL , a + " attribute parent node is null" );
 
 	TiXmlElement *xml = ( TiXmlElement * )node;
 	return( getAttribute( a , "false" ).equals( "true" ) );
 }
 
 bool Xml::getBooleanAttribute( String a , bool defaultValue ) {
-	ASSERT( node != NULL );
+	ASSERTMSG( node != NULL , a + " attribute parent node is null" );
 
 	TiXmlElement *xml = ( TiXmlElement * )node;
 	return( getAttribute( a , ( ( defaultValue )? "true" : "false" ) ).equals( "true" ) );
 }
 
 int Xml::getIntAttribute( String a ) {
-	ASSERT( node != NULL );
+	ASSERTMSG( node != NULL , a + " attribute parent node is null" );
 
 	TiXmlElement *xml = ( TiXmlElement * )node;
 	const char *v = xml -> Attribute( a );
 
-	ASSERTMSG( v != NULL , a + " attribute is NULL" );
+	ASSERTMSG( v != NULL , a + " attribute is null" );
 	int value = 0;
-	ASSERTMSG( sscanf( v , "%d" , &value ) == 1 , "Unable to parse integer in string: " + a );
+	ASSERTMSG( sscanf( v , "%d" , &value ) == 1 , "unable to parse integer in string: " + a );
 	return( value );
 }
 
@@ -151,12 +151,12 @@ int Xml::getIntAttribute( String a , int defaultValue ) {
 		return( defaultValue );
 
 	int value = 0;
-	ASSERTMSG( sscanf( v , "%d" , &value ) == 1 , "Unable to parse integer in string: " + a );
+	ASSERTMSG( sscanf( v , "%d" , &value ) == 1 , "unable to parse integer in string: " + a );
 	return( value );
 }
 
 String Xml::getProperty( String name ) {
-	ASSERT( node != NULL );
+	ASSERTMSG( node != NULL , name + " property parent node is null" );
 
 	TiXmlElement *xml = ( TiXmlElement * )node;
 	TiXmlElement *xmlChild = xml -> FirstChildElement( "property" );
@@ -189,7 +189,7 @@ int Xml::getIntProperty( String name ) {
 	String prop = getProperty( name );
 	char c;
 	int v;
-	ASSERT( sscanf( prop , "%d%c" , &v , &c ) == 1 );
+	ASSERTMSG( sscanf( prop , "%d%c" , &v , &c ) == 1 , name + " property is not available" );
 	return( v );
 }
 
@@ -199,7 +199,7 @@ int Xml::getIntProperty( String name , int defaultValue ) {
 	String prop = getProperty( name , buf );
 	char c;
 	int v;
-	ASSERT( sscanf( prop , "%d%c" , &v , &c ) == 1 );
+	ASSERTMSG( sscanf( prop , "%d%c" , &v , &c ) == 1 , name + " property is not available" );
 	return( v );
 }
 
@@ -207,7 +207,7 @@ float Xml::getFloatProperty( String name ) {
 	String prop = getProperty( name );
 	char c;
 	float v;
-	ASSERT( sscanf( prop , "%f%c" , &v , &c ) == 1 );
+	ASSERTMSG( sscanf( prop , "%f%c" , &v , &c ) == 1 , name + " property is not available" );
 	return( v );
 }
 
@@ -217,12 +217,12 @@ float Xml::getFloatProperty( String name , float defaultValue ) {
 	String prop = getProperty( name , buf );
 	char c;
 	float v;
-	ASSERT( sscanf( prop , "%f%c" , &v , &c ) == 1 );
+	ASSERTMSG( sscanf( prop , "%f%c" , &v , &c ) == 1 , name + " property is not available" );
 	return( v );
 }
 
 String Xml::getProperty( String name , String defaultValue ) {
-	ASSERT( node != NULL );
+	ASSERTMSG( node != NULL , name + " property parent node is null" );
 
 	TiXmlElement *xml = ( TiXmlElement * )node;
 	TiXmlElement *xmlChild = xml -> FirstChildElement( "property" );
@@ -251,14 +251,14 @@ bool Xml::exists() {
 }
 
 void Xml::setAttribute( String a , String value ) {
-	ASSERT( node != NULL );
+	ASSERTMSG( node != NULL , a + " attribute parent node is null" );
 	TiXmlElement *xml = ( TiXmlElement * )node;
 
 	xml -> SetAttribute( a , value );
 }
 
 void Xml::setBooleanAttribute( String a , bool value ) {
-	ASSERT( node != NULL );
+	ASSERTMSG( node != NULL , a + " attribute parent node is null" );
 	TiXmlElement *xml = ( TiXmlElement * )node;
 
 	const char *valueStr = ( value )? "true" : "false";
@@ -266,7 +266,7 @@ void Xml::setBooleanAttribute( String a , bool value ) {
 }
 
 void Xml::setIntAttribute( String a , int value ) {
-	ASSERT( node != NULL );
+	ASSERTMSG( node != NULL , a + " attribute parent node is null" );
 	TiXmlElement *xml = ( TiXmlElement * )node;
 
 	char v[ 15 ];
@@ -275,7 +275,7 @@ void Xml::setIntAttribute( String a , int value ) {
 }
 
 Xml Xml::getFirstChild( String name ) {
-	ASSERT( node != NULL );
+	ASSERTMSG( node != NULL , name + " node parent is null" );
 
 	TiXmlElement *xml = ( TiXmlElement * )node;
 
@@ -293,7 +293,7 @@ Xml Xml::getFirstChild( String name ) {
 }
 
 Xml Xml::getNextChild( String name ) {
-	ASSERT( node != NULL );
+	ASSERTMSG( node != NULL , name + " node parent is null" );
 
 	TiXmlElement *xml = ( TiXmlElement * )node;
 	TiXmlElement *xmlChild = xml -> NextSiblingElement( name );
@@ -328,7 +328,7 @@ String Xml::serialize() {
 }
 
 Xml Xml::addTextElement( String name , String value ) {
-	ASSERT( node != NULL );
+	ASSERTMSG( node != NULL , name + " node parent is null" );
 
 	TiXmlElement *xml = ( TiXmlElement * )node;
 	TiXmlElement *xmlElement = new TiXmlElement( name );
@@ -342,7 +342,7 @@ Xml Xml::addTextElement( String name , String value ) {
 }
 
 Xml Xml::addElement( String name ) {
-	ASSERT( node != NULL );
+	ASSERTMSG( node != NULL , name + " node parent is null" );
 
 	TiXmlNode *xml = ( TiXmlNode * )node;
 	TiXmlElement *xmlProp = new TiXmlElement( name );
@@ -354,7 +354,7 @@ Xml Xml::addElement( String name ) {
 }
 
 void Xml::setProperty( String name , String value ) {
-	ASSERT( node != NULL );
+	ASSERTMSG( node != NULL , name + " property node parent is null" );
 
 	TiXmlNode *xml = ( TiXmlNode * )node;
 	TiXmlElement *xmlProp = new TiXmlElement( "property" );

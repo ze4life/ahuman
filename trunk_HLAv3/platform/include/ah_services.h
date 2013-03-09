@@ -89,7 +89,7 @@ public:
 	ClassList<Service>& getServices();
 
 	// configuring
-	void configureDefault( String etcpath );
+	bool configureDefault( String etcpath );
 	void configureLifecycle( Xml config );
 	void configureLogging( Xml config );
 
