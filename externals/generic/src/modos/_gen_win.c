@@ -337,7 +337,7 @@ short
 
 	hFind = FindFirstFile( path , &findFileData );
 	if( hFind == INVALID_HANDLE_VALUE )
-		return( 0 );
+		return( 0 );	
 
 	/* form structure */
 	info -> timeCreated = *( RFC_INT64 * )&findFileData.ftCreationTime;
