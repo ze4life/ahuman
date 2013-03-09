@@ -8,5 +8,6 @@
 
 #include <platform\include\ah_platform.h>
 #include <mind\include\ah_mind.h>
+#include <library\nxtpp\include\nxtpp.h>
 
 #include "arobottarget.h"

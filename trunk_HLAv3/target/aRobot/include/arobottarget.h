@@ -20,6 +20,9 @@ public:
 public:
 	MindSensor *createEye( SensorArea *area );
 	MindEffector *createWheeledLegs( EffectorArea *area );
+
+private:
+	NxtPP nxt;
 };
 
 /*#########################################################################*/

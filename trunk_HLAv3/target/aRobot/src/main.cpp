@@ -14,7 +14,8 @@ void execute( String etcpath ) {
 	sm.addPlatformServices();
 
 	// configure all
-	sm.configureDefault( etcpath );
+	if( !sm.configureDefault( etcpath ) )
+		return;
 
 	// execute services
 	sm.execute();

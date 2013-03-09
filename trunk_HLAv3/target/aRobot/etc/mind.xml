@@ -1,11 +1,12 @@
 <service>
 
-	<NeuralNetworks>
+	<!-- ================= basic neural networks parameters =============== -->
+	<neural-networks>
 		<property name="NEURON_SYNAPTIC_THRESHOLD_INITIAL_pQ" value="70"/>
 		<property name="NEURON_SYNAPTIC_THRESHOLD_MIN_pQ" value="10"/>
-		<property name="NEURON_ACTION_POTENTIAL_BY_SIGNAL_pQ" value="80"/>
-		<property name="NEURON_MEMBRANE_POTENTIAL_BY_ACTION_POTENTIAL_pQ" value="20"/>
-		<property name="NEURON_MEMBRANE_THRESHOLD_INITIAL_pQ" value="70"/>
+		<property name="NEURON_ACTION_POTENTIAL_BY_SIGNAL_pQ" value="20"/>
+		<property name="NEURON_MEMBRANE_POTENTIAL_BY_ACTION_POTENTIAL_pQ" value="65"/>
+		<property name="NEURON_MEMBRANE_THRESHOLD_INITIAL_pQ" value="60"/>
 		<property name="NEURON_FIRE_OUTPUT_BY_MEMBRANE_POTENTIAL_pQ" value="80"/>
 		<property name="NEURON_INHIBIT_DELAY_ms" value="10"/>
 		<property name="NEURON_FIRE_OUTPUT_SILENT_ms" value="10"/>
@@ -14,141 +15,44 @@
 		<property name="NEURON_OUTPUT_DISCHARGE_RATE_pQ_per_ms" value="1"/>
 		<property name="NEURON_FULL_RELAX_ms" value="1000"/>
 		<property name="NEURON_CONNECTIVITY_UPDATE_FACTOR" value="95"/>
-	</NeuralNetworks>
+	</neural-networks>
 
-	<MindSpace>
-	</MindSpace>
+	<!-- ================= mind geometry =============== -->
+	<mind-space>
+	</mind-space>
 
-	<MindMap>
+	<!-- ================= mind components and circuits =============== -->
+	<mind-map>
 
-		<MindRegionTypeSet>
+		<region-type-set>
+		</region-type-set>
 
-			<MindRegionType name="MindSensor">
+		<!-- ================= typical links =============== -->
+		<connection-type-set>
+		</connection-type-set>
 
-				<MindRegionConnectorSet>
+		<component-set>
+		</component-set>
 
-					<MindRegionConnector id="sensor.data" source="true"/>
-					<MindRegionConnector id="sensor.control" source="false"/>
-					<MindRegionConnector id="sensor.control-feedback" source="true"/>
-			
-				</MindRegionConnectorSet>
+		<circuit-set>
+		</circuit-set>
 
-			</MindRegionType>
+	</mind-map>
 
-			<MindRegionType name="NucleiRegion">
-
-				<MindRegionConnectorSet>
-
-					<MindRegionConnector id="nucleus.input" source="false"/>
-					<MindRegionConnector id="nucleus.output" source="true"/>
-					<MindRegionConnector id="nucleus.interneurons-input" source="false"/>
-				
-				</MindRegionConnectorSet>
-
-				<MindRegionInternalLinkSet>
-
-					<NeuroLink id="interneurons" type="InhibitoryLink" transmitter="GLU"/>
-
-				</MindRegionInternalLinkSet>
-
-			</MindRegionType>
-
-			<MindRegionType name="CortexRegion">
-
-				<MindRegionConnectorSet>
-
-					<MindRegionConnector id="cortex.ff-input" source="false"/>
-					<MindRegionConnector id="cortex.fb-output" source="true"/>
-				
-				</MindRegionConnectorSet>
-
-			</MindRegionType>
-
-		</MindRegionTypeSet>
-
-		<MindNetworkTypeSet>
-			<MindNetworkType name="sensor"/>
-		</MindNetworkTypeSet>
-
-		<MindNetworkSet>
-			<MindNet name="SensorEye" type="sensor"/>
-		</MindNetworkSet>
-
-		<MindAreaSet>
-
-			<MindArea id="SensorArea" enabled="true">
-				<MindLocation posX="0" posY="0" posZ="0" sizeX="10000" sizeY="10000" sizeZ="2"/>
-				<MindAreaChannel name="SensorArea"/>
-				<MindAreaNetwork net="SensorEye" transmitters="GLU"/>
-			</MindArea>
-
-			<MindArea id="EffectorArea" enabled="false">
-				<MindLocation posX="0" posY="0" posZ="0" sizeX="10000" sizeY="10000" sizeZ="2"/>
-			</MindArea>
-
-			<MindArea id="ThalamusArea" enabled="true">
-				<MindLocation posX="0" posY="0" posZ="0" sizeX="10000" sizeY="10000" sizeZ="2"/>
-				<MindAreaChannel name="ThalamusArea"/>
-				<MindAreaNetwork net="SensorEye" transmitters="GLU"/>
-			</MindArea>
-
-			<MindArea id="PerceptionArea" enabled="true">
-				<MindLocation posX="0" posY="0" posZ="0" sizeX="10000" sizeY="10000" sizeZ="2"/>
-				<MindAreaChannel name="PerceptionArea"/>
-				<MindAreaNetwork net="SensorEye" transmitters="GLU"/>
-			</MindArea>
-
-			<MindArea id="ParietalArea" enabled="false">
-				<MindLocation posX="0" posY="0" posZ="0" sizeX="10000" sizeY="10000" sizeZ="2"/>
-				<MindAreaNetwork net="SensorEye" transmitters="GLU"/>
-			</MindArea>
-
-			<MindArea id="SomaticArea" enabled="false">
-				<MindLocation posX="0" posY="0" posZ="0" sizeX="10000" sizeY="10000" sizeZ="2"/>
-				<MindAreaNetwork net="SensorEye" transmitters="GLU"/>
-			</MindArea>
-
-			<MindArea id="HippocampusArea" enabled="false"/>
-			<MindArea id="PrefrontalCortexArea" enabled="false"/>
-			<MindArea id="BasalGangliaArea" enabled="false"/>
-			<MindArea id="BrainStemArea" enabled="false"/>
-			<MindArea id="CranialNerveArea" enabled="false"/>
-			<MindArea id="SpinalCordArea" enabled="false"/>
-			<MindArea id="MotorNerveArea" enabled="false"/>
-			<MindArea id="BodyFeelingNerveArea" enabled="false"/>
-    
-		</MindAreaSet>
-
-		<MindLinkTypeSet>
-
-			<MindLinkType name="sensor-stream">
-				<NeuroLink type="ExcitatoryLink" masterEntity="sensor.data" slaveEntity="nucleus.input" transmitter="GLU" forward="true"/>
-				<NeuroLink type="ExcitatoryLink" masterEntity="nucleus.output" slaveEntity="cortex.ff-input" transmitter="GLU" forward="true"/>
-				<NeuroLink type="ExcitatoryLink" slaveEntity="cortex.fb-output" masterEntity="nucleus.interneurons-input" transmitter="GLU" forward="false"/>
-			</MindLinkType>
-
-		</MindLinkTypeSet>
-
-		<MindLinkSet>
-			<MindLink type="sensor-stream" masterArea="SensorArea" slaveArea="ThalamusArea" masterChannel="SensorArea" enabled="true"/>
-			<MindLink type="sensor-stream" masterArea="ThalamusArea" slaveArea="PerceptionArea" masterChannel="ThalamusArea" slaveChannel="PerceptionArea" enabled="true"/>
-		</MindLinkSet>
-
-	</MindMap>
-
-	<ActiveMemory>
-		<MemoryFocus>
+	<!-- ================= memory state =============== -->
+	<active-memory>
+		<memory-focus>
 			<property name="objectCount" value="100"/>
-		</MemoryFocus>
+		</memory-focus>
 
-		<ThreadPool>
+		<thread-pool>
 			<property name="name" value="AMT"/>
 			<property name="run" value="false"/>
 			<property name="threadCount" value="20"/>
 			<property name="operationsPerSecond" value="100"/>
 			<property name="secondsPerCycle" value="1"/>
 			<property name="maxLoad" value="10"/>
-		</ThreadPool>
-	</ActiveMemory>
+		</thread-pool>
+	</active-memory>
 
 </service>
