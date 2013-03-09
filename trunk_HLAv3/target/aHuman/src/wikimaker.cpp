@@ -266,3 +266,10 @@ bool WikiMaker::findReferenceCircuitLink( MindCircuitConnectionDef *link , XmlCi
 	return( false );
 }
 
+String WikiMaker::getAreaPage( String area ) {
+	return( "BrainArea" + area );
+}
+
+String WikiMaker::getRegionPage( String region ) {
+	return( "BrainRegion" + region );
+}
