@@ -12,16 +12,27 @@ Region is part of aHuman target integrated biological model.
 *Top-down path to region*:
   * Neocortex -> Parietal Lobe (NC.LOBE.PAR) -> Medial Parietal Lobule (PCA.NC.MPL) -> Retrosplenial Cortex (PCA.NC.MPL.RSC)
 
-= Connections =
+= Connectivity =
+(generated)
+
+
+http://ahuman.googlecode.com/svn/images/dot/aHuman/PCA.NC.MPL.RSC.dot.jpg
+
+*Inbound Region Connections:*
+
+|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| HBA || PCA.NC.MPL.RSC || HBA.FT.SC.SUB || Subiculum || nucleus-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (SUB -> PCGRSP, abstract)] ||
+|| PCA || PCA.NC.SPL.PG || PCA.NC.MPL.RSC || Retrosplenial Cortex || neocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (PosteriorParietalCortex -> PCGRSP, abstract)] ||
+
+*Outbound Region Connections:*
+
+|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| HBA || PCA.NC.MPL.RSC || HBA.FT.SC.SUB || Subiculum || neocortex-allocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (PCGRSP -> SUB, abstract)] ||
+|| PHA || PCA.NC.MPL.RSC || PHA.NC.PH.ET || Enthorhinal Cortex || neocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (PCGRSP -> EnthCortex, abstract)] ||
 
 = Thirdparty Circuits =
 
 = References =
-
-
-
-
-
 
 
 

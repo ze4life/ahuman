@@ -12,16 +12,30 @@ Region is part of aHuman target integrated biological model.
 *Top-down path to region*:
   * Neocortex -> Anterior Lobe (NC.LOBE.ANT) -> Prefrontal Cortex (FCA.NC.PFC) -> Lateral Prefrontal Cortex (FCA.NC.LPFC)
 
-= Connections =
+= Connectivity =
+(generated)
+
+
+http://ahuman.googlecode.com/svn/images/dot/aHuman/FCA.NC.LPFC.dot.jpg
+
+*Inbound Region Connections:*
+
+|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| PCA || FCA.NC.LPFC || PCA.NC.IPL.MST || Medial Superior Temporal Area || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (IPL -> LPC, abstract)] ||
+|| PCA || FCA.NC.LPFC || PCA.NC.IPS.PEF || Posterior Eye Field || neocortex-neocortex || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (PEF -> DLPFC)] ||
+|| VCA || FCA.NC.LPFC || VCA.NC.IT.TE || Inferotemporal Cortex || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (IT -> LPC, abstract)] ||
+
+*Outbound Region Connections:*
+
+|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| MCA || FCA.NC.LPFC || MCA.NC.PMC.CFEF || Caudal Frontal Eye Field || neocortex-neocortex || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (DLPFC -> FEF, abstract)] ||
+|| MCA || FCA.NC.LPFC || MCA.NC.PMC.F5 || Ventral Rostral Premotor Cortex || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (LPC -> vPM, abstract)] ||
+|| MCA || FCA.NC.LPFC || MCA.NC.PMC.F7 || Dorsal Rostral Premotor Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438807000323 Two extended parallel pathways for decision making (DLPFC -> PM, abstract)] ||
+|| MCA || FCA.NC.LPFC || MCA.NC.SMC || Supplementary Motor Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (46 -> F6)] ||
 
 = Thirdparty Circuits =
 
 = References =
-
-
-
-
-
 
 
 
