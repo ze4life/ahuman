@@ -125,13 +125,17 @@ public:
 
 public:
 	void createPages();
+	void ensureFileExists( String wikiDir , String wikiPage , StringList& sections );
 	void updateFileHeading( String wikiDir , String wikiPage , StringList& lines );
 	void updateFileSection( String wikiDir , String wikiPage , String section , StringList& lines );
 	void createFileContent( String fileName , StringList& lines );
 	String setSpecialCharacters( String data );
 	String findReference( MindCircuitConnectionDef *link );
+
 	String getAreaPage( String area );
 	String getRegionPage( String region );
+	String getAreaReference( String area );
+	String getRegionReference( String region );
 
 private:
 	void createMainPage();
@@ -259,9 +263,17 @@ public:
 
 private:
 	void createHeading();
+
 	void createChildTableSection();
+	void createChildTableSection_addChilds( Xml node , String prefix , StringList& lines );
+
 	void createConnectivitySection();
+	void createConnectivitySection_getExternalConnections( MapStringToClass<MindCircuitConnectionDef>& connections , bool isin );
+	void createConnectivitySection_getExternalConnectionTableLine( MindCircuitConnectionDef *link , StringList& lines , bool isin );
+
 	void createThirdpartyAndReferencesSection();
+	String createThirdpartyAndReferencesSection_getCircuitKey( MindAreaDef *areaDef , XmlCircuitInfo& info );
+	void createThirdpartyAndReferencesSection_getCircuitLines( XmlCircuitInfo& info , StringList& lines );
 
 private:
 	WikiMaker *wm;

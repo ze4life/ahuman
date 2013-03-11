@@ -80,7 +80,7 @@ String WikiAreaPages::createAreaPages_getRegionTableRow( MindRegionDef *regionDe
 	XmlHMindElementInfo info;
 	wm -> hmindxml.getElementInfo( regionId , info );
 	
-	value = "|| *" + regionId + "* || " + 
+	value = "|| " + wm -> getRegionReference( regionId ) + " || " + 
 		createAreaPages_getTableCellAttribute( info , "name" , info.name , true , 0 ) + " || " + 
 		createAreaPages_getTableCellAttribute( info , "type" , info.type , true , 0 ) + " || " + 
 		createAreaPages_getTableCellAttribute( info , "function" , info.function , true , 80 ) + " || " + 
@@ -142,20 +142,32 @@ void WikiAreaPages::createAreaPages_createConnectivityTableSection( String wikiD
 	lines.add( "" );
 	connections.clear();
 	createAreaPages_getExternalConnections( areaDef , connections , true );
-	createAreaPages_getExternalConnectionTableLine( areaDef , NULL , lines , true );
-	for( int k = 0; k < connections.count(); k++ ) {
-		MindCircuitConnectionDef *c = connections.getClassByIndex( k );
-		createAreaPages_getExternalConnectionTableLine( areaDef , c , lines , true );
+	lines.add( "*External Inbound Region Connections:*" );
+	if( connections.count() == 0 ) {
+		lines.add( "  * no connections" );
+	}
+	else {
+		createAreaPages_getExternalConnectionTableLine( areaDef , NULL , lines , true );
+		for( int k = 0; k < connections.count(); k++ ) {
+			MindCircuitConnectionDef *c = connections.getClassByIndex( k );
+			createAreaPages_getExternalConnectionTableLine( areaDef , c , lines , true );
+		}
 	}
 
 	// external connections - out
 	lines.add( "" );
 	connections.clear();
 	createAreaPages_getExternalConnections( areaDef , connections , false );
-	createAreaPages_getExternalConnectionTableLine( areaDef , NULL , lines , false );
-	for( int k = 0; k < connections.count(); k++ ) {
-		MindCircuitConnectionDef *c = connections.getClassByIndex( k );
-		createAreaPages_getExternalConnectionTableLine( areaDef , c , lines , false );
+	lines.add( "*External Outbound Region Connections:*" );
+	if( connections.count() == 0 ) {
+		lines.add( "  * no connections" );
+	}
+	else {
+		createAreaPages_getExternalConnectionTableLine( areaDef , NULL , lines , false );
+		for( int k = 0; k < connections.count(); k++ ) {
+			MindCircuitConnectionDef *c = connections.getClassByIndex( k );
+			createAreaPages_getExternalConnectionTableLine( areaDef , c , lines , false );
+		}
 	}
 
 	String sectionName = "Connectivity";
@@ -280,7 +292,8 @@ void WikiAreaPages::createAreaPages_getInternalConnectionTableLine( MindAreaDef 
 
 	// table row
 	String reference = wm -> findReference( link );
-	line = "|| " + link -> getSrcRegion() + " || " + link -> getDstRegion() + " || " + link -> getTypeName() + " || " + reference + " ||" ;
+	line = "|| " + wm -> getRegionReference( link -> getSrcRegion() ) + " || " + wm -> getRegionReference( link -> getDstRegion() ) + " || " + 
+		link -> getTypeName() + " || " + reference + " ||" ;
 	lines.add( line );
 }
 
@@ -288,11 +301,7 @@ void WikiAreaPages::createAreaPages_getExternalConnectionTableLine( MindAreaDef 
 	String line;
 	if( link == NULL ) {
 		// add heading
-		if( isin )
-			line = "*External Inbound Region Connections:*";
-		else
-			line = "*External Outbound Region Connections:*";
-		lines.add( line );
+		lines.add( "" );
 
 		if( isin )
 			line = "|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||";
@@ -312,13 +321,15 @@ void WikiAreaPages::createAreaPages_getExternalConnectionTableLine( MindAreaDef 
 	String reference = wm -> findReference( link );
 	if( area.equals( srcRegion -> getArea() -> getId() ) ) {
 		wm -> hmindxml.getElementInfo( link -> getDstRegion() , info );
-		line = "|| " + dstRegion -> getArea() -> getId() + " || " + 
-			link -> getSrcRegion() + " || " + link -> getDstRegion() + " || " + info.name + " || " + link -> getTypeName() + " || " + reference + " ||";
+		line = "|| " + wm -> getAreaReference( dstRegion -> getArea() -> getId() ) + " || " + 
+			wm -> getRegionReference( link -> getSrcRegion() ) + " || " + wm -> getRegionReference( link -> getDstRegion() ) + " || " + 
+			info.name + " || " + link -> getTypeName() + " || " + reference + " ||";
 	}
 	else {
 		wm -> hmindxml.getElementInfo( link -> getSrcRegion() , info );
-		line = "|| " + srcRegion -> getArea() -> getId() + " || " + 
-			link -> getDstRegion() + " || " + link -> getSrcRegion() + " || " + info.name + " || " + link -> getTypeName() + " || " + reference + " ||";
+		line = "|| " + wm -> getAreaReference( srcRegion -> getArea() -> getId() ) + " || " + 
+			wm -> getRegionReference( link -> getDstRegion() ) + " || " + wm -> getRegionReference( link -> getSrcRegion() ) + " || " + 
+			info.name + " || " + link -> getTypeName() + " || " + reference + " ||";
 	}
 	lines.add( line );
 }
