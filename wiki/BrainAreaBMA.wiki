@@ -41,33 +41,33 @@
 http://ahuman.googlecode.com/svn/images/dot/aHuman/BMA.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| BMA.HP.VG || BMA.HP.VB || nucleus-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) (VestibularGanglion -> VestibularNuclei)] ||
+|| [BrainRegionBMA_HP_VG BMA.HP.VG] || [BrainRegionBMA_HP_VB BMA.HP.VB] || nucleus-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) (VestibularGanglion -> VestibularNuclei)] ||
 
 *External Inbound Region Connections:*
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
-|| BGA || BMA.HP.PRF.PVR || BGA.FT.SN.PC || Substantia Nigra Pars Compacta || nucleus-nucleus || (unknown reference) ||
-|| HMA || BMA.HP.PB || HMA.HM.SOL || Solitary Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (NST -> PB)] ||
-|| HMA || BMA.SC.IZ.RPL || HMA.HP.PRF.GCR || Gigantocellular Reticular Nucleus || nucleus-nucleus || (unknown reference) ||
-|| MBA || BMA.HM.IO || MBA.MM.RD || Red Nucleus || nucleus-nucleus || (unknown reference) ||
-|| MBA || BMA.HP.VB || MBA.HP.CR || Cerebellum || nucleus-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (CR -> Vestibular)] ||
-|| VBA || BMA.HP.VB || VBA.MM.SC || Superior Colliculus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (SC -> Vestibular)] ||
+|| [BrainAreaBGA BGA] || [BrainRegionBMA_HP_PRF_PVR BMA.HP.PRF.PVR] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || Substantia Nigra Pars Compacta || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaHMA HMA] || [BrainRegionBMA_HP_PB BMA.HP.PB] || [BrainRegionHMA_HM_SOL HMA.HM.SOL] || Solitary Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (NST -> PB)] ||
+|| [BrainAreaHMA HMA] || [BrainRegionBMA_SC_IZ_RPL BMA.SC.IZ.RPL] || [BrainRegionHMA_HP_PRF_GCR HMA.HP.PRF.GCR] || Gigantocellular Reticular Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaMBA MBA] || [BrainRegionBMA_HM_IO BMA.HM.IO] || [BrainRegionMBA_MM_RD MBA.MM.RD] || Red Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaMBA MBA] || [BrainRegionBMA_HP_VB BMA.HP.VB] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (CR -> Vestibular)] ||
+|| [BrainAreaVBA VBA] || [BrainRegionBMA_HP_VB BMA.HP.VB] || [BrainRegionVBA_MM_SC VBA.MM.SC] || Superior Colliculus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (SC -> Vestibular)] ||
 
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
-|| FCA || BMA.HP.PB || FCA.NC.INS || Insular Cortex || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PB -> Gud)] ||
-|| HMA || BMA.HP.PRF.PVR || HMA.HP.FCM || Facial Motor Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorVII, abstract)] ||
-|| HMA || BMA.HP.PRF.PVR || HMA.HP.PTP.TRM || Trigeminal Motor Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorV, abstract)] ||
-|| HMA || BMA.HP.VB || HMA.HP.PRF.CRF || Caudal Pontine Reticular Nucleus || nucleus-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) (VestibularNuclei -> PPRF, abstract)] ||
-|| MBA || BMA.HM.CU || MBA.HP.CR || Cerebellum || nucleus-nucleus || (unknown reference) ||
-|| MBA || BMA.HM.IO || MBA.HP.CR || Cerebellum || nucleus-nucleus || (unknown reference) ||
-|| MBA || BMA.HP.VB || MBA.HP.CR || Cerebellum || nucleus-nucleus || (unknown reference) ||
-|| MBA || BMA.SC.IZ.CBS || MBA.HP.CR || Cerebellum || nucleus-nucleus || (unknown reference) ||
-|| MBA || BMA.SC.IZ.SPCR || MBA.HP.CR || Cerebellum || nucleus-nucleus || (unknown reference) ||
-|| MBA || BMA.SC.LH.LCV || MBA.HP.CR || Cerebellum || nucleus-nucleus || (unknown reference) ||
-|| MBA || BMA.SC.PH.CL || MBA.HP.CR || Cerebellum || nucleus-nucleus || (unknown reference) ||
-|| MCA || BMA.HP.PB || MCA.FD.TH.VP || Ventral Posterior Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PB -> VPMpc)] ||
+|| [BrainAreaFCA FCA] || [BrainRegionBMA_HP_PB BMA.HP.PB] || [BrainRegionFCA_NC_INS FCA.NC.INS] || Insular Cortex || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PB -> Gud)] ||
+|| [BrainAreaHMA HMA] || [BrainRegionBMA_HP_PRF_PVR BMA.HP.PRF.PVR] || [BrainRegionHMA_HP_FCM HMA.HP.FCM] || Facial Motor Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorVII, abstract)] ||
+|| [BrainAreaHMA HMA] || [BrainRegionBMA_HP_PRF_PVR BMA.HP.PRF.PVR] || [BrainRegionHMA_HP_PTP_TRM HMA.HP.PTP.TRM] || Trigeminal Motor Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorV, abstract)] ||
+|| [BrainAreaHMA HMA] || [BrainRegionBMA_HP_VB BMA.HP.VB] || [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || Caudal Pontine Reticular Nucleus || nucleus-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) (VestibularNuclei -> PPRF, abstract)] ||
+|| [BrainAreaMBA MBA] || [BrainRegionBMA_HM_CU BMA.HM.CU] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaMBA MBA] || [BrainRegionBMA_HM_IO BMA.HM.IO] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaMBA MBA] || [BrainRegionBMA_HP_VB BMA.HP.VB] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaMBA MBA] || [BrainRegionBMA_SC_IZ_CBS BMA.SC.IZ.CBS] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaMBA MBA] || [BrainRegionBMA_SC_IZ_SPCR BMA.SC.IZ.SPCR] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaMBA MBA] || [BrainRegionBMA_SC_LH_LCV BMA.SC.LH.LCV] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaMBA MBA] || [BrainRegionBMA_SC_PH_CL BMA.SC.PH.CL] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaMCA MCA] || [BrainRegionBMA_HP_PB BMA.HP.PB] || [BrainRegionMCA_FD_TH_VP MCA.FD.TH.VP] || Ventral Posterior Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PB -> VPMpc)] ||
 
 = Thirdparty Circuits =
 (generated)
