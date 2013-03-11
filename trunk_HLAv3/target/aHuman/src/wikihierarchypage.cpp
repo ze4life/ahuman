@@ -154,8 +154,10 @@ String WikiHierarchyPage::updateHierarchyPage_getElementString( String node , Mi
 
 	// own name if any
 	if( !info.name.isEmpty() ) {
-		value += "*";
-		value += info.name;
+		if( info.mapped )
+			value = "[" + wm -> getRegionPage( info.id ) + " " + info.name + "] *";
+		else
+			value = "*" + info.name;
 
 		if( !info.id.isEmpty() )
 			value += " (" + info.id + ")";
@@ -320,7 +322,7 @@ void WikiHierarchyPage::updateHierarchyPage_walkNeocortexBrodmannLine( String no
 		MindRegion *region = ms -> getMindRegion( info.id );
 		MindArea *area = region -> getArea();
 
-		value = "[BrainArea" + area -> getId() + " " + info.name + " (" + info.id + ")]";
+		value = "[" + wm -> getRegionPage( info.id ) + " " + info.name + " (" + info.id + ")]";
 	}
 
 	items.add( value );

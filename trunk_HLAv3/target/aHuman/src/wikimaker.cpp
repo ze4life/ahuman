@@ -271,5 +271,33 @@ String WikiMaker::getAreaPage( String area ) {
 }
 
 String WikiMaker::getRegionPage( String region ) {
-	return( "BrainRegion" + region );
+	return( "BrainRegion" + region.replace( "." , "_" ) );
 }
+
+void WikiMaker::ensureFileExists( String wikiDir , String wikiPage , StringList& sections ) {
+	String fileName = wikiDir + "/" + wikiPage + ".wiki";
+
+	// scan file until section
+	FILE *fr = fopen( fileName , "rt" );
+	if( fr != NULL ) {
+		fclose( fr );
+		return;
+	}
+
+	// create sections
+	FILE *fw = fopen( fileName , "wt" );
+	for( int k = 0; k < sections.count(); k++ ) {
+		fputs( sections.get( k ) + "\n" , fw );
+		fputs( "\n" , fw );
+	}
+	fclose( fw );
+}
+
+String WikiMaker::getRegionReference( String region ) {
+	return( "[" + getRegionPage( region ) + " " + region + "]" );
+}
+
+String WikiMaker::getAreaReference( String area ) {
+	return( "[" + getAreaPage( area ) + " " + area + "]" );
+}
+
