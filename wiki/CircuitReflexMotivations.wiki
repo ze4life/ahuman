@@ -10,13 +10,13 @@ Circuit is part of aHuman target integrated biological model.
 (generated)
 
 || *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||
-|| [BrainAreaBFA BFA] || BFA.FT.AM || Amygdala || Mixed Nucleus || Experiencing and recognizing emotions ||
-|| [BrainAreaFCA FCA] || FCA.FD.TH.MD || Mediodorsal Nucleus of Thalamus || Excitatory Nucleus || Attention, planning, organization, abstract thinking, multi-tasking, and active memory ||
-|| [BrainAreaFCA FCA] || FCA.NC.OMPFC || Orbitomedial Prefrontal Cortex || Neocortex || Personality ||
-|| [BrainAreaFCA FCA] || FCA.NC.PACG || Pregenual Area || Neocortex || Sensation of Emotion ||
-|| [BrainAreaFCA FCA] || FCA.NC.VACG || Ventral Anterior Cingulate Area || Neocortex || Seat of Free Will ||
-|| [BrainAreaPHA PHA] || PHA.NC.PH.ET || Enthorhinal Cortex || Neocortex || Memory consolidation ||
-|| [BrainAreaVCA VCA] || VCA.NC.IT.TE || Inferotemporal Cortex || Neocortex || Represent different views of objects ||
+|| [BrainAreaBFA BFA] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || Mixed Nucleus || Experiencing and recognizing emotions ||
+|| [BrainAreaFCA FCA] || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || Mediodorsal Nucleus of Thalamus || Excitatory Nucleus || Attention, planning, organization, abstract thinking, multi-tasking, and active memory ||
+|| [BrainAreaFCA FCA] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || Neocortex || Personality ||
+|| [BrainAreaFCA FCA] || [BrainRegionFCA_NC_PACG FCA.NC.PACG] || Pregenual Area || Neocortex || Sensation of Emotion ||
+|| [BrainAreaFCA FCA] || [BrainRegionFCA_NC_VACG FCA.NC.VACG] || Ventral Anterior Cingulate Area || Neocortex || Seat of Free Will ||
+|| [BrainAreaPHA PHA] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || Neocortex || Memory consolidation ||
+|| [BrainAreaVCA VCA] || [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || Inferotemporal Cortex || Neocortex || Represent different views of objects ||
 
 = Connections =
 (generated)
@@ -24,9 +24,9 @@ Circuit is part of aHuman target integrated biological model.
 http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitReflexMotivations.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| BFA.FT.AM || FCA.NC.VACG || nucleus-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (AM -> vACC)] ||
-|| FCA.FD.TH.MD || FCA.NC.PACG || nucleus-neocortex || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (Thalamus -> FrontalCortex, abstract)] ||
-|| FCA.NC.OMPFC || FCA.NC.PACG || neocortex-neocortex || (unknown reference) ||
-|| PHA.NC.PH.ET || BFA.FT.AM || neocortex-nucleus || (unknown reference) ||
-|| VCA.NC.IT.TE || BFA.FT.AM || neocortex-nucleus || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (IT -> A)] ||
+|| [BrainRegionBFA_FT_AM BFA.FT.AM] || [BrainRegionFCA_NC_VACG FCA.NC.VACG] || nucleus-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (AM -> vACC)] ||
+|| [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || [BrainRegionFCA_NC_PACG FCA.NC.PACG] || nucleus-neocortex || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (Thalamus -> FrontalCortex, abstract)] ||
+|| [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || [BrainRegionFCA_NC_PACG FCA.NC.PACG] || neocortex-neocortex || (unknown reference) ||
+|| [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionBFA_FT_AM BFA.FT.AM] || neocortex-nucleus || (unknown reference) ||
+|| [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || [BrainRegionBFA_FT_AM BFA.FT.AM] || neocortex-nucleus || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (IT -> A)] ||
 

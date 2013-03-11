@@ -10,21 +10,21 @@ Circuit is part of aHuman target integrated biological model.
 (generated)
 
 || *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||
-|| [BrainAreaBMA BMA] || BMA.HM.CU || Cuneate Nucleus || 1-order Sensory Nucleus || Carry fine touch and proprioceptive information from upper body ||
-|| [BrainAreaBMA BMA] || BMA.HM.IO || Inferior Olivary Nucleus || Sensory Relay Nucleus || Proprioception Relay from Spinal Cord to Cerebellum ||
-|| [BrainAreaBMA BMA] || BMA.HP.VB || Vestibular Nucleus || Premotor Nucleus || Equilibrium, Postural Reflexes ||
-|| [BrainAreaBMA BMA] || BMA.SC.IZ.CBS || Centrobasalis Nucleus || 1-order Sensory Nucleus || Unconscious proprioception to CR ||
-|| [BrainAreaBMA BMA] || BMA.SC.IZ.SPCR || Sacral Precerebellar Nucleus || 1-order Sensory Nucleus || Relay unconscious proprioception, motor feedback to CR ||
-|| [BrainAreaBMA BMA] || BMA.SC.LH.LCV || Lateral Cervical Nucleus || 1-order Sensory Nucleus || Relay Low-threshold Mechanoreceptors to CR ||
-|| [BrainAreaBMA BMA] || BMA.SC.PH.CL || Clarke's Nucleus || Sensory Relay Nucleus || Unconscious Proprioception ||
-|| [BrainAreaFCA FCA] || FCA.NC.VACG || Ventral Anterior Cingulate Area || Neocortex || Seat of Free Will ||
-|| [BrainAreaHMA HMA] || HMA.HP.PRF.CRF || Caudal Pontine Reticular Nucleus || Premotor Nucleus || Mediate head movements ||
-|| [BrainAreaHMA HMA] || HMA.HP.PRF.RPO || Oral Pontine Reticular Nucleus || Premotor Nucleus || Mediation of changing to and from REM sleep ||
-|| [BrainAreaMBA MBA] || MBA.HP.CR || Cerebellum || Excitatory Nucleus || Motor coordination ||
-|| [BrainAreaMBA MBA] || MBA.MM.RD || Red Nucleus || Excitatory Nucleus || Motor coordination ||
-|| [BrainAreaMCA MCA] || MCA.FD.TH.VL || Ventral Lateral Nucleus || Excitatory Nucleus || Relay BSA.CR to MCA.MC ||
-|| [BrainAreaMCA MCA] || MCA.NC.MC || Motor Cortex || Neocortex || Execution of required voluntary movements ||
-|| [BrainAreaVBA VBA] || VBA.MM.SC || Superior Colliculus || Sensory Control Nucleus || Direct behavioral responses toward specific points in egocentric space, induce saccadic eye movement ||
+|| [BrainAreaBMA BMA] || [BrainRegionBMA_HM_CU BMA.HM.CU] || Cuneate Nucleus || 1-order Sensory Nucleus || Carry fine touch and proprioceptive information from upper body ||
+|| [BrainAreaBMA BMA] || [BrainRegionBMA_HM_IO BMA.HM.IO] || Inferior Olivary Nucleus || Sensory Relay Nucleus || Proprioception Relay from Spinal Cord to Cerebellum ||
+|| [BrainAreaBMA BMA] || [BrainRegionBMA_HP_VB BMA.HP.VB] || Vestibular Nucleus || Premotor Nucleus || Equilibrium, Postural Reflexes ||
+|| [BrainAreaBMA BMA] || [BrainRegionBMA_SC_IZ_CBS BMA.SC.IZ.CBS] || Centrobasalis Nucleus || 1-order Sensory Nucleus || Unconscious proprioception to CR ||
+|| [BrainAreaBMA BMA] || [BrainRegionBMA_SC_IZ_SPCR BMA.SC.IZ.SPCR] || Sacral Precerebellar Nucleus || 1-order Sensory Nucleus || Relay unconscious proprioception, motor feedback to CR ||
+|| [BrainAreaBMA BMA] || [BrainRegionBMA_SC_LH_LCV BMA.SC.LH.LCV] || Lateral Cervical Nucleus || 1-order Sensory Nucleus || Relay Low-threshold Mechanoreceptors to CR ||
+|| [BrainAreaBMA BMA] || [BrainRegionBMA_SC_PH_CL BMA.SC.PH.CL] || Clarke's Nucleus || Sensory Relay Nucleus || Unconscious Proprioception ||
+|| [BrainAreaFCA FCA] || [BrainRegionFCA_NC_VACG FCA.NC.VACG] || Ventral Anterior Cingulate Area || Neocortex || Seat of Free Will ||
+|| [BrainAreaHMA HMA] || [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || Caudal Pontine Reticular Nucleus || Premotor Nucleus || Mediate head movements ||
+|| [BrainAreaHMA HMA] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || Premotor Nucleus || Mediation of changing to and from REM sleep ||
+|| [BrainAreaMBA MBA] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || Excitatory Nucleus || Motor coordination ||
+|| [BrainAreaMBA MBA] || [BrainRegionMBA_MM_RD MBA.MM.RD] || Red Nucleus || Excitatory Nucleus || Motor coordination ||
+|| [BrainAreaMCA MCA] || [BrainRegionMCA_FD_TH_VL MCA.FD.TH.VL] || Ventral Lateral Nucleus || Excitatory Nucleus || Relay BSA.CR to MCA.MC ||
+|| [BrainAreaMCA MCA] || [BrainRegionMCA_NC_MC MCA.NC.MC] || Motor Cortex || Neocortex || Execution of required voluntary movements ||
+|| [BrainAreaVBA VBA] || [BrainRegionVBA_MM_SC VBA.MM.SC] || Superior Colliculus || Sensory Control Nucleus || Direct behavioral responses toward specific points in egocentric space, induce saccadic eye movement ||
 
 = Connections =
 (generated)
@@ -32,20 +32,20 @@ Circuit is part of aHuman target integrated biological model.
 http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitCerebellumFlows.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| BMA.HM.CU || MBA.HP.CR || nucleus-nucleus || (unknown reference) ||
-|| BMA.HM.IO || MBA.HP.CR || nucleus-nucleus || (unknown reference) ||
-|| BMA.HP.VB || MBA.HP.CR || nucleus-nucleus || (unknown reference) ||
-|| BMA.SC.IZ.CBS || MBA.HP.CR || nucleus-nucleus || (unknown reference) ||
-|| BMA.SC.IZ.SPCR || MBA.HP.CR || nucleus-nucleus || (unknown reference) ||
-|| BMA.SC.LH.LCV || MBA.HP.CR || nucleus-nucleus || (unknown reference) ||
-|| BMA.SC.PH.CL || MBA.HP.CR || nucleus-nucleus || (unknown reference) ||
-|| FCA.NC.VACG || MBA.MM.RD || neocortex-nucleus || (unknown reference) ||
-|| HMA.HP.PRF.RPO || MBA.HP.CR || nucleus-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (DLPN -> CR)] ||
-|| MBA.HP.CR || BMA.HP.VB || nucleus-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (CR -> Vestibular)] ||
-|| MBA.HP.CR || HMA.HP.PRF.CRF || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (CR -> RF, abstract)] ||
-|| MBA.HP.CR || MBA.MM.RD || nucleus-nucleus || (unknown reference) ||
-|| MBA.HP.CR || MCA.FD.TH.VL || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s1VL -> VL)] ||
-|| MBA.MM.RD || BMA.HM.IO || nucleus-nucleus || (unknown reference) ||
-|| MCA.FD.TH.VL || MCA.NC.MC || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (VL -> pVL)] ||
-|| VBA.MM.SC || MBA.HP.CR || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (SCi -> CR)] ||
+|| [BrainRegionBMA_HM_CU BMA.HM.CU] || [BrainRegionMBA_HP_CR MBA.HP.CR] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionBMA_HM_IO BMA.HM.IO] || [BrainRegionMBA_HP_CR MBA.HP.CR] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionBMA_HP_VB BMA.HP.VB] || [BrainRegionMBA_HP_CR MBA.HP.CR] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionBMA_SC_IZ_CBS BMA.SC.IZ.CBS] || [BrainRegionMBA_HP_CR MBA.HP.CR] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionBMA_SC_IZ_SPCR BMA.SC.IZ.SPCR] || [BrainRegionMBA_HP_CR MBA.HP.CR] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionBMA_SC_LH_LCV BMA.SC.LH.LCV] || [BrainRegionMBA_HP_CR MBA.HP.CR] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionBMA_SC_PH_CL BMA.SC.PH.CL] || [BrainRegionMBA_HP_CR MBA.HP.CR] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionFCA_NC_VACG FCA.NC.VACG] || [BrainRegionMBA_MM_RD MBA.MM.RD] || neocortex-nucleus || (unknown reference) ||
+|| [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || [BrainRegionMBA_HP_CR MBA.HP.CR] || nucleus-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (DLPN -> CR)] ||
+|| [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionBMA_HP_VB BMA.HP.VB] || nucleus-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (CR -> Vestibular)] ||
+|| [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (CR -> RF, abstract)] ||
+|| [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionMBA_MM_RD MBA.MM.RD] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionMCA_FD_TH_VL MCA.FD.TH.VL] || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s1VL -> VL)] ||
+|| [BrainRegionMBA_MM_RD MBA.MM.RD] || [BrainRegionBMA_HM_IO BMA.HM.IO] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionMCA_FD_TH_VL MCA.FD.TH.VL] || [BrainRegionMCA_NC_MC MCA.NC.MC] || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (VL -> pVL)] ||
+|| [BrainRegionVBA_MM_SC VBA.MM.SC] || [BrainRegionMBA_HP_CR MBA.HP.CR] || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (SCi -> CR)] ||
 

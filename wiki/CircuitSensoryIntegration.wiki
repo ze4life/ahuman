@@ -10,9 +10,9 @@ Circuit is part of aHuman target integrated biological model.
 (generated)
 
 || *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||
-|| [BrainAreaPHA PHA] || PHA.NC.PH.ET || Enthorhinal Cortex || Neocortex || Memory consolidation ||
-|| [BrainAreaPHA PHA] || PHA.NC.PH.PRR || Perirhinal Cortex || Neocortex || Associate different visual views of objects and their various nonvisual attributes ||
-|| [BrainAreaVCA VCA] || VCA.NC.IT.TE || Inferotemporal Cortex || Neocortex || Represent different views of objects ||
+|| [BrainAreaPHA PHA] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || Neocortex || Memory consolidation ||
+|| [BrainAreaPHA PHA] || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || Perirhinal Cortex || Neocortex || Associate different visual views of objects and their various nonvisual attributes ||
+|| [BrainAreaVCA VCA] || [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || Inferotemporal Cortex || Neocortex || Represent different views of objects ||
 
 = Connections =
 (generated)
@@ -20,6 +20,6 @@ Circuit is part of aHuman target integrated biological model.
 http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitSensoryIntegration.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| PHA.NC.PH.PRR || PHA.NC.PH.ET || neocortex-neocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (PRPH -> ER)] ||
-|| VCA.NC.IT.TE || PHA.NC.PH.PRR || neocortex-neocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (IT -> PRPH)] ||
+|| [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || neocortex-neocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (PRPH -> ER)] ||
+|| [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || neocortex-neocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (IT -> PRPH)] ||
 

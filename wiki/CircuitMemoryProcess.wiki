@@ -10,11 +10,11 @@ Circuit is part of aHuman target integrated biological model.
 (generated)
 
 || *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||
-|| [BrainAreaHBA HBA] || HBA.FT.DG || Dentate Gyrus || Allocortex || Distinguishing multiple instances of similar events ||
-|| [BrainAreaHBA HBA] || HBA.FT.HC.CA1 || Ventrolateral Cornu Ammonis of Hippocampus || Allocortex || Representing sequences of episodic memory - long-term ||
-|| [BrainAreaHBA HBA] || HBA.FT.SC.SUB || Subiculum || Allocortex || Spatial navigation and mnemonic processing ||
-|| [BrainAreaPCA PCA] || PCA.NC.MPL.RSC || Retrosplenial Cortex || Neocortex || Processing of emotionally salient stimuli ||
-|| [BrainAreaPHA PHA] || PHA.NC.PH.ET || Enthorhinal Cortex || Neocortex || Memory consolidation ||
+|| [BrainAreaHBA HBA] || [BrainRegionHBA_FT_DG HBA.FT.DG] || Dentate Gyrus || Allocortex || Distinguishing multiple instances of similar events ||
+|| [BrainAreaHBA HBA] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || Ventrolateral Cornu Ammonis of Hippocampus || Allocortex || Representing sequences of episodic memory - long-term ||
+|| [BrainAreaHBA HBA] || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || Subiculum || Allocortex || Spatial navigation and mnemonic processing ||
+|| [BrainAreaPCA PCA] || [BrainRegionPCA_NC_MPL_RSC PCA.NC.MPL.RSC] || Retrosplenial Cortex || Neocortex || Processing of emotionally salient stimuli ||
+|| [BrainAreaPHA PHA] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || Neocortex || Memory consolidation ||
 
 = Connections =
 (generated)
@@ -22,8 +22,8 @@ Circuit is part of aHuman target integrated biological model.
 http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitMemoryProcess.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| HBA.FT.SC.SUB || PCA.NC.MPL.RSC || allocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (SUB -> PCGRSP, abstract)] ||
-|| PHA.NC.PH.ET || HBA.FT.DG || neocortex-allocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (ER -> H, abstract)] ||
-|| PHA.NC.PH.ET || HBA.FT.HC.CA1 || neocortex-allocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (ER -> H, abstract)] ||
-|| PHA.NC.PH.ET || HBA.FT.SC.SUB || neocortex-allocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (ER -> H, abstract)] ||
+|| [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionPCA_NC_MPL_RSC PCA.NC.MPL.RSC] || allocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (SUB -> PCGRSP, abstract)] ||
+|| [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionHBA_FT_DG HBA.FT.DG] || neocortex-allocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (ER -> H, abstract)] ||
+|| [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || neocortex-allocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (ER -> H, abstract)] ||
+|| [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || neocortex-allocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (ER -> H, abstract)] ||
 

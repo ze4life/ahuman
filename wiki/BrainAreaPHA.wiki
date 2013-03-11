@@ -28,27 +28,27 @@
 http://ahuman.googlecode.com/svn/images/dot/aHuman/PHA.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| PHA.NC.PH.PRR || PHA.NC.PH.ET || neocortex-neocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (PRPH -> ER)] ||
+|| [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || neocortex-neocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (PRPH -> ER)] ||
 
 *External Inbound Region Connections:*
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
-|| FCA || PHA.NC.PH.PRR || FCA.NC.INS || Insular Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (Iav -> PrC)] ||
-|| MCA || PHA.NC.PH.PRR || MCA.NC.PG.S1 || Somatosensory Cortex || neocortex-neocortex || (unknown reference) ||
-|| PCA || PHA.NC.PH.ET || PCA.NC.MPL.RSC || Retrosplenial Cortex || neocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (PCGRSP -> EnthCortex, abstract)] ||
-|| VCA || PHA.NC.PH.ET || VCA.NC.IT.TE || Inferotemporal Cortex || neocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (ITCortex -> EnthCortex, abstract)] ||
-|| VCA || PHA.NC.PH.PRR || VCA.NC.IT.TE || Inferotemporal Cortex || neocortex-neocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (IT -> PRPH)] ||
+|| [BrainAreaFCA FCA] || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || [BrainRegionFCA_NC_INS FCA.NC.INS] || Insular Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (Iav -> PrC)] ||
+|| [BrainAreaMCA MCA] || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || [BrainRegionMCA_NC_PG_S1 MCA.NC.PG.S1] || Somatosensory Cortex || neocortex-neocortex || (unknown reference) ||
+|| [BrainAreaPCA PCA] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionPCA_NC_MPL_RSC PCA.NC.MPL.RSC] || Retrosplenial Cortex || neocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (PCGRSP -> EnthCortex, abstract)] ||
+|| [BrainAreaVCA VCA] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || Inferotemporal Cortex || neocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (ITCortex -> EnthCortex, abstract)] ||
+|| [BrainAreaVCA VCA] || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || Inferotemporal Cortex || neocortex-neocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (IT -> PRPH)] ||
 
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
-|| BFA || PHA.NC.PH.ET || BFA.FT.AM || Amygdala || neocortex-nucleus || (unknown reference) ||
-|| BFA || PHA.NC.PH.PIR || BFA.FT.EPF || Endopiriform Nucleus || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PiR -> EnP)] ||
-|| FCA || PHA.NC.PH.PIR || FCA.NC.INS || Insular Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PiR -> Iav)] ||
-|| HBA || PHA.NC.PH.ET || HBA.FT.DG || Dentate Gyrus || neocortex-allocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (ER -> H, abstract)] ||
-|| HBA || PHA.NC.PH.ET || HBA.FT.HC.CA1 || Ventrolateral Cornu Ammonis of Hippocampus || neocortex-allocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (ER -> H, abstract)] ||
-|| HBA || PHA.NC.PH.ET || HBA.FT.SC.SUB || Subiculum || neocortex-allocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (ER -> H, abstract)] ||
-|| HBA || PHA.NC.PH.PRR || HBA.FT.DG || Dentate Gyrus || neocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PrC -> HF, abstract)] ||
+|| [BrainAreaBFA BFA] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || neocortex-nucleus || (unknown reference) ||
+|| [BrainAreaBFA BFA] || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || [BrainRegionBFA_FT_EPF BFA.FT.EPF] || Endopiriform Nucleus || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PiR -> EnP)] ||
+|| [BrainAreaFCA FCA] || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || [BrainRegionFCA_NC_INS FCA.NC.INS] || Insular Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PiR -> Iav)] ||
+|| [BrainAreaHBA HBA] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionHBA_FT_DG HBA.FT.DG] || Dentate Gyrus || neocortex-allocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (ER -> H, abstract)] ||
+|| [BrainAreaHBA HBA] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || Ventrolateral Cornu Ammonis of Hippocampus || neocortex-allocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (ER -> H, abstract)] ||
+|| [BrainAreaHBA HBA] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || Subiculum || neocortex-allocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (ER -> H, abstract)] ||
+|| [BrainAreaHBA HBA] || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || [BrainRegionHBA_FT_DG HBA.FT.DG] || Dentate Gyrus || neocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PrC -> HF, abstract)] ||
 
 = Thirdparty Circuits =
 (generated)
