@@ -16,12 +16,15 @@ Circuit is part of aHuman target integrated biological model.
 || [BrainAreaACA ACA] || [BrainRegionACA_NC_A4 ACA.NC.A4] || Wernicke's area A4 || Neocortex || Coordinate the activation or deactivation of grammar areas ||
 || [BrainAreaFCA FCA] || [BrainRegionFCA_NC_BRA FCA.NC.BRA] || Broca's Area || Neocortex || Speech Engine ||
 || [BrainAreaFCA FCA] || [BrainRegionFCA_NC_DACG FCA.NC.DACG] || Dorsal Anterior Cingulate Area || Neocortex || Rational Thought Processes ||
+|| [BrainAreaFCA FCA] || [BrainRegionFCA_NC_IPG FCA.NC.IPG] || Inferior Prefrontal Gyrus || Neocortex || Processing of syntax in oral and sign languages ||
 || [BrainAreaMCA MCA] || [BrainRegionMCA_NC_PMC_AFEF MCA.NC.PMC.AFEF] || Anterior Frontal Eye Field || Neocortex || Head and eye movements toward auditory stimuli ||
 || [BrainAreaMCA MCA] || [BrainRegionMCA_NC_PMC_F2 MCA.NC.PMC.F2] || Dorsal Caudal Premotor Cortex || Neocortex || Guiding reaching ||
 || [BrainAreaMCA MCA] || [BrainRegionMCA_NC_PMC_F4 MCA.NC.PMC.F4] || Ventral Caudal Premotor Cortex || Neocortex || Sensory guidance of movement ||
 || [BrainAreaMCA MCA] || [BrainRegionMCA_NC_PMC_F5 MCA.NC.PMC.F5] || Ventral Rostral Premotor Cortex || Neocortex || Shaping hand during grasping ||
 || [BrainAreaMCA MCA] || [BrainRegionMCA_NC_PMC_F7 MCA.NC.PMC.F7] || Dorsal Rostral Premotor Cortex || Neocortex || Associate arbitrary sensory stimuli with specific movements ||
 || [BrainAreaPCA PCA] || [BrainRegionPCA_NC_IPL_SMW PCA.NC.IPL.SMW] || Supramarginal Wernike Cortex || Neocortex || Phonological and articulatory processing of words ||
+|| [BrainAreaPHA PHA] || [BrainRegionPHA_NC_TPC PHA.NC.TPC] || Temporopolar Cortex || Neocortex || Self representation, semantic (left) and autobiographic (right) ||
+|| [BrainAreaVCA VCA] || [BrainRegionVCA_NC_IT_TEO VCA.NC.IT.TEO] || Preoccipital Inferotemporal Area || Neocortex || Represent different features of objects ||
 
 = Connections =
 (generated)
@@ -38,12 +41,17 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitAuditionNeocortex.dot.
 || [BrainRegionACA_NC_A2 ACA.NC.A2] || [BrainRegionFCA_NC_DACG FCA.NC.DACG] || neocortex-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (ACA -> dACC)] ||
 || [BrainRegionACA_NC_A3 ACA.NC.A3] || [BrainRegionFCA_NC_BRA FCA.NC.BRA] || neocortex-neocortex || [http://www.nature.com/neuro/journal/v12/n6/fig_tab/nn.2331_F5.html Cortical Auditory System (STS22 -> IFC45)] ||
 || [BrainRegionACA_NC_A3 ACA.NC.A3] || [BrainRegionMCA_NC_PMC_F4 MCA.NC.PMC.F4] || neocortex-neocortex || [http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2846110/ Dual Auditory Processing (ST -> VLPFC, abstract)] ||
+|| [BrainRegionACA_NC_A3 ACA.NC.A3] || [BrainRegionPHA_NC_TPC PHA.NC.TPC] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1364661312002823 Language-Related Regions (STG22a -> TC)] ||
 || [BrainRegionACA_NC_A4 ACA.NC.A4] || [BrainRegionACA_NC_A3 ACA.NC.A3] || neocortex-neocortex || [http://www.nature.com/neuro/journal/v12/n6/fig_tab/nn.2331_F5.html Cortical Auditory System (AC22 -> STS22)] ||
 || [BrainRegionACA_NC_A4 ACA.NC.A4] || [BrainRegionFCA_NC_BRA FCA.NC.BRA] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1364661312002823 Language-Related Regions (pSTC -> BA44)] ||
+|| [BrainRegionACA_NC_A4 ACA.NC.A4] || [BrainRegionMCA_NC_PMC_F4 MCA.NC.PMC.F4] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1364661312002823 Language-Related Regions (pSTC -> PMC, abstract)] ||
 || [BrainRegionACA_NC_A4 ACA.NC.A4] || [BrainRegionPCA_NC_IPL_SMW PCA.NC.IPL.SMW] || neocortex-neocortex || [http://www.nature.com/neuro/journal/v12/n6/fig_tab/nn.2331_F5.html Cortical Auditory System (AC22 -> IPL40, abstract)] ||
 || [BrainRegionFCA_NC_BRA FCA.NC.BRA] || [BrainRegionMCA_NC_PMC_AFEF MCA.NC.PMC.AFEF] || neocortex-neocortex || [http://www.nature.com/neuro/journal/v12/n6/fig_tab/nn.2331_F5.html Cortical Auditory System (IFC44 -> PMC8)] ||
 || [BrainRegionFCA_NC_BRA FCA.NC.BRA] || [BrainRegionPCA_NC_IPL_SMW PCA.NC.IPL.SMW] || neocortex-neocortex || [http://www.nature.com/neuro/journal/v12/n6/fig_tab/nn.2331_F5.html Cortical Auditory System (IFC44 -> IPL40, abstract)] ||
 || [BrainRegionMCA_NC_PMC_AFEF MCA.NC.PMC.AFEF] || [BrainRegionMCA_NC_PMC_F5 MCA.NC.PMC.F5] || neocortex-neocortex || [http://www.nature.com/neuro/journal/v12/n6/fig_tab/nn.2331_F5.html Cortical Auditory System (PMC8 -> PMC6, abstract)] ||
 || [BrainRegionPCA_NC_IPL_SMW PCA.NC.IPL.SMW] || [BrainRegionMCA_NC_PMC_F2 MCA.NC.PMC.F2] || neocortex-neocortex || [http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2846110/ Dual Auditory Processing (PPC -> DLPFC, abstract)] ||
 || [BrainRegionPCA_NC_IPL_SMW PCA.NC.IPL.SMW] || [BrainRegionMCA_NC_PMC_F4 MCA.NC.PMC.F4] || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (IPL -> vPM, abstract)] ||
+|| [BrainRegionPHA_NC_TPC PHA.NC.TPC] || [BrainRegionFCA_NC_BRA FCA.NC.BRA] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1364661312002823 Language-Related Regions (TC -> BA45)] ||
+|| [BrainRegionPHA_NC_TPC PHA.NC.TPC] || [BrainRegionFCA_NC_IPG FCA.NC.IPG] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1364661312002823 Language-Related Regions (TC -> vIFC)] ||
+|| [BrainRegionVCA_NC_IT_TEO VCA.NC.IT.TEO] || [BrainRegionPHA_NC_TPC PHA.NC.TPC] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1364661312002823 Language-Related Regions (MTG21 -> TC)] ||
 
