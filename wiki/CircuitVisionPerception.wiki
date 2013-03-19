@@ -10,16 +10,16 @@ Circuit is part of aHuman target integrated biological model.
 (generated)
 
 || *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||
-|| [BrainAreaMCA MCA] || [BrainRegionMCA_NC_PG_S1 MCA.NC.PG.S1] || Somatosensory Cortex || Neocortex || Muscle and skin receptors ||
 || [BrainAreaPCA PCA] || [BrainRegionPCA_NC_IPL_MST PCA.NC.IPL.MST] || Medial Superior Temporal Area || Neocortex || Image stabilization, predictive target tracking ||
 || [BrainAreaPCA PCA] || [BrainRegionPCA_NC_IPL_SMW PCA.NC.IPL.SMW] || Supramarginal Wernike Cortex || Neocortex || Phonological and articulatory processing of words ||
 || [BrainAreaPCA PCA] || [BrainRegionPCA_NC_IPS_AIP PCA.NC.IPS.AIP] || Anterior Intraparietal Sulcus || Neocortex || Represent shape, size, and orientation of objects to be grasped ||
 || [BrainAreaPCA PCA] || [BrainRegionPCA_NC_IPS_PEF PCA.NC.IPS.PEF] || Posterior Eye Field || Neocortex || Reflexive saccade triggering ||
 || [BrainAreaPCA PCA] || [BrainRegionPCA_NC_IPS_VIP PCA.NC.IPS.VIP] || Ventral Intraparietal Sulcus || Neocortex || Merge visual, somatosensory, auditory, and vestibular senses ||
 || [BrainAreaPCA PCA] || [BrainRegionPCA_NC_MPL_RSC PCA.NC.MPL.RSC] || Retrosplenial Cortex || Neocortex || Processing of emotionally salient stimuli ||
-|| [BrainAreaPCA PCA] || [BrainRegionPCA_NC_SPL_PF PCA.NC.SPL.PF] || Rostral Precuneus || Neocortex || Spatial orientation, representation of the self ||
-|| [BrainAreaPCA PCA] || [BrainRegionPCA_NC_SPL_PG PCA.NC.SPL.PG] || Caudal Precuneus || Neocortex || Controlling spatially guided behavior with respect to visual and tactile information ||
 || [BrainAreaPHA PHA] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || Neocortex || Memory consolidation ||
+|| [BrainAreaSMA SMA] || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || Somatosensory Cortex || Neocortex || Muscle and skin receptors ||
+|| [BrainAreaSMA SMA] || [BrainRegionSMA_NC_SPL_PF SMA.NC.SPL.PF] || Rostral Precuneus || Neocortex || Spatial orientation, representation of the self ||
+|| [BrainAreaSMA SMA] || [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || Caudal Precuneus || Neocortex || Controlling spatially guided behavior with respect to visual and tactile information ||
 || [BrainAreaVBA VBA] || [BrainRegionVBA_FD_LGN VBA.FD.LGN] || Lateral Geniculate Nucleus || Sensory Relay Nucleus || Temporal decorrelation ||
 || [BrainAreaVBA VBA] || [BrainRegionVBA_FD_PV_IPV VBA.FD.PV.IPV] || Inferior Pulvinar || Sensory Relay Nucleus || Dorsal =Where= Stream ||
 || [BrainAreaVBA VBA] || [BrainRegionVBA_FD_PV_LPV VBA.FD.PV.LPV] || Lateral Pulvinar || Sensory Relay Nucleus || Ventral =What= Stream ||
@@ -42,16 +42,16 @@ Circuit is part of aHuman target integrated biological model.
 http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitVisionPerception.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| [BrainRegionMCA_NC_PG_S1 MCA.NC.PG.S1] || [BrainRegionPCA_NC_SPL_PG PCA.NC.SPL.PG] || neocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (SomSensCortex -> PosteriorParietalCortex)] ||
 || [BrainRegionPCA_NC_IPL_MST PCA.NC.IPL.MST] || [BrainRegionPCA_NC_IPL_SMW PCA.NC.IPL.SMW] || neocortex-neocortex || [http://www.hindawi.com/journals/nri/2012/719056 Visual Dorsal Pathway (MST -> IPL, abstract)] ||
-|| [BrainRegionPCA_NC_IPL_MST PCA.NC.IPL.MST] || [BrainRegionPCA_NC_SPL_PG PCA.NC.SPL.PG] || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (MST -> 7a)] ||
+|| [BrainRegionPCA_NC_IPL_MST PCA.NC.IPL.MST] || [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (MST -> 7a)] ||
 || [BrainRegionPCA_NC_IPS_PEF PCA.NC.IPS.PEF] || [BrainRegionPCA_NC_IPS_AIP PCA.NC.IPS.AIP] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (PIP -> AIP)] ||
-|| [BrainRegionPCA_NC_IPS_PEF PCA.NC.IPS.PEF] || [BrainRegionPCA_NC_SPL_PG PCA.NC.SPL.PG] || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (LIP -> 7a)] ||
+|| [BrainRegionPCA_NC_IPS_PEF PCA.NC.IPS.PEF] || [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (LIP -> 7a)] ||
 || [BrainRegionPCA_NC_IPS_VIP PCA.NC.IPS.VIP] || [BrainRegionPCA_NC_IPL_SMW PCA.NC.IPL.SMW] || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (IPS -> IPL, abstract)] ||
-|| [BrainRegionPCA_NC_IPS_VIP PCA.NC.IPS.VIP] || [BrainRegionPCA_NC_SPL_PF PCA.NC.SPL.PF] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0166223697010679 Parietal Association Cortex (VIP -> 7b)] ||
-|| [BrainRegionPCA_NC_IPS_VIP PCA.NC.IPS.VIP] || [BrainRegionPCA_NC_SPL_PG PCA.NC.SPL.PG] || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (VIP -> 7a)] ||
+|| [BrainRegionPCA_NC_IPS_VIP PCA.NC.IPS.VIP] || [BrainRegionSMA_NC_SPL_PF SMA.NC.SPL.PF] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0166223697010679 Parietal Association Cortex (VIP -> 7b)] ||
+|| [BrainRegionPCA_NC_IPS_VIP PCA.NC.IPS.VIP] || [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (VIP -> 7a)] ||
 || [BrainRegionPCA_NC_MPL_RSC PCA.NC.MPL.RSC] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || neocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (PCGRSP -> EnthCortex, abstract)] ||
-|| [BrainRegionPCA_NC_SPL_PG PCA.NC.SPL.PG] || [BrainRegionPCA_NC_MPL_RSC PCA.NC.MPL.RSC] || neocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (PosteriorParietalCortex -> PCGRSP, abstract)] ||
+|| [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || neocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (SomSensCortex -> PosteriorParietalCortex)] ||
+|| [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || [BrainRegionPCA_NC_MPL_RSC PCA.NC.MPL.RSC] || neocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (PosteriorParietalCortex -> PCGRSP, abstract)] ||
 || [BrainRegionVBA_FD_LGN VBA.FD.LGN] || [BrainRegionVCA_NC_V1 VCA.NC.V1] || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (LGN -> pLGN)] ||
 || [BrainRegionVBA_FD_PV_IPV VBA.FD.PV.IPV] || [BrainRegionPCA_NC_IPL_MST PCA.NC.IPL.MST] || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (Pulvinar -> ParietalCortex, abstract)] ||
 || [BrainRegionVBA_FD_PV_LPV VBA.FD.PV.LPV] || [BrainRegionVCA_NC_V2 VCA.NC.V2] || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (Pulvinar -> VisualCortex, abstract)] ||
@@ -67,11 +67,11 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitVisionPerception.dot.j
 || [BrainRegionVCA_NC_MT VCA.NC.MT] || [BrainRegionPCA_NC_IPL_MST PCA.NC.IPL.MST] || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (MT -> MST)] ||
 || [BrainRegionVCA_NC_MT VCA.NC.MT] || [BrainRegionPCA_NC_IPS_PEF PCA.NC.IPS.PEF] || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (MT -> LIP)] ||
 || [BrainRegionVCA_NC_MT VCA.NC.MT] || [BrainRegionPCA_NC_IPS_VIP PCA.NC.IPS.VIP] || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (MT -> VIP)] ||
-|| [BrainRegionVCA_NC_MT VCA.NC.MT] || [BrainRegionPCA_NC_SPL_PG PCA.NC.SPL.PG] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0166223697010679 Parietal Association Cortex (V5A -> 7a)] ||
+|| [BrainRegionVCA_NC_MT VCA.NC.MT] || [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0166223697010679 Parietal Association Cortex (V5A -> 7a)] ||
 || [BrainRegionVCA_NC_PO VCA.NC.PO] || [BrainRegionPCA_NC_IPL_MST PCA.NC.IPL.MST] || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (PO -> MST)] ||
 || [BrainRegionVCA_NC_PO VCA.NC.PO] || [BrainRegionPCA_NC_IPS_PEF PCA.NC.IPS.PEF] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0166223697010679 Parietal Association Cortex (V6 -> LIP)] ||
 || [BrainRegionVCA_NC_PO VCA.NC.PO] || [BrainRegionPCA_NC_IPS_VIP PCA.NC.IPS.VIP] || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (PO -> VIP)] ||
-|| [BrainRegionVCA_NC_PO VCA.NC.PO] || [BrainRegionPCA_NC_SPL_PG PCA.NC.SPL.PG] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0166223697010679 Parietal Association Cortex (V6 -> 7a)] ||
+|| [BrainRegionVCA_NC_PO VCA.NC.PO] || [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0166223697010679 Parietal Association Cortex (V6 -> 7a)] ||
 || [BrainRegionVCA_NC_V1 VCA.NC.V1] || [BrainRegionVCA_NC_MT VCA.NC.MT] || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (V1 -> MT)] ||
 || [BrainRegionVCA_NC_V1 VCA.NC.V1] || [BrainRegionVCA_NC_V2 VCA.NC.V2] || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (V1 -> V2)] ||
 || [BrainRegionVCA_NC_V2 VCA.NC.V2] || [BrainRegionVCA_NC_MT VCA.NC.MT] || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (V2 -> MT)] ||

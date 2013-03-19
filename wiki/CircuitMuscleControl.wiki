@@ -14,15 +14,15 @@ Circuit is part of aHuman target integrated biological model.
 || [BrainAreaHMA HMA] || [BrainRegionHMA_MM_MSTR HMA.MM.MSTR] || Mesencephalic Trigeminal Nucleus || 1-order Sensory Nucleus || Facial Somatic Sensations ||
 || [BrainAreaMBA MBA] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || Excitatory Nucleus || Motor coordination ||
 || [BrainAreaMCA MCA] || [BrainRegionMCA_FD_TH_VL MCA.FD.TH.VL] || Ventral Lateral Nucleus || Excitatory Nucleus || Relay BSA.CR to MCA.MC ||
-|| [BrainAreaMCA MCA] || [BrainRegionMCA_FD_TH_VP MCA.FD.TH.VP] || Ventral Posterior Nucleus || Excitatory Nucleus || Relays somatic information to MCA.SSC ||
 || [BrainAreaMCA MCA] || [BrainRegionMCA_NC_MC MCA.NC.MC] || Motor Cortex || Neocortex || Execution of required voluntary movements ||
-|| [BrainAreaMCA MCA] || [BrainRegionMCA_NC_PG_S1 MCA.NC.PG.S1] || Somatosensory Cortex || Neocortex || Muscle and skin receptors ||
 || [BrainAreaMCA MCA] || [BrainRegionMCA_NC_PMC_F4 MCA.NC.PMC.F4] || Ventral Caudal Premotor Cortex || Neocortex || Sensory guidance of movement ||
 || [BrainAreaMCA MCA] || [BrainRegionMCA_NC_PMC_F5 MCA.NC.PMC.F5] || Ventral Rostral Premotor Cortex || Neocortex || Shaping hand during grasping ||
 || [BrainAreaMCA MCA] || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || Supplementary Motor Cortex || Neocortex || Process sequences of movements and coordinate bilateral movements ||
 || [BrainAreaPCA PCA] || [BrainRegionPCA_NC_IPS_AIP PCA.NC.IPS.AIP] || Anterior Intraparietal Sulcus || Neocortex || Represent shape, size, and orientation of objects to be grasped ||
 || [BrainAreaPCA PCA] || [BrainRegionPCA_NC_IPS_VIP PCA.NC.IPS.VIP] || Ventral Intraparietal Sulcus || Neocortex || Merge visual, somatosensory, auditory, and vestibular senses ||
 || [BrainAreaPHA PHA] || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || Perirhinal Cortex || Neocortex || Associate different visual views of objects and their various nonvisual attributes ||
+|| [BrainAreaSMA SMA] || [BrainRegionSMA_FD_TH_VP SMA.FD.TH.VP] || Ventral Posterior Nucleus || Excitatory Nucleus || Relays somatic information to MCA.SSC ||
+|| [BrainAreaSMA SMA] || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || Somatosensory Cortex || Neocortex || Muscle and skin receptors ||
 || [BrainAreaVCA VCA] || [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || Inferotemporal Cortex || Neocortex || Represent different views of objects ||
 
 = Connections =
@@ -32,18 +32,18 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitMuscleControl.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionBGA_FT_GPI BGA.FT.GPI] || [BrainRegionMCA_FD_TH_VL MCA.FD.TH.VL] || nucleus-nucleus || [http://brainmind.com/BasalGanglia.html Basal Ganglia Activity (GPi -> VLo)] ||
-|| [BrainRegionHMA_MM_MSTR HMA.MM.MSTR] || [BrainRegionMCA_FD_TH_VP MCA.FD.TH.VP] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionHMA_MM_MSTR HMA.MM.MSTR] || [BrainRegionSMA_FD_TH_VP SMA.FD.TH.VP] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionMCA_FD_TH_VL MCA.FD.TH.VL] || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s1VL -> VL)] ||
 || [BrainRegionMCA_FD_TH_VL MCA.FD.TH.VL] || [BrainRegionMCA_NC_MC MCA.NC.MC] || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (VL -> pVL)] ||
-|| [BrainRegionMCA_FD_TH_VP MCA.FD.TH.VP] || [BrainRegionMCA_NC_PG_S1 MCA.NC.PG.S1] || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (VPL -> pVPL)] ||
-|| [BrainRegionMCA_NC_MC MCA.NC.MC] || [BrainRegionMCA_NC_PG_S1 MCA.NC.PG.S1] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> ParietalCortex, abstract)] ||
-|| [BrainRegionMCA_NC_PG_S1 MCA.NC.PG.S1] || [BrainRegionMCA_NC_PMC_F5 MCA.NC.PMC.F5] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (S2 -> F5)] ||
-|| [BrainRegionMCA_NC_PG_S1 MCA.NC.PG.S1] || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> FrontalCortex, abstract)] ||
-|| [BrainRegionMCA_NC_PG_S1 MCA.NC.PG.S1] || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || neocortex-neocortex || (unknown reference) ||
-|| [BrainRegionMCA_NC_PMC_F5 MCA.NC.PMC.F5] || [BrainRegionMCA_NC_PG_S1 MCA.NC.PG.S1] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (F5 -> S2)] ||
+|| [BrainRegionMCA_NC_MC MCA.NC.MC] || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> ParietalCortex, abstract)] ||
 || [BrainRegionMCA_NC_PMC_F5 MCA.NC.PMC.F5] || [BrainRegionPCA_NC_IPS_AIP PCA.NC.IPS.AIP] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (F5 -> AIP)] ||
+|| [BrainRegionMCA_NC_PMC_F5 MCA.NC.PMC.F5] || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (F5 -> S2)] ||
 || [BrainRegionPCA_NC_IPS_AIP PCA.NC.IPS.AIP] || [BrainRegionMCA_NC_PMC_F4 MCA.NC.PMC.F4] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (AIP -> F4)] ||
 || [BrainRegionPCA_NC_IPS_AIP PCA.NC.IPS.AIP] || [BrainRegionMCA_NC_PMC_F5 MCA.NC.PMC.F5] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (AIP -> F5)] ||
 || [BrainRegionPCA_NC_IPS_VIP PCA.NC.IPS.VIP] || [BrainRegionMCA_NC_PMC_F4 MCA.NC.PMC.F4] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (VIP -> F4)] ||
+|| [BrainRegionSMA_FD_TH_VP SMA.FD.TH.VP] || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (VPL -> pVPL)] ||
+|| [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || [BrainRegionMCA_NC_PMC_F5 MCA.NC.PMC.F5] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (S2 -> F5)] ||
+|| [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> FrontalCortex, abstract)] ||
+|| [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || neocortex-neocortex || (unknown reference) ||
 || [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || [BrainRegionPCA_NC_IPS_AIP PCA.NC.IPS.AIP] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (IT -> AIP, abstract)] ||
 
