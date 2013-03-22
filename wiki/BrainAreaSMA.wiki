@@ -13,7 +13,7 @@
 || [BrainRegionSMA_NC_SPL_SA SMA.NC.SPL.SA] || Somatosensory Association Cortex || Neocortex || Locating objects in space || PE, somatosensory, guiding movement by providing<BR>information about limb position ||
 || [BrainRegionSMA_NC_SPL_PF SMA.NC.SPL.PF] || Rostral Precuneus || Neocortex || Spatial orientation, representation of the self || rostral, 7B=PF, heavy somatosensory input ||
 || [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || Caudal Precuneus || Neocortex || Controlling spatially guided behavior with respect to visual and tactile<BR>information || caudal, 7A=PG+Opt ||
-|| [BrainRegionSMA_NC_PO_PCC SMA.NC.PO.PCC] || Precentral Cortex || Neocortex || Gustatory cortical area ||  ||
+|| [BrainRegionSMA_NC_PO_PCC SMA.NC.PO.PCC] || Precentral Cortex || Neocortex || Gustatory cortical area, taste reception ||  ||
 || [BrainRegionSMA_FD_TH_RIL SMA.FD.TH.RIL] || Rostral Intralaminar Nucleus of Thalamus || Excitatory Nucleus || Stimulate memory-guided response || from brainstem to SPL.SA, CM, CL, CeM, PC ||
 || [BrainRegionSMA_FD_TH_PO SMA.FD.TH.PO] || Posterior Nucleus of Thalamus || Excitatory Nucleus || Somatic markers for spatial coding || To parietal association cortices ||
 
@@ -55,9 +55,11 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/SMA.dot.jpg
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| [BrainAreaBFA BFA] || [BrainRegionSMA_NC_PO_PCC SMA.NC.PO.PCC] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-neocortex || (unknown reference) ||
 || [BrainAreaBGA BGA] || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || [BrainRegionBGA_FT_PU BGA.FT.PU] || Putamen || neocortex-nucleus || [http://brainmind.com/BasalGanglia.html Basal Ganglia Activity (S1 -> PU)] ||
 || [BrainAreaFCA FCA] || [BrainRegionSMA_FD_TH_PO SMA.FD.TH.PO] || [BrainRegionFCA_NC_INS FCA.NC.INS] || Insular Cortex || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (P -> pP, abstract)] ||
 || [BrainAreaFCA FCA] || [BrainRegionSMA_FD_TH_VP SMA.FD.TH.VP] || [BrainRegionFCA_NC_INS FCA.NC.INS] || Insular Cortex || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (VPMpc -> Gug)] ||
+|| [BrainAreaFCA FCA] || [BrainRegionSMA_NC_PO_PCC SMA.NC.PO.PCC] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> FrontalCortex, abstract)] ||
 || [BrainAreaFCA FCA] || [BrainRegionSMA_NC_SPL_SA SMA.NC.SPL.SA] || [BrainRegionFCA_NC_INS FCA.NC.INS] || Insular Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1053810011000080  Cortico-Cortical Connectivity (SA -> PFC, abstract)] ||
 || [BrainAreaHMA HMA] || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || [BrainRegionHMA_HM_TGM_PA5 HMA.HM.TGM.PA5] || Paratrigeminal Nucleus || neocortex-nucleus || (unknown reference) ||
 || [BrainAreaMCA MCA] || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || [BrainRegionMCA_NC_PMC_F5 MCA.NC.PMC.F5] || Ventral Rostral Premotor Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (S2 -> F5)] ||
@@ -67,6 +69,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/SMA.dot.jpg
 || [BrainAreaPCA PCA] || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || [BrainRegionPCA_NC_IPL_SMW PCA.NC.IPL.SMW] || Supramarginal Wernike Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1053810011000080  Cortico-Cortical Connectivity (S1 -> PTHA, abstract)] ||
 || [BrainAreaPCA PCA] || [BrainRegionSMA_NC_SPL_PF SMA.NC.SPL.PF] || [BrainRegionPCA_FD_TH_LD PCA.FD.TH.LD] || Lateral Dorsal Nucleus of Thalamus || neocortex-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sLD -> LD, abstract)] ||
 || [BrainAreaPCA PCA] || [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || [BrainRegionPCA_NC_MPL_RSC PCA.NC.MPL.RSC] || Retrosplenial Cortex || neocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (PosteriorParietalCortex -> PCGRSP, abstract)] ||
+|| [BrainAreaPHA PHA] || [BrainRegionSMA_FD_TH_VP SMA.FD.TH.VP] || [BrainRegionPHA_NC_PRI PHA.NC.PRI] || Parainsular Area || nucleus-neocortex || (unknown reference) ||
 || [BrainAreaPHA PHA] || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || Perirhinal Cortex || neocortex-neocortex || (unknown reference) ||
 
 = Thirdparty Circuits =
