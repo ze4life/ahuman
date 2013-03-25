@@ -3,7 +3,7 @@
 	<circuit id="CP.GUSTATORY-OLFACTORY" name="Gustatory sensory system of rat and macaque"
 		image="http://ars.els-cdn.com/content/image/1-s2.0-S0149763401000215-gr4a.gif"
 		reference="http://www.sciencedirect.com/science/article/pii/S0149763401000215"
-		components="Iav=FCA.NC.INS EnP=BFA.FT.EPF PiR=PHA.NC.PH.PIR PrC=PHA.NC.PH.PRR IadIap=FCA.NC.INS Gud=FCA.NC.INS Gug=FCA.NC.INS VPMpc=MCA.FD.TH.VPM PB=BMA.HP.PB NST=HMA.HM.SOL HF=HBA.FT.HF"
+		components="Iav=FCA.NC.INS EnP=BFA.FT.EPF PiR=PHA.NC.PH.PIR PrC=PHA.NC.PH.PRR IadIap=FCA.NC.INS Gud=FCA.NC.INS Gug=FCA.NC.INS VPMpc=SMA.FD.TH.VPM PB=BMA.HP.PB NST=HMA.HM.SOL HF=HBA.FT.HF"
 		effectors="MOB=MainOlfactoryBulb or=OlfactoryReceptors gr=GustatoryReceptors"
 		>
 		<abstractlink src="or" dst="MOB"/>
@@ -27,6 +27,13 @@
 		<link src="Gud" dst="IadIap"/>
 		<link src="IadIap" dst="PrC"/>
 		<link src="PrC" dst="HF"/>
+	</circuit>
+
+	<circuit id="CP.GUSTATORY-VISCEROSENSORY" name="Smell, taste, touch"
+		image="http://www.nature.com/nrn/journal/v12/n8/images/nrn3071-f2.jpg"
+		reference="http://www.readcube.com/articles/10.1038/nrn3071"
+		components="INS=FCA.NC.INS"
+		>
 	</circuit>
 
 </circuits>

@@ -123,7 +123,7 @@
 			dotdef="color=brown2"
 			>
 			<element id="PCA.NC.PG" name="Postcentral Gyrus">
-				<element id="MCA.NC.PG.S1" name="Somatosensory Cortex" mapped="true" brodmannid="01,02,03" type="Neocortex"
+				<element id="SMA.NC.PG.S1" name="Somatosensory Cortex" mapped="true" brodmannid="01,02,03" type="Neocortex"
 					function="Muscle and skin receptors" 
 					/>
 			</element>
@@ -131,8 +131,8 @@
 			<element id="PCA.NC.PO" name="Parietal Operculum"
 				notes="Postcentral gyrus"
 				>
-				<element id="PCA.NC.PO.PCC" name="Precentral Cortex" mapped="true" brodmannid="43" type="Neocortex"
-					function="Gustatory cortical area"
+				<element id="SMA.NC.PO.PCC" name="Precentral Cortex" mapped="true" brodmannid="43" type="Neocortex"
+					function="Gustatory cortical area, taste reception"
 					/>
 			</element>
 
@@ -141,15 +141,15 @@
 				comments="in human=BA7, PPC - Posterior Parietal Cortex"
 				notes="SMG, Represent spoken words, tool use"
 				>
-				<element id="PCA.NC.SPL.SA" name="Somatosensory Association Cortex" mapped="true" brodmannid="05" type="Neocortex"
+				<element id="SMA.NC.SPL.SA" name="Somatosensory Association Cortex" mapped="true" brodmannid="05" type="Neocortex"
 					function="Locating objects in space" 
 					notes="PE, somatosensory, guiding movement by providing information about limb position"
 					/>
-				<element id="PCA.NC.SPL.PF" name="Rostral Precuneus" mapped="true" brodmannid="07" type="Neocortex"
+				<element id="SMA.NC.SPL.PF" name="Rostral Precuneus" mapped="true" brodmannid="07" type="Neocortex"
 					function="Spatial orientation, representation of the self"
 					notes="rostral, 7B=PF, heavy somatosensory input"
 					/>
-				<element id="PCA.NC.SPL.PG" name="Caudal Precuneus" mapped="true" brodmannid="07" type="Neocortex"
+				<element id="SMA.NC.SPL.PG" name="Caudal Precuneus" mapped="true" brodmannid="07" type="Neocortex"
 					function="Controlling spatially guided behavior with respect to visual and tactile information" 
 					notes="caudal, 7A=PG+Opt"
 					/>
@@ -424,7 +424,7 @@
 				<element id="BGA.FT.GPI" name="Globus Pallidus Internal" mapped="true" type="Inhibitory Nucleus"
 					refs="NL:[http://neurolex.org/wiki/Category:Globus_pallidus_internal_segment Globus pallidus internal segment]"
 					function="Output nuclei of basal ganglia to neocortex"
-					notes="Balance of direct and indirect paths"
+					notes="Balance of direct and indirect paths, GPM"
 					/>
 				<element refs="NL:[http://neurolex.org/wiki/Category:Rostral_globus_pallidus Rostral globus pallidus]" ignore="true" comment="no nuclei"/>
 			</element>
@@ -794,10 +794,10 @@
 					>
 					<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_part_of_the_parafascicular_thalamic_nucleus Lateral part of the parafascicular thalamic nucleus]"/>
 				</element>
-				<element id="PCA.FD.TH.RIL" name="Rostral Intralaminar Nucleus of Thalamus" mapped="true" type="Excitatory Nucleus"
+				<element id="SMA.FD.TH.RIL" name="Rostral Intralaminar Nucleus of Thalamus" mapped="true" type="Excitatory Nucleus"
 					refs="NL:[http://neurolex.org/wiki/Category:Rostral_intralaminar_nuclei Rostral intralaminar nuclei]"
 					function="Stimulate memory-guided response"
-					notes="from brainstem to SPL.SA"
+					notes="from brainstem to SPL.SA, CM, CL, CeM, PC"
 					>
 					<element refs="NL:[http://neurolex.org/wiki/Category:Central_dorsal_nucleus Central dorsal nucleus]"/>
 					<element refs="NL:[http://neurolex.org/wiki/Category:Central_lateral_nucleus Central lateral nucleus]"/>
@@ -863,7 +863,7 @@
 					>
 					<element refs="NL:[http://neurolex.org/wiki/Category:Posterior_limitans_nucleus Posterior limitans nucleus]"/>
 				</element>
-				<element id="PCA.FD.TH.PO" name="Posterior Nucleus of Thalamus" mapped="true" type="Excitatory Nucleus"
+				<element id="SMA.FD.TH.PO" name="Posterior Nucleus of Thalamus" mapped="true" type="Excitatory Nucleus"
 					refs="NL:[http://neurolex.org/wiki/Category:Posterior_nucleus_of_thalamus Posterior nucleus of thalamus]"
 					function="Somatic markers for spatial coding"
 					notes="To parietal association cortices"
@@ -900,17 +900,17 @@
 					<element refs="NL:[http://neurolex.org/wiki/Category:Oral_part_of_ventral_lateral_nucleus Oral part of ventral lateral nucleus]"/>
 					<element refs="NL:[http://neurolex.org/wiki/Category:Pars_postrema_of_ventral_lateral_nucleus Pars postrema of ventral lateral nucleus]"/>
 				</element>
-				<element id="MCA.FD.TH.VP" name="Ventral Posterior Nucleus" mapped="true" type="Excitatory Nucleus"
+				<element id="SMA.FD.TH.VP" name="Ventral Posterior Nucleus" mapped="true" type="Excitatory Nucleus"
 					refs="NL:[http://neurolex.org/wiki/Category:Ventral_posterior_nucleus Ventral posterior nucleus]"
 					function="Relays somatic information to MCA.SSC"
 					notes="VPL and VPM"
 					>
 					<element refs="NL:[http://neurolex.org/wiki/Category:Ventral_posteroinferior_nucleus Ventral posteroinferior nucleus]"/>
-					<element id="MCA.FD.TH.VPL" name="Ventral Posterolateral Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Ventral_posterolateral_nucleus Ventral posterolateral nucleus]">
+					<element id="SMA.FD.TH.VPL" name="Ventral Posterolateral Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Ventral_posterolateral_nucleus Ventral posterolateral nucleus]">
 						<element refs="NL:[http://neurolex.org/wiki/Category:Caudal_part_of_ventral_posterolateral_nucleus Caudal part of ventral posterolateral nucleus]"/>
 						<element refs="NL:[http://neurolex.org/wiki/Category:Oral_part_of_ventral_posterolateral_nucleus Oral part of ventral posterolateral nucleus]"/>
 					</element>
-					<element id="MCA.FD.TH.VPM" name="Ventral Posteromedial Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Ventral_posteromedial_nucleus Ventral posteromedial nucleus]">
+					<element id="SMA.FD.TH.VPM" name="Ventral Posteromedial Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Ventral_posteromedial_nucleus Ventral posteromedial nucleus]">
 						<element refs="NL:[http://neurolex.org/wiki/Category:Parvicellular_part_of_ventral_posteromedial_nucleus Parvicellular part of ventral posteromedial nucleus]"/>
 						<element refs="NL:[http://neurolex.org/wiki/Category:Principal_part_of_ventral_posteromedial_nucleus Principal part of ventral posteromedial nucleus]"/>
 					</element>
