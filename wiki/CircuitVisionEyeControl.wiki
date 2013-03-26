@@ -16,8 +16,7 @@ Circuit is part of aHuman target integrated biological model.
 || [BrainAreaHBA HBA] || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || Subiculum || Allocortex || Spatial navigation and mnemonic processing ||
 || [BrainAreaHMA HMA] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || Premotor Nucleus || Mediation of changing to and from REM sleep ||
 || [BrainAreaHMA HMA] || [BrainRegionHMA_MM_INMLF HMA.MM.INMLF] || Interstitial Nucleus of Medial Longitudinal Fasciculus || Motor Relay Nucleus || Controls vertical gaze ||
-|| [BrainAreaPCA PCA] || [BrainRegionPCA_NC_IPL_MST PCA.NC.IPL.MST] || Medial Superior Temporal Area || Neocortex || Image stabilization, predictive target tracking ||
-|| [BrainAreaPCA PCA] || [BrainRegionPCA_NC_MPL_RSC PCA.NC.MPL.RSC] || Retrosplenial Cortex || Neocortex || Processing of emotionally salient stimuli ||
+|| [BrainAreaSMA SMA] || [BrainRegionSMA_NC_MPL_RSC SMA.NC.MPL.RSC] || Retrosplenial Cortex || Neocortex || Processing of emotionally salient stimuli ||
 || [BrainAreaVBA VBA] || [BrainRegionVBA_FD_RT VBA.FD.RT] || Retina || 1-order Sensory Nucleus || Spatial decorrelation through center surround inhibition ||
 || [BrainAreaVBA VBA] || [BrainRegionVBA_HP_ABD VBA.HP.ABD] || Abducens Nucleus || Motor Relay Nucleus || Conjugated movements of both eyes ||
 || [BrainAreaVBA VBA] || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || Oculomotor Nucleus || Motor Relay Nucleus || Change Eye Direction ||
@@ -25,6 +24,7 @@ Circuit is part of aHuman target integrated biological model.
 || [BrainAreaVBA VBA] || [BrainRegionVBA_MM_SC VBA.MM.SC] || Superior Colliculus || Sensory Control Nucleus || Direct behavioral responses toward specific points in egocentric space, induce saccadic eye movement ||
 || [BrainAreaVBA VBA] || [BrainRegionVBA_MM_SOA VBA.MM.SOA] || Supraoculomotor Area || Motor Control || Control of vergence ||
 || [BrainAreaVBA VBA] || [BrainRegionVBA_MM_TRH VBA.MM.TRH] || Trochlear Nucleus || Motor Relay Nucleus || Control superior oblique muscles of eyes ||
+|| [BrainAreaVCA VCA] || [BrainRegionVCA_NC_IPL_MST VCA.NC.IPL.MST] || Medial Superior Temporal Area || Neocortex || Image stabilization, predictive target tracking ||
 || [BrainAreaVCA VCA] || [BrainRegionVCA_NC_IPS_PEF VCA.NC.IPS.PEF] || Posterior Eye Field || Neocortex || Reflexive saccade triggering ||
 || [BrainAreaVCA VCA] || [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || Inferotemporal Cortex || Neocortex || Represent different views of objects ||
 || [BrainAreaVCA VCA] || [BrainRegionVCA_NC_IT_TEO VCA.NC.IT.TEO] || Preoccipital Inferotemporal Area || Neocortex || Represent different features of objects ||
@@ -39,13 +39,12 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitVisionEyeControl.dot.j
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionAVA_MM_EWN AVA.MM.EWN] || [BrainRegionAVA_PN_PSYM_CLG AVA.PN.PSYM.CLG] || nucleus-ganglion || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (EWN -> Ciliary)] ||
-|| [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionPCA_NC_MPL_RSC PCA.NC.MPL.RSC] || nucleus-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (SUB -> PCGRSP, abstract)] ||
+|| [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionSMA_NC_MPL_RSC SMA.NC.MPL.RSC] || nucleus-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (SUB -> PCGRSP, abstract)] ||
 || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || [BrainRegionVBA_HP_ABD VBA.HP.ABD] || nucleus-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) (PPRF -> Abducens, abstract)] ||
 || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (RF -> OPN, abstract)] ||
 || [BrainRegionHMA_MM_INMLF HMA.MM.INMLF] || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionHMA_MM_INMLF HMA.MM.INMLF] || [BrainRegionVBA_MM_TRH VBA.MM.TRH] || nucleus-nucleus || (unknown reference) ||
-|| [BrainRegionPCA_NC_IPL_MST PCA.NC.IPL.MST] || [BrainRegionVBA_MM_SC VBA.MM.SC] || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> SCi, abstract)] ||
-|| [BrainRegionPCA_NC_MPL_RSC PCA.NC.MPL.RSC] || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || neocortex-allocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (PCGRSP -> SUB, abstract)] ||
+|| [BrainRegionSMA_NC_MPL_RSC SMA.NC.MPL.RSC] || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || neocortex-allocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (PCGRSP -> SUB, abstract)] ||
 || [BrainRegionVBA_FD_RT VBA.FD.RT] || [BrainRegionVBA_MM_PT_PON VBA.MM.PT.PON] || nucleus-nucleus || [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm Targets of retina neurons (Retina -> Pretectum, abstract)] ||
 || [BrainRegionVBA_FD_RT VBA.FD.RT] || [BrainRegionVBA_MM_SC VBA.MM.SC] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (Retina -> SC)] ||
 || [BrainRegionVBA_HP_ABD VBA.HP.ABD] || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || nucleus-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) (Abducens -> Oculomotor)] ||
@@ -57,6 +56,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitVisionEyeControl.dot.j
 || [BrainRegionVBA_MM_SC VBA.MM.SC] || [BrainRegionVBA_MM_TRH VBA.MM.TRH] || nucleus-nucleus || [http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html Retina and superior colliculus targets (SC -> Trochlear)] ||
 || [BrainRegionVBA_MM_SOA VBA.MM.SOA] || [BrainRegionAVA_MM_EWN AVA.MM.EWN] || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SupraOculomotor -> EWN)] ||
 || [BrainRegionVBA_MM_SOA VBA.MM.SOA] || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SupraOculomotor -> Oculomotor)] ||
+|| [BrainRegionVCA_NC_IPL_MST VCA.NC.IPL.MST] || [BrainRegionVBA_MM_SC VBA.MM.SC] || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> SCi, abstract)] ||
 || [BrainRegionVCA_NC_IPS_PEF VCA.NC.IPS.PEF] || [BrainRegionVBA_MM_SC VBA.MM.SC] || neocortex-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (PEF -> SC)] ||
 || [BrainRegionVCA_NC_IPS_PEF VCA.NC.IPS.PEF] || [BrainRegionVBA_MM_SOA VBA.MM.SOA] || neocortex-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Vision Components (VAC -> SOA)] ||
 || [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || neocortex-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (TEF -> DLPN, abstract)] ||

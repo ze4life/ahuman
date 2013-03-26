@@ -12,6 +12,8 @@
 || [BrainRegionACA_NC_A2 ACA.NC.A2] || Auditory Association Area || Neocortex || Classify with respect to function || Belt ||
 || [BrainRegionACA_NC_A3 ACA.NC.A3] || Wernicke's area A3 || Neocortex || Classify with respect to content || 22a, Melody perception, sequences of tones ||
 || [BrainRegionACA_NC_A4 ACA.NC.A4] || Wernicke's area A4 || Neocortex || Coordinate the activation or deactivation of grammar areas || 22b, Grammatical areas, phonemic sequences, word<BR>comprehension ||
+|| [BrainRegionACA_NC_IPL_SMW ACA.NC.IPL.SMW] || Supramarginal Wernike Cortex || Neocortex || Phonological and articulatory processing of words || PF, Computing sound of word, tactile learning and<BR>memory ||
+|| [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || Suprageniculate Nucleus of Thalamus || Excitatory Nucleus || Spatial coding of auditory information || From tectum, somatic sensations ||
 
 = Connectivity =
 (generated)
@@ -24,14 +26,22 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/ACA.dot.jpg
 || [BrainRegionACA_NC_A1 ACA.NC.A1] || [BrainRegionACA_NC_A2 ACA.NC.A2] || neocortex-neocortex || [http://www.nature.com/neuro/journal/v12/n6/fig_tab/nn.2331_F5.html Cortical Auditory System (Core41 -> Belt42)] ||
 || [BrainRegionACA_NC_A1 ACA.NC.A1] || [BrainRegionACA_NC_A3 ACA.NC.A3] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1053810011000080  Cortico-Cortical Connectivity (A1 -> AA)] ||
 || [BrainRegionACA_NC_A1 ACA.NC.A1] || [BrainRegionACA_NC_A4 ACA.NC.A4] || neocortex-neocortex || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (A1 -> Wernike)] ||
+|| [BrainRegionACA_NC_A1 ACA.NC.A1] || [BrainRegionACA_NC_IPL_SMW ACA.NC.IPL.SMW] || neocortex-neocortex || [http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2846110/ Dual Auditory Processing (A1 -> PPC, abstract)] ||
 || [BrainRegionACA_NC_A2 ACA.NC.A2] || [BrainRegionACA_NC_A4 ACA.NC.A4] || neocortex-neocortex || [http://www.nature.com/neuro/journal/v12/n6/fig_tab/nn.2331_F5.html Cortical Auditory System (Belt42 -> AC22)] ||
+|| [BrainRegionACA_NC_A3 ACA.NC.A3] || [BrainRegionACA_NC_IPL_SMW ACA.NC.IPL.SMW] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1053810011000080  Cortico-Cortical Connectivity (AA -> PTHA, abstract)] ||
 || [BrainRegionACA_NC_A4 ACA.NC.A4] || [BrainRegionACA_NC_A3 ACA.NC.A3] || neocortex-neocortex || [http://www.nature.com/neuro/journal/v12/n6/fig_tab/nn.2331_F5.html Cortical Auditory System (AC22 -> STS22)] ||
+|| [BrainRegionACA_NC_A4 ACA.NC.A4] || [BrainRegionACA_NC_IPL_SMW ACA.NC.IPL.SMW] || neocortex-neocortex || [http://www.nature.com/neuro/journal/v12/n6/fig_tab/nn.2331_F5.html Cortical Auditory System (AC22 -> IPL40, abstract)] ||
 
 *External Inbound Region Connections:*
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || [BrainAreaABA ABA] || [BrainRegionACA_NC_A1 ACA.NC.A1] || [BrainRegionABA_FD_TH_MGB ABA.FD.TH.MGB] || Medial Geniculate Body || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (MGN -> pMGN)] ||
 || [BrainAreaBFA BFA] || [BrainRegionACA_NC_A1 ACA.NC.A1] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-neocortex || [http://f1000research.com/articles/2-20/v1 Visual-Auditory Interactions in Tectum (AM -> AC)] ||
+|| [BrainAreaFCA FCA] || [BrainRegionACA_NC_IPL_SMW ACA.NC.IPL.SMW] || [BrainRegionFCA_NC_BRA FCA.NC.BRA] || Broca's Area || neocortex-neocortex || [http://www.nature.com/neuro/journal/v12/n6/fig_tab/nn.2331_F5.html Cortical Auditory System (IFC44 -> IPL40, abstract)] ||
+|| [BrainAreaHMA HMA] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || [BrainRegionHMA_HP_PTP_PTR HMA.HP.PTP.PTR] || Principal Trigeminal Nucleus || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s2P -> P, abstract)] ||
+|| [BrainAreaSMA SMA] || [BrainRegionACA_NC_IPL_SMW ACA.NC.IPL.SMW] || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || Somatosensory Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1053810011000080  Cortico-Cortical Connectivity (S1 -> PTHA, abstract)] ||
+|| [BrainAreaVCA VCA] || [BrainRegionACA_NC_IPL_SMW ACA.NC.IPL.SMW] || [BrainRegionVCA_NC_IPL_MST VCA.NC.IPL.MST] || Medial Superior Temporal Area || neocortex-neocortex || [http://www.hindawi.com/journals/nri/2012/719056 Visual Dorsal Pathway (MST -> IPL, abstract)] ||
+|| [BrainAreaVCA VCA] || [BrainRegionACA_NC_IPL_SMW ACA.NC.IPL.SMW] || [BrainRegionVCA_NC_IPS_VIP VCA.NC.IPS.VIP] || Ventral Intraparietal Sulcus || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (IPS -> IPL, abstract)] ||
 
 *External Outbound Region Connections:*
 
@@ -43,9 +53,8 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/ACA.dot.jpg
 || [BrainAreaMCA MCA] || [BrainRegionACA_NC_A1 ACA.NC.A1] || [BrainRegionMCA_NC_PMC_F7 MCA.NC.PMC.F7] || Dorsal Rostral Premotor Cortex || neocortex-neocortex || [http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2846110/ Dual Auditory Processing (A1 -> DLPFC, abstract)] ||
 || [BrainAreaMCA MCA] || [BrainRegionACA_NC_A3 ACA.NC.A3] || [BrainRegionMCA_NC_PMC_F4 MCA.NC.PMC.F4] || Ventral Caudal Premotor Cortex || neocortex-neocortex || [http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2846110/ Dual Auditory Processing (ST -> VLPFC, abstract)] ||
 || [BrainAreaMCA MCA] || [BrainRegionACA_NC_A4 ACA.NC.A4] || [BrainRegionMCA_NC_PMC_F4 MCA.NC.PMC.F4] || Ventral Caudal Premotor Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1364661312002823 Language-Related Regions (pSTC -> PMC, abstract)] ||
-|| [BrainAreaPCA PCA] || [BrainRegionACA_NC_A1 ACA.NC.A1] || [BrainRegionPCA_NC_IPL_SMW PCA.NC.IPL.SMW] || Supramarginal Wernike Cortex || neocortex-neocortex || [http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2846110/ Dual Auditory Processing (A1 -> PPC, abstract)] ||
-|| [BrainAreaPCA PCA] || [BrainRegionACA_NC_A3 ACA.NC.A3] || [BrainRegionPCA_NC_IPL_SMW PCA.NC.IPL.SMW] || Supramarginal Wernike Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1053810011000080  Cortico-Cortical Connectivity (AA -> PTHA, abstract)] ||
-|| [BrainAreaPCA PCA] || [BrainRegionACA_NC_A4 ACA.NC.A4] || [BrainRegionPCA_NC_IPL_SMW PCA.NC.IPL.SMW] || Supramarginal Wernike Cortex || neocortex-neocortex || [http://www.nature.com/neuro/journal/v12/n6/fig_tab/nn.2331_F5.html Cortical Auditory System (AC22 -> IPL40, abstract)] ||
+|| [BrainAreaMCA MCA] || [BrainRegionACA_NC_IPL_SMW ACA.NC.IPL.SMW] || [BrainRegionMCA_NC_PMC_F2 MCA.NC.PMC.F2] || Dorsal Caudal Premotor Cortex || neocortex-neocortex || [http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2846110/ Dual Auditory Processing (PPC -> DLPFC, abstract)] ||
+|| [BrainAreaMCA MCA] || [BrainRegionACA_NC_IPL_SMW ACA.NC.IPL.SMW] || [BrainRegionMCA_NC_PMC_F4 MCA.NC.PMC.F4] || Ventral Caudal Premotor Cortex || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (IPL -> vPM, abstract)] ||
 || [BrainAreaPHA PHA] || [BrainRegionACA_NC_A3 ACA.NC.A3] || [BrainRegionPHA_NC_TPC PHA.NC.TPC] || Temporopolar Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1364661312002823 Language-Related Regions (STG22a -> TC)] ||
 
 = Thirdparty Circuits =
@@ -102,6 +111,10 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/ACA.dot.jpg
 - Wernicke’s area – A22 – for spoken word
 - Wernicke’s area – A39 – for written word (in parietal cortex on dorsal visual stream)
 }}}
+
+
+
+
 
 
 
