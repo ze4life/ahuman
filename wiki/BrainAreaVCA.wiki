@@ -16,6 +16,8 @@
 || [BrainRegionVCA_NC_PO VCA.NC.PO] || Parietooccipital Area || Neocortex || Analyzing self-motion relative to the environment || V6, DM, Dorsomedial Area, Dorsal stream ||
 || [BrainRegionVCA_NC_IT_TEO VCA.NC.IT.TEO] || Preoccipital Inferotemporal Area || Neocortex || Represent different features of objects || Part of IT Cortex ||
 || [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || Inferotemporal Cortex || Neocortex || Represent different views of objects || Face recognition, high level visual processing ||
+|| [BrainRegionVCA_NC_PMC_AFEF VCA.NC.PMC.AFEF] || Anterior Frontal Eye Field || Neocortex || Head and eye movements toward auditory stimuli ||  ||
+|| [BrainRegionVCA_NC_PMC_CFEF VCA.NC.PMC.CFEF] || Caudal Frontal Eye Field || Neocortex || Head and eye movements toward visual stimuli ||  ||
 
 = Connectivity =
 (generated)
@@ -25,6 +27,7 @@
 http://ahuman.googlecode.com/svn/images/dot/aHuman/VCA.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || [BrainRegionVCA_NC_PMC_CFEF VCA.NC.PMC.CFEF] || neocortex-neocortex || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (TEF -> FEF, abstract)] ||
 || [BrainRegionVCA_NC_IT_TEO VCA.NC.IT.TEO] || [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (TEO -> TE)] ||
 || [BrainRegionVCA_NC_V1 VCA.NC.V1] || [BrainRegionVCA_NC_MT VCA.NC.MT] || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (V1 -> MT)] ||
 || [BrainRegionVCA_NC_V1 VCA.NC.V1] || [BrainRegionVCA_NC_V2 VCA.NC.V2] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1053810011000080  Cortico-Cortical Connectivity (V1 -> VA)] ||
@@ -42,6 +45,10 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/VCA.dot.jpg
 *External Inbound Region Connections:*
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| [BrainAreaFCA FCA] || [BrainRegionVCA_NC_PMC_AFEF VCA.NC.PMC.AFEF] || [BrainRegionFCA_NC_BRA FCA.NC.BRA] || Broca's Area || neocortex-neocortex || [http://www.nature.com/neuro/journal/v12/n6/fig_tab/nn.2331_F5.html Cortical Auditory System (IFC44 -> PMC8)] ||
+|| [BrainAreaFCA FCA] || [BrainRegionVCA_NC_PMC_CFEF VCA.NC.PMC.CFEF] || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || Lateral Prefrontal Cortex || neocortex-neocortex || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (DLPFC -> FEF, abstract)] ||
+|| [BrainAreaMCA MCA] || [BrainRegionVCA_NC_PMC_CFEF VCA.NC.PMC.CFEF] || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || Supplementary Motor Cortex || neocortex-neocortex || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (SEF -> FEF, abstract)] ||
+|| [BrainAreaPCA PCA] || [BrainRegionVCA_NC_PMC_CFEF VCA.NC.PMC.CFEF] || [BrainRegionPCA_NC_IPS_PEF PCA.NC.IPS.PEF] || Posterior Eye Field || neocortex-neocortex || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (PEF -> FEF, abstract)] ||
 || [BrainAreaVBA VBA] || [BrainRegionVCA_NC_V1 VCA.NC.V1] || [BrainRegionVBA_FD_LGN VBA.FD.LGN] || Lateral Geniculate Nucleus || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (LGN -> pLGN)] ||
 || [BrainAreaVBA VBA] || [BrainRegionVCA_NC_V2 VCA.NC.V2] || [BrainRegionVBA_FD_PV_LPV VBA.FD.PV.LPV] || Lateral Pulvinar || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (Pulvinar -> VisualCortex, abstract)] ||
 
@@ -49,10 +56,15 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/VCA.dot.jpg
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || [BrainAreaBFA BFA] || [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || neocortex-nucleus || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (IT -> A)] ||
+|| [BrainAreaBGA BGA] || [BrainRegionVCA_NC_PMC_CFEF VCA.NC.PMC.CFEF] || [BrainRegionBGA_FT_CN BGA.FT.CN] || Caudate Nucleus || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> BGA, abstract)] ||
 || [BrainAreaFCA FCA] || [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || Lateral Prefrontal Cortex || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (IT -> LPC, abstract)] ||
 || [BrainAreaFCA FCA] || [BrainRegionVCA_NC_V2 VCA.NC.V2] || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || Lateral Prefrontal Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1053810011000080  Cortico-Cortical Connectivity (VA -> PFC, abstract)] ||
 || [BrainAreaHMA HMA] || [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || neocortex-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (TEF -> DLPN, abstract)] ||
-|| [BrainAreaMCA MCA] || [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || [BrainRegionMCA_NC_PMC_CFEF MCA.NC.PMC.CFEF] || Caudal Frontal Eye Field || neocortex-neocortex || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (TEF -> FEF, abstract)] ||
+|| [BrainAreaHMA HMA] || [BrainRegionVCA_NC_PMC_CFEF VCA.NC.PMC.CFEF] || [BrainRegionHMA_HP_PRF_GCR HMA.HP.PRF.GCR] || Gigantocellular Reticular Nucleus || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> RF, abstract)] ||
+|| [BrainAreaHMA HMA] || [BrainRegionVCA_NC_PMC_CFEF VCA.NC.PMC.CFEF] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> RF, abstract)] ||
+|| [BrainAreaHMA HMA] || [BrainRegionVCA_NC_PMC_CFEF VCA.NC.PMC.CFEF] || [BrainRegionHMA_MM_INMLF HMA.MM.INMLF] || Interstitial Nucleus of Medial Longitudinal Fasciculus || neocortex-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (FEF -> riMLF, abstract)] ||
+|| [BrainAreaMCA MCA] || [BrainRegionVCA_NC_PMC_AFEF VCA.NC.PMC.AFEF] || [BrainRegionMCA_NC_PMC_F5 MCA.NC.PMC.F5] || Ventral Rostral Premotor Cortex || neocortex-neocortex || [http://www.nature.com/neuro/journal/v12/n6/fig_tab/nn.2331_F5.html Cortical Auditory System (PMC8 -> PMC6, abstract)] ||
+|| [BrainAreaMCA MCA] || [BrainRegionVCA_NC_PMC_CFEF VCA.NC.PMC.CFEF] || [BrainRegionMCA_NC_PMC_F7 MCA.NC.PMC.F7] || Dorsal Rostral Premotor Cortex || neocortex-neocortex || (unknown reference) ||
 || [BrainAreaPCA PCA] || [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || [BrainRegionPCA_NC_IPS_AIP PCA.NC.IPS.AIP] || Anterior Intraparietal Sulcus || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (IT -> AIP, abstract)] ||
 || [BrainAreaPCA PCA] || [BrainRegionVCA_NC_IT_TEO VCA.NC.IT.TEO] || [BrainRegionPCA_NC_IPS_PEF PCA.NC.IPS.PEF] || Posterior Eye Field || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (IT -> IPS, abstract)] ||
 || [BrainAreaPCA PCA] || [BrainRegionVCA_NC_MT VCA.NC.MT] || [BrainRegionPCA_NC_IPL_MST PCA.NC.IPL.MST] || Medial Superior Temporal Area || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (MT -> MST)] ||
@@ -67,6 +79,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/VCA.dot.jpg
 || [BrainAreaPHA PHA] || [BrainRegionVCA_NC_IT_TEO VCA.NC.IT.TEO] || [BrainRegionPHA_NC_TPC PHA.NC.TPC] || Temporopolar Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1364661312002823 Language-Related Regions (MTG21 -> TC)] ||
 || [BrainAreaSMA SMA] || [BrainRegionVCA_NC_MT VCA.NC.MT] || [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || Caudal Precuneus || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0166223697010679 Parietal Association Cortex (V5A -> 7a)] ||
 || [BrainAreaSMA SMA] || [BrainRegionVCA_NC_PO VCA.NC.PO] || [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || Caudal Precuneus || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0166223697010679 Parietal Association Cortex (V6 -> 7a)] ||
+|| [BrainAreaVBA VBA] || [BrainRegionVCA_NC_PMC_CFEF VCA.NC.PMC.CFEF] || [BrainRegionVBA_MM_SC VBA.MM.SC] || Superior Colliculus || neocortex-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (FEF -> SC, abstract)] ||
 || [BrainAreaVBA VBA] || [BrainRegionVCA_NC_V1 VCA.NC.V1] || [BrainRegionVBA_MM_SC VBA.MM.SC] || Superior Colliculus || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (VisualCortex -> SCs, abstract)] ||
 || [BrainAreaVBA VBA] || [BrainRegionVCA_NC_V2 VCA.NC.V2] || [BrainRegionVBA_MM_SC VBA.MM.SC] || Superior Colliculus || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (VisualCortex -> SCs, abstract)] ||
 || [BrainAreaVBA VBA] || [BrainRegionVCA_NC_V3 VCA.NC.V3] || [BrainRegionVBA_MM_SOA VBA.MM.SOA] || Supraoculomotor Area || neocortex-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (VAC -> SupraOculomotor)] ||
@@ -126,6 +139,10 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/VCA.dot.jpg
 
 <img src="http://www.jneurosci.org/content/31/5/1790/F12.medium.gif" alt="unavailable">
 
+  * [http://www.nature.com/neuro/journal/v12/n6/images/nn.2331-F5.jpg Cortical Auditory System] - see [http://www.nature.com/neuro/journal/v12/n6/fig_tab/nn.2331_F5.html Reference]
+
+<img src="http://www.nature.com/neuro/journal/v12/n6/images/nn.2331-F5.jpg" alt="unavailable">
+
   * [http://ars.els-cdn.com/content/image/1-s2.0-S1364661312002823-gr2.jpg Language-Related Regions] - see [http://www.sciencedirect.com/science/article/pii/S1364661312002823 Reference]
 
 <img src="http://ars.els-cdn.com/content/image/1-s2.0-S1364661312002823-gr2.jpg" alt="unavailable">
@@ -145,5 +162,6 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/VCA.dot.jpg
   * http://www.sciencedirect.com/science/article/pii/S0006899301025987
   * http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/
   * http://www.jneurosci.org/content/31/5/1790.full
+  * http://www.nature.com/neuro/journal/v12/n6/fig_tab/nn.2331_F5.html
   * http://www.sciencedirect.com/science/article/pii/S1364661312002823
 
