@@ -24,14 +24,14 @@ Circuit is part of aHuman target integrated biological model.
 || [BrainAreaMCA MCA] || [BrainRegionMCA_NC_PMC_F4 MCA.NC.PMC.F4] || Ventral Caudal Premotor Cortex || Neocortex || Sensory guidance of movement ||
 || [BrainAreaMCA MCA] || [BrainRegionMCA_NC_PMC_F5 MCA.NC.PMC.F5] || Ventral Rostral Premotor Cortex || Neocortex || Shaping hand during grasping ||
 || [BrainAreaMCA MCA] || [BrainRegionMCA_NC_PMC_F7 MCA.NC.PMC.F7] || Dorsal Rostral Premotor Cortex || Neocortex || Associate arbitrary sensory stimuli with specific movements ||
-|| [BrainAreaMCA MCA] || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || Supplementary Motor Cortex || Neocortex || Process sequences of movements and coordinate bilateral movements ||
 || [BrainAreaPHA PHA] || [BrainRegionPHA_NC_TPC PHA.NC.TPC] || Temporopolar Cortex || Neocortex || Self representation, semantic (left) and autobiographic (right) ||
 || [BrainAreaSMA SMA] || [BrainRegionSMA_FD_TH_LD SMA.FD.TH.LD] || Lateral Dorsal Nucleus of Thalamus || Excitatory Nucleus || Head direction, spatial learning ||
 || [BrainAreaSMA SMA] || [BrainRegionSMA_NC_SPL_PF SMA.NC.SPL.PF] || Rostral Precuneus || Neocortex || Spatial orientation, representation of the self ||
+|| [BrainAreaSPA SPA] || [BrainRegionSPA_NC_PMC_CFEF SPA.NC.PMC.CFEF] || Caudal Frontal Eye Field || Neocortex || Head and eye movements toward visual stimuli ||
+|| [BrainAreaSPA SPA] || [BrainRegionSPA_NC_SMC SPA.NC.SMC] || Supplementary Motor Cortex || Neocortex || Process sequences of movements and coordinate bilateral movements ||
 || [BrainAreaVBA VBA] || [BrainRegionVBA_MM_SC VBA.MM.SC] || Superior Colliculus || Sensory Control Nucleus || Direct behavioral responses toward specific points in egocentric space, induce saccadic eye movement ||
 || [BrainAreaVCA VCA] || [BrainRegionVCA_NC_IPL_MST VCA.NC.IPL.MST] || Medial Superior Temporal Area || Neocortex || Image stabilization, predictive target tracking ||
 || [BrainAreaVCA VCA] || [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || Inferotemporal Cortex || Neocortex || Represent different views of objects ||
-|| [BrainAreaVCA VCA] || [BrainRegionVCA_NC_PMC_CFEF VCA.NC.PMC.CFEF] || Caudal Frontal Eye Field || Neocortex || Head and eye movements toward visual stimuli ||
 
 = Connections =
 (generated)
@@ -50,20 +50,20 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitCognition.dot.jpg
 || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || [BrainRegionMCA_NC_PMC_F7 MCA.NC.PMC.F7] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438807000323 Two extended parallel pathways for decision making (DLPFC -> PM, abstract)] ||
 || [BrainRegionFCA_NC_VACG FCA.NC.VACG] || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || neocortex-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (vACC -> DLPFC)] ||
 || [BrainRegionMCA_FD_TH_VA MCA.FD.TH.VA] || [BrainRegionMCA_NC_PMC_F2 MCA.NC.PMC.F2] || nucleus-neocortex || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (Thalamus -> FrontalCortex, abstract)] ||
-|| [BrainRegionMCA_FD_TH_VA MCA.FD.TH.VA] || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (VA -> pVA)] ||
+|| [BrainRegionMCA_FD_TH_VA MCA.FD.TH.VA] || [BrainRegionSPA_NC_SMC SPA.NC.SMC] || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (VA -> pVA)] ||
 || [BrainRegionMCA_NC_MC MCA.NC.MC] || [BrainRegionMCA_NC_PMC_F2 MCA.NC.PMC.F2] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1053810011000080  Cortico-Cortical Connectivity (M1 -> MA, abstract)] ||
 || [BrainRegionMCA_NC_PMC_F2 MCA.NC.PMC.F2] || [BrainRegionMCA_NC_PMC_F7 MCA.NC.PMC.F7] || neocortex-neocortex || (unknown reference) ||
-|| [BrainRegionMCA_NC_PMC_F2 MCA.NC.PMC.F2] || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || neocortex-neocortex || (unknown reference) ||
+|| [BrainRegionMCA_NC_PMC_F2 MCA.NC.PMC.F2] || [BrainRegionSPA_NC_SMC SPA.NC.SMC] || neocortex-neocortex || (unknown reference) ||
 || [BrainRegionMCA_NC_PMC_F4 MCA.NC.PMC.F4] || [BrainRegionMCA_NC_PMC_F2 MCA.NC.PMC.F2] || neocortex-neocortex || (unknown reference) ||
-|| [BrainRegionMCA_NC_PMC_F4 MCA.NC.PMC.F4] || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || neocortex-neocortex || (unknown reference) ||
+|| [BrainRegionMCA_NC_PMC_F4 MCA.NC.PMC.F4] || [BrainRegionSPA_NC_SMC SPA.NC.SMC] || neocortex-neocortex || (unknown reference) ||
 || [BrainRegionMCA_NC_PMC_F5 MCA.NC.PMC.F5] || [BrainRegionMCA_NC_PMC_F2 MCA.NC.PMC.F2] || neocortex-neocortex || (unknown reference) ||
 || [BrainRegionMCA_NC_PMC_F7 MCA.NC.PMC.F7] || [BrainRegionMCA_NC_PMC_F2 MCA.NC.PMC.F2] || neocortex-neocortex || (unknown reference) ||
 || [BrainRegionPHA_NC_TPC PHA.NC.TPC] || [BrainRegionFCA_NC_INS FCA.NC.INS] || neocortex-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (tPole -> Insula)] ||
 || [BrainRegionSMA_FD_TH_LD SMA.FD.TH.LD] || [BrainRegionFCA_NC_DACG FCA.NC.DACG] || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (LD -> pLD, abstract)] ||
 || [BrainRegionSMA_NC_SPL_PF SMA.NC.SPL.PF] || [BrainRegionSMA_FD_TH_LD SMA.FD.TH.LD] || neocortex-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sLD -> LD, abstract)] ||
+|| [BrainRegionSPA_NC_PMC_CFEF SPA.NC.PMC.CFEF] || [BrainRegionMCA_NC_PMC_F7 MCA.NC.PMC.F7] || neocortex-neocortex || (unknown reference) ||
 || [BrainRegionVBA_MM_SC VBA.MM.SC] || [BrainRegionHBA_FD_TH_AN HBA.FD.TH.AN] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCi -> ATH)] ||
 || [BrainRegionVBA_MM_SC VBA.MM.SC] || [BrainRegionMCA_FD_TH_VA MCA.FD.TH.VA] || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (SCi -> Thalamus, abstract)] ||
 || [BrainRegionVCA_NC_IPL_MST VCA.NC.IPL.MST] || [BrainRegionFCA_NC_DACG FCA.NC.DACG] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> FrontalCortex, abstract)] ||
 || [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (IT -> LPC, abstract)] ||
-|| [BrainRegionVCA_NC_PMC_CFEF VCA.NC.PMC.CFEF] || [BrainRegionMCA_NC_PMC_F7 MCA.NC.PMC.F7] || neocortex-neocortex || (unknown reference) ||
 
