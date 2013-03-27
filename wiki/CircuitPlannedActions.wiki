@@ -26,10 +26,10 @@ Circuit is part of aHuman target integrated biological model.
 || [BrainAreaMCA MCA] || [BrainRegionMCA_NC_MC MCA.NC.MC] || Motor Cortex || Neocortex || Execution of required voluntary movements ||
 || [BrainAreaMCA MCA] || [BrainRegionMCA_NC_PMC_F2 MCA.NC.PMC.F2] || Dorsal Caudal Premotor Cortex || Neocortex || Guiding reaching ||
 || [BrainAreaMCA MCA] || [BrainRegionMCA_NC_PMC_F5 MCA.NC.PMC.F5] || Ventral Rostral Premotor Cortex || Neocortex || Shaping hand during grasping ||
+|| [BrainAreaMCA MCA] || [BrainRegionMCA_NC_PMC_FEF MCA.NC.PMC.FEF] || Frontal Eye Field || Neocortex || Initiation of eye movements ||
+|| [BrainAreaMCA MCA] || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || Supplementary Motor Cortex || Neocortex || Process sequences of movements and coordinate bilateral movements ||
 || [BrainAreaSMA SMA] || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || Somatosensory Cortex || Neocortex || Muscle and skin receptors ||
 || [BrainAreaSMA SMA] || [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || Caudal Precuneus || Neocortex || Controlling spatially guided behavior with respect to visual and tactile information ||
-|| [BrainAreaSPA SPA] || [BrainRegionSPA_NC_PMC_CFEF SPA.NC.PMC.CFEF] || Caudal Frontal Eye Field || Neocortex || Head and eye movements toward visual stimuli ||
-|| [BrainAreaSPA SPA] || [BrainRegionSPA_NC_SMC SPA.NC.SMC] || Supplementary Motor Cortex || Neocortex || Process sequences of movements and coordinate bilateral movements ||
 || [BrainAreaVBA VBA] || [BrainRegionVBA_FD_LGN VBA.FD.LGN] || Lateral Geniculate Nucleus || Sensory Relay Nucleus || Temporal decorrelation ||
 || [BrainAreaVBA VBA] || [BrainRegionVBA_MM_SC VBA.MM.SC] || Superior Colliculus || Sensory Control Nucleus || Direct behavioral responses toward specific points in egocentric space, induce saccadic eye movement ||
 
@@ -54,7 +54,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitPlannedActions.dot.jpg
 || [BrainRegionBGA_FT_GPI BGA.FT.GPI] || [BrainRegionBGA_FT_SN_PR BGA.FT.SN.PR] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionBGA_FT_GPI BGA.FT.GPI] || [BrainRegionMCA_FD_TH_VA MCA.FD.TH.VA] || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sVA -> VA, abstract)] ||
 || [BrainRegionBGA_FT_GPI BGA.FT.GPI] || [BrainRegionMCA_NC_PMC_F5 MCA.NC.PMC.F5] || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (BG -> F5, abstract)] ||
-|| [BrainRegionBGA_FT_GPI BGA.FT.GPI] || [BrainRegionSPA_NC_SMC SPA.NC.SMC] || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (BG -> F6, abstract)] ||
+|| [BrainRegionBGA_FT_GPI BGA.FT.GPI] || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (BG -> F6, abstract)] ||
 || [BrainRegionBGA_FT_PU BGA.FT.PU] || [BrainRegionBGA_FT_GPE BGA.FT.GPE] || nucleus-nucleus || [http://brainmind.com/BasalGanglia.html Basal Ganglia Activity (PU -> GPo)] ||
 || [BrainRegionBGA_FT_PU BGA.FT.PU] || [BrainRegionBGA_FT_GPI BGA.FT.GPI] || nucleus-nucleus || [http://brainmind.com/BasalGanglia.html Basal Ganglia Activity (PU -> GPi)] ||
 || [BrainRegionBGA_FT_PU BGA.FT.PU] || [BrainRegionBGA_FT_SN_PR BGA.FT.SN.PR] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (Striatum -> SNr, abstract)] ||
@@ -73,9 +73,9 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitPlannedActions.dot.jpg
 || [BrainRegionMCA_NC_MC MCA.NC.MC] || [BrainRegionBGA_FT_PU BGA.FT.PU] || neocortex-nucleus || [http://brainmind.com/BasalGanglia.html Basal Ganglia Activity (M1 -> PU)] ||
 || [BrainRegionMCA_NC_PMC_F2 MCA.NC.PMC.F2] || [BrainRegionBGA_FT_PU BGA.FT.PU] || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> BGA, abstract)] ||
 || [BrainRegionMCA_NC_PMC_F5 MCA.NC.PMC.F5] || [BrainRegionBGA_FT_PU BGA.FT.PU] || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (F5 -> BG, abstract)] ||
+|| [BrainRegionMCA_NC_PMC_FEF MCA.NC.PMC.FEF] || [BrainRegionBGA_FT_CN BGA.FT.CN] || neocortex-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (FEF -> CN)] ||
+|| [BrainRegionMCA_NC_SMC MCA.NC.SMC] || [BrainRegionBGA_FT_PU BGA.FT.PU] || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (F6 -> BG, abstract)] ||
 || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || [BrainRegionBGA_FT_PU BGA.FT.PU] || neocortex-nucleus || [http://brainmind.com/BasalGanglia.html Basal Ganglia Activity (S1 -> PU)] ||
-|| [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || [BrainRegionSPA_NC_SMC SPA.NC.SMC] || neocortex-neocortex || [http://thebrainlabs.com/brain.shtml Movement Planning (PPC -> SMC, abstract)] ||
-|| [BrainRegionSPA_NC_PMC_CFEF SPA.NC.PMC.CFEF] || [BrainRegionBGA_FT_CN BGA.FT.CN] || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> BGA, abstract)] ||
-|| [BrainRegionSPA_NC_SMC SPA.NC.SMC] || [BrainRegionBGA_FT_PU BGA.FT.PU] || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (F6 -> BG, abstract)] ||
+|| [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || neocortex-neocortex || [http://thebrainlabs.com/brain.shtml Movement Planning (PPC -> SMC, abstract)] ||
 || [BrainRegionVBA_MM_SC VBA.MM.SC] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCi -> SNc)] ||
 
