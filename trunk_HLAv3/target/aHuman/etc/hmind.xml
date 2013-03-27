@@ -55,14 +55,14 @@
 						notes="Mirror neurons - both sensory and motor"
 						/>
 				</element>
-				<element id="VCA.NC.PMC.FEF" name="Frontal Eye Field" type="Neocortex"
+				<element id="MCA.NC.PMC.FEF" name="Frontal Eye Field" type="Neocortex" mapped="true" brodmannid="08"
 					function="Initiation of eye movements"
 					notes="Voluntary saccades and pursuit eye movements"
 					>
-					<element id="VCA.NC.PMC.CFEF" name="Caudal Frontal Eye Field" mapped="true" brodmannid="08" type="Neocortex"
+					<element id="MCA.NC.PMC.CFEF" name="Caudal Frontal Eye Field"
 						function="Head and eye movements toward visual stimuli"
 						/>
-					<element id="VCA.NC.PMC.AFEF" name="Anterior Frontal Eye Field" mapped="true" brodmannid="08" type="Neocortex"
+					<element id="MCA.NC.PMC.AFEF" name="Anterior Frontal Eye Field"
 						function="Head and eye movements toward auditory stimuli"
 						/>
 				</element>
@@ -122,64 +122,39 @@
 		<element id="NC.LOBE.PAR" name="Parietal Lobe"
 			dotdef="color=brown2"
 			>
-			<element id="PCA.NC.PO" name="Parietal Operculum"
-				notes="Postcentral gyrus"
-				>
-				<element id="SMA.NC.PO.PCC" name="Precentral Cortex" mapped="true" brodmannid="43" type="Neocortex"
-					function="Gustatory cortical area, taste reception"
-					/>
-			</element>
-
-			<element id="VCA.NC.IPS" name="Intraparietal Sulcus"
-				function="Perceptual-motor coordination and visual attention, eye movements and reaching" 
-				notes="PG, Control of saccadic eye movements, visual control of grasping"
-				>
-				<element id="VCA.NC.IPS.PEF" name="Posterior Eye Field" mapped="true" brodmannid="39" type="Neocortex"
-					function="Reflexive saccade triggering"
-					>
-					<element id="VCA.NC.IPS.MIP" name="Medial Intraparietal Sulcus" 
-						function="Encode location of reach target in nose-centered coordinates"
-						/>
-					<element id="VCA.NC.IPS.LIP" name="Lateral Intraparietal Sulcus"
-						function="Representing saliency of spatial locations, and attention to locations"
-						notes="Targeting eye movements"
-						/>
-				</element>
-				<element id="VCA.NC.IPS.VIP" name="Ventral Intraparietal Sulcus" mapped="true" brodmannid="39" type="Neocortex"
-					function="Merge visual, somatosensory, auditory, and vestibular senses"
-					notes="Represent space in head-centered reference frame"
-					/>
-				<element id="VCA.NC.IPS.AIP" name="Anterior Intraparietal Sulcus" mapped="true" brodmannid="39" type="Neocortex"
-					function="Represent shape, size, and orientation of objects to be grasped"
-					notes="Both to viewed and remembered stimuli, grasping and manipulating objects through motor and visual inputs"
-					/>
-			</element>
-
-			<element id="PCA.NC.IPL" name="Inferior Parietal Lobule"
+			<element id="NC.IPL" name="Inferior Parietal Lobule"
 				notes="in humans=BA39,40, in monkey=BA7"
 				>
-				<element id="PCA.NC.IPL.AG" name="Angular Gyrus"
+				<element id="VCA.NC.IPL.AG" name="Angular Gyrus"
 					notes="Surrounds Superior Temporal Sulcus (STS)"
 					>
-					<element id="PCA.NC.IPL.MST" name="Medial Superior Temporal Area" mapped="true" brodmannid="39" type="Neocortex"
+					<element id="VCA.NC.IPL.MST" name="Medial Superior Temporal Area" mapped="true" brodmannid="39" type="Neocortex"
 						function="Image stabilization, predictive target tracking" 
 						notes="PG, Ventro-dorsal stream"
 						/>
 				</element>
-				<element id="PCA.NC.IPL.SMG" name="Supramarginal Gyrus">
-					<element id="PCA.NC.IPL.SMW" name="Supramarginal Wernike Cortex" mapped="true" brodmannid="40" type="Neocortex"
+				<element id="ACA.NC.IPL.SMG" name="Supramarginal Gyrus">
+					<element id="ACA.NC.IPL.SMW" name="Supramarginal Wernike Cortex" mapped="true" brodmannid="40" type="Neocortex"
 						function="Phonological and articulatory processing of words" 
 						notes="PF, Computing sound of word, tactile learning and memory"
 						/>
 				</element>
 			</element>
 
-			<element id="PCA.NC.MPL" name="Medial Parietal Lobule">
-				<element id="PCA.NC.MPL.RSC" name="Retrosplenial Cortex" mapped="true" brodmannid="26,29,30" type="Neocortex"
+			<element id="SMA.NC.MPL" name="Medial Parietal Lobule">
+				<element id="SMA.NC.MPL.RSC" name="Retrosplenial Cortex" mapped="true" brodmannid="26,29,30" type="Neocortex"
 					function="Processing of emotionally salient stimuli" 
 					/>
-				<element id="PCA.NC.MPL.PCG" name="Posterior Cingulate Cortex" mapped="true" brodmannid="23,31" type="Neocortex"
+				<element id="SMA.NC.MPL.PCG" name="Posterior Cingulate Cortex" mapped="true" brodmannid="23,31" type="Neocortex"
 					function="Self-awareness, pain and episodic memory retrieval" 
+					/>
+			</element>
+
+			<element id="SMA.NC.PO" name="Parietal Operculum"
+				notes="Postcentral gyrus"
+				>
+				<element id="SMA.NC.PO.PCC" name="Precentral Cortex" mapped="true" brodmannid="43" type="Neocortex"
+					function="Gustatory cortical area, taste reception"
 					/>
 			</element>
 
@@ -205,6 +180,31 @@
 				<element id="SMA.NC.SPL.PG" name="Caudal Precuneus" mapped="true" brodmannid="07" type="Neocortex"
 					function="Controlling spatially guided behavior with respect to visual and tactile information" 
 					notes="caudal, 7A=PG+Opt"
+					/>
+			</element>
+
+			<element id="VCA.NC.IPS" name="Intraparietal Sulcus"
+				function="Perceptual-motor coordination and visual attention, eye movements and reaching" 
+				notes="PG, Control of saccadic eye movements, visual control of grasping"
+				>
+				<element id="VCA.NC.IPS.PEF" name="Posterior Eye Field" mapped="true" brodmannid="39" type="Neocortex"
+					function="Reflexive saccade triggering"
+					>
+					<element id="VCA.NC.IPS.MIP" name="Medial Intraparietal Sulcus" 
+						function="Encode location of reach target in nose-centered coordinates"
+						/>
+					<element id="VCA.NC.IPS.LIP" name="Lateral Intraparietal Sulcus"
+						function="Representing saliency of spatial locations, and attention to locations"
+						notes="Targeting eye movements"
+						/>
+				</element>
+				<element id="VCA.NC.IPS.VIP" name="Ventral Intraparietal Sulcus" mapped="true" brodmannid="39" type="Neocortex"
+					function="Merge visual, somatosensory, auditory, and vestibular senses"
+					notes="Represent space in head-centered reference frame"
+					/>
+				<element id="VCA.NC.IPS.AIP" name="Anterior Intraparietal Sulcus" mapped="true" brodmannid="39" type="Neocortex"
+					function="Represent shape, size, and orientation of objects to be grasped"
+					notes="Both to viewed and remembered stimuli, grasping and manipulating objects through motor and visual inputs"
 					/>
 			</element>
 
@@ -805,13 +805,13 @@
 					<element refs="NL:[http://neurolex.org/wiki/Category:Paracentral_nucleus Paracentral nucleus]"/>
 				</element>
 			</element>
-			<element id="PCA.FD.TH.LTH" name="Lateral Thalamus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_nuclear_group Lateral nuclear group];NL:[http://neurolex.org/wiki/Category:Lateral_thalamus Lateral thalamus]">
-				<element id="PCA.FD.TH.LD" name="Lateral Dorsal Nucleus of Thalamus" mapped="true" type="Excitatory Nucleus"
+			<element id="SMA.FD.TH.LTH" name="Lateral Thalamus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_nuclear_group Lateral nuclear group];NL:[http://neurolex.org/wiki/Category:Lateral_thalamus Lateral thalamus]">
+				<element id="SMA.FD.TH.LD" name="Lateral Dorsal Nucleus of Thalamus" mapped="true" type="Excitatory Nucleus"
 					refs="NL:[http://neurolex.org/wiki/Category:Lateral_dorsal_nucleus Lateral dorsal nucleus]"
 					function="Head direction, spatial learning"
 					notes="From RSP L5,6 BA17,18, RT, LGN"
 					/>
-				<element id="PCA.FD.TH.LP" name="Lateral Posterior Nucleus of Thalamus" mapped="true" type="Excitatory Nucleus"
+				<element id="SMA.FD.TH.LP" name="Lateral Posterior Nucleus of Thalamus" mapped="true" type="Excitatory Nucleus"
 					refs="NL:[http://neurolex.org/wiki/Category:Lateral_posterior_nucleus Lateral posterior nucleus]"
 					function="Visual association cortex"
 					notes="From superior colliculus, pretectum"
@@ -828,7 +828,7 @@
 				<element refs="NL:[http://neurolex.org/wiki/Category:Paralaminar_part_of_medial_dorsal_nucleus Paralaminar part of medial dorsal nucleus]"/>
 				<element refs="NL:[http://neurolex.org/wiki/Category:Parvicellular_part_of_medial_dorsal_nucleus Parvicellular part of medial dorsal nucleus]"/>
 			</element>
-			<element id="PCA.FD.TH.MTH" name="Midline Nuclear Group of Thalamus" refs="NL:[http://neurolex.org/wiki/Category:Midline_nuclear_group Midline nuclear group]">
+			<element id="FD.TH.MTH" name="Midline Nuclear Group of Thalamus" refs="NL:[http://neurolex.org/wiki/Category:Midline_nuclear_group Midline nuclear group]">
 				<element refs="NL:[http://neurolex.org/wiki/Category:Nucleus_rotundus_of_thalamus Nucleus rotundus of thalamus]" ignore="true" comment="birds-only equivalent of Pulvinar for motion processing"/>
 				<element id="BFA.FD.TH.PT" name="Paratenial Nucleus of Thalamus" mapped="true" type="Excitatory Nucleus"
 					refs="NL:[http://neurolex.org/wiki/Category:Paratenial_nucleus Paratenial nucleus]"
@@ -855,7 +855,7 @@
 					function="Relays from PAG to Rhape nuclei, Inferior olive nucleus"
 					/>
 			</element>
-			<element id="PCA.FD.TH.PTH" name="Posterior Thalamus" refs="NL:[http://neurolex.org/wiki/Category:Posterior_nuclear_complex Posterior nuclear complex];NL:[http://neurolex.org/wiki/Category:Posterior_thalamus Posterior thalamus]">
+			<element id="FD.TH.PTH" name="Posterior Thalamus" refs="NL:[http://neurolex.org/wiki/Category:Posterior_nuclear_complex Posterior nuclear complex];NL:[http://neurolex.org/wiki/Category:Posterior_thalamus Posterior thalamus]">
 				<element id="BGA.FD.TH.LI" name="Limitans Nucleus of Thalamus" mapped="true" type="Excitatory Nucleus"
 					refs="NL:[http://neurolex.org/wiki/Category:Limitans_nucleus Limitans nucleus]"
 					function="Multisensory projection to striatum"
@@ -868,7 +868,7 @@
 					function="Somatic markers for spatial coding"
 					notes="To parietal association cortices"
 					/>
-				<element id="PCA.FD.TH.SG" name="Suprageniculate Nucleus of Thalamus" mapped="true" type="Excitatory Nucleus"
+				<element id="ACA.FD.TH.SG" name="Suprageniculate Nucleus of Thalamus" mapped="true" type="Excitatory Nucleus"
 					refs="NL:[http://neurolex.org/wiki/Category:Suprageniculate_nucleus Suprageniculate nucleus]"
 					function="Spatial coding of auditory information"
 					notes="From tectum, somatic sensations"
@@ -880,7 +880,7 @@
 				notes="Projections from SC Lamina I, trigeminal nucleus to ACC"
 				/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Thalamic_reticular_nucleus Thalamic reticular nucleus]" ignore="true" comment="generic signal to noice improvement"/>
-			<element id="PCA.FD.TH.VTH" name="Ventral Thalamus" refs="NL:[http://neurolex.org/wiki/Category:Ventral_nuclear_group Ventral nuclear group];NL:[http://neurolex.org/wiki/Category:Ventral_thalamic Ventral thalamic]">
+			<element id="FD.TH.VTH" name="Ventral Thalamus" refs="NL:[http://neurolex.org/wiki/Category:Ventral_nuclear_group Ventral nuclear group];NL:[http://neurolex.org/wiki/Category:Ventral_thalamic Ventral thalamic]">
 				<element id="MCA.FD.TH.VA" name="Ventral Anterior Nucleus" mapped="true" type="Excitatory Nucleus"
 					refs="NL:[http://neurolex.org/wiki/Category:Ventral_anterior_nucleus Ventral anterior nucleus]"
 					function="Relay BGA.SN, BGA.GPI, FCA.OMPFC, FCA.CG to MCA.PMC, MCA.SMC"
