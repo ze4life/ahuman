@@ -3,7 +3,7 @@
 	<circuit id="CP.EYE-FIELDS" name="Summary of eye movement control"
 		image="http://www.cixip.com/Public/kindeditor/attached/image/20121030/20121030134649_52795.jpg"
 		reference="http://www.cixip.com/index.php/page/content/id/1190"
-		components="FEF=VCA.NC.PMC.FEF PEF=VCA.NC.IPS.PEF SEF=MCA.NC.SMC.SEF SC=VBA.MM.SC riMLF=HMA.MM.INMLF PPRF=HP.PRF.PPRF DLPFC=FCA.NC.LPFC"
+		components="FEF=MCA.NC.PMC.FEF PEF=VCA.NC.IPS.PEF SEF=MCA.NC.SMC.SEF SC=VBA.MM.SC riMLF=HMA.MM.INMLF PPRF=HP.PRF.PPRF DLPFC=FCA.NC.LPFC"
 		>
 		<link src="PEF" dst="SC"/>
 		<link src="PEF" dst="FEF"/>
@@ -137,7 +137,7 @@
 	<circuit id="CP.SACCADIC-VOLUNTARY-AND-PURSUIT" name="Saccades and smooth movements"
 		image="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg"
 		reference="UNKNOWN"
-		components="FEF=VCA.NC.PMC.FEF PPC=VCA.NC.IPS.PEF CN=BGA.FT.CN SN=BGA.FT.SN VGC=HMA.MM.INMLF SC=VBA.MM.SC PPRF=HP.PRF.PPRF TEF=VCA.NC.IT Extrastriate=VCA.NC.V3 Striate=VCA.NC.V1 CR=MBA.HP.CR Vestibular=BMA.HP.VB DLPN=HMA.HP.PRF.RPO"
+		components="FEF=MCA.NC.PMC.FEF PPC=VCA.NC.IPS.PEF CN=BGA.FT.CN SN=BGA.FT.SN VGC=HMA.MM.INMLF SC=VBA.MM.SC PPRF=HP.PRF.PPRF TEF=VCA.NC.IT Extrastriate=VCA.NC.V3 Striate=VCA.NC.V1 CR=MBA.HP.CR Vestibular=BMA.HP.VB DLPN=HMA.HP.PRF.RPO"
 		>
 		<!-- voluntary saccades circuit -->
 		<link src="FEF" dst="SC"/>
@@ -161,7 +161,7 @@
 	<circuit id="CP.VESTIBULO-OCULAR-REFLEX" name="Vestibulo-ocular reflex (VOR)"
 		image="http://www.neuroanatomy.wisc.edu/virtualbrain/Images/13R.jpg"
 		reference="http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html"
-		components="VestibularGanglion=BMA.HP.VG VestibularNuclei=BMA.HP.VB PPRF=HP.PRF.PPRF Abducens=VBA.HP.ABD Oculomotor=VBA.MM.OCN FEF=VCA.NC.PMC.FEF"
+		components="VestibularGanglion=BMA.HP.VG VestibularNuclei=BMA.HP.VB PPRF=HP.PRF.PPRF Abducens=VBA.HP.ABD Oculomotor=VBA.MM.OCN FEF=MCA.NC.PMC.FEF"
 		>
 		<link src="VestibularGanglion" dst="VestibularNuclei"/>
 		<link src="VestibularNuclei" dst="PPRF"/>
