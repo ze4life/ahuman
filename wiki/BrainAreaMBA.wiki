@@ -15,6 +15,7 @@
 || [BrainRegionMBA_HP_PN_PBB MBA.HP.PN.PBB] || Pontobulbar Body || Excitatory Nucleus || Control voluntary muscle activities || Walking, speaking, breathing, part of<BR>corticopontocerebellar pathway ||
 || [BrainRegionMBA_HP_PN_RP MBA.HP.PN.RP] || Rostral Pontine Nucleus || Excitatory Nucleus || Relay from mammillary body to CR || Part of learning, motivation, spatial memory<BR>pathway ||
 || [BrainRegionMBA_HM_RF_MED MBA.HM.RF.MED] || Medullary Reticular Formation || Mixed Nucleus || Somatic motor control, cardiovascular control, pain modulation, sleep and<BR>consciousness, habituation || 100 small neural networks, habituation - sleep in<BR>load city but awake from crying baby ||
+|| [BrainRegionMBA_MM_SC MBA.MM.SC] || Superior Colliculus || Sensory Control Nucleus || Direct behavioral responses toward specific points in egocentric space, induce<BR>saccadic eye movement || Superficial layers are sensory-related, deep layers<BR>are motor-related ||
 
 = Connections =
 
@@ -31,10 +32,14 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/MBA.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionMBA_MM_RD MBA.MM.RD] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionMBA_HP_CR MBA.HP.CR] || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (SCi -> CR)] ||
 
 *External Inbound Region Connections:*
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| [BrainAreaABA ABA] || [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionABA_MM_IC ABA.MM.IC] || Inferior Colliculus || nucleus-nucleus || [http://f1000research.com/articles/2-20/v1 Visual-Auditory Interactions in Tectum (IC -> SC)] ||
+|| [BrainAreaBGA BGA] || [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionBGA_FT_SN_PR BGA.FT.SN.PR] || Substantia Nigra Pars Reticulata || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SNr -> SCi)] ||
+|| [BrainAreaBGA BGA] || [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionBGA_HP_PPN BGA.HP.PPN] || Pedunculopontine Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (PPN -> SC)] ||
 || [BrainAreaBMA BMA] || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionBMA_HM_CU BMA.HM.CU] || Cuneate Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaBMA BMA] || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionBMA_HM_IO BMA.HM.IO] || Inferior Olivary Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaBMA BMA] || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionBMA_HP_VB BMA.HP.VB] || Vestibular Nucleus || nucleus-nucleus || (unknown reference) ||
@@ -44,17 +49,40 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/MBA.dot.jpg
 || [BrainAreaBMA BMA] || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionBMA_SC_PH_CL BMA.SC.PH.CL] || Clarke's Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaFCA FCA] || [BrainRegionMBA_MM_RD MBA.MM.RD] || [BrainRegionFCA_NC_VACG FCA.NC.VACG] || Ventral Anterior Cingulate Area || neocortex-nucleus || (unknown reference) ||
 || [BrainAreaHMA HMA] || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (DLPN -> CR)] ||
-|| [BrainAreaVBA VBA] || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionVBA_MM_SC VBA.MM.SC] || Superior Colliculus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (SCi -> CR)] ||
+|| [BrainAreaMCA MCA] || [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionMCA_NC_PMC_FEF MCA.NC.PMC.FEF] || Frontal Eye Field || neocortex-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (FEF -> SC)] ||
+|| [BrainAreaVBA VBA] || [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionVBA_FD_RT VBA.FD.RT] || Retina || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (Retina -> SC)] ||
+|| [BrainAreaVCA VCA] || [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionVCA_NC_IPL_MST VCA.NC.IPL.MST] || Medial Superior Temporal Area || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> SCi, abstract)] ||
+|| [BrainAreaVCA VCA] || [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionVCA_NC_IPS_PEF VCA.NC.IPS.PEF] || Posterior Eye Field || neocortex-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (PEF -> SC)] ||
+|| [BrainAreaVCA VCA] || [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionVCA_NC_V1 VCA.NC.V1] || Primary Visual Cortex || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (VisualCortex -> SCs, abstract)] ||
+|| [BrainAreaVCA VCA] || [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionVCA_NC_V2 VCA.NC.V2] || Secondary Visual Cortex || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (VisualCortex -> SCs, abstract)] ||
 
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| [BrainAreaABA ABA] || [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionABA_MM_IC ABA.MM.IC] || Inferior Colliculus || nucleus-nucleus || [http://f1000research.com/articles/2-20/v1 Visual-Auditory Interactions in Tectum (SC -> IC)] ||
+|| [BrainAreaBGA BGA] || [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || Substantia Nigra Pars Compacta || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCi -> SNc)] ||
 || [BrainAreaBMA BMA] || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionBMA_HP_VB BMA.HP.VB] || Vestibular Nucleus || nucleus-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (CR -> Vestibular)] ||
 || [BrainAreaBMA BMA] || [BrainRegionMBA_MM_RD MBA.MM.RD] || [BrainRegionBMA_HM_IO BMA.HM.IO] || Inferior Olivary Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaBMA BMA] || [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionBMA_HP_VB BMA.HP.VB] || Vestibular Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (SC -> Vestibular)] ||
 || [BrainAreaFBA FBA] || [BrainRegionMBA_HM_RF_MED MBA.HM.RF.MED] || [BrainRegionFBA_HP_LC FBA.HP.LC] || Locus Coeruleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaHBA HBA] || [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionHBA_FD_TH_AN HBA.FD.TH.AN] || Anterior Nucleus of Thalamus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCi -> ATH)] ||
 || [BrainAreaHMA HMA] || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || Caudal Pontine Reticular Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (CR -> RF, abstract)] ||
+|| [BrainAreaHMA HMA] || [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionHMA_HP_PRF_PDT HMA.HP.PRF.PDT] || Pontine Reticulotegmental Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (SC -> Bechterew)] ||
+|| [BrainAreaHMA HMA] || [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (SC -> PPRF, abstract)] ||
+|| [BrainAreaHMA HMA] || [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionHMA_MM_INMLF HMA.MM.INMLF] || Interstitial Nucleus of Medial Longitudinal Fasciculus || nucleus-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (SC -> riMLF)] ||
+|| [BrainAreaHMA HMA] || [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionHMA_SC_VH_ISL HMA.SC.VH.ISL] || Spinal Accessory Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaMCA MCA] || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionMCA_FD_TH_VL MCA.FD.TH.VL] || Ventral Lateral Nucleus || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s1VL -> VL)] ||
+|| [BrainAreaMCA MCA] || [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionMCA_FD_TH_VA MCA.FD.TH.VA] || Ventral Anterior Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (SCi -> Thalamus, abstract)] ||
 || [BrainAreaSMA SMA] || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionSMA_FD_TH_RIL SMA.FD.TH.RIL] || Rostral Intralaminar Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaSMA SMA] || [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionSMA_FD_TH_LP SMA.FD.TH.LP] || Lateral Posterior Nucleus of Thalamus || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sLP -> LP)] ||
+|| [BrainAreaVBA VBA] || [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionVBA_FD_LGN VBA.FD.LGN] || Lateral Geniculate Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCs -> LGN)] ||
+|| [BrainAreaVBA VBA] || [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionVBA_FD_PV_IPV VBA.FD.PV.IPV] || Inferior Pulvinar || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCs -> Pulvinar, abstract)] ||
+|| [BrainAreaVBA VBA] || [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionVBA_FD_PV_LPV VBA.FD.PV.LPV] || Lateral Pulvinar || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCs -> Pulvinar, abstract)] ||
+|| [BrainAreaVBA VBA] || [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionVBA_HP_ABD VBA.HP.ABD] || Abducens Nucleus || nucleus-nucleus || [http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html Retina and superior colliculus targets (SC -> Abducens)] ||
+|| [BrainAreaVBA VBA] || [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || Oculomotor Nucleus || nucleus-nucleus || [http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html Retina and superior colliculus targets (SC -> Oculomotor)] ||
+|| [BrainAreaVBA VBA] || [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionVBA_MM_PT_NOT VBA.MM.PT.NOT] || Nucleus of Optic Tract || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaVBA VBA] || [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionVBA_MM_RP_RIP VBA.MM.RP.RIP] || Raphe Interpositus Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (SC -> RIP)] ||
+|| [BrainAreaVBA VBA] || [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionVBA_MM_TRH VBA.MM.TRH] || Trochlear Nucleus || nucleus-nucleus || [http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html Retina and superior colliculus targets (SC -> Trochlear)] ||
 
 = Thirdparty Circuits =
 (generated)
@@ -75,6 +103,34 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/MBA.dot.jpg
 
 <img src="http://what-when-how.com/wp-content/uploads/2012/04/tmp3649_thumb1_thumb.jpg" alt="unavailable"height=400width=400>
 
+  * [http://asweknowit.ca/evcult/NatIntel/Fig12.GIF Visual perception abstraction] - see [http://asweknowit.ca/evcult/NatIntel/nat_intel.shtml Reference]
+
+<img src="http://asweknowit.ca/evcult/NatIntel/Fig12.GIF" alt="unavailable">
+
+  * [http://cdn.f1000r.com.s3.amazonaws.com/manuscripts/1181/d6e9eca8-bb85-4382-8286-723b00f8b36f_figure7.gif Visual-Auditory Interactions in Tectum] - see [http://f1000research.com/articles/2-20/v1 Reference]
+
+<img src="http://cdn.f1000r.com.s3.amazonaws.com/manuscripts/1181/d6e9eca8-bb85-4382-8286-723b00f8b36f_figure7.gif" alt="unavailable"height=400width=400>
+
+  * [http://2.bp.blogspot.com/-mjoruMnWeaU/TVp_YcF7meI/AAAAAAAAAsQ/8oZIVJrZVnw/s1600/Gray722.png Retina and superior colliculus targets] - see [http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html Reference]
+
+<img src="http://2.bp.blogspot.com/-mjoruMnWeaU/TVp_YcF7meI/AAAAAAAAAsQ/8oZIVJrZVnw/s1600/Gray722.png" alt="unavailable">
+
+  * [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision_files/image022.jpg Targets of retina neurons] - see [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm Reference]
+
+<img src="http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision_files/image022.jpg" alt="unavailable">
+
+  * [http://ars.els-cdn.com/content/image/1-s2.0-S0959438808001566-gr1.jpg Global visual system] - see [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Reference]
+
+<img src="http://ars.els-cdn.com/content/image/1-s2.0-S0959438808001566-gr1.jpg" alt="unavailable">
+
+  * [http://ars.els-cdn.com/content/image/1-s2.0-S0387760401003308-gr2.jpg Geniculate and Extyrageniculate Paths] - see [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Reference]
+
+<img src="http://ars.els-cdn.com/content/image/1-s2.0-S0387760401003308-gr2.jpg" alt="unavailable">
+
+  * [http://www.cixip.com/Public/kindeditor/attached/image/20121030/20121030134649_52795.jpg Summary of eye movement control] - see [http://www.cixip.com/index.php/page/content/id/1190 Reference]
+
+<img src="http://www.cixip.com/Public/kindeditor/attached/image/20121030/20121030134649_52795.jpg" alt="unavailable">
+
 
 = References =
 (generated)
@@ -82,6 +138,13 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/MBA.dot.jpg
   * http://www.sciencedirect.com/science/article/pii/S0006899301025987
   * http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html
   * http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/
+  * http://asweknowit.ca/evcult/NatIntel/nat_intel.shtml
+  * http://f1000research.com/articles/2-20/v1
+  * http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html
+  * http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm
+  * http://www.sciencedirect.com/science/article/pii/S0959438808001566
+  * http://www.sciencedirect.com/science/article/pii/S0387760401003308
+  * http://www.cixip.com/index.php/page/content/id/1190
 
 = Diagrams =
 
