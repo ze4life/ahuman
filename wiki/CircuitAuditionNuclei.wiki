@@ -11,12 +11,12 @@ Circuit is part of aHuman target integrated biological model.
 
 || *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||
 || [BrainAreaABA ABA] || [BrainRegionABA_FD_TH_MGB ABA.FD.TH.MGB] || Medial Geniculate Body || Sensory Relay Nucleus || Detection of the relative intensity and duration of a sound, relay to Auditory Cortex ||
+|| [BrainAreaACA ACA] || [BrainRegionABA_FD_TH_SG ABA.FD.TH.SG] || Suprageniculate Nucleus of Thalamus || Excitatory Nucleus || Spatial coding of auditory information ||
 || [BrainAreaABA ABA] || [BrainRegionABA_HM_COCH ABA.HM.COCH] || Cochlear Nucleus || Sensory Relay Nucleus || Divergence in representation of auditory information ||
 || [BrainAreaABA ABA] || [BrainRegionABA_HM_CORTI ABA.HM.CORTI] || Organ of Corti || 1-order Sensory Nucleus || Tonotopic mapping ||
 || [BrainAreaABA ABA] || [BrainRegionABA_HP_PN_LL ABA.HP.PN.LL] || Nuclei of Lateral Lemniscus || Sensory Relay Nucleus || Decoding of amplitude modulated sounds ||
 || [BrainAreaABA ABA] || [BrainRegionABA_MM_IC ABA.MM.IC] || Inferior Colliculus || Sensory Relay Nucleus || Reflex centres of hearing ||
 || [BrainAreaABA ABA] || [BrainRegionABA_MM_SOC ABA.MM.SOC] || Superior Olivary Complex || Sensory Control Nucleus || Bilateral Audition ||
-|| [BrainAreaACA ACA] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || Suprageniculate Nucleus of Thalamus || Excitatory Nucleus || Spatial coding of auditory information ||
 || [BrainAreaACA ACA] || [BrainRegionACA_NC_A1 ACA.NC.A1] || Primary Auditory Cortex || Neocortex || Main topotonic map, extract phonemes ||
 || [BrainAreaBFA BFA] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || Mixed Nucleus || Experiencing and recognizing emotions ||
 || [BrainAreaBGA BGA] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || Substantia Nigra Pars Compacta || Mixed Nucleus || Fine motor control, temporal processing ||
@@ -42,6 +42,8 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitAuditionNuclei.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionABA_FD_TH_MGB ABA.FD.TH.MGB] || [BrainRegionACA_NC_A1 ACA.NC.A1] || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (MGN -> pMGN)] ||
+|| [BrainRegionABA_FD_TH_SG ABA.FD.TH.SG] || [BrainRegionACA_NC_A1 ACA.NC.A1] || nucleus-neocortex || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2010.00134/full Echo-Location in Bats (SG -> A1)] ||
+|| [BrainRegionABA_FD_TH_SG ABA.FD.TH.SG] || [BrainRegionBFA_FT_AM BFA.FT.AM] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionABA_HM_COCH ABA.HM.COCH] || [BrainRegionABA_HP_PN_LL ABA.HP.PN.LL] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionABA_HM_COCH ABA.HM.COCH] || [BrainRegionABA_MM_SOC ABA.MM.SOC] || nucleus-nucleus || [http://f1000research.com/articles/2-20/v1 Visual-Auditory Interactions in Tectum (CN -> OC)] ||
 || [BrainRegionABA_HM_COCH ABA.HM.COCH] || [BrainRegionHMA_MM_CJ HMA.MM.CJ] || nucleus-nucleus || (unknown reference) ||
@@ -54,8 +56,6 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitAuditionNuclei.dot.jpg
 || [BrainRegionABA_MM_IC ABA.MM.IC] || [BrainRegionMBA_MM_SC MBA.MM.SC] || nucleus-nucleus || [http://f1000research.com/articles/2-20/v1 Visual-Auditory Interactions in Tectum (IC -> SC)] ||
 || [BrainRegionABA_MM_SOC ABA.MM.SOC] || [BrainRegionABA_HM_CORTI ABA.HM.CORTI] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionABA_MM_SOC ABA.MM.SOC] || [BrainRegionABA_MM_IC ABA.MM.IC] || nucleus-nucleus || [http://f1000research.com/articles/2-20/v1 Visual-Auditory Interactions in Tectum (OC -> IC)] ||
-|| [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || [BrainRegionACA_NC_A1 ACA.NC.A1] || nucleus-neocortex || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2010.00134/full Echo-Location in Buts (SG -> A1)] ||
-|| [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || [BrainRegionBFA_FT_AM BFA.FT.AM] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionACA_NC_A1 ACA.NC.A1] || [BrainRegionABA_MM_IC ABA.MM.IC] || neocortex-nucleus || [http://f1000research.com/articles/2-20/v1 Visual-Auditory Interactions in Tectum (AC -> IC)] ||
 || [BrainRegionBFA_FT_AM BFA.FT.AM] || [BrainRegionABA_MM_IC ABA.MM.IC] || nucleus-nucleus || [http://f1000research.com/articles/2-20/v1 Visual-Auditory Interactions in Tectum (AM -> IC)] ||
 || [BrainRegionBFA_FT_AM BFA.FT.AM] || [BrainRegionACA_NC_A1 ACA.NC.A1] || nucleus-neocortex || [http://f1000research.com/articles/2-20/v1 Visual-Auditory Interactions in Tectum (AM -> AC)] ||
