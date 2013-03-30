@@ -37,7 +37,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/BGA.dot.jpg
 || [BrainRegionBGA_FD_TH_CM BGA.FD.TH.CM] || [BrainRegionBGA_FT_PU BGA.FT.PU] || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (CM -> pCM)] ||
 || [BrainRegionBGA_FT_CN BGA.FT.CN] || [BrainRegionBGA_FT_GPE BGA.FT.GPE] || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (CN -> GPe)] ||
 || [BrainRegionBGA_FT_CN BGA.FT.CN] || [BrainRegionBGA_FT_GPI BGA.FT.GPI] || nucleus-nucleus || (unknown reference) ||
-|| [BrainRegionBGA_FT_CN BGA.FT.CN] || [BrainRegionBGA_FT_SN_PR BGA.FT.SN.PR] || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (CN -> SNpr)] ||
+|| [BrainRegionBGA_FT_CN BGA.FT.CN] || [BrainRegionBGA_FT_SN_PR BGA.FT.SN.PR] || nucleus-nucleus || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (Caudate -> SNr)] ||
 || [BrainRegionBGA_FT_GPE BGA.FT.GPE] || [BrainRegionBGA_FD_STN BGA.FD.STN] || nucleus-nucleus || [http://brainmind.com/BasalGanglia.html Basal Ganglia Activity (GPo -> STN)] ||
 || [BrainRegionBGA_FT_GPE BGA.FT.GPE] || [BrainRegionBGA_FT_GPI BGA.FT.GPI] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionBGA_FT_GPI BGA.FT.GPI] || [BrainRegionBGA_FD_TH_CM BGA.FD.TH.CM] || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sCM -> CM)] ||
@@ -46,17 +46,18 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/BGA.dot.jpg
 || [BrainRegionBGA_FT_PU BGA.FT.PU] || [BrainRegionBGA_FT_GPI BGA.FT.GPI] || nucleus-nucleus || [http://brainmind.com/BasalGanglia.html Basal Ganglia Activity (PU -> GPi)] ||
 || [BrainRegionBGA_FT_PU BGA.FT.PU] || [BrainRegionBGA_FT_SN_PR BGA.FT.SN.PR] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (Striatum -> SNr, abstract)] ||
 || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || [BrainRegionBGA_FT_PU BGA.FT.PU] || nucleus-nucleus || [http://brainmind.com/BasalGanglia.html Basal Ganglia Activity (SNi -> PU, abstract)] ||
-|| [BrainRegionBGA_FT_SN_PR BGA.FT.SN.PR] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionBGA_FT_SN_PR BGA.FT.SN.PR] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || nucleus-nucleus || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (SNr -> SNc)] ||
 || [BrainRegionBGA_HP_PPN BGA.HP.PPN] || [BrainRegionBGA_FD_STN BGA.FD.STN] || nucleus-nucleus || (unknown reference) ||
 
 *External Inbound Region Connections:*
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| [BrainAreaBFA BFA] || [BrainRegionBGA_FT_CN BGA.FT.CN] || [BrainRegionBFA_FT_ACC BFA.FT.ACC] || Accumbens Nucleus || nucleus-nucleus || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (NAC -> Caudate)] ||
 || [BrainAreaFCA FCA] || [BrainRegionBGA_FT_CN BGA.FT.CN] || [BrainRegionFCA_NC_VACG FCA.NC.VACG] || Ventral Anterior Cingulate Area || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> BGA, abstract)] ||
 || [BrainAreaFCA FCA] || [BrainRegionBGA_FT_PU BGA.FT.PU] || [BrainRegionFCA_NC_PACG FCA.NC.PACG] || Pregenual Area || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> BGA, abstract)] ||
 || [BrainAreaMBA MBA] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || [BrainRegionMBA_MM_SC MBA.MM.SC] || Superior Colliculus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCi -> SNc)] ||
 || [BrainAreaMCA MCA] || [BrainRegionBGA_FD_STN BGA.FD.STN] || [BrainRegionMCA_NC_MC MCA.NC.MC] || Motor Cortex || neocortex-nucleus || (unknown reference) ||
-|| [BrainAreaMCA MCA] || [BrainRegionBGA_FT_CN BGA.FT.CN] || [BrainRegionMCA_NC_PMC_FEF MCA.NC.PMC.FEF] || Frontal Eye Field || neocortex-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (FEF -> CN)] ||
+|| [BrainAreaMCA MCA] || [BrainRegionBGA_FT_CN BGA.FT.CN] || [BrainRegionMCA_NC_PMC_FEF MCA.NC.PMC.FEF] || Frontal Eye Field || neocortex-nucleus || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (FEF -> Caudate)] ||
 || [BrainAreaMCA MCA] || [BrainRegionBGA_FT_PU BGA.FT.PU] || [BrainRegionMCA_NC_MC MCA.NC.MC] || Motor Cortex || neocortex-nucleus || [http://brainmind.com/BasalGanglia.html Basal Ganglia Activity (M1 -> PU)] ||
 || [BrainAreaMCA MCA] || [BrainRegionBGA_FT_PU BGA.FT.PU] || [BrainRegionMCA_NC_PMC_F2 MCA.NC.PMC.F2] || Dorsal Caudal Premotor Cortex || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> BGA, abstract)] ||
 || [BrainAreaMCA MCA] || [BrainRegionBGA_FT_PU BGA.FT.PU] || [BrainRegionMCA_NC_PMC_F5 MCA.NC.PMC.F5] || Ventral Rostral Premotor Cortex || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (F5 -> BG, abstract)] ||
@@ -66,6 +67,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/BGA.dot.jpg
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| [BrainAreaBFA BFA] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || [BrainRegionBFA_FT_ACC BFA.FT.ACC] || Accumbens Nucleus || nucleus-nucleus || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (SNc -> NAC)] ||
 || [BrainAreaBMA BMA] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || [BrainRegionBMA_HP_PRF_PVR BMA.HP.PRF.PVR] || Parvocellular Reticular Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaHBA HBA] || [BrainRegionBGA_FT_PU BGA.FT.PU] || [BrainRegionHBA_FD_TH_AN HBA.FD.TH.AN] || Anterior Nucleus of Thalamus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (Striatum -> ATH, abstract)] ||
 || [BrainAreaMBA MBA] || [BrainRegionBGA_FT_SN_PR BGA.FT.SN.PR] || [BrainRegionMBA_MM_SC MBA.MM.SC] || Superior Colliculus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SNr -> SCi)] ||
@@ -87,6 +89,10 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/BGA.dot.jpg
   * [http://www.nature.com/nrn/journal/v5/n3/images/nrn1345-i1.jpg Saccadic Vision] - see [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Reference]
 
 <img src="http://www.nature.com/nrn/journal/v5/n3/images/nrn1345-i1.jpg" alt="unavailable">
+
+  * [http://img.springerimages.com/Images/Springer/PUB=Springer-Verlag-Berlin-Heidelberg/JOU=00359/VOL=2005.191/ISU=3/ART=2004_565/MediaObjects/WATER_s00359-004-0565-9fhc1.jpg Oculomotor decision-making] - see [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Reference]
+
+<img src="http://img.springerimages.com/Images/Springer/PUB=Springer-Verlag-Berlin-Heidelberg/JOU=00359/VOL=2005.191/ISU=3/ART=2004_565/MediaObjects/WATER_s00359-004-0565-9fhc1.jpg" alt="unavailable">
 
   * [http://what-when-how.com/wp-content/uploads/2012/04/tmp3649_thumb1_thumb.jpg Thalamocortical relationships] - see [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Reference]
 
@@ -110,6 +116,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/BGA.dot.jpg
 
   * http://brainmind.com/BasalGanglia.html
   * http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html
+  * http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0
   * http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/
   * http://www.sciencedirect.com/science/article/pii/S0959438808001566
   * http://www.sciencedirect.com/science/article/pii/S0387760401003308

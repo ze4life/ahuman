@@ -11,6 +11,7 @@ Circuit is part of aHuman target integrated biological model.
 
 || *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||
 || [BrainAreaBGA BGA] || [BrainRegionBGA_FT_CN BGA.FT.CN] || Caudate Nucleus || Inhibitory Nucleus || Excitation of correct action schemas and selection of appropriate sub-goals based on evaluation of action-outcomes ||
+|| [BrainAreaFCA FCA] || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || Mediodorsal Nucleus of Thalamus || Excitatory Nucleus || Attention, planning, organization, abstract thinking, multi-tasking, and active memory ||
 || [BrainAreaFCA FCA] || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || Lateral Prefrontal Cortex || Neocortex || Temporal Integration ||
 || [BrainAreaHMA HMA] || [BrainRegionHMA_HP_PRF_GCR HMA.HP.PRF.GCR] || Gigantocellular Reticular Nucleus || Premotor Nucleus || Mediate head movements ||
 || [BrainAreaHMA HMA] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || Premotor Nucleus || Mediation of changing to and from REM sleep ||
@@ -22,6 +23,7 @@ Circuit is part of aHuman target integrated biological model.
 || [BrainAreaMCA MCA] || [BrainRegionMCA_NC_PMC_F5 MCA.NC.PMC.F5] || Ventral Rostral Premotor Cortex || Neocortex || Shaping hand during grasping ||
 || [BrainAreaMCA MCA] || [BrainRegionMCA_NC_PMC_FEF MCA.NC.PMC.FEF] || Frontal Eye Field || Neocortex || Initiation of eye movements ||
 || [BrainAreaMCA MCA] || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || Supplementary Motor Cortex || Neocortex || Process sequences of movements and coordinate bilateral movements ||
+|| [BrainAreaSMA SMA] || [BrainRegionSMA_NC_MPL_PCG SMA.NC.MPL.PCG] || Posterior Cingulate Cortex || Neocortex || Self-awareness, pain and episodic memory retrieval ||
 || [BrainAreaSMA SMA] || [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || Caudal Precuneus || Neocortex || Controlling spatially guided behavior with respect to visual and tactile information ||
 || [BrainAreaVCA VCA] || [BrainRegionVCA_NC_IPL_MST VCA.NC.IPL.MST] || Medial Superior Temporal Area || Neocortex || Image stabilization, predictive target tracking ||
 || [BrainAreaVCA VCA] || [BrainRegionVCA_NC_IPS_PEF VCA.NC.IPS.PEF] || Posterior Eye Field || Neocortex || Reflexive saccade triggering ||
@@ -33,12 +35,13 @@ Circuit is part of aHuman target integrated biological model.
 http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitVisionFrontal.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || [BrainRegionMCA_NC_PMC_FEF MCA.NC.PMC.FEF] || nucleus-neocortex || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (Thalamus -> FEF, abstract)] ||
 || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || [BrainRegionMCA_NC_PMC_F5 MCA.NC.PMC.F5] || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (LPC -> vPM, abstract)] ||
 || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || [BrainRegionMCA_NC_PMC_FEF MCA.NC.PMC.FEF] || neocortex-neocortex || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (DLPFC -> FEF)] ||
 || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (46 -> F6)] ||
 || [BrainRegionMCA_NC_PMC_F2 MCA.NC.PMC.F2] || [BrainRegionMCA_NC_MC MCA.NC.MC] || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (dPM -> MI, abstract)] ||
 || [BrainRegionMCA_NC_PMC_F5 MCA.NC.PMC.F5] || [BrainRegionMCA_NC_MC MCA.NC.MC] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (F5 -> F1)] ||
-|| [BrainRegionMCA_NC_PMC_FEF MCA.NC.PMC.FEF] || [BrainRegionBGA_FT_CN BGA.FT.CN] || neocortex-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (FEF -> CN)] ||
+|| [BrainRegionMCA_NC_PMC_FEF MCA.NC.PMC.FEF] || [BrainRegionBGA_FT_CN BGA.FT.CN] || neocortex-nucleus || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (FEF -> Caudate)] ||
 || [BrainRegionMCA_NC_PMC_FEF MCA.NC.PMC.FEF] || [BrainRegionHMA_HP_PRF_GCR HMA.HP.PRF.GCR] || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> RF, abstract)] ||
 || [BrainRegionMCA_NC_PMC_FEF MCA.NC.PMC.FEF] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || neocortex-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (FEF -> DLPN)] ||
 || [BrainRegionMCA_NC_PMC_FEF MCA.NC.PMC.FEF] || [BrainRegionHMA_MM_INMLF HMA.MM.INMLF] || neocortex-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (FEF -> riMLF)] ||
@@ -51,5 +54,6 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitVisionFrontal.dot.jpg
 || [BrainRegionVCA_NC_IPL_MST VCA.NC.IPL.MST] || [BrainRegionMCA_NC_PMC_F4 MCA.NC.PMC.F4] || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (IPL -> vPM, abstract)] ||
 || [BrainRegionVCA_NC_IPS_PEF VCA.NC.IPS.PEF] || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || neocortex-neocortex || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (PEF -> DLPFC)] ||
 || [BrainRegionVCA_NC_IPS_PEF VCA.NC.IPS.PEF] || [BrainRegionMCA_NC_PMC_FEF MCA.NC.PMC.FEF] || neocortex-neocortex || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (PEF -> FEF)] ||
+|| [BrainRegionVCA_NC_IPS_PEF VCA.NC.IPS.PEF] || [BrainRegionSMA_NC_MPL_PCG SMA.NC.MPL.PCG] || neocortex-neocortex || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (LIP -> CGp)] ||
 || [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || [BrainRegionMCA_NC_PMC_FEF MCA.NC.PMC.FEF] || neocortex-neocortex || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (TEF -> FEF, abstract)] ||
 

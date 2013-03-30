@@ -10,6 +10,7 @@ Circuit is part of aHuman target integrated biological model.
 (generated)
 
 || *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||
+|| [BrainAreaBFA BFA] || [BrainRegionBFA_FT_ACC BFA.FT.ACC] || Accumbens Nucleus || Inhibitory Nucleus || Activate motor functions under attention ||
 || [BrainAreaBGA BGA] || [BrainRegionBGA_FD_STN BGA.FD.STN] || Subthalamus || Excitatory Nucleus || Perform action selection ||
 || [BrainAreaBGA BGA] || [BrainRegionBGA_FD_TH_CM BGA.FD.TH.CM] || Centromedian Nucleus of Thalamus || Excitatory Nucleus || Control of level of cortical activity ||
 || [BrainAreaBGA BGA] || [BrainRegionBGA_FT_CN BGA.FT.CN] || Caudate Nucleus || Inhibitory Nucleus || Excitation of correct action schemas and selection of appropriate sub-goals based on evaluation of action-outcomes ||
@@ -19,6 +20,8 @@ Circuit is part of aHuman target integrated biological model.
 || [BrainAreaBGA BGA] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || Substantia Nigra Pars Compacta || Mixed Nucleus || Fine motor control, temporal processing ||
 || [BrainAreaBGA BGA] || [BrainRegionBGA_FT_SN_PR BGA.FT.SN.PR] || Substantia Nigra Pars Reticulata || Inhibitory Nucleus || Convey final processed signals of basal ganglia to thalamus and superior colliculus ||
 || [BrainAreaBGA BGA] || [BrainRegionBGA_HP_PPN BGA.HP.PPN] || Pedunculopontine Nucleus || Excitatory Nucleus || Provide sensory feedback to cerebral cortex ||
+|| [BrainAreaFBA FBA] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || Ventral Tegmental Area || Excitatory Nucleus || Respond to novel stimuli, unexpected rewards, and reward predictive sensory cues ||
+|| [BrainAreaFCA FCA] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || Neocortex || Personality ||
 || [BrainAreaFCA FCA] || [BrainRegionFCA_NC_PACG FCA.NC.PACG] || Pregenual Area || Neocortex || Sensation of Emotion ||
 || [BrainAreaFCA FCA] || [BrainRegionFCA_NC_VACG FCA.NC.VACG] || Ventral Anterior Cingulate Area || Neocortex || Seat of Free Will ||
 || [BrainAreaHBA HBA] || [BrainRegionHBA_FD_TH_AN HBA.FD.TH.AN] || Anterior Nucleus of Thalamus || Excitatory Nucleus || Extended hippocampal system ||
@@ -39,6 +42,8 @@ Circuit is part of aHuman target integrated biological model.
 http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitPlannedActions.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionBFA_FT_ACC BFA.FT.ACC] || [BrainRegionBGA_FT_CN BGA.FT.CN] || nucleus-nucleus || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (NAC -> Caudate)] ||
+|| [BrainRegionBFA_FT_ACC BFA.FT.ACC] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || nucleus-neocortex || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (NAC -> OFC)] ||
 || [BrainRegionBGA_FD_STN BGA.FD.STN] || [BrainRegionBGA_FT_GPE BGA.FT.GPE] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionBGA_FD_STN BGA.FD.STN] || [BrainRegionBGA_FT_GPI BGA.FT.GPI] || nucleus-nucleus || [http://brainmind.com/BasalGanglia.html Basal Ganglia Activity (STN -> GPi)] ||
 || [BrainRegionBGA_FD_STN BGA.FD.STN] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || nucleus-nucleus || (unknown reference) ||
@@ -47,7 +52,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitPlannedActions.dot.jpg
 || [BrainRegionBGA_FD_TH_CM BGA.FD.TH.CM] || [BrainRegionBGA_FT_PU BGA.FT.PU] || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (CM -> pCM)] ||
 || [BrainRegionBGA_FT_CN BGA.FT.CN] || [BrainRegionBGA_FT_GPE BGA.FT.GPE] || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (CN -> GPe)] ||
 || [BrainRegionBGA_FT_CN BGA.FT.CN] || [BrainRegionBGA_FT_GPI BGA.FT.GPI] || nucleus-nucleus || (unknown reference) ||
-|| [BrainRegionBGA_FT_CN BGA.FT.CN] || [BrainRegionBGA_FT_SN_PR BGA.FT.SN.PR] || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (CN -> SNpr)] ||
+|| [BrainRegionBGA_FT_CN BGA.FT.CN] || [BrainRegionBGA_FT_SN_PR BGA.FT.SN.PR] || nucleus-nucleus || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (Caudate -> SNr)] ||
 || [BrainRegionBGA_FT_GPE BGA.FT.GPE] || [BrainRegionBGA_FD_STN BGA.FD.STN] || nucleus-nucleus || [http://brainmind.com/BasalGanglia.html Basal Ganglia Activity (GPo -> STN)] ||
 || [BrainRegionBGA_FT_GPE BGA.FT.GPE] || [BrainRegionBGA_FT_GPI BGA.FT.GPI] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionBGA_FT_GPI BGA.FT.GPI] || [BrainRegionBGA_FD_TH_CM BGA.FD.TH.CM] || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sCM -> CM)] ||
@@ -59,13 +64,15 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitPlannedActions.dot.jpg
 || [BrainRegionBGA_FT_PU BGA.FT.PU] || [BrainRegionBGA_FT_GPI BGA.FT.GPI] || nucleus-nucleus || [http://brainmind.com/BasalGanglia.html Basal Ganglia Activity (PU -> GPi)] ||
 || [BrainRegionBGA_FT_PU BGA.FT.PU] || [BrainRegionBGA_FT_SN_PR BGA.FT.SN.PR] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (Striatum -> SNr, abstract)] ||
 || [BrainRegionBGA_FT_PU BGA.FT.PU] || [BrainRegionHBA_FD_TH_AN HBA.FD.TH.AN] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (Striatum -> ATH, abstract)] ||
+|| [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || [BrainRegionBFA_FT_ACC BFA.FT.ACC] || nucleus-nucleus || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (SNc -> NAC)] ||
 || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || [BrainRegionBGA_FT_PU BGA.FT.PU] || nucleus-nucleus || [http://brainmind.com/BasalGanglia.html Basal Ganglia Activity (SNi -> PU, abstract)] ||
-|| [BrainRegionBGA_FT_SN_PR BGA.FT.SN.PR] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionBGA_FT_SN_PR BGA.FT.SN.PR] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || nucleus-nucleus || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (SNr -> SNc)] ||
 || [BrainRegionBGA_FT_SN_PR BGA.FT.SN.PR] || [BrainRegionMBA_MM_SC MBA.MM.SC] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SNr -> SCi)] ||
 || [BrainRegionBGA_FT_SN_PR BGA.FT.SN.PR] || [BrainRegionMCA_FD_TH_VA MCA.FD.TH.VA] || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sVA -> VA, abstract)] ||
 || [BrainRegionBGA_HP_PPN BGA.HP.PPN] || [BrainRegionBGA_FD_STN BGA.FD.STN] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionBGA_HP_PPN BGA.HP.PPN] || [BrainRegionMBA_MM_SC MBA.MM.SC] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (PPN -> SC)] ||
 || [BrainRegionBGA_HP_PPN BGA.HP.PPN] || [BrainRegionVBA_FD_LGN VBA.FD.LGN] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (PPN -> LGN)] ||
+|| [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionBFA_FT_ACC BFA.FT.ACC] || nucleus-nucleus || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (VTA -> NAC)] ||
 || [BrainRegionFCA_NC_PACG FCA.NC.PACG] || [BrainRegionBGA_FT_PU BGA.FT.PU] || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> BGA, abstract)] ||
 || [BrainRegionFCA_NC_VACG FCA.NC.VACG] || [BrainRegionBGA_FT_CN BGA.FT.CN] || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> BGA, abstract)] ||
 || [BrainRegionHBA_FD_TH_AN HBA.FD.TH.AN] || [BrainRegionFCA_NC_VACG FCA.NC.VACG] || nucleus-neocortex || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (Thalamus -> FrontalCortex, abstract)] ||
@@ -74,7 +81,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitPlannedActions.dot.jpg
 || [BrainRegionMCA_NC_MC MCA.NC.MC] || [BrainRegionBGA_FT_PU BGA.FT.PU] || neocortex-nucleus || [http://brainmind.com/BasalGanglia.html Basal Ganglia Activity (M1 -> PU)] ||
 || [BrainRegionMCA_NC_PMC_F2 MCA.NC.PMC.F2] || [BrainRegionBGA_FT_PU BGA.FT.PU] || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> BGA, abstract)] ||
 || [BrainRegionMCA_NC_PMC_F5 MCA.NC.PMC.F5] || [BrainRegionBGA_FT_PU BGA.FT.PU] || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (F5 -> BG, abstract)] ||
-|| [BrainRegionMCA_NC_PMC_FEF MCA.NC.PMC.FEF] || [BrainRegionBGA_FT_CN BGA.FT.CN] || neocortex-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (FEF -> CN)] ||
+|| [BrainRegionMCA_NC_PMC_FEF MCA.NC.PMC.FEF] || [BrainRegionBGA_FT_CN BGA.FT.CN] || neocortex-nucleus || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (FEF -> Caudate)] ||
 || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || [BrainRegionBGA_FT_PU BGA.FT.PU] || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (F6 -> BG, abstract)] ||
 || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || [BrainRegionBGA_FT_PU BGA.FT.PU] || neocortex-nucleus || [http://brainmind.com/BasalGanglia.html Basal Ganglia Activity (S1 -> PU)] ||
 || [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || neocortex-neocortex || [http://thebrainlabs.com/brain.shtml Movement Planning (PPC -> SMC, abstract)] ||
