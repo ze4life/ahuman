@@ -94,7 +94,7 @@
 		<component-set>
 
 			<!-- ================= cortical =============== -->
-			<area name="VCA" enabled="true">
+			<area id="VCA" name="Visual Cortex Area" enabled="true" function="Visual Cortex">
 				<region name="VCA.NC.V1" type="neocortex"/>
 				<region name="VCA.NC.V2" type="neocortex"/>
 				<region name="VCA.NC.V3" type="neocortex"/>
@@ -109,16 +109,15 @@
 				<region name="VCA.NC.IPL.MST" type="neocortex"/>
 			</area>
 
-			<area name="ACA" enabled="true">
+			<area id="ACA" name="Auditory Cortex Area" enabled="true" function="Auditory Cortex">
 				<region name="ACA.NC.A1" type="neocortex"/>
 				<region name="ACA.NC.A2" type="neocortex"/>
 				<region name="ACA.NC.A3" type="neocortex"/>
 				<region name="ACA.NC.A4" type="neocortex"/>
 				<region name="ACA.NC.IPL.SMW" type="neocortex"/>
-				<region name="ACA.FD.TH.SG" type="nucleus" size="100"/>
 			</area>
 
-			<area name="MCA" enabled="true">
+			<area id="MCA" name="Motor Cortex Area" enabled="true" function="Motor Control">
 				<region name="MCA.NC.PMC.F2" type="neocortex"/>
 				<region name="MCA.NC.PMC.F7" type="neocortex"/>
 				<region name="MCA.NC.PMC.F4" type="neocortex"/>
@@ -130,7 +129,7 @@
 				<region name="MCA.NC.SMC" type="neocortex"/>
 			</area>
 
-			<area name="SMA" enabled="true">
+			<area id="SMA" name="Somatic Cortex Area" enabled="true" function="Somatic Proprioception">
 				<region name="SMA.NC.PG.S1" type="neocortex"/>
 				<region name="SMA.FD.TH.VP" type="nucleus" size="100"/>
 				<region name="SMA.NC.SPL.SA" type="neocortex"/>
@@ -145,7 +144,7 @@
 				<region name="SMA.FD.TH.LP" type="nucleus" size="100"/>
 			</area>
 
-			<area name="PHA" enabled="true">
+			<area id="PHA" name="Parahippocampal Area" enabled="true" function="Integrating Sensory Streams for Hippocampus">
 				<region name="PHA.NC.CLC" type="neocortex"/>
 				<region name="PHA.NC.HR" type="neocortex"/>
 				<region name="PHA.NC.PH.ET" type="neocortex"/>
@@ -159,7 +158,7 @@
 				<region name="PHA.NC.TPC" type="neocortex"/>
 			</area>
 
-			<area name="FCA" enabled="true">
+			<area id="FCA" name="Frontal Cortex Area" enabled="true" function="Sensory-Drive Associations">
 				<region name="FCA.NC.VACG" type="neocortex"/>
 				<region name="FCA.NC.DACG" type="neocortex"/>
 				<region name="FCA.NC.PACG" type="neocortex"/>
@@ -174,14 +173,13 @@
 			</area>
 
 			<!-- ================= subcortical =============== -->
-			<area name="VBA" enabled="true">
+			<area id="VBA" name="Visual Basal Area" enabled="true" function="Visual Subcortical Nuclei">
 				<region name="VBA.FD.RT" type="nucleus"/>
 				<region name="VBA.FD.LGN" type="nucleus"/>
 				<region name="VBA.FD.PV.IPV" type="nucleus"/>
 				<region name="VBA.FD.PV.LPV" type="nucleus"/>
 				<region name="VBA.FD.PV.MPV" type="nucleus"/>
 				<region name="VBA.FD.PV.OPV" type="nucleus"/>
-				<region name="VBA.MM.SC" type="nucleus"/>
 				<region name="VBA.MM.PT.NOT" type="nucleus"/>
 				<region name="VBA.MM.PT.PON" type="nucleus"/>
 				<region name="VBA.MM.PT.PR" type="nucleus"/>
@@ -195,16 +193,17 @@
 				<region name="VBA.HM.NPH" type="nucleus"/>
 			</area>
 
-			<area name="ABA" enabled="true">
+			<area id="ABA" name="Auditory Basal Area" enabled="true" function="Auditory Subcortical Nuclei">
 				<region name="ABA.FD.TH.MGB" type="nucleus"/>
 				<region name="ABA.MM.IC" type="nucleus"/>
 				<region name="ABA.MM.SOC" type="nucleus"/>
 				<region name="ABA.HP.PN.LL" type="nucleus"/>
 				<region name="ABA.HM.COCH" type="nucleus"/>
 				<region name="ABA.HM.CORTI" type="nucleus"/>
+				<region name="ABA.FD.TH.SG" type="nucleus" size="100"/>
 			</area>
 
-			<area name="HBA" enabled="true">
+			<area id="HBA" name="Hippocampus Basal Area" enabled="true" function="Creating Long Term Memory, Sensory Temporal Coding">
 				<region name="HBA.FT.DG" type="allocortex"/>
 				<region name="HBA.FT.HC.CA1" type="allocortex"/>
 				<region name="HBA.FT.HC.CA2" type="allocortex"/>
@@ -219,7 +218,7 @@
 				<region name="HBA.FD.TH.RH" type="nucleus" size="100"/>
 			</area>
 
-			<area name="BGA" enabled="true">
+			<area id="BGA" name="Basal Ganglia Area" enabled="true" function="Conscious Action Control, Motor Temporal Coding">
 				<region name="BGA.FT.VP" type="nucleus"/>
 				<region name="BGA.FT.CN" type="nucleus"/>
 				<region name="BGA.FT.PU" type="nucleus"/>
@@ -234,7 +233,7 @@
 				<region name="BGA.HP.PPN" type="nucleus"/>
 			</area>
 
-			<area name="BFA" enabled="true">
+			<area id="BFA" name="Basal Feeling Area" enabled="true" function="Drive Stimuli Integration">
 				<region name="BFA.FT.ACC" type="nucleus"/>
 				<region name="BFA.FT.AM" type="nucleus"/>
 				<region name="BFA.FT.NBM" type="nucleus"/>
@@ -250,7 +249,7 @@
 			</area>
 
 			<!-- ================= hindbrain =============== -->
-			<area name="MBA" enabled="true">
+			<area id="MBA" name="Motor Brainstem Area" enabled="true" function="Postural Control and Rythmic Locomotion">
 				<region name="MBA.MM.RD" type="nucleus"/>
 				<region name="MBA.MM.TG.LDT" type="nucleus"/>
 				<region name="MBA.HP.CR" type="nucleus"/>
@@ -258,9 +257,10 @@
 				<region name="MBA.HP.PN.PBB" type="nucleus"/>
 				<region name="MBA.HP.PN.RP" type="nucleus"/>
 				<region name="MBA.HM.RF.MED" type="nucleus"/>
+				<region name="MBA.MM.SC" type="nucleus"/>
 			</area>
 
-			<area name="FBA" enabled="true">
+			<area id="FBA" name="Feeling Brainstem Area" enabled="true" function="Pain and Moods">
 				<region name="FBA.MM.RP.MRN" type="nucleus"/>
 				<region name="FBA.MM.RP.DRN" type="nucleus"/>
 				<region name="FBA.MM.PAG" type="nucleus"/>
@@ -274,7 +274,7 @@
 				<region name="FBA.HM.RP" type="nucleus"/>
 			</area>
 
-			<area name="HTA" enabled="true">
+			<area id="HTA" name="Hypothalamus Area" enabled="true" function="Visceral Motor Control">
 				<region name="HTA.FD.HT.AH" type="nucleus"/>
 				<region name="HTA.FD.HT.AR" type="nucleus"/>
 				<region name="HTA.FD.HT.AVPV" type="nucleus"/>
@@ -293,7 +293,7 @@
 			</area>
 
 			<!-- ================= motor =============== -->
-			<area name="HMA" enabled="true">
+			<area id="HMA" name="Head Motor Area" enabled="true" function="Head Motor Execution and Proprioception">
 				<region name="HMA.MM.CJ" type="nucleus"/>
 				<region name="HMA.MM.INMLF" type="nucleus"/>
 				<region name="HMA.MM.MSTR" type="nucleus"/>
@@ -316,7 +316,7 @@
 				<region name="HMA.SC.VH.ISL" type="nucleus"/>
 			</area>
 
-			<area name="BMA" enabled="true">
+			<area id="BMA" name="Body Motor Area" enabled="true" function="Body Motor Execution and Proprioception">
 				<region name="BMA.MM.PT.PTA" type="nucleus"/>
 				<region name="BMA.HP.PRF.PVR" type="nucleus"/>
 				<region name="BMA.HP.VB" type="nucleus"/>
@@ -343,7 +343,7 @@
 				<region name="BMA.SC.VH.PHR" type="nucleus"/>
 			</area>
 
-			<area name="AVA" enabled="true">
+			<area id="AVA" name="Autonomous Visceral Area" enabled="true" function="Sympathetic and Parasympathetic systems">
 				<region name="AVA.MM.EWN" type="nucleus"/>
 				<region name="AVA.HM.SAL.ISL" type="nucleus"/>
 				<region name="AVA.HM.SAL.SSL" type="nucleus"/>
@@ -379,9 +379,9 @@
 				<connection type="nucleus-nucleus" src="VBA.FD.RT" dst="VBA.FD.PV.MPV"/>
 				<connection type="nucleus-nucleus" src="VBA.FD.RT" dst="VBA.MM.PT.PON"/>
 				<connection type="nucleus-nucleus" src="VBA.MM.PT.PON" dst="VBA.FD.LGN"/>
-				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="VBA.FD.LGN"/>
-				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="VBA.FD.PV.IPV"/>
-				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="VBA.FD.PV.LPV"/>
+				<connection type="nucleus-nucleus" src="MBA.MM.SC" dst="VBA.FD.LGN"/>
+				<connection type="nucleus-nucleus" src="MBA.MM.SC" dst="VBA.FD.PV.IPV"/>
+				<connection type="nucleus-nucleus" src="MBA.MM.SC" dst="VBA.FD.PV.LPV"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.V1" dst="VCA.NC.V2"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.V1" dst="VCA.NC.MT"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.V2" dst="VCA.NC.V3"/>
@@ -419,7 +419,7 @@
 			</circuit>
 
 			<circuit id="CircuitVisionFrontal" name="Vision Frontal Networks" enabled="true">
-				<connection type="neocortex-nucleus" src="MCA.NC.PMC.FEF" dst="VBA.MM.SC"/>
+				<connection type="neocortex-nucleus" src="MCA.NC.PMC.FEF" dst="MBA.MM.SC"/>
 				<connection type="neocortex-nucleus" src="MCA.NC.PMC.FEF" dst="HMA.HP.PRF.RPO"/>
 				<connection type="neocortex-nucleus" src="MCA.NC.PMC.FEF" dst="HMA.HP.PRF.GCR"/>
 				<connection type="neocortex-nucleus" src="MCA.NC.PMC.FEF" dst="HMA.MM.INMLF"/>
@@ -438,24 +438,26 @@
 				<connection type="neocortex-neocortex" src="VCA.NC.IPS.PEF" dst="MCA.NC.PMC.FEF"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.IPS.PEF" dst="FCA.NC.LPFC"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.IT.TE" dst="MCA.NC.PMC.FEF"/>
+				<connection type="nucleus-neocortex" src="FCA.FD.TH.MD" dst="MCA.NC.PMC.FEF"/>
+				<connection type="neocortex-neocortex" src="VCA.NC.IPS.PEF" dst="SMA.NC.MPL.PCG"/>
 			</circuit>
 
 			<circuit id="CircuitVisionEyeControl" name="Vision Eye Control" enabled="true">
-				<connection type="neocortex-nucleus" src="VCA.NC.V1" dst="VBA.MM.SC"/>
-				<connection type="neocortex-nucleus" src="VCA.NC.V2" dst="VBA.MM.SC"/>
+				<connection type="neocortex-nucleus" src="VCA.NC.V1" dst="MBA.MM.SC"/>
+				<connection type="neocortex-nucleus" src="VCA.NC.V2" dst="MBA.MM.SC"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.IT.TEO" dst="VCA.NC.IPS.PEF"/>
-				<connection type="neocortex-nucleus" src="VCA.NC.IPL.MST" dst="VBA.MM.SC"/>
-				<connection type="neocortex-nucleus" src="VCA.NC.IPS.PEF" dst="VBA.MM.SC"/>
+				<connection type="neocortex-nucleus" src="VCA.NC.IPL.MST" dst="MBA.MM.SC"/>
+				<connection type="neocortex-nucleus" src="VCA.NC.IPS.PEF" dst="MBA.MM.SC"/>
 				<connection type="neocortex-nucleus" src="VCA.NC.IPS.PEF" dst="VBA.MM.SOA"/>
 				<connection type="neocortex-nucleus" src="VCA.NC.V3" dst="VBA.MM.SOA"/>
 				<connection type="neocortex-nucleus" src="VCA.NC.IT.TE" dst="HMA.HP.PRF.RPO"/>
-				<connection type="nucleus-nucleus" src="VBA.FD.RT" dst="VBA.MM.SC"/>
+				<connection type="nucleus-nucleus" src="VBA.FD.RT" dst="MBA.MM.SC"/>
 				<connection type="nucleus-nucleus" src="VBA.FD.RT" dst="VBA.MM.PT.PON"/>
 				<connection type="nucleus-nucleus" src="VBA.MM.PT.PON" dst="AVA.MM.EWN"/>
-				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="VBA.MM.OCN"/>
-				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="VBA.MM.TRH"/>
-				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="VBA.HP.ABD"/>
-				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="HBA.FD.TH.AN"/>
+				<connection type="nucleus-nucleus" src="MBA.MM.SC" dst="VBA.MM.OCN"/>
+				<connection type="nucleus-nucleus" src="MBA.MM.SC" dst="VBA.MM.TRH"/>
+				<connection type="nucleus-nucleus" src="MBA.MM.SC" dst="VBA.HP.ABD"/>
+				<connection type="nucleus-nucleus" src="MBA.MM.SC" dst="HBA.FD.TH.AN"/>
 				<connection type="nucleus-nucleus" src="HMA.HP.PRF.RPO" dst="VBA.MM.OCN"/>
 				<connection type="nucleus-nucleus" src="HMA.HP.PRF.RPO" dst="VBA.HP.ABD"/>
 				<connection type="nucleus-ganglion" src="AVA.MM.EWN" dst="AVA.PN.PSYM.CLG"/>
@@ -467,16 +469,17 @@
 				<connection type="nucleus-nucleus" src="HMA.MM.INMLF" dst="VBA.MM.TRH"/>
 				<connection type="nucleus-neocortex" src="HBA.FT.SC.SUB" dst="SMA.NC.MPL.RSC"/>
 				<connection type="neocortex-allocortex" src="SMA.NC.MPL.RSC" dst="HBA.FT.SC.SUB"/>
+				<connection type="neocortex-neocortex" src="SMA.NC.MPL.PCG" dst="VCA.NC.IPS.PEF"/>
 			</circuit>
 
 			<circuit id="CircuitVisionHeadControl" name="Vision Head, Neck and Face Control" enabled="true">
 				<connection type="neocortex-nucleus" src="MCA.NC.MC" dst="HMA.HP.PRF.PDT"/>
 				<connection type="neocortex-nucleus" src="SMA.NC.PG.S1" dst="HMA.HM.TGM.PA5"/>
-				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="HMA.SC.VH.ISL"/>
-				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="HMA.HP.PRF.RPO"/>
-				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="HMA.MM.INMLF"/>
-				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="VBA.MM.PT.NOT"/>
-				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="SMA.FD.TH.LP"/>
+				<connection type="nucleus-nucleus" src="MBA.MM.SC" dst="HMA.SC.VH.ISL"/>
+				<connection type="nucleus-nucleus" src="MBA.MM.SC" dst="HMA.HP.PRF.RPO"/>
+				<connection type="nucleus-nucleus" src="MBA.MM.SC" dst="HMA.MM.INMLF"/>
+				<connection type="nucleus-nucleus" src="MBA.MM.SC" dst="VBA.MM.PT.NOT"/>
+				<connection type="nucleus-nucleus" src="MBA.MM.SC" dst="SMA.FD.TH.LP"/>
 				<connection type="nucleus-neocortex" src="SMA.FD.TH.LP" dst="SMA.NC.SPL.PG"/>
 				<connection type="nucleus-nucleus" src="HMA.HP.PRF.GCR" dst="BMA.SC.IZ.RPL"/>
 				<connection type="nucleus-nucleus" src="HMA.HP.PRF.RPO" dst="HMA.SC.VH.ISL"/>
@@ -488,9 +491,9 @@
 				<connection type="nucleus-nucleus" src="HMA.HM.TGM.STR" dst="VBA.MM.OCN"/>
 				<connection type="nucleus-nucleus" src="BMA.HP.VG" dst="BMA.HP.VB"/>
 				<connection type="nucleus-nucleus" src="BMA.HP.VB" dst="HMA.HP.PRF.CRF"/>
-				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="HMA.HP.PRF.PDT"/>
-				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="VBA.MM.RP.RIP"/>
-				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="BMA.HP.VB"/>
+				<connection type="nucleus-nucleus" src="MBA.MM.SC" dst="HMA.HP.PRF.PDT"/>
+				<connection type="nucleus-nucleus" src="MBA.MM.SC" dst="VBA.MM.RP.RIP"/>
+				<connection type="nucleus-nucleus" src="MBA.MM.SC" dst="BMA.HP.VB"/>
 				<connection type="neocortex-nucleus" src="MCA.NC.SMC" dst="VBA.MM.RP.RIP"/>
 				<connection type="nucleus-nucleus" src="VBA.MM.RP.RIP" dst="HMA.HP.PRF.RPO"/>
 				<connection type="nucleus-nucleus" src="HMA.MM.MSTR" dst="HMA.HP.PTP.TRM"/>
@@ -536,12 +539,14 @@
 				<connection type="nucleus-nucleus" src="ABA.HP.PN.LL" dst="ABA.MM.IC"/>
 				<connection type="nucleus-nucleus" src="ABA.HM.COCH" dst="HMA.MM.CJ"/>
 				<connection type="neocortex-nucleus" src="ACA.NC.A1" dst="ABA.MM.IC"/>
-				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="ABA.MM.IC"/>
+				<connection type="nucleus-neocortex" src="ABA.FD.TH.SG" dst="ACA.NC.A1" notes="to HFR region"/>
+				<connection type="nucleus-nucleus" src="ABA.FD.TH.SG" dst="BFA.FT.AM"/>
+				<connection type="nucleus-nucleus" src="MBA.MM.SC" dst="ABA.MM.IC"/>
 				<connection type="nucleus-nucleus" src="BFA.FT.AM" dst="ABA.MM.IC"/>
 				<connection type="nucleus-neocortex" src="BFA.FT.AM" dst="ACA.NC.A1"/>
 				<connection type="nucleus-nucleus" src="ABA.MM.IC" dst="ABA.HP.PN.LL"/>
 				<connection type="nucleus-nucleus" src="ABA.MM.IC" dst="ABA.MM.SOC"/>
-				<connection type="nucleus-nucleus" src="ABA.MM.IC" dst="VBA.MM.SC"/>
+				<connection type="nucleus-nucleus" src="ABA.MM.IC" dst="MBA.MM.SC"/>
 				<connection type="nucleus-nucleus" src="ABA.HP.PN.LL" dst="ABA.MM.SOC"/>
 				<connection type="nucleus-nucleus" src="ABA.MM.SOC" dst="ABA.HM.CORTI"/>
 				<connection type="nucleus-nucleus" src="BGA.FT.SN.PC" dst="BMA.HP.PRF.PVR"/>
@@ -562,7 +567,7 @@
 				<connection type="nucleus-nucleus" src="BMA.SC.IZ.CCV" dst="SMA.FD.TH.PO"/>
 				<connection type="nucleus-nucleus" src="BMA.SC.IZ.CCV" dst="SMA.FD.TH.RIL"/>
 				<connection type="nucleus-nucleus" src="MBA.HP.CR" dst="SMA.FD.TH.RIL"/>
-				<connection type="nucleus-nucleus" src="HMA.HP.PTP.PTR" dst="ACA.FD.TH.SG"/>
+				<connection type="nucleus-nucleus" src="HMA.HP.PTP.PTR" dst="ABA.FD.TH.SG"/>
 				<connection type="nucleus-neocortex" src="SMA.FD.TH.PO" dst="FCA.NC.INS"/>
 				<connection type="nucleus-neocortex" src="SMA.FD.TH.RIL" dst="SMA.NC.SPL.SA"/>
 				<connection type="neocortex-neocortex" src="SMA.NC.PG.S1" dst="SMA.NC.SPL.SA"/>
@@ -570,6 +575,7 @@
 				<connection type="neocortex-neocortex" src="MCA.NC.PMC.F4" dst="FCA.NC.LPFC"/>
 				<connection type="neocortex-neocortex" src="SMA.NC.SPL.SA" dst="FCA.NC.INS"/>
 				<connection type="neocortex-neocortex" src="MCA.NC.PMC.F7" dst="SMA.NC.SPL.SA"/>
+				<connection type="neocortex-nucleus" src="SMA.NC.SPL.PF" dst="SMA.FD.TH.LD"/>
 			</circuit>
 
 			<!-- ================= intracortical sensory integration to generate memory items in hippocampus =============== -->
@@ -589,6 +595,15 @@
 				<connection type="neocortex-neocortex" src="FCA.NC.OMPFC" dst="FCA.NC.VACG"/>
 				<connection type="nucleus-neocortex" src="FCA.FD.TH.MD" dst="FCA.NC.PACG"/>
 				<connection type="nucleus-nucleus" src="BMA.SC.PH.MG" dst="SMA.FD.TH.VP"/>
+				<connection type="nucleus-neocortex" src="BFA.FT.AM" dst="SMA.NC.MPL.PCG"/>
+				<connection type="nucleus-nucleus" src="BFA.FT.AM" dst="FCA.FD.TH.MD"/>
+				<connection type="neocortex-neocortex" src="FCA.NC.PACG" dst="SMA.NC.MPL.PCG"/>
+				<connection type="neocortex-neocortex" src="SMA.NC.MPL.PCG" dst="FCA.NC.PACG"/>
+				<connection type="neocortex-neocortex" src="FCA.NC.OMPFC" dst="FCA.NC.LPFC"/>
+				<connection type="neocortex-nucleus" src="FCA.NC.SGC" dst="BFA.FT.BNST"/>
+				<connection type="neocortex-nucleus" src="FCA.NC.SGC" dst="HTA.FD.HT.AH"/>
+				<connection type="neocortex-nucleus" src="FCA.NC.SGC" dst="FBA.MM.PAG"/>
+				<connection type="neocortex-nucleus" src="FCA.NC.SGC" dst="BMA.HP.PB"/>
 			</circuit>
 
 			<!-- ================= hippocampus activity =============== -->
@@ -616,10 +631,10 @@
 				<connection type="neocortex-nucleus" src="MCA.NC.PMC.F5" dst="BGA.FT.PU"/>
 				<connection type="neocortex-nucleus" src="MCA.NC.SMC" dst="BGA.FT.PU"/>
 				<connection type="neocortex-nucleus" src="MCA.NC.PMC.FEF" dst="BGA.FT.CN"/>
-				<connection type="nucleus-nucleus" src="BGA.HP.PPN" dst="VBA.MM.SC"/>
+				<connection type="nucleus-nucleus" src="BGA.HP.PPN" dst="MBA.MM.SC"/>
 				<connection type="nucleus-nucleus" src="BGA.HP.PPN" dst="VBA.FD.LGN"/>
-				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="BGA.FT.SN.PC"/>
-				<connection type="nucleus-nucleus" src="BGA.FT.SN.PR" dst="VBA.MM.SC"/>
+				<connection type="nucleus-nucleus" src="MBA.MM.SC" dst="BGA.FT.SN.PC"/>
+				<connection type="nucleus-nucleus" src="BGA.FT.SN.PR" dst="MBA.MM.SC"/>
 				<connection type="nucleus-nucleus" src="BGA.FT.SN.PR" dst="BGA.FT.SN.PC"/>
 				<connection type="nucleus-nucleus" src="BGA.FT.SN.PR" dst="MCA.FD.TH.VA"/>
 				<connection type="nucleus-nucleus" src="BGA.FT.SN.PC" dst="BGA.FT.PU"/>
@@ -649,6 +664,10 @@
 				<connection type="nucleus-nucleus" src="BGA.FD.TH.CM" dst="BGA.FT.PU"/>
 				<connection type="neocortex-nucleus" src="SMA.NC.PG.S1" dst="BGA.FT.PU"/>
 				<connection type="neocortex-neocortex" src="SMA.NC.SPL.PG" dst="MCA.NC.SMC"/>
+				<connection type="nucleus-nucleus" src="BFA.FT.ACC" dst="BGA.FT.CN"/>
+				<connection type="nucleus-neocortex" src="BFA.FT.ACC" dst="FCA.NC.OMPFC"/>
+				<connection type="nucleus-nucleus" src="BGA.FT.SN.PC" dst="BFA.FT.ACC"/>
+				<connection type="nucleus-nucleus" src="FBA.MM.VTA" dst="BFA.FT.ACC"/>
 			</circuit>
 
 			<!-- ================= gustatory-olfactory perception =============== -->
@@ -666,6 +685,7 @@
 				<connection type="nucleus-nucleus" src="HMA.HM.SOL" dst="SMA.FD.TH.VP" notes="to VPMpc"/>
 				<connection type="nucleus-neocortex" src="SMA.FD.TH.VP" dst="PHA.NC.PRI"/>
 				<connection type="nucleus-neocortex" src="SMA.FD.TH.VP" dst="SMA.NC.PO.PCC"/>
+				<connection type="neocortex-neocortex" src="SMA.NC.SPL.PF" dst="SMA.NC.PO.PCC"/>
 				<connection type="nucleus-neocortex" src="SMA.NC.PO.PCC" dst="BFA.FT.AM"/>
 				<connection type="nucleus-neocortex" src="SMA.NC.PO.PCC" dst="FCA.NC.OMPFC"/>
 			</circuit>
@@ -673,8 +693,8 @@
 			<!-- ================= cognitive processing =============== -->
 			<circuit id="CircuitCognition" name="Cognitive Processing" enabled="true">
 				<connection type="neocortex-neocortex" src="VCA.NC.IT.TE" dst="FCA.NC.LPFC"/>
-				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="MCA.FD.TH.VA"/>
-				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="HBA.FD.TH.AN"/>
+				<connection type="nucleus-nucleus" src="MBA.MM.SC" dst="MCA.FD.TH.VA"/>
+				<connection type="nucleus-nucleus" src="MBA.MM.SC" dst="HBA.FD.TH.AN"/>
 				<connection type="nucleus-neocortex" src="MCA.FD.TH.VA" dst="MCA.NC.PMC.F2"/>
 				<connection type="nucleus-neocortex" src="MCA.FD.TH.VA" dst="MCA.NC.SMC"/>
 				<connection type="neocortex-neocortex" src="MCA.NC.PMC.F2" dst="MCA.NC.PMC.F7"/>
@@ -689,7 +709,6 @@
 				<connection type="nucleus-nucleus" src="BFA.FT.SEP" dst="FCA.FD.TH.MD"/>
 				<connection type="neocortex-nucleus" src="FCA.NC.LPFC" dst="FCA.FD.TH.MD"/>
 				<connection type="nucleus-neocortex" src="FCA.FD.TH.MD" dst="FCA.NC.LPFC"/>
-				<connection type="neocortex-nucleus" src="SMA.NC.SPL.PF" dst="SMA.FD.TH.LD"/>
 				<connection type="nucleus-neocortex" src="SMA.FD.TH.LD" dst="FCA.NC.DACG"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.IPL.MST" dst="FCA.NC.DACG"/>
 				<connection type="neocortex-neocortex" src="FCA.NC.LPFC" dst="FCA.NC.DACG"/>
@@ -699,11 +718,13 @@
 				<connection type="neocortex-neocortex" src="FCA.NC.VACG" dst="FCA.NC.LPFC"/>
 				<connection type="neocortex-neocortex" src="FCA.NC.IPG" dst="FCA.NC.LPFC"/>
 				<connection type="neocortex-neocortex" src="FCA.NC.IPG" dst="FCA.NC.VACG"/>
+				<connection type="nucleus-neocortex" src="FBA.MM.VTA" dst="FCA.NC.DACG"/>
+				<connection type="nucleus-neocortex" src="FCA.NC.DACG" dst="BGA.FT.PU"/>
 			</circuit>
 
 			<!-- ================= alertness =============== -->
 			<circuit id="CircuitConsciousAlertness" name="Conscious Alertness" enabled="true">
-				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="HBA.FD.TH.AN"/>
+				<connection type="nucleus-nucleus" src="MBA.MM.SC" dst="HBA.FD.TH.AN"/>
 				<connection type="nucleus-neocortex" src="HBA.FD.TH.AN" dst="FCA.NC.VACG"/>
 				<connection type="neocortex-nucleus" src="FCA.NC.VACG" dst="FBA.HP.LC"/>
 				<connection type="neocortex-nucleus" src="FCA.NC.OMPFC" dst="FBA.HP.LC"/>
@@ -719,7 +740,7 @@
 
 			<!-- ================= cerebellum circuits =============== -->
 			<circuit id="CircuitCerebellumFlows" name="Cerebellum Flows" enabled="true">
-				<connection type="nucleus-nucleus" src="VBA.MM.SC" dst="MBA.HP.CR"/>
+				<connection type="nucleus-nucleus" src="MBA.MM.SC" dst="MBA.HP.CR"/>
 				<connection type="nucleus-nucleus" src="BMA.HM.CU" dst="MBA.HP.CR" notes="Cuneocerebellar tract"/>
 				<connection type="nucleus-nucleus" src="BMA.SC.LH.LCV" dst="MBA.HP.CR"/>
 				<connection type="nucleus-nucleus" src="BMA.SC.PH.CL" dst="MBA.HP.CR" notes="Dorsal spinocerebellar tract"/>
