@@ -11,6 +11,8 @@ Circuit is part of aHuman target integrated biological model.
 
 || *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||
 || [BrainAreaBFA BFA] || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || Septal Nucleus || Mixed Nucleus || Inhibition of fear and expression of pleasurable responses ||
+|| [BrainAreaBGA BGA] || [BrainRegionBGA_FT_PU BGA.FT.PU] || Putamen || Inhibitory Nucleus || Stimulus-response, or habit, learning ||
+|| [BrainAreaFBA FBA] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || Ventral Tegmental Area || Excitatory Nucleus || Respond to novel stimuli, unexpected rewards, and reward predictive sensory cues ||
 || [BrainAreaFCA FCA] || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || Mediodorsal Nucleus of Thalamus || Excitatory Nucleus || Attention, planning, organization, abstract thinking, multi-tasking, and active memory ||
 || [BrainAreaFCA FCA] || [BrainRegionFCA_NC_DACG FCA.NC.DACG] || Dorsal Anterior Cingulate Area || Neocortex || Rational Thought Processes ||
 || [BrainAreaFCA FCA] || [BrainRegionFCA_NC_INS FCA.NC.INS] || Insular Cortex || Neocortex || Visceral representation, pain, habits ||
@@ -39,7 +41,9 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitCognition.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s1MD -> MD)] ||
+|| [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionFCA_NC_DACG FCA.NC.DACG] || nucleus-neocortex || (unknown reference) ||
 || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (MD -> pMD, abstract)] ||
+|| [BrainRegionFCA_NC_DACG FCA.NC.DACG] || [BrainRegionBGA_FT_PU BGA.FT.PU] || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> BGA, abstract)] ||
 || [BrainRegionFCA_NC_INS FCA.NC.INS] || [BrainRegionFCA_NC_IPG FCA.NC.IPG] || neocortex-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (Insula -> fPole)] ||
 || [BrainRegionFCA_NC_INS FCA.NC.INS] || [BrainRegionFCA_NC_VACG FCA.NC.VACG] || neocortex-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (Insula -> vACC)] ||
 || [BrainRegionFCA_NC_IPG FCA.NC.IPG] || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || neocortex-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (fPole -> DLPFC)] ||
