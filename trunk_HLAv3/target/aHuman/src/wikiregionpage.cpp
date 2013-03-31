@@ -41,23 +41,9 @@ void WikiRegionPage::createHeading() {
 	lines.add( "Region is part of aHuman target integrated biological model." );
 	lines.add( "" );
 
-	String wikiPage = wm -> getRegionPage( info.id );
-	wm -> updateFileHeading( wikiDir , wikiPage , lines );
-}
-
-void WikiRegionPage::createChildTableSection() {
-	Xml node = wm -> hmindxml.getNodeXml( info.id );
-	if( !node.exists() ) {
-		logger.logInfo( "unable to find region=" + info.id );
-		return;
-	}
-
-	// components section
-	StringList lines;
-
 	// add path
-	lines.add( "*Top-down path to region*:" );
 	StringList listItems;
+	Xml node = wm -> hmindxml.getNodeXml( info.id );
 	for( Xml nodePath = node; nodePath.exists(); nodePath = nodePath.getParentNode() ) {
 		if( nodePath.getName().equals( "division" ) ) {
 			String name = nodePath.getAttribute( "name" );
@@ -83,14 +69,43 @@ void WikiRegionPage::createChildTableSection() {
 		if( k > 0 )
 			s += " -> ";
 	}
-	lines.add( "  * " + s );
+	lines.add( "  * *Top-down path to region*: " + s + " (see [OverallMindMaps Mind Maps])" );
+
+	// mind area
+	MindAreaDef *area = region -> getArea();
+	lines.add( "  * *Brain area*: [BrainArea" + area -> getAreaId() + " " + area -> getAreaName() + "]" );
+
+	// function
+	if( !info.brodmannid.isEmpty() )
+		lines.add( "  * *Brodmann ID*: " + info.brodmannid );
+	lines.add( "  * *Function*: " + info.function );
+	if( !info.comment.isEmpty() )
+		lines.add( "  * *Notes to structure*: " + info.comment );
+	if( !info.notes.isEmpty() )
+		lines.add( "  * *Notes to function*: " + info.notes );
+
+	String wikiPage = wm -> getRegionPage( info.id );
+	wm -> updateFileHeading( wikiDir , wikiPage , lines );
+}
+
+void WikiRegionPage::createChildTableSection() {
+	Xml node = wm -> hmindxml.getNodeXml( info.id );
+	if( !node.exists() ) {
+		logger.logInfo( "unable to find region=" + info.id );
+		return;
+	}
+
+	// components section
+	StringList lines;
 
 	// lines hierarchy
+	lines.add( "" );
 	if( node.getChildNode( "element" ).exists() ) {
-		lines.add( "" );
 		lines.add( "*Component items*:" );
 		createChildTableSection_addChilds( node , "  * " , lines );
 	}
+	else
+		lines.add( "  * no child items defined" );
 
 	String wikiPage = wm -> getRegionPage( info.id );
 	String section = "Components";
@@ -161,7 +176,7 @@ void WikiRegionPage::createConnectivitySection() {
 		for( int k = 0; k < connections.count(); k++ ) {
 			MindCircuitConnectionDef *c = connections.getClassByIndex( k );
 			createConnectivitySection_getExternalConnectionTableLine( c , lines , true );
-			regions.addIfNew( c -> getSrcRegion() , NULL );
+			regions.addnew( c -> getSrcRegion() , NULL );
 		}
 	}
 
@@ -179,7 +194,7 @@ void WikiRegionPage::createConnectivitySection() {
 		for( int k = 0; k < connections.count(); k++ ) {
 			MindCircuitConnectionDef *c = connections.getClassByIndex( k );
 			createConnectivitySection_getExternalConnectionTableLine( c , lines , false );
-			regions.addIfNew( c -> getDstRegion() , NULL );
+			regions.addnew( c -> getDstRegion() , NULL );
 		}
 	}
 
