@@ -8,15 +8,15 @@
 (generated)
 
 || *Component ID* || *Component Name* || *Type* || *Function* || *Comments* ||
-|| [BrainRegionFCA_NC_VACG FCA.NC.VACG] || Ventral Anterior Cingulate Area || Neocortex || Seat of Free Will ||  ||
-|| [BrainRegionFCA_NC_DACG FCA.NC.DACG] || Dorsal Anterior Cingulate Area || Neocortex || Rational Thought Processes || Anticipate and detect targets, indicate novelty,<BR>influence motor responses, encode reward values,<BR>and signal errors ||
-|| [BrainRegionFCA_NC_PACG FCA.NC.PACG] || Pregenual Area || Neocortex || Sensation of Emotion || Storage of emotional memory ||
+|| [BrainRegionFCA_NC_VACG FCA.NC.VACG] || Ventral Anterior Cingulate Area || Neocortex || Seat of Free Will || motor, attentional and cognitive functions ||
+|| [BrainRegionFCA_NC_DACG FCA.NC.DACG] || Dorsal Anterior Cingulate Area || Neocortex || Rational Thought Processes || Anticipate and detect targets, indicate novelty,<BR>influence motor responses, encode reward values,<BR>and signal errors, motor, attentional and cognitive<BR>functions ||
+|| [BrainRegionFCA_NC_PACG FCA.NC.PACG] || Pregenual Area || Neocortex || Sensation of Emotion || Storage of emotional memory, emotions, mood and<BR>autonomic functions ||
 || [BrainRegionFCA_NC_BRA FCA.NC.BRA] || Broca's Area || Neocortex || Speech Engine ||  ||
 || [BrainRegionFCA_NC_INS FCA.NC.INS] || Insular Cortex || Neocortex || Visceral representation, pain, habits || Interoception, merges tactile and auditory streams ||
 || [BrainRegionFCA_NC_IPG FCA.NC.IPG] || Inferior Prefrontal Gyrus || Neocortex || Processing of syntax in oral and sign languages || Personality, endurance ||
-|| [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || Lateral Prefrontal Cortex || Neocortex || Temporal Integration || FEF is in PMC ||
+|| [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || Dorsolateral Prefrontal Cortex || Neocortex || Temporal Integration || FEF is in PMC ||
 || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || Neocortex || Personality ||  ||
-|| [BrainRegionFCA_NC_SGC FCA.NC.SGC] || Subgenual Cortex || Neocortex || Influences changes in appetite and sleep || Subdivision of cytoarchitecturally defined<BR>cingulate region ||
+|| [BrainRegionFCA_NC_SGC FCA.NC.SGC] || Subgenual Cortex || Neocortex || Influences changes in appetite and sleep || Subdivision of cytoarchitecturally defined<BR>cingulate region, emotions, mood and autonomic<BR>functions ||
 || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || Mediodorsal Nucleus of Thalamus || Excitatory Nucleus || Attention, planning, organization, abstract thinking, multi-tasking, and active<BR>memory || Relay AM to FCA.LPFC, FCA.OMPFC ||
 || [BrainRegionFCA_FD_TH_SM FCA.FD.TH.SM] || Submedial Nucleus of Thalamus || Excitatory Nucleus || Pain center || Projections from SC Lamina I, trigeminal nucleus to<BR>ACC ||
 
@@ -31,15 +31,20 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/FCA.dot.jpg
 || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (MD -> pMD, abstract)] ||
 || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (MD -> pMD, abstract)] ||
 || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || [BrainRegionFCA_NC_PACG FCA.NC.PACG] || nucleus-neocortex || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (Thalamus -> FrontalCortex, abstract)] ||
+|| [BrainRegionFCA_FD_TH_SM FCA.FD.TH.SM] || [BrainRegionFCA_NC_SGC FCA.NC.SGC] || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (Thalamus -> FrontalCortex, abstract)] ||
 || [BrainRegionFCA_NC_INS FCA.NC.INS] || [BrainRegionFCA_NC_IPG FCA.NC.IPG] || neocortex-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (Insula -> fPole)] ||
 || [BrainRegionFCA_NC_INS FCA.NC.INS] || [BrainRegionFCA_NC_VACG FCA.NC.VACG] || neocortex-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (Insula -> vACC)] ||
 || [BrainRegionFCA_NC_IPG FCA.NC.IPG] || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || neocortex-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (fPole -> DLPFC)] ||
+|| [BrainRegionFCA_NC_IPG FCA.NC.IPG] || [BrainRegionFCA_NC_SGC FCA.NC.SGC] || neocortex-neocortex || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (IFG -> SGC)] ||
 || [BrainRegionFCA_NC_IPG FCA.NC.IPG] || [BrainRegionFCA_NC_VACG FCA.NC.VACG] || neocortex-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (fPole -> vACC)] ||
 || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || neocortex-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s3MD -> MD, abstract)] ||
 || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || [BrainRegionFCA_NC_DACG FCA.NC.DACG] || neocortex-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (DLPFC -> dACC)] ||
+|| [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || [BrainRegionFCA_NC_IPG FCA.NC.IPG] || neocortex-neocortex || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (OFC -> IFG)] ||
 || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || neocortex-neocortex || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (OFC -> PFC)] ||
 || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || [BrainRegionFCA_NC_PACG FCA.NC.PACG] || neocortex-neocortex || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (OFC -> CGa, abstract)] ||
 || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || [BrainRegionFCA_NC_VACG FCA.NC.VACG] || neocortex-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (OPFC -> vACC)] ||
+|| [BrainRegionFCA_NC_SGC FCA.NC.SGC] || [BrainRegionFCA_NC_DACG FCA.NC.DACG] || neocortex-neocortex || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (SGC -> DACC)] ||
+|| [BrainRegionFCA_NC_SGC FCA.NC.SGC] || [BrainRegionFCA_NC_VACG FCA.NC.VACG] || neocortex-neocortex || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (SGC -> VACC)] ||
 || [BrainRegionFCA_NC_VACG FCA.NC.VACG] || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || neocortex-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (vACC -> DLPFC)] ||
 
 *External Inbound Region Connections:*
@@ -53,7 +58,9 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/FCA.dot.jpg
 || [BrainAreaBFA BFA] || [BrainRegionFCA_NC_INS FCA.NC.INS] || [BrainRegionBFA_FT_EPF BFA.FT.EPF] || Endopiriform Nucleus || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (EnP -> Iav)] ||
 || [BrainAreaBFA BFA] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || [BrainRegionBFA_FT_ACC BFA.FT.ACC] || Accumbens Nucleus || nucleus-neocortex || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (NAC -> OFC)] ||
 || [BrainAreaBFA BFA] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-neocortex || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (AMYG -> OFC)] ||
+|| [BrainAreaBFA BFA] || [BrainRegionFCA_NC_SGC FCA.NC.SGC] || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || Septal Nucleus || nucleus-neocortex || (unknown reference) ||
 || [BrainAreaBFA BFA] || [BrainRegionFCA_NC_VACG FCA.NC.VACG] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (AM -> vACC)] ||
+|| [BrainAreaBMA BMA] || [BrainRegionFCA_FD_TH_SM FCA.FD.TH.SM] || [BrainRegionBMA_SC_PH_MG BMA.SC.PH.MG] || Marginal Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaBMA BMA] || [BrainRegionFCA_NC_INS FCA.NC.INS] || [BrainRegionBMA_HP_PB BMA.HP.PB] || Parabrachial Nucleus || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PB -> Gud)] ||
 || [BrainAreaFBA FBA] || [BrainRegionFCA_NC_DACG FCA.NC.DACG] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || Ventral Tegmental Area || nucleus-neocortex || (unknown reference) ||
 || [BrainAreaHBA HBA] || [BrainRegionFCA_NC_VACG FCA.NC.VACG] || [BrainRegionHBA_FD_TH_AN HBA.FD.TH.AN] || Anterior Nucleus of Thalamus || nucleus-neocortex || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (Thalamus -> FrontalCortex, abstract)] ||
@@ -81,6 +88,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/FCA.dot.jpg
 || [BrainAreaACA ACA] || [BrainRegionFCA_NC_BRA FCA.NC.BRA] || [BrainRegionACA_NC_IPL_SMW ACA.NC.IPL.SMW] || Supramarginal Wernike Cortex || neocortex-neocortex || [http://www.nature.com/neuro/journal/v12/n6/fig_tab/nn.2331_F5.html Cortical Auditory System (IFC44 -> IPL40, abstract)] ||
 || [BrainAreaBFA BFA] || [BrainRegionFCA_NC_SGC FCA.NC.SGC] || [BrainRegionBFA_FT_BNST BFA.FT.BNST] || Bed Nucleus of Stria Terminalis || neocortex-nucleus || (unknown reference) ||
 || [BrainAreaBGA BGA] || [BrainRegionFCA_NC_DACG FCA.NC.DACG] || [BrainRegionBGA_FT_PU BGA.FT.PU] || Putamen || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> BGA, abstract)] ||
+|| [BrainAreaBGA BGA] || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || [BrainRegionBGA_FT_CN BGA.FT.CN] || Caudate Nucleus || neocortex-nucleus || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (DLPFC -> Caud)] ||
 || [BrainAreaBGA BGA] || [BrainRegionFCA_NC_PACG FCA.NC.PACG] || [BrainRegionBGA_FT_PU BGA.FT.PU] || Putamen || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> BGA, abstract)] ||
 || [BrainAreaBGA BGA] || [BrainRegionFCA_NC_VACG FCA.NC.VACG] || [BrainRegionBGA_FT_CN BGA.FT.CN] || Caudate Nucleus || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> BGA, abstract)] ||
 || [BrainAreaBMA BMA] || [BrainRegionFCA_NC_SGC FCA.NC.SGC] || [BrainRegionBMA_HP_PB BMA.HP.PB] || Parabrachial Nucleus || neocortex-nucleus || (unknown reference) ||
@@ -103,6 +111,10 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/FCA.dot.jpg
 
 = Thirdparty Circuits =
 (generated)
+
+  * [http://brmlab.cz/lib/exe/fetch.php?hash=fca48f&media=http%3A%2F%2Fars.els-cdn.com%2Fcontent%2Fimage%2F1-s2.0-S1364661308002490-gr2.jpg Regulation of Social Brain] - see [http://brmlab.cz/project/brain_hacking/tdcs/pfc Reference]
+
+<img src="http://brmlab.cz/lib/exe/fetch.php?hash=fca48f&media=http%3A%2F%2Fars.els-cdn.com%2Fcontent%2Fimage%2F1-s2.0-S1364661308002490-gr2.jpg" alt="unavailable">
 
   * [http://c431376.r76.cf2.rackcdn.com/18691/fnhum-06-00184-HTML/image_m/fnhum-06-00184-g001.jpg Directed Effort Network] - see [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Reference]
 
@@ -164,6 +176,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/FCA.dot.jpg
 = References =
 (generated)
 
+  * http://brmlab.cz/project/brain_hacking/tdcs/pfc
   * http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full
   * http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0
   * http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full
