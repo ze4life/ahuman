@@ -1,0 +1,43 @@
+#summary Pain and Temperature Perception
+@@[Home] -> [BiologicalLifeResearch] -> [CircuitPainAndTemperature]
+----
+
+This page covers components and connections of circuit Pain and Temperature Perception.
+Circuit is part of aHuman target integrated biological model.
+
+(generated)
+= Components =
+(generated)
+
+|| *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||
+|| [BrainAreaBFA BFA] || [BrainRegionBFA_FT_ACC BFA.FT.ACC] || Accumbens Nucleus || Inhibitory Nucleus || Activate motor functions under attention ||
+|| [BrainAreaBGA BGA] || [BrainRegionBGA_FT_CN BGA.FT.CN] || Caudate Nucleus || Inhibitory Nucleus || Excitation of correct action schemas and selection of appropriate sub-goals based on evaluation of action-outcomes ||
+|| [BrainAreaBGA BGA] || [BrainRegionBGA_FT_PU BGA.FT.PU] || Putamen || Inhibitory Nucleus || Stimulus-response, or habit, learning ||
+|| [BrainAreaBGA BGA] || [BrainRegionBGA_FT_VP BGA.FT.VP] || Ventral Pallidum || Inhibitory Nucleus || Distinguish _wanting_ versus _liking_ enhancements ||
+|| [BrainAreaBMA BMA] || [BrainRegionBMA_SC_PH_MG BMA.SC.PH.MG] || Marginal Nucleus || 1-order Sensory Nucleus || Relay information related to pain and temperature sensation ||
+|| [BrainAreaFBA FBA] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || Ventral Tegmental Area || Excitatory Nucleus || Respond to novel stimuli, unexpected rewards, and reward predictive sensory cues ||
+|| [BrainAreaFCA FCA] || [BrainRegionFCA_FD_TH_SM FCA.FD.TH.SM] || Submedial Nucleus of Thalamus || Excitatory Nucleus || Pain center ||
+|| [BrainAreaFCA FCA] || [BrainRegionFCA_NC_DACG FCA.NC.DACG] || Dorsal Anterior Cingulate Area || Neocortex || Rational Thought Processes ||
+|| [BrainAreaFCA FCA] || [BrainRegionFCA_NC_IPG FCA.NC.IPG] || Inferior Prefrontal Gyrus || Neocortex || Processing of syntax in oral and sign languages ||
+|| [BrainAreaFCA FCA] || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || Dorsolateral Prefrontal Cortex || Neocortex || Temporal Integration ||
+|| [BrainAreaFCA FCA] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || Neocortex || Personality ||
+|| [BrainAreaFCA FCA] || [BrainRegionFCA_NC_SGC FCA.NC.SGC] || Subgenual Cortex || Neocortex || Influences changes in appetite and sleep ||
+|| [BrainAreaFCA FCA] || [BrainRegionFCA_NC_VACG FCA.NC.VACG] || Ventral Anterior Cingulate Area || Neocortex || Seat of Free Will ||
+
+= Connections =
+(generated)
+
+http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitPainAndTemperature.dot.jpg
+
+|| *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionBFA_FT_ACC BFA.FT.ACC] || [BrainRegionBGA_FT_VP BGA.FT.VP] || nucleus-nucleus || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (NACC -> VentPal)] ||
+|| [BrainRegionBGA_FT_CN BGA.FT.CN] || [BrainRegionBGA_FT_PU BGA.FT.PU] || nucleus-nucleus || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (Caud -> Put)] ||
+|| [BrainRegionBMA_SC_PH_MG BMA.SC.PH.MG] || [BrainRegionFCA_FD_TH_SM FCA.FD.TH.SM] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionBGA_FT_VP BGA.FT.VP] || nucleus-nucleus || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (VTA -> VentPal)] ||
+|| [BrainRegionFCA_FD_TH_SM FCA.FD.TH.SM] || [BrainRegionFCA_NC_SGC FCA.NC.SGC] || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (Thalamus -> FrontalCortex, abstract)] ||
+|| [BrainRegionFCA_NC_IPG FCA.NC.IPG] || [BrainRegionFCA_NC_SGC FCA.NC.SGC] || neocortex-neocortex || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (IFG -> SGC)] ||
+|| [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || [BrainRegionBGA_FT_CN BGA.FT.CN] || neocortex-nucleus || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (DLPFC -> Caud)] ||
+|| [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || [BrainRegionFCA_NC_IPG FCA.NC.IPG] || neocortex-neocortex || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (OFC -> IFG)] ||
+|| [BrainRegionFCA_NC_SGC FCA.NC.SGC] || [BrainRegionFCA_NC_DACG FCA.NC.DACG] || neocortex-neocortex || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (SGC -> DACC)] ||
+|| [BrainRegionFCA_NC_SGC FCA.NC.SGC] || [BrainRegionFCA_NC_VACG FCA.NC.VACG] || neocortex-neocortex || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (SGC -> VACC)] ||
+

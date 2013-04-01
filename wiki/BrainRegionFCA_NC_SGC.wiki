@@ -5,11 +5,11 @@
 This page covers biological details of component Subgenual Cortex.
 Region is part of aHuman target integrated biological model.
 
-  * *Top-down path to region*: Neocortex -> Anterior Lobe (NC.LOBE.ANT) -> Anterior Cingulate Cortex (FCA.NC.ACG) -> Subgenual Cortex (FCA.NC.SGC) (see [OverallMindMaps Mind Maps])
+  * *Top-down path to region*: Neocortex -> Anterior Lobe (NC.LOBE.ANT) -> Anterior Cingulate Cortex (FCA.NC.ACG) -> Medial Prefrontal Cortex (FCA.NC.MPFC) -> Subgenual Cortex (FCA.NC.SGC) (see [OverallMindMaps Mind Maps])
   * *Brain area*: [BrainAreaFCA Frontal Cortex Area]
   * *Brodmann ID*: 25
   * *Function*: Influences changes in appetite and sleep
-  * *Notes to function*: Subdivision of cytoarchitecturally defined cingulate region
+  * *Notes to function*: Subdivision of cytoarchitecturally defined cingulate region, emotions, mood and autonomic functions
 (generated)
 = Components =
 (generated)
@@ -24,7 +24,11 @@ Region is part of aHuman target integrated biological model.
 http://ahuman.googlecode.com/svn/images/dot/aHuman/FCA.NC.SGC.dot.jpg
 
 *Inbound Region Connections:*
-  * no connections
+
+|| *Source Area* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| [BrainAreaBFA BFA] || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || Septal Nucleus || nucleus-neocortex || (unknown reference) ||
+|| [BrainAreaFCA FCA] || [BrainRegionFCA_FD_TH_SM FCA.FD.TH.SM] || Submedial Nucleus of Thalamus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (Thalamus -> FrontalCortex, abstract)] ||
+|| [BrainAreaFCA FCA] || [BrainRegionFCA_NC_IPG FCA.NC.IPG] || Inferior Prefrontal Gyrus || neocortex-neocortex || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (IFG -> SGC)] ||
 
 *Outbound Region Connections:*
 
@@ -32,15 +36,20 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/FCA.NC.SGC.dot.jpg
 || [BrainAreaBFA BFA] || [BrainRegionBFA_FT_BNST BFA.FT.BNST] || Bed Nucleus of Stria Terminalis || neocortex-nucleus || (unknown reference) ||
 || [BrainAreaBMA BMA] || [BrainRegionBMA_HP_PB BMA.HP.PB] || Parabrachial Nucleus || neocortex-nucleus || (unknown reference) ||
 || [BrainAreaFBA FBA] || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || Periaqueductal Gray Matter || neocortex-nucleus || (unknown reference) ||
+|| [BrainAreaFCA FCA] || [BrainRegionFCA_NC_DACG FCA.NC.DACG] || Dorsal Anterior Cingulate Area || neocortex-neocortex || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (SGC -> DACC)] ||
+|| [BrainAreaFCA FCA] || [BrainRegionFCA_NC_VACG FCA.NC.VACG] || Ventral Anterior Cingulate Area || neocortex-neocortex || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (SGC -> VACC)] ||
 || [BrainAreaHTA HTA] || [BrainRegionHTA_FD_HT_AH HTA.FD.HT.AH] || Anterior Hypothalamic Nucleus || neocortex-nucleus || (unknown reference) ||
 
 = Thirdparty Circuits =
 (generated)
 
-  * no circuits defined
+  * [http://brmlab.cz/lib/exe/fetch.php?hash=fca48f&media=http%3A%2F%2Fars.els-cdn.com%2Fcontent%2Fimage%2F1-s2.0-S1364661308002490-gr2.jpg Regulation of Social Brain] - see [http://brmlab.cz/project/brain_hacking/tdcs/pfc Reference]
+
+<img src="http://brmlab.cz/lib/exe/fetch.php?hash=fca48f&media=http%3A%2F%2Fars.els-cdn.com%2Fcontent%2Fimage%2F1-s2.0-S1364661308002490-gr2.jpg" alt="unavailable">
+
 
 = References =
 (generated)
 
-  * no references defined
+  * http://brmlab.cz/project/brain_hacking/tdcs/pfc
 
