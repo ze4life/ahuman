@@ -649,6 +649,14 @@ public:
 		return( index );
 	};
 
+	int addnew( int key , T *value ) {
+		T *l_value;
+		int index = rfc_map_ptrcheck( mapData , ( void * )key , ( unsigned long * )&l_value );
+		if( index < 0 )
+			index = rfc_map_ptrsetkey( mapData , ( void * )key , ( unsigned long )value );
+		return( index );
+	}
+
 	void add( MapIntToClass& a ) {
 		rfc_ptrmap *s = a.mapData;
 		for( int k = 0; k < rfc_map_ptrcount( s ); k++ )
@@ -746,6 +754,14 @@ public:
 		return( index );
 	};
 
+	int addnew( TK *key , TV *value ) {
+		TV *l_value;
+		int index = rfc_map_ptrcheck( mapData , ( void * )key , ( unsigned long * )&l_value );
+		if( index < 0 )
+			index = rfc_map_ptrsetkey( mapData , ( void * )key , ( unsigned long )value );
+		return( index );
+	}
+
 	void add( MapPtrToClass& a ) {
 		rfc_ptrmap *s = a.mapData;
 		for( int k = 0; k < rfc_map_ptrcount( s ); k++ )
@@ -821,6 +837,14 @@ public:
 		int index = rfc_map_strsetkey( mapData , key , value );
 		return( index );
 	};
+
+	int addnew( const char *key , T *value ) {
+		T *l_value;
+		int index = rfc_map_strcheck( mapData , key , ( void ** )&l_value );
+		if( index < 0 )
+			index = rfc_map_strsetkey( mapData , key , value );
+		return( index );
+	}
 
 	void add( MapStringToClass& a ) {
 		rfc_strmap *s = a.mapData;

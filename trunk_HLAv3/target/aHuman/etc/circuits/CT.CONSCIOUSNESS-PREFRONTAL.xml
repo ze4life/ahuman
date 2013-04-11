@@ -37,4 +37,23 @@
 		<link src="fPole" dst="vACC"/>
 	</circuit>
 
+	<circuit id="CT.SOCIAL-BRAIN" name="Regulation of Social Brain"
+		image="http://brmlab.cz/lib/exe/fetch.php?hash=fca48f&amp;media=http%3A%2F%2Fars.els-cdn.com%2Fcontent%2Fimage%2F1-s2.0-S1364661308002490-gr2.jpg"
+		reference="http://brmlab.cz/project/brain_hacking/tdcs/pfc"
+		components="SGC=FCA.NC.SGC VACC=FCA.NC.VACG DACC=FCA.NC.DACG IFG=FCA.NC.IPG OFC=FCA.NC.OMPFC AMG=BFA.FT.AM Hipp=HBA.FT.HC PhippG=PHA.NC.PH.ET MPFC=FCA.NC.OMPFC DLPFC=FCA.NC.LPFC Caud=BGA.FT.CN Put=BGA.FT.PU LSN=BMA.SC.LH.LSN SN=BGA.FT.SN VTA=FBA.MM.VTA VentPal=BGA.FT.VP NACC=BFA.FT.ACC"
+		>
+		<link src="SGC" dst="VACC"/>
+		<link src="SGC" dst="DACC"/>
+		<link src="IFG" dst="SGC"/>
+		<link src="OFC" dst="IFG"/>
+		<link src="AMG" dst="OFC"/>
+		<link src="MPFC" dst="OFC"/>
+		<link src="DLPFC" dst="MPFC"/>
+		<link src="DLPFC" dst="Caud"/>
+		<link src="Caud" dst="Put"/>
+		<link src="VTA" dst="NACC"/>
+		<link src="VTA" dst="VentPal"/>
+		<link src="NACC" dst="VentPal"/>
+	</circuit>
+
 </circuits>

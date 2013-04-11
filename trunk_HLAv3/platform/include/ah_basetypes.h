@@ -223,6 +223,14 @@ public:
 		return( index );
 	};
 
+	int addnew( const char *key , int value ) {
+		int l_value;
+		int index = rfc_map_strcheck( mapData , key , ( void ** )&l_value );
+		if( index < 0 )
+			index = rfc_map_strsetkey( mapData , key , ( void * )value );
+		return( index );
+	}
+
 	void add( MapStringToInt& a ) {
 		rfc_strmap *s = a.mapData;
 		for( int k = 0; k < rfc_map_strcount( s ); k++ )
@@ -320,6 +328,17 @@ public:
 		int index = rfc_map_strsetkey( mapData , key , ( void * )setValue );
 		return( index );
 	};
+
+	int addnew( const char *key , const char *value ) {
+		ASSERTMSG( value != NULL , "value should not be NULL" );
+		char *l_value;
+		int index = rfc_map_strcheck( mapData , key , ( void ** )&l_value );
+		if( index < 0 ) {
+			char *setValue = _strdup( value );
+			index = rfc_map_strsetkey( mapData , key , ( void * )setValue );
+		}
+		return( index );
+	}
 
 	void add( MapStringToString& a ) {
 		rfc_strmap *s = a.mapData;
@@ -429,6 +448,15 @@ public:
 		int index = rfc_map_strsetkey( mapData , key , value );
 		return( index );
 	};
+
+	int addnew( const char *key , void *value ) {
+		ASSERTMSG( value != NULL , "value should not be NULL" );
+		void *l_value;
+		int index = rfc_map_strcheck( mapData , key , ( void ** )&l_value );
+		if( index < 0 )
+			index = rfc_map_strsetkey( mapData , key , value );
+		return( index );
+	}
 
 	void add( MapStringToPtr& a ) {
 		rfc_strmap *s = a.mapData;

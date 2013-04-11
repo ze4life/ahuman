@@ -9,23 +9,24 @@
 				function="Error Correction" 
 				notes="Part of limbic lobe"
 				>
-				<!-- ========= motor, attentional and cognitive functions ========= -->
 				<element id="FCA.NC.VACG" name="Ventral Anterior Cingulate Area" mapped="true" brodmannid="24" type="Neocortex"
 					function="Seat of Free Will" 
+					notes="motor, attentional and cognitive functions"
 					/>
-				<element id="FCA.NC.DACG" name="Dorsal Anterior Cingulate Area" mapped="true" brodmannid="32" type="Neocortex"
-					function="Rational Thought Processes" 
-					notes="Anticipate and detect targets, indicate novelty, influence motor responses, encode reward values, and signal errors"
-					/>
-				<!-- ========= emotions, mood and autonomic functions ========= -->
 				<element id="FCA.NC.PACG" name="Pregenual Area" mapped="true" brodmannid="33" type="Neocortex"
 					function="Sensation of Emotion" 
-					notes="Storage of emotional memory"
+					notes="Storage of emotional memory, emotions, mood and autonomic functions"
 					/>
-				<element id="FCA.NC.SGC" name="Subgenual Cortex" mapped="true" brodmannid="25" type="Neocortex"
-					function="Influences changes in appetite and sleep" 
-					notes="Subdivision of cytoarchitecturally defined cingulate region"
-					/>
+				<element id="FCA.NC.MPFC" name="Medial Prefrontal Cortex">
+					<element id="FCA.NC.DACG" name="Dorsal Anterior Cingulate Area" mapped="true" brodmannid="32" type="Neocortex"
+						function="Rational Thought Processes" 
+						notes="Anticipate and detect targets, indicate novelty, influence motor responses, encode reward values, and signal errors, motor, attentional and cognitive functions"
+						/>
+					<element id="FCA.NC.SGC" name="Subgenual Cortex" mapped="true" brodmannid="25" type="Neocortex"
+						function="Influences changes in appetite and sleep" 
+						notes="Subdivision of cytoarchitecturally defined cingulate region, emotions, mood and autonomic functions"
+						/>
+				</element>
 			</element>
 
 			<element id="MCA.NC.MC" name="Motor Cortex" mapped="true" brodmannid="04" type="Neocortex"
@@ -89,32 +90,49 @@
 			<element id="FCA.NC.PFC" name="Prefrontal Cortex"
 				function="High-level Mental Functions" 
 				>
-				<element id="FCA.NC.LPFC" name="Lateral Prefrontal Cortex" mapped="true" brodmannid="09,46" type="Neocortex"
+				<element id="FCA.NC.LPFC" name="Dorsolateral Prefrontal Cortex" mapped="true" brodmannid="09,46" type="Neocortex"
 					function="Temporal Integration" 
 					notes="FEF is in PMC"
 					/>
 				<element id="FCA.NC.OMPFC" name="Orbitomedial Prefrontal Cortex" mapped="true" brodmannid="10,11,12" type="Neocortex"
 					function="Personality" 
-					/>
+					comments="BAs 11, 12 and 14 are commonly referred to as orbitofrontal cortex"
+					>
+					<element name="Ventromedial Prefrontal Cortex" brodmannid="10" type="Neocortex"
+						function="Emotion Regulation" 
+						notes="Anterior PFC, contains ILC - infralimbic cortex"
+						refs="wiki:[http://en.wikipedia.org/wiki/Ventromedial_prefrontal_cortex]"
+						/>
+					<element brodmannid="11" type="Neocortex"
+						function="Reward mediated behaviours" 
+						refs="wiki:[http://en.wikipedia.org/wiki/Brodmann_area_11]"
+						/>
+					<element brodmannid="12" type="Neocortex"
+						function="Prefrontal associational integration" 
+						refs="wiki:[http://www.sylvius.com/index/b/brodmann_s_area_12.html]"
+						/>
+				</element>
 				<element id="FCA.NC.INS" name="Insular Cortex" mapped="true" brodmannid="13,14" type="Neocortex"
 					function="Visceral representation, pain, habits" 
 					notes="Interoception, merges tactile and auditory streams"
 					/>
-				<element id="FCA.NC.IPG" name="Inferior Prefrontal Gyrus" mapped="true" brodmannid="47" type="Neocortex"
-					function="Processing of syntax in oral and sign languages"
-					notes="Personality, endurance"
-					/>
-				<element id="FCA.NC.BRA" name="Broca's Area" mapped="true" brodmannid="44,45" type="Neocortex"
-					function="Speech Engine" 
-					>
-					<element id="FCA.NC.BRA.PO" name="Broca's Area Pars Opercularis" brodmannid="44" type="Neocortex"
+				<element id="FCA.NC.VLPFC" name="Ventrolateral Prefrontal Cortex">
+					<element id="FCA.NC.IPG" name="Inferior Prefrontal Gyrus" mapped="true" brodmannid="47" type="Neocortex"
+						function="Processing of syntax in oral and sign languages"
+						notes="Personality, endurance"
+						/>
+					<element id="FCA.NC.BRA" name="Broca's Area" mapped="true" brodmannid="44,45" type="Neocortex"
 						function="Speech Engine" 
-						notes="Orbital Inferior Frontal Gyrus"
-						/>
-					<element id="FCA.NC.BRA.PT" name="Broca's Area Pars Triangularis" brodmannid="45" type="Neocortex"
-						function="Language production and prefrontal associational integration, propositional language comprehension"
-						notes="Triangular Inferior Frontal Gyrus, switching between semantic sub-categories in word retrieval"
-						/>
+						>
+						<element id="FCA.NC.BRA.PO" name="Broca's Area Pars Opercularis" brodmannid="44" type="Neocortex"
+							function="Speech Engine" 
+							notes="Orbital Inferior Frontal Gyrus"
+							/>
+						<element id="FCA.NC.BRA.PT" name="Broca's Area Pars Triangularis" brodmannid="45" type="Neocortex"
+							function="Language production and prefrontal associational integration, propositional language comprehension"
+							notes="Triangular Inferior Frontal Gyrus, switching between semantic sub-categories in word retrieval"
+							/>
+					</element>
 				</element>
 			</element>
 
@@ -874,12 +892,12 @@
 					function="Spatial coding of auditory information"
 					notes="From tectum, somatic sensations"
 					/>
+				<element id="FCA.FD.TH.SM" name="Submedial Nucleus of Thalamus" mapped="true" type="Excitatory Nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Submedial_nucleus Submedial nucleus]"
+					function="Pain center"
+					notes="Projections from SC Lamina I, trigeminal nucleus to ACC"
+					/>
 			</element>
-			<element id="FCA.FD.TH.SM" name="Submedial Nucleus of Thalamus" mapped="true" type="Excitatory Nucleus"
-				refs="NL:[http://neurolex.org/wiki/Category:Submedial_nucleus Submedial nucleus]"
-				function="Pain center"
-				notes="Projections from SC Lamina I, trigeminal nucleus to ACC"
-				/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Thalamic_reticular_nucleus Thalamic reticular nucleus]" ignore="true" comment="generic signal to noice improvement"/>
 			<element id="FD.TH.VTH" name="Ventral Thalamus" refs="NL:[http://neurolex.org/wiki/Category:Ventral_nuclear_group Ventral nuclear group];NL:[http://neurolex.org/wiki/Category:Ventral_thalamic Ventral thalamic]">
 				<element id="MCA.FD.TH.VA" name="Ventral Anterior Nucleus" mapped="true" type="Excitatory Nucleus"
@@ -1080,7 +1098,7 @@
 				<element refs="NL:[http://neurolex.org/wiki/Category:Medial_superior_olivary_nucleus Medial superior olivary nucleus]"/>
 			</element>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Superior_paraolivary_nucleus Superior paraolivary nucleus]"/>
-			<element name="Trapezoid Body Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Trapezoid_nuclear_complex Trapezoid nuclear complex];NL:[http://neurolex.org/wiki/Category:Trapezoid_body Trapezoid body]">
+			<element id="ABA.MM.SOC.TZ" name="Trapezoid Body Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Trapezoid_nuclear_complex Trapezoid nuclear complex];NL:[http://neurolex.org/wiki/Category:Trapezoid_body Trapezoid body]">
 				<element refs="NL:[http://neurolex.org/wiki/Category:Dorsal_nucleus_of_trapezoid_body Dorsal nucleus of trapezoid body]"/>
 				<element refs="NL:[http://neurolex.org/wiki/Category:Medial_nucleus_of_trapezoid_body Medial nucleus of trapezoid body]"/>
 				<element refs="NL:[http://neurolex.org/wiki/Category:Ventral_nucleus_of_trapezoid_body Ventral nucleus of trapezoid body]"/>
