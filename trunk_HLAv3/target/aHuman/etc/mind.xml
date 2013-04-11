@@ -560,6 +560,8 @@
 				<connection type="neocortex-nucleus" src="FCA.NC.VACG" dst="HMA.HP.PRF.PDT"/>
 				<connection type="neocortex-nucleus" src="MCA.NC.SMC" dst="HMA.HP.PRF.PDT"/>
 				<connection type="neocortex-nucleus" src="FCA.NC.BRA" dst="HMA.HP.PRF.PDT"/>
+				<connection type="nucleus-nucleus" src="ABA.MM.SOC" dst="ABA.HP.PN.LL"/>
+				<connection type="nucleus-nucleus" src="ABA.HM.COCH" dst="ABA.MM.IC"/>
 			</circuit>
 
 			<!-- ================= somatic perception =============== -->
@@ -604,6 +606,7 @@
 				<connection type="neocortex-nucleus" src="FCA.NC.SGC" dst="HTA.FD.HT.AH"/>
 				<connection type="neocortex-nucleus" src="FCA.NC.SGC" dst="FBA.MM.PAG"/>
 				<connection type="neocortex-nucleus" src="FCA.NC.SGC" dst="BMA.HP.PB"/>
+				<connection type="nucleus-neocortex" src="BFA.FT.SEP" dst="FCA.NC.SGC" notes="from nucleus of diagonal band"/>
 			</circuit>
 
 			<!-- ================= hippocampus activity =============== -->
@@ -736,6 +739,10 @@
 			<!-- ================= sleep-wake cycle =============== -->
 			<circuit id="CircuitSleepWakeCycle" name="Sleep-Wake Cycle" enabled="true">
 				<connection type="nucleus-nucleus" src="VBA.FD.RT" dst="HTA.FD.HT.SCN"/>
+				<connection type="nucleus-nucleus" src="HTA.FD.HT.PV" dst="HTA.FD.HYP"/>
+				<connection type="nucleus-nucleus" src="HMA.HM.SOL" dst="HTA.FD.HT.PV"/>
+				<connection type="nucleus-nucleus" src="HTA.FD.HT.SCN" dst="HTA.FD.HT.PV"/>
+				<connection type="nucleus-nucleus" src="HTA.FD.HT.AR" dst="HTA.FD.HT.PV"/>
 			</circuit>
 
 			<!-- ================= cerebellum circuits =============== -->
@@ -776,6 +783,20 @@
 				<connection type="neocortex-neocortex" src="VCA.NC.IPS.AIP" dst="MCA.NC.PMC.F4"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.IPS.AIP" dst="MCA.NC.PMC.F5"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.IT.TE" dst="VCA.NC.IPS.AIP"/>
+			</circuit>
+
+			<!-- ================= pain and temperature perception =============== -->
+			<circuit id="CircuitPainAndTemperature" name="Pain and Temperature Perception" enabled="true">
+				<connection type="nucleus-nucleus" src="BMA.SC.PH.MG" dst="FCA.FD.TH.SM"/>
+				<connection type="nucleus-nucleus" src="FCA.FD.TH.SM" dst="FCA.NC.SGC"/>
+				<connection type="neocortex-neocortex" src="FCA.NC.SGC" dst="FCA.NC.VACG"/>
+				<connection type="neocortex-neocortex" src="FCA.NC.SGC" dst="FCA.NC.DACG"/>
+				<connection type="neocortex-neocortex" src="FCA.NC.IPG" dst="FCA.NC.SGC"/>
+				<connection type="neocortex-neocortex" src="FCA.NC.OMPFC" dst="FCA.NC.IPG"/>
+				<connection type="neocortex-nucleus" src="FCA.NC.LPFC" dst="BGA.FT.CN"/>
+				<connection type="nucleus-nucleus" src="BGA.FT.CN" dst="BGA.FT.PU"/>
+				<connection type="nucleus-nucleus" src="FBA.MM.VTA" dst="BGA.FT.VP"/>
+				<connection type="nucleus-nucleus" src="BFA.FT.ACC" dst="BGA.FT.VP"/>
 			</circuit>
 
 		</circuit-set>

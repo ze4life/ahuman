@@ -206,6 +206,8 @@ public:
 	void resolveReferences( MindMap *map );
 
 	String getAreaId() { return( areaId ); };
+	String getAreaName() { return( areaName ); };
+	String getAreaFunction() { return( areaFunction ); };
 	bool runEnabled() { return( enabled ); };
 	ClassList<MindRegionDef>& getRegions() { return( regions ); };
 
@@ -214,6 +216,8 @@ public:
 private:
 // utility
 	String areaId;
+	String areaName;
+	String areaFunction;
 	bool enabled;
 
 // own data
