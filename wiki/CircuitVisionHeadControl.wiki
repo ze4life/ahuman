@@ -27,11 +27,11 @@ Circuit is part of aHuman target integrated biological model.
 || [BrainAreaHMA HMA] || [BrainRegionHMA_MM_MSTR HMA.MM.MSTR] || Mesencephalic Trigeminal Nucleus || 1-order Sensory Nucleus || Facial Somatic Sensations ||
 || [BrainAreaHMA HMA] || [BrainRegionHMA_SC_VH_ISL HMA.SC.VH.ISL] || Spinal Accessory Nucleus || Premotor Nucleus || Control of neck ||
 || [BrainAreaMBA MBA] || [BrainRegionMBA_MM_SC MBA.MM.SC] || Superior Colliculus || Sensory Control Nucleus || Direct behavioral responses toward specific points in egocentric space, induce saccadic eye movement ||
+|| [BrainAreaMCA MCA] || [BrainRegionMCA_FD_TH_LP MCA.FD.TH.LP] || Lateral Posterior Nucleus of Thalamus || Excitatory Nucleus || Visual association cortex ||
 || [BrainAreaMCA MCA] || [BrainRegionMCA_NC_MC MCA.NC.MC] || Motor Cortex || Neocortex || Execution of required voluntary movements ||
 || [BrainAreaMCA MCA] || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || Supplementary Motor Cortex || Neocortex || Process sequences of movements and coordinate bilateral movements ||
-|| [BrainAreaSMA SMA] || [BrainRegionSMA_FD_TH_LP SMA.FD.TH.LP] || Lateral Posterior Nucleus of Thalamus || Excitatory Nucleus || Visual association cortex ||
+|| [BrainAreaMCA MCA] || [BrainRegionMCA_NC_SPL_PG MCA.NC.SPL.PG] || Caudal Precuneus || Neocortex || Controlling spatially guided behavior with respect to visual and tactile information ||
 || [BrainAreaSMA SMA] || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || Somatosensory Cortex || Neocortex || Muscle and skin receptors ||
-|| [BrainAreaSMA SMA] || [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || Caudal Precuneus || Neocortex || Controlling spatially guided behavior with respect to visual and tactile information ||
 || [BrainAreaVBA VBA] || [BrainRegionVBA_HP_ABD VBA.HP.ABD] || Abducens Nucleus || Motor Relay Nucleus || Conjugated movements of both eyes ||
 || [BrainAreaVBA VBA] || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || Oculomotor Nucleus || Motor Relay Nucleus || Change Eye Direction ||
 || [BrainAreaVBA VBA] || [BrainRegionVBA_MM_PT_NOT VBA.MM.PT.NOT] || Nucleus of Optic Tract || Sensory Relay Nucleus || Encode retinal error information during smooth pursuit eye movements ||
@@ -61,12 +61,12 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitVisionHeadControl.dot.
 || [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || nucleus-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (SC -> PPRF, abstract)] ||
 || [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionHMA_MM_INMLF HMA.MM.INMLF] || nucleus-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (SC -> riMLF)] ||
 || [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionHMA_SC_VH_ISL HMA.SC.VH.ISL] || nucleus-nucleus || (unknown reference) ||
-|| [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionSMA_FD_TH_LP SMA.FD.TH.LP] || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sLP -> LP)] ||
+|| [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionMCA_FD_TH_LP MCA.FD.TH.LP] || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sLP -> LP)] ||
 || [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionVBA_MM_PT_NOT VBA.MM.PT.NOT] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionVBA_MM_RP_RIP VBA.MM.RP.RIP] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (SC -> RIP)] ||
+|| [BrainRegionMCA_FD_TH_LP MCA.FD.TH.LP] || [BrainRegionMCA_NC_SPL_PG MCA.NC.SPL.PG] || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (LP -> pLP, abstract)] ||
 || [BrainRegionMCA_NC_MC MCA.NC.MC] || [BrainRegionHMA_HP_PRF_PDT HMA.HP.PRF.PDT] || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> RF, abstract)] ||
 || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || [BrainRegionVBA_MM_RP_RIP VBA.MM.RP.RIP] || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (FEFSEF -> RIP, abstract)] ||
-|| [BrainRegionSMA_FD_TH_LP SMA.FD.TH.LP] || [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (LP -> pLP, abstract)] ||
 || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || [BrainRegionHMA_HM_TGM_PA5 HMA.HM.TGM.PA5] || neocortex-nucleus || (unknown reference) ||
 || [BrainRegionVBA_MM_RP_RIP VBA.MM.RP.RIP] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (RIP -> PPRF, abstract)] ||
 
