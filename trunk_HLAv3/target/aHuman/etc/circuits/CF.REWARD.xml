@@ -43,4 +43,24 @@
 		<link src="HT" dst="PN"/>
 	</circuit>
 
+	<circuit id="CF.PFC-CONNECTIVITY" name="Prefrontal cortex connectivity"
+		image="http://www.nature.com/nrn/journal/v4/n2/images/nrn1033-f1.jpg"
+		reference="http://www.nature.com/nrn/journal/v4/n2/fig_tab/nrn1033_F1.html"
+		components="LPFC=FCA.NC.LPFC OPFC=FCA.NC.OMPFC"
+		>
+	</circuit>
+
+	<circuit id="CF.EMOTIONAL-MODULATION" name="Role for serotonin in moral behavior"
+		image="http://www.pnas.org/content/107/40/17071/F1.medium.gif"
+		reference="http://www.pnas.org/content/107/40/17071/F1.expansion.html"
+		components="LPFC=FCA.NC.LPFC OMPFC=FCA.NC.OMPFC HYP=HTA.FD.HT ACG=FCA.NC.ACG AMY=BFA.FT.AM"
+		>
+		<link src="AMY" dst="HYP"/>
+		<link src="AMY" dst="ACG"/>
+		<link src="ACG" dst="AMY"/>
+		<link src="ACG" dst="LPFC"/>
+		<link src="LPFC" dst="OMPFC"/>
+		<link src="OMPFC" dst="ACG"/>
+	</circuit>
+
 </circuits>

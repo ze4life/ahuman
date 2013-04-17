@@ -20,4 +20,18 @@
 		<link src="TH.AV" dst="PosteriorCingulate"/>
 	</circuit>
 
+	<circuit id="CT.CINGULATE-CORTEX" name="Cingulate Gyrus"
+		image="http://www.thebrainlabs.com/Images/cingulate_gyrus.gif"
+		reference="http://www.thebrainlabs.com"
+		components="CG=SMA.NC.MPL.PCG ET=PHA.NC.PH.ET HC=HBA.FT.HC SEP=BFA.FT.SEP HT=HTA.FD.HT MB=HBA.FD.MB TH=HBA.FD.TH.AN"
+		>
+		<link src="CG" dst="ET"/>
+		<link src="ET" dst="HC"/>
+		<link src="HC" dst="SEP"/>
+		<link src="SEP" dst="HT"/>
+		<link src="SEP" dst="MB"/>
+		<link src="MB" dst="TH"/>
+		<link src="TH" dst="CG"/>
+	</circuit>
+
 </circuits>

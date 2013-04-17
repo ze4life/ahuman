@@ -591,7 +591,6 @@
 			<circuit id="CircuitReflexMotivations" name="Establish Reflexive Motivational Associations" enabled="true">
 				<connection type="neocortex-nucleus" src="VCA.NC.IT.TE" dst="BFA.FT.AM"/>
 				<connection type="neocortex-nucleus" src="PHA.NC.PH.ET" dst="BFA.FT.AM"/>
-				<connection type="nucleus-neocortex" src="BFA.FT.AM" dst="FCA.NC.VACG"/>
 				<connection type="nucleus-neocortex" src="BFA.FT.AM" dst="FCA.NC.OMPFC"/>
 				<connection type="neocortex-neocortex" src="FCA.NC.OMPFC" dst="FCA.NC.PACG"/>
 				<connection type="neocortex-neocortex" src="FCA.NC.OMPFC" dst="FCA.NC.VACG"/>
@@ -607,6 +606,17 @@
 				<connection type="neocortex-nucleus" src="FCA.NC.SGC" dst="FBA.MM.PAG"/>
 				<connection type="neocortex-nucleus" src="FCA.NC.SGC" dst="BMA.HP.PB"/>
 				<connection type="nucleus-neocortex" src="BFA.FT.SEP" dst="FCA.NC.SGC" notes="from nucleus of diagonal band"/>
+				<connection type="nucleus-nucleus" src="BFA.FT.AM" dst="HTA.FD.HT.PV"/>
+				<connection type="neocortex-nucleus" src="FCA.NC.PACG" dst="BFA.FT.AM"/>
+				<connection type="nucleus-nucleus" src="HTA.FD.HT.PV" dst="HBA.FD.TH.AN"/>
+				<connection type="neocortex-allocortex" src="SMA.NC.MPL.PCG" dst="HBA.FT.HC.CA1"/>
+				<connection type="allocortex-nucleus" src="HBA.FT.HC.CA1" dst="HTA.FD.HT.AH"/>
+				<connection type="nucleus-nucleus" src="HBA.FT.SC.SUB" dst="HTA.FD.HT.PV"/>
+				<connection type="neocortex-nucleus" src="SMA.NC.MPL.RSC" dst="FCA.NC.OMPFC"/>
+				<connection type="neocortex-nucleus" src="SMA.NC.MPL.RSC" dst="FCA.NC.LPFC"/>
+				<connection type="allocortex-nucleus" src="HBA.FT.HC.CA1" dst="BFA.FT.AM"/>
+				<connection type="neocortex-neocortex" src="FCA.NC.OMPFC" dst="HTA.FD.HT.RCH"/>
+				<connection type="neocortex-neocortex" src="HTA.FD.HT.RCH" dst="MBA.HP.PN.RP"/>
 			</circuit>
 
 			<!-- ================= hippocampus activity =============== -->
