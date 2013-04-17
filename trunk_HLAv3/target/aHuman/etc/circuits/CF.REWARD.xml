@@ -14,4 +14,33 @@
 		>
 	</circuit>
 
+	<circuit id="CF.FEELING" name="Feeling"
+		image="http://www.nature.com/nrn/journal/v5/n7/images/nrn1432-f2.jpg"
+		reference="http://www.nature.com/nrn/journal/v5/n7"
+		components="HC=HBA.FT.HC CG=SMA.NC.MPL.PCG AN=HBA.FD.TH.AN HT=HTA.FD.HT"
+		>
+		<link src="HT" dst="AN"/>
+		<link src="AN" dst="CG"/>
+		<link src="CG" dst="HC"/>
+		<link src="HC" dst="HT"/>
+	</circuit>
+
+	<circuit id="CF.PFC-EMOTIONS" name="Prefrontal Cortex (PFC) in emotional behavior"
+		image="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/emotional_top.jpg"
+		reference="https://www.google.ru/search?hl=ru&tbo=p&tbm=bks&q=isbn:0080887988"
+		components="LPFC=FCA.NC.LPFC OPFC=FCA.NC.OMPFC ACG=FCA.NC.ACG PCA=SMA.NC.MPL HCA=HBA.FT.HC AM=BFA.FT.AM TH=FCA.FD.TH.MD HT=HTA.FD.HT PN=HP.PRF"
+		>
+		<link src="PCA" dst="OPFC"/>
+		<link src="PCA" dst="LPFC"/>
+		<link src="PCA" dst="HCA"/>
+		<link src="HCA" dst="AM"/>
+		<link src="AM" dst="OPFC"/>
+		<link src="OPFC" dst="LPFC"/>
+		<link src="LPFC" dst="ACG"/>
+		<link src="TH" dst="LPFC"/>
+		<link src="AM" dst="TH"/>
+		<link src="OPFC" dst="HT"/>
+		<link src="HT" dst="PN"/>
+	</circuit>
+
 </circuits>

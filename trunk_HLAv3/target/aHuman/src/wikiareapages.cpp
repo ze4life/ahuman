@@ -56,8 +56,14 @@ void WikiAreaPages::createAreaPages_createRegionTableSection( String wikiDir , M
 
 	// regions
 	ClassList<MindRegionDef>& regionList = areaDef -> getRegions();
+	MapStringToClass<MindRegionDef> regionMap;
 	for( int k = 0; k < regionList.count(); k++ ) {
 		MindRegionDef *regionDef = regionList.get( k );
+		regionMap.add( regionDef -> getName() , regionDef );
+	}
+
+	for( int k = 0; k < regionMap.count(); k++ ) {
+		MindRegionDef *regionDef = regionMap.getClassByIndex( k );
 		s = createAreaPages_getRegionTableRow( regionDef );
 		lines.add( s );
 	}

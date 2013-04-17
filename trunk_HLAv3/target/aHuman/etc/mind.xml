@@ -127,6 +127,8 @@
 				<region name="MCA.FD.TH.VL" type="nucleus" size="100"/>
 				<region name="MCA.NC.PMC.FEF" type="neocortex"/>
 				<region name="MCA.NC.SMC" type="neocortex"/>
+				<region name="MCA.FD.TH.LP" type="nucleus" size="100"/>
+				<region name="MCA.NC.SPL.PG" type="neocortex"/>
 			</area>
 
 			<area id="SMA" name="Somatic Cortex Area" enabled="true" function="Somatic Proprioception">
@@ -134,14 +136,10 @@
 				<region name="SMA.FD.TH.VP" type="nucleus" size="100"/>
 				<region name="SMA.NC.SPL.SA" type="neocortex"/>
 				<region name="SMA.NC.SPL.PF" type="neocortex"/>
-				<region name="SMA.NC.SPL.PG" type="neocortex"/>
 				<region name="SMA.NC.PO.PCC" type="neocortex"/>
 				<region name="SMA.FD.TH.RIL" type="nucleus" size="100"/>
-				<region name="SMA.FD.TH.PO" type="nucleus" size="100"/>
 				<region name="SMA.NC.MPL.RSC" type="neocortex"/>
 				<region name="SMA.NC.MPL.PCG" type="neocortex"/>
-				<region name="SMA.FD.TH.LD" type="nucleus" size="100"/>
-				<region name="SMA.FD.TH.LP" type="nucleus" size="100"/>
 			</area>
 
 			<area id="PHA" name="Parahippocampal Area" enabled="true" function="Integrating Sensory Streams for Hippocampus">
@@ -170,6 +168,8 @@
 				<region name="FCA.NC.SGC" type="neocortex"/>
 				<region name="FCA.FD.TH.MD" type="nucleus" size="100"/>
 				<region name="FCA.FD.TH.SM" type="nucleus" size="100"/>
+				<region name="FCA.FD.TH.LD" type="nucleus" size="100"/>
+				<region name="FCA.FD.TH.PO" type="nucleus" size="100"/>
 			</area>
 
 			<!-- ================= subcortical =============== -->
@@ -398,22 +398,22 @@
 				<connection type="neocortex-neocortex" src="VCA.NC.MT" dst="VCA.NC.IPS.VIP"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.MT" dst="VCA.NC.IPL.MST"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.MT" dst="VCA.NC.IPS.PEF"/>
-				<connection type="neocortex-neocortex" src="VCA.NC.MT" dst="SMA.NC.SPL.PG"/>
+				<connection type="neocortex-neocortex" src="VCA.NC.MT" dst="MCA.NC.SPL.PG"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.PO" dst="VCA.NC.IPS.VIP"/>
-				<connection type="neocortex-neocortex" src="VCA.NC.PO" dst="SMA.NC.SPL.PG"/>
+				<connection type="neocortex-neocortex" src="VCA.NC.PO" dst="MCA.NC.SPL.PG"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.PO" dst="VCA.NC.IPL.MST"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.PO" dst="VCA.NC.IPS.PEF"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.IT.TEO" dst="VCA.NC.IT.TE"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.IT.TE" dst="PHA.NC.PH.ET"/>
-				<connection type="neocortex-neocortex" src="VCA.NC.IPS.VIP" dst="SMA.NC.SPL.PG"/>
+				<connection type="neocortex-neocortex" src="VCA.NC.IPS.VIP" dst="MCA.NC.SPL.PG"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.IPS.VIP" dst="ACA.NC.IPL.SMW"/>
-				<connection type="neocortex-neocortex" src="VCA.NC.IPS.PEF" dst="SMA.NC.SPL.PG"/>
-				<connection type="neocortex-neocortex" src="VCA.NC.IPL.MST" dst="SMA.NC.SPL.PG"/>
+				<connection type="neocortex-neocortex" src="VCA.NC.IPS.PEF" dst="MCA.NC.SPL.PG"/>
+				<connection type="neocortex-neocortex" src="VCA.NC.IPL.MST" dst="MCA.NC.SPL.PG"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.IPL.MST" dst="ACA.NC.IPL.SMW"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.IPS.VIP" dst="SMA.NC.SPL.PF"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.IPS.PEF" dst="VCA.NC.IPS.AIP"/>
-				<connection type="neocortex-neocortex" src="SMA.NC.PG.S1" dst="SMA.NC.SPL.PG"/>
-				<connection type="neocortex-neocortex" src="SMA.NC.SPL.PG" dst="SMA.NC.MPL.RSC"/>
+				<connection type="neocortex-neocortex" src="SMA.NC.PG.S1" dst="MCA.NC.SPL.PG"/>
+				<connection type="neocortex-neocortex" src="MCA.NC.SPL.PG" dst="SMA.NC.MPL.RSC"/>
 				<connection type="neocortex-neocortex" src="SMA.NC.MPL.RSC" dst="PHA.NC.PH.ET"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.V2" dst="FCA.NC.LPFC"/>
 			</circuit>
@@ -430,7 +430,7 @@
 				<connection type="neocortex-neocortex" src="MCA.NC.SMC" dst="MCA.NC.PMC.FEF"/>
 				<connection type="neocortex-neocortex" src="MCA.NC.SMC" dst="MCA.NC.PMC.F5"/>
 				<connection type="neocortex-neocortex" src="MCA.NC.SMC" dst="MCA.NC.PMC.F2"/>
-				<connection type="neocortex-neocortex" src="SMA.NC.SPL.PG" dst="MCA.NC.PMC.F2"/>
+				<connection type="neocortex-neocortex" src="MCA.NC.SPL.PG" dst="MCA.NC.PMC.F2"/>
 				<connection type="neocortex-neocortex" src="MCA.NC.PMC.F5" dst="MCA.NC.MC"/>
 				<connection type="neocortex-neocortex" src="MCA.NC.PMC.F2" dst="MCA.NC.MC"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.IPL.MST" dst="MCA.NC.PMC.F4"/>
@@ -479,8 +479,8 @@
 				<connection type="nucleus-nucleus" src="MBA.MM.SC" dst="HMA.HP.PRF.RPO"/>
 				<connection type="nucleus-nucleus" src="MBA.MM.SC" dst="HMA.MM.INMLF"/>
 				<connection type="nucleus-nucleus" src="MBA.MM.SC" dst="VBA.MM.PT.NOT"/>
-				<connection type="nucleus-nucleus" src="MBA.MM.SC" dst="SMA.FD.TH.LP"/>
-				<connection type="nucleus-neocortex" src="SMA.FD.TH.LP" dst="SMA.NC.SPL.PG"/>
+				<connection type="nucleus-nucleus" src="MBA.MM.SC" dst="MCA.FD.TH.LP"/>
+				<connection type="nucleus-neocortex" src="MCA.FD.TH.LP" dst="MCA.NC.SPL.PG"/>
 				<connection type="nucleus-nucleus" src="HMA.HP.PRF.GCR" dst="BMA.SC.IZ.RPL"/>
 				<connection type="nucleus-nucleus" src="HMA.HP.PRF.RPO" dst="HMA.SC.VH.ISL"/>
 				<connection type="nucleus-nucleus" src="HMA.HP.PRF.PDT" dst="HMA.HP.FCM"/>
@@ -566,18 +566,18 @@
 
 			<!-- ================= somatic perception =============== -->
 			<circuit id="CircuitSomaticPerception" name="Somatic Perception" enabled="true">
-				<connection type="nucleus-nucleus" src="BMA.SC.IZ.CCV" dst="SMA.FD.TH.PO"/>
+				<connection type="nucleus-nucleus" src="BMA.SC.IZ.CCV" dst="FCA.FD.TH.PO"/>
 				<connection type="nucleus-nucleus" src="BMA.SC.IZ.CCV" dst="SMA.FD.TH.RIL"/>
 				<connection type="nucleus-nucleus" src="MBA.HP.CR" dst="SMA.FD.TH.RIL"/>
 				<connection type="nucleus-nucleus" src="HMA.HP.PTP.PTR" dst="ABA.FD.TH.SG"/>
-				<connection type="nucleus-neocortex" src="SMA.FD.TH.PO" dst="FCA.NC.INS"/>
+				<connection type="nucleus-neocortex" src="FCA.FD.TH.PO" dst="FCA.NC.INS"/>
 				<connection type="nucleus-neocortex" src="SMA.FD.TH.RIL" dst="SMA.NC.SPL.SA"/>
 				<connection type="neocortex-neocortex" src="SMA.NC.PG.S1" dst="SMA.NC.SPL.SA"/>
 				<connection type="neocortex-neocortex" src="SMA.NC.PG.S1" dst="ACA.NC.IPL.SMW"/>
 				<connection type="neocortex-neocortex" src="MCA.NC.PMC.F4" dst="FCA.NC.LPFC"/>
 				<connection type="neocortex-neocortex" src="SMA.NC.SPL.SA" dst="FCA.NC.INS"/>
 				<connection type="neocortex-neocortex" src="MCA.NC.PMC.F7" dst="SMA.NC.SPL.SA"/>
-				<connection type="neocortex-nucleus" src="SMA.NC.SPL.PF" dst="SMA.FD.TH.LD"/>
+				<connection type="neocortex-nucleus" src="SMA.NC.SPL.PF" dst="FCA.FD.TH.LD"/>
 			</circuit>
 
 			<!-- ================= intracortical sensory integration to generate memory items in hippocampus =============== -->
@@ -666,7 +666,7 @@
 				<connection type="nucleus-neocortex" src="HBA.FD.TH.AN" dst="FCA.NC.VACG"/>
 				<connection type="nucleus-nucleus" src="BGA.FD.TH.CM" dst="BGA.FT.PU"/>
 				<connection type="neocortex-nucleus" src="SMA.NC.PG.S1" dst="BGA.FT.PU"/>
-				<connection type="neocortex-neocortex" src="SMA.NC.SPL.PG" dst="MCA.NC.SMC"/>
+				<connection type="neocortex-neocortex" src="MCA.NC.SPL.PG" dst="MCA.NC.SMC"/>
 				<connection type="nucleus-nucleus" src="BFA.FT.ACC" dst="BGA.FT.CN"/>
 				<connection type="nucleus-neocortex" src="BFA.FT.ACC" dst="FCA.NC.OMPFC"/>
 				<connection type="nucleus-nucleus" src="BGA.FT.SN.PC" dst="BFA.FT.ACC"/>
@@ -712,7 +712,7 @@
 				<connection type="nucleus-nucleus" src="BFA.FT.SEP" dst="FCA.FD.TH.MD"/>
 				<connection type="neocortex-nucleus" src="FCA.NC.LPFC" dst="FCA.FD.TH.MD"/>
 				<connection type="nucleus-neocortex" src="FCA.FD.TH.MD" dst="FCA.NC.LPFC"/>
-				<connection type="nucleus-neocortex" src="SMA.FD.TH.LD" dst="FCA.NC.DACG"/>
+				<connection type="nucleus-neocortex" src="FCA.FD.TH.LD" dst="FCA.NC.DACG"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.IPL.MST" dst="FCA.NC.DACG"/>
 				<connection type="neocortex-neocortex" src="FCA.NC.LPFC" dst="FCA.NC.DACG"/>
 				<connection type="neocortex-neocortex" src="PHA.NC.TPC" dst="FCA.NC.INS"/>

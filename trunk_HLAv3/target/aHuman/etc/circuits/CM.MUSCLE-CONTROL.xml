@@ -17,7 +17,7 @@
 	<circuit id="CM.MOVEMENT-PLANNING" name="Movement Planning"
 		image="http://thebrainlabs.com/Images/primary_motor_cortex.gif"
 		reference="http://thebrainlabs.com/brain.shtml"
-		components="SMC=MCA.NC.SMC PPC=SMA.NC.SPL"
+		components="SMC=MCA.NC.SMC PPC=NC.SPL"
 		>
 		<link src="PPC" dst="SMC"/>
 	</circuit>
@@ -108,6 +108,25 @@
 		reference="http://www.sciencedirect.com/science/article/pii/S0896627307007118"
 		components="M1=MCA.NC.MC"
 		>
+	</circuit>
+
+	<circuit id="CM.PFC-MOTOR" name="Prefrontal Cortex (PFC) in motor behavior"
+		image="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/motor_top.jpg"
+		reference="https://www.google.ru/search?hl=ru&tbo=p&tbm=bks&q=isbn:0080887988"
+		components="LPFC=FCA.NC.LPFC PMC=NC.PMC MC=MCA.NC.MC TH=FD.TH.VTH CN.PU=BGA.FT.ST GP=BGA.FT.GP SN=BGA.FT.SN CR=MBA.HP.CR PN=MBA.HP.PN"
+		>
+		<link src="LPFC" dst="PMC"/>
+		<link src="PMC" dst="MC"/>
+		<link src="MC" dst="PN"/>
+		<link src="PN" dst="CR"/>
+		<link src="MC" dst="CN.PU"/>
+		<link src="CN.PU" dst="GP"/>
+		<link src="GP" dst="SN"/>
+		<link src="SN" dst="CR"/>
+		<link src="CR" dst="TH"/>
+		<link src="CR" dst="LPFC"/>
+		<link src="LPFC" dst="TH"/>
+		<link src="TH" dst="PMC"/>
 	</circuit>
 
 </circuits>
