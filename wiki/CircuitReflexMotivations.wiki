@@ -11,17 +11,8 @@ Circuit is part of aHuman target integrated biological model.
 
 || *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||
 || [BrainAreaBFA BFA] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || Mixed Nucleus || Experiencing and recognizing emotions ||
-|| [BrainAreaBFA BFA] || [BrainRegionBFA_FT_BNST BFA.FT.BNST] || Bed Nucleus of Stria Terminalis || Mixed Nucleus || Mediate slow longer-lasting responses that accompany sustained threats ||
-|| [BrainAreaBFA BFA] || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || Septal Nucleus || Mixed Nucleus || Inhibition of fear and expression of pleasurable responses ||
-|| [BrainAreaBMA BMA] || [BrainRegionBMA_HP_PB BMA.HP.PB] || Parabrachial Nucleus || Sensory Relay Nucleus || Source of short-latency nociceptive input ||
 || [BrainAreaBMA BMA] || [BrainRegionBMA_SC_PH_MG BMA.SC.PH.MG] || Marginal Nucleus || 1-order Sensory Nucleus || Relay information related to pain and temperature sensation ||
-|| [BrainAreaFBA FBA] || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || Periaqueductal Gray Matter || Modulatory Nucleus || Descending modulation of pain and in defensive behaviour ||
-|| [BrainAreaFCA FCA] || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || Mediodorsal Nucleus of Thalamus || Excitatory Nucleus || Attention, planning, organization, abstract thinking, multi-tasking, and active memory ||
-|| [BrainAreaFCA FCA] || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || Dorsolateral Prefrontal Cortex || Neocortex || Temporal Integration ||
-|| [BrainAreaFCA FCA] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || Neocortex || Personality ||
 || [BrainAreaFCA FCA] || [BrainRegionFCA_NC_PACG FCA.NC.PACG] || Pregenual Area || Neocortex || Sensation of Emotion ||
-|| [BrainAreaFCA FCA] || [BrainRegionFCA_NC_SGC FCA.NC.SGC] || Subgenual Cortex || Neocortex || Influences changes in appetite and sleep ||
-|| [BrainAreaFCA FCA] || [BrainRegionFCA_NC_VACG FCA.NC.VACG] || Ventral Anterior Cingulate Area || Neocortex || Seat of Free Will ||
 || [BrainAreaHBA HBA] || [BrainRegionHBA_FD_TH_AN HBA.FD.TH.AN] || Anterior Nucleus of Thalamus || Excitatory Nucleus || Extended hippocampal system ||
 || [BrainAreaHBA HBA] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || Ventrolateral Cornu Ammonis of Hippocampus || Allocortex || Representing sequences of episodic memory - long-term ||
 || [BrainAreaHBA HBA] || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || Subiculum || Allocortex || Spatial navigation and mnemonic processing ||
@@ -32,7 +23,6 @@ Circuit is part of aHuman target integrated biological model.
 || [BrainAreaPHA PHA] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || Neocortex || Memory consolidation ||
 || [BrainAreaSMA SMA] || [BrainRegionSMA_FD_TH_VP SMA.FD.TH.VP] || Ventral Posterior Nucleus || Excitatory Nucleus || Relays somatic information to MCA.SSC ||
 || [BrainAreaSMA SMA] || [BrainRegionSMA_NC_MPL_PCG SMA.NC.MPL.PCG] || Posterior Cingulate Cortex || Neocortex || Self-awareness, pain and episodic memory retrieval ||
-|| [BrainAreaSMA SMA] || [BrainRegionSMA_NC_MPL_RSC SMA.NC.MPL.RSC] || Retrosplenial Cortex || Neocortex || Processing of emotionally salient stimuli ||
 || [BrainAreaVCA VCA] || [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || Inferotemporal Cortex || Neocortex || Represent different views of objects ||
 
 = Connections =
@@ -41,32 +31,18 @@ Circuit is part of aHuman target integrated biological model.
 http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitReflexMotivations.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| [BrainRegionBFA_FT_AM BFA.FT.AM] || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || nucleus-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in emotional behavior (AM -> TH)] ||
-|| [BrainRegionBFA_FT_AM BFA.FT.AM] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || nucleus-neocortex || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in emotional behavior (AM -> OPFC)] ||
 || [BrainRegionBFA_FT_AM BFA.FT.AM] || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || nucleus-nucleus || [http://www.pnas.org/content/107/40/17071/F1.expansion.html Role for serotonin in moral behavior (AMY -> HYP, abstract)] ||
 || [BrainRegionBFA_FT_AM BFA.FT.AM] || [BrainRegionSMA_NC_MPL_PCG SMA.NC.MPL.PCG] || nucleus-neocortex || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (AMYG -> CGp)] ||
-|| [BrainRegionBFA_FT_SEP BFA.FT.SEP] || [BrainRegionFCA_NC_SGC FCA.NC.SGC] || nucleus-neocortex || (unknown reference) ||
 || [BrainRegionBMA_SC_PH_MG BMA.SC.PH.MG] || [BrainRegionSMA_FD_TH_VP SMA.FD.TH.VP] || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sVPL -> VPL)] ||
-|| [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || [BrainRegionFCA_NC_PACG FCA.NC.PACG] || nucleus-neocortex || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (Thalamus -> FrontalCortex, abstract)] ||
-|| [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || neocortex-neocortex || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in emotional behavior (OPFC -> LPFC)] ||
-|| [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || [BrainRegionFCA_NC_PACG FCA.NC.PACG] || neocortex-neocortex || [http://www.pnas.org/content/107/40/17071/F1.expansion.html Role for serotonin in moral behavior (OMPFC -> ACG, abstract)] ||
-|| [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || [BrainRegionFCA_NC_VACG FCA.NC.VACG] || neocortex-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (OPFC -> vACC)] ||
-|| [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || [BrainRegionHTA_FD_HT_RCH HTA.FD.HT.RCH] || neocortex-neocortex || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in emotional behavior (OPFC -> HT, abstract)] ||
 || [BrainRegionFCA_NC_PACG FCA.NC.PACG] || [BrainRegionBFA_FT_AM BFA.FT.AM] || neocortex-nucleus || [http://www.pnas.org/content/107/40/17071/F1.expansion.html Role for serotonin in moral behavior (ACG -> AMY, abstract)] ||
 || [BrainRegionFCA_NC_PACG FCA.NC.PACG] || [BrainRegionSMA_NC_MPL_PCG SMA.NC.MPL.PCG] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> ParietalCortex, abstract)] ||
-|| [BrainRegionFCA_NC_SGC FCA.NC.SGC] || [BrainRegionBFA_FT_BNST BFA.FT.BNST] || neocortex-nucleus || (unknown reference) ||
-|| [BrainRegionFCA_NC_SGC FCA.NC.SGC] || [BrainRegionBMA_HP_PB BMA.HP.PB] || neocortex-nucleus || (unknown reference) ||
-|| [BrainRegionFCA_NC_SGC FCA.NC.SGC] || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || neocortex-nucleus || (unknown reference) ||
-|| [BrainRegionFCA_NC_SGC FCA.NC.SGC] || [BrainRegionHTA_FD_HT_AH HTA.FD.HT.AH] || neocortex-nucleus || (unknown reference) ||
 || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionBFA_FT_AM BFA.FT.AM] || allocortex-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in emotional behavior (HCA -> AM, abstract)] ||
 || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionHTA_FD_HT_AH HTA.FD.HT.AH] || allocortex-nucleus || [http://www.nature.com/nrn/journal/v5/n7 Feeling (HC -> HT, abstract)] ||
 || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || [BrainRegionHBA_FD_TH_AN HBA.FD.TH.AN] || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n7 Feeling (HT -> AN, abstract)] ||
-|| [BrainRegionHTA_FD_HT_RCH HTA.FD.HT.RCH] || [BrainRegionMBA_HP_PN_RP MBA.HP.PN.RP] || neocortex-neocortex || (unknown reference) ||
+|| [BrainRegionHTA_FD_HT_RCH HTA.FD.HT.RCH] || [BrainRegionMBA_HP_PN_RP MBA.HP.PN.RP] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionBFA_FT_AM BFA.FT.AM] || neocortex-nucleus || (unknown reference) ||
 || [BrainRegionSMA_NC_MPL_PCG SMA.NC.MPL.PCG] || [BrainRegionFCA_NC_PACG FCA.NC.PACG] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> FrontalCortex, abstract)] ||
 || [BrainRegionSMA_NC_MPL_PCG SMA.NC.MPL.PCG] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || neocortex-allocortex || [http://www.nature.com/nrn/journal/v5/n7 Feeling (CG -> HC, abstract)] ||
-|| [BrainRegionSMA_NC_MPL_RSC SMA.NC.MPL.RSC] || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || neocortex-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in emotional behavior (PCA -> LPFC, abstract)] ||
-|| [BrainRegionSMA_NC_MPL_RSC SMA.NC.MPL.RSC] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || neocortex-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in emotional behavior (PCA -> OPFC, abstract)] ||
 || [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || [BrainRegionBFA_FT_AM BFA.FT.AM] || neocortex-nucleus || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (IT -> A)] ||
 
