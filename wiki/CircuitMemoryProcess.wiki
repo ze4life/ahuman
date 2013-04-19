@@ -10,6 +10,8 @@ Circuit is part of aHuman target integrated biological model.
 (generated)
 
 || *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||
+|| [BrainAreaBFA BFA] || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || Septal Nucleus || Mixed Nucleus || Inhibition of fear and expression of pleasurable responses ||
+|| [BrainAreaBGA BGA] || [BrainRegionBGA_FD_TH_PF BGA.FD.TH.PF] || Parafascicular Nucleus of Thalamus || Excitatory Nucleus || Stimulation of acetylcholine release in dorsal striata ||
 || [BrainAreaHBA HBA] || [BrainRegionHBA_FD_MB_LMB HBA.FD.MB.LMB] || Lateral Mammillary Nucleus || Excitatory Nucleus || Generate theta rythm and relay to HC ||
 || [BrainAreaHBA HBA] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || Excitatory Nucleus || Relay for impulses coming from AM and HC ||
 || [BrainAreaHBA HBA] || [BrainRegionHBA_FD_TH_AN HBA.FD.TH.AN] || Anterior Nucleus of Thalamus || Excitatory Nucleus || Extended hippocampal system ||
@@ -17,6 +19,7 @@ Circuit is part of aHuman target integrated biological model.
 || [BrainAreaHBA HBA] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || Ventrolateral Cornu Ammonis of Hippocampus || Allocortex || Representing sequences of episodic memory - long-term ||
 || [BrainAreaHBA HBA] || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || Dorsomedial Cornu Ammonis of Hippocampus || Allocortex || Representing sequences of episodic memory - short-term ||
 || [BrainAreaHBA HBA] || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || Subiculum || Allocortex || Spatial navigation and mnemonic processing ||
+|| [BrainAreaHTA HTA] || [BrainRegionHTA_FD_HT_PVI HTA.FD.HT.PVI] || Intermediate Periventrical Nucleus || Excitatory Nucleus || Rage Center ||
 || [BrainAreaPHA PHA] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || Neocortex || Memory consolidation ||
 || [BrainAreaPHA PHA] || [BrainRegionPHA_NC_PH_PPG PHA.NC.PH.PPG] || Posterior Parahippocampal Gyrus || Neocortex || Spatial declarative memory ||
 || [BrainAreaSMA SMA] || [BrainRegionSMA_NC_MPL_PCG SMA.NC.MPL.PCG] || Posterior Cingulate Cortex || Neocortex || Self-awareness, pain and episodic memory retrieval ||
@@ -29,8 +32,12 @@ Circuit is part of aHuman target integrated biological model.
 http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitMemoryProcess.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionBFA_FT_SEP BFA.FT.SEP] || [BrainRegionBGA_FD_TH_PF BGA.FD.TH.PF] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionBFA_FT_SEP BFA.FT.SEP] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || nucleus-nucleus || [http://www.thebrainlabs.com Cingulate Gyrus (SEP -> MB, abstract)] ||
+|| [BrainRegionBFA_FT_SEP BFA.FT.SEP] || [BrainRegionHTA_FD_HT_PVI HTA.FD.HT.PVI] || nucleus-nucleus || [http://www.thebrainlabs.com Cingulate Gyrus (SEP -> HT, abstract)] ||
 || [BrainRegionHBA_FD_MB_LMB HBA.FD.MB.LMB] || [BrainRegionHBA_FD_TH_AN HBA.FD.TH.AN] || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s2A -> A, abstract)] ||
 || [BrainRegionHBA_FD_TH_AN HBA.FD.TH.AN] || [BrainRegionSMA_NC_MPL_PCG SMA.NC.MPL.PCG] || nucleus-neocortex || [http://www.nature.com/nrn/journal/v5/n7 Feeling (AN -> CG)] ||
+|| [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || allocortex-nucleus || [http://www.thebrainlabs.com Cingulate Gyrus (HC -> SEP, abstract)] ||
 || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || allocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0149763409002061 Contribution of hippocampal region CA3 to consciousness (CA1 -> MB, abstract)] ||
 || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionHBA_FD_TH_AN HBA.FD.TH.AN] || allocortex-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s1A -> A, abstract)] ||
 || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionSMA_NC_MPL_RSC SMA.NC.MPL.RSC] || allocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (SUB -> PCGRSP, abstract)] ||
