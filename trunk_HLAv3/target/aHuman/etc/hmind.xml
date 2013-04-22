@@ -112,21 +112,6 @@
 						refs="wiki:[http://www.sylvius.com/index/b/brodmann_s_area_12.html]"
 						/>
 				</element>
-				<element id="FCA.NC.INS" name="Insular Cortex" type="Neocortex"
-					function="Visceral representation, pain, habits" 
-					notes="Interoception, merges tactile and auditory streams"
-					>
-					<element id="FCA.NC.INS.PIC" name="Posterior Insular Cortex" mapped="true" brodmannid="13" type="Neocortex"
-						function="Awareness and sensation of pain" 
-						notes="Peripaleocortical Claustral, Relays proprioception"
-						comments="Dentate gyrus -> lateropolaris magnoceflularis -> this"
-						refs="web:[http://www.psych-it.com.au/Psychlopedia/article.asp?id=341]"
-						/>
-					<element id="FCA.NC.INS.AIC" name="Anterior Insular Cortex" mapped="true" brodmannid="14" type="Neocortex"
-						function="Risky and moral decision making, articulation" 
-						refs="web:[http://www.psych-it.com.au/Psychlopedia/article.asp?id=341]"
-						/>
-				</element>
 				<element id="NC.VLPFC" name="Ventrolateral Prefrontal Cortex">
 					<element id="FCA.NC.IPG" name="Inferior Prefrontal Gyrus" mapped="true" brodmannid="47" type="Neocortex"
 						function="Processing of syntax in oral and sign languages"
@@ -303,23 +288,38 @@
 				function="Self representation, semantic (left) and autobiographic (right)" 
 				>
 			</element>
-			<element id="PHA.NC.HR" name="Anterior Temporal Lobe" mapped="true" brodmannid="15" type="Neocortex"
-				refs="NL:[http://neurolex.org/wiki/Birnlex_1746]"
-				function="Relaying blood pressure and blood chemistry information to brain" 
-				comments="monkey only"
-				notes="Cortical target of information coming through Hering's nerves, active during panic attacks"
-				/>
+			<element id="PHA.NC.INS" name="Insular Cortex" type="Neocortex"
+				function="Visceral representation, pain, habits" 
+				notes="Interoception, merges tactile and auditory streams"
+				>
+				<element id="PHA.NC.INS.PIC" name="Posterior Insular Cortex" mapped="true" brodmannid="13" type="Neocortex"
+					function="Awareness and sensation of pain" 
+					notes="Peripaleocortical Claustral, Relays proprioception"
+					comments="Dentate gyrus -> lateropolaris magnoceflularis -> this"
+					refs="web:[http://www.psych-it.com.au/Psychlopedia/article.asp?id=341]"
+					/>
+				<element id="PHA.NC.INS.AIC" name="Anterior Insular Cortex" mapped="true" brodmannid="14" type="Neocortex"
+					function="Risky and moral decision making, articulation" 
+					refs="web:[http://www.psych-it.com.au/Psychlopedia/article.asp?id=341]"
+					/>
+				<element id="PHA.NC.HR" name="Anterior Temporal Lobe" mapped="true" brodmannid="15" type="Neocortex"
+					refs="NL:[http://neurolex.org/wiki/Birnlex_1746]"
+					function="Relaying blood pressure and blood chemistry information to brain" 
+					comments="monkey only"
+					notes="Cortical target of information coming through Hering's nerves, active during panic attacks"
+					/>
+				<element id="PHA.NC.PRC" name="Peripaleocortical Claustral" mapped="true" brodmannid="16" type="Neocortex"
+					refs="http://neurolex.org/wiki/Birnlex_1747"
+					function="Relays proprioception" 
+					comments="monkey only"
+					notes="Dentate gyrus -> lateropolaris magnoceflularis -> this"
+					/>
+			</element>
 		</element>
 
 		<element id="NC.LOBE.PH" name="Parahippocampal Lobe"
 			dotdef="color=deepskyblue"
 			>
-			<element id="PHA.NC.PRC" name="" mapped="true" brodmannid="16" type="Neocortex"
-				refs="http://neurolex.org/wiki/Birnlex_1747"
-				function="Relays proprioception" 
-				comments="monkey only"
-				notes="Dentate gyrus -> lateropolaris magnoceflularis -> this"
-				/>
 			<element id="PHA.NC.PH.ET" name="Enthorhinal Cortex" mapped="true" brodmannid="28,34" type="Neocortex"
 				function="Memory consolidation" 
 				notes="Parahippocampal gyrus"
