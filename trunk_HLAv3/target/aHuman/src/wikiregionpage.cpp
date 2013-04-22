@@ -153,8 +153,10 @@ void WikiRegionPage::createChildTableSection_addChilds( Xml node , String prefix
 void WikiRegionPage::createConnectivitySection() {
 	StringList lines;
 	MapStringToClass<MindCircuitConnectionDef> connections;
-	MapStringToClass<MindRegionDef> regions;
+	MapStringToClass<MindRegion> regions;
 	MapStringToClass<MindCircuitConnectionDef> connectionsTotal;
+
+	MindService *ms = MindService::getService();
 
 	// image
 	lines.add( "" );
@@ -176,7 +178,7 @@ void WikiRegionPage::createConnectivitySection() {
 		for( int k = 0; k < connections.count(); k++ ) {
 			MindCircuitConnectionDef *c = connections.getClassByIndex( k );
 			createConnectivitySection_getExternalConnectionTableLine( c , lines , true );
-			regions.addnew( c -> getSrcRegion() , NULL );
+			regions.addnew( c -> getSrcRegion() , ms -> getMindRegion( c -> getSrcRegion() ) );
 		}
 	}
 
@@ -194,7 +196,7 @@ void WikiRegionPage::createConnectivitySection() {
 		for( int k = 0; k < connections.count(); k++ ) {
 			MindCircuitConnectionDef *c = connections.getClassByIndex( k );
 			createConnectivitySection_getExternalConnectionTableLine( c , lines , false );
-			regions.addnew( c -> getDstRegion() , NULL );
+			regions.addnew( c -> getDstRegion() , ms -> getMindRegion( c -> getDstRegion() ) );
 		}
 	}
 
@@ -203,6 +205,10 @@ void WikiRegionPage::createConnectivitySection() {
 	wm -> updateFileSection( wikiDir , wikiPage , section , lines );
 
 	// create dot file
+	createDotFile( regions , connectionsTotal );
+}
+
+void WikiRegionPage::createDotFile( MapStringToClass<MindRegion>& regions , MapStringToClass<MindCircuitConnectionDef>& connectionsTotal ) {
 	String dotDir = wm -> wiki.getProperty( "dotPath" );
 	String fileName = dotDir + "/" + info.id + ".dot";
 	StringList text;
@@ -211,29 +217,79 @@ void WikiRegionPage::createConnectivitySection() {
 	text.add( "digraph \"" + info.id.replace( "." , "_" ) + "\" {" );
 	String defaultDotSetup = wm -> wiki.getProperty( "defaultDotSetup" );
 	text.add( wm -> setSpecialCharacters( defaultDotSetup ) );
+	text.add( "\trankdir=LR;" );
 	text.add( "" );
 
-	// list nodes
-	XmlHMindElementInfo infoPair;
+	// main item
+	String defaultDotRegionSetup = wm -> wiki.getProperty( "defaultDotRegionSetup" );
+	text.add( "\t\"" + info.id + "\" [" + wm -> setSpecialCharacters( defaultDotRegionSetup ) + "];" );
+	text.add( "" );
+
+	// areas
+	MapStringToClass<MindArea> areas;
 	for( int k = 0; k < regions.count(); k++ ) {
-		String regionPaired = regions.getKeyByIndex( k );
+		MindRegion *region = regions.getClassByIndex( k );
+		MindArea *area = region -> getArea();
+		areas.addnew( area -> getId() , area );
+	}
 
-		String dotdef = wm -> hmindxml.getDotDef( regionPaired );
-		String nodeline = "\t\"" + regionPaired + "\"";
-		if( !dotdef.isEmpty() ) {
-			String s = wm -> setSpecialCharacters( dotdef );
-			nodeline += " [" + s + "]";
+	// list nodes by area
+	for( int k = 0; k < areas.count(); k++ ) {
+		MindArea *area = areas.getClassByIndex( k );
+
+		// area
+		text.add( "\tsubgraph cluster_" + area -> getId() + " {" );
+		text.add( "\tlabel=\"" + area -> getId() + "\";" );
+		text.add( "\t\"" + area -> getId() + "\" [ shape=box, style=filled , label = <" );
+		text.add( "\t\t<TABLE BORDER=\"0\" CELLBORDER=\"1\" CELLSPACING=\"0\" CELLPADDING=\"4\">" );
+
+		// regions
+		XmlHMindElementInfo infoPair;
+		for( int k = 0; k < regions.count(); k++ ) {
+			MindRegion *region = regions.getClassByIndex( k );
+			if( region -> getArea() != area )
+				continue;
+
+			// ignore self
+			String regionPaired = region -> getRegionId();
+			if( info.id.equals( regionPaired ) )
+				continue;
+
+			String dotdef = wm -> hmindxml.getDotDef( regionPaired );
+			String color;
+			if( !dotdef.isEmpty() ) {
+				String s = wm -> setSpecialCharacters( dotdef );
+				color = wm -> getDotColor( dotdef );
+				if( !color.isEmpty() )
+					color = " BGCOLOR=\"" + color + "\"";
+			}
+			String nodeline = "\t\t<TR><TD PORT=\"" + regionPaired + "\"" + color + ">" + regionPaired + "</TD></TR>";
+			text.add( nodeline );
 		}
-		nodeline += ";";
 
-		text.add( nodeline );
+		text.add( "\t\t</TABLE>> ];" );
+		text.add( "\t}" );
+		text.add( "" );
 	}
 
 	// list connections
-	text.add( "" );
 	for( int k = 0; k < connectionsTotal.count(); k++ ) {
 		MindCircuitConnectionDef *c = connectionsTotal.getClassByIndex( k );
-		String linkline = "\t\"" + c -> getSrcRegion() + "\" -> \"" + c -> getDstRegion() + "\";";
+
+		String src = c -> getSrcRegion();
+		String dst = c -> getDstRegion();
+		if( info.id.equals( src ) ) {
+			MindRegion *region = regions.get( dst );
+			src = "\"" + src + "\"";
+			dst = "\"" + region -> getArea() -> getId() + "\":" + "\"" + dst + "\"";
+		}
+		else {
+			MindRegion *region = regions.get( src );
+			src = "\"" + region -> getArea() -> getId() + "\":" + "\"" + src + "\"";
+			dst = "\"" + dst + "\"";
+		}
+
+		String linkline = "\t" + src + " -> " + dst + ";";
 		text.add( linkline );
 	}
 

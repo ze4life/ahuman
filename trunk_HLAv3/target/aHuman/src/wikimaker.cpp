@@ -301,3 +301,20 @@ String WikiMaker::getAreaReference( String area ) {
 	return( "[" + getAreaPage( area ) + " " + area + "]" );
 }
 
+String WikiMaker::getDotColor( String dotdef ) {
+	int index = dotdef.find( "color=" );
+	if( index < 0 )
+		return( "" );
+
+	int stop = dotdef.find( index , "." );
+
+	String color;
+	if( stop < 0 )
+		color = dotdef.getMid( index + 6 );
+	else
+		color = dotdef.getMid( index + 6 , stop - index - 6 );
+
+	color.trim();
+	return( color );
+}
+
