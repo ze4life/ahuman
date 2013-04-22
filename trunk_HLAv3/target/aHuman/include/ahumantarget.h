@@ -131,6 +131,7 @@ public:
 	void createFileContent( String fileName , StringList& lines );
 	String setSpecialCharacters( String data );
 	String findReference( MindCircuitConnectionDef *link );
+	String getDotColor( String dotdef );
 
 	String getAreaPage( String area );
 	String getRegionPage( String region );
@@ -272,6 +273,7 @@ private:
 	void createConnectivitySection();
 	void createConnectivitySection_getExternalConnections( MapStringToClass<MindCircuitConnectionDef>& connections , bool isin );
 	void createConnectivitySection_getExternalConnectionTableLine( MindCircuitConnectionDef *link , StringList& lines , bool isin );
+	void createDotFile( MapStringToClass<MindRegion>& regions , MapStringToClass<MindCircuitConnectionDef>& connectionsTotal );
 
 	void createThirdpartyAndReferencesSection();
 	String createThirdpartyAndReferencesSection_getCircuitKey( MindAreaDef *areaDef , XmlCircuitInfo& info );
