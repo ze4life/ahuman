@@ -144,8 +144,8 @@
 			</area>
 
 			<area id="PHA" name="Parahippocampal Area" enabled="true" function="Integrating Sensory Streams for Hippocampus">
-				<region name="PHA.NC.PRC" type="neocortex"/>
-				<region name="PHA.NC.HR" type="neocortex"/>
+				<region name="PHA.NC.INS.PRC" type="neocortex"/>
+				<region name="PHA.NC.INS.HR" type="neocortex"/>
 				<region name="PHA.NC.PH.ET" type="neocortex"/>
 				<region name="PHA.NC.PH.PPG" type="neocortex"/>
 				<region name="PHA.NC.PH.PRR" type="neocortex"/>
@@ -586,7 +586,7 @@
 			<circuit id="CircuitSensoryIntegration" name="Multisensory Intergration for Hippocampus" enabled="true">
 				<connection type="neocortex-neocortex" src="VCA.NC.IT.TE" dst="PHA.NC.PH.PRR"/>
 				<connection type="neocortex-neocortex" src="PHA.NC.PH.PRR" dst="PHA.NC.PH.ET"/>
-				<connection type="neocortex-neocortex" src="PHA.NC.HR" dst="PHA.NC.PH.PRR"/>
+				<connection type="neocortex-neocortex" src="PHA.NC.INS.HR" dst="PHA.NC.PH.PRR"/>
 			</circuit>
 
 			<!-- ================= motivation stimuli =============== -->
