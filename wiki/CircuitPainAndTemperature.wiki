@@ -11,6 +11,7 @@ Circuit is part of aHuman target integrated biological model.
 
 || *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||
 || [BrainAreaBFA BFA] || [BrainRegionBFA_FT_ACC BFA.FT.ACC] || Accumbens Nucleus || Inhibitory Nucleus || Activate motor functions under attention ||
+|| [BrainAreaBFA BFA] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || Mixed Nucleus || Experiencing and recognizing emotions ||
 || [BrainAreaBGA BGA] || [BrainRegionBGA_FT_CN BGA.FT.CN] || Caudate Nucleus || Inhibitory Nucleus || Excitation of correct action schemas and selection of appropriate sub-goals based on evaluation of action-outcomes ||
 || [BrainAreaBGA BGA] || [BrainRegionBGA_FT_PU BGA.FT.PU] || Putamen || Inhibitory Nucleus || Stimulus-response, or habit, learning ||
 || [BrainAreaBGA BGA] || [BrainRegionBGA_FT_VP BGA.FT.VP] || Ventral Pallidum || Inhibitory Nucleus || Distinguish _wanting_ versus _liking_ enhancements ||
@@ -23,6 +24,9 @@ Circuit is part of aHuman target integrated biological model.
 || [BrainAreaFCA FCA] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || Neocortex, BA 10,11,12 || Personality ||
 || [BrainAreaFCA FCA] || [BrainRegionFCA_NC_SGC FCA.NC.SGC] || Subgenual Cortex || Neocortex, BA 25 || Influences changes in appetite and sleep ||
 || [BrainAreaFCA FCA] || [BrainRegionFCA_NC_VACG FCA.NC.VACG] || Ventral Anterior Cingulate Area || Neocortex, BA 24 || Seat of Free Will ||
+|| [BrainAreaPHA PHA] || [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || Posterior Insular Cortex || Neocortex, BA 13 || Awareness and sensation of pain ||
+|| [BrainAreaPHA PHA] || [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || Peripaleocortical Claustral || Neocortex, BA 16 || Relays proprioception ||
+|| [BrainAreaPHA PHA] || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || Piriform Cortex || Neocortex, BA 27 || Perception of smells ||
 
 = Connections =
 (generated)
@@ -40,4 +44,9 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitPainAndTemperature.dot
 || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || [BrainRegionFCA_NC_IPG FCA.NC.IPG] || neocortex-neocortex || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (OFC -> IFG)] ||
 || [BrainRegionFCA_NC_SGC FCA.NC.SGC] || [BrainRegionFCA_NC_DACG FCA.NC.DACG] || neocortex-neocortex || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (SGC -> DACC)] ||
 || [BrainRegionFCA_NC_SGC FCA.NC.SGC] || [BrainRegionFCA_NC_VACG FCA.NC.VACG] || neocortex-neocortex || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (SGC -> VACC)] ||
+|| [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (Iav -> IadIap, abstract)] ||
+|| [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || [BrainRegionBFA_FT_AM BFA.FT.AM] || neocortex-nucleus || (unknown reference) ||
+|| [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || [BrainRegionFCA_NC_DACG FCA.NC.DACG] || neocortex-neocortex || (unknown reference) ||
+|| [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || neocortex-neocortex || (unknown reference) ||
+|| [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || neocortex-neocortex || (unknown reference) ||
 

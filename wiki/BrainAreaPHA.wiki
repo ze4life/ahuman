@@ -11,7 +11,7 @@
 || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || Anterior Insular Cortex || Neocortex, BA 14 || Risky and moral decision making, articulation ||  ||
 || [BrainRegionPHA_NC_INS_HR PHA.NC.INS.HR] || Anterior Temporal Lobe || Neocortex, BA 15 || Relaying blood pressure and blood chemistry information to brain || Cortical target of information coming through<BR>Hering's nerves, active during panic attacks ||
 || [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || Posterior Insular Cortex || Neocortex, BA 13 || Awareness and sensation of pain ||  ||
-|| [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || Peripaleocortical Claustral || Neocortex, BA 16 || Relays proprioception || Dentate gyrus -> lateropolaris magnoceflularis -><BR>this ||
+|| [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || Peripaleocortical Claustral || Neocortex, BA 16 || Relays proprioception || Dentate gyrus -> lateropolaris magnoceflularis -><BR>this, agranular orbital, lateral ||
 || [BrainRegionPHA_NC_PAS PHA.NC.PAS] || Parasubiculum || Neocortex, BA 49 || Spatial navigation and the integration of head-directional information || Major projects to ET, from CA1,AM ||
 || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || Neocortex, BA 28,34 || Memory consolidation || Parahippocampal gyrus ||
 || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || Piriform Cortex || Neocortex, BA 27 || Perception of smells || Olfaction ||
@@ -33,6 +33,8 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/PHA.dot.jpg
 || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (Iav -> PrC, abstract)] ||
 || [BrainRegionPHA_NC_INS_HR PHA.NC.INS.HR] || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763409002061 Contribution of hippocampal region CA3 to consciousness (AnteriorTemporal -> PRCortex)] ||
 || [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (Iav -> IadIap, abstract)] ||
+|| [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (Iav -> IadIap, abstract)] ||
+|| [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || neocortex-neocortex || (unknown reference) ||
 || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PiR -> Iav, abstract)] ||
 || [BrainRegionPHA_NC_PH_PPG PHA.NC.PH.PPG] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763409002061 Contribution of hippocampal region CA3 to consciousness (PHCortex -> MedialEC)] ||
 || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || neocortex-neocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (PRPH -> ER)] ||
@@ -60,10 +62,13 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/PHA.dot.jpg
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || [BrainAreaACA ACA] || [BrainRegionPHA_NC_TPC PHA.NC.TPC] || [BrainRegionACA_NC_BRA ACA.NC.BRA] || Broca's Area || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1364661312002823 Language-Related Regions (TC -> BA45)] ||
+|| [BrainAreaBFA BFA] || [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || neocortex-nucleus || (unknown reference) ||
 || [BrainAreaBFA BFA] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || neocortex-nucleus || (unknown reference) ||
 || [BrainAreaBFA BFA] || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || [BrainRegionBFA_FT_EPF BFA.FT.EPF] || Endopiriform Nucleus || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PiR -> EnP)] ||
 || [BrainAreaFCA FCA] || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || [BrainRegionFCA_NC_IPG FCA.NC.IPG] || Inferior Prefrontal Gyrus || neocortex-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (Insula -> fPole, abstract)] ||
 || [BrainAreaFCA FCA] || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || [BrainRegionFCA_NC_VACG FCA.NC.VACG] || Ventral Anterior Cingulate Area || neocortex-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (Insula -> vACC, abstract)] ||
+|| [BrainAreaFCA FCA] || [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || [BrainRegionFCA_NC_DACG FCA.NC.DACG] || Dorsal Anterior Cingulate Area || neocortex-neocortex || (unknown reference) ||
+|| [BrainAreaFCA FCA] || [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || neocortex-neocortex || (unknown reference) ||
 || [BrainAreaFCA FCA] || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || Mediodorsal Nucleus of Thalamus || neocortex-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s2MD -> MD)] ||
 || [BrainAreaFCA FCA] || [BrainRegionPHA_NC_TPC PHA.NC.TPC] || [BrainRegionFCA_NC_IPG FCA.NC.IPG] || Inferior Prefrontal Gyrus || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1364661312002823 Language-Related Regions (TC -> vIFC)] ||
 || [BrainAreaHBA HBA] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionHBA_FT_DG HBA.FT.DG] || Dentate Gyrus || neocortex-allocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (ER -> H, abstract)] ||
