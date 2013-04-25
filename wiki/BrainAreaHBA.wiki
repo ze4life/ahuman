@@ -38,9 +38,16 @@
 http://ahuman.googlecode.com/svn/images/dot/aHuman/HBA.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| [BrainRegionHBA_FD_MB_LMB HBA.FD.MB.LMB] || [BrainRegionHBA_FD_TH_AN HBA.FD.TH.AN] || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s2A -> A, abstract)] ||
+|| [BrainRegionHBA_FD_MB_LMB HBA.FD.MB.LMB] || [BrainRegionHBA_FD_TH_AN HBA.FD.TH.AN] || nucleus-nucleus || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (LMam -> ATN)] ||
+|| [BrainRegionHBA_FD_TH_AN HBA.FD.TH.AN] || [BrainRegionHBA_FT_SC_PSS HBA.FT.SC.PSS] || nucleus-allocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (ATN -> PoS)] ||
+|| [BrainRegionHBA_FT_DG HBA.FT.DG] || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || allocortex-allocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (DG -> CA3)] ||
+|| [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || allocortex-allocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (CA1 -> Sub)] ||
 || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || allocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0149763409002061 Contribution of hippocampal region CA3 to consciousness (CA1 -> MB, abstract)] ||
+|| [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || allocortex-allocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (CA3 -> CA1)] ||
+|| [BrainRegionHBA_FT_SC_PSS HBA.FT.SC.PSS] || [BrainRegionHBA_FD_MB_LMB HBA.FD.MB.LMB] || allocortex-nucleus || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (PoS -> LMam)] ||
+|| [BrainRegionHBA_FT_SC_PSS HBA.FT.SC.PSS] || [BrainRegionHBA_FD_TH_AN HBA.FD.TH.AN] || allocortex-nucleus || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (PoS -> ATN)] ||
 || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionHBA_FD_TH_AN HBA.FD.TH.AN] || allocortex-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s1A -> A, abstract)] ||
+|| [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionHBA_FT_SC_PSS HBA.FT.SC.PSS] || allocortex-allocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (Sub -> PoS)] ||
 
 *External Inbound Region Connections:*
 
@@ -48,13 +55,16 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/HBA.dot.jpg
 || [BrainAreaBFA BFA] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || Septal Nucleus || nucleus-nucleus || [http://www.thebrainlabs.com Cingulate Gyrus (SEP -> MB, abstract)] ||
 || [BrainAreaBGA BGA] || [BrainRegionHBA_FD_TH_AN HBA.FD.TH.AN] || [BrainRegionBGA_FT_PU BGA.FT.PU] || Putamen || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (Striatum -> ATH, abstract)] ||
 || [BrainAreaHTA HTA] || [BrainRegionHBA_FD_TH_AN HBA.FD.TH.AN] || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || Paraventricular Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n7 Feeling (HT -> AN, abstract)] ||
+|| [BrainAreaMBA MBA] || [BrainRegionHBA_FD_MB_LMB HBA.FD.MB.LMB] || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (DTN -> LMam)] ||
 || [BrainAreaMBA MBA] || [BrainRegionHBA_FD_TH_AN HBA.FD.TH.AN] || [BrainRegionMBA_MM_SC MBA.MM.SC] || Superior Colliculus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCi -> ATH)] ||
-|| [BrainAreaPHA PHA] || [BrainRegionHBA_FT_DG HBA.FT.DG] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || neocortex-allocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (ER -> H, abstract)] ||
+|| [BrainAreaPHA PHA] || [BrainRegionHBA_FT_DG HBA.FT.DG] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || neocortex-allocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (EC -> DG)] ||
 || [BrainAreaPHA PHA] || [BrainRegionHBA_FT_DG HBA.FT.DG] || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || Perirhinal Cortex || neocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PrC -> HF, abstract)] ||
 || [BrainAreaPHA PHA] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || neocortex-allocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (ER -> H, abstract)] ||
+|| [BrainAreaPHA PHA] || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || neocortex-allocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (EC -> CA3)] ||
 || [BrainAreaPHA PHA] || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || neocortex-allocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (ER -> H, abstract)] ||
 || [BrainAreaSMA SMA] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionSMA_NC_MPL_PCG SMA.NC.MPL.PCG] || Posterior Cingulate Cortex || neocortex-allocortex || [http://www.nature.com/nrn/journal/v5/n7 Feeling (CG -> HC, abstract)] ||
 || [BrainAreaSMA SMA] || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || [BrainRegionSMA_NC_MPL_RSC SMA.NC.MPL.RSC] || Retrosplenial Cortex || neocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S0149763409002061 Contribution of hippocampal region CA3 to consciousness (Retrosplenial -> CA1)] ||
+|| [BrainAreaSMA SMA] || [BrainRegionHBA_FT_SC_PSS HBA.FT.SC.PSS] || [BrainRegionSMA_NC_MPL_RSC SMA.NC.MPL.RSC] || Retrosplenial Cortex || neocortex-allocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (Rsp -> PoS)] ||
 || [BrainAreaSMA SMA] || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionSMA_NC_MPL_RSC SMA.NC.MPL.RSC] || Retrosplenial Cortex || neocortex-allocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (PCGRSP -> SUB, abstract)] ||
 || [BrainAreaVCA VCA] || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || [BrainRegionVCA_NC_IPL_MST VCA.NC.IPL.MST] || Medial Superior Temporal Area || neocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S0149763409002061 Contribution of hippocampal region CA3 to consciousness (IPL -> CA1, abstract)] ||
 
@@ -64,13 +74,23 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/HBA.dot.jpg
 || [BrainAreaBFA BFA] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || allocortex-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in emotional behavior (HCA -> AM, abstract)] ||
 || [BrainAreaBFA BFA] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || Septal Nucleus || allocortex-nucleus || [http://www.thebrainlabs.com Cingulate Gyrus (HC -> SEP, abstract)] ||
 || [BrainAreaFCA FCA] || [BrainRegionHBA_FD_TH_AN HBA.FD.TH.AN] || [BrainRegionFCA_NC_VACG FCA.NC.VACG] || Ventral Anterior Cingulate Area || nucleus-neocortex || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (Thalamus -> FrontalCortex, abstract)] ||
+|| [BrainAreaFCA FCA] || [BrainRegionHBA_FT_SC_PSS HBA.FT.SC.PSS] || [BrainRegionFCA_FD_TH_LD FCA.FD.TH.LD] || Lateral Dorsal Nucleus of Thalamus || allocortex-nucleus || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (PoS -> LDN)] ||
 || [BrainAreaHTA HTA] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionHTA_FD_HT_AH HTA.FD.HT.AH] || Anterior Hypothalamic Nucleus || allocortex-nucleus || [http://www.nature.com/nrn/journal/v5/n7 Feeling (HC -> HT, abstract)] ||
 || [BrainAreaHTA HTA] || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || Paraventricular Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaMBA MBA] || [BrainRegionHBA_FD_MB_LMB HBA.FD.MB.LMB] || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (LMam -> DTN)] ||
+|| [BrainAreaPHA PHA] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || allocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (CA1 -> EC)] ||
+|| [BrainAreaPHA PHA] || [BrainRegionHBA_FT_SC_PSS HBA.FT.SC.PSS] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || allocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (PoS -> EC)] ||
+|| [BrainAreaPHA PHA] || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || allocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (Sub -> EC)] ||
 || [BrainAreaSMA SMA] || [BrainRegionHBA_FD_TH_AN HBA.FD.TH.AN] || [BrainRegionSMA_NC_MPL_PCG SMA.NC.MPL.PCG] || Posterior Cingulate Cortex || nucleus-neocortex || [http://www.nature.com/nrn/journal/v5/n7 Feeling (AN -> CG)] ||
+|| [BrainAreaSMA SMA] || [BrainRegionHBA_FD_TH_AN HBA.FD.TH.AN] || [BrainRegionSMA_NC_MPL_RSC SMA.NC.MPL.RSC] || Retrosplenial Cortex || nucleus-neocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (ATN -> Rsp)] ||
 || [BrainAreaSMA SMA] || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionSMA_NC_MPL_RSC SMA.NC.MPL.RSC] || Retrosplenial Cortex || nucleus-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (SUB -> PCGRSP, abstract)] ||
 
 = Thirdparty Circuits =
 (generated)
+
+  * [http://ahuman.googlecode.com/svn/images/wiki/research/brain/HF.jpg Hippocampal Formation] - see [article:2009-Hippocampus-Thesis.pdf Reference]
+
+<img src="http://ahuman.googlecode.com/svn/images/wiki/research/brain/HF.jpg" alt="unavailable">
 
   * [http://ars.els-cdn.com/content/image/1-s2.0-S0149763409002061-gr1.jpg Contribution of hippocampal region CA3 to consciousness] - see [http://www.sciencedirect.com/science/article/pii/S0149763409002061 Reference]
 
@@ -96,6 +116,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/HBA.dot.jpg
 = References =
 (generated)
 
+  * article:2009-Hippocampus-Thesis.pdf
   * http://www.sciencedirect.com/science/article/pii/S0149763409002061
   * http://www.thebrainlabs.com
   * http://www.sciencedirect.com/science/article/pii/S0959438808001566
