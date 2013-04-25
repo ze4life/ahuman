@@ -34,4 +34,29 @@
 		<link src="TH" dst="CG"/>
 	</circuit>
 
+	<circuit id="CT.HIPPOCAMPAL-FORMATION" name="Hippocampal Formation"
+		image="http://ahuman.googlecode.com/svn/images/wiki/research/brain/HF.jpg"
+		reference="article:2009-Hippocampus-Thesis.pdf"
+		components="EC=PHA.NC.PH.ET DG=HBA.FT.DG CA3=HBA.FT.HC.CA3 CA1=HBA.FT.HC.CA1 Sub=HBA.FT.SC.SUB Rsp=SMA.NC.MPL.RSC PoS=HBA.FT.SC.PSS ATN=HBA.FD.TH.AN LDN=FCA.FD.TH.LD LMam=HBA.FD.MB.LMB DTN=MBA.MM.TG.LDT"
+		>
+		<link src="EC" dst="DG"/>
+		<link src="DG" dst="CA3"/>
+		<link src="CA3" dst="CA1"/>
+		<link src="CA1" dst="Sub"/>
+		<link src="EC" dst="CA3"/>
+		<link src="CA1" dst="EC"/>
+		<link src="Sub" dst="EC"/>
+		<link src="Sub" dst="PoS"/>
+		<link src="PoS" dst="EC"/>
+		<link src="ATN" dst="Rsp"/>
+		<link src="ATN" dst="PoS"/>
+		<link src="PoS" dst="LDN"/>
+		<link src="Rsp" dst="PoS"/>
+		<link src="PoS" dst="LMam"/>
+		<link src="PoS" dst="ATN"/>
+		<link src="LMam" dst="ATN"/>
+		<link src="LMam" dst="DTN"/>
+		<link src="DTN" dst="LMam"/>
+	</circuit>
+
 </circuits>
