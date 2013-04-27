@@ -10,6 +10,7 @@ Circuit is part of aHuman target integrated biological model.
 (generated)
 
 || *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||
+|| [BrainAreaBFA BFA] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || Mixed Nucleus || Experiencing and recognizing emotions ||
 || [BrainAreaBFA BFA] || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || Septal Nucleus || Mixed Nucleus || Inhibition of fear and expression of pleasurable responses ||
 || [BrainAreaBGA BGA] || [BrainRegionBGA_FD_TH_PF BGA.FD.TH.PF] || Parafascicular Nucleus of Thalamus || Excitatory Nucleus || Stimulation of acetylcholine release in dorsal striata ||
 || [BrainAreaFCA FCA] || [BrainRegionFCA_FD_TH_LD FCA.FD.TH.LD] || Lateral Dorsal Nucleus of Thalamus || Excitatory Nucleus || Head direction, spatial learning ||
@@ -23,8 +24,11 @@ Circuit is part of aHuman target integrated biological model.
 || [BrainAreaHBA HBA] || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || Subiculum || Allocortex || Spatial navigation and mnemonic processing ||
 || [BrainAreaHTA HTA] || [BrainRegionHTA_FD_HT_PVI HTA.FD.HT.PVI] || Intermediate Periventrical Nucleus || Excitatory Nucleus || Rage Center ||
 || [BrainAreaMBA MBA] || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || Excitatory Nucleus || Modulating sustained attention or in mediating alerting responses ||
+|| [BrainAreaPHA PHA] || [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || Peripaleocortical Claustral || Neocortex, BA 16 || Relays proprioception ||
+|| [BrainAreaPHA PHA] || [BrainRegionPHA_NC_PAS PHA.NC.PAS] || Parasubiculum || Neocortex, BA 49 || Spatial navigation and the integration of head-directional information ||
 || [BrainAreaPHA PHA] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || Neocortex, BA 28 || Memory consolidation ||
 || [BrainAreaPHA PHA] || [BrainRegionPHA_NC_PH_PPG PHA.NC.PH.PPG] || Ectorhinal Cortex || Neocortex, BA 36 || Spatial declarative memory ||
+|| [BrainAreaPHA PHA] || [BrainRegionPHA_NC_PRS PHA.NC.PRS] || Presubiculum || Neocortex, BA 27 || Path integration, head direction ||
 || [BrainAreaSMA SMA] || [BrainRegionSMA_NC_MPL_PCG SMA.NC.MPL.PCG] || Posterior Cingulate Cortex || Neocortex, BA 23,31 || Self-awareness, pain and episodic memory retrieval ||
 || [BrainAreaSMA SMA] || [BrainRegionSMA_NC_MPL_RSC SMA.NC.MPL.RSC] || Retrosplenial Cortex || Neocortex, BA 26,29,30 || Processing of emotionally salient stimuli ||
 || [BrainAreaVCA VCA] || [BrainRegionVCA_NC_IPL_MST VCA.NC.IPL.MST] || Medial Superior Temporal Area || Neocortex, BA 39 || Image stabilization, predictive target tracking ||
@@ -35,9 +39,11 @@ Circuit is part of aHuman target integrated biological model.
 http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitMemoryProcess.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionBFA_FT_AM BFA.FT.AM] || [BrainRegionPHA_NC_PAS PHA.NC.PAS] || nucleus-neocortex || (unknown reference) ||
 || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || [BrainRegionBGA_FD_TH_PF BGA.FD.TH.PF] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || nucleus-nucleus || [http://www.thebrainlabs.com Cingulate Gyrus (SEP -> MB, abstract)] ||
 || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || [BrainRegionHTA_FD_HT_PVI HTA.FD.HT.PVI] || nucleus-nucleus || [http://www.thebrainlabs.com Cingulate Gyrus (SEP -> HT, abstract)] ||
+|| [BrainRegionFCA_FD_TH_LD FCA.FD.TH.LD] || [BrainRegionPHA_NC_PRS PHA.NC.PRS] || nucleus-neocortex || (unknown reference) ||
 || [BrainRegionFCA_FD_TH_LD FCA.FD.TH.LD] || [BrainRegionSMA_NC_MPL_RSC SMA.NC.MPL.RSC] || allocortex-neocortex || (unknown reference) ||
 || [BrainRegionHBA_FD_MB_LMB HBA.FD.MB.LMB] || [BrainRegionHBA_FD_TH_AN HBA.FD.TH.AN] || nucleus-nucleus || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (LMam -> ATN)] ||
 || [BrainRegionHBA_FD_MB_LMB HBA.FD.MB.LMB] || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || nucleus-nucleus || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (LMam -> DTN)] ||
@@ -47,6 +53,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitMemoryProcess.dot.jpg
 || [BrainRegionHBA_FT_DG HBA.FT.DG] || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || allocortex-allocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (DG -> CA3)] ||
 || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || allocortex-nucleus || [http://www.thebrainlabs.com Cingulate Gyrus (HC -> SEP, abstract)] ||
 || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || allocortex-allocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (CA1 -> Sub)] ||
+|| [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionPHA_NC_PAS PHA.NC.PAS] || allocortex-neocortex || (unknown reference) ||
 || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || allocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (CA1 -> EC)] ||
 || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || allocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0149763409002061 Contribution of hippocampal region CA3 to consciousness (CA1 -> MB, abstract)] ||
 || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || allocortex-allocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (CA3 -> CA1)] ||
@@ -59,11 +66,17 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitMemoryProcess.dot.jpg
 || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || allocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (Sub -> EC)] ||
 || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionSMA_NC_MPL_RSC SMA.NC.MPL.RSC] || allocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (SUB -> PCGRSP, abstract)] ||
 || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || [BrainRegionHBA_FD_MB_LMB HBA.FD.MB.LMB] || nucleus-nucleus || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (DTN -> LMam)] ||
+|| [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || [BrainRegionPHA_NC_PRS PHA.NC.PRS] || neocortex-neocortex || (unknown reference) ||
+|| [BrainRegionPHA_NC_PAS PHA.NC.PAS] || [BrainRegionHBA_FD_TH_AN HBA.FD.TH.AN] || neocortex-nucleus || (unknown reference) ||
+|| [BrainRegionPHA_NC_PAS PHA.NC.PAS] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || neocortex-neocortex || (unknown reference) ||
 || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionHBA_FT_DG HBA.FT.DG] || neocortex-allocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (EC -> DG)] ||
 || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || neocortex-allocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (ER -> H, abstract)] ||
 || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || neocortex-allocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (EC -> CA3)] ||
 || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || neocortex-allocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (ER -> H, abstract)] ||
 || [BrainRegionPHA_NC_PH_PPG PHA.NC.PH.PPG] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763409002061 Contribution of hippocampal region CA3 to consciousness (PHCortex -> MedialEC)] ||
+|| [BrainRegionPHA_NC_PRS PHA.NC.PRS] || [BrainRegionFCA_FD_TH_LD FCA.FD.TH.LD] || neocortex-nucleus || (unknown reference) ||
+|| [BrainRegionPHA_NC_PRS PHA.NC.PRS] || [BrainRegionHBA_FD_MB_LMB HBA.FD.MB.LMB] || neocortex-nucleus || (unknown reference) ||
+|| [BrainRegionPHA_NC_PRS PHA.NC.PRS] || [BrainRegionHBA_FD_TH_AN HBA.FD.TH.AN] || neocortex-nucleus || (unknown reference) ||
 || [BrainRegionSMA_NC_MPL_RSC SMA.NC.MPL.RSC] || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || neocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S0149763409002061 Contribution of hippocampal region CA3 to consciousness (Retrosplenial -> CA1)] ||
 || [BrainRegionSMA_NC_MPL_RSC SMA.NC.MPL.RSC] || [BrainRegionHBA_FT_SC_PSS HBA.FT.SC.PSS] || neocortex-allocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (Rsp -> PoS)] ||
 || [BrainRegionVCA_NC_IPL_MST VCA.NC.IPL.MST] || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || neocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S0149763409002061 Contribution of hippocampal region CA3 to consciousness (IPL -> CA1, abstract)] ||
