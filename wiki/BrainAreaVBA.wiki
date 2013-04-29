@@ -45,6 +45,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/VBA.dot.jpg
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || [BrainAreaBGA BGA] || [BrainRegionVBA_FD_LGN VBA.FD.LGN] || [BrainRegionBGA_HP_PPN BGA.HP.PPN] || Pedunculopontine Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (PPN -> LGN)] ||
+|| [BrainAreaBMA BMA] || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || [BrainRegionBMA_HP_VB BMA.HP.VB] || Vestibular Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (MVSN -> NPRP)] ||
 || [BrainAreaHMA HMA] || [BrainRegionVBA_HP_ABD VBA.HP.ABD] || [BrainRegionHMA_HP_FCM HMA.HP.FCM] || Facial Motor Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Facial -> Abducens)] ||
 || [BrainAreaHMA HMA] || [BrainRegionVBA_HP_ABD VBA.HP.ABD] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) (PPRF -> Abducens, abstract)] ||
 || [BrainAreaHMA HMA] || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || [BrainRegionHMA_HM_TGM_STR HMA.HM.TGM.STR] || Spinal Trigeminal Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SpinalTrigeminal -> Oculomotor)] ||
@@ -54,6 +55,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/VBA.dot.jpg
 || [BrainAreaMBA MBA] || [BrainRegionVBA_FD_LGN VBA.FD.LGN] || [BrainRegionMBA_MM_SC MBA.MM.SC] || Superior Colliculus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCs -> LGN)] ||
 || [BrainAreaMBA MBA] || [BrainRegionVBA_FD_PV_IPV VBA.FD.PV.IPV] || [BrainRegionMBA_MM_SC MBA.MM.SC] || Superior Colliculus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCs -> Pulvinar, abstract)] ||
 || [BrainAreaMBA MBA] || [BrainRegionVBA_FD_PV_LPV VBA.FD.PV.LPV] || [BrainRegionMBA_MM_SC MBA.MM.SC] || Superior Colliculus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCs -> Pulvinar, abstract)] ||
+|| [BrainAreaMBA MBA] || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (DTN -> NPRP)] ||
 || [BrainAreaMBA MBA] || [BrainRegionVBA_HP_ABD VBA.HP.ABD] || [BrainRegionMBA_MM_SC MBA.MM.SC] || Superior Colliculus || nucleus-nucleus || [http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html Retina and superior colliculus targets (SC -> Abducens)] ||
 || [BrainAreaMBA MBA] || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || [BrainRegionMBA_MM_SC MBA.MM.SC] || Superior Colliculus || nucleus-nucleus || [http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html Retina and superior colliculus targets (SC -> Oculomotor)] ||
 || [BrainAreaMBA MBA] || [BrainRegionVBA_MM_PT_NOT VBA.MM.PT.NOT] || [BrainRegionMBA_MM_SC MBA.MM.SC] || Superior Colliculus || nucleus-nucleus || (unknown reference) ||
@@ -66,9 +68,11 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/VBA.dot.jpg
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| [BrainAreaABA ABA] || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || [BrainRegionABA_FD_TH_SG ABA.FD.TH.SG] || Suprageniculate Nucleus of Thalamus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (NPRP -> SUPGEN)] ||
 || [BrainAreaAVA AVA] || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || [BrainRegionAVA_PN_PSYM_CLG AVA.PN.PSYM.CLG] || Ciliary Ganglion || nucleus-ganglion || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Vision Components (OCN -> CG)] ||
 || [BrainAreaAVA AVA] || [BrainRegionVBA_MM_PT_PON VBA.MM.PT.PON] || [BrainRegionAVA_MM_EWN AVA.MM.EWN] || Edinger-Westphal Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Pretectum -> EWN, abstract)] ||
 || [BrainAreaAVA AVA] || [BrainRegionVBA_MM_SOA VBA.MM.SOA] || [BrainRegionAVA_MM_EWN AVA.MM.EWN] || Edinger-Westphal Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SupraOculomotor -> EWN)] ||
+|| [BrainAreaBMA BMA] || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || [BrainRegionBMA_HP_VB BMA.HP.VB] || Vestibular Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (NPRP -> MVSN)] ||
 || [BrainAreaHMA HMA] || [BrainRegionVBA_MM_RP_RIP VBA.MM.RP.RIP] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (RIP -> PPRF, abstract)] ||
 || [BrainAreaHTA HTA] || [BrainRegionVBA_FD_RT VBA.FD.RT] || [BrainRegionHTA_FD_HT_SCN HTA.FD.HT.SCN] || Suprachiasmatic Nucleus || nucleus-nucleus || [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm Targets of retina neurons (Retina -> HT, abstract)] ||
 || [BrainAreaMBA MBA] || [BrainRegionVBA_FD_RT VBA.FD.RT] || [BrainRegionMBA_MM_SC MBA.MM.SC] || Superior Colliculus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (Retina -> SC)] ||
@@ -127,6 +131,10 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/VBA.dot.jpg
 
 <img src="http://ars.els-cdn.com/content/image/1-s2.0-S0387760401003308-gr2.jpg" alt="unavailable">
 
+  * [http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png Head Direction Cell Circuit] - see [http://www.scholarpedia.org/article/Head_direction_cells Reference]
+
+<img src="http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png" alt="unavailable">
+
   * [http://etc.usf.edu/clipart/53700/53763/53763_eye_md.gif Eye muscles] - see [http://etc.usf.edu/clipart/53700/53763/53763_eye.htm Reference]
 
 <img src="http://etc.usf.edu/clipart/53700/53763/53763_eye_md.gif" alt="unavailable">
@@ -166,6 +174,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/VBA.dot.jpg
   * http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm
   * http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html
   * http://www.sciencedirect.com/science/article/pii/S0387760401003308
+  * http://www.scholarpedia.org/article/Head_direction_cells
   * http://etc.usf.edu/clipart/53700/53763/53763_eye.htm
   * http://meded.ucsd.edu/clinicalmed/eyes.htm
   * http://www.sciencedirect.com/science/article/pii/S0166223697010679
