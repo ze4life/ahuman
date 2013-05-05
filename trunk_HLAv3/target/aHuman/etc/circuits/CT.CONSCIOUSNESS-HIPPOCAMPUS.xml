@@ -59,4 +59,59 @@
 		<link src="DTN" dst="LMam"/>
 	</circuit>
 
+	<circuit id="CT.CATEGORY-SELECTIVITY" name="Category-Selectivity Paradigm"
+		image="http://ars.els-cdn.com/content/image/1-s2.0-S1053811905008013-gr5.jpg"
+		reference="http://www.sciencedirect.com/science/article/pii/S1053811905008013"
+		components="V1=VCA.NC.V1 RS=SMA.NC.MPL.RSC PPA=NC.LOBE.PH IOG=VCA.NC.MT STS=ACA.NC.STS FFA=VCA.NC.V4"
+		>
+		<link src="V1" dst="RS"/>
+		<link src="RS" dst="PPA"/>
+		<link src="V1" dst="IOG"/>
+		<link src="IOG" dst="STS"/>
+		<link src="IOG" dst="FFA"/>
+		<link src="FFA" dst="IOG"/>
+	</circuit>
+
+	<circuit id="CT.HEAD-DIRECTION" name="Head Direction Cell Circuit"
+		image="http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png"
+		reference="http://www.scholarpedia.org/article/Head_direction_cells"
+		components="VC=NC.LOBE.OCC PC=NC.LOBE.PAR PRHC=PHA.NC.PH.PPG EC=PHA.NC.PH.ET HC=HBA.FT.HC PSUB=PHA.NC.RSB RSP=SMA.NC.MPL.RSC LD=FCA.FD.TH.LD AD=HBA.FD.TH.AD LMB=HBA.FD.MB.LMB DTN=MBA.MM.TG.LDT LHAB=BFA.FD.HB IPD=BGA.HP.PPN.IPD NPRP=VBA.HM.NPH SUPGEN=ABA.FD.TH.SG MVSN=BMA.HP.MVB"
+		>
+		<link src="VC" dst="PC"/>
+		<link src="VC" dst="RSP"/>
+		<link src="VC" dst="PSUB"/>
+		<link src="PC" dst="PRHC"/>
+		<link src="PC" dst="EC"/>
+		<link src="EC" dst="PC"/>
+		<link src="EC" dst="PRHC"/>
+		<link src="EC" dst="HC"/>
+		<link src="HC" dst="EC"/>
+		<link src="PRHC" dst="EC"/>
+		<link src="RSP" dst="PSUB"/>
+		<link src="PSUB" dst="RSP"/>
+		<link src="PSUB" dst="EC"/>
+		<link src="RSP" dst="LD"/>
+		<link src="LD" dst="RSP"/>
+		<link src="LD" dst="PSUB"/>
+		<link src="PSUB" dst="LD"/>
+		<link src="RSP" dst="AD"/>
+		<link src="AD" dst="RSP"/>
+		<link src="AD" dst="PSUB"/>
+		<link src="PSUB" dst="AD"/>
+		<link src="PSUB" dst="LMB"/>
+		<link src="LMB" dst="AD"/>
+		<link src="LMB" dst="DTN"/>
+		<link src="DTN" dst="NPRP"/>
+		<link src="NPRP" dst="MVSN"/>
+		<link src="MVSN" dst="NPRP"/>
+		<link src="DTN" dst="SUPGEN"/>
+		<link src="NPRP" dst="SUPGEN"/>
+		<link src="MVSN" dst="SUPGEN"/>
+		<link src="SUPGEN" dst="DTN"/>
+		<link src="DTN" dst="IPD"/>
+		<link src="IPD" dst="DTN"/>
+		<link src="LHAB" dst="IPD"/>
+		<link src="LHAB" dst="DTN"/>
+	</circuit>
+
 </circuits>

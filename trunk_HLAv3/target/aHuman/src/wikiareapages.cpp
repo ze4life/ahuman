@@ -83,12 +83,11 @@ String WikiAreaPages::createAreaPages_getRegionTableRow( MindRegionDef *regionDe
 
 	// region row
 	String regionId = regionDef -> getName();
-	XmlHMindElementInfo info;
-	wm -> hmindxml.getElementInfo( regionId , info );
+	XmlHMindElementInfo& info =	wm -> hmindxml.getElementInfo( regionId );
 	
 	value = "|| " + wm -> getRegionReference( regionId ) + " || " + 
 		createAreaPages_getTableCellAttribute( info , "name" , info.name , true , 0 ) + " || " + 
-		createAreaPages_getTableCellAttribute( info , "type" , info.type , true , 0 ) + " || " + 
+		createAreaPages_getTableCellAttribute( info , "type" , info.batype , true , 0 ) + " || " + 
 		createAreaPages_getTableCellAttribute( info , "function" , info.function , true , 80 ) + " || " + 
 		createAreaPages_getTableCellAttribute( info , "notes" , info.notes , false , 50 ) + " ||";
 
@@ -192,11 +191,15 @@ void WikiAreaPages::createDotFile( MindAreaDef *areaDef , MapStringToClass<MindC
 
 	// header
 	text.add( "digraph \"" + areaDef -> getAreaId() + "\" {" );
+	text.add( "\tconcentrate=true;" );
+	text.add( "\tcompound=true;" );
 	String defaultDotSetup = wm -> wiki.getProperty( "defaultDotSetup" );
 	text.add( wm -> setSpecialCharacters( defaultDotSetup ) );
 	text.add( "" );
 
 	// list nodes
+	text.add( "\tsubgraph cluster_" + areaDef -> getAreaId() + " {" );
+	text.add( "\tlabel=<<b>" + areaDef -> getAreaName() + "</b>>;" );
 	ClassList<MindRegionDef>& regions = areaDef -> getRegions();
 	for( int k = 0; k < regions.count(); k++ ) {
 		MindRegionDef *regionDef = regions.get( k );
@@ -205,12 +208,14 @@ void WikiAreaPages::createDotFile( MindAreaDef *areaDef , MapStringToClass<MindC
 		String nodeline = "\t\"" + regionDef -> getName() + "\"";
 		if( !dotdef.isEmpty() ) {
 			String s = wm -> setSpecialCharacters( dotdef );
+			s += ", label=<" + createDotFile_getRegionLabel( regionDef , inputs , outputs ) + ">";
 			nodeline += " [" + s + "]";
 		}
 		nodeline += ";";
 
 		text.add( nodeline );
 	}
+	text.add( "\t}" );
 
 	// list connections
 	text.add( "" );
@@ -221,8 +226,9 @@ void WikiAreaPages::createDotFile( MindAreaDef *areaDef , MapStringToClass<MindC
 	}
 
 	// add subgraph
-	createDotFile_subgraph( true , inputs , text );
-	createDotFile_subgraph( false , outputs , text );
+	String linkItem;
+	createDotFile_subgraph( areaDef , true , inputs , text , linkItem );
+	createDotFile_subgraph( areaDef , false , outputs , text , linkItem );
 
 	// footer
 	text.add( "}" );
@@ -231,52 +237,149 @@ void WikiAreaPages::createDotFile( MindAreaDef *areaDef , MapStringToClass<MindC
 	wm -> createFileContent( fileName , text );
 }
 
-void WikiAreaPages::createDotFile_subgraph( bool p_inputs , MapStringToClass<MindCircuitConnectionDef>& connections , StringList& text ) {
+String WikiAreaPages::createDotFile_getRegionLabel( MindRegionDef *region , MapStringToClass<MindCircuitConnectionDef>& inputs , MapStringToClass<MindCircuitConnectionDef>& outputs ) {
 	MindService *ms = MindService::getService();
+	String label = "<b>" + region -> getName() + "</b>";
+
+	MapStringToClass<MindCircuitConnectionDef> inputAreas;
+	for( int k = 0; k < inputs.count(); k++ ) {
+		MindCircuitConnectionDef *c = inputs.getClassByIndex( k );
+		if( !region -> getName().equals( c -> getDstRegion() ) )
+			continue;
+
+		String regionId = c -> getSrcRegion();
+		MindRegion *regionExt = ms -> getMindRegion( regionId );
+		inputAreas.addnew( regionExt -> getArea() -> getId() , c );
+	}
+
+	String in;
+	for( int k = 0; k < inputAreas.count(); k++ ) {
+		String area = inputAreas.getKeyByIndex( k );
+		if( !in.isEmpty() )
+			in += ",";
+		in += area;
+	}
+
+	MapStringToClass<MindCircuitConnectionDef> outputAreas;
+	for( int k = 0; k < outputs.count(); k++ ) {
+		MindCircuitConnectionDef *c = outputs.getClassByIndex( k );
+		if( !region -> getName().equals( c -> getSrcRegion() ) )
+			continue;
+
+		String regionId = c -> getDstRegion();
+		MindRegion *regionExt = ms -> getMindRegion( regionId );
+		outputAreas.addnew( regionExt -> getArea() -> getId() , c );
+	}
+
+	String out;
+	for( int k = 0; k < outputAreas.count(); k++ ) {
+		String area = outputAreas.getKeyByIndex( k );
+		if( !out.isEmpty() )
+			out += ",";
+		out += area;
+	}
+
+	if( !in.isEmpty() )
+		label += "<br/>IN: " + in;
+	if( !out.isEmpty() )
+		label += "<br/>OUT: " + out;
+
+	return( label );
+}
+
+void WikiAreaPages::createDotFile_subgraph( MindAreaDef *areaDef , bool p_inputs , MapStringToClass<MindCircuitConnectionDef>& connections , StringList& text , String& linkItem ) {
+	MindService *ms = MindService::getService();
+	String postfix = ( p_inputs )? "IN" : "OUT";
+	String postfixString = ( p_inputs )? "Inputs" : "Outputs";
 
 	// inter-area links
 	text.add( "" );
-	if( p_inputs )
+	if( p_inputs ) {
+		text.add( "\tsubgraph cluster_ExtIn {" );
+		text.add( "\tlabel=<<b>Inputs</b>>;" );
 		text.add( "\t/* external inbound links */" );
-	else
+	}
+	else {
+		text.add( "\tsubgraph cluster_ExtOut {" );
+		text.add( "\tlabel=<<b>Outputs</b>>;" );
 		text.add( "\t/* external outbound links */" );
+	}
+
+	MapStringToString areaTypes;
 	MapStringToString areas;
-	MapStringToClass<MindCircuitConnectionDef> regions;
+	MapStringToClass<MapStringToPtr> areaTypeRegionMap;
 	for( int k = 0; k < connections.count(); k++ ) {
 		MindCircuitConnectionDef *c = connections.getClassByIndex( k );
 		String regionId = ( p_inputs )? c -> getSrcRegion() : c -> getDstRegion();
 		String regionLocalId = ( p_inputs )? c -> getDstRegion() : c -> getSrcRegion();
 		MindRegion *region = ms -> getMindRegion( regionId );
 		String area = region -> getArea() -> getId();
+		String areaType = region -> getArea() -> getMindAreaDef() -> getAreaType();
 
-		String key = area + "-" + regionLocalId;
-		if( regions.get( key ) != NULL )
-			continue;
+		String key = areaType + ":" + regionLocalId;
+		MapStringToPtr *lineAreas = areaTypeRegionMap.get( key );
+		if( lineAreas == NULL ) {
+			lineAreas = new MapStringToPtr;
+			areaTypeRegionMap.add( key , lineAreas );
+		}
 
-		// link
-		if( p_inputs )
-			text.add( "\t\"" + area + ".IN\" -> \"" + regionLocalId + "\";" );
-		else
-			text.add( "\t\"" + regionLocalId + "\" -> \"" + area + ".OUT\";" );
+		if( lineAreas -> get( area ) == NULL )
+			lineAreas -> add( area , c );
 
-		// references
-		regions.add( key , c );
-		areas.addnew( area , area );
+		areas.addnew( area , areaType );
+		areaTypes.addnew( areaType , regionLocalId );
+	}
+
+	// add named lines
+	String s;
+	String localArea = areaDef -> getAreaId();
+	for( int k = 1; k < areaTypes.count(); k++ ) {
+		String areaType = areaTypes.getKeyByIndex( k );
+
+		if( k == 1 )
+			s = String( "\"" ) + areaTypes.getKeyByIndex( 0 ) + "." + postfix + "\"";
+		s += String( " -> " ) + "\"" + areaType + "." + postfix + "\"";
+	}
+
+	if( !s.isEmpty() ) {
+		s += " [ style=invis ];";
+		text.add( "\t" + s );
 	}
 
 	// header
 	text.add( "" );
 
-	for( int k = 0; k < areas.count(); k++ ) {
-		if( p_inputs )
-			text.add( String( "\tsubgraph cluster_inputs" ) + k + " {" );
-		else
-			text.add( String( "\tsubgraph cluster_outputs" ) + k + " {" );
+	for( int k = 0; k < areaTypes.count(); k++ ) {
+		String areaType = areaTypes.getKeyByIndex( k );
+		text.add( "\tsubgraph cluster_" + areaType + "_" + postfix + " {" );
+		text.add( "\tlabel=\"" + areaType + " " + postfixString + "\";" );
+		text.add( "\t\"" + areaType + "." + postfix + "\" [ shape=box, style=dotted , label = <" );
+		text.add( "\t\t<TABLE BORDER=\"0\" CELLBORDER=\"1\" CELLSPACING=\"0\" CELLPADDING=\"4\"><TR>" );
 
-		String area = areas.getKeyByIndex( k );
-		String atype = ( p_inputs )? ".IN" : ".OUT";
-		text.add( "\t\t\"" + area + atype + "\" [label=\"" + area + "\", shape=box, style=dotted, fontsize=10];" );
+		for( int a = 0; a < areas.count(); a++ ) {
+			if( !areaType.equals( areas.getClassByIndex( a ) ) )
+				continue;
+
+			String area = areas.getKeyByIndex( a );
+			text.add( "\t\t<TD PORT=\"" + area + "\" BGCOLOR=\"springgreen\">" + area + "</TD>" );
+		}
+
+		text.add( "\t\t</TR></TABLE>> ];" );
 		text.add( "\t}" );
+	}
+
+	text.add( "\t}" );
+	areaTypeRegionMap.destroy();
+
+	// input-output link
+	if( areaTypes.count() > 0 ) {
+		if( p_inputs == true )
+			linkItem = areaTypes.getKeyByIndex( areaTypes.count() - 1 ) + String( "." ) + postfix;
+		else 
+		if( !linkItem.isEmpty() ) {
+			String linkTo = areaTypes.getKeyByIndex( 0 ) + String( "." ) + postfix;
+			text.add( "\t\"" + linkItem + "\" -> \"" + linkTo + "\" [ style=invis ];" );
+		}
 	}
 }
 
@@ -381,16 +484,15 @@ void WikiAreaPages::createAreaPages_getExternalConnectionTableLine( MindAreaDef 
 	MindRegion *dstRegion = ms -> getMindRegion( link -> getDstRegion() );
 	String area = areaDef -> getAreaId();
 
-	XmlHMindElementInfo info;
 	String reference = wm -> findReference( link );
 	if( area.equals( srcRegion -> getArea() -> getId() ) ) {
-		wm -> hmindxml.getElementInfo( link -> getDstRegion() , info );
+		XmlHMindElementInfo& info = wm -> hmindxml.getElementInfo( link -> getDstRegion() );
 		line = "|| " + wm -> getAreaReference( dstRegion -> getArea() -> getId() ) + " || " + 
 			wm -> getRegionReference( link -> getSrcRegion() ) + " || " + wm -> getRegionReference( link -> getDstRegion() ) + " || " + 
 			info.name + " || " + link -> getTypeName() + " || " + reference + " ||";
 	}
 	else {
-		wm -> hmindxml.getElementInfo( link -> getSrcRegion() , info );
+		XmlHMindElementInfo& info = wm -> hmindxml.getElementInfo( link -> getSrcRegion() );
 		line = "|| " + wm -> getAreaReference( srcRegion -> getArea() -> getId() ) + " || " + 
 			wm -> getRegionReference( link -> getDstRegion() ) + " || " + wm -> getRegionReference( link -> getSrcRegion() ) + " || " + 
 			info.name + " || " + link -> getTypeName() + " || " + reference + " ||";

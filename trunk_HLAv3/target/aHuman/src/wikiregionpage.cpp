@@ -4,12 +4,12 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-WikiRegionPage::WikiRegionPage( WikiMaker *p_wm , String p_wikiDir , MindRegionDef *p_region ) {
+WikiRegionPage::WikiRegionPage( WikiMaker *p_wm , String p_wikiDir , MindRegionDef *p_region ) 
+:	info( p_wm -> hmindxml.getElementInfo( p_region -> getName() ) ) {
 	attachLogger();
 	wm = p_wm;
 	wikiDir = p_wikiDir;
 	region = p_region;
-	wm -> hmindxml.getElementInfo( region -> getName() , info );
 }
 
 WikiRegionPage::~WikiRegionPage() {
@@ -348,15 +348,14 @@ void WikiRegionPage::createConnectivitySection_getExternalConnectionTableLine( M
 	MindRegion *dstRegion = ms -> getMindRegion( link -> getDstRegion() );
 	String area = region -> getArea() -> getAreaId();
 
-	XmlHMindElementInfo info;
 	String reference = wm -> findReference( link );
 	if( isin == true ) {
-		wm -> hmindxml.getElementInfo( link -> getSrcRegion() , info );
+		XmlHMindElementInfo& info = wm -> hmindxml.getElementInfo( link -> getSrcRegion() );
 		line = "|| " + wm -> getAreaReference( srcRegion -> getArea() -> getId() ) + " || " + 
 			wm -> getRegionReference( link -> getSrcRegion() ) + " || " + info.name + " || " + link -> getTypeName() + " || " + reference + " ||";
 	}
 	else {
-		wm -> hmindxml.getElementInfo( link -> getDstRegion() , info );
+		XmlHMindElementInfo& info = wm -> hmindxml.getElementInfo( link -> getDstRegion() );
 		line = "|| " + wm -> getAreaReference( dstRegion -> getArea() -> getId() ) + " || " + 
 			wm -> getRegionReference( link -> getDstRegion() ) + " || " + info.name + " || " + link -> getTypeName() + " || " + reference + " ||";
 	}
