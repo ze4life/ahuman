@@ -27,6 +27,7 @@ public:
 	void getDivisions( StringList& divisions );
 	void getElements( String parentNode , StringList& elements );
 	void getElementInfo( String node , XmlHMindElementInfo& info );
+	XmlHMindElementInfo& getElementInfo( String node );
 	String getMappedRegion( String node );
 	void getChildRegions( String node , StringList& regions );
 	String getDotDef( String node );
@@ -38,6 +39,7 @@ private:
 private:
 	Xml xml;
 	MapStringToPtr nodes;
+	MapStringToClass<XmlHMindElementInfo> nodeInfo;
 };
 
 /*#########################################################################*/
@@ -56,6 +58,8 @@ public:
 	String function;
 	String notes;
 	String dotdef;
+
+	String batype;
 };
 
 /*#########################################################################*/

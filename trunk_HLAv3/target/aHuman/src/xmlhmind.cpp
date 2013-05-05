@@ -8,6 +8,7 @@ XmlHMind::XmlHMind() {
 }
 
 XmlHMind::~XmlHMind() {
+	nodeInfo.destroy();
 }
 
 void XmlHMind::load() {
@@ -81,6 +82,22 @@ void XmlHMind::getElementInfo( String node , XmlHMindElementInfo& info ) {
 	info.function = item.getAttribute( "function" , "" );
 	info.notes = item.getAttribute( "notes" , "" );
 	info.dotdef = item.getAttribute( "dotdef" , "" );
+
+	if( info.brodmannid.isEmpty() )
+		info.batype = info.type;
+	else
+		info.batype = info.type + ", BA " + info.brodmannid;
+}
+
+XmlHMindElementInfo& XmlHMind::getElementInfo( String node ) {
+	XmlHMindElementInfo *ni = nodeInfo.get( node );
+	if( ni == NULL ) {
+		ni = new XmlHMindElementInfo;
+		getElementInfo( node , *ni );
+		nodeInfo.add( node , ni );
+	}
+
+	return( *ni );
 }
 
 String XmlHMind::getMappedRegion( String node ) {

@@ -58,8 +58,7 @@ void ModelVerifier::checkHierarchy() {
 }
 
 bool ModelVerifier::checkHierarchy_verifyChild( String parentNode , bool checkMapping ) {
-	XmlHMindElementInfo info;
-	hmindxml.getElementInfo( parentNode , info );
+	XmlHMindElementInfo& info = hmindxml.getElementInfo( parentNode );
 
 	bool mappedOwn = false;
 	if( checkMapping ) {
@@ -90,8 +89,7 @@ bool ModelVerifier::checkHierarchy_verifyChild( String parentNode , bool checkMa
 
 		for( int k = 0; k < elements.count(); k++ ) {
 			String node = elements.get( k );
-			XmlHMindElementInfo childinfo;
-			hmindxml.getElementInfo( node , childinfo );
+			XmlHMindElementInfo& childinfo = hmindxml.getElementInfo( node );
 
 			bool checkMappingChilds = ( checkMapping == false || mappedOwn == true )? false : true;
 

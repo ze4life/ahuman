@@ -246,7 +246,7 @@
 				/>
 			<element id="VCA.NC.MT" name="Middle Temporal Area" mapped="true" brodmannid="19" type="Neocortex"
 				function="Integration of local motion signals into global percepts" 
-				notes="V5, Ventro-dorsal stream"
+				notes="V5, Ventro-dorsal stream, inferior occipital gyrus"
 				/>
 			<element id="VCA.NC.PO" name="Parietooccipital Area" mapped="true" brodmannid="19" type="Neocortex"
 				function="Analyzing self-motion relative to the environment" 
@@ -272,18 +272,21 @@
 				function="Main topotonic map, extract phonemes" 
 				notes="Core"
 				/>
-			<element id="ACA.NC.A2" name="Auditory Association Area" mapped="true" brodmannid="42" type="Neocortex"
-				function="Classify with respect to function" 
-				notes="Belt"
-				/>
-			<element id="ACA.NC.A3" name="Wernicke's area A3" mapped="true" brodmannid="22" type="Neocortex"
-				function="Classify with respect to content" 
-				notes="22a, Melody perception, sequences of tones"
-				/>
-			<element id="ACA.NC.A4" name="Wernicke's area A4" mapped="true" brodmannid="22" type="Neocortex"
-				function="Coordinate the activation or deactivation of grammar areas" 
-				notes="22b, Grammatical areas, phonemic sequences, word comprehension"
-				/>
+			<element id="ACA.NC.STS" name="Superior Temporal Sulcus">
+				<element id="ACA.NC.A2" name="Auditory Association Area" mapped="true" brodmannid="42" type="Neocortex"
+					function="Classify with respect to function" 
+					notes="Belt"
+					/>
+				<element id="ACA.NC.A3" name="Wernicke's area A3" mapped="true" brodmannid="22" type="Neocortex"
+					function="Classify with respect to content" 
+					notes="22a, Melody perception, sequences of tones"
+					/>
+				<element id="ACA.NC.A4" name="Wernicke's area A4" mapped="true" brodmannid="22" type="Neocortex"
+					function="Coordinate the activation or deactivation of grammar areas" 
+					notes="22b, Grammatical areas, phonemic sequences, word comprehension"
+					/>
+			</element>
+
 			<element id="PHA.NC.TPC" name="Temporopolar Cortex" mapped="true" brodmannid="38" type="Neocortex"
 				function="Self representation, semantic (left) and autobiographic (right)" 
 				>
@@ -316,11 +319,11 @@
 		<element id="NC.LOBE.PH" name="Parahippocampal Lobe"
 			dotdef="color=deepskyblue"
 			>
-			<element id="PHA.NC.PH.ET" name="Enthorhinal Cortex" mapped="true" brodmannid="28,34" type="Neocortex"
+			<element id="PHA.NC.PH.ET" name="Enthorhinal Cortex" mapped="true" brodmannid="28" type="Neocortex"
 				function="Memory consolidation" 
 				notes="Parahippocampal gyrus"
 				/>
-			<element id="PHA.NC.PRI" name="Parainsular Area" mapped="true" brodmannid="52" type="Neocortex" 
+			<element id="ACA.NC.PRI" name="Parainsular Area" mapped="true" brodmannid="52" type="Neocortex" 
 				refs="NL:[http://neurolex.org/wiki/Category:Parainsular_area_of_PHT00 Parainsular area]"
 				comment="between insula and 41, supplementary auditory cortex, monkey only"
 				function="Medial auditory stream" 
@@ -332,7 +335,7 @@
 				function="Spatial navigation and the integration of head-directional information" 
 				notes="Major projects to ET, from CA1,AM"
 				/>
-			<element id="PHA.NC.PH.PIR" name="Piriform Cortex" mapped="true" brodmannid="27" type="Neocortex"
+			<element id="PHA.NC.PH.PIR" name="Piriform Cortex" mapped="true" brodmannid="34" type="Neocortex"
 				refs="NL:[http://neurolex.org/wiki/Category:Piriform_cortex_frontal_area Piriform cortex frontal area]" 
 				function="Perception of smells" 
 				notes="Olfaction"
@@ -341,9 +344,9 @@
 				function="Associate different visual views of objects and their various nonvisual attributes" 
 				notes="Parahippocampal gyrus"
 				/>
-			<element id="PHA.NC.PH.PPG" name="Posterior Parahippocampal Gyrus" mapped="true" brodmannid="36" type="Neocortex"
+			<element id="PHA.NC.PH.PPG" name="Ectorhinal Cortex" mapped="true" brodmannid="36" type="Neocortex"
 				function="Spatial declarative memory" 
-				notes="Parahippocampal gyrus"
+				notes="Posterior Parahippocampal Gyrus, Postrhinal Cortex"
 				/>
 			<element id="PHA.NC.PRS" name="Presubiculum" mapped="true" brodmannid="27" type="Neocortex"
 				refs="NL:[http://neurolex.org/wiki/Category:Presubiculum Presubiculum]" 
@@ -351,9 +354,9 @@
 				function="Path integration, head direction" 
 				notes="Major projects to ET, from TH.LD"
 				/>
-			<element id="PHA.NC.RSB" name="Retrosubicular Area" mapped="true" brodmannid="48" type="Neocortex"
+			<element id="PHA.NC.RSB" name="Postsubiculum" mapped="true" brodmannid="48" type="Neocortex"
 				function="Visual association"
-				comments="similar to BA-36"
+				comments="Retrosubicular Area, similar to BA-36"
 				notes="Part of IT Cortex, from perirhinal to presubiculum"
 				/>
 		</element>
@@ -798,7 +801,7 @@
 				function="Extended hippocampal system"
 				notes="Projects to L4 of presubiculum and receives from postsubiculum, also to CG, RSP; spatial learning and memory; attentional processes; head direction"
 				>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Anterodorsal_nucleus Anterodorsal nucleus]"/>
+				<element id="HBA.FD.TH.AD" name="Anterodorsal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Anterodorsal_nucleus Anterodorsal nucleus]"/>
 				<element refs="NL:[http://neurolex.org/wiki/Category:Anteromedial_nucleus Anteromedial nucleus]"/>
 				<element id="HBA.FD.TH.AV" name="Anteroventral Nucleus" 
 					refs="NL:[http://neurolex.org/wiki/Category:Anteroventral_nucleus Anteroventral nucleus]"
@@ -1213,7 +1216,7 @@
 			function="Provide sensory feedback to cerebral cortex"
 			>
 			<element name="Entopeduncular Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Entopeduncular_nucleus Entopeduncular nucleus]"/>
-			<element name="Interpeduncular Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Interpeduncular_nucleus Interpeduncular nucleus]"/>
+			<element id="BGA.HP.PPN.IPD" name="Interpeduncular Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Interpeduncular_nucleus Interpeduncular nucleus]"/>
 			<element name="Peripeduncular Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Peripeduncular_nucleus Peripeduncular nucleus]"/>
 			<element name="Compact Subnucleus"/>
 			<element name="Dissipated Subnucleus"/>
@@ -1325,7 +1328,7 @@
 			<element refs="NL:[http://neurolex.org/wiki/Category:Caudal_vestibular_nuclei Caudal vestibular nuclei]"/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Inferior_vestibular_nucleus Inferior vestibular nucleus]"/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_vestibular_nucleus Lateral vestibular nucleus]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Medial_vestibular_nucleus Medial vestibular nucleus]"/>
+			<element id="BMA.HP.MVB" name="Medial Vestibular Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_vestibular_nucleus Medial vestibular nucleus]"/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Superior_vestibular_nucleus Superior vestibular nucleus]"/>
 		</element>
 

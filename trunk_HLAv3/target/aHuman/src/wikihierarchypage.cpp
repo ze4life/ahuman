@@ -71,8 +71,7 @@ void WikiHierarchyPage::updateHierarchyPage_walkTree( String parentNode , int le
 MindArea *WikiHierarchyPage::updateHierarchyPage_getArea( String parentNode ) {
 	MindService *ms = MindService::getService();
 
-	XmlHMindElementInfo info;
-	wm -> hmindxml.getElementInfo( parentNode , info );
+	XmlHMindElementInfo& info =	wm -> hmindxml.getElementInfo( parentNode );
 
 	// check ignored
 	if( info.ignore == true )
@@ -93,7 +92,7 @@ MindArea *WikiHierarchyPage::updateHierarchyPage_getArea( String parentNode ) {
 		String node = elements.get( k );
 
 		// check ignored
-		wm -> hmindxml.getElementInfo( node , info );
+		info = wm -> hmindxml.getElementInfo( node );
 		if( info.ignore == true )
 			continue;
 
@@ -111,8 +110,7 @@ MindRegion *WikiHierarchyPage::updateHierarchyPage_getRegion( String parentNode 
 	MindRegion *region = NULL;
 	MindService *ms = MindService::getService();
 
-	XmlHMindElementInfo info;
-	wm -> hmindxml.getElementInfo( parentNode , info );
+	XmlHMindElementInfo& info =	wm -> hmindxml.getElementInfo( parentNode );
 
 	// check ignored
 	if( info.ignore == true )
@@ -132,7 +130,7 @@ MindRegion *WikiHierarchyPage::updateHierarchyPage_getRegion( String parentNode 
 		String node = elements.get( k );
 
 		// check ignored
-		wm -> hmindxml.getElementInfo( node , info );
+		info = wm -> hmindxml.getElementInfo( node );
 		if( info.ignore == true )
 			continue;
 
@@ -149,8 +147,7 @@ MindRegion *WikiHierarchyPage::updateHierarchyPage_getRegion( String parentNode 
 String WikiHierarchyPage::updateHierarchyPage_getElementString( String node , MindArea *parentArea , MindRegion *parentRegion , MindArea *ownArea , MindRegion *ownRegion ) {
 	String value;
 
-	XmlHMindElementInfo info;
-	wm -> hmindxml.getElementInfo( node , info );
+	XmlHMindElementInfo& info =	wm -> hmindxml.getElementInfo( node );
 
 	// own name if any
 	if( !info.name.isEmpty() ) {
@@ -198,14 +195,13 @@ String WikiHierarchyPage::updateHierarchyPage_getElementString( String node , Mi
 }
 
 void WikiHierarchyPage::updateHierarchyPage_walkNeocortex( String neocortexDivision , String wikiDir , String wikiPage ) {
-	XmlHMindElementInfo info;
 	StringList elements;
 	wm -> hmindxml.getElements( neocortexDivision , elements );
 
 	// group by major lobes
 	for( int k = 0; k < elements.count(); k++ ) {
 		String node = elements.get( k );
-		wm -> hmindxml.getElementInfo( node , info );
+		XmlHMindElementInfo& info = wm -> hmindxml.getElementInfo( node );
 
 		StringList lines;
 		updateHierarchyPage_getNeocortexLobeLines( node , lines );
@@ -290,8 +286,7 @@ String WikiHierarchyPage::updateHierarchyPage_getNeocortexBrodmannLine( String n
 }
 
 void WikiHierarchyPage::updateHierarchyPage_walkNeocortexBrodmannLine( String node , String banum , StringList& items ) {
-	XmlHMindElementInfo info;
-	wm -> hmindxml.getElementInfo( node , info );
+	XmlHMindElementInfo& info =	wm -> hmindxml.getElementInfo( node );
 
 	if( info.brodmannid.isEmpty() ) {
 		// check childs

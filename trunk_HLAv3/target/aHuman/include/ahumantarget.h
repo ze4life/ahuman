@@ -246,7 +246,8 @@ private:
 	void createAreaPages_getExternalConnections( MindAreaDef *areaDef , MapStringToClass<MindCircuitConnectionDef>& connections , bool isin );
 	void createAreaPages_getExternalConnectionTableLine( MindAreaDef *areaDef , MindCircuitConnectionDef *link , StringList& lines , bool isin );
 	void createDotFile( MindAreaDef *areaDef , MapStringToClass<MindCircuitConnectionDef>& internals , MapStringToClass<MindCircuitConnectionDef>& inputs , MapStringToClass<MindCircuitConnectionDef>& outputs );
-	void createDotFile_subgraph( bool p_inputs , MapStringToClass<MindCircuitConnectionDef>& connections , StringList& text );
+	void createDotFile_subgraph( MindAreaDef *areaDef , bool p_inputs , MapStringToClass<MindCircuitConnectionDef>& connections , StringList& text , String& linkItem );
+	String createDotFile_getRegionLabel( MindRegionDef *region , MapStringToClass<MindCircuitConnectionDef>& inputs , MapStringToClass<MindCircuitConnectionDef>& outputs );
 
 private:
 	WikiMaker *wm;
@@ -283,7 +284,7 @@ private:
 	WikiMaker *wm;
 	String wikiDir;
 	MindRegionDef *region;
-	XmlHMindElementInfo info;
+	XmlHMindElementInfo& info;
 };
 
 /*#########################################################################*/
