@@ -240,7 +240,7 @@ private:
 	String createAreaPages_getCircuitKey( MindAreaDef *areaDef , XmlCircuitInfo& info );
 	void createAreaPages_getCircuitLines( XmlCircuitInfo& info , StringList& lines );
 	String createAreaPages_getRegionTableRow( MindRegionDef *regionDef );
-	String createAreaPages_getTableCellAttribute( XmlHMindElementInfo& info , String attribute , String value , bool required , int columnWidth );
+	String createAreaPages_getTableCellAttribute( const XmlHMindElementInfo& info , String attribute , String value , bool required , int columnWidth );
 	void createAreaPages_getInternalConnections( MindAreaDef *areaDef , MapStringToClass<MindCircuitConnectionDef>& connections );
 	void createAreaPages_getInternalConnectionTableLine( MindAreaDef *areaDef , MindCircuitConnectionDef *link , StringList& lines );
 	void createAreaPages_getExternalConnections( MindAreaDef *areaDef , MapStringToClass<MindCircuitConnectionDef>& connections , bool isin );
@@ -284,7 +284,7 @@ private:
 	WikiMaker *wm;
 	String wikiDir;
 	MindRegionDef *region;
-	XmlHMindElementInfo& info;
+	const XmlHMindElementInfo& info;
 };
 
 /*#########################################################################*/

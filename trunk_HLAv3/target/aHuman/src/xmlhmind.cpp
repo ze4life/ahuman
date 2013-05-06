@@ -89,7 +89,7 @@ void XmlHMind::getElementInfo( String node , XmlHMindElementInfo& info ) {
 		info.batype = info.type + ", BA " + info.brodmannid;
 }
 
-XmlHMindElementInfo& XmlHMind::getElementInfo( String node ) {
+const XmlHMindElementInfo& XmlHMind::getElementInfo( String node ) {
 	XmlHMindElementInfo *ni = nodeInfo.get( node );
 	if( ni == NULL ) {
 		ni = new XmlHMindElementInfo;

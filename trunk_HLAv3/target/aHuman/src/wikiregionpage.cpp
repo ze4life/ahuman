@@ -350,12 +350,12 @@ void WikiRegionPage::createConnectivitySection_getExternalConnectionTableLine( M
 
 	String reference = wm -> findReference( link );
 	if( isin == true ) {
-		XmlHMindElementInfo& info = wm -> hmindxml.getElementInfo( link -> getSrcRegion() );
+		const XmlHMindElementInfo& info = wm -> hmindxml.getElementInfo( link -> getSrcRegion() );
 		line = "|| " + wm -> getAreaReference( srcRegion -> getArea() -> getId() ) + " || " + 
 			wm -> getRegionReference( link -> getSrcRegion() ) + " || " + info.name + " || " + link -> getTypeName() + " || " + reference + " ||";
 	}
 	else {
-		XmlHMindElementInfo& info = wm -> hmindxml.getElementInfo( link -> getDstRegion() );
+		const XmlHMindElementInfo& info = wm -> hmindxml.getElementInfo( link -> getDstRegion() );
 		line = "|| " + wm -> getAreaReference( dstRegion -> getArea() -> getId() ) + " || " + 
 			wm -> getRegionReference( link -> getDstRegion() ) + " || " + info.name + " || " + link -> getTypeName() + " || " + reference + " ||";
 	}
