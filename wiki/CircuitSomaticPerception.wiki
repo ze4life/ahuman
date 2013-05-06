@@ -13,6 +13,7 @@ Circuit is part of aHuman target integrated biological model.
 || [BrainAreaABA ABA] || [BrainRegionABA_FD_TH_SG ABA.FD.TH.SG] || Suprageniculate Nucleus of Thalamus || Excitatory Nucleus || Spatial coding of auditory information ||
 || [BrainAreaACA ACA] || [BrainRegionACA_NC_IPL_SMW ACA.NC.IPL.SMW] || Supramarginal Wernike Cortex || Neocortex, BA 40 || Phonological and articulatory processing of words ||
 || [BrainAreaBMA BMA] || [BrainRegionBMA_SC_IZ_CCV BMA.SC.IZ.CCV] || Central Cervical Nucleus || 1-order Sensory Nucleus || Coordinate voluntary movements, maintain balance, and learn motor skills ||
+|| [BrainAreaCGA CGA] || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || Retrosplenial Cortex || Neocortex, BA 26,29,30 || Processing of emotionally salient stimuli ||
 || [BrainAreaFCA FCA] || [BrainRegionFCA_FD_TH_LD FCA.FD.TH.LD] || Lateral Dorsal Nucleus of Thalamus || Excitatory Nucleus || Head direction, spatial learning ||
 || [BrainAreaFCA FCA] || [BrainRegionFCA_FD_TH_PO FCA.FD.TH.PO] || Posterior Nucleus of Thalamus || Excitatory Nucleus || Somatic markers for spatial coding ||
 || [BrainAreaFCA FCA] || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || Dorsolateral Prefrontal Cortex || Neocortex, BA 09,46 || Temporal Integration ||
@@ -25,7 +26,6 @@ Circuit is part of aHuman target integrated biological model.
 || [BrainAreaPHA PHA] || [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || Posterior Insular Cortex || Neocortex, BA 13 || Awareness and sensation of pain ||
 || [BrainAreaPHA PHA] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || Neocortex, BA 28 || Memory consolidation ||
 || [BrainAreaSMA SMA] || [BrainRegionSMA_FD_TH_RIL SMA.FD.TH.RIL] || Rostral Intralaminar Nucleus of Thalamus || Excitatory Nucleus || Stimulate memory-guided response ||
-|| [BrainAreaSMA SMA] || [BrainRegionSMA_NC_MPL_RSC SMA.NC.MPL.RSC] || Retrosplenial Cortex || Neocortex, BA 26,29,30 || Processing of emotionally salient stimuli ||
 || [BrainAreaSMA SMA] || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || Somatosensory Cortex || Neocortex, BA 01,02,03 || Muscle and skin receptors ||
 || [BrainAreaSMA SMA] || [BrainRegionSMA_NC_SPL_PF SMA.NC.SPL.PF] || Rostral Precuneus || Neocortex, BA 07 || Spatial orientation, representation of the self ||
 || [BrainAreaSMA SMA] || [BrainRegionSMA_NC_SPL_SA SMA.NC.SPL.SA] || Somatosensory Association Cortex || Neocortex, BA 05 || Locating objects in space ||
@@ -38,6 +38,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitSomaticPerception.dot.
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionBMA_SC_IZ_CCV BMA.SC.IZ.CCV] || [BrainRegionFCA_FD_TH_PO FCA.FD.TH.PO] || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s1P -> P, abstract)] ||
 || [BrainRegionBMA_SC_IZ_CCV BMA.SC.IZ.CCV] || [BrainRegionSMA_FD_TH_RIL SMA.FD.TH.RIL] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || neocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (PCGRSP -> EnthCortex, abstract)] ||
 || [BrainRegionFCA_FD_TH_PO FCA.FD.TH.PO] || [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (P -> pP, abstract)] ||
 || [BrainRegionHMA_HP_PTP_PTR HMA.HP.PTP.PTR] || [BrainRegionABA_FD_TH_SG ABA.FD.TH.SG] || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s2P -> P, abstract)] ||
 || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionSMA_FD_TH_RIL SMA.FD.TH.RIL] || nucleus-nucleus || (unknown reference) ||
@@ -45,7 +46,6 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitSomaticPerception.dot.
 || [BrainRegionMCA_NC_PMC_F7 MCA.NC.PMC.F7] || [BrainRegionSMA_NC_SPL_SA SMA.NC.SPL.SA] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1053810011000080 Cortico-Cortical Connectivity (MA -> SA, abstract)] ||
 || [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (Iav -> IadIap, abstract)] ||
 || [BrainRegionSMA_FD_TH_RIL SMA.FD.TH.RIL] || [BrainRegionSMA_NC_SPL_SA SMA.NC.SPL.SA] || nucleus-neocortex || (unknown reference) ||
-|| [BrainRegionSMA_NC_MPL_RSC SMA.NC.MPL.RSC] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || neocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (PCGRSP -> EnthCortex, abstract)] ||
 || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || [BrainRegionACA_NC_IPL_SMW ACA.NC.IPL.SMW] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1053810011000080 Cortico-Cortical Connectivity (S1 -> PTHA, abstract)] ||
 || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || [BrainRegionMCA_NC_SPL_PG MCA.NC.SPL.PG] || neocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (SomSensCortex -> PosteriorParietalCortex)] ||
 || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || [BrainRegionSMA_NC_SPL_SA SMA.NC.SPL.SA] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1053810011000080 Cortico-Cortical Connectivity (S1 -> SA)] ||

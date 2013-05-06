@@ -12,13 +12,13 @@ Circuit is part of aHuman target integrated biological model.
 || *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||
 || [BrainAreaAVA AVA] || [BrainRegionAVA_MM_EWN AVA.MM.EWN] || Edinger-Westphal Nucleus || Preganglionic Nucleus || Change Eye Pupil ||
 || [BrainAreaAVA AVA] || [BrainRegionAVA_PN_PSYM_CLG AVA.PN.PSYM.CLG] || Ciliary Ganglion || Parasymp. Gang. || Control pupillary diameter ||
-|| [BrainAreaHBA HBA] || [BrainRegionHBA_FD_TH_AN HBA.FD.TH.AN] || Anterior Nucleus of Thalamus || Excitatory Nucleus || Extended hippocampal system ||
+|| [BrainAreaCGA CGA] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || Anterior Nucleus of Thalamus || Excitatory Nucleus || Extended hippocampal system ||
+|| [BrainAreaCGA CGA] || [BrainRegionCGA_NC_MPL_PCG CGA.NC.MPL.PCG] || Posterior Cingulate Cortex || Neocortex, BA 23,31 || Self-awareness, pain and episodic memory retrieval ||
+|| [BrainAreaCGA CGA] || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || Retrosplenial Cortex || Neocortex, BA 26,29,30 || Processing of emotionally salient stimuli ||
 || [BrainAreaHBA HBA] || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || Subiculum || Allocortex || Spatial navigation and mnemonic processing ||
 || [BrainAreaHMA HMA] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || Premotor Nucleus || Mediation of changing to and from REM sleep ||
 || [BrainAreaHMA HMA] || [BrainRegionHMA_MM_INMLF HMA.MM.INMLF] || Interstitial Nucleus of Medial Longitudinal Fasciculus || Motor Relay Nucleus || Controls vertical gaze ||
 || [BrainAreaMBA MBA] || [BrainRegionMBA_MM_SC MBA.MM.SC] || Superior Colliculus || Sensory Control Nucleus || Direct behavioral responses toward specific points in egocentric space, induce saccadic eye movement ||
-|| [BrainAreaSMA SMA] || [BrainRegionSMA_NC_MPL_PCG SMA.NC.MPL.PCG] || Posterior Cingulate Cortex || Neocortex, BA 23,31 || Self-awareness, pain and episodic memory retrieval ||
-|| [BrainAreaSMA SMA] || [BrainRegionSMA_NC_MPL_RSC SMA.NC.MPL.RSC] || Retrosplenial Cortex || Neocortex, BA 26,29,30 || Processing of emotionally salient stimuli ||
 || [BrainAreaVBA VBA] || [BrainRegionVBA_FD_RT VBA.FD.RT] || Retina || 1-order Sensory Nucleus || Spatial decorrelation through center surround inhibition ||
 || [BrainAreaVBA VBA] || [BrainRegionVBA_HP_ABD VBA.HP.ABD] || Abducens Nucleus || Motor Relay Nucleus || Conjugated movements of both eyes ||
 || [BrainAreaVBA VBA] || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || Oculomotor Nucleus || Motor Relay Nucleus || Change Eye Direction ||
@@ -40,17 +40,17 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitVisionEyeControl.dot.j
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionAVA_MM_EWN AVA.MM.EWN] || [BrainRegionAVA_PN_PSYM_CLG AVA.PN.PSYM.CLG] || nucleus-ganglion || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (EWN -> Ciliary)] ||
-|| [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionSMA_NC_MPL_RSC SMA.NC.MPL.RSC] || nucleus-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (SUB -> PCGRSP, abstract)] ||
+|| [BrainRegionCGA_NC_MPL_PCG CGA.NC.MPL.PCG] || [BrainRegionVCA_NC_IPS_PEF VCA.NC.IPS.PEF] || neocortex-neocortex || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (CGp -> LIP)] ||
+|| [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || neocortex-allocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (PCGRSP -> SUB, abstract)] ||
+|| [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || nucleus-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (SUB -> PCGRSP, abstract)] ||
 || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || [BrainRegionVBA_HP_ABD VBA.HP.ABD] || nucleus-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) (PPRF -> Abducens, abstract)] ||
 || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (RF -> OPN, abstract)] ||
 || [BrainRegionHMA_MM_INMLF HMA.MM.INMLF] || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionHMA_MM_INMLF HMA.MM.INMLF] || [BrainRegionVBA_MM_TRH VBA.MM.TRH] || nucleus-nucleus || (unknown reference) ||
-|| [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionHBA_FD_TH_AN HBA.FD.TH.AN] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCi -> ATH)] ||
+|| [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCi -> ATH)] ||
 || [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionVBA_HP_ABD VBA.HP.ABD] || nucleus-nucleus || [http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html Retina and superior colliculus targets (SC -> Abducens)] ||
 || [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || nucleus-nucleus || [http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html Retina and superior colliculus targets (SC -> Oculomotor)] ||
 || [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionVBA_MM_TRH VBA.MM.TRH] || nucleus-nucleus || [http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html Retina and superior colliculus targets (SC -> Trochlear)] ||
-|| [BrainRegionSMA_NC_MPL_PCG SMA.NC.MPL.PCG] || [BrainRegionVCA_NC_IPS_PEF VCA.NC.IPS.PEF] || neocortex-neocortex || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (CGp -> LIP)] ||
-|| [BrainRegionSMA_NC_MPL_RSC SMA.NC.MPL.RSC] || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || neocortex-allocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (PCGRSP -> SUB, abstract)] ||
 || [BrainRegionVBA_FD_RT VBA.FD.RT] || [BrainRegionMBA_MM_SC MBA.MM.SC] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (Retina -> SC)] ||
 || [BrainRegionVBA_FD_RT VBA.FD.RT] || [BrainRegionVBA_MM_PT_PON VBA.MM.PT.PON] || nucleus-nucleus || [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm Targets of retina neurons (Retina -> Pretectum, abstract)] ||
 || [BrainRegionVBA_HP_ABD VBA.HP.ABD] || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || nucleus-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) (Abducens -> Oculomotor)] ||

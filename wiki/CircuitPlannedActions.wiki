@@ -20,11 +20,11 @@ Circuit is part of aHuman target integrated biological model.
 || [BrainAreaBGA BGA] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || Substantia Nigra Pars Compacta || Mixed Nucleus || Fine motor control, temporal processing ||
 || [BrainAreaBGA BGA] || [BrainRegionBGA_FT_SN_PR BGA.FT.SN.PR] || Substantia Nigra Pars Reticulata || Inhibitory Nucleus || Convey final processed signals of basal ganglia to thalamus and superior colliculus ||
 || [BrainAreaBGA BGA] || [BrainRegionBGA_HP_PPN BGA.HP.PPN] || Pedunculopontine Nucleus || Excitatory Nucleus || Provide sensory feedback to cerebral cortex ||
+|| [BrainAreaCGA CGA] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || Anterior Nucleus of Thalamus || Excitatory Nucleus || Extended hippocampal system ||
+|| [BrainAreaCGA CGA] || [BrainRegionCGA_NC_PACG CGA.NC.PACG] || Pregenual Area || Neocortex, BA 33 || Sensation of Emotion ||
+|| [BrainAreaCGA CGA] || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || Ventral Anterior Cingulate Area || Neocortex, BA 24 || Seat of Free Will ||
 || [BrainAreaFBA FBA] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || Ventral Tegmental Area || Excitatory Nucleus || Respond to novel stimuli, unexpected rewards, and reward predictive sensory cues ||
 || [BrainAreaFCA FCA] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || Neocortex, BA 10,11,12 || Personality ||
-|| [BrainAreaFCA FCA] || [BrainRegionFCA_NC_PACG FCA.NC.PACG] || Pregenual Area || Neocortex, BA 33 || Sensation of Emotion ||
-|| [BrainAreaFCA FCA] || [BrainRegionFCA_NC_VACG FCA.NC.VACG] || Ventral Anterior Cingulate Area || Neocortex, BA 24 || Seat of Free Will ||
-|| [BrainAreaHBA HBA] || [BrainRegionHBA_FD_TH_AN HBA.FD.TH.AN] || Anterior Nucleus of Thalamus || Excitatory Nucleus || Extended hippocampal system ||
 || [BrainAreaMBA MBA] || [BrainRegionMBA_MM_SC MBA.MM.SC] || Superior Colliculus || Sensory Control Nucleus || Direct behavioral responses toward specific points in egocentric space, induce saccadic eye movement ||
 || [BrainAreaMCA MCA] || [BrainRegionMCA_FD_TH_VA MCA.FD.TH.VA] || Ventral Anterior Nucleus || Excitatory Nucleus || Relay BGA.SN, BGA.GPI, FCA.OMPFC, FCA.CG to MCA.PMC, MCA.SMC ||
 || [BrainAreaMCA MCA] || [BrainRegionMCA_NC_MC MCA.NC.MC] || Motor Cortex || Neocortex, BA 04 || Execution of required voluntary movements ||
@@ -63,7 +63,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitPlannedActions.dot.jpg
 || [BrainRegionBGA_FT_PU BGA.FT.PU] || [BrainRegionBGA_FT_GPE BGA.FT.GPE] || nucleus-nucleus || [http://brainmind.com/BasalGanglia.html Basal Ganglia Activity (PU -> GPo)] ||
 || [BrainRegionBGA_FT_PU BGA.FT.PU] || [BrainRegionBGA_FT_GPI BGA.FT.GPI] || nucleus-nucleus || [http://brainmind.com/BasalGanglia.html Basal Ganglia Activity (PU -> GPi)] ||
 || [BrainRegionBGA_FT_PU BGA.FT.PU] || [BrainRegionBGA_FT_SN_PR BGA.FT.SN.PR] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (Striatum -> SNr, abstract)] ||
-|| [BrainRegionBGA_FT_PU BGA.FT.PU] || [BrainRegionHBA_FD_TH_AN HBA.FD.TH.AN] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (Striatum -> ATH, abstract)] ||
+|| [BrainRegionBGA_FT_PU BGA.FT.PU] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (Striatum -> ATH, abstract)] ||
 || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || [BrainRegionBFA_FT_ACC BFA.FT.ACC] || nucleus-nucleus || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (SNc -> NAC)] ||
 || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || [BrainRegionBGA_FT_PU BGA.FT.PU] || nucleus-nucleus || [http://brainmind.com/BasalGanglia.html Basal Ganglia Activity (SNi -> PU, abstract)] ||
 || [BrainRegionBGA_FT_SN_PR BGA.FT.SN.PR] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || nucleus-nucleus || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (SNr -> SNc)] ||
@@ -72,10 +72,10 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitPlannedActions.dot.jpg
 || [BrainRegionBGA_HP_PPN BGA.HP.PPN] || [BrainRegionBGA_FD_STN BGA.FD.STN] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionBGA_HP_PPN BGA.HP.PPN] || [BrainRegionMBA_MM_SC MBA.MM.SC] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (PPN -> SC)] ||
 || [BrainRegionBGA_HP_PPN BGA.HP.PPN] || [BrainRegionVBA_FD_LGN VBA.FD.LGN] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (PPN -> LGN)] ||
+|| [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || nucleus-neocortex || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (Thalamus -> FrontalCortex, abstract)] ||
+|| [BrainRegionCGA_NC_PACG CGA.NC.PACG] || [BrainRegionBGA_FT_PU BGA.FT.PU] || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> BGA, abstract)] ||
+|| [BrainRegionCGA_NC_VACG CGA.NC.VACG] || [BrainRegionBGA_FT_CN BGA.FT.CN] || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> BGA, abstract)] ||
 || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionBFA_FT_ACC BFA.FT.ACC] || nucleus-nucleus || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (VTA -> NAC)] ||
-|| [BrainRegionFCA_NC_PACG FCA.NC.PACG] || [BrainRegionBGA_FT_PU BGA.FT.PU] || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> BGA, abstract)] ||
-|| [BrainRegionFCA_NC_VACG FCA.NC.VACG] || [BrainRegionBGA_FT_CN BGA.FT.CN] || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> BGA, abstract)] ||
-|| [BrainRegionHBA_FD_TH_AN HBA.FD.TH.AN] || [BrainRegionFCA_NC_VACG FCA.NC.VACG] || nucleus-neocortex || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (Thalamus -> FrontalCortex, abstract)] ||
 || [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCi -> SNc)] ||
 || [BrainRegionMCA_NC_MC MCA.NC.MC] || [BrainRegionBGA_FD_STN BGA.FD.STN] || neocortex-nucleus || (unknown reference) ||
 || [BrainRegionMCA_NC_MC MCA.NC.MC] || [BrainRegionBGA_FT_PU BGA.FT.PU] || neocortex-nucleus || [http://brainmind.com/BasalGanglia.html Basal Ganglia Activity (M1 -> PU)] ||
