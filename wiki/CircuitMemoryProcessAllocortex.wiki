@@ -12,8 +12,8 @@ Circuit is part of aHuman target integrated biological model.
 || *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||
 || [BrainAreaBFA BFA] || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || Septal Nucleus || Mixed Nucleus || Inhibition of fear and expression of pleasurable responses ||
 || [BrainAreaCGA CGA] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || Anterior Nucleus of Thalamus || Excitatory Nucleus || Extended hippocampal system ||
+|| [BrainAreaCGA CGA] || [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || Lateral Dorsal Nucleus of Thalamus || Excitatory Nucleus || Head direction, spatial learning ||
 || [BrainAreaCGA CGA] || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || Retrosplenial Cortex || Neocortex, BA 26,29,30 || Processing of emotionally salient stimuli ||
-|| [BrainAreaFCA FCA] || [BrainRegionFCA_FD_TH_LD FCA.FD.TH.LD] || Lateral Dorsal Nucleus of Thalamus || Excitatory Nucleus || Head direction, spatial learning ||
 || [BrainAreaHBA HBA] || [BrainRegionHBA_FD_MB_LMB HBA.FD.MB.LMB] || Lateral Mammillary Nucleus || Excitatory Nucleus || Generate theta rythm and relay to HC ||
 || [BrainAreaHBA HBA] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || Excitatory Nucleus || Relay for impulses coming from AM and HC ||
 || [BrainAreaHBA HBA] || [BrainRegionHBA_FT_DG HBA.FT.DG] || Dentate Gyrus || Allocortex || Distinguishing multiple instances of similar events ||
@@ -32,9 +32,9 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitMemoryProcessAllocorte
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || [BrainRegionHBA_FT_SC_PSS HBA.FT.SC.PSS] || nucleus-allocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (ATN -> PoS)] ||
+|| [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || allocortex-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LD -> RSP)] ||
 || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || neocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S0149763409002061 Contribution of hippocampal region CA3 to consciousness (Retrosplenial -> CA1)] ||
 || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || [BrainRegionHBA_FT_SC_PSS HBA.FT.SC.PSS] || neocortex-allocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (Rsp -> PoS)] ||
-|| [BrainRegionFCA_FD_TH_LD FCA.FD.TH.LD] || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || allocortex-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LD -> RSP)] ||
 || [BrainRegionHBA_FT_DG HBA.FT.DG] || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || allocortex-allocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (DG -> CA3)] ||
 || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || allocortex-nucleus || [http://www.thebrainlabs.com Cingulate Gyrus (HC -> SEP, abstract)] ||
 || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || allocortex-allocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (CA1 -> Sub)] ||
@@ -43,7 +43,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitMemoryProcessAllocorte
 || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || allocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0149763409002061 Contribution of hippocampal region CA3 to consciousness (CA1 -> MB, abstract)] ||
 || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || allocortex-allocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (CA3 -> CA1)] ||
 || [BrainRegionHBA_FT_SC_PSS HBA.FT.SC.PSS] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || allocortex-nucleus || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (PoS -> ATN)] ||
-|| [BrainRegionHBA_FT_SC_PSS HBA.FT.SC.PSS] || [BrainRegionFCA_FD_TH_LD FCA.FD.TH.LD] || allocortex-nucleus || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (PoS -> LDN)] ||
+|| [BrainRegionHBA_FT_SC_PSS HBA.FT.SC.PSS] || [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || allocortex-nucleus || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (PoS -> LDN)] ||
 || [BrainRegionHBA_FT_SC_PSS HBA.FT.SC.PSS] || [BrainRegionHBA_FD_MB_LMB HBA.FD.MB.LMB] || allocortex-nucleus || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (PoS -> LMam)] ||
 || [BrainRegionHBA_FT_SC_PSS HBA.FT.SC.PSS] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || allocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (PoS -> EC)] ||
 || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || allocortex-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s1A -> A, abstract)] ||

@@ -18,9 +18,9 @@ Circuit is part of aHuman target integrated biological model.
 || [BrainAreaBGA BGA] || [BrainRegionBGA_HP_PPN BGA.HP.PPN] || Pedunculopontine Nucleus || Excitatory Nucleus || Provide sensory feedback to cerebral cortex ||
 || [BrainAreaBMA BMA] || [BrainRegionBMA_HP_VB BMA.HP.VB] || Vestibular Nucleus || Premotor Nucleus || Equilibrium, Postural Reflexes ||
 || [BrainAreaCGA CGA] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || Anterior Nucleus of Thalamus || Excitatory Nucleus || Extended hippocampal system ||
+|| [BrainAreaCGA CGA] || [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || Lateral Dorsal Nucleus of Thalamus || Excitatory Nucleus || Head direction, spatial learning ||
 || [BrainAreaCGA CGA] || [BrainRegionCGA_NC_MPL_PCG CGA.NC.MPL.PCG] || Posterior Cingulate Cortex || Neocortex, BA 23,31 || Self-awareness, pain and episodic memory retrieval ||
 || [BrainAreaCGA CGA] || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || Retrosplenial Cortex || Neocortex, BA 26,29,30 || Processing of emotionally salient stimuli ||
-|| [BrainAreaFCA FCA] || [BrainRegionFCA_FD_TH_LD FCA.FD.TH.LD] || Lateral Dorsal Nucleus of Thalamus || Excitatory Nucleus || Head direction, spatial learning ||
 || [BrainAreaHBA HBA] || [BrainRegionHBA_FD_MB_LMB HBA.FD.MB.LMB] || Lateral Mammillary Nucleus || Excitatory Nucleus || Generate theta rythm and relay to HC ||
 || [BrainAreaHBA HBA] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || Excitatory Nucleus || Relay for impulses coming from AM and HC ||
 || [BrainAreaHTA HTA] || [BrainRegionHTA_FD_HT_PVI HTA.FD.HT.PVI] || Intermediate Periventrical Nucleus || Excitatory Nucleus || Rage Center ||
@@ -54,12 +54,12 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitMemoryProcessCortex.do
 || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || [BrainRegionCGA_NC_MPL_PCG CGA.NC.MPL.PCG] || nucleus-neocortex || [http://www.nature.com/nrn/journal/v5/n7 Feeling (AN -> CG)] ||
 || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || nucleus-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (AD -> RSP)] ||
 || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || [BrainRegionPHA_NC_RSB PHA.NC.RSB] || nucleus-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (AD -> PSUB)] ||
+|| [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || nucleus-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LD -> RSP)] ||
+|| [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || [BrainRegionPHA_NC_PRS PHA.NC.PRS] || nucleus-neocortex || (unknown reference) ||
+|| [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || [BrainRegionPHA_NC_RSB PHA.NC.RSB] || nucleus-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LD -> PSUB)] ||
 || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || neocortex-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (RSP -> AD)] ||
-|| [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || [BrainRegionFCA_FD_TH_LD FCA.FD.TH.LD] || neocortex-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (RSP -> LD)] ||
+|| [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || neocortex-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (RSP -> LD)] ||
 || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || [BrainRegionPHA_NC_RSB PHA.NC.RSB] || neocortex-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (RSP -> PSUB)] ||
-|| [BrainRegionFCA_FD_TH_LD FCA.FD.TH.LD] || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || nucleus-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LD -> RSP)] ||
-|| [BrainRegionFCA_FD_TH_LD FCA.FD.TH.LD] || [BrainRegionPHA_NC_PRS PHA.NC.PRS] || nucleus-neocortex || (unknown reference) ||
-|| [BrainRegionFCA_FD_TH_LD FCA.FD.TH.LD] || [BrainRegionPHA_NC_RSB PHA.NC.RSB] || nucleus-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LD -> PSUB)] ||
 || [BrainRegionHBA_FD_MB_LMB HBA.FD.MB.LMB] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LMB -> AD)] ||
 || [BrainRegionHBA_FD_MB_LMB HBA.FD.MB.LMB] || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LMB -> DTN)] ||
 || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || [BrainRegionABA_FD_TH_SG ABA.FD.TH.SG] || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (DTN -> SUPGEN)] ||
@@ -71,11 +71,11 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitMemoryProcessCortex.do
 || [BrainRegionPHA_NC_PAS PHA.NC.PAS] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || neocortex-neocortex || (unknown reference) ||
 || [BrainRegionPHA_NC_PH_PPG PHA.NC.PH.PPG] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || neocortex-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (PRHC -> EC)] ||
 || [BrainRegionPHA_NC_PRS PHA.NC.PRS] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || neocortex-nucleus || (unknown reference) ||
-|| [BrainRegionPHA_NC_PRS PHA.NC.PRS] || [BrainRegionFCA_FD_TH_LD FCA.FD.TH.LD] || neocortex-nucleus || (unknown reference) ||
+|| [BrainRegionPHA_NC_PRS PHA.NC.PRS] || [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || neocortex-nucleus || (unknown reference) ||
 || [BrainRegionPHA_NC_PRS PHA.NC.PRS] || [BrainRegionHBA_FD_MB_LMB HBA.FD.MB.LMB] || neocortex-nucleus || (unknown reference) ||
 || [BrainRegionPHA_NC_RSB PHA.NC.RSB] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || neocortex-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (PSUB -> AD)] ||
+|| [BrainRegionPHA_NC_RSB PHA.NC.RSB] || [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || neocortex-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (PSUB -> LD)] ||
 || [BrainRegionPHA_NC_RSB PHA.NC.RSB] || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || neocortex-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (PSUB -> RSP)] ||
-|| [BrainRegionPHA_NC_RSB PHA.NC.RSB] || [BrainRegionFCA_FD_TH_LD FCA.FD.TH.LD] || neocortex-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (PSUB -> LD)] ||
 || [BrainRegionPHA_NC_RSB PHA.NC.RSB] || [BrainRegionHBA_FD_MB_LMB HBA.FD.MB.LMB] || neocortex-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (PSUB -> LMB)] ||
 || [BrainRegionPHA_NC_RSB PHA.NC.RSB] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || neocortex-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (PSUB -> EC)] ||
 || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || [BrainRegionABA_FD_TH_SG ABA.FD.TH.SG] || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (NPRP -> SUPGEN)] ||

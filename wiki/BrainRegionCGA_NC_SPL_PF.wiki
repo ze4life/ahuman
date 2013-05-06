@@ -1,12 +1,12 @@
 #summary Rostral Precuneus
-@@[Home] -> [BiologicalLifeResearch] -> [BrainAreaSMA] -> [BrainRegionSMA_NC_SPL_PF]
+@@[Home] -> [BiologicalLifeResearch] -> [BrainAreaCGA] -> [BrainRegionCGA_NC_SPL_PF]
 ----
 
 This page covers biological details of component Rostral Precuneus.
 Region is part of aHuman target integrated biological model.
 
-  * *Top-down path to region*: Neocortex -> Parietal Lobe (NC.LOBE.PAR) -> Superior Parietal Lobule (NC.SPL) -> Rostral Precuneus (SMA.NC.SPL.PF) (see [OverallMindMaps Mind Maps])
-  * *Brain area*: [BrainAreaSMA Somatic Cortex Area]
+  * *Top-down path to region*: Neocortex -> Parietal Lobe (NC.LOBE.PAR) -> Superior Parietal Lobule (NC.SPL) -> Rostral Precuneus (CGA.NC.SPL.PF) (see [OverallMindMaps Mind Maps])
+  * *Brain area*: [BrainAreaCGA Cingulate Cortex Area]
   * *Brodmann ID*: 07
   * *Function*: Spatial orientation, representation of the self
   * *Notes to function*: rostral, 7B=PF, heavy somatosensory input
@@ -21,17 +21,20 @@ Region is part of aHuman target integrated biological model.
 (generated)
 
 
-http://ahuman.googlecode.com/svn/images/dot/aHuman/SMA.NC.SPL.PF.dot.jpg
+http://ahuman.googlecode.com/svn/images/dot/aHuman/CGA.NC.SPL.PF.dot.jpg
 
 *Inbound Region Connections:*
 
 || *Source Area* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| [BrainAreaCGA CGA] || [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || Lateral Dorsal Nucleus of Thalamus || nucleus-neocortex || (unknown reference) ||
 || [BrainAreaVCA VCA] || [BrainRegionVCA_NC_IPS_VIP VCA.NC.IPS.VIP] || Ventral Intraparietal Sulcus || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0166223697010679 Parietal Association Cortex (VIP -> 7b)] ||
 
 *Outbound Region Connections:*
 
 || *Target Area* || *Target Region* || *Target Name* || *Type* || *Reference* ||
-|| [BrainAreaFCA FCA] || [BrainRegionFCA_FD_TH_LD FCA.FD.TH.LD] || Lateral Dorsal Nucleus of Thalamus || neocortex-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sLD -> LD, abstract)] ||
+|| [BrainAreaCGA CGA] || [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || Lateral Dorsal Nucleus of Thalamus || neocortex-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sLD -> LD, abstract)] ||
+|| [BrainAreaCGA CGA] || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || Retrosplenial Cortex || neocortex-neocortex || (unknown reference) ||
+|| [BrainAreaCGA CGA] || [BrainRegionCGA_NC_PACG CGA.NC.PACG] || Pregenual Area || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> FrontalCortex, abstract)] ||
 || [BrainAreaSMA SMA] || [BrainRegionSMA_NC_PO_PCC SMA.NC.PO.PCC] || Precentral Cortex || neocortex-neocortex || (unknown reference) ||
 
 = Thirdparty Circuits =
