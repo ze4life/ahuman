@@ -26,8 +26,7 @@ public:
 
 	void getDivisions( StringList& divisions );
 	void getElements( String parentNode , StringList& elements );
-	void getElementInfo( String node , XmlHMindElementInfo& info );
-	XmlHMindElementInfo& getElementInfo( String node );
+	const XmlHMindElementInfo& getElementInfo( String node );
 	String getMappedRegion( String node );
 	void getChildRegions( String node , StringList& regions );
 	String getDotDef( String node );
@@ -35,6 +34,7 @@ public:
 private:
 	void scanChildItems( Xml xmlChild );
 	void scanChildRegions( Xml xmlChild , StringList& regions );
+	void getElementInfo( String node , XmlHMindElementInfo& info );
 
 private:
 	Xml xml;

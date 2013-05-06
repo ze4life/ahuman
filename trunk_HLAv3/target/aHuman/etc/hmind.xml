@@ -5,24 +5,24 @@
 		<element id="NC.LOBE.ANT" name="Anterior Lobe"
 			dotdef="color=skyblue"
 			>
-			<element id="FCA.NC.ACG" name="Anterior Cingulate Cortex" type="Neocortex"
+			<element id="CGA.NC.ACG" name="Anterior Cingulate Cortex" type="Neocortex"
 				function="Error Correction" 
 				notes="Part of limbic lobe"
 				>
-				<element id="FCA.NC.VACG" name="Ventral Anterior Cingulate Area" mapped="true" brodmannid="24" type="Neocortex"
+				<element id="CGA.NC.VACG" name="Ventral Anterior Cingulate Area" mapped="true" brodmannid="24" type="Neocortex"
 					function="Seat of Free Will" 
 					notes="motor, attentional and cognitive functions"
 					/>
-				<element id="FCA.NC.PACG" name="Pregenual Area" mapped="true" brodmannid="33" type="Neocortex"
+				<element id="CGA.NC.PACG" name="Pregenual Area" mapped="true" brodmannid="33" type="Neocortex"
 					function="Sensation of Emotion" 
 					notes="Storage of emotional memory, emotions, mood and autonomic functions"
 					/>
-				<element id="FCA.NC.MPFC" name="Medial Prefrontal Cortex">
-					<element id="FCA.NC.DACG" name="Dorsal Anterior Cingulate Area" mapped="true" brodmannid="32" type="Neocortex"
+				<element id="CGA.NC.MPFC" name="Medial Prefrontal Cortex">
+					<element id="CGA.NC.DACG" name="Dorsal Anterior Cingulate Area" mapped="true" brodmannid="32" type="Neocortex"
 						function="Rational Thought Processes" 
 						notes="Anticipate and detect targets, indicate novelty, influence motor responses, encode reward values, and signal errors, motor, attentional and cognitive functions"
 						/>
-					<element id="FCA.NC.SGC" name="Subgenual Cortex" mapped="true" brodmannid="25" type="Neocortex"
+					<element id="CGA.NC.SGC" name="Subgenual Cortex" mapped="true" brodmannid="25" type="Neocortex"
 						function="Influences changes in appetite and sleep" 
 						notes="Subdivision of cytoarchitecturally defined cingulate region, emotions, mood and autonomic functions"
 						/>
@@ -98,16 +98,16 @@
 					function="Personality" 
 					comments="BAs 11, 12 and 14 are commonly referred to as orbitofrontal cortex"
 					>
-					<element name="Ventromedial Prefrontal Cortex" brodmannid="10" type="Neocortex"
+					<element name="Anterior Prefrontal Cortex" brodmannid="10" type="Neocortex"
 						function="Emotion Regulation" 
-						notes="Anterior PFC, contains ILC - infralimbic cortex"
+						notes="Frontopolar area, contains ILC - infralimbic cortex"
 						refs="wiki:[http://en.wikipedia.org/wiki/Ventromedial_prefrontal_cortex]"
 						/>
-					<element brodmannid="11" type="Neocortex"
+					<element name="Ventromedial Prefrontal Cortex" brodmannid="11" type="Neocortex"
 						function="Reward mediated behaviours" 
 						refs="wiki:[http://en.wikipedia.org/wiki/Brodmann_area_11]"
 						/>
-					<element brodmannid="12" type="Neocortex"
+					<element name="Rostral Prefrontal Cortex" brodmannid="12" type="Neocortex"
 						function="Prefrontal associational integration" 
 						refs="wiki:[http://www.sylvius.com/index/b/brodmann_s_area_12.html]"
 						/>
@@ -156,11 +156,11 @@
 				</element>
 			</element>
 
-			<element id="SMA.NC.MPL" name="Medial Parietal Lobule">
-				<element id="SMA.NC.MPL.RSC" name="Retrosplenial Cortex" mapped="true" brodmannid="26,29,30" type="Neocortex"
+			<element id="CGA.NC.MPL" name="Medial Parietal Lobule">
+				<element id="CGA.NC.MPL.RSC" name="Retrosplenial Cortex" mapped="true" brodmannid="26,29,30" type="Neocortex"
 					function="Processing of emotionally salient stimuli" 
 					/>
-				<element id="SMA.NC.MPL.PCG" name="Posterior Cingulate Cortex" mapped="true" brodmannid="23,31" type="Neocortex"
+				<element id="CGA.NC.MPL.PCG" name="Posterior Cingulate Cortex" mapped="true" brodmannid="23,31" type="Neocortex"
 					function="Self-awareness, pain and episodic memory retrieval" 
 					/>
 			</element>
@@ -188,7 +188,7 @@
 					function="Locating objects in space" 
 					notes="PE, somatosensory, guiding movement by providing information about limb position"
 					/>
-				<element id="SMA.NC.SPL.PF" name="Rostral Precuneus" mapped="true" brodmannid="07" type="Neocortex"
+				<element id="CGA.NC.SPL.PF" name="Rostral Precuneus" mapped="true" brodmannid="07" type="Neocortex"
 					function="Spatial orientation, representation of the self"
 					notes="rostral, 7B=PF, heavy somatosensory input"
 					/>
@@ -329,12 +329,6 @@
 				function="Medial auditory stream" 
 				notes="Major projects to PFC multi-modal associations, auditory to insula"
 				/>
-			<element id="PHA.NC.PAS" name="Parasubiculum" mapped="true" brodmannid="49" type="Neocortex"
-				refs="NL:[http://neurolex.org/wiki/Category:Parasubiculum Parasubiculum]" 
-				comment="close to Subicular Complex"
-				function="Spatial navigation and the integration of head-directional information" 
-				notes="Major projects to ET, from CA1,AM"
-				/>
 			<element id="PHA.NC.PH.PIR" name="Piriform Cortex" mapped="true" brodmannid="34" type="Neocortex"
 				refs="NL:[http://neurolex.org/wiki/Category:Piriform_cortex_frontal_area Piriform cortex frontal area]" 
 				function="Perception of smells" 
@@ -348,16 +342,23 @@
 				function="Spatial declarative memory" 
 				notes="Posterior Parahippocampal Gyrus, Postrhinal Cortex"
 				/>
+			<element id="PHA.NC.PSS" name="Postsubiculum" mapped="true" brodmannid="48" type="Neocortex"
+				function="Visual association"
+				refs="NL:[http://neurolex.org/wiki/Category:Postsubiculum Postsubiculum]"
+				notes="Integrate visual landmarks with internal representations of environments"
+				comments="Retrosubicular Area, similar to BA-36, from perirhinal to presubiculum"
+				/>
 			<element id="PHA.NC.PRS" name="Presubiculum" mapped="true" brodmannid="27" type="Neocortex"
 				refs="NL:[http://neurolex.org/wiki/Category:Presubiculum Presubiculum]" 
 				comment="close to Subicular Complex"
 				function="Path integration, head direction" 
 				notes="Major projects to ET, from TH.LD"
 				/>
-			<element id="PHA.NC.RSB" name="Postsubiculum" mapped="true" brodmannid="48" type="Neocortex"
-				function="Visual association"
-				comments="Retrosubicular Area, similar to BA-36"
-				notes="Part of IT Cortex, from perirhinal to presubiculum"
+			<element id="PHA.NC.PAS" name="Parasubiculum" mapped="true" brodmannid="49" type="Neocortex"
+				refs="NL:[http://neurolex.org/wiki/Category:Parasubiculum Parasubiculum]" 
+				comment="close to Subicular Complex"
+				function="Spatial navigation and the integration of head-directional information" 
+				notes="Major projects to ET, from CA1,AM"
 				/>
 		</element>
 
@@ -506,21 +507,14 @@
 					notes="Hippocampus"
 					/>
 			</element>
-			<element id="HBA.FT.SC" name="Subicular Complex" refs="NL:[http://neurolex.org/wiki/Category:Subicular_complex Subicular complex]">
-				<element id="HBA.FT.SC.PSS" name="Postsubiculum" mapped="true" type="Allocortex"
-					refs="NL:[http://neurolex.org/wiki/Category:Postsubiculum Postsubiculum]"
-					function="Integrate visual landmarks with internal representations of environments"
-					notes="As measured by hippocampal place cells, fear conditioning"
-					/>
-				<element id="HBA.FT.SC.SUB" name="Subiculum" mapped="true" type="Allocortex"
-					refs="NL:[http://neurolex.org/wiki/Category:Subiculum Subiculum]"
-					function="Spatial navigation and mnemonic processing"
-					>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Subiculum_alveus Subiculum alveus]"/>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Subiculum_molecular_layer Subiculum molecular layer]"/>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Subiculum_pyramidal_cell_layer Subiculum pyramidal cell layer]"/>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Ventral_subiculum Ventral subiculum]"/>
-				</element>
+			<element id="HBA.FT.SC.SUB" name="Subiculum" mapped="true" type="Allocortex"
+				refs="NL:[http://neurolex.org/wiki/Category:Subiculum Subiculum]"
+				function="Spatial navigation and mnemonic processing"
+				>
+				<element refs="NL:[http://neurolex.org/wiki/Category:Subiculum_alveus Subiculum alveus]"/>
+				<element refs="NL:[http://neurolex.org/wiki/Category:Subiculum_molecular_layer Subiculum molecular layer]"/>
+				<element refs="NL:[http://neurolex.org/wiki/Category:Subiculum_pyramidal_cell_layer Subiculum pyramidal cell layer]"/>
+				<element refs="NL:[http://neurolex.org/wiki/Category:Ventral_subiculum Ventral subiculum]"/>
 			</element>
 		</element>
 
@@ -796,14 +790,14 @@
 		</element>
 
 		<element id="FD.TH" name="Thalamus" refs="NL:[http://neurolex.org/wiki/Category:Thalamus Thalamus];NL:[http://neurolex.org/wiki/Category:Nuclei_of_the_thalamus Nuclei of the thalamus]">
-			<element id="HBA.FD.TH.AN" name="Anterior Nucleus of Thalamus" mapped="true" type="Excitatory Nucleus"
+			<element id="CGA.FD.TH.AN" name="Anterior Nucleus of Thalamus" mapped="true" type="Excitatory Nucleus"
 				refs="NL:[http://neurolex.org/wiki/Category:Anterior_nuclear_group Anterior nuclear group]"
 				function="Extended hippocampal system"
 				notes="Projects to L4 of presubiculum and receives from postsubiculum, also to CG, RSP; spatial learning and memory; attentional processes; head direction"
 				>
-				<element id="HBA.FD.TH.AD" name="Anterodorsal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Anterodorsal_nucleus Anterodorsal nucleus]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Anteromedial_nucleus Anteromedial nucleus]"/>
-				<element id="HBA.FD.TH.AV" name="Anteroventral Nucleus" 
+				<element id="CGA.FD.TH.AD" name="Anterodorsal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Anterodorsal_nucleus Anterodorsal nucleus]"/>
+				<element id="CGA.FD.TH.AM" name="Anteromedial Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Anteromedial_nucleus Anteromedial nucleus]"/>
+				<element id="CGA.FD.TH.AV" name="Anteroventral Nucleus" 
 					refs="NL:[http://neurolex.org/wiki/Category:Anteroventral_nucleus Anteroventral nucleus]"
 					/>
 			</element>
@@ -835,7 +829,7 @@
 				</element>
 			</element>
 			<element id="FD.TH.LTH" name="Lateral Thalamus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_nuclear_group Lateral nuclear group];NL:[http://neurolex.org/wiki/Category:Lateral_thalamus Lateral thalamus]">
-				<element id="FCA.FD.TH.LD" name="Lateral Dorsal Nucleus of Thalamus" mapped="true" type="Excitatory Nucleus"
+				<element id="CGA.FD.TH.LD" name="Lateral Dorsal Nucleus of Thalamus" mapped="true" type="Excitatory Nucleus"
 					refs="NL:[http://neurolex.org/wiki/Category:Lateral_dorsal_nucleus Lateral dorsal nucleus]"
 					function="Head direction, spatial learning"
 					notes="From RSP L5,6 BA17,18, RT, LGN"
@@ -892,17 +886,12 @@
 					>
 					<element refs="NL:[http://neurolex.org/wiki/Category:Posterior_limitans_nucleus Posterior limitans nucleus]"/>
 				</element>
-				<element id="FCA.FD.TH.PO" name="Posterior Nucleus of Thalamus" mapped="true" type="Excitatory Nucleus"
-					refs="NL:[http://neurolex.org/wiki/Category:Posterior_nucleus_of_thalamus Posterior nucleus of thalamus]"
-					function="Somatic markers for spatial coding"
-					notes="To parietal association cortices"
-					/>
 				<element id="ABA.FD.TH.SG" name="Suprageniculate Nucleus of Thalamus" mapped="true" type="Excitatory Nucleus"
 					refs="NL:[http://neurolex.org/wiki/Category:Suprageniculate_nucleus Suprageniculate nucleus]"
 					function="Spatial coding of auditory information"
 					notes="From tectum, somatic sensations"
 					/>
-				<element id="FCA.FD.TH.SM" name="Submedial Nucleus of Thalamus" mapped="true" type="Excitatory Nucleus"
+				<element id="CGA.FD.TH.SM" name="Submedial Nucleus of Thalamus" mapped="true" type="Excitatory Nucleus"
 					refs="NL:[http://neurolex.org/wiki/Category:Submedial_nucleus Submedial nucleus]"
 					function="Pain center"
 					notes="Projections from SC Lamina I, trigeminal nucleus to ACC"

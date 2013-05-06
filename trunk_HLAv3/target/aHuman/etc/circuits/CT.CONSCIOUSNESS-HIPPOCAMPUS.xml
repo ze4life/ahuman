@@ -3,7 +3,7 @@
 	<circuit id="CT.HIPPOCAMPUS-FOR-CONSCIOUSNESS" name="Contribution of hippocampal region CA3 to consciousness"
 		image="http://ars.els-cdn.com/content/image/1-s2.0-S0149763409002061-gr1.jpg"
 		reference="http://www.sciencedirect.com/science/article/pii/S0149763409002061"
-		components="AnteriorTemporal=PHA.NC.INS.HR IPL=NC.IPL Retrosplenial=SMA.NC.MPL.RSC PosteriorCingulate=SMA.NC.MPL.PCG PRCortex=PHA.NC.PH.PRR PHCortex=PHA.NC.PH.PPG LateralEC=PHA.NC.PH.ET MedialEC=PHA.NC.PH.ET AnteriorHC=HBA.FT.HC PosteriorHC=HBA.FT.HC CA3=HBA.FT.HC.CA3 CA1=HBA.FT.HC.CA3 MB=HBA.FD.MB TH.AV=HBA.FD.TH.AV"
+		components="AnteriorTemporal=PHA.NC.INS.HR IPL=NC.IPL Retrosplenial=CGA.NC.MPL.RSC PosteriorCingulate=CGA.NC.MPL.PCG PRCortex=PHA.NC.PH.PRR PHCortex=PHA.NC.PH.PPG LateralEC=PHA.NC.PH.ET MedialEC=PHA.NC.PH.ET AnteriorHC=HBA.FT.HC PosteriorHC=HBA.FT.HC CA3=HBA.FT.HC.CA3 CA1=HBA.FT.HC.CA3 MB=HBA.FD.MB TH.AV=CGA.FD.TH.AV"
 		>
 		<link src="AnteriorTemporal" dst="PRCortex"/>
 		<link src="PRCortex" dst="LateralEC"/>
@@ -23,7 +23,7 @@
 	<circuit id="CT.CINGULATE-CORTEX" name="Cingulate Gyrus"
 		image="http://www.thebrainlabs.com/Images/cingulate_gyrus.gif"
 		reference="http://www.thebrainlabs.com"
-		components="CG=SMA.NC.MPL.PCG ET=PHA.NC.PH.ET HC=HBA.FT.HC SEP=BFA.FT.SEP HT=HTA.FD.HT MB=HBA.FD.MB TH=HBA.FD.TH.AN"
+		components="CG=CGA.NC.MPL.PCG ET=PHA.NC.PH.ET HC=HBA.FT.HC SEP=BFA.FT.SEP HT=HTA.FD.HT MB=HBA.FD.MB TH=CGA.FD.TH.AN"
 		>
 		<link src="CG" dst="ET"/>
 		<link src="ET" dst="HC"/>
@@ -37,7 +37,7 @@
 	<circuit id="CT.HIPPOCAMPAL-FORMATION" name="Hippocampal Formation"
 		image="http://ahuman.googlecode.com/svn/images/wiki/research/brain/HF.jpg"
 		reference="article:2009-Hippocampus-Thesis.pdf"
-		components="EC=PHA.NC.PH.ET DG=HBA.FT.DG CA3=HBA.FT.HC.CA3 CA1=HBA.FT.HC.CA1 Sub=HBA.FT.SC.SUB Rsp=SMA.NC.MPL.RSC PoS=HBA.FT.SC.PSS ATN=HBA.FD.TH.AN LDN=FCA.FD.TH.LD LMam=HBA.FD.MB.LMB DTN=MBA.MM.TG.LDT"
+		components="EC=PHA.NC.PH.ET DG=HBA.FT.DG CA3=HBA.FT.HC.CA3 CA1=HBA.FT.HC.CA1 Sub=HBA.FT.SC.SUB Rsp=CGA.NC.MPL.RSC PoS=PHA.NC.PSS ATN=CGA.FD.TH.AN LDN=CGA.FD.TH.LD LMam=HBA.FD.MB.LMB DTN=MBA.MM.TG.LDT"
 		>
 		<link src="EC" dst="DG"/>
 		<link src="DG" dst="CA3"/>
@@ -62,7 +62,7 @@
 	<circuit id="CT.CATEGORY-SELECTIVITY" name="Category-Selectivity Paradigm"
 		image="http://ars.els-cdn.com/content/image/1-s2.0-S1053811905008013-gr5.jpg"
 		reference="http://www.sciencedirect.com/science/article/pii/S1053811905008013"
-		components="V1=VCA.NC.V1 RS=SMA.NC.MPL.RSC PPA=NC.LOBE.PH IOG=VCA.NC.MT STS=ACA.NC.STS FFA=VCA.NC.V4"
+		components="V1=VCA.NC.V1 RS=CGA.NC.MPL.RSC PPA=NC.LOBE.PH IOG=VCA.NC.MT STS=ACA.NC.STS FFA=VCA.NC.V4"
 		>
 		<link src="V1" dst="RS"/>
 		<link src="RS" dst="PPA"/>
@@ -75,7 +75,7 @@
 	<circuit id="CT.HEAD-DIRECTION" name="Head Direction Cell Circuit"
 		image="http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png"
 		reference="http://www.scholarpedia.org/article/Head_direction_cells"
-		components="VC=NC.LOBE.OCC PC=NC.LOBE.PAR PRHC=PHA.NC.PH.PPG EC=PHA.NC.PH.ET HC=HBA.FT.HC PSUB=PHA.NC.RSB RSP=SMA.NC.MPL.RSC LD=FCA.FD.TH.LD AD=HBA.FD.TH.AD LMB=HBA.FD.MB.LMB DTN=MBA.MM.TG.LDT LHAB=BFA.FD.HB IPD=BGA.HP.PPN.IPD NPRP=VBA.HM.NPH SUPGEN=ABA.FD.TH.SG MVSN=BMA.HP.MVB"
+		components="VC=NC.LOBE.OCC PC=NC.LOBE.PAR PRHC=PHA.NC.PH.PPG EC=PHA.NC.PH.ET HC=HBA.FT.HC PSUB=PHA.NC.PSS RSP=CGA.NC.MPL.RSC LD=CGA.FD.TH.LD AD=CGA.FD.TH.AD LMB=HBA.FD.MB.LMB DTN=MBA.MM.TG.LDT LHAB=BFA.FD.HB IPD=BGA.HP.PPN.IPD NPRP=VBA.HM.NPH SUPGEN=ABA.FD.TH.SG MVSN=BMA.HP.MVB"
 		>
 		<link src="VC" dst="PC"/>
 		<link src="VC" dst="RSP"/>
@@ -112,6 +112,53 @@
 		<link src="IPD" dst="DTN"/>
 		<link src="LHAB" dst="IPD"/>
 		<link src="LHAB" dst="DTN"/>
+	</circuit>
+
+	<circuit id="CT.RECOGNITION-MEMORY" name="Contributions of Diencephalon to Recognition Memory"
+		image="http://learnmem.cshlp.org/content/18/6/384/F1.large.jpg"
+		reference="http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html"
+		components="PostCingulate=CGA.NC.MPL Sub=HBA.FT.SC.SUB Presub=PHA.NC.PRS Parasub=PHA.NC.PAS EC=PHA.NC.PH.ET Perirhinal=PHA.NC.PH.PRR MDmc=FCA.FD.TH.MD mPULV=VBA.FD.PV.MPV LD=CGA.FD.TH.LD AN=CGA.FD.TH.AN AV=CGA.FD.TH.AV AD=CGA.FD.TH.AD AM=CGA.FD.TH.AM MID=FD.TH.MTH MB=HBA.FD.MB.MMB MPFC=FCA.NC.OMPFC DLPFC=FCA.NC.LPFC OFC=FCA.NC.OMPFC CM=BGA.FD.TH.CM HC=HBA.FT.HC SubPrePara=HBA.FT.SC.SUB"
+		>
+		<link src="CM" dst="HC"/>
+		<link src="CM" dst="SubPrePara"/>
+		<link src="CM" dst="EC"/>
+		<link src="MID" dst="HC"/>
+		<link src="MID" dst="SubPrePara"/>
+		<link src="MID" dst="EC"/>
+		<link src="MID" dst="Perirhinal"/>
+		<link src="MID" dst="mPULV"/>
+		<link src="AN" dst="HC"/>
+		<link src="AN" dst="SubPrePara"/>
+		<link src="AN" dst="PostCingulate"/>
+		<link src="LD" dst="HC"/>
+		<link src="LD" dst="SubPrePara"/>
+		<link src="Sub" dst="AN"/>
+		<link src="Sub" dst="MID"/>
+		<link src="Sub" dst="MB"/>
+		<link src="Sub" dst="LD"/>
+		<link src="Presub" dst="LD"/>
+		<link src="Presub" dst="AV"/>
+		<link src="Presub" dst="mPULV"/>
+		<link src="Presub" dst="MB"/>
+		<link src="Parasub" dst="LD"/>
+		<link src="Parasub" dst="AV"/>
+		<link src="EC" dst="AN"/>
+		<link src="EC" dst="MID"/>
+		<link src="EC" dst="MB"/>
+		<link src="EC" dst="LD"/>
+		<link src="EC" dst="MDmc"/>
+		<link src="Perirhinal" dst="MDmc"/>
+		<link src="Perirhinal" dst="mPULV"/>
+		<link src="PostCingulate" dst="MDmc"/>
+		<link src="mPULV" dst="PostCingulate"/>
+		<link src="mPULV" dst="MPFC"/>
+		<link src="mPULV" dst="OFC"/>
+		<link src="mPULV" dst="DLPFC"/>
+		<link src="MID" dst="MPFC"/>
+		<link src="MID" dst="PostCingulate"/>
+		<link src="MDmc" dst="MPFC"/>
+		<link src="MDmc" dst="OFC"/>
+		<link src="MB" dst="AN"/>
 	</circuit>
 
 </circuits>

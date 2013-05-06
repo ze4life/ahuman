@@ -83,7 +83,7 @@ String WikiAreaPages::createAreaPages_getRegionTableRow( MindRegionDef *regionDe
 
 	// region row
 	String regionId = regionDef -> getName();
-	XmlHMindElementInfo& info =	wm -> hmindxml.getElementInfo( regionId );
+	const XmlHMindElementInfo& info = wm -> hmindxml.getElementInfo( regionId );
 	
 	value = "|| " + wm -> getRegionReference( regionId ) + " || " + 
 		createAreaPages_getTableCellAttribute( info , "name" , info.name , true , 0 ) + " || " + 
@@ -94,7 +94,7 @@ String WikiAreaPages::createAreaPages_getRegionTableRow( MindRegionDef *regionDe
 	return( value );
 }
 
-String WikiAreaPages::createAreaPages_getTableCellAttribute( XmlHMindElementInfo& info , String attribute , String value , bool required , int columnWidth ) {
+String WikiAreaPages::createAreaPages_getTableCellAttribute( const XmlHMindElementInfo& info , String attribute , String value , bool required , int columnWidth ) {
 	ASSERTMSG( ( required == false ) || ( value.isEmpty() == false ) , "attribute=" + attribute + " is empty for region=" + info.id );
 
 	if( columnWidth == 0 )
@@ -486,13 +486,13 @@ void WikiAreaPages::createAreaPages_getExternalConnectionTableLine( MindAreaDef 
 
 	String reference = wm -> findReference( link );
 	if( area.equals( srcRegion -> getArea() -> getId() ) ) {
-		XmlHMindElementInfo& info = wm -> hmindxml.getElementInfo( link -> getDstRegion() );
+		const XmlHMindElementInfo& info = wm -> hmindxml.getElementInfo( link -> getDstRegion() );
 		line = "|| " + wm -> getAreaReference( dstRegion -> getArea() -> getId() ) + " || " + 
 			wm -> getRegionReference( link -> getSrcRegion() ) + " || " + wm -> getRegionReference( link -> getDstRegion() ) + " || " + 
 			info.name + " || " + link -> getTypeName() + " || " + reference + " ||";
 	}
 	else {
-		XmlHMindElementInfo& info = wm -> hmindxml.getElementInfo( link -> getSrcRegion() );
+		const XmlHMindElementInfo& info = wm -> hmindxml.getElementInfo( link -> getSrcRegion() );
 		line = "|| " + wm -> getAreaReference( srcRegion -> getArea() -> getId() ) + " || " + 
 			wm -> getRegionReference( link -> getDstRegion() ) + " || " + wm -> getRegionReference( link -> getSrcRegion() ) + " || " + 
 			info.name + " || " + link -> getTypeName() + " || " + reference + " ||";

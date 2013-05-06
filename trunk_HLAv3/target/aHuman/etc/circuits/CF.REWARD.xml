@@ -3,21 +3,21 @@
 	<circuit id="CF.GENERIC-REWARD" name="Pathways of Reward Circuit"
 		image="http://www.nature.com/npp/journal/v35/n1/images/npp2009129f1.jpg"
 		reference="http://www.nature.com/npp/journal/v35/n1/fig_tab/npp2009129f1.html"
-		components="dACC=FCA.NC.DACG Amy=BFA.FT.AM"
+		components="dACC=CGA.NC.DACG Amy=BFA.FT.AM"
 		>
 	</circuit>
 
 	<circuit id="CF.DEPRESSION" name="Depression"
 		image="http://contemplativemind.files.wordpress.com/2011/03/mental_illness_matrix_2010_final1.jpg"
 		reference="http://contemplativemind.wordpress.com/category/peer-reviewed-journal-articles/"
-		components="dACC=FCA.NC.DACG"
+		components="dACC=CGA.NC.DACG"
 		>
 	</circuit>
 
 	<circuit id="CF.FEELING" name="Feeling"
 		image="http://www.nature.com/nrn/journal/v5/n7/images/nrn1432-f2.jpg"
 		reference="http://www.nature.com/nrn/journal/v5/n7"
-		components="HC=HBA.FT.HC CG=SMA.NC.MPL.PCG AN=HBA.FD.TH.AN HT=HTA.FD.HT"
+		components="HC=HBA.FT.HC CG=CGA.NC.MPL.PCG AN=CGA.FD.TH.AN HT=HTA.FD.HT"
 		>
 		<link src="HT" dst="AN"/>
 		<link src="AN" dst="CG"/>
@@ -28,7 +28,7 @@
 	<circuit id="CF.PFC-EMOTIONS" name="Prefrontal Cortex (PFC) in emotional behavior"
 		image="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/emotional_top.jpg"
 		reference="https://www.google.ru/search?hl=ru&tbo=p&tbm=bks&q=isbn:0080887988"
-		components="LPFC=FCA.NC.LPFC OPFC=FCA.NC.OMPFC ACG=FCA.NC.ACG PCA=SMA.NC.MPL HCA=HBA.FT.HC AM=BFA.FT.AM TH=FCA.FD.TH.MD HT=HTA.FD.HT PN=MBA.HP.PN"
+		components="LPFC=FCA.NC.LPFC OPFC=FCA.NC.OMPFC ACG=CGA.NC.ACG PCA=CGA.NC.MPL HCA=HBA.FT.HC AM=BFA.FT.AM TH=FCA.FD.TH.MD HT=HTA.FD.HT PN=MBA.HP.PN"
 		>
 		<link src="PCA" dst="OPFC"/>
 		<link src="PCA" dst="LPFC"/>
@@ -53,7 +53,7 @@
 	<circuit id="CF.EMOTIONAL-MODULATION" name="Role for serotonin in moral behavior"
 		image="http://www.pnas.org/content/107/40/17071/F1.medium.gif"
 		reference="http://www.pnas.org/content/107/40/17071/F1.expansion.html"
-		components="LPFC=FCA.NC.LPFC OMPFC=FCA.NC.OMPFC HYP=HTA.FD.HT ACG=FCA.NC.ACG AMY=BFA.FT.AM"
+		components="LPFC=FCA.NC.LPFC OMPFC=FCA.NC.OMPFC HYP=HTA.FD.HT ACG=CGA.NC.ACG AMY=BFA.FT.AM"
 		>
 		<link src="AMY" dst="HYP"/>
 		<link src="AMY" dst="ACG"/>
