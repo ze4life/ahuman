@@ -9,11 +9,13 @@
 
 || *Component ID* || *Component Name* || *Type* || *Function* || *Comments* ||
 || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || Anterior Nucleus of Thalamus || Excitatory Nucleus || Extended hippocampal system || Projects to L4 of presubiculum and receives from<BR>postsubiculum, also to CG, RSP; spatial learning<BR>and memory; attentional processes; head direction ||
+|| [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || Lateral Dorsal Nucleus of Thalamus || Excitatory Nucleus || Head direction, spatial learning || From RSP L5,6 BA17,18, RT, LGN ||
 || [BrainRegionCGA_NC_DACG CGA.NC.DACG] || Dorsal Anterior Cingulate Area || Neocortex, BA 32 || Rational Thought Processes || Anticipate and detect targets, indicate novelty,<BR>influence motor responses, encode reward values,<BR>and signal errors, motor, attentional and cognitive<BR>functions ||
 || [BrainRegionCGA_NC_MPL_PCG CGA.NC.MPL.PCG] || Posterior Cingulate Cortex || Neocortex, BA 23,31 || Self-awareness, pain and episodic memory retrieval ||  ||
 || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || Retrosplenial Cortex || Neocortex, BA 26,29,30 || Processing of emotionally salient stimuli ||  ||
 || [BrainRegionCGA_NC_PACG CGA.NC.PACG] || Pregenual Area || Neocortex, BA 33 || Sensation of Emotion || Storage of emotional memory, emotions, mood and<BR>autonomic functions ||
 || [BrainRegionCGA_NC_SGC CGA.NC.SGC] || Subgenual Cortex || Neocortex, BA 25 || Influences changes in appetite and sleep || Subdivision of cytoarchitecturally defined<BR>cingulate region, emotions, mood and autonomic<BR>functions ||
+|| [BrainRegionCGA_NC_SPL_PF CGA.NC.SPL.PF] || Rostral Precuneus || Neocortex, BA 07 || Spatial orientation, representation of the self || rostral, 7B=PF, heavy somatosensory input ||
 || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || Ventral Anterior Cingulate Area || Neocortex, BA 24 || Seat of Free Will || motor, attentional and cognitive functions ||
 
 = Connectivity =
@@ -27,11 +29,18 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CGA.dot.jpg
 || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || [BrainRegionCGA_NC_MPL_PCG CGA.NC.MPL.PCG] || nucleus-neocortex || [http://www.nature.com/nrn/journal/v5/n7 Feeling (AN -> CG)] ||
 || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || nucleus-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (AD -> RSP)] ||
 || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || nucleus-neocortex || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (Thalamus -> FrontalCortex, abstract)] ||
+|| [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || [BrainRegionCGA_NC_DACG CGA.NC.DACG] || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (LD -> pLD, abstract)] ||
+|| [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || nucleus-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LD -> RSP)] ||
+|| [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || [BrainRegionCGA_NC_SPL_PF CGA.NC.SPL.PF] || nucleus-neocortex || (unknown reference) ||
 || [BrainRegionCGA_NC_MPL_PCG CGA.NC.MPL.PCG] || [BrainRegionCGA_NC_PACG CGA.NC.PACG] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> FrontalCortex, abstract)] ||
 || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || neocortex-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (RSP -> AD)] ||
+|| [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || neocortex-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (RSP -> LD)] ||
 || [BrainRegionCGA_NC_PACG CGA.NC.PACG] || [BrainRegionCGA_NC_MPL_PCG CGA.NC.MPL.PCG] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> ParietalCortex, abstract)] ||
 || [BrainRegionCGA_NC_SGC CGA.NC.SGC] || [BrainRegionCGA_NC_DACG CGA.NC.DACG] || neocortex-neocortex || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (SGC -> DACC)] ||
 || [BrainRegionCGA_NC_SGC CGA.NC.SGC] || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || neocortex-neocortex || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (SGC -> VACC)] ||
+|| [BrainRegionCGA_NC_SPL_PF CGA.NC.SPL.PF] || [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || neocortex-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sLD -> LD, abstract)] ||
+|| [BrainRegionCGA_NC_SPL_PF CGA.NC.SPL.PF] || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || neocortex-neocortex || (unknown reference) ||
+|| [BrainRegionCGA_NC_SPL_PF CGA.NC.SPL.PF] || [BrainRegionCGA_NC_PACG CGA.NC.PACG] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> FrontalCortex, abstract)] ||
 
 *External Inbound Region Connections:*
 
@@ -43,9 +52,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CGA.dot.jpg
 || [BrainAreaBFA BFA] || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (AM -> vACC)] ||
 || [BrainAreaBGA BGA] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || [BrainRegionBGA_FT_PU BGA.FT.PU] || Putamen || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (Striatum -> ATH, abstract)] ||
 || [BrainAreaFBA FBA] || [BrainRegionCGA_NC_DACG CGA.NC.DACG] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || Ventral Tegmental Area || nucleus-neocortex || (unknown reference) ||
-|| [BrainAreaFCA FCA] || [BrainRegionCGA_NC_DACG CGA.NC.DACG] || [BrainRegionFCA_FD_TH_LD FCA.FD.TH.LD] || Lateral Dorsal Nucleus of Thalamus || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (LD -> pLD, abstract)] ||
 || [BrainAreaFCA FCA] || [BrainRegionCGA_NC_DACG CGA.NC.DACG] || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || Dorsolateral Prefrontal Cortex || neocortex-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (DLPFC -> dACC)] ||
-|| [BrainAreaFCA FCA] || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || [BrainRegionFCA_FD_TH_LD FCA.FD.TH.LD] || Lateral Dorsal Nucleus of Thalamus || nucleus-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LD -> RSP)] ||
 || [BrainAreaFCA FCA] || [BrainRegionCGA_NC_PACG CGA.NC.PACG] || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || Mediodorsal Nucleus of Thalamus || nucleus-neocortex || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (Thalamus -> FrontalCortex, abstract)] ||
 || [BrainAreaFCA FCA] || [BrainRegionCGA_NC_PACG CGA.NC.PACG] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || neocortex-neocortex || [http://www.pnas.org/content/107/40/17071/F1.expansion.html Role for serotonin in moral behavior (OMPFC -> ACG, abstract)] ||
 || [BrainAreaFCA FCA] || [BrainRegionCGA_NC_SGC CGA.NC.SGC] || [BrainRegionFCA_FD_TH_SM FCA.FD.TH.SM] || Submedial Nucleus of Thalamus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (Thalamus -> FrontalCortex, abstract)] ||
@@ -55,6 +62,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CGA.dot.jpg
 || [BrainAreaHBA HBA] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || [BrainRegionHBA_FD_MB_LMB HBA.FD.MB.LMB] || Lateral Mammillary Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LMB -> AD)] ||
 || [BrainAreaHBA HBA] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || [BrainRegionHBA_FT_SC_PSS HBA.FT.SC.PSS] || Postsubiculum || allocortex-nucleus || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (PoS -> ATN)] ||
 || [BrainAreaHBA HBA] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || Subiculum || allocortex-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s1A -> A, abstract)] ||
+|| [BrainAreaHBA HBA] || [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || [BrainRegionHBA_FT_SC_PSS HBA.FT.SC.PSS] || Postsubiculum || allocortex-nucleus || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (PoS -> LDN)] ||
 || [BrainAreaHBA HBA] || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || Subiculum || nucleus-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (SUB -> PCGRSP, abstract)] ||
 || [BrainAreaHTA HTA] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || Paraventricular Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n7 Feeling (HT -> AN, abstract)] ||
 || [BrainAreaMBA MBA] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || [BrainRegionMBA_MM_SC MBA.MM.SC] || Superior Colliculus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCi -> ATH)] ||
@@ -62,6 +70,8 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CGA.dot.jpg
 || [BrainAreaPHA PHA] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || [BrainRegionPHA_NC_PAS PHA.NC.PAS] || Parasubiculum || neocortex-nucleus || (unknown reference) ||
 || [BrainAreaPHA PHA] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || [BrainRegionPHA_NC_PRS PHA.NC.PRS] || Presubiculum || neocortex-nucleus || (unknown reference) ||
 || [BrainAreaPHA PHA] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || [BrainRegionPHA_NC_RSB PHA.NC.RSB] || Postsubiculum || neocortex-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (PSUB -> AD)] ||
+|| [BrainAreaPHA PHA] || [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || [BrainRegionPHA_NC_PRS PHA.NC.PRS] || Presubiculum || neocortex-nucleus || (unknown reference) ||
+|| [BrainAreaPHA PHA] || [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || [BrainRegionPHA_NC_RSB PHA.NC.RSB] || Postsubiculum || neocortex-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (PSUB -> LD)] ||
 || [BrainAreaPHA PHA] || [BrainRegionCGA_NC_DACG CGA.NC.DACG] || [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || Peripaleocortical Claustral || neocortex-neocortex || (unknown reference) ||
 || [BrainAreaPHA PHA] || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || [BrainRegionPHA_NC_RSB PHA.NC.RSB] || Postsubiculum || neocortex-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (PSUB -> RSP)] ||
 || [BrainAreaPHA PHA] || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || Anterior Insular Cortex || neocortex-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (Insula -> vACC, abstract)] ||
@@ -69,6 +79,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CGA.dot.jpg
 || [BrainAreaVCA VCA] || [BrainRegionCGA_NC_MPL_PCG CGA.NC.MPL.PCG] || [BrainRegionVCA_NC_IPL_MST VCA.NC.IPL.MST] || Medial Superior Temporal Area || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763409002061 Contribution of hippocampal region CA3 to consciousness (IPL -> PosteriorCingulate, abstract)] ||
 || [BrainAreaVCA VCA] || [BrainRegionCGA_NC_MPL_PCG CGA.NC.MPL.PCG] || [BrainRegionVCA_NC_IPS_PEF VCA.NC.IPS.PEF] || Posterior Eye Field || neocortex-neocortex || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (LIP -> CGp)] ||
 || [BrainAreaVCA VCA] || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || [BrainRegionVCA_NC_V1 VCA.NC.V1] || Primary Visual Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1053811905008013 Category-Selectivity Paradigm (V1 -> RS)] ||
+|| [BrainAreaVCA VCA] || [BrainRegionCGA_NC_SPL_PF CGA.NC.SPL.PF] || [BrainRegionVCA_NC_IPS_VIP VCA.NC.IPS.VIP] || Ventral Intraparietal Sulcus || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0166223697010679 Parietal Association Cortex (VIP -> 7b)] ||
 
 *External Outbound Region Connections:*
 
@@ -81,7 +92,6 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CGA.dot.jpg
 || [BrainAreaBMA BMA] || [BrainRegionCGA_NC_SGC CGA.NC.SGC] || [BrainRegionBMA_HP_PB BMA.HP.PB] || Parabrachial Nucleus || neocortex-nucleus || (unknown reference) ||
 || [BrainAreaFBA FBA] || [BrainRegionCGA_NC_SGC CGA.NC.SGC] || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || Periaqueductal Gray Matter || neocortex-nucleus || (unknown reference) ||
 || [BrainAreaFBA FBA] || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || [BrainRegionFBA_HP_LC FBA.HP.LC] || Locus Coeruleus || neocortex-nucleus || (unknown reference) ||
-|| [BrainAreaFCA FCA] || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || [BrainRegionFCA_FD_TH_LD FCA.FD.TH.LD] || Lateral Dorsal Nucleus of Thalamus || neocortex-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (RSP -> LD)] ||
 || [BrainAreaFCA FCA] || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || Dorsolateral Prefrontal Cortex || neocortex-neocortex || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in emotional behavior (PCA -> LPFC, abstract)] ||
 || [BrainAreaFCA FCA] || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || neocortex-neocortex || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in emotional behavior (PCA -> OPFC, abstract)] ||
 || [BrainAreaFCA FCA] || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || Dorsolateral Prefrontal Cortex || neocortex-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (vACC -> DLPFC)] ||
@@ -94,9 +104,12 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CGA.dot.jpg
 || [BrainAreaHTA HTA] || [BrainRegionCGA_NC_SGC CGA.NC.SGC] || [BrainRegionHTA_FD_HT_AH HTA.FD.HT.AH] || Anterior Hypothalamic Nucleus || neocortex-nucleus || (unknown reference) ||
 || [BrainAreaMBA MBA] || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || [BrainRegionMBA_MM_RD MBA.MM.RD] || Red Nucleus || neocortex-nucleus || (unknown reference) ||
 || [BrainAreaPHA PHA] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || [BrainRegionPHA_NC_RSB PHA.NC.RSB] || Postsubiculum || nucleus-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (AD -> PSUB)] ||
+|| [BrainAreaPHA PHA] || [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || [BrainRegionPHA_NC_PRS PHA.NC.PRS] || Presubiculum || nucleus-neocortex || (unknown reference) ||
+|| [BrainAreaPHA PHA] || [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || [BrainRegionPHA_NC_RSB PHA.NC.RSB] || Postsubiculum || nucleus-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LD -> PSUB)] ||
 || [BrainAreaPHA PHA] || [BrainRegionCGA_NC_MPL_PCG CGA.NC.MPL.PCG] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || neocortex-neocortex || [http://www.thebrainlabs.com Cingulate Gyrus (CG -> ET)] ||
 || [BrainAreaPHA PHA] || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || neocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (PCGRSP -> EnthCortex, abstract)] ||
 || [BrainAreaPHA PHA] || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || [BrainRegionPHA_NC_RSB PHA.NC.RSB] || Postsubiculum || neocortex-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (RSP -> PSUB)] ||
+|| [BrainAreaSMA SMA] || [BrainRegionCGA_NC_SPL_PF CGA.NC.SPL.PF] || [BrainRegionSMA_NC_PO_PCC SMA.NC.PO.PCC] || Precentral Cortex || neocortex-neocortex || (unknown reference) ||
 || [BrainAreaVCA VCA] || [BrainRegionCGA_NC_MPL_PCG CGA.NC.MPL.PCG] || [BrainRegionVCA_NC_IPS_PEF VCA.NC.IPS.PEF] || Posterior Eye Field || neocortex-neocortex || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (CGp -> LIP)] ||
 
 = Thirdparty Circuits =
@@ -110,10 +123,6 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CGA.dot.jpg
 
 <img src="http://ars.els-cdn.com/content/image/1-s2.0-S0149763409002061-gr1.jpg" alt="unavailable">
 
-  * [http://c431376.r76.cf2.rackcdn.com/18691/fnhum-06-00184-HTML/image_m/fnhum-06-00184-g001.jpg Directed Effort Network] - see [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Reference]
-
-<img src="http://c431376.r76.cf2.rackcdn.com/18691/fnhum-06-00184-HTML/image_m/fnhum-06-00184-g001.jpg" alt="unavailable">
-
   * [http://ahuman.googlecode.com/svn/images/wiki/research/brain/HF.jpg Hippocampal Formation] - see [article:2009-Hippocampus-Thesis.pdf Reference]
 
 <img src="http://ahuman.googlecode.com/svn/images/wiki/research/brain/HF.jpg" alt="unavailable">
@@ -122,13 +131,17 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CGA.dot.jpg
 
 <img src="http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png" alt="unavailable">
 
-  * [http://www.thebrainlabs.com/Images/cingulate_gyrus.gif Cingulate Gyrus] - see [http://www.thebrainlabs.com Reference]
-
-<img src="http://www.thebrainlabs.com/Images/cingulate_gyrus.gif" alt="unavailable">
-
   * [http://what-when-how.com/wp-content/uploads/2012/04/tmp3649_thumb1_thumb.jpg Thalamocortical relationships] - see [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Reference]
 
 <img src="http://what-when-how.com/wp-content/uploads/2012/04/tmp3649_thumb1_thumb.jpg" alt="unavailable"height=400width=400>
+
+  * [http://c431376.r76.cf2.rackcdn.com/18691/fnhum-06-00184-HTML/image_m/fnhum-06-00184-g001.jpg Directed Effort Network] - see [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Reference]
+
+<img src="http://c431376.r76.cf2.rackcdn.com/18691/fnhum-06-00184-HTML/image_m/fnhum-06-00184-g001.jpg" alt="unavailable">
+
+  * [http://www.thebrainlabs.com/Images/cingulate_gyrus.gif Cingulate Gyrus] - see [http://www.thebrainlabs.com Reference]
+
+<img src="http://www.thebrainlabs.com/Images/cingulate_gyrus.gif" alt="unavailable">
 
   * [http://www.nature.com/nrn/journal/v5/n7/images/nrn1432-f2.jpg Feeling] - see [http://www.nature.com/nrn/journal/v5/n7 Reference]
 
@@ -137,6 +150,10 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CGA.dot.jpg
   * [http://c431376.r76.cf2.rackcdn.com/10053/fnana-05-00034-r1/image_m/fnana-05-00034-g002.jpg Vocal Control] - see [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Reference]
 
 <img src="http://c431376.r76.cf2.rackcdn.com/10053/fnana-05-00034-r1/image_m/fnana-05-00034-g002.jpg" alt="unavailable">
+
+  * [http://ars.els-cdn.com/content/image/1-s2.0-S0166223697010679-gr6.gif Parietal Association Cortex] - see [http://www.sciencedirect.com/science/article/pii/S0166223697010679 Reference]
+
+<img src="http://ars.els-cdn.com/content/image/1-s2.0-S0166223697010679-gr6.gif" alt="unavailable">
 
   * [http://ars.els-cdn.com/content/image/1-s2.0-S1053811905008013-gr5.jpg Category-Selectivity Paradigm] - see [http://www.sciencedirect.com/science/article/pii/S1053811905008013 Reference]
 
@@ -164,13 +181,14 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CGA.dot.jpg
 
   * http://brmlab.cz/project/brain_hacking/tdcs/pfc
   * http://www.sciencedirect.com/science/article/pii/S0149763409002061
-  * http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full
   * article:2009-Hippocampus-Thesis.pdf
   * http://www.scholarpedia.org/article/Head_direction_cells
-  * http://www.thebrainlabs.com
   * http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/
+  * http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full
+  * http://www.thebrainlabs.com
   * http://www.nature.com/nrn/journal/v5/n7
   * http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full
+  * http://www.sciencedirect.com/science/article/pii/S0166223697010679
   * http://www.sciencedirect.com/science/article/pii/S1053811905008013
   * http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0
   * http://www.nature.com/npp/journal/v35/n1/fig_tab/npp2009129f1.html
@@ -205,6 +223,10 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CGA.dot.jpg
 - S1/BA1 - Skin, rapidly adapting receptors
 - S1/BA2 - Skin, complex touch - pressure and joint position
 }}}
+
+
+
+
 
 
 
