@@ -10,6 +10,7 @@ Circuit is part of aHuman target integrated biological model.
 (generated)
 
 || *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||
+|| [BrainAreaBFA BFA] || [BrainRegionBFA_FT_ACC BFA.FT.ACC] || Accumbens Nucleus || Inhibitory Nucleus || Activate motor functions under attention ||
 || [BrainAreaBFA BFA] || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || Septal Nucleus || Mixed Nucleus || Inhibition of fear and expression of pleasurable responses ||
 || [BrainAreaBGA BGA] || [BrainRegionBGA_FD_TH_CM BGA.FD.TH.CM] || Centromedian Nucleus of Thalamus || Excitatory Nucleus || Control of level of cortical activity ||
 || [BrainAreaCGA CGA] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || Anterior Nucleus of Thalamus || Excitatory Nucleus || Extended hippocampal system ||
@@ -24,6 +25,8 @@ Circuit is part of aHuman target integrated biological model.
 || [BrainAreaHBA HBA] || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || Subiculum || Allocortex || Spatial navigation and mnemonic processing ||
 || [BrainAreaPHA PHA] || [BrainRegionPHA_NC_PAS PHA.NC.PAS] || Parasubiculum || Neocortex, BA 49 || Spatial navigation and the integration of head-directional information ||
 || [BrainAreaPHA PHA] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || Neocortex, BA 28 || Memory consolidation ||
+|| [BrainAreaPHA PHA] || [BrainRegionPHA_NC_PH_TFTH PHA.NC.PH.TFTH] || Posterior Parahippocampal Gyrus || Neocortex, BA 99 || Spatial declarative memory ||
+|| [BrainAreaPHA PHA] || [BrainRegionPHA_NC_PRS PHA.NC.PRS] || Presubiculum || Neocortex, BA 27 || Path integration, head direction ||
 || [BrainAreaPHA PHA] || [BrainRegionPHA_NC_PSS PHA.NC.PSS] || Postsubiculum || Neocortex, BA 48 || Visual association ||
 || [BrainAreaVCA VCA] || [BrainRegionVCA_NC_IPL_MST VCA.NC.IPL.MST] || Medial Superior Temporal Area || Neocortex, BA 39 || Image stabilization, predictive target tracking ||
 
@@ -44,21 +47,26 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitMemoryProcessAllocorte
 || [BrainRegionHBA_FD_TH_RE HBA.FD.TH.RE] || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || nucleus-allocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (MID -> SubPrePara, abstract)] ||
 || [BrainRegionHBA_FD_TH_RH HBA.FD.TH.RH] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || nucleus-allocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (MID -> HC, abstract)] ||
 || [BrainRegionHBA_FD_TH_RH HBA.FD.TH.RH] || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || nucleus-allocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (MID -> SubPrePara, abstract)] ||
-|| [BrainRegionHBA_FT_DG HBA.FT.DG] || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || allocortex-allocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (DG -> CA3)] ||
-|| [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || allocortex-nucleus || [http://www.thebrainlabs.com Cingulate Gyrus (HC -> SEP, abstract)] ||
-|| [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || allocortex-allocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (CA1 -> Sub)] ||
+|| [BrainRegionHBA_FT_DG HBA.FT.DG] || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || allocortex-allocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (DG -> CA3)] ||
+|| [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionBFA_FT_ACC BFA.FT.ACC] || allocortex-nucleus || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (CA1 -> NACC)] ||
+|| [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || allocortex-nucleus || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (CA1 -> SEP)] ||
+|| [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || allocortex-allocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (CA1 -> SUB)] ||
 || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionPHA_NC_PAS PHA.NC.PAS] || allocortex-neocortex || (unknown reference) ||
 || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || allocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (CA1 -> EC)] ||
-|| [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || allocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0149763409002061 Contribution of hippocampal region CA3 to consciousness (CA1 -> MB, abstract)] ||
-|| [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || allocortex-allocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (CA3 -> CA1)] ||
+|| [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionPHA_NC_PH_TFTH PHA.NC.PH.TFTH] || allocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763411001722 Entorhinal Cortex Inputs and Outputs (CA1 -> TFTH)] ||
+|| [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || allocortex-nucleus || [http://highered.mcgraw-hill.com/sites/dl/free/0071402357/156721/figure350_1.html Principal Connections of Hippocampus (HC -> SEP)] ||
+|| [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || allocortex-nucleus || [http://highered.mcgraw-hill.com/sites/dl/free/0071402357/156721/figure350_1.html Principal Connections of Hippocampus (HC -> AN)] ||
+|| [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || allocortex-nucleus || [http://highered.mcgraw-hill.com/sites/dl/free/0071402357/156721/figure350_1.html Principal Connections of Hippocampus (HC -> MB)] ||
+|| [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || allocortex-allocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (CA3 -> CA1)] ||
 || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || allocortex-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s1A -> A)] ||
 || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || allocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (Sub -> LD)] ||
 || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || allocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (SUB -> PCGRSP, abstract)] ||
 || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || allocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (Sub -> MB)] ||
 || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionHBA_FD_TH_RE HBA.FD.TH.RE] || allocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (Sub -> MID, abstract)] ||
-|| [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || allocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (Sub -> EC)] ||
+|| [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || allocortex-neocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (SUB -> EC)] ||
+|| [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionPHA_NC_PRS PHA.NC.PRS] || allocortex-neocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (SUB -> PRESUB)] ||
 || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionPHA_NC_PSS PHA.NC.PSS] || allocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (Sub -> PoS)] ||
-|| [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionHBA_FT_DG HBA.FT.DG] || neocortex-allocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (EC -> DG)] ||
+|| [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionHBA_FT_DG HBA.FT.DG] || neocortex-allocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (EC -> DG)] ||
 || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || neocortex-allocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (ER -> H, abstract)] ||
 || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || neocortex-allocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (EC -> CA3)] ||
 || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || neocortex-allocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (ER -> H, abstract)] ||
