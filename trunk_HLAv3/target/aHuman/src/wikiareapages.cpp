@@ -131,6 +131,46 @@ String WikiAreaPages::createAreaPages_getTableCellAttribute( const XmlHMindEleme
 	return( value );
 }
 
+void WikiAreaPages::createAreaPages_addExternalConnections( MindAreaDef *areaDef , StringList& lines , MapStringToClass<MindCircuitConnectionDef>& connections , bool p_inputs ) {
+	MindService *ms = MindService::getService();
+
+	if( connections.count() == 0 ) {
+		lines.add( "  * no connections" );
+		return;
+	}
+
+	createAreaPages_getExternalConnectionTableLine( areaDef , NULL , lines , p_inputs , NULL );
+
+	// split connections by area types
+	MapStringToClass<MapStringToClass<MindCircuitConnectionDef>> groups;
+	for( int k = 0; k < connections.count(); k++ ) {
+		MindCircuitConnectionDef *c = connections.getClassByIndex( k );
+		String regionId = ( p_inputs )? c -> getSrcRegion() : c -> getDstRegion();
+		MindRegion *region = ms -> getMindRegion( regionId );
+		String areaType = region -> getArea() -> getMindAreaDef() -> getAreaType();
+
+		MapStringToClass<MindCircuitConnectionDef> *z = groups.get( areaType );
+		if( z == NULL ) {
+			z = new MapStringToClass<MindCircuitConnectionDef>;
+			groups.add( areaType , z );
+		}
+
+		String key = connections.getKeyByIndex( k );
+		z -> add( key , c );
+	}
+
+	for( int k = 0; k < groups.count(); k++ ) {
+		String areaType = groups.getKeyByIndex( k );
+		MapStringToClass<MindCircuitConnectionDef> *z = groups.getClassByIndex( k );
+		createAreaPages_getExternalConnectionTableLine( areaDef , NULL , lines , p_inputs , areaType );
+
+		for( int m = 0; m < z -> count(); m++ ) {
+			MindCircuitConnectionDef *c = z -> getClassByIndex( m );
+			createAreaPages_getExternalConnectionTableLine( areaDef , c , lines , p_inputs , NULL );
+		}
+	}
+}
+
 void WikiAreaPages::createAreaPages_createConnectivityTableSection( String wikiDir , MindAreaDef *areaDef ) {
 	StringList lines;
 	MapStringToClass<MindCircuitConnectionDef> connections;
@@ -145,35 +185,17 @@ void WikiAreaPages::createAreaPages_createConnectivityTableSection( String wikiD
 
 	// external connections - in
 	lines.add( "" );
+	lines.add( "*External Inbound Region Connections:*" );
 	MapStringToClass<MindCircuitConnectionDef> connectionsInputs;
 	createAreaPages_getExternalConnections( areaDef , connectionsInputs , true );
-	lines.add( "*External Inbound Region Connections:*" );
-	if( connectionsInputs.count() == 0 ) {
-		lines.add( "  * no connections" );
-	}
-	else {
-		createAreaPages_getExternalConnectionTableLine( areaDef , NULL , lines , true );
-		for( int k = 0; k < connectionsInputs.count(); k++ ) {
-			MindCircuitConnectionDef *c = connectionsInputs.getClassByIndex( k );
-			createAreaPages_getExternalConnectionTableLine( areaDef , c , lines , true );
-		}
-	}
+	createAreaPages_addExternalConnections( areaDef , lines , connectionsInputs , true );
 
 	// external connections - out
 	lines.add( "" );
+	lines.add( "*External Outbound Region Connections:*" );
 	MapStringToClass<MindCircuitConnectionDef> connectionsOutputs;
 	createAreaPages_getExternalConnections( areaDef , connectionsOutputs , false );
-	lines.add( "*External Outbound Region Connections:*" );
-	if( connectionsOutputs.count() == 0 ) {
-		lines.add( "  * no connections" );
-	}
-	else {
-		createAreaPages_getExternalConnectionTableLine( areaDef , NULL , lines , false );
-		for( int k = 0; k < connectionsOutputs.count(); k++ ) {
-			MindCircuitConnectionDef *c = connectionsOutputs.getClassByIndex( k );
-			createAreaPages_getExternalConnectionTableLine( areaDef , c , lines , false );
-		}
-	}
+	createAreaPages_addExternalConnections( areaDef , lines , connectionsOutputs , false );
 
 	String sectionName = "Connectivity";
 	String wikiPage = wm -> getAreaPage( areaDef -> getAreaId() );
@@ -464,16 +486,22 @@ void WikiAreaPages::createAreaPages_getInternalConnectionTableLine( MindAreaDef 
 	lines.add( line );
 }
 
-void WikiAreaPages::createAreaPages_getExternalConnectionTableLine( MindAreaDef *areaDef , MindCircuitConnectionDef *link , StringList& lines , bool isin ) {
+void WikiAreaPages::createAreaPages_getExternalConnectionTableLine( MindAreaDef *areaDef , MindCircuitConnectionDef *link , StringList& lines , bool isin , const char *p_areatype ) {
 	String line;
 	if( link == NULL ) {
-		// add heading
-		lines.add( "" );
+		if( p_areatype == NULL ) {
+			// add heading
+			lines.add( "" );
 
-		if( isin )
-			line = "|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||";
-		else
-			line = "|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||";
+			if( isin )
+				line = "|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||";
+			else
+				line = "|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||";
+		}
+		else {
+			line = "|| <font color=\"red\">" + String( p_areatype ) + "</font> || || || || || ||";
+		}
+
 		lines.add( line );
 		return;
 	}
@@ -485,16 +513,16 @@ void WikiAreaPages::createAreaPages_getExternalConnectionTableLine( MindAreaDef 
 	String area = areaDef -> getAreaId();
 
 	String reference = wm -> findReference( link );
-	if( area.equals( srcRegion -> getArea() -> getId() ) ) {
-		const XmlHMindElementInfo& info = wm -> hmindxml.getElementInfo( link -> getDstRegion() );
-		line = "|| " + wm -> getAreaReference( dstRegion -> getArea() -> getId() ) + " || " + 
-			wm -> getRegionReference( link -> getSrcRegion() ) + " || " + wm -> getRegionReference( link -> getDstRegion() ) + " || " + 
-			info.name + " || " + link -> getTypeName() + " || " + reference + " ||";
-	}
-	else {
+	if( isin ) {
 		const XmlHMindElementInfo& info = wm -> hmindxml.getElementInfo( link -> getSrcRegion() );
 		line = "|| " + wm -> getAreaReference( srcRegion -> getArea() -> getId() ) + " || " + 
 			wm -> getRegionReference( link -> getDstRegion() ) + " || " + wm -> getRegionReference( link -> getSrcRegion() ) + " || " + 
+			info.name + " || " + link -> getTypeName() + " || " + reference + " ||";
+	}
+	else {
+		const XmlHMindElementInfo& info = wm -> hmindxml.getElementInfo( link -> getDstRegion() );
+		line = "|| " + wm -> getAreaReference( dstRegion -> getArea() -> getId() ) + " || " + 
+			wm -> getRegionReference( link -> getSrcRegion() ) + " || " + wm -> getRegionReference( link -> getDstRegion() ) + " || " + 
 			info.name + " || " + link -> getTypeName() + " || " + reference + " ||";
 	}
 	lines.add( line );

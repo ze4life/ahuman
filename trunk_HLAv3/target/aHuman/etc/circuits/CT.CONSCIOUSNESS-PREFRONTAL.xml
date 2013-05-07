@@ -56,4 +56,20 @@
 		<link src="NACC" dst="VentPal"/>
 	</circuit>
 
+	<circuit id="CT.CINGULUM-CONNECTIONS" name="Principal Connections of Hippocampus"
+		image="http://highered.mcgraw-hill.com/sites/dl/free/0071402357/156721/figure350_1.gif"
+		reference="http://highered.mcgraw-hill.com/sites/dl/free/0071402357/156721/figure350_1.html"
+		components="DorsalCingulate=CGA.NC.DACG VentralCingulate=CGA.NC.VACG PosteriorCingulate=CGA.NC.MPL.PCG AN=CGA.FD.TH.AN MB=HBA.FD.MB.MMB SEP=BFA.FT.SEP EC=PHA.NC.PH.ET AM=BFA.FT.AM SUB=HBA.FT.SC.SUB DG=HBA.FT.DG HC=HBA.FT.HC.CA3"
+		>
+		<link src="DorsalCingulate" dst="VentralCingulate"/>
+		<link src="VentralCingulate" dst="PosteriorCingulate"/>
+		<link src="PosteriorCingulate" dst="EC"/>
+		<link src="AM" dst="EC"/>
+		<link src="EC" dst="DG"/>
+		<link src="HC" dst="SEP"/>
+		<link src="HC" dst="MB"/>
+		<link src="HC" dst="AN"/>
+		<link src="AN" dst="VentralCingulate"/>
+	</circuit>
+
 </circuits>

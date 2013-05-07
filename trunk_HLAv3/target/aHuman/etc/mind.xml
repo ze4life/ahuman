@@ -162,6 +162,7 @@
 				<region name="PHA.NC.TPC" type="neocortex"/>
 				<region name="PHA.NC.INS.AIC" type="neocortex"/>
 				<region name="PHA.NC.INS.PIC" type="neocortex"/>
+				<region name="PHA.NC.PH.TFTH" type="neocortex"/>
 			</area>
 
 			<area id="FCA" type="Cortical" name="Frontal Cortex Area" enabled="true" function="Sensory-Drive Associations">
@@ -642,6 +643,8 @@
 				<connection type="nucleus-neocortex" src="CGA.FD.TH.LD" dst="CGA.NC.SPL.PF"/>
 				<connection type="neocortex-neocortex" src="CGA.NC.SPL.PF" dst="CGA.NC.MPL.RSC"/>
 				<connection type="neocortex-neocortex" src="CGA.NC.SPL.PF" dst="CGA.NC.PACG"/>
+				<connection type="neocortex-neocortex" src="CGA.NC.DACG" dst="CGA.NC.VACG"/>
+				<connection type="neocortex-neocortex" src="CGA.NC.VACG" dst="CGA.NC.MPL.PCG"/>
 			</circuit>
 
 			<!-- ================= hippocampus activity =============== -->
@@ -650,10 +653,12 @@
 				<connection type="neocortex-neocortex" src="PHA.NC.INS.PPC" dst="PHA.NC.PRS"/>
 				<connection type="neocortex-neocortex" src="PHA.NC.PAS" dst="PHA.NC.PH.ET"/>
 				<connection type="neocortex-neocortex" src="PHA.NC.PH.PPG" dst="PHA.NC.PH.ET"/>
+				<connection type="neocortex-neocortex" src="PHA.NC.PRS" dst="PHA.NC.PH.ET"/>
 				<connection type="neocortex-neocortex" src="PHA.NC.PSS" dst="CGA.NC.MPL.RSC"/>
 				<connection type="neocortex-neocortex" src="PHA.NC.PSS" dst="PHA.NC.PH.ET"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.IPL.MST" dst="CGA.NC.MPL.PCG"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.IPL.MST" dst="PHA.NC.PH.PPG"/>
+				<connection type="neocortex-neocortex" src="PHA.NC.PH.TFTH" dst="PHA.NC.PH.ET"/>
 				<connection type="neocortex-neocortex" src="VCA.NC.V2" dst="PHA.NC.PSS"/>
 				<connection type="neocortex-nucleus" src="CGA.NC.MPL.PCG" dst="FCA.FD.TH.MD"/>
 				<connection type="neocortex-nucleus" src="CGA.NC.MPL.RSC" dst="CGA.FD.TH.AN"/>
@@ -682,6 +687,7 @@
 				<connection type="nucleus-neocortex" src="BFA.FD.TH.PV" dst="PHA.NC.PH.ET"/>
 				<connection type="nucleus-neocortex" src="BFA.FD.TH.PV" dst="PHA.NC.PH.PRR"/>
 				<connection type="nucleus-neocortex" src="BFA.FT.AM" dst="PHA.NC.PAS"/>
+				<connection type="nucleus-neocortex" src="BFA.FT.AM" dst="PHA.NC.PH.ET"/>
 				<connection type="nucleus-neocortex" src="BGA.FD.TH.CM" dst="PHA.NC.PH.ET"/>
 				<connection type="nucleus-neocortex" src="CGA.FD.TH.AN" dst="CGA.NC.MPL.PCG"/>
 				<connection type="nucleus-neocortex" src="CGA.FD.TH.AN" dst="CGA.NC.MPL.RSC"/>
@@ -689,6 +695,7 @@
 				<connection type="nucleus-neocortex" src="CGA.FD.TH.LD" dst="CGA.NC.MPL.RSC"/>
 				<connection type="nucleus-neocortex" src="CGA.FD.TH.LD" dst="PHA.NC.PRS"/>
 				<connection type="nucleus-neocortex" src="CGA.FD.TH.LD" dst="PHA.NC.PSS"/>
+				<connection type="nucleus-neocortex" src="HBA.FD.MB.LMB" dst="PHA.NC.PRS"/>
 				<connection type="nucleus-neocortex" src="VBA.FD.PV.MPV" dst="CGA.NC.MPL.PCG"/>
 				<connection type="nucleus-neocortex" src="VBA.FD.PV.MPV" dst="FCA.NC.LPFC"/>
 				<connection type="nucleus-neocortex" src="VBA.FD.PV.MPV" dst="FCA.NC.OMPFC"/>
@@ -719,11 +726,16 @@
 				<connection type="allocortex-allocortex" src="HBA.FT.HC.CA3" dst="HBA.FT.HC.CA1"/>
 				<connection type="allocortex-neocortex" src="HBA.FT.HC.CA1" dst="PHA.NC.PAS"/>
 				<connection type="allocortex-neocortex" src="HBA.FT.HC.CA1" dst="PHA.NC.PH.ET"/>
+				<connection type="allocortex-neocortex" src="HBA.FT.HC.CA1" dst="PHA.NC.PH.TFTH"/>
 				<connection type="allocortex-neocortex" src="HBA.FT.SC.SUB" dst="CGA.NC.MPL.RSC"/>
 				<connection type="allocortex-neocortex" src="HBA.FT.SC.SUB" dst="PHA.NC.PH.ET"/>
 				<connection type="allocortex-neocortex" src="HBA.FT.SC.SUB" dst="PHA.NC.PSS"/>
+				<connection type="allocortex-neocortex" src="HBA.FT.SC.SUB" dst="PHA.NC.PRS"/>
 				<connection type="allocortex-nucleus" src="HBA.FT.HC.CA1" dst="BFA.FT.SEP"/>
+				<connection type="allocortex-nucleus" src="HBA.FT.HC.CA1" dst="BFA.FT.ACC"/>
 				<connection type="allocortex-nucleus" src="HBA.FT.HC.CA3" dst="HBA.FD.MB.MMB"/>
+				<connection type="allocortex-nucleus" src="HBA.FT.HC.CA3" dst="BFA.FT.SEP"/>
+				<connection type="allocortex-nucleus" src="HBA.FT.HC.CA3" dst="CGA.FD.TH.AN"/>
 				<connection type="allocortex-nucleus" src="HBA.FT.SC.SUB" dst="CGA.FD.TH.AN"/>
 				<connection type="allocortex-nucleus" src="HBA.FT.SC.SUB" dst="CGA.FD.TH.LD"/>
 				<connection type="allocortex-nucleus" src="HBA.FT.SC.SUB" dst="HBA.FD.MB.MMB"/>
