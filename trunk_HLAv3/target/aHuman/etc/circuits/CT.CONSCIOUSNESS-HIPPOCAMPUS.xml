@@ -161,4 +161,33 @@
 		<link src="MB" dst="AN"/>
 	</circuit>
 
+	<circuit id="CT.ATTRACTOR-NETWORK" name="Attractor Network in Hippocampus"
+		image="http://learnmem.cshlp.org/content/14/11/714/F1.large.jpg"
+		reference="http://learnmem.cshlp.org/content/14/11/714/F1.expansion"
+		components="EC=PHA.NC.PH.ET DG=HBA.FT.DG CA3=HBA.FT.HC.CA3 CA1=HBA.FT.HC.CA1 SUB=HBA.FT.SC.SUB PERI=PHA.NC.PH.PRR SEP=BFA.FT.SEP NACC=BFA.FT.ACC PRESUB=PHA.NC.PRS AN=CGA.FD.TH.AN MBIN=HBA.FD.MB.MMB MBOUT=HBA.FD.MB.LMB"
+		>
+		<link src="PERI" dst="EC"/>
+		<link src="EC" dst="DG"/>
+		<link src="DG" dst="CA3"/>
+		<link src="CA3" dst="CA1"/>
+		<link src="CA1" dst="SUB"/>
+		<link src="SUB" dst="EC"/>
+		<link src="CA1" dst="NACC"/>
+		<link src="CA1" dst="SEP"/>
+		<link src="SUB" dst="PRESUB"/>
+		<link src="SUB" dst="AN"/>
+		<link src="PRESUB" dst="EC"/>
+		<link src="PRESUB" dst="MBIN"/>
+		<link src="MBOUT" dst="PRESUB"/>
+	</circuit>
+
+	<circuit id="CT.ENTORHINAL-CORTEX" name="Entorhinal Cortex Inputs and Outputs"
+		image="http://media.wiley.com/mrw_images/compphys/articles/cp010508/image_n/ncp01050839.jpg"
+		reference="http://www.sciencedirect.com/science/article/pii/S0149763411001722"
+		components="EC=PHA.NC.PH.ET CA1=HBA.FT.HC.CA1 TFTH=PHA.NC.PH.TFTH"
+		>
+		<link src="CA1" dst="TFTH"/>
+		<link src="TFTH" dst="EC"/>
+	</circuit>
+
 </circuits>

@@ -237,6 +237,7 @@ private:
 	void createAreaPages_createConnectivityTableSection( String wikiDir , MindAreaDef *areaDef );
 	void createAreaPages_createCircuitsAndReferencesTableSection( String wikiDir , MindAreaDef *areaDef );
 	void createAreaPages_createRegionPages( String wikiDir , MindAreaDef *areaDef );
+	void createAreaPages_addExternalConnections( MindAreaDef *areaDef , StringList& lines , MapStringToClass<MindCircuitConnectionDef>& connections , bool p_inputs );
 	String createAreaPages_getCircuitKey( MindAreaDef *areaDef , XmlCircuitInfo& info );
 	void createAreaPages_getCircuitLines( XmlCircuitInfo& info , StringList& lines );
 	String createAreaPages_getRegionTableRow( MindRegionDef *regionDef );
@@ -244,7 +245,7 @@ private:
 	void createAreaPages_getInternalConnections( MindAreaDef *areaDef , MapStringToClass<MindCircuitConnectionDef>& connections );
 	void createAreaPages_getInternalConnectionTableLine( MindAreaDef *areaDef , MindCircuitConnectionDef *link , StringList& lines );
 	void createAreaPages_getExternalConnections( MindAreaDef *areaDef , MapStringToClass<MindCircuitConnectionDef>& connections , bool isin );
-	void createAreaPages_getExternalConnectionTableLine( MindAreaDef *areaDef , MindCircuitConnectionDef *link , StringList& lines , bool isin );
+	void createAreaPages_getExternalConnectionTableLine( MindAreaDef *areaDef , MindCircuitConnectionDef *link , StringList& lines , bool isin , const char *areaType );
 	void createDotFile( MindAreaDef *areaDef , MapStringToClass<MindCircuitConnectionDef>& internals , MapStringToClass<MindCircuitConnectionDef>& inputs , MapStringToClass<MindCircuitConnectionDef>& outputs );
 	void createDotFile_subgraph( MindAreaDef *areaDef , bool p_inputs , MapStringToClass<MindCircuitConnectionDef>& connections , StringList& text , String& linkItem );
 	String createDotFile_getRegionLabel( MindRegionDef *region , MapStringToClass<MindCircuitConnectionDef>& inputs , MapStringToClass<MindCircuitConnectionDef>& outputs );
