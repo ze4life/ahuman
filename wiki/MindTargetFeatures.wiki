@@ -3,4 +3,13 @@
 @@[Home] -> [Features] -> [MindTargetFeatures]
 ----
 
-TBD
+== Modeling Tool ==
+
+*Actuator Representation*:
+  * add sensor/motor to diagram as picture using approach at http://www.graphviz.org/content/kennedyanc
+  * define picture in target.xml
+  * add code to wiki generator sources which will add non-cluster image nodes with labels like "Sensor: eye"
+  * sensor and motor nodes should have green and blue colors respectively, links to hem better have dotted style.
+  * automatically add actuators directly linked to focus items in area-aligned abd region-aligned diagrams, reference links with actuators in connectivity tables
+  * add actuators to circuit-aligned pages only if explicitly referenced by means of <receptorlink> or <effectorlink>
+  * if implemented, feature will make e.g. http://code.google.com/p/ahuman/wiki/BrainAreaVBA page much more consistent and explaining neural workflow.
