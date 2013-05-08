@@ -163,7 +163,10 @@ void Logger::logInternal( const char *s , LogOutputMode mode , Logger::LogLevel 
 		return;
 
 	LogManager *logManager = settings -> getLogManager();
-	ThreadHelper *logTail = ThreadHelper::getThreadObject();
+	ThreadHelper *logTail = NULL;
+	if( logManager -> isStarted() )
+		logTail = ThreadHelper::getThreadObject();
+
 	if( logTail == NULL ) {
 		logManager -> add( &s , 1 , p_logLevel , getPostfix() );
 		return;

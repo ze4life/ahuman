@@ -35,6 +35,10 @@ void MindAreaLink::open( MessageSession *p_session , String channel ) {
 
 	MessagingService *msgs = MessagingService::getService();
 
+	// use default channel
+	if( !msgs -> checkChannelAvailable( channel ) )
+		channel = "mind.default";
+
 	// open source publisher
 	String pubid = String( "PUB-" ) + getInstance();
 	iopub = msgs -> createPublisher( session , channel , pubid , "xml" );

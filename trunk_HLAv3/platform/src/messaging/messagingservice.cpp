@@ -74,6 +74,17 @@ void MessagingService::closeSession( MessageSession *session ) {
 	delete session;
 }
 
+bool MessagingService::checkChannelAvailable( String name ) {
+	lock();
+	MessageChannel *channel = mapChannels.get( name );
+	unlock();
+
+	if( channel != NULL && channel -> isOpened() )
+		return( true );
+
+	return( false );
+}
+
 MessagePublisher *MessagingService::createPublisher( MessageSession *session , String channel , String pubName , String msgtype ) {
 	MessageChannel *ch = getChannel( channel );
 	MessagePublisher *pub = new MessagePublisher( session , ch , pubName , msgtype );

@@ -90,6 +90,12 @@ void MindMap::createCircuitDefSet( Xml xml ) {
 	if( !xml.exists() )
 		return;
 
+	// check using another file
+	EnvService *es = EnvService::getService();
+	String xmlFile = xml.getAttribute( "xmlfile" , "" );
+	if( !xmlFile.isEmpty() )
+		xml = es -> loadXml( xmlFile );
+
 	for( Xml xmlChild = xml.getFirstChild( "circuit" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "circuit" ) ) {
 		// construct MindArea from attributes
 		MindCircuitDef *circuit = new MindCircuitDef;

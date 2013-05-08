@@ -128,6 +128,8 @@ public:
 	bool get( bool p_autolock );
 	int getLogRecordsPending();
 
+	bool isStarted() { return( started ); };
+
 private:
 	void set( LogRecord *p , bool copy , const char **chunkLines , int count , Logger::LogLevel logLevel , const char *postfix );
 	void clear( LogRecord *p );
@@ -145,6 +147,7 @@ private:
 	// data
 	Logger logger;
 	FILE *logFileStream;
+	bool started;
 	bool isFileLoggingEnabled;
 	bool stopAll;
 

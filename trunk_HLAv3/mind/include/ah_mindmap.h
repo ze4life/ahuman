@@ -206,6 +206,7 @@ public:
 	void resolveReferences( MindMap *map );
 
 	String getAreaId() { return( areaId ); };
+	String getAreaType() { return( areaType ); };
 	String getAreaName() { return( areaName ); };
 	String getAreaFunction() { return( areaFunction ); };
 	bool runEnabled() { return( enabled ); };
@@ -216,6 +217,7 @@ public:
 private:
 // utility
 	String areaId;
+	String areaType;
 	String areaName;
 	String areaFunction;
 	bool enabled;

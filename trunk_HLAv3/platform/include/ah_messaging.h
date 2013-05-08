@@ -27,6 +27,7 @@ public:
 	void closeSession( MessageSession *session );
 
 	// topics publishers and subscribers
+	bool checkChannelAvailable( String channel );
 	MessagePublisher *createPublisher( MessageSession *session , String channel , String pubName , String msgtype );
 	MessageSubscription *subscribe( MessageSession *session , String channel , String subName , MessageSubscriber *sub );
 	MessageSubscription *subscribeSelector( MessageSession *session , String channel , String selector , String subName , MessageSubscriber *sub );

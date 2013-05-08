@@ -80,29 +80,60 @@ public:
 	};
 };
 
+/*#########################################################################*/
+/*#########################################################################*/
+
+class ServiceSet {
+public:
+	ServiceSet();
+	~ServiceSet();
+
+	void create( String name );
+	void addService( Service *src );
+	Service *findServiceByName( String name );	
+	ClassList<Service>& getServiceList() { return( serviceList ); };
+
+	// operations for all added and optionally configured services
+	void createServices( MapStringToClass<Service>& services );		// create/set internal items according to configuration if any
+	void initServices( MapStringToClass<Service>& services );		// create contextual links among services, can start threads here
+	void runServices();			// enable to generate events inside service, can start threads here
+	void stopServices();		// stop generating events, wait for completion of all threads created
+	void exitServices();		// wait for completion of all threads created, cleanup without dropping interfaces, last chance to use links between services
+	void destroyServices( MapStringToClass<Service>& services );		// drop internal data
+
+	bool isInitialized();
+	bool isRunning();
+	bool isCreated();
+
+private:
+	String name;
+	Logger logger;
+	ServiceState state;
+	ClassList<Service> serviceList;
+};
+	
+/*#########################################################################*/
+/*#########################################################################*/
+
 class ServiceManager {
 public:
 	// add services
 	void addService( Service *src );
 	void addPlatformServices();
 	Service *getService( const char *serviceName );
-	ClassList<Service>& getServices();
+	void getServices( ClassList<Service>& list );
+	ClassList<Service>& getPlatformServices();
+	ClassList<Service>& getOtherServices();
 
 	// configuring
 	bool configureDefault( String etcpath );
 	void configureLifecycle( Xml config );
 	void configureLogging( Xml config );
 
-	// operations for all added and optionally configured services
-	void createServices();		// create/set internal items according to configuration if any
-	void initServices();		// create contextual links among services, can start threads here
-	void runServices();			// enable to generate events inside service, can start threads here
-	void stopServices();		// stop generating events, wait for completion of all threads created
-	void exitServices();		// wait for completion of all threads created, cleanup without dropping interfaces, last chance to use links between services
-	void destroyServices();		// drop internal data
-
 	// runtime operations
 	void execute();
+	void stop();
+
 	bool isRunning();
 	bool isCreated();
 	void waitRunDefault();
@@ -121,19 +152,20 @@ private:
 	void logStart( Xml configLogging );
 	void logStop();
 
+	void addPlatformService( Service *src );
 	Service *findServiceByName( String name );	
 
 // data
 private:
 	static ServiceManager *instance;
 
-	ServiceState state;
 	String logLineFormat;
 	LogDispatcher *logDispatcher;
 	Logger logger;
 
 	// services
-	ClassList<Service> serviceList;
+	ServiceSet serviceSetPlatform;
+	ServiceSet serviceSetOther;
 	MapStringToClass<Service> services;
 };
 
@@ -160,6 +192,7 @@ public:
 
 	// configuration
 	ServiceState state;
+	bool isPlatformService;
 	bool isCreate;
 	bool isInit;
 	bool isRun;

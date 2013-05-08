@@ -37,7 +37,6 @@ void ServiceManager::configureLifecycle( Xml config ) {
 
 void ServiceManager::configureLogging( Xml config ) {
 	logDispatcher -> configure( config );
-	logDispatcher -> start();
 }
 
 void ServiceManager::setRootLogLevel( Logger::LogLevel p_logLevel ) {
@@ -46,38 +45,50 @@ void ServiceManager::setRootLogLevel( Logger::LogLevel p_logLevel ) {
 }
 
 void ServiceManager::addService( Service *svc ) {
-	serviceList.add( svc );
-	svc -> attachLogger();
+	serviceSetOther.addService( svc );
 }
 
 Service *ServiceManager::findServiceByName( String name ) {
-	for( int k = 0; k < serviceList.count(); k++ ) {
-		Service *svc = serviceList.get( k );
-		if( name.equals( svc -> getServiceName() ) )
-			return( svc );
-	}
-	return( NULL );
+	return( serviceSetPlatform.findServiceByName( name ) );
+}
+
+void ServiceManager::addPlatformService( Service *svc ) {
+	svc -> isPlatformService = true;
+	serviceSetPlatform.addService( svc );
 }
 
 void ServiceManager::addPlatformServices() {
-	addService( ThreadService::newService() );
-	addService( EnvService::newService() );
-	addService( ObjectService::newService() );
-	addService( MessagingService::newService() );
-	addService( MediaService::newService() );
-	addService( PersistingService::newService() );
-	addService( MathService::newService() );
-	addService( SchedulerService::newService() );
-	addService( StatService::newService() );
-	addService( TestService::newService() );
+	addPlatformService( ThreadService::newService() );
+	addPlatformService( EnvService::newService() );
+	addPlatformService( ObjectService::newService() );
+	addPlatformService( MessagingService::newService() );
+	addPlatformService( MediaService::newService() );
+	addPlatformService( PersistingService::newService() );
+	addPlatformService( MathService::newService() );
+	addPlatformService( SchedulerService::newService() );
+	addPlatformService( StatService::newService() );
+	addPlatformService( TestService::newService() );
 }
 
 Service *ServiceManager::getService( const char *serviceName ) {
-	return( services.get( serviceName ) );
+	Service *svc = services.get( serviceName );
+	ASSERTMSG( svc != NULL , "service " + String( serviceName ) + " is not available" );
+	return( svc );
 }
 
-ClassList<Service>& ServiceManager::getServices() {
-	return( serviceList );
+ClassList<Service>& ServiceManager::getPlatformServices() {
+	return( serviceSetPlatform.getServiceList() );
+}
+
+ClassList<Service>& ServiceManager::getOtherServices() {
+	return( serviceSetOther.getServiceList() );
+}
+
+void ServiceManager::getServices( ClassList<Service>& list ) {
+	ClassList<Service>& listsetplatform = serviceSetPlatform.getServiceList();
+	list.add( &listsetplatform );
+	ClassList<Service>& listsetother = serviceSetOther.getServiceList();
+	list.add( &listsetother );
 }
 
 void ServiceManager::waitRunDefault() {
@@ -85,229 +96,9 @@ void ServiceManager::waitRunDefault() {
 	ASSERTMSG( ts != NULL , "Thread service is not created" );
 
 	ts -> waitExitSignal();
-	stopServices();
+	serviceSetOther.stopServices();
+	serviceSetPlatform.stopServices();
 	ts -> waitAllThreads();
-}
-
-void ServiceManager::createServices() {
-	logger.logInfo( "createServices: create services..." );
-	state.setState( ServiceState::AH_CREATING );
-
-	try {
-		// attach loggers and run creation event
-		for( int k = 0; k < serviceList.count(); k++ ) {
-			Service *svc = serviceList.get( k );
-
-			// check creation is blocked
-			if( !svc -> isCreate )
-				continue;
-
-			// ensure created service is available via manager
-			services.add( svc -> getServiceName() , svc );
-
-			// setup service logging
-			svc -> attachLogger();
-
-			// internal data creation
-			svc -> state.setState( ServiceState::AH_CREATING );
-			logger.logInfo( String( "createServices: create service - name=" ) + svc -> getServiceName() + String( "..." ) );
-			svc -> createService();
-			logger.logInfo( String( "createServices: create service - name=" ) + svc -> getServiceName() + String( " - done" ) );
-			svc -> state.setState( ServiceState::AH_CREATED );
-
-			// no cross-service links are permitted on creation
-			services.clear();
-		}
-
-		state.setState( ServiceState::AH_CREATED );
-		logger.logInfo( "createServices: create services - done" );
-		return;
-	}
-	catch( RuntimeException& e ) {
-		logger.printStack( e );
-	}
-	catch( ... ) {
-		logger.logError( "createServices: unknown exception" );
-	}
-
-	// in case of failure
-	services.clear();
-	ASSERTFAILED( "createServices: fail to create services" );
-}
-
-void ServiceManager::initServices() {
-	state.setState( ServiceState::AH_INITIALIZING );
-
-	// allow cross-links
-	for( int k = 0; k < serviceList.count(); k++ ) {
-		Service *svc = serviceList.get( k );
-
-		// add created service to cross-link map
-		if( svc -> state.getState() != ServiceState::AH_CREATED )
-			continue;
-
-		services.add( svc -> getServiceName() , svc );
-	}
-
-	// init services
-	for( int k = 0; k < serviceList.count(); k++ ) {
-		Service *svc = serviceList.get( k );
-
-		// check initialization is blocked
-		if( !svc -> isInit )
-			continue;
-
-		// call service init procedure
-		logger.logInfo( String( "initServices: init service name=" ) + svc -> getServiceName() + String( "..." ) );
-		svc -> state.setState( ServiceState::AH_INITIALIZING );
-		svc -> initService(); 
-		svc -> state.setState( ServiceState::AH_INITIALIZED );
-		logger.logInfo( String( "initServices: init service name=" ) + svc -> getServiceName() + String( " - done" ) );
-	}
-
-	state.setState( ServiceState::AH_INITIALIZED );
-	logger.logInfo( "initServices: init services - done" );
-}
-
-void ServiceManager::runServices() {
-	logDispatcher -> enableAsyncMode();
-
-	logger.logInfo( "runServices: run services..." );
-	state.setState( ServiceState::AH_RUNNING );
-
-	// run all instances
-	for( int k = 0; k < serviceList.count(); k++ ) {
-		Service *svc = serviceList.get( k );
-
-		// check run is blocked
-		if( !svc -> isRun )
-			continue;
-
-		logger.logInfo( String( "runServices: run service name=" ) + svc -> getServiceName() + String( "..." ) );
-		svc -> state.setState( ServiceState::AH_RUNNING );
-		svc -> runService();
-		logger.logInfo( String( "runServices: run service name=" ) + svc -> getServiceName() + String( " - done" ) );
-	}
-
-	logger.logInfo( "runServices: run services - done" );
-}
-
-void ServiceManager::stopServices() {
-	if( !isRunning() )
-		return;
-
-	logger.logInfo( "stopServices: stop services..." );
-
-	// in back order
-	for( int k = serviceList.count() - 1; k >= 0 ; k-- ) {
-		// exit sepately from each other
-		Service *svc = NULL;
-		try {
-			svc = serviceList.get( k );
-			if( svc -> state.getState() != ServiceState::AH_RUNNING )
-				continue;
-
-			logger.logInfo( String( "stopServices: stop service name=" ) + svc -> getServiceName() + String( "..." ) );
-			svc -> stopService();
-			svc -> state.setState( ServiceState::AH_STOPPED );
-			logger.logInfo( String( "stopServices: stop service name=" ) + svc -> getServiceName() + String( " - done" ) );
-		}
-		catch( RuntimeException& e ) {
-			logger.printStack( e );
-			logger.logInfo( String( "stopServices: exception while stopping service name=" ) + svc -> getServiceName() );
-		}
-		catch( ... ) {
-			logger.logInfo( String( "stopServices: unknown exception while stopping service name=" ) + svc -> getServiceName() );
-		}
-	}
-	
-	state.setState( ServiceState::AH_STOPPED );
-	logger.logInfo( "stopServices: stop services - done" );
-}
-
-void ServiceManager::exitServices() {
-	logDispatcher -> disableAsyncMode();
-
-	if( !state.readyForExit() )
-		return;
-
-	logger.logInfo( "exitServices: exit services..." );
-	state.setState( ServiceState::AH_EXITING );
-
-	// in back order
-	bool everyExited = true;
-	for( int k = serviceList.count() - 1; k >= 0 ; k-- ) {
-		// exit sepately from each other
-		Service *svc = NULL;
-		try {
-			svc = serviceList.get( k );
-			if( !svc -> state.readyForExit() ) {
-				if( svc -> state.exitRequired() )
-					everyExited = false;
-				continue;
-			}
-
-			logger.logInfo( String( "exitServices: exit service name=" ) + svc -> getServiceName() + String( "..." ) );
-			svc -> state.setState( ServiceState::AH_EXITING );
-			svc -> exitService();
-			svc -> state.setState( ServiceState::AH_CREATED );
-			logger.logInfo( String( "exitServices: exit service name=" ) + svc -> getServiceName() + String( " - done" ) );
-		}
-		catch( RuntimeException& e ) {
-			everyExited = false;
-			logger.printStack( e );
-			logger.logInfo( String( "exitServices: exception while exiting service name=" ) + svc -> getServiceName() );
-		}
-		catch( ... ) {
-			everyExited = false;
-			logger.logInfo( String( "exitServices: unknown exception while exiting service name=" ) + svc -> getServiceName() );
-		}
-	}
-
-	if( everyExited ) {
-		state.setState( ServiceState::AH_CREATED );
-		logger.logInfo( "exitServices: exit services - done" );
-	}
-	else {
-		logger.logInfo( "exitServices: exit services - not fully completed" );
-	}
-}
-
-void ServiceManager::destroyServices() {
-	logger.logInfo( "destroyServices: destroy services..." );
-
-	// in back order
-	for( int k = serviceList.count() - 1; k >= 0; k-- ) {
-		// destroy sepately from each other
-		Service *svc = NULL;
-		try {
-			svc = serviceList.get( k );
-
-			// clear in service map
-			services.set( svc -> getServiceName() , NULL );
-			if( svc -> state.getState() == ServiceState::AH_COLD )
-				continue;
-
-			String name = svc -> getServiceName();
-			logger.logInfo( String( "destroyServices: destroy service name= " ) + name + String( "..." ) );
-			svc -> destroyService();
-			svc -> state.setState( ServiceState::AH_COLD );
-			logger.logInfo( String( "destroyServices: destroy service name=" ) + name + String( " - done" ) );
-		}
-		catch( RuntimeException& e ) {
-			logger.printStack( e );
-			logger.logInfo( String( "destroyServices: exception while destroying service name=" ) + svc -> getServiceName() );
-		}
-		catch( ... ) {
-			logger.printStack();
-			logger.logInfo( String( "destroyServices: unknown exception while destroying service name=" ) + svc -> getServiceName() );
-		}
-	}
-
-	services.clear();
-	serviceList.clear();
-	state.setState( ServiceState::AH_COLD );
-	logger.logInfo( "destroyServices: destroy services - done" );
 }
 
 LogDispatcher *ServiceManager::getLogDispatcher() {
@@ -315,15 +106,15 @@ LogDispatcher *ServiceManager::getLogDispatcher() {
 }
 
 bool ServiceManager::canStartThread() {
-	return( state.getState() == ServiceState::AH_INITIALIZED || state.getState() == ServiceState::AH_RUNNING );
+	return( serviceSetPlatform.isInitialized() );
 }
 
 bool ServiceManager::isRunning() {
-	return( state.getState() == ServiceState::AH_RUNNING );
+	return( serviceSetPlatform.isRunning() || serviceSetOther.isRunning() );
 }
 
 bool ServiceManager::isCreated() {
-	return( state.getState() != ServiceState::AH_COLD );
+	return( serviceSetPlatform.isCreated() || serviceSetOther.isCreated() );
 }
 
 /*#########################################################################*/
@@ -339,6 +130,10 @@ ServiceManager::ServiceManager() {
 	// enable exception handling
 	rfc_thr_initstackhandle();
 	::_set_se_translator( UnhandledExceptionTranslator );
+
+	// create service sets
+	serviceSetPlatform.create( "platform" );
+	serviceSetOther.create( "other" );
 }
 
 ServiceManager::~ServiceManager() {
@@ -372,22 +167,27 @@ void ServiceManager::logStop() {
 void ServiceManager::execute() {
 	try {
 		logger.logInfo( "--------------------" );
-		logger.logInfo( "execute: STARTING..." );
+		logger.logInfo( "execute: STARTING PLATFORM ..." );
 		logger.logInfo( "--------------------" );
 
-		// create and initialize services
-		createServices();
-		initServices();
+		// start platform services
+		serviceSetPlatform.createServices( services );
+		serviceSetPlatform.initServices( services );
+		logDispatcher -> start();
+		serviceSetPlatform.runServices();
 
 		// wait for completion
 		logger.logInfo( "--------------------" );
-		logger.logInfo( "execute: RUNNING..." );
+		logger.logInfo( "execute: RUN PLATFORM TARGET ..." );
 		logger.logInfo( "--------------------" );
-		runServices();
+		serviceSetOther.createServices( services );
+		serviceSetOther.initServices( services );
+		serviceSetOther.runServices();
 
 		logger.logInfo( "--------------------" );
 		logger.logInfo( "execute: STARTED, WAITING FOR COMPLETION..." );
 		logger.logInfo( "-------------------------------------------" );
+		logDispatcher -> enableAsyncMode();
 		waitRunDefault();
 	}
 	catch( RuntimeException& e ) {
@@ -404,9 +204,17 @@ void ServiceManager::execute() {
 		logger.logInfo( "execute: EXITING..." );
 		logger.logInfo( "-------------------" );
 
-		stopServices();
-		exitServices();
-		destroyServices();
+		serviceSetOther.stopServices();
+		serviceSetOther.exitServices();
+
+		serviceSetPlatform.stopServices();
+		logDispatcher -> disableAsyncMode();
+		serviceSetPlatform.exitServices();
+
+		serviceSetOther.destroyServices( services );
+		logDispatcher -> stop();
+		serviceSetPlatform.destroyServices( services );
+		services.clear();
 
 		logger.logInfo( "----------------" );
 		logger.logInfo( "execute: STOPPED" );
@@ -420,3 +228,7 @@ void ServiceManager::execute() {
 	}
 }
 
+void ServiceManager::stop() {
+	serviceSetOther.stopServices();
+	serviceSetPlatform.stopServices();
+}

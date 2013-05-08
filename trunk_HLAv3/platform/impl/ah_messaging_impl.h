@@ -24,6 +24,8 @@ public:
 	String publish( MessageSession *session , MessagePublisher *pub , Message *msg );
 	String publish( MessageSession *session , Message *msg );
 
+	bool isOpened() { return( opened ); };
+
 	// subscribers and publishers
 	void addSubscription( String key , MessageSubscription *sub );
 	void deleteSubscription( String key );
