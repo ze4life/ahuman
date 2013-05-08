@@ -6,15 +6,13 @@
 == Modeling Tool ==
 
 *Actuator Representation*:
-  * add sensor/motor to diagram as picture using approach at http://www.graphviz.org/content/kennedyanc
-   * add actuators for related area on area-ligned pages 
-   * add actuators to circuit-aligned pages only if explicitly referenced by means of <receptorlink region="region" receptor="receptor"/> or <effectorlink region="region" effector="effector"/>
-   * automatically add actuators directly linked to focus items in region-aligned diagrams
-  * define picture in target.xml
-  * add code to wiki generator sources which will add image nodes with labels like "Sensor: eye" 
-   * area cluster in area-aligned diagrams
-   * non-cluster in region-aligned and circuit-aligned diagrams
-  * sensor and motor nodes should have green and blue colors respectively, links to hem better have dotted style.
   * assign actuators to area in target.xml and reflect it in area-aligned diagrams
+  * add sensor/motor to diagram as picture using approach at http://www.graphviz.org/content/kennedyanc
+   * add actuators for related area on area-ligned pages in area cluster
+   * add actuators as non-cluster to circuit-aligned pages only if explicitly referenced by means of <receptorlink region="region" receptor="receptor"/> or <effectorlink region="region" effector="effector"/>
+   * automatically add actuators directly linked to focus items in region-aligned diagrams as non-cluster
+   * labels like "Sensor: eye"
+  * define picture in target.xml
   * reference links with actuators in connectivity tables
+  * sensor and motor nodes should have green and blue colors respectively, links to hem better have dotted style.
   * if implemented, feature will make e.g. http://code.google.com/p/ahuman/wiki/BrainAreaVBA page much more consistent and explaining neural workflow.
