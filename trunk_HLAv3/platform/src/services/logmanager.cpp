@@ -17,6 +17,7 @@ static unsigned __stdcall async_logger( void *p_arg ) {
 // #############################################################################
 
 LogManager::LogManager() {
+	started = false;
 	configSyncMode = false;
 
 	logFileStream = NULL;
@@ -109,6 +110,8 @@ bool LogManager::start() {
 	fprintf( logFileStream , "Started logger name=" + name + "\n--------------\n" );
 	fflush( logFileStream );
 
+	started = true;
+
 	return( true );
 }
 
@@ -122,6 +125,7 @@ void LogManager::stopAsync() {
 void LogManager::stop() {
 	stopAsync();
 	stopAll = true;
+	started = false;
 }
 
 void LogManager::run( void * ) {
@@ -214,8 +218,6 @@ void LogManager::output( LogRecord *p ) {
 }
 
 void LogManager::add( const char **chunkLines , int count , Logger::LogLevel p_logLevel , const char *postfix ) {
-	ASSERTMSG( stopAll == false , "Logging is closed" );
-
 	// only exclusive
 	rfc_hnd_semlock( lock );
 
@@ -231,6 +233,8 @@ void LogManager::add( const char **chunkLines , int count , Logger::LogLevel p_l
 		rfc_hnd_semunlock( lock );
 		return;
 	}
+
+	ASSERTMSG( stopAll == false , "Logging is closed" );
 
 	// simple mode
 	if( !extraMode ) {
@@ -300,8 +304,11 @@ void LogManager::set( LogRecord *p , bool copy , const char **chunkLines , int c
 	p -> time_ms = timebuffer.millitm;
 	p -> logLevel = p_logLevel;
 
-	ThreadService *ts = ThreadService::getService();
-	p -> threadId = ( ts == NULL )? 0 : ts -> getThreadId();
+	p -> threadId = 0;
+	if( started ) {
+		ThreadService *ts = ThreadService::getService();
+		p -> threadId = ts -> getThreadId();
+	}
 
 	if( count == 0 )
 		p -> strings.one = NULL;

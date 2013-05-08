@@ -57,7 +57,8 @@ void EnvService::configureServices() {
 
 	// configure services
 	ServiceManager& sm = ServiceManager::getInstance();
-	ClassList<Service>& list = sm.getServices();
+	ClassList<Service> list;
+	sm.getServices( list );
 	Xml cfgServices = cfgMain.getChildNode( "services" );
 
 	for( int k = 0; k < list.count(); k++ ) {

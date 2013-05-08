@@ -377,7 +377,7 @@ void ThreadService::stopServicesBySignal( int status ) {
 	// stop sleep all threads
 	threadSleepInterruptAll();
 
-	ServiceManager::getInstance().stopServices();
+	ServiceManager::getInstance().stop();
 	rfc_hnd_evsignal( eventExit );
 	workerExited( 0 );
 }

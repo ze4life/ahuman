@@ -79,7 +79,7 @@ LogSettingsItem *LogDispatcher::getCustomDefaultLogSettings() {
 }
 
 bool LogDispatcher::start() {
-	bool result = true;
+	bool result = defaultLog.start();
 
 	// start all log managers
 	for( int k = 0; k < logMap.count(); k++ ) {
@@ -92,6 +92,8 @@ bool LogDispatcher::start() {
 }
 
 void LogDispatcher::stop() {
+	defaultLog.stop();
+
 	// start all log managers
 	for( int k = 0; k < logMap.count(); k++ ) {
 		LogManager *manager = logMap.getClassByIndex( k );

@@ -15,6 +15,7 @@ MindAreaDef::~MindAreaDef() {
 void MindAreaDef::createFromXml( Xml xml ) {
 	// attributes are properties
 	areaId = xml.getAttribute( "id" );
+	areaType = xml.getAttribute( "type" );
 	areaName = xml.getAttribute( "name" );
 	areaFunction = xml.getAttribute( "function" );
 	Object::setInstance( areaId );

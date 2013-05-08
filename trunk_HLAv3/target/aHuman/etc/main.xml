@@ -9,10 +9,6 @@
 
 	<!-- service configuration -->
 	<services>
-		<service name="MindService">
-			<property name="configuration" value="mind.xml"/>
-		</service>
-
 		<service name="MediaService">
 			<property name="configuration" value="media.xml"/>
 		</service>
@@ -36,6 +32,10 @@
 		<service name="EnvService"/>
 		<service name="ObjectService"/>
 		<service name="ThreadService"/>
+
+		<service name="MindService">
+			<property name="configuration" value="mind.xml"/>
+		</service>
 
 		<service name="MindTarget">
 			<property name="configuration" value="target.xml"/>
