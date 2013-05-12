@@ -14,7 +14,6 @@ Circuit is part of aHuman target integrated biological model.
 || [BrainAreaCGA CGA] || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || Retrosplenial Cortex || Neocortex, BA 26,29,30 || Processing of emotionally salient stimuli ||
 ||  || [BrainRegionCGA_NC_SPL_PF CGA.NC.SPL.PF] || Rostral Precuneus || Neocortex, BA 07 || Spatial orientation, representation of the self ||
 || [BrainAreaFCA FCA] || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || Dorsolateral Prefrontal Cortex || Neocortex, BA 09,46 || Temporal Integration ||
-|| [BrainAreaMBA MBA] || [BrainRegionMBA_MM_SC MBA.MM.SC] || Superior Colliculus || Sensory Control Nucleus || Direct behavioral responses toward specific points in egocentric space, induce saccadic eye movement ||
 || [BrainAreaMCA MCA] || [BrainRegionMCA_NC_SPL_PG MCA.NC.SPL.PG] || Caudal Precuneus || Neocortex, BA 07 || Controlling spatially guided behavior with respect to visual and tactile information ||
 || [BrainAreaPHA PHA] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || Neocortex, BA 28 || Memory consolidation ||
 || [BrainAreaVBA VBA] || [BrainRegionVBA_FD_LGN VBA.FD.LGN] || Lateral Geniculate Nucleus || Sensory Relay Nucleus || Temporal decorrelation ||
@@ -23,6 +22,7 @@ Circuit is part of aHuman target integrated biological model.
 ||  || [BrainRegionVBA_FD_PV_MPV VBA.FD.PV.MPV] || Medial Pulvinar || Sensory Relay Nucleus || Integration of associative cortical information and projects to visuomotor-related cortex ||
 ||  || [BrainRegionVBA_FD_RT VBA.FD.RT] || Retina || 1-order Sensory Nucleus || Spatial decorrelation through center surround inhibition ||
 ||  || [BrainRegionVBA_MM_PT_PON VBA.MM.PT.PON] || Pretectal Olivary Nucleus || Sensory Control Nucleus || Pupillary light reflex and modulating subcortical nuclei involved in circadian rhythms ||
+||  || [BrainRegionVBA_MM_SC_SUP VBA.MM.SC.SUP] || Superficial Superior Colliculus || Sensory Control Nucleus || Head and eye attention to visual stimuli ||
 || [BrainAreaVCA VCA] || [BrainRegionVCA_NC_IPL_MST VCA.NC.IPL.MST] || Medial Superior Temporal Area || Neocortex, BA 39 || Image stabilization, predictive target tracking ||
 ||  || [BrainRegionVCA_NC_IPS_AIP VCA.NC.IPS.AIP] || Anterior Intraparietal Sulcus || Neocortex, BA 39 || Represent shape, size, and orientation of objects to be grasped ||
 ||  || [BrainRegionVCA_NC_IPS_PEF VCA.NC.IPS.PEF] || Posterior Eye Field || Neocortex, BA 39 || Reflexive saccade triggering ||
@@ -42,9 +42,6 @@ Circuit is part of aHuman target integrated biological model.
 http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitVisionPerception.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionVBA_FD_LGN VBA.FD.LGN] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCs -> LGN)] ||
-||  || [BrainRegionVBA_FD_PV_IPV VBA.FD.PV.IPV] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCs -> Pulvinar, abstract)] ||
-||  || [BrainRegionVBA_FD_PV_LPV VBA.FD.PV.LPV] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCs -> Pulvinar, abstract)] ||
 || [BrainRegionVBA_FD_LGN VBA.FD.LGN] || [BrainRegionVCA_NC_V1 VCA.NC.V1] || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (LGN -> pLGN)] ||
 || [BrainRegionVBA_FD_PV_IPV VBA.FD.PV.IPV] || [BrainRegionVCA_NC_IPL_MST VCA.NC.IPL.MST] || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (Pulvinar -> ParietalCortex, abstract)] ||
 || [BrainRegionVBA_FD_PV_LPV VBA.FD.PV.LPV] || [BrainRegionVCA_NC_V2 VCA.NC.V2] || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (Pulvinar -> VisualCortex, abstract)] ||
@@ -52,6 +49,9 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitVisionPerception.dot.j
 ||  || [BrainRegionVBA_FD_PV_MPV VBA.FD.PV.MPV] || nucleus-nucleus || [http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html Retina and superior colliculus targets (Retina -> Pulvinar, abstract)] ||
 ||  || [BrainRegionVBA_MM_PT_PON VBA.MM.PT.PON] || nucleus-nucleus || [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm Targets of retina neurons (Retina -> Pretectum, abstract)] ||
 || [BrainRegionVBA_MM_PT_PON VBA.MM.PT.PON] || [BrainRegionVBA_FD_LGN VBA.FD.LGN] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionVBA_MM_SC_SUP VBA.MM.SC.SUP] || [BrainRegionVBA_FD_LGN VBA.FD.LGN] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCs -> LGN, abstract)] ||
+||  || [BrainRegionVBA_FD_PV_IPV VBA.FD.PV.IPV] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCs -> Pulvinar, abstract)] ||
+||  || [BrainRegionVBA_FD_PV_LPV VBA.FD.PV.LPV] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCs -> Pulvinar, abstract)] ||
 || [BrainRegionVCA_NC_IPL_MST VCA.NC.IPL.MST] || [BrainRegionACA_NC_IPL_SMW ACA.NC.IPL.SMW] || neocortex-neocortex || [http://www.hindawi.com/journals/nri/2012/719056 Visual Dorsal Pathway (MST -> IPL, abstract)] ||
 ||  || [BrainRegionMCA_NC_SPL_PG MCA.NC.SPL.PG] || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (MST -> 7a)] ||
 || [BrainRegionVCA_NC_IPS_PEF VCA.NC.IPS.PEF] || [BrainRegionMCA_NC_SPL_PG MCA.NC.SPL.PG] || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (LIP -> 7a)] ||

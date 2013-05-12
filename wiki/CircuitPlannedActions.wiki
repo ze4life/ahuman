@@ -25,7 +25,6 @@ Circuit is part of aHuman target integrated biological model.
 ||  || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || Ventral Anterior Cingulate Area || Neocortex, BA 24 || Seat of Free Will ||
 || [BrainAreaFBA FBA] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || Ventral Tegmental Area || Excitatory Nucleus || Respond to novel stimuli, unexpected rewards, and reward predictive sensory cues ||
 || [BrainAreaFCA FCA] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || Neocortex, BA 10,11,12 || Personality ||
-|| [BrainAreaMBA MBA] || [BrainRegionMBA_MM_SC MBA.MM.SC] || Superior Colliculus || Sensory Control Nucleus || Direct behavioral responses toward specific points in egocentric space, induce saccadic eye movement ||
 || [BrainAreaMCA MCA] || [BrainRegionMCA_FD_TH_VA MCA.FD.TH.VA] || Ventral Anterior Nucleus || Excitatory Nucleus || Relay BGA.SN, BGA.GPI, FCA.OMPFC, FCA.CG to MCA.PMC, MCA.SMC ||
 ||  || [BrainRegionMCA_NC_MC MCA.NC.MC] || Motor Cortex || Neocortex, BA 04 || Execution of required voluntary movements ||
 ||  || [BrainRegionMCA_NC_PMC_F2 MCA.NC.PMC.F2] || Dorsal Caudal Premotor Cortex || Neocortex, BA 06 || Guiding reaching ||
@@ -35,6 +34,7 @@ Circuit is part of aHuman target integrated biological model.
 ||  || [BrainRegionMCA_NC_SPL_PG MCA.NC.SPL.PG] || Caudal Precuneus || Neocortex, BA 07 || Controlling spatially guided behavior with respect to visual and tactile information ||
 || [BrainAreaSMA SMA] || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || Somatosensory Cortex || Neocortex, BA 01,02,03 || Muscle and skin receptors ||
 || [BrainAreaVBA VBA] || [BrainRegionVBA_FD_LGN VBA.FD.LGN] || Lateral Geniculate Nucleus || Sensory Relay Nucleus || Temporal decorrelation ||
+||  || [BrainRegionVBA_MM_SC_DEEP VBA.MM.SC.DEEP] || Deep Superior Colliculus || Sensory Control Nucleus || Head and eye attention to non-visual stimuli ||
 
 = Connections =
 (generated)
@@ -67,16 +67,15 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitPlannedActions.dot.jpg
 || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || [BrainRegionBFA_FT_ACC BFA.FT.ACC] || nucleus-nucleus || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (SNc -> NAC)] ||
 ||  || [BrainRegionBGA_FT_PU BGA.FT.PU] || nucleus-nucleus || [http://brainmind.com/BasalGanglia.html Basal Ganglia Activity (SNi -> PU, abstract)] ||
 || [BrainRegionBGA_FT_SN_PR BGA.FT.SN.PR] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || nucleus-nucleus || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (SNr -> SNc)] ||
-||  || [BrainRegionMBA_MM_SC MBA.MM.SC] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SNr -> SCi)] ||
 ||  || [BrainRegionMCA_FD_TH_VA MCA.FD.TH.VA] || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sVA -> VA, abstract)] ||
+||  || [BrainRegionVBA_MM_SC_DEEP VBA.MM.SC.DEEP] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SNr -> SCi, abstract)] ||
 || [BrainRegionBGA_HP_PPN BGA.HP.PPN] || [BrainRegionBGA_FD_STN BGA.FD.STN] || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionMBA_MM_SC MBA.MM.SC] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (PPN -> SC)] ||
 ||  || [BrainRegionVBA_FD_LGN VBA.FD.LGN] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (PPN -> LGN)] ||
+||  || [BrainRegionVBA_MM_SC_DEEP VBA.MM.SC.DEEP] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (PPN -> SC, abstract)] ||
 || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || nucleus-neocortex || [http://highered.mcgraw-hill.com/sites/dl/free/0071402357/156721/figure350_1.html Principal Connections of Hippocampus (AN -> VentralCingulate)] ||
 || [BrainRegionCGA_NC_PACG CGA.NC.PACG] || [BrainRegionBGA_FT_PU BGA.FT.PU] || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> BGA, abstract)] ||
 || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || [BrainRegionBGA_FT_CN BGA.FT.CN] || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> BGA, abstract)] ||
 || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionBFA_FT_ACC BFA.FT.ACC] || nucleus-nucleus || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (VTA -> NAC)] ||
-|| [BrainRegionMBA_MM_SC MBA.MM.SC] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCi -> SNc)] ||
 || [BrainRegionMCA_NC_MC MCA.NC.MC] || [BrainRegionBGA_FD_STN BGA.FD.STN] || neocortex-nucleus || (unknown reference) ||
 ||  || [BrainRegionBGA_FT_PU BGA.FT.PU] || neocortex-nucleus || [http://brainmind.com/BasalGanglia.html Basal Ganglia Activity (M1 -> PU)] ||
 || [BrainRegionMCA_NC_PMC_F2 MCA.NC.PMC.F2] || [BrainRegionBGA_FT_PU BGA.FT.PU] || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> BGA, abstract)] ||
@@ -85,4 +84,5 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitPlannedActions.dot.jpg
 || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || [BrainRegionBGA_FT_PU BGA.FT.PU] || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (F6 -> BG, abstract)] ||
 || [BrainRegionMCA_NC_SPL_PG MCA.NC.SPL.PG] || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || neocortex-neocortex || [http://thebrainlabs.com/brain.shtml Movement Planning (PPC -> SMC, abstract)] ||
 || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || [BrainRegionBGA_FT_PU BGA.FT.PU] || neocortex-nucleus || [http://brainmind.com/BasalGanglia.html Basal Ganglia Activity (S1 -> PU)] ||
+|| [BrainRegionVBA_MM_SC_DEEP VBA.MM.SC.DEEP] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCi -> SNc, abstract)] ||
 
