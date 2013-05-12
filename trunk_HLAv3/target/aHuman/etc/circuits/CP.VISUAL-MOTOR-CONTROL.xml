@@ -3,7 +3,7 @@
 	<circuit id="CP.EYE-FIELDS" name="Summary of eye movement control"
 		image="http://www.cixip.com/Public/kindeditor/attached/image/20121030/20121030134649_52795.jpg"
 		reference="http://www.cixip.com/index.php/page/content/id/1190"
-		components="FEF=MCA.NC.PMC.FEF PEF=VCA.NC.IPS.PEF SEF=MCA.NC.SMC.SEF SC=MBA.MM.SC riMLF=HMA.MM.INMLF PPRF=HP.PRF.PPRF DLPFC=FCA.NC.LPFC"
+		components="FEF=MCA.NC.PMC.FEF PEF=VCA.NC.IPS.PEF SEF=MCA.NC.SMC.SEF SC=VBA.MM.SC riMLF=HMA.MM.INMLF PPRF=HP.PRF.PPRF DLPFC=FCA.NC.LPFC"
 		>
 		<link src="PEF" dst="SC"/>
 		<link src="PEF" dst="FEF"/>
@@ -20,7 +20,7 @@
 	<circuit id="CP.RETINA-SUPERIOR-COLLICULUS" name="Retina and superior colliculus targets"
 		image="http://2.bp.blogspot.com/-mjoruMnWeaU/TVp_YcF7meI/AAAAAAAAAsQ/8oZIVJrZVnw/s1600/Gray722.png"
 		reference="http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html"
-		components="Retina=VBA.FD.RT Pulvinar=VBA.FD.PV LGB=VBA.FD.LGN SC=MBA.MM.SC Oculomotor=VBA.MM.OCN Trochlear=VBA.MM.TRH Abducens=VBA.HP.ABD OCC=NC.LOBE.OCC"
+		components="Retina=VBA.FD.RT Pulvinar=VBA.FD.PV LGB=VBA.FD.LGN SC=VBA.MM.SC Oculomotor=VBA.MM.OCN Trochlear=VBA.MM.TRH Abducens=VBA.HP.ABD OCC=NC.LOBE.OCC"
 		>
 		<link src="Retina" dst="LGB"/>
 		<link src="Retina" dst="Pulvinar"/>
@@ -35,7 +35,7 @@
 	<circuit id="CP.RETINA-OUTPUTS" name="Targets of retina neurons"
 		image="http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision_files/image022.jpg"
 		reference="http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm"
-		components="Retina=VBA.FD.RT LGB=VBA.FD.LGN SC=MBA.MM.SC Pretectum=MM.PT HT=HTA.FD.HT"
+		components="Retina=VBA.FD.RT LGB=VBA.FD.LGN SC=VBA.MM.SC Pretectum=MM.PT HT=HTA.FD.HT"
 		>
 		<link src="Retina" dst="LGB"/>
 		<link src="Retina" dst="HT"/>
@@ -46,7 +46,7 @@
 	<circuit id="CP.SACCADIC-VISION" name="Saccadic Vision"
 		image="http://www.nature.com/nrn/journal/v5/n3/images/nrn1345-i1.jpg"
 		reference="http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html"
-		components="FrontalCortex=NC.LOBE.ANT LIP=VCA.NC.IPS.LIP SCi=MBA.MM.SC SCs=MBA.MM.SC Thalamus=FD.TH BG=BGA.FT.BG CN=BGA.FT.CN GPe=BGA.FT.GPE STN=BGA.FD.STN SNpr=BGA.FT.SN.PR CR=MBA.HP.CR RF=HP.PRF Retina=VBA.FD.RT LGN=VBA.FD.LGN VisualCortex=NC.LOBE.OCC"
+		components="FrontalCortex=NC.LOBE.ANT LIP=VCA.NC.IPS.LIP SCi=VBA.MM.SC SCs=VBA.MM.SC Thalamus=FD.TH BG=BGA.FT.BG CN=BGA.FT.CN GPe=BGA.FT.GPE STN=BGA.FD.STN SNpr=BGA.FT.SN.PR CR=MBA.HP.CR RF=HP.PRF Retina=VBA.FD.RT LGN=VBA.FD.LGN VisualCortex=NC.LOBE.OCC"
 		>
 		<link src="Retina" dst="LGN"/>
 		<link src="Retina" dst="SCs"/>
@@ -74,7 +74,7 @@
 	<circuit id="CP.GENICULATE-PATHS" name="Geniculate and Extyrageniculate Paths"
 		image="http://ars.els-cdn.com/content/image/1-s2.0-S0387760401003308-gr2.jpg"
 		reference="http://www.sciencedirect.com/science/article/pii/S0387760401003308"
-		components="Retina=VBA.FD.RT SC=MBA.MM.SC LGN=VBA.FD.LGN PPN=BGA.HP.PPN RF=HP.PRF VC=NC.LOBE.OCC"
+		components="Retina=VBA.FD.RT SC=VBA.MM.SC LGN=VBA.FD.LGN PPN=BGA.HP.PPN RF=HP.PRF VC=NC.LOBE.OCC"
 		>
 		<link src="Retina" dst="LGN"/>
 		<link src="Retina" dst="SC"/>
@@ -99,7 +99,7 @@
 	<circuit id="CP.VISION-SACCADES" name="Horizontal saccades and smooth pursuit movements"
 		image="http://ars.els-cdn.com/content/image/1-s2.0-S0006899301025987-gr1.gif"
 		reference="http://www.sciencedirect.com/science/article/pii/S0006899301025987"
-		components="LGB=VBA.FD.LGN VisualAssociation=MCA.NC.SPL.PG PrimaryVisual=VCA.NC.V1 FEFSEF=NC.LOBE.ANT SC=MBA.MM.SC Striatum=BGA.FT.ST RIP=VBA.MM.RP.RIP Bechterew=HMA.HP.PRF.PDT CR=MBA.HP.CR PPRF=HP.PRF.PPRF Vestibular=BMA.HP.VB"
+		components="LGB=VBA.FD.LGN VisualAssociation=MCA.NC.SPL.PG PrimaryVisual=VCA.NC.V1 FEFSEF=NC.LOBE.ANT SC=VBA.MM.SC Striatum=BGA.FT.ST RIP=VBA.MM.RP.RIP Bechterew=HMA.HP.PRF.PDT CR=MBA.HP.CR PPRF=HP.PRF.PPRF Vestibular=BMA.HP.VB"
 		>
 		<link src="VisualAssociation" dst="FEFSEF"/>
 		<link src="LGB" dst="PrimaryVisual"/>
@@ -137,7 +137,7 @@
 	<circuit id="CP.SACCADIC-VOLUNTARY-AND-PURSUIT" name="Saccades and smooth movements"
 		image="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg"
 		reference="UNKNOWN"
-		components="FEF=MCA.NC.PMC.FEF PPC=VCA.NC.IPS.PEF CN=BGA.FT.CN SN=BGA.FT.SN VGC=HMA.MM.INMLF SC=MBA.MM.SC PPRF=HP.PRF.PPRF TEF=VCA.NC.IT Extrastriate=VCA.NC.V3 Striate=VCA.NC.V1 CR=MBA.HP.CR Vestibular=BMA.HP.VB DLPN=HMA.HP.PRF.RPO"
+		components="FEF=MCA.NC.PMC.FEF PPC=VCA.NC.IPS.PEF CN=BGA.FT.CN SN=BGA.FT.SN VGC=HMA.MM.INMLF SC=VBA.MM.SC PPRF=HP.PRF.PPRF TEF=VCA.NC.IT Extrastriate=VCA.NC.V3 Striate=VCA.NC.V1 CR=MBA.HP.CR Vestibular=BMA.HP.VB DLPN=HMA.HP.PRF.RPO"
 		>
 		<!-- voluntary saccades circuit -->
 		<link src="FEF" dst="SC"/>
@@ -191,7 +191,7 @@
 	<circuit id="CP.OCULOMOTOR-DECISION-MAKING" name="Oculomotor decision-making"
 		image="http://img.springerimages.com/Images/Springer/PUB=Springer-Verlag-Berlin-Heidelberg/JOU=00359/VOL=2005.191/ISU=3/ART=2004_565/MediaObjects/WATER_s00359-004-0565-9fhc1.jpg"
 		reference="http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0"
-		components="AMYG=BFA.FT.AM CGp=CGA.NC.MPL.PCG CGa=CGA.NC.ACG LIP=VCA.NC.IPS.LIP SEF=MCA.NC.SMC.SEF FEF=MCA.NC.PMC.FEF PFC=FCA.NC.LPFC OFC=FCA.NC.OMPFC SC=MBA.MM.SC NAC=BFA.FT.ACC SNr=BGA.FT.SN.PR SNc=BGA.FT.SN.PC VTA=FBA.MM.VTA Thalamus=FD.TH Caudate=BGA.FT.CN"
+		components="AMYG=BFA.FT.AM CGp=CGA.NC.MPL.PCG CGa=CGA.NC.ACG LIP=VCA.NC.IPS.LIP SEF=MCA.NC.SMC.SEF FEF=MCA.NC.PMC.FEF PFC=FCA.NC.LPFC OFC=FCA.NC.OMPFC SC=VBA.MM.SC NAC=BFA.FT.ACC SNr=BGA.FT.SN.PR SNc=BGA.FT.SN.PC VTA=FBA.MM.VTA Thalamus=FD.TH Caudate=BGA.FT.CN"
 		>
 		<link src="AMYG" dst="CGp"/>
 		<link src="AMYG" dst="CGa"/>
