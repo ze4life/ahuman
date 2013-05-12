@@ -90,15 +90,19 @@ void WikiCircuitPages::createCircuitPage_getLinkSection( MindCircuitDef *cd , Ma
 }
 
 void WikiCircuitPages::createCircuitPage_getLinksRow( MindCircuitDef *cd , MindCircuitConnectionDef *link , StringList& lines ) {
+	String value1;
 	if( link == NULL ) {
 		// heading
 		lines.add( "|| *Source Region* || *Target Region* || *Type* || *Reference* ||" );
+		wm -> clearRepeats1( value1 );
 		return;
 	}
 
 	// row
 	String reference = wm -> findReference( link );
-	lines.add( "|| " + wm -> getRegionReference( link -> getSrcRegion() ) + " || " + wm -> getRegionReference( link -> getDstRegion() ) + " || " + 
+	value1 = wm -> getRegionReference( link -> getSrcRegion() );
+	wm -> clearRepeats1( value1 );
+	lines.add( "|| " + value1 + " || " + wm -> getRegionReference( link -> getDstRegion() ) + " || " + 
 		link -> getTypeName() + " || " + reference + " ||" );
 }
 
@@ -116,6 +120,34 @@ void WikiCircuitPages::createCircuitPage_getNodeList( MindCircuitDef *cd , MapSt
 		if( nodes.get( region ) == NULL )
 			nodes.add( region , ms -> getMindRegion( region ) );
 	}
+}
+
+void WikiCircuitPages::createCircuitPage_getNodeSection( MindCircuitDef *cd , MapStringToClass<MindRegion>& nodes , StringList& lines ) {
+	// heading
+	createCircuitPage_getNodesRow( cd , NULL , lines );
+
+	for( int k = 0; k < nodes.count(); k++ ) {
+		MindRegion *region = nodes.getClassByIndex( k );
+		createCircuitPage_getNodesRow( cd , region , lines );
+	}
+}
+
+void WikiCircuitPages::createCircuitPage_getNodesRow( MindCircuitDef *cd , MindRegion *region , StringList& lines ) {
+	String value1;
+	if( region == NULL ) {
+		// heading
+		lines.add( "|| *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||" );
+		wm -> clearRepeats1( value1 );
+		return;
+	}
+
+	// row
+	MindArea *area = region -> getArea();
+	const XmlHMindElementInfo& info = wm -> hmindxml.getElementInfo( region -> getRegionId() );
+	value1 = wm -> getAreaReference( area -> getId() );
+	wm -> clearRepeats1( value1 );
+	lines.add( "|| " + value1 + " || " + wm -> getRegionReference( region -> getRegionId() ) + " || " + 
+		info.name + " || " + info.batype + " || " + info.function + " ||" );
 }
 
 void WikiCircuitPages::createCircuitPage_getDiagram( MindCircuitDef *cd , MapStringToClass<MindRegion>& nodes , MapStringToClass<MindCircuitConnectionDef>& links , StringList& lines ) {
@@ -163,29 +195,5 @@ void WikiCircuitPages::createCircuitPage_getDiagram( MindCircuitDef *cd , MapStr
 
 	// out to file
 	wm -> createFileContent( fileName , text );
-}
-
-void WikiCircuitPages::createCircuitPage_getNodeSection( MindCircuitDef *cd , MapStringToClass<MindRegion>& nodes , StringList& lines ) {
-	// heading
-	createCircuitPage_getNodesRow( cd , NULL , lines );
-
-	for( int k = 0; k < nodes.count(); k++ ) {
-		MindRegion *region = nodes.getClassByIndex( k );
-		createCircuitPage_getNodesRow( cd , region , lines );
-	}
-}
-
-void WikiCircuitPages::createCircuitPage_getNodesRow( MindCircuitDef *cd , MindRegion *region , StringList& lines ) {
-	if( region == NULL ) {
-		// heading
-		lines.add( "|| *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||" );
-		return;
-	}
-
-	// row
-	MindArea *area = region -> getArea();
-	const XmlHMindElementInfo& info = wm -> hmindxml.getElementInfo( region -> getRegionId() );
-	lines.add( "|| " + wm -> getAreaReference( area -> getId() ) + " || " + wm -> getRegionReference( region -> getRegionId() ) + " || " + 
-		info.name + " || " + info.batype + " || " + info.function + " ||" );
 }
 

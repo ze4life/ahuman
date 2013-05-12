@@ -208,98 +208,6 @@ void WikiRegionPage::createConnectivitySection() {
 	createDotFile( regions , connectionsTotal );
 }
 
-void WikiRegionPage::createDotFile( MapStringToClass<MindRegion>& regions , MapStringToClass<MindCircuitConnectionDef>& connectionsTotal ) {
-	String dotDir = wm -> wiki.getProperty( "dotPath" );
-	String fileName = dotDir + "/" + info.id + ".dot";
-	StringList text;
-
-	// header
-	text.add( "digraph \"" + info.id.replace( "." , "_" ) + "\" {" );
-	String defaultDotSetup = wm -> wiki.getProperty( "defaultDotSetup" );
-	text.add( wm -> setSpecialCharacters( defaultDotSetup ) );
-	text.add( "\trankdir=LR;" );
-	text.add( "" );
-
-	// main item
-	String defaultDotRegionSetup = wm -> wiki.getProperty( "defaultDotRegionSetup" );
-	text.add( "\t\"" + info.id + "\" [" + wm -> setSpecialCharacters( defaultDotRegionSetup ) + "];" );
-	text.add( "" );
-
-	// areas
-	MapStringToClass<MindArea> areas;
-	for( int k = 0; k < regions.count(); k++ ) {
-		MindRegion *region = regions.getClassByIndex( k );
-		MindArea *area = region -> getArea();
-		areas.addnew( area -> getId() , area );
-	}
-
-	// list nodes by area
-	for( int k = 0; k < areas.count(); k++ ) {
-		MindArea *area = areas.getClassByIndex( k );
-
-		// area
-		text.add( "\tsubgraph cluster_" + area -> getId() + " {" );
-		text.add( "\tlabel=\"" + area -> getId() + "\";" );
-		text.add( "\t\"" + area -> getId() + "\" [ shape=box, style=filled , label = <" );
-		text.add( "\t\t<TABLE BORDER=\"0\" CELLBORDER=\"1\" CELLSPACING=\"0\" CELLPADDING=\"4\">" );
-
-		// regions
-		XmlHMindElementInfo infoPair;
-		for( int k = 0; k < regions.count(); k++ ) {
-			MindRegion *region = regions.getClassByIndex( k );
-			if( region -> getArea() != area )
-				continue;
-
-			// ignore self
-			String regionPaired = region -> getRegionId();
-			if( info.id.equals( regionPaired ) )
-				continue;
-
-			String dotdef = wm -> hmindxml.getDotDef( regionPaired );
-			String color;
-			if( !dotdef.isEmpty() ) {
-				String s = wm -> setSpecialCharacters( dotdef );
-				color = wm -> getDotColor( dotdef );
-				if( !color.isEmpty() )
-					color = " BGCOLOR=\"" + color + "\"";
-			}
-			String nodeline = "\t\t<TR><TD PORT=\"" + regionPaired + "\"" + color + ">" + regionPaired + "</TD></TR>";
-			text.add( nodeline );
-		}
-
-		text.add( "\t\t</TABLE>> ];" );
-		text.add( "\t}" );
-		text.add( "" );
-	}
-
-	// list connections
-	for( int k = 0; k < connectionsTotal.count(); k++ ) {
-		MindCircuitConnectionDef *c = connectionsTotal.getClassByIndex( k );
-
-		String src = c -> getSrcRegion();
-		String dst = c -> getDstRegion();
-		if( info.id.equals( src ) ) {
-			MindRegion *region = regions.get( dst );
-			src = "\"" + src + "\"";
-			dst = "\"" + region -> getArea() -> getId() + "\":" + "\"" + dst + "\"";
-		}
-		else {
-			MindRegion *region = regions.get( src );
-			src = "\"" + region -> getArea() -> getId() + "\":" + "\"" + src + "\"";
-			dst = "\"" + dst + "\"";
-		}
-
-		String linkline = "\t" + src + " -> " + dst + ";";
-		text.add( linkline );
-	}
-
-	// footer
-	text.add( "}" );
-
-	// out to file
-	wm -> createFileContent( fileName , text );
-}
-
 void WikiRegionPage::createConnectivitySection_getExternalConnections( MapStringToClass<MindCircuitConnectionDef>& connections , bool isin ) {
 	MindService *ms = MindService::getService();
 	MindMap *mm = ms -> getMindMap();
@@ -330,6 +238,7 @@ void WikiRegionPage::createConnectivitySection_getExternalConnections( MapString
 
 void WikiRegionPage::createConnectivitySection_getExternalConnectionTableLine( MindCircuitConnectionDef *link , StringList& lines , bool isin ) {
 	String line;
+	String value1;
 	if( link == NULL ) {
 		// add heading
 		lines.add( "" );
@@ -339,6 +248,7 @@ void WikiRegionPage::createConnectivitySection_getExternalConnectionTableLine( M
 		else
 			line = "|| *Target Area* || *Target Region* || *Target Name* || *Type* || *Reference* ||";
 		lines.add( line );
+		wm -> clearRepeats1( value1 );
 		return;
 	}
 
@@ -351,12 +261,16 @@ void WikiRegionPage::createConnectivitySection_getExternalConnectionTableLine( M
 	String reference = wm -> findReference( link );
 	if( isin == true ) {
 		const XmlHMindElementInfo& info = wm -> hmindxml.getElementInfo( link -> getSrcRegion() );
-		line = "|| " + wm -> getAreaReference( srcRegion -> getArea() -> getId() ) + " || " + 
+		value1 = wm -> getAreaReference( srcRegion -> getArea() -> getId() );
+		wm -> clearRepeats1( value1 );
+		line = "|| " + value1 + " || " + 
 			wm -> getRegionReference( link -> getSrcRegion() ) + " || " + info.name + " || " + link -> getTypeName() + " || " + reference + " ||";
 	}
 	else {
 		const XmlHMindElementInfo& info = wm -> hmindxml.getElementInfo( link -> getDstRegion() );
-		line = "|| " + wm -> getAreaReference( dstRegion -> getArea() -> getId() ) + " || " + 
+		value1 = wm -> getAreaReference( dstRegion -> getArea() -> getId() );
+		wm -> clearRepeats1( value1 );
+		line = "|| " + value1 + " || " + 
 			wm -> getRegionReference( link -> getDstRegion() ) + " || " + info.name + " || " + link -> getTypeName() + " || " + reference + " ||";
 	}
 	lines.add( line );
@@ -459,3 +373,96 @@ void WikiRegionPage::createThirdpartyAndReferencesSection_getCircuitLines( XmlCi
 	lines.add( "<img src=\"" + cinfo.image + "\" alt=\"unavailable\"" + sizeInfo + ">" );
 	lines.add( "" );
 }
+
+void WikiRegionPage::createDotFile( MapStringToClass<MindRegion>& regions , MapStringToClass<MindCircuitConnectionDef>& connectionsTotal ) {
+	String dotDir = wm -> wiki.getProperty( "dotPath" );
+	String fileName = dotDir + "/" + info.id + ".dot";
+	StringList text;
+
+	// header
+	text.add( "digraph \"" + info.id.replace( "." , "_" ) + "\" {" );
+	String defaultDotSetup = wm -> wiki.getProperty( "defaultDotSetup" );
+	text.add( wm -> setSpecialCharacters( defaultDotSetup ) );
+	text.add( "\trankdir=LR;" );
+	text.add( "" );
+
+	// main item
+	String defaultDotRegionSetup = wm -> wiki.getProperty( "defaultDotRegionSetup" );
+	text.add( "\t\"" + info.id + "\" [" + wm -> setSpecialCharacters( defaultDotRegionSetup ) + "];" );
+	text.add( "" );
+
+	// areas
+	MapStringToClass<MindArea> areas;
+	for( int k = 0; k < regions.count(); k++ ) {
+		MindRegion *region = regions.getClassByIndex( k );
+		MindArea *area = region -> getArea();
+		areas.addnew( area -> getId() , area );
+	}
+
+	// list nodes by area
+	for( int k = 0; k < areas.count(); k++ ) {
+		MindArea *area = areas.getClassByIndex( k );
+
+		// area
+		text.add( "\tsubgraph cluster_" + area -> getId() + " {" );
+		text.add( "\tlabel=\"" + area -> getId() + "\";" );
+		text.add( "\t\"" + area -> getId() + "\" [ shape=box, style=filled , label = <" );
+		text.add( "\t\t<TABLE BORDER=\"0\" CELLBORDER=\"1\" CELLSPACING=\"0\" CELLPADDING=\"4\">" );
+
+		// regions
+		XmlHMindElementInfo infoPair;
+		for( int k = 0; k < regions.count(); k++ ) {
+			MindRegion *region = regions.getClassByIndex( k );
+			if( region -> getArea() != area )
+				continue;
+
+			// ignore self
+			String regionPaired = region -> getRegionId();
+			if( info.id.equals( regionPaired ) )
+				continue;
+
+			String dotdef = wm -> hmindxml.getDotDef( regionPaired );
+			String color;
+			if( !dotdef.isEmpty() ) {
+				String s = wm -> setSpecialCharacters( dotdef );
+				color = wm -> getDotColor( dotdef );
+				if( !color.isEmpty() )
+					color = " BGCOLOR=\"" + color + "\"";
+			}
+			String nodeline = "\t\t<TR><TD PORT=\"" + regionPaired + "\"" + color + ">" + regionPaired + "</TD></TR>";
+			text.add( nodeline );
+		}
+
+		text.add( "\t\t</TABLE>> ];" );
+		text.add( "\t}" );
+		text.add( "" );
+	}
+
+	// list connections
+	for( int k = 0; k < connectionsTotal.count(); k++ ) {
+		MindCircuitConnectionDef *c = connectionsTotal.getClassByIndex( k );
+
+		String src = c -> getSrcRegion();
+		String dst = c -> getDstRegion();
+		if( info.id.equals( src ) ) {
+			MindRegion *region = regions.get( dst );
+			src = "\"" + src + "\"";
+			dst = "\"" + region -> getArea() -> getId() + "\":" + "\"" + dst + "\"";
+		}
+		else {
+			MindRegion *region = regions.get( src );
+			src = "\"" + region -> getArea() -> getId() + "\":" + "\"" + src + "\"";
+			dst = "\"" + dst + "\"";
+		}
+
+		String linkline = "\t" + src + " -> " + dst + ";";
+		text.add( linkline );
+	}
+
+	// footer
+	text.add( "}" );
+
+	// out to file
+	wm -> createFileContent( fileName , text );
+}
+
