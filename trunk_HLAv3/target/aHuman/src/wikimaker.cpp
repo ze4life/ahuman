@@ -318,3 +318,24 @@ String WikiMaker::getDotColor( String dotdef ) {
 	return( color );
 }
 
+void WikiMaker::clearRepeats1( String& value1 ) {
+	if( saveRepeats1.equals( value1 ) )
+		value1.clear();
+	else
+		saveRepeats1 = value1;
+}
+
+void WikiMaker::clearRepeats2( String& value1 , String& value2 ) {
+	if( saveRepeats1.equals( value1 ) ) {
+		value1.clear();
+		if( saveRepeats2.equals( value2 ) )
+			value2.clear();
+		else
+			saveRepeats2 = value2;
+	}
+	else {
+		saveRepeats1 = value1;
+		saveRepeats2 = value2;
+	}
+}
+

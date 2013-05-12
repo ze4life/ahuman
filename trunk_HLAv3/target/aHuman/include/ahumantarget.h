@@ -138,6 +138,9 @@ public:
 	String getAreaReference( String area );
 	String getRegionReference( String region );
 
+	void clearRepeats1( String& value1 );
+	void clearRepeats2( String& value1 , String& value2 );
+
 private:
 	void createMainPage();
 	void createCircuitPages();
@@ -149,6 +152,8 @@ private:
 
 public:
 	Xml wiki;
+	String saveRepeats1;
+	String saveRepeats2;
 };
 
 /*#########################################################################*/
