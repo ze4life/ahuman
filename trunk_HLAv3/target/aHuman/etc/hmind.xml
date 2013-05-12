@@ -1075,18 +1075,35 @@
 			<element refs="NL:[http://neurolex.org/wiki/Category:Parvocellular_part_of_red_nucleus Parvocellular part of red nucleus]"/>
 		</element>
 
-		<element id="MBA.MM.SC" name="Superior Colliculus" mapped="true" type="Sensory Control Nucleus"
+		<element id="VBA.MM.SC" name="Superior Colliculus"
 			refs="NL:[http://neurolex.org/wiki/Category:Superior_colliculus Superior colliculus]"
 			function="Direct behavioral responses toward specific points in egocentric space, induce saccadic eye movement"
 			notes="Superficial layers are sensory-related, deep layers are motor-related"
 			>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_superior_colliculus Lateral superior colliculus]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Medial_superior_colliculus Medial superior colliculus]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Rostral_half_of_the_superior_colliculus Rostral half of the superior colliculus]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Superior_colliculus_stratum_lemnisci Superior colliculus stratum lemnisci]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Superior_colliculus_stratum_opticum Superior colliculus stratum opticum]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Superior_colliculus_stratum_zonale Superior colliculus stratum zonale]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Superior_colliculus_superficial_gray_layer Superior colliculus superficial gray layer]"/>
+			<element id="VBA.MM.SC.SUP" name="Superficial Superior Colliculus" mapped="true" type="Sensory Control Nucleus"
+				refs="wiki:[http://en.wikipedia.org/wiki/Superior_colliculus Superficial Superior colliculus]"
+				function="Head and eye attention to visual stimuli"
+				notes="Receive input primarily from the visual system and show primarily visual responses"
+				>
+				<element id="VBA.MM.SC.SZ" name="Stratum Zonale, Lamina I" refs="NL:[http://neurolex.org/wiki/Category:Superior_colliculus_stratum_zonale Superior colliculus stratum zonale]"/>
+				<element id="VBA.MM.SC.SGZ" name="Stratum Griseum Supeficiale, Lamina II" refs="NL:[http://neurolex.org/wiki/Category:Superior_colliculus_superficial_gray_layer Superior colliculus superficial gray layer]"/>
+				<element id="VBA.MM.SC.SO" name="Stratum Opticum, Lamina III" refs="NL:[http://neurolex.org/wiki/Category:Superior_colliculus_stratum_opticum Superior colliculus stratum opticum]"/>
+			</element>
+			<element id="VBA.MM.SC.DEEP" name="Deep Superior Colliculus" mapped="true" type="Sensory Control Nucleus"
+				refs="wiki:[http://en.wikipedia.org/wiki/Superior_colliculus Superficial Superior colliculus]"
+				function="Head and eye attention to non-visual stimuli"
+				notes="Receive many types of input and project to numerous motor-related brain areas"
+				>
+				<element id="VBA.MM.SC.SGI" name="Stratum Griseum Intermediale, Lamina IV"/>
+				<element id="VBA.MM.SC.SAI" name="Stratum Album Intermediale, Lamina V"/>
+				<element id="VBA.MM.SC.SGP" name="Stratum Griseum Profundum, Lamina VI"/>
+				<element id="VBA.MM.SC.SAP" name="Stratum Album Profundum, Lamina VII"/>
+			</element>
+
+			<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_superior_colliculus Lateral superior colliculus]" notes="unused subdivision"/>
+			<element refs="NL:[http://neurolex.org/wiki/Category:Medial_superior_colliculus Medial superior colliculus]" notes="unused subdivision"/>
+			<element refs="NL:[http://neurolex.org/wiki/Category:Rostral_half_of_the_superior_colliculus Rostral half of the superior colliculus]" notes="unused subdivision"/>
+			<element refs="NL:[http://neurolex.org/wiki/Category:Superior_colliculus_stratum_lemnisci Superior colliculus stratum lemnisci]" notes="unused subdivision"/>
 		</element>
 
 		<element id="ABA.MM.SOC" name="Superior Olivary Complex" mapped="true" type="Sensory Control Nucleus"
