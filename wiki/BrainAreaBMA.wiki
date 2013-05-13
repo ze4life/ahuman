@@ -16,6 +16,7 @@
 || [BrainRegionBMA_HP_PRF_PVR BMA.HP.PRF.PVR] || Parvocellular Reticular Nucleus || Premotor Nucleus || Flow of respiratory current out of organism || Projects to facial nucleus, hypoglossal nucleus and<BR>parabrachial nucleus ||
 || [BrainRegionBMA_HP_VB BMA.HP.VB] || Vestibular Nucleus || Premotor Nucleus || Equilibrium, Postural Reflexes || Pons ||
 || [BrainRegionBMA_HP_VG BMA.HP.VG] || Vestibular Ganglion || 1-order Sensory Nucleus || Contact with hair cells of vestibular sensory end organs || Scarpas ganglion ||
+|| [BrainRegionBMA_MM_DSCH BMA.MM.DSCH] || Darkschewitsch Nucleus || Sensory Control Nucleus || Mediate the consensual pupillary light reflex || Light in one eye results in pupil changes in<BR>another eye ||
 || [BrainRegionBMA_MM_PT_PTA BMA.MM.PT.PTA] || Anterior Pretectum Nucleus || Sensory Relay Nucleus || Mediate somatosensory and nociceptive information || 3 parallel flows from MC, anterior interpositus<BR>nucleus of TH, GR to dorsal accessory IO ||
 || [BrainRegionBMA_SC_IZ_CBS BMA.SC.IZ.CBS] || Centrobasalis Nucleus || 1-order Sensory Nucleus || Unconscious proprioception to CR || Upper extremity, relay motor feedback to CR, major<BR>site of termination for dorsal root fibers ||
 || [BrainRegionBMA_SC_IZ_CCV BMA.SC.IZ.CCV] || Central Cervical Nucleus || 1-order Sensory Nucleus || Coordinate voluntary movements, maintain balance, and learn motor skills || Receive neck and vestibular input and project to CR<BR>and vestibular nuclei ||
@@ -41,23 +42,26 @@
 http://ahuman.googlecode.com/svn/images/dot/aHuman/BMA.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionBMA_HP_VB BMA.HP.VB] || [BrainRegionBMA_MM_DSCH BMA.MM.DSCH] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionBMA_HP_VG BMA.HP.VG] || [BrainRegionBMA_HP_VB BMA.HP.VB] || nucleus-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) (VestibularGanglion -> VestibularNuclei)] ||
+|| [BrainRegionBMA_MM_DSCH BMA.MM.DSCH] || [BrainRegionBMA_HM_IO BMA.HM.IO] || nucleus-nucleus || (unknown reference) ||
 
 *External Inbound Region Connections:*
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
 || [BrainAreaCGA CGA] || [BrainRegionBMA_HP_PB BMA.HP.PB] || [BrainRegionCGA_NC_SGC CGA.NC.SGC] || Subgenual Cortex || neocortex-nucleus || (unknown reference) ||
+|| [BrainAreaMCA MCA] || [BrainRegionBMA_MM_DSCH BMA.MM.DSCH] || [BrainRegionMCA_NC_PMC_FEF MCA.NC.PMC.FEF] || Frontal Eye Field || neocortex-nucleus || (unknown reference) ||
 || <font color="red">Hindbrain</font> || || || || || ||
 || [BrainAreaMBA MBA] || [BrainRegionBMA_HM_IO BMA.HM.IO] || [BrainRegionMBA_MM_RD MBA.MM.RD] || Red Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionBMA_HP_VB BMA.HP.VB] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (CR -> Vestibular)] ||
+||  || [BrainRegionBMA_MM_DSCH BMA.MM.DSCH] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || (unknown reference) ||
 || <font color="red">Motor</font> || || || || || ||
 || [BrainAreaHMA HMA] || [BrainRegionBMA_HP_PB BMA.HP.PB] || [BrainRegionHMA_HM_SOL HMA.HM.SOL] || Solitary Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (NST -> PB)] ||
 ||  || [BrainRegionBMA_SC_IZ_RPL BMA.SC.IZ.RPL] || [BrainRegionHMA_HP_PRF_GCR HMA.HP.PRF.GCR] || Gigantocellular Reticular Nucleus || nucleus-nucleus || (unknown reference) ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaBGA BGA] || [BrainRegionBMA_HP_PRF_PVR BMA.HP.PRF.PVR] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || Substantia Nigra Pars Compacta || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaVBA VBA] || [BrainRegionBMA_HM_IO BMA.HM.IO] || [BrainRegionVBA_MM_DSCH VBA.MM.DSCH] || Darkschewitsch Nucleus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionBMA_HP_VB BMA.HP.VB] || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || Prepositus Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (NPRP -> MVSN)] ||
+|| [BrainAreaVBA VBA] || [BrainRegionBMA_HP_VB BMA.HP.VB] || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || Prepositus Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (NPRP -> MVSN)] ||
 ||  ||  || [BrainRegionVBA_MM_SC_DEEP VBA.MM.SC.DEEP] || Deep Superior Colliculus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (SC -> Vestibular, abstract)] ||
 
 *External Outbound Region Connections:*
@@ -87,7 +91,6 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/BMA.dot.jpg
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaBGA BGA] || [BrainRegionBMA_MM_PT_PTA BMA.MM.PT.PTA] || [BrainRegionBGA_FD_STN BGA.FD.STN] || Subthalamus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaVBA VBA] || [BrainRegionBMA_HP_VB BMA.HP.VB] || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || Prepositus Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (MVSN -> NPRP)] ||
-||  ||  || [BrainRegionVBA_MM_DSCH VBA.MM.DSCH] || Darkschewitsch Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionBMA_MM_PT_PTA BMA.MM.PT.PTA] || [BrainRegionVBA_FD_PV_MPV VBA.FD.PV.MPV] || Medial Pulvinar || nucleus-nucleus || (unknown reference) ||
 
 = Thirdparty Circuits =

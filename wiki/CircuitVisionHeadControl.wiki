@@ -14,6 +14,7 @@ Circuit is part of aHuman target integrated biological model.
 ||  || [BrainRegionBMA_HP_PRF_PVR BMA.HP.PRF.PVR] || Parvocellular Reticular Nucleus || Premotor Nucleus || Flow of respiratory current out of organism ||
 ||  || [BrainRegionBMA_HP_VB BMA.HP.VB] || Vestibular Nucleus || Premotor Nucleus || Equilibrium, Postural Reflexes ||
 ||  || [BrainRegionBMA_HP_VG BMA.HP.VG] || Vestibular Ganglion || 1-order Sensory Nucleus || Contact with hair cells of vestibular sensory end organs ||
+||  || [BrainRegionBMA_MM_DSCH BMA.MM.DSCH] || Darkschewitsch Nucleus || Sensory Control Nucleus || Mediate the consensual pupillary light reflex ||
 ||  || [BrainRegionBMA_SC_IZ_RPL BMA.SC.IZ.RPL] || Retroposterolateral Nucleus || 1-order Motor Nucleus || Innervation of limbs muscles ||
 || [BrainAreaCGA CGA] || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || Retrosplenial Cortex || Neocortex, BA 26,29,30 || Processing of emotionally salient stimuli ||
 || [BrainAreaHMA HMA] || [BrainRegionHMA_HM_TGM_PA5 HMA.HM.TGM.PA5] || Paratrigeminal Nucleus || 1-order Sensory Nucleus || Orofacial nociceptive sensory processing ||
@@ -36,7 +37,6 @@ Circuit is part of aHuman target integrated biological model.
 ||  || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || Somatosensory Cortex || Neocortex, BA 01,02,03 || Muscle and skin receptors ||
 ||  || [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || Caudal Precuneus || Neocortex, BA 07 || Controlling spatially guided behavior with respect to visual and tactile information ||
 || [BrainAreaVBA VBA] || [BrainRegionVBA_HP_ABD VBA.HP.ABD] || Abducens Nucleus || Motor Relay Nucleus || Conjugated movements of both eyes ||
-||  || [BrainRegionVBA_MM_DSCH VBA.MM.DSCH] || Darkschewitsch Nucleus || Sensory Control Nucleus || Mediate the consensual pupillary light reflex ||
 ||  || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || Oculomotor Nucleus || Motor Relay Nucleus || Change Eye Direction ||
 ||  || [BrainRegionVBA_MM_PT_NOT VBA.MM.PT.NOT] || Nucleus of Optic Tract || Sensory Relay Nucleus || Encode retinal error information during smooth pursuit eye movements ||
 ||  || [BrainRegionVBA_MM_PT_PR VBA.MM.PT.PR] || Principal Pretectal Nucleus || Sensory Control Nucleus || Pupillary light reflex ||
@@ -52,9 +52,10 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitVisionHeadControl.dot.
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionBMA_HP_PRF_PVR BMA.HP.PRF.PVR] || [BrainRegionHMA_HP_FCM HMA.HP.FCM] || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorVII, abstract)] ||
 ||  || [BrainRegionHMA_HP_PTP_TRM HMA.HP.PTP.TRM] || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorV, abstract)] ||
-|| [BrainRegionBMA_HP_VB BMA.HP.VB] || [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || nucleus-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) (VestibularNuclei -> PPRF, abstract)] ||
-||  || [BrainRegionVBA_MM_DSCH VBA.MM.DSCH] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionBMA_HP_VB BMA.HP.VB] || [BrainRegionBMA_MM_DSCH BMA.MM.DSCH] || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || nucleus-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) (VestibularNuclei -> PPRF, abstract)] ||
 || [BrainRegionBMA_HP_VG BMA.HP.VG] || [BrainRegionBMA_HP_VB BMA.HP.VB] || nucleus-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) (VestibularGanglion -> VestibularNuclei)] ||
+|| [BrainRegionBMA_MM_DSCH BMA.MM.DSCH] || [BrainRegionBMA_HM_IO BMA.HM.IO] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionHMA_HM_TGM_PA5 HMA.HM.TGM.PA5] || [BrainRegionHMA_HP_FCM HMA.HP.FCM] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionHMA_HM_TGM_STR HMA.HM.TGM.STR] || [BrainRegionHMA_HP_PRF_GCR HMA.HP.PRF.GCR] || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SpinalTrigeminal -> RF, abstract)] ||
 ||  || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SpinalTrigeminal -> Oculomotor)] ||
@@ -64,14 +65,13 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitVisionHeadControl.dot.
 || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || [BrainRegionHMA_SC_VH_ISL HMA.SC.VH.ISL] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (RF -> SpinalCord, abstract)] ||
 || [BrainRegionHMA_HP_PTP_PTR HMA.HP.PTP.PTR] || [BrainRegionHMA_HM_TGM_STR HMA.HM.TGM.STR] || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (PrincipalTrigeminal -> SpinalTrigeminal)] ||
 || [BrainRegionHMA_MM_MSTR HMA.MM.MSTR] || [BrainRegionHMA_HP_PTP_TRM HMA.HP.PTP.TRM] || nucleus-nucleus || (unknown reference) ||
-|| [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionVBA_MM_DSCH VBA.MM.DSCH] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionBMA_MM_DSCH BMA.MM.DSCH] || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionVBA_MM_PT_PR VBA.MM.PT.PR] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionMCA_NC_MC MCA.NC.MC] || [BrainRegionHMA_HP_PRF_PDT HMA.HP.PRF.PDT] || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> RF, abstract)] ||
-|| [BrainRegionMCA_NC_PMC_FEF MCA.NC.PMC.FEF] || [BrainRegionVBA_MM_DSCH VBA.MM.DSCH] || neocortex-nucleus || (unknown reference) ||
+|| [BrainRegionMCA_NC_PMC_FEF MCA.NC.PMC.FEF] || [BrainRegionBMA_MM_DSCH BMA.MM.DSCH] || neocortex-nucleus || (unknown reference) ||
 || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || [BrainRegionVBA_MM_RP_RIP VBA.MM.RP.RIP] || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (FEFSEF -> RIP, abstract)] ||
 || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || [BrainRegionHMA_HM_TGM_PA5 HMA.HM.TGM.PA5] || neocortex-nucleus || (unknown reference) ||
 || [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || neocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (PosteriorParietalCortex -> PCGRSP, abstract)] ||
-|| [BrainRegionVBA_MM_DSCH VBA.MM.DSCH] || [BrainRegionBMA_HM_IO BMA.HM.IO] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionVBA_MM_RP_RIP VBA.MM.RP.RIP] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (RIP -> PPRF, abstract)] ||
 || [BrainRegionVBA_MM_SC_DEEP VBA.MM.SC.DEEP] || [BrainRegionBMA_HP_VB BMA.HP.VB] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (SC -> Vestibular, abstract)] ||
 ||  || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || nucleus-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (SC -> PPRF, abstract)] ||
