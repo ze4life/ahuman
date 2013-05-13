@@ -192,7 +192,7 @@
 					function="Spatial orientation, representation of the self"
 					notes="rostral, 7B=PF, heavy somatosensory input"
 					/>
-				<element id="MCA.NC.SPL.PG" name="Caudal Precuneus" mapped="true" brodmannid="07" type="Neocortex"
+				<element id="SMA.NC.SPL.PG" name="Caudal Precuneus" mapped="true" brodmannid="07" type="Neocortex"
 					function="Controlling spatially guided behavior with respect to visual and tactile information" 
 					notes="caudal, 7A=PG+Opt"
 					/>
@@ -755,7 +755,7 @@
 			</element>
 		</element>
 
-		<element id="VBA.FD.PV" name="Pulvinar" refs="NL:[http://neurolex.org/wiki/Category:Pulvinar Pulvinar]">
+		<element id="FD.PV" name="Pulvinar" refs="NL:[http://neurolex.org/wiki/Category:Pulvinar Pulvinar]">
 			<element id="VBA.FD.PV.IPV" name="Inferior Pulvinar" mapped="true" type="Sensory Relay Nucleus"
 				refs="NL:[http://neurolex.org/wiki/Category:Inferior_pulvinar_nucleus Inferior pulvinar nucleus]"
 				function="Dorsal =Where= Stream"
@@ -771,10 +771,10 @@
 				function="Integration of associative cortical information and projects to visuomotor-related cortex"
 				notes="CG, PMC, PFC connections"
 				/>
-			<element id="VBA.FD.PV.OPV" name="Oral Pulvinar" mapped="true" type="Sensory Relay Nucleus"
+			<element id="SMA.FD.PV.OPV" name="Oral Pulvinar" mapped="true" type="Sensory Relay Nucleus"
 				refs="NL:[http://neurolex.org/wiki/Category:Oral_pulvinar_nucleus Oral pulvinar nucleus]"
 				function="Somatosensory functions"
-				notes="Thalamus, connected with parietal cortex"
+				notes="Thalamus, connected with parietal cortex, anterior pulvinar"
 				/>
 		</element>
 
@@ -838,7 +838,7 @@
 					function="Head direction, spatial learning"
 					notes="From RSP L5,6 BA17,18, RT, LGN"
 					/>
-				<element id="MCA.FD.TH.LP" name="Lateral Posterior Nucleus of Thalamus" mapped="true" type="Excitatory Nucleus"
+				<element id="SMA.FD.TH.LP" name="Lateral Posterior Nucleus of Thalamus" mapped="true" type="Excitatory Nucleus"
 					refs="NL:[http://neurolex.org/wiki/Category:Lateral_posterior_nucleus Lateral posterior nucleus]"
 					function="Visual association cortex"
 					notes="From superior colliculus, pretectum"
@@ -890,7 +890,7 @@
 					>
 					<element refs="NL:[http://neurolex.org/wiki/Category:Posterior_limitans_nucleus Posterior limitans nucleus]"/>
 				</element>
-				<element id="ABA.FD.TH.SG" name="Suprageniculate Nucleus of Thalamus" mapped="true" type="Excitatory Nucleus"
+				<element id="ACA.FD.TH.SG" name="Suprageniculate Nucleus of Thalamus" mapped="true" type="Excitatory Nucleus"
 					refs="NL:[http://neurolex.org/wiki/Category:Suprageniculate_nucleus Suprageniculate nucleus]"
 					function="Spatial coding of auditory information"
 					notes="From tectum, somatic sensations"
@@ -953,7 +953,7 @@
 			<element name="Subcuneiform Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Subcuneiform_nucleus Subcuneiform nucleus]"/>
 		</element>
 
-		<element id="AVA.MM.EWN" name="Edinger-Westphal Nucleus" mapped="true" type="Preganglionic Nucleus"
+		<element id="VBA.MM.EWN" name="Edinger-Westphal Nucleus" mapped="true" type="Preganglionic Nucleus"
 			refs="NL:[http://neurolex.org/wiki/Category:Parvocellular_oculomotor_nucleus Parvocellular oculomotor nucleus]"
 			function="Change Eye Pupil"
 			notes="Muscle nucleus, parvocellular extention of OCN"
@@ -980,11 +980,13 @@
 			<element id="HMA.MM.CJ" name="Cajal Nucleus" mapped="true" type="Premotor Nucleus"
 				refs="NL:[http://neurolex.org/wiki/Category:Interstitial_nucleus_of_Cajal Interstitial nucleus of Cajal]"
 				function="Integration of head and eye movements"
-				notes="Projects to CN3, CN4 nuclei"
+				comments="Relay of extrapyramidal control for automatic movements"
+				notes="Projects to CN3, CN4 nuclei, rotation of body about its long axis"
 				/>
-			<element id="VBA.MM.DSCH" name="Darkschewitsch Nucleus" mapped="true" type="Sensory Control Nucleus"
+			<element id="BMA.MM.DSCH" name="Darkschewitsch Nucleus" mapped="true" type="Sensory Control Nucleus"
 				refs="NL:[http://neurolex.org/wiki/Category:Nucleus_of_Darkschewitsch Nucleus of Darkschewitsch]"
 				function="Mediate the consensual pupillary light reflex"
+				comments="Accessory oculomotor nucleus"
 				notes="Light in one eye results in pupil changes in another eye"
 				/>
 			<element id="HMA.MM.INMLF" name="Interstitial Nucleus of Medial Longitudinal Fasciculus" mapped="true" type="Motor Relay Nucleus"
@@ -1021,6 +1023,7 @@
 			<element id="BMA.MM.PT.PTA" name="Anterior Pretectum Nucleus" mapped="true" type="Sensory Relay Nucleus"
 				refs="NL:[http://neurolex.org/wiki/Category:Anterior_pretectal_nucleus Anterior pretectal nucleus]"
 				function="Mediate somatosensory and nociceptive information"
+				comments="Nucleus of pretectal area"
 				notes="3 parallel flows from MC, anterior interpositus nucleus of TH, GR to dorsal accessory IO"
 				/>
 			<element id="VBA.MM.PT.NOT" name="Nucleus of Optic Tract" mapped="true" type="Sensory Relay Nucleus"
@@ -1036,11 +1039,13 @@
 			<element id="VBA.MM.PT.PR" name="Principal Pretectal Nucleus" mapped="true" type="Sensory Control Nucleus"
 				refs="NL:[http://neurolex.org/wiki/Category:Principal_pretectal_nucleus Principal pretectal nucleus]"
 				function="Pupillary light reflex"
+				comments="Medial pretectal nucleus"
 				notes="Affected by visual cortex and projects to EWN"
 				/>
 			<element id="VBA.MM.PT.SL" name="Sublentiform Nucleus" mapped="true" type="Sensory Control Nucleus"
 				refs="NL:[http://neurolex.org/wiki/Category:Sublentiform_nucleus Sublentiform nucleus]"
 				function="Accomodation reflex"
+				comments="Posterior pretectal nucleus"
 				notes="Combines visual cortex and retinal input to project to OCN, receives retinal input"
 				/>
 		</element>

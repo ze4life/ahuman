@@ -20,7 +20,7 @@
 	<circuit id="CP.RETINA-SUPERIOR-COLLICULUS" name="Retina and superior colliculus targets"
 		image="http://2.bp.blogspot.com/-mjoruMnWeaU/TVp_YcF7meI/AAAAAAAAAsQ/8oZIVJrZVnw/s1600/Gray722.png"
 		reference="http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html"
-		components="Retina=VBA.FD.RT Pulvinar=VBA.FD.PV LGB=VBA.FD.LGN SC=VBA.MM.SC Oculomotor=VBA.MM.OCN Trochlear=VBA.MM.TRH Abducens=VBA.HP.ABD OCC=NC.LOBE.OCC"
+		components="Retina=VBA.FD.RT Pulvinar=FD.PV LGB=VBA.FD.LGN SC=VBA.MM.SC Oculomotor=VBA.MM.OCN Trochlear=VBA.MM.TRH Abducens=VBA.HP.ABD OCC=NC.LOBE.OCC"
 		>
 		<link src="Retina" dst="LGB"/>
 		<link src="Retina" dst="Pulvinar"/>
@@ -87,7 +87,7 @@
 	<circuit id="CP.VISION-COMPONENTS" name="Vision Components"
 		image="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/vision-subcortical.jpg"
 		reference="http://neuroscience.uth.tmc.edu/s3/chapter07.html"
-		components="CG=AVA.PN.PSYM.CLG OCN=VBA.MM.OCN SOA=VBA.MM.SOA LGN=VBA.FD.LGN EWN=AVA.MM.EWN VC=NC.LOBE.OCC VAC=VCA.NC.IPS.PEF"
+		components="CG=AVA.PN.PSYM.CLG OCN=VBA.MM.OCN SOA=VBA.MM.SOA LGN=VBA.FD.LGN EWN=VBA.MM.EWN VC=NC.LOBE.OCC VAC=VCA.NC.IPS.PEF"
 		>
 		<link src="OCN" dst="CG"/>
 		<link src="EWN" dst="CG"/>
@@ -99,7 +99,7 @@
 	<circuit id="CP.VISION-SACCADES" name="Horizontal saccades and smooth pursuit movements"
 		image="http://ars.els-cdn.com/content/image/1-s2.0-S0006899301025987-gr1.gif"
 		reference="http://www.sciencedirect.com/science/article/pii/S0006899301025987"
-		components="LGB=VBA.FD.LGN VisualAssociation=MCA.NC.SPL.PG PrimaryVisual=VCA.NC.V1 FEFSEF=NC.LOBE.ANT SC=VBA.MM.SC Striatum=BGA.FT.ST RIP=VBA.MM.RP.RIP Bechterew=HMA.HP.PRF.PDT CR=MBA.HP.CR PPRF=HP.PRF.PPRF Vestibular=BMA.HP.VB"
+		components="LGB=VBA.FD.LGN VisualAssociation=SMA.NC.SPL.PG PrimaryVisual=VCA.NC.V1 FEFSEF=NC.LOBE.ANT SC=VBA.MM.SC Striatum=BGA.FT.ST RIP=VBA.MM.RP.RIP Bechterew=HMA.HP.PRF.PDT CR=MBA.HP.CR PPRF=HP.PRF.PPRF Vestibular=BMA.HP.VB"
 		>
 		<link src="VisualAssociation" dst="FEFSEF"/>
 		<link src="LGB" dst="PrimaryVisual"/>
@@ -120,7 +120,7 @@
 	<circuit id="CP.SACCADIC-MOTOR-CONTROL" name="Eye blink reflex and pupillary light reflex"
 		image="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/oculomotor.jpg"
 		reference="http://neuroscience.uth.tmc.edu/s3/chapter07.html"
-		components="SpinalTrigeminal=HMA.HM.TGM.STR Oculomotor=VBA.MM.OCN Abducens=VBA.HP.ABD Facial=HMA.HP.FCM RF=HP.PRF PrincipalTrigeminal=HMA.HP.PTP.PTR Ciliary=AVA.PN.PSYM.CLG EWN=AVA.MM.EWN Pretectum=MM.PT VAC=VCA.NC.V3 SupraOculomotor=VBA.MM.SOA"
+		components="SpinalTrigeminal=HMA.HM.TGM.STR Oculomotor=VBA.MM.OCN Abducens=VBA.HP.ABD Facial=HMA.HP.FCM RF=HP.PRF PrincipalTrigeminal=HMA.HP.PTP.PTR Ciliary=AVA.PN.PSYM.CLG EWN=VBA.MM.EWN Pretectum=MM.PT VAC=VCA.NC.V3 SupraOculomotor=VBA.MM.SOA"
 		>
 		<link src="Facial" dst="Abducens"/>
 		<link src="RF" dst="Facial"/>
