@@ -33,12 +33,13 @@ Circuit is part of aHuman target integrated biological model.
 ||  || [BrainRegionMCA_NC_MC MCA.NC.MC] || Motor Cortex || Neocortex, BA 04 || Execution of required voluntary movements ||
 ||  || [BrainRegionMCA_NC_PMC_FEF MCA.NC.PMC.FEF] || Frontal Eye Field || Neocortex, BA 08 || Initiation of eye movements ||
 ||  || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || Supplementary Motor Cortex || Neocortex, BA 06 || Process sequences of movements and coordinate bilateral movements ||
-||  || [BrainRegionMCA_NC_SPL_PG MCA.NC.SPL.PG] || Caudal Precuneus || Neocortex, BA 07 || Controlling spatially guided behavior with respect to visual and tactile information ||
 || [BrainAreaSMA SMA] || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || Somatosensory Cortex || Neocortex, BA 01,02,03 || Muscle and skin receptors ||
+||  || [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || Caudal Precuneus || Neocortex, BA 07 || Controlling spatially guided behavior with respect to visual and tactile information ||
 || [BrainAreaVBA VBA] || [BrainRegionVBA_HP_ABD VBA.HP.ABD] || Abducens Nucleus || Motor Relay Nucleus || Conjugated movements of both eyes ||
 ||  || [BrainRegionVBA_MM_DSCH VBA.MM.DSCH] || Darkschewitsch Nucleus || Sensory Control Nucleus || Mediate the consensual pupillary light reflex ||
 ||  || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || Oculomotor Nucleus || Motor Relay Nucleus || Change Eye Direction ||
 ||  || [BrainRegionVBA_MM_PT_NOT VBA.MM.PT.NOT] || Nucleus of Optic Tract || Sensory Relay Nucleus || Encode retinal error information during smooth pursuit eye movements ||
+||  || [BrainRegionVBA_MM_PT_PR VBA.MM.PT.PR] || Principal Pretectal Nucleus || Sensory Control Nucleus || Pupillary light reflex ||
 ||  || [BrainRegionVBA_MM_RP_RIP VBA.MM.RP.RIP] || Raphe Interpositus Nucleus || Excitatory Nucleus || Premotor network for saccades ||
 ||  || [BrainRegionVBA_MM_SC_DEEP VBA.MM.SC.DEEP] || Deep Superior Colliculus || Sensory Control Nucleus || Head and eye attention to non-visual stimuli ||
 ||  || [BrainRegionVBA_MM_SC_SUP VBA.MM.SC.SUP] || Superficial Superior Colliculus || Sensory Control Nucleus || Head and eye attention to visual stimuli ||
@@ -64,12 +65,12 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitVisionHeadControl.dot.
 || [BrainRegionHMA_HP_PTP_PTR HMA.HP.PTP.PTR] || [BrainRegionHMA_HM_TGM_STR HMA.HM.TGM.STR] || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (PrincipalTrigeminal -> SpinalTrigeminal)] ||
 || [BrainRegionHMA_MM_MSTR HMA.MM.MSTR] || [BrainRegionHMA_HP_PTP_TRM HMA.HP.PTP.TRM] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionVBA_MM_DSCH VBA.MM.DSCH] || nucleus-nucleus || (unknown reference) ||
-|| [BrainRegionMCA_FD_TH_LP MCA.FD.TH.LP] || [BrainRegionMCA_NC_SPL_PG MCA.NC.SPL.PG] || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (LP -> pLP, abstract)] ||
+||  || [BrainRegionVBA_MM_PT_PR VBA.MM.PT.PR] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionMCA_NC_MC MCA.NC.MC] || [BrainRegionHMA_HP_PRF_PDT HMA.HP.PRF.PDT] || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> RF, abstract)] ||
 || [BrainRegionMCA_NC_PMC_FEF MCA.NC.PMC.FEF] || [BrainRegionVBA_MM_DSCH VBA.MM.DSCH] || neocortex-nucleus || (unknown reference) ||
 || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || [BrainRegionVBA_MM_RP_RIP VBA.MM.RP.RIP] || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (FEFSEF -> RIP, abstract)] ||
-|| [BrainRegionMCA_NC_SPL_PG MCA.NC.SPL.PG] || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || neocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (PosteriorParietalCortex -> PCGRSP, abstract)] ||
 || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || [BrainRegionHMA_HM_TGM_PA5 HMA.HM.TGM.PA5] || neocortex-nucleus || (unknown reference) ||
+|| [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || neocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (PosteriorParietalCortex -> PCGRSP, abstract)] ||
 || [BrainRegionVBA_MM_DSCH VBA.MM.DSCH] || [BrainRegionBMA_HM_IO BMA.HM.IO] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionVBA_MM_RP_RIP VBA.MM.RP.RIP] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (RIP -> PPRF, abstract)] ||
 || [BrainRegionVBA_MM_SC_DEEP VBA.MM.SC.DEEP] || [BrainRegionBMA_HP_VB BMA.HP.VB] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (SC -> Vestibular, abstract)] ||
