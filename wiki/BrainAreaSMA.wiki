@@ -9,6 +9,7 @@
 
 || *Component ID* || *Component Name* || *Type* || *Function* || *Comments* ||
 || [BrainRegionSMA_FD_PV_OPV SMA.FD.PV.OPV] || Oral Pulvinar || Sensory Relay Nucleus || Somatosensory functions || Thalamus, connected with parietal cortex, anterior<BR>pulvinar ||
+|| [BrainRegionSMA_FD_TH_LP SMA.FD.TH.LP] || Lateral Posterior Nucleus of Thalamus || Excitatory Nucleus || Visual association cortex || From superior colliculus, pretectum ||
 || [BrainRegionSMA_FD_TH_RIL SMA.FD.TH.RIL] || Rostral Intralaminar Nucleus of Thalamus || Excitatory Nucleus || Stimulate memory-guided response || from brainstem to SPL.SA, CM, CL, CeM, PC ||
 || [BrainRegionSMA_FD_TH_VP SMA.FD.TH.VP] || Ventral Posterior Nucleus || Excitatory Nucleus || Relays somatic information to MCA.SSC || VPL and VPM ||
 || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || Somatosensory Cortex || Neocortex, BA 01,02,03 || Muscle and skin receptors ||  ||
@@ -25,6 +26,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/SMA.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionSMA_FD_PV_OPV SMA.FD.PV.OPV] || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (Pulvinar -> ParietalCortex, abstract)] ||
+|| [BrainRegionSMA_FD_TH_LP SMA.FD.TH.LP] || [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (LP -> pLP, abstract)] ||
 || [BrainRegionSMA_FD_TH_RIL SMA.FD.TH.RIL] || [BrainRegionSMA_NC_SPL_SA SMA.NC.SPL.SA] || nucleus-neocortex || (unknown reference) ||
 || [BrainRegionSMA_FD_TH_VP SMA.FD.TH.VP] || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (VPL -> pVPL)] ||
 ||  || [BrainRegionSMA_NC_PO_PCC SMA.NC.PO.PCC] || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (VPM -> pVPM)] ||
@@ -40,7 +42,6 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/SMA.dot.jpg
 || [BrainAreaCGA CGA] || [BrainRegionSMA_NC_PO_PCC SMA.NC.PO.PCC] || [BrainRegionCGA_NC_SPL_PF CGA.NC.SPL.PF] || Rostral Precuneus || neocortex-neocortex || (unknown reference) ||
 || [BrainAreaMCA MCA] || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || [BrainRegionMCA_NC_MC MCA.NC.MC] || Motor Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> ParietalCortex, abstract)] ||
 ||  ||  || [BrainRegionMCA_NC_PMC_F5 MCA.NC.PMC.F5] || Ventral Rostral Premotor Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (F5 -> S2)] ||
-||  || [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || [BrainRegionMCA_FD_TH_LP MCA.FD.TH.LP] || Lateral Posterior Nucleus of Thalamus || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (LP -> pLP, abstract)] ||
 ||  || [BrainRegionSMA_NC_SPL_SA SMA.NC.SPL.SA] || [BrainRegionMCA_NC_PMC_F7 MCA.NC.PMC.F7] || Dorsal Rostral Premotor Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1053810011000080 Cortico-Cortical Connectivity (MA -> SA, abstract)] ||
 || [BrainAreaVCA VCA] || [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || [BrainRegionVCA_NC_IPL_MST VCA.NC.IPL.MST] || Medial Superior Temporal Area || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (MST -> 7a)] ||
 ||  ||  || [BrainRegionVCA_NC_IPS_PEF VCA.NC.IPS.PEF] || Posterior Eye Field || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (LIP -> 7a)] ||
@@ -50,13 +51,17 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/SMA.dot.jpg
 || <font color="red">Hindbrain</font> || || || || || ||
 || [BrainAreaMBA MBA] || [BrainRegionSMA_FD_TH_RIL SMA.FD.TH.RIL] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || (unknown reference) ||
 || <font color="red">Motor</font> || || || || || ||
-|| [BrainAreaBMA BMA] || [BrainRegionSMA_FD_TH_RIL SMA.FD.TH.RIL] || [BrainRegionBMA_SC_IZ_CCV BMA.SC.IZ.CCV] || Central Cervical Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaBMA BMA] || [BrainRegionSMA_FD_TH_LP SMA.FD.TH.LP] || [BrainRegionBMA_MM_PT_PTA BMA.MM.PT.PTA] || Anterior Pretectum Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionSMA_FD_TH_RIL SMA.FD.TH.RIL] || [BrainRegionBMA_SC_IZ_CCV BMA.SC.IZ.CCV] || Central Cervical Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionSMA_FD_TH_VP SMA.FD.TH.VP] || [BrainRegionBMA_HP_PB BMA.HP.PB] || Parabrachial Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PB -> VPMpc)] ||
 ||  ||  || [BrainRegionBMA_SC_IZ_CCV BMA.SC.IZ.CCV] || Central Cervical Nucleus || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s1P -> P)] ||
 ||  ||  || [BrainRegionBMA_SC_PH_MG BMA.SC.PH.MG] || Marginal Nucleus || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sVPL -> VPL)] ||
 || [BrainAreaHMA HMA] || [BrainRegionSMA_FD_TH_VP SMA.FD.TH.VP] || [BrainRegionHMA_HM_SOL HMA.HM.SOL] || Solitary Nucleus || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sVPM -> VPM)] ||
 ||  ||  || [BrainRegionHMA_HP_PTP_PTR HMA.HP.PTP.PTR] || Principal Trigeminal Nucleus || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s2P -> P)] ||
 ||  ||  || [BrainRegionHMA_MM_MSTR HMA.MM.MSTR] || Mesencephalic Trigeminal Nucleus || nucleus-nucleus || (unknown reference) ||
+|| <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaVBA VBA] || [BrainRegionSMA_FD_TH_LP SMA.FD.TH.LP] || [BrainRegionVBA_MM_PT_SL VBA.MM.PT.SL] || Sublentiform Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionVBA_MM_SC_SUP VBA.MM.SC.SUP] || Superficial Superior Colliculus || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sLP -> LP, abstract)] ||
 
 *External Outbound Region Connections:*
 
