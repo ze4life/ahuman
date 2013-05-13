@@ -8,6 +8,7 @@
 (generated)
 
 || *Component ID* || *Component Name* || *Type* || *Function* || *Comments* ||
+|| [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || Suprageniculate Nucleus of Thalamus || Excitatory Nucleus || Spatial coding of auditory information || From tectum, somatic sensations ||
 || [BrainRegionACA_NC_A1 ACA.NC.A1] || Primary Auditory Cortex || Neocortex, BA 41 || Main topotonic map, extract phonemes || Core ||
 || [BrainRegionACA_NC_A2 ACA.NC.A2] || Auditory Association Area || Neocortex, BA 42 || Classify with respect to function || Belt ||
 || [BrainRegionACA_NC_A3 ACA.NC.A3] || Wernicke's area A3 || Neocortex, BA 22 || Classify with respect to content || 22a, Melody perception, sequences of tones ||
@@ -24,6 +25,7 @@
 http://ahuman.googlecode.com/svn/images/dot/aHuman/ACA.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || [BrainRegionACA_NC_A1 ACA.NC.A1] || nucleus-neocortex || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2010.00134/full Echo-Location in Bats (SG -> A1)] ||
 || [BrainRegionACA_NC_A1 ACA.NC.A1] || [BrainRegionACA_NC_A2 ACA.NC.A2] || neocortex-neocortex || [http://www.nature.com/neuro/journal/v12/n6/fig_tab/nn.2331_F5.html Cortical Auditory System (Core41 -> Belt42)] ||
 ||  || [BrainRegionACA_NC_A3 ACA.NC.A3] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1053810011000080 Cortico-Cortical Connectivity (A1 -> AA)] ||
 ||  || [BrainRegionACA_NC_A4 ACA.NC.A4] || neocortex-neocortex || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (A1 -> Wernike)] ||
@@ -47,10 +49,14 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/ACA.dot.jpg
 || [BrainAreaVCA VCA] || [BrainRegionACA_NC_A4 ACA.NC.A4] || [BrainRegionVCA_NC_MT VCA.NC.MT] || Middle Temporal Area || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1053811905008013 Category-Selectivity Paradigm (IOG -> STS, abstract)] ||
 ||  || [BrainRegionACA_NC_IPL_SMW ACA.NC.IPL.SMW] || [BrainRegionVCA_NC_IPL_MST VCA.NC.IPL.MST] || Medial Superior Temporal Area || neocortex-neocortex || [http://www.hindawi.com/journals/nri/2012/719056 Visual Dorsal Pathway (MST -> IPL, abstract)] ||
 ||  ||  || [BrainRegionVCA_NC_IPS_VIP VCA.NC.IPS.VIP] || Ventral Intraparietal Sulcus || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (IPS -> IPL, abstract)] ||
+|| <font color="red">Hindbrain</font> || || || || || ||
+|| [BrainAreaMBA MBA] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (DTN -> SUPGEN)] ||
+|| <font color="red">Motor</font> || || || || || ||
+|| [BrainAreaBMA BMA] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || [BrainRegionBMA_HP_VB BMA.HP.VB] || Vestibular Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (MVSN -> SUPGEN)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaABA ABA] || [BrainRegionACA_NC_A1 ACA.NC.A1] || [BrainRegionABA_FD_TH_MGB ABA.FD.TH.MGB] || Medial Geniculate Body || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (MGN -> pMGN)] ||
-||  ||  || [BrainRegionABA_FD_TH_SG ABA.FD.TH.SG] || Suprageniculate Nucleus of Thalamus || nucleus-neocortex || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2010.00134/full Echo-Location in Bats (SG -> A1)] ||
 || [BrainAreaBFA BFA] || [BrainRegionACA_NC_A1 ACA.NC.A1] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-neocortex || [http://f1000research.com/articles/2-20/v1 Visual-Auditory Interactions in Tectum (AM -> AC)] ||
+|| [BrainAreaVBA VBA] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || Prepositus Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (NPRP -> SUPGEN)] ||
 
 *External Outbound Region Connections:*
 
@@ -64,11 +70,14 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/ACA.dot.jpg
 ||  || [BrainRegionACA_NC_IPL_SMW ACA.NC.IPL.SMW] || [BrainRegionMCA_NC_PMC_F2 MCA.NC.PMC.F2] || Dorsal Caudal Premotor Cortex || neocortex-neocortex || [http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2846110/ Dual Auditory Processing (PPC -> DLPFC, abstract)] ||
 ||  ||  || [BrainRegionMCA_NC_PMC_F4 MCA.NC.PMC.F4] || Ventral Caudal Premotor Cortex || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (IPL -> vPM, abstract)] ||
 || [BrainAreaPHA PHA] || [BrainRegionACA_NC_A3 ACA.NC.A3] || [BrainRegionPHA_NC_TPC PHA.NC.TPC] || Temporopolar Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1364661312002823 Language-Related Regions (STG22a -> TC)] ||
+|| <font color="red">Hindbrain</font> || || || || || ||
+|| [BrainAreaMBA MBA] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (SUPGEN -> DTN)] ||
 || <font color="red">Motor</font> || || || || || ||
 || [BrainAreaHMA HMA] || [BrainRegionACA_NC_BRA ACA.NC.BRA] || [BrainRegionHMA_HP_PRF_PDT HMA.HP.PRF.PDT] || Pontine Reticulotegmental Nucleus || neocortex-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (Broca -> RF, abstract)] ||
 ||  ||  || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (Broca -> RF, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaABA ABA] || [BrainRegionACA_NC_A1 ACA.NC.A1] || [BrainRegionABA_MM_IC ABA.MM.IC] || Inferior Colliculus || neocortex-nucleus || [http://f1000research.com/articles/2-20/v1 Visual-Auditory Interactions in Tectum (AC -> IC)] ||
+|| [BrainAreaBFA BFA] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-nucleus || (unknown reference) ||
 
 = Thirdparty Circuits =
 (generated)
@@ -97,6 +106,10 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/ACA.dot.jpg
 
 <img src="http://ars.els-cdn.com/content/image/1-s2.0-S1053810011000080-gr3.jpg" alt="unavailable">
 
+  * [http://c431376.r76.cf2.rackcdn.com/1349/fnana-04-00134-HTML/image_m/fnana-04-00134-g001.jpg Echo-Location in Bats] - see [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2010.00134/full Reference]
+
+<img src="http://c431376.r76.cf2.rackcdn.com/1349/fnana-04-00134-HTML/image_m/fnana-04-00134-g001.jpg" alt="unavailable"height=200width=600>
+
   * [http://cdn.f1000r.com.s3.amazonaws.com/manuscripts/1181/d6e9eca8-bb85-4382-8286-723b00f8b36f_figure7.gif Visual-Auditory Interactions in Tectum] - see [http://f1000research.com/articles/2-20/v1 Reference]
 
 <img src="http://cdn.f1000r.com.s3.amazonaws.com/manuscripts/1181/d6e9eca8-bb85-4382-8286-723b00f8b36f_figure7.gif" alt="unavailable"height=400width=400>
@@ -105,13 +118,13 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/ACA.dot.jpg
 
 <img src="http://lifeboat.com/kurzweil/cochlea.gif" alt="unavailable">
 
-  * [http://c431376.r76.cf2.rackcdn.com/1349/fnana-04-00134-HTML/image_m/fnana-04-00134-g001.jpg Echo-Location in Bats] - see [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2010.00134/full Reference]
-
-<img src="http://c431376.r76.cf2.rackcdn.com/1349/fnana-04-00134-HTML/image_m/fnana-04-00134-g001.jpg" alt="unavailable"height=200width=600>
-
   * [http://what-when-how.com/wp-content/uploads/2012/04/tmp3649_thumb1_thumb.jpg Thalamocortical relationships] - see [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Reference]
 
 <img src="http://what-when-how.com/wp-content/uploads/2012/04/tmp3649_thumb1_thumb.jpg" alt="unavailable"height=400width=400>
+
+  * [http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png Head Direction Cell Circuit] - see [http://www.scholarpedia.org/article/Head_direction_cells Reference]
+
+<img src="http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png" alt="unavailable">
 
 
 = References =
@@ -123,10 +136,11 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/ACA.dot.jpg
   * http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full
   * http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2846110/
   * http://www.sciencedirect.com/science/article/pii/S1053810011000080
+  * http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2010.00134/full
   * http://f1000research.com/articles/2-20/v1
   * http://lifeboat.com/ex/law.of.accelerating.returns
-  * http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2010.00134/full
   * http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/
+  * http://www.scholarpedia.org/article/Head_direction_cells
 
 = Citations =
 
