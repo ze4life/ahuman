@@ -15,6 +15,7 @@
 || [BrainRegionVBA_FD_RT VBA.FD.RT] || Retina || 1-order Sensory Nucleus || Spatial decorrelation through center surround inhibition || 100:1 cones/rods to ganglion cells aggregation,<BR>edge extraction ||
 || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || Prepositus Nucleus || Sensory Control Nucleus || Integrate PPRF phasic signal to provide tonic signal of abducens || Part of horizontal gaze holding system ||
 || [BrainRegionVBA_HP_ABD VBA.HP.ABD] || Abducens Nucleus || Motor Relay Nucleus || Conjugated movements of both eyes || Motoneurons - to muscle, interneurons - to OCN ||
+|| [BrainRegionVBA_MM_EWN VBA.MM.EWN] || Edinger-Westphal Nucleus || Preganglionic Nucleus || Change Eye Pupil || Muscle nucleus, parvocellular extention of OCN ||
 || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || Oculomotor Nucleus || Motor Relay Nucleus || Change Eye Direction || Muscle nucleus ||
 || [BrainRegionVBA_MM_PT_NOT VBA.MM.PT.NOT] || Nucleus of Optic Tract || Sensory Relay Nucleus || Encode retinal error information during smooth pursuit eye movements || Guide motor learning during horizontal SP ||
 || [BrainRegionVBA_MM_PT_PON VBA.MM.PT.PON] || Pretectal Olivary Nucleus || Sensory Control Nucleus || Pupillary light reflex and modulating subcortical nuclei involved in circadian<BR>rhythms || Primary visual centre, involved in the pupillary<BR>light reflex, receives retinal input ||
@@ -45,7 +46,10 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/VBA.dot.jpg
 || [BrainRegionVBA_HP_ABD VBA.HP.ABD] || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || nucleus-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) (Abducens -> Oculomotor)] ||
 || [BrainRegionVBA_MM_PT_NOT VBA.MM.PT.NOT] || [BrainRegionVBA_MM_SC_SUP VBA.MM.SC.SUP] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionVBA_MM_PT_PON VBA.MM.PT.PON] || [BrainRegionVBA_FD_LGN VBA.FD.LGN] || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionVBA_MM_EWN VBA.MM.EWN] || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Pretectum -> EWN, abstract)] ||
+|| [BrainRegionVBA_MM_PT_PR VBA.MM.PT.PR] || [BrainRegionVBA_MM_EWN VBA.MM.EWN] || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Pretectum -> EWN, abstract)] ||
 || [BrainRegionVBA_MM_PT_SL VBA.MM.PT.SL] || [BrainRegionVBA_FD_PV_MPV VBA.FD.PV.MPV] || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionVBA_MM_EWN VBA.MM.EWN] || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Pretectum -> EWN, abstract)] ||
 ||  || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || neocortex-nucleus || (unknown reference) ||
 || [BrainRegionVBA_MM_SC_DEEP VBA.MM.SC.DEEP] || [BrainRegionVBA_HP_ABD VBA.HP.ABD] || nucleus-nucleus || [http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html Retina and superior colliculus targets (SC -> Abducens, abstract)] ||
 ||  || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || nucleus-nucleus || [http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html Retina and superior colliculus targets (SC -> Oculomotor, abstract)] ||
@@ -56,7 +60,8 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/VBA.dot.jpg
 ||  || [BrainRegionVBA_MM_PT_NOT VBA.MM.PT.NOT] || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionVBA_MM_RP_RIP VBA.MM.RP.RIP] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (SC -> RIP, abstract)] ||
 ||  || [BrainRegionVBA_MM_SC_DEEP VBA.MM.SC.DEEP] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCs -> SCi, abstract)] ||
-|| [BrainRegionVBA_MM_SOA VBA.MM.SOA] || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SupraOculomotor -> Oculomotor)] ||
+|| [BrainRegionVBA_MM_SOA VBA.MM.SOA] || [BrainRegionVBA_MM_EWN VBA.MM.EWN] || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SupraOculomotor -> EWN)] ||
+||  || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SupraOculomotor -> Oculomotor)] ||
 
 *External Inbound Region Connections:*
 
@@ -112,11 +117,8 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/VBA.dot.jpg
 || [BrainAreaHTA HTA] || [BrainRegionVBA_FD_RT VBA.FD.RT] || [BrainRegionHTA_FD_HT_SCN HTA.FD.HT.SCN] || Suprachiasmatic Nucleus || nucleus-nucleus || [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm Targets of retina neurons (Retina -> HT, abstract)] ||
 || [BrainAreaMBA MBA] || [BrainRegionVBA_MM_SC_DEEP VBA.MM.SC.DEEP] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (SCi -> CR, abstract)] ||
 || <font color="red">Motor</font> || || || || || ||
-|| [BrainAreaAVA AVA] || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || [BrainRegionAVA_PN_PSYM_CLG AVA.PN.PSYM.CLG] || Ciliary Ganglion || nucleus-ganglion || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Vision Components (OCN -> CG)] ||
-||  || [BrainRegionVBA_MM_PT_PON VBA.MM.PT.PON] || [BrainRegionVBA_MM_EWN VBA.MM.EWN] || Edinger-Westphal Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Pretectum -> EWN, abstract)] ||
-||  || [BrainRegionVBA_MM_PT_PR VBA.MM.PT.PR] || [BrainRegionVBA_MM_EWN VBA.MM.EWN] || Edinger-Westphal Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Pretectum -> EWN, abstract)] ||
-||  || [BrainRegionVBA_MM_PT_SL VBA.MM.PT.SL] || [BrainRegionVBA_MM_EWN VBA.MM.EWN] || Edinger-Westphal Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Pretectum -> EWN, abstract)] ||
-||  || [BrainRegionVBA_MM_SOA VBA.MM.SOA] || [BrainRegionVBA_MM_EWN VBA.MM.EWN] || Edinger-Westphal Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SupraOculomotor -> EWN)] ||
+|| [BrainAreaAVA AVA] || [BrainRegionVBA_MM_EWN VBA.MM.EWN] || [BrainRegionAVA_PN_PSYM_CLG AVA.PN.PSYM.CLG] || Ciliary Ganglion || nucleus-ganglion || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (EWN -> Ciliary)] ||
+||  || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || [BrainRegionAVA_PN_PSYM_CLG AVA.PN.PSYM.CLG] || Ciliary Ganglion || nucleus-ganglion || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Vision Components (OCN -> CG)] ||
 || [BrainAreaBMA BMA] || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || [BrainRegionBMA_HP_VB BMA.HP.VB] || Vestibular Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (NPRP -> MVSN)] ||
 ||  || [BrainRegionVBA_MM_SC_DEEP VBA.MM.SC.DEEP] || [BrainRegionBMA_HP_VB BMA.HP.VB] || Vestibular Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (SC -> Vestibular, abstract)] ||
 || [BrainAreaHMA HMA] || [BrainRegionVBA_MM_RP_RIP VBA.MM.RP.RIP] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (RIP -> PPRF, abstract)] ||
