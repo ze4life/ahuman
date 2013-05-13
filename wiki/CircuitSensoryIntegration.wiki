@@ -10,6 +10,8 @@ Circuit is part of aHuman target integrated biological model.
 (generated)
 
 || *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||
+|| [BrainAreaCGA CGA] || [BrainRegionCGA_NC_MPL_PCG CGA.NC.MPL.PCG] || Posterior Cingulate Cortex || Neocortex, BA 23,31 || Self-awareness, pain and episodic memory retrieval ||
+||  || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || Retrosplenial Cortex || Neocortex, BA 26,29,30 || Processing of emotionally salient stimuli ||
 || [BrainAreaPHA PHA] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || Neocortex, BA 28 || Memory consolidation ||
 ||  || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || Perirhinal Cortex || Neocortex, BA 35 || Associate different visual views of objects and their various nonvisual attributes ||
 || [BrainAreaVCA VCA] || [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || Inferotemporal Cortex || Neocortex, BA 20 || Represent different views of objects ||
@@ -20,6 +22,8 @@ Circuit is part of aHuman target integrated biological model.
 http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitSensoryIntegration.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionCGA_NC_MPL_PCG CGA.NC.MPL.PCG] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || neocortex-neocortex || [http://www.thebrainlabs.com Cingulate Gyrus (CG -> ET)] ||
+|| [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || neocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (PCGRSP -> EnthCortex, abstract)] ||
 || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || neocortex-neocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (PRPH -> ER)] ||
 || [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || neocortex-neocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (IT -> PRPH)] ||
 
