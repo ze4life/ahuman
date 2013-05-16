@@ -402,8 +402,9 @@ String WikiAreaPages::createAreaPages_getCircuitKey( MindAreaDef *areaDef , XmlC
 	for( int k = 0; k < comps.count(); k++ ) {
 		String comp = comps.get( k );
 		String region = wm -> hmindxml.getMappedRegion( comp );
-		if( areaDef -> findRegion( region ) != NULL )
-			compUsed.add( region );
+		if( !region.isEmpty() )
+			if( areaDef -> findRegion( region ) != NULL )
+				compUsed.add( region );
 	}
 
 	if( compUsed.count() == 0 )

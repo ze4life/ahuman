@@ -291,7 +291,7 @@ void WikiRegionPage::createThirdpartyAndReferencesSection() {
 		XmlCircuitInfo infoPaired;
 		wm -> circuitsxml.getCircuitInfo( circuitId , infoPaired );
 
-		String key = createThirdpartyAndReferencesSection_getCircuitKey( areaDef , infoPaired );
+		String key = createThirdpartyAndReferencesSection_getCircuitKey( region , infoPaired );
 		if( key.isEmpty() )
 			continue;
 
@@ -340,16 +340,23 @@ void WikiRegionPage::createThirdpartyAndReferencesSection() {
 	wm -> updateFileSection( wikiDir , wikiPage , sectionName , lines );
 }
 
-String WikiRegionPage::createThirdpartyAndReferencesSection_getCircuitKey( MindAreaDef *areaDef , XmlCircuitInfo& cinfo ) {
+String WikiRegionPage::createThirdpartyAndReferencesSection_getCircuitKey( MindRegionDef *regionDef , XmlCircuitInfo& cinfo ) {
 	// get circuit regions
 	StringList comps;
 	wm -> circuitsxml.getCircuitComponents( cinfo , comps );
 
-	// check circuit mentions area regions
+	// check circuit mentions region
+	String regionId = regionDef -> getName();
 	for( int k = 0; k < comps.count(); k++ ) {
 		String comp = comps.get( k );
-		if( comp.equals( info.id ) )
-			return( cinfo.id );
+		if( comp.equals( regionId ) )
+			return( "0." + cinfo.id );
+
+		// check whether circuit component is region part
+		String regionComp = wm -> hmindxml.getMappedRegion( comp );
+		if( !regionComp.isEmpty() )
+			if( regionComp.equals( regionId ) )
+				return( "1." + cinfo.id );
 	}
 
 	return( "" );
