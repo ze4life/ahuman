@@ -283,7 +283,7 @@ private:
 	void createDotFile( MapStringToClass<MindRegion>& regions , MapStringToClass<MindCircuitConnectionDef>& connectionsTotal );
 
 	void createThirdpartyAndReferencesSection();
-	String createThirdpartyAndReferencesSection_getCircuitKey( MindAreaDef *areaDef , XmlCircuitInfo& info );
+	String createThirdpartyAndReferencesSection_getCircuitKey( MindRegionDef *regionDef , XmlCircuitInfo& info );
 	void createThirdpartyAndReferencesSection_getCircuitLines( XmlCircuitInfo& info , StringList& lines );
 
 private:
