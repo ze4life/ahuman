@@ -8,6 +8,7 @@
 (generated)
 
 || *Component ID* || *Component Name* || *Type* || *Function* || *Comments* ||
+|| [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || Lateral Mammillary Nucleus || Excitatory Nucleus || Generate theta rythm and relay to HC || Memory, recognition, spatial awareness, and<BR>interpreting the context of events ||
 || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || Anterior Insular Cortex || Neocortex, BA 14 || Risky and moral decision making, articulation ||  ||
 || [BrainRegionPHA_NC_INS_HR PHA.NC.INS.HR] || Anterior Temporal Lobe || Neocortex, BA 15 || Relaying blood pressure and blood chemistry information to brain || Cortical target of information coming through<BR>Hering's nerves, active during panic attacks ||
 || [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || Posterior Insular Cortex || Neocortex, BA 13 || Awareness and sensation of pain ||  ||
@@ -30,6 +31,7 @@
 http://ahuman.googlecode.com/svn/images/dot/aHuman/PHA.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || [BrainRegionPHA_NC_PRS PHA.NC.PRS] || nucleus-neocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (MBOUT -> PRESUB)] ||
 || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (Iav -> PrC, abstract)] ||
 || [BrainRegionPHA_NC_INS_HR PHA.NC.INS.HR] || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763409002061 Contribution of hippocampal region CA3 to consciousness (AnteriorTemporal -> PRCortex)] ||
 || [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (Iav -> IadIap, abstract)] ||
@@ -38,11 +40,14 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/PHA.dot.jpg
 ||  || [BrainRegionPHA_NC_PRS PHA.NC.PRS] || neocortex-neocortex || (unknown reference) ||
 || [BrainRegionPHA_NC_PAS PHA.NC.PAS] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || neocortex-neocortex || (unknown reference) ||
 || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PiR -> Iav, abstract)] ||
+||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1571064507000243 KIV model of cortico-hippocampal formation with subcortical projections for motor actions (PC -> EC)] ||
 || [BrainRegionPHA_NC_PH_PPG PHA.NC.PH.PPG] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || neocortex-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (PRHC -> EC)] ||
 || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || neocortex-neocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (PRPH -> ER)] ||
 || [BrainRegionPHA_NC_PH_TFTH PHA.NC.PH.TFTH] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763411001722 Entorhinal Cortex Inputs and Outputs (TFTH -> EC)] ||
-|| [BrainRegionPHA_NC_PRS PHA.NC.PRS] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || neocortex-neocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (PRESUB -> EC)] ||
-|| [BrainRegionPHA_NC_PSS PHA.NC.PSS] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || neocortex-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (PSUB -> EC)] ||
+|| [BrainRegionPHA_NC_PRS PHA.NC.PRS] || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || neocortex-nucleus || (unknown reference) ||
+||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || neocortex-neocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (PRESUB -> EC)] ||
+|| [BrainRegionPHA_NC_PSS PHA.NC.PSS] || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || neocortex-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (PSUB -> LMB)] ||
+||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || neocortex-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (PSUB -> EC)] ||
 || [BrainRegionPHA_NC_TPC PHA.NC.TPC] || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || neocortex-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (tPole -> Insula, abstract)] ||
 
 *External Inbound Region Connections:*
@@ -65,6 +70,8 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/PHA.dot.jpg
 ||  || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || Inferotemporal Cortex || neocortex-neocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (IT -> PRPH)] ||
 ||  || [BrainRegionPHA_NC_PSS PHA.NC.PSS] || [BrainRegionVCA_NC_V2 VCA.NC.V2] || Secondary Visual Cortex || neocortex-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (VC -> PSUB, abstract)] ||
 ||  || [BrainRegionPHA_NC_TPC PHA.NC.TPC] || [BrainRegionVCA_NC_IT_TEO VCA.NC.IT.TEO] || Preoccipital Inferotemporal Area || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1364661312002823 Language-Related Regions (MTG21 -> TC)] ||
+|| <font color="red">Hindbrain</font> || || || || || ||
+|| [BrainAreaMBA MBA] || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (DTN -> LMam)] ||
 || <font color="red">Motor</font> || || || || || ||
 || [BrainAreaBMA BMA] || [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || [BrainRegionBMA_HP_PB BMA.HP.PB] || Parabrachial Nucleus || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PB -> Gud, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
@@ -73,14 +80,14 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/PHA.dot.jpg
 ||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionBFA_FD_TH_PT BFA.FD.TH.PT] || Paratenial Nucleus of Thalamus || nucleus-neocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (MID -> EC, abstract)] ||
 ||  ||  || [BrainRegionBFA_FD_TH_PV BFA.FD.TH.PV] || Paraventricular Nucleus of Thalamus || nucleus-neocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (MID -> EC, abstract)] ||
 ||  ||  || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-neocortex || [http://highered.mcgraw-hill.com/sites/dl/free/0071402357/156721/figure350_1.html Principal Connections of Hippocampus (AM -> EC)] ||
+||  || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || [BrainRegionBFA_FT_AON BFA.FT.AON] || Anterior Olfactory Nucleus || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S1571064507000243 KIV model of cortico-hippocampal formation with subcortical projections for motor actions (AON -> PC)] ||
 ||  || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || [BrainRegionBFA_FD_TH_PV BFA.FD.TH.PV] || Paraventricular Nucleus of Thalamus || nucleus-neocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (MID -> Perirhinal, abstract)] ||
 || [BrainAreaBGA BGA] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionBGA_FD_TH_CM BGA.FD.TH.CM] || Centromedian Nucleus of Thalamus || nucleus-neocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (CM -> EC)] ||
 || [BrainAreaHBA HBA] || [BrainRegionPHA_NC_PAS PHA.NC.PAS] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || Ventrolateral Cornu Ammonis of Hippocampus || allocortex-neocortex || (unknown reference) ||
 ||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || Ventrolateral Cornu Ammonis of Hippocampus || allocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (CA1 -> EC)] ||
 ||  ||  || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || Subiculum || allocortex-neocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (SUB -> EC)] ||
 ||  || [BrainRegionPHA_NC_PH_TFTH PHA.NC.PH.TFTH] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || Ventrolateral Cornu Ammonis of Hippocampus || allocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763411001722 Entorhinal Cortex Inputs and Outputs (CA1 -> TFTH)] ||
-||  || [BrainRegionPHA_NC_PRS PHA.NC.PRS] || [BrainRegionHBA_FD_MB_LMB HBA.FD.MB.LMB] || Lateral Mammillary Nucleus || nucleus-neocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (MBOUT -> PRESUB)] ||
-||  ||  || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || Subiculum || allocortex-neocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (SUB -> PRESUB)] ||
+||  || [BrainRegionPHA_NC_PRS PHA.NC.PRS] || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || Subiculum || allocortex-neocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (SUB -> PRESUB)] ||
 ||  || [BrainRegionPHA_NC_PSS PHA.NC.PSS] || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || Subiculum || allocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (Sub -> PoS)] ||
 
 *External Outbound Region Connections:*
@@ -88,7 +95,8 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/PHA.dot.jpg
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
 || [BrainAreaACA ACA] || [BrainRegionPHA_NC_TPC PHA.NC.TPC] || [BrainRegionACA_NC_BRA ACA.NC.BRA] || Broca's Area || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1364661312002823 Language-Related Regions (TC -> BA45)] ||
-|| [BrainAreaCGA CGA] || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || Ventral Anterior Cingulate Area || neocortex-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (Insula -> vACC, abstract)] ||
+|| [BrainAreaCGA CGA] || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || Anterior Nucleus of Thalamus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LMB -> AD)] ||
+||  || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || Ventral Anterior Cingulate Area || neocortex-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (Insula -> vACC, abstract)] ||
 ||  || [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || [BrainRegionCGA_NC_DACG CGA.NC.DACG] || Dorsal Anterior Cingulate Area || neocortex-neocortex || (unknown reference) ||
 ||  || [BrainRegionPHA_NC_PAS PHA.NC.PAS] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || Anterior Nucleus of Thalamus || neocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (Parasub -> AV)] ||
 ||  ||  || [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || Lateral Dorsal Nucleus of Thalamus || neocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (Parasub -> LD)] ||
@@ -105,20 +113,22 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/PHA.dot.jpg
 ||  || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || Mediodorsal Nucleus of Thalamus || neocortex-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s2MD -> MD)] ||
 ||  || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || Mediodorsal Nucleus of Thalamus || neocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (Perirhinal -> MDmc)] ||
 ||  || [BrainRegionPHA_NC_TPC PHA.NC.TPC] || [BrainRegionFCA_NC_IPG FCA.NC.IPG] || Inferior Prefrontal Gyrus || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1364661312002823 Language-Related Regions (TC -> vIFC)] ||
+|| <font color="red">Hindbrain</font> || || || || || ||
+|| [BrainAreaMBA MBA] || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LMB -> DTN)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaBFA BFA] || [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || neocortex-nucleus || (unknown reference) ||
 ||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionBFA_FD_TH_PT BFA.FD.TH.PT] || Paratenial Nucleus of Thalamus || neocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (EC -> MID, abstract)] ||
-||  ||  || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || neocortex-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionBFA_FT_ACC BFA.FT.ACC] || Accumbens Nucleus || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S030100820900183X Simplified model of hippocampal formation anatomy (EC -> NACC)] ||
+||  ||  || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S030100820900183X Simplified model of hippocampal formation anatomy (EC -> Amyg)] ||
 ||  || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || [BrainRegionBFA_FT_EPF BFA.FT.EPF] || Endopiriform Nucleus || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PiR -> EnP)] ||
 || [BrainAreaHBA HBA] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || neocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (EC -> MB)] ||
 ||  ||  || [BrainRegionHBA_FT_DG HBA.FT.DG] || Dentate Gyrus || neocortex-allocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (EC -> DG)] ||
+||  ||  || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || Ventrolateral Cornu Ammonis of Hippocampus || neocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S030100820900183X Simplified model of hippocampal formation anatomy (EC -> CA1)] ||
 ||  ||  || [BrainRegionHBA_FT_HC_CA2 HBA.FT.HC.CA2] || Dorsolateral Cornu Ammonis of Hippocampus || neocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S030645220600755X Flow of impulses in hippocampal region (ENT -> CA2)] ||
 ||  ||  || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || Dorsomedial Cornu Ammonis of Hippocampus || neocortex-allocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (EC -> CA3)] ||
-||  ||  || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || Subiculum || neocortex-allocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (ER -> H, abstract)] ||
+||  ||  || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || Subiculum || neocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S030100820900183X Simplified model of hippocampal formation anatomy (EC -> SUB)] ||
 ||  || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || [BrainRegionHBA_FT_DG HBA.FT.DG] || Dentate Gyrus || neocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PrC -> HF, abstract)] ||
-||  || [BrainRegionPHA_NC_PRS PHA.NC.PRS] || [BrainRegionHBA_FD_MB_LMB HBA.FD.MB.LMB] || Lateral Mammillary Nucleus || neocortex-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || neocortex-nucleus || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (PRESUB -> MBIN)] ||
-||  || [BrainRegionPHA_NC_PSS PHA.NC.PSS] || [BrainRegionHBA_FD_MB_LMB HBA.FD.MB.LMB] || Lateral Mammillary Nucleus || neocortex-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (PSUB -> LMB)] ||
+||  || [BrainRegionPHA_NC_PRS PHA.NC.PRS] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || neocortex-nucleus || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (PRESUB -> MBIN)] ||
 || [BrainAreaVBA VBA] || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || [BrainRegionVBA_FD_PV_MPV VBA.FD.PV.MPV] || Medial Pulvinar || neocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (Perirhinal -> mPULV)] ||
 ||  || [BrainRegionPHA_NC_PRS PHA.NC.PRS] || [BrainRegionVBA_FD_PV_MPV VBA.FD.PV.MPV] || Medial Pulvinar || neocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (Presub -> mPULV)] ||
 
@@ -141,13 +151,13 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/PHA.dot.jpg
 
 <img src="http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png" alt="unavailable">
 
-  * [http://ars.els-cdn.com/content/image/1-s2.0-S0149763401000215-gr4a.gif Gustatory sensory system of rat and macaque] - see [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Reference]
-
-<img src="http://ars.els-cdn.com/content/image/1-s2.0-S0149763401000215-gr4a.gif" alt="unavailable">
-
   * [http://ahuman.googlecode.com/svn/images/wiki/research/brain/HF.jpg Hippocampal Formation] - see [article:2009-Hippocampus-Thesis.pdf Reference]
 
 <img src="http://ahuman.googlecode.com/svn/images/wiki/research/brain/HF.jpg" alt="unavailable">
+
+  * [http://ars.els-cdn.com/content/image/1-s2.0-S0149763401000215-gr4a.gif Gustatory sensory system of rat and macaque] - see [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Reference]
+
+<img src="http://ars.els-cdn.com/content/image/1-s2.0-S0149763401000215-gr4a.gif" alt="unavailable">
 
   * [http://ars.els-cdn.com/content/image/1-s2.0-S030645220600755X-gr1.jpg Flow of impulses in hippocampal region] - see [http://www.sciencedirect.com/science/article/pii/S030645220600755X Reference]
 
@@ -160,6 +170,10 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/PHA.dot.jpg
   * [http://www.scholarpedia.org/w/images/thumb/f/f2/ITCortex_pathway.jpg/400px-ITCortex_pathway.jpg Visual Path to Hippocampus] - see [http://www.scholarpedia.org/article/Inferior_temporal_cortex Reference]
 
 <img src="http://www.scholarpedia.org/w/images/thumb/f/f2/ITCortex_pathway.jpg/400px-ITCortex_pathway.jpg" alt="unavailable">
+
+  * [http://ars.els-cdn.com/content/image/1-s2.0-S1571064507000243-gr008.jpg KIV model of cortico-hippocampal formation with subcortical projections for motor actions] - see [http://www.sciencedirect.com/science/article/pii/S1571064507000243 Reference]
+
+<img src="http://ars.els-cdn.com/content/image/1-s2.0-S1571064507000243-gr008.jpg" alt="unavailable">
 
   * [http://c431376.r76.cf2.rackcdn.com/18691/fnhum-06-00184-HTML/image_m/fnhum-06-00184-g001.jpg Directed Effort Network] - see [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Reference]
 
@@ -176,6 +190,10 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/PHA.dot.jpg
   * [http://brmlab.cz/lib/exe/fetch.php?hash=fca48f&media=http%3A%2F%2Fars.els-cdn.com%2Fcontent%2Fimage%2F1-s2.0-S1364661308002490-gr2.jpg Regulation of Social Brain] - see [http://brmlab.cz/project/brain_hacking/tdcs/pfc Reference]
 
 <img src="http://brmlab.cz/lib/exe/fetch.php?hash=fca48f&media=http%3A%2F%2Fars.els-cdn.com%2Fcontent%2Fimage%2F1-s2.0-S1364661308002490-gr2.jpg" alt="unavailable">
+
+  * [http://ars.els-cdn.com/content/image/1-s2.0-S030100820900183X-gr4.jpg Simplified model of hippocampal formation anatomy] - see [http://www.sciencedirect.com/science/article/pii/S030100820900183X Reference]
+
+<img src="http://ars.els-cdn.com/content/image/1-s2.0-S030100820900183X-gr4.jpg" alt="unavailable">
 
   * [http://highered.mcgraw-hill.com/sites/dl/free/0071402357/156721/figure350_1.gif Principal Connections of Hippocampus] - see [http://highered.mcgraw-hill.com/sites/dl/free/0071402357/156721/figure350_1.html Reference]
 
@@ -197,15 +215,17 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/PHA.dot.jpg
   * http://www.sciencedirect.com/science/article/pii/S0149763409002061
   * http://learnmem.cshlp.org/content/14/11/714/F1.expansion
   * http://www.scholarpedia.org/article/Head_direction_cells
-  * http://www.sciencedirect.com/science/article/pii/S0149763401000215
   * article:2009-Hippocampus-Thesis.pdf
+  * http://www.sciencedirect.com/science/article/pii/S0149763401000215
   * http://www.sciencedirect.com/science/article/pii/S030645220600755X
   * http://www.sciencedirect.com/science/article/pii/S0149763411001722
   * http://www.scholarpedia.org/article/Inferior_temporal_cortex
+  * http://www.sciencedirect.com/science/article/pii/S1571064507000243
   * http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full
   * http://www.sciencedirect.com/science/article/pii/S1364661312002823
   * http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/
   * http://brmlab.cz/project/brain_hacking/tdcs/pfc
+  * http://www.sciencedirect.com/science/article/pii/S030100820900183X
   * http://highered.mcgraw-hill.com/sites/dl/free/0071402357/156721/figure350_1.html
   * http://www.thebrainlabs.com
   * http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html
