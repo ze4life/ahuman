@@ -9,6 +9,7 @@
 
 || *Component ID* || *Component Name* || *Type* || *Function* || *Comments* ||
 || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || Lateral Mammillary Nucleus || Excitatory Nucleus || Generate theta rythm and relay to HC || Memory, recognition, spatial awareness, and<BR>interpreting the context of events ||
+|| [BrainRegionPHA_FD_TH_LI PHA.FD.TH.LI] || Limitans Nucleus of Thalamus || Excitatory Nucleus || Multisensory projection to striatum || From SC, trigeminal nucleus, superior and inferior<BR>colliculus ||
 || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || Anterior Insular Cortex || Neocortex, BA 14 || Risky and moral decision making, articulation ||  ||
 || [BrainRegionPHA_NC_INS_HR PHA.NC.INS.HR] || Anterior Temporal Lobe || Neocortex, BA 15 || Relaying blood pressure and blood chemistry information to brain || Cortical target of information coming through<BR>Hering's nerves, active during panic attacks ||
 || [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || Posterior Insular Cortex || Neocortex, BA 13 || Awareness and sensation of pain ||  ||
@@ -32,6 +33,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/PHA.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || [BrainRegionPHA_NC_PRS PHA.NC.PRS] || nucleus-neocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (MBOUT -> PRESUB)] ||
+|| [BrainRegionPHA_FD_TH_LI PHA.FD.TH.LI] || [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || nucleus-neocortex || (unknown reference) ||
 || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (Iav -> PrC, abstract)] ||
 || [BrainRegionPHA_NC_INS_HR PHA.NC.INS.HR] || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763409002061 Contribution of hippocampal region CA3 to consciousness (AnteriorTemporal -> PRCortex)] ||
 || [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (Iav -> IadIap, abstract)] ||
@@ -77,7 +79,8 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/PHA.dot.jpg
 ||  ||  || [BrainRegionHTA_FD_HT_PN HTA.FD.HT.PN] || Posterior Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Mammillary bodies: two memory systems in one (SupraMM -> LMB)] ||
 || [BrainAreaMBA MBA] || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (DTN -> LMam)] ||
 || <font color="red">Motor</font> || || || || || ||
-|| [BrainAreaBMA BMA] || [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || [BrainRegionBMA_HP_PB BMA.HP.PB] || Parabrachial Nucleus || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PB -> Gud, abstract)] ||
+|| [BrainAreaBMA BMA] || [BrainRegionPHA_FD_TH_LI PHA.FD.TH.LI] || [BrainRegionBMA_SC_PH_MG BMA.SC.PH.MG] || Marginal Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || [BrainRegionBMA_HP_PB BMA.HP.PB] || Parabrachial Nucleus || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PB -> Gud, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaBFA BFA] || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || Septal Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Mammillary bodies: two memory systems in one (SEP -> LMB)] ||
 ||  || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || [BrainRegionBFA_FT_EPF BFA.FT.EPF] || Endopiriform Nucleus || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (EnP -> Iav, abstract)] ||
@@ -101,6 +104,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/PHA.dot.jpg
 || <font color="red">Cortical</font> || || || || || ||
 || [BrainAreaACA ACA] || [BrainRegionPHA_NC_TPC PHA.NC.TPC] || [BrainRegionACA_NC_BRA ACA.NC.BRA] || Broca's Area || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1364661312002823 Language-Related Regions (TC -> BA45)] ||
 || [BrainAreaCGA CGA] || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || Anterior Nucleus of Thalamus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LMB -> AD)] ||
+||  || [BrainRegionPHA_FD_TH_LI PHA.FD.TH.LI] || [BrainRegionCGA_NC_DACG CGA.NC.DACG] || Dorsal Anterior Cingulate Area || nucleus-neocortex || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (Thalamus -> FrontalCortex, abstract)] ||
 ||  || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || Ventral Anterior Cingulate Area || neocortex-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (Insula -> vACC, abstract)] ||
 ||  || [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || [BrainRegionCGA_NC_DACG CGA.NC.DACG] || Dorsal Anterior Cingulate Area || neocortex-neocortex || (unknown reference) ||
 ||  || [BrainRegionPHA_NC_PAS PHA.NC.PAS] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || Anterior Nucleus of Thalamus || neocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (Parasub -> AV)] ||
