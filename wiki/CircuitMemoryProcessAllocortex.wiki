@@ -10,9 +10,9 @@ Circuit is part of aHuman target integrated biological model.
 (generated)
 
 || *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||
-|| [BrainAreaBFA BFA] || [BrainRegionBFA_FT_ACC BFA.FT.ACC] || Accumbens Nucleus || Inhibitory Nucleus || Activate motor functions under attention ||
-||  || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || Septal Nucleus || Mixed Nucleus || Inhibition of fear and expression of pleasurable responses ||
+|| [BrainAreaBFA BFA] || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || Septal Nucleus || Mixed Nucleus || Inhibition of fear and expression of pleasurable responses ||
 || [BrainAreaBGA BGA] || [BrainRegionBGA_FD_TH_CM BGA.FD.TH.CM] || Centromedian Nucleus of Thalamus || Excitatory Nucleus || Control of level of cortical activity ||
+||  || [BrainRegionBGA_FT_ACC BGA.FT.ACC] || Accumbens Nucleus || Inhibitory Nucleus || Activate motor functions under attention ||
 || [BrainAreaCGA CGA] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || Anterior Nucleus of Thalamus || Excitatory Nucleus || Extended hippocampal system ||
 ||  || [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || Lateral Dorsal Nucleus of Thalamus || Excitatory Nucleus || Head direction, spatial learning ||
 ||  || [BrainRegionCGA_NC_MPL_PCG CGA.NC.MPL.PCG] || Posterior Cingulate Cortex || Neocortex, BA 23,31 || Self-awareness, pain and episodic memory retrieval ||
@@ -57,8 +57,8 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitMemoryProcessAllocorte
 ||  || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || nucleus-allocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (MID -> SubPrePara, abstract)] ||
 || [BrainRegionHBA_FT_DG HBA.FT.DG] || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || allocortex-allocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (DG -> CA3)] ||
 ||  || [BrainRegionHBA_FT_HC_CA4 HBA.FT.HC.CA4] || allocortex-allocortex || (unknown reference) ||
-|| [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionBFA_FT_ACC BFA.FT.ACC] || allocortex-nucleus || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (CA1 -> NACC)] ||
-||  || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || allocortex-nucleus || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (CA1 -> SEP)] ||
+|| [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || allocortex-nucleus || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (CA1 -> SEP)] ||
+||  || [BrainRegionBGA_FT_ACC BGA.FT.ACC] || allocortex-nucleus || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (CA1 -> NACC)] ||
 ||  || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || allocortex-allocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (CA1 -> SUB)] ||
 ||  || [BrainRegionPHA_NC_PAS PHA.NC.PAS] || allocortex-neocortex || (unknown reference) ||
 ||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || allocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (CA1 -> EC)] ||
@@ -70,7 +70,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitMemoryProcessAllocorte
 ||  || [BrainRegionHBA_FT_HC_CA2 HBA.FT.HC.CA2] || allocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S1571064507000243 KIV model of cortico-hippocampal formation with subcortical projections for motor actions (CA3 -> CA2)] ||
 ||  || [BrainRegionHBA_FT_HC_CA4 HBA.FT.HC.CA4] || allocortex-allocortex || (unknown reference) ||
 || [BrainRegionHBA_FT_HC_CA4 HBA.FT.HC.CA4] || [BrainRegionHBA_FT_DG HBA.FT.DG] || allocortex-allocortex || (unknown reference) ||
-|| [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionBFA_FT_ACC BFA.FT.ACC] || allocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0896627305003971 Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning (SUB -> ACC)] ||
+|| [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionBGA_FT_ACC BGA.FT.ACC] || allocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0896627305003971 Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning (SUB -> ACC)] ||
 ||  || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || allocortex-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s1A -> A)] ||
 ||  || [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || allocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (Sub -> LD)] ||
 ||  || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || allocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (SUB -> PCGRSP, abstract)] ||
