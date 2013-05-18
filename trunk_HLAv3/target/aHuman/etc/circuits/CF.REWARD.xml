@@ -63,4 +63,34 @@
 		<link src="OMPFC" dst="ACG"/>
 	</circuit>
 
+	<circuit id="CF.REWARD-CIRCUIT" name="Reward circuit of human brain"
+		image="http://neurowiki2012.wikispaces.com/file/view/Reward_circuit.jpg/315908202/Reward_circuit.jpg"
+		reference="http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity"
+		components="PFC=FCA.NC.OMPFC HC=HBA.FT.HC NACC=BGA.FT.ACC VPAL=BGA.FT.VP AM=BFA.FT.AM VTA=FBA.MM.VTA"
+		>
+		<link src="PFC" dst="NACC"/>
+		<link src="NACC" dst="VPAL"/>
+		<link src="NACC" dst="VTA"/>
+		<link src="AM" dst="NACC"/>
+		<link src="VTA" dst="AM"/>
+		<link src="VTA" dst="NACC"/>
+		<link src="VTA" dst="HC"/>
+		<link src="VTA" dst="PFC"/>
+		<link src="HC" dst="NACC"/>
+	</circuit>
+
+	<circuit id="CF.CRAVING" name="Craving"
+		image="http://www.impulsecontroldisorders.org/images/8-Urges9proof.jpg"
+		reference="http://www.impulsecontroldisorders.org/html/cravings.html"
+		components="OMPFC=FCA.NC.OMPFC NACC=BGA.FT.ACC SNr=BGA.FT.SN.PR VPAL=BGA.FT.VP VTA=FBA.MM.VTA"
+		>
+		<link src="OMPFC" dst="VTA"/>
+		<link src="OMPFC" dst="SNr"/>
+		<link src="VPAL" dst="SNr"/>
+		<link src="VPAL" dst="VTA"/>
+		<link src="VTA" dst="NACC"/>
+		<link src="NACC" dst="SNr"/>
+		<link src="NACC" dst="VPAL"/>
+	</circuit>
+
 </circuits>
