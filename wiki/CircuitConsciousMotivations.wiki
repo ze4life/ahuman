@@ -14,6 +14,7 @@ Circuit is part of aHuman target integrated biological model.
 ||  || [BrainRegionBFA_FT_BNST BFA.FT.BNST] || Bed Nucleus of Stria Terminalis || Mixed Nucleus || Mediate slow longer-lasting responses that accompany sustained threats ||
 ||  || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || Septal Nucleus || Mixed Nucleus || Inhibition of fear and expression of pleasurable responses ||
 || [BrainAreaBGA BGA] || [BrainRegionBGA_FT_ACC BGA.FT.ACC] || Accumbens Nucleus || Inhibitory Nucleus || Activate motor functions under attention ||
+||  || [BrainRegionBGA_FT_SN_PR BGA.FT.SN.PR] || Substantia Nigra Pars Reticulata || Inhibitory Nucleus || Convey final processed signals of basal ganglia to thalamus and superior colliculus ||
 || [BrainAreaBMA BMA] || [BrainRegionBMA_HP_PB BMA.HP.PB] || Parabrachial Nucleus || Sensory Relay Nucleus || Source of short-latency nociceptive input ||
 || [BrainAreaCGA CGA] || [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || Lateral Dorsal Nucleus of Thalamus || Excitatory Nucleus || Head direction, spatial learning ||
 ||  || [BrainRegionCGA_NC_DACG CGA.NC.DACG] || Dorsal Anterior Cingulate Area || Neocortex, BA 32 || Rational Thought Processes ||
@@ -24,6 +25,7 @@ Circuit is part of aHuman target integrated biological model.
 ||  || [BrainRegionCGA_NC_SPL_PF CGA.NC.SPL.PF] || Rostral Precuneus || Neocortex, BA 07 || Spatial orientation, representation of the self ||
 ||  || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || Ventral Anterior Cingulate Area || Neocortex, BA 24 || Seat of Free Will ||
 || [BrainAreaFBA FBA] || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || Periaqueductal Gray Matter || Modulatory Nucleus || Descending modulation of pain and in defensive behaviour ||
+||  || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || Ventral Tegmental Area || Excitatory Nucleus || Respond to novel stimuli, unexpected rewards, and reward predictive sensory cues ||
 || [BrainAreaFCA FCA] || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || Mediodorsal Nucleus of Thalamus || Excitatory Nucleus || Attention, planning, organization, abstract thinking, multi-tasking, and active memory ||
 ||  || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || Dorsolateral Prefrontal Cortex || Neocortex, BA 09,46 || Temporal Integration ||
 ||  || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || Neocortex, BA 10,11,12 || Personality ||
@@ -55,9 +57,11 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitConsciousMotivations.d
 ||  || [BrainRegionCGA_NC_PACG CGA.NC.PACG] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> FrontalCortex, abstract)] ||
 || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || [BrainRegionCGA_NC_MPL_PCG CGA.NC.MPL.PCG] || neocortex-neocortex || [http://highered.mcgraw-hill.com/sites/dl/free/0071402357/156721/figure350_1.html Principal Connections of Hippocampus (VentralCingulate -> PosteriorCingulate)] ||
 || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || [BrainRegionCGA_NC_PACG CGA.NC.PACG] || nucleus-neocortex || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (Thalamus -> FrontalCortex, abstract)] ||
-|| [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || [BrainRegionBGA_FT_ACC BGA.FT.ACC] || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0896627305003971 Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning (PFC -> ACC)] ||
+|| [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || [BrainRegionBGA_FT_ACC BGA.FT.ACC] || neocortex-nucleus || [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reward circuit of human brain (PFC -> NACC)] ||
+||  || [BrainRegionBGA_FT_SN_PR BGA.FT.SN.PR] || neocortex-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (OMPFC -> SNr)] ||
 ||  || [BrainRegionCGA_NC_PACG CGA.NC.PACG] || neocortex-neocortex || [http://www.pnas.org/content/107/40/17071/F1.expansion.html Role for serotonin in moral behavior (OMPFC -> ACG, abstract)] ||
 ||  || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || neocortex-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (OPFC -> vACC)] ||
+||  || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || neocortex-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (OMPFC -> VTA)] ||
 ||  || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || neocortex-neocortex || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in emotional behavior (OPFC -> LPFC)] ||
 ||  || [BrainRegionHTA_FD_HT_RCH HTA.FD.HT.RCH] || neocortex-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in emotional behavior (OPFC -> HT, abstract)] ||
 || [BrainRegionSMA_NC_SPL_SA SMA.NC.SPL.SA] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1053810011000080 Cortico-Cortical Connectivity (SA -> PFC, abstract)] ||

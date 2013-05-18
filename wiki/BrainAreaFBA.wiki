@@ -36,6 +36,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/FBA.dot.jpg
 || [BrainAreaCGA CGA] || [BrainRegionFBA_HP_LC FBA.HP.LC] || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || Ventral Anterior Cingulate Area || neocortex-nucleus || (unknown reference) ||
 ||  || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || [BrainRegionCGA_NC_SGC CGA.NC.SGC] || Subgenual Cortex || neocortex-nucleus || (unknown reference) ||
 || [BrainAreaFCA FCA] || [BrainRegionFBA_HP_LC FBA.HP.LC] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || neocortex-nucleus || (unknown reference) ||
+||  || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || neocortex-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (OMPFC -> VTA)] ||
 || <font color="red">Hindbrain</font> || || || || || ||
 || [BrainAreaMBA MBA] || [BrainRegionFBA_HP_LC FBA.HP.LC] || [BrainRegionMBA_HM_RF_MED MBA.HM.RF.MED] || Medullary Reticular Formation || nucleus-nucleus || (unknown reference) ||
 || <font color="red">Subcortical</font> || || || || || ||
@@ -43,7 +44,8 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/FBA.dot.jpg
 ||  || [BrainRegionFBA_MM_RP_DRN FBA.MM.RP.DRN] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionFBA_MM_RP_MRN FBA.MM.RP.MRN] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaBGA BGA] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionBGA_FT_VP BGA.FT.VP] || Ventral Pallidum || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0896627305003971 Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning (VPAL -> VTA)] ||
+|| [BrainAreaBGA BGA] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionBGA_FT_ACC BGA.FT.ACC] || Accumbens Nucleus || nucleus-nucleus || [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reward circuit of human brain (NACC -> VTA)] ||
+||  ||  || [BrainRegionBGA_FT_VP BGA.FT.VP] || Ventral Pallidum || nucleus-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (VPAL -> VTA)] ||
 || [BrainAreaHBA HBA] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Medial mammillary nucleus and theta rhythm (MMB -> VTN)] ||
 
 *External Outbound Region Connections:*
@@ -51,14 +53,15 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/FBA.dot.jpg
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
 || [BrainAreaCGA CGA] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionCGA_NC_DACG CGA.NC.DACG] || Dorsal Anterior Cingulate Area || nucleus-neocortex || (unknown reference) ||
-|| [BrainAreaFCA FCA] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0896627305003971 Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning (VTA -> PFC)] ||
-|| [BrainAreaPHA PHA] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0896627305003971 Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning (VTA -> EC)] ||
+|| [BrainAreaFCA FCA] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || nucleus-neocortex || [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reward circuit of human brain (VTA -> PFC)] ||
+|| [BrainAreaPHA PHA] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || nucleus-neocortex || [http://www.impulsecontroldisorders.org/html/cravings.html Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning (VTA -> EC)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaBFA BFA] || [BrainRegionFBA_HP_LC FBA.HP.LC] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaBGA BGA] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionBGA_FT_ACC BGA.FT.ACC] || Accumbens Nucleus || nucleus-nucleus || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (VTA -> NAC)] ||
+||  || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-nucleus || [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reward circuit of human brain (VTA -> AM)] ||
+|| [BrainAreaBGA BGA] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionBGA_FT_ACC BGA.FT.ACC] || Accumbens Nucleus || nucleus-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (VTA -> NACC)] ||
 ||  ||  || [BrainRegionBGA_FT_VP BGA.FT.VP] || Ventral Pallidum || nucleus-nucleus || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (VTA -> VentPal)] ||
 || [BrainAreaHBA HBA] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Mammillary bodies: two memory systems in one (VTN -> MMB)] ||
-||  ||  || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || Ventrolateral Cornu Ammonis of Hippocampus || nucleus-allocortex || [http://www.sciencedirect.com/science/article/pii/S0896627305003971 Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning (VTA -> CA1)] ||
+||  ||  || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || Ventrolateral Cornu Ammonis of Hippocampus || nucleus-allocortex || [http://www.impulsecontroldisorders.org/html/cravings.html Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning (VTA -> CA1)] ||
 
 = Thirdparty Circuits =
 (generated)
@@ -75,13 +78,21 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/FBA.dot.jpg
 
 <img src="http://www.nature.com/nrn/journal/v5/n1/images/nrn1299-f2.jpg" alt="unavailable">
 
-  * [http://ars.els-cdn.com/content/image/1-s2.0-S0896627305003971-gr5.jpg Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning] - see [http://www.sciencedirect.com/science/article/pii/S0896627305003971 Reference]
+  * [http://www.impulsecontroldisorders.org/images/6-HippocampalVTA.jpg Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning] - see [http://www.impulsecontroldisorders.org/html/cravings.html Reference]
 
-<img src="http://ars.els-cdn.com/content/image/1-s2.0-S0896627305003971-gr5.jpg" alt="unavailable">
+<img src="http://www.impulsecontroldisorders.org/images/6-HippocampalVTA.jpg" alt="unavailable">
 
   * [http://img.springerimages.com/Images/Springer/PUB=Springer-Verlag-Berlin-Heidelberg/JOU=00359/VOL=2005.191/ISU=3/ART=2004_565/MediaObjects/WATER_s00359-004-0565-9fhc1.jpg Oculomotor decision-making] - see [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Reference]
 
 <img src="http://img.springerimages.com/Images/Springer/PUB=Springer-Verlag-Berlin-Heidelberg/JOU=00359/VOL=2005.191/ISU=3/ART=2004_565/MediaObjects/WATER_s00359-004-0565-9fhc1.jpg" alt="unavailable">
+
+  * [http://neurowiki2012.wikispaces.com/file/view/Reward_circuit.jpg/315908202/Reward_circuit.jpg Reward circuit of human brain] - see [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reference]
+
+<img src="http://neurowiki2012.wikispaces.com/file/view/Reward_circuit.jpg/315908202/Reward_circuit.jpg" alt="unavailable">
+
+  * [http://www.impulsecontroldisorders.org/images/8-Urges9proof.jpg Craving] - see [http://www.impulsecontroldisorders.org/html/cravings.html Reference]
+
+<img src="http://www.impulsecontroldisorders.org/images/8-Urges9proof.jpg" alt="unavailable">
 
 
 = References =
@@ -90,8 +101,9 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/FBA.dot.jpg
   * http://brmlab.cz/project/brain_hacking/tdcs/pfc
   * http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html
   * http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html
-  * http://www.sciencedirect.com/science/article/pii/S0896627305003971
+  * http://www.impulsecontroldisorders.org/html/cravings.html
   * http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0
+  * http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity
 
 = Diagrams =
 
