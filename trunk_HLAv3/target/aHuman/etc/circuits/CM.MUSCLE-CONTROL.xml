@@ -22,23 +22,6 @@
 		<link src="PPC" dst="SMC"/>
 	</circuit>
 
-	<circuit id="CM.BASAL-GANGLIA-ACTIVITY" name="Basal Ganglia Activity"
-		image="http://brainmind.com/images/MotorAreas2b.jpg"
-		reference="http://brainmind.com/BasalGanglia.html"
-		components="S1=SMA.NC.PG.S1 M1=MCA.NC.MC SMC=MCA.NC.SMC VLo=MCA.FD.TH.VLO GPi=BGA.FT.GPI GPo=BGA.FT.GPE STN=BGA.FD.STN SNi=BGA.FT.SN PU=BGA.FT.PU"
-		>
-		<link src="S1" dst="PU"/>
-		<link src="M1" dst="PU"/>
-		<link src="SNi" dst="PU"/>
-		<link src="PU" dst="GPi"/>
-		<link src="PU" dst="GPo"/>
-		<link src="GPo" dst="STN"/>
-		<link src="STN" dst="GPi"/>
-		<link src="GPi" dst="VLo"/>
-		<link src="VLo" dst="SMC"/>
-		<link src="VLo" dst="M1"/>
-	</circuit>
-
 	<circuit id="CM.SOMATIC-SENSES" name="Somatic Senses"
 		image="http://www.biopsychology.com/6e/step/08/0801-1.jpg"
 		reference="http://www.biopsychology.com/6e/step0801.html"
@@ -127,6 +110,38 @@
 		<link src="CR" dst="LPFC"/>
 		<link src="LPFC" dst="TH"/>
 		<link src="TH" dst="PMC"/>
+	</circuit>
+
+	<circuit id="CM.NORMAL-BG-ANATOMY" name="Normal Functional Anatomy of Basal Ganglia"
+		image="http://www.mdvu.org/images/par_path2.jpg"
+		reference="http://www.mdvu.org/library/disease/pd/par_path.asp"
+		components="STN=BGA.FD.STN GPe=BGA.FT.GPE SNc=BGA.FT.SN.PC SNr=BGA.FT.SN.PR GPi=BGA.FT.GPI VA=MCA.FD.TH.VA VL=MCA.FD.TH.VL"
+		>
+	</circuit>
+
+	<circuit id="CM.BASAL-GANGLIA-ACTIVITY" name="Basal Ganglia Activity"
+		image="http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou_2b.jpg"
+		reference="http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html"
+		components="S1=SMA.NC.PG.S1 M1=MCA.NC.MC SMC=MCA.NC.SMC VLo=MCA.FD.TH.VL GPi=BGA.FT.GPI GPo=BGA.FT.GPE STN=BGA.FD.STN SN=BGA.FT.SN PU=BGA.FT.PU PMC=NC.PMC"
+		>
+		<link src="S1" dst="PU"/>
+		<link src="M1" dst="PU"/>
+		<link src="SN" dst="PU"/>
+		<link src="PU" dst="GPi"/>
+		<link src="PU" dst="GPo"/>
+		<link src="GPo" dst="STN"/>
+		<link src="STN" dst="GPi"/>
+		<link src="GPi" dst="VLo"/>
+		<link src="VLo" dst="SMC"/>
+		<link src="VLo" dst="M1"/>
+		<link src="VLo" dst="PMC"/>
+	</circuit>
+
+	<circuit id="CM.BG-HUMAN-INSECT" name="Basal Ganglia in Human and Insect"
+		image="http://www.sciencemag.org/content/340/6129/157/F2.large.jpg" imageHeight="400" imageWidth="400"
+		reference="http://www.sciencemag.org/content/340/6129/157/F2.expansion.html"
+		components="GPi=BGA.FT.GPI GPo=BGA.FT.GPE STN=BGA.FD.STN SN=BGA.FT.SN PU=BGA.FT.PU PMC=NC.PMC"
+		>
 	</circuit>
 
 </circuits>

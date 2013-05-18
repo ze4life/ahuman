@@ -36,6 +36,11 @@ void WikiCircuitPages::execute() {
 void WikiCircuitPages::createCircuitPage( String wikiDir , String wikiPage , MindCircuitDef *cd ) {
 	StringList lines;
 
+	StringList sections;
+	sections.add( "= Components =" );
+	sections.add( "= Connections =" );
+	wm -> ensureFileExists( wikiDir , wikiPage , sections );
+
 	// circuit heading
 	createCircuitPage_getHeading( wikiPage , cd , lines );
 	wm -> updateFileHeading( wikiDir , wikiPage , lines );
@@ -163,6 +168,7 @@ void WikiCircuitPages::createCircuitPage_getDiagram( MindCircuitDef *cd , MapStr
 
 	// header
 	text.add( "digraph \"" + cd -> getId() + "\" {" );
+	text.add( "\tconcentrate=true;" );
 	String defaultDotSetup = wm -> wiki.getProperty( "defaultDotSetup" );
 	text.add( wm -> setSpecialCharacters( defaultDotSetup ) );
 	text.add( "" );
