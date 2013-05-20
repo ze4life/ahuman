@@ -10,13 +10,16 @@ Circuit is part of aHuman target integrated biological model.
 (generated)
 
 || *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||
+|| [BrainAreaAVA AVA] || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || Superior Cervical Ganglion || Symp. Gang. || Eye, tear and salivatory glands ||
 || [BrainAreaBFA BFA] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || Excitatory Nucleus || Encoding negative feedback ||
+||  || [BrainRegionBFA_FD_PNG BFA.FD.PNG] || Pineal Gland || Hormone Nucleus || Control of sexual development ||
 ||  || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || Septal Nucleus || Mixed Nucleus || Inhibition of fear and expression of pleasurable responses ||
 || [BrainAreaBGA BGA] || [BrainRegionBGA_FT_ACC BGA.FT.ACC] || Accumbens Nucleus || Inhibitory Nucleus || Activate motor functions under attention ||
 ||  || [BrainRegionBGA_FT_GPI BGA.FT.GPI] || Globus Pallidus Internal || Inhibitory Nucleus || Output nuclei of basal ganglia to neocortex ||
 ||  || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || Substantia Nigra Pars Compacta || Mixed Nucleus || Fine motor control, temporal processing ||
 ||  || [BrainRegionBGA_FT_VP BGA.FT.VP] || Ventral Pallidum || Inhibitory Nucleus || Distinguish _wanting_ versus _liking_ enhancements ||
 ||  || [BrainRegionBGA_HP_PPN BGA.HP.PPN] || Pedunculopontine Nucleus || Excitatory Nucleus || Provide sensory feedback to cerebral cortex ||
+|| [BrainAreaBMA BMA] || [BrainRegionBMA_SC_LH_LSN BMA.SC.LH.LSN] || Lateral Spinal Nucleus || 1-order Sensory Nucleus || Integrate autonomic and homeostatic functions ||
 || [BrainAreaFBA FBA] || [BrainRegionFBA_HP_LC FBA.HP.LC] || Locus Coeruleus || Inhibitory Nucleus || Regulate the intensity of responses to salient stimuli ||
 ||  || [BrainRegionFBA_MM_RP_DRN FBA.MM.RP.DRN] || Dorsal Raphe Nucleus || Inhibitory Nucleus || Regulation of sleep and mood ||
 ||  || [BrainRegionFBA_MM_RP_MRN FBA.MM.RP.MRN] || Median Raphe Nucleus || Inhibitory Nucleus || Block or temporarily suspend mnemonic processes in the hippocampus ||
@@ -24,7 +27,11 @@ Circuit is part of aHuman target integrated biological model.
 || [BrainAreaFCA FCA] || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || Mediodorsal Nucleus of Thalamus || Excitatory Nucleus || Attention, planning, organization, abstract thinking, multi-tasking, and active memory ||
 || [BrainAreaHBA HBA] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || Ventrolateral Cornu Ammonis of Hippocampus || Allocortex || Representing sequences of episodic memory - long-term ||
 || [BrainAreaHMA HMA] || [BrainRegionHMA_HM_SOL HMA.HM.SOL] || Solitary Nucleus || 1-order Sensory Nucleus || Carry taste buds, thoracic and abdominal viscera ||
-|| [BrainAreaHTA HTA] || [BrainRegionHTA_FD_HT_PO HTA.FD.HT.PO] || Preoptic Area || Excitatory Nucleus || Thermoregulation ||
+|| [BrainAreaHTA HTA] || [BrainRegionHTA_FD_HT_LT HTA.FD.HT.LT] || Lateral Nucleus || Excitatory Nucleus || Thirst and hunger ||
+||  || [BrainRegionHTA_FD_HT_PO HTA.FD.HT.PO] || Preoptic Area || Excitatory Nucleus || Thermoregulation ||
+||  || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || Paraventricular Nucleus || Excitatory Nucleus || Regulate appetite and autonomic functions ||
+||  || [BrainRegionHTA_FD_HT_SCN HTA.FD.HT.SCN] || Suprachiasmatic Nucleus || Excitatory Nucleus || 24-hour rhythms ||
+||  || [BrainRegionHTA_FD_HT_TBC HTA.FD.HT.TBC] || Tuber Cinereum || Excitatory Nucleus || Regulate the circadian cycle ||
 || [BrainAreaMBA MBA] || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || Excitatory Nucleus || Modulating sustained attention or in mediating alerting responses ||
 || [BrainAreaPHA PHA] || [BrainRegionPHA_NC_INS_HR PHA.NC.INS.HR] || Anterior Temporal Lobe || Neocortex, BA 15 || Relaying blood pressure and blood chemistry information to brain ||
 ||  || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || Perirhinal Cortex || Neocortex, BA 35 || Associate different visual views of objects and their various nonvisual attributes ||
@@ -36,22 +43,31 @@ Circuit is part of aHuman target integrated biological model.
 http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitBloodPressure.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| [BrainRegionBFA_FD_HB BFA.FD.HB] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionBGA_HP_PPN BGA.HP.PPN] || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LHAB -> IPD)] ||
-||  || [BrainRegionFBA_MM_RP_DRN FBA.MM.RP.DRN] || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionFBA_MM_RP_MRN FBA.MM.RP.MRN] || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || [BrainRegionBFA_FD_PNG BFA.FD.PNG] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionBFA_FD_HB BFA.FD.HB] || [BrainRegionBFA_FD_PNG BFA.FD.PNG] || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (MHb -> PB)] ||
+||  || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> SNc)] ||
+||  || [BrainRegionBGA_HP_PPN BGA.HP.PPN] || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (MHb -> IP)] ||
+||  || [BrainRegionFBA_MM_RP_DRN FBA.MM.RP.DRN] || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> DR)] ||
+||  || [BrainRegionFBA_MM_RP_MRN FBA.MM.RP.MRN] || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> MR)] ||
+||  || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> VTA)] ||
 ||  || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LHAB -> DTN)] ||
-|| [BrainRegionBFA_FT_SEP BFA.FT.SEP] || [BrainRegionBFA_FD_HB BFA.FD.HB] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionBFA_FD_PNG BFA.FD.PNG] || [BrainRegionHTA_FD_HT_TBC HTA.FD.HT.TBC] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionBFA_FT_SEP BFA.FT.SEP] || [BrainRegionBFA_FD_HB BFA.FD.HB] || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (S -> MHb)] ||
 ||  || [BrainRegionHTA_FD_HT_PO HTA.FD.HT.PO] || nucleus-nucleus || [http://www.thebrainlabs.com Cingulate Gyrus (SEP -> HT, abstract)] ||
 || [BrainRegionBGA_FT_ACC BGA.FT.ACC] || [BrainRegionBGA_FT_VP BGA.FT.VP] || nucleus-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (NACC -> VPAL)] ||
-|| [BrainRegionBGA_FT_GPI BGA.FT.GPI] || [BrainRegionBGA_FT_VP BGA.FT.VP] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionBGA_FT_GPI BGA.FT.GPI] || [BrainRegionBFA_FD_HB BFA.FD.HB] || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (GPi -> LHb)] ||
+||  || [BrainRegionBGA_FT_VP BGA.FT.VP] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionBGA_FT_VP BGA.FT.VP] || [BrainRegionBFA_FD_HB BFA.FD.HB] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionBMA_SC_LH_LSN BMA.SC.LH.LSN] || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionFBA_HP_LC FBA.HP.LC] || [BrainRegionBFA_FD_HB BFA.FD.HB] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || [BrainRegionBGA_FT_VP BGA.FT.VP] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionHTA_FD_HT_PO HTA.FD.HT.PO] || allocortex-nucleus || [http://www.nature.com/nrn/journal/v5/n7 Feeling (HC -> HT, abstract)] ||
 || [BrainRegionHMA_HM_SOL HMA.HM.SOL] || [BrainRegionSMA_FD_TH_VP SMA.FD.TH.VP] || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sVPM -> VPM)] ||
-|| [BrainRegionHTA_FD_HT_PO HTA.FD.HT.PO] || [BrainRegionBFA_FD_HB BFA.FD.HB] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionHTA_FD_HT_LT HTA.FD.HT.LT] || [BrainRegionBFA_FD_HB BFA.FD.HB] || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LH -> LHb)] ||
+|| [BrainRegionHTA_FD_HT_PO HTA.FD.HT.PO] || [BrainRegionBFA_FD_HB BFA.FD.HB] || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LPO -> LHb)] ||
+|| [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || [BrainRegionBMA_SC_LH_LSN BMA.SC.LH.LSN] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionHTA_FD_HT_SCN HTA.FD.HT.SCN] || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionPHA_NC_INS_HR PHA.NC.INS.HR] || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763409002061 Contribution of hippocampal region CA3 to consciousness (AnteriorTemporal -> PRCortex)] ||
 || [BrainRegionSMA_FD_TH_VP SMA.FD.TH.VP] || [BrainRegionPHA_NC_INS_HR PHA.NC.INS.HR] || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (P -> pP, abstract)] ||
 
