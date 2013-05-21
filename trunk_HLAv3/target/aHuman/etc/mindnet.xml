@@ -44,6 +44,7 @@
 		<connection type="neocortex-neocortex" src="VCA.NC.IPL.MST" dst="ACA.NC.IPL.SMW"/>
 		<connection type="neocortex-neocortex" src="VCA.NC.IPS.VIP" dst="CGA.NC.SPL.PF"/>
 		<connection type="neocortex-neocortex" src="VCA.NC.IPS.PEF" dst="VCA.NC.IPS.AIP"/>
+		<connection type="neocortex-neocortex" src="BFA.FT.NBM" dst="VCA.NC.V1"/>
 	</circuit>
 
 	<circuit id="CircuitVisionFrontal" name="Vision Frontal Networks" enabled="true">
@@ -274,6 +275,33 @@
 		<connection type="nucleus-nucleus" src="BGA.FT.VP" dst="BGA.FT.SN.PR"/>
 		<connection type="nucleus-nucleus" src="BGA.FT.ACC" dst="BGA.FT.SN.PR"/>
 		<connection type="nucleus-nucleus" src="BGA.FT.ACC" dst="FBA.MM.VTA"/>
+		<connection type="nucleus-nucleus" src="BFA.FD.TH.PV" dst="BGA.FT.ACC"/>
+		<connection type="nucleus-nucleus" src="BFA.FD.TH.PV" dst="CGA.NC.SGC"/>
+		<connection type="nucleus-nucleus" src="BFA.FD.TH.PV" dst="BFA.FT.AM"/>
+		<connection type="nucleus-nucleus" src="BFA.FD.TH.PV" dst="BFA.FT.BNST"/>
+		<connection type="nucleus-nucleus" src="BFA.FD.TH.PV" dst="HTA.FD.HT.PO"/>
+		<connection type="nucleus-nucleus" src="BFA.FD.TH.PV" dst="HTA.FD.HT.SCN"/>
+		<connection type="nucleus-nucleus" src="BFA.FD.TH.PT" dst="BFA.FT.BNST"/>
+		<connection type="nucleus-nucleus" src="BFA.FD.TH.PT" dst="BFA.FT.AM"/>
+		<connection type="nucleus-nucleus" src="BFA.FD.TH.PT" dst="BGA.FT.ACC"/>
+		<connection type="nucleus-nucleus" src="BFA.FD.TH.PT" dst="FCA.NC.OMPFC"/>
+		<connection type="nucleus-nucleus" src="BFA.FD.TH.PT" dst="PHA.NC.PH.ET"/>
+		<connection type="nucleus-nucleus" src="BFA.FT.SEP" dst="BFA.FD.TH.PV"/>
+		<connection type="nucleus-nucleus" src="BFA.FT.AM" dst="BFA.FD.TH.PV"/>
+		<connection type="nucleus-nucleus" src="FBA.MM.PAG" dst="BFA.FD.TH.PV"/>
+		<connection type="nucleus-nucleus" src="FBA.MM.RP.DRN" dst="BFA.FD.TH.PV"/>
+		<connection type="nucleus-nucleus" src="FBA.MM.PAG" dst="BFA.FD.TH.SF"/>
+		<connection type="nucleus-nucleus" src="BFA.FD.TH.SF" dst="FBA.MM.RP.DRN"/>
+		<connection type="nucleus-nucleus" src="BFA.FD.TH.SF" dst="BMA.HM.IO"/>
+		<connection type="nucleus-nucleus" src="BFA.FT.BNST" dst="BFA.FT.IPAC"/>
+		<connection type="nucleus-nucleus" src="BFA.FT.AM" dst="BFA.FT.IPAC"/>
+		<connection type="nucleus-nucleus" src="PHA.NC.PH.PIR" dst="BFA.FT.IPAC"/>
+		<connection type="nucleus-nucleus" src="BFA.FT.IPAC" dst="BFA.FT.AM"/>
+		<connection type="nucleus-nucleus" src="BFA.FT.IPAC" dst="BMA.HP.PB"/>
+		<connection type="nucleus-nucleus" src="BFA.FT.IPAC" dst="HMA.HM.SOL"/>
+		<connection type="nucleus-nucleus" src="BFA.FT.AM" dst="BFA.FT.NBM"/>
+		<connection type="nucleus-nucleus" src="BGA.FD.STN" dst="BFA.FT.NBM"/>
+		<connection type="nucleus-nucleus" src="BGA.FT.ACC" dst="BFA.FT.NBM"/>
 	</circuit>
 
 	<circuit id="CircuitConsciousMotivations" name="High-Level Motivations" enabled="true">
@@ -498,6 +526,7 @@
 		<connection type="nucleus-nucleus" src="BGA.FD.TH.PF" dst="BGA.FT.CN"/>
 		<connection type="nucleus-nucleus" src="BGA.FT.SN.PR" dst="BGA.FD.TH.PF"/>
 		<connection type="nucleus-neocortex" src="MCA.FD.TH.VL" dst="MCA.NC.PMC.F5"/>
+		<connection type="nucleus-nucleus" src="BFA.FT.IPAC" dst="BGA.FT.SN.PR"/>
 	</circuit>
 
 	<!-- ================= gustatory-olfactory perception =============== -->
@@ -653,6 +682,15 @@
 		<connection type="nucleus-nucleus" src="BFA.FT.SEP" dst="BFA.FD.HB"/>
 		<connection type="nucleus-nucleus" src="FBA.HP.LC" dst="BFA.FD.HB"/>
 		<connection type="nucleus-nucleus" src="BFA.FD.HB" dst="BGA.HP.PPN"/>
+		<connection type="nucleus-nucleus" src="HTA.FD.HT.SCN" dst="AVA.PN.SYM.SCG"/>
+		<connection type="nucleus-nucleus" src="AVA.PN.SYM.SCG" dst="BFA.FD.PNG"/>
+		<connection type="nucleus-nucleus" src="BFA.FD.HB" dst="BFA.FD.PNG"/>
+		<connection type="nucleus-nucleus" src="BFA.FD.PNG" dst="HTA.FD.HT.TBC"/>
+		<connection type="nucleus-nucleus" src="HTA.FD.HT.SCN" dst="HTA.FD.HT.PV" notes="GABA"/>
+		<connection type="nucleus-nucleus" src="HTA.FD.HT.PV" dst="BMA.SC.LH.LSN"/>
+		<connection type="nucleus-nucleus" src="BMA.SC.LH.LSN" dst="AVA.PN.SYM.SCG"/>
+		<connection type="nucleus-nucleus" src="HTA.FD.HT.LT" dst="BFA.FD.HB"/>
+		<connection type="nucleus-nucleus" src="BGA.FT.GPI" dst="BFA.FD.HB"/>
 	</circuit>
 
 	<circuit id="CircuitSleepWakeCycle" name="Sleep-Wake Cycle" enabled="true">
