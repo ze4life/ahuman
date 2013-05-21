@@ -12,15 +12,15 @@ Circuit is part of aHuman target integrated biological model.
 || *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||
 || [BrainAreaACA ACA] || [BrainRegionACA_NC_PRI ACA.NC.PRI] || Parainsular Area || Neocortex, BA 52 || Medial auditory stream ||
 || [BrainAreaBFA BFA] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || Mixed Nucleus || Experiencing and recognizing emotions ||
-||  || [BrainRegionBFA_FT_AON BFA.FT.AON] || Anterior Olfactory Nucleus || 1-order Sensory Nucleus || Regulate odor information flow ||
-||  || [BrainRegionBFA_FT_EPF BFA.FT.EPF] || Endopiriform Nucleus || Excitatory Nucleus || Putative relay of limbic-associated cortical-like areas subserving affective information ||
 || [BrainAreaBMA BMA] || [BrainRegionBMA_HP_PB BMA.HP.PB] || Parabrachial Nucleus || Sensory Relay Nucleus || Source of short-latency nociceptive input ||
 || [BrainAreaCGA CGA] || [BrainRegionCGA_NC_SPL_PF CGA.NC.SPL.PF] || Rostral Precuneus || Neocortex, BA 07 || Spatial orientation, representation of the self ||
 || [BrainAreaFCA FCA] || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || Mediodorsal Nucleus of Thalamus || Excitatory Nucleus || Attention, planning, organization, abstract thinking, multi-tasking, and active memory ||
 ||  || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || Neocortex, BA 10,11,12 || Personality ||
 || [BrainAreaHBA HBA] || [BrainRegionHBA_FT_DG HBA.FT.DG] || Dentate Gyrus || Allocortex || Distinguishing multiple instances of similar events ||
 || [BrainAreaHMA HMA] || [BrainRegionHMA_HM_SOL HMA.HM.SOL] || Solitary Nucleus || 1-order Sensory Nucleus || Carry taste buds, thoracic and abdominal viscera ||
-|| [BrainAreaPHA PHA] || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || Anterior Insular Cortex || Neocortex, BA 14 || Risky and moral decision making, articulation ||
+|| [BrainAreaPHA PHA] || [BrainRegionPHA_FT_AON PHA.FT.AON] || Anterior Olfactory Nucleus || 1-order Sensory Nucleus || Regulate odor information flow ||
+||  || [BrainRegionPHA_FT_EPF PHA.FT.EPF] || Endopiriform Nucleus || Excitatory Nucleus || Putative relay of limbic-associated cortical-like areas subserving affective information ||
+||  || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || Anterior Insular Cortex || Neocortex, BA 14 || Risky and moral decision making, articulation ||
 ||  || [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || Posterior Insular Cortex || Neocortex, BA 13 || Awareness and sensation of pain ||
 ||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || Neocortex, BA 28 || Memory consolidation ||
 ||  || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || Piriform Cortex || Neocortex, BA 34 || Perception of smells ||
@@ -34,16 +34,16 @@ Circuit is part of aHuman target integrated biological model.
 http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitGustatoryOlfactory.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| [BrainRegionBFA_FT_AON BFA.FT.AON] || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S1571064507000243 KIV model of cortico-hippocampal formation with subcortical projections for motor actions (AON -> PC)] ||
-|| [BrainRegionBFA_FT_EPF BFA.FT.EPF] || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (EnP -> Iav, abstract)] ||
 || [BrainRegionBMA_HP_PB BMA.HP.PB] || [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PB -> Gud, abstract)] ||
 ||  || [BrainRegionSMA_FD_TH_VP SMA.FD.TH.VP] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PB -> VPMpc)] ||
 || [BrainRegionCGA_NC_SPL_PF CGA.NC.SPL.PF] || [BrainRegionSMA_NC_PO_PCC SMA.NC.PO.PCC] || neocortex-neocortex || (unknown reference) ||
 || [BrainRegionHMA_HM_SOL HMA.HM.SOL] || [BrainRegionBMA_HP_PB BMA.HP.PB] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (NST -> PB)] ||
 ||  || [BrainRegionSMA_FD_TH_VP SMA.FD.TH.VP] || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sVPM -> VPM)] ||
+|| [BrainRegionPHA_FT_AON PHA.FT.AON] || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S1571064507000243 KIV model of cortico-hippocampal formation with subcortical projections for motor actions (AON -> PC)] ||
+|| [BrainRegionPHA_FT_EPF PHA.FT.EPF] || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (EnP -> Iav, abstract)] ||
 || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (Iav -> PrC, abstract)] ||
-|| [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || [BrainRegionBFA_FT_EPF BFA.FT.EPF] || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PiR -> EnP)] ||
-||  || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || neocortex-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s2MD -> MD)] ||
+|| [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || neocortex-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s2MD -> MD)] ||
+||  || [BrainRegionPHA_FT_EPF PHA.FT.EPF] || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PiR -> EnP)] ||
 ||  || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PiR -> Iav, abstract)] ||
 ||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1571064507000243 KIV model of cortico-hippocampal formation with subcortical projections for motor actions (PC -> EC)] ||
 || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || [BrainRegionHBA_FT_DG HBA.FT.DG] || neocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PrC -> HF, abstract)] ||
