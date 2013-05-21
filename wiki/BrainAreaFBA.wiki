@@ -8,6 +8,7 @@
 (generated)
 
 || *Component ID* || *Component Name* || *Type* || *Function* || *Comments* ||
+|| [BrainRegionFBA_FD_TH_SF FBA.FD.TH.SF] || Subfascicular Nucleus of Thalamus || Excitatory Nucleus || Relays from PAG to Rhape nuclei, Inferior olive nucleus ||  ||
 || [BrainRegionFBA_HM_RP FBA.HM.RP] || Raphe Nucleus of Medulla || Inhibitory Nucleus || Regulate moods, temper anxiety, and relieve depression || Releases 5HT (serotonin) hormone (happiness) ||
 || [BrainRegionFBA_HP_LC FBA.HP.LC] || Locus Coeruleus || Inhibitory Nucleus || Regulate the intensity of responses to salient stimuli || NE Source, enhance signal-to-noise ratio,<BR>suppressing irrelevant stimuli (lateral inhibition) ||
 || [BrainRegionFBA_HP_NI FBA.HP.NI] || Incertus Nucleus || Modulatory Nucleus || Behavioural activation and the response to stress || Modulating influences on prefrontal and hippocampal<BR>cortical activity, midline behavior control ||
@@ -28,6 +29,8 @@
 http://ahuman.googlecode.com/svn/images/dot/aHuman/FBA.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionFBA_FD_TH_SF FBA.FD.TH.SF] || [BrainRegionFBA_MM_RP_DRN FBA.MM.RP.DRN] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionFBA_MM_PAG FBA.MM.PAG] || [BrainRegionFBA_FD_TH_SF FBA.FD.TH.SF] || nucleus-nucleus || (unknown reference) ||
 
 *External Inbound Region Connections:*
 
@@ -42,7 +45,6 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/FBA.dot.jpg
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaBFA BFA] || [BrainRegionFBA_HP_LC FBA.HP.LC] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionFBA_MM_RP_DRN FBA.MM.RP.DRN] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> DR)] ||
-||  ||  || [BrainRegionBFA_FD_TH_SF BFA.FD.TH.SF] || Subfascicular Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionFBA_MM_RP_MRN FBA.MM.RP.MRN] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> MR)] ||
 ||  || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> VTA)] ||
 || [BrainAreaBGA BGA] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionBGA_FT_ACC BGA.FT.ACC] || Accumbens Nucleus || nucleus-nucleus || [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reward circuit of human brain (NACC -> VTA)] ||
@@ -56,10 +58,11 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/FBA.dot.jpg
 || [BrainAreaCGA CGA] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionCGA_NC_DACG CGA.NC.DACG] || Dorsal Anterior Cingulate Area || nucleus-neocortex || (unknown reference) ||
 || [BrainAreaFCA FCA] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || nucleus-neocortex || [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reward circuit of human brain (VTA -> PFC)] ||
 || [BrainAreaPHA PHA] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || nucleus-neocortex || [http://www.impulsecontroldisorders.org/html/cravings.html Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning (VTA -> EC)] ||
+|| <font color="red">Motor</font> || || || || || ||
+|| [BrainAreaBMA BMA] || [BrainRegionFBA_FD_TH_SF FBA.FD.TH.SF] || [BrainRegionBMA_HM_IO BMA.HM.IO] || Inferior Olivary Nucleus || nucleus-nucleus || (unknown reference) ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaBFA BFA] || [BrainRegionFBA_HP_LC FBA.HP.LC] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || [BrainRegionBFA_FD_TH_PV BFA.FD.TH.PV] || Paraventricular Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionBFA_FD_TH_SF BFA.FD.TH.SF] || Subfascicular Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionFBA_MM_RP_DRN FBA.MM.RP.DRN] || [BrainRegionBFA_FD_TH_PV BFA.FD.TH.PV] || Paraventricular Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-nucleus || [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reward circuit of human brain (VTA -> AM)] ||
 || [BrainAreaBGA BGA] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionBGA_FT_ACC BGA.FT.ACC] || Accumbens Nucleus || nucleus-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (VTA -> NACC)] ||

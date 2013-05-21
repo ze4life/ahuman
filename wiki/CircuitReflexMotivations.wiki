@@ -12,7 +12,6 @@ Circuit is part of aHuman target integrated biological model.
 || *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||
 || [BrainAreaBFA BFA] || [BrainRegionBFA_FD_TH_PT BFA.FD.TH.PT] || Paratenial Nucleus of Thalamus || Excitatory Nucleus || Direct behavior toward a particular outcome over a range of outcomes ||
 ||  || [BrainRegionBFA_FD_TH_PV BFA.FD.TH.PV] || Paraventricular Nucleus of Thalamus || Excitatory Nucleus || Direct behavior toward a particular outcome over a range of outcomes ||
-||  || [BrainRegionBFA_FD_TH_SF BFA.FD.TH.SF] || Subfascicular Nucleus of Thalamus || Excitatory Nucleus || Relays from PAG to Rhape nuclei, Inferior olive nucleus ||
 ||  || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || Mixed Nucleus || Experiencing and recognizing emotions ||
 ||  || [BrainRegionBFA_FT_BNST BFA.FT.BNST] || Bed Nucleus of Stria Terminalis || Mixed Nucleus || Mediate slow longer-lasting responses that accompany sustained threats ||
 ||  || [BrainRegionBFA_FT_IPAC BFA.FT.IPAC] || Interstitial Anterior Commissural Nucleus || Excitatory Nucleus || Sharp, acute pain sensation ||
@@ -30,7 +29,8 @@ Circuit is part of aHuman target integrated biological model.
 ||  || [BrainRegionCGA_NC_PACG CGA.NC.PACG] || Pregenual Area || Neocortex, BA 33 || Sensation of Emotion ||
 ||  || [BrainRegionCGA_NC_SGC CGA.NC.SGC] || Subgenual Cortex || Neocortex, BA 25 || Influences changes in appetite and sleep ||
 ||  || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || Ventral Anterior Cingulate Area || Neocortex, BA 24 || Seat of Free Will ||
-|| [BrainAreaFBA FBA] || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || Periaqueductal Gray Matter || Modulatory Nucleus || Descending modulation of pain and in defensive behaviour ||
+|| [BrainAreaFBA FBA] || [BrainRegionFBA_FD_TH_SF FBA.FD.TH.SF] || Subfascicular Nucleus of Thalamus || Excitatory Nucleus || Relays from PAG to Rhape nuclei, Inferior olive nucleus ||
+||  || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || Periaqueductal Gray Matter || Modulatory Nucleus || Descending modulation of pain and in defensive behaviour ||
 ||  || [BrainRegionFBA_MM_RP_DRN FBA.MM.RP.DRN] || Dorsal Raphe Nucleus || Inhibitory Nucleus || Regulation of sleep and mood ||
 ||  || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || Ventral Tegmental Area || Excitatory Nucleus || Respond to novel stimuli, unexpected rewards, and reward predictive sensory cues ||
 || [BrainAreaFCA FCA] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || Neocortex, BA 10,11,12 || Personality ||
@@ -65,8 +65,6 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitReflexMotivations.dot.
 ||  || [BrainRegionCGA_NC_SGC CGA.NC.SGC] || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (Thalamus -> FrontalCortex, abstract)] ||
 ||  || [BrainRegionHTA_FD_HT_PO HTA.FD.HT.PO] || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionHTA_FD_HT_SCN HTA.FD.HT.SCN] || nucleus-nucleus || (unknown reference) ||
-|| [BrainRegionBFA_FD_TH_SF BFA.FD.TH.SF] || [BrainRegionBMA_HM_IO BMA.HM.IO] || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionFBA_MM_RP_DRN FBA.MM.RP.DRN] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionBFA_FT_AM BFA.FT.AM] || [BrainRegionBFA_FD_TH_PV BFA.FD.TH.PV] || nucleus-nucleus || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (AMYG -> Thalamus, abstract)] ||
 ||  || [BrainRegionBFA_FT_IPAC BFA.FT.IPAC] || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionBFA_FT_NBM BFA.FT.NBM] || nucleus-nucleus || (unknown reference) ||
@@ -90,8 +88,10 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitReflexMotivations.dot.
 || [BrainRegionCGA_NC_MPL_PCG CGA.NC.MPL.PCG] || [BrainRegionCGA_NC_PACG CGA.NC.PACG] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> FrontalCortex, abstract)] ||
 || [BrainRegionCGA_NC_PACG CGA.NC.PACG] || [BrainRegionBFA_FT_AM BFA.FT.AM] || neocortex-nucleus || [http://www.pnas.org/content/107/40/17071/F1.expansion.html Role for serotonin in moral behavior (ACG -> AMY, abstract)] ||
 ||  || [BrainRegionCGA_NC_MPL_PCG CGA.NC.MPL.PCG] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> ParietalCortex, abstract)] ||
+|| [BrainRegionFBA_FD_TH_SF FBA.FD.TH.SF] || [BrainRegionBMA_HM_IO BMA.HM.IO] || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionFBA_MM_RP_DRN FBA.MM.RP.DRN] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || [BrainRegionBFA_FD_TH_PV BFA.FD.TH.PV] || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionBFA_FD_TH_SF BFA.FD.TH.SF] || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionFBA_FD_TH_SF FBA.FD.TH.SF] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionFBA_MM_RP_DRN FBA.MM.RP.DRN] || [BrainRegionBFA_FD_TH_PV BFA.FD.TH.PV] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionBFA_FT_AM BFA.FT.AM] || nucleus-nucleus || [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reward circuit of human brain (VTA -> AM)] ||
 ||  || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || nucleus-neocortex || [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reward circuit of human brain (VTA -> PFC)] ||
