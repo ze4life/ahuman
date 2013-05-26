@@ -12,7 +12,7 @@
 || [BrainRegionMBA_HP_BR MBA.HP.BR] || Barrington's Nucleus || Excitatory Nucleus || Supraspinal regulation of urination || Sends projections to Onuf's Nucleus ||
 || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || Excitatory Nucleus || Motor coordination || Deep Nuclei and cerebellum cortex ||
 || [BrainRegionMBA_HP_PN_PBB MBA.HP.PN.PBB] || Pontobulbar Body || Excitatory Nucleus || Control voluntary muscle activities || Walking, speaking, breathing, part of<BR>corticopontocerebellar pathway ||
-|| [BrainRegionMBA_HP_PN_RP MBA.HP.PN.RP] || Rostral Pontine Nucleus || Excitatory Nucleus || Relay from mammillary body to CR || Part of learning, motivation, spatial memory<BR>pathway ||
+|| [BrainRegionMBA_HP_PN_RP MBA.HP.PN.RP] || Rostral Pontine Nucleus || Excitatory Nucleus || Part of learning, motivation, spatial memory pathway || Relay from mammillary body to CR ||
 || [BrainRegionMBA_MM_RD MBA.MM.RD] || Red Nucleus || Excitatory Nucleus || Motor coordination || Crawling of babies is controlled by RN ||
 || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || Excitatory Nucleus || Modulating sustained attention or in mediating alerting responses ||  ||
 
@@ -32,6 +32,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/MBA.dot.jpg
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionMBA_MM_RD MBA.MM.RD] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionMBA_HP_PN_PBB MBA.HP.PN.PBB] || [BrainRegionMBA_HP_CR MBA.HP.CR] || nucleus-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (PN -> CR, abstract)] ||
+|| [BrainRegionMBA_HP_PN_RP MBA.HP.PN.RP] || [BrainRegionMBA_HP_CR MBA.HP.CR] || nucleus-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (PN -> CR, abstract)] ||
 
 *External Inbound Region Connections:*
 
@@ -42,8 +43,10 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/MBA.dot.jpg
 || [BrainAreaMCA MCA] || [BrainRegionMBA_HP_PN_PBB MBA.HP.PN.PBB] || [BrainRegionMCA_NC_MC MCA.NC.MC] || Motor Cortex || neocortex-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (MC -> PN, abstract)] ||
 || [BrainAreaPHA PHA] || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || Lateral Mammillary Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LMB -> DTN)] ||
 || <font color="red">Hindbrain</font> || || || || || ||
+|| [BrainAreaFBA FBA] || [BrainRegionMBA_HP_BR MBA.HP.BR] || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || Periaqueductal Gray Matter || nucleus-nucleus || [http://jp.physoc.org/content/557/1/287/F9.expansion.html Schematic overview of spinobulbospinal micturition reflex pathway (PAG -> BAR)] ||
 || [BrainAreaHTA HTA] || [BrainRegionMBA_HP_PN_RP MBA.HP.PN.RP] || [BrainRegionHTA_FD_HT_RCH HTA.FD.HT.RCH] || Retrochiasmatic Area || nucleus-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in emotional behavior (HT -> PN, abstract)] ||
 || <font color="red">Motor</font> || || || || || ||
+|| [BrainAreaAVA AVA] || [BrainRegionMBA_HP_BR MBA.HP.BR] || [BrainRegionAVA_PN_SYM_IMG AVA.PN.SYM.IMG] || Inferior Mesenteric Ganglion || ganglion-nucleus || [http://jp.physoc.org/content/557/1/287/F9.expansion.html Schematic overview of spinobulbospinal micturition reflex pathway (IMG -> BAR)] ||
 || [BrainAreaBMA BMA] || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionBMA_HM_CU BMA.HM.CU] || Cuneate Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionBMA_HM_IO BMA.HM.IO] || Inferior Olivary Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionBMA_HP_VB BMA.HP.VB] || Vestibular Nucleus || nucleus-nucleus || (unknown reference) ||
@@ -56,6 +59,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/MBA.dot.jpg
 || [BrainAreaBFA BFA] || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LHAB -> DTN)] ||
 || [BrainAreaBGA BGA] || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || Substantia Nigra Pars Compacta || nucleus-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (SN -> CR, abstract)] ||
 ||  || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || [BrainRegionBGA_HP_PPN BGA.HP.PPN] || Pedunculopontine Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (IPD -> DTN)] ||
+|| [BrainAreaHBA HBA] || [BrainRegionMBA_HP_PN_RP MBA.HP.PN.RP] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaVBA VBA] || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionVBA_MM_SC_DEEP VBA.MM.SC.DEEP] || Deep Superior Colliculus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (SCi -> CR, abstract)] ||
 
 *External Outbound Region Connections:*
@@ -70,6 +74,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/MBA.dot.jpg
 || <font color="red">Hindbrain</font> || || || || || ||
 || [BrainAreaFBA FBA] || [BrainRegionMBA_HM_RF_MED MBA.HM.RF.MED] || [BrainRegionFBA_HP_LC FBA.HP.LC] || Locus Coeruleus || nucleus-nucleus || (unknown reference) ||
 || <font color="red">Motor</font> || || || || || ||
+|| [BrainAreaAVA AVA] || [BrainRegionMBA_HP_BR MBA.HP.BR] || [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || Intermediolateral Nucleus || nucleus-nucleus || [http://jp.physoc.org/content/557/1/287/F9.expansion.html Schematic overview of spinobulbospinal micturition reflex pathway (BAR -> IML)] ||
 || [BrainAreaBMA BMA] || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionBMA_HP_VB BMA.HP.VB] || Vestibular Nucleus || nucleus-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (CR -> Vestibular)] ||
 ||  ||  || [BrainRegionBMA_MM_DSCH BMA.MM.DSCH] || Darkschewitsch Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionMBA_MM_RD MBA.MM.RD] || [BrainRegionBMA_HM_IO BMA.HM.IO] || Inferior Olivary Nucleus || nucleus-nucleus || (unknown reference) ||
@@ -114,6 +119,10 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/MBA.dot.jpg
 
 <img src="http://what-when-how.com/wp-content/uploads/2012/04/tmp3649_thumb1_thumb.jpg" alt="unavailable"height=400width=400>
 
+  * [http://jp.physoc.org/content/557/1/287/F9.large.jpg Schematic overview of spinobulbospinal micturition reflex pathway] - see [http://jp.physoc.org/content/557/1/287/F9.expansion.html Reference]
+
+<img src="http://jp.physoc.org/content/557/1/287/F9.large.jpg" alt="unavailable">
+
 
 = References =
 (generated)
@@ -125,6 +134,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/MBA.dot.jpg
   * http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html
   * https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988
   * http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/
+  * http://jp.physoc.org/content/557/1/287/F9.expansion.html
 
 = Diagrams =
 

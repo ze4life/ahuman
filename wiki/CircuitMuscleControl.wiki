@@ -12,6 +12,7 @@ Circuit is part of aHuman target integrated biological model.
 || *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||
 || [BrainAreaAVA AVA] || [BrainRegionAVA_HM_VG AVA.HM.VG] || Vagus Nucleus || Preganglionic Nucleus || Parasympathetic vagal functions in the gastrointestinal tract, lungs ||
 ||  || [BrainRegionAVA_PN_PSYM_PPG AVA.PN.PSYM.PPG] || Pelvic Peripheral Ganglion || Parasymp. Gang. || Sigmoid, rectum, bladder, and external genitalia ||
+||  || [BrainRegionAVA_PN_SYM_IMG AVA.PN.SYM.IMG] || Inferior Mesenteric Ganglion || Symp. Gang. || Bladder, reproductive organs ||
 ||  || [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || Intermediolateral Nucleus || Preganglionic Nucleus || Mediate entire sympathetic innervation of body ||
 ||  || [BrainRegionAVA_SC_VH_ONF AVA.SC.VH.ONF] || Onuf's Nucleus || Preganglionic Nucleus || Maintenance of urination and defecation, muscular contraction during orgasm ||
 || [BrainAreaBFA BFA] || [BrainRegionBFA_FT_NBM BFA.FT.NBM] || Basal Nucleus of Meynert || Modulatory Nucleus || Control imagination vs perception ||
@@ -20,13 +21,15 @@ Circuit is part of aHuman target integrated biological model.
 ||  || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || Substantia Nigra Pars Compacta || Mixed Nucleus || Fine motor control, temporal processing ||
 || [BrainAreaBMA BMA] || [BrainRegionBMA_HP_PB BMA.HP.PB] || Parabrachial Nucleus || Sensory Relay Nucleus || Source of short-latency nociceptive input ||
 || [BrainAreaFBA FBA] || [BrainRegionFBA_HP_LC FBA.HP.LC] || Locus Coeruleus || Inhibitory Nucleus || Regulate the intensity of responses to salient stimuli ||
+||  || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || Periaqueductal Gray Matter || Modulatory Nucleus || Descending modulation of pain and in defensive behaviour ||
 ||  || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || Ventral Tegmental Area || Excitatory Nucleus || Respond to novel stimuli, unexpected rewards, and reward predictive sensory cues ||
 || [BrainAreaFCA FCA] || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || Dorsolateral Prefrontal Cortex || Neocortex, BA 09,46 || Temporal Integration ||
 ||  || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || Neocortex, BA 10,11,12 || Personality ||
 || [BrainAreaHMA HMA] || [BrainRegionHMA_MM_MSTR HMA.MM.MSTR] || Mesencephalic Trigeminal Nucleus || 1-order Sensory Nucleus || Facial Somatic Sensations ||
 || [BrainAreaHTA HTA] || [BrainRegionHTA_FD_HT_PO HTA.FD.HT.PO] || Preoptic Area || Excitatory Nucleus || Thermoregulation ||
 ||  || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || Paraventricular Nucleus || Excitatory Nucleus || Regulate appetite and autonomic functions ||
-|| [BrainAreaMBA MBA] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || Excitatory Nucleus || Motor coordination ||
+|| [BrainAreaMBA MBA] || [BrainRegionMBA_HP_BR MBA.HP.BR] || Barrington's Nucleus || Excitatory Nucleus || Supraspinal regulation of urination ||
+||  || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || Excitatory Nucleus || Motor coordination ||
 ||  || [BrainRegionMBA_HP_PN_PBB MBA.HP.PN.PBB] || Pontobulbar Body || Excitatory Nucleus || Control voluntary muscle activities ||
 || [BrainAreaMCA MCA] || [BrainRegionMCA_FD_TH_VA MCA.FD.TH.VA] || Ventral Anterior Nucleus || Excitatory Nucleus || Relay BGA.SN, BGA.GPI, FCA.OMPFC, FCA.CG to MCA.PMC, MCA.SMC ||
 ||  || [BrainRegionMCA_FD_TH_VL MCA.FD.TH.VL] || Ventral Lateral Nucleus || Excitatory Nucleus || Relay BSA.CR to MCA.MC ||
@@ -47,18 +50,22 @@ Circuit is part of aHuman target integrated biological model.
 http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitMuscleControl.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || [BrainRegionAVA_PN_PSYM_PPG AVA.PN.PSYM.PPG] || nucleus-ganglion || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (IML -> PEL)] ||
-||  || [BrainRegionAVA_SC_VH_ONF AVA.SC.VH.ONF] || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (IML -> ONF)] ||
+|| [BrainRegionAVA_PN_SYM_IMG AVA.PN.SYM.IMG] || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || ganglion-nucleus || [http://jp.physoc.org/content/557/1/287/F9.expansion.html Schematic overview of spinobulbospinal micturition reflex pathway (IMG -> PAG)] ||
+||  || [BrainRegionMBA_HP_BR MBA.HP.BR] || ganglion-nucleus || [http://jp.physoc.org/content/557/1/287/F9.expansion.html Schematic overview of spinobulbospinal micturition reflex pathway (IMG -> BAR)] ||
+|| [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || [BrainRegionAVA_PN_PSYM_PPG AVA.PN.PSYM.PPG] || nucleus-ganglion || [http://jp.physoc.org/content/557/1/287/F9.expansion.html Schematic overview of spinobulbospinal micturition reflex pathway (IML -> PEL)] ||
+||  || [BrainRegionAVA_SC_VH_ONF AVA.SC.VH.ONF] || nucleus-nucleus || [http://jp.physoc.org/content/557/1/287/F9.expansion.html Schematic overview of spinobulbospinal micturition reflex pathway (IML -> ONF)] ||
 || [BrainRegionBFA_FT_NBM BFA.FT.NBM] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || nucleus-neocortex || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (NBM -> MPFC)] ||
 || [BrainRegionBGA_FT_GPI BGA.FT.GPI] || [BrainRegionMCA_FD_TH_VL MCA.FD.TH.VL] || nucleus-nucleus || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (GPi -> VLo)] ||
 || [BrainRegionBGA_FT_PU BGA.FT.PU] || [BrainRegionFBA_HP_LC FBA.HP.LC] || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (PU -> LC)] ||
 || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || [BrainRegionMBA_HP_CR MBA.HP.CR] || nucleus-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (SN -> CR, abstract)] ||
 || [BrainRegionBMA_HP_PB BMA.HP.PB] || [BrainRegionAVA_HM_VG AVA.HM.VG] || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (PBN -> DVM)] ||
 || [BrainRegionFBA_HP_LC FBA.HP.LC] || [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (LC -> IML)] ||
+|| [BrainRegionFBA_MM_PAG FBA.MM.PAG] || [BrainRegionMBA_HP_BR MBA.HP.BR] || nucleus-nucleus || [http://jp.physoc.org/content/557/1/287/F9.expansion.html Schematic overview of spinobulbospinal micturition reflex pathway (PAG -> BAR)] ||
 || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionHTA_FD_HT_PO HTA.FD.HT.PO] || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (VTA -> MPOA)] ||
 ||  || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (VTA -> PVN)] ||
 || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || [BrainRegionMCA_FD_TH_VA MCA.FD.TH.VA] || neocortex-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (LPFC -> TH, abstract)] ||
 || [BrainRegionHMA_MM_MSTR HMA.MM.MSTR] || [BrainRegionSMA_FD_TH_VP SMA.FD.TH.VP] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionMBA_HP_BR MBA.HP.BR] || [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || nucleus-nucleus || [http://jp.physoc.org/content/557/1/287/F9.expansion.html Schematic overview of spinobulbospinal micturition reflex pathway (BAR -> IML)] ||
 || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || nucleus-neocortex || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (CR -> LPFC)] ||
 ||  || [BrainRegionMCA_FD_TH_VL MCA.FD.TH.VL] || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s1VL -> VL)] ||
 || [BrainRegionMBA_HP_PN_PBB MBA.HP.PN.PBB] || [BrainRegionMBA_HP_CR MBA.HP.CR] || nucleus-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (PN -> CR, abstract)] ||
