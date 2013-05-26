@@ -34,8 +34,8 @@
 http://ahuman.googlecode.com/svn/images/dot/aHuman/AVA.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || [BrainRegionAVA_PN_PSYM_PPG AVA.PN.PSYM.PPG] || nucleus-ganglion || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (IML -> PEL)] ||
-||  || [BrainRegionAVA_SC_VH_ONF AVA.SC.VH.ONF] || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (IML -> ONF)] ||
+|| [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || [BrainRegionAVA_PN_PSYM_PPG AVA.PN.PSYM.PPG] || nucleus-ganglion || [http://jp.physoc.org/content/557/1/287/F9.expansion.html Schematic overview of spinobulbospinal micturition reflex pathway (IML -> PEL)] ||
+||  || [BrainRegionAVA_SC_VH_ONF AVA.SC.VH.ONF] || nucleus-nucleus || [http://jp.physoc.org/content/557/1/287/F9.expansion.html Schematic overview of spinobulbospinal micturition reflex pathway (IML -> ONF)] ||
 
 *External Inbound Region Connections:*
 
@@ -43,6 +43,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/AVA.dot.jpg
 || <font color="red">Hindbrain</font> || || || || || ||
 || [BrainAreaFBA FBA] || [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || [BrainRegionFBA_HP_LC FBA.HP.LC] || Locus Coeruleus || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (LC -> IML)] ||
 || [BrainAreaHTA HTA] || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || [BrainRegionHTA_FD_HT_SCN HTA.FD.HT.SCN] || Suprachiasmatic Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaMBA MBA] || [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || [BrainRegionMBA_HP_BR MBA.HP.BR] || Barrington's Nucleus || nucleus-nucleus || [http://jp.physoc.org/content/557/1/287/F9.expansion.html Schematic overview of spinobulbospinal micturition reflex pathway (BAR -> IML)] ||
 || <font color="red">Motor</font> || || || || || ||
 || [BrainAreaBMA BMA] || [BrainRegionAVA_HM_VG AVA.HM.VG] || [BrainRegionBMA_HP_PB BMA.HP.PB] || Parabrachial Nucleus || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (PBN -> DVM)] ||
 ||  || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || [BrainRegionBMA_SC_LH_LSN BMA.SC.LH.LSN] || Lateral Spinal Nucleus || nucleus-nucleus || (unknown reference) ||
@@ -50,6 +51,9 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/AVA.dot.jpg
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| <font color="red">Hindbrain</font> || || || || || ||
+|| [BrainAreaFBA FBA] || [BrainRegionAVA_PN_SYM_IMG AVA.PN.SYM.IMG] || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || Periaqueductal Gray Matter || ganglion-nucleus || [http://jp.physoc.org/content/557/1/287/F9.expansion.html Schematic overview of spinobulbospinal micturition reflex pathway (IMG -> PAG)] ||
+|| [BrainAreaMBA MBA] || [BrainRegionAVA_PN_SYM_IMG AVA.PN.SYM.IMG] || [BrainRegionMBA_HP_BR MBA.HP.BR] || Barrington's Nucleus || ganglion-nucleus || [http://jp.physoc.org/content/557/1/287/F9.expansion.html Schematic overview of spinobulbospinal micturition reflex pathway (IMG -> BAR)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaBFA BFA] || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || [BrainRegionBFA_FD_PNG BFA.FD.PNG] || Pineal Gland || nucleus-nucleus || (unknown reference) ||
 
@@ -60,11 +64,16 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/AVA.dot.jpg
 
 <img src="http://www.intechopen.com/source/html/40109/media/image1.jpeg" alt="unavailable">
 
+  * [http://jp.physoc.org/content/557/1/287/F9.large.jpg Schematic overview of spinobulbospinal micturition reflex pathway] - see [http://jp.physoc.org/content/557/1/287/F9.expansion.html Reference]
+
+<img src="http://jp.physoc.org/content/557/1/287/F9.large.jpg" alt="unavailable">
+
 
 = References =
 (generated)
 
   * http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders
+  * http://jp.physoc.org/content/557/1/287/F9.expansion.html
 
 = Diagrams =
 
