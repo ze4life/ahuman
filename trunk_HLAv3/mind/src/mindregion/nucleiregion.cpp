@@ -14,9 +14,7 @@ String NucleiRegion::getRegionType() {
 	return( "NucleiRegion" );
 }
 
-void NucleiRegion::createRegion( MindRegionInfo *info ) {
-	MindRegion::createRegion( info );
-
+void NucleiRegion::createRegion( MindRegionCreateInfo *info ) {
 	int totalSize = 1;
 	ASSERTMSG( totalSize > 0 , "invalid totalSize, positive value expected" );
 	int sideSize = 2 * ( int )sqrt( ( double )totalSize );

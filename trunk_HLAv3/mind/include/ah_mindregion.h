@@ -8,7 +8,7 @@
 
 class MindRegion;
 class MindRegionSet;
-class MindRegionInfo;
+class MindRegionCreateInfo;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -36,23 +36,24 @@ public:
 
 	// MindRegion lifecycle
 public:
-	virtual void createRegion( MindRegionInfo *info );
+	virtual void createRegion( MindRegionCreateInfo *info ) = 0;
 	virtual void exitRegion() = 0;
 	virtual void destroyRegion() = 0;
-
-	virtual String getRegionType() = 0;
-	virtual void getSourceSizes( String entity , int *sizeX , int *sizeY ) = 0;
 
 public:
 	void exit();
 	void destroy();
+
+	void setRegionType( MindRegionTypeDef *info ) { regionType = info; };
+	MindRegionTypeDef *getRegionType() { return( regionType ); };
+	void setRegionId( String p_id ) { id = p_id; };
+	String getRegionId() { return( id ); };
 
 	void addRegionLink( MindRegionLink *link );
 	String getFullRegionId();
 	void sendMessage( MindMessage *msg );
 
 	MindArea *getArea() { return( area ); };
-	String getRegionId() { return( id ); };
 	MindRegionTypeDef *getRegionTypeInfo() { return( regionType ); };
 	MapStringToClass<NeuroLinkSource>& getSourceConnectorMap() { return( sourceConnectorMap ); };
 	MapStringToClass<NeuroLinkTarget>& getTargetConnectorMap() { return( targetConnectorMap ); };

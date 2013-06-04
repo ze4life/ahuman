@@ -4,7 +4,14 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
+MindMap::MindMap() {
+	sensorAreaInfo = NULL;
+}
+
 MindMap::~MindMap() {
+	if( sensorAreaInfo != NULL )
+		delete sensorAreaInfo;
+
 	regionTypeSet.destroy();
 	mindAreaSet.destroy();
 	connectionTypeSet.destroy();
@@ -126,6 +133,12 @@ MindRegionTypeDef *MindMap::getRegionTypeDefByName( String regionTypeName ) {
 	return( info );
 }
 
+MindRegionDef *MindMap::getRegionDefById( String regionId ) {
+	MindRegionDef *info = mindRegionMap.get( regionId );
+	ASSERTMSG( info != NULL , "Wrong region id=" + regionId );
+	return( info );
+}
+
 MindAreaDef *MindMap::getAreaDefById( String areaId ) {
 	MindAreaDef *info = mindAreaMap.get( areaId );
 	ASSERTMSG( info != NULL , "Wrong area id=" + areaId );
@@ -142,5 +155,40 @@ void MindMap::getMapRegions( MapStringToClass<MindRegionDef>& regionMap ) {
 			regionMap.add( regionDef -> getName() , regionDef );
 		}
 	}
+}
+
+void MindMap::createTargetMeta( Xml xml ) {
+	// sensor area
+	sensorAreaInfo = new TargetAreaDef();
+	sensorAreaInfo -> defineSensorArea();
+	mindAreaMap.add( sensorAreaInfo -> getAreaId() , sensorAreaInfo );
+
+	// create sensor meta
+	Xml configSensors = xml.getChildNode( "sensors" );
+	for( Xml xmlChild = configSensors.getFirstChild( "sensor" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "sensor" ) ) {
+		TargetRegionDef *regionInfo = new TargetRegionDef( sensorAreaInfo );
+		regionInfo -> defineSensorRegion( xmlChild );
+
+		// add to maps
+		mindRegionMap.add( regionInfo -> getName() , regionInfo );
+		TargetRegionTypeDef *regionTypeInfo = ( TargetRegionTypeDef * )regionInfo -> getType();
+		regionTypeMap.add( regionTypeInfo -> getName() , regionTypeInfo );
+
+		TargetCircuitDef *circuitInfo = regionTypeInfo -> getCircuitInfo();
+		mindCircuitMap.add( circuitInfo -> getName() , circuitInfo );
+
+		regionInfo -> setCircuitDef( circuitInfo );
+	}
+
+	// effector area
+	effectorAreaInfo = new TargetAreaDef();
+	effectorAreaInfo -> defineEffectorArea();
+	mindAreaMap.add( effectorAreaInfo -> getAreaId() , effectorAreaInfo );
+}
+
+TargetRegionDef *MindMap::getTargetRegionDefById( String regionId ) {
+	TargetRegionDef *info = ( TargetRegionDef * )mindRegionMap.get( regionId );
+	ASSERTMSG( info != NULL , "Wrong target region id=" + regionId );
+	return( info );
 }
 

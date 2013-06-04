@@ -121,4 +121,67 @@
 		<link src="OMPFC" dst="NACC"/>
 	</circuit>
 
+	<circuit id="CF.AM-DISRUPTION" name="Amygdalar disruption of prefrontal cortex"
+		image="http://neuropolitics.org/connect-amygdala.jpg"
+		reference="http://neuropolitics.org/defaultmay10.asp"
+		components="AM=BFA.FT.AM HC=HBA.FT.HC TH=FD.TH PB=BMA.HP.PB SOL=HMA.HM.SOL HT.PV=HTA.FD.HT.PV HT.L=HTA.FD.HT.LT PUT=HTA.FD.HYP LC=FBA.HP.LC PAG=FBA.MM.PAG INS=PHA.NC.INS MPFC=FCA.NC.OMPFC ACG=CGA.NC.ACG"
+		>
+		<link src="AM" dst="MPFC"/>
+		<link src="AM" dst="ACG"/>
+		<link src="INS" dst="MPFC"/>
+		<link src="INS" dst="ACG"/>
+		<link src="TH" dst="INS"/>
+		<link src="TH" dst="AM"/>
+		<link src="AM" dst="HT.PV"/>
+		<link src="AM" dst="HT.L"/>
+		<link src="HT.PV" dst="PUT"/>
+		<link src="AM" dst="LC"/>
+		<link src="AM" dst="PAG"/>
+		<link src="AM" dst="PB"/>
+		<link src="PB" dst="AM"/>
+		<link src="SOL" dst="PB"/>
+		<link src="SOL" dst="TH"/>
+	</circuit>
+
+	<circuit id="CF.TWO-FEAR-PATHWAYS" name="Amygdala - two pathways of fear"
+		image="http://thebrain.mcgill.ca/flash/a/a_04/a_04_cr/a_04_cr_peu/a_04_cr_peu_2a.gif"
+		reference="http://thebrain.mcgill.ca/flash/a/a_04/a_04_cr/a_04_cr_peu/a_04_cr_peu.html"
+		components="AM=BFA.FT.AM"
+		>
+	</circuit>
+
+	<circuit id="CF.PAIN-MATRIX" name="Pain matrix"
+		image="http://www.springerimages.com/img/Images/Springer/JOU=10194/VOL=2006.7/ISU=4/ART=2006_307/MediaObjects/MEDIUM_10194_2006_Article_307_Fig1.jpg"
+		reference="http://www.springerimages.com/Images/MedicineAndPublicHealth/1-10.1007_s10194-006-0307-1-0"
+		components="PFC=FCA.NC.OMPFC ACC=CGA.NC.ACG SMA=MCA.NC.SMC S1=SMA.NC.PG.S1 TH=FD.TH AM=BFA.FT.AM PPC=NC.SPL INS=PHA.NC.INS PAG=FBA.MM.PAG"
+		>
+	</circuit>
+
+	<circuit id="CF.NUCLEUUS-ACCUMBENS" name="Nucleus Accumbens"
+		image="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/nucleus-accumbens.jpg"
+		reference="UNKNOWN"
+		components="NACC=BGA.FT.ACC SUB=HBA.FT.SC.SUB CA1=HBA.FT.HC.CA1 CA3=HBA.FT.HC.CA3 PAS=PHA.NC.PAS EC=PHA.NC.PH.ET PRR=PHA.NC.PH.PRR"
+		>
+		<link src="SUB" dst="NACC"/>
+		<link src="CA1" dst="NACC"/>
+		<link src="CA3" dst="NACC"/>
+		<link src="PAS" dst="NACC"/>
+		<link src="EC" dst="NACC"/>
+		<link src="PRR" dst="NACC"/>
+	</circuit>
+
+	<circuit id="CF.MEYNERT" name="Basal Nucleus of Meynert"
+		image="http://ahuman.googlecode.com/svn/images/wiki/research/human/22-reticular-formation-and-limbic-system/F22-2.png"
+		reference="article:Biological/2005-The-Human-Nervous-System.pdf"
+		components="AM=BFA.FT.AM CA1=HBA.FT.HC.CA1 EC=PHA.NC.PH.ET PRR=PHA.NC.PH.PRR BMN=BFA.FT.NBM"
+		>
+	</circuit>
+
+	<circuit id="CF.DEFAULT-SYSTEM" name="Medial prefrontal network"
+		image="http://www.nature.com/npp/journal/v35/n1/images/npp2009104f10.jpg"
+		reference="http://www.nature.com/npp/journal/v35/n1/fig_tab/npp2009104f10.html"
+		components="RostralCtx=PHA.NC.TPC PH=NC.LOBE.PH RSP=CGA.NC.MPL.RSC PCG=CGA.NC.MPL.PCG MPFC=FCA.NC.OMPFC TH.PV=BFA.FD.TH.PV VPAL=BGA.FT.VP TH.MD=FCA.FD.TH.MD NACC=BGA.FT.ACC BNST=BFA.FT.BNST"
+		>
+	</circuit>
+
 </circuits>

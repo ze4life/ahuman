@@ -13,7 +13,7 @@ String NerveRegion::getRegionType() {
 	return( "NerveRegion" );
 }
 
-void NerveRegion::createRegion( MindRegionInfo *info ) {
+void NerveRegion::createRegion( MindRegionCreateInfo *info ) {
 	ASSERTFAILED( "createNerveRegion: not implemented" );
 }
 

@@ -14,3 +14,8 @@ void MindRegionConnectorDef::createFromXml( Xml xml ) {
 
 	type = xml.getAttribute( "type" );
 }
+
+bool MindRegionConnectorDef::isTarget() {
+	return( type.equals( "target" ) );
+}
+

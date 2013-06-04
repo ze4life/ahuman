@@ -10,6 +10,7 @@ MindCircuitDef::MindCircuitDef() {
 }
 
 MindCircuitDef::~MindCircuitDef() {
+	connections.destroy();
 };
 
 void MindCircuitDef::createFromXml( Xml xml ) {

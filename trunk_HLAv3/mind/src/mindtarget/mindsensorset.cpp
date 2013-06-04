@@ -4,8 +4,9 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-MindSensorSet::MindSensorSet() {
+MindSensorSet::MindSensorSet( SensorArea *p_area ) {
 	attachLogger();
+	area = p_area;
 }
 
 int MindSensorSet::getCount() {
@@ -25,7 +26,7 @@ MindSensor *MindSensorSet::getSensor( String name ) {
 	return( map.get( name ) );
 }
 
-void MindSensorSet::createSensorSet( MindArea *area ) {
+void MindSensorSet::createSensorSet() {
 	MindRegionSet *set = area -> getRegionSet();
 	for( int k = 0; k < list.count(); k++ ) {
 		MindSensor *sensor = list.get( k );

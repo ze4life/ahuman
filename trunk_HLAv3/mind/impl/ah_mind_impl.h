@@ -16,7 +16,7 @@ class AllocortexRegion;
 class NeocortexRegion;
 class NucleiRegion;
 class NerveRegion;
-class MindRegionInfo;
+class MindRegionCreateInfo;
 class ExcitatoryLink;
 class InhibitoryLink;
 class ModulatoryLink;
@@ -216,7 +216,7 @@ public:
 
 public:
 	// MindRegion lifecycle
-	virtual void createRegion( MindRegionInfo *info );
+	virtual void createRegion( MindRegionCreateInfo *info );
 	virtual void exitRegion();
 	virtual void destroyRegion();
 
@@ -250,7 +250,7 @@ public:
 
 public:
 	// MindRegion lifecycle
-	virtual void createRegion( MindRegionInfo *info );
+	virtual void createRegion( MindRegionCreateInfo *info );
 	virtual void exitRegion();
 	virtual void destroyRegion();
 
@@ -301,7 +301,7 @@ public:
 
 public:
 	// MindRegion lifecycle
-	virtual void createRegion( MindRegionInfo *info );
+	virtual void createRegion( MindRegionCreateInfo *info );
 	virtual void exitRegion();
 	virtual void destroyRegion();
 
@@ -328,7 +328,7 @@ public:
 
 public:
 	// MindRegion lifecycle
-	virtual void createRegion( MindRegionInfo *info );
+	virtual void createRegion( MindRegionCreateInfo *info );
 	virtual void exitRegion();
 	virtual void destroyRegion();
 
@@ -362,7 +362,7 @@ public:
 
 public:
 	// MindRegion lifecycle
-	virtual void createRegion( MindRegionInfo *info );
+	virtual void createRegion( MindRegionCreateInfo *info );
 	virtual void exitRegion();
 	virtual void destroyRegion();
 
@@ -374,11 +374,11 @@ public:
 /*#########################################################################*/
 /*#########################################################################*/
 
-class MindRegionInfo : public Object {
+class MindRegionCreateInfo : public Object {
 public:
-MindRegionInfo();
-	virtual ~MindRegionInfo();
-	virtual const char *getClass() { return( "MindRegionInfo" ); };
+MindRegionCreateInfo();
+	virtual ~MindRegionCreateInfo();
+	virtual const char *getClass() { return( "MindRegionCreateInfo" ); };
 
 public:
 	void setId( String id );

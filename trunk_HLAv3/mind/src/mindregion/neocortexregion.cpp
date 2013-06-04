@@ -23,9 +23,7 @@ String NeocortexRegion::getRegionType() {
 	return( "NeocortexRegion" );
 }
 
-void NeocortexRegion::createRegion( MindRegionInfo *info ) {
-	MindRegion::createRegion( info );
-
+void NeocortexRegion::createRegion( MindRegionCreateInfo *info ) {
 	const int SPACIAL_MATCH_PATTERN_TOLERANCE = 10;
 	const int SPACIAL_MATCH_NEURONSTATE_TOLERANCE = 30;
 	const int SPATIAL_PROTECTED_PATTERN_USAGE = 100;

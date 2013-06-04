@@ -56,45 +56,53 @@
 		<!-- ================= typical links =============== -->
 		<connection-type-set>
 
-			<connection-type name="nucleus-nucleus">
-				<link-type name="positive" implementation="mock" type="excitatory" nt="GLU" src="nucleus.output" dst="nucleus.input"/>
+			<connection-type name="nucleus-nucleus" regionsrc="nucleus" regiondst="nucleus">
+				<link-type name="positive" implementation="mock" nttype="excitatory" nt="GLU" src="nucleus.output" dst="nucleus.input"/>
 			</connection-type>
 
-			<connection-type name="nucleus-neocortex">
-				<link-type name="primary-input" implementation="mock" type="excitatory" nt="GLU" src="nucleus.output" dst="neocortex.ffin"/>
+			<connection-type name="nucleus-neocortex" regionsrc="nucleus" regiondst="neocortex">
+				<link-type name="primary-input" implementation="mock" nttype="excitatory" nt="GLU" src="nucleus.output" dst="neocortex.ffin"/>
 			</connection-type>
 
-			<connection-type name="neocortex-nucleus">
-				<link-type name="primary-input" implementation="mock" type="excitatory" nt="GLU" src="neocortex.ffout" dst="nucleus.input"/>
+			<connection-type name="neocortex-nucleus" regionsrc="neocortex" regiondst="nucleus">
+				<link-type name="primary-input" implementation="mock" nttype="excitatory" nt="GLU" src="neocortex.ffout" dst="nucleus.input"/>
 			</connection-type>
 
-			<connection-type name="neocortex-neocortex">
-				<link-type name="cortex-forward" implementation="mock" type="excitatory" nt="GLU" src="neocortex.ffout" dst="neocortex.ffin"/>
-				<link-type name="cortex-feedback" implementation="mock" type="excitatory" nt="GLU" src="neocortex.fbout" dst="neocortex.fbin" back="true"/>
+			<connection-type name="neocortex-neocortex" regionsrc="neocortex" regiondst="neocortex" >
+				<link-type name="cortex-forward" implementation="mock" nttype="excitatory" nt="GLU" src="neocortex.ffout" dst="neocortex.ffin"/>
+				<link-type name="cortex-feedback" implementation="mock" nttype="excitatory" nt="GLU" src="neocortex.fbout" dst="neocortex.fbin" back="true"/>
 			</connection-type>
 
-			<connection-type name="neocortex-allocortex">
-				<link-type name="light" implementation="mock" type="excitatory" nt="GLU" src="neocortex.ffout" dst="allocortex.input.indirect"/>
+			<connection-type name="neocortex-allocortex" regionsrc="neocortex" regiondst="allocortex">
+				<link-type name="light" implementation="mock" nttype="excitatory" nt="GLU" src="neocortex.ffout" dst="allocortex.input.indirect"/>
 			</connection-type>
 
-			<connection-type name="allocortex-neocortex">
-				<link-type name="light" implementation="mock" type="excitatory" nt="GLU" src="allocortex.output" dst="neocortex.ffin"/>
+			<connection-type name="allocortex-neocortex" regionsrc="allocortex" regiondst="neocortex">
+				<link-type name="light" implementation="mock" nttype="excitatory" nt="GLU" src="allocortex.output" dst="neocortex.ffin"/>
 			</connection-type>
 
-			<connection-type name="allocortex-nucleus">
-				<link-type name="light" implementation="mock" type="excitatory" nt="GLU" src="allocortex.output" dst="nucleus.input"/>
+			<connection-type name="allocortex-nucleus" regionsrc="allocortex" regiondst="nucleus">
+				<link-type name="light" implementation="mock" nttype="excitatory" nt="GLU" src="allocortex.output" dst="nucleus.input"/>
 			</connection-type>
 
-			<connection-type name="nucleus-ganglion">
-				<link-type name="primary-input" implementation="mock" type="excitatory" nt="GLU" src="nucleus.output" dst="ganglion.input"/>
+			<connection-type name="nucleus-ganglion" regionsrc="nucleus" regiondst="ganglion">
+				<link-type name="primary-input" implementation="mock" nttype="excitatory" nt="GLU" src="nucleus.output" dst="ganglion.input"/>
 			</connection-type>
 
-			<connection-type name="nucleus-allocortex">
-				<link-type name="primary-input" implementation="mock" type="excitatory" nt="GLU" src="nucleus.output" dst="allocortex.input.direct"/>
+			<connection-type name="ganglion-ganglion" regionsrc="ganglion" regiondst="ganglion">
+				<link-type name="primary-input" implementation="mock" nttype="excitatory" nt="GLU" src="ganglion.output" dst="ganglion.input"/>
 			</connection-type>
 
-			<connection-type name="allocortex-allocortex">
-				<link-type name="light" implementation="mock" type="excitatory" nt="GLU" src="allocortex.output" dst="allocortex.input.direct"/>
+			<connection-type name="ganglion-nucleus" regionsrc="ganglion" regiondst="nucleus">
+				<link-type name="primary-input" implementation="mock" nttype="excitatory" nt="GLU" src="ganglion.output" dst="nucleus.input"/>
+			</connection-type>
+
+			<connection-type name="nucleus-allocortex" regionsrc="nucleus" regiondst="allocortex">
+				<link-type name="primary-input" implementation="mock" nttype="excitatory" nt="GLU" src="nucleus.output" dst="allocortex.input.direct"/>
+			</connection-type>
+
+			<connection-type name="allocortex-allocortex" regionsrc="allocortex" regiondst="allocortex">
+				<link-type name="light" implementation="mock" nttype="excitatory" nt="GLU" src="allocortex.output" dst="allocortex.input.direct"/>
 			</connection-type>
 
 		</connection-type-set>
@@ -167,6 +175,8 @@
 				<region name="PHA.NC.PH.TFTH" type="neocortex"/>
 				<region name="PHA.FD.MB.LMB" type="nucleus" size="100"/>
 				<region name="PHA.FD.TH.LI" type="nucleus"/>
+				<region name="PHA.FT.EPF" type="nucleus"/>
+				<region name="PHA.FT.AON" type="nucleus"/>
 			</area>
 
 			<area id="FCA" type="Cortical" name="Frontal Cortex Area" enabled="true" function="Sensory-Drive Associations">
@@ -254,14 +264,11 @@
 				<region name="BFA.FT.NBM" type="nucleus"/>
 				<region name="BFA.FT.BNST" type="nucleus"/>
 				<region name="BFA.FT.SEP" type="nucleus"/>
-				<region name="BFA.FT.EPF" type="nucleus"/>
 				<region name="BFA.FT.IPAC" type="nucleus"/>
 				<region name="BFA.FD.HB" type="nucleus"/>
 				<region name="BFA.FD.PNG" type="nucleus"/>
-				<region name="BFA.FD.TH.SF" type="nucleus"/>
 				<region name="BFA.FD.TH.PT" type="nucleus"/>
 				<region name="BFA.FD.TH.PV" type="nucleus"/>
-				<region name="BFA.FT.AON" type="nucleus"/>
 			</area>
 
 			<!-- ================= hindbrain =============== -->
@@ -287,6 +294,7 @@
 				<region name="FBA.HP.NI" type="nucleus"/>
 				<region name="FBA.HP.LC" type="nucleus"/>
 				<region name="FBA.HM.RP" type="nucleus"/>
+				<region name="FBA.FD.TH.SF" type="nucleus"/>
 			</area>
 
 			<area id="HTA" type="Hindbrain" name="Hypothalamus Area" enabled="true" function="Visceral Motor Control">

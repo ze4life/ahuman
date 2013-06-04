@@ -44,7 +44,7 @@
 		<connection type="neocortex-neocortex" src="VCA.NC.IPL.MST" dst="ACA.NC.IPL.SMW"/>
 		<connection type="neocortex-neocortex" src="VCA.NC.IPS.VIP" dst="CGA.NC.SPL.PF"/>
 		<connection type="neocortex-neocortex" src="VCA.NC.IPS.PEF" dst="VCA.NC.IPS.AIP"/>
-		<connection type="neocortex-neocortex" src="BFA.FT.NBM" dst="VCA.NC.V1"/>
+		<connection type="nucleus-neocortex" src="BFA.FT.NBM" dst="VCA.NC.V1"/>
 	</circuit>
 
 	<circuit id="CircuitVisionFrontal" name="Vision Frontal Networks" enabled="true">
@@ -85,7 +85,7 @@
 		<connection type="nucleus-ganglion" src="VBA.MM.EWN" dst="VBA.PN.PSYM.CLG"/>
 		<connection type="nucleus-ganglion" src="VBA.MM.EWN" dst="VBA.PN.PSYM.EPG"/>
 		<connection type="nucleus-ganglion" src="VBA.MM.OCN" dst="VBA.PN.PSYM.CLG"/>
-		<connection type="nucleus-neocortex" src="HBA.FT.SC.SUB" dst="CGA.NC.MPL.RSC"/>
+		<connection type="allocortex-neocortex" src="HBA.FT.SC.SUB" dst="CGA.NC.MPL.RSC"/>
 		<connection type="nucleus-nucleus" src="BMA.MM.PT.PTA" dst="BGA.FD.STN" notes="to Zona Incerta"/>
 		<connection type="nucleus-nucleus" src="BMA.MM.PT.PTA" dst="SMA.FD.TH.LP"/>
 		<connection type="nucleus-nucleus" src="BMA.MM.PT.PTA" dst="VBA.FD.PV.MPV"/>
@@ -114,7 +114,7 @@
 		<connection type="nucleus-nucleus" src="VBA.MM.PT.PR" dst="VBA.MM.EWN"/>
 		<connection type="nucleus-nucleus" src="VBA.MM.PT.SL" dst="VBA.MM.EWN"/>
 		<connection type="neocortex-nucleus" src="VCA.NC.V1" dst="VBA.MM.PT.SL"/>
-		<connection type="neocortex-nucleus" src="VBA.MM.PT.SL" dst="VBA.MM.OCN"/>
+		<connection type="nucleus-nucleus" src="VBA.MM.PT.SL" dst="VBA.MM.OCN"/>
 	</circuit>
 
 	<circuit id="CircuitVisionHeadControl" name="Vision Head, Neck and Face Control" enabled="true">
@@ -203,9 +203,9 @@
 		<connection type="nucleus-nucleus" src="ABA.HP.PN.LL" dst="ABA.MM.SOC"/>
 		<connection type="nucleus-nucleus" src="ABA.MM.SOC" dst="ABA.HM.CORTI"/>
 		<connection type="nucleus-nucleus" src="BGA.FT.SN.PC" dst="BMA.HP.PRF.PVR"/>
-		<connection type="nucleus-nucleus" src="MCA.NC.MC" dst="HMA.HP.PRF.CRF"/>
-		<connection type="nucleus-nucleus" src="MCA.NC.SMC" dst="HMA.HP.PRF.CRF"/>
-		<connection type="nucleus-nucleus" src="ACA.NC.BRA" dst="HMA.HP.PRF.RPO"/>
+		<connection type="neocortex-nucleus" src="MCA.NC.MC" dst="HMA.HP.PRF.CRF"/>
+		<connection type="neocortex-nucleus" src="MCA.NC.SMC" dst="HMA.HP.PRF.CRF"/>
+		<connection type="neocortex-nucleus" src="ACA.NC.BRA" dst="HMA.HP.PRF.RPO"/>
 		<connection type="nucleus-nucleus" src="HMA.HP.PRF.CRF" dst="HMA.HP.FCM"/>
 		<connection type="nucleus-nucleus" src="HMA.HP.PRF.CRF" dst="HMA.HP.PTP.TRM"/>
 		<connection type="nucleus-nucleus" src="HMA.HP.PRF.CRF" dst="HMA.HM.AMB"/>
@@ -262,7 +262,7 @@
 		<connection type="nucleus-neocortex" src="BFA.FT.AM" dst="CGA.NC.VACG"/>
 		<connection type="nucleus-nucleus" src="BFA.FT.AM" dst="HTA.FD.HT.PV"/>
 		<connection type="nucleus-nucleus" src="BMA.SC.PH.MG" dst="SMA.FD.TH.VP"/>
-		<connection type="nucleus-nucleus" src="HBA.FT.SC.SUB" dst="HTA.FD.HT.PV"/>
+		<connection type="allocortex-nucleus" src="HBA.FT.SC.SUB" dst="HTA.FD.HT.PV"/>
 		<connection type="nucleus-nucleus" src="HTA.FD.HT.PV" dst="CGA.FD.TH.AN"/>
 		<connection type="nucleus-nucleus" src="HTA.FD.HT.RCH" dst="MBA.HP.PN.RP"/>
 		<connection type="allocortex-nucleus" src="HBA.FT.SC.SUB" dst="BFA.FT.AM"/>
@@ -276,7 +276,7 @@
 		<connection type="nucleus-nucleus" src="BGA.FT.ACC" dst="BGA.FT.SN.PR"/>
 		<connection type="nucleus-nucleus" src="BGA.FT.ACC" dst="FBA.MM.VTA"/>
 		<connection type="nucleus-nucleus" src="BFA.FD.TH.PV" dst="BGA.FT.ACC"/>
-		<connection type="nucleus-nucleus" src="BFA.FD.TH.PV" dst="CGA.NC.SGC"/>
+		<connection type="nucleus-neocortex" src="BFA.FD.TH.PV" dst="CGA.NC.SGC"/>
 		<connection type="nucleus-nucleus" src="BFA.FD.TH.PV" dst="BFA.FT.AM"/>
 		<connection type="nucleus-nucleus" src="BFA.FD.TH.PV" dst="BFA.FT.BNST"/>
 		<connection type="nucleus-nucleus" src="BFA.FD.TH.PV" dst="HTA.FD.HT.PO"/>
@@ -284,24 +284,28 @@
 		<connection type="nucleus-nucleus" src="BFA.FD.TH.PT" dst="BFA.FT.BNST"/>
 		<connection type="nucleus-nucleus" src="BFA.FD.TH.PT" dst="BFA.FT.AM"/>
 		<connection type="nucleus-nucleus" src="BFA.FD.TH.PT" dst="BGA.FT.ACC"/>
-		<connection type="nucleus-nucleus" src="BFA.FD.TH.PT" dst="FCA.NC.OMPFC"/>
-		<connection type="nucleus-nucleus" src="BFA.FD.TH.PT" dst="PHA.NC.PH.ET"/>
+		<connection type="nucleus-neocortex" src="BFA.FD.TH.PT" dst="FCA.NC.OMPFC"/>
+		<connection type="nucleus-neocortex" src="BFA.FD.TH.PT" dst="PHA.NC.PH.ET"/>
 		<connection type="nucleus-nucleus" src="BFA.FT.SEP" dst="BFA.FD.TH.PV"/>
 		<connection type="nucleus-nucleus" src="BFA.FT.AM" dst="BFA.FD.TH.PV"/>
 		<connection type="nucleus-nucleus" src="FBA.MM.PAG" dst="BFA.FD.TH.PV"/>
 		<connection type="nucleus-nucleus" src="FBA.MM.RP.DRN" dst="BFA.FD.TH.PV"/>
-		<connection type="nucleus-nucleus" src="FBA.MM.PAG" dst="BFA.FD.TH.SF"/>
-		<connection type="nucleus-nucleus" src="BFA.FD.TH.SF" dst="FBA.MM.RP.DRN"/>
-		<connection type="nucleus-nucleus" src="BFA.FD.TH.SF" dst="BMA.HM.IO"/>
+		<connection type="nucleus-nucleus" src="FBA.MM.PAG" dst="FBA.FD.TH.SF"/>
+		<connection type="nucleus-nucleus" src="FBA.FD.TH.SF" dst="FBA.MM.RP.DRN"/>
+		<connection type="nucleus-nucleus" src="FBA.FD.TH.SF" dst="BMA.HM.IO"/>
 		<connection type="nucleus-nucleus" src="BFA.FT.BNST" dst="BFA.FT.IPAC"/>
 		<connection type="nucleus-nucleus" src="BFA.FT.AM" dst="BFA.FT.IPAC"/>
-		<connection type="nucleus-nucleus" src="PHA.NC.PH.PIR" dst="BFA.FT.IPAC"/>
+		<connection type="neocortex-nucleus" src="PHA.NC.PH.PIR" dst="BFA.FT.IPAC"/>
 		<connection type="nucleus-nucleus" src="BFA.FT.IPAC" dst="BFA.FT.AM"/>
 		<connection type="nucleus-nucleus" src="BFA.FT.IPAC" dst="BMA.HP.PB"/>
 		<connection type="nucleus-nucleus" src="BFA.FT.IPAC" dst="HMA.HM.SOL"/>
 		<connection type="nucleus-nucleus" src="BFA.FT.AM" dst="BFA.FT.NBM"/>
 		<connection type="nucleus-nucleus" src="BGA.FD.STN" dst="BFA.FT.NBM"/>
 		<connection type="nucleus-nucleus" src="BGA.FT.ACC" dst="BFA.FT.NBM"/>
+		<connection type="nucleus-nucleus" src="BFA.FT.AM" dst="HTA.FD.HT.LT"/>
+		<connection type="nucleus-nucleus" src="BFA.FT.AM" dst="FBA.MM.PAG"/>
+		<connection type="nucleus-nucleus" src="BFA.FT.AM" dst="BMA.HP.PB"/>
+		<connection type="nucleus-nucleus" src="BMA.HP.PB" dst="BFA.FT.AM"/>
 	</circuit>
 
 	<circuit id="CircuitConsciousMotivations" name="High-Level Motivations" enabled="true">
@@ -394,6 +398,10 @@
 		<connection type="nucleus-nucleus" src="MBA.MM.TG.LDT" dst="VBA.HM.NPH"/>
 		<connection type="nucleus-nucleus" src="VBA.HM.NPH" dst="ACA.FD.TH.SG"/>
 		<connection type="nucleus-nucleus" src="VBA.HM.NPH" dst="BMA.HP.VB"/>
+		<connection type="neocortex-nucleus" src="FCA.NC.OMPFC" dst="HBA.FD.TH.RE"/>
+		<connection type="neocortex-nucleus" src="FCA.NC.OMPFC" dst="HBA.FD.TH.RH"/>
+		<connection type="neocortex-nucleus" src="PHA.NC.PAS" dst="BGA.FT.ACC"/>
+		<connection type="neocortex-nucleus" src="PHA.NC.PH.PRR" dst="BGA.FT.ACC"/>
 	</circuit>
 
 	<circuit id="CircuitMemoryProcessAllocortex" name="Memory Process in Allocortex" enabled="true">
@@ -438,9 +446,8 @@
 		<connection type="nucleus-allocortex" src="HBA.FD.TH.RE" dst="HBA.FT.SC.SUB"/>
 		<connection type="nucleus-allocortex" src="HBA.FD.TH.RH" dst="HBA.FT.HC.CA1"/>
 		<connection type="nucleus-allocortex" src="HBA.FD.TH.RH" dst="HBA.FT.SC.SUB"/>
-		<connection type="neocortex-nucleus" src="FCA.NC.OMPFC" dst="HBA.FD.TH.RE"/>
-		<connection type="neocortex-nucleus" src="FCA.NC.OMPFC" dst="HBA.FD.TH.RH"/>
 		<connection type="nucleus-allocortex" src="FBA.MM.VTA" dst="HBA.FT.HC.CA1"/>
+		<connection type="allocortex-nucleus" src="HBA.FT.HC.CA3" dst="BGA.FT.ACC"/>
 	</circuit>
 
 	<circuit id="CircuitMemoryMB" name="Memory Process in Mammillary Bodies" enabled="true">
@@ -472,6 +479,7 @@
 		<connection type="nucleus-nucleus" src="HTA.FD.HT.LT" dst="PHA.FD.MB.LMB"/>
 		<connection type="nucleus-allocortex" src="HTA.FD.HT.PN" dst="HBA.FT.DG"/>
 		<connection type="nucleus-allocortex" src="HTA.FD.HT.PN" dst="HBA.FT.HC.CA3"/>
+		<connection type="nucleus-nucleus" src="HBA.FD.MB.MMB" dst="MBA.HP.PN.RP"/>
 	</circuit>
 
 	<!-- ================= basal ganglia activity =============== -->
@@ -531,9 +539,9 @@
 
 	<!-- ================= gustatory-olfactory perception =============== -->
 	<circuit id="CircuitGustatoryOlfactory" name="Gustatory and Olfactory Perception" enabled="true">
-		<connection type="neocortex-nucleus" src="PHA.NC.PH.PIR" dst="BFA.FT.EPF"/>
+		<connection type="neocortex-nucleus" src="PHA.NC.PH.PIR" dst="PHA.FT.EPF"/>
 		<connection type="neocortex-neocortex" src="PHA.NC.PH.PIR" dst="PHA.NC.INS.AIC"/>
-		<connection type="nucleus-neocortex" src="BFA.FT.EPF" dst="PHA.NC.INS.AIC"/>
+		<connection type="nucleus-neocortex" src="PHA.FT.EPF" dst="PHA.NC.INS.AIC"/>
 		<connection type="neocortex-neocortex" src="PHA.NC.INS.AIC" dst="PHA.NC.PH.PRR"/>
 		<connection type="nucleus-nucleus" src="HMA.HM.SOL" dst="BMA.HP.PB"/>
 		<connection type="nucleus-nucleus" src="BMA.HP.PB" dst="SMA.FD.TH.VP"/>
@@ -545,9 +553,9 @@
 		<connection type="nucleus-neocortex" src="SMA.FD.TH.VP" dst="ACA.NC.PRI"/>
 		<connection type="nucleus-neocortex" src="SMA.FD.TH.VP" dst="SMA.NC.PO.PCC"/>
 		<connection type="neocortex-neocortex" src="CGA.NC.SPL.PF" dst="SMA.NC.PO.PCC"/>
-		<connection type="nucleus-neocortex" src="SMA.NC.PO.PCC" dst="BFA.FT.AM"/>
-		<connection type="nucleus-neocortex" src="SMA.NC.PO.PCC" dst="FCA.NC.OMPFC"/>
-		<connection type="nucleus-neocortex" src="BFA.FT.AON" dst="PHA.NC.PH.PIR"/>
+		<connection type="neocortex-nucleus" src="SMA.NC.PO.PCC" dst="BFA.FT.AM"/>
+		<connection type="neocortex-neocortex" src="SMA.NC.PO.PCC" dst="FCA.NC.OMPFC"/>
+		<connection type="nucleus-neocortex" src="PHA.FT.AON" dst="PHA.NC.PH.PIR"/>
 		<connection type="neocortex-neocortex" src="PHA.NC.PH.PIR" dst="PHA.NC.PH.ET"/>
 	</circuit>
 
@@ -580,7 +588,7 @@
 		<connection type="neocortex-neocortex" src="FCA.NC.IPG" dst="FCA.NC.LPFC"/>
 		<connection type="neocortex-neocortex" src="FCA.NC.IPG" dst="CGA.NC.VACG"/>
 		<connection type="nucleus-neocortex" src="FBA.MM.VTA" dst="CGA.NC.DACG"/>
-		<connection type="nucleus-neocortex" src="CGA.NC.DACG" dst="BGA.FT.PU"/>
+		<connection type="neocortex-nucleus" src="CGA.NC.DACG" dst="BGA.FT.PU"/>
 		<connection type="neocortex-neocortex" src="CGA.NC.MPL.PCG" dst="PHA.NC.PH.ET"/>
 	</circuit>
 
@@ -613,6 +621,7 @@
 		<connection type="nucleus-nucleus" src="MBA.MM.RD" dst="BMA.HM.IO"/>
 		<connection type="nucleus-nucleus" src="HMA.HP.PRF.RPO" dst="MBA.HP.CR"/>
 		<connection type="neocortex-nucleus" src="CGA.NC.VACG" dst="MBA.MM.RD"/>
+		<connection type="nucleus-nucleus" src="MBA.HP.PN.RP" dst="MBA.HP.CR"/>
 	</circuit>
 
 	<!-- ================= muscle control =============== -->
@@ -638,12 +647,24 @@
 		<connection type="nucleus-neocortex" src="MBA.HP.CR" dst="FCA.NC.LPFC"/>
 		<connection type="neocortex-nucleus" src="FCA.NC.LPFC" dst="MCA.FD.TH.VA"/>
 		<connection type="neocortex-neocortex" src="MCA.NC.PMC.F4" dst="FCA.NC.LPFC"/>
+		<connection type="nucleus-nucleus" src="FBA.MM.VTA" dst="HTA.FD.HT.PV"/>
+		<connection type="nucleus-nucleus" src="FBA.MM.VTA" dst="HTA.FD.HT.PO"/>
+		<connection type="nucleus-neocortex" src="BFA.FT.NBM" dst="FCA.NC.OMPFC"/>
+		<connection type="nucleus-nucleus" src="BGA.FT.PU" dst="FBA.HP.LC"/>
+		<connection type="nucleus-nucleus" src="BMA.HP.PB" dst="AVA.HM.VG"/>
+		<connection type="nucleus-nucleus" src="FBA.HP.LC" dst="AVA.SC.IZ.IML"/>
+		<connection type="nucleus-nucleus" src="AVA.SC.IZ.IML" dst="AVA.SC.VH.ONF"/>
+		<connection type="nucleus-ganglion" src="AVA.SC.IZ.IML" dst="AVA.PN.PSYM.PPG"/>
+		<connection type="nucleus-nucleus" src="FBA.MM.PAG" dst="MBA.HP.BR"/>
+		<connection type="nucleus-nucleus" src="MBA.HP.BR" dst="AVA.SC.IZ.IML"/>
+		<connection type="ganglion-nucleus" src="AVA.PN.SYM.IMG" dst="FBA.MM.PAG"/>
+		<connection type="ganglion-nucleus" src="AVA.PN.SYM.IMG" dst="MBA.HP.BR"/>
 	</circuit>
 
 	<!-- ================= pain and temperature perception =============== -->
 	<circuit id="CircuitPainAndTemperature" name="Pain and Temperature Perception" enabled="true">
 		<connection type="nucleus-nucleus" src="BMA.SC.PH.MG" dst="CGA.FD.TH.SM"/>
-		<connection type="nucleus-nucleus" src="CGA.FD.TH.SM" dst="CGA.NC.SGC"/>
+		<connection type="nucleus-neocortex" src="CGA.FD.TH.SM" dst="CGA.NC.SGC"/>
 		<connection type="neocortex-neocortex" src="CGA.NC.SGC" dst="CGA.NC.VACG"/>
 		<connection type="neocortex-neocortex" src="CGA.NC.SGC" dst="CGA.NC.DACG"/>
 		<connection type="neocortex-neocortex" src="FCA.NC.IPG" dst="CGA.NC.SGC"/>
@@ -682,13 +703,13 @@
 		<connection type="nucleus-nucleus" src="BFA.FT.SEP" dst="BFA.FD.HB"/>
 		<connection type="nucleus-nucleus" src="FBA.HP.LC" dst="BFA.FD.HB"/>
 		<connection type="nucleus-nucleus" src="BFA.FD.HB" dst="BGA.HP.PPN"/>
-		<connection type="nucleus-nucleus" src="HTA.FD.HT.SCN" dst="AVA.PN.SYM.SCG"/>
-		<connection type="nucleus-nucleus" src="AVA.PN.SYM.SCG" dst="BFA.FD.PNG"/>
+		<connection type="nucleus-ganglion" src="HTA.FD.HT.SCN" dst="AVA.PN.SYM.SCG"/>
+		<connection type="ganglion-nucleus" src="AVA.PN.SYM.SCG" dst="BFA.FD.PNG"/>
 		<connection type="nucleus-nucleus" src="BFA.FD.HB" dst="BFA.FD.PNG"/>
 		<connection type="nucleus-nucleus" src="BFA.FD.PNG" dst="HTA.FD.HT.TBC"/>
 		<connection type="nucleus-nucleus" src="HTA.FD.HT.SCN" dst="HTA.FD.HT.PV" notes="GABA"/>
 		<connection type="nucleus-nucleus" src="HTA.FD.HT.PV" dst="BMA.SC.LH.LSN"/>
-		<connection type="nucleus-nucleus" src="BMA.SC.LH.LSN" dst="AVA.PN.SYM.SCG"/>
+		<connection type="nucleus-ganglion" src="BMA.SC.LH.LSN" dst="AVA.PN.SYM.SCG"/>
 		<connection type="nucleus-nucleus" src="HTA.FD.HT.LT" dst="BFA.FD.HB"/>
 		<connection type="nucleus-nucleus" src="BGA.FT.GPI" dst="BFA.FD.HB"/>
 	</circuit>
