@@ -10,20 +10,13 @@ MindRegion::MindRegion( MindArea *p_area ) {
 	area = p_area;
 
 	regionType = NULL;
-	regionLinkSet = NULL;
+	regionLinkSet = new MindRegionLinkSet();
 	poolSet = NULL;
 	linkSet = NULL;
 	location = NULL;
 }
 
 MindRegion::~MindRegion() {
-}
-
-void MindRegion::createRegion( MindRegionInfo *info ) {
-	id = info -> getId();
-	Object::setInstance( id );
-	regionType = info -> getType();
-	regionLinkSet = new MindRegionLinkSet();
 }
 
 void MindRegion::exit() {
@@ -33,10 +26,8 @@ void MindRegion::exit() {
 void MindRegion::destroy() {
 	destroyRegion();
 
-	if( regionLinkSet != NULL ) {
-		delete regionLinkSet;
-		regionLinkSet = NULL;
-	}
+	delete regionLinkSet;
+	regionLinkSet = NULL;
 }
 
 String MindRegion::getFullRegionId() {

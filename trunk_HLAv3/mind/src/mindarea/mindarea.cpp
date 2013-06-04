@@ -44,7 +44,7 @@ void MindArea::createRegion( MindTarget *target , MindRegionDef *regionDef ) {
 
 	// create region depending from type
 	MindRegion *region = NULL;
-	MindRegionInfo info;
+	MindRegionCreateInfo info;
 	info.setId( regionDef -> getName() );
 	info.setType( regionDef -> getType() );
 	region = ms -> createRegion( typeDef -> getImplementation() , type , this , &info );
@@ -87,6 +87,11 @@ MindRegionSet *MindArea::getRegionSet() {
 MindRegion *MindArea::getRegion( String group , String id ) {
 	String regionId = group + "." + id;
 	return( regionSet -> getSetItemById( regionId ) );
+}
+
+void MindArea::addRegion( MindRegion *region ) {
+	// add to collections
+	regionSet -> addSetItem( region );
 }
 
 void MindArea::addMasterLink( MindAreaLink *link ) {

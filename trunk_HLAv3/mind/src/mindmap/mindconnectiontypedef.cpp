@@ -15,6 +15,9 @@ void MindConnectionTypeDef::createFromXml( Xml xml ) {
 	name = xml.getAttribute( "name" );
 	Object::setInstance( name );
 
+	srcRegionType = xml.getAttribute( "regionsrc" );
+	dstRegionType = xml.getAttribute( "regiondst" );
+
 	// links
 	for( Xml xmlChild = xml.getFirstChild( "link-type" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "link-type" ) ) {
 		// construct MindArea from attributes

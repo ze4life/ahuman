@@ -90,6 +90,9 @@ void MindService::createService() {
 	Xml xmlMindMap = config.getFirstChild( "mind-map" );
 	ASSERTMSG( xmlMindMap.exists() , "createService: mind-map is not present in mind configuration" );
 	mindMap -> createFromXml( xmlMindMap );
+
+	// create areas
+	createAreas();
 }
 
 void MindService::initService() {
@@ -101,9 +104,6 @@ void MindService::initService() {
 	// create messaging session for mind services
 	MessagingService *ms = MessagingService::getService();
 	session = ms -> createSession();
-
-	// create areas
-	createAreas();
 
 	// create links
 	establishAreaLinks();
@@ -171,11 +171,14 @@ void MindService::createArea( MindAreaDef *areaInfo ) {
 	MindArea *area = new MindArea();
 	area -> configure( areaInfo );
 
+	addArea( area );
+}
+
+void MindService::addArea( MindArea *area ) {
 	// add to list
 	area -> createRegions( target );
 	MindRegionSet *areaRegions = area -> getRegionSet();
 	regionSet -> addRegionSet( areaRegions );
-
 	areaSet -> addMindArea( area );
 }
 
@@ -196,7 +199,7 @@ bool MindService::isMindRegion( String regionId ) {
 	return( true );
 }
 
-MindRegion *MindService::createRegion( String implementation , String type , MindArea *area , MindRegionInfo *info ) {
+MindRegion *MindService::createRegion( String implementation , String type , MindArea *area , MindRegionCreateInfo *info ) {
 	logger.logInfo( "createRegion: create mind region id=" + info -> getId() + " ..." );
 
 	MindRegion *region = NULL;
@@ -214,6 +217,8 @@ MindRegion *MindService::createRegion( String implementation , String type , Min
 		region = new MockRegion( type , area );
 	}
 
+	region -> setRegionId( info -> getId() );
+	region -> setRegionType( info -> getType() );
 	region -> createRegion( info );
 
 	return( region );
@@ -227,25 +232,25 @@ void MindService::setMindTarget( MindTarget *p_target ) {
 void MindService::establishAreaLinks() {
 	ClassList<MindCircuitDef>& circuits = mindMap -> getMindCircuits();
 	for( int k = 0; k < circuits.count(); k++ )
-		addCircuitLinks( circuits.get( k ) );
+		createCircuitLinks( circuits.get( k ) );
 }
 
-void MindService::addCircuitLinks( MindCircuitDef *circuitDef ) {
-	logger.logInfo( "addCircuitLinks: create cicuit name=" + circuitDef -> getName() );
+void MindService::createCircuitLinks( MindCircuitDef *circuitDef ) {
+	logger.logInfo( "createCircuitLinks: create cicuit name=" + circuitDef -> getName() );
 
 	ClassList<MindCircuitConnectionDef>& connections = circuitDef -> getConnections();
 	for( int k = 0; k < connections.count(); k++ )
-		addCircuitConnection( circuitDef , connections.get( k ) );
+		createCircuitConnection( circuitDef , connections.get( k ) );
 }
 
-void MindService::addCircuitConnection( MindCircuitDef *circuitDef , MindCircuitConnectionDef *connectionDef ) {
+void MindService::createCircuitConnection( MindCircuitDef *circuitDef , MindCircuitConnectionDef *connectionDef ) {
 	// get/create area link
 	String srcRegionName = connectionDef -> getSrcRegion();
 	MindRegion *srcRegion = regionSet -> getSetItemById( srcRegionName );
-	ASSERTMSG( srcRegion != NULL , "circuit=" + circuitDef -> getName() + ": unknown region=" + srcRegionName );
+	ASSERTMSG( srcRegion != NULL , "circuit=" + circuitDef -> getName() + ": unknown src region=" + srcRegionName );
 	String dstRegionName = connectionDef -> getDstRegion();
 	MindRegion *dstRegion = regionSet -> getSetItemById( dstRegionName );
-	ASSERTMSG( dstRegion != NULL , "circuit=" + circuitDef -> getName() + ": unknown region=" + dstRegionName );
+	ASSERTMSG( dstRegion != NULL , "circuit=" + circuitDef -> getName() + ": unknown dst region=" + dstRegionName );
 	ASSERTMSG( srcRegion != dstRegion , "circuit=" + circuitDef -> getName() + ": cannot connect region to itself, name=" + dstRegionName );
 
 	// check link like this is already created
@@ -256,6 +261,7 @@ void MindService::addCircuitConnection( MindCircuitDef *circuitDef , MindCircuit
 
 	// create
 	MindConnectionTypeDef *connectionType = connectionDef -> getType();
+	ASSERTMSG( connectionType != NULL , "connectionType is null in circuit connection key=" + key );
 	createRegionConnection( connectionType , srcRegion , dstRegion );
 
 	// add to map

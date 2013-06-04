@@ -13,8 +13,8 @@ void ARobotTarget::configureTarget( Xml config ) {
 void ARobotTarget::createTarget( SensorArea *sensorArea , EffectorArea *effectorArea ) {
 	ASSERTMSG( nxt.create() , "unable to initiate connection to aRobot" );
 
-	MindTarget::addSensor( ARobotTarget::createEye( sensorArea ) );
-	MindTarget::addEffector( ARobotTarget::createWheeledLegs( effectorArea ) );
+	MindTarget::addSensor( "eye" , ARobotTarget::createEye( sensorArea ) );
+	MindTarget::addEffector( "leg" , ARobotTarget::createWheeledLegs( effectorArea ) );
 }
 
 void ARobotTarget::initSensorsTarget( SensorArea *sensorArea ) {

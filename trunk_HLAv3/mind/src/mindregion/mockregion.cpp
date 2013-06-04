@@ -16,8 +16,7 @@ String MockRegion::getRegionType() {
 	return( typeName );
 }
 
-void MockRegion::createRegion( MindRegionInfo *info ) {
-	MindRegion::createRegion( info );
+void MockRegion::createRegion( MindRegionCreateInfo *info ) {
 	logger.logDebug( String( "createRegion: created mock region original type=" + typeName ) );
 
 	// get prototype definition

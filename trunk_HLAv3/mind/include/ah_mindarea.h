@@ -59,6 +59,7 @@ public:
 	MindRegionSet *getRegionSet();
 	MindRegion *getRegion( String group , String groupId );
 
+	void addRegion( MindRegion *region );
 	void addMasterLink( MindAreaLink *link );
 	void addSlaveLink( MindAreaLink *link );
 

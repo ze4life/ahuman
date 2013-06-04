@@ -8,68 +8,67 @@ MindTarget::MindTarget() {
 	attachLogger();
 
 	sensorArea = NULL;
-	sensors = NULL;
-	sensorsOffline = NULL;
-	effectorsOffline = NULL;
 	sensorTracker = NULL;
 
 	effectorArea = NULL;
-	effectors = NULL;
 }
 
-void MindTarget::configureSensors( Xml xml ) {
-	configSensors = xml;
-}
+void MindTarget::configureService( Xml p_config ) {
+	config = p_config;
 
-void MindTarget::configureEffectors( Xml xml ) {
-	configEffectors = xml;
-}
-
-void MindTarget::configureService( Xml config ) {
-	configureSensors( config.getChildNode( "sensors" ) );
-	configureEffectors( config.getChildNode( "effectors" ) );
+	// call final
+	configureTarget( p_config );
 }
 
 void MindTarget::createService() {
-	sensorArea = MindTarget::createSensorArea();
-
-	sensors = new MindSensorSet();
-	sensorsOffline = new MindSensorSet();
-	effectorsOffline = new MindEffectorSet();
-	sensorTracker = new MindSensorSetTracker( sensors );
-
-	effectorArea = MindTarget::createEffectorArea();
-	effectors = new MindEffectorSet();
+	sensorArea = new SensorArea( this );
+	effectorArea = new EffectorArea( this );
 
 	// call target with sensors and effectors
+	sensorArea -> createSensorArea();
+	effectorArea -> createEffectorArea();
+
+	// call final
 	createTarget( sensorArea , effectorArea );
 }
 
 void MindTarget::initService() {
 	MindService *ms = MindService::getService();
+	MindMap *mm = ms -> getMindMap();
+	mm -> createTargetMeta( config );
 	ms -> setMindTarget( this );
 
-	// create areas
-	effectorArea -> createEffectorArea( this );
+	sensorArea -> configure( mm -> getSensorAreaDef() );
+	effectorArea -> configure( mm -> getEffectorAreaDef() );
+	sensorTracker = new MindSensorSetTracker( sensorArea -> getSensors() );
 
 	// init areas
 	sensorArea -> initSensorArea();
 	effectorArea -> initEffectorArea();
 
 	// call final target
-	initSensorsTarget( sensorArea );
-	initEffectorsTarget( effectorArea );
+	initTarget();
 }
 
 void MindTarget::runService() {
-	startSensors();
+	// start sensors
+	sensorArea -> startSensorArea();
+	effectorArea -> startEffectorArea();
+
+	// start poller
+	sensorTracker -> startTracker();
 
 	// call final target
 	runTarget();
 }
 
 void MindTarget::stopService() {
-	stopSensors();
+	// stop poller
+	sensorTracker -> stopTracker();
+
+	// stop sensors
+	sensorArea -> stopSensorArea();
+	effectorArea -> stopEffectorArea();
 
 	// call final target
 	stopTarget();
@@ -85,56 +84,31 @@ void MindTarget::destroyService() {
 	destroyTarget();
 }
 
-void MindTarget::startSensors() {
-	// start sensors
-	sensors -> startSensorSet();
+void MindTarget::addSensor( String name , MindSensor *sensor ) {
+	Xml configSensors = config.getChildNode( "sensors" );
+	Xml xconfig = configSensors.findChildByPathAttr( "sensor" , "id" , name );
 
-	// start poller
-	sensorTracker -> startTracker();
-}
-
-void MindTarget::stopSensors() {
-	// stop poller
-	sensorTracker -> stopTracker();
-
-	// stop sensors
-	sensors -> stopSensorSet();
-}
-
-void MindTarget::addSensor( MindSensor *sensor ) {
-	String name = sensor -> getClass();
-	Xml config = configSensors.getChildNamedNode( "sensor" , name );
-
-	if( config.exists() && config.getBooleanAttribute( "run" , true ) ) {
-		sensors -> addSetItem( sensor );
-		sensor -> configureSensor( config );
-		logger.logInfo( "addSensor: sensor added - name=" + name );
+	bool offline = true;
+	if( xconfig.exists() && xconfig.getBooleanAttribute( "run" , true ) ) {
+		sensor -> configureSensor( xconfig );
+		offline = false;
 	}
-	else {
-		sensorsOffline -> addSetItem( sensor );
-		logger.logInfo( "addSensor: sensor is not configured to run - name=" + name );
+
+	sensor -> setSensorName( name );
+	sensorArea -> addSensor( sensor , offline );
+}
+
+void MindTarget::addEffector( String name , MindEffector *effector ) {
+	Xml configEffectors = config.getChildNode( "effectors" );
+	Xml xconfig = configEffectors.getChildNamedNode( "effector" , name );
+
+	bool offline = true;
+	if( xconfig.exists() && xconfig.getBooleanAttribute( "run" , true ) ) {
+		effector -> configureEffector( xconfig );
+		offline = false;
 	}
+
+	effector -> setEffectorName( name );
+	effectorArea -> addEffector( effector , offline );
 }
 
-void MindTarget::addEffector( MindEffector *effector ) {
-	String name = effector -> getClass();
-	Xml config = configEffectors.getChildNamedNode( "effector" , name );
-
-	if( config.exists() && config.getBooleanAttribute( "run" , true ) ) {
-		effectors -> addSetItem( effector );
-		effector -> configureEffector( config );
-		logger.logInfo( "addEffector: effector added - name=" + name );
-	}
-	else {
-		effectorsOffline -> addSetItem( effector );
-		logger.logInfo( "addEffector: effector is not configured to run - name=" + name );
-	}
-}
-
-MindSensorSet *MindTarget::getSensorSet() {
-	return( sensors );
-}
-
-MindSensor *MindTarget::getSensor( String name ) {
-	return( sensors -> getSensor( name ) );
-}

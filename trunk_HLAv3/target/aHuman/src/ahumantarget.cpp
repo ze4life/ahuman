@@ -12,12 +12,10 @@ void AHumanTarget::configureTarget( Xml config ) {
 }
 
 void AHumanTarget::createTarget( SensorArea *sensorArea , EffectorArea *effectorArea ) {
+	MindTarget::addSensor( "eye" , AHumanTarget::createEye( sensorArea ) );
 }
 
-void AHumanTarget::initSensorsTarget( SensorArea *sensorArea ) {
-}
-
-void AHumanTarget::initEffectorsTarget( EffectorArea *effectorArea ) {
+void AHumanTarget::initTarget() {
 }
 
 void AHumanTarget::runTarget() {
@@ -68,3 +66,4 @@ void AHumanTarget::exitTarget() {
 
 void AHumanTarget::destroyTarget() {
 }
+

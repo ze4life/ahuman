@@ -16,6 +16,15 @@ class MindConnectionTypeDef;
 class MindConnectionLinkTypeDef;
 class MindCircuitConnectionDef;
 
+class TargetAreaDef;
+class TargetRegionDef;
+class TargetRegionTypeDef;
+class TargetRegionConnectorDef;
+class TargetCircuitDef;
+class TargetCircuitConnectionDef;
+class TargetConnectionTypeDef;
+class TargetConnectionLinkTypeDef;
+
 /*#########################################################################*/
 /*#########################################################################*/
 
@@ -31,22 +40,28 @@ class NeuroLinkTarget;
 // mind map is defined statically (at least until invention of artificial genetics), in configuration files
 class MindMap : public Object {
 public:
-	MindMap() {};
+	MindMap();
 	virtual ~MindMap();
 	virtual const char *getClass() { return( "MindMap" ); };
 
 // operations
 public:
 	void createFromXml( Xml xml );
+	void createTargetMeta( Xml xml );
 
 	ClassList<MindCircuitDef>& getMindCircuits() { return( mindCircuitSet ); };
 	ClassList<MindAreaDef>& getMindAreas() { return( mindAreaSet ); };
 
 	MindRegionTypeDef *getRegionTypeDefByName( String regionTypeName );
+	MindRegionDef *getRegionDefById( String regionId );
 	MindCircuitDef *getCircuitDefByName( String circuitName );
 	MindAreaDef *getAreaDefById( String areaId );
 	MindConnectionTypeDef *getConnectionTypeDefByName( String typeName );
 	void getMapRegions( MapStringToClass<MindRegionDef>& regionMap );
+
+	TargetAreaDef *getSensorAreaDef() { return( sensorAreaInfo ); };
+	TargetRegionDef *getTargetRegionDefById( String id );
+	TargetAreaDef *getEffectorAreaDef() { return( effectorAreaInfo ); };
 
 private:
 	void createRegionTypeDefSet( Xml xml );
@@ -57,6 +72,9 @@ private:
 
 private:
 // own data
+	TargetAreaDef *sensorAreaInfo;
+	TargetAreaDef *effectorAreaInfo;
+
 	ClassList<MindRegionTypeDef> regionTypeSet;
 	ClassList<MindAreaDef> mindAreaSet;
 	ClassList<MindConnectionTypeDef> connectionTypeSet;
@@ -89,13 +107,12 @@ public:
 	MindRegionTypeDef *getOriginalTypeDef() { return( originalTypeDef ); };
 
 	ClassList<MindRegionConnectorDef>& getConnectors() { return( connectorSet ); };
-
 	MindRegionConnectorDef *getConnector( String id );
 
 private:
 	void createConnectorSetFromXml( Xml xml );
 
-private:
+protected:
 // utilities
 	String name;
 	String implementation;
@@ -128,7 +145,7 @@ public:
 	MindRegionTypeDef *getType() { return( type ); };
 	int getSize() { return( size ); };
 
-private:
+protected:
 // utilities
 	String name;
 	String typeName;
@@ -155,7 +172,9 @@ public:
 	String getId() { return( id ); };
 	String getType() { return( type ); };
 
-private:
+	bool isTarget();
+	
+protected:
 // utilities
 	String id;
 	String type;
@@ -214,7 +233,7 @@ public:
 
 	MindRegionDef *findRegion( String region );
 
-private:
+protected:
 // utility
 	String areaId;
 	String areaType;
@@ -244,11 +263,15 @@ public:
 	void resolveReferences( MindMap *map );
 
 	String getName() { return( name ); };
+	String getSrcRegionType() { return( srcRegionType ); };
+	String getDstRegionType() { return( dstRegionType ); };
 	ClassList<MindConnectionLinkTypeDef>& getLinks() { return( links ); };
 
-private:
+protected:
 // utilities
 	String name;
+	String srcRegionType;
+	String dstRegionType;
 
 // own data
 	ClassList<MindConnectionLinkTypeDef> links;
@@ -279,7 +302,7 @@ public:
 	bool isBackward() { return( back ); };
 	MindConnectionTypeDef *getConnectionDef() { return( connectionDef ); };
 
-private:
+protected:
 // utilities
 	String name;
 	String implementation;
@@ -315,7 +338,7 @@ public:
 	MindConnectionTypeDef *getType() { return( type ); };
 
 // data
-public:
+protected:
 // utility
 	String typeName;
 	String srcRegion;
@@ -324,6 +347,156 @@ public:
 // references
 	MindCircuitDef *circuitDef;
 	MindConnectionTypeDef *type;
+};
+
+// #############################################################################
+// #############################################################################
+
+class TargetAreaDef : public MindAreaDef {
+public:
+	TargetAreaDef();
+	virtual ~TargetAreaDef();
+	virtual const char *getClass() { return( "TargetAreaDef" ); };
+
+public:
+	void defineSensorArea();
+	void defineEffectorArea();
+};
+
+// #############################################################################
+// #############################################################################
+
+class TargetRegionDef : public MindRegionDef {
+public:
+	TargetRegionDef( TargetAreaDef *areaInfo );
+	virtual ~TargetRegionDef();
+	virtual const char *getClass() { return( "TargetRegionDef" ); };
+
+public:
+	void defineSensorRegion( Xml xml );
+
+	void setCircuitDef( TargetCircuitDef *info ) { circuitInfo = info; };
+	TargetCircuitDef *getCircuitDef() { return( circuitInfo ); };
+
+private:
+// references
+	TargetCircuitDef *circuitInfo;
+};
+
+// #############################################################################
+// #############################################################################
+
+class TargetRegionTypeDef : public MindRegionTypeDef {
+public:
+	TargetRegionTypeDef();
+	virtual ~TargetRegionTypeDef();
+	virtual const char *getClass() { return( "TargetRegionTypeDef" ); };
+
+public:
+	void defineSensorRegionType( Xml xml );
+	void defineRegionType( bool sensor , Xml xml );
+	void defineConnectorSet( Xml xml );
+
+	TargetCircuitDef *getCircuitInfo() { return( circuitInfo ); };
+
+private:
+	// own data
+	TargetCircuitDef *circuitInfo;
+};
+
+// #############################################################################
+// #############################################################################
+
+class TargetRegionConnectorDef : public MindRegionConnectorDef {
+public:
+	TargetRegionConnectorDef();
+	virtual ~TargetRegionConnectorDef();
+	virtual const char *getClass() { return( "TargetRegionConnectorDef" ); };
+
+public:
+	void defineRegionConnectorDef( Xml xml , TargetCircuitDef *circuitInfo );
+
+	String getRegion() { return ( region ); };
+	String getConnector() { return ( connector ); };
+	String getFunction() { return ( function ); };
+	String getNotes() { return ( notes ); };
+
+private:
+	String region;
+	String connector;
+	String function;
+	String notes;
+};
+
+// #############################################################################
+// #############################################################################
+
+class TargetCircuitDef : public MindCircuitDef {
+public:
+	TargetCircuitDef();
+	virtual ~TargetCircuitDef();
+	virtual const char *getClass() { return( "TargetCircuitDef" ); };
+
+public:
+	void defineCircuit( bool sensor , Xml xmlRegion );
+	void defineCircuitConnection( TargetRegionConnectorDef *regionConnection , Xml xml );
+
+	String getActuatorId() { return( actuatorId ); };
+	bool isSensor() { return( isSensorOption ); };
+
+private:
+	bool isSensorOption;
+	String actuatorId;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class TargetCircuitConnectionDef : public MindCircuitConnectionDef {
+public:
+	TargetCircuitConnectionDef( TargetCircuitDef *circuitInfo );
+	virtual ~TargetCircuitConnectionDef();
+	virtual const char *getClass() { return( "TargetCircuitConnectionDef" ); };
+
+public:
+	void defineCircuitConnectorDef( TargetRegionConnectorDef *regionConnection , Xml xml );
+
+private:
+// references
+	TargetRegionConnectorDef *regionConnection;
+
+// own data
+	TargetConnectionTypeDef *connectionTypeDef;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class TargetConnectionTypeDef : public MindConnectionTypeDef {
+public:
+	TargetConnectionTypeDef();
+	virtual ~TargetConnectionTypeDef();
+	virtual const char *getClass() { return( "TargetConnectionTypeDef" ); };
+
+public:
+	void defineConnectionTypeDef( TargetCircuitDef *circuitInfoTarget , TargetRegionConnectorDef *regionConnection , Xml xml );
+
+private:
+// references
+	TargetConnectionLinkTypeDef *linkInfo;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class TargetConnectionLinkTypeDef : public MindConnectionLinkTypeDef {
+public:
+	TargetConnectionLinkTypeDef( TargetConnectionTypeDef *p_connectionDef );
+	virtual ~TargetConnectionLinkTypeDef();
+	virtual const char *getClass() { return( "TargetConnectionLinkTypeDef" ); };
+
+public:
+	void defineConnectionLinkTypeDef( TargetCircuitDef *circuitInfoTarget , TargetRegionConnectorDef *regionConnection , Xml xml );
 };
 
 /*#########################################################################*/

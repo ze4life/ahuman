@@ -4,38 +4,42 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-EffectorArea *MindTarget::createEffectorArea() {
-	return( new EffectorArea() );
-}
-
-/*#########################################################################*/
-/*#########################################################################*/
-
-EffectorArea::EffectorArea() {
-	target = NULL;
+EffectorArea::EffectorArea( MindTarget *p_target ) {
+	target = p_target;
+	effectors = NULL;
+	effectorsOffline = NULL;
 }
 
 EffectorArea::~EffectorArea() {
 }
 
 // own functions
-void EffectorArea::createEffectorArea( MindTarget *p_target ) {
-	target = p_target;
+void EffectorArea::createEffectorArea() {
+	effectors = new MindEffectorSet( this );
+	effectorsOffline = new MindEffectorSet( this );
+}
+
+void EffectorArea::startEffectorArea() {
+	// start sensors
+	effectors -> startEffectorSet();
+}
+
+void EffectorArea::stopEffectorArea() {
+	// stop sensors
+	effectors -> stopEffectorSet();
 }
 
 void EffectorArea::initEffectorArea() {
 }
 
-MindTarget *EffectorArea::getTarget() {
-	return( target );
+void EffectorArea::addEffector( MindEffector *effector , bool offline ) {
+	if( !offline ) {
+		effectors -> addSetItem( effector );
+		logger.logInfo( "addEffector: effector added - name=" + effector -> getEffectorName() );
+	}
+	else {
+		effectorsOffline -> addSetItem( effector );
+		logger.logInfo( "addEffector: effector is not configured to run - name=" + effector -> getEffectorName() );
+	}
 }
 
-// mind area lifecycle
-void EffectorArea::initRegionsInArea( MindTarget *target ) {
-}
-
-void EffectorArea::wakeupArea( MindActiveMemory *activeMemory ) {
-}
-
-void EffectorArea::suspendArea() {
-}

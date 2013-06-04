@@ -34,7 +34,7 @@ class MindCircuitDef;
 class MindCircuitConnectionDef;
 class MindConnectionTypeDef;
 class MindConnectionLinkTypeDef;
-class MindRegionInfo;
+class MindRegionCreateInfo;
 class NeuroLinkSource;
 class NeuroLinkTarget;
 class NeuroLinkInfo;
@@ -53,8 +53,11 @@ public:
 	bool isMindRegion( String regionId );
 	  
 	// create core items
-	MindRegion *createRegion( String implementation , String type , MindArea *area , MindRegionInfo *info );
+	MindRegion *createRegion( String implementation , String type , MindArea *area , MindRegionCreateInfo *info );
 	NeuroLink *createNeuroLink( String implementation , String type , NeuroLinkSource *src , NeuroLinkTarget *dst , NeuroLinkInfo *info );
+
+	void addArea( MindArea *area );
+	void createCircuitLinks( MindCircuitDef *circuitDef );
 
 // whole mind lifecycle
 public:
@@ -78,8 +81,7 @@ private:
 	void createAreas();
 	void createArea( MindAreaDef *areaInfo );
 	void establishAreaLinks();
-	void addCircuitLinks( MindCircuitDef *circuitDef );
-	void addCircuitConnection( MindCircuitDef *circuitDef , MindCircuitConnectionDef *connectionDef );
+	void createCircuitConnection( MindCircuitDef *circuitDef , MindCircuitConnectionDef *connectionDef );
 	void createRegionConnection( MindConnectionTypeDef *connectionType , MindRegion *srcRegion , MindRegion *dstRegion );
 	NeuroLink *createNeuroLink( MindConnectionTypeDef *connectionType , MindConnectionLinkTypeDef *linkDef , MindRegion *srcRegion , MindRegion *dstRegion );
 	MindRegionLink *createRegionLink( MindConnectionTypeDef *connectionType , MindRegion *srcRegion , MindRegion *dstRegion );

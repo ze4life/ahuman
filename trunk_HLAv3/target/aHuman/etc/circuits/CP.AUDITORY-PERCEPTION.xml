@@ -56,7 +56,6 @@
 		<link src="SG" dst="A1"/>
 	</circuit>
 
-
 	<circuit id="CP.FIVE-AUDITORY-PATHWAYS" name="Five Parallel Auditory Pathways"
 		image="http://lifeboat.com/kurzweil/cochlea.gif"
 		reference="http://lifeboat.com/ex/law.of.accelerating.returns"
@@ -81,6 +80,30 @@
 		<link src="ICC" dst="VNTB"/>
 		<link src="VNTB" dst="Cochlea"/>
 		<link src="MGB" dst="AC"/>
+	</circuit>
+
+	<circuit id="CP.AUDITORY-SYSTEM-BRAIN" name="Auditory System in Brain"
+		image="http://www.benbest.com/science/anatmind/FigVI1.gif"
+		reference="http://www.benbest.com/science/anatmind/anatmd6.html"
+		components="A1=ACA.NC.A1 Ear=ABA.HM.CORTI Cochlea=ABA.HM.COCH Olive=ABA.MM.SOC IC=ABA.MM.IC MGB=ABA.FD.TH.MGB"
+		>
+		<link src="Ear" dst="Cochlea"/>
+		<link src="Cochlea" dst="Olive"/>
+		<link src="Olive" dst="IC"/>
+		<link src="IC" dst="MGB"/>
+		<link src="MGB" dst="A1"/>
+	</circuit>
+
+	<circuit id="CP.AUDITORY-SYSTEM-MODEL" name="Auditory System Model"
+		image="http://ars.sciencedirect.com/content/image/1-s2.0-S1359644605035427-gr1.jpg"
+		reference="http://www.sciencedirect.com/science/article/pii/S1359644605035427"
+		components="A1=ACA.NC.A1 Ear=ABA.HM.CORTI Cochlea=ABA.HM.COCH Olive=ABA.MM.SOC IC=ABA.MM.IC MGB=ABA.FD.TH.MGB"
+		>
+		<link src="Ear" dst="Cochlea"/>
+		<link src="Cochlea" dst="Olive"/>
+		<link src="Olive" dst="IC"/>
+		<link src="IC" dst="MGB"/>
+		<link src="MGB" dst="A1"/>
 	</circuit>
 
 </circuits>

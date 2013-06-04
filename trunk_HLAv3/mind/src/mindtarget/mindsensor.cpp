@@ -11,79 +11,38 @@ MindSensor::MindSensor( SensorArea *p_area )
 	pollState = false;
 	pollNextMs = 0;
 	pollIntervalMs = 0;
-
-	memorySensorySignal = NULL;
-	memorySensoryFeedbackSignal = NULL;
 }
 
-String MindSensor::getRegionType() {
-	return( "MindSensor" );
+void MindSensor::configure( Xml p_config ) {
+	config = p_config;
+	configureSensor( config );
 }
 
 void MindSensor::setPollState( bool state ) {
 	pollState = state;
 }
 
-void MindSensor::createSensorySignal( int sizeX , int sizeY ) {
-	ASSERTMSG( sizeX > 0 && sizeY > 0 , "createSensorySignal: invalid value" );
-	memorySensorySignal = new NeuroSignal( sizeX , sizeY );
-}
-
-void MindSensor::createControlFeedbackSignal( int sizeX , int sizeY ) {
-	ASSERTMSG( sizeX > 0 && sizeY > 0 , "createControlFeedbackSignal: invalid value" );
-	memorySensoryFeedbackSignal = new NeuroSignal( sizeX , sizeY );
-}
-
-void MindSensor::getSourceSizes( String entity , int *sizeX , int *sizeY ) {
-	if( entity.equals( "sensor.data" ) ) {
-		memorySensorySignal -> getSizeInfo( sizeX , sizeY );
-		return;
-	}
-
-	if( entity.equals( "sensor.control-feedback" ) ) {
-		memorySensoryFeedbackSignal -> getSizeInfo( sizeX , sizeY );
-		return;
-	}
-}
-
-void MindSensor::createRegion() {
+void MindSensor::createRegion( MindRegionCreateInfo *info ) {
 	// call sensor creation
-	createSensor();
-
-	// construct event handlers
-	sourceSensoryData.create( this , "sensor.data" );
-	sourceSensoryControlFeedback.create( this , "sensor.control-feedback" );
-	targetSensoryControl.create( this , "sensor.control" );
-	targetSensoryControl.setHandler( ( MindRegion::NeuroLinkTargetHandler )&MindSensor::applySensorControl );
-
-	int sizeX , sizeY;
-	memorySensorySignal -> getSizeInfo( &sizeX , &sizeY );
-	logger.logDebug( String( "createRegion: created sensor region: signalSize=" ) + getSignalSize() );
+	createSensor( info );
+	logger.logDebug( String( "createRegion: created sensor region" ) );
 }
 
 void MindSensor::exitRegion() {
 }
 
 void MindSensor::destroyRegion() {
-	if( memorySensorySignal != NULL )
-		delete memorySensorySignal;
-	if( memorySensoryFeedbackSignal != NULL )
-		delete memorySensoryFeedbackSignal;
-
-	memorySensorySignal = NULL;
-	memorySensoryFeedbackSignal = NULL;
 }
 
-void MindSensor::processSensorData( String id ) {
-	++msgId;
+void MindSensor::processSensorData( NeuroLinkSource *src , String id ) {
+	NeuroSignal *memorySensorySignal = getSensorySignal( src );
 	memorySensorySignal -> setId( id );
-	memorySensorySignal -> setTs( Timer::getCurrentTimeMillis() );
 
 	// log sensor message
 	logger.logInfo( "processSensorData: send signal id=" + id );
 	LOGDEBUG( "processSensorData: data signal id=" + id + ", data=" + memorySensorySignal -> getNumberDataString() );
 
-	sourceSensoryData.sendMessage( memorySensorySignal );
+	src -> sendMessage( memorySensorySignal );
 }
 
 bool MindSensor::getPollState() {
@@ -94,16 +53,10 @@ int MindSensor::getPollIntervalMs( int timeNowMs ) {
 	return( pollNextMs - timeNowMs );
 }
 
-NeuroSignal *MindSensor::getSensorySignal() {
+NeuroSignal *MindSensor::getSensorySignal( NeuroLinkSource *src ) {
+	++msgId;
+	NeuroSignal *memorySensorySignal = NULL;
+	memorySensorySignal -> setTs( Timer::getCurrentTimeMillis() );
+
 	return( memorySensorySignal );
-}
-
-void MindSensor::applySensorControl( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *srcData ) {
-	// TBD: process control signal
-	// generate control feedback message
-	sourceSensoryControlFeedback.sendMessage( memorySensoryFeedbackSignal );
-}
-
-int MindSensor::getSignalSize() {
-	return( memorySensorySignal -> getMaxSize() );
 }

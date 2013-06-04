@@ -13,8 +13,7 @@ String AllocortexRegion::getRegionType() {
 	return( "AllocortexRegion" );
 }
 
-void AllocortexRegion::createRegion( MindRegionInfo *info ) {
-	MindRegion::createRegion( info );
+void AllocortexRegion::createRegion( MindRegionCreateInfo *info ) {
 	logger.logDebug( String( "createRegion: created allocortex region" ) );
 }
 

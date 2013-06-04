@@ -31,8 +31,7 @@ public:
 	// target lifecycle
 	virtual void configureTarget( Xml config );
 	virtual void createTarget( SensorArea *sensorArea , EffectorArea *effectorArea );
-	virtual void initSensorsTarget( SensorArea *sensorArea );
-	virtual void initEffectorsTarget( EffectorArea *effectorArea );
+	virtual void initTarget();
 	virtual void runTarget();
 	virtual void stopTarget();
 	virtual void exitTarget();
@@ -44,6 +43,9 @@ protected:
 	void cmdPlayCircuit( Xml scenario );
 	void cmdVerifyModel( Xml modelArea );
 	void cmdCreateWikiPages( Xml wiki );
+
+private:
+	MindSensor *createEye( SensorArea *sensorArea );
 };
 
 /*#########################################################################*/
