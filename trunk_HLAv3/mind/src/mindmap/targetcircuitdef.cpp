@@ -17,7 +17,7 @@ void TargetCircuitDef::defineCircuit( bool p_isSensorOption , Xml xmlRegion ) {
 
 	// circuit data
 	MindCircuitDef::id = actuatorId + ".circuit";
-	MindCircuitDef::name = xmlRegion.getAttribute( "name" )  + " circuit";
+	MindCircuitDef::name = actuatorId  + " circuit";
 	Object::setInstance( MindCircuitDef::id );
 	MindCircuitDef::enabled = true;
 }

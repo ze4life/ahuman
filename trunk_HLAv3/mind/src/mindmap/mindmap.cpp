@@ -116,10 +116,10 @@ void MindMap::createRegionMap( MindAreaDef *info ) {
 	ClassList<MindRegionDef>& regions = info -> getRegions();
 	for( int k = 0; k < regions.count(); k++ ) {
 		MindRegionDef *region = regions.get( k );
-		String name = region -> getName();
+		String id = region -> getId();
 
-		ASSERTMSG( mindRegionMap.get( name ) == NULL , "duplicate region ID=" + name );
-		mindRegionMap.add( name , region );
+		ASSERTMSG( mindRegionMap.get( id ) == NULL , "duplicate region ID=" + id );
+		mindRegionMap.add( id , region );
 	}
 }
 
@@ -146,13 +146,12 @@ MindAreaDef *MindMap::getAreaDefById( String areaId ) {
 }
 
 void MindMap::getMapRegions( MapStringToClass<MindRegionDef>& regionMap ) {
-	ClassList<MindAreaDef>& arealist = getMindAreas();
-	for( int k = 0; k < arealist.count(); k++ ) {
-		MindAreaDef *areaDef = arealist.get( k );
+	for( int k = 0; k < mindAreaMap.count(); k++ ) {
+		MindAreaDef *areaDef = mindAreaMap.getClassByIndex( k );
 		ClassList<MindRegionDef>& regionlist = areaDef -> getRegions();
 		for( int m = 0; m < regionlist.count(); m++ ) {
 			MindRegionDef *regionDef = regionlist.get( m );
-			regionMap.add( regionDef -> getName() , regionDef );
+			regionMap.add( regionDef -> getId() , regionDef );
 		}
 	}
 }
@@ -170,7 +169,8 @@ void MindMap::createTargetMeta( Xml xml ) {
 		regionInfo -> defineSensorRegion( xmlChild );
 
 		// add to maps
-		mindRegionMap.add( regionInfo -> getName() , regionInfo );
+		sensorAreaInfo -> addRegion( regionInfo );
+		mindRegionMap.add( regionInfo -> getId() , regionInfo );
 		TargetRegionTypeDef *regionTypeInfo = ( TargetRegionTypeDef * )regionInfo -> getType();
 		regionTypeMap.add( regionTypeInfo -> getName() , regionTypeInfo );
 

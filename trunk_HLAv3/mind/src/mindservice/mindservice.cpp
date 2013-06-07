@@ -171,12 +171,12 @@ void MindService::createArea( MindAreaDef *areaInfo ) {
 	MindArea *area = new MindArea();
 	area -> configure( areaInfo );
 
+	area -> createRegions( target );
 	addArea( area );
 }
 
 void MindService::addArea( MindArea *area ) {
 	// add to list
-	area -> createRegions( target );
 	MindRegionSet *areaRegions = area -> getRegionSet();
 	regionSet -> addRegionSet( areaRegions );
 	areaSet -> addMindArea( area );
@@ -236,7 +236,7 @@ void MindService::establishAreaLinks() {
 }
 
 void MindService::createCircuitLinks( MindCircuitDef *circuitDef ) {
-	logger.logInfo( "createCircuitLinks: create cicuit name=" + circuitDef -> getName() );
+	logger.logInfo( "createCircuitLinks: create cicuit id=" + circuitDef -> getId() );
 
 	ClassList<MindCircuitConnectionDef>& connections = circuitDef -> getConnections();
 	for( int k = 0; k < connections.count(); k++ )

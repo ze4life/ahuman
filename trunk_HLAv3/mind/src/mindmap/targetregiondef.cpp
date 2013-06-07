@@ -14,8 +14,8 @@ TargetRegionDef::~TargetRegionDef() {
 }
 
 void TargetRegionDef::defineSensorRegion( Xml xml ) {
-	MindRegionDef::name = xml.getAttribute( "id" );
-	Object::setInstance( MindRegionDef::name );
+	MindRegionDef::id = xml.getAttribute( "id" );
+	Object::setInstance( MindRegionDef::id );
 	MindRegionDef::size = xml.getIntAttribute( "size" , 0 );
 
 	// region type for sensor is the same as region itself

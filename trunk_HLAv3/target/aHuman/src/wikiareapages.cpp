@@ -59,7 +59,7 @@ void WikiAreaPages::createAreaPages_createRegionTableSection( String wikiDir , M
 	MapStringToClass<MindRegionDef> regionMap;
 	for( int k = 0; k < regionList.count(); k++ ) {
 		MindRegionDef *regionDef = regionList.get( k );
-		regionMap.add( regionDef -> getName() , regionDef );
+		regionMap.add( regionDef -> getId() , regionDef );
 	}
 
 	for( int k = 0; k < regionMap.count(); k++ ) {
@@ -82,7 +82,7 @@ String WikiAreaPages::createAreaPages_getRegionTableRow( MindRegionDef *regionDe
 	}
 
 	// region row
-	String regionId = regionDef -> getName();
+	String regionId = regionDef -> getId();
 	const XmlHMindElementInfo& info = wm -> hmindxml.getElementInfo( regionId );
 	
 	value = "|| " + wm -> getRegionReference( regionId ) + " || " + 
@@ -472,8 +472,8 @@ void WikiAreaPages::createDotFile( MindAreaDef *areaDef , MapStringToClass<MindC
 	for( int k = 0; k < regions.count(); k++ ) {
 		MindRegionDef *regionDef = regions.get( k );
 
-		String dotdef = wm -> hmindxml.getDotDef( regionDef -> getName() );
-		String nodeline = "\t\"" + regionDef -> getName() + "\"";
+		String dotdef = wm -> hmindxml.getDotDef( regionDef -> getId() );
+		String nodeline = "\t\"" + regionDef -> getId() + "\"";
 		if( !dotdef.isEmpty() ) {
 			String s = wm -> setSpecialCharacters( dotdef );
 			s += ", label=<" + createDotFile_getRegionLabel( regionDef , inputs , outputs ) + ">";
@@ -507,12 +507,12 @@ void WikiAreaPages::createDotFile( MindAreaDef *areaDef , MapStringToClass<MindC
 
 String WikiAreaPages::createDotFile_getRegionLabel( MindRegionDef *region , MapStringToClass<MindCircuitConnectionDef>& inputs , MapStringToClass<MindCircuitConnectionDef>& outputs ) {
 	MindService *ms = MindService::getService();
-	String label = "<b>" + region -> getName() + "</b>";
+	String label = "<b>" + region -> getId() + "</b>";
 
 	MapStringToClass<MindCircuitConnectionDef> inputAreas;
 	for( int k = 0; k < inputs.count(); k++ ) {
 		MindCircuitConnectionDef *c = inputs.getClassByIndex( k );
-		if( !region -> getName().equals( c -> getDstRegion() ) )
+		if( !region -> getId().equals( c -> getDstRegion() ) )
 			continue;
 
 		String regionId = c -> getSrcRegion();
@@ -531,7 +531,7 @@ String WikiAreaPages::createDotFile_getRegionLabel( MindRegionDef *region , MapS
 	MapStringToClass<MindCircuitConnectionDef> outputAreas;
 	for( int k = 0; k < outputs.count(); k++ ) {
 		MindCircuitConnectionDef *c = outputs.getClassByIndex( k );
-		if( !region -> getName().equals( c -> getSrcRegion() ) )
+		if( !region -> getId().equals( c -> getSrcRegion() ) )
 			continue;
 
 		String regionId = c -> getDstRegion();

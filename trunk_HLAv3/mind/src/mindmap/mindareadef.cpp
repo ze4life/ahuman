@@ -30,7 +30,7 @@ void MindAreaDef::createFromXml( Xml xml ) {
 		MindRegionDef *region = new MindRegionDef( this );
 		region -> createFromXml( xmlChild );
 		regions.add( region );
-		regionMap.add( region -> getName() , region );
+		regionMap.add( region -> getId() , region );
 	}
 }
 
