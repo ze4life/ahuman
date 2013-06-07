@@ -45,7 +45,7 @@ void MindArea::createRegion( MindTarget *target , MindRegionDef *regionDef ) {
 	// create region depending from type
 	MindRegion *region = NULL;
 	MindRegionCreateInfo info;
-	info.setId( regionDef -> getName() );
+	info.setId( regionDef -> getId() );
 	info.setType( regionDef -> getType() );
 	region = ms -> createRegion( typeDef -> getImplementation() , type , this , &info );
 

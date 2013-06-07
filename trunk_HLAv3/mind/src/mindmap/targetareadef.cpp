@@ -26,3 +26,8 @@ void TargetAreaDef::defineEffectorArea() {
 	MindAreaDef::areaFunction = "All effector regions";
 }
 
+void TargetAreaDef::addRegion( TargetRegionDef *regionDef ) {
+	MindAreaDef::regions.add( regionDef );
+	MindAreaDef::regionMap.add( regionDef -> getId() , regionDef );
+}
+

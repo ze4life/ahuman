@@ -140,14 +140,14 @@ public:
 	void resolveReferences( MindMap *map );
 
 	MindAreaDef *getArea() { return( area ); };
-	String getName() { return( name ); };
+	String getId() { return( id ); };
 	String getTypeName() { return( typeName ); };
 	MindRegionTypeDef *getType() { return( type ); };
 	int getSize() { return( size ); };
 
 protected:
 // utilities
-	String name;
+	String id;
 	String typeName;
 	int size;
 
@@ -361,6 +361,8 @@ public:
 public:
 	void defineSensorArea();
 	void defineEffectorArea();
+
+	void addRegion( TargetRegionDef *regionDef );
 };
 
 // #############################################################################

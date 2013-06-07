@@ -5,7 +5,7 @@
 /*#########################################################################*/
 
 WikiRegionPage::WikiRegionPage( WikiMaker *p_wm , String p_wikiDir , MindRegionDef *p_region ) 
-:	info( p_wm -> hmindxml.getElementInfo( p_region -> getName() ) ) {
+:	info( p_wm -> hmindxml.getElementInfo( p_region -> getId() ) ) {
 	attachLogger();
 	wm = p_wm;
 	wikiDir = p_wikiDir;
@@ -346,7 +346,7 @@ String WikiRegionPage::createThirdpartyAndReferencesSection_getCircuitKey( MindR
 	wm -> circuitsxml.getCircuitComponents( cinfo , comps );
 
 	// check circuit mentions region
-	String regionId = regionDef -> getName();
+	String regionId = regionDef -> getId();
 	for( int k = 0; k < comps.count(); k++ ) {
 		String comp = comps.get( k );
 		if( comp.equals( regionId ) )

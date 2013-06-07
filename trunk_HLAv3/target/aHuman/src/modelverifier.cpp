@@ -252,16 +252,16 @@ void ModelVerifier::checkMindModel() {
 }
 
 bool ModelVerifier::checkMindModel_verifyRegion( MindRegionDef *regionDef ) {
-	String name = regionDef -> getName();
+	String regionId = regionDef -> getId();
 
 	bool checkRegion = true;
 	MindService *ms = MindService::getService();
-	MindRegion *region = ms -> getMindRegion( name );
+	MindRegion *region = ms -> getMindRegion( regionId );
 
 	// check mapped to hierarchy
-	if( hierarchyMap.get( name ) == NULL ) {
+	if( hierarchyMap.get( regionId ) == NULL ) {
 		checkRegion = false;
-		logger.logError( "checkMindModel_verifyRegion: " + name + " - region is not mapped to hierarchy" );
+		logger.logError( "checkMindModel_verifyRegion: " + regionId + " - region is not mapped to hierarchy" );
 	}
 
 	// check region in circuits
@@ -277,12 +277,12 @@ bool ModelVerifier::checkMindModel_verifyRegion( MindRegionDef *regionDef ) {
 }
 
 bool ModelVerifier::checkMindModel_verifyLinkedConnectors( MindRegionDef *regionDef , MindRegion *region ) {
-	String name = regionDef -> getName();
+	String regionId = regionDef -> getId();
 
 	// check region has no connections at all
 	MindRegionLinkSet *set = region -> getRegionLinkSet();
 	if( set == NULL || set -> getCount() == 0 ) {
-		logger.logError( "checkMindModel_verifyLinkedConnectors: region=" + name + " is not connected to any other region" );
+		logger.logError( "checkMindModel_verifyLinkedConnectors: region=" + regionId + " is not connected to any other region" );
 		return( false );
 	}
 
@@ -308,7 +308,7 @@ bool ModelVerifier::checkMindModel_verifyLinkedConnectors( MindRegionDef *region
 
 		if( present == false ) {
 			checkRegion = false;
-			logger.logError( "checkMindModel_verifyLinkedConnectors: region=" + name + " connector=" + entity + " - is not connected" );
+			logger.logError( "checkMindModel_verifyLinkedConnectors: region=" + regionId + " connector=" + entity + " - is not connected" );
 		}
 	}
 
@@ -316,10 +316,10 @@ bool ModelVerifier::checkMindModel_verifyLinkedConnectors( MindRegionDef *region
 }
 
 bool ModelVerifier::checkMindModel_verifyRegionCircuits( MindRegionDef *regionDef , MindRegion *region ) {
-	String name = regionDef -> getName();
+	String regionId = regionDef -> getId();
 
 	// ignore unknown region
-	if( !hmindxml.isComponent( name ) )
+	if( !hmindxml.isComponent( regionId ) )
 		return( true );
 
 	// find circuit which references given region
@@ -327,11 +327,11 @@ bool ModelVerifier::checkMindModel_verifyRegionCircuits( MindRegionDef *regionDe
 	circuitsxml.getCircuitList( circuits );
 	for( int k = 0; k < circuits.count(); k++ ) {
 		String circuit = circuits.get( k );
-		if( circuitsxml.checkRegionUsedByCircuit( name , circuit ) )
+		if( circuitsxml.checkRegionUsedByCircuit( regionId , circuit ) )
 			return( true );
 	}
 
-	logger.logError( "checkMindModel_verifyRegionCircuits: region=" + name + " is not covered by circuit collection" );
+	logger.logError( "checkMindModel_verifyRegionCircuits: region=" + regionId + " is not covered by circuit collection" );
 	return( false );
 }
 
