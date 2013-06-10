@@ -25,16 +25,19 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/TARGET.TSA.EYE.dot.jpg
 *Inbound Region Connections:*
 
 || *Source Area* || *Source Region* || *Source Name* || *Type* || *Reference* ||
-|| [BrainAreaVBA VBA] || [BrainRegionVBA_HP_ABD VBA.HP.ABD] || Abducens Nucleus || actuator.TARGET.TSA.EYE-nucleus.output || [http://what-when-how.com/neuroscience/the-cranial-nerves-organization-of-the-central-nervous-system-part-4 Extraocular eye muscles (ABD -> EYE)] ||
-||  || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || Oculomotor Nucleus || actuator.TARGET.TSA.EYE-nucleus.output || [http://what-when-how.com/neuroscience/the-cranial-nerves-organization-of-the-central-nervous-system-part-4 Extraocular eye muscles (OCN -> EYE)] ||
-||  || [BrainRegionVBA_MM_TRH VBA.MM.TRH] || Trochlear Nucleus || actuator.TARGET.TSA.EYE-nucleus.output || [http://what-when-how.com/neuroscience/the-cranial-nerves-organization-of-the-central-nervous-system-part-4 Extraocular eye muscles (TRC -> EYE)] ||
+|| [BrainAreaAVA AVA] || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || Superior Cervical Ganglion || TARGET.TSA.EYE-muscle-pupil-open || (unknown reference) ||
+|| [BrainAreaVBA VBA] || [BrainRegionVBA_HP_ABD VBA.HP.ABD] || Abducens Nucleus || TARGET.TSA.EYE-muscle-rotate-vestibular || [http://what-when-how.com/neuroscience/the-cranial-nerves-organization-of-the-central-nervous-system-part-4 Extraocular eye muscles (ABD -> EYE)] ||
+||  || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || Oculomotor Nucleus || TARGET.TSA.EYE-muscle-rotate-major || [http://what-when-how.com/neuroscience/the-cranial-nerves-organization-of-the-central-nervous-system-part-4 Extraocular eye muscles (OCN -> EYE)] ||
+||  || [BrainRegionVBA_MM_TRH VBA.MM.TRH] || Trochlear Nucleus || TARGET.TSA.EYE-muscle-rotate-minor || [http://what-when-how.com/neuroscience/the-cranial-nerves-organization-of-the-central-nervous-system-part-4 Extraocular eye muscles (TRC -> EYE)] ||
+||  || [BrainRegionVBA_PN_PSYM_CLG VBA.PN.PSYM.CLG] || Ciliary Ganglion || TARGET.TSA.EYE-muscle-curvature || (unknown reference) ||
+||  || [BrainRegionVBA_PN_PSYM_EPG VBA.PN.PSYM.EPG] || Episcleral Ganglion || TARGET.TSA.EYE-muscle-pupil-close || (unknown reference) ||
 
 *Outbound Region Connections:*
 
 || *Target Area* || *Target Region* || *Target Name* || *Type* || *Reference* ||
-|| [BrainAreaHMA HMA] || [BrainRegionHMA_HM_TGM_STR HMA.HM.TGM.STR] || Spinal Trigeminal Nucleus || actuator.TARGET.TSA.EYE-nucleus.input || (unknown reference) ||
-||  || [BrainRegionHMA_HP_PTP_PTR HMA.HP.PTP.PTR] || Principal Trigeminal Nucleus || actuator.TARGET.TSA.EYE-nucleus.input || (unknown reference) ||
-|| [BrainAreaVBA VBA] || [BrainRegionVBA_FD_RT VBA.FD.RT] || Retina || actuator.TARGET.TSA.EYE-nucleus.input || (unknown reference) ||
+|| [BrainAreaHMA HMA] || [BrainRegionHMA_HM_TGM_STR HMA.HM.TGM.STR] || Spinal Trigeminal Nucleus || TARGET.TSA.EYE-visceral || (unknown reference) ||
+||  || [BrainRegionHMA_HP_PTP_PTR HMA.HP.PTP.PTR] || Principal Trigeminal Nucleus || TARGET.TSA.EYE-somatic || (unknown reference) ||
+|| [BrainAreaVBA VBA] || [BrainRegionVBA_FD_RT VBA.FD.RT] || Retina || TARGET.TSA.EYE-edge-output || (unknown reference) ||
 
 = Thirdparty Circuits =
 (generated)
