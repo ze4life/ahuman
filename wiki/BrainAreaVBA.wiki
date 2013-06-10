@@ -28,6 +28,8 @@
 || [BrainRegionVBA_MM_TRH VBA.MM.TRH] || Trochlear Nucleus || Motor Relay Nucleus || Control superior oblique muscles of eyes || Muscle nucleus, change eye direction ||
 || [BrainRegionVBA_PN_PSYM_CLG VBA.PN.PSYM.CLG] || Ciliary Ganglion || Parasymp. Gang. || Control pupillary diameter || Sphincter muscles of the iris ||
 || [BrainRegionVBA_PN_PSYM_EPG VBA.PN.PSYM.EPG] || Episcleral Ganglion || Parasymp. Gang. || Control curvature of lens || Sphincter muscles of the iris ||
+|| [BrainRegionVBA_PN_SYM_SCG VBA.PN.SYM.SCG] || Superior Cervical Ganglion || Symp. Gang. || Eye, tear and salivatory glands || Th 1-5 ||
+|| [BrainRegionVBA_SC_IZ_CS VBA.SC.IZ.CS] || Ciliospinal Center || Preganglionic Nucleus || Control of iris dilator muscle || Budge's Center, intermediolateral cell column ||
 
 = Connectivity =
 (generated)
@@ -46,7 +48,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/VBA.dot.jpg
 ||  || [BrainRegionVBA_MM_SC_SUP VBA.MM.SC.SUP] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (Retina -> SC, abstract)] ||
 || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || [BrainRegionVBA_MM_PT_NOT VBA.MM.PT.NOT] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionVBA_HP_ABD VBA.HP.ABD] || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || nucleus-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) (Abducens -> Oculomotor)] ||
-|| [BrainRegionVBA_MM_EWN VBA.MM.EWN] || [BrainRegionVBA_PN_PSYM_CLG VBA.PN.PSYM.CLG] || nucleus-ganglion || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (EWN -> Ciliary)] ||
+|| [BrainRegionVBA_MM_EWN VBA.MM.EWN] || [BrainRegionVBA_PN_PSYM_CLG VBA.PN.PSYM.CLG] || nucleus-ganglion || [http://www.nature.com/pr/journal/v71/n3/fig_tab/pr201138f1.html Sympathetic and parasympathetic eye pathways (EWN -> CLG)] ||
 ||  || [BrainRegionVBA_PN_PSYM_EPG VBA.PN.PSYM.EPG] || nucleus-ganglion || (unknown reference) ||
 || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || [BrainRegionVBA_PN_PSYM_CLG VBA.PN.PSYM.CLG] || nucleus-ganglion || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Vision Components (OCN -> CG)] ||
 || [BrainRegionVBA_MM_PT_NOT VBA.MM.PT.NOT] || [BrainRegionVBA_MM_SC_SUP VBA.MM.SC.SUP] || nucleus-nucleus || (unknown reference) ||
@@ -85,11 +87,13 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/VBA.dot.jpg
 ||  ||  || [BrainRegionVCA_NC_V3 VCA.NC.V3] || Associative Visual Cortex || neocortex-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (VAC -> SupraOculomotor)] ||
 || <font color="red">Hindbrain</font> || || || || || ||
 || [BrainAreaHTA HTA] || [BrainRegionVBA_MM_PT_NOT VBA.MM.PT.NOT] || [BrainRegionHTA_FD_HT_SCN HTA.FD.HT.SCN] || Suprachiasmatic Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionVBA_PN_SYM_SCG VBA.PN.SYM.SCG] || [BrainRegionHTA_FD_HT_SCN HTA.FD.HT.SCN] || Suprachiasmatic Nucleus || nucleus-ganglion || (unknown reference) ||
 || [BrainAreaMBA MBA] || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (DTN -> NPRP)] ||
 ||  || [BrainRegionVBA_MM_PT_PR VBA.MM.PT.PR] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || (unknown reference) ||
 || <font color="red">Motor</font> || || || || || ||
 || [BrainAreaBMA BMA] || [BrainRegionVBA_FD_PV_MPV VBA.FD.PV.MPV] || [BrainRegionBMA_MM_PT_PTA BMA.MM.PT.PTA] || Anterior Pretectum Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || [BrainRegionBMA_HP_VB BMA.HP.VB] || Vestibular Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (MVSN -> NPRP)] ||
+||  || [BrainRegionVBA_PN_SYM_SCG VBA.PN.SYM.SCG] || [BrainRegionBMA_SC_LH_LSN BMA.SC.LH.LSN] || Lateral Spinal Nucleus || nucleus-ganglion || (unknown reference) ||
 || [BrainAreaHMA HMA] || [BrainRegionVBA_HP_ABD VBA.HP.ABD] || [BrainRegionHMA_HP_FCM HMA.HP.FCM] || Facial Motor Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Facial -> Abducens)] ||
 ||  ||  || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) (PPRF -> Abducens, abstract)] ||
 ||  || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || [BrainRegionHMA_HM_TGM_STR HMA.HM.TGM.STR] || Spinal Trigeminal Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SpinalTrigeminal -> Oculomotor)] ||
@@ -133,13 +137,15 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/VBA.dot.jpg
 ||  || [BrainRegionVBA_MM_SC_SUP VBA.MM.SC.SUP] || [BrainRegionHMA_HP_PRF_PDT HMA.HP.PRF.PDT] || Pontine Reticulotegmental Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (SC -> RF, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaABA ABA] || [BrainRegionVBA_MM_SC_DEEP VBA.MM.SC.DEEP] || [BrainRegionABA_MM_IC ABA.MM.IC] || Inferior Colliculus || nucleus-nucleus || [http://f1000research.com/articles/2-20/v1 Visual-Auditory Interactions in Tectum (SC -> IC, abstract)] ||
+|| [BrainAreaBFA BFA] || [BrainRegionVBA_PN_SYM_SCG VBA.PN.SYM.SCG] || [BrainRegionBFA_FD_PNG BFA.FD.PNG] || Pineal Gland || ganglion-nucleus || (unknown reference) ||
 || [BrainAreaBGA BGA] || [BrainRegionVBA_MM_SC_DEEP VBA.MM.SC.DEEP] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || Substantia Nigra Pars Compacta || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCi -> SNc, abstract)] ||
 || <font color="red">Target</font> || || || || || ||
-|| [BrainAreaTSA TSA] || [BrainRegionVBA_HP_ABD VBA.HP.ABD] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || TARGET.TSA.EYE-muscle-rotate-vestibular || [http://what-when-how.com/neuroscience/the-cranial-nerves-organization-of-the-central-nervous-system-part-4 Extraocular eye muscles (ABD -> EYE)] ||
-||  || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || TARGET.TSA.EYE-muscle-rotate-major || [http://what-when-how.com/neuroscience/the-cranial-nerves-organization-of-the-central-nervous-system-part-4 Extraocular eye muscles (OCN -> EYE)] ||
+|| [BrainAreaTSA TSA] || [BrainRegionVBA_HP_ABD VBA.HP.ABD] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || TARGET.TSA.EYE-muscle-rotate-vestibular || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Abducens -> EYE)] ||
+||  || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || TARGET.TSA.EYE-muscle-rotate-major || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Oculomotor -> EYE)] ||
 ||  || [BrainRegionVBA_MM_TRH VBA.MM.TRH] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || TARGET.TSA.EYE-muscle-rotate-minor || [http://what-when-how.com/neuroscience/the-cranial-nerves-organization-of-the-central-nervous-system-part-4 Extraocular eye muscles (TRC -> EYE)] ||
-||  || [BrainRegionVBA_PN_PSYM_CLG VBA.PN.PSYM.CLG] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || TARGET.TSA.EYE-muscle-curvature || (unknown reference) ||
+||  || [BrainRegionVBA_PN_PSYM_CLG VBA.PN.PSYM.CLG] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || TARGET.TSA.EYE-muscle-curvature || [http://www.nature.com/pr/journal/v71/n3/fig_tab/pr201138f1.html Sympathetic and parasympathetic eye pathways (CLG -> EYE)] ||
 ||  || [BrainRegionVBA_PN_PSYM_EPG VBA.PN.PSYM.EPG] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || TARGET.TSA.EYE-muscle-pupil-close || (unknown reference) ||
+||  || [BrainRegionVBA_PN_SYM_SCG VBA.PN.SYM.SCG] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || TARGET.TSA.EYE-muscle-pupil-open || [http://www.nature.com/pr/journal/v71/n3/fig_tab/pr201138f1.html Sympathetic and parasympathetic eye pathways (SCG -> EYE)] ||
 
 = Thirdparty Circuits =
 (generated)
@@ -156,9 +162,13 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/VBA.dot.jpg
 
 <img src="http://2.bp.blogspot.com/-mjoruMnWeaU/TVp_YcF7meI/AAAAAAAAAsQ/8oZIVJrZVnw/s1600/Gray722.png" alt="unavailable">
 
+  * [http://www.nature.com/pr/journal/v71/n3/images/pr201138f1.gif Sympathetic and parasympathetic eye pathways] - see [http://www.nature.com/pr/journal/v71/n3/fig_tab/pr201138f1.html Reference]
+
+<img src="http://www.nature.com/pr/journal/v71/n3/images/pr201138f1.gif" alt="unavailable"height=400width=400>
+
   * [http://what-when-how.com/wp-content/uploads/2012/04/tmp15F38_thumb.jpg Extraocular eye muscles] - see [http://what-when-how.com/neuroscience/the-cranial-nerves-organization-of-the-central-nervous-system-part-4 Reference]
 
-<img src="http://what-when-how.com/wp-content/uploads/2012/04/tmp15F38_thumb.jpg" alt="unavailable">
+<img src="http://what-when-how.com/wp-content/uploads/2012/04/tmp15F38_thumb.jpg" alt="unavailable"height=400width=400>
 
   * [http://ars.els-cdn.com/content/image/1-s2.0-S0959438808001566-gr1.jpg Global visual system] - see [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Reference]
 
@@ -234,6 +244,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/VBA.dot.jpg
 
   * http://neuroscience.uth.tmc.edu/s3/chapter07.html
   * http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html
+  * http://www.nature.com/pr/journal/v71/n3/fig_tab/pr201138f1.html
   * http://what-when-how.com/neuroscience/the-cranial-nerves-organization-of-the-central-nervous-system-part-4
   * http://www.sciencedirect.com/science/article/pii/S0959438808001566
   * http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html
