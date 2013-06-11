@@ -35,4 +35,5 @@ void TargetCircuitConnectionDef::defineCircuitConnectorDef( TargetRegionConnecto
 	MindCircuitConnectionDef::typeName = connectionTypeDef -> getName();
 	Object::setInstance( MindCircuitConnectionDef::typeName );
 	MindCircuitConnectionDef::type = connectionTypeDef;
+	MindCircuitConnectionDef::primary = xml.getBooleanAttribute( "primary" , false );
 }

@@ -86,9 +86,9 @@ private:
 	void createArea( MindAreaDef *areaInfo );
 	void establishAreaLinks();
 	void createCircuitConnection( MindCircuitDef *circuitDef , MindCircuitConnectionDef *connectionDef );
-	void createRegionConnection( MindConnectionTypeDef *connectionType , MindRegion *srcRegion , MindRegion *dstRegion );
-	NeuroLink *createNeuroLink( MindConnectionTypeDef *connectionType , MindConnectionLinkTypeDef *linkDef , MindRegion *srcRegion , MindRegion *dstRegion );
-	MindRegionLink *createRegionLink( MindConnectionTypeDef *connectionType , MindRegion *srcRegion , MindRegion *dstRegion );
+	void createRegionConnection( MindConnectionTypeDef *connectionType , MindRegion *srcRegion , MindRegion *dstRegion , bool primary );
+	NeuroLink *createNeuroLink( MindConnectionTypeDef *connectionType , MindConnectionLinkTypeDef *linkDef , MindRegion *srcRegion , MindRegion *dstRegion , bool primary );
+	MindRegionLink *createRegionLink( MindConnectionTypeDef *connectionType , MindRegion *srcRegion , MindRegion *dstRegion , bool primary );
 	MindAreaLink *createAreaLink( MindArea *masterArea , MindArea *slaveArea );
 
 	// structure lock

@@ -184,11 +184,14 @@ public:
 	MindRegionLink *getRegionLink() { return( regionLink ); };
 	int getSizeX() { return( sizeX ); };
 	int getSizeY() { return( sizeY ); };
+	void setPrimary( bool p_primary ) { primary = p_primary; };
+	bool isPrimary() { return( primary ); };
 
 	int getSize();
 
 protected:
 // utilities
+	bool primary;
 	String id;
 	String transmitter;
 	int sizeX;

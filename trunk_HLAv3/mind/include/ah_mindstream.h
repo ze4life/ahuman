@@ -98,6 +98,8 @@ public:
 	MindRegion *getDstRegion();
 	MindAreaLink *getAreaLink() { return( areaLink ); };
 	MindConnectionTypeDef *getConnectionType() { return( connectionType ); };
+	void setPrimary( bool p_primary ) { primary = p_primary; };
+	bool isPrimary() { return( primary ); };
 
 	void createRegionLink( MindConnectionTypeDef *def , MindRegion *srcRegion , MindRegion *dstRegion );
 	void exitRegionLink();
@@ -110,6 +112,7 @@ private:
 	MindAreaLink *areaLink;
 	MindConnectionTypeDef *connectionType;
 
+	bool primary;
 	MindRegion *src;
 	MindRegion *dst;
 
