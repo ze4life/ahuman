@@ -48,15 +48,34 @@ void SensorArea::initSensorArea() {
 	}
 }
 
+void SensorArea::addSensor( MindSensor *sensor , bool offline ) {
+	sensor -> setRegionId( sensor -> getSensorId() );
+
+	if( !offline ) {
+		sensors -> addSetItem( sensor );
+		logger.logInfo( "addSensor: sensor added - id=" + sensor -> getSensorId() );
+	}
+	else {
+		sensorsOffline -> addSetItem( sensor );
+		logger.logInfo( "addSensor: sensor is not configured to run - id=" + sensor -> getSensorId() );
+	}
+}
+
+MindSensor *SensorArea::getSensor( String id ) {
+	return( sensors -> getSensor( id ) );
+}
+
 void SensorArea::createSensor( MindSensor *sensor ) {
+	logger.logInfo( "createSensor: create sensor id=" + sensor -> getSensorId() + " ..." );
+
 	MindService *ms = MindService::getService();
 	MindMap *mm = ms -> getMindMap();
 
-	TargetRegionDef *regioninfo = mm -> getTargetRegionDefById( sensor -> getSensorName() );
+	TargetRegionDef *regioninfo = mm -> getTargetRegionDefById( sensor -> getSensorId() );
 
 	MindRegionCreateInfo regionInfo;
 	MindRegionTypeDef *regiontype = regioninfo -> getType();
-	regionInfo.setId( sensor -> getSensorName() );
+	regionInfo.setId( sensor -> getSensorId() );
 	regionInfo.setType( regiontype );
 
 	sensor -> setSensorInfo( regioninfo );
@@ -75,22 +94,5 @@ void SensorArea::createSensorLinks( MindSensor *sensor ) {
 	TargetRegionDef *regioninfo = sensor -> getSensorInfo();
 	TargetCircuitDef *circuitinfo = regioninfo -> getCircuitDef();
 	ms -> createCircuitLinks( circuitinfo );
-}
-
-void SensorArea::addSensor( MindSensor *sensor , bool offline ) {
-	sensor -> setRegionId( sensor -> getSensorName() );
-
-	if( !offline ) {
-		sensors -> addSetItem( sensor );
-		logger.logInfo( "addSensor: sensor added - name=" + sensor -> getSensorName() );
-	}
-	else {
-		sensorsOffline -> addSetItem( sensor );
-		logger.logInfo( "addSensor: sensor is not configured to run - name=" + sensor -> getSensorName() );
-	}
-}
-
-MindSensor *SensorArea::getSensor( String name ) {
-	return( sensors -> getSensor( name ) );
 }
 

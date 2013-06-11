@@ -118,7 +118,7 @@ NeuroSignal *NeuroPool::fire( NeuroSignal *srcSignal ) {
 	}
 
 	MindArea *area = region -> getArea();
-	logger.logInfo( "fire: MindArea id=" + area -> getId() + " NeuroPool id=" + id + " state after signal id=" + srcSignal -> getId() + ", pendingSize=" + pendingFire -> getDataSize() + ", signal=" + ffSignal -> getNumberDataString() );
+	logger.logInfo( "fire: MindArea id=" + area -> getAreaId() + " NeuroPool id=" + id + " state after signal id=" + srcSignal -> getId() + ", pendingSize=" + pendingFire -> getDataSize() + ", signal=" + ffSignal -> getNumberDataString() );
 
 	return( ffSignal );
 }

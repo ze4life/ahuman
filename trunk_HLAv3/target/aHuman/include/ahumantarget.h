@@ -132,7 +132,9 @@ public:
 	void updateFileSection( String wikiDir , String wikiPage , String section , StringList& lines );
 	void createFileContent( String fileName , StringList& lines );
 	String setSpecialCharacters( String data );
+	String findReference( MindRegionLink *link );
 	String findReference( MindCircuitConnectionDef *link );
+	String findReference( String srcRegion , String dstRegion );
 	String getDotColor( String dotdef );
 
 	String getAreaPage( String area );
@@ -150,12 +152,13 @@ private:
 	void createAreaPages();
 	void createComponentPages();
 
-	bool findReferenceCircuitLink( MindCircuitConnectionDef *link , XmlCircuitInfo& info , String& circuitLink , bool directOnly );
+	bool findReferenceCircuitLink( String srcRegion , String dstRegion , XmlCircuitInfo& info , String& circuitLink , bool directOnly );
 
 public:
 	Xml wiki;
 	String saveRepeats1;
 	String saveRepeats2;
+	MapStringToString referenceMap;
 };
 
 /*#########################################################################*/
@@ -240,22 +243,22 @@ public:
 	void execute();
 
 private:
-	void createAreaPages_createRegionTableSection( String wikiDir , MindAreaDef *areaDef );
-	void createAreaPages_createConnectivityTableSection( String wikiDir , MindAreaDef *areaDef );
-	void createAreaPages_createCircuitsAndReferencesTableSection( String wikiDir , MindAreaDef *areaDef );
-	void createAreaPages_createRegionPages( String wikiDir , MindAreaDef *areaDef );
-	void createAreaPages_addExternalConnections( MindAreaDef *areaDef , StringList& lines , MapStringToClass<MindCircuitConnectionDef>& connections , bool p_inputs );
-	String createAreaPages_getCircuitKey( MindAreaDef *areaDef , XmlCircuitInfo& info );
+	void createAreaPages_createRegionTableSection( String wikiDir , MindArea *area );
+	void createAreaPages_createConnectivityTableSection( String wikiDir , MindArea *area );
+	void createAreaPages_createCircuitsAndReferencesTableSection( String wikiDir , MindArea *area );
+	void createAreaPages_createRegionPages( String wikiDir , MindArea *area );
+	void createAreaPages_addExternalConnections( MindArea *area , StringList& lines , MapStringToClass<MindRegionLink>& connections , bool p_inputs );
+	String createAreaPages_getCircuitKey( MindArea *area , XmlCircuitInfo& info );
 	void createAreaPages_getCircuitLines( XmlCircuitInfo& info , StringList& lines );
-	String createAreaPages_getRegionTableRow( MindRegionDef *regionDef );
+	String createAreaPages_getRegionTableRow( MindRegion *region );
 	String createAreaPages_getTableCellAttribute( const XmlHMindElementInfo& info , String attribute , String value , bool required , int columnWidth );
-	void createAreaPages_getInternalConnections( MindAreaDef *areaDef , MapStringToClass<MindCircuitConnectionDef>& connections );
-	void createAreaPages_getInternalConnectionTableLine( MindAreaDef *areaDef , MindCircuitConnectionDef *link , StringList& lines );
-	void createAreaPages_getExternalConnections( MindAreaDef *areaDef , MapStringToClass<MindCircuitConnectionDef>& connections , bool isin );
-	void createAreaPages_getExternalConnectionTableLine( MindAreaDef *areaDef , MindCircuitConnectionDef *link , StringList& lines , bool isin , const char *areaType );
-	void createDotFile( MindAreaDef *areaDef , MapStringToClass<MindCircuitConnectionDef>& internals , MapStringToClass<MindCircuitConnectionDef>& inputs , MapStringToClass<MindCircuitConnectionDef>& outputs );
-	void createDotFile_subgraph( MindAreaDef *areaDef , bool p_inputs , MapStringToClass<MindCircuitConnectionDef>& connections , StringList& text , String& linkItem );
-	String createDotFile_getRegionLabel( MindRegionDef *region , MapStringToClass<MindCircuitConnectionDef>& inputs , MapStringToClass<MindCircuitConnectionDef>& outputs );
+	void createAreaPages_getInternalConnections( MindArea *area , MapStringToClass<MindRegionLink>& connections );
+	void createAreaPages_getInternalConnectionTableLine( MindArea *area , MindRegionLink *link , StringList& lines );
+	void createAreaPages_getExternalConnections( MindArea *area , MapStringToClass<MindRegionLink>& connections , bool isin );
+	void createAreaPages_getExternalConnectionTableLine( MindArea *area , MindRegionLink *link , StringList& lines , bool isin , const char *areaType );
+	void createDotFile( MindArea *area , MapStringToClass<MindRegionLink>& internals , MapStringToClass<MindRegionLink>& inputs , MapStringToClass<MindRegionLink>& outputs );
+	void createDotFile_subgraph( MindArea *area , bool p_inputs , MapStringToClass<MindRegionLink>& connections , StringList& text , String& linkItem );
+	String createDotFile_getRegionLabel( MindRegion *region , MapStringToClass<MindRegionLink>& inputs , MapStringToClass<MindRegionLink>& outputs );
 
 private:
 	WikiMaker *wm;
@@ -266,7 +269,7 @@ private:
 
 class WikiRegionPage : public Object {
 public:
-	WikiRegionPage( WikiMaker *wm , String wikiDir , MindRegionDef *region );
+	WikiRegionPage( WikiMaker *wm , String wikiDir , MindRegion *region );
 	virtual ~WikiRegionPage();
 	virtual const char *getClass() { return "WikiRegionPage"; };
 
@@ -280,18 +283,18 @@ private:
 	void createChildTableSection_addChilds( Xml node , String prefix , StringList& lines );
 
 	void createConnectivitySection();
-	void createConnectivitySection_getExternalConnections( MapStringToClass<MindCircuitConnectionDef>& connections , bool isin );
-	void createConnectivitySection_getExternalConnectionTableLine( MindCircuitConnectionDef *link , StringList& lines , bool isin );
-	void createDotFile( MapStringToClass<MindRegion>& regions , MapStringToClass<MindCircuitConnectionDef>& connectionsTotal );
+	void createConnectivitySection_getExternalConnections( MapStringToClass<MindRegionLink>& connections , bool isin );
+	void createConnectivitySection_getExternalConnectionTableLine( MindRegionLink *link , StringList& lines , bool isin );
+	void createDotFile( MapStringToClass<MindRegion>& regions , MapStringToClass<MindRegionLink>& connectionsTotal );
 
 	void createThirdpartyAndReferencesSection();
-	String createThirdpartyAndReferencesSection_getCircuitKey( MindRegionDef *regionDef , XmlCircuitInfo& info );
+	String createThirdpartyAndReferencesSection_getCircuitKey( MindRegion *region , XmlCircuitInfo& info );
 	void createThirdpartyAndReferencesSection_getCircuitLines( XmlCircuitInfo& info , StringList& lines );
 
 private:
 	WikiMaker *wm;
 	String wikiDir;
-	MindRegionDef *region;
+	MindRegion *region;
 	const XmlHMindElementInfo& info;
 };
 

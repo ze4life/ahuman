@@ -149,7 +149,7 @@ void WikiCircuitPages::createCircuitPage_getNodesRow( MindCircuitDef *cd , MindR
 	// row
 	MindArea *area = region -> getArea();
 	const XmlHMindElementInfo& info = wm -> hmindxml.getElementInfo( region -> getRegionId() );
-	value1 = wm -> getAreaReference( area -> getId() );
+	value1 = wm -> getAreaReference( area -> getAreaId() );
 	wm -> clearRepeats1( value1 );
 	lines.add( "|| " + value1 + " || " + wm -> getRegionReference( region -> getRegionId() ) + " || " + 
 		info.name + " || " + info.batype + " || " + info.function + " ||" );

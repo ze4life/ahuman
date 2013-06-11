@@ -24,47 +24,40 @@ void WikiAreaPages::execute() {
 	String selectedArea = wm -> wiki.getProperty( "selectedArea" , "" );
 
 	MindService *ms = MindService::getService();
-	MindMap *mm = ms -> getMindMap();
 
 	// by area
 	bool createRegionPages = wm -> wiki.getBooleanProperty( "createRegionPages" , true );
-	ClassList<MindAreaDef>& areaList = mm -> getMindAreas();
-	for( int k = 0; k < areaList.count(); k++ ) {
-		MindAreaDef *areaDef = areaList.get( k );
+	MapStringToClass<MindArea>& areaMap = ms -> getMindAreas();
+	for( int k = 0; k < areaMap.count(); k++ ) {
+		MindArea *area = areaMap.getClassByIndex( k );
 
 		if( !selectedArea.isEmpty() ) {
-			if( !selectedArea.equals( areaDef -> getAreaId() ) )
+			if( !selectedArea.equals( area -> getAreaId() ) )
 				continue;
 		}
 
-		createAreaPages_createRegionTableSection( wikiDir , areaDef );
-		createAreaPages_createConnectivityTableSection( wikiDir , areaDef );
-		createAreaPages_createCircuitsAndReferencesTableSection( wikiDir , areaDef );
+		createAreaPages_createRegionTableSection( wikiDir , area );
+		createAreaPages_createConnectivityTableSection( wikiDir , area );
+		createAreaPages_createCircuitsAndReferencesTableSection( wikiDir , area );
 
 		if( createRegionPages )
-			createAreaPages_createRegionPages( wikiDir , areaDef );
+			createAreaPages_createRegionPages( wikiDir , area );
 	}
 }
 
-void WikiAreaPages::createAreaPages_createRegionTableSection( String wikiDir , MindAreaDef *areaDef ) {
+void WikiAreaPages::createAreaPages_createRegionTableSection( String wikiDir , MindArea *area ) {
 	StringList lines;
 
 	// heading
-	String wikiPage = wm -> getAreaPage( areaDef -> getAreaId() );
+	String wikiPage = wm -> getAreaPage( area -> getAreaId() );
 	String s = createAreaPages_getRegionTableRow( NULL );
 	lines.add( s );
 
 	// regions
-	ClassList<MindRegionDef>& regionList = areaDef -> getRegions();
-	MapStringToClass<MindRegionDef> regionMap;
-	for( int k = 0; k < regionList.count(); k++ ) {
-		MindRegionDef *regionDef = regionList.get( k );
-		regionMap.add( regionDef -> getId() , regionDef );
-	}
-
+	MapStringToClass<MindRegion>& regionMap = area -> getRegions();
 	for( int k = 0; k < regionMap.count(); k++ ) {
-		MindRegionDef *regionDef = regionMap.getClassByIndex( k );
-		s = createAreaPages_getRegionTableRow( regionDef );
+		MindRegion *region = regionMap.getClassByIndex( k );
+		s = createAreaPages_getRegionTableRow( region );
 		lines.add( s );
 	}
 
@@ -72,17 +65,17 @@ void WikiAreaPages::createAreaPages_createRegionTableSection( String wikiDir , M
 	wm -> updateFileSection( wikiDir , wikiPage , sectionName , lines );
 }
 
-String WikiAreaPages::createAreaPages_getRegionTableRow( MindRegionDef *regionDef ) {
+String WikiAreaPages::createAreaPages_getRegionTableRow( MindRegion *region ) {
 	String value;
 
 	// heading
-	if( regionDef == NULL ) {
+	if( region == NULL ) {
 		value = "|| *Component ID* || *Component Name* || *Type* || *Function* || *Comments* ||";
 		return( value );
 	}
 
 	// region row
-	String regionId = regionDef -> getId();
+	String regionId = region -> getRegionId();
 	const XmlHMindElementInfo& info = wm -> hmindxml.getElementInfo( regionId );
 	
 	value = "|| " + wm -> getRegionReference( regionId ) + " || " + 
@@ -131,7 +124,7 @@ String WikiAreaPages::createAreaPages_getTableCellAttribute( const XmlHMindEleme
 	return( value );
 }
 
-void WikiAreaPages::createAreaPages_addExternalConnections( MindAreaDef *areaDef , StringList& lines , MapStringToClass<MindCircuitConnectionDef>& connections , bool p_inputs ) {
+void WikiAreaPages::createAreaPages_addExternalConnections( MindArea *area , StringList& lines , MapStringToClass<MindRegionLink>& connections , bool p_inputs ) {
 	MindService *ms = MindService::getService();
 
 	if( connections.count() == 0 ) {
@@ -139,19 +132,18 @@ void WikiAreaPages::createAreaPages_addExternalConnections( MindAreaDef *areaDef
 		return;
 	}
 
-	createAreaPages_getExternalConnectionTableLine( areaDef , NULL , lines , p_inputs , NULL );
+	createAreaPages_getExternalConnectionTableLine( area , NULL , lines , p_inputs , NULL );
 
 	// split connections by area types
-	MapStringToClass<MapStringToClass<MindCircuitConnectionDef>> groups;
+	MapStringToClass<MapStringToClass<MindRegionLink>> groups;
 	for( int k = 0; k < connections.count(); k++ ) {
-		MindCircuitConnectionDef *c = connections.getClassByIndex( k );
-		String regionId = ( p_inputs )? c -> getSrcRegion() : c -> getDstRegion();
-		MindRegion *region = ms -> getMindRegion( regionId );
+		MindRegionLink *c = connections.getClassByIndex( k );
+		MindRegion *region = ( p_inputs )? c -> getSrcRegion() : c -> getDstRegion();
 		String areaType = region -> getArea() -> getMindAreaDef() -> getAreaType();
 
-		MapStringToClass<MindCircuitConnectionDef> *z = groups.get( areaType );
+		MapStringToClass<MindRegionLink> *z = groups.get( areaType );
 		if( z == NULL ) {
-			z = new MapStringToClass<MindCircuitConnectionDef>;
+			z = new MapStringToClass<MindRegionLink>;
 			groups.add( areaType , z );
 		}
 
@@ -161,66 +153,78 @@ void WikiAreaPages::createAreaPages_addExternalConnections( MindAreaDef *areaDef
 
 	for( int k = 0; k < groups.count(); k++ ) {
 		String areaType = groups.getKeyByIndex( k );
-		MapStringToClass<MindCircuitConnectionDef> *z = groups.getClassByIndex( k );
-		createAreaPages_getExternalConnectionTableLine( areaDef , NULL , lines , p_inputs , areaType );
+		MapStringToClass<MindRegionLink> *z = groups.getClassByIndex( k );
+		createAreaPages_getExternalConnectionTableLine( area , NULL , lines , p_inputs , areaType );
 
 		for( int m = 0; m < z -> count(); m++ ) {
-			MindCircuitConnectionDef *c = z -> getClassByIndex( m );
-			createAreaPages_getExternalConnectionTableLine( areaDef , c , lines , p_inputs , NULL );
+			MindRegionLink *c = z -> getClassByIndex( m );
+			createAreaPages_getExternalConnectionTableLine( area , c , lines , p_inputs , NULL );
 		}
 	}
 }
 
-void WikiAreaPages::createAreaPages_createConnectivityTableSection( String wikiDir , MindAreaDef *areaDef ) {
+void WikiAreaPages::createAreaPages_createConnectivityTableSection( String wikiDir , MindArea *area ) {
 	StringList lines;
-	MapStringToClass<MindCircuitConnectionDef> connections;
+	MapStringToClass<MindRegionLink> connections;
 
 	// internal connections
-	createAreaPages_getInternalConnections( areaDef , connections );
-	createAreaPages_getInternalConnectionTableLine( areaDef , NULL , lines );
+	createAreaPages_getInternalConnections( area , connections );
+	createAreaPages_getInternalConnectionTableLine( area , NULL , lines );
 	for( int k = 0; k < connections.count(); k++ ) {
-		MindCircuitConnectionDef *c = connections.getClassByIndex( k );
-		createAreaPages_getInternalConnectionTableLine( areaDef , c , lines );
+		MindRegionLink *c = connections.getClassByIndex( k );
+		createAreaPages_getInternalConnectionTableLine( area , c , lines );
 	}
 
 	// external connections - in
 	lines.add( "" );
 	lines.add( "*External Inbound Region Connections:*" );
-	MapStringToClass<MindCircuitConnectionDef> connectionsInputs;
-	createAreaPages_getExternalConnections( areaDef , connectionsInputs , true );
-	createAreaPages_addExternalConnections( areaDef , lines , connectionsInputs , true );
+	MapStringToClass<MindRegionLink> connectionsInputs;
+	createAreaPages_getExternalConnections( area , connectionsInputs , true );
+	createAreaPages_addExternalConnections( area , lines , connectionsInputs , true );
 
 	// external connections - out
 	lines.add( "" );
 	lines.add( "*External Outbound Region Connections:*" );
-	MapStringToClass<MindCircuitConnectionDef> connectionsOutputs;
-	createAreaPages_getExternalConnections( areaDef , connectionsOutputs , false );
-	createAreaPages_addExternalConnections( areaDef , lines , connectionsOutputs , false );
+	MapStringToClass<MindRegionLink> connectionsOutputs;
+	createAreaPages_getExternalConnections( area , connectionsOutputs , false );
+	createAreaPages_addExternalConnections( area , lines , connectionsOutputs , false );
 
 	String sectionName = "Connectivity";
-	String wikiPage = wm -> getAreaPage( areaDef -> getAreaId() );
+	String wikiPage = wm -> getAreaPage( area -> getAreaId() );
 	wm -> updateFileSection( wikiDir , wikiPage , sectionName , lines );
 
 	// create dot file
-	createDotFile( areaDef , connections , connectionsInputs , connectionsOutputs );
+	createDotFile( area , connections , connectionsInputs , connectionsOutputs );
 }
 
-void WikiAreaPages::createAreaPages_getInternalConnections( MindAreaDef *areaDef , MapStringToClass<MindCircuitConnectionDef>& connections ) {
-	MindService *ms = MindService::getService();
-	MindMap *mm = ms -> getMindMap();
-	ClassList<MindCircuitDef>& circuits = mm -> getMindCircuits();
+void WikiAreaPages::createAreaPages_getInternalConnections( MindArea *area , MapStringToClass<MindRegionLink>& connections ) {
+	ClassList<MindRegionLink>& links = area -> getInternalRegionLinks();
 
-	MindArea *area = ms -> getMindArea( areaDef -> getAreaId() );
-	for( int k1 = 0; k1 < circuits.count(); k1++ ) {
-		MindCircuitDef *circuit = circuits.get( k1 );
-		ClassList<MindCircuitConnectionDef>& links = circuit -> getConnections();
-		for( int k2 = 0; k2 < links.count(); k2++ ) {
-			MindCircuitConnectionDef *c = links.get( k2 );
-			MindArea *srcArea = ms -> getMindRegion( c -> getSrcRegion() ) -> getArea();
-			MindArea *dstArea = ms -> getMindRegion( c -> getDstRegion() ) -> getArea();
+	for( int k = 0; k < links.count(); k++ ) {
+		MindRegionLink *c = links.get( k );
+		String key = c -> getSrcRegion() -> getRegionId() + "#" + c -> getDstRegion() -> getRegionId();
+		if( connections.get( key ) == NULL )
+			connections.add( key , c );
+	}
+}
 
-			if( srcArea == area && dstArea == area ) {
-				String key = c -> getSrcRegion() + "#" + c -> getDstRegion();
+void WikiAreaPages::createAreaPages_getExternalConnections( MindArea *area , MapStringToClass<MindRegionLink>& connections , bool isin ) {
+	ClassList<MindAreaLink>& areaLinks = ( isin )? area -> getMasterAreaLinks() : area -> getSlaveAreaLinks();
+
+	for( int k1 = 0; k1 < areaLinks.count(); k1++ ) {
+		MindAreaLink *areaLink = areaLinks.get( k1 );
+		ClassList<MindRegionLink>& regionLinks = areaLink -> getRegionLinks();
+
+		for( int k2 = 0; k2 < regionLinks.count(); k2++ ) {
+			MindRegionLink *c = regionLinks.get( k2 );
+			String key;
+			if( isin == false ) {
+				key = areaLink -> getSlaveArea() -> getAreaId() + "#" + c -> getSrcRegion() -> getRegionId() + "#" + c -> getDstRegion() -> getRegionId() + "#1";
+				if( connections.get( key ) == NULL )
+					connections.add( key , c );
+			}
+			else {
+				key = areaLink -> getMasterArea() -> getAreaId() + "#" + c -> getDstRegion() -> getRegionId() + "#" + c -> getSrcRegion() -> getRegionId() + "#2";
 				if( connections.get( key ) == NULL )
 					connections.add( key , c );
 			}
@@ -228,42 +232,7 @@ void WikiAreaPages::createAreaPages_getInternalConnections( MindAreaDef *areaDef
 	}
 }
 
-void WikiAreaPages::createAreaPages_getExternalConnections( MindAreaDef *areaDef , MapStringToClass<MindCircuitConnectionDef>& connections , bool isin ) {
-	MindService *ms = MindService::getService();
-	MindMap *mm = ms -> getMindMap();
-	ClassList<MindCircuitDef>& circuits = mm -> getMindCircuits();
-
-	MindArea *area = ms -> getMindArea( areaDef -> getAreaId() );
-	for( int k1 = 0; k1 < circuits.count(); k1++ ) {
-		MindCircuitDef *circuit = circuits.get( k1 );
-		ClassList<MindCircuitConnectionDef>& links = circuit -> getConnections();
-		for( int k2 = 0; k2 < links.count(); k2++ ) {
-			MindCircuitConnectionDef *c = links.get( k2 );
-			MindArea *srcArea = ms -> getMindRegion( c -> getSrcRegion() ) -> getArea();
-			MindArea *dstArea = ms -> getMindRegion( c -> getDstRegion() ) -> getArea();
-
-			if( srcArea != dstArea && ( srcArea == area || dstArea == area ) ) {
-				String key;
-				if( area == srcArea ) {
-					if( isin == false ) {
-						key = dstArea -> getId() + "#" + c -> getSrcRegion() + "#" + c -> getDstRegion() + "#1";
-						if( connections.get( key ) == NULL )
-							connections.add( key , c );
-					}
-				}
-				else {
-					if( isin == true ) {
-						key = srcArea -> getId() + "#" + c -> getDstRegion() + "#" + c -> getSrcRegion() + "#2";
-						if( connections.get( key ) == NULL )
-							connections.add( key , c );
-					}
-				}
-			}
-		}
-	}
-}
-
-void WikiAreaPages::createAreaPages_getInternalConnectionTableLine( MindAreaDef *areaDef , MindCircuitConnectionDef *link , StringList& lines ) {
+void WikiAreaPages::createAreaPages_getInternalConnectionTableLine( MindArea *area , MindRegionLink *link , StringList& lines ) {
 	String line;
 	String value1;
 	if( link == NULL ) {
@@ -272,7 +241,7 @@ void WikiAreaPages::createAreaPages_getInternalConnectionTableLine( MindAreaDef 
 		lines.add( line );
 		lines.add( "" );
 		String dotImageWikiPath = wm -> wiki.getProperty( "imageWikiPath" );
-		line = dotImageWikiPath + "/" + areaDef -> getAreaId() + ".dot.jpg";
+		line = dotImageWikiPath + "/" + area -> getAreaId() + ".dot.jpg";
 		lines.add( line );
 		lines.add( "" );
 		line = "|| *Source Region* || *Target Region* || *Type* || *Reference* ||";
@@ -283,14 +252,14 @@ void WikiAreaPages::createAreaPages_getInternalConnectionTableLine( MindAreaDef 
 
 	// table row
 	String reference = wm -> findReference( link );
-	value1 = wm -> getRegionReference( link -> getSrcRegion() );
+	value1 = wm -> getRegionReference( link -> getSrcRegion() -> getRegionId() );
 	wm -> clearRepeats1( value1 );
-	line = "|| " + value1 + " || " + wm -> getRegionReference( link -> getDstRegion() ) + " || " + 
-		link -> getTypeName() + " || " + reference + " ||" ;
+	line = "|| " + value1 + " || " + wm -> getRegionReference( link -> getDstRegion() -> getRegionId() ) + " || " + 
+		link -> getConnectionType() -> getName() + " || " + reference + " ||" ;
 	lines.add( line );
 }
 
-void WikiAreaPages::createAreaPages_getExternalConnectionTableLine( MindAreaDef *areaDef , MindCircuitConnectionDef *link , StringList& lines , bool isin , const char *p_areatype ) {
+void WikiAreaPages::createAreaPages_getExternalConnectionTableLine( MindArea *area , MindRegionLink *link , StringList& lines , bool isin , const char *p_areatype ) {
 	String line;
 	String value1;
 	String value2;
@@ -315,45 +284,43 @@ void WikiAreaPages::createAreaPages_getExternalConnectionTableLine( MindAreaDef 
 
 	// table row
 	MindService *ms = MindService::getService();
-	MindRegion *srcRegion = ms -> getMindRegion( link -> getSrcRegion() );
-	MindRegion *dstRegion = ms -> getMindRegion( link -> getDstRegion() );
-	String area = areaDef -> getAreaId();
+	String srcRegionId = link -> getSrcRegion() -> getRegionId();
+	String dstRegionId = link -> getDstRegion() -> getRegionId();
 
 	String reference = wm -> findReference( link );
 	if( isin ) {
-		const XmlHMindElementInfo& info = wm -> hmindxml.getElementInfo( link -> getSrcRegion() );
-		value1 = wm -> getAreaReference( srcRegion -> getArea() -> getId() );
-		value2 = wm -> getRegionReference( link -> getDstRegion() );
+		const XmlHMindElementInfo& info = wm -> hmindxml.getElementInfo( srcRegionId );
+		value1 = wm -> getAreaReference( link -> getSrcRegion() -> getArea() -> getAreaId() );
+		value2 = wm -> getRegionReference( dstRegionId );
 		wm -> clearRepeats2( value1 , value2 );
 		line = "|| " + value1 + " || " + value2 + " || " + 
-			wm -> getRegionReference( link -> getSrcRegion() ) + " || " + info.name + " || " + link -> getTypeName() + " || " + reference + " ||";
+			wm -> getRegionReference( srcRegionId ) + " || " + info.name + " || " + link -> getConnectionType() -> getName() + " || " + reference + " ||";
 	}
 	else {
-		const XmlHMindElementInfo& info = wm -> hmindxml.getElementInfo( link -> getDstRegion() );
-		value1 = wm -> getAreaReference( dstRegion -> getArea() -> getId() );
-		value2 = wm -> getRegionReference( link -> getSrcRegion() );
+		const XmlHMindElementInfo& info = wm -> hmindxml.getElementInfo( dstRegionId );
+		value1 = wm -> getAreaReference( link -> getDstRegion() -> getArea() -> getAreaId() );
+		value2 = wm -> getRegionReference( srcRegionId );
 		wm -> clearRepeats2( value1 , value2 );
 		line = "|| " + value1 + " || " + value2 + " || " + 
-			wm -> getRegionReference( link -> getDstRegion() ) + " || " + info.name + " || " + link -> getTypeName() + " || " + reference + " ||";
+			wm -> getRegionReference( dstRegionId ) + " || " + info.name + " || " + link -> getConnectionType() -> getName() + " || " + reference + " ||";
 	}
 	lines.add( line );
 }
 
-void WikiAreaPages::createAreaPages_createCircuitsAndReferencesTableSection( String wikiDir , MindAreaDef *areaDef ) {
+void WikiAreaPages::createAreaPages_createCircuitsAndReferencesTableSection( String wikiDir , MindArea *area ) {
 	// collect circuits which reference any of area regions
 	MindService *ms = MindService::getService();
 
 	StringList circuits;
 	wm -> circuitsxml.getCircuitList( circuits );
 
-	MindArea *area = ms -> getMindArea( areaDef -> getAreaId() );
 	MapStringToString circuitKeys;
 	for( int k = 0; k < circuits.count(); k++ ) {
 		String circuitId = circuits.get( k );
 		XmlCircuitInfo info;
 		wm -> circuitsxml.getCircuitInfo( circuitId , info );
 
-		String key = createAreaPages_getCircuitKey( areaDef , info );
+		String key = createAreaPages_getCircuitKey( area , info );
 		if( key.isEmpty() )
 			continue;
 
@@ -370,7 +337,7 @@ void WikiAreaPages::createAreaPages_createCircuitsAndReferencesTableSection( Str
 	}
 
 	String sectionName = "Thirdparty Circuits";
-	String wikiPage = wm -> getAreaPage( areaDef -> getAreaId() );
+	String wikiPage = wm -> getAreaPage( area -> getAreaId() );
 	wm -> updateFileSection( wikiDir , wikiPage , sectionName , lines );
 	lines.clear();
 
@@ -392,7 +359,7 @@ void WikiAreaPages::createAreaPages_createCircuitsAndReferencesTableSection( Str
 	wm -> updateFileSection( wikiDir , wikiPage , sectionName , lines );
 }
 
-String WikiAreaPages::createAreaPages_getCircuitKey( MindAreaDef *areaDef , XmlCircuitInfo& info ) {
+String WikiAreaPages::createAreaPages_getCircuitKey( MindArea *area , XmlCircuitInfo& info ) {
 	// get circuit regions
 	StringList comps;
 	wm -> circuitsxml.getCircuitComponents( info , comps );
@@ -403,7 +370,7 @@ String WikiAreaPages::createAreaPages_getCircuitKey( MindAreaDef *areaDef , XmlC
 		String comp = comps.get( k );
 		String region = wm -> hmindxml.getMappedRegion( comp );
 		if( !region.isEmpty() )
-			if( areaDef -> findRegion( region ) != NULL )
+			if( area -> getMindAreaDef() -> findRegion( region ) != NULL )
 				compUsed.add( region );
 	}
 
@@ -443,22 +410,22 @@ void WikiAreaPages::createAreaPages_getCircuitLines( XmlCircuitInfo& info , Stri
 	lines.add( "" );
 }
 
-void WikiAreaPages::createAreaPages_createRegionPages( String wikiDir , MindAreaDef *areaDef ) {
-	ClassList<MindRegionDef>& regions = areaDef -> getRegions();
+void WikiAreaPages::createAreaPages_createRegionPages( String wikiDir , MindArea *area ) {
+	MapStringToClass<MindRegion>& regions = area -> getRegions();
 	for( int k = 0; k < regions.count(); k++ ) {
-		WikiRegionPage maker( wm , wikiDir , regions.get( k ) );
+		WikiRegionPage maker( wm , wikiDir , regions.getClassByIndex( k ) );
 		maker.execute();
 	}
 }
 
-void WikiAreaPages::createDotFile( MindAreaDef *areaDef , MapStringToClass<MindCircuitConnectionDef>& internals , MapStringToClass<MindCircuitConnectionDef>& inputs , MapStringToClass<MindCircuitConnectionDef>& outputs ) {
+void WikiAreaPages::createDotFile( MindArea *area , MapStringToClass<MindRegionLink>& internals , MapStringToClass<MindRegionLink>& inputs , MapStringToClass<MindRegionLink>& outputs ) {
 	// create dot file
 	String dotDir = wm -> wiki.getProperty( "dotPath" );
-	String fileName = dotDir + "/" + areaDef -> getAreaId() + ".dot";
+	String fileName = dotDir + "/" + area -> getAreaId() + ".dot";
 	StringList text;
 
 	// header
-	text.add( "digraph \"" + areaDef -> getAreaId() + "\" {" );
+	text.add( "digraph \"" + area -> getAreaId() + "\" {" );
 	text.add( "\tconcentrate=true;" );
 	text.add( "\tcompound=true;" );
 	String defaultDotSetup = wm -> wiki.getProperty( "defaultDotSetup" );
@@ -466,17 +433,17 @@ void WikiAreaPages::createDotFile( MindAreaDef *areaDef , MapStringToClass<MindC
 	text.add( "" );
 
 	// list nodes
-	text.add( "\tsubgraph cluster_" + areaDef -> getAreaId() + " {" );
-	text.add( "\tlabel=<<b>" + areaDef -> getAreaName() + "</b>>;" );
-	ClassList<MindRegionDef>& regions = areaDef -> getRegions();
+	text.add( "\tsubgraph cluster_" + area -> getAreaId() + " {" );
+	text.add( "\tlabel=<<b>" + area -> getMindAreaDef() -> getAreaName() + "</b>>;" );
+	MapStringToClass<MindRegion>& regions = area -> getRegions();
 	for( int k = 0; k < regions.count(); k++ ) {
-		MindRegionDef *regionDef = regions.get( k );
+		MindRegion *region = regions.getClassByIndex( k );
 
-		String dotdef = wm -> hmindxml.getDotDef( regionDef -> getId() );
-		String nodeline = "\t\"" + regionDef -> getId() + "\"";
+		String dotdef = wm -> hmindxml.getDotDef( region -> getRegionId() );
+		String nodeline = "\t\"" + region -> getRegionId() + "\"";
 		if( !dotdef.isEmpty() ) {
 			String s = wm -> setSpecialCharacters( dotdef );
-			s += ", label=<" + createDotFile_getRegionLabel( regionDef , inputs , outputs ) + ">";
+			s += ", label=<" + createDotFile_getRegionLabel( region , inputs , outputs ) + ">";
 			nodeline += " [" + s + "]";
 		}
 		nodeline += ";";
@@ -488,15 +455,15 @@ void WikiAreaPages::createDotFile( MindAreaDef *areaDef , MapStringToClass<MindC
 	// list connections
 	text.add( "" );
 	for( int k = 0; k < internals.count(); k++ ) {
-		MindCircuitConnectionDef *c = internals.getClassByIndex( k );
-		String linkline = "\t\"" + c -> getSrcRegion() + "\" -> \"" + c -> getDstRegion() + "\";";
+		MindRegionLink *c = internals.getClassByIndex( k );
+		String linkline = "\t\"" + c -> getSrcRegion() -> getRegionId() + "\" -> \"" + c -> getDstRegion() -> getRegionId() + "\";";
 		text.add( linkline );
 	}
 
 	// add subgraph
 	String linkItem;
-	createDotFile_subgraph( areaDef , true , inputs , text , linkItem );
-	createDotFile_subgraph( areaDef , false , outputs , text , linkItem );
+	createDotFile_subgraph( area , true , inputs , text , linkItem );
+	createDotFile_subgraph( area , false , outputs , text , linkItem );
 
 	// footer
 	text.add( "}" );
@@ -505,19 +472,18 @@ void WikiAreaPages::createDotFile( MindAreaDef *areaDef , MapStringToClass<MindC
 	wm -> createFileContent( fileName , text );
 }
 
-String WikiAreaPages::createDotFile_getRegionLabel( MindRegionDef *region , MapStringToClass<MindCircuitConnectionDef>& inputs , MapStringToClass<MindCircuitConnectionDef>& outputs ) {
+String WikiAreaPages::createDotFile_getRegionLabel( MindRegion *region , MapStringToClass<MindRegionLink>& inputs , MapStringToClass<MindRegionLink>& outputs ) {
 	MindService *ms = MindService::getService();
-	String label = "<b>" + region -> getId() + "</b>";
+	String label = "<b>" + region -> getRegionId() + "</b>";
 
-	MapStringToClass<MindCircuitConnectionDef> inputAreas;
+	MapStringToClass<MindRegionLink> inputAreas;
 	for( int k = 0; k < inputs.count(); k++ ) {
-		MindCircuitConnectionDef *c = inputs.getClassByIndex( k );
-		if( !region -> getId().equals( c -> getDstRegion() ) )
+		MindRegionLink *c = inputs.getClassByIndex( k );
+		if( region != c -> getDstRegion() )
 			continue;
 
-		String regionId = c -> getSrcRegion();
-		MindRegion *regionExt = ms -> getMindRegion( regionId );
-		inputAreas.addnew( regionExt -> getArea() -> getId() , c );
+		MindRegion *regionExt = c -> getSrcRegion();
+		inputAreas.addnew( regionExt -> getArea() -> getAreaId() , c );
 	}
 
 	String in;
@@ -528,15 +494,14 @@ String WikiAreaPages::createDotFile_getRegionLabel( MindRegionDef *region , MapS
 		in += area;
 	}
 
-	MapStringToClass<MindCircuitConnectionDef> outputAreas;
+	MapStringToClass<MindRegionLink> outputAreas;
 	for( int k = 0; k < outputs.count(); k++ ) {
-		MindCircuitConnectionDef *c = outputs.getClassByIndex( k );
-		if( !region -> getId().equals( c -> getSrcRegion() ) )
+		MindRegionLink *c = outputs.getClassByIndex( k );
+		if( region != c -> getSrcRegion() )
 			continue;
 
-		String regionId = c -> getDstRegion();
-		MindRegion *regionExt = ms -> getMindRegion( regionId );
-		outputAreas.addnew( regionExt -> getArea() -> getId() , c );
+		MindRegion *regionExt = c -> getDstRegion();
+		outputAreas.addnew( regionExt -> getArea() -> getAreaId() , c );
 	}
 
 	String out;
@@ -555,7 +520,7 @@ String WikiAreaPages::createDotFile_getRegionLabel( MindRegionDef *region , MapS
 	return( label );
 }
 
-void WikiAreaPages::createDotFile_subgraph( MindAreaDef *areaDef , bool p_inputs , MapStringToClass<MindCircuitConnectionDef>& connections , StringList& text , String& linkItem ) {
+void WikiAreaPages::createDotFile_subgraph( MindArea *area , bool p_inputs , MapStringToClass<MindRegionLink>& connections , StringList& text , String& linkItem ) {
 	MindService *ms = MindService::getService();
 	String postfix = ( p_inputs )? "IN" : "OUT";
 	String postfixString = ( p_inputs )? "Inputs" : "Outputs";
@@ -573,34 +538,33 @@ void WikiAreaPages::createDotFile_subgraph( MindAreaDef *areaDef , bool p_inputs
 		text.add( "\t/* external outbound links */" );
 	}
 
-	MapStringToString areaTypes;
+	MapStringToClass<MindRegion> areaTypes;
 	MapStringToString areas;
 	MapStringToClass<MapStringToPtr> areaTypeRegionMap;
 	for( int k = 0; k < connections.count(); k++ ) {
-		MindCircuitConnectionDef *c = connections.getClassByIndex( k );
-		String regionId = ( p_inputs )? c -> getSrcRegion() : c -> getDstRegion();
-		String regionLocalId = ( p_inputs )? c -> getDstRegion() : c -> getSrcRegion();
-		MindRegion *region = ms -> getMindRegion( regionId );
-		String area = region -> getArea() -> getId();
+		MindRegionLink *c = connections.getClassByIndex( k );
+		MindRegion *region = ( p_inputs )? c -> getSrcRegion() : c -> getDstRegion();
+		MindRegion *regionLocal = ( p_inputs )? c -> getDstRegion() : c -> getSrcRegion();
+		String areaId = region -> getArea() -> getAreaId();
 		String areaType = region -> getArea() -> getMindAreaDef() -> getAreaType();
 
-		String key = areaType + ":" + regionLocalId;
+		String key = areaType + ":" + regionLocal -> getRegionId();
 		MapStringToPtr *lineAreas = areaTypeRegionMap.get( key );
 		if( lineAreas == NULL ) {
 			lineAreas = new MapStringToPtr;
 			areaTypeRegionMap.add( key , lineAreas );
 		}
 
-		if( lineAreas -> get( area ) == NULL )
-			lineAreas -> add( area , c );
+		if( lineAreas -> get( areaId ) == NULL )
+			lineAreas -> add( areaId , c );
 
-		areas.addnew( area , areaType );
-		areaTypes.addnew( areaType , regionLocalId );
+		areas.addnew( areaId , areaType );
+		areaTypes.addnew( areaType , regionLocal );
 	}
 
 	// add named lines
 	String s;
-	String localArea = areaDef -> getAreaId();
+	String localArea = area -> getAreaId();
 	for( int k = 1; k < areaTypes.count(); k++ ) {
 		String areaType = areaTypes.getKeyByIndex( k );
 

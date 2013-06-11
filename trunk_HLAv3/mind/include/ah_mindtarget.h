@@ -157,8 +157,8 @@ public:
 
 	void setSensorInfo( TargetRegionDef *info ) { targetInfo = info; };
 	TargetRegionDef *getSensorInfo() { return( targetInfo ); };
-	void setSensorName( String name ) { sensorName = name; };
-	String getSensorName() { return( sensorName ); };
+	void setSensorId( String p_id ) { sensorId = p_id; };
+	String getSensorId() { return( sensorId ); };
 
 	// capture data and and send via NeuroLink
 	NeuroSignal *getSensorySignal( NeuroLinkSource *src );
@@ -175,7 +175,7 @@ private:
 	TargetRegionDef *targetInfo;
 
 // utility
-	String sensorName;
+	String sensorId;
 	Xml config;
 	int msgId;
 	// auto-polling
@@ -202,8 +202,11 @@ public:
 	virtual void processEffectorControl( NeuroLink *link , NeuroSignal *signal ) = 0;
 
 public:
-	void setEffectorName( String name ) { effectorName = name; };
-	String getEffectorName() { return( effectorName ); };
+	void setEffectorId( String p_id ) { effectorId = p_id; };
+	String getEffectorId() { return( effectorId ); };
+
+	void setEffectorInfo( TargetRegionDef *info ) { targetInfo = info; };
+	TargetRegionDef *getEffectorInfo() { return( targetInfo ); };
 
 private:
 	// MindRegion
@@ -216,8 +219,11 @@ private:
 	virtual void getSourceSizes( String entity , int *sizeX , int *sizeY );
 
 private:
+// references
+	TargetRegionDef *targetInfo;
+
 // utility
-	String effectorName;
+	String effectorId;
 };
 
 /*#########################################################################*/
@@ -281,7 +287,12 @@ public:
 	MindEffectorSet *getEffectors() { return( effectors ); };
 
 	void addEffector( MindEffector *effector , bool offline );
-	
+	MindEffector *getEffector( String name );
+
+private:
+	void createEffector( MindEffector *effector );
+	void createEffectorLinks( MindEffector *effector );
+
 private:
 // references
 	MindTarget *target;

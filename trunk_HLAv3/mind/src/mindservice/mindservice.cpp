@@ -42,14 +42,6 @@ MindService::MindService() {
 	regionIdSeq = 0;
 }
 
-MindActiveMemory *MindService::getActiveMemory() {
-	return( activeMemory );
-}
-
-MindMap *MindService::getMindMap() {
-	return( mindMap );
-}
-
 void MindService::configureService( Xml p_config ) {
 	config = p_config;
 
@@ -180,6 +172,10 @@ void MindService::addArea( MindArea *area ) {
 	MindRegionSet *areaRegions = area -> getRegionSet();
 	regionSet -> addRegionSet( areaRegions );
 	areaSet -> addMindArea( area );
+}
+
+MapStringToClass<MindArea>& MindService::getMindAreas() {
+	return( areaSet -> getMindAreas() );
 }
 
 MindArea *MindService::getMindArea( String areaId ) {
@@ -336,17 +332,19 @@ MindRegionLink *MindService::createRegionLink( MindConnectionTypeDef *connection
 	// add to area link
 	if( areaLink != NULL )
 		areaLink -> addRegionLink( regionLink );
+	else
+		linkSrcArea -> addInternalRegionLink( regionLink );
 
 	// add to region link
-	srcRegion -> addRegionLink( regionLink );
-	dstRegion -> addRegionLink( regionLink );
+	srcRegion -> addSlaveRegionLink( regionLink );
+	dstRegion -> addMasterRegionLink( regionLink );
 
 	return( regionLink );
 }
 
 MindAreaLink *MindService::createAreaLink( MindArea *masterArea , MindArea *slaveArea ) {
 	// check area link exists
-	String key = masterArea -> getId() + "." + slaveArea -> getId();
+	String key = masterArea -> getAreaId() + "." + slaveArea -> getAreaId();
 	MindAreaLink *link = areaLinkMap.get( key );
 	if( link != NULL )
 		return( link );
@@ -360,10 +358,10 @@ MindAreaLink *MindService::createAreaLink( MindArea *masterArea , MindArea *slav
 	masterArea -> addSlaveLink( link );
 	slaveArea -> addMasterLink( link );
 	linkSet -> addSetItem( link );
-	logger.logInfo( "createMindAreaLink: create link masterArea=" + masterArea -> getId() + ", slaveArea=" + slaveArea -> getId() + "..." );
+	logger.logInfo( "createMindAreaLink: create link masterArea=" + masterArea -> getAreaId() + ", slaveArea=" + slaveArea -> getAreaId() + "..." );
 
 	// start process area link messages
-	String channel = "CHANNEL." + masterArea -> getId() + "." + slaveArea -> getId();
+	String channel = "CHANNEL." + masterArea -> getAreaId() + "." + slaveArea -> getAreaId();
 	link -> open( session , channel );
 	return( link );
 }

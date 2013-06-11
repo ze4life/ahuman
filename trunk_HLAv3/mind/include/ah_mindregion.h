@@ -49,7 +49,8 @@ public:
 	void setRegionId( String p_id ) { id = p_id; };
 	String getRegionId() { return( id ); };
 
-	void addRegionLink( MindRegionLink *link );
+	void addMasterRegionLink( MindRegionLink *link );
+	void addSlaveRegionLink( MindRegionLink *link );
 	String getFullRegionId();
 	void sendMessage( MindMessage *msg );
 
@@ -57,12 +58,15 @@ public:
 	MindRegionTypeDef *getRegionTypeInfo() { return( regionType ); };
 	MapStringToClass<NeuroLinkSource>& getSourceConnectorMap() { return( sourceConnectorMap ); };
 	MapStringToClass<NeuroLinkTarget>& getTargetConnectorMap() { return( targetConnectorMap ); };
-	MindRegionLinkSet *getRegionLinkSet() { return( regionLinkSet ); };
+	MindRegionLinkSet *getMasterRegionLinkSet() { return( regionMasterLinkSet ); };
+	MindRegionLinkSet *getSlaveRegionLinkSet() { return( regionSlaveLinkSet ); };
 
 	void addSourceEntity( String entity , NeuroLinkSource *connector );
 	void addTargetEntity( String entity , NeuroLinkTarget *connector );
 	NeuroLinkSource *getNeuroLinkSource( String entity );
 	NeuroLinkTarget *getNeuroLinkTarget( String entity );
+	ClassList<MindRegionLink>& getMasterRegionLinks();
+	ClassList<MindRegionLink>& getSlaveRegionLinks();
 
 	bool checkLinkedTo( MindRegion *dst );
 
@@ -82,7 +86,8 @@ private:
 // references
 	MindRegionTypeDef *regionType;
 	MindArea *area;
-	MindRegionLinkSet *regionLinkSet;
+	MindRegionLinkSet *regionMasterLinkSet;
+	MindRegionLinkSet *regionSlaveLinkSet;
 	MapStringToClass<NeuroLinkSource> sourceConnectorMap;
 	MapStringToClass<NeuroLinkTarget> targetConnectorMap;
 };
@@ -96,6 +101,7 @@ public:
 
 	int getCount();
 	MindRegion *getSetItem( int k );
+	MapStringToClass<MindRegion>& getRegions() { return( map ); };
 
 	MindRegion *getSetItemById( String regionId );
 	void addSetItem( MindRegion *region );

@@ -12,7 +12,7 @@ void AHumanTarget::configureTarget( Xml config ) {
 }
 
 void AHumanTarget::createTarget( SensorArea *sensorArea , EffectorArea *effectorArea ) {
-	MindTarget::addSensor( "eye" , AHumanTarget::createEye( sensorArea ) );
+	MindTarget::addSensor( "TARGET.TSA.EYE" , AHumanTarget::createEye( sensorArea ) );
 }
 
 void AHumanTarget::initTarget() {
