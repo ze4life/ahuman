@@ -87,13 +87,15 @@
 	<circuit id="CP.VISION-COMPONENTS" name="Vision Components"
 		image="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/vision-subcortical.jpg"
 		reference="http://neuroscience.uth.tmc.edu/s3/chapter07.html"
-		components="CG=VBA.PN.PSYM.CLG OCN=VBA.MM.OCN SOA=VBA.MM.SOA LGN=VBA.FD.LGN EWN=VBA.MM.EWN VC=NC.LOBE.OCC VAC=VCA.NC.IPS.PEF"
+		components="RT=VBA.FD.RT CG=VBA.PN.PSYM.CLG OCN=VBA.MM.OCN SOA=VBA.MM.SOA LGN=VBA.FD.LGN EWN=VBA.MM.EWN VC=NC.LOBE.OCC VAC=VCA.NC.IPS.PEF EYE=TARGET.TSA.EYE STN=HMA.HM.TGM.STR"
 		>
 		<link src="OCN" dst="CG"/>
 		<link src="EWN" dst="CG"/>
 		<link src="VAC" dst="SOA"/>
 		<link src="SOA" dst="OCN"/>
 		<link src="LGN" dst="VC"/>
+		<link src="EYE" dst="STN"/>
+		<link src="EYE" dst="RT"/>
 	</circuit>
 
 	<circuit id="CP.VISION-SACCADES" name="Horizontal saccades and smooth pursuit movements"
@@ -233,6 +235,16 @@
 		<link src="PHT" dst="CC"/>
 		<link src="CC" dst="SCG"/>
 		<link src="SCG" dst="EYE"/>
+	</circuit>
+
+	<circuit id="CP.TRIGEMINAL-NUCLEI" name="Trigeminal Nuclei" 
+		image="http://www.dartmouth.edu/~rswenson/NeuroSci/figures/Figure_16_files/image002.jpg"
+		reference="http://www.lookfordiagnosis.com/mesh_info.php?term=Trigeminal+Nuclei&lang=1"
+		components="EYE=TARGET.TSA.EYE CSN=HMA.HP.PTP.PTR VPM=SMA.FD.TH.VPM STR=HMA.HM.TGM.STR"
+		>
+		<link src="EYE" dst="CSN"/>
+		<link src="EYE" dst="STR"/>
+		<link src="CSN" dst="VPM"/>
 	</circuit>
 
 </circuits>
