@@ -44,10 +44,14 @@ class MindService : public Service {
 // interface
 public:
 	void setMindTarget( MindTarget *target );
+	MindTarget *getMindTarget() { return( target ); };
 
 	// get mind map, specific mind area, region, network
-	MindActiveMemory *getActiveMemory();
-	MindMap *getMindMap();
+	MindActiveMemory *getActiveMemory() { return( activeMemory ); };
+	MindMap *getMindMap() { return( mindMap ); };
+	MindAreaSet *getMindAreaSet() { return( areaSet ); };
+
+	MapStringToClass<MindArea>& getMindAreas();
 	MindArea *getMindArea( String areaId );
 	MindRegion *getMindRegion( String regionId );
 	bool isMindRegion( String regionId );

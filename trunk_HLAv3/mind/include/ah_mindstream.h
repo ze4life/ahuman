@@ -51,6 +51,9 @@ public:
 	MindArea *getMasterArea() { return( masterArea ); };
 	MindArea *getSlaveArea() { return( slaveArea ); };
 	MessagePublisher *getPublisher() { return( iopub ); };
+	MindRegionLinkSet *getRegionLinkSet() { return( links ); };
+
+	ClassList<MindRegionLink>& getRegionLinks();
 	
 private:
 // utility
@@ -75,6 +78,7 @@ public:
 	const char *getClass() { return( "MindAreaLinkSet" ); };
 
 	void addSetItem( MindAreaLink *link );
+	ClassList<MindAreaLink>& getLinks() { return( list ); };
 
 public:
 // own data
@@ -128,6 +132,9 @@ public:
 	void destroyRegionLinkSet();
 	int getCount();
 	MindRegionLink *getSetItem( int k );
+
+	ClassList<MindRegionLink>& getLinks() { return( list ); };
+	bool checkLinked( MindRegion *src , MindRegion *dst );
 
 public:
 // own data

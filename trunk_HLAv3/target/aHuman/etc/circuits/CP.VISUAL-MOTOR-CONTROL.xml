@@ -120,7 +120,7 @@
 	<circuit id="CP.SACCADIC-MOTOR-CONTROL" name="Eye blink reflex and pupillary light reflex"
 		image="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/oculomotor.jpg"
 		reference="http://neuroscience.uth.tmc.edu/s3/chapter07.html"
-		components="SpinalTrigeminal=HMA.HM.TGM.STR Oculomotor=VBA.MM.OCN Abducens=VBA.HP.ABD Facial=HMA.HP.FCM RF=HP.PRF PrincipalTrigeminal=HMA.HP.PTP.PTR Ciliary=VBA.PN.PSYM.CLG EWN=VBA.MM.EWN Pretectum=MM.PT VAC=VCA.NC.V3 SupraOculomotor=VBA.MM.SOA"
+		components="EYE=TARGET.TSA.EYE SpinalTrigeminal=HMA.HM.TGM.STR Oculomotor=VBA.MM.OCN Abducens=VBA.HP.ABD Facial=HMA.HP.FCM RF=HP.PRF PrincipalTrigeminal=HMA.HP.PTP.PTR Ciliary=VBA.PN.PSYM.CLG EWN=VBA.MM.EWN Pretectum=MM.PT VAC=VCA.NC.V3 SupraOculomotor=VBA.MM.SOA"
 		>
 		<link src="Facial" dst="Abducens"/>
 		<link src="RF" dst="Facial"/>
@@ -132,6 +132,10 @@
 		<link src="VAC" dst="SupraOculomotor"/>
 		<link src="SupraOculomotor" dst="EWN"/>
 		<link src="SupraOculomotor" dst="Oculomotor"/>
+		<link src="Oculomotor" dst="EYE"/>
+		<link src="SpinalTrigeminal" dst="EYE"/>
+		<link src="Abducens" dst="EYE"/>
+		<link src="Ciliary" dst="EYE"/>
 	</circuit>
 
 	<circuit id="CP.SACCADIC-VOLUNTARY-AND-PURSUIT" name="Saccades and smooth movements"
@@ -217,6 +221,18 @@
 		<link src="SNr" dst="SNc"/>
 		<link src="SNc" dst="NAC"/>
 		<link src="VTA" dst="NAC"/>
+	</circuit>
+
+	<circuit id="CP.EYE-SYM-PATHWAYS" name="Sympathetic and parasympathetic eye pathways" 
+		image="http://www.nature.com/pr/journal/v71/n3/images/pr201138f1.gif" imageHeight="400" imageWidth="400"
+		reference="http://www.nature.com/pr/journal/v71/n3/fig_tab/pr201138f1.html"
+		components="EYE=TARGET.TSA.EYE EWN=VBA.MM.EWN CLG=VBA.PN.PSYM.CLG CC=VBA.SC.IZ.CS PHT=HTA.FD.HT.PN SCG=VBA.PN.SYM.SCG"
+		>
+		<link src="EWN" dst="CLG"/>
+		<link src="CLG" dst="EYE"/>
+		<link src="PHT" dst="CC"/>
+		<link src="CC" dst="SCG"/>
+		<link src="SCG" dst="EYE"/>
 	</circuit>
 
 </circuits>

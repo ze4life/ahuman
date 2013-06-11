@@ -23,15 +23,16 @@
 				region="VBA.HP.ABD" connector="nucleus.output"
 				function="lateral rectus, quick turn to the right -> compensatory reflex turning of two eyes to the left"
 				notes="vestibular nucleus -> PPRF -> ABD -> this, larger motor neurons, c.n. VI"/>
+
 			<connector entity="muscle-curvature" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
-				region="VBA.PN.PSYM.CLG" connector="nucleus.output"
+				region="VBA.PN.PSYM.CLG" connector="ganglion.output"
 				function="to ciliary muscle to accomodate eye"/>
 			<connector entity="muscle-pupil-close" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
-				region="VBA.PN.PSYM.EPG" connector="nucleus.output"
+				region="VBA.PN.PSYM.EPG" connector="ganglion.output"
 				notes="sphincter pupillae is situated along the edge of the iris contracts to close the opening in the pupil"
 				function="to sphincter pupillae to close pupil"/>
 			<connector entity="muscle-pupil-open" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
-				region="AVA.PN.SYM.SCG" connector="nucleus.output"
+				region="VBA.PN.SYM.SCG" connector="ganglion.output"
 				notes="dilator pupillae runs radially, like the spokes of a wheel, through the iris, and when it contracts this opens the pupil"
 				function="to dilator pupillae to open pupil"/>
 		</sensor>

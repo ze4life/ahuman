@@ -4,8 +4,8 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-WikiRegionPage::WikiRegionPage( WikiMaker *p_wm , String p_wikiDir , MindRegionDef *p_region ) 
-:	info( p_wm -> hmindxml.getElementInfo( p_region -> getId() ) ) {
+WikiRegionPage::WikiRegionPage( WikiMaker *p_wm , String p_wikiDir , MindRegion *p_region ) 
+:	info( p_wm -> hmindxml.getElementInfo( p_region -> getRegionId() ) ) {
 	attachLogger();
 	wm = p_wm;
 	wikiDir = p_wikiDir;
@@ -72,8 +72,8 @@ void WikiRegionPage::createHeading() {
 	lines.add( "  * *Top-down path to region*: " + s + " (see [OverallMindMaps Mind Maps])" );
 
 	// mind area
-	MindAreaDef *area = region -> getArea();
-	lines.add( "  * *Brain area*: [BrainArea" + area -> getAreaId() + " " + area -> getAreaName() + "]" );
+	MindArea *area = region -> getArea();
+	lines.add( "  * *Brain area*: [BrainArea" + area -> getAreaId() + " " + area -> getMindAreaDef() -> getAreaName() + "]" );
 
 	// function
 	if( !info.brodmannid.isEmpty() )
@@ -152,9 +152,9 @@ void WikiRegionPage::createChildTableSection_addChilds( Xml node , String prefix
 
 void WikiRegionPage::createConnectivitySection() {
 	StringList lines;
-	MapStringToClass<MindCircuitConnectionDef> connections;
+	MapStringToClass<MindRegionLink> connections;
 	MapStringToClass<MindRegion> regions;
-	MapStringToClass<MindCircuitConnectionDef> connectionsTotal;
+	MapStringToClass<MindRegionLink> connectionsTotal;
 
 	MindService *ms = MindService::getService();
 
@@ -176,9 +176,9 @@ void WikiRegionPage::createConnectivitySection() {
 	else {
 		createConnectivitySection_getExternalConnectionTableLine( NULL , lines , true );
 		for( int k = 0; k < connections.count(); k++ ) {
-			MindCircuitConnectionDef *c = connections.getClassByIndex( k );
+			MindRegionLink *c = connections.getClassByIndex( k );
 			createConnectivitySection_getExternalConnectionTableLine( c , lines , true );
-			regions.addnew( c -> getSrcRegion() , ms -> getMindRegion( c -> getSrcRegion() ) );
+			regions.addnew( c -> getSrcRegion() -> getRegionId() , c -> getSrcRegion() );
 		}
 	}
 
@@ -194,9 +194,9 @@ void WikiRegionPage::createConnectivitySection() {
 	else {
 		createConnectivitySection_getExternalConnectionTableLine( NULL , lines , false );
 		for( int k = 0; k < connections.count(); k++ ) {
-			MindCircuitConnectionDef *c = connections.getClassByIndex( k );
+			MindRegionLink *c = connections.getClassByIndex( k );
 			createConnectivitySection_getExternalConnectionTableLine( c , lines , false );
-			regions.addnew( c -> getDstRegion() , ms -> getMindRegion( c -> getDstRegion() ) );
+			regions.addnew( c -> getDstRegion() -> getRegionId() , c -> getDstRegion() );
 		}
 	}
 
@@ -208,35 +208,26 @@ void WikiRegionPage::createConnectivitySection() {
 	createDotFile( regions , connectionsTotal );
 }
 
-void WikiRegionPage::createConnectivitySection_getExternalConnections( MapStringToClass<MindCircuitConnectionDef>& connections , bool isin ) {
-	MindService *ms = MindService::getService();
-	MindMap *mm = ms -> getMindMap();
-	ClassList<MindCircuitDef>& circuits = mm -> getMindCircuits();
+void WikiRegionPage::createConnectivitySection_getExternalConnections( MapStringToClass<MindRegionLink>& connections , bool isin ) {
+	ClassList<MindRegionLink>& links = ( isin )? region -> getMasterRegionLinks() : region -> getSlaveRegionLinks();
 
 	String key;
-	for( int k1 = 0; k1 < circuits.count(); k1++ ) {
-		MindCircuitDef *circuit = circuits.get( k1 );
-		ClassList<MindCircuitConnectionDef>& links = circuit -> getConnections();
-		for( int k2 = 0; k2 < links.count(); k2++ ) {
-			MindCircuitConnectionDef *c = links.get( k2 );
-			if( isin == false && info.id.equals( c -> getSrcRegion() ) ) {
-				MindArea *dstArea = ms -> getMindRegion( c -> getDstRegion() ) -> getArea();
-				key = dstArea -> getId() + "#" + c -> getSrcRegion() + "#" + c -> getDstRegion() + "#1";
-				if( connections.get( key ) == NULL )
-					connections.add( key , c );
-			}
-			else 
-			if( isin == true && info.id.equals( c -> getDstRegion() ) ) {
-				MindArea *srcArea = ms -> getMindRegion( c -> getSrcRegion() ) -> getArea();
-				key = srcArea -> getId() + "#" + c -> getDstRegion() + "#" + c -> getSrcRegion() + "#2";
-				if( connections.get( key ) == NULL )
-					connections.add( key , c );
-			}
+	for( int k = 0; k < links.count(); k++ ) {
+		MindRegionLink *c = links.get( k );
+		if( isin == false ) {
+			key = c -> getDstRegion() -> getArea() -> getAreaId() + "#" + c -> getSrcRegion() -> getRegionId() + "#" + c -> getDstRegion() -> getRegionId() + "#1";
+			if( connections.get( key ) == NULL )
+				connections.add( key , c );
+		}
+		else {
+			key = c -> getSrcRegion() -> getArea() -> getAreaId() + "#" + c -> getDstRegion() -> getRegionId() + "#" + c -> getSrcRegion() -> getRegionId() + "#2";
+			if( connections.get( key ) == NULL )
+				connections.add( key , c );
 		}
 	}
 }
 
-void WikiRegionPage::createConnectivitySection_getExternalConnectionTableLine( MindCircuitConnectionDef *link , StringList& lines , bool isin ) {
+void WikiRegionPage::createConnectivitySection_getExternalConnectionTableLine( MindRegionLink *link , StringList& lines , bool isin ) {
 	String line;
 	String value1;
 	if( link == NULL ) {
@@ -254,24 +245,23 @@ void WikiRegionPage::createConnectivitySection_getExternalConnectionTableLine( M
 
 	// table row
 	MindService *ms = MindService::getService();
-	MindRegion *srcRegion = ms -> getMindRegion( link -> getSrcRegion() );
-	MindRegion *dstRegion = ms -> getMindRegion( link -> getDstRegion() );
-	String area = region -> getArea() -> getAreaId();
+	String srcRegionId = link -> getSrcRegion() -> getRegionId();
+	String dstRegionId = link -> getDstRegion() -> getRegionId();
 
 	String reference = wm -> findReference( link );
 	if( isin == true ) {
-		const XmlHMindElementInfo& info = wm -> hmindxml.getElementInfo( link -> getSrcRegion() );
-		value1 = wm -> getAreaReference( srcRegion -> getArea() -> getId() );
+		const XmlHMindElementInfo& info = wm -> hmindxml.getElementInfo( srcRegionId );
+		value1 = wm -> getAreaReference( link -> getSrcRegion() -> getArea() -> getAreaId() );
 		wm -> clearRepeats1( value1 );
 		line = "|| " + value1 + " || " + 
-			wm -> getRegionReference( link -> getSrcRegion() ) + " || " + info.name + " || " + link -> getTypeName() + " || " + reference + " ||";
+			wm -> getRegionReference( srcRegionId ) + " || " + info.name + " || " + link -> getConnectionType() -> getName() + " || " + reference + " ||";
 	}
 	else {
-		const XmlHMindElementInfo& info = wm -> hmindxml.getElementInfo( link -> getDstRegion() );
-		value1 = wm -> getAreaReference( dstRegion -> getArea() -> getId() );
+		const XmlHMindElementInfo& info = wm -> hmindxml.getElementInfo( dstRegionId );
+		value1 = wm -> getAreaReference( link -> getDstRegion() -> getArea() -> getAreaId() );
 		wm -> clearRepeats1( value1 );
 		line = "|| " + value1 + " || " + 
-			wm -> getRegionReference( link -> getDstRegion() ) + " || " + info.name + " || " + link -> getTypeName() + " || " + reference + " ||";
+			wm -> getRegionReference( dstRegionId ) + " || " + info.name + " || " + link -> getConnectionType() -> getName() + " || " + reference + " ||";
 	}
 	lines.add( line );
 }
@@ -283,8 +273,7 @@ void WikiRegionPage::createThirdpartyAndReferencesSection() {
 	StringList circuits;
 	wm -> circuitsxml.getCircuitList( circuits );
 
-	MindAreaDef *areaDef = region -> getArea();
-	MindArea *area = ms -> getMindArea( areaDef -> getAreaId() );
+	MindArea *area = region -> getArea();
 	MapStringToString circuitKeys;
 	for( int k = 0; k < circuits.count(); k++ ) {
 		String circuitId = circuits.get( k );
@@ -340,13 +329,13 @@ void WikiRegionPage::createThirdpartyAndReferencesSection() {
 	wm -> updateFileSection( wikiDir , wikiPage , sectionName , lines );
 }
 
-String WikiRegionPage::createThirdpartyAndReferencesSection_getCircuitKey( MindRegionDef *regionDef , XmlCircuitInfo& cinfo ) {
+String WikiRegionPage::createThirdpartyAndReferencesSection_getCircuitKey( MindRegion *region , XmlCircuitInfo& cinfo ) {
 	// get circuit regions
 	StringList comps;
 	wm -> circuitsxml.getCircuitComponents( cinfo , comps );
 
 	// check circuit mentions region
-	String regionId = regionDef -> getId();
+	String regionId = region -> getRegionId();
 	for( int k = 0; k < comps.count(); k++ ) {
 		String comp = comps.get( k );
 		if( comp.equals( regionId ) )
@@ -381,7 +370,7 @@ void WikiRegionPage::createThirdpartyAndReferencesSection_getCircuitLines( XmlCi
 	lines.add( "" );
 }
 
-void WikiRegionPage::createDotFile( MapStringToClass<MindRegion>& regions , MapStringToClass<MindCircuitConnectionDef>& connectionsTotal ) {
+void WikiRegionPage::createDotFile( MapStringToClass<MindRegion>& regions , MapStringToClass<MindRegionLink>& connectionsTotal ) {
 	String dotDir = wm -> wiki.getProperty( "dotPath" );
 	String fileName = dotDir + "/" + info.id + ".dot";
 	StringList text;
@@ -403,7 +392,7 @@ void WikiRegionPage::createDotFile( MapStringToClass<MindRegion>& regions , MapS
 	for( int k = 0; k < regions.count(); k++ ) {
 		MindRegion *region = regions.getClassByIndex( k );
 		MindArea *area = region -> getArea();
-		areas.addnew( area -> getId() , area );
+		areas.addnew( area -> getAreaId() , area );
 	}
 
 	// list nodes by area
@@ -411,9 +400,9 @@ void WikiRegionPage::createDotFile( MapStringToClass<MindRegion>& regions , MapS
 		MindArea *area = areas.getClassByIndex( k );
 
 		// area
-		text.add( "\tsubgraph cluster_" + area -> getId() + " {" );
-		text.add( "\tlabel=\"" + area -> getId() + "\";" );
-		text.add( "\t\"" + area -> getId() + "\" [ shape=box, style=filled , label = <" );
+		text.add( "\tsubgraph cluster_" + area -> getAreaId() + " {" );
+		text.add( "\tlabel=\"" + area -> getAreaId() + "\";" );
+		text.add( "\t\"" + area -> getAreaId() + "\" [ shape=box, style=filled , label = <" );
 		text.add( "\t\t<TABLE BORDER=\"0\" CELLBORDER=\"1\" CELLSPACING=\"0\" CELLPADDING=\"4\">" );
 
 		// regions
@@ -447,18 +436,18 @@ void WikiRegionPage::createDotFile( MapStringToClass<MindRegion>& regions , MapS
 
 	// list connections
 	for( int k = 0; k < connectionsTotal.count(); k++ ) {
-		MindCircuitConnectionDef *c = connectionsTotal.getClassByIndex( k );
+		MindRegionLink *c = connectionsTotal.getClassByIndex( k );
 
-		String src = c -> getSrcRegion();
-		String dst = c -> getDstRegion();
+		String src = c -> getSrcRegion() -> getRegionId();
+		String dst = c -> getDstRegion() -> getRegionId();
 		if( info.id.equals( src ) ) {
 			MindRegion *region = regions.get( dst );
 			src = "\"" + src + "\"";
-			dst = "\"" + region -> getArea() -> getId() + "\":" + "\"" + dst + "\"";
+			dst = "\"" + region -> getArea() -> getAreaId() + "\":" + "\"" + dst + "\"";
 		}
 		else {
 			MindRegion *region = regions.get( src );
-			src = "\"" + region -> getArea() -> getId() + "\":" + "\"" + src + "\"";
+			src = "\"" + region -> getArea() -> getAreaId() + "\":" + "\"" + src + "\"";
 			dst = "\"" + dst + "\"";
 		}
 

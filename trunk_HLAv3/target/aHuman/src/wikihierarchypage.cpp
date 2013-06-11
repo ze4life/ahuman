@@ -179,7 +179,7 @@ String WikiHierarchyPage::updateHierarchyPage_getElementString( String node , Mi
 
 	// mapping section
 	if( ownArea != NULL )
-		value += " -> [BrainArea" + ownArea -> getId() + "]";
+		value += " -> [BrainArea" + ownArea -> getAreaId() + "]";
 
 	// ignore section
 	if( info.ignore == true ) {

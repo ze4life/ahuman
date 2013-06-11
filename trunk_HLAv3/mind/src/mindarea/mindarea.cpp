@@ -25,8 +25,20 @@ void MindArea::configure( MindAreaDef *p_info ) {
 	Object::setInstance( areaId );
 }
 
-MindAreaDef *MindArea::getMindAreaDef() {
-	return( info );
+MapStringToClass<MindRegion>& MindArea::getRegions() {
+	return( regionSet -> getRegions() );
+}
+
+ClassList<MindRegionLink>& MindArea::getInternalRegionLinks() {
+	return( regionLinkSet -> getLinks() );
+}
+
+ClassList<MindAreaLink>& MindArea::getMasterAreaLinks() {
+	return( areaMasterLinkSet -> getLinks() );
+}
+
+ClassList<MindAreaLink>& MindArea::getSlaveAreaLinks() {
+	return( areaSlaveLinkSet -> getLinks() );
 }
 
 void MindArea::createRegions( MindTarget *target ) {
@@ -76,14 +88,6 @@ void MindArea::destroy() {
 		regionLinkSet -> destroyRegionLinkSet();
 }
 
-String MindArea::getId() {
-	return( info -> getAreaId() );
-}
-
-MindRegionSet *MindArea::getRegionSet() {
-	return( regionSet );
-}
-
 MindRegion *MindArea::getRegion( String group , String id ) {
 	String regionId = group + "." + id;
 	return( regionSet -> getSetItemById( regionId ) );
@@ -92,6 +96,10 @@ MindRegion *MindArea::getRegion( String group , String id ) {
 void MindArea::addRegion( MindRegion *region ) {
 	// add to collections
 	regionSet -> addSetItem( region );
+}
+
+void MindArea::addInternalRegionLink( MindRegionLink *link ) {
+	regionLinkSet -> addSetItem( link );
 }
 
 void MindArea::addMasterLink( MindAreaLink *link ) {

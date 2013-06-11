@@ -54,12 +54,21 @@ public:
 
 	void followLinks( String spykeTrainId , MindRegion *region , NeuroSignalSet *signalSet );
 
-	String getId();
-	MindAreaDef *getMindAreaDef();
-	MindRegionSet *getRegionSet();
+	String getAreaId() { return( areaId ); };
+	MindAreaDef *getMindAreaDef() { return( info ); };
+	MindRegionSet *getRegionSet() { return( regionSet ); };
+	MindRegionLinkSet *getInternalRegionLinkSet() { return( regionLinkSet ); };
+	MindAreaLinkSet *getMasterAreaLinkSet() { return( areaMasterLinkSet ); };
+	MindAreaLinkSet *getSlaveAreaLinkSet() { return( areaSlaveLinkSet ); };
+
 	MindRegion *getRegion( String group , String groupId );
+	MapStringToClass<MindRegion>& getRegions();
+	ClassList<MindRegionLink>& getInternalRegionLinks();
+	ClassList<MindAreaLink>& getMasterAreaLinks();
+	ClassList<MindAreaLink>& getSlaveAreaLinks();
 
 	void addRegion( MindRegion *region );
+	void addInternalRegionLink( MindRegionLink *link );
 	void addMasterLink( MindAreaLink *link );
 	void addSlaveLink( MindAreaLink *link );
 
@@ -92,6 +101,7 @@ public:
 
 	void addMindArea( MindArea *area );
 	MindArea *getMindArea( String id );
+	MapStringToClass<MindArea>& getMindAreas() { return( map ); };
 
 	void wakeupAreaSet( MindActiveMemory *activeMemory );
 	void suspendAreaSet();

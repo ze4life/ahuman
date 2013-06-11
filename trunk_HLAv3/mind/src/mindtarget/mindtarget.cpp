@@ -84,9 +84,9 @@ void MindTarget::destroyService() {
 	destroyTarget();
 }
 
-void MindTarget::addSensor( String name , MindSensor *sensor ) {
+void MindTarget::addSensor( String p_id , MindSensor *sensor ) {
 	Xml configSensors = config.getChildNode( "sensors" );
-	Xml xconfig = configSensors.findChildByPathAttr( "sensor" , "id" , name );
+	Xml xconfig = configSensors.findChildByPathAttr( "sensor" , "id" , p_id );
 
 	bool offline = true;
 	if( xconfig.exists() && xconfig.getBooleanAttribute( "run" , true ) ) {
@@ -94,13 +94,13 @@ void MindTarget::addSensor( String name , MindSensor *sensor ) {
 		offline = false;
 	}
 
-	sensor -> setSensorName( name );
+	sensor -> setSensorId( p_id );
 	sensorArea -> addSensor( sensor , offline );
 }
 
-void MindTarget::addEffector( String name , MindEffector *effector ) {
+void MindTarget::addEffector( String p_id , MindEffector *effector ) {
 	Xml configEffectors = config.getChildNode( "effectors" );
-	Xml xconfig = configEffectors.getChildNamedNode( "effector" , name );
+	Xml xconfig = configEffectors.getChildNamedNode( "effector" , p_id );
 
 	bool offline = true;
 	if( xconfig.exists() && xconfig.getBooleanAttribute( "run" , true ) ) {
@@ -108,7 +108,7 @@ void MindTarget::addEffector( String name , MindEffector *effector ) {
 		offline = false;
 	}
 
-	effector -> setEffectorName( name );
+	effector -> setEffectorId( p_id );
 	effectorArea -> addEffector( effector , offline );
 }
 

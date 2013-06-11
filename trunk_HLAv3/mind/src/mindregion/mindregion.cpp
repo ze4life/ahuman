@@ -10,7 +10,8 @@ MindRegion::MindRegion( MindArea *p_area ) {
 	area = p_area;
 
 	regionType = NULL;
-	regionLinkSet = new MindRegionLinkSet();
+	regionMasterLinkSet = new MindRegionLinkSet();
+	regionSlaveLinkSet = new MindRegionLinkSet();
 	poolSet = NULL;
 	linkSet = NULL;
 	location = NULL;
@@ -26,12 +27,14 @@ void MindRegion::exit() {
 void MindRegion::destroy() {
 	destroyRegion();
 
-	delete regionLinkSet;
-	regionLinkSet = NULL;
+	delete regionMasterLinkSet;
+	delete regionSlaveLinkSet;
+	regionMasterLinkSet = NULL;
+	regionSlaveLinkSet = NULL;
 }
 
 String MindRegion::getFullRegionId() {
-	return( area -> getId() + "." + id );
+	return( area -> getAreaId() + "." + id );
 }
 
 void MindRegion::addPrivateNeuroLink( NeuroLink *nt ) {
@@ -47,6 +50,14 @@ NeuroLinkSource *MindRegion::getNeuroLinkSource( String entity ) {
 NeuroLinkTarget *MindRegion::getNeuroLinkTarget( String entity ) {
 	NeuroLinkTarget *connector = targetConnectorMap.get( entity );
 	return( connector );
+}
+
+ClassList<MindRegionLink>& MindRegion::getMasterRegionLinks() {
+	return( regionMasterLinkSet -> getLinks() );
+}
+
+ClassList<MindRegionLink>& MindRegion::getSlaveRegionLinks() {
+	return( regionSlaveLinkSet -> getLinks() );
 }
 
 void MindRegion::addSourceEntity( String entity , NeuroLinkSource *connector ) {
@@ -66,16 +77,19 @@ void MindRegion::addTargetEntity( String entity , NeuroLinkTarget *connector ) {
 void MindRegion::sendMessage( MindMessage *msg ) {
 }
 
-void MindRegion::addRegionLink( MindRegionLink *link ) {
-	regionLinkSet -> addSetItem( link );
+void MindRegion::addMasterRegionLink( MindRegionLink *link ) {
+	regionMasterLinkSet -> addSetItem( link );
+}
+
+void MindRegion::addSlaveRegionLink( MindRegionLink *link ) {
+	regionSlaveLinkSet -> addSetItem( link );
 }
 
 bool MindRegion::checkLinkedTo( MindRegion *dst ) {
-	for( int k = 0; k < regionLinkSet -> getCount(); k++ ) {
-		MindRegionLink *link = regionLinkSet -> getSetItem( k );
-		if( link -> getSrcRegion() == this && link -> getDstRegion() == dst )
-			return( true );
-	}
+	if( regionMasterLinkSet -> checkLinked( dst , this ) )
+		return( true );
+	if( regionSlaveLinkSet -> checkLinked( this , dst ) )
+		return( true );
 
 	return( false );
 }

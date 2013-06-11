@@ -24,7 +24,7 @@ MindAreaLink::~MindAreaLink() {
 void MindAreaLink::create( MindArea *p_masterArea , MindArea *p_slaveArea ) {
 	masterArea = p_masterArea;
 	slaveArea = p_slaveArea;
-	Object::setInstance( masterArea -> getId() + "-" + slaveArea -> getId() );
+	Object::setInstance( masterArea -> getAreaId() + "-" + slaveArea -> getAreaId() );
 }
 
 void MindAreaLink::open( MessageSession *p_session , String channel ) {
@@ -68,4 +68,8 @@ void MindAreaLink::onMessage( Message *msg ) {
 
 void MindAreaLink::addRegionLink( MindRegionLink *link ) {
 	links -> addSetItem( link );
+}
+
+ClassList<MindRegionLink>& MindAreaLink::getRegionLinks() {
+	return( links -> getLinks() );
 }

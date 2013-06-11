@@ -280,9 +280,15 @@ bool ModelVerifier::checkMindModel_verifyLinkedConnectors( MindRegionDef *region
 	String regionId = regionDef -> getId();
 
 	// check region has no connections at all
-	MindRegionLinkSet *set = region -> getRegionLinkSet();
-	if( set == NULL || set -> getCount() == 0 ) {
-		logger.logError( "checkMindModel_verifyLinkedConnectors: region=" + regionId + " is not connected to any other region" );
+	ClassList<MindRegionLink>& masterLinks = region -> getMasterRegionLinks();
+	if( masterLinks.count() == 0 ) {
+		logger.logError( "checkMindModel_verifyLinkedConnectors: region=" + regionId + " has no input region" );
+		return( false );
+	}
+
+	ClassList<MindRegionLink>& slaveLinks = region -> getSlaveRegionLinks();
+	if( slaveLinks.count() == 0 ) {
+		logger.logError( "checkMindModel_verifyLinkedConnectors: region=" + regionId + " has no output region" );
 		return( false );
 	}
 

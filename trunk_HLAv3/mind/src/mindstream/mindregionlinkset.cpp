@@ -25,3 +25,13 @@ int MindRegionLinkSet::getCount() {
 MindRegionLink *MindRegionLinkSet::getSetItem( int k ) {
 	return( list.get( k ) );
 }
+
+bool MindRegionLinkSet::checkLinked( MindRegion *src , MindRegion *dst ) {
+	for( int k = 0; k < list.count(); k++ ) {
+		MindRegionLink *link = list.get( k );
+		if( link -> getSrcRegion() == src && link -> getDstRegion() == dst )
+			return( true );
+	}
+
+	return( false );
+}
