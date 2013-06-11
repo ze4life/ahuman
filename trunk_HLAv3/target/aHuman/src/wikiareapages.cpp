@@ -202,6 +202,11 @@ void WikiAreaPages::createAreaPages_getInternalConnections( MindArea *area , Map
 
 	for( int k = 0; k < links.count(); k++ ) {
 		MindRegionLink *c = links.get( k );
+
+		// ignore secondary
+		if( !c -> isPrimary() )
+			continue;
+
 		String key = c -> getSrcRegion() -> getRegionId() + "#" + c -> getDstRegion() -> getRegionId();
 		if( connections.get( key ) == NULL )
 			connections.add( key , c );
@@ -217,6 +222,11 @@ void WikiAreaPages::createAreaPages_getExternalConnections( MindArea *area , Map
 
 		for( int k2 = 0; k2 < regionLinks.count(); k2++ ) {
 			MindRegionLink *c = regionLinks.get( k2 );
+
+			// ignore secondary
+			if( !c -> isPrimary() )
+				continue;
+
 			String key;
 			if( isin == false ) {
 				key = areaLink -> getSlaveArea() -> getAreaId() + "#" + c -> getSrcRegion() -> getRegionId() + "#" + c -> getDstRegion() -> getRegionId() + "#1";

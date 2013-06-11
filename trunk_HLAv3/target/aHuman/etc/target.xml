@@ -4,35 +4,35 @@
 
 		<sensor id="TARGET.TSA.EYE" run="true">
 			<connector entity="edge-output" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
-				region="VBA.FD.RT" connector="nucleus.input"
+				region="VBA.FD.RT" connector="nucleus.input" primary="true" 
 				function="after on-center/off-center edge extraction and zipping 100:1"/>
 			<connector entity="somatic" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
-				region="HMA.HP.PTP.PTR" connector="nucleus.input"
+				region="HMA.HP.PTP.PTR" connector="nucleus.input" primary="true" 
 				function="eye -> semilunar ganglion/ophthalmic -> PTR"/>
 			<connector entity="visceral" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="HMA.HM.TGM.STR" connector="nucleus.input"
 				function="eye -> semilunar ganglion/ophthalmic -> STR, proprioception"/>
 
 			<connector entity="muscle-rotate-major" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
-				region="VBA.MM.OCN" connector="nucleus.output"
+				region="VBA.MM.OCN" connector="nucleus.output" primary="true" 
 				function="levator palpebrae superioris, the inferior oblique, and the superior, medial, and inferior rectus muscles"/>
 			<connector entity="muscle-rotate-minor" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
-				region="VBA.MM.TRH" connector="nucleus.output"
+				region="VBA.MM.TRH" connector="nucleus.output" primary="true" 
 				function="superior oblique, rotation in a vertical plane – looking down and up, rotation in the plane of the face"/>
 			<connector entity="muscle-rotate-vestibular" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
-				region="VBA.HP.ABD" connector="nucleus.output"
+				region="VBA.HP.ABD" connector="nucleus.output" primary="true" 
 				function="lateral rectus, quick turn to the right -> compensatory reflex turning of two eyes to the left"
 				notes="vestibular nucleus -> PPRF -> ABD -> this, larger motor neurons, c.n. VI"/>
 
 			<connector entity="muscle-curvature" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
-				region="VBA.PN.PSYM.CLG" connector="ganglion.output"
+				region="VBA.PN.PSYM.CLG" connector="ganglion.output" primary="true" 
 				function="to ciliary muscle to accomodate eye"/>
 			<connector entity="muscle-pupil-close" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
-				region="VBA.PN.PSYM.EPG" connector="ganglion.output"
+				region="VBA.PN.PSYM.EPG" connector="ganglion.output" primary="true" 
 				notes="sphincter pupillae is situated along the edge of the iris contracts to close the opening in the pupil"
 				function="to sphincter pupillae to close pupil"/>
 			<connector entity="muscle-pupil-open" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
-				region="VBA.PN.SYM.SCG" connector="ganglion.output"
+				region="VBA.PN.SYM.SCG" connector="ganglion.output" primary="true" 
 				notes="dilator pupillae runs radially, like the spokes of a wheel, through the iris, and when it contracts this opens the pupil"
 				function="to dilator pupillae to open pupil"/>
 		</sensor>
