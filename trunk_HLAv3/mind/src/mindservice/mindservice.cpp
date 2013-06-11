@@ -258,19 +258,19 @@ void MindService::createCircuitConnection( MindCircuitDef *circuitDef , MindCirc
 	// create
 	MindConnectionTypeDef *connectionType = connectionDef -> getType();
 	ASSERTMSG( connectionType != NULL , "connectionType is null in circuit connection key=" + key );
-	createRegionConnection( connectionType , srcRegion , dstRegion );
+	createRegionConnection( connectionType , srcRegion , dstRegion , connectionDef -> isPrimary() );
 
 	// add to map
 	regionConnectionMap.add( key , connectionType );
 }
 
-void MindService::createRegionConnection( MindConnectionTypeDef *connectionType , MindRegion *srcRegion , MindRegion *dstRegion ) {
+void MindService::createRegionConnection( MindConnectionTypeDef *connectionType , MindRegion *srcRegion , MindRegion *dstRegion , bool primary ) {
 	ClassList<MindConnectionLinkTypeDef>& links = connectionType -> getLinks();
 	for( int k = 0; k < links.count(); k++ )
-		createNeuroLink( connectionType , links.get( k ) , srcRegion , dstRegion );
+		createNeuroLink( connectionType , links.get( k ) , srcRegion , dstRegion , primary );
 }
 
-NeuroLink *MindService::createNeuroLink( MindConnectionTypeDef *connectionType , MindConnectionLinkTypeDef *linkDef , MindRegion *srcRegion , MindRegion *dstRegion ) {
+NeuroLink *MindService::createNeuroLink( MindConnectionTypeDef *connectionTypeDef , MindConnectionLinkTypeDef *linkDef , MindRegion *srcRegion , MindRegion *dstRegion , bool primary ) {
 	// handle direction
 	MindRegion *linkSrcRegion = ( linkDef -> isBackward() )? dstRegion : srcRegion;
 	MindRegion *linkDstRegion = ( linkDef -> isBackward() )? srcRegion : dstRegion;
@@ -283,34 +283,40 @@ NeuroLink *MindService::createNeuroLink( MindConnectionTypeDef *connectionType ,
 	if( srcConnector == NULL || dstConnector == NULL )
 		return( NULL );
 
-	// create region link
-	MindRegionLink *regionLink = createRegionLink( connectionType , linkSrcRegion , linkDstRegion );
+	// create forward region link - as specified in network connection, though neurolink can be of backward direction
+	MindRegionLink *regionLink = createRegionLink( connectionTypeDef , srcRegion , dstRegion , primary );
 
-	// check neurolink exists
+	// check neurolink exists - by neurolink type and region pair, note that different connection types can produce the same link and duplicates will be avoided
 	String linkType = linkDef -> getName();
 	String key = linkType + "-" + linkSrcRegion -> getRegionId() + "-" + linkDstRegion -> getRegionId();
-	if( regionNeuroLinkMap.get( key ) != NULL )
-		return( NULL );
+	NeuroLink *neurolink = regionNeuroLinkMap.get( key );
+	if( neurolink != NULL ) {
+		if( primary )
+			neurolink -> setPrimary( primary );
+		return( neurolink );
+	}
 
 	// create neurolink
 	NeuroLinkInfo info;
 	info.setLinkDef( linkDef );
 	info.setNeuroTransmitter( linkDef -> getNeurotransmitter() );
 	info.setRegionLink( regionLink );
-	NeuroLink *neurolink = createNeuroLink( linkDef -> getImplementation() , linkDef -> getType() , srcConnector , dstConnector , &info );
+	neurolink = createNeuroLink( linkDef -> getImplementation() , linkDef -> getType() , srcConnector , dstConnector , &info );
 	if( neurolink == NULL )
 		return( NULL );
 
+	neurolink -> setPrimary( primary );
 	regionNeuroLinkMap.add( key , neurolink );
 	regionLink -> addNeuroLink( neurolink );
 
 	logger.logInfo( "createNeuroLink: neurolink created type=" + linkDef -> getType() + 
+		", direction=" + ( ( linkDef -> isBackward() )? "backward" : "forward" ) +
 		", implementation=" + linkDef -> getImplementation() + ", srcRegion=" + linkSrcRegion -> getRegionId() + 
 		", dstRegion=" + linkDstRegion -> getRegionId() );
 	return( neurolink );
 }
 
-MindRegionLink *MindService::createRegionLink( MindConnectionTypeDef *connectionType , MindRegion *srcRegion , MindRegion *dstRegion ) {
+MindRegionLink *MindService::createRegionLink( MindConnectionTypeDef *connectionType , MindRegion *srcRegion , MindRegion *dstRegion , bool primary ) {
 	// create area link if areas are different
 	MindArea *linkSrcArea = srcRegion -> getArea();
 	MindArea *linkDstArea = dstRegion -> getArea();
@@ -321,11 +327,15 @@ MindRegionLink *MindService::createRegionLink( MindConnectionTypeDef *connection
 	// check already created
 	String key = srcRegion -> getRegionId() + "." + dstRegion -> getRegionId();
 	MindRegionLink *regionLink = regionLinkMap.get( key );
-	if( regionLink != NULL )
+	if( regionLink != NULL ) {
+		if( primary )
+			regionLink -> setPrimary( true );
 		return( regionLink );
+	}
 
 	// create region link
 	regionLink = new MindRegionLink( areaLink );
+	regionLink -> setPrimary( primary );
 	regionLink -> createRegionLink( connectionType , srcRegion , dstRegion );
 	regionLinkMap.add( key , regionLink );
 	

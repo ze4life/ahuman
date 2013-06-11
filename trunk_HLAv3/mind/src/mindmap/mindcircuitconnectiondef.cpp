@@ -16,6 +16,7 @@ void MindCircuitConnectionDef::createFromXml( Xml xml ) {
 	typeName = xml.getAttribute( "type" );
 	Object::setInstance( typeName );
 
+	primary = xml.getBooleanAttribute( "primary" , false );
 	srcRegion = xml.getAttribute( "src" );
 	dstRegion = xml.getAttribute( "dst" );
 }

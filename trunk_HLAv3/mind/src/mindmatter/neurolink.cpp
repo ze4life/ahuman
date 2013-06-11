@@ -10,6 +10,7 @@ NeuroLink::NeuroLink( NeuroLinkSource *src , NeuroLinkTarget *dst ) {
 	source = src;
 	target = dst;
 
+	primary = false;
 	regionLink = NULL;
 	region = NULL;
 	linkType = NULL;

@@ -12,6 +12,7 @@ MindRegionLink::MindRegionLink( MindAreaLink *p_areaLink ) {
 	areaLink = p_areaLink;
 	connectionType = NULL;
 
+	primary = false;
 	src = NULL;
 	dst = NULL;
 }

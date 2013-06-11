@@ -331,6 +331,7 @@ public:
 	void resolveReferences( MindMap *map );
 
 	String getTypeName() { return( typeName ); };
+	bool isPrimary() { return( primary ); };
 	String getSrcRegion() { return( srcRegion ); };
 	String getDstRegion() { return( dstRegion ); };
 
@@ -341,6 +342,7 @@ public:
 protected:
 // utility
 	String typeName;
+	bool primary;
 	String srcRegion;
 	String dstRegion;
 
