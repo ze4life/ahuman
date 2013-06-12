@@ -13,7 +13,16 @@ Region is part of aHuman target integrated biological model.
 (generated)
 
 
-  * no child items defined
+*Component items*:
+  * *eye-edge-output*: after on-center/off-center edge extraction and zipping 100:1
+  * *eye-somatic*: eye -> semilunar ganglion/ophthalmic -> PTR
+  * *eye-visceral*: eye -> semilunar ganglion/ophthalmic -> STR, proprioception
+  * *eye-muscle-rotate-major*: levator palpebrae superioris, the inferior oblique, and the superior, medial, and inferior rectus muscles
+  * *eye-muscle-rotate-minor*: superior oblique, rotation in a vertical plane – looking down and up, rotation in the plane of the face
+  * *eye-muscle-rotate-vestibular*: lateral rectus, quick turn to the right -> compensatory reflex turning of two eyes to the left
+  * *eye-muscle-curvature*: to ciliary muscle to accomodate eye
+  * *eye-muscle-pupil-close*: to sphincter pupillae to close pupil
+  * *eye-muscle-pupil-open*: to dilator pupillae to open pupil
 
 = Connectivity =
 (generated)
@@ -24,19 +33,19 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/TARGET.TSA.EYE.dot.jpg
 *Inbound Region Connections:*
 
 || *Source Area* || *Source Region* || *Source Name* || *Type* || *Reference* ||
-|| [BrainAreaVBA VBA] || [BrainRegionVBA_HP_ABD VBA.HP.ABD] || Abducens Nucleus || TARGET.TSA.EYE-muscle-rotate-vestibular || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Abducens -> EYE)] ||
-||  || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || Oculomotor Nucleus || TARGET.TSA.EYE-muscle-rotate-major || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Oculomotor -> EYE)] ||
-||  || [BrainRegionVBA_MM_TRH VBA.MM.TRH] || Trochlear Nucleus || TARGET.TSA.EYE-muscle-rotate-minor || [http://what-when-how.com/neuroscience/the-cranial-nerves-organization-of-the-central-nervous-system-part-4 Extraocular eye muscles (TRC -> EYE)] ||
-||  || [BrainRegionVBA_PN_PSYM_CLG VBA.PN.PSYM.CLG] || Ciliary Ganglion || TARGET.TSA.EYE-muscle-curvature || [http://www.neurophysiology.ws/autonomicns.htm Autonomic nervous system (CLG -> EYE)] ||
-||  || [BrainRegionVBA_PN_PSYM_EPG VBA.PN.PSYM.EPG] || Episcleral Ganglion || TARGET.TSA.EYE-muscle-pupil-close || [http://www.neurophysiology.ws/autonomicns.htm Autonomic nervous system (EPG -> EYE)] ||
-||  || [BrainRegionVBA_PN_SYM_SCG VBA.PN.SYM.SCG] || Superior Cervical Ganglion || TARGET.TSA.EYE-muscle-pupil-open || [http://www.nature.com/pr/journal/v71/n3/fig_tab/pr201138f1.html Sympathetic and parasympathetic eye pathways (SCG -> EYE)] ||
+|| [BrainAreaVBA VBA] || [BrainRegionVBA_HP_ABD VBA.HP.ABD] || Abducens Nucleus || eye-muscle-rotate-vestibular || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Abducens -> EYE)] ||
+||  || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || Oculomotor Nucleus || eye-muscle-rotate-major || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Oculomotor -> EYE)] ||
+||  || [BrainRegionVBA_MM_TRH VBA.MM.TRH] || Trochlear Nucleus || eye-muscle-rotate-minor || [http://what-when-how.com/neuroscience/the-cranial-nerves-organization-of-the-central-nervous-system-part-4 Extraocular eye muscles (TRC -> EYE)] ||
+||  || [BrainRegionVBA_PN_PSYM_CLG VBA.PN.PSYM.CLG] || Ciliary Ganglion || eye-muscle-curvature || [http://www.neurophysiology.ws/autonomicns.htm Autonomic nervous system (CLG -> EYE)] ||
+||  || [BrainRegionVBA_PN_PSYM_EPG VBA.PN.PSYM.EPG] || Episcleral Ganglion || eye-muscle-pupil-close || [http://www.neurophysiology.ws/autonomicns.htm Autonomic nervous system (EPG -> EYE)] ||
+||  || [BrainRegionVBA_PN_SYM_SCG VBA.PN.SYM.SCG] || Superior Cervical Ganglion || eye-muscle-pupil-open || [http://www.nature.com/pr/journal/v71/n3/fig_tab/pr201138f1.html Sympathetic and parasympathetic eye pathways (SCG -> EYE)] ||
 
 *Outbound Region Connections:*
 
 || *Target Area* || *Target Region* || *Target Name* || *Type* || *Reference* ||
-|| [BrainAreaHMA HMA] || [BrainRegionHMA_HM_TGM_STR HMA.HM.TGM.STR] || Spinal Trigeminal Nucleus || TARGET.TSA.EYE-visceral || [http://www.lookfordiagnosis.com/mesh_info.php?term=Trigeminal+Nucleilang=1 Trigeminal Nuclei (EYE -> STR)] ||
-||  || [BrainRegionHMA_HP_PTP_PTR HMA.HP.PTP.PTR] || Principal Trigeminal Nucleus || TARGET.TSA.EYE-somatic || [http://www.lookfordiagnosis.com/mesh_info.php?term=Trigeminal+Nucleilang=1 Trigeminal Nuclei (EYE -> CSN)] ||
-|| [BrainAreaVBA VBA] || [BrainRegionVBA_FD_RT VBA.FD.RT] || Retina || TARGET.TSA.EYE-edge-output || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Vision Components (EYE -> RT)] ||
+|| [BrainAreaHMA HMA] || [BrainRegionHMA_HM_TGM_STR HMA.HM.TGM.STR] || Spinal Trigeminal Nucleus || eye-visceral || [http://www.lookfordiagnosis.com/mesh_info.php?term=Trigeminal+Nucleilang=1 Trigeminal Nuclei (EYE -> STR)] ||
+||  || [BrainRegionHMA_HP_PTP_PTR HMA.HP.PTP.PTR] || Principal Trigeminal Nucleus || eye-somatic || [http://www.lookfordiagnosis.com/mesh_info.php?term=Trigeminal+Nucleilang=1 Trigeminal Nuclei (EYE -> CSN)] ||
+|| [BrainAreaVBA VBA] || [BrainRegionVBA_FD_RT VBA.FD.RT] || Retina || eye-edge-output || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Vision Components (EYE -> RT)] ||
 
 = Thirdparty Circuits =
 (generated)
