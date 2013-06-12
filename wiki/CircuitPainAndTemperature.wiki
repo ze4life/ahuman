@@ -16,6 +16,7 @@ Circuit is part of aHuman target integrated biological model.
 ||  || [BrainRegionBGA_FT_PU BGA.FT.PU] || Putamen || Inhibitory Nucleus || Stimulus-response, or habit, learning ||
 ||  || [BrainRegionBGA_FT_VP BGA.FT.VP] || Ventral Pallidum || Inhibitory Nucleus || Distinguish _wanting_ versus _liking_ enhancements ||
 || [BrainAreaBMA BMA] || [BrainRegionBMA_SC_PH_MG BMA.SC.PH.MG] || Marginal Nucleus || 1-order Sensory Nucleus || Relay information related to pain and temperature sensation ||
+||  || [BrainRegionBMA_SC_VH_LM BMA.SC.VH.LM] || Lateral Motor Nucleus || 1-order Motor Nucleus || Innervation of limb muscles ||
 || [BrainAreaCGA CGA] || [BrainRegionCGA_FD_TH_SM CGA.FD.TH.SM] || Submedial Nucleus of Thalamus || Excitatory Nucleus || Pain center ||
 ||  || [BrainRegionCGA_NC_DACG CGA.NC.DACG] || Dorsal Anterior Cingulate Area || Neocortex, BA 32 || Rational Thought Processes ||
 ||  || [BrainRegionCGA_NC_SGC CGA.NC.SGC] || Subgenual Cortex || Neocortex, BA 25 || Influences changes in appetite and sleep ||
@@ -24,6 +25,8 @@ Circuit is part of aHuman target integrated biological model.
 || [BrainAreaFCA FCA] || [BrainRegionFCA_NC_IPG FCA.NC.IPG] || Inferior Prefrontal Gyrus || Neocortex, BA 47 || Processing of syntax in oral and sign languages ||
 ||  || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || Dorsolateral Prefrontal Cortex || Neocortex, BA 09,46 || Temporal Integration ||
 ||  || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || Neocortex, BA 10,11,12 || Personality ||
+|| [BrainAreaHMA HMA] || [BrainRegionHMA_HM_TGM_PE5 HMA.HM.TGM.PE5] || Peritrigeminal Nucleus || Sensory Relay Nucleus || Thermoregulation ||
+|| [BrainAreaHTA HTA] || [BrainRegionHTA_FD_HT_PO HTA.FD.HT.PO] || Preoptic Area || Excitatory Nucleus || Thermoregulation ||
 || [BrainAreaPHA PHA] || [BrainRegionPHA_FD_TH_LI PHA.FD.TH.LI] || Limitans Nucleus of Thalamus || Excitatory Nucleus || Multisensory projection to striatum ||
 ||  || [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || Posterior Insular Cortex || Neocortex, BA 13 || Awareness and sensation of pain ||
 ||  || [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || Peripaleocortical Claustral || Neocortex, BA 16 || Relays proprioception ||
@@ -39,6 +42,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitPainAndTemperature.dot
 || [BrainRegionBGA_FT_CN BGA.FT.CN] || [BrainRegionBGA_FT_PU BGA.FT.PU] || nucleus-nucleus || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (Caud -> Put)] ||
 || [BrainRegionBMA_SC_PH_MG BMA.SC.PH.MG] || [BrainRegionCGA_FD_TH_SM CGA.FD.TH.SM] || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionPHA_FD_TH_LI PHA.FD.TH.LI] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionBMA_SC_VH_LM BMA.SC.VH.LM] || [BrainRegionHMA_HM_TGM_PE5 HMA.HM.TGM.PE5] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionCGA_FD_TH_SM CGA.FD.TH.SM] || [BrainRegionCGA_NC_SGC CGA.NC.SGC] || nucleus-neocortex || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (Thalamus -> FrontalCortex, abstract)] ||
 || [BrainRegionCGA_NC_SGC CGA.NC.SGC] || [BrainRegionCGA_NC_DACG CGA.NC.DACG] || neocortex-neocortex || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (SGC -> DACC)] ||
 ||  || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || neocortex-neocortex || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (SGC -> VACC)] ||
@@ -46,6 +50,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitPainAndTemperature.dot
 || [BrainRegionFCA_NC_IPG FCA.NC.IPG] || [BrainRegionCGA_NC_SGC CGA.NC.SGC] || neocortex-neocortex || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (IFG -> SGC)] ||
 || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || [BrainRegionBGA_FT_CN BGA.FT.CN] || neocortex-nucleus || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (DLPFC -> Caud)] ||
 || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || [BrainRegionFCA_NC_IPG FCA.NC.IPG] || neocortex-neocortex || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (OFC -> IFG)] ||
+|| [BrainRegionHMA_HM_TGM_PE5 HMA.HM.TGM.PE5] || [BrainRegionHTA_FD_HT_PO HTA.FD.HT.PO] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionPHA_FD_TH_LI PHA.FD.TH.LI] || [BrainRegionCGA_NC_DACG CGA.NC.DACG] || nucleus-neocortex || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (Thalamus -> FrontalCortex, abstract)] ||
 ||  || [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || nucleus-neocortex || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (TH -> INS, abstract)] ||
 || [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (Iav -> IadIap, abstract)] ||
