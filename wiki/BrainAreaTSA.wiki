@@ -8,6 +8,7 @@
 (generated)
 
 || *Component ID* || *Component Name* || *Type* || *Function* || *Comments* ||
+|| [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || Ear || Sensor || Auditory and Vestibular Sensor ||  ||
 || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || Sensor || Light and Color Perception Sensor ||  ||
 
 = Connectivity =
@@ -17,7 +18,11 @@
 *External Inbound Region Connections:*
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| <font color="red">Motor</font> || || || || || ||
+|| [BrainAreaHMA HMA] || [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || [BrainRegionHMA_HP_FCM HMA.HP.FCM] || Facial Motor Nucleus || TARGET.TSA.EAR-stapedius || (unknown reference) ||
+||  ||  || [BrainRegionHMA_HP_PTP_TRM HMA.HP.PTP.TRM] || Trigeminal Motor Nucleus || TARGET.TSA.EAR-tensor-tympani || (unknown reference) ||
 || <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaABA ABA] || [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || [BrainRegionABA_MM_SOC ABA.MM.SOC] || Superior Olivary Complex || TARGET.TSA.EAR-outer-hair-cells || [http://lifeboat.com/ex/law.of.accelerating.returns Five Parallel Auditory Pathways (VNTB -> Cochlea)] ||
 || [BrainAreaVBA VBA] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || [BrainRegionVBA_HP_ABD VBA.HP.ABD] || Abducens Nucleus || TARGET.TSA.EYE-muscle-rotate-vestibular || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Abducens -> EYE)] ||
 ||  ||  || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || Oculomotor Nucleus || TARGET.TSA.EYE-muscle-rotate-major || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Oculomotor -> EYE)] ||
 ||  ||  || [BrainRegionVBA_MM_TRH VBA.MM.TRH] || Trochlear Nucleus || TARGET.TSA.EYE-muscle-rotate-minor || [http://what-when-how.com/neuroscience/the-cranial-nerves-organization-of-the-central-nervous-system-part-4 Extraocular eye muscles (TRC -> EYE)] ||
@@ -29,7 +34,11 @@
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Motor</font> || || || || || ||
-|| [BrainAreaHMA HMA] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || [BrainRegionHMA_HP_PTP_PTR HMA.HP.PTP.PTR] || Principal Trigeminal Nucleus || TARGET.TSA.EYE-somatic || [http://www.lookfordiagnosis.com/mesh_info.php?term=Trigeminal+Nucleilang=1 Trigeminal Nuclei (EYE -> CSN)] ||
+|| [BrainAreaAVA AVA] || [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || [BrainRegionAVA_HP_PSYM_GNG AVA.HP.PSYM.GNG] || Geniculate Ganglion || TARGET.TSA.EAR-somatic || (unknown reference) ||
+|| [BrainAreaBMA BMA] || [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || [BrainRegionBMA_HP_VG BMA.HP.VG] || Vestibular Ganglion || TARGET.TSA.EAR-cristae-maculae || (unknown reference) ||
+|| [BrainAreaHMA HMA] || [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || [BrainRegionHMA_HM_TGM_STR HMA.HM.TGM.STR] || Spinal Trigeminal Nucleus || TARGET.TSA.EAR-visceral || (unknown reference) ||
+||  || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || [BrainRegionHMA_HP_PTP_PTR HMA.HP.PTP.PTR] || Principal Trigeminal Nucleus || TARGET.TSA.EYE-somatic || [http://www.lookfordiagnosis.com/mesh_info.php?term=Trigeminal+Nucleilang=1 Trigeminal Nuclei (EYE -> CSN)] ||
 || <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaABA ABA] || [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || [BrainRegionABA_HM_COCH ABA.HM.COCH] || Cochlear Nucleus || TARGET.TSA.EAR-inner-hair-cells || [http://www.benbest.com/science/anatmind/anatmd6.html Auditory System in Brain (Ear -> Cochlea)] ||
 || [BrainAreaVBA VBA] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || [BrainRegionVBA_FD_RT VBA.FD.RT] || Retina || TARGET.TSA.EYE-edge-output || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Vision Components (EYE -> RT)] ||
 
