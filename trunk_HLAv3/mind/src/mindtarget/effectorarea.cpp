@@ -5,6 +5,9 @@
 /*#########################################################################*/
 
 EffectorArea::EffectorArea( MindTarget *p_target ) {
+	attachLogger();
+
+	MindArea::targetArea = true;
 	target = p_target;
 	effectors = NULL;
 	effectorsOffline = NULL;

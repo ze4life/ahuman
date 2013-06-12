@@ -55,6 +55,7 @@ public:
 	void followLinks( String spykeTrainId , MindRegion *region , NeuroSignalSet *signalSet );
 
 	String getAreaId() { return( areaId ); };
+	bool isTargetArea() { return( targetArea ); };
 	MindAreaDef *getMindAreaDef() { return( info ); };
 	MindRegionSet *getRegionSet() { return( regionSet ); };
 	MindRegionLinkSet *getInternalRegionLinkSet() { return( regionLinkSet ); };
@@ -80,9 +81,10 @@ private:
 	void followLinksInternalOne( String spykeTrainId , int& signalNum , NeuroSignal *signal , ClassList<NeuroLink>& links , MapStringToClass<MindRegion>& regionsExecuted ,
 			NeuroSignalSet& setAwaitingLocalExecution , ClassList<MindMessage>& remoteMessages );
 
-private:
+protected:
 // own data
 	String areaId;
+	bool targetArea;
 	MindRegionSet *regionSet;
 	MindRegionLinkSet *regionLinkSet;
 

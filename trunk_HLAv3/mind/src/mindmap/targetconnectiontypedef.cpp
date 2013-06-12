@@ -17,7 +17,7 @@ void TargetConnectionTypeDef::defineConnectionTypeDef( TargetCircuitDef *circuit
 
 	String actuatorId = circuitInfoTarget -> getActuatorId();
 	String linkedRegion = regionConnection -> getRegion();
-	MindConnectionTypeDef::name = actuatorId + "-" + regionConnection -> getId();
+	MindConnectionTypeDef::name = regionConnection -> getId();
 
 	MindRegionDef *regionInfo = mm -> getRegionDefById( linkedRegion );
 	if( regionConnection -> isTarget() ) {

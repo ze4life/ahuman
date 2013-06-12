@@ -167,12 +167,14 @@ void WikiAreaPages::createAreaPages_createConnectivityTableSection( String wikiD
 	StringList lines;
 	MapStringToClass<MindRegionLink> connections;
 
-	// internal connections
-	createAreaPages_getInternalConnections( area , connections );
-	createAreaPages_getInternalConnectionTableLine( area , NULL , lines );
-	for( int k = 0; k < connections.count(); k++ ) {
-		MindRegionLink *c = connections.getClassByIndex( k );
-		createAreaPages_getInternalConnectionTableLine( area , c , lines );
+	if( !area -> isTargetArea() ) {
+		// internal connections
+		createAreaPages_getInternalConnections( area , connections );
+		createAreaPages_getInternalConnectionTableLine( area , NULL , lines );
+		for( int k = 0; k < connections.count(); k++ ) {
+			MindRegionLink *c = connections.getClassByIndex( k );
+			createAreaPages_getInternalConnectionTableLine( area , c , lines );
+		}
 	}
 
 	// external connections - in
@@ -193,8 +195,10 @@ void WikiAreaPages::createAreaPages_createConnectivityTableSection( String wikiD
 	String wikiPage = wm -> getAreaPage( area -> getAreaId() );
 	wm -> updateFileSection( wikiDir , wikiPage , sectionName , lines );
 
-	// create dot file
-	createDotFile( area , connections , connectionsInputs , connectionsOutputs );
+	if( !area -> isTargetArea() ) {
+		// create dot file
+		createDotFile( area , connections , connectionsInputs , connectionsOutputs );
+	}
 }
 
 void WikiAreaPages::createAreaPages_getInternalConnections( MindArea *area , MapStringToClass<MindRegionLink>& connections ) {
@@ -318,6 +322,10 @@ void WikiAreaPages::createAreaPages_getExternalConnectionTableLine( MindArea *ar
 }
 
 void WikiAreaPages::createAreaPages_createCircuitsAndReferencesTableSection( String wikiDir , MindArea *area ) {
+	// skip circuits for target areas - will be in region pages
+	if( area -> isTargetArea() )
+		return;
+
 	// collect circuits which reference any of area regions
 	MindService *ms = MindService::getService();
 

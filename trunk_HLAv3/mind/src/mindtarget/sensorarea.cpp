@@ -7,6 +7,7 @@
 SensorArea::SensorArea( MindTarget *p_target ) {
 	attachLogger();
 
+	MindArea::targetArea = true;
 	target = p_target;
 	sensors = NULL;
 	sensorsOffline = NULL;

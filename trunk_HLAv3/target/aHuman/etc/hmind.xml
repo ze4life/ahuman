@@ -4,7 +4,59 @@
 		<element id="TARGET.TSA.EYE" name="Eye" mapped="true" type="Sensor"
 			dotdef="color=firebrick1"
 			function="Light and Color Perception Sensor"
-			/>
+			>
+			<element id="eye-edge-output" type="connector"
+				function="after on-center/off-center edge extraction and zipping 100:1"/>
+			<element id="eye-somatic" type="connector"
+				function="eye -> semilunar ganglion/ophthalmic -> PTR"/>
+			<element id="eye-visceral" type="connector"
+				function="eye -> semilunar ganglion/ophthalmic -> STR, proprioception"/>
+
+			<element id="eye-muscle-rotate-major" type="connector"
+				function="levator palpebrae superioris, the inferior oblique, and the superior, medial, and inferior rectus muscles"/>
+			<element id="eye-muscle-rotate-minor" type="connector"
+				function="superior oblique, rotation in a vertical plane – looking down and up, rotation in the plane of the face"/>
+			<element id="eye-muscle-rotate-vestibular" type="connector"
+				function="lateral rectus, quick turn to the right -> compensatory reflex turning of two eyes to the left"
+				notes="vestibular nucleus -> PPRF -> ABD -> this, larger motor neurons, c.n. VI"/>
+
+			<element id="eye-muscle-curvature" type="connector"
+				function="to ciliary muscle to accomodate eye"/>
+			<element id="eye-muscle-pupil-close" type="connector"
+				notes="sphincter pupillae is situated along the edge of the iris contracts to close the opening in the pupil"
+				function="to sphincter pupillae to close pupil"/>
+			<element id="eye-muscle-pupil-open" type="connector"
+				notes="dilator pupillae runs radially, like the spokes of a wheel, through the iris, and when it contracts this opens the pupil"
+				function="to dilator pupillae to open pupil"/>
+		</element>
+		<element id="TARGET.TSA.EAR" name="Ear" mapped="true" type="Sensor"
+			dotdef="color=firebrick1"
+			function="Auditory and Vestibular Sensor"
+			>
+			<element id="ear-inner-hair-cells" type="connector"
+				notes="transform cochlea fluid vibrations into electrical signals"
+				function="frequency-aligned tonotopic mapping"/>
+
+			<element id="ear-cristae-maculae" type="connector"
+				notes="located in ampullae of semicircular canals, saccule and utricle"
+				function="activate afferent receptors in response to rotational and linear acceleration"/>
+
+			<element id="ear-somatic" type="connector"
+				function="from skin to genicaulate ganglion to spinal trigeminal nucleus"/>
+			<element id="ear-visceral" type="connector"
+				notes="CN IX, from STR to VPM"
+				function="pain, temperature, and touch"/>
+
+			<element id="ear-outer-hair-cells" type="connector"
+				notes="without functioning outer hair cells, the sensitivity decreases by approximately 50 dB, allows frequency discrimination, extend hearing range to about 200 kHz in some marine mammals" 
+				function="mechanically amplify low-level sound that enters cochlea"/>
+			<element id="ear-stapedius" type="connector"
+				notes="control amplitude of sound waves from general external environment to inner ear" 
+				function="dampens vibrations of stapes"/>
+			<element id="ear-tensor-tympani" type="connector"
+				notes="pull malleus medially, tensing tympanic membrane, damping vibration in ear ossicles" 
+				function="dampen sounds, such as those produced from chewing"/>
+		</element>
 	</division>
 
 	<division name="Neocortex">
@@ -1439,11 +1491,6 @@
 			<element name="Lateral Reticular Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_reticular_nucleus Lateral reticular nucleus]"/>
 		</element>
 
-		<element id="ABA.HM.CORTI" name="Organ of Corti" mapped="true" type="1-order Sensory Nucleus"
-			function="Tonotopic mapping"
-			notes="Contains outer (OHC) and inner (IHC) hair cells in cochlea, inner ear"
-			/>
-
 		<element id="VBA.HM.NPH" name="Prepositus Nucleus" mapped="true" type="Sensory Control Nucleus"
 			refs="NL:[http://neurolex.org/wiki/Category:Nucleus_prepositus Nucleus prepositus]"
 			function="Integrate PPRF phasic signal to provide tonic signal of abducens"
@@ -1492,7 +1539,7 @@
 				function="Discriminative sensation and light touch of face, conscious proprioception"
 				notes="Pontine Nuclei, part of cranial nerve nuclei, ear"
 				>
-				<element name="Trigeminal Caudal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Caudal_part_of_spinal_trigeminal_nucleus Caudal part of spinal trigeminal nucleus]"/>
+				<element id="HMA.HM.TGM.CSTR" name="Trigeminal Caudal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Caudal_part_of_spinal_trigeminal_nucleus Caudal part of spinal trigeminal nucleus]"/>
 				<element refs="NL:[http://neurolex.org/wiki/Category:Interpolar_part_of_spinal_trigeminal_nucleus Interpolar part of spinal trigeminal nucleus]"/>
 				<element refs="NL:[http://neurolex.org/wiki/Category:Oral_part_of_spinal_trigeminal_nucleus Oral part of spinal trigeminal nucleus]"/>
 			</element>
@@ -1719,6 +1766,14 @@
 				function="Sigmoid, rectum, bladder, and external genitalia"
 				notes="Pelvic nerve fibers"
 				/>
+			<element id="AVA.HP.PSYM.GNG" name="Geniculate Ganglion" mapped="true" type="Parasymp. Gang."
+				function="Trophic support for survival"
+				notes="Innervation taste buds, ear skin"
+				>
+				<element name="Chorda Tympani" function="to taste buds in tongue"/>
+				<element name="Superficial Petrosal Nerve" function="to other taste buds"/>
+				<element name="Posterior Auricular Nerve" function="to external ear skin"/>
+			</element>
 		</element>
 
 	</division>
