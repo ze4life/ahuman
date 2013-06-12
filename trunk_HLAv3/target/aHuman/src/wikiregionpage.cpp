@@ -116,36 +116,22 @@ void WikiRegionPage::createChildTableSection_addChilds( Xml node , String prefix
 	String value;
 	StringList refList;
 	for( Xml nodeChild = node.getFirstChild( "element" ); nodeChild.exists(); nodeChild = nodeChild.getNextChild( "element" ) ) {
-		String refs = nodeChild.getAttribute( "refs" , "" );
-
-		if( refs.isEmpty() ) {
-			String id = nodeChild.getAttribute( "id" , "" );
-			String name = nodeChild.getAttribute( "name" , "" );
-			value = name;
-			if( !id.isEmpty() ) {
-				if( value.isEmpty() )
-					value = id;
-				else
-					value += " (" + id + ")";
-			}
-		}
-		else {
-			refs.split( refList , ";" );
-
-			value.clear();
-			for( int k = 0; k < refList.count(); k++ ) {
-				String ref = refList.get( k );
-				ref.trim();
-
-				if( !value.isEmpty() )
-					value += " = ";
-
-				value += ref;
-			}
-			refList.clear();
+		String id = nodeChild.getAttribute( "id" , "" );
+		String name = nodeChild.getAttribute( "name" , "" );
+		value = name;
+		if( !id.isEmpty() ) {
+			if( value.isEmpty() )
+				value = id;
+			else
+				value += " (" + id + ")";
 		}
 
+		value = "*" + value + "*";
+		String function = nodeChild.getAttribute( "function" , "" );
+		if( !function.isEmpty() )
+			value += ": " + function;
 		lines.add( prefix + value );
+
 		createChildTableSection_addChilds( nodeChild , " " + prefix , lines );
 	}
 }

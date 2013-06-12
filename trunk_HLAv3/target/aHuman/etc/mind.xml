@@ -29,7 +29,7 @@
 			<region-type name="nucleus" implementation="mock">
 				<connector id="nucleus.input" type="target"/>
 				<connector id="nucleus.output" type="source"/>
-				<connector id="nucleus.interneurons" type="target"/>
+				<ignoreconnector id="nucleus.interneurons" type="target"/>
 			</region-type>
 
 			<region-type name="neocortex" implementation="mock" notes="feed-forward and feed-back">
@@ -48,7 +48,7 @@
 			<region-type name="ganglion" implementation="mock">
 				<connector id="ganglion.input" type="target"/>
 				<connector id="ganglion.output" type="source"/>
-				<connector id="ganglion.feedback" type="target"/>
+				<ignoreconnector id="ganglion.feedback" type="target"/>
 			</region-type>
 
 		</region-type-set>
@@ -231,7 +231,6 @@
 				<region id="ABA.MM.SOC" type="nucleus"/>
 				<region id="ABA.HP.PN.LL" type="nucleus"/>
 				<region id="ABA.HM.COCH" type="nucleus"/>
-				<region id="ABA.HM.CORTI" type="nucleus"/>
 			</area>
 
 			<area id="HBA" type="Subcortical" name="Hippocampus Basal Area" enabled="true" function="Creating Long Term Memory, Sensory Temporal Coding">
@@ -346,7 +345,7 @@
 				<region id="BMA.MM.PT.PTA" type="nucleus"/>
 				<region id="BMA.HP.PRF.PVR" type="nucleus"/>
 				<region id="BMA.HP.VB" type="nucleus"/>
-				<region id="BMA.HP.VG" type="nucleus"/>
+				<region id="BMA.HP.VG" type="ganglion"/>
 				<region id="BMA.HP.PB" type="nucleus"/>
 				<region id="BMA.HM.IO" type="nucleus"/>
 				<region id="BMA.HM.ARC" type="nucleus"/>
@@ -386,6 +385,7 @@
 				<region id="AVA.PN.PSYM.OTG" type="ganglion"/>
 				<region id="AVA.PN.PSYM.CPG" type="ganglion"/>
 				<region id="AVA.PN.PSYM.PPG" type="ganglion"/>
+				<region id="AVA.HP.PSYM.GNG" type="ganglion"/>
 			</area>
 
 		</component-set>

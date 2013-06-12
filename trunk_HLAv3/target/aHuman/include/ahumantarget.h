@@ -46,6 +46,7 @@ protected:
 
 private:
 	MindSensor *createEye( SensorArea *sensorArea );
+	MindSensor *createEar( SensorArea *sensorArea );
 };
 
 /*#########################################################################*/

@@ -6,6 +6,7 @@
 
 MindArea::MindArea() {
 	info = NULL;
+	targetArea = false;
 	regionSet = new MindRegionSet;
 	regionLinkSet = new MindRegionLinkSet;
 	areaMasterLinkSet = new MindAreaLinkSet;

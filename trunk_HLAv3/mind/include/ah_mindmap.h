@@ -422,14 +422,10 @@ public:
 
 	String getRegion() { return ( region ); };
 	String getConnector() { return ( connector ); };
-	String getFunction() { return ( function ); };
-	String getNotes() { return ( notes ); };
 
 private:
 	String region;
 	String connector;
-	String function;
-	String notes;
 };
 
 // #############################################################################

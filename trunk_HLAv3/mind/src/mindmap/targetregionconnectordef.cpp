@@ -17,8 +17,6 @@ void TargetRegionConnectorDef::defineRegionConnectorDef( Xml xml , TargetCircuit
 
 	region = xml.getAttribute( "region" );
 	connector = xml.getAttribute( "connector" );
-	function = xml.getAttribute( "function" );
-	notes = xml.getAttribute( "notes" , "" );
 
 	circuitInfo -> defineCircuitConnection( this , xml );
 }
