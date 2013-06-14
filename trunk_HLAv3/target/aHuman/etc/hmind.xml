@@ -1,31 +1,31 @@
 <mind>
 
-	<division name="aHuman">
+	<division name="Target">
 		<element id="TARGET.TSA.EYE" name="Eye" mapped="true" type="Sensor"
 			dotdef="color=firebrick1"
 			function="Light and Color Perception Sensor"
 			>
-			<element id="eye-edge-output" type="connector"
+			<element id="eye-edge-output" name="Rods and Cones" type="connector"
 				function="after on-center/off-center edge extraction and zipping 100:1"/>
-			<element id="eye-somatic" type="connector"
+			<element id="eye-somatic" name="Somatic Receptors" type="connector"
 				function="eye -> semilunar ganglion/ophthalmic -> PTR"/>
-			<element id="eye-visceral" type="connector"
+			<element id="eye-visceral" name="Visceral Receptors" type="connector"
 				function="eye -> semilunar ganglion/ophthalmic -> STR, proprioception"/>
 
-			<element id="eye-muscle-rotate-major" type="connector"
-				function="levator palpebrae superioris, the inferior oblique, and the superior, medial, and inferior rectus muscles"/>
-			<element id="eye-muscle-rotate-minor" type="connector"
-				function="superior oblique, rotation in a vertical plane – looking down and up, rotation in the plane of the face"/>
-			<element id="eye-muscle-rotate-vestibular" type="connector"
+			<element id="eye-muscle-rotate-major" name="Inferior Oblique, and Superior, Medial, and Inferior Rectus Muscles" type="connector"
+				function="levator palpebrae superioris, the inferior oblique, and superior, medial, and inferior rectus muscles"/>
+			<element id="eye-muscle-rotate-minor" name="Superior Oblique Muscles" type="connector"
+				function="superior oblique, rotation in a vertical plane - looking down and up, rotation in the plane of the face"/>
+			<element id="eye-muscle-rotate-vestibular" name="Lateral Rectus" type="connector"
 				function="lateral rectus, quick turn to the right -> compensatory reflex turning of two eyes to the left"
 				notes="vestibular nucleus -> PPRF -> ABD -> this, larger motor neurons, c.n. VI"/>
 
-			<element id="eye-muscle-curvature" type="connector"
+			<element id="eye-muscle-curvature" name="Ciliary Muscle" type="connector"
 				function="to ciliary muscle to accomodate eye"/>
-			<element id="eye-muscle-pupil-close" type="connector"
+			<element id="eye-muscle-pupil-close" name="Sphincter Pupillae Muscle" type="connector"
 				notes="sphincter pupillae is situated along the edge of the iris contracts to close the opening in the pupil"
 				function="to sphincter pupillae to close pupil"/>
-			<element id="eye-muscle-pupil-open" type="connector"
+			<element id="eye-muscle-pupil-open" name="Dilator Pupillae Muscle" type="connector"
 				notes="dilator pupillae runs radially, like the spokes of a wheel, through the iris, and when it contracts this opens the pupil"
 				function="to dilator pupillae to open pupil"/>
 		</element>
@@ -33,27 +33,27 @@
 			dotdef="color=firebrick1"
 			function="Auditory and Vestibular Sensor"
 			>
-			<element id="ear-inner-hair-cells" type="connector"
+			<element id="ear-inner-hair-cells" name="Inner Hair Cells" type="connector"
 				notes="transform cochlea fluid vibrations into electrical signals"
 				function="frequency-aligned tonotopic mapping"/>
 
-			<element id="ear-cristae-maculae" type="connector"
+			<element id="ear-cristae-maculae" name="Cristae and Maculae" type="connector"
 				notes="located in ampullae of semicircular canals, saccule and utricle"
 				function="activate afferent receptors in response to rotational and linear acceleration"/>
 
-			<element id="ear-somatic" type="connector"
+			<element id="ear-somatic" name="Somaic Receptors" type="connector"
 				function="from skin to genicaulate ganglion to spinal trigeminal nucleus"/>
-			<element id="ear-visceral" type="connector"
+			<element id="ear-visceral" name="Visceral Receptors" type="connector"
 				notes="CN IX, from STR to VPM"
 				function="pain, temperature, and touch"/>
 
-			<element id="ear-outer-hair-cells" type="connector"
+			<element id="ear-outer-hair-cells" name="Outer Hair Cells" type="connector"
 				notes="without functioning outer hair cells, the sensitivity decreases by approximately 50 dB, allows frequency discrimination, extend hearing range to about 200 kHz in some marine mammals" 
 				function="mechanically amplify low-level sound that enters cochlea"/>
-			<element id="ear-stapedius" type="connector"
+			<element id="ear-stapedius" name="Stapedius" type="connector"
 				notes="control amplitude of sound waves from general external environment to inner ear" 
 				function="dampens vibrations of stapes"/>
-			<element id="ear-tensor-tympani" type="connector"
+			<element id="ear-tensor-tympani" name="Tympanic Membrane" type="connector"
 				notes="pull malleus medially, tensing tympanic membrane, damping vibration in ear ossicles" 
 				function="dampen sounds, such as those produced from chewing"/>
 		</element>
@@ -440,38 +440,38 @@
 				refs="NL:[http://neurolex.org/wiki/Category:Amygdala Amygdala]"
 				function="Experiencing and recognizing emotions"
 				>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Basolateral_nuclear_complex Basolateral nuclear complex]">
-					<element refs="NL:[http://neurolex.org/wiki/Category:Accessory_basal_amygdaloid_nucleus Accessory basal amygdaloid nucleus]"/>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Basal_amygdaloid_nucleus Basal amygdaloid nucleus]">
-						<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_part_of_basal_amygdaloid_nucleus Lateral part of basal amygdaloid nucleus]"/>
-						<element refs="NL:[http://neurolex.org/wiki/Category:Medial_part_of_basal_amygdaloid_nucleus Medial part of basal amygdaloid nucleus]"/>
+				<element name="Basolateral Nuclear Complex" refs="NL:[http://neurolex.org/wiki/Category:Basolateral_nuclear_complex Basolateral nuclear complex]">
+					<element name="Accessory Basal Amygdaloid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Accessory_basal_amygdaloid_nucleus Accessory basal amygdaloid nucleus]"/>
+					<element name="Basal Amygdaloid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Basal_amygdaloid_nucleus Basal amygdaloid nucleus]">
+						<element name="Basolateral Amygdaloid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_part_of_basal_amygdaloid_nucleus Lateral part of basal amygdaloid nucleus]"/>
+						<element name="Mediolateral Amygdaloid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_part_of_basal_amygdaloid_nucleus Medial part of basal amygdaloid nucleus]"/>
 					</element>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_amygdaloid_nucleus Lateral amygdaloid nucleus]">
-						<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_amygdaloid_nucleus,_dorsolateral_part Lateral amygdaloid nucleus, dorsolateral part]"/>
-						<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_amygdaloid_nucleus,_ventrolateral_part Lateral amygdaloid nucleus, ventrolateral part]"/>
-						<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_amygdaloid_nucleus,_ventromedial_part Lateral amygdaloid nucleus, ventromedial part]"/>
+					<element name="Lateral Amygdaloid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_amygdaloid_nucleus Lateral amygdaloid nucleus]">
+						<element name="Dorsolateral Amygdaloid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_amygdaloid_nucleus,_dorsolateral_part Lateral amygdaloid nucleus, dorsolateral part]"/>
+						<element name="Ventrolateral Amygdaloid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_amygdaloid_nucleus,_ventrolateral_part Lateral amygdaloid nucleus, ventrolateral part]"/>
+						<element name="Ventromedial Amygdaloid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_amygdaloid_nucleus,_ventromedial_part Lateral amygdaloid nucleus, ventromedial part]"/>
 					</element>
 				</element>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Central_amygdaloid_nucleus Central amygdaloid nucleus]">
-					<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_central_nucleus_of_the_amygdala Lateral central nucleus of the amygdala]"/>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Medial_central_nucleus_of_the_amygdala Medial central nucleus of the amygdala]"/>
+				<element name="Central Amygdaloid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Central_amygdaloid_nucleus Central amygdaloid nucleus]">
+					<element name="Lateral Central Amygdaloid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_central_nucleus_of_the_amygdala Lateral central nucleus of the amygdala]"/>
+					<element name="Medial Central Amygdaloid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_central_nucleus_of_the_amygdala Medial central nucleus of the amygdala]"/>
 				</element>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Corticomedial_nuclear_complex Corticomedial nuclear complex]">
-					<element refs="NL:[http://neurolex.org/wiki/Category:Anterior_amygdaloid_area Anterior amygdaloid area]"/>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Cortical_amygdaloid_nucleus Cortical amygdaloid nucleus]"/>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Medial_amygdaloid_nucleus Medial amygdaloid nucleus]"/>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Periamygdaloid_cortex Periamygdaloid cortex]"/>
+				<element name="Corticomedial Nuclear Complex" refs="NL:[http://neurolex.org/wiki/Category:Corticomedial_nuclear_complex Corticomedial nuclear complex]">
+					<element name="Anterior Amygdaloid Area" refs="NL:[http://neurolex.org/wiki/Category:Anterior_amygdaloid_area Anterior amygdaloid area]"/>
+					<element name="Cortical Amygdaloid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Cortical_amygdaloid_nucleus Cortical amygdaloid nucleus]"/>
+					<element name="Medial Amygdaloid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_amygdaloid_nucleus Medial amygdaloid nucleus]"/>
+					<element name="Periamygdaloid Cortex" refs="NL:[http://neurolex.org/wiki/Category:Periamygdaloid_cortex Periamygdaloid cortex]"/>
 				</element>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Intercalated_amygdaloid_nuclei Intercalated amygdaloid nuclei]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Medial_amygdala Medial amygdala]"/>
+				<element name="Intercalated Amygdaloid Nuclei" refs="NL:[http://neurolex.org/wiki/Category:Intercalated_amygdaloid_nuclei Intercalated amygdaloid nuclei]"/>
+				<element name="Medial Amygdala" refs="NL:[http://neurolex.org/wiki/Category:Medial_amygdala Medial amygdala]"/>
 			</element>
 			<element id="BGA.FT.ACC" name="Accumbens Nucleus" mapped="true" type="Inhibitory Nucleus"
 				refs="NL:[http://neurolex.org/wiki/Category:Nucleus_accumbens Nucleus accumbens]"
 				function="Activate motor functions under attention"
 				>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Core_of_nucleus_accumbens Core of nucleus accumbens]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Medial_nucleus_accumbens Medial nucleus accumbens]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Shell_of_nucleus_accumbens Shell of nucleus accumbens]"/>
+				<element name="Nucleus Accumbens Core" refs="NL:[http://neurolex.org/wiki/Category:Core_of_nucleus_accumbens Core of nucleus accumbens]"/>
+				<element name="Nucleus Accumbens Shell" refs="NL:[http://neurolex.org/wiki/Category:Shell_of_nucleus_accumbens Shell of nucleus accumbens]"/>
+				<element name="Medial Nucleus Accumbens" refs="NL:[http://neurolex.org/wiki/Category:Medial_nucleus_accumbens Medial nucleus accumbens]"/>
 			</element>
 			<element id="FT.SIN" name="Substantia innominata">
 				<element id="BFA.FT.NBM" name="Basal Nucleus of Meynert" mapped="true" type="Modulatory Nucleus"
@@ -485,9 +485,9 @@
 				function="Mediate slow longer-lasting responses that accompany sustained threats"
 				notes="Major output from AM to HT, part of extended amygdala"
 				>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Bed_nuclei_of_the_stria_terminalis_oval_nucleus Bed nuclei of the stria terminalis oval nucleus]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_nucleus_of_stria_terminalis Lateral nucleus of stria terminalis]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Medial_nucleus_of_stria_terminalis Medial nucleus of stria terminalis]"/>
+				<element name="Oval Bed Nucleus of Stria Terminalis" refs="NL:[http://neurolex.org/wiki/Category:Bed_nuclei_of_the_stria_terminalis_oval_nucleus Bed nuclei of the stria terminalis oval nucleus]"/>
+				<element name="Lateral Bed Nucleus of Stria Terminalis" refs="NL:[http://neurolex.org/wiki/Category:Lateral_nucleus_of_stria_terminalis Lateral nucleus of stria terminalis]"/>
+				<element name="Medial Bed Nucleus of Stria Terminalis" refs="NL:[http://neurolex.org/wiki/Category:Medial_nucleus_of_stria_terminalis Medial nucleus of stria terminalis]"/>
 			</element>
 		</element>
 
@@ -504,11 +504,11 @@
 					function="Stimulus-response, or habit, learning"
 					notes="Regulate movements and influence various types of learning"
 					>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Caudal_putamen Caudal putamen]"/>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Matrix_compartment_of_putamen Matrix compartment of putamen]"/>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Rostral_putamen Rostral putamen]"/>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Striosomal_part_of_putamen Striosomal part of putamen]"/>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Ventral_putamen Ventral putamen]"/>
+					<element name="Caudal Putamen" refs="NL:[http://neurolex.org/wiki/Category:Caudal_putamen Caudal putamen]"/>
+					<element name="Matrix Compartment of Putamen" refs="NL:[http://neurolex.org/wiki/Category:Matrix_compartment_of_putamen Matrix compartment of putamen]"/>
+					<element name="Rostral Putamen" refs="NL:[http://neurolex.org/wiki/Category:Rostral_putamen Rostral putamen]"/>
+					<element name="Striosomal Putamen" refs="NL:[http://neurolex.org/wiki/Category:Striosomal_part_of_putamen Striosomal part of putamen]"/>
+					<element name="Ventral Putamen" refs="NL:[http://neurolex.org/wiki/Category:Ventral_putamen Ventral putamen]"/>
 				</element>
 			</element>
 			<element id="BGA.FT.GP" name="Globus Pallidus" refs="NL:[http://neurolex.org/wiki/Category:Globus_pallidus Globus pallidus]">
@@ -531,14 +531,14 @@
 					function="Fine motor control, temporal processing"
 					notes="Supply striatum with dopamine, input to Basal Ganglia"
 					>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_substantia_nigra_pars_compacta Lateral substantia nigra pars compacta]"/>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Medial_substantia_nigra_pars_compacta Medial substantia nigra pars compacta]"/>
+					<element name="Lateral Substantia Nigra Pars Compacta" refs="NL:[http://neurolex.org/wiki/Category:Lateral_substantia_nigra_pars_compacta Lateral substantia nigra pars compacta]"/>
+					<element name="Medial Substantia Nigra Pars Compacta" refs="NL:[http://neurolex.org/wiki/Category:Medial_substantia_nigra_pars_compacta Medial substantia nigra pars compacta]"/>
 				</element>
 				<element id="BGA.FT.SN.PR" name="Substantia Nigra Pars Reticulata" mapped="true" type="Inhibitory Nucleus"
 					refs="NL:[http://neurolex.org/wiki/Category:Substantia_nigra_pars_reticulata Substantia nigra pars reticulata]"
 					function="Convey final processed signals of basal ganglia to thalamus and superior colliculus"
 					>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Substantia_nigra_pars_lateralis Substantia nigra pars lateralis]"/>
+					<element name="Substantia Nigra Pars Lateralis" refs="NL:[http://neurolex.org/wiki/Category:Substantia_nigra_pars_lateralis Substantia nigra pars lateralis]"/>
 				</element>
 			</element>
 		</element>
@@ -578,10 +578,10 @@
 				refs="NL:[http://neurolex.org/wiki/Category:Subiculum Subiculum]"
 				function="Spatial navigation and mnemonic processing"
 				>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Subiculum_alveus Subiculum alveus]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Subiculum_molecular_layer Subiculum molecular layer]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Subiculum_pyramidal_cell_layer Subiculum pyramidal cell layer]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Ventral_subiculum Ventral subiculum]"/>
+				<element name="Subiculum Alveus" refs="NL:[http://neurolex.org/wiki/Category:Subiculum_alveus Subiculum alveus]"/>
+				<element name="Subiculum Molecular Layer" refs="NL:[http://neurolex.org/wiki/Category:Subiculum_molecular_layer Subiculum molecular layer]"/>
+				<element name="Subiculum Pyramidal Cell Layer" refs="NL:[http://neurolex.org/wiki/Category:Subiculum_pyramidal_cell_layer Subiculum pyramidal cell layer]"/>
+				<element name="Ventral Subiculum" refs="NL:[http://neurolex.org/wiki/Category:Ventral_subiculum Ventral subiculum]"/>
 			</element>
 		</element>
 
@@ -596,13 +596,13 @@
 			function="Inhibition of fear and expression of pleasurable responses"
 			>
 			<element id="BFA.FT.SEP.DBB" name="Diagonal Band of Broca" refs="NL:[http://neurolex.org/wiki/Category:Nuclei_of_the_diagonal_band Nuclei of the diagonal band]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Medial_septal_nucleus Medial septal nucleus]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Dorsal_septal_nucleus Dorsal septal nucleus]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_septal_nuclei Lateral septal nuclei];NL:[http://neurolex.org/wiki/Category:Lateral_septal_nucleus Lateral septal nucleus]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Nucleus_of_anterior_commissure Nucleus of anterior commissure]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Septofimbrial_nucleus Septofimbrial nucleus]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Septohippocampal_nucleus Septohippocampal nucleus]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Triangular_septal_nucleus Triangular septal nucleus]"/>
+			<element name="Medial Septal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_septal_nucleus Medial septal nucleus]"/>
+			<element name="Dorsal Septal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Dorsal_septal_nucleus Dorsal septal nucleus]"/>
+			<element name="Lateral Septal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_septal_nuclei Lateral septal nuclei];NL:[http://neurolex.org/wiki/Category:Lateral_septal_nucleus Lateral septal nucleus]"/>
+			<element name="Nucleus of Anterior Commissure" refs="NL:[http://neurolex.org/wiki/Category:Nucleus_of_anterior_commissure Nucleus of anterior commissure]"/>
+			<element name="Septofimbrial Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Septofimbrial_nucleus Septofimbrial nucleus]"/>
+			<element name="Septohippocampal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Septohippocampal_nucleus Septohippocampal nucleus]"/>
+			<element name="Triangular Septal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Triangular_septal_nucleus Triangular septal nucleus]"/>
 		</element>
 
 		<element id="BGA.FT.VP" name="Ventral Pallidum" mapped="true" type="Inhibitory Nucleus"
@@ -636,60 +636,60 @@
 					refs="NL:[http://neurolex.org/wiki/Category:Anterior_nucleus_of_hypothalamus Anterior nucleus of hypothalamus]"
 					function="Thermoregulation, panting, sweating"
 					>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Anterior_nucleus_of_hypothalamus_anterior_part Anterior nucleus of hypothalamus anterior part]"/>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Anterior_nucleus_of_hypothalamus_central_part Anterior nucleus of hypothalamus central part]"/>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Anterior_nucleus_of_hypothalamus_dorsal_part Anterior nucleus of hypothalamus dorsal part]"/>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Anterior_nucleus_of_hypothalamus_posterior_part Anterior nucleus of hypothalamus posterior part]"/>
+					<element name="Anterior Nucleus of Hypothalamus Anterior Part" refs="NL:[http://neurolex.org/wiki/Category:Anterior_nucleus_of_hypothalamus_anterior_part Anterior nucleus of hypothalamus anterior part]"/>
+					<element name="Anterior Nucleus of Hypothalamus Central Part" refs="NL:[http://neurolex.org/wiki/Category:Anterior_nucleus_of_hypothalamus_central_part Anterior nucleus of hypothalamus central part]"/>
+					<element name="Anterior Nucleus of Hypothalamus Dorsal Part" refs="NL:[http://neurolex.org/wiki/Category:Anterior_nucleus_of_hypothalamus_dorsal_part Anterior nucleus of hypothalamus dorsal part]"/>
+					<element name="Anterior Nucleus of Hypothalamus Posterior Part" refs="NL:[http://neurolex.org/wiki/Category:Anterior_nucleus_of_hypothalamus_posterior_part Anterior nucleus of hypothalamus posterior part]"/>
 				</element>
 				<element id="HTA.FD.HT.PV" name="Paraventricular Nucleus" mapped="true" type="Excitatory Nucleus"
 					refs="NL:[http://neurolex.org/wiki/Category:Paraventricular_nucleus_of_hypothalamus Paraventricular nucleus of hypothalamus];NL:[http://neurolex.org/wiki/Category:Paraventricular_hypothalamic_region Paraventricular hypothalamic region]"
 					function="Regulate appetite and autonomic functions"
 					>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Paraventricular_nucleus_of_the_hypothalamus_magnocellular_division Paraventricular nucleus of the hypothalamus magnocellular division]">
-						<element refs="NL:[http://neurolex.org/wiki/Category:Paraventricular_nucleus_of_the_hypothalamus_magnocellular_division_-_anterior_magnocellular_part Paraventricular nucleus of the hypothalamus magnocellular division - anterior magnocellular part]"/>
-						<element refs="NL:[http://neurolex.org/wiki/Category:Paraventricular_nucleus_of_the_hypothalamus_magnocellular_division_-_medial_magnocellular_part Paraventricular nucleus of the hypothalamus magnocellular division - medial magnocellular part]"/>
-						<element refs="NL:[http://neurolex.org/wiki/Category:Paraventricular_nucleus_of_the_hypothalamus_magnocellular_division_-_posterior_magnocellular_part Paraventricular nucleus of the hypothalamus magnocellular division - posterior magnocellular part]">
-							<element refs="NL:[http://neurolex.org/wiki/Category:Paraventricular_nucleus_of_the_hypothalamus_magnocellular_division_-_posterior_magnocellular_part_lateral_zone Paraventricular nucleus of the hypothalamus magnocellular division - posterior magnocellular part lateral zone]"/>
-							<element refs="NL:[http://neurolex.org/wiki/Category:Paraventricular_nucleus_of_the_hypothalamus_magnocellular_division_-_posterior_magnocellular_part_medial_zone Paraventricular nucleus of the hypothalamus magnocellular division - posterior magnocellular part medial zone]"/>
+					<element name="Paraventricular Nucleus of Hypothalamus Magnocellular Division" refs="NL:[http://neurolex.org/wiki/Category:Paraventricular_nucleus_of_the_hypothalamus_magnocellular_division Paraventricular nucleus of the hypothalamus magnocellular division]">
+						<element name="Paraventricular Nucleus of Hypothalamus Magnocellular Division - Anterior Magnocellular Part" refs="NL:[http://neurolex.org/wiki/Category:Paraventricular_nucleus_of_the_hypothalamus_magnocellular_division_-_anterior_magnocellular_part Paraventricular nucleus of the hypothalamus magnocellular division - anterior magnocellular part]"/>
+						<element name="Paraventricular Nucleus of Hypothalamus Magnocellular Division - Medial Magnocellular Part" refs="NL:[http://neurolex.org/wiki/Category:Paraventricular_nucleus_of_the_hypothalamus_magnocellular_division_-_medial_magnocellular_part Paraventricular nucleus of the hypothalamus magnocellular division - medial magnocellular part]"/>
+						<element name="Paraventricular Nucleus of Hypothalamus Magnocellular Division - Posterior Magnocellular Part" refs="NL:[http://neurolex.org/wiki/Category:Paraventricular_nucleus_of_the_hypothalamus_magnocellular_division_-_posterior_magnocellular_part Paraventricular nucleus of the hypothalamus magnocellular division - posterior magnocellular part]">
+							<element name="Paraventricular Nucleus of Hypothalamus Magnocellular Division - Posterior Magnocellular Part Lateral Zone" refs="NL:[http://neurolex.org/wiki/Category:Paraventricular_nucleus_of_the_hypothalamus_magnocellular_division_-_posterior_magnocellular_part_lateral_zone Paraventricular nucleus of the hypothalamus magnocellular division - posterior magnocellular part lateral zone]"/>
+							<element name="Paraventricular Nucleus of Hypothalamus Magnocellular Division - Posterior Magnocellular Part Medial Zone" refs="NL:[http://neurolex.org/wiki/Category:Paraventricular_nucleus_of_the_hypothalamus_magnocellular_division_-_posterior_magnocellular_part_medial_zone Paraventricular nucleus of the hypothalamus magnocellular division - posterior magnocellular part medial zone]"/>
 						</element>
 					</element>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Paraventricular_nucleus_of_the_hypothalamus_parvicellular_division Paraventricular nucleus of the hypothalamus parvicellular division]"/>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Paraventricular_nucleus_of_the_hypothalamus_descending_division Paraventricular nucleus of the hypothalamus descending division]">
-						<element refs="NL:[http://neurolex.org/wiki/Category:Paraventricular_nucleus_of_the_hypothalamus_descending_division_-_dorsal_parvicellular_part Paraventricular nucleus of the hypothalamus descending division - dorsal parvicellular part]"/>
-						<element refs="NL:[http://neurolex.org/wiki/Category:Paraventricular_nucleus_of_the_hypothalamus_descending_division_-_forniceal_part Paraventricular nucleus of the hypothalamus descending division - forniceal part]"/>
-						<element refs="NL:[http://neurolex.org/wiki/Category:Paraventricular_nucleus_of_the_hypothalamus_descending_division_-_lateral_parvicellular_part Paraventricular nucleus of the hypothalamus descending division - lateral parvicellular part]"/>
-						<element refs="NL:[http://neurolex.org/wiki/Category:Paraventricular_nucleus_of_the_hypothalamus_descending_division_-_medial_parvicellular_part,_ventral_zone Paraventricular nucleus of the hypothalamus descending division - medial parvicellular part, ventral zone]"/>
+					<element name="Paraventricular Nucleus of Hypothalamus Parvicellular Division" refs="NL:[http://neurolex.org/wiki/Category:Paraventricular_nucleus_of_the_hypothalamus_parvicellular_division Paraventricular nucleus of the hypothalamus parvicellular division]"/>
+					<element name="Paraventricular Nucleus of Hypothalamus Descending Division" refs="NL:[http://neurolex.org/wiki/Category:Paraventricular_nucleus_of_the_hypothalamus_descending_division Paraventricular nucleus of the hypothalamus descending division]">
+						<element name="Paraventricular Nucleus of Hypothalamus Descending Division - Dorsal Parvicellular Part" refs="NL:[http://neurolex.org/wiki/Category:Paraventricular_nucleus_of_the_hypothalamus_descending_division_-_dorsal_parvicellular_part Paraventricular nucleus of the hypothalamus descending division - dorsal parvicellular part]"/>
+						<element name="Paraventricular Nucleus of Hypothalamus Descending Division - Forniceal Part" refs="NL:[http://neurolex.org/wiki/Category:Paraventricular_nucleus_of_the_hypothalamus_descending_division_-_forniceal_part Paraventricular nucleus of the hypothalamus descending division - forniceal part]"/>
+						<element name="Paraventricular Nucleus of Hypothalamus Descending Division - Lateral Parvicellular Part" refs="NL:[http://neurolex.org/wiki/Category:Paraventricular_nucleus_of_the_hypothalamus_descending_division_-_lateral_parvicellular_part Paraventricular nucleus of the hypothalamus descending division - lateral parvicellular part]"/>
+						<element name="Paraventricular Nucleus of Hypothalamus Descending Division - Medial Parvicellular Part, Ventral Zone" refs="NL:[http://neurolex.org/wiki/Category:Paraventricular_nucleus_of_the_hypothalamus_descending_division_-_medial_parvicellular_part,_ventral_zone Paraventricular nucleus of the hypothalamus descending division - medial parvicellular part, ventral zone]"/>
 					</element>
 				</element>
 				<element id="HTA.FD.HT.PO" name="Preoptic Area" mapped="true" type="Excitatory Nucleus"
 					refs="NL:[http://neurolex.org/wiki/Category:Preoptic_area Preoptic area]"
 					function="Thermoregulation"
 					>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Preoptic_periventricular_nucleus Preoptic periventricular nucleus]"/>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Anterior_preoptic_area Anterior preoptic area]">
-						<element refs="NL:[http://neurolex.org/wiki/Category:Anterodorsal_preoptic_nucleus Anterodorsal preoptic nucleus]"/>
-						<element refs="NL:[http://neurolex.org/wiki/Category:Anteroventral_preoptic_nucleus Anteroventral preoptic nucleus]"/>
+					<element name="Preoptic Periventricular Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Preoptic_periventricular_nucleus Preoptic periventricular nucleus]"/>
+					<element name="Anterior Preoptic Area" refs="NL:[http://neurolex.org/wiki/Category:Anterior_preoptic_area Anterior preoptic area]">
+						<element name="Anterodorsal Anterior Preoptic Area" refs="NL:[http://neurolex.org/wiki/Category:Anterodorsal_preoptic_nucleus Anterodorsal preoptic nucleus]"/>
+						<element name="Anteroventral Anterior Preoptic Area" refs="NL:[http://neurolex.org/wiki/Category:Anteroventral_preoptic_nucleus Anteroventral preoptic nucleus]"/>
 					</element>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Magnocellular_preoptic_nucleus Magnocellular preoptic nucleus]"/>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_preoptic_nucleus Lateral preoptic nucleus]"/>
+					<element name="Magnocellular Preoptic Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Magnocellular_preoptic_nucleus Magnocellular preoptic nucleus]"/>
+					<element name="Lateral Preoptic Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_preoptic_nucleus Lateral preoptic nucleus]"/>
 					<element id="HTA.FD.HT.PO.MED" name="Medial Preoptic Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_preoptic_nucleus Medial preoptic nucleus];NL:[http://neurolex.org/wiki/Category:Median_preoptic_nucleus Median preoptic nucleus];NL:[http://neurolex.org/wiki/Category:Medial_preoptic_region Medial preoptic region]">
-						<element refs="NL:[http://neurolex.org/wiki/Category:Medial_part_of_the_medial_preoptic_nucleus Medial part of the medial preoptic nucleus]"/>
+						<element name="Medial Part of Medial Preoptic Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_part_of_the_medial_preoptic_nucleus Medial part of the medial preoptic nucleus]"/>
 					</element>
 				</element>
 				<element id="HTA.FD.HT.SCN" name="Suprachiasmatic Nucleus" mapped="true" type="Excitatory Nucleus"
 					refs="NL:[http://neurolex.org/wiki/Category:Suprachiasmatic_nucleus Suprachiasmatic nucleus]"
 					function="24-hour rhythms"
 					>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Suprachiasmatic_nucleus_dorsomedial_part Suprachiasmatic nucleus dorsomedial part]"/>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Suprachiasmatic_nucleus_ventrolateral_part Suprachiasmatic nucleus ventrolateral part]"/>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Ventral_suprachiasmatic_nucleus Ventral suprachiasmatic nucleus]"/>
+					<element name="Dorsomedial Suprachiasmatic Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Suprachiasmatic_nucleus_dorsomedial_part Suprachiasmatic nucleus dorsomedial part]"/>
+					<element name="Ventrolateral Suprachiasmatic Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Suprachiasmatic_nucleus_ventrolateral_part Suprachiasmatic nucleus ventrolateral part]"/>
+					<element name="Ventral Suprachiasmatic Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Ventral_suprachiasmatic_nucleus Ventral suprachiasmatic nucleus]"/>
 				</element>
 				<element id="HTA.FD.HT.SO" name="Supraoptic Nucleus" mapped="true" type="Excitatory Nucleus"
 					refs="NL:[http://neurolex.org/wiki/Category:Supraoptic_nucleus Supraoptic nucleus]"
 					function="Blood volume or blood pressure"
 					>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Principal_anterior_division_of_supraoptic_nucleus Principal anterior division of supraoptic nucleus]"/>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Tuberal_supraoptic_nucleus Tuberal supraoptic nucleus]"/>
+					<element name="Principal Anterior Division of Supraoptic Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Principal_anterior_division_of_supraoptic_nucleus Principal anterior division of supraoptic nucleus]"/>
+					<element name="Tuberal Supraoptic Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Tuberal_supraoptic_nucleus Tuberal supraoptic nucleus]"/>
 				</element>
 			</element>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Basal_hypothalamus Basal hypothalamus]" ignore="true" comment="secondary nuclei grouping"/>
@@ -727,21 +727,20 @@
 				refs="NL:[http://neurolex.org/wiki/Category:Lateral_hypothalamic_area Lateral hypothalamic area];NL:[http://neurolex.org/wiki/Category:Lateral_hypothalamic_region Lateral hypothalamic region]"
 				function="Thirst and hunger"
 				>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_hypothalamic_nucleus Lateral hypothalamic nucleus]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_tuberal_nuclear_complex Lateral tuberal nuclear complex]"/>
+				<element name="Lateral Hypothalamic Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_hypothalamic_nucleus Lateral hypothalamic nucleus]"/>
+				<element name="Lateral Tuberal Nuclear Complex" refs="NL:[http://neurolex.org/wiki/Category:Lateral_tuberal_nuclear_complex Lateral tuberal nuclear complex]"/>
 				<element id="HTA.FD.HT.TUB" name="Tuberomammillary Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Tuberomammillary_nucleus Tuberomammillary nucleus]">
-					<element refs="NL:[http://neurolex.org/wiki/Category:Tuberomammillary_nucleus_dorsal_part Tuberomammillary nucleus dorsal part]"/>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Tuberomammillary_nucleus_ventral_part Tuberomammillary nucleus ventral part]"/>
+					<element name="Dorsal Tuberomammillary Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Tuberomammillary_nucleus_dorsal_part Tuberomammillary nucleus dorsal part]"/>
+					<element name="Ventral Tuberomammillary Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Tuberomammillary_nucleus_ventral_part Tuberomammillary nucleus ventral part]"/>
 				</element>
 			</element>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Medial_basal_hypothalamus Medial basal hypothalamus];NL:[http://neurolex.org/wiki/Category:Medial_basal_hypothalamus Mediobasal hypothalamus]" ignore="true" comment="secondary nuclei grouping"/>
 			<element name="Posterior Nucleus" mapped="true" id="HTA.FD.HT.PN" type="Excitatory Nucleus"
-				refs="NL:[http://neurolex.org/wiki/Category:Posterior_hypothalamic_region Posterior hypothalamic region]"
+				refs="NL:[http://neurolex.org/wiki/Category:Posterior_hypothalamic_region Posterior hypothalamic region];NL:[http://neurolex.org/wiki/Category:Posterior_nucleus_of_hypothalamus Posterior nucleus of hypothalamus]"
 				function="Blood pressure, pupillary dilation"
 				>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Posterior_nucleus_of_hypothalamus Posterior nucleus of hypothalamus]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Posterior_periventricular_nucleus Posterior periventricular nucleus]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Premammillary_nucleus Premammillary nucleus]"/>
+				<element name="Posterior Periventricular Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Posterior_periventricular_nucleus Posterior periventricular nucleus]"/>
+				<element name="Premammillary Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Premammillary_nucleus Premammillary nucleus]"/>
 				<element id="HTA.FD.HT.SUM" name="Supramammillary Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Supramammillary_nucleus Supramammillary nucleus]"/>
 			</element>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Rostral_hypothalamus Rostral hypothalamus]" ignore="true" comment="secondary nuclei grouping"/>
@@ -754,9 +753,9 @@
 			function="Temporal decorrelation"
 			notes="Only 10% of inputs to LGN come from the retina. 90% are modulatory inputs from cortex and the brainstem"
 			>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Dorsal_nucleus_of_lateral_geniculate_body Dorsal nucleus of lateral geniculate body]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Intergeniculate_leaflet_of_the_lateral_geniculate_complex Intergeniculate leaflet of the lateral geniculate complex]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Ventral_nucleus_of_lateral_geniculate_body Ventral nucleus of lateral geniculate body]"/>
+			<element name="Dorsolateral Geniculate Body" refs="NL:[http://neurolex.org/wiki/Category:Dorsal_nucleus_of_lateral_geniculate_body Dorsal nucleus of lateral geniculate body]"/>
+			<element name="Intergeniculate Leaflet of Lateral Geniculate Complex" refs="NL:[http://neurolex.org/wiki/Category:Intergeniculate_leaflet_of_the_lateral_geniculate_complex Intergeniculate leaflet of the lateral geniculate complex]"/>
+			<element name="Ventrolateral Geniculate Body" refs="NL:[http://neurolex.org/wiki/Category:Ventral_nucleus_of_lateral_geniculate_body Ventral nucleus of lateral geniculate body]"/>
 		</element>
 
 		<element id="FD.MB" name="Mammillary Body" refs="NL:[http://neurolex.org/wiki/Category:Mammillary_body Mammillary body]">
@@ -770,8 +769,8 @@
 				function="Relay for impulses coming from AM and HC"
 				notes="Memory, recognition, spatial awareness, and interpreting the context of events"
 				>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_part_of_medial_mammillary_nucleus Lateral part of medial mammillary nucleus]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Medial_part_of_medial_mammillary_nucleus Medial part of medial mammillary nucleus]"/>
+				<element name="Mediolateral Mammillary Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_part_of_medial_mammillary_nucleus Lateral part of medial mammillary nucleus]"/>
+				<element name="Medial Part of Medial Mammillary Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_part_of_medial_mammillary_nucleus Medial part of medial mammillary nucleus]"/>
 			</element>
 		</element>
 
@@ -780,14 +779,14 @@
 				function="Detection of the relative intensity and duration of a sound, relay to Auditory Cortex"
 				notes="Thalamus"
 			>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Anterodorsal_nucleus_of_medial_geniculate_body Anterodorsal nucleus of medial geniculate body]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Dorsal_nucleus_of_medial_geniculate_body Dorsal nucleus of medial geniculate body]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Magnocellular_nucleus_of_medial_geniculate_body Magnocellular nucleus of medial geniculate body]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Medial_nucleus_of_medial_geniculate_body Medial nucleus of medial geniculate body]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Posterodorsal_nucleus_of_medial_geniculate_body Posterodorsal nucleus of medial geniculate body]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Ventral_nucleus_of_medial_geniculate_body Ventral nucleus of medial geniculate body]">
-				<element refs="NL:[http://neurolex.org/wiki/Category:Medial_geniculate_body_lateral_nucleus Medial geniculate body lateral nucleus]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Medial_geniculate_body_ovoid_nucleus Medial geniculate body ovoid nucleus]"/>
+			<element name="Anterodorsal Nucleus of Medial Geniculate Body" refs="NL:[http://neurolex.org/wiki/Category:Anterodorsal_nucleus_of_medial_geniculate_body Anterodorsal nucleus of medial geniculate body]"/>
+			<element name="Dorsal Nucleus of Medial Geniculate Body" refs="NL:[http://neurolex.org/wiki/Category:Dorsal_nucleus_of_medial_geniculate_body Dorsal nucleus of medial geniculate body]"/>
+			<element name="Magnocellular Nucleus of Medial Geniculate Body" refs="NL:[http://neurolex.org/wiki/Category:Magnocellular_nucleus_of_medial_geniculate_body Magnocellular nucleus of medial geniculate body]"/>
+			<element name="Medial Nucleus of Medial Geniculate Body" refs="NL:[http://neurolex.org/wiki/Category:Medial_nucleus_of_medial_geniculate_body Medial nucleus of medial geniculate body]"/>
+			<element name="Posterodorsal Nucleus of Medial Geniculate Body" refs="NL:[http://neurolex.org/wiki/Category:Posterodorsal_nucleus_of_medial_geniculate_body Posterodorsal nucleus of medial geniculate body]"/>
+			<element name="Ventral Nucleus of Medial Geniculate Body" refs="NL:[http://neurolex.org/wiki/Category:Ventral_nucleus_of_medial_geniculate_body Ventral nucleus of medial geniculate body]">
+				<element name="Medial Geniculate Body Lateral Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_geniculate_body_lateral_nucleus Medial geniculate body lateral nucleus]"/>
+				<element name="Medial Geniculate Body Ovoid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_geniculate_body_ovoid_nucleus Medial geniculate body ovoid nucleus]"/>
 			</element>
 		</element>
 
@@ -801,19 +800,19 @@
 			function="Release hormones by request from HT"
 			notes="Secretes most of the hormones, also known as Hypophysis"
 			>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Adenohypophysis Adenohypophysis]">
-				<element refs="NL:[http://neurolex.org/wiki/Category:Distal_part_of_hypophysis Distal part of hypophysis]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Intermediate_part_of_hypophysis Intermediate part of hypophysis]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Tuberal_part_of_hypophysis Tuberal part of hypophysis]"/>
+			<element name="Adenohypophysis" refs="NL:[http://neurolex.org/wiki/Category:Adenohypophysis Adenohypophysis]">
+				<element name="Distal Part of Hypophysis" refs="NL:[http://neurolex.org/wiki/Category:Distal_part_of_hypophysis Distal part of hypophysis]"/>
+				<element name="Intermediate Part of Hypophysis" refs="NL:[http://neurolex.org/wiki/Category:Intermediate_part_of_hypophysis Intermediate part of hypophysis]"/>
+				<element name="Tuberal Part of Hypophysis" refs="NL:[http://neurolex.org/wiki/Category:Tuberal_part_of_hypophysis Tuberal part of hypophysis]"/>
 			</element>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_eminence_of_hypophysis Lateral eminence of hypophysis]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Median_eminence Median eminence];NL:[http://neurolex.org/wiki/Category:Nucleus_of_medial_eminence Nucleus of medial eminence]">
-				<element refs="NL:[http://neurolex.org/wiki/Category:Anterior_median_eminence Anterior median eminence]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Posterior_median_eminence Posterior median eminence]"/>
+			<element name="Lateral Eminence of Hypophysis" refs="NL:[http://neurolex.org/wiki/Category:Lateral_eminence_of_hypophysis Lateral eminence of hypophysis]"/>
+			<element name="Nucleus of Medial Eminence" refs="NL:[http://neurolex.org/wiki/Category:Median_eminence Median eminence];NL:[http://neurolex.org/wiki/Category:Nucleus_of_medial_eminence Nucleus of medial eminence]">
+				<element name="Anterior Median Eminence" refs="NL:[http://neurolex.org/wiki/Category:Anterior_median_eminence Anterior median eminence]"/>
+				<element name="Posterior Median Eminence" refs="NL:[http://neurolex.org/wiki/Category:Posterior_median_eminence Posterior median eminence]"/>
 			</element>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Neurohypophysis Neurohypophysis]">
-				<element refs="NL:[http://neurolex.org/wiki/Category:Infundibular_stem Infundibular stem]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Pars_nervosa_of_hypophysis Pars nervosa of hypophysis]"/>
+			<element name="Neurohypophysis" refs="NL:[http://neurolex.org/wiki/Category:Neurohypophysis Neurohypophysis]">
+				<element name="Infundibular Stem" refs="NL:[http://neurolex.org/wiki/Category:Infundibular_stem Infundibular stem]"/>
+				<element name="Pars Nervosa of Hypophysis" refs="NL:[http://neurolex.org/wiki/Category:Pars_nervosa_of_hypophysis Pars nervosa of hypophysis]"/>
 			</element>
 		</element>
 
@@ -881,17 +880,17 @@
 					function="Stimulation of acetylcholine release in dorsal striata"
 					notes="Part of ascending activating system"
 					>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_part_of_the_parafascicular_thalamic_nucleus Lateral part of the parafascicular thalamic nucleus]"/>
+					<element name="Lateral Parafascicular Thalamic Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_part_of_the_parafascicular_thalamic_nucleus Lateral part of the parafascicular thalamic nucleus]"/>
 				</element>
 				<element id="SMA.FD.TH.RIL" name="Rostral Intralaminar Nucleus of Thalamus" mapped="true" type="Excitatory Nucleus"
 					refs="NL:[http://neurolex.org/wiki/Category:Rostral_intralaminar_nuclei Rostral intralaminar nuclei]"
 					function="Stimulate memory-guided response"
 					notes="from brainstem to SPL.SA, CM, CL, CeM, PC"
 					>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Central_dorsal_nucleus Central dorsal nucleus]"/>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Central_lateral_nucleus Central lateral nucleus]"/>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Central_medial_nucleus Central medial nucleus]"/>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Paracentral_nucleus Paracentral nucleus]"/>
+					<element name="Central Dorsal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Central_dorsal_nucleus Central dorsal nucleus]"/>
+					<element name="Central Lateral Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Central_lateral_nucleus Central lateral nucleus]"/>
+					<element name="Central Medial Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Central_medial_nucleus Central medial nucleus]"/>
+					<element name="Paracentral Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Paracentral_nucleus Paracentral nucleus]"/>
 				</element>
 			</element>
 			<element id="FD.TH.LTH" name="Lateral Thalamus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_nuclear_group Lateral nuclear group];NL:[http://neurolex.org/wiki/Category:Lateral_thalamus Lateral thalamus]">
@@ -911,11 +910,11 @@
 				function="Attention, planning, organization, abstract thinking, multi-tasking, and active memory"
 				notes="Relay AM to FCA.LPFC, FCA.OMPFC"
 				>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Densocellular_part_of_medial_dorsal_nucleus Densocellular part of medial dorsal nucleus]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Magnocellular_part_of_medial_dorsal_nucleus Magnocellular part of medial dorsal nucleus]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Medial_mediodorsal_nucleus Medial mediodorsal nucleus]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Paralaminar_part_of_medial_dorsal_nucleus Paralaminar part of medial dorsal nucleus]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Parvicellular_part_of_medial_dorsal_nucleus Parvicellular part of medial dorsal nucleus]"/>
+				<element name="Densocellular Part of Mediodorsal Nucleus of Thalamus" refs="NL:[http://neurolex.org/wiki/Category:Densocellular_part_of_medial_dorsal_nucleus Densocellular part of medial dorsal nucleus]"/>
+				<element name="Magnocellular Part of Mediodorsal Nucleus of Thalamus" refs="NL:[http://neurolex.org/wiki/Category:Magnocellular_part_of_medial_dorsal_nucleus Magnocellular part of medial dorsal nucleus]"/>
+				<element name="Medial Mediodorsal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_mediodorsal_nucleus Medial mediodorsal nucleus]"/>
+				<element name="Paralaminar Part of Medial Dorsal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Paralaminar_part_of_medial_dorsal_nucleus Paralaminar part of medial dorsal nucleus]"/>
+				<element name="Parvicellular Part of Medial Dorsal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Parvicellular_part_of_medial_dorsal_nucleus Parvicellular part of medial dorsal nucleus]"/>
 			</element>
 			<element id="FD.TH.MTH" name="Midline Nuclear Group of Thalamus" refs="NL:[http://neurolex.org/wiki/Category:Midline_nuclear_group Midline nuclear group]">
 				<element refs="NL:[http://neurolex.org/wiki/Category:Nucleus_rotundus_of_thalamus Nucleus rotundus of thalamus]" ignore="true" comment="birds-only equivalent of Pulvinar for motion processing"/>
@@ -950,7 +949,7 @@
 					function="Multisensory projection to striatum"
 					notes="From SC, trigeminal nucleus, superior and inferior colliculus"
 					>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Posterior_limitans_nucleus Posterior limitans nucleus]"/>
+					<element name="Posterior Limitans Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Posterior_limitans_nucleus Posterior limitans nucleus]"/>
 				</element>
 				<element id="ACA.FD.TH.SG" name="Suprageniculate Nucleus of Thalamus" mapped="true" type="Excitatory Nucleus"
 					refs="NL:[http://neurolex.org/wiki/Category:Suprageniculate_nucleus Suprageniculate nucleus]"
@@ -970,33 +969,33 @@
 					function="Relay BGA.SN, BGA.GPI, FCA.OMPFC, FCA.CG to MCA.PMC, MCA.SMC"
 					notes="Cognitive motor"
 					>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Magnocellular_part_of_ventral_anterior_nucleus Magnocellular part of ventral anterior nucleus]"/>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Parvicellular_part_of_ventral_anterior_nucleus Parvicellular part of ventral anterior nucleus]"/>
+					<element name="Magnocellular Part of Ventral Anterior Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Magnocellular_part_of_ventral_anterior_nucleus Magnocellular part of ventral anterior nucleus]"/>
+					<element name="Parvicellular Part of Ventral Anterior Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Parvicellular_part_of_ventral_anterior_nucleus Parvicellular part of ventral anterior nucleus]"/>
 				</element>
 				<element id="MCA.FD.TH.VL" name="Ventral Lateral Nucleus" mapped="true" type="Excitatory Nucleus"
 					refs="NL:[http://neurolex.org/wiki/Category:Ventral_lateral_nucleus Ventral lateral nucleus]"
 					function="Relay BSA.CR to MCA.MC"
 					notes="Executive motor"
 					>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Area_X Area X]"/>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Caudal_part_of_ventral_lateral_nucleus Caudal part of ventral lateral nucleus]"/>
-					<element id="MCA.FD.TH.VLO" refs="NL:[http://neurolex.org/wiki/Category:Medial_part_of_ventral_lateral_nucleus Medial part of ventral lateral nucleus]"/>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Oral_part_of_ventral_lateral_nucleus Oral part of ventral lateral nucleus]"/>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Pars_postrema_of_ventral_lateral_nucleus Pars postrema of ventral lateral nucleus]"/>
+					<element name="Nucleus X" refs="NL:[http://neurolex.org/wiki/Category:Area_X Area X]"/>
+					<element name="Caudal Part of Ventral Lateral Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Caudal_part_of_ventral_lateral_nucleus Caudal part of ventral lateral nucleus]"/>
+					<element id="MCA.FD.TH.VLO" name="Medial Part of Ventral Lateral Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_part_of_ventral_lateral_nucleus Medial part of ventral lateral nucleus]"/>
+					<element name="Oral Part of Ventral Lateral Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Oral_part_of_ventral_lateral_nucleus Oral part of ventral lateral nucleus]"/>
+					<element name="Pars Postrema of Ventral Lateral Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Pars_postrema_of_ventral_lateral_nucleus Pars postrema of ventral lateral nucleus]"/>
 				</element>
 				<element id="SMA.FD.TH.VP" name="Ventral Posterior Nucleus" mapped="true" type="Excitatory Nucleus"
 					refs="NL:[http://neurolex.org/wiki/Category:Ventral_posterior_nucleus Ventral posterior nucleus]"
 					function="Relays somatic information to MCA.SSC"
 					notes="VPL and VPM"
 					>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Ventral_posteroinferior_nucleus Ventral posteroinferior nucleus]"/>
+					<element name="Ventral Posteroinferior Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Ventral_posteroinferior_nucleus Ventral posteroinferior nucleus]"/>
 					<element id="SMA.FD.TH.VPL" name="Ventral Posterolateral Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Ventral_posterolateral_nucleus Ventral posterolateral nucleus]">
-						<element refs="NL:[http://neurolex.org/wiki/Category:Caudal_part_of_ventral_posterolateral_nucleus Caudal part of ventral posterolateral nucleus]"/>
-						<element refs="NL:[http://neurolex.org/wiki/Category:Oral_part_of_ventral_posterolateral_nucleus Oral part of ventral posterolateral nucleus]"/>
+						<element name="Caudal Part of Ventral Posterolateral Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Caudal_part_of_ventral_posterolateral_nucleus Caudal part of ventral posterolateral nucleus]"/>
+						<element name="Oral Part of Ventral Posterolateral Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Oral_part_of_ventral_posterolateral_nucleus Oral part of ventral posterolateral nucleus]"/>
 					</element>
 					<element id="SMA.FD.TH.VPM" name="Ventral Posteromedial Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Ventral_posteromedial_nucleus Ventral posteromedial nucleus]">
-						<element refs="NL:[http://neurolex.org/wiki/Category:Parvicellular_part_of_ventral_posteromedial_nucleus Parvicellular part of ventral posteromedial nucleus]"/>
-						<element refs="NL:[http://neurolex.org/wiki/Category:Principal_part_of_ventral_posteromedial_nucleus Principal part of ventral posteromedial nucleus]"/>
+						<element name="Parvicellular Part of Ventral Posteromedial Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Parvicellular_part_of_ventral_posteromedial_nucleus Parvicellular part of ventral posteromedial nucleus]"/>
+						<element name="Principal Part of Ventral Posteromedial Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Principal_part_of_ventral_posteromedial_nucleus Principal part of ventral posteromedial nucleus]"/>
 					</element>
 				</element>
 			</element>
@@ -1025,9 +1024,9 @@
 			refs="NL:[http://neurolex.org/wiki/Category:Inferior_colliculus Inferior colliculus]"
 			function="Reflex centres of hearing"
 			>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Central_nucleus_of_inferior_colliculus Central nucleus of inferior colliculus]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:External_nucleus_of_inferior_colliculus External nucleus of inferior colliculus]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Pericentral_nucleus_of_inferior_colliculus Pericentral nucleus of inferior colliculus]"/>
+			<element name="Central Nucleus of Inferior Colliculus" refs="NL:[http://neurolex.org/wiki/Category:Central_nucleus_of_inferior_colliculus Central nucleus of inferior colliculus]"/>
+			<element name="External Nucleus of Inferior Colliculus" refs="NL:[http://neurolex.org/wiki/Category:External_nucleus_of_inferior_colliculus External nucleus of inferior colliculus]"/>
+			<element name="Pericentral Nucleus of Inferior Colliculus" refs="NL:[http://neurolex.org/wiki/Category:Pericentral_nucleus_of_inferior_colliculus Pericentral nucleus of inferior colliculus]"/>
 		</element>
 
 		<element id="HMA.MM.MSTR" name="Mesencephalic Trigeminal Nucleus" mapped="true" type="1-order Sensory Nucleus"
@@ -1061,13 +1060,13 @@
 				function="Change Eye Direction"
 				notes="Muscle nucleus"
 				>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Anterior_median_oculomotor_nucleus Anterior median oculomotor nucleus]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Caudal_central_oculomotor_nucleus Caudal central oculomotor nucleus]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Central_oculomotor_nucleus Central oculomotor nucleus]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Dorsal_oculomotor_nucleus Dorsal oculomotor nucleus]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Intermediate_oculomotor_nucleus Intermediate oculomotor nucleus]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Medial_oculomotor_nucleus Medial oculomotor nucleus]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Ventral_oculomotor_nucleus Ventral oculomotor nucleus]"/>
+				<element name="Anterior Median Oculomotor Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Anterior_median_oculomotor_nucleus Anterior median oculomotor nucleus]"/>
+				<element name="Caudal Central Oculomotor Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Caudal_central_oculomotor_nucleus Caudal central oculomotor nucleus]"/>
+				<element name="Central Oculomotor Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Central_oculomotor_nucleus Central oculomotor nucleus]"/>
+				<element name="Dorsal Oculomotor Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Dorsal_oculomotor_nucleus Dorsal oculomotor nucleus]"/>
+				<element name="Intermediate Oculomotor Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Intermediate_oculomotor_nucleus Intermediate oculomotor nucleus]"/>
+				<element name="Medial Oculomotor Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_oculomotor_nucleus Medial oculomotor nucleus]"/>
+				<element name="Ventral Oculomotor Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Ventral_oculomotor_nucleus Ventral oculomotor nucleus]"/>
 			</element>
 			<element id="VBA.MM.SOA" name="Supraoculomotor Area" mapped="true" type="Motor Control"
 				refs="NL:[http://neurolex.org/wiki/Category:Oculomotor_nuclear_complex Oculomotor nuclear complex]"
@@ -1124,7 +1123,7 @@
 				notes="Major source of 5HT"
 				>
 				<element name="Serotonergic cell group B6"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Serotonergic_cell_group_B7 Serotonergic cell group B7]"/>
+				<element name="Serotonergic cell group B7" refs="NL:[http://neurolex.org/wiki/Category:Serotonergic_cell_group_B7 Serotonergic cell group B7]"/>
 			</element>
 			<element id="VBA.MM.RP.RIP" name="Raphe Interpositus Nucleus" mapped="true" type="Excitatory Nucleus" 
 				refs="NL:[http://neurolex.org/wiki/Category:Raphe_interpositus_nucleus_of_PHT00 Raphe interpositus nucleus]"
@@ -1138,8 +1137,8 @@
 			function="Motor coordination"
 			notes="Crawling of babies is controlled by RN"
 			>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Magnocellular_part_of_red_nucleus Magnocellular part of red nucleus]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Parvocellular_part_of_red_nucleus Parvocellular part of red nucleus]"/>
+			<element name="Magnocellular Part of Red Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Magnocellular_part_of_red_nucleus Magnocellular part of red nucleus]"/>
+			<element name="Parvocellular Part of Red Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Parvocellular_part_of_red_nucleus Parvocellular part of red nucleus]"/>
 		</element>
 
 		<element id="VBA.MM.SC" name="Superior Colliculus"
@@ -1167,10 +1166,10 @@
 				<element id="VBA.MM.SC.SAP" name="Stratum Album Profundum, Lamina VII"/>
 			</element>
 
-			<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_superior_colliculus Lateral superior colliculus]" notes="unused subdivision"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Medial_superior_colliculus Medial superior colliculus]" notes="unused subdivision"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Rostral_half_of_the_superior_colliculus Rostral half of the superior colliculus]" notes="unused subdivision"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Superior_colliculus_stratum_lemnisci Superior colliculus stratum lemnisci]" notes="unused subdivision"/>
+			<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_superior_colliculus Lateral superior colliculus]" ignore="true" notes="unused subdivision"/>
+			<element refs="NL:[http://neurolex.org/wiki/Category:Medial_superior_colliculus Medial superior colliculus]" ignore="true" notes="unused subdivision"/>
+			<element refs="NL:[http://neurolex.org/wiki/Category:Rostral_half_of_the_superior_colliculus Rostral half of the superior colliculus]" ignore="true" notes="unused subdivision"/>
+			<element refs="NL:[http://neurolex.org/wiki/Category:Superior_colliculus_stratum_lemnisci Superior colliculus stratum lemnisci]" ignore="true" notes="unused subdivision"/>
 		</element>
 
 		<element id="ABA.MM.SOC" name="Superior Olivary Complex" mapped="true" type="Sensory Control Nucleus"
@@ -1178,17 +1177,17 @@
 			function="Bilateral Audition"
 			notes="Projections from both left and right ABA.CN"
 			>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Periolivary_nucleus Periolivary nucleus]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Preolivary_nucleus Preolivary nucleus]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Superior_olive Superior olive]">
-				<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_superior_olivary_nucleus Lateral superior olivary nucleus]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Medial_superior_olivary_nucleus Medial superior olivary nucleus]"/>
+			<element name="Periolivary Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Periolivary_nucleus Periolivary nucleus]"/>
+			<element name="Preolivary Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Preolivary_nucleus Preolivary nucleus]"/>
+			<element name="Superior Olive" refs="NL:[http://neurolex.org/wiki/Category:Superior_olive Superior olive]">
+				<element name="Lateral Superior Olivary Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_superior_olivary_nucleus Lateral superior olivary nucleus]"/>
+				<element name="Medial Superior Olivary Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_superior_olivary_nucleus Medial superior olivary nucleus]"/>
 			</element>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Superior_paraolivary_nucleus Superior paraolivary nucleus]"/>
+			<element name="Superior Paraolivary Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Superior_paraolivary_nucleus Superior paraolivary nucleus]"/>
 			<element id="ABA.MM.SOC.TZ" name="Trapezoid Body Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Trapezoid_nuclear_complex Trapezoid nuclear complex];NL:[http://neurolex.org/wiki/Category:Trapezoid_body Trapezoid body]">
-				<element refs="NL:[http://neurolex.org/wiki/Category:Dorsal_nucleus_of_trapezoid_body Dorsal nucleus of trapezoid body]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Medial_nucleus_of_trapezoid_body Medial nucleus of trapezoid body]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Ventral_nucleus_of_trapezoid_body Ventral nucleus of trapezoid body]"/>
+				<element name="Dorsal Nucleus of Trapezoid Body" refs="NL:[http://neurolex.org/wiki/Category:Dorsal_nucleus_of_trapezoid_body Dorsal nucleus of trapezoid body]"/>
+				<element name="Medial Nucleus of Trapezoid Body" refs="NL:[http://neurolex.org/wiki/Category:Medial_nucleus_of_trapezoid_body Medial nucleus of trapezoid body]"/>
+				<element name="Ventral Nucleus of Trapezoid Body" refs="NL:[http://neurolex.org/wiki/Category:Ventral_nucleus_of_trapezoid_body Ventral nucleus of trapezoid body]"/>
 			</element>
 		</element>
 
@@ -1202,9 +1201,9 @@
 			refs="NL:[http://neurolex.org/wiki/Category:Ventral_tegmental_nucleus Ventral tegmental nucleus];NL:[http://neurolex.org/wiki/Category:Ventral_tegmental_area Ventral tegmental area]"
 			function="Respond to novel stimuli, unexpected rewards, and reward predictive sensory cues"
 			>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Medial_ventral_tegmental_area Medial ventral tegmental area]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Parabrachial_pigmented_nucleus Parabrachial pigmented nucleus]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Rostral_linear_nucleus Rostral linear nucleus]"/>
+			<element name="Medial Ventral Tegmental Area" refs="NL:[http://neurolex.org/wiki/Category:Medial_ventral_tegmental_area Medial ventral tegmental area]"/>
+			<element name="Parabrachial Pigmented Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Parabrachial_pigmented_nucleus Parabrachial pigmented nucleus]"/>
+			<element name="Rostral Linear Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Rostral_linear_nucleus Rostral linear nucleus]"/>
 		</element>
 
 	</division>
@@ -1230,22 +1229,22 @@
 			notes="Deep Nuclei and cerebellum cortex"
 			>
 			<element name="Cerebellar Cortex" refs="NL:[http://neurolex.org/wiki/Category:Cerebellar_cortex Cerebellar cortex]">
-				<element refs="NL:[http://neurolex.org/wiki/Category:Anterior_lobe_of_the_cerebellum Anterior lobe of the cerebellum]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Flocculonodular_lobe Flocculonodular lobe]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Posterior_lobe_of_the_cerebellum Posterior lobe of the cerebellum]"/>
+				<element name="Anterior Lobe of Cerebellum" refs="NL:[http://neurolex.org/wiki/Category:Anterior_lobe_of_the_cerebellum Anterior lobe of the cerebellum]"/>
+				<element name="Flocculonodular Lobe of Cerebellum" refs="NL:[http://neurolex.org/wiki/Category:Flocculonodular_lobe Flocculonodular lobe]"/>
+				<element name="Posterior Lobe of Cerebellum" refs="NL:[http://neurolex.org/wiki/Category:Posterior_lobe_of_the_cerebellum Posterior lobe of the cerebellum]"/>
 			</element>
 			<element name="Dentate Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Dentate_nucleus Dentate nucleus]">
-				<element refs="NL:[http://neurolex.org/wiki/Category:Amiculum_of_dentate_nucleus Amiculum of dentate nucleus]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Hilum_of_dentate_nucleus Hilum of dentate nucleus]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Neodentate_part_of_dentate_nucleus Neodentate part of dentate nucleus]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Paleodentate_of_dentate_nucleus Paleodentate of dentate nucleus]"/>
+				<element name="Amiculum of Dentate Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Amiculum_of_dentate_nucleus Amiculum of dentate nucleus]"/>
+				<element name="Hilum of Dentate Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Hilum_of_dentate_nucleus Hilum of dentate nucleus]"/>
+				<element name="Neodentate Part of Dentate Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Neodentate_part_of_dentate_nucleus Neodentate part of dentate nucleus]"/>
+				<element name="Paleodentate of Dentate Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Paleodentate_of_dentate_nucleus Paleodentate of dentate nucleus]"/>
 			</element>
 			<element name="Fastigual Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Fastigial_nucleus Fastigial nucleus]"/>
 			<element name="Emboliform Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Emboliform_nucleus Emboliform nucleus]">
-				<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_part_of_the_anterior_interposed_nucleus Lateral part of the anterior interposed nucleus]"/>
+				<element name="Lateral Part of Anterior Interposed Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_part_of_the_anterior_interposed_nucleus Lateral part of the anterior interposed nucleus]"/>
 			</element>
 			<element name="Globose Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Globose_nucleus Globose nucleus]">
-				<element refs="NL:[http://neurolex.org/wiki/Category:Infracerebellar_nucleus Infracerebellar nucleus]"/>
+				<element name="Infracerebellar Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Infracerebellar_nucleus Infracerebellar nucleus]"/>
 			</element>
 		</element>
 
@@ -1264,10 +1263,10 @@
 			refs="NL:[http://neurolex.org/wiki/Category:Laterodorsal_tegmental_nucleus Laterodorsal tegmental nucleus]"
 			function="Modulating sustained attention or in mediating alerting responses"
 			>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_tegmental_nucleus Lateral tegmental nucleus]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Dorsal_tegmental_nucleus Dorsal tegmental nucleus]">
-				<element refs="NL:[http://neurolex.org/wiki/Category:Dorsal_tegmental_nucleus_pars_dorsalis Dorsal tegmental nucleus pars dorsalis]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Dorsal_tegmental_nucleus_pars_ventralis Dorsal tegmental nucleus pars ventralis]"/>
+			<element name="Lateral Tegmental Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_tegmental_nucleus Lateral tegmental nucleus]"/>
+			<element name="Dorsal Tegmental Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Dorsal_tegmental_nucleus Dorsal tegmental nucleus]">
+				<element name="Dorsal Tegmental Nucleus Pars Dorsalis" refs="NL:[http://neurolex.org/wiki/Category:Dorsal_tegmental_nucleus_pars_dorsalis Dorsal tegmental nucleus pars dorsalis]"/>
+				<element name="Dorsal Tegmental Nucleus Pars Ventralis" refs="NL:[http://neurolex.org/wiki/Category:Dorsal_tegmental_nucleus_pars_ventralis Dorsal tegmental nucleus pars ventralis]"/>
 			</element>
 		</element>
 
@@ -1282,10 +1281,10 @@
 			function="Source of short-latency nociceptive input"
 			>
 			<element name="Subbrachial Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Subbrachial_nucleus Subbrachial nucleus]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_parabrachial_nucleus Lateral parabrachial nucleus]">
-				<element refs="NL:[http://neurolex.org/wiki/Category:External_lateral_parabrachial_nucleus External lateral parabrachial nucleus]"/>
+			<element name="Lateral Parabrachial Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_parabrachial_nucleus Lateral parabrachial nucleus]">
+				<element name="External Lateral Parabrachial Nucleus" refs="NL:[http://neurolex.org/wiki/Category:External_lateral_parabrachial_nucleus External lateral parabrachial nucleus]"/>
 			</element>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Medial_parabrachial_nucleus Medial parabrachial nucleus]"/>
+			<element name="Medial Parabrachial Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_parabrachial_nucleus Medial parabrachial nucleus]"/>
 		</element>
 
 		<element id="BGA.HP.PPN" name="Pedunculopontine Nucleus" mapped="true" type="Excitatory Nucleus"
@@ -1320,8 +1319,8 @@
 				function="Decoding of amplitude modulated sounds"
 				notes="Prominent columnar organization, cochlea to IC"
 				>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Dorsal_nucleus_of_lateral_lemniscus Dorsal nucleus of lateral lemniscus]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Ventral_nucleus_of_lateral_lemniscus Ventral nucleus of lateral lemniscus]"/>
+				<element name="Dorsal Nucleus of Lateral Lemniscus" refs="NL:[http://neurolex.org/wiki/Category:Dorsal_nucleus_of_lateral_lemniscus Dorsal nucleus of lateral lemniscus]"/>
+				<element name="Ventral Nucleus of Lateral Lemniscus" refs="NL:[http://neurolex.org/wiki/Category:Ventral_nucleus_of_lateral_lemniscus Ventral nucleus of lateral lemniscus]"/>
 				<element name="Intermediate nucleus of lateral lemniscus"/>
 			</element>
 			<element id="HMA.HP.PN.SC" name="Nucleus Subceruleus" mapped="true" type="Premotor Nucleus"
@@ -1332,7 +1331,7 @@
 		</element>
 
 		<element id="HP.PRF" name="Pontine Reticular Formation" refs="NL:[http://neurolex.org/wiki/Category:Pontine_reticular_formation Pontine reticular formation]">
-			<element id="HP.PRF.MPRF" refs="NL:[http://neurolex.org/wiki/Category:Medial_pontine_reticular_formation Medial pontine reticular formation]">
+			<element id="HP.PRF.MPRF" name="Medial Pontine Reticular Formation" refs="NL:[http://neurolex.org/wiki/Category:Medial_pontine_reticular_formation Medial pontine reticular formation]">
 				<element id="HP.PRF.PPRF" name="Paramedian Pontine Reticular Formation">
 					<element id="HMA.HP.PRF.RPO" name="Oral Pontine Reticular Nucleus" mapped="true" type="Premotor Nucleus"
 						refs="NL:[http://neurolex.org/wiki/Category:Oral_pontine_reticular_nucleus Oral pontine reticular nucleus]"
@@ -1361,8 +1360,8 @@
 				function="Flow of respiratory current out of organism"
 				notes="Projects to facial nucleus, hypoglossal nucleus and parabrachial nucleus"
 				>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Serotonergic_cell_group_B8 Serotonergic cell group B8]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Serotonergic_cell_group_B9 Serotonergic cell group B9]"/>
+				<element name="Serotonergic Cell Group B8" refs="NL:[http://neurolex.org/wiki/Category:Serotonergic_cell_group_B8 Serotonergic cell group B8]"/>
+				<element name="Serotonergic Cell Group B9" refs="NL:[http://neurolex.org/wiki/Category:Serotonergic_cell_group_B9 Serotonergic cell group B9]"/>
 			</element>
 		</element>
 
@@ -1402,11 +1401,11 @@
 			function="Equilibrium, Postural Reflexes"
 			notes="Pons"
 			>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Caudal_vestibular_nuclei Caudal vestibular nuclei]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Inferior_vestibular_nucleus Inferior vestibular nucleus]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_vestibular_nucleus Lateral vestibular nucleus]"/>
+			<element name="Caudal Vestibular Nuclei" refs="NL:[http://neurolex.org/wiki/Category:Caudal_vestibular_nuclei Caudal vestibular nuclei]"/>
+			<element name="Inferior Vestibular Nuclei" refs="NL:[http://neurolex.org/wiki/Category:Inferior_vestibular_nucleus Inferior vestibular nucleus]"/>
+			<element name="Lateral Vestibular Nuclei" refs="NL:[http://neurolex.org/wiki/Category:Lateral_vestibular_nucleus Lateral vestibular nucleus]"/>
 			<element id="BMA.HP.MVB" name="Medial Vestibular Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_vestibular_nucleus Medial vestibular nucleus]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Superior_vestibular_nucleus Superior vestibular nucleus]"/>
+			<element name="Superior Vestibular Nuclei" refs="NL:[http://neurolex.org/wiki/Category:Superior_vestibular_nucleus Superior vestibular nucleus]"/>
 		</element>
 
 		<element id="BMA.HP.VG" name="Vestibular Ganglion" mapped="true" type="1-order Sensory Nucleus"
@@ -1440,10 +1439,10 @@
 			function="Divergence in representation of auditory information"
 			notes="Carry sound information from organ of Corti"
 			>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Dorsal_cochlear_nucleus Dorsal cochlear nucleus]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Ventral_cochlear_nucleus Ventral cochlear nucleus]">
-				<element refs="NL:[http://neurolex.org/wiki/Category:Anteroventral_cochlear_nucleus Anteroventral cochlear nucleus]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Posteroventral_cochlear_nucleus Posteroventral cochlear nucleus]"/>
+			<element name="Dorsal Cochlear Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Dorsal_cochlear_nucleus Dorsal cochlear nucleus]"/>
+			<element name="Ventral Cochlear Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Ventral_cochlear_nucleus Ventral cochlear nucleus]">
+				<element name="Anteroventral Cochlear Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Anteroventral_cochlear_nucleus Anteroventral cochlear nucleus]"/>
+				<element name="Posteroventral Cochlear Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Posteroventral_cochlear_nucleus Posteroventral cochlear nucleus]"/>
 			</element>
 		</element>
 
@@ -1451,9 +1450,9 @@
 			refs="NL:[http://neurolex.org/wiki/Category:Cuneate_nucleus Cuneate nucleus]"
 			function="Carry fine touch and proprioceptive information from upper body"
 			>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Accessory_cuneate_nucleus Accessory cuneate nucleus]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_pericuneate_nucleus Lateral pericuneate nucleus]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_pericuneate_nucleus Medial pericuneate nucleus]"/>
+			<element name="Accessory Cuneate Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Accessory_cuneate_nucleus Accessory cuneate nucleus]"/>
+			<element name="Lateral Pericuneate Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_pericuneate_nucleus Lateral pericuneate nucleus]"/>
+			<element name="Medial Pericuneate Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_pericuneate_nucleus Medial pericuneate nucleus]"/>
 		</element>
 
 		<element id="BMA.HM.GR" name="Gracile Nucleus" mapped="true" type="1-order Sensory Nucleus"
@@ -1469,11 +1468,11 @@
 			refs="NL:[http://neurolex.org/wiki/Category:Inferior_olivary_complex Inferior olivary complex]"
 			function="Proprioception Relay from Spinal Cord to Cerebellum"
 			>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Dorsal_accessory_olive Dorsal accessory olive]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Dorsal_cap_of_Kooy Dorsal cap of Kooy]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Medial_accessory_olive Medial accessory olive]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Principal_olivary_nucleus Principal olivary nucleus]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Rostral_portion_of_the_medial_accessory_olive Rostral portion of the medial accessory olive]"/>
+			<element name="Dorsal Accessory Olive" refs="NL:[http://neurolex.org/wiki/Category:Dorsal_accessory_olive Dorsal accessory olive]"/>
+			<element name="Dorsal Cap of Kooy" refs="NL:[http://neurolex.org/wiki/Category:Dorsal_cap_of_Kooy Dorsal cap of Kooy]"/>
+			<element name="Medial Accessory Olive" refs="NL:[http://neurolex.org/wiki/Category:Medial_accessory_olive Medial accessory olive]"/>
+			<element name="Principal Olivary Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Principal_olivary_nucleus Principal olivary nucleus]"/>
+			<element name="Rostral Portion of Medial Accessory Olive" refs="NL:[http://neurolex.org/wiki/Category:Rostral_portion_of_the_medial_accessory_olive Rostral portion of the medial accessory olive]"/>
 		</element>
 
 		<element id="HMA.HM.INM" name="Intercalated Nucleus of Medulla" mapped="true" type="Premotor Nucleus"
@@ -1504,7 +1503,7 @@
 			>
 			<element name="Raphe Magnus Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Nucleus_raphe_magnus Nucleus raphe magnus]"/>
 			<element name="Raphe Obscurus Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Nucleus_raphe_obscurus Nucleus raphe obscurus]">
-				<element refs="NL:[http://neurolex.org/wiki/Category:Caudal_nucleus_raphe_obscurus Caudal nucleus raphe obscurus]"/>
+				<element name="Caudal Nucleus Raphe Obscurus" refs="NL:[http://neurolex.org/wiki/Category:Caudal_nucleus_raphe_obscurus Caudal nucleus raphe obscurus]"/>
 			</element>
 			<element name="Raphe Pallidus Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Nucleus_raphe_pallidus Nucleus raphe pallidus]"/>
 		</element>
@@ -1526,11 +1525,11 @@
 			function="Carry taste buds, thoracic and abdominal viscera"
 			notes="c.n. VII, IX, X"
 			>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Caudal_nucleus_tractus_solitarius Caudal nucleus tractus solitarius]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Medial_nucleus_of_the_solitary_tract Medial nucleus of the solitary tract]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Medial_part_of_the_nucleus_of_the_solitary_tract Medial part of the nucleus of the solitary tract]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Medial_subnucleus_of_solitary_tract Medial subnucleus of solitary tract]"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Rostral_nucleus_of_the_solitary_tract Rostral nucleus of the solitary tract]"/>
+			<element name="Caudal Nucleus Tractus Solitarius" refs="NL:[http://neurolex.org/wiki/Category:Caudal_nucleus_tractus_solitarius Caudal nucleus tractus solitarius]"/>
+			<element name="Medial Nucleus Tractus Solitarius" refs="NL:[http://neurolex.org/wiki/Category:Medial_nucleus_of_the_solitary_tract Medial nucleus of the solitary tract]"/>
+			<element name="Medial Part of Nucleus of Solitary Tract" refs="NL:[http://neurolex.org/wiki/Category:Medial_part_of_the_nucleus_of_the_solitary_tract Medial part of the nucleus of the solitary tract]"/>
+			<element name="Medial Subnucleus of Solitary Tract" refs="NL:[http://neurolex.org/wiki/Category:Medial_subnucleus_of_solitary_tract Medial subnucleus of solitary tract]"/>
+			<element name="Rostral Nucleus of Solitary Tract" refs="NL:[http://neurolex.org/wiki/Category:Rostral_nucleus_of_the_solitary_tract Rostral nucleus of the solitary tract]"/>
 		</element>
 
 		<element id="HMA.HM.TGM" name="Trigeminal Nucleus">
@@ -1540,8 +1539,8 @@
 				notes="Pontine Nuclei, part of cranial nerve nuclei, ear"
 				>
 				<element id="HMA.HM.TGM.CSTR" name="Trigeminal Caudal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Caudal_part_of_spinal_trigeminal_nucleus Caudal part of spinal trigeminal nucleus]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Interpolar_part_of_spinal_trigeminal_nucleus Interpolar part of spinal trigeminal nucleus]"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Oral_part_of_spinal_trigeminal_nucleus Oral part of spinal trigeminal nucleus]"/>
+				<element name="Interpolar Part of Spinal Trigeminal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Interpolar_part_of_spinal_trigeminal_nucleus Interpolar part of spinal trigeminal nucleus]"/>
+				<element name="Oral Part of Spinal Trigeminal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Oral_part_of_spinal_trigeminal_nucleus Oral part of spinal trigeminal nucleus]"/>
 			</element>
 			<element id="HMA.HM.TGM.PA5" name="Paratrigeminal Nucleus" mapped="true" type="1-order Sensory Nucleus"
 				refs="NL:[http://neurolex.org/wiki/Category:Paratrigeminal_nucleus_of_PHT00 Paratrigeminal nucleus]"
@@ -1608,8 +1607,8 @@
 					function="Unconscious Proprioception"
 					notes="To CR"
 					>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Clarke%27s_nucleus_of_lumbar_spinal_cord Clarke's nucleus of lumbar spinal cord]"/>
-					<element refs="NL:[http://neurolex.org/wiki/Category:Clarke%27s_nucleus_of_thoracic_spinal_cord Clarke's nucleus of thoracic spinal cord]"/>
+					<element name="Clarke's Nucleus of Lumbar Spinal Cord" refs="NL:[http://neurolex.org/wiki/Category:Clarke%27s_nucleus_of_lumbar_spinal_cord Clarke's nucleus of lumbar spinal cord]"/>
+					<element name="Clarke's Nucleus of Thoracic Spinal Cord" refs="NL:[http://neurolex.org/wiki/Category:Clarke%27s_nucleus_of_thoracic_spinal_cord Clarke's nucleus of thoracic spinal cord]"/>
 				</element>
 			</element>
 		</element>
@@ -1630,7 +1629,7 @@
 					function="Control of iris dilator muscle"
 					notes="Budge's Center, intermediolateral cell column"
 					/>
-				<element id="SC.IZ.SCP" refs="NA:Sacral parasympathetic nuclei">
+				<element id="SC.IZ.SCP" name="Sacral Parasympathetic Nuclei" refs="NA:Sacral parasympathetic nuclei">
 					<element id="AVA.SC.IZ.IML" name="Intermediolateral Nucleus" mapped="true" type="Preganglionic Nucleus"
 						refs="NA:Intermediomedial nucleus;BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&amp;conceptid=FMA%3A73915 Intermediolateral nucleus]"
 						function="Mediate entire sympathetic innervation of body"

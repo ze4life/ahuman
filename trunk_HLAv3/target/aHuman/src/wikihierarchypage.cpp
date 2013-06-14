@@ -40,7 +40,7 @@ void WikiHierarchyPage::execute() {
 
 void WikiHierarchyPage::updateHierarchyPage_walkTree( String parentNode , int level , StringList& lines , MindArea *parentArea , MindRegion *parentRegion ) {
 	StringList elements;
-	wm -> hmindxml.getElements( parentNode , elements );
+	wm -> hmindxml.getIdentifiedElements( parentNode , elements );
 
 	for( int k = 0; k < elements.count(); k++ ) {
 		String node = elements.get( k );
@@ -86,7 +86,7 @@ MindArea *WikiHierarchyPage::updateHierarchyPage_getArea( String parentNode ) {
 	// check all childs
 	MindArea *area = NULL;
 	StringList elements;
-	wm -> hmindxml.getElements( parentNode , elements );
+	wm -> hmindxml.getIdentifiedElements( parentNode , elements );
 
 	for( int k = 0; k < elements.count(); k++ ) {
 		String node = elements.get( k );
@@ -124,7 +124,7 @@ MindRegion *WikiHierarchyPage::updateHierarchyPage_getRegion( String parentNode 
 
 	// check all childs
 	StringList elements;
-	wm -> hmindxml.getElements( parentNode , elements );
+	wm -> hmindxml.getIdentifiedElements( parentNode , elements );
 
 	for( int k = 0; k < elements.count(); k++ ) {
 		String node = elements.get( k );
@@ -196,7 +196,7 @@ String WikiHierarchyPage::updateHierarchyPage_getElementString( String node , Mi
 
 void WikiHierarchyPage::updateHierarchyPage_walkNeocortex( String neocortexDivision , String wikiDir , String wikiPage ) {
 	StringList elements;
-	wm -> hmindxml.getElements( neocortexDivision , elements );
+	wm -> hmindxml.getIdentifiedElements( neocortexDivision , elements );
 
 	// group by major lobes
 	for( int k = 0; k < elements.count(); k++ ) {
@@ -291,7 +291,7 @@ void WikiHierarchyPage::updateHierarchyPage_walkNeocortexBrodmannLine( String no
 	if( info.brodmannid.isEmpty() ) {
 		// check childs
 		StringList elements;
-		wm -> hmindxml.getElements( node , elements );
+		wm -> hmindxml.getIdentifiedElements( node , elements );
 
 		// group by major lobes
 		for( int k = 0; k < elements.count(); k++ ) {
