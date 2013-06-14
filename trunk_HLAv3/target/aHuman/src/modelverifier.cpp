@@ -60,6 +60,8 @@ void ModelVerifier::checkHierarchy() {
 bool ModelVerifier::checkHierarchy_verifyChild( String parentNode , bool checkMapping ) {
 	const XmlHMindElementInfo& info = hmindxml.getElementInfo( parentNode );
 
+	logger.logInfo( "check item=" + info.name );
+
 	bool mappedOwn = false;
 	if( checkMapping ) {
 		// verify mind mapping

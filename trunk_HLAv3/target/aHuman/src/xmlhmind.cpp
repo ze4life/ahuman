@@ -19,9 +19,10 @@ void XmlHMind::load() {
 
 	// scan
 	for( Xml xmlChild = xml.getFirstChild( "division" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "division" ) ) {
-		String name = xmlChild.getAttribute( "name" );
-		nodes.add( name , xmlChild.getNode() );
+		if( xmlChild.getBooleanAttribute( "ignore" , false ) )
+			continue;
 
+		createDivisionElement( xmlChild );
 		scanChildItems( xmlChild );
 	}
 }
@@ -29,32 +30,32 @@ void XmlHMind::load() {
 void XmlHMind::scanChildItems( Xml xmlItem ) {
 	// childs
 	for( Xml xmlChild = xmlItem.getFirstChild( "element" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "element" ) ) {
-		String id = xmlChild.getAttribute( "id" , "" );
-		if( !id.isEmpty() )
-			nodes.add( id , xmlChild.getNode() );
+		if( xmlChild.getBooleanAttribute( "ignore" , false ) )
+			continue;
 
+		createRegionElement( xmlChild );
 		scanChildItems( xmlChild );
 	}
 }
 
 Xml XmlHMind::getNodeXml( String node ) {
-	void *nodePtr = nodes.get( node );
-	ASSERTMSG( nodePtr != NULL , "unable to find node with ID=" + node );
-
-	Xml xmlitem;
-	xmlitem.attach( xml.getDoc() , nodePtr );
-	return( xmlitem );
+	XmlHMindElementInfo *info = nodeInfo.get( node );
+	ASSERTMSG( info != NULL , "unable to find node with ID=" + node );
+	return( info -> xml );
 }
 
 bool XmlHMind::isComponent( String node ) {
-	void *nodePtr = nodes.get( node );
-	if( nodePtr == NULL )
+	XmlHMindElementInfo *nodePtr = nodeInfo.get( node );
+	if( nodePtr -> id.isEmpty() )
 		return( false );
 	return( true );
 }
 
 void XmlHMind::getDivisions( StringList& divisions ) {
 	for( Xml xmlChild = xml.getFirstChild( "division" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "division" ) ) {
+		if( xmlChild.getBooleanAttribute( "ignore" , false ) )
+			continue;
+
 		String name = xmlChild.getAttribute( "name" );
 		divisions.add( name );
 	}
@@ -63,18 +64,59 @@ void XmlHMind::getDivisions( StringList& divisions ) {
 void XmlHMind::getElements( String parentNode , StringList& elements ) {
 	Xml xmlParent = getNodeXml( parentNode );
 	for( Xml xmlChild = xmlParent.getFirstChild( "element" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "element" ) ) {
+		if( xmlChild.getBooleanAttribute( "ignore" , false ) )
+			continue;
+
+		String mapId = getRegionMapId( xmlChild );
+		elements.add( mapId );
+	}
+}
+
+void XmlHMind::getIdentifiedElements( String parentNode , StringList& elements ) {
+	Xml xmlParent = getNodeXml( parentNode );
+	for( Xml xmlChild = xmlParent.getFirstChild( "element" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "element" ) ) {
+		if( xmlChild.getBooleanAttribute( "ignore" , false ) )
+			continue;
+
 		String id = xmlChild.getAttribute( "id" , "" );
 		if( !id.isEmpty() )
 			elements.add( id );
 	}
 }
 
-void XmlHMind::getElementInfo( String node , XmlHMindElementInfo& info ) {
-	Xml item = getNodeXml( node );
-	info.ignore = item.getBooleanAttribute( "ignore" , false );
+String XmlHMind::createDivisionElement( Xml item ) {
+	String mapId = item.getAttribute( "name" );
+	XmlHMindElementInfo *info = new XmlHMindElementInfo();
+	createElementInfo( mapId , item , *info );
+	nodeInfo.add( mapId , info );
+	return( mapId );
+}
+
+String XmlHMind::getRegionMapId( Xml item ) {
+	String mapId = item.getAttribute( "id" , "" );
+	if( mapId.isEmpty() )
+		mapId = String( "auto-" ) + ( unsigned )item.getNode();
+	return( mapId );
+}
+
+String XmlHMind::createRegionElement( Xml item ) {
+	String mapId = getRegionMapId( item );
+	XmlHMindElementInfo *info = new XmlHMindElementInfo();
+	createElementInfo( mapId , item , *info );
+	nodeInfo.add( mapId , info );
+	return( mapId );
+}
+
+void XmlHMind::createElementInfo( String mapId , Xml item , XmlHMindElementInfo& info ) {
+	info.mapId = mapId;
+	info.xml = item;
+
 	info.id = item.getAttribute( "id" , "" );
+	info.ignore = item.getBooleanAttribute( "ignore" , false );
 	info.mapped = item.getBooleanAttribute( "mapped" , false );
 	info.name = item.getAttribute( "name" , "" );
+	ASSERTMSG( !info.name.isEmpty() , "name attribute is not set for item xpath=" + item.getXPath() );
+
 	info.refs = item.getAttribute( "refs" , "" );
 	info.comment = item.getAttribute( "comment" , "" );
 	info.brodmannid = item.getAttribute( "brodmannid" , "" );
@@ -91,12 +133,6 @@ void XmlHMind::getElementInfo( String node , XmlHMindElementInfo& info ) {
 
 const XmlHMindElementInfo& XmlHMind::getElementInfo( String node ) {
 	XmlHMindElementInfo *ni = nodeInfo.get( node );
-	if( ni == NULL ) {
-		ni = new XmlHMindElementInfo;
-		getElementInfo( node , *ni );
-		nodeInfo.add( node , ni );
-	}
-
 	return( *ni );
 }
 
@@ -120,6 +156,9 @@ void XmlHMind::getChildRegions( String node , StringList& regions ) {
 
 void XmlHMind::scanChildRegions( Xml item , StringList& regions ) {
 	for( Xml xmlChild = item.getFirstChild( "element" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "element" ) ) {
+		if( xmlChild.getBooleanAttribute( "ignore" , false ) )
+			continue;
+
 		String id = xmlChild.getAttribute( "id" , "" );
 		if( id.isEmpty() )
 			continue;

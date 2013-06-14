@@ -89,6 +89,27 @@ Xml Xml::getParentNode() {
 	return( x );
 }
 
+String Xml::getXName() {
+	ASSERTMSG( node != NULL , "node is null" );
+	String name = getName();
+	String attr = getAttribute( "name" , "" );
+	if( !attr.isEmpty() )
+		name += "[@name='" + attr + "']";
+	
+	return( name );
+}
+
+String Xml::getXPath() {
+	ASSERTMSG( node != NULL , "node is null" );
+	String xpath = getXName();
+	Xml parent = *this;
+	while( ( parent = parent.getParentNode() ).exists() ) {
+		String xpathadd = parent.getXName();
+		xpath = xpathadd + "/" + xpath;
+	}
+	return( xpath );
+}
+
 Xml Xml::getChildNamedNode( String element , String name ) {
 	return( findChildByPathAttr( element , "name" , name ) );
 }

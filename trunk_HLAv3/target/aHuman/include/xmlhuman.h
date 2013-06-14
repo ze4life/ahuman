@@ -26,19 +26,22 @@ public:
 
 	void getDivisions( StringList& divisions );
 	void getElements( String parentNode , StringList& elements );
+	void getIdentifiedElements( String parentNode , StringList& elements );
 	const XmlHMindElementInfo& getElementInfo( String node );
 	String getMappedRegion( String node );
 	void getChildRegions( String node , StringList& regions );
 	String getDotDef( String node );
 
 private:
+	String createDivisionElement( Xml item );
+	String createRegionElement( Xml item );
 	void scanChildItems( Xml xmlChild );
 	void scanChildRegions( Xml xmlChild , StringList& regions );
-	void getElementInfo( String node , XmlHMindElementInfo& info );
+	void createElementInfo( String mapId , Xml item , XmlHMindElementInfo& info );
+	String getRegionMapId( Xml item );
 
 private:
 	Xml xml;
-	MapStringToPtr nodes;
 	MapStringToClass<XmlHMindElementInfo> nodeInfo;
 };
 
@@ -47,6 +50,9 @@ private:
 
 class XmlHMindElementInfo {
 public:
+	String mapId;
+	Xml xml;
+
 	bool ignore;
 	String id;
 	String name;

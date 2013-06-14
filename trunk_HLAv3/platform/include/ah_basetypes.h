@@ -165,6 +165,8 @@ public:
 	// path items are delimited by '/' chars
 	Xml findChildByPath( String path );
 	Xml findChildByPathAttr( String path , String attr , String value );
+	String getXPath();
+	String getXName();
 
 	// attributes
 	String getAttribute( String a );
