@@ -33,9 +33,9 @@
 				region="BMA.HP.VG" connector="ganglion.input" primary="true"/>
 
 			<connector entity="ear-somatic" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
-				region="AVA.HP.PSYM.GNG" connector="ganglion.input" primary="true"/>
+				region="AVA.PN.SG.GNG" connector="ganglion.input" primary="true"/>
 			<connector entity="ear-visceral" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
-				region="HMA.HM.TGM.STR" connector="nucleus.input" primary="true"/>
+				region="AVA.PN.SG.JUG" connector="ganglion.input" primary="true"/>
 
 			<connector entity="ear-outer-hair-cells" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="ABA.MM.SOC" connector="nucleus.output" primary="true"/>
@@ -48,6 +48,19 @@
 	</sensors>
 
 	<effectors>
+		<effector id="TARGET.TEA.HEART" run="true">
+			<connector entity="heart-symp-control" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SYM.STG" connector="nucleus.output" primary="true"/>
+			<connector entity="heart-psymp-control" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.PSYM.CRG" connector="nucleus.output" primary="true"/>
+
+			<connector entity="heart-aorta-baroreceptors" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.NOD" connector="ganglion.input" primary="true"/>
+			<connector entity="heart-carotid-baroreceptors" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.PET" connector="ganglion.input" primary="true"/>
+			<connector entity="heart-visceral" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.DRG.UT" connector="ganglion.input" primary="true"/>
+		</effector>
 	</effectors>
 
 </service>
