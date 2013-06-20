@@ -378,6 +378,7 @@ public:
 
 public:
 	void defineSensorRegion( Xml xml );
+	void defineEffectorRegion( Xml xml );
 
 	void setCircuitDef( TargetCircuitDef *info ) { circuitInfo = info; };
 	TargetCircuitDef *getCircuitDef() { return( circuitInfo ); };
@@ -398,6 +399,8 @@ public:
 
 public:
 	void defineSensorRegionType( Xml xml );
+	void defineEffectorRegionType( Xml xml );
+
 	void defineRegionType( bool sensor , Xml xml );
 	void defineConnectorSet( Xml xml );
 

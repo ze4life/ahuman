@@ -8,16 +8,9 @@ MindEffector::MindEffector( EffectorArea *p_area )
 :	MindRegion( p_area ) {
 }
 
-String MindEffector::getRegionType() {
-	return( "MindEffector" );
-}
-
-void MindEffector::getSourceSizes( String entity , int *sizeX , int *sizeY ) {
-}
-
-void MindEffector::createRegion() {
+void MindEffector::createRegion( MindRegionCreateInfo *info ) {
 	// call effector creation
-	createEffector();
+	createEffector( info );
 	logger.logDebug( String( "createRegion: created effector region" ) );
 }
 

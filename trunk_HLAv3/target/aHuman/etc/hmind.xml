@@ -58,7 +58,10 @@
 				function="dampen sounds, such as those produced from chewing"/>
 		</element>
 
-		<element id="TARGET.TEA.HEART" name="Heart" type=Effector>
+		<element id="TARGET.TEA.HEART" name="Heart" mapped="true" type="Effector"
+			dotdef="color=firebrick1"
+			function="Blood Supply Engine"
+			>
 			<element id="heart-symp-control" name="NE Receptors of Atrium Muscles" type="connector"
 				notes="lowers the threshold potential of SA node cells, vasoconstriction of arteries and veins" 
 				function="increase overall activity of heart"/>
@@ -1734,50 +1737,50 @@
 		>
 
 		<element id="PN.SYM" name="Sympathetic Nuclei">
-			<element id="VBA.PN.SYM.SCG" name="Superior Cervical Ganglion" mapped="true" type="Symp. Gang."
-				function="Eye, tear and salivatory glands"
-				notes="Th 1-5"
-				/>
-			<element id="VBA.PN.SYM.MCG" name="Middle Cervical Ganglion" mapped="true" type="Symp. Gang."
-				function="Eye, tear and salivatory glands"
-				notes="Th 1-5"
-				/>
-			<element id="AVA.PN.SYM.STG" name="Stellate Ganglion" mapped="true" type="Symp. Gang."
-				function="Heart, Lung"
-				notes="Th 5-12, inferior cervical ganglion"
-				/>
-			<element id="VBA.PN.SYM.VG" name="Vertebral Ganglion" mapped="true" type="Symp. Gang."
-				function="Heart"
-				notes="Th 1-5"
-				/>
-			<element id="VBA.PN.SYM.TG1" name="1st Thoracic Ganglion" mapped="true" type="Symp. Gang."
-				function="Heart"
-				notes="Th 1-5"
-				/>
-			<element id="VBA.PN.SYM.TG2" name="2nd Thoracic Ganglion" mapped="true" type="Symp. Gang."
-				function="Heart"
-				notes="Th 1-5"
-				/>
-			<element id="VBA.PN.SYM.TG3" name="3rd Thoracic Ganglion" mapped="true" type="Symp. Gang."
-				function="Heart"
-				notes="Th 1-5"
-				/>
-			<element id="VBA.PN.SYM.TG4" name="4th Thoracic Ganglion" mapped="true" type="Symp. Gang."
-				function="Heart"
-				notes="Th 1-5"
-				/>
-			<element id="AVA.PN.SYM.CEG" name="Coelic Ganglion" mapped="true" type="Symp. Gang."
-				function="Liver, stomach, pancreas, small intestine"
-				notes="L 1-5"
-				/>
-			<element id="AVA.PN.SYM.SMG" name="Superior Mesenteric Ganglion" mapped="true" type="Symp. Gang."
-				function="Large intestine, rectum"
-				notes="S 1-4"
-				/>
-			<element id="AVA.PN.SYM.IMG" name="Inferior Mesenteric Ganglion" mapped="true" type="Symp. Gang."
-				function="Bladder, reproductive organs"
-				notes="S 1-4"
-				/>
+			<element name="Paravertebral Ganglia">
+				<element id="VBA.PN.SYM.SCG" name="Superior Cervical Ganglion" mapped="true" type="Symp. Gang."
+					function="Eye, tear and salivatory glands"
+					notes="Th 1-5"
+					/>
+				<element id="VBA.PN.SYM.MCG" name="Middle Cervical Ganglion" mapped="true" type="Symp. Gang."
+					function="Eye, tear and salivatory glands"
+					notes="Th 1-5"
+					/>
+				<element id="AVA.PN.SYM.STG" name="Stellate Ganglion" mapped="true" type="Symp. Gang."
+					function="Heart, Lung"
+					notes="Th 5-12, inferior cervical ganglion"
+					/>
+				<element id="VBA.PN.SYM.TG1" name="1st Thoracic Ganglion" mapped="true" type="Symp. Gang."
+					function="Heart"
+					notes="Th 1-5"
+					/>
+				<element id="VBA.PN.SYM.TG2" name="2nd Thoracic Ganglion" mapped="true" type="Symp. Gang."
+					function="Heart"
+					notes="Th 1-5"
+					/>
+				<element id="VBA.PN.SYM.TG3" name="3rd Thoracic Ganglion" mapped="true" type="Symp. Gang."
+					function="Heart"
+					notes="Th 1-5"
+					/>
+				<element id="VBA.PN.SYM.TG4" name="4th Thoracic Ganglion" mapped="true" type="Symp. Gang."
+					function="Heart"
+					notes="Th 1-5"
+					/>
+			</element>
+			<element name="Prevertebral Ganglia">
+				<element id="AVA.PN.SYM.CEG" name="Coelic Ganglion" mapped="true" type="Symp. Gang."
+					function="Liver, stomach, pancreas, small intestine"
+					notes="L 1-5"
+					/>
+				<element id="AVA.PN.SYM.SMG" name="Superior Mesenteric Ganglion" mapped="true" type="Symp. Gang."
+					function="Large intestine, rectum"
+					notes="S 1-4"
+					/>
+				<element id="AVA.PN.SYM.IMG" name="Inferior Mesenteric Ganglion" mapped="true" type="Symp. Gang."
+					function="Bladder, reproductive organs"
+					notes="S 1-4"
+					/>
+			</element>
 		</element>
 
 		<element id="PN.PSYM" name="Parasympathetic Nuclei">

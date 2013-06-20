@@ -184,6 +184,24 @@ void MindMap::createTargetMeta( Xml xml ) {
 	effectorAreaInfo = new TargetAreaDef();
 	effectorAreaInfo -> defineEffectorArea();
 	mindAreaMap.add( effectorAreaInfo -> getAreaId() , effectorAreaInfo );
+
+	// create sensor meta
+	Xml configEffectors = xml.getChildNode( "effectors" );
+	for( Xml xmlChild = configEffectors.getFirstChild( "effector" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "effector" ) ) {
+		TargetRegionDef *regionInfo = new TargetRegionDef( effectorAreaInfo );
+		regionInfo -> defineEffectorRegion( xmlChild );
+
+		// add to maps
+		effectorAreaInfo -> addRegion( regionInfo );
+		mindRegionMap.add( regionInfo -> getId() , regionInfo );
+		TargetRegionTypeDef *regionTypeInfo = ( TargetRegionTypeDef * )regionInfo -> getType();
+		regionTypeMap.add( regionTypeInfo -> getName() , regionTypeInfo );
+
+		TargetCircuitDef *circuitInfo = regionTypeInfo -> getCircuitInfo();
+		mindCircuitMap.add( circuitInfo -> getName() , circuitInfo );
+
+		regionInfo -> setCircuitDef( circuitInfo );
+	}
 }
 
 TargetRegionDef *MindMap::getTargetRegionDefById( String regionId ) {
