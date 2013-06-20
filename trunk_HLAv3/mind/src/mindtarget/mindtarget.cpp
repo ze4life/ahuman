@@ -100,7 +100,7 @@ void MindTarget::addSensor( String p_id , MindSensor *sensor ) {
 
 void MindTarget::addEffector( String p_id , MindEffector *effector ) {
 	Xml configEffectors = config.getChildNode( "effectors" );
-	Xml xconfig = configEffectors.getChildNamedNode( "effector" , p_id );
+	Xml xconfig = configEffectors.findChildByPathAttr( "effector" , "id" , p_id );
 
 	bool offline = true;
 	if( xconfig.exists() && xconfig.getBooleanAttribute( "run" , true ) ) {

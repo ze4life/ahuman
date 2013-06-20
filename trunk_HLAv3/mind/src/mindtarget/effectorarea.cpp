@@ -51,6 +51,8 @@ void EffectorArea::initEffectorArea() {
 }
 
 void EffectorArea::addEffector( MindEffector *effector , bool offline ) {
+	effector -> setRegionId( effector -> getEffectorId() );
+
 	if( !offline ) {
 		effectors -> addSetItem( effector );
 		logger.logInfo( "addEffector: effector added - id=" + effector -> getEffectorId() );

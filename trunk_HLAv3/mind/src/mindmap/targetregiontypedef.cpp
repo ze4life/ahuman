@@ -17,6 +17,10 @@ void TargetRegionTypeDef::defineSensorRegionType( Xml xml ) {
 	defineRegionType( true , xml );
 }
 
+void TargetRegionTypeDef::defineEffectorRegionType( Xml xml ) {
+	defineRegionType( false , xml );
+}
+
 void TargetRegionTypeDef::defineRegionType( bool sensor , Xml xml ) {
 	MindRegionTypeDef::name = xml.getAttribute( "id" );
 	Object::setInstance( MindRegionTypeDef::name );

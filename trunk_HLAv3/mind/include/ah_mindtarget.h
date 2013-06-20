@@ -195,7 +195,7 @@ public:
 	virtual const char *getClass() = 0;
 
 	// MindEffector
-	virtual void createEffector() = 0;
+	virtual void createEffector( MindRegionCreateInfo *info ) = 0;
 	virtual void configureEffector( Xml config ) = 0;
 	virtual void startEffector() = 0;
 	virtual void stopEffector() = 0;
@@ -210,13 +210,9 @@ public:
 
 private:
 	// MindRegion
-	virtual void createRegion();
+	virtual void createRegion( MindRegionCreateInfo *info );
 	virtual void exitRegion();
 	virtual void destroyRegion();
-
-	// NeuroLink support
-	virtual String getRegionType();
-	virtual void getSourceSizes( String entity , int *sizeX , int *sizeY );
 
 private:
 // references
