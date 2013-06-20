@@ -41,7 +41,7 @@
 				notes="located in ampullae of semicircular canals, saccule and utricle"
 				function="activate afferent receptors in response to rotational and linear acceleration"/>
 
-			<element id="ear-somatic" name="Somaic Receptors" type="connector"
+			<element id="ear-somatic" name="Somatic Receptors" type="connector"
 				function="from skin to genicaulate ganglion to spinal trigeminal nucleus"/>
 			<element id="ear-visceral" name="Visceral Receptors" type="connector"
 				notes="CN IX, from STR to VPM"
@@ -56,6 +56,25 @@
 			<element id="ear-tensor-tympani" name="Tympanic Membrane" type="connector"
 				notes="pull malleus medially, tensing tympanic membrane, damping vibration in ear ossicles" 
 				function="dampen sounds, such as those produced from chewing"/>
+		</element>
+
+		<element id="TARGET.TEA.HEART" name="Heart" type=Effector>
+			<element id="heart-symp-control" name="NE Receptors of Atrium Muscles" type="connector"
+				notes="lowers the threshold potential of SA node cells, vasoconstriction of arteries and veins" 
+				function="increase overall activity of heart"/>
+			<element id="heart-psymp-control" name="ACh Receptors of Atrium Muscles" type="connector"
+				notes="creating state of hyperpolarity in which cells are less easily excited" 
+				function="Decrease firing rate of SA node, slowing transmission of pacemaker impulse"/>
+
+			<element id="heart-aorta-baroreceptors" name="Baroreceptors in Aorta" type="connector"
+				notes="walls of arteries are distended by increase in blood pressure" 
+				function="increase in blood pressure signal"/>
+			<element id="heart-carotid-baroreceptors" name="Baroreceptors in Carotid Artery" type="connector"
+				notes="walls of arteries are distended by increase in blood pressure" 
+				function="increase in blood pressure signal"/>
+			<element id="heart-visceral" name="Visceral Receptors" type="connector"
+				notes="Chemoreceptors" 
+				function="Temperature and Pain"/>
 		</element>
 	</division>
 
@@ -1520,7 +1539,7 @@
 				/>
 		</element>
 
-		<element id="HMA.HM.SOL" name="Solitary Nucleus" mapped="true" type="1-order Sensory Nucleus"
+		<element id="HMA.HM.SOL" name="Solitary Nucleus" mapped="true" type="Sensory Nucleus"
 			refs="NL:[http://neurolex.org/wiki/Category:Solitary_nucleus Solitary nucleus]"
 			function="Carry taste buds, thoracic and abdominal viscera"
 			notes="c.n. VII, IX, X"
@@ -1533,7 +1552,7 @@
 		</element>
 
 		<element id="HMA.HM.TGM" name="Trigeminal Nucleus">
-			<element id="HMA.HM.TGM.STR" name="Spinal Trigeminal Nucleus" mapped="true" type="1-order Sensory Nucleus"
+			<element id="HMA.HM.TGM.STR" name="Spinal Trigeminal Nucleus" mapped="true" type="Sensory Nucleus"
 				refs="NL:[http://neurolex.org/wiki/Category:Spinal_trigeminal_nucleus Spinal trigeminal nucleus]"
 				function="Discriminative sensation and light touch of face, conscious proprioception"
 				notes="Pontine Nuclei, part of cranial nerve nuclei, ear"
@@ -1719,9 +1738,33 @@
 				function="Eye, tear and salivatory glands"
 				notes="Th 1-5"
 				/>
+			<element id="VBA.PN.SYM.MCG" name="Middle Cervical Ganglion" mapped="true" type="Symp. Gang."
+				function="Eye, tear and salivatory glands"
+				notes="Th 1-5"
+				/>
 			<element id="AVA.PN.SYM.STG" name="Stellate Ganglion" mapped="true" type="Symp. Gang."
 				function="Heart, Lung"
-				notes="Th 5-12"
+				notes="Th 5-12, inferior cervical ganglion"
+				/>
+			<element id="VBA.PN.SYM.VG" name="Vertebral Ganglion" mapped="true" type="Symp. Gang."
+				function="Heart"
+				notes="Th 1-5"
+				/>
+			<element id="VBA.PN.SYM.TG1" name="1st Thoracic Ganglion" mapped="true" type="Symp. Gang."
+				function="Heart"
+				notes="Th 1-5"
+				/>
+			<element id="VBA.PN.SYM.TG2" name="2nd Thoracic Ganglion" mapped="true" type="Symp. Gang."
+				function="Heart"
+				notes="Th 1-5"
+				/>
+			<element id="VBA.PN.SYM.TG3" name="3rd Thoracic Ganglion" mapped="true" type="Symp. Gang."
+				function="Heart"
+				notes="Th 1-5"
+				/>
+			<element id="VBA.PN.SYM.TG4" name="4th Thoracic Ganglion" mapped="true" type="Symp. Gang."
+				function="Heart"
+				notes="Th 1-5"
 				/>
 			<element id="AVA.PN.SYM.CEG" name="Coelic Ganglion" mapped="true" type="Symp. Gang."
 				function="Liver, stomach, pancreas, small intestine"
@@ -1765,13 +1808,43 @@
 				function="Sigmoid, rectum, bladder, and external genitalia"
 				notes="Pelvic nerve fibers"
 				/>
-			<element id="AVA.HP.PSYM.GNG" name="Geniculate Ganglion" mapped="true" type="Parasymp. Gang."
+			<element id="AVA.PN.PSYM.CRG" name="Cardiac Ganglion" mapped="true" type="Parasymp. Gang."
+				function="Heart"
+				notes="Inside heart"
+				/>
+		</element>
+
+		<element id="PN.SG" name="Sensory Ganglia">
+			<element id="AVA.PN.SG.GNG" name="Geniculate Ganglion" mapped="true" type="Sensory Ganglion"
 				function="Trophic support for survival"
 				notes="Innervation taste buds, ear skin"
+				comments="Sensory and Parasympathetic"
 				>
 				<element name="Chorda Tympani" function="to taste buds in tongue"/>
 				<element name="Superficial Petrosal Nerve" function="to other taste buds"/>
 				<element name="Posterior Auricular Nerve" function="to external ear skin"/>
+			</element>
+			<element id="AVA.PN.SG.JUG" name="Jugular Ganglion" mapped="true" type="Sensory Ganglion"
+				function="Integration of external auditory meatus (auricular branch), cranial meninges (meningeal branch), and external surface of tympanic membrane"
+				notes="CN IX, To Sensory Trigeminal Nucleus"
+				/>
+			<element id="AVA.PN.SG.PET" name="Petrosal Ganglion" mapped="true" type="Sensory Ganglion"
+				function="Integration of afferent signaling from viscera"
+				comment="Hering's nerve"
+				notes="CN IX, mucous membranes of pharynx, middle ear, carotid body and sinus, taste sensor on the posterior third of tongue to SOL"
+				/>
+			<element id="AVA.PN.SG.NOD" name="Nodose Ganglion" mapped="true" type="Sensory Ganglion"
+				function="Integration of afferent signaling from viscera"
+				notes="CN X, caudal SOL - larynx, trachea, gut, and aortic arch receptors; rostral SOL - taste receptors of posterior oral cavity"
+				/>
+			<element id="AVA.PN.SG.DRG" name="Dorsal Root Ganglion"
+				function="Integration of afferent signaling from viscera"
+				notes="Sensory nerves project to upper thoracic dorsal horn via dorsal root ganglia"
+				>
+				<element id="AVA.PN.SG.DRG.UT" name="Upper Thoracic Dorsal Root Ganglion" mapped="true" type="Sensory Ganglion"
+					function="Integration of afferent signaling from visceral heart"
+					notes="Sensory nerves project to upper thoracic dorsal horn via dorsal root ganglia"
+					/>
 			</element>
 		</element>
 
