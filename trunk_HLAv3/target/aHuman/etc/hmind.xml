@@ -60,14 +60,14 @@
 
 		<element id="TARGET.TEA.HEART" name="Heart" mapped="true" type="Effector"
 			dotdef="color=firebrick1"
-			function="Blood Supply Engine"
+			function="Blood Supply"
 			>
 			<element id="heart-symp-control" name="NE Receptors of Atrium Muscles" type="connector"
 				notes="lowers the threshold potential of SA node cells, vasoconstriction of arteries and veins" 
 				function="increase overall activity of heart"/>
 			<element id="heart-psymp-control" name="ACh Receptors of Atrium Muscles" type="connector"
 				notes="creating state of hyperpolarity in which cells are less easily excited" 
-				function="Decrease firing rate of SA node, slowing transmission of pacemaker impulse"/>
+				function="decrease firing rate of SA node, slowing transmission of pacemaker impulse"/>
 
 			<element id="heart-aorta-baroreceptors" name="Baroreceptors in Aorta" type="connector"
 				notes="walls of arteries are distended by increase in blood pressure" 
@@ -77,7 +77,33 @@
 				function="increase in blood pressure signal"/>
 			<element id="heart-visceral" name="Visceral Receptors" type="connector"
 				notes="Chemoreceptors" 
-				function="Temperature and Pain"/>
+				function="temperature and pain"/>
+		</element>
+		<element id="TARGET.TEA.FACE" name="Face" mapped="true" type="Effector"
+			dotdef="color=firebrick1"
+			function="Mimics"
+			>
+			<element id="" name="" type="connector"
+				notes="otic ganglion" 
+				function=""/>
+			<element id="" name="" type="connector"
+				notes="submandibular ganglion" 
+				function=""/>
+			<element id="" name="" type="connector"
+				notes="submaxillary ganglion" 
+				function=""/>
+			<element id="" name="" type="connector"
+				notes="pterygopalatine ganglion" 
+				function=""/>
+			<element id="" name="" type="connector"
+				notes="sphenopalatine ganglion" 
+				function=""/>
+			<element id="" name="" type="connector"
+				notes="geniculate ganglion" 
+				function=""/>
+			<element id="" name="" type="connector"
+				notes="trigeminal ganglion (gasserion, semilunar)" 
+				function=""/>
 		</element>
 	</division>
 
@@ -1796,8 +1822,12 @@
 				function="Lacrimal gland and mucous membranes"
 				notes="Head and neck region"
 				/>
-			<element id="AVA.PN.PSYM.SXG" name="Submaxillary Ganglion" mapped="true" type="Parasymp. Gang."
+			<element id="AVA.PN.PSYM.SXG" name="Submandibular Ganglion" mapped="true" type="Parasymp. Gang."
 				function="Submaxillary and sublingual salivary glands"
+				notes="Head and neck region"
+				/>
+			<element id="AVA.PN.PSYM.PPG" name="Pterygopalatine Ganglion" mapped="true" type="Parasymp. Gang."
+				function="Lacrimal, nasal and palatine glands"
 				notes="Head and neck region"
 				/>
 			<element id="AVA.PN.PSYM.OTG" name="Otic Ganglion" mapped="true" type="Parasymp. Gang."
