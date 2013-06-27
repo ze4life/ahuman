@@ -95,6 +95,9 @@ Adult Sources of Neurons:
    * *Ciliary Muscle (eye-muscle-curvature)*
    * *Sphincter Pupillae Muscle (eye-muscle-pupil-close)*
    * *Dilator Pupillae Muscle (eye-muscle-pupil-open)*
+   * *Orbicularis Oculi (eye-muscle-close-conscious)*
+   * *Ligamentum Palpebrale (eye-muscle-close-involuntary)*
+   * *Lacrimal Gland (eye-tears-gland)*
   * [BrainRegionTARGET_TSA_EAR Ear] * (TARGET.TSA.EAR)* -> [BrainAreaTSA]
    * *Inner Hair Cells (ear-inner-hair-cells)*
    * *Cristae and Maculae (ear-cristae-maculae)*
@@ -103,12 +106,21 @@ Adult Sources of Neurons:
    * *Outer Hair Cells (ear-outer-hair-cells)*
    * *Stapedius (ear-stapedius)*
    * *Tympanic Membrane (ear-tensor-tympani)*
+   * *Auricularis Muscle (ear-auricularis)*
   * [BrainRegionTARGET_TEA_HEART Heart] * (TARGET.TEA.HEART)* -> [BrainAreaTEA]
    * *NE Receptors of Atrium Muscles (heart-symp-control)*
    * *ACh Receptors of Atrium Muscles (heart-psymp-control)*
    * *Baroreceptors in Aorta (heart-aorta-baroreceptors)*
    * *Baroreceptors in Carotid Artery (heart-carotid-baroreceptors)*
    * *Visceral Receptors (heart-visceral)*
+  * [BrainRegionTARGET_TSA_NOSE Nose] * (TARGET.TSA.NOSE)* -> [BrainAreaTSA]
+   * *Olfactory Mucosa (nose-olfactory-mucosa)*
+   * *Proprioceptors (nose-proprioceptors)*
+   * *Touch Receptors (nose-somatic)*
+   * *Visceral Nodose Receptors (nose-visceral-vagus)*
+   * *Visceral Pharynx Receptors (nose-visceral-pharynx)*
+   * *Nasal Glands (nose-nasal-glands)*
+   * *Nose Muscles (nose-muscles)*
 
 = Brodmann Areas of Cerebral Cortex =
 
@@ -445,20 +457,23 @@ Coverage verified by:
 
   * *Sympathetic Nuclei (PN.SYM)*
   * *Parasympathetic Nuclei (PN.PSYM)*
-   * [BrainRegionVBA_PN_PSYM_CLG Ciliary Ganglion] * (VBA.PN.PSYM.CLG)* -> [BrainAreaVBA]
-   * [BrainRegionVBA_PN_PSYM_EPG Episcleral Ganglion] * (VBA.PN.PSYM.EPG)* -> [BrainAreaVBA]
-   * [BrainRegionAVA_PN_PSYM_SPG Sphenopalatine Ganglion] * (AVA.PN.PSYM.SPG)* -> [BrainAreaAVA]
-   * [BrainRegionAVA_PN_PSYM_SXG Submaxillary Ganglion] * (AVA.PN.PSYM.SXG)* -> [BrainAreaAVA]
-   * [BrainRegionAVA_PN_PSYM_OTG Otic Ganglion] * (AVA.PN.PSYM.OTG)* -> [BrainAreaAVA]
+   * [BrainRegionVBA_PN_PSYM_CLG Ciliary Ganglion] * (VBA.PN.PSYM.CLG)* -> [BrainAreaFMA]
+   * [BrainRegionVBA_PN_PSYM_EPG Episcleral Ganglion] * (VBA.PN.PSYM.EPG)* -> [BrainAreaFMA]
+   * [BrainRegionAVA_PN_PSYM_SPG Sphenopalatine Ganglion] * (AVA.PN.PSYM.SPG)* -> [BrainAreaFMA]
+   * [BrainRegionAVA_PN_PSYM_SXG Submandibular Ganglion] * (AVA.PN.PSYM.SXG)* -> [BrainAreaFMA]
+   * [BrainRegionAVA_PN_PSYM_PTG Pterygopalatine Ganglion] * (AVA.PN.PSYM.PTG)* -> [BrainAreaFMA]
+   * [BrainRegionAVA_PN_PSYM_OTG Otic Ganglion] * (AVA.PN.PSYM.OTG)* -> [BrainAreaFMA]
    * [BrainRegionAVA_PN_PSYM_CPG Cranial Peripheral Ganglion] * (AVA.PN.PSYM.CPG)* -> [BrainAreaAVA]
    * [BrainRegionAVA_PN_PSYM_PPG Pelvic Peripheral Ganglion] * (AVA.PN.PSYM.PPG)* -> [BrainAreaAVA]
    * [BrainRegionAVA_PN_PSYM_CRG Cardiac Ganglion] * (AVA.PN.PSYM.CRG)* -> [BrainAreaAVA]
-  * *Sensory Ganglia (PN.SG)* -> [BrainAreaAVA]
-   * [BrainRegionAVA_PN_SG_GNG Geniculate Ganglion] * (AVA.PN.SG.GNG)*
-   * [BrainRegionAVA_PN_SG_JUG Jugular Ganglion] * (AVA.PN.SG.JUG)*
-   * [BrainRegionAVA_PN_SG_PET Petrosal Ganglion] * (AVA.PN.SG.PET)* (Hering's nerve)
-   * [BrainRegionAVA_PN_SG_NOD Nodose Ganglion] * (AVA.PN.SG.NOD)*
-   * *Dorsal Root Ganglion (AVA.PN.SG.DRG)*
+  * *Sensory Ganglia (PN.SG)*
+   * [BrainRegionAVA_PN_SG_TRG Trigeminal Ganglion] * (AVA.PN.SG.TRG)* -> [BrainAreaFMA]
+   * [BrainRegionAVA_PN_SG_GNG Geniculate Ganglion] * (AVA.PN.SG.GNG)* -> [BrainAreaFMA]
+   * [BrainRegionAVA_PN_SG_JUG Jugular Ganglion] * (AVA.PN.SG.JUG)* -> [BrainAreaFMA]
+   * [BrainRegionAVA_PN_SG_PET Petrosal Ganglion] * (AVA.PN.SG.PET)* -> [BrainAreaFMA]
+   * [BrainRegionAVA_PN_SG_NOD Nodose Ganglion] * (AVA.PN.SG.NOD)* -> [BrainAreaFMA]
+   * [BrainRegionAVA_PN_SG_OLB Olfactory Bulb] * (AVA.PN.SG.OLB)* -> [BrainAreaFMA]
+   * *Dorsal Root Ganglion (AVA.PN.SG.DRG)* -> [BrainAreaAVA]
     * [BrainRegionAVA_PN_SG_DRG_UT Upper Thoracic Dorsal Root Ganglion] * (AVA.PN.SG.DRG.UT)*
 
 == Cranial Nerves ==
