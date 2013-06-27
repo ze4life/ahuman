@@ -18,6 +18,12 @@
 || [BrainRegionAVA_PN_SG_OLB AVA.PN.SG.OLB] || Olfactory Bulb || Sensory Ganglion || Olfaction patterns || in=glomeruli -> 1000x1 -> out=mitral ||
 || [BrainRegionAVA_PN_SG_PET AVA.PN.SG.PET] || Petrosal Ganglion || Sensory Ganglion || Integration of afferent signaling from viscera || mucous membranes of pharynx, middle ear, carotid<BR>body and sinus, taste sensor on the posterior third<BR>of tongue to SOL ||
 || [BrainRegionAVA_PN_SG_TRG AVA.PN.SG.TRG] || Trigeminal Ganglion || Sensory Ganglion || Integration of external auditory meatus (auricular branch), cranial meninges<BR>(meningeal branch), and external surface of tympanic membrane || sensory fibers of ophthalmic, maxillary, mandibular<BR>nerves to principal trigeminal nucleus ||
+|| [BrainRegionHMA_HM_AMB HMA.HM.AMB] || Ambiguus Nucleus || Premotor Nucleus || Control muscles of pharynx || On par with VGM, speech ||
+|| [BrainRegionHMA_HM_HYG HMA.HM.HYG] || Hypoglossal Motor Nucleus || 1-order Motor Nucleus || Control of tongue ||  ||
+|| [BrainRegionHMA_HM_INM HMA.HM.INM] || Intercalated Nucleus of Medulla || Premotor Nucleus || Coordinate tongue movements, vestibuloocular reflex || Receives sensory inputs from neck region ||
+|| [BrainRegionHMA_HM_TGM_PA5 HMA.HM.TGM.PA5] || Paratrigeminal Nucleus || 1-order Sensory Nucleus || Orofacial nociceptive sensory processing || Somatosensory reflex, site for nociceptive inputs<BR>from sciatic innervation field ||
+|| [BrainRegionHMA_HP_FCM HMA.HP.FCM] || Facial Motor Nucleus || 1-order Motor Nucleus || Control of face || Pons ||
+|| [BrainRegionHMA_HP_PN_KFN HMA.HP.PN.KFN] || Kolliker-Fuse Nucleus || Premotor Nucleus || Control of protruder tongue muscles contraction to maintain respiration || To hypoglossal nucleus and phrenic nucleus ||
 || [BrainRegionVBA_PN_PSYM_CLG VBA.PN.PSYM.CLG] || Ciliary Ganglion || Parasymp. Gang. || Control pupillary diameter || Sphincter muscles of the iris ||
 || [BrainRegionVBA_PN_PSYM_EPG VBA.PN.PSYM.EPG] || Episcleral Ganglion || Parasymp. Gang. || Control curvature of lens || Sphincter muscles of the iris ||
 || [BrainRegionVBA_PN_SYM_MCG VBA.PN.SYM.MCG] || Middle Cervical Ganglion || Symp. Gang. || Eye, tear and salivatory glands || Th 1-5 ||
@@ -31,18 +37,26 @@
 http://ahuman.googlecode.com/svn/images/dot/aHuman/FMA.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionHMA_HM_TGM_PA5 HMA.HM.TGM.PA5] || [BrainRegionHMA_HP_FCM HMA.HP.FCM] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionHMA_HP_FCM HMA.HP.FCM] || [BrainRegionAVA_PN_SG_GNG AVA.PN.SG.GNG] || nucleus-ganglion || (unknown reference) ||
 
 *External Inbound Region Connections:*
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| <font color="red">Cortical</font> || || || || || ||
+|| [BrainAreaSMA SMA] || [BrainRegionHMA_HM_TGM_PA5 HMA.HM.TGM.PA5] || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || Somatosensory Cortex || neocortex-nucleus || (unknown reference) ||
 || <font color="red">Hindbrain</font> || || || || || ||
 || [BrainAreaHTA HTA] || [BrainRegionVBA_PN_SYM_SCG VBA.PN.SYM.SCG] || [BrainRegionHTA_FD_HT_SCN HTA.FD.HT.SCN] || Suprachiasmatic Nucleus || nucleus-ganglion || (unknown reference) ||
 || <font color="red">Motor</font> || || || || || ||
 || [BrainAreaAVA AVA] || [BrainRegionAVA_PN_PSYM_OTG AVA.PN.PSYM.OTG] || [BrainRegionAVA_HM_SAL_ISL AVA.HM.SAL.ISL] || Inferior Salivatory Nucleus || nucleus-ganglion || [http://www.neurophysiology.ws/autonomicns.htm Autonomic nervous system (ISL -> OTG)] ||
 ||  || [BrainRegionAVA_PN_PSYM_SPG AVA.PN.PSYM.SPG] || [BrainRegionAVA_HM_SAL_SSL AVA.HM.SAL.SSL] || Superior Salivatory Nucleus || nucleus-ganglion || [http://www.neurophysiology.ws/autonomicns.htm Autonomic nervous system (SSL -> SPG)] ||
 ||  || [BrainRegionAVA_PN_PSYM_SXG AVA.PN.PSYM.SXG] || [BrainRegionAVA_HM_SAL_SSL AVA.HM.SAL.SSL] || Superior Salivatory Nucleus || nucleus-ganglion || [http://www.neurophysiology.ws/autonomicns.htm Autonomic nervous system (SSL -> SMG)] ||
-|| [BrainAreaBMA BMA] || [BrainRegionVBA_PN_SYM_SCG VBA.PN.SYM.SCG] || [BrainRegionBMA_SC_LH_LSN BMA.SC.LH.LSN] || Lateral Spinal Nucleus || nucleus-ganglion || (unknown reference) ||
-|| [BrainAreaHMA HMA] || [BrainRegionAVA_PN_SG_GNG AVA.PN.SG.GNG] || [BrainRegionHMA_HP_FCM HMA.HP.FCM] || Facial Motor Nucleus || nucleus-ganglion || (unknown reference) ||
+|| [BrainAreaBMA BMA] || [BrainRegionHMA_HP_FCM HMA.HP.FCM] || [BrainRegionBMA_HP_PRF_PVR BMA.HP.PRF.PVR] || Parvocellular Reticular Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorVII, abstract)] ||
+||  || [BrainRegionVBA_PN_SYM_SCG VBA.PN.SYM.SCG] || [BrainRegionBMA_SC_LH_LSN BMA.SC.LH.LSN] || Lateral Spinal Nucleus || nucleus-ganglion || (unknown reference) ||
+|| [BrainAreaHMA HMA] || [BrainRegionHMA_HM_AMB HMA.HM.AMB] || [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || Caudal Pontine Reticular Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> NucleusAmbiguus, abstract)] ||
+||  || [BrainRegionHMA_HM_HYG HMA.HM.HYG] || [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || Caudal Pontine Reticular Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> NucleusXII, abstract)] ||
+||  || [BrainRegionHMA_HP_FCM HMA.HP.FCM] || [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || Caudal Pontine Reticular Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorVII, abstract)] ||
+||  ||  || [BrainRegionHMA_HP_PRF_PDT HMA.HP.PRF.PDT] || Pontine Reticulotegmental Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorVII, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaVBA VBA] || [BrainRegionVBA_PN_PSYM_CLG VBA.PN.PSYM.CLG] || [BrainRegionVBA_MM_EWN VBA.MM.EWN] || Edinger-Westphal Nucleus || nucleus-ganglion || [http://www.neurophysiology.ws/autonomicns.htm Autonomic nervous system (EWN -> CLG)] ||
 ||  ||  || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || Oculomotor Nucleus || nucleus-ganglion || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Vision Components (OCN -> CG)] ||
@@ -62,15 +76,20 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/FMA.dot.jpg
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Motor</font> || || || || || ||
+|| [BrainAreaAVA AVA] || [BrainRegionHMA_HM_AMB HMA.HM.AMB] || [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || Intermediolateral Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaHMA HMA] || [BrainRegionAVA_PN_SG_GNG AVA.PN.SG.GNG] || [BrainRegionHMA_HM_TGM_STR HMA.HM.TGM.STR] || Spinal Trigeminal Nucleus || ganglion-nucleus || (unknown reference) ||
 ||  || [BrainRegionAVA_PN_SG_JUG AVA.PN.SG.JUG] || [BrainRegionHMA_HM_TGM_STR HMA.HM.TGM.STR] || Spinal Trigeminal Nucleus || ganglion-nucleus || (unknown reference) ||
 ||  || [BrainRegionAVA_PN_SG_NOD AVA.PN.SG.NOD] || [BrainRegionHMA_HM_SOL HMA.HM.SOL] || Solitary Nucleus || ganglion-nucleus || (unknown reference) ||
 ||  || [BrainRegionAVA_PN_SG_PET AVA.PN.SG.PET] || [BrainRegionHMA_HM_SOL HMA.HM.SOL] || Solitary Nucleus || ganglion-nucleus || (unknown reference) ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaBFA BFA] || [BrainRegionVBA_PN_SYM_SCG VBA.PN.SYM.SCG] || [BrainRegionBFA_FD_PNG BFA.FD.PNG] || Pineal Gland || ganglion-nucleus || (unknown reference) ||
+|| [BrainAreaVBA VBA] || [BrainRegionHMA_HP_FCM HMA.HP.FCM] || [BrainRegionVBA_HP_ABD VBA.HP.ABD] || Abducens Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Facial -> Abducens)] ||
 || <font color="red">Target</font> || || || || || ||
 || [BrainAreaTSA TSA] || [BrainRegionAVA_PN_PSYM_PTG AVA.PN.PSYM.PTG] || [BrainRegionTARGET_TSA_NOSE TARGET.TSA.NOSE] || Nose || nose-nasal-glands || (unknown reference) ||
 ||  || [BrainRegionAVA_PN_PSYM_SPG AVA.PN.PSYM.SPG] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || eye-tears-gland || (unknown reference) ||
+||  || [BrainRegionHMA_HP_FCM HMA.HP.FCM] || [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || Ear || ear-stapedius || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || eye-muscle-close-conscious || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TSA_NOSE TARGET.TSA.NOSE] || Nose || nose-muscles || (unknown reference) ||
 ||  || [BrainRegionVBA_PN_PSYM_CLG VBA.PN.PSYM.CLG] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || eye-muscle-curvature || [http://www.neurophysiology.ws/autonomicns.htm Autonomic nervous system (CLG -> EYE)] ||
 ||  || [BrainRegionVBA_PN_PSYM_EPG VBA.PN.PSYM.EPG] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || eye-muscle-pupil-close || [http://www.neurophysiology.ws/autonomicns.htm Autonomic nervous system (EPG -> EYE)] ||
 ||  || [BrainRegionVBA_PN_SYM_SCG VBA.PN.SYM.SCG] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || eye-muscle-pupil-open || [http://www.nature.com/pr/journal/v71/n3/fig_tab/pr201138f1.html Sympathetic and parasympathetic eye pathways (SCG -> EYE)] ||
@@ -86,17 +105,21 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/FMA.dot.jpg
 
 <img src="http://lh6.ggpht.com/_oj6TkG186pI/S0_jLifQ2NI/AAAAAAAAA90/WWFumK1zOyw/s1600-h/image%5B7%5D.png" alt="unavailable">
 
+  * [http://c431376.r76.cf2.rackcdn.com/10053/fnana-05-00034-r1/image_m/fnana-05-00034-g002.jpg Vocal Control] - see [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Reference]
+
+<img src="http://c431376.r76.cf2.rackcdn.com/10053/fnana-05-00034-r1/image_m/fnana-05-00034-g002.jpg" alt="unavailable">
+
   * [http://www.nature.com/pr/journal/v71/n3/images/pr201138f1.gif Sympathetic and parasympathetic eye pathways] - see [http://www.nature.com/pr/journal/v71/n3/fig_tab/pr201138f1.html Reference]
 
 <img src="http://www.nature.com/pr/journal/v71/n3/images/pr201138f1.gif" alt="unavailable"height=400width=400>
 
-  * [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/vision-subcortical.jpg Vision Components] - see [http://neuroscience.uth.tmc.edu/s3/chapter07.html Reference]
-
-<img src="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/vision-subcortical.jpg" alt="unavailable">
-
   * [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/oculomotor.jpg Eye blink reflex and pupillary light reflex] - see [http://neuroscience.uth.tmc.edu/s3/chapter07.html Reference]
 
 <img src="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/oculomotor.jpg" alt="unavailable">
+
+  * [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/vision-subcortical.jpg Vision Components] - see [http://neuroscience.uth.tmc.edu/s3/chapter07.html Reference]
+
+<img src="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/vision-subcortical.jpg" alt="unavailable">
 
   * [http://classconnection.s3.amazonaws.com/184/flashcards/1904184/jpg/21352652550369.jpg Face glands] - see [http://www.studyblue.com/notes/note/n/neuroanatomy-lecture-14-/deck/4433536 Reference]
 
@@ -114,6 +137,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/FMA.dot.jpg
 
   * http://www.neurophysiology.ws/autonomicns.htm
   * http://www.medicallecturenotes.com/trigeminal-nerve/
+  * http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full
   * http://www.nature.com/pr/journal/v71/n3/fig_tab/pr201138f1.html
   * http://neuroscience.uth.tmc.edu/s3/chapter07.html
   * http://www.studyblue.com/notes/note/n/neuroanatomy-lecture-14-/deck/4433536
