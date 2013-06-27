@@ -10,6 +10,11 @@
 			<connector entity="eye-visceral" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="HMA.HM.TGM.STR" connector="nucleus.input"/>
 
+			<connector entity="eye-muscle-close-conscious" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.HP.FCM" connector="nucleus.output" primary="true"/>
+			<connector entity="eye-muscle-close-involuntary" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.HP.FCM" connector="nucleus.output" primary="true"/>
+
 			<connector entity="eye-muscle-rotate-major" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="VBA.MM.OCN" connector="nucleus.output" primary="true"/>
 			<connector entity="eye-muscle-rotate-minor" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
@@ -23,6 +28,9 @@
 				region="VBA.PN.PSYM.EPG" connector="ganglion.output" primary="true"/>
 			<connector entity="eye-muscle-pupil-open" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="VBA.PN.SYM.SCG" connector="ganglion.output" primary="true"/>
+
+			<connector entity="eye-tears-gland" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.PSYM.SPG" connector="ganglion.output" primary="true"/>
 		</sensor>
 
 		<sensor id="TARGET.TSA.EAR" run="true">
@@ -43,6 +51,27 @@
 				region="HMA.HP.FCM" connector="nucleus.output" primary="true"/>
 			<connector entity="ear-tensor-tympani" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="HMA.HP.PTP.TRM" connector="nucleus.output" primary="true"/>
+			<connector entity="ear-auricularis" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.HP.FCM" connector="nucleus.output" primary="true"/>
+		</sensor>
+
+		<sensor id="TARGET.TSA.NOSE" run="true">
+			<connector entity="nose-olfactory-mucosa" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.OLB" connector="ganglion.input" primary="true"/>
+
+			<connector entity="nose-proprioceptors" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.MM.MSTR" connector="ganglion.input" primary="true"/>
+			<connector entity="nose-somatic" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.TRG" connector="ganglion.input" primary="true"/>
+			<connector entity="nose-visceral-vagus" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.NOD" connector="ganglion.input" primary="true"/>
+			<connector entity="nose-visceral-pharynx" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.PET" connector="ganglion.input" primary="true"/>
+
+			<connector entity="nose-nasal-glands" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.PSYM.PTG" connector="ganglion.output" primary="true"/>
+			<connector entity="nose-muscles" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.HP.FCM" connector="nucleus.output" primary="true"/>
 		</sensor>
 
 	</sensors>
