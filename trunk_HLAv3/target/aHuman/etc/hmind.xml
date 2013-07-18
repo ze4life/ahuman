@@ -1,128 +1,178 @@
 <mind>
 
 	<division name="Target">
-		<element id="TARGET.TSA.EYE" name="Eye" mapped="true" type="Sensor"
-			dotdef="color=firebrick1"
-			function="Light and Color Perception Sensor"
-			>
-			<element id="eye-edge-output" name="Rods and Cones" type="connector"
-				function="after on-center/off-center edge extraction and zipping 100:1"/>
-			<element id="eye-somatic" name="Somatic Receptors" type="connector"
-				function="eye -> semilunar ganglion/ophthalmic -> PTR"/>
-			<element id="eye-visceral" name="Visceral Receptors" type="connector"
-				function="eye -> semilunar ganglion/ophthalmic -> STR, proprioception"/>
+		<element id="aHumanSensors" name="Human Sensors">
 
-			<element id="eye-muscle-rotate-major" name="Inferior Oblique, and Superior, Medial, and Inferior Rectus Muscles" type="connector"
-				function="levator palpebrae superioris, the inferior oblique, and superior, medial, and inferior rectus muscles"/>
-			<element id="eye-muscle-rotate-minor" name="Superior Oblique Muscles" type="connector"
-				function="superior oblique, rotation in a vertical plane - looking down and up, rotation in the plane of the face"/>
-			<element id="eye-muscle-rotate-vestibular" name="Lateral Rectus" type="connector"
-				function="lateral rectus, quick turn to the right -> compensatory reflex turning of two eyes to the left"
-				notes="vestibular nucleus -> PPRF -> ABD -> this, larger motor neurons, c.n. VI"/>
+			<element id="TARGET.TSA.EYE" name="Eye" mapped="true" type="Sensor"
+				dotdef="color=firebrick1"
+				function="Light and Color Perception Sensor"
+				>
+				<element id="eye-edge-output" name="Rods and Cones" type="connector"
+					function="after on-center/off-center edge extraction and zipping 100:1"/>
+				<element id="eye-somatic" name="Somatic Receptors" type="connector"
+					function="eye -> semilunar ganglion/ophthalmic -> PTR"/>
+				<element id="eye-visceral" name="Visceral Receptors" type="connector"
+					function="eye -> semilunar ganglion/ophthalmic -> STR, proprioception"/>
 
-			<element id="eye-muscle-curvature" name="Ciliary Muscle" type="connector"
-				function="to ciliary muscle to accomodate eye"/>
-			<element id="eye-muscle-pupil-close" name="Sphincter Pupillae Muscle" type="connector"
-				notes="sphincter pupillae is situated along the edge of the iris contracts to close the opening in the pupil"
-				function="to sphincter pupillae to close pupil"/>
-			<element id="eye-muscle-pupil-open" name="Dilator Pupillae Muscle" type="connector"
-				notes="dilator pupillae runs radially, like the spokes of a wheel, through the iris, and when it contracts this opens the pupil"
-				function="to dilator pupillae to open pupil"/>
+				<element id="eye-muscle-rotate-major" name="Inferior Oblique, and Superior, Medial, and Inferior Rectus Muscles" type="connector"
+					function="levator palpebrae superioris, the inferior oblique, and superior, medial, and inferior rectus muscles"/>
+				<element id="eye-muscle-rotate-minor" name="Superior Oblique Muscles" type="connector"
+					function="superior oblique, rotation in a vertical plane - looking down and up, rotation in the plane of the face"/>
+				<element id="eye-muscle-rotate-vestibular" name="Lateral Rectus" type="connector"
+					function="lateral rectus, quick turn to the right -> compensatory reflex turning of two eyes to the left"
+					notes="vestibular nucleus -> PPRF -> ABD -> this, larger motor neurons, c.n. VI"/>
 
-			<element id="eye-muscle-close-conscious" name="Orbicularis Oculi" type="connector"
-				notes="squints the eyes, and the part that is labeled, or outer part, is the basis for AU 6 in FACS, from intermediate facial subnucleus"
-				comments="the inner part, mostly on the eyelids is the basis for AU 7 in FACS"
-				function="conscious muscle to close eye"/>
-			<element id="eye-muscle-close-involuntary" name="Ligamentum Palpebrale" type="connector"
-				notes="sleep, blink, corneal/clinking reflex"
-				comments="small muscle at the corner of the eye"
-				function="involuntary muscle to close eye"/>
+				<element id="eye-muscle-curvature" name="Ciliary Muscle" type="connector"
+					function="to ciliary muscle to accomodate eye"/>
+				<element id="eye-muscle-pupil-close" name="Sphincter Pupillae Muscle" type="connector"
+					notes="sphincter pupillae is situated along the edge of the iris contracts to close the opening in the pupil"
+					function="to sphincter pupillae to close pupil"/>
+				<element id="eye-muscle-pupil-open" name="Dilator Pupillae Muscle" type="connector"
+					notes="dilator pupillae runs radially, like the spokes of a wheel, through the iris, and when it contracts this opens the pupil"
+					function="to dilator pupillae to open pupil"/>
 
-			<element id="eye-tears-gland" name="Lacrimal Gland" type="connector"
-				notes="from superior salivatory to sphenopalatine ganglion"
-				function="tears"/>
+				<element id="eye-muscle-close-conscious" name="Orbicularis Oculi" type="connector"
+					notes="squints the eyes, and the part that is labeled, or outer part, is the basis for AU 6 in FACS, from intermediate facial subnucleus"
+					comments="the inner part, mostly on the eyelids is the basis for AU 7 in FACS"
+					function="conscious muscle to close eye"/>
+				<element id="eye-muscle-close-involuntary" name="Ligamentum Palpebrale" type="connector"
+					notes="sleep, blink, corneal/clinking reflex"
+					comments="small muscle at the corner of the eye"
+					function="involuntary muscle to close eye"/>
+
+				<element id="eye-tears-gland" name="Lacrimal Gland" type="connector"
+					notes="from superior salivatory to sphenopalatine ganglion"
+					function="tears"/>
+			</element>
+
+			<element id="TARGET.TSA.EAR" name="Ear" mapped="true" type="Sensor"
+				dotdef="color=firebrick1"
+				function="Auditory and Vestibular Sensor"
+				>
+				<element id="ear-inner-hair-cells" name="Inner Hair Cells" type="connector"
+					notes="transform cochlea fluid vibrations into electrical signals"
+					function="frequency-aligned tonotopic mapping"/>
+
+				<element id="ear-cristae-maculae" name="Cristae and Maculae" type="connector"
+					notes="located in ampullae of semicircular canals, saccule and utricle"
+					function="activate afferent receptors in response to rotational and linear acceleration"/>
+
+				<element id="ear-somatic" name="Somatic Receptors" type="connector"
+					comments="from auditory meatus to genuculate ganglion"
+					function="from skin to geniculate ganglion to spinal trigeminal nucleus"/>
+				<element id="ear-visceral" name="Visceral Receptors" type="connector"
+					notes="CN IX, from STR to VPM"
+					function="pain, temperature, and touch"/>
+
+				<element id="ear-outer-hair-cells" name="Outer Hair Cells" type="connector"
+					notes="without functioning outer hair cells, the sensitivity decreases by approximately 50 dB, allows frequency discrimination, extend hearing range to about 200 kHz in some marine mammals" 
+					function="mechanically amplify low-level sound that enters cochlea"/>
+				<element id="ear-stapedius" name="Stapedius" type="connector"
+					notes="control amplitude of sound waves from general external environment to inner ear" 
+					function="dampens vibrations of stapes"/>
+				<element id="ear-tensor-tympani" name="Tympanic Membrane" type="connector"
+					notes="pull malleus medially, tensing tympanic membrane, damping vibration in ear ossicles" 
+					function="dampen sounds, such as those produced from chewing"/>
+				<element id="ear-auricularis" name="Auricularis Muscle" type="connector"
+					notes="auricularis posterior, superioris, anterior" 
+					comments="auricula - part of outer ear"
+					function="move scalp and to point auricula in direction of source of sound"/>
+			</element>
+
+			<element id="TARGET.TSA.NOSE" name="Nose" mapped="true" type="Sensor"
+				dotdef="color=firebrick1"
+				function="Olfaction Sensor"
+				>
+				<element id="nose-olfactory-mucosa" name="Olfactory Mucosa" type="connector" 
+					notes="Chemoreceptors" 
+					function="Sensing smells"/>
+
+				<element id="nose-proprioceptors" name="Proprioceptors" type="connector" 
+					function="proprioception"/>
+				<element id="nose-somatic" name="Touch Receptors" type="connector" 
+					function="touch"/>
+				<element id="nose-visceral-vagus" name="Visceral Nodose Receptors" type="connector" 
+					notes="to nodose ganglion to SOL" 
+					function="visceral sensations"/>
+				<element id="nose-visceral-pharynx" name="Visceral Pharynx Receptors" type="connector" 
+					notes="to petrosal ganglion to SOL" 
+					function="visceral sensations"/>
+
+				<element id="nose-nasal-glands" name="Nasal Glands" type="connector" 
+					notes="from pterygopalatine ganglion (parasympathetic)" 
+					function="smelling control and moisturing"/>
+				<element id="nose-muscles" name="Nasalis, Depressor Septi, Procerus, Dilator Naris, Accessory Labial Muscles" type="connector" 
+					function="constricts nostrils, lower alar pars and helps to wrinkle nose"/>
+			</element>
+
 		</element>
-		<element id="TARGET.TSA.EAR" name="Ear" mapped="true" type="Sensor"
-			dotdef="color=firebrick1"
-			function="Auditory and Vestibular Sensor"
-			>
-			<element id="ear-inner-hair-cells" name="Inner Hair Cells" type="connector"
-				notes="transform cochlea fluid vibrations into electrical signals"
-				function="frequency-aligned tonotopic mapping"/>
 
-			<element id="ear-cristae-maculae" name="Cristae and Maculae" type="connector"
-				notes="located in ampullae of semicircular canals, saccule and utricle"
-				function="activate afferent receptors in response to rotational and linear acceleration"/>
+		<element id="aHumanEffectors" name="Human Effectors">
 
-			<element id="ear-somatic" name="Somatic Receptors" type="connector"
-				comments="from auditory meatus to genuculate ganglion"
-				function="from skin to geniculate ganglion to spinal trigeminal nucleus"/>
-			<element id="ear-visceral" name="Visceral Receptors" type="connector"
-				notes="CN IX, from STR to VPM"
-				function="pain, temperature, and touch"/>
+			<element id="TARGET.TEA.HEART" name="Heart" mapped="true" type="Effector"
+				dotdef="color=firebrick1"
+				function="Blood Supply"
+				>
+				<element id="heart-symp-control" name="NE Receptors of Atrium Muscles" type="connector"
+					notes="lowers the threshold potential of SA node cells, vasoconstriction of arteries and veins" 
+					function="increase overall activity of heart"/>
+				<element id="heart-psymp-control" name="ACh Receptors of Atrium Muscles" type="connector"
+					notes="creating state of hyperpolarity in which cells are less easily excited" 
+					function="decrease firing rate of SA node, slowing transmission of pacemaker impulse"/>
 
-			<element id="ear-outer-hair-cells" name="Outer Hair Cells" type="connector"
-				notes="without functioning outer hair cells, the sensitivity decreases by approximately 50 dB, allows frequency discrimination, extend hearing range to about 200 kHz in some marine mammals" 
-				function="mechanically amplify low-level sound that enters cochlea"/>
-			<element id="ear-stapedius" name="Stapedius" type="connector"
-				notes="control amplitude of sound waves from general external environment to inner ear" 
-				function="dampens vibrations of stapes"/>
-			<element id="ear-tensor-tympani" name="Tympanic Membrane" type="connector"
-				notes="pull malleus medially, tensing tympanic membrane, damping vibration in ear ossicles" 
-				function="dampen sounds, such as those produced from chewing"/>
-			<element id="ear-auricularis" name="Auricularis Muscle" type="connector"
-				notes="auricularis posterior, superioris, anterior" 
-				comments="auricula - part of outer ear"
-				function="move scalp and to point auricula in direction of source of sound"/>
-		</element>
+				<element id="heart-aorta-baroreceptors" name="Baroreceptors in Aorta" type="connector"
+					notes="walls of arteries are distended by increase in blood pressure" 
+					function="increase in blood pressure signal"/>
+				<element id="heart-carotid-baroreceptors" name="Baroreceptors in Carotid Artery" type="connector"
+					notes="walls of arteries are distended by increase in blood pressure" 
+					function="increase in blood pressure signal"/>
+				<element id="heart-visceral" name="Visceral Receptors" type="connector"
+					notes="Chemoreceptors" 
+					function="temperature and pain"/>
+			</element>
 
-		<element id="TARGET.TEA.HEART" name="Heart" mapped="true" type="Effector"
-			dotdef="color=firebrick1"
-			function="Blood Supply"
-			>
-			<element id="heart-symp-control" name="NE Receptors of Atrium Muscles" type="connector"
-				notes="lowers the threshold potential of SA node cells, vasoconstriction of arteries and veins" 
-				function="increase overall activity of heart"/>
-			<element id="heart-psymp-control" name="ACh Receptors of Atrium Muscles" type="connector"
-				notes="creating state of hyperpolarity in which cells are less easily excited" 
-				function="decrease firing rate of SA node, slowing transmission of pacemaker impulse"/>
+			<element id="TARGET.TEA.MOUTH" name="Mouth" mapped="true" type="Effector"
+				dotdef="color=firebrick1"
+				function="Eating, Speaking"
+				>
+				<element id="mouth-submandibular-gland" name="Submandibular Gland" type="connector" 
+					notes="one of salivary glands, from submandibular (submaxillary) ganglion" 
+					function="produces 70% of saliva in oral cavity, mixed serous (moisturing) and mucous (process food)"/>
+				<element id="mouth-sublingual-gland" name="Sublingual Gland" type="connector" 
+					notes="one of salivary glands, from submandibular (submaxillary) ganglion" 
+					function="produces 5% of saliva in oral cavity, mostly mucous"/>
+				<element id="mouth-parotid-gland" name="Parotid Gland" type="connector" 
+					notes="one of salivary glands, from otic ganglion, hidration for chewing and swallowing"
+					function="produces 25% of saliva in oral cavity, mostly serous"/>
+				<element id="mouth-oral-mucosal-gland" name="Oral Mucosa" type="connector" 
+					function="lubrication, immunological defence"/>
 
-			<element id="heart-aorta-baroreceptors" name="Baroreceptors in Aorta" type="connector"
-				notes="walls of arteries are distended by increase in blood pressure" 
-				function="increase in blood pressure signal"/>
-			<element id="heart-carotid-baroreceptors" name="Baroreceptors in Carotid Artery" type="connector"
-				notes="walls of arteries are distended by increase in blood pressure" 
-				function="increase in blood pressure signal"/>
-			<element id="heart-visceral" name="Visceral Receptors" type="connector"
-				notes="Chemoreceptors" 
-				function="temperature and pain"/>
-		</element>
+				<element id="mouth-tongue-hair-cell" name="Tongue Gustatory Hair Cell" type="connector" 
+					function="taste sensation"/>
+				<element id="mouth-epiglottis-taste-buds" name="Epiglottis" type="connector" 
+					function="taste sensation"/>
 
-		<element id="TARGET.TSA.NOSE" name="Nose" mapped="true" type="Sensor"
-			dotdef="color=firebrick1"
-			function="Olfaction Sensor"
-			>
-			<element id="nose-olfactory-mucosa" name="Olfactory Mucosa" type="connector" 
-				notes="Chemoreceptors" 
-				function="Sensing smells"/>
+				<element id="mouth-tongue-muscles" name="Tongue Muscles" type="connector" 
+					function="move tongue"/>
+				<element id="mouth-lips-muscles" name="Lips Muscles" type="connector" 
+					function="move lips"/>
+				<element id="mouth-genioglossus-muscle" name="Genioglossus Muscle" type="connector" 
+					function="keeps airway open and enables tongue to stick out and retract"/>
+				<element id="mouth-hyoglossus-muscle" name="Hyoglossus Muscle" type="connector" 
+					function="depress and retract the tongue, important in singing"/>
+				<element id="mouth-styloglossus-muscle" name="Styloglossus Muscle" type="connector" 
+					function="chewing, talking, suckling, and many other functions of tongue"/>
 
-			<element id="nose-proprioceptors" name="Proprioceptors" type="connector" 
-				function="proprioception"/>
-			<element id="nose-somatic" name="Touch Receptors" type="connector" 
-				function="touch"/>
-			<element id="nose-visceral-vagus" name="Visceral Nodose Receptors" type="connector" 
-				notes="to nodose ganglion to SOL" 
-				function="visceral sensations"/>
-			<element id="nose-visceral-pharynx" name="Visceral Pharynx Receptors" type="connector" 
-				notes="to petrosal ganglion to SOL" 
-				function="visceral sensations"/>
+				<element id="mouth-palatine-tonsil" name="Palatine Tonsil" type="connector" 
+					function="providing antibodies against illnesses and diseases such as diphtheria"/>
+				<element id="mouth-lingual-tonsil" name="Lingual Tonsil" type="connector" 
+					function="production of antibodies that are part of natural immune system"/>
+				<element id="mouth-uvula" name="Uvula" type="connector" 
+					function="preventing food from entering the nasal cavity"/>
+				<element id="mouth-teeth" name="Teeth" type="connector" 
+					function="chewing"/>
+			</element>
 
-			<element id="nose-nasal-glands" name="Nasal Glands" type="connector" 
-				notes="from pterygopalatine ganglion (parasympathetic)" 
-				function="smelling control and moisturing"/>
-			<element id="nose-muscles" name="Nose Muscles" type="connector" 
-				notes="nasalis, depressor septi, procerus, dilator naris, accessory labial muscle" 
-				function="constricts nostrils, lower alar pars and helps to wrinkle nose"/>
 		</element>
 
 	</division>
@@ -1782,8 +1832,8 @@
 		dotdef="color=darkorange"
 		>
 
-		<element id="PN.SYM" name="Sympathetic Nuclei">
-			<element name="Paravertebral Ganglia">
+		<element id="PN.SYM" name="Sympathetic Ganglia">
+			<element id="VBA.PN.SYM.PA" name="Paravertebral Ganglia">
 				<element id="VBA.PN.SYM.SCG" name="Superior Cervical Ganglion" mapped="true" type="Symp. Gang."
 					function="Eye, tear and salivatory glands"
 					notes="Th 1-5"
@@ -1813,7 +1863,7 @@
 					notes="Th 1-5"
 					/>
 			</element>
-			<element name="Prevertebral Ganglia">
+			<element id="VBA.PN.SYM.PR" name="Prevertebral Ganglia">
 				<element id="AVA.PN.SYM.CEG" name="Coelic Ganglion" mapped="true" type="Symp. Gang."
 					function="Liver, stomach, pancreas, small intestine"
 					notes="L 1-5"
@@ -1829,7 +1879,7 @@
 			</element>
 		</element>
 
-		<element id="PN.PSYM" name="Parasympathetic Nuclei">
+		<element id="PN.PSYM" name="Parasympathetic Ganglia">
 			<element id="VBA.PN.PSYM.CLG" name="Ciliary Ganglion" mapped="true" type="Parasymp. Gang."
 				function="Control pupillary diameter"
 				notes="Sphincter muscles of the iris"
