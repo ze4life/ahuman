@@ -14,7 +14,9 @@ void AHumanTarget::configureTarget( Xml config ) {
 void AHumanTarget::createTarget( SensorArea *sensorArea , EffectorArea *effectorArea ) {
 	MindTarget::addSensor( "TARGET.TSA.EYE" , AHumanTarget::createEye( sensorArea ) );
 	MindTarget::addSensor( "TARGET.TSA.EAR" , AHumanTarget::createEar( sensorArea ) );
+	MindTarget::addSensor( "TARGET.TSA.NOSE" , AHumanTarget::createNose( sensorArea ) );
 	MindTarget::addEffector( "TARGET.TEA.HEART" , AHumanTarget::createHeart( effectorArea ) );
+	MindTarget::addEffector( "TARGET.TEA.MOUTH" , AHumanTarget::createMouth( effectorArea ) );
 }
 
 void AHumanTarget::initTarget() {

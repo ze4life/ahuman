@@ -90,6 +90,42 @@
 			<connector entity="heart-visceral" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.SG.DRG.UT" connector="ganglion.input" primary="true"/>
 		</effector>
+
+		<effector id="TARGET.TEA.MOUTH" run="true">
+			<connector entity="mouth-submandibular-gland" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.PSYM.SXG" connector="ganglion.output" primary="true"/>
+			<connector entity="mouth-sublingual-gland" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.PSYM.SXG" connector="ganglion.output" primary="true"/>
+			<connector entity="mouth-parotid-gland" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.PSYM.OTG" connector="ganglion.output" primary="true"/>
+			<connector entity="mouth-oral-mucosal-gland" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.PSYM.SXG" connector="ganglion.output" primary="true"/>
+
+			<connector entity="mouth-lingual-tonsil" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.TRG" connector="ganglion.input" primary="true"/>
+			<connector entity="mouth-palatine-tonsil" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.TRG" connector="ganglion.input" primary="true"/>
+			<connector entity="mouth-uvula" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.TRG" connector="ganglion.input" primary="true"/>
+
+			<connector entity="mouth-tongue-hair-cell" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.TRG" connector="ganglion.input" primary="true"/>
+			<connector entity="mouth-epiglottis-taste-buds" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.NOD" connector="ganglion.input" primary="true"/>
+			<connector entity="mouth-teeth" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.TRG" connector="ganglion.input" primary="true"/>
+
+			<connector entity="mouth-tongue-muscles" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.HM.HYG" connector="nucleus.output" primary="true"/>
+			<connector entity="mouth-lips-muscles" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.HP.FCM" connector="nucleus.output" primary="true"/>
+			<connector entity="mouth-genioglossus-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.HM.HYG" connector="nucleus.output" primary="true"/>
+			<connector entity="mouth-hyoglossus-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.HM.HYG" connector="nucleus.output" primary="true"/>
+			<connector entity="mouth-styloglossus-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.HM.HYG" connector="nucleus.output" primary="true"/>
+		</effector>
 	</effectors>
 
 </service>
