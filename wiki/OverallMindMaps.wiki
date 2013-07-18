@@ -85,42 +85,60 @@ Adult Sources of Neurons:
 = Target =
 (generated)
 
-  * [BrainRegionTARGET_TSA_EYE Eye] * (TARGET.TSA.EYE)* -> [BrainAreaTSA]
-   * *Rods and Cones (eye-edge-output)*
-   * *Somatic Receptors (eye-somatic)*
-   * *Visceral Receptors (eye-visceral)*
-   * *Inferior Oblique, and Superior, Medial, and Inferior Rectus Muscles (eye-muscle-rotate-major)*
-   * *Superior Oblique Muscles (eye-muscle-rotate-minor)*
-   * *Lateral Rectus (eye-muscle-rotate-vestibular)*
-   * *Ciliary Muscle (eye-muscle-curvature)*
-   * *Sphincter Pupillae Muscle (eye-muscle-pupil-close)*
-   * *Dilator Pupillae Muscle (eye-muscle-pupil-open)*
-   * *Orbicularis Oculi (eye-muscle-close-conscious)*
-   * *Ligamentum Palpebrale (eye-muscle-close-involuntary)*
-   * *Lacrimal Gland (eye-tears-gland)*
-  * [BrainRegionTARGET_TSA_EAR Ear] * (TARGET.TSA.EAR)* -> [BrainAreaTSA]
-   * *Inner Hair Cells (ear-inner-hair-cells)*
-   * *Cristae and Maculae (ear-cristae-maculae)*
-   * *Somatic Receptors (ear-somatic)*
-   * *Visceral Receptors (ear-visceral)*
-   * *Outer Hair Cells (ear-outer-hair-cells)*
-   * *Stapedius (ear-stapedius)*
-   * *Tympanic Membrane (ear-tensor-tympani)*
-   * *Auricularis Muscle (ear-auricularis)*
-  * [BrainRegionTARGET_TEA_HEART Heart] * (TARGET.TEA.HEART)* -> [BrainAreaTEA]
-   * *NE Receptors of Atrium Muscles (heart-symp-control)*
-   * *ACh Receptors of Atrium Muscles (heart-psymp-control)*
-   * *Baroreceptors in Aorta (heart-aorta-baroreceptors)*
-   * *Baroreceptors in Carotid Artery (heart-carotid-baroreceptors)*
-   * *Visceral Receptors (heart-visceral)*
-  * [BrainRegionTARGET_TSA_NOSE Nose] * (TARGET.TSA.NOSE)* -> [BrainAreaTSA]
-   * *Olfactory Mucosa (nose-olfactory-mucosa)*
-   * *Proprioceptors (nose-proprioceptors)*
-   * *Touch Receptors (nose-somatic)*
-   * *Visceral Nodose Receptors (nose-visceral-vagus)*
-   * *Visceral Pharynx Receptors (nose-visceral-pharynx)*
-   * *Nasal Glands (nose-nasal-glands)*
-   * *Nose Muscles (nose-muscles)*
+  * *Human Sensors (aHumanSensors)* -> [BrainAreaTSA]
+   * [BrainRegionTARGET_TSA_EYE Eye] * (TARGET.TSA.EYE)*
+    * *Rods and Cones (eye-edge-output)*
+    * *Somatic Receptors (eye-somatic)*
+    * *Visceral Receptors (eye-visceral)*
+    * *Inferior Oblique, and Superior, Medial, and Inferior Rectus Muscles (eye-muscle-rotate-major)*
+    * *Superior Oblique Muscles (eye-muscle-rotate-minor)*
+    * *Lateral Rectus (eye-muscle-rotate-vestibular)*
+    * *Ciliary Muscle (eye-muscle-curvature)*
+    * *Sphincter Pupillae Muscle (eye-muscle-pupil-close)*
+    * *Dilator Pupillae Muscle (eye-muscle-pupil-open)*
+    * *Orbicularis Oculi (eye-muscle-close-conscious)*
+    * *Ligamentum Palpebrale (eye-muscle-close-involuntary)*
+    * *Lacrimal Gland (eye-tears-gland)*
+   * [BrainRegionTARGET_TSA_EAR Ear] * (TARGET.TSA.EAR)*
+    * *Inner Hair Cells (ear-inner-hair-cells)*
+    * *Cristae and Maculae (ear-cristae-maculae)*
+    * *Somatic Receptors (ear-somatic)*
+    * *Visceral Receptors (ear-visceral)*
+    * *Outer Hair Cells (ear-outer-hair-cells)*
+    * *Stapedius (ear-stapedius)*
+    * *Tympanic Membrane (ear-tensor-tympani)*
+    * *Auricularis Muscle (ear-auricularis)*
+   * [BrainRegionTARGET_TSA_NOSE Nose] * (TARGET.TSA.NOSE)*
+    * *Olfactory Mucosa (nose-olfactory-mucosa)*
+    * *Proprioceptors (nose-proprioceptors)*
+    * *Touch Receptors (nose-somatic)*
+    * *Visceral Nodose Receptors (nose-visceral-vagus)*
+    * *Visceral Pharynx Receptors (nose-visceral-pharynx)*
+    * *Nasal Glands (nose-nasal-glands)*
+    * *Nasalis, Depressor Septi, Procerus, Dilator Naris, Accessory Labial Muscles (nose-muscles)*
+  * *Human Effectors (aHumanEffectors)* -> [BrainAreaTEA]
+   * [BrainRegionTARGET_TEA_HEART Heart] * (TARGET.TEA.HEART)*
+    * *NE Receptors of Atrium Muscles (heart-symp-control)*
+    * *ACh Receptors of Atrium Muscles (heart-psymp-control)*
+    * *Baroreceptors in Aorta (heart-aorta-baroreceptors)*
+    * *Baroreceptors in Carotid Artery (heart-carotid-baroreceptors)*
+    * *Visceral Receptors (heart-visceral)*
+   * [BrainRegionTARGET_TEA_MOUTH Mouth] * (TARGET.TEA.MOUTH)*
+    * *Submandibular Gland (mouth-submandibular-gland)*
+    * *Sublingual Gland (mouth-sublingual-gland)*
+    * *Parotid Gland (mouth-parotid-gland)*
+    * *Oral Mucosa (mouth-oral-mucosal-gland)*
+    * *Tongue Gustatory Hair Cell (mouth-tongue-hair-cell)*
+    * *Epiglottis (mouth-epiglottis-taste-buds)*
+    * *Tongue Muscles (mouth-tongue-muscles)*
+    * *Lips Muscles (mouth-lips-muscles)*
+    * *Genioglossus Muscle (mouth-genioglossus-muscle)*
+    * *Hyoglossus Muscle (mouth-hyoglossus-muscle)*
+    * *Styloglossus Muscle (mouth-styloglossus-muscle)*
+    * *Palatine Tonsil (mouth-palatine-tonsil)*
+    * *Lingual Tonsil (mouth-lingual-tonsil)*
+    * *Uvula (mouth-uvula)*
+    * *Teeth (mouth-teeth)*
 
 = Brodmann Areas of Cerebral Cortex =
 
@@ -455,8 +473,8 @@ Coverage verified by:
 == Peripheral Nervous System ==
 (generated)
 
-  * *Sympathetic Nuclei (PN.SYM)*
-  * *Parasympathetic Nuclei (PN.PSYM)*
+  * *Sympathetic Ganglia (PN.SYM)*
+  * *Parasympathetic Ganglia (PN.PSYM)*
    * [BrainRegionVBA_PN_PSYM_CLG Ciliary Ganglion] * (VBA.PN.PSYM.CLG)* -> [BrainAreaFMA]
    * [BrainRegionVBA_PN_PSYM_EPG Episcleral Ganglion] * (VBA.PN.PSYM.EPG)* -> [BrainAreaFMA]
    * [BrainRegionAVA_PN_PSYM_SPG Sphenopalatine Ganglion] * (AVA.PN.PSYM.SPG)* -> [BrainAreaFMA]
