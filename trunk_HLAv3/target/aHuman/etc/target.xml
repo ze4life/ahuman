@@ -35,7 +35,9 @@
 
 		<sensor id="TARGET.TSA.EAR" run="true">
 			<connector entity="ear-inner-hair-cells" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
-				region="ABA.HM.COCH" connector="nucleus.input" primary="true"/>
+				region="ABA.PN.SG.SP" connector="nucleus.input" primary="true"/>
+			<connector entity="ear-outer-hair-cells-feedback" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="ABA.PN.SG.SP" connector="nucleus.input" primary="true"/>
 
 			<connector entity="ear-cristae-maculae" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="BMA.HP.VG" connector="ganglion.input" primary="true"/>
@@ -72,6 +74,9 @@
 				region="AVA.PN.PSYM.PTG" connector="ganglion.output" primary="true"/>
 			<connector entity="nose-muscles" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="HMA.HP.FCM" connector="nucleus.output" primary="true"/>
+		</sensor>
+
+		<sensor id="TARGET.TSA.MINDCOVER" run="true">
 		</sensor>
 
 	</sensors>
@@ -126,6 +131,22 @@
 			<connector entity="mouth-styloglossus-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="HMA.HM.HYG" connector="nucleus.output" primary="true"/>
 		</effector>
+
+		<effector id="TARGET.TEA.FACE" run="true">
+		</effector>
+
+		<effector id="TARGET.TEA.NECK" run="true">
+		</effector>
+
+		<effector id="TARGET.TEA.LIVER" run="true">
+		</effector>
+
+		<effector id="TARGET.TEA.STOMACH" run="true">
+		</effector>
+
+		<effector id="TARGET.TEA.LUNG" run="true">
+		</effector>
+
 	</effectors>
 
 </service>

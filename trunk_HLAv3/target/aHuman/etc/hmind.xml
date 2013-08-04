@@ -105,6 +105,12 @@
 					function="constricts nostrils, lower alar pars and helps to wrinkle nose"/>
 			</element>
 
+			<element id="TARGET.TSA.MINDCOVER" name="Mind Cover" mapped="true" type="Sensor"
+				dotdef="color=firebrick1"
+				function="Mind Protection"
+				>
+			</element>
+
 		</element>
 
 		<element id="aHumanEffectors" name="Human Effectors">
@@ -171,6 +177,36 @@
 					function="preventing food from entering the nasal cavity"/>
 				<element id="mouth-teeth" name="Teeth" type="connector" 
 					function="chewing"/>
+			</element>
+
+			<element id="TARGET.TEA.FACE" name="Face" mapped="true" type="Effector"
+				dotdef="color=firebrick1"
+				function="Mimics"
+				>
+			</element>
+
+			<element id="TARGET.TEA.NECK" name="Neck" mapped="true" type="Effector"
+				dotdef="color=firebrick1"
+				function="Move head"
+				>
+			</element>
+
+			<element id="TARGET.TEA.LIVER" name="Liver" mapped="true" type="Effector"
+				dotdef="color=firebrick1"
+				function="Blood Sanity"
+				>
+			</element>
+
+			<element id="TARGET.TEA.STOMACH" name="Stomach" mapped="true" type="Effector"
+				dotdef="color=firebrick1"
+				function="Digestion"
+				>
+			</element>
+
+			<element id="TARGET.TEA.LUNG" name="Lung" mapped="true" type="Effector"
+				dotdef="color=firebrick1"
+				function="Oxigen Supply"
+				>
 			</element>
 
 		</element>
@@ -1675,7 +1711,7 @@
 		<element id="AVA.HM.VG" name="Vagus Nucleus" mapped="true" type="Preganglionic Nucleus"
 			refs="NL:[http://neurolex.org/wiki/Category:Dorsal_motor_nucleus_of_vagus_nerve Dorsal motor nucleus of vagus nerve]"
 			function="Parasympathetic vagal functions in the gastrointestinal tract, lungs"
-			notes="Dorsal Motor Nucleus"
+			notes="Dorsal Motor Nucleus, Cardioinhibitory Center"
 			/>
 
 	</division>
@@ -1904,10 +1940,15 @@
 			<element id="AVA.PN.PSYM.OTG" name="Otic Ganglion" mapped="true" type="Parasymp. Gang."
 				function="Parotid gland"
 				/>
-			<element id="AVA.PN.PSYM.CPG" name="Cranial Peripheral Ganglion" mapped="true" type="Parasymp. Gang."
+			<element id="AVA.PN.PSYM.CPG" name="Cranial Peripheral Ganglion" type="Parasymp. Gang."
 				function="Thoracic and abdominal organs, glands, and some blood vessels"
 				notes="c.n. X"
-				/>
+				>
+				<element id="AVA.PN.PSYM.ILG" name="Intralaryngeal Peripheral Ganglion" mapped="true" type="Symp. Gang."
+					function="parasympathetic motor of larynx"
+					notes="macroscopic ganglion on the human internal laryngeal nerve, with the distribution of its post-ganglionic fibres to the glands in the saccule and to the glands at the root of epiglottis in the vicinity of the opening of the saccule"
+					/>
+			</element>
 			<element id="AVA.PN.PSYM.PPG" name="Pelvic Peripheral Ganglion" mapped="true" type="Parasymp. Gang."
 				function="Sigmoid, rectum, bladder, and external genitalia"
 				notes="Pelvic nerve fibers"
@@ -1916,6 +1957,21 @@
 				function="Heart"
 				notes="Inside heart"
 				/>
+			<element id="AVA.PN.PSYM.PUG" name="Pulmonary Peripheral Ganglion" mapped="true" type="Parasymp. Gang."
+				function="Lung"
+				/>
+			<element id="AVA.PN.PSYM.GUT" mapped="true" name="Parasympathetic Gut Brain" type="Parasymp. Gang."
+				function="Autonomic control of stomach"
+				>
+				<element id="AVA.PN.PSYM.MTG" name="Myenteric Ganglion"
+					function="Controls gastrointestinal movements"
+					notes="ganglion is outer neural layer around stomach"
+					/>
+				<element id="AVA.PN.PSYM.SGG" name="Submucosal Gut Ganglion" type="Parasymp. Gang."
+					function="Controls gastrointestinal secretion and local blood flow"
+					notes="ganglion is inner neural layer around stomach"
+					/>
+			</element>
 		</element>
 
 		<element id="PN.SG" name="Sensory Ganglia">
@@ -1951,6 +2007,11 @@
 			<element id="AVA.PN.SG.OLB" name="Olfactory Bulb" mapped="true" type="Sensory Ganglion"
 				function="Olfaction patterns"
 				notes="in=glomeruli -> 1000x1 -> out=mitral"
+				/>
+			<element id="ABA.PN.SG.SP" name="Spiral Ganglion" mapped="true" type="Sensory Ganglion"
+				function="Auditory patterns"
+				comments="human has 30K, cat - 50K cells"
+				notes="Fibres from bipolar cells in the spiral ganglion consist of peripheral branches that end in the organ of Corti and central branches that end in the ventral and dorsal cochlear nuclei"
 				/>
 			<element id="AVA.PN.SG.DRG" name="Dorsal Root Ganglion"
 				function="Integration of afferent signaling from viscera"
