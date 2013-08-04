@@ -59,11 +59,11 @@
 	<circuit id="CP.FIVE-AUDITORY-PATHWAYS" name="Five Parallel Auditory Pathways"
 		image="http://lifeboat.com/kurzweil/cochlea.gif"
 		reference="http://lifeboat.com/ex/law.of.accelerating.returns"
-		components="Cochlea=TARGET.TSA.EAR VNTB=ABA.MM.SOC.TZ MC=ABA.HM.COCH GBC=ABA.HM.COCH OC=ABA.HM.COCH SBC=ABA.HM.COCH DCN=ABA.HM.COCH DNLL=ABA.HP.PN.LL VNLL=ABA.HP.PN.LL MSO=ABA.MM.SOC LSO=ABA.MM.SOC ICC=ABA.MM.IC ICx=ABA.MM.IC SC=VBA.MM.SC MGB=ABA.FD.TH.MGB LS=HBA.FT.HF AC=ACA.NC.A1"
+		components="Cochlea=TARGET.TSA.EAR CochleaGanglion=ABA.PN.SG.SP VNTB=ABA.MM.SOC.TZ MC=ABA.HM.COCH GBC=ABA.HM.COCH OC=ABA.HM.COCH SBC=ABA.HM.COCH DCN=ABA.HM.COCH DNLL=ABA.HP.PN.LL VNLL=ABA.HP.PN.LL MSO=ABA.MM.SOC LSO=ABA.MM.SOC ICC=ABA.MM.IC ICx=ABA.MM.IC SC=VBA.MM.SC MGB=ABA.FD.TH.MGB LS=HBA.FT.HF AC=ACA.NC.A1"
 		>
 		<link src="Cochlea" dst="DCN"/>
 		<link src="Cochlea" dst="OC"/>
-		<link src="Cochlea" dst="MC"/>
+		<link src="CochleaGanglion" dst="MC"/>
 		<link src="Cochlea" dst="GBC"/>
 		<link src="Cochlea" dst="SBC"/>
 		<link src="GBC" dst="LSO"/>
@@ -85,9 +85,9 @@
 	<circuit id="CP.AUDITORY-SYSTEM-BRAIN" name="Auditory System in Brain"
 		image="http://www.benbest.com/science/anatmind/FigVI1.gif"
 		reference="http://www.benbest.com/science/anatmind/anatmd6.html"
-		components="A1=ACA.NC.A1 Ear=TARGET.TSA.EAR Cochlea=ABA.HM.COCH Olive=ABA.MM.SOC IC=ABA.MM.IC MGB=ABA.FD.TH.MGB"
+		components="A1=ACA.NC.A1 Ear=TARGET.TSA.EAR Cochlea=ABA.HM.COCH CochleaGanglion=ABA.PN.SG.SP Olive=ABA.MM.SOC IC=ABA.MM.IC MGB=ABA.FD.TH.MGB"
 		>
-		<link src="Ear" dst="Cochlea"/>
+		<link src="CochleaGanglion" dst="Cochlea"/>
 		<link src="Cochlea" dst="Olive"/>
 		<link src="Olive" dst="IC"/>
 		<link src="IC" dst="MGB"/>
@@ -97,9 +97,9 @@
 	<circuit id="CP.AUDITORY-SYSTEM-MODEL" name="Auditory System Model"
 		image="http://ars.sciencedirect.com/content/image/1-s2.0-S1359644605035427-gr1.jpg"
 		reference="http://www.sciencedirect.com/science/article/pii/S1359644605035427"
-		components="A1=ACA.NC.A1 Ear=TARGET.TSA.EAR Cochlea=ABA.HM.COCH Olive=ABA.MM.SOC IC=ABA.MM.IC MGB=ABA.FD.TH.MGB"
+		components="A1=ACA.NC.A1 Ear=TARGET.TSA.EAR Cochlea=ABA.HM.COCH CochleaGanglion=ABA.PN.SG.SP Olive=ABA.MM.SOC IC=ABA.MM.IC MGB=ABA.FD.TH.MGB"
 		>
-		<link src="Ear" dst="Cochlea"/>
+		<link src="Ear" dst="CochleaGanglion"/>
 		<link src="Cochlea" dst="Olive"/>
 		<link src="Olive" dst="IC"/>
 		<link src="IC" dst="MGB"/>
