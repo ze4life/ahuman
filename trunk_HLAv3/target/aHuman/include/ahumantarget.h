@@ -48,8 +48,14 @@ private:
 	MindSensor *createEye( SensorArea *sensorArea );
 	MindSensor *createEar( SensorArea *sensorArea );
 	MindSensor *createNose( SensorArea *sensorArea );
+	MindSensor *createMindCover( SensorArea *sensorArea );
 	MindEffector *createHeart( EffectorArea *area );
 	MindEffector *createMouth( EffectorArea *area );
+	MindEffector *createFace( EffectorArea *area );
+	MindEffector *createNeck( EffectorArea *area );
+	MindEffector *createLung( EffectorArea *area );
+	MindEffector *createLiver( EffectorArea *area );
+	MindEffector *createStomach( EffectorArea *area );
 };
 
 /*#########################################################################*/
