@@ -45,8 +45,10 @@ Xml XmlHMind::getNodeXml( String node ) {
 }
 
 bool XmlHMind::isComponent( String node ) {
-	XmlHMindElementInfo *nodePtr = nodeInfo.get( node );
-	if( nodePtr -> id.isEmpty() )
+	XmlHMindElementInfo *info = nodeInfo.get( node );
+	ASSERTMSG( info != NULL , "unable to find node with ID=" + node );
+
+	if( info -> id.isEmpty() )
 		return( false );
 	return( true );
 }
