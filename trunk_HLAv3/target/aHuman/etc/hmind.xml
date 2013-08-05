@@ -52,6 +52,8 @@
 				<element id="ear-inner-hair-cells" name="Inner Hair Cells" type="connector"
 					notes="transform cochlea fluid vibrations into electrical signals"
 					function="frequency-aligned tonotopic mapping"/>
+				<element id="ear-outer-hair-cells-feedback" name="Outer Hair Cells Feedback" type="connector"
+					function="verifies amplify actions done"/>
 
 				<element id="ear-cristae-maculae" name="Cristae and Maculae" type="connector"
 					notes="located in ampullae of semicircular canals, saccule and utricle"
@@ -1940,15 +1942,10 @@
 			<element id="AVA.PN.PSYM.OTG" name="Otic Ganglion" mapped="true" type="Parasymp. Gang."
 				function="Parotid gland"
 				/>
-			<element id="AVA.PN.PSYM.CPG" name="Cranial Peripheral Ganglion" type="Parasymp. Gang."
-				function="Thoracic and abdominal organs, glands, and some blood vessels"
-				notes="c.n. X"
-				>
-				<element id="AVA.PN.PSYM.ILG" name="Intralaryngeal Peripheral Ganglion" mapped="true" type="Symp. Gang."
-					function="parasympathetic motor of larynx"
-					notes="macroscopic ganglion on the human internal laryngeal nerve, with the distribution of its post-ganglionic fibres to the glands in the saccule and to the glands at the root of epiglottis in the vicinity of the opening of the saccule"
-					/>
-			</element>
+			<element id="AVA.PN.PSYM.ILG" name="Intralaryngeal Peripheral Ganglion" mapped="true" type="Symp. Gang."
+				function="parasympathetic motor of larynx,  c.n. X"
+				notes="macroscopic ganglion on the human internal laryngeal nerve, with the distribution of its post-ganglionic fibres to the glands in the saccule and to the glands at the root of epiglottis in the vicinity of the opening of the saccule"
+				/>
 			<element id="AVA.PN.PSYM.PPG" name="Pelvic Peripheral Ganglion" mapped="true" type="Parasymp. Gang."
 				function="Sigmoid, rectum, bladder, and external genitalia"
 				notes="Pelvic nerve fibers"
@@ -2013,14 +2010,50 @@
 				comments="human has 30K, cat - 50K cells"
 				notes="Fibres from bipolar cells in the spiral ganglion consist of peripheral branches that end in the organ of Corti and central branches that end in the ventral and dorsal cochlear nuclei"
 				/>
+			<element id="MBA.PN.SG.VB" name="Vestibular Ganglion" mapped="true" type="Sensory Ganglion"
+				function="transform vestibular (balance) information into body coords"
+				comments="ganglion of Scarpa"
+				/>
 			<element id="AVA.PN.SG.DRG" name="Dorsal Root Ganglion"
 				function="Integration of afferent signaling from viscera"
 				notes="Sensory nerves project to upper thoracic dorsal horn via dorsal root ganglia"
 				>
-				<element id="AVA.PN.SG.DRG.UT" name="Upper Thoracic Dorsal Root Ganglion" mapped="true" type="Sensory Ganglion"
-					function="Integration of afferent signaling from visceral heart"
-					notes="Sensory nerves project to upper thoracic dorsal horn via dorsal root ganglia"
-					/>
+				<element id="AVA.PN.SG.DRG.CX" name="Cervical Dorsal Root Ganglia"
+					function="touch/proprioception/vibration sensory pathway"
+					>
+					<element id="AVA.PN.SG.DRG.C1" name="C1 Dorsal Root Ganglion" mapped="true" type="Sensory Ganglion"
+						function="Integration of afferent signaling from meningles"
+						/>
+					<element id="AVA.PN.SG.DRG.C2" name="C2 Dorsal Root Ganglion" mapped="true" type="Sensory Ganglion"
+						function="Integration of afferent signaling from head"
+						/>
+					<element id="AVA.PN.SG.DRG.C3" name="C3 Dorsal Root Ganglion" mapped="true" type="Sensory Ganglion"
+						function="Integration of afferent signaling from neck"
+						/>
+					<element id="AVA.PN.SG.DRG.C4" name="C4 Dorsal Root Ganglion" mapped="true" type="Sensory Ganglion"
+						function="Integration of afferent signaling from neck"
+						/>
+					<element id="AVA.PN.SG.DRG.C5" name="C5 Dorsal Root Ganglion" mapped="true" type="Sensory Ganglion"
+						function="Integration of afferent signaling from shoulder"
+						/>
+					<element id="AVA.PN.SG.DRG.C6" name="C6 Dorsal Root Ganglion" mapped="true" type="Sensory Ganglion"
+						function="Integration of afferent signaling from shoulder"
+						/>
+					<element id="AVA.PN.SG.DRG.C7" name="C7 Dorsal Root Ganglion" mapped="true" type="Sensory Ganglion"
+						function="Integration of afferent signaling from arms"
+						/>
+					<element id="AVA.PN.SG.DRG.C8" name="C8 Dorsal Root Ganglion" mapped="true" type="Sensory Ganglion"
+						function="Integration of afferent signaling from arms"
+						/>
+				</element>
+				<element id="AVA.PN.SG.DRG.TX" name="Thoracic Dorsal Root Ganglia"
+					function="touch/proprioception/vibration sensory pathway"
+					>
+					<element id="AVA.PN.SG.DRG.UT" name="Upper Thoracic Dorsal Root Ganglion" mapped="true" type="Sensory Ganglion"
+						function="Integration of afferent signaling from visceral heart"
+						notes="Sensory nerves project to upper thoracic dorsal horn via dorsal root ganglia"
+						/>
+				</element>
 			</element>
 		</element>
 
