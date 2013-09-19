@@ -189,7 +189,7 @@
 
 			<element id="TARGET.TEA.NECK" name="Neck" mapped="true" type="Effector"
 				dotdef="color=firebrick1"
-				function="Move head"
+				function="Move Head"
 				>
 			</element>
 
@@ -208,6 +208,18 @@
 			<element id="TARGET.TEA.LUNG" name="Lung" mapped="true" type="Effector"
 				dotdef="color=firebrick1"
 				function="Oxigen Supply"
+				>
+			</element>
+
+			<element id="TARGET.TEA.HAND" name="Hand" mapped="true" type="Effector"
+				dotdef="color=firebrick1"
+				function="Primary Execution Motor"
+				>
+			</element>
+
+			<element id="TARGET.TEA.TRUNK" name="Trunk" mapped="true" type="Effector"
+				dotdef="color=firebrick1"
+				function="Body Movements"
 				>
 			</element>
 
@@ -1780,16 +1792,18 @@
 					refs="NA:Retroposterior Lateral Nucleus"
 					function="Innervation of limbs muscles"
 					/>
-				<element id="VBA.SC.IZ.CS" name="Ciliospinal Center" mapped="true" type="Preganglionic Nucleus"
-					refs="NA:[http://en.wikipedia.org/wiki/Ciliospinal_center Ciliospinal Center]"
-					function="Control of iris dilator muscle"
-					notes="Budge's Center, intermediolateral cell column"
-					/>
-				<element id="AVA.SC.IZ.IML" name="Intermediolateral Nucleus" mapped="true" type="Preganglionic Nucleus"
-					refs="NA:Intermediomedial nucleus;BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&amp;conceptid=FMA%3A73915 Intermediolateral nucleus]"
-					function="Mediate entire sympathetic innervation of body"
-					notes="from Lamina VII"
-					/>
+				<element id="AVA.SC.IZ.IMLC" name="Intermediolateral Column">
+					<element id="AVA.SC.IZ.IML" name="Intermediolateral Nucleus" mapped="true" type="Preganglionic Nucleus"
+						refs="NA:Intermediomedial nucleus;BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&amp;conceptid=FMA%3A73915 Intermediolateral nucleus]"
+						function="Mediate entire sympathetic innervation of body"
+						notes="from Lamina VII"
+						/>
+					<element id="VBA.SC.IZ.CS" name="Ciliospinal Center" mapped="true" type="Preganglionic Nucleus"
+						refs="NA:[http://en.wikipedia.org/wiki/Ciliospinal_center Ciliospinal Center]"
+						function="Control of iris dilator muscle"
+						notes="Budge's Center, intermediolateral cell column"
+						/>
+				</element>
 				<element id="AVA.SC.IZ.IMM" name="Intermediomedial Nucleus" mapped="true" type="Symp. Visceral Sensory Nucleus"
 					refs="NA:Intermediolateral nucleus;BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&amp;conceptid=FMA%3A73918 Intermediomedial nucleus]"
 					function="Visceral Sensory"
@@ -1872,31 +1886,17 @@
 			<element id="VBA.PN.SYM.PA" name="Paravertebral Ganglia">
 				<element id="VBA.PN.SYM.SCG" name="Superior Cervical Ganglion" mapped="true" type="Symp. Gang."
 					function="Eye, tear and salivatory glands"
-					notes="Th 1-5"
 					/>
 				<element id="VBA.PN.SYM.MCG" name="Middle Cervical Ganglion" mapped="true" type="Symp. Gang."
 					function="Eye, tear and salivatory glands"
-					notes="Th 1-5"
 					/>
 				<element id="AVA.PN.SYM.STG" name="Stellate Ganglion" mapped="true" type="Symp. Gang."
 					function="Heart, Lung"
-					notes="Th 5-12, inferior cervical ganglion"
+					notes="inferior cervical ganglion"
 					/>
-				<element id="AVA.PN.SYM.TG1" name="1st Thoracic Ganglion" mapped="true" type="Symp. Gang."
+				<element id="AVA.PN.SYM.TG" name="Sympathetic Thoracic Ganglia" mapped="true" type="Symp. Gang."
 					function="Heart"
-					notes="Th 1-5"
-					/>
-				<element id="AVA.PN.SYM.TG2" name="2nd Thoracic Ganglion" mapped="true" type="Symp. Gang."
-					function="Heart"
-					notes="Th 1-5"
-					/>
-				<element id="AVA.PN.SYM.TG3" name="3rd Thoracic Ganglion" mapped="true" type="Symp. Gang."
-					function="Heart"
-					notes="Th 1-5"
-					/>
-				<element id="AVA.PN.SYM.TG4" name="4th Thoracic Ganglion" mapped="true" type="Symp. Gang."
-					function="Heart"
-					notes="Th 1-5"
+					notes="Th 1-4"
 					/>
 			</element>
 			<element id="VBA.PN.SYM.PR" name="Prevertebral Ganglia">
@@ -2016,38 +2016,24 @@
 				function="Integration of afferent signaling from viscera"
 				notes="Sensory nerves project to upper thoracic dorsal horn via dorsal root ganglia"
 				>
-				<element id="AVA.PN.SG.DRG.CX" name="Cervical Dorsal Root Ganglia"
+				<element id="AVA.PN.SG.DRG.CX" name="Cervical Dorsal Root Ganglia" mapped="true" type="Sensory Ganglion"
 					function="touch/proprioception/vibration sensory pathway"
+					notes="Integration of afferent signaling"
+					comments="C1:meningles, C2:head, C3-C4:neck, C5-C6:shoulder, C7-C8-arms"
 					>
-					<element id="AVA.PN.SG.DRG.C1" name="C1 Dorsal Root Ganglion" mapped="true" type="Sensory Ganglion"
-						function="Integration of afferent signaling from meningles"
+					<element id="AVA.PN.SG.DRG.UC" name="Upper Cervical Dorsal Root Ganglia" 
+						function="Integration of afferent signaling from meningles, head, neck"
+						notes="C1-C4"
 						/>
-					<element id="AVA.PN.SG.DRG.C2" name="C2 Dorsal Root Ganglion" mapped="true" type="Sensory Ganglion"
-						function="Integration of afferent signaling from head"
-						/>
-					<element id="AVA.PN.SG.DRG.C3" name="C3 Dorsal Root Ganglion" mapped="true" type="Sensory Ganglion"
-						function="Integration of afferent signaling from neck"
-						/>
-					<element id="AVA.PN.SG.DRG.C4" name="C4 Dorsal Root Ganglion" mapped="true" type="Sensory Ganglion"
-						function="Integration of afferent signaling from neck"
-						/>
-					<element id="AVA.PN.SG.DRG.C5" name="C5 Dorsal Root Ganglion" mapped="true" type="Sensory Ganglion"
-						function="Integration of afferent signaling from shoulder"
-						/>
-					<element id="AVA.PN.SG.DRG.C6" name="C6 Dorsal Root Ganglion" mapped="true" type="Sensory Ganglion"
-						function="Integration of afferent signaling from shoulder"
-						/>
-					<element id="AVA.PN.SG.DRG.C7" name="C7 Dorsal Root Ganglion" mapped="true" type="Sensory Ganglion"
-						function="Integration of afferent signaling from arms"
-						/>
-					<element id="AVA.PN.SG.DRG.C8" name="C8 Dorsal Root Ganglion" mapped="true" type="Sensory Ganglion"
-						function="Integration of afferent signaling from arms"
+					<element id="AVA.PN.SG.DRG.LC" name="Lower Cervical Dorsal Root Ganglia" 
+						function="Integration of afferent signaling from shoulder, arms"
+						notes="C5-C8"
 						/>
 				</element>
-				<element id="AVA.PN.SG.DRG.TX" name="Thoracic Dorsal Root Ganglia"
+				<element id="AVA.PN.SG.DRG.TX" name="Thoracic Dorsal Root Ganglia" mapped="true" type="Sensory Ganglion"
 					function="touch/proprioception/vibration sensory pathway"
 					>
-					<element id="AVA.PN.SG.DRG.UT" name="Upper Thoracic Dorsal Root Ganglion" mapped="true" type="Sensory Ganglion"
+					<element id="AVA.PN.SG.DRG.UT" name="Upper Thoracic Dorsal Root Ganglia" 
 						function="Integration of afferent signaling from visceral heart"
 						notes="Sensory nerves project to upper thoracic dorsal horn via dorsal root ganglia"
 						/>
