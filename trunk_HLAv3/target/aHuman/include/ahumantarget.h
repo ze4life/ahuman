@@ -56,6 +56,10 @@ private:
 	MindEffector *createLung( EffectorArea *area );
 	MindEffector *createLiver( EffectorArea *area );
 	MindEffector *createStomach( EffectorArea *area );
+	MindEffector *createHand( EffectorArea *area );
+	MindEffector *createTrunk( EffectorArea *area );
+	MindEffector *createBreast( EffectorArea *area );
+	MindEffector *createUreter( EffectorArea *area );
 };
 
 /*#########################################################################*/
