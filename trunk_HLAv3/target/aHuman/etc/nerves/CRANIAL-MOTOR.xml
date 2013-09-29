@@ -1,0 +1,100 @@
+<pns>
+
+	<division category="Cranial Nerves" name="CRANIAL NERVES - MOTOR">
+
+		<element name="abducent nerve"
+			synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne170.htm ABDUCENT NERVE]; sixth cranial nerve, VI"
+			origin="a NUCLEUS in the pons, beneath the floor of the fourth ventricle, emerging from the brain stem anteriorly between the pons and medulla oblongata"
+			distribution="lateral rectus muscle of eye"
+			imgsrc="http://drugline.org/img/term/abducent-nerve-38_2.jpg"
+			modality="motor"
+			>
+			<fibers type="GSE" src="VBA.HP.ABD" dst="TARGET.TSA.EYE"></fibers>
+		</element>
+
+		<element name="accessory nerve"
+			synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne198.htm ACCESSORY NERVE]; eleventh cranial nerve, XI"
+			imgsrc="http://www.edoctoronline.com/media/19/photos_584F5F8B-BB77-4B55-B7AE-E3D5F97F3938.gif"
+			modality="parasympathetic and motor"
+			>
+			<element name="accessory nerve, internal"
+				origin="by cranial ROOTS from the side of the medulla oblongata, from the ambiguus nucleus"
+				distribution="the internal branch to the vagus and thereby to the palate, pharynx, larynx, and thoracic viscera, pharyngeal and superior laryngeal branches of the vagus, muscles of the pharynx, larynx, and soft palate"
+				imgsrc="http://what-when-how.com/wp-content/uploads/2012/04/tmp15F31_thumb.jpg" imgheight="500"
+				>
+				<fibers type="SVE" src="HMA.HM.AMB" dst="TARGET.TEA.MOUTH"></fibers>
+			</element>
+			<element name="accessory nerve, external"
+				origin="by spinal roots from the side of the spinal cord (from the upper three or more cervical segments), from the nucleus of accessory nerve"
+				distribution="the external branch branches to the sternocleidomastoid and trapezius muscles (shoulder)"
+				imgsrc="http://what-when-how.com/wp-content/uploads/2012/04/tmp15F31_thumb.jpg" imgheight="500"
+				>
+				<fibers type="GSE" src="HMA.SC.VH.ISL" dst="TARGET.TEA.NECK"></fibers>
+			</element>
+		</element>
+
+		<element name="hypoglossal nerve"
+			synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne278.htm HYPOGLOSSAL NERVE]; twelfth cranial nerve, XII"
+			origin="several ROOTLETS in the anterolateral sulcus between the olive and the pyramid of the medulla oblongata; it passes through the hypoglossal canal to the tongue"
+			distribution="styloglossus, hyoglossus, and genioglossus muscles and intrinsic muscles of the tongue"
+			imgsrc="http://what-when-how.com/wp-content/uploads/2012/04/tmp15F31_thumb.jpg" imgheight="500"
+			modality="motor"
+			>
+			<fibers type="GSE" src="HMA.HM.HYG" dst="TARGET.TEA.MOUTH"></fibers>
+			<element name="communicating branches between the lingual nerve and hypoglossal nerve"
+				distribution="forming a plexus on the hypoglossus muscle"
+				imgsrc="http://what-when-how.com/wp-content/uploads/2012/04/tmp15F31_thumb.jpg" imgheight="500"
+				/>
+			<element name="thyroid nerve"
+				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne284.htm NERVE TO THYROHYOID]"
+				imgsrc="http://what-when-how.com/wp-content/uploads/2012/04/tmp15F41_thumb.jpg" imgheight="500"
+				modality="motor"
+				>
+				<fibers type="GSE" src="BMA.SC.VH.LM" dst="TARGET.TEA.MOUTH"></fibers>
+			</element>
+		</element>
+
+		<element name="oculomotor nerve"
+			synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne126.htm OCULOMOTOR NERVE]; third cranial nerve, III"
+			origin="BRAIN STEM, emerging medial to cerebral peduncles and running forward in the cavernous sinus"
+			distribution="entering the orbit through the superior orbital fissure, the branches supply the levator muscle of upper eyelid, all extrinsic eye muscles except the lateral rectus and superior oblique, and carry parasympathetic fibers for the ciliary muscle and sphincter pupillae"
+			imgsrc="http://what-when-how.com/wp-content/uploads/2012/04/tmp15F41_thumb.jpg" imgheight="500"
+			modality="motor and parasympathetic"
+			>
+			<fibers type="GSE" src="VBA.MM.OCN" dst="TARGET.TSA.EYE"></fibers>
+			<fibers type="GVE" src="VBA.MM.EWN" dst="TARGET.TSA.EYE"><mid id="VBA.PN.PSYM.CLG"/></fibers>
+			<element name="oculomotor nerve, inferior branch"
+				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne221.htm INFERIOR RAMUS OF OCULOMOTOR NERVE]"
+				distribution="inferior rectus"
+				imgsrc="http://what-when-how.com/wp-content/uploads/2012/04/tmp15F41_thumb.jpg" imgheight="500"
+				/>
+			<element name="oculomotor nerve, superior branch"
+				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne225.htm SUPERIOR RAMUS OF OCULOMOTOR NERVE]"
+				distribution="supplies superior rectus and levator palpebrae superioris"
+				imgsrc="http://upload.wikimedia.org/wikipedia/en/thumb/c/cb/Ciliary_ganglion_pathways.png/800px-Ciliary_ganglion_pathways.png"
+				>
+				<element name="ciliary nerves, short, parasympathetic fibers"
+					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne224.htm SHORT CILIARY NERVES]"
+					origin="ciliary GANGLION"
+					distribution="smooth muscle and tunics of eye"
+					imgsrc="http://upload.wikimedia.org/wikipedia/en/thumb/c/cb/Ciliary_ganglion_pathways.png/800px-Ciliary_ganglion_pathways.png"
+					modality="parasympathetic"
+					>
+					<fibers type="GVE" src="VBA.MM.EWN" dst="TARGET.TSA.EYE"><mid id="VBA.PN.PSYM.CLG"/></fibers>
+				</element>
+			</element>
+		</element>
+
+		<element name="trochlear nerve"
+			synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne127.htm TROCHLEAR NERVE]; fourth cranial nerve, IV"
+			origin="the fibers of each trochlear nerve (one on either side) decussate across the median plane and emerge from the back of the BRAIN STEM below the corresponding inferior colliculus"
+			distribution="runs forward in lateral wall of cavernous sinus, traverses the superior orbital fissure, and supplies superior oblique muscle of eyeball"
+			imgsrc="http://droualb.faculty.mjc.edu/Lecture%20Notes/Unit%205/CN_III.jpg"
+			modality="motor"
+			>
+			<fibers type="GSE" src="VBA.MM.TRH" dst="TARGET.TSA.EYE"></fibers>
+		</element>
+
+	</division>
+
+</pns>
