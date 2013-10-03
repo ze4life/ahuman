@@ -203,83 +203,31 @@ String WikiMaker::findReference( String srcRegion , String dstRegion ) {
 	if( !reference.isEmpty() )
 		return( reference );
 
-	XmlCircuitInfo info;
-	String circuitLink;
+	XmlCircuitFind find;
+	if( circuitsxml.findReferenceLink( hmindxml , srcRegion , dstRegion , find ) ) {
+		String circuitLink = find.link.compSrc + " -> " + find.link.compDst;
+		if( find.isAbstractLink )
+			circuitLink += ", abstract";
 
-	// scan thirdparty circuits - check specific coverage
-	StringList circuits;
-	circuitsxml.getCircuitList( circuits );
-	bool found = false;
-	bool indirect = false;
-	for( int k = 0; k < circuits.count(); k++ ) {
-		circuitsxml.getCircuitInfo( circuits.get( k ) , info );
-		if( findReferenceCircuitLink( srcRegion , dstRegion , info , circuitLink , true ) ) {
-			found = true;
-			break;
-		}
-	}
-
-	// scan thirdparty circuits - check high-level coverage
-	if( found == false ) {
-		for( int k = 0; k < circuits.count(); k++ ) {
-			circuitsxml.getCircuitInfo( circuits.get( k ) , info );
-			if( findReferenceCircuitLink( srcRegion , dstRegion , info , circuitLink , false ) ) {
-				found = true;
-				break;
-			}
-		}
-	}
-
-	if( found == false )
-		reference = "(unknown reference)";
-	else {
-		reference = info.reference;
+		reference = find.circuit -> reference;
 		if( reference.startsFrom( "article:" ) )
 			reference = "http://ahuman.googlecode.com/svn/research/articles/" + reference.getMid( 8 );
 		else
 		if( reference.equals( "UNKNOWN" ) ) {
-			if( info.image.isEmpty() )
-				reference = "not linked reference, circuit=" + info.name + " (" + circuitLink + ")";
+			if( find.circuit -> image.isEmpty() )
+				reference = "not linked reference, circuit=" + find.circuit -> name + " (" + circuitLink + ")";
 			else
-				reference = info.image;
+				reference = find.circuit -> image;
 		}
 
-		reference = "[" + reference + " " + info.name + " (" + circuitLink + ")]";
+		reference = "[" + reference + " " + find.circuit -> name + " (" + circuitLink + ")]";
 	}
+	else
+		reference = "(unknown reference)";
 
 	// add to map and return
 	referenceMap.add( key , reference );
 	return( reference );
-}
-
-bool WikiMaker::findReferenceCircuitLink( String checkSrcRegion , String checkDstRegion , XmlCircuitInfo& info , String& circuitLink , bool directOnly ) {
-	FlatList<Xml> links;
-	XmlCircuitLinkInfo linkinfo;
-	circuitsxml.getCircuitLinks( info.id , links );
-
-	// find covering link
-	for( int k = 0; k < links.count(); k++ ) {
-		circuitsxml.getCircuitLinkInfo( links.get( k ) , linkinfo );
-		String srcComponent = circuitsxml.mapComponent( info , linkinfo.compSrc );
-		String dstComponent = circuitsxml.mapComponent( info , linkinfo.compDst );
-
-		if( directOnly ) {
-			String srcRegion = hmindxml.getMappedRegion( srcComponent );
-			String dstRegion = hmindxml.getMappedRegion( dstComponent );
-			if( srcRegion.equals( checkSrcRegion ) && dstRegion.equals( checkDstRegion ) ) {
-				circuitLink = linkinfo.compSrc + " -> " + linkinfo.compDst;
-				return( true );
-			}
-		}
-		else {
-			if( checkCircuitCoveredByModelLink( srcComponent , dstComponent , checkSrcRegion , checkDstRegion ) ) {
-				circuitLink = linkinfo.compSrc + " -> " + linkinfo.compDst + ", abstract";
-				return( true );
-			}
-		}
-	}
-
-	return( false );
 }
 
 String WikiMaker::getAreaPage( String area ) {

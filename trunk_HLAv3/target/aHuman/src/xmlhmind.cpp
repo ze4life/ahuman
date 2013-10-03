@@ -186,3 +186,36 @@ String XmlHMind::getDotDef( String node ) {
 	return( "" );
 }
 
+bool XmlHMind::checkAbstractLinkCoveredByRegionLink( String compSrc , String compDst , String linkRegionSrc , String linkRegionDst ) {
+	// find mapped regions
+	String regionSrcId = getMappedRegion( compSrc );
+	String regionDstId = getMappedRegion( compDst );
+	if( regionSrcId.isEmpty() == false && regionDstId.isEmpty() == false )
+		return( regionSrcId.equals( linkRegionSrc ) && regionDstId.equals( linkRegionDst ) );
+
+	// collect sets of child regions
+	StringList srcRegions;
+	if( regionSrcId.isEmpty() )
+		getChildRegions( compSrc , srcRegions );
+	else
+		srcRegions.add( regionSrcId );
+
+	StringList dstRegions;
+	if( regionDstId.isEmpty() )
+		getChildRegions( compDst , dstRegions );
+	else
+		dstRegions.add( regionDstId );
+
+	// check mapping
+	for( int k1 = 0; k1 < srcRegions.count(); k1++ ) {
+		regionSrcId = srcRegions.get( k1 );
+		for( int k2 = 0; k2 < dstRegions.count(); k2++ ) {
+			regionDstId = dstRegions.get( k2 );
+			if( regionSrcId.equals( linkRegionSrc ) && regionDstId.equals( linkRegionDst ) )
+				return( true );
+		}
+	}
+
+	return( false );
+}
+

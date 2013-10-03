@@ -74,12 +74,12 @@ public:
 public:
 	void load();
 
-	bool checkCircuitCoveredByModel( String compSrc , String compDst );
-	bool checkCircuitCoveredByModelLink( String compSrc , String compDst , String linkRegionSrc , String linkRegionDst );
+	bool checkLinkCoveredByModel( String compSrc , String compDst );
 
 public:
 	XmlHMind hmindxml;
 	XmlCircuits circuitsxml;
+	XmlNerves nervesxml;
 };
 
 /*#########################################################################*/
@@ -113,12 +113,18 @@ public:
 private:
 	void checkHierarchy();
 	void checkCircuits();
+	void checkNerves();
 	void checkMindModel();
 
 	bool checkHierarchy_verifyChild( String node , bool checkMapping );
 	bool checkCircuits_verifyComponents( String circuit );
 	bool checkCircuits_verifyLinks( String circuit );
 	bool checkCircuits_verifyCircuitLink( XmlCircuitInfo& circuit , XmlCircuitLinkInfo& link );
+	bool checkNerves_verifyComponents( String nerve );
+	bool checkNerves_verifyLinks( XmlNerveInfo& info , XmlNerveFiberInfo& nf );
+	bool checkNerves_verifyFiberChain( XmlNerveInfo& info , String regionSrcId , String regionDstId );
+	bool checkFiberComp( XmlNerveInfo& info , XmlNerveFiberInfo& nf , String comp );
+	bool checkFiberType( XmlNerveInfo& info , XmlNerveFiberInfo& nf , String type );
 	bool checkMindModel_verifyRegion( MindRegionDef *regionDef );
 	bool checkMindModel_verifyLinkedConnectors( MindRegionDef *regionDef , MindRegion *region );
 	bool checkMindModel_verifyRegionCircuits( MindRegionDef *regionDef , MindRegion *region );
@@ -165,8 +171,6 @@ private:
 	void updateHierarchyPage();
 	void createAreaPages();
 	void createComponentPages();
-
-	bool findReferenceCircuitLink( String srcRegion , String dstRegion , XmlCircuitInfo& info , String& circuitLink , bool directOnly );
 
 public:
 	Xml wiki;

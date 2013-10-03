@@ -24,6 +24,7 @@ void ModelVerifier::verify() {
 
 	bool verifyHierarchy = modelArea.getBooleanProperty( "verifyHierarchy" , true );
 	bool verifyCircuits = modelArea.getBooleanProperty( "verifyCircuits" , true );
+	bool verifyNerves = modelArea.getBooleanProperty( "verifyNerves" , true );
 	bool verifyMindModel = modelArea.getBooleanProperty( "verifyMindModel" , true );
 
 	// verify
@@ -31,6 +32,8 @@ void ModelVerifier::verify() {
 		checkHierarchy();
 	if( verifyCircuits )
 		checkCircuits();
+	if( verifyNerves )
+		checkNerves();
 	if( verifyMindModel )
 		checkMindModel();
 }
@@ -147,8 +150,7 @@ void ModelVerifier::checkCircuits() {
 }
 
 bool ModelVerifier::checkCircuits_verifyComponents( String circuit ) {
-	XmlCircuitInfo info;
-	circuitsxml.getCircuitInfo( circuit , info );
+	XmlCircuitInfo& info = circuitsxml.getCircuitInfo( circuit );
 
 	// check components
 	bool checkAll = true;
@@ -167,8 +169,7 @@ bool ModelVerifier::checkCircuits_verifyComponents( String circuit ) {
 }
 
 bool ModelVerifier::checkCircuits_verifyLinks( String circuit ) {
-	XmlCircuitInfo info;
-	circuitsxml.getCircuitInfo( circuit , info );
+	XmlCircuitInfo& info = circuitsxml.getCircuitInfo( circuit );
 
 	// check links
 	bool checkAll = true;
@@ -208,7 +209,7 @@ bool ModelVerifier::checkCircuits_verifyCircuitLink( XmlCircuitInfo& circuit , X
 
 	// specific check if mapped to upper items
 	if( regionSrcId.isEmpty() || regionDstId.isEmpty() ) {
-		bool check = checkCircuitCoveredByModel( compSrc , compDst );
+		bool check = checkLinkCoveredByModel( compSrc , compDst );
 		if( check == false )
 			logger.logError( "checkCircuits_verifyCircuitLink: not found covering child link element=" + compSrc + " to element=" + compDst + ", from circuit component=" + link.compSrc + " to component=" + link.compDst );
 		return( check );
@@ -229,6 +230,130 @@ bool ModelVerifier::checkCircuits_verifyCircuitLink( XmlCircuitInfo& circuit , X
 
 	// this link does not exist in mind model
 	logger.logError( "checkCircuits_verifyCircuitLink: not found link from region=" + regionSrcId + " to region=" + regionDstId + ", from circuit component=" + link.compSrc + " to component=" + link.compDst );
+	return( false );
+}
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+void ModelVerifier::checkNerves() {
+	// check nerves use correct components
+	logger.logInfo( "checkNerves: CHECK NERVES ..." );
+
+	bool checkAll = true;
+	StringList nerves;
+	nervesxml.getNerveList( nerves );
+
+	for( int k = 0; k < nerves.count(); k++ ) {
+		String id = nerves.get( k );
+
+		// verify
+		logger.logInfo( "checkNerves: verify nerve id=" + id );
+		bool checkOne = checkNerves_verifyComponents( id );
+		if( checkOne == false )
+			checkAll = false;
+	}
+
+	if( checkAll )
+		logger.logInfo( "checkNerves: NERVES ARE OK" );
+	else
+		logger.logInfo( "checkNerves: NERVES HAVE ERRORS" );
+}
+
+bool ModelVerifier::checkNerves_verifyComponents( String nerve ) {
+	XmlNerveInfo& info = nervesxml.getNerveInfo( nerve );
+
+	bool res = true;
+	for( int k = 0; k < info.fibers.count(); k++ ) {
+		XmlNerveFiberInfo& nf = info.fibers.getRef( k );
+
+		logger.logInfo( "checkNerves: check fiber src=" + nf.src + ", dst=" + nf.dst );
+
+		// check items
+		if( !checkFiberComp( info , nf , nf.src ) )
+			res = false;
+		if( !checkFiberComp( info , nf , nf.dst ) )
+			res = false;
+
+		for( int m = 0; m < nf.mids.count(); m++ ) {
+			String mid = nf.mids.get( m );
+			if( !checkFiberComp( info , nf , mid ) )
+				res = false;
+		}
+
+		// check type
+		if( !checkFiberType( info , nf , nf.type ) )
+			res = false;
+
+		// check links
+		if( res ) {
+			if( !checkNerves_verifyLinks( info , nf ) )
+				res = false;
+		}
+	}
+
+	return( true );
+}
+
+bool ModelVerifier::checkFiberComp( XmlNerveInfo& info , XmlNerveFiberInfo& nf , String comp ) {
+	if( hmindxml.isComponent( comp ) == false ) {
+		logger.logError( "checkFiberComp: nerve=" + info.name + ", comp=" + comp + " - is not found in hierarchy" );
+		return( false );
+	}
+	
+	// find mapped regions
+	String region = hmindxml.getMappedRegion( comp );
+	if( region.isEmpty() ) {
+		logger.logError( "checkFiberComp: nerve=" + info.name + ", comp=" + comp + " - is not mapped to region" );
+		return( false );
+	}
+
+	return( true );
+}
+
+bool ModelVerifier::checkFiberType( XmlNerveInfo& info , XmlNerveFiberInfo& nf , String type ) {
+	if( type.equals( "GSE" ) || type.equals( "GSA" ) || type.equals( "GVE" ) || type.equals( "GVA" ) || 
+		type.equals( "SSA" ) || type.equals( "SVA" ) || type.equals( "SVE" ) )
+		return( true );
+
+	logger.logError( "checkFiberType: nerve=" + info.name + ", type=" + type + " - is unknown type" );
+	return( false );
+}
+
+bool ModelVerifier::checkNerves_verifyLinks( XmlNerveInfo& info , XmlNerveFiberInfo& nf ) {
+	String src = hmindxml.getMappedRegion( nf.src );
+	String dst;
+	for( int k = 0; k <= nf.mids.count(); k++ ) {
+		if( k == nf.mids.count() )
+			dst = nf.dst;
+		else
+			dst = nf.mids.get( k );
+		dst = hmindxml.getMappedRegion( dst );
+
+		if( !checkNerves_verifyFiberChain( info , src , dst ) ) {
+			logger.logError( "checkNerves_verifyLinks: nerve=" + info.name + ", src=" + src + ", dst=" + dst + " - is not covered by mind" );
+		}
+	}
+
+	return( true );
+}
+
+bool ModelVerifier::checkNerves_verifyFiberChain( XmlNerveInfo& info , String regionSrcId , String regionDstId ) {
+	MindService *ms = MindService::getService();
+
+	// ignore check if no correct mapping
+	if( ms -> isMindRegion( regionSrcId ) == false || ms -> isMindRegion( regionDstId ) == false )
+		return( true );
+
+	MindRegion *regionSrc = ms -> getMindRegion( regionSrcId );
+	MindRegion *regionDst = ms -> getMindRegion( regionDstId );
+
+	// check link exists from src to dst
+	if( regionSrc -> checkLinkedTo( regionDst ) )
+		return( true );
+
+	// this link does not exist in mind model
+	logger.logError( "checkNerves_verifyFiberChain: not found link from region=" + regionSrcId + " to region=" + regionDstId + ", from nerve=" + info.name );
 	return( false );
 }
 
@@ -274,6 +399,21 @@ bool ModelVerifier::checkMindModel_verifyRegion( MindRegionDef *regionDef ) {
 	if( checkRegion )
 		if( !checkMindModel_verifyLinkedConnectors( regionDef , region ) )
 			checkRegion = false;
+
+	if( checkRegion ) {
+		// check region connections are covered by circuits
+		ClassList<MindRegionLink>& links = region -> getSlaveRegionLinks();
+		for( int k = 0; k < links.count(); k++ ) {
+			MindRegionLink& link = links.getRef( k );
+			String dstId = link.getDstRegion() -> getRegionId();
+
+			XmlCircuitFind find;
+			if( !circuitsxml.findReferenceLink( hmindxml , regionId , dstId , find ) ) {
+				logger.logError( "checkMindModel_verifyRegion: model region=" + regionId + " link to region=" + dstId + " is not covered by circuit collection" );
+				checkRegion = false;
+			}
+		}
+	}
 
 	return( checkRegion );
 }

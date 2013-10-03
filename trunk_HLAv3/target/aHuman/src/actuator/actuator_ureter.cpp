@@ -32,7 +32,7 @@ private:
 	Xml config;
 };
 
-MindEffector *AHumanTarget::createBreast( EffectorArea *area ) {
+MindEffector *AHumanTarget::createUreter( EffectorArea *area ) {
 	return( new EffectorUreter( area ) );
 }
 

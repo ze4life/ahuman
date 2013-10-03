@@ -15,9 +15,10 @@ void MindModel::load() {
 	// read definitions
 	hmindxml.load();
 	circuitsxml.load();
+	nervesxml.load();
 }
 
-bool MindModel::checkCircuitCoveredByModel( String compSrc , String compDst ) {
+bool MindModel::checkLinkCoveredByModel( String compSrc , String compDst ) {
 	MindService *ms = MindService::getService();
 
 	// find mapped regions
@@ -56,41 +57,6 @@ bool MindModel::checkCircuitCoveredByModel( String compSrc , String compDst ) {
 
 			MindRegion *dstRegion = ms -> getMindRegion( dstRegionId );
 			if( srcRegion -> checkLinkedTo( dstRegion ) )
-				return( true );
-		}
-	}
-
-	return( false );
-}
-
-bool MindModel::checkCircuitCoveredByModelLink( String compSrc , String compDst , String linkRegionSrc , String linkRegionDst ) {
-	MindService *ms = MindService::getService();
-
-	// find mapped regions
-	String regionSrcId = hmindxml.getMappedRegion( compSrc );
-	String regionDstId = hmindxml.getMappedRegion( compDst );
-	if( regionSrcId.isEmpty() == false && regionDstId.isEmpty() == false )
-		return( regionSrcId.equals( linkRegionSrc ) && regionDstId.equals( linkRegionDst ) );
-
-	// collect sets of child regions
-	StringList srcRegions;
-	if( regionSrcId.isEmpty() )
-		hmindxml.getChildRegions( compSrc , srcRegions );
-	else
-		srcRegions.add( regionSrcId );
-
-	StringList dstRegions;
-	if( regionDstId.isEmpty() )
-		hmindxml.getChildRegions( compDst , dstRegions );
-	else
-		dstRegions.add( regionDstId );
-
-	// check mapping
-	for( int k1 = 0; k1 < srcRegions.count(); k1++ ) {
-		regionSrcId = srcRegions.get( k1 );
-		for( int k2 = 0; k2 < dstRegions.count(); k2++ ) {
-			regionDstId = dstRegions.get( k2 );
-			if( regionSrcId.equals( linkRegionSrc ) && regionDstId.equals( linkRegionDst ) )
 				return( true );
 		}
 	}

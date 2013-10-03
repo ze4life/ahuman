@@ -8,6 +8,10 @@ class XmlHMind;
 class XmlCircuits;
 class XmlCircuitInfo;
 class XmlCircuitLinkInfo;
+class XmlCircuitFind;
+class XmlNerves;
+class XmlNerveInfo;
+class XmlNerveFiberInfo;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -31,6 +35,8 @@ public:
 	String getMappedRegion( String node );
 	void getChildRegions( String node , StringList& regions );
 	String getDotDef( String node );
+
+	bool checkAbstractLinkCoveredByRegionLink( String compSrc , String compDst , String linkRegionSrc , String linkRegionDst );
 
 private:
 	String createDivisionElement( Xml item );
@@ -81,12 +87,15 @@ public:
 	void load();
 
 	void getCircuitList( StringList& circuits );
-	void getCircuitInfo( String circuit , XmlCircuitInfo& info );
+	XmlCircuitInfo& getCircuitInfo( String circuit );
 	void getCircuitLinks( String circuit , FlatList<Xml>& links );
 	void getCircuitLinkInfo( Xml link , XmlCircuitLinkInfo& info );
 	String mapComponent( XmlCircuitInfo& circuit , String circuitComponent );
 	bool checkRegionUsedByCircuit( String region , String circuit );
 	void getCircuitComponents( XmlCircuitInfo& circuit , StringList& components );
+
+	bool findReferenceLink( XmlHMind& hmindxml , String srcRegion , String dstRegion , XmlCircuitFind& find );
+	bool findReferenceCircuitLink( XmlHMind& hmindxml , String checkSrcRegion , String checkDstRegion , XmlCircuitInfo& info , XmlCircuitFind *find , bool directOnly );
 
 private:
 	Xml getCircuitXml( String id );
@@ -95,6 +104,8 @@ private:
 private:
 	Xml xml;
 	MapStringToClass<Xml> nodes;
+	MapStringToClass<XmlCircuitInfo> circuits;
+	MapStringToClass<XmlCircuitFind> referenceMap;
 };
 
 /*#########################################################################*/
@@ -124,6 +135,68 @@ public:
 	String compSrc;
 	String compDst;
 	String function;
+};
+
+class XmlCircuitFind {
+public:
+	XmlCircuitInfo *circuit;
+	XmlCircuitLinkInfo link;
+	bool isAbstractLink;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class XmlNerves {
+public:
+	XmlNerves();
+	virtual ~XmlNerves();
+	virtual const char *getClass() { return "XmlNerves"; };
+
+public:
+	void load();
+
+	void getNerveList( StringList& list );
+	Xml getNerveXml( String id );
+	XmlNerveInfo& getNerveInfo( String nerve );
+
+private:
+	Xml getNerveCategoryXml( Xml categoryItem );
+	void addChilds( Xml division , Xml parent );
+
+private:
+	MapStringToClass<Xml> nodes;
+	MapStringToClass<XmlNerveInfo> nerves;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class XmlNerveInfo {
+public:
+	~XmlNerveInfo();
+
+	Xml xml;
+
+	String name;
+	String synonyms;
+	String origin;
+	String branches;
+	String distribution;
+	String imginfo;
+	String modality;
+	ClassList<XmlNerveFiberInfo> fibers;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class XmlNerveFiberInfo {
+public:
+	String type;
+	String src;
+	String dst;
+	StringList mids;
 };
 
 /*#########################################################################*/
