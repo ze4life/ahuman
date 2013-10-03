@@ -9,6 +9,7 @@ XmlCircuits::XmlCircuits() {
 
 XmlCircuits::~XmlCircuits() {
 	nodes.destroy();
+	circuits.destroy();
 }
 
 void XmlCircuits::load() {
@@ -71,7 +72,15 @@ Xml XmlCircuits::getCircuitXml( String id ) {
 	return( *nodeXml );
 }
 
-void XmlCircuits::getCircuitInfo( String circuit , XmlCircuitInfo& info ) {
+XmlCircuitInfo& XmlCircuits::getCircuitInfo( String circuit ) {
+	XmlCircuitInfo *pinfo = circuits.get( circuit );
+	if( pinfo != NULL )
+		return( *pinfo );
+
+	pinfo = new XmlCircuitInfo;
+	circuits.add( circuit , pinfo );
+
+	XmlCircuitInfo& info = *pinfo;
 	Xml xmlitem = getCircuitXml( circuit );
 	info.xml = xmlitem;
 
@@ -97,6 +106,8 @@ void XmlCircuits::getCircuitInfo( String circuit , XmlCircuitInfo& info ) {
 		
 		info.componentMapping.add( parts.get( 0 ) , parts.get( 1 ) );
 	}
+
+	return( info );
 }
 
 void XmlCircuits::getCircuitLinks( String circuit , FlatList<Xml>& links ) {
@@ -119,8 +130,7 @@ String XmlCircuits::mapComponent( XmlCircuitInfo& circuit , String circuitCompon
 
 bool XmlCircuits::checkRegionUsedByCircuit( String region , String circuit ) {
 	// region is covered by circuit if region is exactly mentioned in circuit
-	XmlCircuitInfo info;
-	getCircuitInfo( circuit , info );
+	XmlCircuitInfo& info = getCircuitInfo( circuit );
 
 	// check amond mapping
 	for( int k = 0; k < info.componentMapping.count(); k++ )
@@ -136,5 +146,79 @@ void XmlCircuits::getCircuitComponents( XmlCircuitInfo& info , StringList& compo
 		if( components.find( component ) < 0 )
 			components.add( component );
 	}
+}
+
+bool XmlCircuits::findReferenceLink( XmlHMind& hmindxml , String srcRegion , String dstRegion , XmlCircuitFind& find ) {
+	// check by map
+	String key = srcRegion + "." + dstRegion;
+	XmlCircuitFind *xfind = referenceMap.get( key );
+	if( xfind != NULL ) {
+		find = *xfind;
+		return( true );
+	}
+
+	xfind = new XmlCircuitFind;
+
+	// scan thirdparty circuits - check specific coverage
+	StringList circuits;
+	getCircuitList( circuits );
+	bool found = false;
+	bool indirect = false;
+	for( int k = 0; k < circuits.count(); k++ ) {
+		XmlCircuitInfo& info = getCircuitInfo( circuits.get( k ) );
+		if( findReferenceCircuitLink( hmindxml , srcRegion , dstRegion , info , xfind , true ) ) {
+			xfind -> circuit = &info;
+			found = true;
+			break;
+		}
+	}
+
+	// scan thirdparty circuits - check high-level coverage
+	if( found == false ) {
+		for( int k = 0; k < circuits.count(); k++ ) {
+			XmlCircuitInfo& info = getCircuitInfo( circuits.get( k ) );
+			if( findReferenceCircuitLink( hmindxml , srcRegion , dstRegion , info , xfind , false ) ) {
+				xfind -> circuit = &info;
+				found = true;
+				break;
+			}
+		}
+	}
+
+	// add to map and return
+	referenceMap.add( key , xfind );
+	return( found );
+}
+
+bool XmlCircuits::findReferenceCircuitLink( XmlHMind& hmindxml , String checkSrcRegion , String checkDstRegion , XmlCircuitInfo& info , XmlCircuitFind *find , bool directOnly ) {
+	FlatList<Xml> links;
+	XmlCircuitLinkInfo linkinfo;
+	getCircuitLinks( info.id , links );
+
+	// find covering link
+	for( int k = 0; k < links.count(); k++ ) {
+		getCircuitLinkInfo( links.get( k ) , linkinfo );
+		String srcComponent = mapComponent( info , linkinfo.compSrc );
+		String dstComponent = mapComponent( info , linkinfo.compDst );
+
+		if( directOnly ) {
+			String srcRegion = hmindxml.getMappedRegion( srcComponent );
+			String dstRegion = hmindxml.getMappedRegion( dstComponent );
+			if( srcRegion.equals( checkSrcRegion ) && dstRegion.equals( checkDstRegion ) ) {
+				find -> link = linkinfo;
+				find -> isAbstractLink = false;
+				return( true );
+			}
+		}
+		else {
+			if( hmindxml.checkAbstractLinkCoveredByRegionLink( srcComponent , dstComponent , checkSrcRegion , checkDstRegion ) ) {
+				find -> link = linkinfo;
+				find -> isAbstractLink = true;
+				return( true );
+			}
+		}
+	}
+
+	return( false );
 }
 

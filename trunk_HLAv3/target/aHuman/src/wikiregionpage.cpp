@@ -263,8 +263,7 @@ void WikiRegionPage::createThirdpartyAndReferencesSection() {
 	MapStringToString circuitKeys;
 	for( int k = 0; k < circuits.count(); k++ ) {
 		String circuitId = circuits.get( k );
-		XmlCircuitInfo infoPaired;
-		wm -> circuitsxml.getCircuitInfo( circuitId , infoPaired );
+		XmlCircuitInfo& infoPaired = wm -> circuitsxml.getCircuitInfo( circuitId );
 
 		String key = createThirdpartyAndReferencesSection_getCircuitKey( region , infoPaired );
 		if( key.isEmpty() )
@@ -278,8 +277,7 @@ void WikiRegionPage::createThirdpartyAndReferencesSection() {
 	if( circuitKeys.count() > 0 ) {
 		for( int k = circuitKeys.count() - 1; k >= 0; k-- ) {
 			String circuitId = circuitKeys.getClassByIndex( k );
-			XmlCircuitInfo infoPaired;
-			wm -> circuitsxml.getCircuitInfo( circuitId , infoPaired );
+			XmlCircuitInfo& infoPaired = wm -> circuitsxml.getCircuitInfo( circuitId );
 			createThirdpartyAndReferencesSection_getCircuitLines( infoPaired , lines );
 		}
 	}
@@ -297,8 +295,7 @@ void WikiRegionPage::createThirdpartyAndReferencesSection() {
 		MapStringToClass<MindArea> refs;
 		for( int k = circuitKeys.count() - 1; k >= 0; k-- ) {
 			String circuitId = circuitKeys.getClassByIndex( k );
-			XmlCircuitInfo info;
-			wm -> circuitsxml.getCircuitInfo( circuitId , info );
+			XmlCircuitInfo& info = wm -> circuitsxml.getCircuitInfo( circuitId );
 
 			if( !info.reference.equals( "UNKNOWN" ) )
 				if( refs.get( info.reference ) == NULL ) {

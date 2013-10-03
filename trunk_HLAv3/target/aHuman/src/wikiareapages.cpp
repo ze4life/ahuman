@@ -335,8 +335,7 @@ void WikiAreaPages::createAreaPages_createCircuitsAndReferencesTableSection( Str
 	MapStringToString circuitKeys;
 	for( int k = 0; k < circuits.count(); k++ ) {
 		String circuitId = circuits.get( k );
-		XmlCircuitInfo info;
-		wm -> circuitsxml.getCircuitInfo( circuitId , info );
+		XmlCircuitInfo& info = wm -> circuitsxml.getCircuitInfo( circuitId );
 
 		String key = createAreaPages_getCircuitKey( area , info );
 		if( key.isEmpty() )
@@ -349,8 +348,7 @@ void WikiAreaPages::createAreaPages_createCircuitsAndReferencesTableSection( Str
 	StringList lines;
 	for( int k = circuitKeys.count() - 1; k >= 0; k-- ) {
 		String circuitId = circuitKeys.getClassByIndex( k );
-		XmlCircuitInfo info;
-		wm -> circuitsxml.getCircuitInfo( circuitId , info );
+		XmlCircuitInfo& info = wm -> circuitsxml.getCircuitInfo( circuitId );
 		createAreaPages_getCircuitLines( info , lines );
 	}
 
@@ -363,8 +361,7 @@ void WikiAreaPages::createAreaPages_createCircuitsAndReferencesTableSection( Str
 	MapStringToClass<MindArea> refs;
 	for( int k = circuitKeys.count() - 1; k >= 0; k-- ) {
 		String circuitId = circuitKeys.getClassByIndex( k );
-		XmlCircuitInfo info;
-		wm -> circuitsxml.getCircuitInfo( circuitId , info );
+		XmlCircuitInfo& info = wm -> circuitsxml.getCircuitInfo( circuitId );
 
 		if( !info.reference.equals( "UNKNOWN" ) )
 			if( refs.get( info.reference ) == NULL ) {
