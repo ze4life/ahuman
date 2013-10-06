@@ -333,6 +333,8 @@ bool ModelVerifier::checkNerves_verifyLinks( XmlNerveInfo& info , XmlNerveFiberI
 		if( !checkNerves_verifyFiberChain( info , src , dst ) ) {
 			logger.logError( "checkNerves_verifyLinks: nerve=" + info.name + ", src=" + src + ", dst=" + dst + " - is not covered by mind" );
 		}
+
+		src = dst;
 	}
 
 	return( true );

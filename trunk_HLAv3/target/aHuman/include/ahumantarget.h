@@ -170,7 +170,8 @@ private:
 	void createCircuitPages();
 	void updateHierarchyPage();
 	void createAreaPages();
-	void createComponentPages();
+	void createNerveMainPage();
+	void createNerveSpecPages();
 
 public:
 	Xml wiki;
@@ -314,6 +315,47 @@ private:
 	String wikiDir;
 	MindRegion *region;
 	const XmlHMindElementInfo& info;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class WikiNerveMainPage : public Object {
+public:
+	WikiNerveMainPage( WikiMaker *wm );
+	virtual ~WikiNerveMainPage();
+	virtual const char *getClass() { return "WikiNerveMainPage"; };
+
+public:
+	void execute();
+
+private:
+	void addNerve( int level , String divPage , XmlNerveInfo& nerve , StringList& lines );
+
+private:
+	WikiMaker *wm;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class WikiNerveSpecPages : public Object {
+public:
+	WikiNerveSpecPages( WikiMaker *wm );
+	virtual ~WikiNerveSpecPages();
+	virtual const char *getClass() { return "WikiNerveSpecPages"; };
+
+public:
+	void execute();
+
+private:
+	void addNerveDivision( XmlNerveInfo& div );
+	void addNerveList( int level , XmlNerveInfo& div , StringList& lines );
+	String getNerveDivision_fibers( ClassList<XmlNerveFiberInfo>& fibers );
+	String getNerveDivision_fiberchain( XmlNerveFiberInfo& fiber );
+
+private:
+	WikiMaker *wm;
 };
 
 /*#########################################################################*/

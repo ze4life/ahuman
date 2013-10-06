@@ -9,6 +9,7 @@ XmlNerves::XmlNerves() {
 
 XmlNerves::~XmlNerves() {
 	nodes.destroy();
+	nerves.destroy();
 }
 
 void XmlNerves::load() {
@@ -21,21 +22,33 @@ void XmlNerves::load() {
 	for( Xml xmlDivision = xml.getFirstChild( "division" ); xmlDivision.exists(); xmlDivision = xmlDivision.getNextChild( "division" ) ) {
 		String name = xmlDivision.getAttribute( "name" );
 		String file = xmlDivision.getAttribute( "xmlfile" );
+		String page = xmlDivision.getAttribute( "page" );
+
 		Xml xmlFile = es -> loadXml( file );
-		Xml division = xmlFile.getChildNamedNode( "division" , name );
+		Xml xmlDivisionFile = xmlFile.getChildNamedNode( "division" , name );
+
+		XmlNerveInfo *division = new XmlNerveInfo;
+		division -> name = name;
+		division -> xml = xmlDivisionFile;
+		division -> origin = page;
+		divisions.add( division );
 
 		addChilds( division , division );
 	}
 }
 
-void XmlNerves::addChilds( Xml division , Xml parent ) {
-	for( Xml item = parent.getFirstChild( "element" ); item.exists(); item = item.getNextChild( "element" ) ) {
+void XmlNerves::addChilds( XmlNerveInfo *division , XmlNerveInfo *parent ) {
+	for( Xml item = parent -> xml.getFirstChild( "element" ); item.exists(); item = item.getNextChild( "element" ) ) {
 		String id = item.getAttribute( "name" );
-		ASSERTMSG( nodes.get( id ) == NULL , "Duplicate nerve division=" + division.getAttribute( "name" ) + ", name=" + id );
+		ASSERTMSG( nodes.get( id ) == NULL , "Duplicate nerve division=" + division -> name + ", name=" + id );
 
 		// add item
 		nodes.addnew( id , new Xml( item ) );
-		addChilds( division , item );
+		XmlNerveInfo *nerveInfo = createNerveInfo( id , item );
+		nerves.add( id , nerveInfo );
+		parent -> childs.add( id , nerveInfo );
+
+		addChilds( division , nerveInfo );
 	}
 }
 
@@ -56,14 +69,14 @@ Xml XmlNerves::getNerveXml( String id ) {
 
 XmlNerveInfo& XmlNerves::getNerveInfo( String nerve ) {
 	XmlNerveInfo *pinfo = nerves.get( nerve );
-	if( pinfo != NULL )
-		return( *pinfo );
+	ASSERTMSG( pinfo != NULL , "unable to find nerve=" + nerve );
+	return( *pinfo );
+}
 
-	pinfo = new XmlNerveInfo;
-	nerves.add( nerve , pinfo );
+XmlNerveInfo *XmlNerves::createNerveInfo( String nerve , Xml xmlitem ) {
+	XmlNerveInfo *pinfo = new XmlNerveInfo;
 
 	XmlNerveInfo& info = *pinfo;
-	Xml xmlitem = getNerveXml( nerve );
 	info.xml = xmlitem;
 
 	info.name = xmlitem.getAttribute( "name" );
@@ -71,7 +84,8 @@ XmlNerveInfo& XmlNerves::getNerveInfo( String nerve ) {
 	info.origin = xmlitem.getAttribute( "origin" , "" );
 	info.branches = xmlitem.getAttribute( "branches" , "" );
 	info.distribution = xmlitem.getAttribute( "distribution" , "" );
-	info.imginfo = xmlitem.getAttribute( "imginfo" , "" );
+	info.imgsrc = xmlitem.getAttribute( "imgsrc" , "" );
+	info.imgheight = xmlitem.getAttribute( "imgheight" , "" );
 	info.modality = xmlitem.getAttribute( "modality" , "" );
 	
 	for( Xml item = xmlitem.getFirstChild( "fibers" ); item.exists(); item = item.getNextChild( "fibers" ) ) {
@@ -88,5 +102,5 @@ XmlNerveInfo& XmlNerves::getNerveInfo( String nerve ) {
 		}
 	}
 
-	return( info );
+	return( pinfo );
 }

@@ -160,13 +160,17 @@ public:
 	Xml getNerveXml( String id );
 	XmlNerveInfo& getNerveInfo( String nerve );
 
+	ClassList<XmlNerveInfo>& getDivisions() { return( divisions ); };
+
 private:
 	Xml getNerveCategoryXml( Xml categoryItem );
-	void addChilds( Xml division , Xml parent );
+	XmlNerveInfo *createNerveInfo( String nerve , Xml xmlitem );
+	void addChilds( XmlNerveInfo *division , XmlNerveInfo *parent );
 
 private:
 	MapStringToClass<Xml> nodes;
 	MapStringToClass<XmlNerveInfo> nerves;
+	ClassList<XmlNerveInfo> divisions;
 };
 
 /*#########################################################################*/
@@ -174,7 +178,7 @@ private:
 
 class XmlNerveInfo {
 public:
-	~XmlNerveInfo();
+	~XmlNerveInfo() { fibers.destroy(); };
 
 	Xml xml;
 
@@ -183,9 +187,12 @@ public:
 	String origin;
 	String branches;
 	String distribution;
-	String imginfo;
+	String imgsrc;
+	String imgheight;
 	String modality;
+
 	ClassList<XmlNerveFiberInfo> fibers;
+	MapStringToClass<XmlNerveInfo> childs;
 };
 
 /*#########################################################################*/
