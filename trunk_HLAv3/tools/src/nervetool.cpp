@@ -230,10 +230,11 @@ int NerveTool::execute_img( String& s , FILE *sout , int level , ClassList<Nerve
 				return( false );
 
 			n.imginfo = img;
+			return( 0 );
 		}
 	}
 
-	return( 0 );
+	return( 100 );
 }
 
 bool NerveTool::extract_item( FILE *sout , String& item , String& s , String p ) {
@@ -506,7 +507,7 @@ void NerveTool::output_nerve( FILE *sout , ClassList<Nerve>& nn , int k ) {
 		s += tabs + "</element>\n";
 	}
 
-	if( n.level == 0 && hasChilds == false )
+	if( ( n.level == 0 && hasChilds == false ) || ( n.level > 0 && ( n.level - upLevelCount ) == 0 ) )
 		s += "\n";
 
 	fprintf( sout , "%s" , ( const char * )s );
