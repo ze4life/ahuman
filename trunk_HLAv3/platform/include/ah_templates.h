@@ -918,6 +918,13 @@ public:
 		return( ( T * )rfc_map_strget( mapData , k ) );
 	};
 			
+	T& getClassRefByIndex( int k ) {
+		if( k < 0 || k >= rfc_map_strcount( mapData ) )
+			throw RuntimeError( "MapStringToClass::getByIndex - invalid index" );
+
+		return( *( T * )rfc_map_strget( mapData , k ) );
+	};
+			
 	const char *getKeyByIndex( int k ) {
 		if( k < 0 || k >= rfc_map_strcount( mapData ) )
 			throw RuntimeError( "MapStringToClass::getByIndex - invalid index" );
