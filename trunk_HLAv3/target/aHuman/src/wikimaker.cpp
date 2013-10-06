@@ -23,7 +23,8 @@ void WikiMaker::createPages() {
 	createCircuitPages();
 	updateHierarchyPage();
 	createAreaPages();
-	createComponentPages();
+	createNerveMainPage();
+	createNerveSpecPages();
 }
 
 void WikiMaker::createMainPage() {
@@ -46,7 +47,14 @@ void WikiMaker::createAreaPages() {
 	maker.execute();
 }
 
-void WikiMaker::createComponentPages() {
+void WikiMaker::createNerveMainPage() {
+	WikiNerveMainPage maker( this );
+	maker.execute();
+}
+
+void WikiMaker::createNerveSpecPages() {
+	WikiNerveSpecPages maker( this );
+	maker.execute();
 }
 
 /*#########################################################################*/

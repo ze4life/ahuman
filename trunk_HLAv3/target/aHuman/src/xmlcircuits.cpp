@@ -187,6 +187,7 @@ bool XmlCircuits::findReferenceLink( XmlHMind& hmindxml , String srcRegion , Str
 
 	// add to map and return
 	referenceMap.add( key , xfind );
+	find = *xfind;
 	return( found );
 }
 
