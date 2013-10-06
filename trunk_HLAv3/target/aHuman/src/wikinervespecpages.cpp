@@ -100,7 +100,7 @@ String WikiNerveSpecPages::getNerveDivision_fiberchain( XmlNerveFiberInfo& fiber
 		String region = wm -> hmindxml.getMappedRegion( comp );
 		
 		const XmlHMindElementInfo& ni = wm -> hmindxml.getElementInfo( comp );
-		s += "[BrainRegion" + ni.id.replace( "." , "_" ) + " " + ni.name + "," + comp + "]";
+		s += "[BrainRegion" + region.replace( "." , "_" ) + " " + ni.name + "," + comp + "]";
 	}
 
 	return( s );
