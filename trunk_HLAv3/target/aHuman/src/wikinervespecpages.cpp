@@ -49,9 +49,9 @@ void WikiNerveSpecPages::addNerveList( int level , XmlNerveInfo& nerve , StringL
 	if( !nerve.branches.isEmpty() )
 		s += "; BRANCHES={" + nerve.branches + "}";
 	if( !nerve.distribution.isEmpty() )
-		s += "; BRANCHES={" + nerve.distribution + "}";
+		s += "; DISTRIBUTION={" + nerve.distribution + "}";
 	if( !nerve.modality.isEmpty() )
-		s += "; BRANCHES={" + nerve.modality + "}";
+		s += "; MODALITY={" + nerve.modality + "}";
 	if( nerve.fibers.count() > 0 )
 		s += "; FIBERS={" + getNerveDivision_fibers( nerve.fibers ) + "}";
 	lines.add( s );
@@ -64,7 +64,8 @@ void WikiNerveSpecPages::addNerveList( int level , XmlNerveInfo& nerve , StringL
 	if( !nerve.imgsrc.isEmpty() ) {
 		s = String( " " ).replicate( level + 3 ) + "* <img src=\"" + nerve.imgsrc + "\"";
 		if( !nerve.imgheight.isEmpty() )
-			s += " height=" + nerve.imgheight + ">";
+			s += " height=" + nerve.imgheight;
+		s += ">";
 		lines.add( s );
 	}
 }
@@ -85,20 +86,21 @@ String WikiNerveSpecPages::getNerveDivision_fiberchain( XmlNerveFiberInfo& fiber
 
 	String comp;
 	for( int k = 0; k < fiber.mids.count() + 2; k++ ) {
-		if( k == 0 ) {
+		if( k == 0 )
 			comp = fiber.src;
+		else {
 			s += " -> ";
+
+			if( k > fiber.mids.count() )
+				comp = fiber.dst;
+			else
+				comp = fiber.mids.get( k - 1 );
 		}
-		else
-		if( k > fiber.mids.count() )
-			comp = fiber.dst;
-		else
-			comp = fiber.mids.get( k - 1 );
 
 		String region = wm -> hmindxml.getMappedRegion( comp );
 		
 		const XmlHMindElementInfo& ni = wm -> hmindxml.getElementInfo( comp );
-		s += "[BraninRegion" + ni.id.replace( "." , "_" ) + ni.name + "," + comp + "]";
+		s += "[BrainRegion" + ni.id.replace( "." , "_" ) + " " + ni.name + "," + comp + "]";
 	}
 
 	return( s );
