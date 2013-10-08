@@ -67,14 +67,14 @@ Coverage verified by:
 
 == SPINAL CORD NUCLEI ==
 
-  * Lateral Cervical Nucleus - lateral horn
-  * Lateral Spinal Nucleus - lateral horn (LSN might represent a relay in unmyelinated pathways between the periphery and brain)
-  * Nucleus Posterpmarginalis, Marginal Nucleus (NPM) - LI
+  * Lateral Cervical Nucleus (LCN) - lateral horn
+  * Lateral Spinal Nucleus (LSN) - lateral horn (LSN might represent a relay in unmyelinated pathways between the periphery and brain)
+  * Nucleus Posterpmarginalis, Marginal Nucleus (MN) - LI
   * Substantia Gelatinosa (SG) - LII,LIII
   * Nucleus Proprius (NPR) - LIII,LIV
   * Secondary Visceral Afferents, Clarke's Nucleus, Clarke's Column (CC) - LV, LVI
   * Central Cervical Nucleus - LVII
-  * Retroposterolateral Nucleus - LVII
+  * Retroposterolateral Nucleus, Retrodorsolateral Nucleus (RDL) - LVII
   * Intermediolateral Cell Column, Thoracic intermediolateral nucleus (TIML) - LVII
   * Intermediolateral Cell Column, Sacral intermediolateral nucleus (SIML) - LVII
   * Intermediomedial Nucleus - LVII
@@ -84,23 +84,26 @@ Coverage verified by:
   * Lateral Motor Nucleus - LVIII
   * Axial Muscles Alpha Motor Neurons (AAMN) - VIII, IX
    * Posteromedial Nucleus - LVIII
+  * Ventrolateral Nucleus (VLN) - LVIII (muscles of shoulder girdle, arm, hip, thigh)
   * Distal Muscles Alpha Motor Neurons (DAMN) - IX
+  * Dorsolateral Nucleus (DLN) - IX (muscles of forearm, hand, leg, foot)
   * Medial Motor Nucleus - IX
-  * Spinal Accessory Nucleus - IX
-  * Phrenic Nucleus - IX
-  * Onuf's Nucleus, Lumbosacral Nucleus - IX
+  * Spinal Accessory Nucleus (SAN) - IX
+  * Phrenic Nucleus (PHN) - IX
+  * Onuf's Nucleus (ONN) - IX
+  * Lumbosacral Nucleus, Central Nucleus (LUS) - IX
   * Dorsal Commisural Nucleus - X
 
 || *Level* || *LI* || *LII* || *LIII* || *LIV* || *LV* || *LVI* || *LVII* || *LVIII* || *LIX* || *LX* || *OUT* ||
-|| C1 || || || || || || || || || || || LCN ||
-|| C2 || || || || || || || || || || || LCN ||
-|| C3 || || || || || || || || || || || LCN ||
-|| C4 || || || || || || || || || || || LCN ||
-|| C5 || || || || || || || || || || || LCN ||
-|| C6 || || || || || || || || || || || LCN ||
-|| C7 || || || || || || || || || || || LCN ||
-|| C8 || || || || || || || || || || || LCN ||
-|| T1 || || || || || || || TIML || || || || LSN ||
+|| C1 || || || || || || || || || SAN || || LCN ||
+|| C2 || || || || || || || || || SAN || || LCN ||
+|| C3 || || || || || || || || || SAN,PHN || || LCN ||
+|| C4 || || || || || || || || VLN || SAN,PHN,DLN || || LCN ||
+|| C5 || || || || || || || || VLN || SAN,PHN,DLN || || LCN ||
+|| C6 || || || || || || || || VLN || SAN,DLN || || LCN ||
+|| C7 || || || || || || || || VLN || DLN || || LCN ||
+|| C8 || || || || || || || RDL || VLN || DLN || || LCN ||
+|| T1 || || || || || || || TIML,RDL || || DLN || || LSN ||
 || T2 || || || || || || || TIML || || || || LSN ||
 || T3 || || || || || || || TIML || || || || LSN ||
 || T4 || || || || || || || TIML || || || || LSN ||
@@ -113,13 +116,13 @@ Coverage verified by:
 || T11 || || || || || || || TIML || || || || LSN ||
 || T12 || || || || || || || TIML || || || || LSN ||
 || L1 || || || || || || || TIML || || || || LSN ||
-|| L2 || || || || || || || TIML || || || || LSN ||
-|| L3 || || || || || || || || || || || ||
-|| L4 || || || || || || || || || || || ||
-|| L5 || || || || || || || || || || || ||
-|| S1 || || || || || || || SIML || || || || ||
-|| S2 || || || || || || || || || || || ||
-|| S3 || || || || || || || || || || || ||
+|| L2 || || || || || || || TIML || VLN || DLN || || LSN ||
+|| L3 || || || || || || || || VLN || DLN || || ||
+|| L4 || || || || || || || || VLN || DLN || || ||
+|| L5 || || || || || || || || VLN || LUS,DLN || || ||
+|| S1 || || || || || || || SIML,RDL || VLN || ONN,LUS,DLN || || ||
+|| S2 || || || || || || || RDL || VLN || ONN,LUS,DLN || || ||
+|| S3 || || || || || || || RDL || || ONN || || ||
 || S4 || || || || || || || || || || || ||
 || S5 || || || || || || || || || || || ||
 || CX || || || || || || || || || || || ||
