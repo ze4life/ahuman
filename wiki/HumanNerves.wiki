@@ -80,13 +80,12 @@ Coverage verified by:
 *motor:*
   * Central Nucleus, Central Cervical Nucleus (CCN) - LVII (axial muscles alpha motor neurons)
   * Central Nucleus, Centrobasalis Nucleus (CBN) - LVII (axial muscles alpha motor neurons)
-  * Retroposterolateral Nucleus, Retrodorsolateral Nucleus (RDL) - LVII (large motor neurons to small finger muscles)
-  * Ventromedial Motor Nucleus, Lateral Motor Nucleus (LTM) - LVIII (axial muscles alpha motor neurons)
-  * Anterolateral Nucleus, Ventrolateral Nucleus (VLN) - LVIII (muscles of shoulder girdle, arm, hip, thigh)
-  * Posteromedial Nucleus, Dorsomedial Nucleus (PMN) - LVIII (axial muscles alpha motor neurons)
-  * Posterolateral Nucleus, Dorsolateral Nucleus (PLN) - LIX (muscles of forearm, hand, leg, foot)
+  * Retroposterolateral Nucleus, Retrodorsolateral Nucleus (RPL) - LVII (distal large motor neurons to small finger muscles)
+  * Ventrolateral Nucleus, Anterolateral Nucleus (VLN) - LVIII (distal muscles of shoulder girdle, arm, hip, thigh)
+  * Medial Motor Nucleus, Posteromedial Nucleus, Dorsomedial Nucleus (PMN) - LVIII (axial muscles alpha motor neurons)
+  * Lateral Motor Nucleus, Posterolateral Nucleus, Dorsolateral Nucleus (PLN) - LIX (distal muscles of forearm, hand, leg, foot)
+  * Medial Motor Nucleus, Anteromedial Nucleus, Ventromedial Motor Nucleus (MMN) - LIX (axial muscles alpha motor neurons)
   * Spinal Accessory Nucleus (SAN) - LIX
-  * Anteromedial Nucleus, Medial Motor Nucleus (MMN) - LIX (distal muscles alpha motor neurons)
 
 *autonomic:*
   * Intermediolateral Cell Column, Intermediomedial Nucleus, Thoracic intermediolateral nucleus (TIML) - LVII (autonomic, visceral structures, sym, psym)
@@ -103,12 +102,12 @@ http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/spinal-cord-nucle
 || C1 || LCN || MN || SG || NPR || NPR || || || CCN || || MMN,SAN || ||
 || C2 || LCN || MN || SG || NPR || NPR || || || CCN || || MMN,SAN || ||
 || C3 || LCN || MN || SG || NPR || NPR || || || CCN || || MMN,SAN,PHN || ||
-|| C4 || LCN || MN || SG || NPR || NPR || || || CCN || LTM,VLN || MMN,SAN,PHN,PLN || ||
-|| C5 || LCN || MN || SG || NPR || NPR || || || CBN || LTM,VLN || MMN,SAN,PHN,PLN || ||
-|| C6 || LCN || MN || SG || NPR || NPR || || || CBN || LTM,VLN || MMN,SAN,PLN || ||
-|| C7 || LCN || MN || SG || NPR || NPR || || || CBN || LTM,VLN || MMN,PLN || ||
-|| C8 || LCN || MN || SG || NPR || NPR || CLN || CLN || CBN,RDL || VLN,LTM || MMN,PLN || ||
-|| T1 || LSN || MN || SG || NPR || NPR || CLN || CLN || TIML,RDL || LTM || MMN,PLN || ||
+|| C4 || LCN || MN || SG || NPR || NPR || || || CCN || VLN || MMN,SAN,PHN,PLN || ||
+|| C5 || LCN || MN || SG || NPR || NPR || || || CBN || VLN || MMN,SAN,PHN,PLN || ||
+|| C6 || LCN || MN || SG || NPR || NPR || || || CBN || VLN || MMN,SAN,PLN || ||
+|| C7 || LCN || MN || SG || NPR || NPR || || || CBN || VLN || MMN,PLN || ||
+|| C8 || LCN || MN || SG || NPR || NPR || CLN || CLN || CBN,RPL || VLN,PLN || MMN,PLN || ||
+|| T1 || LSN || MN || SG || NPR || NPR || CLN || CLN || TIML,RPL || LTM || MMN,PLN || ||
 || T2 || LSN || MN || SG || NPR || NPR || CLN || CLN || TIML || || MMN || ||
 || T3 || LSN || MN || SG || NPR || NPR || CLN || CLN || TIML || || MMN || ||
 || T4 || LSN || MN || SG || NPR || NPR || CLN || CLN || TIML || || MMN || ||
@@ -122,12 +121,12 @@ http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/spinal-cord-nucle
 || T12 || LSN || MN || SG || NPR || NPR || CLN || CLN || TIML || || MMN || ||
 || L1 || LSN || MN || SG || NPR || NPR || CLN || CLN || TIML || || MMN || DCN ||
 || L2 || LSN || MN || SG || NPR || NPR || CLN || CLN || TIML || LTM,VLN || MMN,PLN || DCN ||
-|| L3 || || MN || SG || NPR || NPR || CLN || CLN || || LTM,VLN || MMN,PLN || ||
-|| L4 || || MN || SG || NPR || NPR || || || || LTM,VLN || MMN,PLN || ||
-|| L5 || || MN || SG || NPR || NPR || || || || LTM,VLN,PMN || MMN,LUS,PLN || ||
-|| S1 || || MN || SG || NPR || NPR || || || RDL,SIML || LTM,VLN,PMN || MMN,ONN,LUS,PLN || ||
-|| S2 || || MN || SG || NPR || NPR || || || RDL,SPS || LTM,VLN,PMN || MMN,ONN,LUS,PLN || ||
-|| S3 || || MN || SG || NPR || NPR || || || RDL,SPS || LTM,PMN || MMN,ONN || ||
+|| L3 || || MN || SG || NPR || NPR || CLN || CLN || || VLN || MMN,PLN || ||
+|| L4 || || MN || SG || NPR || NPR || || || || VLN || MMN,PLN || ||
+|| L5 || || MN || SG || NPR || NPR || || || || VLN,PMN || MMN,LUS,PLN || ||
+|| S1 || || MN || SG || NPR || NPR || || || RPL,SIML || VLN,PMN || MMN,ONN,LUS,PLN || ||
+|| S2 || || MN || SG || NPR || NPR || || || RPL,SPS || VLN,PMN || MMN,ONN,LUS,PLN || ||
+|| S3 || || MN || SG || NPR || NPR || || || RPL,SPS || PMN || MMN,ONN || ||
 || S4 || || MN || SG || NPR || NPR || || || SPS || || MMN || ||
 || S5 || || MN || SG || NPR || NPR || || || || || MMN || ||
 || CX || || MN || SG || NPR || NPR || || || || || MMN || ||
@@ -153,12 +152,19 @@ http://vanat.cvm.umn.edu/neurLab2/images/Small/SpCdFibersNeuronsSmll.gif
    * *spino-olivary tract (Helweg's tract)*: proprioception information,cutaneous impulses from muscles and tendons to dorsal root ganglia (N1) to nucleus proprius,central cervical nucleus (N2) to inferior olivary nucleus (N3) to CR
    * *spinovestibular tract*: C1-C4,neuromuscular spindles and Golgi tendon organs to dorsal root ganglia (N1) to central cervical nucleus (N2) to vestibular nucleus
   * *descending*:
-   * ventral corticospinal: TBD
-   * lateral corticospinal: TBD
+   * *lateral corticospinal tract*: cortex BA 1-4,6 (N1) to
+    * motoneurons of retroposterolateral nucleus (RPL) (N2) to distal limb muscles
+    * motoneurons of posterolateral motor nucleus (PLN) (N2) to distal limb muscles
+    * motoneurons of ventrolateral nucleus (VLN) (N2) to distal limb muscles
+   * *ventral (anterior, medial) corticospinal tract* (direct pyramidal tract, anterior cerebrospinal fasciculus): cortex BA 1-4,6 (N1) to:
+    * motoneurons of central nucleus (N2) to axial muscles
+    * motoneurons of posteromedial nucleus (PMN) (N2) to axial muscles
+    * motoneurons of ventromedial nucleus (MMN) (N2) to axial muscles
    * lateral reticulospinal: TBD
    * medial reticulospinal: TBD
    * lateral tectospinal: TBD
    * medial tectospinal: TBD
+   * rubrospinal: TBD
    * vestibulospinal: TBD
 
 http://1.bp.blogspot.com/-OEVoQDbse4k/TaM9sATLSgI/AAAAAAAADco/z7ctc9G6X5o/s1600/Transcerse%2Bsection%2Bof%2Bthe%2BSpinal%2Bcord.png
