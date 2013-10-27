@@ -22,8 +22,8 @@ void execute( String etcpath ) {
 }
 
 int main(int argc, char** argv) {
-	if( argc < 4 ) {
-		printf( "Arguments: <config directory path> <initial message target component> <connector>\n" );
+	if( argc < 2 ) {
+		printf( "Arguments: <config directory path>\n" );
 		return( -1 );
 	}
 
