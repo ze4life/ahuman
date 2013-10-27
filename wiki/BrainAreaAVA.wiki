@@ -21,6 +21,8 @@
 || [BrainRegionAVA_PN_SYM_ARG AVA.PN.SYM.ARG] || Aorticorenal Ganglion || Symp. Gang. || Kidney, Ureter || T12 ||
 || [BrainRegionAVA_PN_SYM_CEG AVA.PN.SYM.CEG] || Coelic Ganglion || Symp. Gang. || Liver, stomach, pancreas, small intestine || T5-T9 ||
 || [BrainRegionAVA_PN_SYM_IMG AVA.PN.SYM.IMG] || Inferior Mesenteric Ganglion || Symp. Gang. || Bladder, reproductive organs || S1-S4 ||
+|| [BrainRegionAVA_PN_SYM_MCG AVA.PN.SYM.MCG] || Middle Cervical Ganglion || Symp. Gang. || Eye, tear and salivatory glands ||  ||
+|| [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || Superior Cervical Ganglion || Symp. Gang. || Eye, tear and salivatory glands ||  ||
 || [BrainRegionAVA_PN_SYM_SMG AVA.PN.SYM.SMG] || Superior Mesenteric Ganglion || Symp. Gang. || Large intestine, rectum || T9-T11 ||
 || [BrainRegionAVA_PN_SYM_STG AVA.PN.SYM.STG] || Stellate Ganglion || Symp. Gang. || Heart, Lung || Inferior cervical ganglion ||
 || [BrainRegionAVA_PN_SYM_TG AVA.PN.SYM.TG] || Sympathetic Thoracic Ganglia || Symp. Gang. || Heart || T1-T4 ||
@@ -46,10 +48,14 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/AVA.dot.jpg
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Hindbrain</font> || || || || || ||
 || [BrainAreaFBA FBA] || [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || [BrainRegionFBA_HP_LC FBA.HP.LC] || Locus Coeruleus || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (LC -> IML)] ||
+|| [BrainAreaHTA HTA] || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || [BrainRegionHTA_FD_HT_SCN HTA.FD.HT.SCN] || Suprachiasmatic Nucleus || nucleus-ganglion || (unknown reference) ||
 || [BrainAreaMBA MBA] || [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || [BrainRegionMBA_HP_BR MBA.HP.BR] || Barrington's Nucleus || nucleus-nucleus || [http://jp.physoc.org/content/557/1/287/F9.expansion.html Schematic overview of spinobulbospinal micturition reflex pathway (BAR -> IML)] ||
 || <font color="red">Motor</font> || || || || || ||
 || [BrainAreaBMA BMA] || [BrainRegionAVA_HM_VG AVA.HM.VG] || [BrainRegionBMA_HP_PB BMA.HP.PB] || Parabrachial Nucleus || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (PBN -> DVM)] ||
+||  || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || [BrainRegionBMA_SC_LH_LSN BMA.SC.LH.LSN] || Lateral Spinal Nucleus || nucleus-ganglion || (unknown reference) ||
 || [BrainAreaFMA FMA] || [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || [BrainRegionHMA_HM_AMB HMA.HM.AMB] || Ambiguus Nucleus || nucleus-nucleus || (unknown reference) ||
+|| <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaVBA VBA] || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || [BrainRegionVBA_SC_IZ_CSC VBA.SC.IZ.CSC] || Ciliospinal Center || nucleus-ganglion || [http://www.nature.com/pr/journal/v71/n3/fig_tab/pr201138f1.html Sympathetic and parasympathetic eye pathways (CC -> SCG)] ||
 || <font color="red">Target</font> || || || || || ||
 || [BrainAreaTEA TEA] || [BrainRegionAVA_PN_SG_DRG_TX AVA.PN.SG.DRG.TX] || [BrainRegionTARGET_TEA_HEART TARGET.TEA.HEART] || Heart || heart-visceral || (unknown reference) ||
 
@@ -65,9 +71,12 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/AVA.dot.jpg
 ||  || [BrainRegionAVA_HM_SAL_SSL AVA.HM.SAL.SSL] || [BrainRegionAVA_PN_PSYM_SPG AVA.PN.PSYM.SPG] || Sphenopalatine Ganglion || nucleus-ganglion || [http://www.neurophysiology.ws/autonomicns.htm Autonomic nervous system (SSL -> SPG)] ||
 ||  ||  || [BrainRegionAVA_PN_PSYM_SXG AVA.PN.PSYM.SXG] || Submandibular Ganglion || nucleus-ganglion || [http://www.neurophysiology.ws/autonomicns.htm Autonomic nervous system (SSL -> SMG)] ||
 || [BrainAreaHMA HMA] || [BrainRegionAVA_PN_SG_DRG_TX AVA.PN.SG.DRG.TX] || [BrainRegionHMA_HM_TGM_STR HMA.HM.TGM.STR] || Spinal Trigeminal Nucleus || ganglion-nucleus || (unknown reference) ||
+|| <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaBFA BFA] || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || [BrainRegionBFA_FD_PNG BFA.FD.PNG] || Pineal Gland || ganglion-nucleus || (unknown reference) ||
 || <font color="red">Target</font> || || || || || ||
 || [BrainAreaTEA TEA] || [BrainRegionAVA_PN_PSYM_CRG AVA.PN.PSYM.CRG] || [BrainRegionTARGET_TEA_HEART TARGET.TEA.HEART] || Heart || heart-psymp-control || (unknown reference) ||
 ||  || [BrainRegionAVA_PN_SYM_STG AVA.PN.SYM.STG] || [BrainRegionTARGET_TEA_HEART TARGET.TEA.HEART] || Heart || heart-symp-control || (unknown reference) ||
+|| [BrainAreaTSA TSA] || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || eye-muscle-pupil-open || [http://www.nature.com/pr/journal/v71/n3/fig_tab/pr201138f1.html Sympathetic and parasympathetic eye pathways (SCG -> EYE)] ||
 
 = Thirdparty Circuits =
 (generated)
@@ -84,6 +93,10 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/AVA.dot.jpg
 
 <img src="http://www.neurophysiology.ws/images/fig-4.gif" alt="unavailable">
 
+  * [http://www.nature.com/pr/journal/v71/n3/images/pr201138f1.gif Sympathetic and parasympathetic eye pathways] - see [http://www.nature.com/pr/journal/v71/n3/fig_tab/pr201138f1.html Reference]
+
+<img src="http://www.nature.com/pr/journal/v71/n3/images/pr201138f1.gif" alt="unavailable"height=400width=400>
+
   * [http://classconnection.s3.amazonaws.com/184/flashcards/1904184/jpg/21352652550369.jpg Face glands] - see [http://www.studyblue.com/notes/note/n/neuroanatomy-lecture-14-/deck/4433536 Reference]
 
 <img src="http://classconnection.s3.amazonaws.com/184/flashcards/1904184/jpg/21352652550369.jpg" alt="unavailable"height=400width=400>
@@ -95,6 +108,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/AVA.dot.jpg
   * http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders
   * http://jp.physoc.org/content/557/1/287/F9.expansion.html
   * http://www.neurophysiology.ws/autonomicns.htm
+  * http://www.nature.com/pr/journal/v71/n3/fig_tab/pr201138f1.html
   * http://www.studyblue.com/notes/note/n/neuroanatomy-lecture-14-/deck/4433536
 
 = Diagrams =
