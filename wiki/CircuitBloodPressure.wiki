@@ -20,7 +20,8 @@ Circuit is part of aHuman target integrated biological model.
 || [BrainAreaAVA AVA] || [BrainRegionAVA_PN_SG_DRG_TX AVA.PN.SG.DRG.TX] || Thoracic Dorsal Root Ganglia || Sensory Ganglion || touch/proprioception/vibration sensory pathway ||
 || [BrainAreaFMA FMA] || [BrainRegionAVA_PN_SG_NOD AVA.PN.SG.NOD] || Nodose Ganglion || Sensory Ganglion || Integration of afferent signaling from viscera ||
 ||  || [BrainRegionAVA_PN_SG_PET AVA.PN.SG.PET] || Petrosal Ganglion || Sensory Ganglion || Integration of afferent signaling from viscera ||
-|| [BrainAreaAVA AVA] || [BrainRegionAVA_PN_SYM_STG AVA.PN.SYM.STG] || Stellate Ganglion || Symp. Gang. || Heart, Lung ||
+|| [BrainAreaAVA AVA] || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || Superior Cervical Ganglion || Symp. Gang. || Eye, tear and salivatory glands ||
+||  || [BrainRegionAVA_PN_SYM_STG AVA.PN.SYM.STG] || Stellate Ganglion || Symp. Gang. || Heart, Lung ||
 ||  || [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || Intermediolateral Nucleus || Preganglionic Symp. Nucleus || Mediate entire sympathetic innervation of body ||
 || [BrainAreaBFA BFA] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || Excitatory Nucleus || Encoding negative feedback ||
 ||  || [BrainRegionBFA_FD_PNG BFA.FD.PNG] || Pineal Gland || Hormone Nucleus || Control of sexual development ||
@@ -50,7 +51,6 @@ Circuit is part of aHuman target integrated biological model.
 || [BrainAreaPHA PHA] || [BrainRegionPHA_NC_INS_HR PHA.NC.INS.HR] || Anterior Temporal Lobe || Neocortex, BA 15 || Relaying blood pressure and blood chemistry information to brain ||
 ||  || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || Perirhinal Cortex || Neocortex, BA 35 || Associate different visual views of objects and their various nonvisual attributes ||
 || [BrainAreaSMA SMA] || [BrainRegionSMA_FD_TH_VP SMA.FD.TH.VP] || Ventral Posterior Nucleus || Excitatory Nucleus || Relays somatic information to MCA.SSC ||
-|| [BrainAreaFMA FMA] || [BrainRegionVBA_PN_SYM_SCG VBA.PN.SYM.SCG] || Superior Cervical Ganglion || Symp. Gang. || Eye, tear and salivatory glands ||
 
 = Connections =
 (generated)
@@ -66,6 +66,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitBloodPressure.dot.jpg
 ||  || [BrainRegionHMA_HM_TGM_STR HMA.HM.TGM.STR] || ganglion-nucleus || (unknown reference) ||
 || [BrainRegionAVA_PN_SG_NOD AVA.PN.SG.NOD] || [BrainRegionHMA_HM_SOL HMA.HM.SOL] || ganglion-nucleus || (unknown reference) ||
 || [BrainRegionAVA_PN_SG_PET AVA.PN.SG.PET] || [BrainRegionHMA_HM_SOL HMA.HM.SOL] || ganglion-nucleus || (unknown reference) ||
+|| [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || [BrainRegionBFA_FD_PNG BFA.FD.PNG] || ganglion-nucleus || (unknown reference) ||
 || [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || [BrainRegionAVA_PN_SYM_STG AVA.PN.SYM.STG] || nucleus-ganglion || (unknown reference) ||
 || [BrainRegionBFA_FD_HB BFA.FD.HB] || [BrainRegionBFA_FD_PNG BFA.FD.PNG] || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (MHb -> PB)] ||
 ||  || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> SNc)] ||
@@ -81,7 +82,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitBloodPressure.dot.jpg
 || [BrainRegionBGA_FT_GPI BGA.FT.GPI] || [BrainRegionBFA_FD_HB BFA.FD.HB] || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (GPi -> LHb)] ||
 ||  || [BrainRegionBGA_FT_VP BGA.FT.VP] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionBGA_FT_VP BGA.FT.VP] || [BrainRegionBFA_FD_HB BFA.FD.HB] || nucleus-nucleus || (unknown reference) ||
-|| [BrainRegionBMA_SC_LH_LSN BMA.SC.LH.LSN] || [BrainRegionVBA_PN_SYM_SCG VBA.PN.SYM.SCG] || nucleus-ganglion || (unknown reference) ||
+|| [BrainRegionBMA_SC_LH_LSN BMA.SC.LH.LSN] || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || nucleus-ganglion || (unknown reference) ||
 || [BrainRegionBMA_SC_PH_SG BMA.SC.PH.SG] || [BrainRegionSMA_FD_TH_VP SMA.FD.TH.VP] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionFBA_HP_LC FBA.HP.LC] || [BrainRegionBFA_FD_HB BFA.FD.HB] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || [BrainRegionBGA_FT_VP BGA.FT.VP] || nucleus-nucleus || (unknown reference) ||
@@ -91,9 +92,8 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitBloodPressure.dot.jpg
 || [BrainRegionHTA_FD_HT_LT HTA.FD.HT.LT] || [BrainRegionBFA_FD_HB BFA.FD.HB] || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LH -> LHb)] ||
 || [BrainRegionHTA_FD_HT_PO HTA.FD.HT.PO] || [BrainRegionBFA_FD_HB BFA.FD.HB] || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LPO -> LHb)] ||
 || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || [BrainRegionBMA_SC_LH_LSN BMA.SC.LH.LSN] || nucleus-nucleus || (unknown reference) ||
-|| [BrainRegionHTA_FD_HT_SCN HTA.FD.HT.SCN] || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionVBA_PN_SYM_SCG VBA.PN.SYM.SCG] || nucleus-ganglion || (unknown reference) ||
+|| [BrainRegionHTA_FD_HT_SCN HTA.FD.HT.SCN] || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || nucleus-ganglion || (unknown reference) ||
+||  || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionPHA_NC_INS_HR PHA.NC.INS.HR] || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763409002061 Contribution of hippocampal region CA3 to consciousness (AnteriorTemporal -> PRCortex)] ||
 || [BrainRegionSMA_FD_TH_VP SMA.FD.TH.VP] || [BrainRegionPHA_NC_INS_HR PHA.NC.INS.HR] || nucleus-neocortex || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (TH -> INS, abstract)] ||
-|| [BrainRegionVBA_PN_SYM_SCG VBA.PN.SYM.SCG] || [BrainRegionBFA_FD_PNG BFA.FD.PNG] || ganglion-nucleus || (unknown reference) ||
 
