@@ -1811,41 +1811,43 @@
 					function="Coordinate voluntary movements, maintain balance, and learn motor skills"
 					notes="Receive neck and vestibular input and project to CR and vestibular nuclei"
 					/>
+				<element id="BMA.SC.IZ.CBS" name="Centrobasalis Nucleus" mapped="true" type="1-order Sensory Nucleus"
+					refs="NA:Central Nucleus;NL:[http://neurolex.org/wiki/Category:Nucleus_centrobasalis Nucleus centrobasalis]"
+					function="Unconscious proprioception to CR"
+					notes="Upper extremity, relay motor feedback to CR, major site of termination for dorsal root fibers"
+					/>
 				<element id="BMA.SC.IZ.RPL" name="Retroposterolateral Nucleus" mapped="true" type="1-order Motor Nucleus"
 					refs="NA:Retroposterior Lateral Nucleus"
 					function="Innervation of limbs muscles"
 					/>
+
 				<element id="AVA.SC.IZ.IMLC" name="Intermediolateral Column">
-					<element id="AVA.SC.IZ.IML" name="Intermediolateral Nucleus" mapped="true" type="Preganglionic Nucleus"
-						refs="NA:Intermediomedial nucleus;BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&amp;conceptid=FMA%3A73915 Intermediolateral nucleus]"
+					<element id="AVA.SC.IZ.IML" name="Intermediolateral Nucleus" mapped="true" type="Preganglionic Symp. Nucleus"
+						refs="NA:Intermediolateral nucleus;NA:Intermediomedial nucleus;BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&amp;conceptid=FMA%3A73915 Intermediolateral nucleus];BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&amp;conceptid=FMA%3A73918 Intermediomedial nucleus]"
 						function="Mediate entire sympathetic innervation of body"
-						notes="from Lamina VII"
+						notes="from Lamina VII, visceral sensory"
 						/>
-					<element id="VBA.SC.IZ.CS" name="Ciliospinal Center" mapped="true" type="Preganglionic Nucleus"
+					<element id="VBA.SC.IZ.CS" name="Ciliospinal Center" mapped="true" type="Preganglionic Symp. Nucleus"
 						refs="NA:[http://en.wikipedia.org/wiki/Ciliospinal_center Ciliospinal Center]"
 						function="Control of iris dilator muscle"
 						notes="Budge's Center, intermediolateral cell column"
 						/>
 				</element>
-				<element id="AVA.SC.IZ.IMM" name="Intermediomedial Nucleus" mapped="true" type="Symp. Visceral Sensory Nucleus"
-					refs="NA:Intermediolateral nucleus;BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&amp;conceptid=FMA%3A73918 Intermediomedial nucleus]"
-					function="Visceral Sensory"
-					notes="Counterpart of IML"
-					/>
+
 				<element id="BMA.SC.IZ.SPCR" name="Sacral Precerebellar Nucleus" mapped="true" type="1-order Sensory Nucleus"
 					function="Relay unconscious proprioception, motor feedback to CR"
 					notes="Lower extremity and trunk, relay motor feedback to CR"
-					/>
-				<element id="BMA.SC.IZ.CBS" name="Centrobasalis Nucleus" mapped="true" type="1-order Sensory Nucleus"
-					refs="NA:Central Nucleus;NL:[http://neurolex.org/wiki/Category:Nucleus_centrobasalis Nucleus centrobasalis]"
-					function="Unconscious proprioception to CR"
-					notes="Upper extremity, relay motor feedback to CR, major site of termination for dorsal root fibers"
 					/>
 			</element>
 		</element>
 
 		<element id="SC.VH" name="Anterior/Ventral Horn">
 			<element id="SC.VH.L8" name="Lamina VIII">
+				<element id="BMA.SC.VH.LM" name="Ventrolateral Nucleus" mapped="true" type="1-order Motor Nucleus"
+					refs="NA:Anterolateral Nucleus;BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&amp;conceptid=FMA%3A73934 Lateral motor nucleus of spinal cord]"
+					function="Innervation of limb muscles"
+					notes="Upper and lower"
+					/>
 				<element id="BMA.SC.VH.PM" name="Posteromedial Nucleus" mapped="true" type="1-order Motor Nucleus"
 					refs="NA:Posteromedial Nucleus"
 					function="Innervation of trunk muscles"
@@ -1856,19 +1858,9 @@
 					function="Innervation of limb muscles"
 					notes="Upper and lower"
 					/>
-				<element id="BMA.SC.VH.LM" name="Lateral Motor Nucleus" mapped="true" type="1-order Motor Nucleus"
-					refs="NA:Anterolateral Nucleus;BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&amp;conceptid=FMA%3A73934 Lateral motor nucleus of spinal cord]"
-					function="Innervation of limb muscles"
-					notes="Upper and lower"
-					/>
 			</element>
 			<element id="SC.VH.L9" name="Lamina IX">
-				<element id="BMA.SC.VH.MM" name="Medial Motor Nucleus" mapped="true" type="1-order Motor Nucleus"
-					refs="NA:Anteromedial Nucleus;BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&amp;conceptid=FMA%3A73930 Medial motor nucleus of spinal cord]"
-					function="Innervation of trunk muscles"
-					notes="Upper and lower"
-					/>
-				<element id="HMA.SC.VH.ISL" name="Spinal Accessory Nucleus" mapped="true" type="Premotor Nucleus"
+				<element id="HMA.SC.VH.SAN" name="Spinal Accessory Nucleus" mapped="true" type="Premotor Nucleus"
 					refs="NA:Nucleus of Accessory Nerve;NL:[http://neurolex.org/wiki/Category:Accessory_nucleus Accessory nucleus]"
 					function="Control of neck"
 					notes="Rotate head, continuus from AMB"
@@ -1877,6 +1869,11 @@
 					refs="NA:Nucleus of Phrenic Nerve;NL:[http://neurolex.org/wiki/Category:Phrenic_nucleus Phrenic nucleus]"
 					function="Innervation of diaphragm"
 					notes="Projections from Nucleus Solitarius"
+					/>
+				<element id="BMA.SC.VH.MM" name="Medial Motor Nucleus" mapped="true" type="1-order Motor Nucleus"
+					refs="NA:Anteromedial Nucleus;BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&amp;conceptid=FMA%3A73930 Medial motor nucleus of spinal cord]"
+					function="Innervation of trunk muscles"
+					notes="Upper and lower"
 					/>
 				<element id="AVA.SC.VH.ONF" name="Onuf's Nucleus" mapped="true" type="Preganglionic Nucleus"
 					refs="NA:Lumbosacral Nucleus;NL:[http://neurolex.org/wiki/Category:Onuf%27s_nucleus Onuf's nucleus]"
