@@ -29,6 +29,7 @@ Circuit is part of aHuman target integrated biological model.
 || [BrainAreaFBA FBA] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || Ventral Tegmental Area || Excitatory Nucleus || Respond to novel stimuli, unexpected rewards, and reward predictive sensory cues ||
 || [BrainAreaFCA FCA] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || Neocortex, BA 10,11,12 || Personality ||
 || [BrainAreaHBA HBA] || [BrainRegionHBA_FD_TH_RH HBA.FD.TH.RH] || Rhomboidal Nucleus of Thalamus || Excitatory Nucleus || Communication of information across memory delays to guide memory responses ||
+|| [BrainAreaMBA MBA] || [BrainRegionMBA_MM_SC_DEEP MBA.MM.SC.DEEP] || Deep Superior Colliculus || Sensory Control Nucleus || Head and eye attention to non-visual stimuli ||
 || [BrainAreaMCA MCA] || [BrainRegionMCA_FD_TH_VA MCA.FD.TH.VA] || Ventral Anterior Nucleus || Excitatory Nucleus || Relay BGA.SN, BGA.GPI, FCA.OMPFC, FCA.CG to MCA.PMC, MCA.SMC ||
 ||  || [BrainRegionMCA_FD_TH_VL MCA.FD.TH.VL] || Ventral Lateral Nucleus || Excitatory Nucleus || Relay BSA.CR to MCA.MC ||
 ||  || [BrainRegionMCA_NC_MC MCA.NC.MC] || Motor Cortex || Neocortex, BA 04 || Execution of required voluntary movements ||
@@ -39,7 +40,6 @@ Circuit is part of aHuman target integrated biological model.
 || [BrainAreaSMA SMA] || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || Somatosensory Cortex || Neocortex, BA 01,02,03 || Muscle and skin receptors ||
 ||  || [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || Caudal Precuneus || Neocortex, BA 07 || Controlling spatially guided behavior with respect to visual and tactile information ||
 || [BrainAreaVBA VBA] || [BrainRegionVBA_FD_LGN VBA.FD.LGN] || Lateral Geniculate Nucleus || Sensory Relay Nucleus || Temporal decorrelation ||
-||  || [BrainRegionVBA_MM_SC_DEEP VBA.MM.SC.DEEP] || Deep Superior Colliculus || Sensory Control Nucleus || Head and eye attention to non-visual stimuli ||
 
 = Connections =
 (generated)
@@ -76,18 +76,19 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitPlannedActions.dot.jpg
 ||  || [BrainRegionBGA_FT_PU BGA.FT.PU] || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (SNC -> PU)] ||
 || [BrainRegionBGA_FT_SN_PR BGA.FT.SN.PR] || [BrainRegionBGA_FD_TH_PF BGA.FD.TH.PF] || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (BG -> Thalamus, abstract)] ||
 ||  || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || nucleus-nucleus || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (SNr -> SNc)] ||
+||  || [BrainRegionMBA_MM_SC_DEEP MBA.MM.SC.DEEP] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SNr -> SCi, abstract)] ||
 ||  || [BrainRegionMCA_FD_TH_VA MCA.FD.TH.VA] || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sVA -> VA, abstract)] ||
-||  || [BrainRegionVBA_MM_SC_DEEP VBA.MM.SC.DEEP] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SNr -> SCi, abstract)] ||
 || [BrainRegionBGA_FT_VP BGA.FT.VP] || [BrainRegionBGA_HP_PPN BGA.HP.PPN] || nucleus-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning (VPAL -> PPTG)] ||
 ||  || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || nucleus-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (VPAL -> VTA)] ||
 || [BrainRegionBGA_HP_PPN BGA.HP.PPN] || [BrainRegionBGA_FD_STN BGA.FD.STN] || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionMBA_MM_SC_DEEP MBA.MM.SC.DEEP] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (PPN -> SC, abstract)] ||
 ||  || [BrainRegionVBA_FD_LGN VBA.FD.LGN] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (PPN -> LGN)] ||
-||  || [BrainRegionVBA_MM_SC_DEEP VBA.MM.SC.DEEP] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (PPN -> SC, abstract)] ||
 || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || nucleus-neocortex || [http://highered.mcgraw-hill.com/sites/dl/free/0071402357/156721/figure350_1.html Principal Connections of Hippocampus (AN -> VentralCingulate)] ||
 || [BrainRegionCGA_NC_PACG CGA.NC.PACG] || [BrainRegionBGA_FT_PU BGA.FT.PU] || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> BGA, abstract)] ||
 || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || [BrainRegionBGA_FT_CN BGA.FT.CN] || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> BGA, abstract)] ||
 || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionBGA_FT_ACC BGA.FT.ACC] || nucleus-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (VTA -> NACC)] ||
 || [BrainRegionHBA_FD_TH_RH HBA.FD.TH.RH] || [BrainRegionBGA_FT_CN BGA.FT.CN] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionMBA_MM_SC_DEEP MBA.MM.SC.DEEP] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCi -> SNc, abstract)] ||
 || [BrainRegionMCA_FD_TH_VL MCA.FD.TH.VL] || [BrainRegionMCA_NC_PMC_F5 MCA.NC.PMC.F5] || nucleus-neocortex || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (VLo -> PMC, abstract)] ||
 || [BrainRegionMCA_NC_MC MCA.NC.MC] || [BrainRegionBGA_FD_STN BGA.FD.STN] || neocortex-nucleus || (unknown reference) ||
 ||  || [BrainRegionBGA_FT_PU BGA.FT.PU] || neocortex-nucleus || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (M1 -> PU)] ||
@@ -97,5 +98,4 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitPlannedActions.dot.jpg
 || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || [BrainRegionBGA_FT_PU BGA.FT.PU] || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (F6 -> BG, abstract)] ||
 || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || [BrainRegionBGA_FT_PU BGA.FT.PU] || neocortex-nucleus || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (S1 -> PU)] ||
 || [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || neocortex-neocortex || [http://thebrainlabs.com/brain.shtml Movement Planning (PPC -> SMC, abstract)] ||
-|| [BrainRegionVBA_MM_SC_DEEP VBA.MM.SC.DEEP] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCi -> SNc, abstract)] ||
 

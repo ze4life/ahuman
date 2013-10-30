@@ -21,6 +21,7 @@ Circuit is part of aHuman target integrated biological model.
 || [BrainAreaFCA FCA] || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || Mediodorsal Nucleus of Thalamus || Excitatory Nucleus || Attention, planning, organization, abstract thinking, multi-tasking, and active memory ||
 ||  || [BrainRegionFCA_NC_IPG FCA.NC.IPG] || Inferior Prefrontal Gyrus || Neocortex, BA 47 || Processing of syntax in oral and sign languages ||
 ||  || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || Dorsolateral Prefrontal Cortex || Neocortex, BA 09,46 || Temporal Integration ||
+|| [BrainAreaMBA MBA] || [BrainRegionMBA_MM_SC_DEEP MBA.MM.SC.DEEP] || Deep Superior Colliculus || Sensory Control Nucleus || Head and eye attention to non-visual stimuli ||
 || [BrainAreaMCA MCA] || [BrainRegionMCA_FD_TH_VA MCA.FD.TH.VA] || Ventral Anterior Nucleus || Excitatory Nucleus || Relay BGA.SN, BGA.GPI, FCA.OMPFC, FCA.CG to MCA.PMC, MCA.SMC ||
 ||  || [BrainRegionMCA_NC_MC MCA.NC.MC] || Motor Cortex || Neocortex, BA 04 || Execution of required voluntary movements ||
 ||  || [BrainRegionMCA_NC_PMC_F2 MCA.NC.PMC.F2] || Dorsal Caudal Premotor Cortex || Neocortex, BA 06 || Guiding reaching ||
@@ -32,7 +33,6 @@ Circuit is part of aHuman target integrated biological model.
 || [BrainAreaPHA PHA] || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || Anterior Insular Cortex || Neocortex, BA 14 || Risky and moral decision making, articulation ||
 ||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || Neocortex, BA 28 || Memory consolidation ||
 ||  || [BrainRegionPHA_NC_TPC PHA.NC.TPC] || Temporopolar Cortex || Neocortex, BA 38 || Self representation, semantic (left) and autobiographic (right) ||
-|| [BrainAreaVBA VBA] || [BrainRegionVBA_MM_SC_DEEP VBA.MM.SC.DEEP] || Deep Superior Colliculus || Sensory Control Nucleus || Head and eye attention to non-visual stimuli ||
 || [BrainAreaVCA VCA] || [BrainRegionVCA_NC_IPL_MST VCA.NC.IPL.MST] || Medial Superior Temporal Area || Neocortex, BA 39 || Image stabilization, predictive target tracking ||
 ||  || [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || Inferotemporal Cortex || Neocortex, BA 20 || Represent different views of objects ||
 
@@ -54,6 +54,8 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitCognition.dot.jpg
 || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || [BrainRegionCGA_NC_DACG CGA.NC.DACG] || neocortex-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (DLPFC -> dACC)] ||
 ||  || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || neocortex-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s3MD -> MD, abstract)] ||
 ||  || [BrainRegionMCA_NC_PMC_F7 MCA.NC.PMC.F7] || neocortex-neocortex || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (LPFC -> PMC, abstract)] ||
+|| [BrainRegionMBA_MM_SC_DEEP MBA.MM.SC.DEEP] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCi -> ATH, abstract)] ||
+||  || [BrainRegionMCA_FD_TH_VA MCA.FD.TH.VA] || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (SCi -> Thalamus, abstract)] ||
 || [BrainRegionMCA_FD_TH_VA MCA.FD.TH.VA] || [BrainRegionMCA_NC_PMC_F2 MCA.NC.PMC.F2] || nucleus-neocortex || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (TH -> PMC, abstract)] ||
 ||  || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (VA -> pVA)] ||
 || [BrainRegionMCA_NC_MC MCA.NC.MC] || [BrainRegionMCA_NC_PMC_F2 MCA.NC.PMC.F2] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1053810011000080 Cortico-Cortical Connectivity (M1 -> MA, abstract)] ||
@@ -67,8 +69,6 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitCognition.dot.jpg
 || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || neocortex-neocortex || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (INS -> ACG, abstract)] ||
 ||  || [BrainRegionFCA_NC_IPG FCA.NC.IPG] || neocortex-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (Insula -> fPole, abstract)] ||
 || [BrainRegionPHA_NC_TPC PHA.NC.TPC] || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || neocortex-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (tPole -> Insula, abstract)] ||
-|| [BrainRegionVBA_MM_SC_DEEP VBA.MM.SC.DEEP] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCi -> ATH, abstract)] ||
-||  || [BrainRegionMCA_FD_TH_VA MCA.FD.TH.VA] || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (SCi -> Thalamus, abstract)] ||
 || [BrainRegionVCA_NC_IPL_MST VCA.NC.IPL.MST] || [BrainRegionCGA_NC_DACG CGA.NC.DACG] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> FrontalCortex, abstract)] ||
 || [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (IT -> LPC, abstract)] ||
 
