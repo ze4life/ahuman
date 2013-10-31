@@ -222,11 +222,16 @@
 
 	<!-- ================= somatic perception =============== -->
 	<circuit id="CircuitSomaticPerception" name="Somatic Perception" enabled="true">
-		<connection type="nucleus-nucleus" primary="true" src="BMA.SC.IZ.CCV" dst="SMA.FD.TH.VP"/>
+		<connection type="nucleus-nucleus" primary="true" src="BMA.SC.IZ.CCV" dst="SMA.FD.TH.VPL"/>
 		<connection type="nucleus-nucleus" primary="true" src="BMA.SC.IZ.CCV" dst="SMA.FD.TH.RIL"/>
 		<connection type="nucleus-nucleus" primary="true" src="MBA.HP.CR" dst="SMA.FD.TH.RIL"/>
-		<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PTP.PTR" dst="SMA.FD.TH.VP"/>
-		<connection type="nucleus-neocortex" primary="true" src="SMA.FD.TH.VP" dst="PHA.NC.INS.PIC"/>
+		<connection type="nucleus-nucleus" primary="true" src="BMA.SC.PH.MG" dst="SMA.FD.TH.VPL"/>
+		<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PTP.PTR" dst="SMA.FD.TH.VPM"/>
+		<connection type="nucleus-neocortex" primary="true" src="SMA.FD.TH.VPL" dst="SMA.NC.PG.S1"/>
+		<connection type="nucleus-neocortex" primary="true" src="SMA.FD.TH.VPM" dst="SMA.NC.PG.S1"/>
+		<connection type="nucleus-neocortex" primary="true" src="SMA.FD.TH.VPM" dst="SMA.NC.PO.PCC"/>
+		<connection type="nucleus-neocortex" primary="true" src="SMA.FD.TH.VPM" dst="PHA.NC.INS.PIC"/>
+		<connection type="nucleus-neocortex" primary="true" src="SMA.FD.TH.VPI" dst="PHA.NC.INS.PIC"/>
 		<connection type="nucleus-neocortex" primary="true" src="SMA.FD.TH.RIL" dst="SMA.NC.SPL.SA"/>
 		<connection type="neocortex-neocortex" primary="true" src="SMA.NC.PG.S1" dst="SMA.NC.SPL.SA"/>
 		<connection type="neocortex-neocortex" primary="true" src="SMA.NC.PG.S1" dst="ACA.NC.IPL.SMW"/>
@@ -264,7 +269,7 @@
 		<connection type="nucleus-neocortex" primary="true" src="BFA.FT.AM" dst="CGA.NC.MPL.PCG"/>
 		<connection type="nucleus-neocortex" primary="true" src="BFA.FT.AM" dst="CGA.NC.VACG"/>
 		<connection type="nucleus-nucleus" primary="true" src="BFA.FT.AM" dst="HTA.FD.HT.PV"/>
-		<connection type="nucleus-nucleus" primary="true" src="BMA.SC.PH.MG" dst="SMA.FD.TH.VP"/>
+		<connection type="nucleus-nucleus" primary="true" src="BMA.SC.PH.MG" dst="SMA.FD.TH.VPI"/>
 		<connection type="allocortex-nucleus" primary="true" src="HBA.FT.SC.SUB" dst="HTA.FD.HT.PV"/>
 		<connection type="nucleus-nucleus" primary="true" src="HTA.FD.HT.PV" dst="CGA.FD.TH.AN"/>
 		<connection type="nucleus-nucleus" primary="true" src="HTA.FD.HT.RCH" dst="MBA.HP.PN.RP"/>
@@ -547,14 +552,15 @@
 		<connection type="nucleus-neocortex" primary="true" src="PHA.FT.EPF" dst="PHA.NC.INS.AIC"/>
 		<connection type="neocortex-neocortex" primary="true" src="PHA.NC.INS.AIC" dst="PHA.NC.PH.PRR"/>
 		<connection type="nucleus-nucleus" primary="true" src="HMA.HM.SOL" dst="BMA.HP.PB"/>
-		<connection type="nucleus-nucleus" primary="true" src="BMA.HP.PB" dst="SMA.FD.TH.VP"/>
+		<connection type="nucleus-nucleus" primary="true" src="BMA.HP.PB" dst="SMA.FD.TH.VPI"/>
 		<connection type="nucleus-neocortex" primary="true" src="BMA.HP.PB" dst="PHA.NC.INS.PIC"/>
-		<connection type="nucleus-neocortex" primary="true" src="SMA.FD.TH.VP" dst="PHA.NC.INS.PIC"/>
+		<connection type="nucleus-neocortex" primary="true" src="SMA.FD.TH.VPI" dst="PHA.NC.INS.PIC"/>
 		<connection type="neocortex-allocortex" primary="true" src="PHA.NC.PH.PRR" dst="HBA.FT.DG"/>
 		<connection type="neocortex-nucleus" primary="true" src="PHA.NC.PH.PIR" dst="FCA.FD.TH.MD"/>
-		<connection type="nucleus-nucleus" primary="true" src="HMA.HM.SOL" dst="SMA.FD.TH.VP" notes="to VPMpc"/>
-		<connection type="nucleus-neocortex" primary="true" src="SMA.FD.TH.VP" dst="ACA.NC.PRI"/>
-		<connection type="nucleus-neocortex" primary="true" src="SMA.FD.TH.VP" dst="SMA.NC.PO.PCC"/>
+		<connection type="nucleus-nucleus" primary="true" src="HMA.HM.SOL" dst="SMA.FD.TH.VPM" notes="to VPMpc"/>
+		<connection type="nucleus-nucleus" primary="true" src="BMA.HP.PB" dst="SMA.FD.TH.VPM"/>
+		<connection type="nucleus-neocortex" primary="true" src="SMA.FD.TH.VPM" dst="ACA.NC.PRI"/>
+		<connection type="nucleus-neocortex" primary="true" src="SMA.FD.TH.VPL" dst="SMA.NC.PO.PCC"/>
 		<connection type="neocortex-neocortex" primary="true" src="CGA.NC.SPL.PF" dst="SMA.NC.PO.PCC"/>
 		<connection type="neocortex-nucleus" primary="true" src="SMA.NC.PO.PCC" dst="BFA.FT.AM"/>
 		<connection type="neocortex-neocortex" primary="true" src="SMA.NC.PO.PCC" dst="FCA.NC.OMPFC"/>
@@ -633,8 +639,8 @@
 		<connection type="nucleus-nucleus" primary="true" src="MBA.HP.CR" dst="MCA.FD.TH.VL"/>
 		<connection type="nucleus-nucleus" primary="true" src="BGA.FT.GPI" dst="MCA.FD.TH.VL"/>
 		<connection type="nucleus-neocortex" primary="true" src="MCA.FD.TH.VL" dst="MCA.NC.MC"/>
-		<connection type="nucleus-neocortex" primary="true" src="SMA.FD.TH.VP" dst="SMA.NC.PG.S1"/>
-		<connection type="nucleus-nucleus" primary="true" src="HMA.MM.MSTR" dst="SMA.FD.TH.VP" notes="to VPM"/>
+		<connection type="nucleus-neocortex" primary="true" src="SMA.FD.TH.VPL" dst="SMA.NC.PG.S1"/>
+		<connection type="nucleus-nucleus" primary="true" src="HMA.MM.MSTR" dst="SMA.FD.TH.VPM" notes="to VPM"/>
 		<connection type="neocortex-neocortex" primary="true" src="MCA.NC.MC" dst="SMA.NC.PG.S1"/>
 		<connection type="neocortex-neocortex" primary="true" src="SMA.NC.PG.S1" dst="MCA.NC.SMC" notes="to F3"/>
 		<connection type="neocortex-neocortex" primary="true" src="SMA.NC.PG.S1" dst="PHA.NC.PH.PRR"/>
@@ -691,8 +697,8 @@
 
 	<!-- ================= life-cycle support =============== -->
 	<circuit id="CircuitBloodPressure" name="Blood Pressure Control" enabled="true">
-		<connection type="nucleus-nucleus" primary="true" src="HMA.HM.SOL" dst="SMA.FD.TH.VP" comment="Carotid Synus -> Inferior Ganglion IX -> SOL"/>
-		<connection type="nucleus-neocortex" primary="true" src="SMA.FD.TH.VP" dst="PHA.NC.INS.HR"/>
+		<connection type="nucleus-nucleus" primary="true" src="HMA.HM.SOL" dst="SMA.FD.TH.VPL" comment="Carotid Synus -> Inferior Ganglion IX -> SOL"/>
+		<connection type="nucleus-neocortex" primary="true" src="SMA.FD.TH.VPL" dst="PHA.NC.INS.HR"/>
 		<connection type="neocortex-neocortex" primary="true" src="PHA.NC.INS.HR" dst="PHA.NC.PH.PRR"/>
 		<connection type="allocortex-nucleus" primary="true" src="HBA.FT.HC.CA1" dst="HTA.FD.HT.PO"/>
 		<connection type="nucleus-nucleus" primary="true" src="BFA.FT.SEP" dst="HTA.FD.HT.PO"/>
@@ -728,7 +734,7 @@
 		<connection type="ganglion-nucleus" primary="true" src="AVA.PN.SG.PET" dst="HMA.HM.SOL"/>
 		<connection type="ganglion-nucleus" primary="true" src="AVA.PN.SG.DRG.TX" dst="HMA.HM.TGM.STR"/>
 		<connection type="ganglion-nucleus" primary="true" src="AVA.PN.SG.DRG.TX" dst="BMA.SC.PH.SG"/>
-		<connection type="nucleus-nucleus" primary="true" src="BMA.SC.PH.SG" dst="SMA.FD.TH.VP"/>
+		<connection type="nucleus-nucleus" primary="true" src="BMA.SC.PH.SG" dst="SMA.FD.TH.VPI"/>
 	</circuit>
 
 	<circuit id="CircuitSleepWakeCycle" name="Sleep-Wake Cycle" enabled="true">
