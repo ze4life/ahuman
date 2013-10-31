@@ -27,7 +27,9 @@ Circuit is part of aHuman target integrated biological model.
 ||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || Neocortex, BA 28 || Memory consolidation ||
 ||  || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || Piriform Cortex || Neocortex, BA 34 || Perception of smells ||
 ||  || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || Perirhinal Cortex || Neocortex, BA 35 || Associate different visual views of objects and their various nonvisual attributes ||
-|| [BrainAreaSMA SMA] || [BrainRegionSMA_FD_TH_VP SMA.FD.TH.VP] || Ventral Posterior Nucleus || Excitatory Nucleus || Relays somatic information to MCA.SSC ||
+|| [BrainAreaSMA SMA] || [BrainRegionSMA_FD_TH_VPI SMA.FD.TH.VPI] || Ventral Posteroinferior Nucleus || Excitatory Nucleus || Relays pain and temperature from body to insula ||
+||  || [BrainRegionSMA_FD_TH_VPL SMA.FD.TH.VPL] || Ventral Posterolateral Nucleus || Excitatory Nucleus || Relays somatic information from body to S1 ||
+||  || [BrainRegionSMA_FD_TH_VPM SMA.FD.TH.VPM] || Ventral Posteromedial Nucleus || Excitatory Nucleus || Relays somatic information from face to S1 ||
 ||  || [BrainRegionSMA_NC_PO_PCC SMA.NC.PO.PCC] || Precentral Cortex || Neocortex, BA 43 || Gustatory cortical area, taste reception ||
 
 = Connections =
@@ -38,10 +40,10 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitGustatoryOlfactory.dot
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionAVA_PN_SG_GNG AVA.PN.SG.GNG] || [BrainRegionHMA_HM_TGM_STR HMA.HM.TGM.STR] || ganglion-nucleus || (unknown reference) ||
 || [BrainRegionBMA_HP_PB BMA.HP.PB] || [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PB -> Gud, abstract)] ||
-||  || [BrainRegionSMA_FD_TH_VP SMA.FD.TH.VP] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PB -> VPMpc)] ||
+||  || [BrainRegionSMA_FD_TH_VPI SMA.FD.TH.VPI] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionCGA_NC_SPL_PF CGA.NC.SPL.PF] || [BrainRegionSMA_NC_PO_PCC SMA.NC.PO.PCC] || neocortex-neocortex || (unknown reference) ||
 || [BrainRegionHMA_HM_SOL HMA.HM.SOL] || [BrainRegionBMA_HP_PB BMA.HP.PB] || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (SOL -> PB)] ||
-||  || [BrainRegionSMA_FD_TH_VP SMA.FD.TH.VP] || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sVPM -> VPM)] ||
+||  || [BrainRegionSMA_FD_TH_VPM SMA.FD.TH.VPM] || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sVPM -> VPM)] ||
 || [BrainRegionPHA_FT_AON PHA.FT.AON] || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S1571064507000243 KIV model of cortico-hippocampal formation with subcortical projections for motor actions (AON -> PC)] ||
 || [BrainRegionPHA_FT_EPF PHA.FT.EPF] || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (EnP -> Iav, abstract)] ||
 || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (Iav -> PrC, abstract)] ||
@@ -50,9 +52,9 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitGustatoryOlfactory.dot
 ||  || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PiR -> Iav, abstract)] ||
 ||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1571064507000243 KIV model of cortico-hippocampal formation with subcortical projections for motor actions (PC -> EC)] ||
 || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || [BrainRegionHBA_FT_DG HBA.FT.DG] || neocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PrC -> HF, abstract)] ||
-|| [BrainRegionSMA_FD_TH_VP SMA.FD.TH.VP] || [BrainRegionACA_NC_PRI ACA.NC.PRI] || nucleus-neocortex || (unknown reference) ||
-||  || [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || nucleus-neocortex || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (TH -> INS, abstract)] ||
-||  || [BrainRegionSMA_NC_PO_PCC SMA.NC.PO.PCC] || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (VPM -> pVPM)] ||
+|| [BrainRegionSMA_FD_TH_VPI SMA.FD.TH.VPI] || [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || nucleus-neocortex || [http://users.atw.hu/blp6/BLP6/HTML/C0079780323045827.htm Pain matrix (TH.VPI -> INS)] ||
+|| [BrainRegionSMA_FD_TH_VPL SMA.FD.TH.VPL] || [BrainRegionSMA_NC_PO_PCC SMA.NC.PO.PCC] || nucleus-neocortex || (unknown reference) ||
+|| [BrainRegionSMA_FD_TH_VPM SMA.FD.TH.VPM] || [BrainRegionACA_NC_PRI ACA.NC.PRI] || nucleus-neocortex || (unknown reference) ||
 || [BrainRegionSMA_NC_PO_PCC SMA.NC.PO.PCC] || [BrainRegionBFA_FT_AM BFA.FT.AM] || neocortex-nucleus || (unknown reference) ||
 ||  || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> FrontalCortex, abstract)] ||
 
