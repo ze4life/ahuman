@@ -12,6 +12,7 @@ Circuit is part of aHuman target integrated biological model.
 || *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||
 || [BrainAreaACA ACA] || [BrainRegionACA_NC_IPL_SMW ACA.NC.IPL.SMW] || Supramarginal Wernike Cortex || Neocortex, BA 40 || Phonological and articulatory processing of words ||
 || [BrainAreaBMA BMA] || [BrainRegionBMA_SC_IZ_CCV BMA.SC.IZ.CCV] || Central Cervical Nucleus || 1-order Sensory Nucleus || Coordinate voluntary movements, maintain balance, and learn motor skills ||
+||  || [BrainRegionBMA_SC_PH_MG BMA.SC.PH.MG] || Marginal Nucleus || 1-order Sensory Nucleus || Relay information related to pain and temperature sensation ||
 || [BrainAreaCGA CGA] || [BrainRegionCGA_NC_SPL_PF CGA.NC.SPL.PF] || Rostral Precuneus || Neocortex, BA 07 || Spatial orientation, representation of the self ||
 || [BrainAreaHMA HMA] || [BrainRegionHMA_HP_PTP_PTR HMA.HP.PTP.PTR] || Principal Trigeminal Nucleus || 1-order Sensory Nucleus || Facial Somatic Sensations ||
 || [BrainAreaMBA MBA] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || Excitatory Nucleus || Motor coordination ||
@@ -25,6 +26,7 @@ Circuit is part of aHuman target integrated biological model.
 ||  || [BrainRegionSMA_FD_TH_VPL SMA.FD.TH.VPL] || Ventral Posterolateral Nucleus || Excitatory Nucleus || Relays somatic information from body to S1 ||
 ||  || [BrainRegionSMA_FD_TH_VPM SMA.FD.TH.VPM] || Ventral Posteromedial Nucleus || Excitatory Nucleus || Relays somatic information from face to S1 ||
 ||  || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || Somatosensory Cortex || Neocortex, BA 01,02,03 || Muscle and skin receptors ||
+||  || [BrainRegionSMA_NC_PO_PCC SMA.NC.PO.PCC] || Precentral Cortex || Neocortex, BA 43 || Gustatory cortical area, taste reception ||
 ||  || [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || Caudal Precuneus || Neocortex, BA 07 || Controlling spatially guided behavior with respect to visual and tactile information ||
 ||  || [BrainRegionSMA_NC_SPL_SA SMA.NC.SPL.SA] || Somatosensory Association Cortex || Neocortex, BA 05 || Locating objects in space ||
 
@@ -36,6 +38,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitSomaticPerception.dot.
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionBMA_SC_IZ_CCV BMA.SC.IZ.CCV] || [BrainRegionSMA_FD_TH_RIL SMA.FD.TH.RIL] || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionSMA_FD_TH_VPL SMA.FD.TH.VPL] || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s1P -> P, abstract)] ||
+|| [BrainRegionBMA_SC_PH_MG BMA.SC.PH.MG] || [BrainRegionSMA_FD_TH_VPL SMA.FD.TH.VPL] || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sVPL -> VPL)] ||
 || [BrainRegionHMA_HP_PTP_PTR HMA.HP.PTP.PTR] || [BrainRegionSMA_FD_TH_VPM SMA.FD.TH.VPM] || nucleus-nucleus || [http://www.lookfordiagnosis.com/mesh_info.php?term=Trigeminal+Nucleilang=1 Trigeminal Nuclei (CSN -> VPM)] ||
 || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionSMA_FD_TH_RIL SMA.FD.TH.RIL] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionMCA_NC_PMC_F7 MCA.NC.PMC.F7] || [BrainRegionSMA_NC_SPL_SA SMA.NC.SPL.SA] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1053810011000080 Cortico-Cortical Connectivity (MA -> SA, abstract)] ||
@@ -45,6 +48,10 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitSomaticPerception.dot.
 || [BrainRegionSMA_FD_TH_LP SMA.FD.TH.LP] || [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (LP -> pLP, abstract)] ||
 || [BrainRegionSMA_FD_TH_RIL SMA.FD.TH.RIL] || [BrainRegionSMA_NC_SPL_SA SMA.NC.SPL.SA] || nucleus-neocortex || (unknown reference) ||
 || [BrainRegionSMA_FD_TH_VPI SMA.FD.TH.VPI] || [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || nucleus-neocortex || [http://users.atw.hu/blp6/BLP6/HTML/C0079780323045827.htm Pain matrix (TH.VPI -> INS)] ||
+|| [BrainRegionSMA_FD_TH_VPL SMA.FD.TH.VPL] || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || nucleus-neocortex || [http://users.atw.hu/blp6/BLP6/HTML/C0079780323045827.htm Pain matrix (TH.VPL -> S1)] ||
+|| [BrainRegionSMA_FD_TH_VPM SMA.FD.TH.VPM] || [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || nucleus-neocortex || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (TH -> INS, abstract)] ||
+||  || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || nucleus-neocortex || [http://users.atw.hu/blp6/BLP6/HTML/C0079780323045827.htm Pain matrix (TH.VPM -> S1)] ||
+||  || [BrainRegionSMA_NC_PO_PCC SMA.NC.PO.PCC] || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (VPM -> pVPM)] ||
 || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || [BrainRegionACA_NC_IPL_SMW ACA.NC.IPL.SMW] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1053810011000080 Cortico-Cortical Connectivity (S1 -> PTHA, abstract)] ||
 ||  || [BrainRegionSMA_FD_PV_OPV SMA.FD.PV.OPV] || neocortex-nucleus || (unknown reference) ||
 ||  || [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || neocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (SomSensCortex -> PosteriorParietalCortex)] ||
