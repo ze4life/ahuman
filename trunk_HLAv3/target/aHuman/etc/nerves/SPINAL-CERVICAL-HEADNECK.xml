@@ -27,37 +27,6 @@
 		<element name="head and neck cervical nerves, sensory"
 			imgsrc="http://1.bp.blogspot.com/-xcHyQKvK2K0/Tf9bFTmZkhI/AAAAAAAAH5o/7YzfCwbmWok/s1600/Great_Auricular_Nerve.JPG"
 			>
-			<element name="suboccipital nerve"
-				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne58.htm C1 NERVE]; infraoccipital nerve"
-				origin="dorsal branch of C1 nerve"
-				distribution="proprioception; emerges above posterior arch of atlas and supplies muscles of suboccipital triangle and semispinal muscle of head"
-				imgsrc="http://www.uptomed.ir/Digimed.ir/Williams-Atlas-Anatomy/Williams_Atlas_Anatomy/1%20-%20The%20Back_files/C1FF16.png"
-				modality="sensory"
-				>
-				<fibers type="GVA" src="TARGET.TEA.NECK" dst="SMA.FD.TH.VPI"><mid id="BMA.SC.PH.SG"/></fibers>
-			</element>
-			<element name="great auricular nerve"
-				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/greaterauricular.htm GREATER AURICULAR NERVE]"
-				origin="cervical PLEXUS, C2/C3"
-				distribution="skin over parotid gland and mastoid process, and both surfaces of auricle"
-				>
-				<element name="great auricular nerve, anterior branch"
-					origin="C2"
-					distribution="face; anterior branch is sensory to facial skin over the parotid gland"
-					modality="sensory"
-					>
-					<fibers type="GSA" src="TARGET.TEA.FACE" dst="BMA.HM.CU"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
-					<fibers type="GVA" src="TARGET.TEA.FACE" dst="SMA.FD.TH.VPM"><mid id="BMA.SC.PH.SG"/></fibers>
-				</element>
-				<element name="great auricular nerve, posterior branch"
-					origin="C3"
-					distribution="ear; posterior branch supplies the skin over the mastoid process, back of the auricle, lobule and a portion of the scalp"
-					modality="sensory"
-					>
-					<fibers type="GSA" src="TARGET.TSA.EAR" dst="BMA.HM.CU"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
-					<fibers type="GVA" src="TARGET.TSA.EAR" dst="SMA.FD.TH.VPM"><mid id="BMA.SC.PH.SG"/></fibers>
-				</element>
-			</element>
 			<element name="cervical nerve, transverse"
 				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/transversecervical.htm TRANSVERSE CERVICAL NERVE]; cutaneous nerve of neck, anterior"
 				imgsrc="http://studydroid.com/imageCards/05/er/card-5729362-front.jpg"
@@ -66,7 +35,44 @@
 				modality="general sensory"
 				>
 				<fibers type="GSA" src="TARGET.TEA.NECK" dst="SMA.FD.TH.VPL"><mid id="AVA.PN.SG.DRG.CX"/><mid id="BMA.HM.CU"/></fibers>
-				<fibers type="GVA" src="TARGET.TEA.NECK" dst="SMA.FD.TH.VPI"><mid id="BMA.SC.PH.SG"/></fibers>
+				<fibers type="GVA" src="TARGET.TEA.NECK" dst="SMA.FD.TH.VPI"><mid id="BMA.SC.PH.MG"/></fibers>
+				<fibers type="GVA" src="TARGET.TEA.NECK" dst="BMA.SC.PH.SG"></fibers>
+			</element>
+			<element name="great auricular nerve"
+				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/greaterauricular.htm GREATER AURICULAR NERVE]"
+				origin="cervical PLEXUS, C2/C3"
+				distribution="skin over parotid gland and mastoid process, and both surfaces of auricle"
+				imgsrc="http://www.edoctoronline.com/media/19/photos_DA5CB8B5-9C1A-4DFA-B179-B31F65C94A2F.jpg"
+				>
+				<element name="great auricular nerve, anterior branch"
+					origin="C2"
+					distribution="face; anterior branch is sensory to facial skin over the parotid gland"
+					modality="sensory"
+					>
+					<fibers type="GSA" src="TARGET.TEA.FACE" dst="BMA.HM.CU"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
+					<fibers type="GVA" src="TARGET.TEA.FACE" dst="SMA.FD.TH.VPI"><mid id="BMA.SC.PH.MG"/></fibers>
+					<fibers type="GVA" src="TARGET.TEA.FACE" dst="BMA.SC.PH.SG"></fibers>
+				</element>
+				<element name="great auricular nerve, posterior branch"
+					origin="C3"
+					distribution="ear; posterior branch supplies the skin over the mastoid process, back of the auricle, lobule and a portion of the scalp"
+					modality="sensory"
+					>
+					<fibers type="GSA" src="TARGET.TSA.EAR" dst="BMA.HM.CU"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
+					<fibers type="GVA" src="TARGET.TSA.EAR" dst="SMA.FD.TH.VPI"><mid id="BMA.SC.PH.MG"/></fibers>
+					<fibers type="GVA" src="TARGET.TSA.EAR" dst="BMA.SC.PH.SG"></fibers>
+				</element>
+			</element>
+			<element name="jugular nerve, sensory"
+				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne299.htm JUGULAR NERVE]"
+				origin="a branch of the superior cervical GANGLION"
+				distribution="communicates with the vagus and glossopharyngeal nerves; jugular nerve, passes upward to the base of the skull, and divides to join the petrous ganglion of the glossopharyngeal, and the jugular ganglion of the vagus"
+				imgsrc="http://bedahunmuh.files.wordpress.com/2010/05/glossopharyngeal-nerve-schema.jpg"
+				modality="sensory"
+				>
+				<fibers type="GSA" src="TARGET.TEA.MOUTH" dst="BMA.HM.CU"><mid id="AVA.PN.SG.JUG"/></fibers>
+				<element name="jugular nerve, branch to petrosal (inferior glossopharyngeal) ganglion"/>
+				<element name="jugular nerve, branch to jugular (superior vagal) ganglion"/>
 			</element>
 			<element name="occipital nerve"
 				imgsrc="http://o.quizlet.com/BOpC1X9RipzmNSxz6TvK-g.png"
@@ -92,6 +98,15 @@
 					modality="general sensory"
 					/>
 			</element>
+			<element name="suboccipital nerve"
+				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne58.htm C1 NERVE]; infraoccipital nerve"
+				origin="dorsal branch of C1 nerve"
+				distribution="proprioception; emerges above posterior arch of atlas and supplies muscles of suboccipital triangle and semispinal muscle of head"
+				imgsrc="http://www.uptomed.ir/Digimed.ir/Williams-Atlas-Anatomy/Williams_Atlas_Anatomy/1%20-%20The%20Back_files/C1FF16.png"
+				modality="sensory"
+				>
+				<fibers type="GVA" src="TARGET.TEA.NECK" dst="SMA.FD.TH.VPI"><mid id="BMA.SC.PH.SG"/></fibers>
+			</element>
 			<element name="supraclavicular nerves"
 				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/supraclavicularnerves.htm SUPRACLAVICULAR NERVES]"
 				distribution="neck and upper cutaneous parts of female breast"
@@ -116,19 +131,6 @@
 					origin="cervical PLEXUS (C3-C4)"
 					distribution="descend in posterior triangle, cross the clavicle, and supply the skin of medial infraclavicular region"
 					modality="general sensory"
-					/>
-			</element>
-			<element name="jugular nerve, sensory"
-				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne299.htm JUGULAR NERVE]"
-				origin="a branch of the superior cervical GANGLION"
-				distribution="communicates with the vagus and glossopharyngeal nerves; jugular nerve, passes upward to the base of the skull, and divides to join the petrous ganglion of the glossopharyngeal, and the jugular ganglion of the vagus"
-				imgsrc="http://bedahunmuh.files.wordpress.com/2010/05/glossopharyngeal-nerve-schema.jpg"
-				modality="sensory"
-				>
-				<fibers type="GSA" src="TARGET.TEA.MOUTH" dst="BMA.HM.CU"><mid id="AVA.PN.SG.JUG"/></fibers>
-				<element name="jugular nerve, branch to petrosal (inferior glossopharyngeal) ganglion"
-					/>
-				<element name="jugular nerve, branch to jugular (superior vagal) ganglion"
 					/>
 			</element>
 		</element>
