@@ -1418,7 +1418,8 @@
 		<element id="MBA.HP.BR" name="Barrington's Nucleus" mapped="true" type="Excitatory Nucleus"
 			refs="NL:[http://neurolex.org/wiki/Category:Barrington%27s_nucleus Barrington's nucleus]"
 			function="Supraspinal regulation of urination"
-			notes="Sends projections to Onuf's Nucleus"
+			notes="Sends projections to Sacral Precerebellar Nucleus"
+			comments="M-region, pontine micturition center (PMC)"
 			/>
 
 		<element id="MBA.HP.CR" name="Cerebellum" mapped="true" type="Excitatory Nucleus"
@@ -1624,12 +1625,19 @@
 			notes="upper extremity equivalent of Clarke's column"
 			/>
 
-		<element id="HMA.HM.AMB" name="Ambiguus Nucleus" mapped="true" type="Premotor Nucleus"
-			refs="NL:[http://neurolex.org/wiki/Category:Nucleus_ambiguus Nucleus ambiguus]"
-			function="Control muscles of pharynx"
-			notes="On par with VGM, speech"
+		<element id="HMA.HM.RC" name="Expiratory Center"
+			notes="Ventral Respiratory Group, sends inhibitory impulse to the apneustic centre"
 			>
-			<element name="Retroambigualis Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Nucleus_retroambigualis Nucleus retroambigualis]"/>
+			<element id="HMA.HM.AMB" name="Ambiguus Nucleus" mapped="true" type="Premotor Nucleus"
+				refs="NL:[http://neurolex.org/wiki/Category:Nucleus_ambiguus Nucleus ambiguus]"
+				function="Control muscles of pharynx"
+				notes="On par with VGM, speech"
+				/>
+			<element id="HMA.HM.RA" name="Retroambigualis Nucleus" mapped="true" type="Premotor Nucleus"
+				refs="NL:[http://neurolex.org/wiki/Category:Nucleus_retroambigualis Nucleus retroambigualis]"
+				function="Groups of premotor interneurons producing detailed motor actions"
+				notes="Different combination of activation of these premotor neurons determines vocalization, vomiting, coughing, sneezing, mating posture, or child delivery"
+				/>
 		</element>
 
 		<element id="BMA.HM.ARC" name="Arcuate Nucleus of Medulla" mapped="true" type="Sensory Relay Nucleus"
@@ -1835,9 +1843,14 @@
 
 				<element id="AVA.SC.IZ.IMLC" name="Intermediolateral Column">
 					<element id="AVA.SC.IZ.IML" name="Intermediolateral Nucleus" mapped="true" type="Preganglionic Symp. Nucleus"
-						refs="NA:Intermediolateral nucleus;NA:Intermediomedial nucleus;BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&amp;conceptid=FMA%3A73915 Intermediolateral nucleus];BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&amp;conceptid=FMA%3A73918 Intermediomedial nucleus]"
+						refs="NA:Intermediolateral nucleus;NA:Intermediomedial nucleus;BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&amp;conceptid=FMA%3A73915 Intermediolateral nucleus]"
 						function="Mediate entire sympathetic innervation of body"
-						notes="from Lamina VII, visceral sensory"
+						notes="from Lamina VII, visceral parasympathetic"
+						/>
+					<element id="AVA.SC.IZ.IMM" name="Intermediomedial Nucleus" mapped="true" type="Preganglionic Symp. Nucleus"
+						refs="NA:Intermediolateral nucleus;NA:Intermediomedial nucleus;BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&amp;conceptid=FMA%3A73918 Intermediomedial nucleus]"
+						function="Visceral sensory"
+						notes="ventral spinocerebellar tract"
 						/>
 					<element id="VBA.SC.IZ.CSC" name="Ciliospinal Center" mapped="true" type="Preganglionic Symp. Nucleus"
 						refs="NA:[http://en.wikipedia.org/wiki/Ciliospinal_center Ciliospinal Center]"
@@ -1855,9 +1868,9 @@
 
 		<element id="SC.VH" name="Anterior/Ventral Horn">
 			<element id="SC.VH.L8" name="Lamina VIII">
-				<element id="BMA.SC.VH.LM" name="Ventrolateral Nucleus" mapped="true" type="1-order Motor Nucleus"
-					refs="NA:Anterolateral Nucleus;BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&amp;conceptid=FMA%3A73934 Lateral motor nucleus of spinal cord]"
-					function="Innervation of limb muscles"
+				<element id="BMA.SC.VH.VM" name="Ventromedial Nucleus" mapped="true" type="1-order Motor Nucleus"
+					refs="NA:Anteromedial Nucleus;BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&amp;conceptid=FMA%3A73930 Medial motor nucleus of spinal cord]"
+					function="Innervation of trunk muscles"
 					notes="Upper and lower"
 					/>
 				<element id="BMA.SC.VH.PM" name="Posteromedial Nucleus" mapped="true" type="1-order Motor Nucleus"
@@ -1865,13 +1878,18 @@
 					function="Innervation of trunk muscles"
 					notes="Upper and lower"
 					/>
+			</element>
+			<element id="SC.VH.L9" name="Lamina IX">
+				<element id="BMA.SC.VH.LM" name="Ventrolateral Nucleus" mapped="true" type="1-order Motor Nucleus"
+					refs="NA:Anterolateral Nucleus;BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&amp;conceptid=FMA%3A73934 Lateral motor nucleus of spinal cord]"
+					function="Innervation of limb muscles"
+					notes="Upper and lower"
+					/>
 				<element id="BMA.SC.VH.PL" name="Posterolateral Nucleus" mapped="true" type="1-order Motor Nucleus"
 					refs="NA:Posterolateral Nucleus"
 					function="Innervation of limb muscles"
 					notes="Upper and lower"
 					/>
-			</element>
-			<element id="SC.VH.L9" name="Lamina IX">
 				<element id="HMA.SC.VH.SAN" name="Spinal Accessory Nucleus" mapped="true" type="Premotor Nucleus"
 					refs="NA:Nucleus of Accessory Nerve;NL:[http://neurolex.org/wiki/Category:Accessory_nucleus Accessory nucleus]"
 					function="Control of neck"
@@ -1881,11 +1899,6 @@
 					refs="NA:Nucleus of Phrenic Nerve;NL:[http://neurolex.org/wiki/Category:Phrenic_nucleus Phrenic nucleus]"
 					function="Innervation of diaphragm"
 					notes="Projections from Nucleus Solitarius"
-					/>
-				<element id="BMA.SC.VH.MM" name="Medial Motor Nucleus" mapped="true" type="1-order Motor Nucleus"
-					refs="NA:Anteromedial Nucleus;BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&amp;conceptid=FMA%3A73930 Medial motor nucleus of spinal cord]"
-					function="Innervation of trunk muscles"
-					notes="Upper and lower"
 					/>
 				<element id="AVA.SC.VH.ONF" name="Onuf's Nucleus" mapped="true" type="Preganglionic Nucleus"
 					refs="NA:Lumbosacral Nucleus;NL:[http://neurolex.org/wiki/Category:Onuf%27s_nucleus Onuf's nucleus]"
@@ -2048,11 +2061,11 @@
 				function="transform vestibular (balance) information into body coords"
 				comments="ganglion of Scarpa"
 				/>
-			<element id="AVA.PN.SG.DRG" name="Dorsal Root Ganglion"
+			<element id="AVA.PN.SG.DRG" name="Dorsal Root Ganglion" mapped="true" type="Sensory Ganglion"
 				function="Integration of afferent signaling from viscera"
 				notes="Sensory nerves project to upper thoracic dorsal horn via dorsal root ganglia"
 				>
-				<element id="AVA.PN.SG.DRG.CX" name="Cervical Dorsal Root Ganglia" mapped="true" type="Sensory Ganglion"
+				<element id="AVA.PN.SG.DRG.CX" name="Cervical Dorsal Root Ganglia"
 					function="touch/proprioception/vibration sensory pathway"
 					notes="Integration of afferent signaling"
 					comments="C1:meningles, C2:head, C3-C4:neck, C5-C6:shoulder, C7-C8-arms"
@@ -2066,7 +2079,7 @@
 						notes="C5-C8"
 						/>
 				</element>
-				<element id="AVA.PN.SG.DRG.TX" name="Thoracic Dorsal Root Ganglia" mapped="true" type="Sensory Ganglion"
+				<element id="AVA.PN.SG.DRG.TX" name="Thoracic Dorsal Root Ganglia" 
 					function="touch/proprioception/vibration sensory pathway"
 					>
 					<element id="AVA.PN.SG.DRG.UT" name="Upper Thoracic Dorsal Root Ganglia" 
