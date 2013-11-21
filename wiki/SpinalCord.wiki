@@ -39,18 +39,18 @@ This page is intended to discover component structure of spinal cord of biologic
    * cold receptors (temperature, high-threshold mechano/heat, phasic)
    * pressure (rapidly adapting mechanosensitive, directional selectivity, crude touch)
   * *B motor*: 1-3 mcm, 3-14 m/sec, preganglionic autonomic, myelinated, ACh (sympathetic only in T1-L3, IML)
-   * short to paravertebral sympathetic ganglia (close to vertebral, fibers ascend/descend to reach all spinal cord levels)
-   * long to prevertebral sympathetic ganglia (celiac, superior/inferior mesenteric ganglia)
-   * spinal cord long fibers to parasympathetic ganglia (splantic nerves, abdominal organs)
-   * cranial nerves III, VII, IX and X long fibers to parasympathetic ganglia (eye iris, lacrimal/submandibular/subingual glands,thorax, abdomen, GI tract)
+   * preganglionic paravertebral sympathetic (short to paravertebral sympathetic ganglia, close to vertebral, fibers ascend/descend to reach all spinal cord levels)
+   * preganglionic prevertebral sympathetic (long to prevertebral sympathetic ganglia, celiac, superior/inferior mesenteric ganglia)
+   * preganglionic parasympathetic spinal (spinal cord long fibers to parasympathetic ganglia, splantic nerves, abdominal organs)
+   * preganglionic parasympathetic cranial (cranial nerves III, VII, IX and X long fibers to parasympathetic ganglia, eye iris, lacrimal/submandibular/subingual glands, thorax, abdomen, GI tract)
   * *C motor/sensory (IV)*: 0.1-1 mcm, 0.2-2 m/sec, 60ms after stimulus (pain, touch, pressure, temperature, postganglionic autonomic)
    * C fiber nociceptors (responsible for the second, burning pain)
    * C fiber warming specific receptors (responsible for warmth)
    * ultra-slow histamine-selective C fibers (responsible for itch)
    * tactile C fibers (sensual touch, includes CT fibres, also known as C low-threshold mechanoreceptors (CLTM), which are unmyelinated afferents found in human hairy skin, and have a low mechanical threshold < 5 milliNewtons. They have moderate adaptation and may exhibit fatigue on repetitive stimulation and "afterdischarges" for several seconds after a stimulus)
    * C mechano- and metabo- receptors in muscles or joints (responsible for muscle exercise, burn and cramp)
-   * sympathetic C fibers (muscles and skin, pre/post - temporal summation and spatial summation, one-to-many, wide-spread, long and unmyelinated, NE)
-   * parasympathetic C fibers (from ganglia in/on wall of organ, visceral activity and repose, short, local)
+   * postganglionic sympathetic C fibers (muscles and skin, pre/post - temporal summation and spatial summation, one-to-many, wide-spread, long and unmyelinated, NE)
+   * postganglionic parasympathetic C fibers (from ganglia in/on wall of organ, visceral activity and repose, short, local)
 
 *Sensory neurons*:
 
@@ -103,26 +103,26 @@ http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/spinal-cord-nucle
 *sensory:*
   * [BrainRegionBMA_SC_PH_MG Marginal Nucleus] (MN), Apex of Posterior Horn, Nucleus Posteromarginalis - LI (A-delta/C, non-modulatable pain and temperature sensations, joint nociception); sensory, tract of Lissauer/lateral spinothalamic tract/spinomesencephalic tract; modulatory, dorsolateral tract (from RVM); interneurons from SG; interneurons to IML; A-delta/C sensory data
   * [BrainRegionBMA_SC_PH_SG Substantia Gelatinosa] (SG), Rolando's Substance - LII (C, short - pain, temperature, long - mechanoreceptors; long inhibits short); sensory, tract of Lissauer; modulatory, dorsolateral fasciculus (from VTA); interneurons to MN, CLN; C sensory data
-  * [BrainRegionBMA_SC_PH_NP Nucleus Proprius] (NPR), Main Sensory Nucleus, Proper Sensory Nucleus - LIII,LIV (A-beta, crude and pressure, 2-point discrimination, vibration); sensory: spinocervical tract/spinotectal tract/spinoolivary tract; interneurons to CLN; A-alpha-Ib/A-beta sensory data
-  * [BrainRegionBMA_SC_PH_CL Clarke's Nucleus] (CLN), Nucleus Dorsalis, Posterior Thoracic Nucleus, Clarke's Column - LV, LVI (A-delta, secondary visceral afferents, unconscious proprioception): sensory, anterior spinothalamic tract/dorsal spinocerebellar tract/spinoreticular tract; interneurons from SG, NPR; A-alpha-Ia/A-alpha-Ib sensory data
+  * [BrainRegionBMA_SC_PH_NP Nucleus Proprius] (NPR), Main Sensory Nucleus, Proper Sensory Nucleus - LIII,LIV (A-beta, crude and pressure, 2-point discrimination, vibration); sensory: spinocervical tract/spinotectal tract/spinoolivary tract; interneurons to CLN; A-alpha-Ib/A-beta/A-delta sensory data
+  * [BrainRegionBMA_SC_PH_CL Clarke's Nucleus] (CLN), Nucleus Dorsalis, Posterior Thoracic Nucleus, Clarke's Column - LV, LVI (A-delta, secondary visceral afferents, unconscious proprioception): sensory, anterior spinothalamic tract/dorsal spinocerebellar tract/spinoreticular tract; interneurons from SG, NPR; A-alpha-Ia/A-alpha-Ib/A-delta sensory data
   * *Central Nucleus*
-   * [BrainRegionBMA_SC_IZ_CCV Central Cervical Nucleus] (CCN) - LVII (spinocerebellar sensory, relays neck proprioception to cerebellum, locomotion); sensory, spinoolivary tract/spinovestibular tract
-   * [BrainRegionBMA_SC_IZ_CBS Centrobasalis Nucleus] (CBN) - LVII (spinocerebellar sensory, relays forelimb proprioception to cerebellum); sensory, rostral spinocerebellar tract
+   * [BrainRegionBMA_SC_IZ_CCV Central Cervical Nucleus] (CCN) - LVII (spinocerebellar sensory, relays neck proprioception to cerebellum, locomotion); sensory, spinoolivary tract/spinovestibular tract; A-alpha-Ia/A-alpha-Ib sensory data
+   * [BrainRegionBMA_SC_IZ_CBS Centrobasalis Nucleus] (CBN) - LVII (spinocerebellar sensory, relays forelimb proprioception to cerebellum); sensory, rostral spinocerebellar tract; A-alpha-Ia sensory data
 
 *motor:*
   * *Medial Motor Nuclei* (axial muscles motor neurons)
-   * [BrainRegionBMA_SC_VH_PM Posteromedial Nucleus] (PMN), Dorsomedial Nucleus - LVIII (axial trunk flexors, T1-L2); motor, medial reticulospinal tract/ventral corticospinal tract
-   * [BrainRegionBMA_SC_VH_VM Ventromedial Nucleus] (VMN), Anteromedial Nucleus - LVIII (axial trunk extensors, inhibit flexors, all segments); motor, medial reticulospinal tract/ventral corticospinal tract
+   * [BrainRegionBMA_SC_VH_PM Posteromedial Nucleus] (PMN), Dorsomedial Nucleus - LVIII (axial trunk flexors, T1-L2); motor, medial reticulospinal tract/ventral corticospinal tract; A-alpha-Ia/A-beta motor data
+   * [BrainRegionBMA_SC_VH_VM Ventromedial Nucleus] (VMN), Anteromedial Nucleus - LVIII (axial trunk extensors, inhibit flexors, all segments); motor, medial reticulospinal tract/ventral corticospinal tract; A-alpha-Ia/A-beta motor data
   * *Lateral Motor Nuclei* (distal muscles motor neurons)
-   * [BrainRegionBMA_SC_IZ_RPL Retroposterolateral Nucleus] (RPL), Retrodorsolateral Nucleus - LVII (fingers, C8-T1/S1-S3, distal large motor neurons to small arm and leg finger muscles); motor, lateral corticospinal tract/rubrospinal tract
-   * [BrainRegionBMA_SC_VH_PL Posterolateral Nucleus] (PLN), Dorsolateral Nucleus - LIX (distal flexors, C4-C8/L2-S1, hand/leg, distal muscles of forearm, hand, leg, foot); motor, lateral corticospinal tract/rubrospinal tract/lateral vestibulospinal tract
-   * [BrainRegionBMA_SC_VH_LM Ventrolateral Nucleus] (VLN), Anterolateral Nucleus - LIX (distal extensors, C4-C8/L2-S1, shoulder/hip, distal muscles of shoulder girdle, arm, hip, thigh); motor, lateral corticospinal tract/rubrospinal tract/lateral reticulospinal tract
-   * [BrainRegionHMA_SC_VH_SAN Spinal Accessory Nucleus] (SAN) - LIX (neck, control neck to rotate head); motor, tectospinal tract/medial vestibulospinal tract
-   * [BrainRegionBMA_SC_VH_PHR Phrenic Nucleus] (PHN) - LIX (diaphragm, conscious and autonomic control of breathing); motor, ventral corticospinal tract/bulbospinal tract
+   * [BrainRegionBMA_SC_IZ_RPL Retroposterolateral Nucleus] (RPL), Retrodorsolateral Nucleus - LVII (fingers, C8-T1/S1-S3, distal large motor neurons to small arm and leg finger muscles); motor, lateral corticospinal tract/rubrospinal tract; A-alpha-Ia motor data
+   * [BrainRegionBMA_SC_VH_PL Posterolateral Nucleus] (PLN), Dorsolateral Nucleus - LIX (distal flexors, C4-C8/L2-S1, hand/leg, distal muscles of forearm, hand, leg, foot); motor, lateral corticospinal tract/rubrospinal tract/lateral vestibulospinal tract; A-alpha-Ia motor data
+   * [BrainRegionBMA_SC_VH_LM Ventrolateral Nucleus] (VLN), Anterolateral Nucleus - LIX (distal extensors, C4-C8/L2-S1, shoulder/hip, distal muscles of shoulder girdle, arm, hip, thigh); motor, lateral corticospinal tract/rubrospinal tract/lateral reticulospinal tract; A-alpha-Ia motor data
+   * [BrainRegionHMA_SC_VH_SAN Spinal Accessory Nucleus] (SAN) - LIX (neck, control neck to rotate head); motor, tectospinal tract/medial vestibulospinal tract; A-alpha-Ia/A-beta motor data
+   * [BrainRegionBMA_SC_VH_PHR Phrenic Nucleus] (PHN) - LIX (diaphragm, conscious and autonomic control of breathing); motor, ventral corticospinal tract/bulbospinal tract; A-alpha-Ia/A-beta motor data
 
 *autonomic:*
   * *Intermediolateral Cell Column*, Intermediate Zone:
-   * [BrainRegionAVA_SC_IZ_IML Intermediolateral Nucleus] (IML) - LVII (autonomic, visceral structures); sympathetic, visceral motor
+   * [BrainRegionAVA_SC_IZ_IML Intermediolateral Nucleus] (IML) - LVII (autonomic, visceral structures); sympathetic, visceral motor; C motor data
    * [BrainRegionAVA_SC_IZ_IMM Intermediomedial Nucleus] (IMM) - LVII (visceral sensory); sensory, ventral spinocerebellar tract
    * [BrainRegionVBA_SC_IZ_CSC Ciliospinal Center] (CSC) - LVII (autonomic, visceral structures); modulatory, hypothalamospinal tract; motor, tectospinal tract
   * [BrainRegionBMA_SC_IZ_SPCR Sacral Precerebellar Nucleus] (SPN), Sacral Parasympathetic Nucleus, Stilling's Sacral Nucleus - LVII (S1-S3, psym. to large intestine; pelvic nerve); motor, dorsolateral fasciculus
