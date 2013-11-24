@@ -180,14 +180,15 @@
 				imgsrc="http://thepainsource.com/wp-content/uploads/2010/07/PIN1-300x252.jpg"
 				modality="general sensory and motor"
 				>
-				<fibers type="GVE" src="BMA.SC.VH.VM" dst="TARGET.TEA.HAND"></fibers>
-				<fibers type="GSA" src="TARGET.TEA.HAND" dst="SMA.FD.TH.VPL"><mid id="BMA.SC.PH.SG"/></fibers>
-				<element name="radial nerve, superficial branch"
-					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne23.htm SUPERFICIAL BRANCH OF RADIAL NERVE]"
-					>
+				<element name="radial nerve, cutaneous branches">
+					<element name="radial nerve, posterior cutaneous nerve of arm"
+						origin="axilla"
+						distribution="skin on back of arm"
+						modality="general sensory"
+						/>
 					<element name="cutaneous nerve of arm, inferior lateral"
 						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne7.htm LOWER LATERAL CUTANEOUS NERVE OF ARM]"
-						origin="radial nerve"
+						origin="radial nerve, arm"
 						distribution="skin of lateral surface of lower part of arm"
 						modality="general sensory"
 						/>
@@ -197,22 +198,42 @@
 						distribution="skin of dorsal aspect of forearm"
 						modality="general sensory"
 						/>
-					<element name="digital nerves of radial nerve, dorsal"
-						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne206.htm DORSAL DIGITAL BRANCHES OF SUPERFICIAL RADIAL NERVE]"
-						origin="superficial branch of radial nerve"
-						distribution="skin and joints of back of thumb, index finger, and part of middle finger, as far distally as the distal phalanx"
-						modality="general sensory"
-						/>
+					<element name="radial nerve, superficial branch"
+						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne23.htm SUPERFICIAL BRANCH OF RADIAL NERVE]"
+						distribution="radial side of thumb (by a digital nerve), skin of radial side and ball of thumb"
+						>
+						<element name="digital nerves of radial nerve, dorsal"
+							synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne206.htm DORSAL DIGITAL BRANCHES OF SUPERFICIAL RADIAL NERVE]"
+							origin="superficial branch of radial nerve"
+							distribution="skin and joints of back of thumb, index finger, and part of middle finger, as far distally as the distal phalanx"
+							modality="general sensory"
+							/>
+					</element>
 				</element>
-				<element name="radial nerve, deep branch"
-					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne24.htm DEEP BRANCH OF RADIAL NERVE]"
-					>
-					<element name="interosseous nerve of forearm, posterior"
-						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne25.htm POSTERIOR INTEROSSEOUS NERVE]"
-						origin="continuation of deep branch of radial nerve"
-						distribution="long abductor muscle of thumb, extensor muscles of the thumb and second finger, and wrist and intercarpal joints"
-						modality="motor and general sensory"
-						/>
+				<element name="radial nerve, motor">
+					<element name="radial nerve, upper arm muscular branches"
+						distribution="triceps brachii (lateral and medial heads), anconeus, brachioradialis, extensor carpi radialis longus"
+						>
+						<fibers type="GVE" src="BMA.SC.VH.LM" dst="TARGET.TEA.HAND"></fibers>
+					</element>
+					<element name="radial nerve, deep branch"
+						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne24.htm DEEP BRANCH OF RADIAL NERVE]"
+						>
+						<element name="radial nerve, deep branch before supinator"
+							distribution="extensor carpi radialis brevis, supinator"
+							>
+							<fibers type="GVE" src="BMA.SC.VH.LM" dst="TARGET.TEA.HAND"></fibers>
+						</element>
+						<element name="interosseous nerve of forearm, posterior"
+							synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne25.htm POSTERIOR INTEROSSEOUS NERVE]"
+							origin="continuation of deep branch of radial nerve"
+							distribution="extensor digitorum, extensor digiti minimi, extensor carpi ulnaris, abductor/extensor pollicis longus, extensor pollicis brevis, extensor indicis"
+							notes="long abductor muscle of thumb, extensor muscles of the thumb and second finger, and wrist and intercarpal joints"
+							modality="motor and general sensory"
+							>
+							<fibers type="GVE" src="BMA.SC.IZ.RPL" dst="TARGET.TEA.HAND"></fibers>
+						</element>
+					</element>
 				</element>
 			</element>
 		</element>
