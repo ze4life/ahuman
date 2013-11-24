@@ -263,6 +263,7 @@
 				imgsrc="http://www.physio-pedia.com/images/f/ff/Axillary_nn_Fig_2.jpg"
 				modality="motor and general sensory"
 				>
+				<fibers type="GVE" src="BMA.SC.VH.PM" dst="TARGET.TEA.HAND"></fibers>
 
 				<element name="axillary nerve, anterior branch"
 					distribution="anterior border of deltoid to provide motor innervation, few small cutaneous branches"
@@ -294,7 +295,9 @@
 				imgsrc="http://www.med.mun.ca/anatomy/imagedb/nerv_sys/ul_innervation/images/013_LongThoracic083.jpg"
 				modality="motor"
 				action="protraction of scapula; upward rotation of glenoid cavity; holds medial border against thoracic wall"
-				/>
+				>
+				<fibers type="GVE" src="BMA.SC.VH.PM" dst="TARGET.TEA.HAND"></fibers>
+			</element>
 			<element name="pectoral nerve"
 				imgsrc="https://dw9r2us9jo9xp.cloudfront.net/images/anatomy_term/nervus-pectoralis-lateralis/nervus_pectoralis_lateralis_atlas_8sTQxnUtQPvbzDhSwQsRg.png" imgheight="500"
 				modality="motor"
@@ -304,13 +307,17 @@
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne13.htm LATERAL PECTORAL NERVE]"
 					origin="C5-7"
 					distribution="upper pectoralis major muscle"
-					/>
+					>
+					<fibers type="GVE" src="BMA.SC.VH.PM" dst="TARGET.TEA.HAND"></fibers>
+				</element>
 				<element name="medial pectoral nerve"
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne10.htm MEDIAL PECTORAL NERVE]"
 					origin="C8-T1"
 					distribution="lower pectoralis major muscle, pectoralis minor"
 					action="depression of shoulder; downward rotation of scapula"
-					/>
+					>
+					<fibers type="GVE" src="BMA.SC.VH.VM" dst="TARGET.TEA.HAND"></fibers>
+				</element>
 			</element>
 			<element name="scapular nerves"
 				>
@@ -319,12 +326,15 @@
 					distribution="shoulder, levator scapulae"
 					modality="motor"
 					action="elevation of scapulae; medial rotation of scapula"
-					/>
+					>
+					<fibers type="GVE" src="BMA.SC.VH.PM" dst="TARGET.TEA.HAND"></fibers>
+				</element>
 				<element name="subscapular nerves"
 					origin="posterior division of the brachial plexus"
 					modality="motor"
 					action="move scapulae"
 					>
+					<fibers type="GVE" src="BMA.SC.VH.VM" dst="TARGET.TEA.HAND"></fibers>
 					<element name="upper subscapular nerve"
 						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/uppersubscapular.htm UPPER SUBSCAPULAR NERVE]"
 						distribution="subscapularis"
@@ -355,6 +365,7 @@
 					modality="motor and general sensory"
 					action="external rotation of humerus; abduction of humerus"
 					>
+					<fibers type="GVE" src="BMA.SC.VH.PM" dst="TARGET.TEA.HAND"></fibers>
 				</element>
 				<element name="dorsal scapular nerve"
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/dorsalscapularn.htm DORSAL SCAPULAR NERVE]"
@@ -362,14 +373,16 @@
 					distribution="rhomboid muscles and occasionally levator muscle of scapula"
 					modality="motor"
 					>
-					<fibers type="GVE" src="BMA.SC.VH.VM" dst="TARGET.TEA.HAND"></fibers>
+					<fibers type="GVE" src="BMA.SC.VH.PM" dst="TARGET.TEA.HAND"></fibers>
 					<element name="dorsal scapular nerve, branch to rhomboideus minor"
 						distribution="rhomboideus minor"
 						action="elevation and retraction of scapula; downward rotation of glenoid cavity"
+						modality="motor"
 						/>
 					<element name="dorsal scapular nerve, branch to rhomboideus major"
 						distribution="rhomboideus major"
 						action="elevation and retraction of scapula; downward rotation of glenoid cavity"
+						modality="motor"
 						/>
 				</element>
 			</element>
@@ -379,9 +392,9 @@
 				distribution="subclavius muscle and sternoclavicular joint"
 				imgsrc="http://pds.exblog.jp/pds/1/200511/03/86/a0057586_9493576.jpg"
 				modality="motor and general sensory"
+				action="possible depresses clavicle; maintains sternoclavicular joint"
 				>
 				<fibers type="GVE" src="BMA.SC.VH.VM" dst="TARGET.TEA.HAND"></fibers>
-				<fibers type="GSA" src="TARGET.TEA.HAND" dst="SMA.FD.TH.VPL"><mid id="BMA.SC.PH.SG"/></fibers>
 			</element>
 		</element>
 
