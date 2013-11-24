@@ -7,13 +7,20 @@
 			<fibers type="GVA" src="TARGET.TEA.HAND" dst="BMA.SC.PH.MG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
 			<fibers type="GVA" src="TARGET.TEA.HAND" dst="BMA.SC.PH.SG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
 
-			<element name="cutaneous nerve of forearm, medial"
-				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne4.htm MEDIAL CUTANEOUS NERVE OF FOREARM]"
-				origin="medial cord of brachial PLEXUS (C8, T1)"
-				distribution="skin of front, medial, and posteromedial aspects of forearm"
+			<element name="cutaneous nerve of arm, medial"
+				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/medcutnarm.htm MEDIAL CUTANEOUS NERVE OF ARM]"
+				origin="medial cord of brachial PLEXUS (T1)"
+				distribution="skin on medial and posterior aspects of arm"
 				modality="general sensory"
 				>
-				<fibers type="GSA" src="TARGET.TEA.HAND" dst="SMA.FD.TH.VPL"><mid id="AVA.PN.SG.DRG.CX"/><mid id="BMA.HM.CU"/></fibers>
+				<element name="cutaneous nerve of forearm, medial"
+					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne4.htm MEDIAL CUTANEOUS NERVE OF FOREARM]"
+					origin="medial cord of brachial PLEXUS (C8, T1)"
+					distribution="skin of front, medial, and posteromedial aspects of forearm"
+					modality="general sensory"
+					>
+					<fibers type="GSA" src="TARGET.TEA.HAND" dst="SMA.FD.TH.VPL"><mid id="AVA.PN.SG.DRG.CX"/><mid id="BMA.HM.CU"/></fibers>
+				</element>
 			</element>
 			<element name="musculocutaneous nerve"
 				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne5.htm MUSCULOCUTANEOUS NERVE]"
@@ -182,6 +189,7 @@
 				>
 				<element name="radial nerve, cutaneous branches">
 					<element name="radial nerve, posterior cutaneous nerve of arm"
+						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne22.htm POSTERIOR CUTANEOUS NERVE OF ARM]"
 						origin="axilla"
 						distribution="skin on back of arm"
 						modality="general sensory"
@@ -245,33 +253,39 @@
 
 		<element name="shoulder nerves"
 			>
+			<fibers type="GVA" src="TARGET.TEA.HAND" dst="BMA.SC.PH.MG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
+			<fibers type="GVA" src="TARGET.TEA.HAND" dst="BMA.SC.PH.SG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
+
 			<element name="axillary nerve"
 				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne8.htm AXILLARY NERVE]"
-				origin="posterior cord of brachial PLEXUS (C5–C6)"
+				origin="posterior cord of brachial PLEXUS (C5-C6)"
 				distribution="deltoid and teres minor muscles, skin on back of arm"
 				imgsrc="http://www.physio-pedia.com/images/f/ff/Axillary_nn_Fig_2.jpg"
 				modality="motor and general sensory"
 				>
-				<fibers type="GVE" src="BMA.SC.VH.VM" dst="TARGET.TEA.HAND"></fibers>
-				<fibers type="GSA" src="TARGET.TEA.HAND" dst="SMA.FD.TH.VPL"><mid id="BMA.SC.PH.SG"/></fibers>
-				<element name="cutaneous nerve of arm, posterior"
-					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne22.htm POSTERIOR CUTANEOUS NERVE OF ARM]"
-					origin="radial nerve in the axilla"
-					distribution="skin on back of arm"
-					modality="general sensory"
+
+				<element name="axillary nerve, anterior branch"
+					distribution="anterior border of deltoid to provide motor innervation, few small cutaneous branches"
+					modality="general sensory and motor"
+					action="abduction (middle fibers), flexion and internal rotation (anterior fibers), and extension and external rotation (posterior fibers) of humerus"
 					/>
-				<element name="cutaneous nerve of arm, superior lateral"
-					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne6.htm UPPER LATERAL CUTANEOUS NERVE OF ARM]"
-					origin="axillary nerve"
-					distribution="skin of back of arm"
-					modality="general sensory"
-					/>
-				<element name="cutaneous nerve of arm, medial"
-					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/medcutnarm.htm MEDIAL CUTANEOUS NERVE OF ARM]"
-					origin="medial cord of brachial PLEXUS (T1)"
-					distribution="skin on medial and posterior aspects of arm"
-					modality="general sensory"
-					/>
+				<element name="axillary nerve, posterior branch"
+					distribution="supplies teres minor and posterior part of deltoid"
+					modality="general sensory and motor"
+					action="external rotation of scapula"
+					>
+					<element name="cutaneous nerve of arm, superior lateral"
+						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne6.htm UPPER LATERAL CUTANEOUS NERVE OF ARM]"
+						origin="axillary nerve"
+						distribution="skin of back of arm"
+						modality="general sensory"
+						/>
+					<element name="axillary nerve, motor branch to triceps brachii"
+						distribution="motor branch of long head of triceps brachii"
+						action="acts on shoulder joint and is also involved in retroversion and adduction of arm"
+						modality="motor"
+						/>
+				</element>
 			</element>
 			<element name="long thoracic nerve"
 				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/longthoracic.htm LONG THORACIC NERVE]"
