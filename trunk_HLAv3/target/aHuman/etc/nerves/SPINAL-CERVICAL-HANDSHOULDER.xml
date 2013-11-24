@@ -37,22 +37,11 @@
 				imgsrc="http://joelvanderlugt.files.wordpress.com/2012/11/netter464_ulnar_nerve.jpg"
 				modality="general sensory and motor"
 				>
-				<fibers type="GVE" src="BMA.SC.VH.VM" dst="TARGET.TEA.HAND"></fibers>
-				<fibers type="GSA" src="TARGET.TEA.HAND" dst="SMA.FD.TH.VPL"><mid id="BMA.SC.PH.SG"/></fibers>
+
 				<element name="ulnar nerve, palmar cutaneous branch"
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne18.htm PALMAR CUTANEOUS BRANCH OF ULNAR NERVE]"
-					/>
-				<element name="ulnar nerve, dorsal branch"
-					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne19.htm DORSAL BRANCH OF ULNAR NERVE]"
-					>
-					<element name="digital nerves of ulnar nerve, dorsal"
-						origin="dorsal branch of ulnar nerve"
-						distribution="skin and joints of medial side of little finger, dorsal aspects of adjacent sides of little and ring fingers and of ring and middle fingers"
-						modality="general sensory"
-						/>
-				</element>
-				<element name="ulnar nerve, superficial branch"
-					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne20.htm SUPERFICIAL BRANCH OF ULNAR NERVE]"
+					modality="general sensory"
+					distribution="supplies cutaneous innervation to anterior skin and nails"
 					>
 					<element name="digital nerves of ulnar nerve, common palmar number two"
 						origin="superficial branch of ulnar nerve"
@@ -67,9 +56,37 @@
 							/>
 					</element>
 				</element>
+				<element name="ulnar nerve, dorsal branch"
+					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne19.htm DORSAL BRANCH OF ULNAR NERVE]"
+					modality="general sensory"
+					distribution="supplies cutaneous innervation to posterior skin (except nails)"
+					>
+					<element name="digital nerves of ulnar nerve, dorsal"
+						origin="dorsal branch of ulnar nerve"
+						distribution="skin and joints of medial side of little finger, dorsal aspects of adjacent sides of little and ring fingers and of ring and middle fingers"
+						modality="general sensory"
+						/>
+				</element>
+				<element name="ulnar nerve, muscular branches"
+					distribution="flexor carpi ulnaris and flexor digitorum profundus"
+					modality="motor"
+					>
+					<fibers type="GVE" src="BMA.SC.VH.PL" dst="TARGET.TEA.HAND"></fibers>
+				</element>
+				<element name="ulnar nerve, superficial branch"
+					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne20.htm SUPERFICIAL BRANCH OF ULNAR NERVE]"
+					distribution="palmaris brevis"
+					modality="motor"
+					>
+					<fibers type="GVE" src="BMA.SC.VH.RPL" dst="TARGET.TEA.HAND"></fibers>
+				</element>
 				<element name="ulnar nerve, deep branch"
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne21.htm DEEP BRANCH OF ULNAR NERVE]"
-					/>
+					distribution="hypothenar muscles, control motion of little finger, third and fourth lumbrical muscles, dorsal/palmar interossei, adductor pollicis, flexor pollicis brevis"
+					modality="motor"
+					>
+					<fibers type="GVE" src="BMA.SC.VH.RPL" dst="TARGET.TEA.HAND"></fibers>
+				</element>
 			</element>
 			<element name="median nerve"
 				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne2.htm MEDIAN  NERVE]"
