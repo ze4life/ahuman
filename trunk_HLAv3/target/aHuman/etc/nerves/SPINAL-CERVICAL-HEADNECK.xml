@@ -17,7 +17,7 @@
 					origin="union of branches from 2nd and 3rd cervical nerves"
 					/>
 				<element name="ansa cervicalis, superior root"
-					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne283.htm SUPERIOR ROOT OF ANSA CERVICALIS ]"
+					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne283.htm SUPERIOR ROOT OF ANSA CERVICALIS]"
 					origin="C1 spinal cord segment ventral horn"
 					distribution="muscular branch to the superior belly of omohyoid"
 					/>
@@ -83,7 +83,7 @@
 				<fibers type="GVA" src="TARGET.TEA.FACE" dst="BMA.SC.PH.SG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
 				<element name="occipital nerve, greater"
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/greateroccipitalnerve.htm GREATER OCCIPITAL NERVE]"
-					origin="medial branch of dorsal branch of C2"
+					origin="medial branch of dorsal branch of C2; spinalis dorsi"
 					distribution="semispinal muscle of head and skin of scalp as far forward as the vertex"
 					/>
 				<element name="occipital nerve, lesser"
@@ -95,9 +95,14 @@
 				<element name="occipital nerve, third"
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/thirdoccipital.htm THIRD OCCIPITAL NERVE]"
 					origin="medial branch of dorsal branch of C3"
-					distribution="skin of upper part of back of neck and head"
+					distribution="skin of upper part of back of neck and head; splenius (SPL), biventer cervicis and complexus (BCC), rectus capitus dorsalis, and obliquus capitus caudalis"
 					modality="general sensory"
-					/>
+					notes="BCC,biventer cervicis and complexus=spinalis capitis"
+					>
+					<fibers type="GSA" src="TARGET.TEA.NECK" dst="MBA.HP.CR"><mid id="AVA.PN.SG.DRG.CX"/><mid name="BMA.SC.IZ.CCV"/><mid name="BMA.HM.IO"/></fibers>
+					<fibers type="GSA" src="TARGET.TEA.NECK" dst="MBA.HP.CR"><mid id="AVA.PN.SG.DRG.CX"/><mid name="BMA.SC.PH.NP"/><mid name="BMA.HM.IO"/></fibers>
+					<fibers type="GSA" src="TARGET.TEA.NECK" dst="BMA.HP.VB"><mid id="AVA.PN.SG.DRG.CX"/><mid name="BMA.SC.IZ.CCV"/></fibers>
+				</element>
 			</element>
 			<element name="suboccipital nerve"
 				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne58.htm C1 NERVE]; infraoccipital nerve"
