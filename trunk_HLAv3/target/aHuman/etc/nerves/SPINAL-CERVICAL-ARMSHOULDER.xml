@@ -23,12 +23,13 @@
 					<fibers type="GSA" src="TARGET.TEA.HAND" dst="SMA.FD.TH.VPL"><mid id="AVA.PN.SG.DRG.CX"/><mid id="BMA.HM.CU"/></fibers>
 				</element>
 			</element>
+
 			<element name="musculocutaneous nerve"
 				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne5.htm MUSCULOCUTANEOUS NERVE]"
 				origin="lateral cord of brachial PLEXUS-C5-C7"
 				distribution="coracobrachial and biceps brachial muscles, the elbow joint, and skin of radial side of forearm"
 				action="flexion and adduction of humerus; flexion and supination of forearm; flexion of arm (short head)"
-				modality="general sensory and motor"
+				modality="general sensory and flexor motor"
 				>
 				<fibers type="GVE" src="BMA.SC.VH.PL" dst="TARGET.TEA.HAND"></fibers>
 				<element name="cutaneous nerve of forearm, lateral"
@@ -38,6 +39,7 @@
 					modality="general sensory"
 					/>
 			</element>
+
 			<element name="ulnar nerve"
 				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne1.htm ULNAR NERVE]; cubital nerve"
 				origin="medial and lateral cords of brachial PLEXUS (C7-T1)"
@@ -76,7 +78,7 @@
 				</element>
 				<element name="ulnar nerve, muscular branches"
 					distribution="flexor carpi ulnaris and flexor digitorum profundus"
-					modality="motor"
+					modality="flexor motor"
 					action="flexion and adduction (ulnar deviation) of hand; flexion of distal phalanx of digits 4-5"
 					>
 					<fibers type="GVE" src="BMA.SC.VH.PL" dst="TARGET.TEA.HAND"></fibers>
@@ -98,6 +100,7 @@
 					<fibers type="GVE" src="BMA.SC.IZ.RPL" dst="TARGET.TEA.HAND"></fibers>
 				</element>
 			</element>
+
 			<element name="median nerve"
 				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne2.htm MEDIAN NERVE]"
 				origin="lateral and medial cords of brachial PLEXUS-C6-T1"
@@ -111,57 +114,65 @@
 					>
 					<fibers type="GVE" src="AVA.SC.IZ.IML" dst="TARGET.TEA.HAND"><mid id="AVA.PN.SYM.SCG"/></fibers>
 				</element>
-				<element name="median nerve, forearm innervation">
+				<element name="median nerve, forearm motor innervation"
+					modality="flexor motor"
+					>
 					<fibers type="GVE" src="BMA.SC.VH.PL" dst="TARGET.TEA.HAND"></fibers>
-					<element name="median nerve, unbranched foream innervation">
-						<element name="median nerve, superficial muscles in foream"
-							distribution="pronator teres, flexor carpi radialis, palmaris longus"
-							modality="motor"
-							action="flexion and abduction (radial deviation) of hand; pronation of forearm (and hand)"
-							>
-							<fibers type="GVE" src="BMA.SC.VH.PL" dst="TARGET.TEA.HAND"></fibers>
-						</element>
-						<element name="median nerve, intermediate muscles in foream"
-							distribution="flexor digitorum superficialis muscle"
-							modality="motor"
-							action="flexion of middle phalanges of digits 2-4"
-							>
-							<fibers type="GVE" src="BMA.SC.IZ.RPL" dst="TARGET.TEA.HAND"></fibers>
-						</element>
+					<element name="median nerve, superficial muscles in foream"
+						distribution="pronator teres"
+						modality="flexor motor"
+						action="pronates and flexes forearm"
+						/>
+					<element name="interosseous nerve of forearm, anterior, forearm"
+						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne203.htm ANTERIOR INTEROSSEOUS NERVE]"
+						distribution="pronator quadratus"
+						modality="flexor motor"
+						action="pronates forearm"
+						/>
+				</element>
+				<element name="median nerve, hand motor innervation">
+					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne205.htm - PALMAR DIGITAL BRANCHES OF MEDIAN NERVE]"
+					modality="flexor motor"
+					>
+					<fibers type="GVE" src="BMA.SC.IZ.RPL" dst="TARGET.TEA.HAND"></fibers>
+					<element name="median nerve, superficial muscles in foream"
+						distribution="flexor carpi radialis; palmaris longus"
+						modality="flexor motor"
+						action="flexion/abduction wrist, 2-3 metacarpals; flexion wrist, 2-5 metacarpals"
+						/>
+					<element name="median nerve, intermediate muscles in foream"
+						distribution="flexor digitorum superficialis muscle"
+						modality="flexor motor"
+						action="flexion wrist/fingers, middle phalanges 2-5"
+						>
+						<element name="median nerve, lumbricals branches"
+							distribution="motor innervation to first and second lumbricals of hand"
+							modality="flexor motor"
+							action="extension of interphalageal joints of digits 2-3; flexion of MCP joints"
+							/>
 					</element>
-					<element name="interosseous nerve of forearm, anterior"
+					<element name="interosseous nerve of forearm, anterior, hand"
 						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne203.htm ANTERIOR INTEROSSEOUS NERVE]"
 						origin="median nerve"
-						distribution="long flexor of thumb, deep flexor of fingers, and pronator quadratus muscles, wrist and intercarpal joints"
-						modality="motor"
-						>
-						<element name="median nerve, deep muscles in foream"
-							distribution="flexor digitorum profundus (only the lateral half), flexor pollicis longus, pronator quadratus"
-							modality="motor"
-							action="flexion of distal phlanx of thumb; pronation of forearm (and hand); flexion of distal phalanx of digits 2-3; flexion of thumb - superficial head, aids in opposition and adduction"
-							>
-							<fibers type="GVE" src="BMA.SC.IZ.RPL" dst="TARGET.TEA.HAND"></fibers>
-						</element>
-					</element>
+						distribution="flexor digitorum profundus; flexor pollicis longus"
+						modality="flexor motor"
+						action="flexion wrist/fingers, distal phalanges 2-5; flexion wrist/thumb, distal phalanx 1"
+						/>
+					<element name="median nerve, recurrent branch"
+						distribution="muscles of thenar compartment; opponens pollicis, abductor pollicis brevis"
+						modality="flexor motor"
+						action="abduction of thumb; opposition of thumb"
+						/>
+				</element>
+				<element name="median nerve, sensory innervation">
 					<element name="median nerve, palmar cutaneous branch"
 						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne204.htm PALMAR CUTANEOUS BRANCH OF MEDIAN NERVE]"
 						distribution="lateral aspect of skin of palm (but not digits)"
 						modality="general sensory"
 						/>
-				</element>
-				<element name="median nerve, hand innervation">
-					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne205.htm - PALMAR DIGITAL BRANCHES OF MEDIAN NERVE]"
-					>
-					<fibers type="GVE" src="BMA.SC.IZ.RPL" dst="TARGET.TEA.HAND"></fibers>
-					<element name="median nerve, recurrent branch"
-						distribution="muscles of thenar compartment; opponens pollicis, abductor pollicis brevis and flexor pollicis brevis"
-						modality="motor"
-						activity="abduction of thumb; opposition of thumb"
-						>
-						<fibers type="GVE" src="BMA.SC.IZ.RPL" dst="TARGET.TEA.HAND"></fibers>
-					</element>
 					<element name="median nerve, digital cutaneous branches"
 						distribution="lateral (radial) three and a half digits on the palmar side; index, middle and ring finger on dorsum of the hand"
+						modality="general sensory"
 						>
 						<element name="digital nerves of median nerve, common palmar"
 							distribution="thumb, index, middle, and ring fingers, and first two lumbrical muscles"
@@ -172,15 +183,9 @@
 							modality="general sensory"
 							/>
 					</element>
-					<element name="median nerve, lumbricals branches"
-						distribution="motor innervation to first and second lumbricals of hand"
-						modality="motor"
-						activity="extension of interphalageal joints of digits 2-3; flexion of MCP joints"
-						>
-						<fibers type="GVE" src="BMA.SC.IZ.RPL" dst="TARGET.TEA.HAND"></fibers>
-					</element>
 				</element>
 			</element>
+
 			<element name="radial nerve"
 				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne3.htm RADIAL NERVE]"
 				origin="posterior cord of brachial PLEXUS (C6-C8, and sometimes C5 and T1)"
