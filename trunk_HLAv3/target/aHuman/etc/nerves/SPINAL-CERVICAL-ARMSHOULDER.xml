@@ -45,14 +45,8 @@
 				origin="lateral and medial cords of brachial PLEXUS-C6-T1"
 				distribution="ultimately, skin on front of lateral part of hand, most of flexor muscles of front of forearm, most of short muscles of thumb and elbow joint, and many joints of hand"
 				imgsrc="http://24.media.tumblr.com/tumblr_mbrcpmS4XD1rn6pqko1_500.jpg"
-				modality="general sensory and motor, sympathetic"
+				modality="general sensory and flexor motor"
 				>
-				<element name="median nerve, motor, vascular branches"
-					distribution="arm innervation, wall of brachial artery"
-					modality="sympathetic"
-					>
-					<fibers type="GVE" src="AVA.SC.IZ.IML" dst="TARGET.TEA.HAND"><mid id="AVA.PN.SYM.SCG"/></fibers>
-				</element>
 				<element name="median nerve, motor, forearm innervation"
 					modality="flexor motor"
 					>
@@ -151,7 +145,7 @@
 							/>
 						<element name="ulnar nerve, superficial branch"
 							distribution="palmaris brevis; abductor digiti minimi; opponens digiti minimi"
-							modality="motor"
+							modality="flexor motor"
 							action="opposition of digit 5 to thumb; abduction of digit 5; stabilization of skin of palm for gripping"
 							/>
 					</element>
@@ -298,20 +292,21 @@
 				origin="posterior cord of brachial PLEXUS (C5-C6)"
 				distribution="deltoid and teres minor muscles, skin on back of arm"
 				imgsrc="http://www.physio-pedia.com/images/f/ff/Axillary_nn_Fig_2.jpg"
-				modality="general sensory and extensor motor"
+				modality="general sensory and flexor/extensor motor"
 				>
-				<fibers type="GVE" src="BMA.SC.VH.PM" dst="TARGET.TEA.HAND"></fibers>
-
 				<element name="axillary nerve, anterior branch"
 					distribution="anterior border of deltoid to provide motor innervation, few small cutaneous branches"
-					modality="general sensory and extensor motor"
+					modality="general sensory and flexor motor"
 					action="abduction (middle fibers), flexion and internal rotation (anterior fibers), and extension and external rotation (posterior fibers) of humerus"
-					/>
+					>
+					<fibers type="GVE" src="BMA.SC.VH.PM" dst="TARGET.TEA.HAND"></fibers>
+				</element>
 				<element name="axillary nerve, posterior branch"
 					distribution="supplies teres minor and posterior part of deltoid"
 					modality="general sensory and extensor motor"
 					action="external rotation of scapula"
 					>
+					<fibers type="GVE" src="BMA.SC.VH.VM" dst="TARGET.TEA.HAND"></fibers>
 					<element name="cutaneous nerve of arm, superior lateral"
 						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne6.htm UPPER LATERAL CUTANEOUS NERVE OF ARM]"
 						origin="axillary nerve"
@@ -330,20 +325,21 @@
 				origin="brachial PLEXUS (ventral branches of C5-C7)"
 				distribution="descends behind brachial plexus to serratus anterior muscle"
 				imgsrc="http://www.med.mun.ca/anatomy/imagedb/nerv_sys/ul_innervation/images/013_LongThoracic083.jpg"
-				modality="motor"
+				modality="flexor motor"
 				action="protraction of scapula; upward rotation of glenoid cavity; holds medial border against thoracic wall"
 				>
 				<fibers type="GVE" src="BMA.SC.VH.PM" dst="TARGET.TEA.HAND"></fibers>
 			</element>
 			<element name="pectoral nerve"
 				imgsrc="https://dw9r2us9jo9xp.cloudfront.net/images/anatomy_term/nervus-pectoralis-lateralis/nervus_pectoralis_lateralis_atlas_8sTQxnUtQPvbzDhSwQsRg.png" imgheight="500"
-				modality="motor"
+				modality="flexor/extensor motor"
 				action="adduction and medial rotation of arm; flexion (clavicular fibers) and extension (sternocostal fibers) of humerus"
 				>
 				<element name="lateral pectoral nerve"
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne13.htm LATERAL PECTORAL NERVE]"
 					origin="C5-7"
 					distribution="upper pectoralis major muscle"
+					modality="flexor motor"
 					>
 					<fibers type="GVE" src="BMA.SC.VH.PM" dst="TARGET.TEA.HAND"></fibers>
 				</element>
@@ -351,6 +347,7 @@
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne10.htm MEDIAL PECTORAL NERVE]"
 					origin="C8-T1"
 					distribution="lower pectoralis major muscle, pectoralis minor"
+					modality="extensor motor"
 					action="depression of shoulder; downward rotation of scapula"
 					>
 					<fibers type="GVE" src="BMA.SC.VH.VM" dst="TARGET.TEA.HAND"></fibers>
@@ -361,27 +358,27 @@
 				<element name="nerve to levator scapulae"
 					origin="C3-C4"
 					distribution="shoulder, levator scapulae"
-					modality="motor"
+					modality="flexor motor"
 					action="elevation of scapulae; medial rotation of scapula"
 					>
 					<fibers type="GVE" src="BMA.SC.VH.PM" dst="TARGET.TEA.HAND"></fibers>
 				</element>
 				<element name="subscapular nerves"
 					origin="posterior division of the brachial plexus"
-					modality="motor"
+					modality="extensor motor"
 					action="move scapulae"
 					>
 					<fibers type="GVE" src="BMA.SC.VH.VM" dst="TARGET.TEA.HAND"></fibers>
 					<element name="upper subscapular nerve"
 						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/uppersubscapular.htm UPPER SUBSCAPULAR NERVE]"
 						distribution="subscapularis"
-						modality="motor"
+						modality="extensor motor"
 						action="medially rotate shoulder, adduct at shoulder"
 						/>
 					<element name="lower subscapular nerve"
 						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/lowersubscapular.htm - LOWER SUBSCAPULAR NERVE]"
 						distribution="subscapularis, teres major"
-						modality="motor"
+						modality="extensor motor"
 						action="adduction, internal rotation and extension of arm"
 						/>
 					<element name="middle subscapular nerve"
@@ -389,7 +386,7 @@
 						origin="posterior cord of brachial PLEXUS (C7-C8)"
 						distribution="latissimus dorsi muscle"
 						imgsrc="http://home.comcast.net/~wnor/backvessels.jpg"
-						modality="motor"
+						modality="extensor motor"
 						action="extend and adduct at shoulder, medially rotate at shoulder, and horizontally abduct away from midline"
 						>
 					</element>
@@ -399,7 +396,7 @@
 					origin="brachial PLEXUS (C5-C6)"
 					distribution="descends through suprascapular and spinoglenoid notches and supplies acromioclavicular and shoulder joints, and supraspinous and infraspinous muscles"
 					imgsrc="http://www.shoulderdoc.co.uk/images/uploaded/suprascapular_and_axillary_nerves_02.jpg"
-					modality="motor and general sensory"
+					modality="flexor motor and general sensory"
 					action="external rotation of humerus; abduction of humerus"
 					>
 					<fibers type="GVE" src="BMA.SC.VH.PM" dst="TARGET.TEA.HAND"></fibers>
@@ -408,7 +405,7 @@
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/dorsalscapularn.htm DORSAL SCAPULAR NERVE]"
 					origin="brachial PLEXUS-ventral branch of C5"
 					distribution="rhomboid muscles and occasionally levator muscle of scapula"
-					modality="motor"
+					modality="flexor motor"
 					>
 					<fibers type="GVE" src="BMA.SC.VH.PM" dst="TARGET.TEA.HAND"></fibers>
 					<element name="dorsal scapular nerve, branch to rhomboideus minor"
@@ -428,7 +425,7 @@
 				origin="upper trunk of brachial PLEXUS (C5)"
 				distribution="subclavius muscle and sternoclavicular joint"
 				imgsrc="http://pds.exblog.jp/pds/1/200511/03/86/a0057586_9493576.jpg"
-				modality="motor and general sensory"
+				modality="extensor motor and general sensory"
 				action="possible depresses clavicle; maintains sternoclavicular joint"
 				>
 				<fibers type="GVE" src="BMA.SC.VH.VM" dst="TARGET.TEA.HAND"></fibers>
