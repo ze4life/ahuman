@@ -2,23 +2,7 @@
 
 	<division category="Spinal Nerves" name="HEART AND LUNG CERVICAL NERVES">
 
-		<element name="heart and lung cervical nerves, mixed"
-			>
-			<element name="phrenic nerve"
-				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/leftphrenicnerve.htm LEFT PHRENIC NERVE], [http://www.oluwoleogunranti.com/course/course1/nerves/rightphrenicnerve.htm RIGHT PHRENIC NERVE]"
-				origin="cervical PLEXUS (C3-C5)"
-				distribution="pleura, pericardium, diaphragm, peritoneum, and sympathetic plexuses; sensory - central tendon of the diaphragm"
-				imgsrc="http://www.medicalartlibrary.com/respiratory/images/diaphragm-phrenic-nerve.jpg"
-				modality="extensor motor"
-				>
-				<fibers type="GVE" src="BMA.SC.VH.PHR" dst="TARGET.TEA.LUNG"></fibers>
-				<element name="phrenic nerves, accessory"
-					origin="an inconstant contribution of the fifth cervical nerve to the phrenic nerve; when present, they run a separate course to the root of the neck or into the thorax before joining the phrenic nerve"
-					/>
-			</element>
-		</element>
-
-		<element name="heart and lung cervical nerves, sensory"
+		<element name="heart cervical nerves, sensory"
 			>
 			<element name="cervical cardiac nerve, sensory"
 				imgsrc="http://web.uni-plovdiv.bg/stu1104541018/docs/res/skandalakis%27%20surgical%20anatomy%20-%202004/Chapter%2007_%20Pericardium,%20Heart,%20and%20Great%20Vessels_fichiers/loadBinaryCA8UT42Z.jpg"
@@ -34,6 +18,23 @@
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne286.htm CARDIAC BRANCH OF CERVICOTHORACIC GANGLION]"
 					origin="sensory fibers whose cell bodies are placed in the C7-8,T1 spinal ganglia through the thoracic splanchnic nerves"
 					distribution="heart via cardiac PLEXUS"
+					/>
+			</element>
+		</element>
+
+		<element name="lung cervical nerves, mixed"
+			>
+			<element name="phrenic nerve"
+				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/leftphrenicnerve.htm LEFT PHRENIC NERVE], [http://www.oluwoleogunranti.com/course/course1/nerves/rightphrenicnerve.htm RIGHT PHRENIC NERVE]"
+				origin="cervical PLEXUS (C3-C5)"
+				distribution="sensory to pleura, pericardium, motor to diaphragm, peritoneum, and sympathetic plexuses; sensory - central tendon of the diaphragm"
+				imgsrc="http://www.medicalartlibrary.com/respiratory/images/diaphragm-phrenic-nerve.jpg"
+				modality="extensor motor and visceral sensory"
+				>
+				<fibers type="GVE" src="BMA.SC.VH.PHR" dst="TARGET.TEA.LUNG"></fibers>
+				<fibers type="GSA" src="TARGET.TEA.LUNG" dst="BMA.SC.PH.NP"></fibers>
+				<element name="phrenic nerves, accessory"
+					origin="an inconstant contribution of the fifth cervical nerve to the phrenic nerve; when present, they run a separate course to the root of the neck or into the thorax before joining the phrenic nerve"
 					/>
 			</element>
 		</element>
