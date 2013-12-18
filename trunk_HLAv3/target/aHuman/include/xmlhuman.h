@@ -190,6 +190,7 @@ public:
 	String imgsrc;
 	String imgheight;
 	String modality;
+	String action;
 
 	ClassList<XmlNerveFiberInfo> fibers;
 	MapStringToClass<XmlNerveInfo> childs;

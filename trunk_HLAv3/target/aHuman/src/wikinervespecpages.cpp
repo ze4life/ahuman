@@ -52,6 +52,8 @@ void WikiNerveSpecPages::addNerveList( int level , XmlNerveInfo& nerve , StringL
 		s += "; DISTRIBUTION={" + nerve.distribution + "}";
 	if( !nerve.modality.isEmpty() )
 		s += "; MODALITY={" + nerve.modality + "}";
+	if( !nerve.action.isEmpty() )
+		s += "; ACTION={" + nerve.action + "}";
 	if( nerve.fibers.count() > 0 )
 		s += "; FIBERS={" + getNerveDivision_fibers( nerve.fibers ) + "}";
 	lines.add( s );
