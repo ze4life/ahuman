@@ -17,9 +17,11 @@ void XmlNerves::load() {
 	EnvService *es = EnvService::getService();
 	Xml xml = es -> loadXml( "hpns.xml" );
 	ASSERTMSG( xml.exists() , "unable to read file hpns.xml" );
+	Xml xmlNerves = xml.getChildNamedNode( "category" , "nerves" );
+	ASSERTMSG( xmlNerves.exists() , "unable to read nerve divisions" );
 
 	// scan
-	for( Xml xmlDivision = xml.getFirstChild( "division" ); xmlDivision.exists(); xmlDivision = xmlDivision.getNextChild( "division" ) ) {
+	for( Xml xmlDivision = xmlNerves.getFirstChild( "division" ); xmlDivision.exists(); xmlDivision = xmlDivision.getNextChild( "division" ) ) {
 		String name = xmlDivision.getAttribute( "name" );
 		String file = xmlDivision.getAttribute( "xmlfile" );
 		String page = xmlDivision.getAttribute( "page" );
@@ -71,6 +73,13 @@ XmlNerveInfo& XmlNerves::getNerveInfo( String nerve ) {
 	XmlNerveInfo *pinfo = nerves.get( nerve );
 	ASSERTMSG( pinfo != NULL , "unable to find nerve=" + nerve );
 	return( *pinfo );
+}
+
+bool XmlNerves::checkNerve( String nerve ) {
+	XmlNerveInfo *pinfo = nerves.get( nerve );
+	if( pinfo == NULL )
+		return( false );
+	return( true );
 }
 
 XmlNerveInfo *XmlNerves::createNerveInfo( String nerve , Xml xmlitem ) {

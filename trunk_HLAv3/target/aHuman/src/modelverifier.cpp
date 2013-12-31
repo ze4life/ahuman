@@ -25,6 +25,7 @@ void ModelVerifier::verify() {
 	bool verifyHierarchy = modelArea.getBooleanProperty( "verifyHierarchy" , true );
 	bool verifyCircuits = modelArea.getBooleanProperty( "verifyCircuits" , true );
 	bool verifyNerves = modelArea.getBooleanProperty( "verifyNerves" , true );
+	bool verifyMuscles = modelArea.getBooleanProperty( "verifyMuscles" , true );
 	bool verifyMindModel = modelArea.getBooleanProperty( "verifyMindModel" , true );
 
 	// verify
@@ -34,6 +35,8 @@ void ModelVerifier::verify() {
 		checkCircuits();
 	if( verifyNerves )
 		checkNerves();
+	if( verifyMuscles )
+		checkMuscles();
 	if( verifyMindModel )
 		checkMindModel();
 }
@@ -357,6 +360,48 @@ bool ModelVerifier::checkNerves_verifyFiberChain( XmlNerveInfo& info , String re
 	// this link does not exist in mind model
 	logger.logError( "checkNerves_verifyFiberChain: not found link from region=" + regionSrcId + " to region=" + regionDstId + ", from nerve=" + info.name );
 	return( false );
+}
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+void ModelVerifier::checkMuscles() {
+	// check muscles use correct nerves
+	logger.logInfo( "checkNerves: CHECK MUSCLES ..." );
+
+	bool checkAll = true;
+	StringList muscles;
+	musclesxml.getMuscleList( muscles );
+
+	for( int k = 0; k < muscles.count(); k++ ) {
+		String id = muscles.get( k );
+
+		// verify
+		logger.logInfo( "checkMuscles: verify muscle id=" + id );
+		bool checkOne = checkMuscles_verifyNerves( id );
+		if( checkOne == false )
+			checkAll = false;
+	}
+
+	if( checkAll )
+		logger.logInfo( "checkMuscles: MUSCLES ARE OK" );
+	else
+		logger.logInfo( "checkMuscles: MUSCLES HAVE ERRORS" );
+}
+
+bool ModelVerifier::checkMuscles_verifyNerves( String muscle ) {
+	XmlMuscleInfo& info = musclesxml.getMuscleInfo( muscle );
+
+	if( info.nerve.isEmpty() )
+		return( true );
+
+	if( !nervesxml.checkNerve( info.nerve ) ) {
+		logger.logError( "checkMuscles_verifyNerves: muscle=" + info.name + ", nerve=" + info.nerve + " - is unknown nerve" );
+		return( false );
+	}
+
+	XmlNerveInfo& nerve = nervesxml.getNerveInfo( info.nerve );
+	return( true );
 }
 
 /*#########################################################################*/

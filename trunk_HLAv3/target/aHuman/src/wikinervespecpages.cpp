@@ -13,9 +13,9 @@ WikiNerveSpecPages::~WikiNerveSpecPages() {
 }
 
 void WikiNerveSpecPages::execute() {
-	bool createMainPage = wm -> wiki.getBooleanProperty( "WikiNervePages" , true );
+	bool createMainPage = wm -> wiki.getBooleanProperty( "createNervePages" , true );
 	if( createMainPage == false ) {
-		logger.logInfo( "skip creating nerve main page" );
+		logger.logInfo( "skip creating nerve spec pages" );
 		return;
 	}
 
@@ -52,8 +52,11 @@ void WikiNerveSpecPages::addNerveList( int level , XmlNerveInfo& nerve , StringL
 		s += "; DISTRIBUTION={" + nerve.distribution + "}";
 	if( !nerve.modality.isEmpty() )
 		s += "; MODALITY={" + nerve.modality + "}";
-	if( !nerve.action.isEmpty() )
-		s += "; ACTION={" + nerve.action + "}";
+	
+	String muscles = getNerveDivision_muscles( nerve.name );
+	if( !muscles.isEmpty() )
+		s += "; MUSCLES={" + muscles + "}";
+
 	if( nerve.fibers.count() > 0 )
 		s += "; FIBERS={" + getNerveDivision_fibers( nerve.fibers ) + "}";
 	lines.add( s );
@@ -107,3 +110,27 @@ String WikiNerveSpecPages::getNerveDivision_fiberchain( XmlNerveFiberInfo& fiber
 
 	return( s );
 }
+
+String WikiNerveSpecPages::getNerveDivision_muscles( String name ) {
+	StringList muscles;
+	wm -> musclesxml.getMusclesByNerve( name , muscles );
+
+	if( muscles.count() == 0 )
+		return( "" );
+
+	// form muscle string
+	muscles.sort();
+	String ms;
+	for( int k = 0; k < muscles.count(); k++ ) {
+		String muscle = muscles.get( k );
+		XmlMuscleInfo& info = wm -> musclesxml.getMuscleInfo( muscle );
+
+		if( k > 0 )
+			ms += "; ";
+
+		ms += "[" + info.link + " " + info.name + "] - " + info.action;
+	}
+
+	return( ms );
+}
+

@@ -13,7 +13,7 @@ WikiNerveMainPage::~WikiNerveMainPage() {
 }
 
 void WikiNerveMainPage::execute() {
-	bool createMainPage = wm -> wiki.getBooleanProperty( "WikiNerveMainPage" , true );
+	bool createMainPage = wm -> wiki.getBooleanProperty( "createNervePages" , true );
 	if( createMainPage == false ) {
 		logger.logInfo( "skip creating nerve main page" );
 		return;

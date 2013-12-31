@@ -12,6 +12,9 @@ class XmlCircuitFind;
 class XmlNerves;
 class XmlNerveInfo;
 class XmlNerveFiberInfo;
+class XmlMuscles;
+class XmlMuscleInfo;
+class XmlMuscleDivision;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -157,6 +160,7 @@ public:
 	void load();
 
 	void getNerveList( StringList& list );
+	bool checkNerve( String nerve );
 	Xml getNerveXml( String id );
 	XmlNerveInfo& getNerveInfo( String nerve );
 
@@ -205,6 +209,73 @@ public:
 	String src;
 	String dst;
 	StringList mids;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class XmlMuscles {
+public:
+	XmlMuscles();
+	virtual ~XmlMuscles();
+	virtual const char *getClass() { return "XmlMuscles"; };
+
+public:
+	void load();
+
+	void getMuscleList( StringList& list );
+	Xml getMuscleXml( String id );
+	XmlMuscleInfo& getMuscleInfo( String muscle );
+	void getMusclesByNerve( String nerve , StringList& muscles );
+
+	void getCategories( StringList& categories );
+	MapStringToClass<XmlMuscleDivision>& getDivisions() { return( divisions ); };
+
+private:
+	Xml getMuscleCategoryXml( Xml categoryItem );
+	XmlMuscleInfo *createMuscleInfo( String muscle , Xml xmlitem );
+	void addChilds( XmlMuscleDivision *division , Xml parent , MapStringToClass<XmlMuscleInfo>& list );
+
+private:
+	MapStringToClass<XmlMuscleInfo> muscles;
+	MapStringToClass<XmlMuscleDivision> divisions;
+	MapStringToClass<StringList> nerveMuscles;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class XmlMuscleInfo {
+public:
+	~XmlMuscleInfo() {};
+
+	Xml xml;
+
+	String name;
+	String link;
+	String nerve;
+	String action;
+
+	MapStringToClass<XmlMuscleInfo> childs;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class XmlMuscleDivision {
+public:
+	~XmlMuscleDivision() {};
+
+	Xml xml;
+
+	String name;
+	String category;
+	String page;
+
+	String divc;
+	String divgroup;
+
+	MapStringToClass<XmlMuscleInfo> childs;
 };
 
 /*#########################################################################*/

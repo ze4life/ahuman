@@ -4,14 +4,14 @@
 // #############################################################################
 // #############################################################################
 
-class EffectorGenitalia : public MindEffector {
+class EffectorLeg : public MindEffector {
 private:
 	bool continueRunFlag;
 
 public:
-	EffectorGenitalia( EffectorArea *area );
-	virtual ~EffectorGenitalia();
-	virtual const char *getClass() { return( "EffectorGenitalia" ); };
+	EffectorLeg( EffectorArea *area );
+	virtual ~EffectorLeg();
+	virtual const char *getClass() { return( "EffectorLeg" ); };
 
 public:
 	// effector lifecycle
@@ -32,27 +32,27 @@ private:
 	Xml config;
 };
 
-MindEffector *AHumanTarget::createGenitalia( EffectorArea *area ) {
-	return( new EffectorGenitalia( area ) );
+MindEffector *AHumanTarget::createLeg( EffectorArea *area ) {
+	return( new EffectorLeg( area ) );
 }
 
 // #############################################################################
 // #############################################################################
 
-EffectorGenitalia::EffectorGenitalia( EffectorArea *p_area )
+EffectorLeg::EffectorLeg( EffectorArea *p_area )
 :	MindEffector( p_area ) {
 	attachLogger();
 	continueRunFlag = false;
 }
 
-EffectorGenitalia::~EffectorGenitalia() {
+EffectorLeg::~EffectorLeg() {
 }
 
-void EffectorGenitalia::configureEffector( Xml p_config ) {
+void EffectorLeg::configureEffector( Xml p_config ) {
 	config = p_config;
 }
 
-void EffectorGenitalia::createEffector( MindRegionCreateInfo *createInfo ) {
+void EffectorLeg::createEffector( MindRegionCreateInfo *createInfo ) {
 	// set connectors
 	TargetRegionDef *info = MindEffector::getEffectorInfo();
 	MindRegionTypeDef *type = info -> getType();
@@ -66,22 +66,22 @@ void EffectorGenitalia::createEffector( MindRegionCreateInfo *createInfo ) {
 	}
 }
 
-void EffectorGenitalia::createSourceConnector( MindRegionCreateInfo *createInfo , MindRegionConnectorDef *connector ) {
+void EffectorLeg::createSourceConnector( MindRegionCreateInfo *createInfo , MindRegionConnectorDef *connector ) {
 	NeuroLinkSource *source = new NeuroLinkSource();
-	source -> setHandler( ( MindRegion::NeuroLinkSourceHandler )&EffectorGenitalia::sourceHandler );
+	source -> setHandler( ( MindRegion::NeuroLinkSourceHandler )&EffectorLeg::sourceHandler );
 	MindEffector::addSourceEntity( connector -> getId() , source );
 }
 
-void EffectorGenitalia::createTargetConnector( MindRegionCreateInfo *createInfo , MindRegionConnectorDef *connector ) {
+void EffectorLeg::createTargetConnector( MindRegionCreateInfo *createInfo , MindRegionConnectorDef *connector ) {
 	NeuroLinkTarget *target = new NeuroLinkTarget();
-	target -> setHandler( ( MindRegion::NeuroLinkTargetHandler )&EffectorGenitalia::targetHandler );
+	target -> setHandler( ( MindRegion::NeuroLinkTargetHandler )&EffectorLeg::targetHandler );
 	MindEffector::addTargetEntity( connector -> getId() , target );
 }
 
-NeuroSignal *EffectorGenitalia::sourceHandler( NeuroLink *link , NeuroLinkSource *point ) {
+NeuroSignal *EffectorLeg::sourceHandler( NeuroLink *link , NeuroLinkSource *point ) {
 	return( NULL );
 }
 
-NeuroSignalSet *EffectorGenitalia::targetHandler( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *srcData ) {
+NeuroSignalSet *EffectorLeg::targetHandler( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *srcData ) {
 	return( NULL );
 }
