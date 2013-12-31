@@ -13,6 +13,10 @@ class WikiMainPage;
 class WikiCircuitPages;
 class WikiHierarchyPage;
 class WikiAreaPages;
+class WikiRegionPage;
+class WikiNerveMainPage;
+class WikiNerveSpecPages;
+class WikiMuscleMainPage;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -57,9 +61,10 @@ private:
 	MindEffector *createLiver( EffectorArea *area );
 	MindEffector *createStomach( EffectorArea *area );
 	MindEffector *createHand( EffectorArea *area );
+	MindEffector *createLeg( EffectorArea *area );
 	MindEffector *createTrunk( EffectorArea *area );
 	MindEffector *createBreast( EffectorArea *area );
-	MindEffector *createUreter( EffectorArea *area );
+	MindEffector *createGenitalia( EffectorArea *area );
 };
 
 /*#########################################################################*/
@@ -80,6 +85,7 @@ public:
 	XmlHMind hmindxml;
 	XmlCircuits circuitsxml;
 	XmlNerves nervesxml;
+	XmlMuscles musclesxml;
 };
 
 /*#########################################################################*/
@@ -114,6 +120,7 @@ private:
 	void checkHierarchy();
 	void checkCircuits();
 	void checkNerves();
+	void checkMuscles();
 	void checkMindModel();
 
 	bool checkHierarchy_verifyChild( String node , bool checkMapping );
@@ -123,6 +130,7 @@ private:
 	bool checkNerves_verifyComponents( String nerve );
 	bool checkNerves_verifyLinks( XmlNerveInfo& info , XmlNerveFiberInfo& nf );
 	bool checkNerves_verifyFiberChain( XmlNerveInfo& info , String regionSrcId , String regionDstId );
+	bool checkMuscles_verifyNerves( String muscle );
 	bool checkFiberComp( XmlNerveInfo& info , XmlNerveFiberInfo& nf , String comp );
 	bool checkFiberType( XmlNerveInfo& info , XmlNerveFiberInfo& nf , String type );
 	bool checkMindModel_verifyRegion( MindRegionDef *regionDef );
@@ -172,6 +180,7 @@ private:
 	void createAreaPages();
 	void createNerveMainPage();
 	void createNerveSpecPages();
+	void createMuscleMainPage();
 
 public:
 	Xml wiki;
@@ -353,6 +362,26 @@ private:
 	void addNerveList( int level , XmlNerveInfo& div , StringList& lines );
 	String getNerveDivision_fibers( ClassList<XmlNerveFiberInfo>& fibers );
 	String getNerveDivision_fiberchain( XmlNerveFiberInfo& fiber );
+	String getNerveDivision_muscles( String name );
+
+private:
+	WikiMaker *wm;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class WikiMuscleMainPage : public Object {
+public:
+	WikiMuscleMainPage( WikiMaker *wm );
+	virtual ~WikiMuscleMainPage();
+	virtual const char *getClass() { return "WikiMuscleMainPage"; };
+
+public:
+	void execute();
+
+private:
+	void addMuscles( int level , XmlMuscleDivision& div , MapStringToClass<XmlMuscleInfo>& items , StringList& lines );
 
 private:
 	WikiMaker *wm;

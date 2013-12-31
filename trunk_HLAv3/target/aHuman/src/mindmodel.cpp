@@ -16,6 +16,7 @@ void MindModel::load() {
 	hmindxml.load();
 	circuitsxml.load();
 	nervesxml.load();
+	musclesxml.load();
 }
 
 bool MindModel::checkLinkCoveredByModel( String compSrc , String compDst ) {

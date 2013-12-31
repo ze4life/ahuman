@@ -25,6 +25,7 @@ void WikiMaker::createPages() {
 	createAreaPages();
 	createNerveMainPage();
 	createNerveSpecPages();
+	createMuscleMainPage();
 }
 
 void WikiMaker::createMainPage() {
@@ -49,6 +50,11 @@ void WikiMaker::createAreaPages() {
 
 void WikiMaker::createNerveMainPage() {
 	WikiNerveMainPage maker( this );
+	maker.execute();
+}
+
+void WikiMaker::createMuscleMainPage() {
+	WikiMuscleMainPage maker( this );
 	maker.execute();
 }
 

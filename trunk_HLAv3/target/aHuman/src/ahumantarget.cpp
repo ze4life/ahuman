@@ -24,9 +24,10 @@ void AHumanTarget::createTarget( SensorArea *sensorArea , EffectorArea *effector
 	MindTarget::addEffector( "TARGET.TEA.LIVER" , AHumanTarget::createLiver( effectorArea ) );
 	MindTarget::addEffector( "TARGET.TEA.STOMACH" , AHumanTarget::createStomach( effectorArea ) );
 	MindTarget::addEffector( "TARGET.TEA.HAND" , AHumanTarget::createHand( effectorArea ) );
+	MindTarget::addEffector( "TARGET.TEA.LEG" , AHumanTarget::createLeg( effectorArea ) );
 	MindTarget::addEffector( "TARGET.TEA.TRUNK" , AHumanTarget::createTrunk( effectorArea ) );
 	MindTarget::addEffector( "TARGET.TEA.BREAST" , AHumanTarget::createBreast( effectorArea ) );
-	MindTarget::addEffector( "TARGET.TEA.URETER" , AHumanTarget::createUreter( effectorArea ) );
+	MindTarget::addEffector( "TARGET.TEA.GENITALIA" , AHumanTarget::createGenitalia( effectorArea ) );
 }
 
 void AHumanTarget::initTarget() {
