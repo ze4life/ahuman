@@ -557,6 +557,14 @@ public:
 		int index = rfc_lst_add( data , &v );
 		return( index );
 	}
+	int add( StringList *p ) {
+		if( p == NULL )
+			return( 0 );
+		for( int k = 0; k < p -> count(); k++ )
+			add( p -> get( k ) );
+		return( p -> count() );
+	}
+
 	int count() {
 		return( data -> s_n );
 	}
