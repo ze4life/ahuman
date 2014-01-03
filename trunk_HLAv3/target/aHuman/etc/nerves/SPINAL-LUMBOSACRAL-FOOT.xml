@@ -5,10 +5,11 @@
 		<element name="femoral nerve, leg"
 			synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne75.htm FEMORAL NERVE]"
 			origin="lumbar PLEXUS (L2-L4); descending behind the inguinal ligament to the femoral triangle"
-			distribution="skin of thigh and leg, muscles of front of thigh, and hip and knee joints; psoas major, sartorius"
+			distribution="skin of thigh and leg, muscles of front of thigh, and hip and knee joints"
 			modality="general sensory"
-			action="flexes, abducts, and laterally rotates femur at hip"
 			>	
+			<fibers type="GVA" src="TARGET.TEA.LEG" dst="BMA.SC.PH.MG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
+			<fibers type="GVA" src="TARGET.TEA.LEG" dst="BMA.SC.PH.SG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
 			<element name="saphenous nerve"
 				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne78.htm SAPHENOUS NERVE]"
 					origin="termination of femoral nerve, descending first with femoral vessels and then on medial side of leg and foot, L3/L4"
@@ -32,25 +33,23 @@
 			imgsrc="http://classconnection.s3.amazonaws.com/661/flashcards/1011661/jpg/sacral-plexus-tibial-nerve-common-fibular-nerve1333654508571.jpg"
 			modality="general sensory and flexor/extensor motor"
 			>
+			<fibers type="GVA" src="TARGET.TEA.LEG" dst="BMA.SC.PH.MG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
+			<fibers type="GVA" src="TARGET.TEA.LEG" dst="BMA.SC.PH.SG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
+
 			<element name="common peroneal nerve"
 				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne54.htm COMMON PERONEAL NERVE]; popliteal nerve; common fibular nerve"
 				origin="L4/L5, S1/S2, sciatic nerve in lower part of thigh"
 				distribution="supplies short head of biceps femoris muscle (while still incorporated in sciatic nerve), gives off lateral sural cutaneous nerve and fibular communicating branch as it descends in popliteal fossa, supplies knee and superior tibiofibular joints and tibialis anterior muscle, and divides into superficial and deep fibular nerves"
 				modality="general sensory and flexor/extensor motor"
 				>
-				<element name="cutaneous nerve of calf, lateral"
-					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/latcutofcalf.htm LATERAL CUTANEOUS NERVE OF CALF]"
-					origin="common peroneal nerve, L4/L5, S1"
-					distribution="skin of lateral side of back of leg, rarely may continue as the sural nerve"
-					imgsrc="http://www.health-writings.com/img/sk/superficial-peroneal-nerve-damage/1230552-1234607-65.jpg"
-					modality="general sensory"
-					/>
 				<element name="common peroneal nerve, articular branches"
 					origin="common peroneal nerve"
 					distribution="articular branches to the knee joint"
 					imgsrc="http://home.comcast.net/~wnor/poplitealfossacontents.jpg" imgheight="400"
 					modality="flexor motor"
-					/>
+					>
+					<fibers type="GSE" src="BMA.SC.VH.PL" dst="TARGET.TEA.LEG"></fibers>
+				</element>
 				<element name="fibular nerve, deep"
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/deepperoneal.htm DEEP PERONEAL NERVE]"
 					origin="terminal branch of common fibular nerve"
@@ -58,7 +57,9 @@
 					imgsrc="http://img269.imageshack.us/img269/3083/smallperoneal.jpg"
 					modality="general sensory and extensor motor"
 					action="Dorsiflexion and eversion of foot; Extension of four lateral toes; dorsiflexion and eversion of foot; Inversion and dorsiflexion of foot; Extension of great toe, dorsiflexion and inversion of foot; Extension of 2nd - 4th toes; Extension of big toe"
-					/>
+					>
+					<fibers type="GSE" src="BMA.SC.VH.VL" dst="TARGET.TEA.LEG"></fibers>
+				</element>
 				<element name="fibular nerve, superficial"
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne94.htm SUPERFICIAL FIBULAR NERVE], superficial peroneal nerve, musculocutaneous nerve of foot"
 					branches="medial - medial dorsal cutaneous nerve, lasteral - intermediate dorsal cutaneous nerve"
@@ -68,6 +69,7 @@
 					modality="general sensory and flexor motor"
 					action="Eversion and weak plantar flexion of foot"
 					>
+					<fibers type="GSE" src="BMA.SC.VH.PL" dst="TARGET.TEA.LEG"></fibers>
 					<element name="cutaneous nerve of foot, medial dorsal"
 						origin="superficial fibular nerve"
 						branches="dorsal digital nerves of foot"
@@ -90,6 +92,13 @@
 							/>
 					</element>
 				</element>
+				<element name="cutaneous nerve of calf, lateral"
+					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/latcutofcalf.htm LATERAL CUTANEOUS NERVE OF CALF]"
+					origin="common peroneal nerve, L4/L5, S1"
+					distribution="skin of lateral side of back of leg, rarely may continue as the sural nerve"
+					imgsrc="http://www.health-writings.com/img/sk/superficial-peroneal-nerve-damage/1230552-1234607-65.jpg"
+					modality="general sensory"
+					/>
 				<element name="sural communicating nerve"
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/peronealcommunicating.htm FIBULAR COMMUNICATING NERVE]"
 					origin="common peroneal nerve, L4/L5, S1"
@@ -124,7 +133,9 @@
 					imgsrc="http://www.floota.com/images/calf%20anatomy.jpg"
 					modality="flexor motor"
 					action="Plantar flexion of foot; flexion of leg of free limb"
-					/>
+					>
+					<fibers type="GSE" src="BMA.SC.VH.PL" dst="TARGET.TEA.LEG"></fibers>
+				</element>
 			</element>
 			<element name="sural nerve"
 				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne87.htm SURAL NERVE]"
@@ -155,28 +166,30 @@
 						branches="cutaneous, proper digital nerve to 1st toe, common digital nerve to 1st-2nd/2nd-3rd/3rd-4th, muscular branches to first lumbrical/abductor hallucis/flexor hallucis brevis/flexor digitorum"
 						modality="flexor motor and general sensory"
 						>
-						<element name="plantar nerve, medial, proper digital branches"
-							synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne89.htm COMMON DIGITAL BRANCHES OF MEDIAL PLANTAR NERVE]"
-							origin="medial plantar nerve, L4-L5"
-							branches="common digital nerve to 1/2, 2/3, 3/4 toes"
-							distribution="1-4 toes"
-							imgsrc="http://web.uni-plovdiv.bg/stu1104541018/docs/res/anatomy_atlas_-_Patrick_W._Tank/3%20-%20The%20Lower%20Limb_files/C3FF53.jpg"
-							modality="generic sensory"
-							/>
+						<fibers type="GSE" src="BMA.SC.IZ.RPL" dst="TARGET.TEA.LEG"></fibers>
 						<element name="plantar nerve, medial, common digital branches"
 							synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne89.htm COMMON DIGITAL BRANCHES OF MEDIAL PLANTAR NERVE]"
 							origin="medial plantar nerve, L4-L5"
-							branches="cutaneous branch to 1 toe"
+							branches="cutaneous branch to 1 toe, muscular branches to short flexor muscles of toes, flexor digitorum brevis"
 							distribution="1-4 toes"
 							imgsrc="http://web.uni-plovdiv.bg/stu1104541018/docs/res/anatomy_atlas_-_Patrick_W._Tank/3%20-%20The%20Lower%20Limb_files/C3FF48.jpg"
-							modality="generic sensory"
-							/>
+							modality="generic sensory and flexor motor"
+							>
+							<element name="plantar nerve, medial, proper digital branches"
+								origin="medial plantar nerve, L4-L5"
+								branches="common digital nerve to 1/2, 2/3, 3/4 toes"
+								distribution="1-4 toes"
+								imgsrc="http://web.uni-plovdiv.bg/stu1104541018/docs/res/anatomy_atlas_-_Patrick_W._Tank/3%20-%20The%20Lower%20Limb_files/C3FF53.jpg"
+								modality="generic sensory"
+								/>
+						</element>
 						<element name="plantar nerve, medial, branches to LAFF muscles"
 							distribution="muscular branches to first lumbrical/abductor hallucis/flexor hallucis brevis/flexor digitorum"
 							imgsrc="http://web.uni-plovdiv.bg/stu1104541018/docs/res/anatomy_atlas_-_Patrick_W._Tank/3%20-%20The%20Lower%20Limb_files/C3FF50.jpg"
 							modality="flexor motor"
 							action="flexion of metatarsophalangeal joints, proximal phalanx of big toe, middle phalanges of lateral four toes"
-							/>
+							>
+						</element>
 					</element>
 					<element name="plantar nerve, lateral"
 						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne91.htm LATERAL PLANTAR NERVE]"
@@ -186,6 +199,7 @@
 						imgsrc="http://clubs.maryville.edu/myu/image/Sheath.gif"
 						modality="general sensory and flexor motor"
 						>
+						<fibers type="GSE" src="BMA.SC.IZ.RPL" dst="TARGET.TEA.LEG"></fibers>
 						<element name="plantar nerve, lateral, superficial branch"
 							synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne92.htm SUPERFICIAL BRANCH OF LATERAL PLANTAR NERVE]"
 							origin="lateral plantar nerve"
@@ -201,13 +215,14 @@
 									origin="superficial branch of lateral plantar nerve"
 									branches="the medial nerve gives rise to two proper plantar digital nerves"
 									distribution="the lateral one to the short flexor muscle of little toe and to skin and joints of lateral side of sole and little toe; the medial one to adjacent sides of fourth and fifth toes"
-									modality="motor and general sensory"
-									/>
-								<element name="digital nerves of lateral plantar nerve, proper plantar"
-									origin="common plantar digital nerves"
-									distribution="short flexor muscle of little toe, skin and joints of lateral side of sole and little toe, and adjacent sides of fourth and fifth toes"
 									modality="flexor motor and general sensory"
-									/>
+									>
+									<element name="digital nerves of lateral plantar nerve, proper plantar"
+										origin="common plantar digital nerves"
+										distribution="short flexor muscle of little toe, skin and joints of lateral side of sole and little toe, and adjacent sides of fourth and fifth toes"
+										modality="general sensory"
+										/>
+								</element>
 							</element>
 						</element>
 						<element name="plantar nerve, lateral, deep branch"
