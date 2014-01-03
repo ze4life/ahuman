@@ -13,6 +13,9 @@ XmlNerves::~XmlNerves() {
 }
 
 void XmlNerves::load() {
+	if( divisions.count() > 0 )
+		return;
+
 	// read circuits
 	EnvService *es = EnvService::getService();
 	Xml xml = es -> loadXml( "hpns.xml" );
@@ -30,6 +33,7 @@ void XmlNerves::load() {
 		Xml xmlDivisionFile = xmlFile.getChildNamedNode( "division" , name );
 
 		XmlNerveInfo *division = new XmlNerveInfo;
+		division -> div = NULL;
 		division -> name = name;
 		division -> xml = xmlDivisionFile;
 		division -> origin = page;
@@ -46,7 +50,7 @@ void XmlNerves::addChilds( XmlNerveInfo *division , XmlNerveInfo *parent ) {
 
 		// add item
 		nodes.addnew( id , new Xml( item ) );
-		XmlNerveInfo *nerveInfo = createNerveInfo( id , item );
+		XmlNerveInfo *nerveInfo = createNerveInfo( id , item , division );
 		nerves.add( id , nerveInfo );
 		parent -> childs.add( id , nerveInfo );
 
@@ -82,11 +86,12 @@ bool XmlNerves::checkNerve( String nerve ) {
 	return( true );
 }
 
-XmlNerveInfo *XmlNerves::createNerveInfo( String nerve , Xml xmlitem ) {
+XmlNerveInfo *XmlNerves::createNerveInfo( String nerve , Xml xmlitem , XmlNerveInfo *div ) {
 	XmlNerveInfo *pinfo = new XmlNerveInfo;
 
 	XmlNerveInfo& info = *pinfo;
 	info.xml = xmlitem;
+	info.div = div;
 
 	info.name = xmlitem.getAttribute( "name" );
 	info.synonyms = xmlitem.getAttribute( "synonyms" , "" );
@@ -113,4 +118,9 @@ XmlNerveInfo *XmlNerves::createNerveInfo( String nerve , Xml xmlitem ) {
 	}
 
 	return( pinfo );
+}
+
+XmlNerveInfo& XmlNerves::getNerveDivision( String nerve ) {
+	XmlNerveInfo& info = getNerveInfo( nerve );
+	return( ( XmlNerveInfo& )*info.div );
 }
