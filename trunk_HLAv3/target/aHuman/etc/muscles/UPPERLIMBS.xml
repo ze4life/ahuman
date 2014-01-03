@@ -25,6 +25,9 @@
 					nerve="dorsal scapular nerve"
 					action="Elevates scapula and tilts its glenoid cavity inferiorly by rotating scapula"/>
 			</element>
+			<element name="Levator claviculae muscle" link="http://en.wikipedia.org/wiki/Levator_claviculae_muscle"
+				nervelist="C1-C4, upper cervical ventral spinal roots"
+				action="lifts clavicle"/>
 			<element name="Rhomboid muscles">
 				<element name="Rhomboid major muscle">
 					<element name="Rhomboid major muscle, roots" link="http://en.wikipedia.org/wiki/Rhomboid_muscle"
@@ -49,13 +52,23 @@
 
 	<division category="MUSCLES - UPPER LIMBS" name="Thoracic walls" group="Axioappendicular muscles, Anterior axioappendicular muscles">
 
-		<element name="Pectoralis major muscle" link="http://en.wikipedia.org/wiki/Pectoralis_major_muscle"
-			nerve="lateral pectoral nerve], [medial pectoral nerve"
-			action="Clavicular head: flexes the humerus. Sternocostal head: extends the humerus. As a whole, adducts and medially rotates the humerus. It also draws the scapula anteriorly and inferiorly"/>
+		<element name="Pectoralis major muscle">
+			<element name="Pectoralis major muscle, lateral" link="http://en.wikipedia.org/wiki/Pectoralis_major_muscle"
+				nerve="lateral pectoral nerve"
+				action="Clavicular head: flexes the humerus. Sternocostal head: extends the humerus. As a whole, adducts and medially rotates the humerus. It also draws the scapula anteriorly and inferiorly"/>
+			<element name="Pectoralis major muscle, medial" link="http://en.wikipedia.org/wiki/Pectoralis_major_muscle"
+				nerve="medial pectoral nerve"
+				action="Clavicular head: flexes the humerus. Sternocostal head: extends the humerus. As a whole, adducts and medially rotates the humerus. It also draws the scapula anteriorly and inferiorly"/>
+		</element>
 
-		<element name="Pectoralis minor muscle" link="http://en.wikipedia.org/wiki/Pectoralis_minor_muscle"
-			nerve="lateral pectoral nerve], [medial pectoral nerve"
-			action="stabilizes the scapula by drawing it inferiorly and anteriorly against the thoracic wall"/>
+		<element name="Pectoralis minor muscle">
+			<element name="Pectoralis minor muscle, lateral" link="http://en.wikipedia.org/wiki/Pectoralis_minor_muscle"
+				nerve="lateral pectoral nerve"
+				action="stabilizes the scapula by drawing it inferiorly and anteriorly against the thoracic wall"/>
+			<element name="Pectoralis minor muscle, medial" link="http://en.wikipedia.org/wiki/Pectoralis_minor_muscle"
+				nerve="medial pectoral nerve"
+				action="stabilizes the scapula by drawing it inferiorly and anteriorly against the thoracic wall"/>
+		</element>
 
 		<element name="Serratus anterior muscle" link="http://en.wikipedia.org/wiki/Serratus_anterior_muscle"
 			nerve="long thoracic nerve"
@@ -135,6 +148,9 @@
 				<element name="Triceps brachii muscle, axillary" link="http://en.wikipedia.org/wiki/Triceps_brachii_muscle"
 					nerve="axillary nerve, motor branch to triceps brachii"
 					action="extends forearm, caput longum adducts shoulder"/>
+				<element name="Articularis cubiti muscle" link="http://en.wikipedia.org/wiki/Articularis_cubiti_muscle"
+					nerve="radial nerve, motor"
+					action="lifts capsule away from joint"/>
 			</element>
 			<element name="Anconeus muscle" link="http://en.wikipedia.org/wiki/Anconeus_muscle"
 				nerve="radial nerve, motor"
@@ -146,7 +162,7 @@
 	<division category="MUSCLES - UPPER LIMBS" name="Forearm" group="Forearm">
 
 		<element name="Forearm, Anterior compartment">
-			<element name="Forearm, Superficial">
+			<element name="Forearm, Anterior compartment, Superficial">
 				<element name="Pronator teres muscle" link="http://en.wikipedia.org/wiki/Pronator_teres_muscle"
 					nerve="median nerve, superficial muscles in foream"
 					action="pronation of forearm, flexes elbow"/>
@@ -182,7 +198,7 @@
 		</element>
 
 		<element name="Forearm, Posterior compartment">
-			<element name="Forearm, Superficial">
+			<element name="Forearm, Posterior compartment, Superficial">
 				<element name="Mobile wad">
 					<element name="Brachioradialis muscle">
 						<element name="Brachioradialis muscle, musculocutaneous" link="http://en.wikipedia.org/wiki/Brachioradialis"
@@ -244,9 +260,14 @@
 				<element name="Opponens pollicis muscle" link="http://en.wikipedia.org/wiki/Opponens_pollicis_muscle"
 					nerve="median nerve, recurrent branch"
 					action="opposition of the thumb"/>
-				<element name="Flexor pollicis brevis muscle" link="http://en.wikipedia.org/wiki/Flexor_pollicis_brevis_muscle"
-					nerve="median nerve, recurrent branch], [ulnar nerve, pollicis brevis"
-					action="flexion of thumb"/>
+				<element name="Flexor pollicis brevis muscle">
+					<element name="Flexor pollicis brevis muscle, median" link="http://en.wikipedia.org/wiki/Flexor_pollicis_brevis_muscle"
+						nerve="median nerve, recurrent branch"
+						action="flexion of thumb"/>
+					<element name="Flexor pollicis brevis muscle, ulnar" link="http://en.wikipedia.org/wiki/Flexor_pollicis_brevis_muscle"
+						nerve="ulnar nerve, pollicis brevis"
+						action="flexion of thumb"/>
+				</element>
 				<element name="Abductor pollicis brevis muscle" link="http://en.wikipedia.org/wiki/Abductor_pollicis_brevis_muscle"
 					nerve="median nerve, recurrent branch"
 					action="abduction of thumb"/>
@@ -274,9 +295,14 @@
 		</element>
 
 		<element name="Hand, Intermediate">
-			<element name="Lumbricals of the hand muscles" link="http://en.wikipedia.org/wiki/Lumbricals_of_the_hand"
-				nerve="median nerve, lumbricals branches], [ulnar nerve, adductor pollicis and lumbrical"
-				action="flex metacarpophalangeal joints, extend interphalangeal joints"/>
+			<element name="Lumbricals of the hand muscles">
+				<element name="Lumbricals of the hand muscles, median" link="http://en.wikipedia.org/wiki/Lumbricals_of_the_hand"
+					nerve="median nerve, lumbricals branches"
+					action="flex metacarpophalangeal joints, extend interphalangeal joints"/>
+				<element name="Lumbricals of the hand muscles, ulnar" link="http://en.wikipedia.org/wiki/Lumbricals_of_the_hand"
+					nerve="ulnar nerve, adductor pollicis and lumbrical"
+					action="flex metacarpophalangeal joints, extend interphalangeal joints"/>
+			</element>
 			<element name="Interosseous muscles of the hand">
 				<element name="Dorsal interossei muscles of the hand" link="http://en.wikipedia.org/wiki/Dorsal_interossei_of_the_hand"
 					nerve="ulnar nerve, deep muscles"
