@@ -14,7 +14,9 @@
 				imgsrc="http://www.pudendalhope.info/sites/default/files/AC1357_01.jpg"
 				modality="extensor motor"
 				action="Extension, external rotation, abduction (upper fibers), and adduction (lower fibers) of thigh"
-				/>
+				>
+				<fibers type="GSE" src="BMA.SC.VH.VM" dst="TARGET.TEA.LEG"></fibers>
+			</element>
 			<element name="gluteal nerve, superior"
 				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne82.htm SUPERIOR GLUTEAL NERVE]"
 				origin="sacral PLEXUS (L4-S1)"
@@ -22,7 +24,9 @@
 				imgsrc="http://web.uni-plovdiv.bg/stu1104541018/docs/res/skandalakis%27%20surgical%20anatomy%20-%202004/Chapter%2028_%20Pelvis%20and%20Perineum_fichiers/loadBinaryCA02DNWW.jpg"
 				modality="flexor motor and general sensory"
 				action="Abduction of thigh, external/internal rotation of thigh; Abducts, medially rotates, and flexes femur"
-				/>
+				>
+				<fibers type="GSE" src="BMA.SC.VH.PM" dst="TARGET.TEA.LEG"></fibers>
+			</element>
 		</element>
 
 		<element name="sciatic nerves, second"
@@ -30,7 +34,6 @@
 			>
 			<fibers type="GVA" src="TARGET.TEA.LEG" dst="BMA.SC.PH.MG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
 			<fibers type="GVA" src="TARGET.TEA.LEG" dst="BMA.SC.PH.SG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
-			<fibers type="GSE" src="BMA.SC.VH.PM" dst="TARGET.TEA.LEG"></fibers>
 			<element name="piriform nerve"
 				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne81.htm NERVE TO PIRIFORMIS]"
 				origin="dorsal branches of ventral branches of sacral PLEXUS S1-S2"
@@ -38,7 +41,9 @@
 				imgsrc="http://teachmeanatomy.info/wp-content/uploads/Posterior-View-of-the-Lower-Limb-Anatomical-Course-of-the-Sciatic-Nerve.png"
 				modality="general sensory and flexor motor"
 				action="External rotation of thigh; abduction of thigh when thigh is flexed"
-				/>
+				>
+				<fibers type="GSE" src="BMA.SC.VH.PM" dst="TARGET.TEA.LEG"></fibers>
+			</element>
 		</element>
 
 		<element name="genitofemoral nerve, thigh"
@@ -107,18 +112,26 @@
 			origin="lumbar PLEXUS (L2-L4); descending behind the inguinal ligament to the femoral triangle"
 			branches="muscular and cutaneous branches"
 			distribution="skin of thigh and leg, muscles of front of thigh, and hip and knee joints; psoas major, sartorius"
-			modality="flexor motor and general sensory"
+			modality="flexor motor, extensor motor and general sensory"
 			action="flexes, abducts, and laterally rotates femur at hip"
 			>	
 			<fibers type="GVA" src="TARGET.TEA.LEG" dst="BMA.SC.PH.MG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
 			<fibers type="GVA" src="TARGET.TEA.LEG" dst="BMA.SC.PH.SG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
-			<element name="femoral nerve, thigh, muscular branches"
+			<element name="femoral nerve, thigh, muscular branches, flexor"
 				distribution="muscles of anterior compartment of thigh - sartorius, iliacus, pectiueus, vastus intermedius/lateralis/medialis, rectus femoris"
 				imgsrc="https://www.dartmouth.edu/~anatomy/Lowerextremity/nerves/tutorial/images/nerves%20with%20arteries/femoral.jpg"
 				modality="flexor motor"
-				action="flexes, abducts, and laterally rotates femur at hip; flex femur at hip; adducts and flexes femur; extend leg at knee joint"
+				action="flexes, abducts, and laterally rotates femur at hip; flex femur at hip; adducts and flexes femur"
 				>
 				<fibers type="GSE" src="BMA.SC.VH.PM" dst="TARGET.TEA.LEG"></fibers>
+			</element>
+			<element name="femoral nerve, thigh, muscular branches, extensor"
+				distribution="muscles of anterior compartment of thigh - sartorius, iliacus, pectiueus, vastus intermedius/lateralis/medialis, rectus femoris"
+				imgsrc="https://www.dartmouth.edu/~anatomy/Lowerextremity/nerves/tutorial/images/nerves%20with%20arteries/femoral.jpg"
+				modality="extensor motor"
+				action="extend leg at knee joint"
+				>
+				<fibers type="GSE" src="BMA.SC.VH.VM" dst="TARGET.TEA.LEG"></fibers>
 			</element>
 			<element name="femoral nerve, anterior cutaneous"
 				>
