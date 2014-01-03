@@ -26,6 +26,7 @@ void WikiMaker::createPages() {
 	createNerveMainPage();
 	createNerveSpecPages();
 	createMuscleMainPage();
+	createMuscleSpecPages();
 }
 
 void WikiMaker::createMainPage() {
@@ -60,6 +61,11 @@ void WikiMaker::createMuscleMainPage() {
 
 void WikiMaker::createNerveSpecPages() {
 	WikiNerveSpecPages maker( this );
+	maker.execute();
+}
+
+void WikiMaker::createMuscleSpecPages() {
+	WikiMuscleSpecPages maker( this );
 	maker.execute();
 }
 
@@ -315,5 +321,12 @@ void WikiMaker::clearRepeats2( String& value1 , String& value2 ) {
 		saveRepeats1 = value1;
 		saveRepeats2 = value2;
 	}
+}
+
+String WikiMaker::getNerveWikiPage( String nerve ) {
+	// load nerves
+	nervesxml.load();
+	XmlNerveInfo& div = nervesxml.getNerveDivision( nerve );
+	return( div.origin );
 }
 

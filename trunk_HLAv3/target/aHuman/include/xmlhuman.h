@@ -165,10 +165,11 @@ public:
 	XmlNerveInfo& getNerveInfo( String nerve );
 
 	ClassList<XmlNerveInfo>& getDivisions() { return( divisions ); };
+	XmlNerveInfo& getNerveDivision( String nerve );
 
 private:
 	Xml getNerveCategoryXml( Xml categoryItem );
-	XmlNerveInfo *createNerveInfo( String nerve , Xml xmlitem );
+	XmlNerveInfo *createNerveInfo( String nerve , Xml xmlitem , XmlNerveInfo *div );
 	void addChilds( XmlNerveInfo *division , XmlNerveInfo *parent );
 
 private:
@@ -186,6 +187,7 @@ public:
 
 	Xml xml;
 
+	XmlNerveInfo *div;
 	String name;
 	String synonyms;
 	String origin;
@@ -254,7 +256,10 @@ public:
 	String name;
 	String link;
 	String nerve;
+	String nervelist;
 	String action;
+	String imgsrc;
+	String imgheight;
 
 	MapStringToClass<XmlMuscleInfo> childs;
 };

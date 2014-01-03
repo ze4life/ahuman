@@ -17,6 +17,7 @@ class WikiRegionPage;
 class WikiNerveMainPage;
 class WikiNerveSpecPages;
 class WikiMuscleMainPage;
+class WikiMuscleSpecPages;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -173,6 +174,8 @@ public:
 	void clearRepeats1( String& value1 );
 	void clearRepeats2( String& value1 , String& value2 );
 
+	String getNerveWikiPage( String nerve );
+
 private:
 	void createMainPage();
 	void createCircuitPages();
@@ -181,6 +184,7 @@ private:
 	void createNerveMainPage();
 	void createNerveSpecPages();
 	void createMuscleMainPage();
+	void createMuscleSpecPages();
 
 public:
 	Xml wiki;
@@ -382,6 +386,26 @@ public:
 
 private:
 	void addMuscles( int level , XmlMuscleDivision& div , MapStringToClass<XmlMuscleInfo>& items , StringList& lines );
+
+private:
+	WikiMaker *wm;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class WikiMuscleSpecPages : public Object {
+public:
+	WikiMuscleSpecPages( WikiMaker *wm );
+	virtual ~WikiMuscleSpecPages();
+	virtual const char *getClass() { return "WikiMuscleSpecPages"; };
+
+public:
+	void execute();
+
+private:
+	void addMuscleDivision( XmlMuscleDivision& div );
+	void addMuscleList( int level , XmlMuscleInfo& muscle , StringList& lines );
 
 private:
 	WikiMaker *wm;
