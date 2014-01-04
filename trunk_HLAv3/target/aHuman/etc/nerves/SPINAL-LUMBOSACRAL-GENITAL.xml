@@ -151,30 +151,40 @@
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne102.htm PELVIC SPLANCHNIC NERVES]"
 					origin="sacral PLEXUS S3-S4"
 					branches="to penis/clitoris/testis/ovary/vagina, to other pelvic structures (urinary bladder, rectum, anus, sigmoid and descending colon, terminal transverse colon, uterus and uterine tubes)"
-					distribution="leaving sacral plexus, they enter inferior hypogastric plexus and supply pelvic organs"
+					distribution="leaving sacral plexus, they enter inferior hypogastric plexus and supply pelvic organs; mating and conception"
 					modality="preganglionic sympathetic and visceral afferent"
 					>
 					<element name="cavernous nerves of clitoris"
 						origin="uterovaginal PLEXUS, pelvic splanchnic nerve"
 						distribution="erectile tissue of clitoris"
-						modality="parasympathetic, sympathetic, and visceral afferent"
+						modality="parasympathetic and visceral afferent"
 						/>
 					<element name="cavernous nerves of penis"
 						origin="prostatic PLEXUS, pelvic splanchnic nerve"
 						distribution="erectile tissue of penis"
 						imgsrc="http://urology.jhu.edu/prostate/img/erectyle_dysfunction.jpg"
-						modality="parasympathetic, sympathetic, and visceral afferent"
+						modality="parasympathetic and visceral afferent"
 						/>
 				</element>
 			</element>
 			<element name="hypogastric nerve"
 				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne295.htm HYPOGASTRIC NERVE]"
 				origin="Superior hypogastric plexus (L1-L5)"
-				distribution="branches to testicular plexus, ovarian plexus, ureteric plexus, internal iliac plexus, sigmoid colon"
-				imgsrc="http://www.nature.com/sc/journal/v47/n1/images/sc200861f7.jpg"
+				branches="branches to ureteric plexus, internal iliac plexus, sigmoid colon"
 				action="emission (prior to ejaculation); sensory - pregnancy and nociception to IML, adds to pelvic nerve"
 				modality="sympathetic motor and sympathetic sensory"
-				/>
+				>
+				<element name="hypogastric nerve, ureteric plexus"
+					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne327.htm URETERIC PLEXUS]"
+					distribution="ureteric smooth muscles"
+					imgsrc="http://www.nature.com/sc/journal/v47/n1/images/sc200861f7.jpg" imgheight="400"
+					action="emission (prior to ejaculation); sensory - pregnancy and nociception to IML, adds to pelvic nerve"
+					modality="sympathetic motor and sympathetic sensory"
+					>
+					<fibers type="GVE" src="AVA.SC.IZ.IML" dst="TARGET.TEA.GENITALIA"><mid id="AVA.PN.SYM.IMG"/></fibers>
+					<fibers type="GVA" src="TARGET.TEA.GENITALIA" dst="AVA.SC.IZ.IMM"><mid id="AVA.PN.SG.DRG"/></fibers>
+				</element>
+			</element>
 			<element name="vaginal nerves"
 				origin="uterovaginal PLEXUS"
 				branches="lateral and anterior cutaneous branches"
