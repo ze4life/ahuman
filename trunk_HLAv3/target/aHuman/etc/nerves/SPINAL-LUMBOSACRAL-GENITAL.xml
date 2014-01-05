@@ -143,10 +143,45 @@
 				<element name="splanchnic nerves, lumbar"
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne306.htm LUMBAR SPLANCHNIC NERVES]"
 					origin="lumbar sympathetic trunk, L1-L3"
-					distribution="upper nerves ones go to intermesenteric and adjacent plexuses, and lower ones descend to superior hypogastric plexus"
+					distribution="upper nerves ones go to intermesenteric and adjacent plexuses, and lower ones descend to superior hypogastric plexus; sensory - pregnancy and nociception to IML, adds to pelvic nerve"
 					imgsrc="http://www.med.umich.edu/lrc/coursepages/m1/anatomy2010/html/modules/intro_autonomics_2_module/Files/symp_abdomen.jpg"
 					modality="preganglionic sympathetic and visceral afferent"
-					/>
+					>
+					<element name="left hypogastric nerve"
+						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne295.htm HYPOGASTRIC NERVE]"
+						origin="Left hypogastric plexus (L1-L5)"
+						>
+						<element name="left hypogastric nerve, ureteric"
+							synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne327.htm URETERIC PLEXUS]; MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne329.htm UTERINE NERVES]"
+							origin="Left hypogastric plexus (L1-L5)"
+							distribution="ureteric smooth muscles"
+							imgsrc="http://classes.midlandstech.edu/carterp/Courses/bio211/chap25/Slide25.GIF"
+							modality="sympathetic motor and sympathetic sensory"
+							>
+							<fibers type="GVE" src="AVA.SC.IZ.IML" dst="TARGET.TEA.URETER"><mid id="AVA.PN.SYM.IMG"/></fibers>
+							<fibers type="GVA" src="TARGET.TEA.URETER" dst="AVA.SC.IZ.IMM"><mid id="AVA.PN.SG.DRG"/></fibers>
+						</element>
+						<element name="left hypogastric nerve, prostatic"
+							origin="Left hypogastric plexus (L1-L5)"
+							distribution="ureteric smooth muscles"
+							imgsrc="http://classes.midlandstech.edu/carterp/Courses/bio211/chap25/Slide25.GIF"
+							modality="sympathetic motor and sympathetic sensory"
+							>
+							<fibers type="GVE" src="AVA.SC.IZ.IML" dst="TARGET.TEA.GENITALIA"><mid id="AVA.PN.SYM.IMG"/></fibers>
+							<fibers type="GVA" src="TARGET.TEA.GENITALIA" dst="AVA.SC.IZ.IMM"><mid id="AVA.PN.SG.DRG"/></fibers>
+						</element>
+					</element>
+					<element name="right hypogastric nerve"
+						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne295.htm HYPOGASTRIC NERVE]"
+						origin="Right hypogastric plexus (L1-L5)"
+						distribution="ureteric smooth muscles"
+						imgsrc="http://a248.e.akamai.net/7/248/432/20110621154207/www.msdlatinamerica.com/ebooks/RockwoodGreensFracturesinAdults/files/5deffcccdc13c29df73651b9e77b2a7f.gif"
+						modality="sympathetic motor and sympathetic sensory"
+						>
+						<fibers type="GVE" src="AVA.SC.IZ.IML" dst="TARGET.TEA.RECTUM"><mid id="AVA.PN.SYM.IMG"/></fibers>
+						<fibers type="GVA" src="TARGET.TEA.RECTUM" dst="AVA.SC.IZ.IMM"><mid id="AVA.PN.SG.DRG"/></fibers>
+					</element>
+				</element>
 				<element name="splanchnic nerves, pelvic"
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne102.htm PELVIC SPLANCHNIC NERVES]"
 					origin="sacral PLEXUS S3-S4"
@@ -166,16 +201,6 @@
 						modality="parasympathetic and visceral afferent"
 						/>
 				</element>
-			</element>
-			<element name="hypogastric nerve"
-				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne295.htm HYPOGASTRIC NERVE]; MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne327.htm URETERIC PLEXUS]; MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne329.htm UTERINE NERVES]"
-				origin="Superior hypogastric plexus (L1-L5)"
-				distribution="ureteric smooth muscles"
-				action="emission (prior to ejaculation); sensory - pregnancy and nociception to IML, adds to pelvic nerve"
-				modality="sympathetic motor and sympathetic sensory"
-				>
-				<fibers type="GVE" src="AVA.SC.IZ.IML" dst="TARGET.TEA.GENITALIA"><mid id="AVA.PN.SYM.IMG"/></fibers>
-				<fibers type="GVA" src="TARGET.TEA.GENITALIA" dst="AVA.SC.IZ.IMM"><mid id="AVA.PN.SG.DRG"/></fibers>
 			</element>
 			<element name="vaginal nerves"
 				origin="uterovaginal PLEXUS"
