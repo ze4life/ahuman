@@ -50,10 +50,13 @@ protected:
 	void cmdCreateWikiPages( Xml wiki );
 
 private:
+	// sensor construction
 	MindSensor *createEye( SensorArea *sensorArea );
 	MindSensor *createEar( SensorArea *sensorArea );
 	MindSensor *createNose( SensorArea *sensorArea );
 	MindSensor *createMindCover( SensorArea *sensorArea );
+
+	// effector construction
 	MindEffector *createHeart( EffectorArea *area );
 	MindEffector *createMouth( EffectorArea *area );
 	MindEffector *createFace( EffectorArea *area );
@@ -66,6 +69,8 @@ private:
 	MindEffector *createTrunk( EffectorArea *area );
 	MindEffector *createBreast( EffectorArea *area );
 	MindEffector *createGenitalia( EffectorArea *area );
+	MindEffector *createRectum( EffectorArea *area );
+	MindEffector *createUreter( EffectorArea *area );
 };
 
 /*#########################################################################*/
