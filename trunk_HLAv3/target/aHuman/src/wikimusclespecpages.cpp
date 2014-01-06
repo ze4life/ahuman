@@ -57,12 +57,7 @@ void WikiMuscleSpecPages::addMuscleList( int level , XmlMuscleInfo& muscle , Str
 		s += "; NERVELIST={" + muscle.nervelist + "}";
 	if( !muscle.action.isEmpty() )
 		s += "; ACTION={" + muscle.action + "}";
-	
 	lines.add( s );
-
-	// childs
-	for( int k = 0; k < muscle.childs.count(); k++ )
-		addMuscleList( level + 1 , muscle.childs.getClassRefByIndex( k ) , lines );
 
 	// image
 	if( !muscle.imgsrc.isEmpty() ) {
@@ -72,4 +67,8 @@ void WikiMuscleSpecPages::addMuscleList( int level , XmlMuscleInfo& muscle , Str
 		s += ">";
 		lines.add( s );
 	}
+
+	// childs
+	for( int k = 0; k < muscle.childs.count(); k++ )
+		addMuscleList( level + 1 , muscle.childs.getClassRefByIndex( k ) , lines );
 }

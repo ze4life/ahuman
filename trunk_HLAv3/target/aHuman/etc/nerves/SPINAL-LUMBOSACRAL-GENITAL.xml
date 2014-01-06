@@ -185,22 +185,56 @@
 				</element>
 				<element name="splanchnic nerves, pelvic"
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne102.htm PELVIC SPLANCHNIC NERVES]"
-					origin="sacral PLEXUS S3-S4"
-					branches="to penis/clitoris/testis/ovary/vagina, to other pelvic structures (urinary bladder, rectum, anus, sigmoid and descending colon, terminal transverse colon, uterus and uterine tubes)"
+					origin="sacral PLEXUS S2-S4"
+					branches="to penis/clitoris/vagina, to other pelvic structures (urinary bladder, rectum, anus, sigmoid and descending colon, terminal transverse colon, uterus and uterine tubes)"
 					distribution="leaving sacral plexus, they enter inferior hypogastric plexus and supply pelvic organs; mating and conception"
-					modality="preganglionic sympathetic and visceral afferent"
+					modality="parasympathetic and visceral afferent"
+					notes="parasymp. innervation of testis and ovaries - from vagus nerve"
 					>
-					<element name="cavernous nerves of clitoris"
-						origin="uterovaginal PLEXUS, pelvic splanchnic nerve"
-						distribution="erectile tissue of clitoris"
+					<element name="splanchnic nerves, pelvic, to penis/clitoris"
 						modality="parasympathetic and visceral afferent"
-						/>
-					<element name="cavernous nerves of penis"
-						origin="prostatic PLEXUS, pelvic splanchnic nerve"
-						distribution="erectile tissue of penis"
-						imgsrc="http://urology.jhu.edu/prostate/img/erectyle_dysfunction.jpg"
+						>
+						<fibers type="GVE" src="AVA.SC.IZ.SPS" dst="TARGET.TEA.GENITALIA"><mid id="AVA.PN.PSYM.PPG"/></fibers>
+						<fibers type="GVA" src="TARGET.TEA.GENITALIA" dst="AVA.SC.IZ.IMM"><mid id="AVA.PN.SG.DRG"/></fibers>
+						<element name="cavernous nerves of clitoris"
+							origin="uterovaginal PLEXUS, pelvic splanchnic nerve"
+							distribution="erectile tissue of clitoris"
+							modality="parasympathetic and visceral afferent"
+							/>
+						<element name="cavernous nerves of penis"
+							origin="prostatic PLEXUS, pelvic splanchnic nerve"
+							distribution="erectile tissue of penis"
+							imgsrc="http://urology.jhu.edu/prostate/img/erectyle_dysfunction.jpg"
+							modality="parasympathetic and visceral afferent"
+							/>
+					</element>
+					<element name="splanchnic nerves, pelvic, to stomach"
+						origin="Auerbach's plexus, Meissner's plexus"
+						distribution="terminal transverse colon, descending colon, sigmoid colon"
+						imgsrc="http://classroom.sdmesa.edu/eschmid/F11.03.L.150.jpg" imgheight="500"
 						modality="parasympathetic and visceral afferent"
-						/>
+						>
+						<fibers type="GVE" src="AVA.SC.IZ.SPS" dst="TARGET.TEA.STOMACH"><mid id="AVA.PN.PSYM.PPG"/></fibers>
+						<fibers type="GVA" src="TARGET.TEA.STOMACH" dst="AVA.SC.IZ.IMM"><mid id="AVA.PN.SG.DRG"/></fibers>
+					</element>
+					<element name="splanchnic nerves, pelvic, to urinary bladder"
+						origin="hypogastric plexus"
+						distribution="urinary bladder, uterus and uterine tubes; preganglionic axons exit from the ventral roots, travel in the pelvic nerves, pass through the hypogastric plexus, and synapse on postganglionic neurons located in the wall of the urinary bladder"
+						imgsrc="http://3.bp.blogspot.com/-LqINgObPWSs/TkoSQl4QKEI/AAAAAAAAACE/qNVYq5G5rho/s400/urinary+bladder.png"
+						modality="parasympathetic and visceral afferent"
+						>
+						<fibers type="GVE" src="AVA.SC.IZ.SPS" dst="TARGET.TEA.URETER"><mid id="AVA.PN.PSYM.PPG"/></fibers>
+						<fibers type="GVA" src="TARGET.TEA.URETER" dst="AVA.SC.IZ.IMM"><mid id="AVA.PN.SG.DRG"/></fibers>
+					</element>
+					<element name="splanchnic nerves, pelvic, to rectum"
+						origin="Auerbach's plexus"
+						distribution="rectum, anus"
+						imgsrc="http://www.dartmouth.edu/~humananatomy/figures/chapter_36/36-2_files/image002.jpg"
+						modality="parasympathetic and visceral afferent"
+						>
+						<fibers type="GVE" src="AVA.SC.IZ.SPS" dst="TARGET.TEA.RECTUM"><mid id="AVA.PN.PSYM.PPG"/></fibers>
+						<fibers type="GVA" src="TARGET.TEA.RECTUM" dst="AVA.SC.IZ.IMM"><mid id="AVA.PN.SG.DRG"/></fibers>
+					</element>
 				</element>
 			</element>
 			<element name="vaginal nerves"
