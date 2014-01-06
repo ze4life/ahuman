@@ -61,10 +61,6 @@ void WikiNerveSpecPages::addNerveList( int level , XmlNerveInfo& nerve , StringL
 		s += "; FIBERS={" + getNerveDivision_fibers( nerve.fibers ) + "}";
 	lines.add( s );
 
-	// childs
-	for( int k = 0; k < nerve.childs.count(); k++ )
-		addNerveList( level + 1 , nerve.childs.getClassRefByIndex( k ) , lines );
-
 	// image
 	if( !nerve.imgsrc.isEmpty() ) {
 		s = String( " " ).replicate( level + 3 ) + "* <img src=\"" + nerve.imgsrc + "\"";
@@ -73,6 +69,10 @@ void WikiNerveSpecPages::addNerveList( int level , XmlNerveInfo& nerve , StringL
 		s += ">";
 		lines.add( s );
 	}
+
+	// childs
+	for( int k = 0; k < nerve.childs.count(); k++ )
+		addNerveList( level + 1 , nerve.childs.getClassRefByIndex( k ) , lines );
 }
 
 String WikiNerveSpecPages::getNerveDivision_fibers( ClassList<XmlNerveFiberInfo>& fibers ) {
