@@ -326,6 +326,8 @@ bool ModelVerifier::checkFiberType( XmlNerveInfo& info , XmlNerveFiberInfo& nf ,
 bool ModelVerifier::checkNerves_verifyLinks( XmlNerveInfo& info , XmlNerveFiberInfo& nf ) {
 	String src = hmindxml.getMappedRegion( nf.src );
 	String dst;
+
+	ModelVerifierFiberChainPosEnum pos;
 	for( int k = 0; k <= nf.mids.count(); k++ ) {
 		if( k == nf.mids.count() )
 			dst = nf.dst;
@@ -333,7 +335,14 @@ bool ModelVerifier::checkNerves_verifyLinks( XmlNerveInfo& info , XmlNerveFiberI
 			dst = nf.mids.get( k );
 		dst = hmindxml.getMappedRegion( dst );
 
-		if( !checkNerves_verifyFiberChain( info , src , dst ) ) {
+		if( k == 0 )
+			pos = FIBER_CHAIN_POS_BEGIN;
+		else if( k == nf.mids.count() )
+			pos = FIBER_CHAIN_POS_END;
+		else
+			pos = FIBER_CHAIN_POS_MID;
+
+		if( !checkNerves_verifyFiberChain( info , nf , src , dst , pos ) ) {
 			logger.logError( "checkNerves_verifyLinks: nerve=" + info.name + ", src=" + src + ", dst=" + dst + " - is not covered by mind" );
 		}
 
@@ -343,7 +352,7 @@ bool ModelVerifier::checkNerves_verifyLinks( XmlNerveInfo& info , XmlNerveFiberI
 	return( true );
 }
 
-bool ModelVerifier::checkNerves_verifyFiberChain( XmlNerveInfo& info , String regionSrcId , String regionDstId ) {
+bool ModelVerifier::checkNerves_verifyFiberChain( XmlNerveInfo& info , XmlNerveFiberInfo& nf , String regionSrcId , String regionDstId , ModelVerifierFiberChainPosEnum pos ) {
 	MindService *ms = MindService::getService();
 
 	// ignore check if no correct mapping
@@ -353,13 +362,31 @@ bool ModelVerifier::checkNerves_verifyFiberChain( XmlNerveInfo& info , String re
 	MindRegion *regionSrc = ms -> getMindRegion( regionSrcId );
 	MindRegion *regionDst = ms -> getMindRegion( regionDstId );
 
-	// check link exists from src to dst
-	if( regionSrc -> checkLinkedTo( regionDst ) )
-		return( true );
+	bool res = true;
 
-	// this link does not exist in mind model
-	logger.logError( "checkNerves_verifyFiberChain: not found link from region=" + regionSrcId + " to region=" + regionDstId + ", from nerve=" + info.name );
-	return( false );
+	// check link exists from src to dst
+	if( !regionSrc -> checkLinkedTo( regionDst ) ) {
+		res = false;
+		logger.logError( "checkNerves_verifyFiberChain: not found link from region=" + regionSrcId + " to region=" + regionDstId + ", from nerve=" + info.name );
+	}
+
+	// check fiber type is valid
+	ModelFiberValidator fv;
+	if( nf.type.equals( "GSE" ) ) {
+		if( pos == FIBER_CHAIN_POS_END )
+			if( !fv.isValid_GSE_end( info , regionSrc , regionDst ) )
+				res = false;
+	}
+	else if( nf.type.equals( "GSA" ) ) {
+		if( pos == FIBER_CHAIN_POS_BEGIN )
+			if( !fv.isValid_GSA_begin( info , regionSrc , regionDst ) )
+				res = false;
+		if( pos == FIBER_CHAIN_POS_END )
+			if( !fv.isValid_GSA_end( info , regionSrc , regionDst ) )
+				res = false;
+	}
+
+	return( res );
 }
 
 /*#########################################################################*/
