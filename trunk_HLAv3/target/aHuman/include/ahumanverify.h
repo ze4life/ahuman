@@ -39,10 +39,10 @@ private:
 	bool checkCircuits_verifyCircuitLink( XmlCircuitInfo& circuit , XmlCircuitLinkInfo& link );
 	bool checkNerves_verifyComponents( String nerve );
 	bool checkNerves_verifyLinks( XmlNerveInfo& info , XmlNerveFiberInfo& nf );
-	bool checkNerves_verifyFiberChain( XmlNerveInfo& info , XmlNerveFiberInfo& nf , String regionSrcId , String regionDstId , ModelVerifierFiberChainPosEnum pos );
+	bool checkNerves_verifyFiberChain( XmlNerveInfo& info , XmlNerveFiberInfo& nf , String regionSrcId , String regionDstId , ModelVerifierFiberChainPosEnum pos , int midleft , int midright );
 	bool checkMuscles_verifyNerves( String muscle );
 	bool checkFiberComp( XmlNerveInfo& info , XmlNerveFiberInfo& nf , String comp );
-	bool checkFiberType( XmlNerveInfo& info , XmlNerveFiberInfo& nf , String type );
+	bool checkFiberType( XmlNerveInfo& info , XmlNerveFiberInfo& nf , String type , StringList& mods );
 	bool checkMindModel_verifyRegion( MindRegionDef *regionDef );
 	bool checkMindModel_verifyLinkedConnectors( MindRegionDef *regionDef , MindRegion *region );
 	bool checkMindModel_verifyRegionCircuits( MindRegionDef *regionDef , MindRegion *region );
@@ -66,7 +66,12 @@ public:
 public:
 	bool isValid_GSE_end( XmlNerveInfo& info , MindRegion *src , MindRegion *dst );
 	bool isValid_GSA_begin( XmlNerveInfo& info , MindRegion *src , MindRegion *dst );
-	bool isValid_GSA_end( XmlNerveInfo& info , MindRegion *src , MindRegion *dst );
+	bool isValid_GSA_afterbegin( XmlNerveInfo& info , MindRegion *src , MindRegion *dst );
+	bool isValid_GVE_end( XmlNerveInfo& info , MindRegion *src , MindRegion *dst );
+	bool isValid_GVE_beforeend( XmlNerveInfo& info , MindRegion *src , MindRegion *dst );
+	bool isValid_SSA_begin( XmlNerveInfo& info , MindRegion *src , MindRegion *dst );
+	bool isValid_SVA_begin( XmlNerveInfo& info , MindRegion *src , MindRegion *dst );
+	bool isValid_SVA_afterbegin( XmlNerveInfo& info , MindRegion *src , MindRegion *dst );
 };
 
 /*#########################################################################*/

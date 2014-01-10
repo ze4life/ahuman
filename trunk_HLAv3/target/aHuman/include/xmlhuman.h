@@ -257,6 +257,7 @@ public:
 	Xml xml;
 
 	String name;
+	String type;
 	String link;
 	String nerve;
 	String nervelist;
