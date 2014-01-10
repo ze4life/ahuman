@@ -48,6 +48,8 @@ void WikiMuscleSpecPages::addMuscleList( int level , XmlMuscleInfo& muscle , Str
 		name = "[" + muscle.link + " " + muscle.name + "]";
 	String s = String( " " ).replicate( level + 2 ) + "* *" + name + "*";
 
+	if( !muscle.type.isEmpty() )
+		s += "; TYPE={" + muscle.type + "}";
 	if( !muscle.nerve.isEmpty() ) {
 		String page = wm -> getNerveWikiPage( muscle.nerve );
 		String pagelink = "[" + page + " " + muscle.nerve + "]";

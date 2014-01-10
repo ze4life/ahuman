@@ -1,7 +1,7 @@
 #!/bin/sh
 
-P_AREA=$1
-P_IMG=$2
+P_IMG=$1
+P_AREA=$2
 
 # cleanup
 rm -rf dotfiles/*

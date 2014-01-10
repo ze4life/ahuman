@@ -156,8 +156,13 @@ String WikiHierarchyPage::updateHierarchyPage_getElementString( String node , Mi
 		else
 			value = "*" + info.name;
 
-		if( !info.id.isEmpty() )
-			value += " (" + info.id + ")";
+		if( !info.id.isEmpty() ) {
+			String regionRole;
+			if( ownRegion != NULL )
+				regionRole = ", " + ownRegion -> getRegionInfo() -> getRoleName();
+
+			value += " (" + info.id + regionRole + ")";
+		}
 
 		value += "*";
 	}

@@ -269,12 +269,10 @@ bool ModelVerifier::checkNerves_verifyComponents( String nerve ) {
 	bool res = true;
 
 	// check nerve modality
-	StringList nmodlist;
-	info.modality.split( nmodlist , "," );
 	String nm;
-	for( int k = 0; k < nmodlist.count(); k++ ) {
-		nm = nmodlist.get( k );
-		if( !( nm.equals( "general sensory" ) || nm.equals( "cranial motor" ) || nm.equals( "visceral motor" ) || nm.equals( "sympahetic" ) || nm.equals( "parasympahetic" ) || 
+	for( int k = 0; k < info.mods.count(); k++ ) {
+		nm = info.mods.get( k );
+		if( !( nm.equals( "general sensory" ) || nm.equals( "cranial motor" ) || nm.equals( "visceral motor" ) || nm.equals( "sympahetic motor" ) || nm.equals( "parasympahetic motor" ) || 
 			nm.equals( "autonomic sensory" ) || nm.equals( "special sensory" ) || nm.equals( "ganglion sensory" ) || nm.equals( "flexor motor" ) || nm.equals( "extensor motor" ) ) ) {
 			logger.logError( "checkNerves_verifyLinks: nerve=" + info.name + ", unknown modality=" + nm );
 			res = false;
@@ -299,7 +297,7 @@ bool ModelVerifier::checkNerves_verifyComponents( String nerve ) {
 		}
 
 		// check type
-		if( !checkFiberType( info , nf , nf.type , nmodlist ) )
+		if( !checkFiberType( info , nf , nf.type ) )
 			res = false;
 
 		// check links
@@ -364,35 +362,35 @@ bool ModelVerifier::checkNerves_verifyLinks( XmlNerveInfo& info , XmlNerveFiberI
 	return( res );
 }
 
-bool ModelVerifier::checkFiberType( XmlNerveInfo& info , XmlNerveFiberInfo& nf , String type , StringList& mods ) {
+bool ModelVerifier::checkFiberType( XmlNerveInfo& info , XmlNerveFiberInfo& nf , String type ) {
 	// comparent fiber type and nerve modality
 	bool res = true;
 	if( type.equals( "GSE" ) ) {
-		if( !( mods.find( "cranial motor" ) >= 0 || mods.find( "flexor motor" ) >= 0 || mods.find( "extensor motor" ) >= 0 ) )
+		if( !( info.mods.find( "cranial motor" ) >= 0 || info.mods.find( "flexor motor" ) >= 0 || info.mods.find( "extensor motor" ) >= 0 ) )
 			res = false;
 	}
 	else if( type.equals( "GSA" ) ) {
-		if( !( mods.find( "general sensory" ) >= 0 ) )
+		if( !( info.mods.find( "general sensory" ) >= 0 ) )
 			res = false;
 	}
 	else if( type.equals( "GVA" ) ) {
-		if( !( mods.find( "autonomic sensory" ) >= 0 ) )
+		if( !( info.mods.find( "autonomic sensory" ) >= 0 ) )
 			res = false;
 	}
 	else if( type.equals( "GVE" ) ) {
-		if( !( mods.find( "sympathetic" ) >= 0 || mods.find( "parasympathetic" ) >= 0 ) )
+		if( !( info.mods.find( "sympathetic motor" ) >= 0 || info.mods.find( "parasympathetic motor" ) >= 0 ) )
 			res = false;
 	}
 	else if( type.equals( "SSA" ) ) {
-		if( !( mods.find( "special sensory" ) >= 0 ) )
+		if( !( info.mods.find( "special sensory" ) >= 0 ) )
 			res = false;
 	}
 	else if( type.equals( "SVA" ) ) {
-		if( !( mods.find( "ganglion sensory" ) >= 0 ) )
+		if( !( info.mods.find( "ganglion sensory" ) >= 0 ) )
 			res = false;
 	}
 	else if( type.equals( "SVE" ) ) {
-		if( !( mods.find( "visceral motor" ) >= 0 ) )
+		if( !( info.mods.find( "visceral motor" ) >= 0 ) )
 			res = false;
 	}
 	else {
@@ -517,24 +515,21 @@ bool ModelVerifier::checkMuscles_verifyNerves( String muscle ) {
 	XmlNerveInfo& nerve = nervesxml.getNerveInfo( info.nerve );
 
 	// compare muscle type with nerve modality
-	StringList mods;
-	nerve.modality.split( mods , "," );
-
 	bool xres = true;
 	if( mtype.equals( "flexor" ) ) {
-		if( mods.find( "flexor motor" ) < 0 && mods.find( "sympathetic" ) < 0 )
+		if( nerve.mods.find( "flexor motor" ) < 0 && nerve.mods.find( "sympathetic motor" ) < 0 )
 			xres = false;
 	}
 	else if( mtype.equals( "extensor" ) ) {
-		if( mods.find( "extensor motor" ) < 0 && mods.find( "parasympathetic" ) < 0 )
+		if( nerve.mods.find( "extensor motor" ) < 0 && nerve.mods.find( "parasympathetic motor" ) < 0 )
 			xres = false;
 	}
 	else if( mtype.equals( "cranial" ) ) {
-		if( mods.find( "cranial motor" ) < 0 && mods.find( "visceral motor" ) < 0 )
+		if( nerve.mods.find( "cranial motor" ) < 0 && nerve.mods.find( "visceral motor" ) < 0 && nerve.mods.find( "sympathetic motor" ) < 0 && nerve.mods.find( "parasympathetic motor" ) < 0 )
 			xres = false;
 	}
 	else if( mtype.equals( "gland" ) ) {
-		if( mods.find( "sympathetic" ) < 0 && mods.find( "parasympathetic" ) < 0 )
+		if( nerve.mods.find( "sympathetic motor" ) < 0 && nerve.mods.find( "parasympathetic motor" ) < 0 )
 			xres = false;
 	}
 

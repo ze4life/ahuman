@@ -42,7 +42,7 @@ private:
 	bool checkNerves_verifyFiberChain( XmlNerveInfo& info , XmlNerveFiberInfo& nf , String regionSrcId , String regionDstId , ModelVerifierFiberChainPosEnum pos , int midleft , int midright );
 	bool checkMuscles_verifyNerves( String muscle );
 	bool checkFiberComp( XmlNerveInfo& info , XmlNerveFiberInfo& nf , String comp );
-	bool checkFiberType( XmlNerveInfo& info , XmlNerveFiberInfo& nf , String type , StringList& mods );
+	bool checkFiberType( XmlNerveInfo& info , XmlNerveFiberInfo& nf , String type );
 	bool checkMindModel_verifyRegion( MindRegionDef *regionDef );
 	bool checkMindModel_verifyLinkedConnectors( MindRegionDef *regionDef , MindRegion *region );
 	bool checkMindModel_verifyRegionCircuits( MindRegionDef *regionDef , MindRegion *region );
