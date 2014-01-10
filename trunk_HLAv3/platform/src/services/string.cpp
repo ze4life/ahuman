@@ -606,11 +606,17 @@ String operator +( const String& s1 , bool value ) {
 }
 
 void trimString( char *p , const char *trimChars ) {
-	// start
-	char *pb = strtok( p , trimChars );
-	if( pb == NULL ) {
-		*p = 0;
+	if( p == NULL )
 		return;
+
+	// start
+	char *pb = p;
+	char c;
+	while( c = *pb ) {
+		if( strchr( trimChars , c ) == NULL )
+			break;
+
+		pb++;
 	}
 
 	// end
