@@ -42,7 +42,11 @@ void WikiNerveMainPage::addNerve( int level , String divPage , XmlNerveInfo& ner
 	if( level > 0 )
 		prefix = String( " " ).replicate( level ) + prefix;
 
-	lines.add( prefix + "[" + divPage + " " + nerve.name + "]" );
+	String ns = "[" + divPage + " " + nerve.name + "]";
+	if( !nerve.modality.isEmpty() )
+		ns += " - " + nerve.modality;
+
+	lines.add( prefix + ns );
 
 	for( int k = 0; k < nerve.childs.count(); k++ ) {
 		XmlNerveInfo *nc = nerve.childs.getClassByIndex( k );
