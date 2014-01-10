@@ -273,7 +273,7 @@ bool ModelVerifier::checkNerves_verifyComponents( String nerve ) {
 	for( int k = 0; k < info.mods.count(); k++ ) {
 		nm = info.mods.get( k );
 		if( !( nm.equals( "general sensory" ) || nm.equals( "cranial motor" ) || nm.equals( "visceral motor" ) || nm.equals( "sympahetic motor" ) || nm.equals( "parasympahetic motor" ) || 
-			nm.equals( "autonomic sensory" ) || nm.equals( "special sensory" ) || nm.equals( "ganglion sensory" ) || nm.equals( "flexor motor" ) || nm.equals( "extensor motor" ) ) ) {
+			nm.equals( "autonomic sensory" ) || nm.equals( "special sensory" ) || nm.equals( "flexor motor" ) || nm.equals( "extensor motor" ) ) ) {
 			logger.logError( "checkNerves_verifyLinks: nerve=" + info.name + ", unknown modality=" + nm );
 			res = false;
 		}
@@ -369,7 +369,7 @@ bool ModelVerifier::checkFiberType( XmlNerveInfo& info , XmlNerveFiberInfo& nf ,
 		if( !( info.mods.find( "cranial motor" ) >= 0 || info.mods.find( "flexor motor" ) >= 0 || info.mods.find( "extensor motor" ) >= 0 ) )
 			res = false;
 	}
-	else if( type.equals( "GSA" ) ) {
+	else if( type.equals( "GSA" ) || type.equals( "SVA" ) ) {
 		if( !( info.mods.find( "general sensory" ) >= 0 ) )
 			res = false;
 	}
@@ -383,10 +383,6 @@ bool ModelVerifier::checkFiberType( XmlNerveInfo& info , XmlNerveFiberInfo& nf ,
 	}
 	else if( type.equals( "SSA" ) ) {
 		if( !( info.mods.find( "special sensory" ) >= 0 ) )
-			res = false;
-	}
-	else if( type.equals( "SVA" ) ) {
-		if( !( info.mods.find( "ganglion sensory" ) >= 0 ) )
 			res = false;
 	}
 	else if( type.equals( "SVE" ) ) {
