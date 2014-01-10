@@ -102,7 +102,7 @@ XmlNerveInfo *XmlNerves::createNerveInfo( String nerve , Xml xmlitem , XmlNerveI
 	info.imgheight = xmlitem.getAttribute( "imgheight" , "" );
 	info.modality = xmlitem.getAttribute( "modality" , "" );
 	info.modality.split( info.mods , "," );
-	info.modality.trim();
+	info.mods.trim();
 	info.action = xmlitem.getAttribute( "action" , "" );
 	
 	for( Xml item = xmlitem.getFirstChild( "fibers" ); item.exists(); item = item.getNextChild( "fibers" ) ) {
