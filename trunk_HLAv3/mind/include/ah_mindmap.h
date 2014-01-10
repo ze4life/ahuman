@@ -128,6 +128,18 @@ protected:
 /*#########################################################################*/
 /*#########################################################################*/
 
+typedef enum {
+	MIND_REGION_ROLE_NONE = 0,				// not initialized
+	MIND_REGION_ROLE_PROCESSOR = 1,			// complex processing
+	MIND_REGION_ROLE_RELAY = 2,				// single-target or multiplexing relay
+	MIND_REGION_ROLE_SENSORY = 3,			// sensory ganglion
+	MIND_REGION_ROLE_SYMPATHETIC = 4,		// sympathetic ganglion/nucleus
+	MIND_REGION_ROLE_PARASYMPATHETIC = 5,	// parasympathetic ganglion/nucleus
+	MIND_REGION_ROLE_FLEXOR = 6,			// flexor somatic motor
+	MIND_REGION_ROLE_EXTENSOR = 7,			// extensor somatic motor
+	MIND_REGION_ROLE_TARGET = 8				// target sensor or motor
+} MindRegionRoleEnum;
+
 class MindRegionDef : public Object {
 public:
 	MindRegionDef( MindAreaDef *area );
@@ -143,12 +155,16 @@ public:
 	String getId() { return( id ); };
 	String getTypeName() { return( typeName ); };
 	MindRegionTypeDef *getType() { return( type ); };
+	MindRegionRoleEnum getRole() { return( role ); };
 	int getSize() { return( size ); };
+
+	String getRoleName();
 
 protected:
 // utilities
 	String id;
 	String typeName;
+	MindRegionRoleEnum role;
 	int size;
 
 // references

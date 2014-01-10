@@ -16,6 +16,8 @@ TargetRegionDef::~TargetRegionDef() {
 void TargetRegionDef::defineSensorRegion( Xml xml ) {
 	MindRegionDef::id = xml.getAttribute( "id" );
 	Object::setInstance( MindRegionDef::id );
+
+	MindRegionDef::role = MIND_REGION_ROLE_TARGET;
 	MindRegionDef::size = xml.getIntAttribute( "size" , 0 );
 
 	// region type for sensor is the same as region itself
@@ -28,9 +30,11 @@ void TargetRegionDef::defineSensorRegion( Xml xml ) {
 void TargetRegionDef::defineEffectorRegion( Xml xml ) {
 	MindRegionDef::id = xml.getAttribute( "id" );
 	Object::setInstance( MindRegionDef::id );
+
+	MindRegionDef::role = MIND_REGION_ROLE_TARGET;
 	MindRegionDef::size = xml.getIntAttribute( "size" , 0 );
 
-	// region type for sensor is the same as region itself
+	// region type for effector is the same as region itself
 	TargetRegionTypeDef *regionTypeInfo = new TargetRegionTypeDef();
 	regionTypeInfo -> defineEffectorRegionType( xml );
 	MindRegionDef::type = regionTypeInfo;

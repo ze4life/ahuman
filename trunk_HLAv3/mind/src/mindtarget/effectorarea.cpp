@@ -78,12 +78,14 @@ void EffectorArea::createEffector( MindEffector *effector ) {
 	MindRegionCreateInfo regionInfo;
 	MindRegionTypeDef *regiontype = regioninfo -> getType();
 	regionInfo.setId( effector -> getEffectorId() );
+	regionInfo.setInfo( regioninfo );
 	regionInfo.setType( regiontype );
 
 	effector -> setEffectorInfo( regioninfo );
+	effector -> setRegionInfo( regioninfo );
 	effector -> setRegionType( regiontype );
 
-	// create sensor data
+	// create effector data
 	MindRegion *region = ( MindRegion * )effector;
 	region -> createRegion( &regionInfo );
 	MindArea::addRegion( region );

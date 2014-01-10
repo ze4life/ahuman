@@ -44,22 +44,24 @@ public:
 	void exit();
 	void destroy();
 
+	MindArea *getArea() { return( area ); };
+	void setRegionInfo( MindRegionDef *info ) { regionInfo = info; };
+	MindRegionDef *getRegionInfo() { return( regionInfo ); };
 	void setRegionType( MindRegionTypeDef *info ) { regionType = info; };
 	MindRegionTypeDef *getRegionType() { return( regionType ); };
 	void setRegionId( String p_id ) { id = p_id; };
 	String getRegionId() { return( id ); };
 
-	void addMasterRegionLink( MindRegionLink *link );
-	void addSlaveRegionLink( MindRegionLink *link );
-	String getFullRegionId();
-	void sendMessage( MindMessage *msg );
-
-	MindArea *getArea() { return( area ); };
-	MindRegionTypeDef *getRegionTypeInfo() { return( regionType ); };
 	MapStringToClass<NeuroLinkSource>& getSourceConnectorMap() { return( sourceConnectorMap ); };
 	MapStringToClass<NeuroLinkTarget>& getTargetConnectorMap() { return( targetConnectorMap ); };
 	MindRegionLinkSet *getMasterRegionLinkSet() { return( regionMasterLinkSet ); };
 	MindRegionLinkSet *getSlaveRegionLinkSet() { return( regionSlaveLinkSet ); };
+
+	String getFullRegionId();
+
+	void addMasterRegionLink( MindRegionLink *link );
+	void addSlaveRegionLink( MindRegionLink *link );
+	void sendMessage( MindMessage *msg );
 
 	void addSourceEntity( String entity , NeuroLinkSource *connector );
 	void addTargetEntity( String entity , NeuroLinkTarget *connector );
@@ -84,6 +86,7 @@ private:
 	MindLocation *location;
 
 // references
+	MindRegionDef *regionInfo;
 	MindRegionTypeDef *regionType;
 	MindArea *area;
 	MindRegionLinkSet *regionMasterLinkSet;

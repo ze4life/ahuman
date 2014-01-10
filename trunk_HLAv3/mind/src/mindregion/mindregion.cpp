@@ -9,6 +9,7 @@ MindRegion::MindRegion( MindArea *p_area ) {
 
 	area = p_area;
 
+	regionInfo = NULL;
 	regionType = NULL;
 	regionMasterLinkSet = new MindRegionLinkSet();
 	regionSlaveLinkSet = new MindRegionLinkSet();

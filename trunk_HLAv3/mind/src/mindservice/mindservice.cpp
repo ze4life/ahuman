@@ -214,6 +214,7 @@ MindRegion *MindService::createRegion( String implementation , String type , Min
 	}
 
 	region -> setRegionId( info -> getId() );
+	region -> setRegionInfo( info -> getInfo() );
 	region -> setRegionType( info -> getType() );
 	region -> createRegion( info );
 
