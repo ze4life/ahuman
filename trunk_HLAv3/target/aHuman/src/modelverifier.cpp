@@ -267,6 +267,20 @@ bool ModelVerifier::checkNerves_verifyComponents( String nerve ) {
 	XmlNerveInfo& info = nervesxml.getNerveInfo( nerve );
 
 	bool res = true;
+
+	// check nerve modality
+	StringList nmodlist;
+	info.modality.split( nmodlist , "," );
+	String nm;
+	for( int k = 0; k < nmodlist.count(); k++ ) {
+		nm = nmodlist.get( k );
+		if( !( nm.equals( "general sensory" ) || nm.equals( "cranial motor" ) || nm.equals( "visceral motor" ) || nm.equals( "sympahetic" ) || nm.equals( "parasympahetic" ) || 
+			nm.equals( "autonomic sensory" ) || nm.equals( "special sensory" ) || nm.equals( "ganglion sensory" ) || nm.equals( "flexor motor" ) || nm.equals( "extensor motor" ) ) ) {
+			logger.logError( "checkNerves_verifyLinks: nerve=" + info.name + ", unknown modality=" + nm );
+			res = false;
+		}
+	}
+
 	for( int k = 0; k < info.fibers.count(); k++ ) {
 		XmlNerveFiberInfo& nf = info.fibers.getRef( k );
 
@@ -285,7 +299,7 @@ bool ModelVerifier::checkNerves_verifyComponents( String nerve ) {
 		}
 
 		// check type
-		if( !checkFiberType( info , nf , nf.type ) )
+		if( !checkFiberType( info , nf , nf.type , nmodlist ) )
 			res = false;
 
 		// check links
@@ -295,7 +309,7 @@ bool ModelVerifier::checkNerves_verifyComponents( String nerve ) {
 		}
 	}
 
-	return( true );
+	return( res );
 }
 
 bool ModelVerifier::checkFiberComp( XmlNerveInfo& info , XmlNerveFiberInfo& nf , String comp ) {
@@ -314,20 +328,15 @@ bool ModelVerifier::checkFiberComp( XmlNerveInfo& info , XmlNerveFiberInfo& nf ,
 	return( true );
 }
 
-bool ModelVerifier::checkFiberType( XmlNerveInfo& info , XmlNerveFiberInfo& nf , String type ) {
-	if( type.equals( "GSE" ) || type.equals( "GSA" ) || type.equals( "GVE" ) || type.equals( "GVA" ) || 
-		type.equals( "SSA" ) || type.equals( "SVA" ) || type.equals( "SVE" ) )
-		return( true );
-
-	logger.logError( "checkFiberType: nerve=" + info.name + ", type=" + type + " - is unknown type" );
-	return( false );
-}
-
 bool ModelVerifier::checkNerves_verifyLinks( XmlNerveInfo& info , XmlNerveFiberInfo& nf ) {
 	String src = hmindxml.getMappedRegion( nf.src );
 	String dst;
 
+	bool res = true;
+
 	ModelVerifierFiberChainPosEnum pos;
+	int midleft;
+	int midright;
 	for( int k = 0; k <= nf.mids.count(); k++ ) {
 		if( k == nf.mids.count() )
 			dst = nf.dst;
@@ -335,6 +344,8 @@ bool ModelVerifier::checkNerves_verifyLinks( XmlNerveInfo& info , XmlNerveFiberI
 			dst = nf.mids.get( k );
 		dst = hmindxml.getMappedRegion( dst );
 
+		midleft = k;
+		midright = nf.mids.count() - k;
 		if( k == 0 )
 			pos = FIBER_CHAIN_POS_BEGIN;
 		else if( k == nf.mids.count() )
@@ -342,17 +353,60 @@ bool ModelVerifier::checkNerves_verifyLinks( XmlNerveInfo& info , XmlNerveFiberI
 		else
 			pos = FIBER_CHAIN_POS_MID;
 
-		if( !checkNerves_verifyFiberChain( info , nf , src , dst , pos ) ) {
+		if( !checkNerves_verifyFiberChain( info , nf , src , dst , pos , midleft , midright ) ) {
 			logger.logError( "checkNerves_verifyLinks: nerve=" + info.name + ", src=" + src + ", dst=" + dst + " - is not covered by mind" );
+			res = false;
 		}
 
 		src = dst;
 	}
 
-	return( true );
+	return( res );
 }
 
-bool ModelVerifier::checkNerves_verifyFiberChain( XmlNerveInfo& info , XmlNerveFiberInfo& nf , String regionSrcId , String regionDstId , ModelVerifierFiberChainPosEnum pos ) {
+bool ModelVerifier::checkFiberType( XmlNerveInfo& info , XmlNerveFiberInfo& nf , String type , StringList& mods ) {
+	// comparent fiber type and nerve modality
+	bool res = true;
+	if( type.equals( "GSE" ) ) {
+		if( !( mods.find( "cranial motor" ) >= 0 || mods.find( "flexor motor" ) >= 0 || mods.find( "extensor motor" ) >= 0 ) )
+			res = false;
+	}
+	else if( type.equals( "GSA" ) ) {
+		if( !( mods.find( "general sensory" ) >= 0 ) )
+			res = false;
+	}
+	else if( type.equals( "GVA" ) ) {
+		if( !( mods.find( "autonomic sensory" ) >= 0 ) )
+			res = false;
+	}
+	else if( type.equals( "GVE" ) ) {
+		if( !( mods.find( "sympathetic" ) >= 0 || mods.find( "parasympathetic" ) >= 0 ) )
+			res = false;
+	}
+	else if( type.equals( "SSA" ) ) {
+		if( !( mods.find( "special sensory" ) >= 0 ) )
+			res = false;
+	}
+	else if( type.equals( "SVA" ) ) {
+		if( !( mods.find( "ganglion sensory" ) >= 0 ) )
+			res = false;
+	}
+	else if( type.equals( "SVE" ) ) {
+		if( !( mods.find( "visceral motor" ) >= 0 ) )
+			res = false;
+	}
+	else {
+		logger.logError( "checkFiberType: nerve=" + info.name + ", type=" + type + " - is unknown type" );
+		return( false );
+	}
+
+	if( res == false )
+		logger.logError( "checkFiberType: nerve=" + info.name + ", type=" + type + " - is incompatible with modality=" + info.modality );
+
+	return( res );
+}
+
+bool ModelVerifier::checkNerves_verifyFiberChain( XmlNerveInfo& info , XmlNerveFiberInfo& nf , String regionSrcId , String regionDstId , ModelVerifierFiberChainPosEnum pos , int midleft , int midright ) {
 	MindService *ms = MindService::getService();
 
 	// ignore check if no correct mapping
@@ -372,17 +426,38 @@ bool ModelVerifier::checkNerves_verifyFiberChain( XmlNerveInfo& info , XmlNerveF
 
 	// check fiber type is valid
 	ModelFiberValidator fv;
-	if( nf.type.equals( "GSE" ) ) {
+	if( nf.type.equals( "GSE" ) || nf.type.equals( "SVE" ) ) {
 		if( pos == FIBER_CHAIN_POS_END )
 			if( !fv.isValid_GSE_end( info , regionSrc , regionDst ) )
 				res = false;
 	}
-	else if( nf.type.equals( "GSA" ) ) {
+	else if( nf.type.equals( "GSA" ) || nf.type.equals( "GVA" ) ) {
 		if( pos == FIBER_CHAIN_POS_BEGIN )
 			if( !fv.isValid_GSA_begin( info , regionSrc , regionDst ) )
 				res = false;
+		if( midleft == 1 )
+			if( !fv.isValid_GSA_afterbegin( info , regionSrc , regionDst ) )
+				res = false;
+	}
+	else if( nf.type.equals( "GVE" ) ) {
 		if( pos == FIBER_CHAIN_POS_END )
-			if( !fv.isValid_GSA_end( info , regionSrc , regionDst ) )
+			if( !fv.isValid_GVE_end( info , regionSrc , regionDst ) )
+				res = false;
+		if( midright == 1 )
+			if( !fv.isValid_GVE_beforeend( info , regionSrc , regionDst ) )
+				res = false;
+	}
+	else if( nf.type.equals( "SSA" ) ) {
+		if( pos == FIBER_CHAIN_POS_BEGIN )
+			if( !fv.isValid_SSA_begin( info , regionSrc , regionDst ) )
+				res = false;
+	}
+	else if( nf.type.equals( "SVA" ) ) {
+		if( pos == FIBER_CHAIN_POS_BEGIN )
+			if( !fv.isValid_SVA_begin( info , regionSrc , regionDst ) )
+				res = false;
+		if( midleft == 1 )
+			if( !fv.isValid_SVA_afterbegin( info , regionSrc , regionDst ) )
 				res = false;
 	}
 
@@ -422,13 +497,53 @@ bool ModelVerifier::checkMuscles_verifyNerves( String muscle ) {
 	if( info.nerve.isEmpty() )
 		return( true );
 
+	bool res = true;
+
+	String mtype = info.type;
+	if( mtype.isEmpty() ) {
+		logger.logError( "checkMuscles_verifyNerves: muscle=" + info.name + ", type is not set" );
+		res = false;
+	}
+	else if( ! ( mtype.equals( "flexor" ) || mtype.equals( "extensor" ) || mtype.equals( "cranial" ) || mtype.equals( "gland" ) ) ) {
+		logger.logError( "checkMuscles_verifyNerves: muscle=" + info.name + ", invalid type=" + mtype );
+		res = false;
+	}
+
 	if( !nervesxml.checkNerve( info.nerve ) ) {
 		logger.logError( "checkMuscles_verifyNerves: muscle=" + info.name + ", nerve=" + info.nerve + " - is unknown nerve" );
-		return( false );
+		res = false;
 	}
 
 	XmlNerveInfo& nerve = nervesxml.getNerveInfo( info.nerve );
-	return( true );
+
+	// compare muscle type with nerve modality
+	StringList mods;
+	nerve.modality.split( mods , "," );
+
+	bool xres = true;
+	if( mtype.equals( "flexor" ) ) {
+		if( mods.find( "flexor motor" ) < 0 && mods.find( "sympathetic" ) < 0 )
+			xres = false;
+	}
+	else if( mtype.equals( "extensor" ) ) {
+		if( mods.find( "extensor motor" ) < 0 && mods.find( "parasympathetic" ) < 0 )
+			xres = false;
+	}
+	else if( mtype.equals( "cranial" ) ) {
+		if( mods.find( "cranial motor" ) < 0 && mods.find( "visceral motor" ) < 0 )
+			xres = false;
+	}
+	else if( mtype.equals( "gland" ) ) {
+		if( mods.find( "sympathetic" ) < 0 && mods.find( "parasympathetic" ) < 0 )
+			xres = false;
+	}
+
+	if( xres == false ) {
+		res = false;
+		logger.logError( "checkMuscles_verifyNerves: muscle=" + info.name + ", nerve=" + info.nerve + " - muscle type=" + mtype + " does not correspond to nerve modality=" + nerve.modality );
+	}
+
+	return( res );
 }
 
 /*#########################################################################*/

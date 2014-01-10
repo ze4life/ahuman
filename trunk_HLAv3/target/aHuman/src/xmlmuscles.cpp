@@ -107,6 +107,7 @@ XmlMuscleInfo *XmlMuscles::createMuscleInfo( String muscle , Xml xmlitem ) {
 	info.xml = xmlitem;
 
 	info.name = xmlitem.getAttribute( "name" );
+	info.type = xmlitem.getAttribute( "type" , "" );
 	info.link = xmlitem.getAttribute( "link" , "" );
 	info.nerve = xmlitem.getAttribute( "nerve" , "" );
 	info.nervelist = xmlitem.getAttribute( "nervelist" , "" );
