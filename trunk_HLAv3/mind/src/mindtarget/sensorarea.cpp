@@ -77,9 +77,11 @@ void SensorArea::createSensor( MindSensor *sensor ) {
 	MindRegionCreateInfo regionInfo;
 	MindRegionTypeDef *regiontype = regioninfo -> getType();
 	regionInfo.setId( sensor -> getSensorId() );
+	regionInfo.setInfo( regioninfo );
 	regionInfo.setType( regiontype );
 
 	sensor -> setSensorInfo( regioninfo );
+	sensor -> setRegionInfo( regioninfo );
 	sensor -> setRegionType( regiontype );
 
 	// create sensor data

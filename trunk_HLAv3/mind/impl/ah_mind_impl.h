@@ -382,6 +382,7 @@ MindRegionCreateInfo();
 
 public:
 	void setId( String id );
+	void setInfo( MindRegionDef *typeInfo );
 	void setType( MindRegionTypeDef *typeDef );
 
 	void setSizeInfo( int nx , int ny );
@@ -392,6 +393,7 @@ public:
 	void setTemporalPoolerSize( int temporalPoolerSize );
 
 	String getId() { return( id ); };
+	MindRegionDef *getInfo() { return( typeInfo ); };
 	MindRegionTypeDef *getType() { return( typeDef ); };
 	int getSpatialPoolerSize() { return( spatialPoolerSize ); };
 	int getTemporalPoolerSize() { return( temporalPoolerSize ); };
@@ -403,6 +405,7 @@ public:
 
 private:
 	String id;
+	MindRegionDef *typeInfo;
 	MindRegionTypeDef *typeDef;
 
 	int sizeX;

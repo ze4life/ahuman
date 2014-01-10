@@ -20,6 +20,10 @@ void MindRegionCreateInfo::setId( String p_id ) {
 	Object::setInstance( id );
 }
 
+void MindRegionCreateInfo::setInfo( MindRegionDef *p_typeInfo ) {
+	typeInfo = p_typeInfo;
+}
+
 void MindRegionCreateInfo::setType( MindRegionTypeDef *p_typeDef ) {
 	typeDef = p_typeDef;
 }
