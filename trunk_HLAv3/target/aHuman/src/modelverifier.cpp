@@ -269,16 +269,6 @@ bool ModelVerifier::checkNerves_verifyComponents( String nerve ) {
 	bool res = true;
 
 	// check nerve modality
-	String nm;
-	for( int k = 0; k < info.mods.count(); k++ ) {
-		nm = info.mods.get( k );
-		if( !( nm.equals( "general sensory" ) || nm.equals( "cranial motor" ) || nm.equals( "visceral motor" ) || nm.equals( "sympahetic motor" ) || nm.equals( "parasympahetic motor" ) || 
-			nm.equals( "autonomic sensory" ) || nm.equals( "special sensory" ) || nm.equals( "flexor motor" ) || nm.equals( "extensor motor" ) ) ) {
-			logger.logError( "checkNerves_verifyLinks: nerve=" + info.name + ", unknown modality=" + nm );
-			res = false;
-		}
-	}
-
 	for( int k = 0; k < info.fibers.count(); k++ ) {
 		XmlNerveFiberInfo& nf = info.fibers.getRef( k );
 
