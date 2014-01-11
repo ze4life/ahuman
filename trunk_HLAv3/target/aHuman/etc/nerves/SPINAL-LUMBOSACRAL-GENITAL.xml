@@ -3,7 +3,7 @@
 	<division category="Spinal Nerves" name="LUMBOSACRAL NERVES - GENITAL AND GASTROINTESTINAL">
 
 		<element name="Rectum nerves, somatic"
-			modality="flexor motor and general sensory"
+			modality="general sensory, flexor motor"
 			>
 			<fibers type="GSA" src="TARGET.TEA.RECTUM" dst="BMA.SC.PH.MG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
 			<fibers type="GSA" src="TARGET.TEA.RECTUM" dst="BMA.SC.PH.SG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
@@ -49,7 +49,7 @@
 		</element>
 
 		<element name="Genitalia nerves, somatic"
-			modality="flexor motor and general sensory"
+			modality="general sensory, flexor motor"
 			>
 			<fibers type="GSA" src="TARGET.TEA.GENITALIA" dst="BMA.SC.PH.MG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
 			<fibers type="GSA" src="TARGET.TEA.GENITALIA" dst="BMA.SC.PH.SG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
@@ -120,7 +120,7 @@
 
 				<element name="dorsal nerve of clitoris/penis"
 					distribution="deep transverse muscle of perineum, sphincter muscle of urethra, corpus cavernosum of clitoris, and skin, prepuce, and glans of clitoris"
-					modality="general sensory and flexor motor"
+					modality="general sensory, flexor motor"
 					>
 					<fibers type="GSE" src="BMA.SC.VH.PM" dst="TARGET.TEA.GENITALIA"></fibers>
 
@@ -178,25 +178,27 @@
 
 		<element name="Autonomic nerves"
 			imgsrc="http://www.med.umich.edu/lrc/coursepages/m1/anatomy2010/html/modules/intro_autonomics_2_module/Files/symp_abdomen.jpg"
+			modality="sympathetic motor, parasympathetic motor, autonomic sensory"
 			>
 			<element name="splanchnic nerves"
+				modality="sympathetic motor, parasympathetic motor, autonomic sensory"
 				>
 				<element name="splanchnic nerves, lumbar"
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne306.htm LUMBAR SPLANCHNIC NERVES]"
 					origin="lumbar sympathetic trunk, L1-L3"
 					distribution="upper nerves ones go to intermesenteric and adjacent plexuses, and lower ones descend to superior hypogastric plexus; sensory - pregnancy and nociception to IML, adds to pelvic nerve"
-					modality="sympathetic motor, visceral sensory"
+					modality="sympathetic motor, autonomic sensory"
 					>
 					<element name="left hypogastric nerve"
 						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne295.htm HYPOGASTRIC NERVE]"
 						origin="Left hypogastric plexus (L1-L5)"
-						modality="sympathetic motor, visceral sensory"
+						modality="sympathetic motor, autonomic sensory"
 						>
 						<element name="left hypogastric nerve, ureteric"
 							synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne327.htm URETERIC PLEXUS]; MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne329.htm UTERINE NERVES]"
 							distribution="ureteric smooth muscles"
 							imgsrc="http://classes.midlandstech.edu/carterp/Courses/bio211/chap25/Slide25.GIF"
-							modality="sympathetic motor, visceral sensory"
+							modality="sympathetic motor, autonomic sensory"
 							>
 							<fibers type="GVE" src="AVA.SC.IZ.IML" dst="TARGET.TEA.URETER"><mid id="AVA.PN.SYM.IMG"/></fibers>
 							<fibers type="GVA" src="TARGET.TEA.URETER" dst="AVA.SC.IZ.IMM"><mid id="AVA.PN.SG.DRG"/></fibers>
@@ -205,7 +207,7 @@
 							synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne330.htm UTEROVAGINAL PLEXUS]; Plexus of Frankenhauser"
 							distribution="walls of the vagina, uterus"
 							imgsrc="http://a248.e.akamai.net/7/248/432/20110621154233/www.msdlatinamerica.com/ebooks/RockwoodGreensFracturesinAdults/files/abfda5814b7fbef31f3633fc3ce85a6c.gif"
-							modality="sympathetic motor, visceral sensory"
+							modality="sympathetic motor, autonomic sensory"
 							>
 							<fibers type="GVE" src="AVA.SC.IZ.IML" dst="TARGET.TEA.GENITALIA"><mid id="AVA.PN.SYM.IMG"/></fibers>
 							<fibers type="GVA" src="TARGET.TEA.GENITALIA" dst="AVA.SC.IZ.IMM"><mid id="AVA.PN.SG.DRG"/></fibers>
@@ -213,7 +215,7 @@
 						<element name="left hypogastric nerve, cervical"
 							distribution="female: produces cervical mucus that changes in consistency during the menstrual cycle to prevent or promote pregnancy"
 							imgsrc="http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/articles/image_article_collections/anatomy_pages/493x335_cervix.jpg"
-							modality="sympathetic motor, visceral sensory"
+							modality="sympathetic motor, autonomic sensory"
 							>
 							<fibers type="GVE" src="AVA.SC.IZ.IML" dst="TARGET.TEA.GENITALIA"><mid id="AVA.PN.SYM.IMG"/></fibers>
 							<fibers type="GVA" src="TARGET.TEA.GENITALIA" dst="AVA.SC.IZ.IMM"><mid id="AVA.PN.SG.DRG"/></fibers>
@@ -221,7 +223,7 @@
 						<element name="left hypogastric nerve, prostatic"
 							distribution="male: emission is the result of peristaltic contractions of the ampullary portion of the vas deferens, the seminal vesicles, and the prostatic smooth muscles"
 							imgsrc="http://www.scielo.br/img/revistas/aabc/v82n2/15f01.gif"
-							modality="sympathetic motor, visceral sensory"
+							modality="sympathetic motor, autonomic sensory"
 							>
 							<fibers type="GVE" src="AVA.SC.IZ.IML" dst="TARGET.TEA.GENITALIA"><mid id="AVA.PN.SYM.IMG"/></fibers>
 							<fibers type="GVA" src="TARGET.TEA.GENITALIA" dst="AVA.SC.IZ.IMM"><mid id="AVA.PN.SG.DRG"/></fibers>
@@ -240,7 +242,7 @@
 						origin="Right hypogastric plexus (L1-L5)"
 						distribution="smooth internal anal sphincter muscle"
 						imgsrc="http://www.zuniv.net/physiology/book/images/22-5.jpg"
-						modality="sympathetic motor, visceral sensory"
+						modality="sympathetic motor, autonomic sensory"
 						>
 						<fibers type="GVE" src="AVA.SC.IZ.IML" dst="TARGET.TEA.RECTUM"><mid id="AVA.PN.SYM.IMG"/></fibers>
 						<fibers type="GVA" src="TARGET.TEA.RECTUM" dst="AVA.SC.IZ.IMM"><mid id="AVA.PN.SG.DRG"/></fibers>
@@ -251,19 +253,19 @@
 					origin="sacral PLEXUS S2-S4"
 					branches="to penis/clitoris/vagina, to other pelvic structures (urinary bladder, rectum, anus, sigmoid and descending colon, terminal transverse colon, uterus and uterine tubes)"
 					distribution="leaving sacral plexus, they enter inferior hypogastric plexus and supply pelvic organs; mating and conception"
-					modality="parasympathetic motor, visceral sensory"
+					modality="parasympathetic motor, autonomic sensory"
 					notes="parasymp. innervation of testis and ovaries - from vagus nerve"
 					>
 					<element name="splanchnic nerves, pelvic, nipple"
 						distribution="breast, smooth muscles of the nipple"
 						imgsrc="http://www.fairbanksplasticsurgery.com/static/uploaded/nipple_deformities_small.png"
-						modality="parasympathetic"
+						modality="parasympathetic motor"
 						>
 						<fibers type="GVE" src="AVA.SC.IZ.SPS" dst="TARGET.TEA.BREAST"><mid id="AVA.PN.PSYM.PPG"/></fibers>
 						<fibers type="GVA" src="TARGET.TEA.BREAST" dst="AVA.SC.IZ.IMM"><mid id="AVA.PN.SG.DRG"/></fibers>
 					</element>
 					<element name="splanchnic nerves, pelvic, to penis/clitoris"
-						modality="parasympathetic motor, visceral sensory"
+						modality="parasympathetic motor, autonomic sensory"
 						>
 						<fibers type="GVE" src="AVA.SC.IZ.SPS" dst="TARGET.TEA.GENITALIA"><mid id="AVA.PN.PSYM.PPG"/></fibers>
 						<fibers type="GVA" src="TARGET.TEA.GENITALIA" dst="AVA.SC.IZ.IMM"><mid id="AVA.PN.SG.DRG"/></fibers>
@@ -271,20 +273,20 @@
 							origin="uterovaginal PLEXUS, pelvic splanchnic nerve"
 							distribution="erectile tissue of clitoris"
 							imgsrc="http://o.quizlet.com/i/j3m42JLaeiZME1E0EkVVHA.jpg"
-							modality="parasympathetic motor, visceral sensory"
+							modality="parasympathetic motor, autonomic sensory"
 							/>
 						<element name="cavernous nerves of penis"
 							origin="prostatic PLEXUS, pelvic splanchnic nerve"
 							distribution="erectile tissue of penis"
 							imgsrc="http://urology.jhu.edu/prostate/img/erectyle_dysfunction.jpg"
-							modality="parasympathetic motor, visceral sensory"
+							modality="parasympathetic motor, autonomic sensory"
 							/>
 					</element>
 					<element name="splanchnic nerves, pelvic, uterovaginal"
 						origin="uterovaginal plexus"
 						distribution="uterus, vagina"
 						imgsrc="http://web.uni-plovdiv.bg/stu1104541018/docs/res/skandalakis%27%20surgical%20anatomy%20-%202004/Chapter%2026_%20Female%20Genital%20System_fichiers/loadBinaryCAVZVP3B.jpg" imgheight="600"
-						modality="parasympathetic motor, visceral sensory"
+						modality="parasympathetic motor, autonomic sensory"
 						>
 						<fibers type="GVE" src="AVA.SC.IZ.SPS" dst="TARGET.TEA.GENITALIA"><mid id="AVA.PN.PSYM.PPG"/></fibers>
 						<fibers type="GVA" src="TARGET.TEA.GENITALIA" dst="AVA.SC.IZ.IMM"><mid id="AVA.PN.SG.DRG"/></fibers>
@@ -293,7 +295,7 @@
 						origin="Auerbach's plexus, Meissner's plexus"
 						distribution="terminal transverse colon, descending colon, sigmoid colon"
 						imgsrc="http://classroom.sdmesa.edu/eschmid/F11.03.L.150.jpg" imgheight="600"
-						modality="parasympathetic motor, visceral sensory"
+						modality="parasympathetic motor, autonomic sensory"
 						>
 						<fibers type="GVE" src="AVA.SC.IZ.SPS" dst="TARGET.TEA.STOMACH"><mid id="AVA.PN.PSYM.PPG"/></fibers>
 						<fibers type="GVA" src="TARGET.TEA.STOMACH" dst="AVA.SC.IZ.IMM"><mid id="AVA.PN.SG.DRG"/></fibers>
@@ -302,7 +304,7 @@
 						origin="hypogastric plexus"
 						distribution="urinary bladder, uterus and uterine tubes; preganglionic axons exit from the ventral roots, travel in the pelvic nerves, pass through the hypogastric plexus, and synapse on postganglionic neurons located in the wall of the urinary bladder"
 						imgsrc="http://3.bp.blogspot.com/-LqINgObPWSs/TkoSQl4QKEI/AAAAAAAAACE/qNVYq5G5rho/s400/urinary+bladder.png"
-						modality="parasympathetic motor, visceral sensory"
+						modality="parasympathetic motor, autonomic sensory"
 						>
 						<fibers type="GVE" src="AVA.SC.IZ.SPS" dst="TARGET.TEA.URETER"><mid id="AVA.PN.PSYM.PPG"/></fibers>
 						<fibers type="GVA" src="TARGET.TEA.URETER" dst="AVA.SC.IZ.IMM"><mid id="AVA.PN.SG.DRG"/></fibers>
@@ -311,7 +313,7 @@
 						origin="mesenteric plexus, inferior"
 						distribution="rectum, anus"
 						imgsrc="http://www.dartmouth.edu/~humananatomy/figures/chapter_36/36-2_files/image002.jpg"
-						modality="parasympathetic motor, visceral sensory"
+						modality="parasympathetic motor, autonomic sensory"
 						>
 						<fibers type="GVE" src="AVA.SC.IZ.SPS" dst="TARGET.TEA.RECTUM"><mid id="AVA.PN.PSYM.PPG"/></fibers>
 						<fibers type="GVA" src="TARGET.TEA.RECTUM" dst="AVA.SC.IZ.IMM"><mid id="AVA.PN.SG.DRG"/></fibers>

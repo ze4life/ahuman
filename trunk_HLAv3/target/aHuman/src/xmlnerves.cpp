@@ -105,6 +105,8 @@ XmlNerveInfo *XmlNerves::createNerveInfo( String nerve , Xml xmlitem , XmlNerveI
 	info.mods.trim();
 	info.action = xmlitem.getAttribute( "action" , "" );
 	
+	ASSERTMSG( !info.modality.isEmpty() , "createNerveInfo: nerve=" + info.name + ", modality is not defined" );
+
 	// data integrity
 	for( int k = 0; k < info.mods.count(); k++ ) {
 		String nm = info.mods.get( k );

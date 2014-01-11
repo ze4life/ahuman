@@ -114,8 +114,9 @@ XmlMuscleInfo *XmlMuscles::createMuscleInfo( String muscle , Xml xmlitem ) {
 	info.action = xmlitem.getAttribute( "action" , "" );
 
 	// data integrity
-	ASSERTMSG( info.type.equals( "flexor" ) || info.type.equals( "extensor" ) || info.type.equals( "cranial" ) || info.type.equals( "gland" ) ,
-		"createMuscleInfo: muscle=" + info.name + " - invalid muscle type=" + info.type );
+	if( !info.nerve.isEmpty() )
+		ASSERTMSG( info.type.equals( "flexor" ) || info.type.equals( "extensor" ) || info.type.equals( "cranial" ) || info.type.equals( "gland" ) ,
+			"createMuscleInfo: muscle=" + info.name + " - invalid muscle type=" + info.type );
 
 	return( pinfo );
 }
