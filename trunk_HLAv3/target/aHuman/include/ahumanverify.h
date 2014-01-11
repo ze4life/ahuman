@@ -38,6 +38,8 @@ private:
 	bool checkCircuits_verifyLinks( String circuit );
 	bool checkCircuits_verifyCircuitLink( XmlCircuitInfo& circuit , XmlCircuitLinkInfo& link );
 	bool checkNerves_verifyComponents( String nerve );
+	bool checkNerves_verifyModalityByChilds( XmlNerveInfo& nerve , MapStringToPtr& parentFibers );
+	bool checkNerves_verifyFiberIsCovered( String ft , StringList& mods );
 	bool checkNerves_verifyLinks( XmlNerveInfo& info , XmlNerveFiberInfo& nf );
 	bool checkNerves_verifyFiberChain( XmlNerveInfo& info , XmlNerveFiberInfo& nf , String regionSrcId , String regionDstId , ModelVerifierFiberChainPosEnum pos , int midleft , int midright );
 	bool checkMuscles_verifyNerves( String muscle );
