@@ -1,6 +1,17 @@
 #include "stdafx.h"
 #include "ahumantarget.h"
 
+static const int S_FIBER_MAX = 7;
+static const char *staticFiberTypeNerveMods[ S_FIBER_MAX ][6] = {
+	{ "GSE" , "cranial motor" , "flexor motor" , "extensor motor" , NULL } ,
+	{ "GSA" , "general sensory" , NULL , NULL , NULL } ,
+	{ "SVA" , "general sensory" , NULL , NULL , NULL } ,
+	{ "GVA" , "autonomic sensory" , NULL , NULL , NULL } ,
+	{ "GVE" , "sympathetic motor" , "parasympathetic motor" , NULL , NULL } ,
+	{ "SSA" , "special sensory" , NULL , NULL , NULL } ,
+	{ "SVE" , "visceral motor" , NULL , NULL , NULL }
+};
+
 /*#########################################################################*/
 /*#########################################################################*/
 
@@ -252,9 +263,19 @@ void ModelVerifier::checkNerves() {
 
 		// verify
 		logger.logInfo( "checkNerves: verify nerve id=" + id );
-		bool checkOne = checkNerves_verifyComponents( id );
-		if( checkOne == false )
+		if( !checkNerves_verifyComponents( id ) )
 			checkAll = false;
+	}
+
+	// veriy modaility
+	ClassList<XmlNerveInfo>& divs = nervesxml.getDivisions();
+	for( int k = 0; k < divs.count(); k++ ) {
+		XmlNerveInfo& div = divs.getRef( k );
+		for( int z = 0; z < div.childs.count(); z++ ) {
+			MapStringToPtr fibers;
+			if( !checkNerves_verifyModalityByChilds( div.childs.getClassRefByIndex( z ) , fibers ) )
+				checkAll = false;
+		}
 	}
 
 	if( checkAll )
@@ -298,6 +319,59 @@ bool ModelVerifier::checkNerves_verifyComponents( String nerve ) {
 	}
 
 	return( res );
+}
+
+bool ModelVerifier::checkNerves_verifyModalityByChilds( XmlNerveInfo& nerve , MapStringToPtr& parentFibers ) {
+	bool res = true;
+
+	// add own fibers
+	MapStringToPtr fibers;
+	fibers.addnew( parentFibers );
+	for( int k = 0; k < nerve.fibers.count(); k++ )
+		fibers.addnew( nerve.fibers.getRef( k ).type , this );
+
+	// verify childs
+	MapStringToPtr childMods;
+	for( int k = 0; k < nerve.childs.count(); k++ ) {
+		XmlNerveInfo& child = nerve.childs.getClassRefByIndex( k );
+		if( !checkNerves_verifyModalityByChilds( child , fibers ) )
+			res = false;
+
+		// get modality from childs
+		childMods.addnew( child.mods , this );
+	}
+
+	// own modality should be equals to child modality plus fibers
+	// check childs are present in nerve
+	for( int k = 0; k < childMods.count(); k++ ) {
+		String mod = childMods.getKeyByIndex( k );
+		if( nerve.mods.find( mod ) < 0 ) {
+			logger.logError( "checkNerves_verifyModalityByChilds: child nerve modality=" + mod + " is not found in nerve=" + nerve.name );
+			res = false;
+		}
+	}
+
+	// check fibers are covered by nerve
+	for( int k = 0; k < fibers.count(); k++ ) {
+		String ft = fibers.getKeyByIndex( k );
+		if( !checkNerves_verifyFiberIsCovered( ft , nerve.mods ) ) {
+			logger.logError( "checkNerves_verifyModalityByChilds: fiber type=" + ft + " is not covered by modality in nerve=" + nerve.name );
+			res = false;
+		}
+	}
+
+	return( res );
+}
+
+bool ModelVerifier::checkNerves_verifyFiberIsCovered( String ft , StringList& mods ) {
+	for( int k = 0; k < S_FIBER_MAX; k++ )
+		if( ft.equals( staticFiberTypeNerveMods[ k ][ 0 ] ) ) {
+			for( int z = 1; staticFiberTypeNerveMods[ k ][ z ] != NULL; z++ )
+				if( mods.find( staticFiberTypeNerveMods[ k ][ z ] ) >= 0 )
+					return( true );
+			return( false );
+		}
+	return( false );
 }
 
 bool ModelVerifier::checkFiberComp( XmlNerveInfo& info , XmlNerveFiberInfo& nf , String comp ) {
@@ -353,41 +427,20 @@ bool ModelVerifier::checkNerves_verifyLinks( XmlNerveInfo& info , XmlNerveFiberI
 }
 
 bool ModelVerifier::checkFiberType( XmlNerveInfo& info , XmlNerveFiberInfo& nf , String type ) {
-	// comparent fiber type and nerve modality
+	// compare fiber type and nerve modality
 	bool res = true;
-	if( type.equals( "GSE" ) ) {
-		if( !( info.mods.find( "cranial motor" ) >= 0 || info.mods.find( "flexor motor" ) >= 0 || info.mods.find( "extensor motor" ) >= 0 ) )
-			res = false;
-	}
-	else if( type.equals( "GSA" ) || type.equals( "SVA" ) ) {
-		if( !( info.mods.find( "general sensory" ) >= 0 ) )
-			res = false;
-	}
-	else if( type.equals( "GVA" ) ) {
-		if( !( info.mods.find( "autonomic sensory" ) >= 0 ) )
-			res = false;
-	}
-	else if( type.equals( "GVE" ) ) {
-		if( !( info.mods.find( "sympathetic motor" ) >= 0 || info.mods.find( "parasympathetic motor" ) >= 0 ) )
-			res = false;
-	}
-	else if( type.equals( "SSA" ) ) {
-		if( !( info.mods.find( "special sensory" ) >= 0 ) )
-			res = false;
-	}
-	else if( type.equals( "SVE" ) ) {
-		if( !( info.mods.find( "visceral motor" ) >= 0 ) )
-			res = false;
-	}
-	else {
-		logger.logError( "checkFiberType: nerve=" + info.name + ", type=" + type + " - is unknown type" );
-		return( false );
-	}
+	for( int k = 0; k < S_FIBER_MAX; k++ )
+		if( type.equals( staticFiberTypeNerveMods[ k ][ 0 ] ) ) {
+			for( int z = 1; staticFiberTypeNerveMods[ k ][ z ] != NULL; z++ )
+				if( info.mods.find( staticFiberTypeNerveMods[ k ][ z ] ) >= 0 )
+					return( true );
 
-	if( res == false )
-		logger.logError( "checkFiberType: nerve=" + info.name + ", type=" + type + " - is incompatible with modality=" + info.modality );
+			logger.logError( "checkFiberType: nerve=" + info.name + ", type=" + type + " - is incompatible with modality=" + info.modality );
+			return( false );
+		}
 
-	return( res );
+	logger.logError( "checkFiberType: nerve=" + info.name + ", type=" + type + " - is unknown type" );
+	return( false );
 }
 
 bool ModelVerifier::checkNerves_verifyFiberChain( XmlNerveInfo& info , XmlNerveFiberInfo& nf , String regionSrcId , String regionDstId , ModelVerifierFiberChainPosEnum pos , int midleft , int midright ) {

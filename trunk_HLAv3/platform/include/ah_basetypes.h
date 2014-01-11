@@ -207,6 +207,80 @@ private:
 // #############################################################################
 // #############################################################################
 
+extern "C" static int lstcompareStringListAscend( void *p_userdata , const RFC_TYPE *p_e1 , const RFC_TYPE *p_e2 );
+extern "C" static int lstcompareStringListDescend( void *p_userdata , const RFC_TYPE *p_e1 , const RFC_TYPE *p_e2 );
+extern void trimString( char *p , const char *trimChars );
+
+class StringList {
+public:
+	StringList() {
+		data = rfc_lst_create( RFC_EXT_TYPESTRING );
+	};
+	~StringList() {
+		rfc_lst_destroy( data );
+	};
+
+	int add( const char *value ) {
+		RFC_TYPE v;
+		v.u_c = value;
+		int index = rfc_lst_add( data , &v );
+		return( index );
+	}
+	int add( StringList *p ) {
+		if( p == NULL )
+			return( 0 );
+		for( int k = 0; k < p -> count(); k++ )
+			add( p -> get( k ) );
+		return( p -> count() );
+	}
+
+	int count() {
+		return( data -> s_n );
+	}
+
+	String get( int index ) {
+		ASSERT( index >= 0 && index < data -> s_n );
+		return( rfc_lst_get( data , index ) -> u_c );
+	}
+
+	void remove( int index ) {
+		ASSERT( index >= 0 && index < data -> s_n );
+		rfc_lst_remove( data , index );
+	}
+
+	void set( int index , const char *value ) {
+		ASSERT( index >= 0 && index < data -> s_n );
+		RFC_TYPE v;
+		v.u_c = value;
+		rfc_lst_replace( data , index , &v );
+	}
+
+	int find( String name ) {
+		for( int k = 0; k < data -> s_n; k++ )
+			if( name.equals( data -> s_p[ k ].u_c ) )
+				return( k );
+		return( -1 );
+	}
+
+	void trim() {
+		for( int k = 0; k < data -> s_n; k++ )
+			trimString( data -> s_p[ k ].u_s , " \t\n\r\v" );
+	}
+
+	void sort() {
+		rfc_lst_sort( data , NULL , NULL );
+	}
+
+	void clear() {
+		rfc_lst_clear( data );
+	}
+
+	rfc_list *data;
+};
+
+// #############################################################################
+// #############################################################################
+
 // map String to int
 class MapStringToInt {
 public:
@@ -236,7 +310,27 @@ public:
 	void add( MapStringToInt& a ) {
 		rfc_strmap *s = a.mapData;
 		for( int k = 0; k < rfc_map_strcount( s ); k++ )
-			rfc_map_stradd( mapData , s -> s_p[ k ].s_x , s -> s_p[ k ].s_y );
+			add( s -> s_p[ k ].s_x , ( int )s -> s_p[ k ].s_y );
+	};
+
+	void addnew( MapStringToInt& a ) {
+		rfc_strmap *s = a.mapData;
+		for( int k = 0; k < rfc_map_strcount( s ); k++ )
+			addnew( s -> s_p[ k ].s_x , ( int )s -> s_p[ k ].s_y );
+	};
+
+	void add( StringList& a , int value ) {
+		for( int k = 0; k < a.count(); k++ ) {
+			String s = a.get( k );
+			add( s , value );
+		}
+	};
+
+	void addnew( StringList& a , int value ) {
+		for( int k = 0; k < a.count(); k++ ) {
+			String s = a.get( k );
+			addnew( s , value );
+		}
 	};
 
 	int set( const char *key , int value ) {
@@ -346,7 +440,29 @@ public:
 		rfc_strmap *s = a.mapData;
 		for( int k = 0; k < rfc_map_strcount( s ); k++ ) {
 			char *setValue = _strdup( ( char * )s -> s_p[ k ].s_y );
-			rfc_map_stradd( mapData , s -> s_p[ k ].s_x , setValue );
+			add( s -> s_p[ k ].s_x , setValue );
+		}
+	};
+
+	void addnew( MapStringToString& a ) {
+		rfc_strmap *s = a.mapData;
+		for( int k = 0; k < rfc_map_strcount( s ); k++ ) {
+			char *setValue = _strdup( ( char * )s -> s_p[ k ].s_y );
+			addnew( s -> s_p[ k ].s_x , setValue );
+		}
+	};
+
+	void add( StringList& a , String value ) {
+		for( int k = 0; k < a.count(); k++ ) {
+			String s = a.get( k );
+			add( s , value );
+		}
+	};
+
+	void addnew( StringList& a , String value ) {
+		for( int k = 0; k < a.count(); k++ ) {
+			String s = a.get( k );
+			addnew( s , value );
 		}
 	};
 
@@ -458,13 +574,35 @@ public:
 		if( index < 0 )
 			index = rfc_map_strsetkey( mapData , key , value );
 		return( index );
-	}
+	};
 
 	void add( MapStringToPtr& a ) {
 		rfc_strmap *s = a.mapData;
 		for( int k = 0; k < rfc_map_strcount( s ); k++ ) {
 			void *setValue = s -> s_p[ k ].s_y;
-			rfc_map_stradd( mapData , s -> s_p[ k ].s_x , setValue );
+			add( s -> s_p[ k ].s_x , setValue );
+		}
+	};
+
+	void addnew( MapStringToPtr& a ) {
+		rfc_strmap *s = a.mapData;
+		for( int k = 0; k < rfc_map_strcount( s ); k++ ) {
+			void *setValue = s -> s_p[ k ].s_y;
+			addnew( s -> s_p[ k ].s_x , setValue );
+		}
+	};
+
+	void add( StringList& a , void *value ) {
+		for( int k = 0; k < a.count(); k++ ) {
+			String s = a.get( k );
+			add( s , value );
+		}
+	};
+
+	void addnew( StringList& a , void *value ) {
+		for( int k = 0; k < a.count(); k++ ) {
+			String s = a.get( k );
+			addnew( s , value );
 		}
 	};
 
@@ -533,71 +671,6 @@ public:
 			
 private:
 	rfc_strmap *mapData;
-};
-
-// #############################################################################
-// #############################################################################
-
-extern "C" static int lstcompareStringListAscend( void *p_userdata , const RFC_TYPE *p_e1 , const RFC_TYPE *p_e2 );
-extern "C" static int lstcompareStringListDescend( void *p_userdata , const RFC_TYPE *p_e1 , const RFC_TYPE *p_e2 );
-extern void trimString( char *p , const char *trimChars );
-
-class StringList {
-public:
-	StringList() {
-		data = rfc_lst_create( RFC_EXT_TYPESTRING );
-	};
-	~StringList() {
-		rfc_lst_destroy( data );
-	};
-
-	int add( const char *value ) {
-		RFC_TYPE v;
-		v.u_c = value;
-		int index = rfc_lst_add( data , &v );
-		return( index );
-	}
-	int add( StringList *p ) {
-		if( p == NULL )
-			return( 0 );
-		for( int k = 0; k < p -> count(); k++ )
-			add( p -> get( k ) );
-		return( p -> count() );
-	}
-
-	int count() {
-		return( data -> s_n );
-	}
-	String get( int index ) {
-		ASSERT( index >= 0 && index < data -> s_n );
-		return( rfc_lst_get( data , index ) -> u_c );
-	}
-	void set( int index , const char *value ) {
-		ASSERT( index >= 0 && index < data -> s_n );
-		RFC_TYPE v;
-		v.u_c = value;
-		rfc_lst_replace( data , index , &v );
-	}
-	int find( String name ) {
-		for( int k = 0; k < data -> s_n; k++ )
-			if( name.equals( data -> s_p[ k ].u_c ) )
-				return( k );
-		return( -1 );
-	}
-	void trim() {
-		for( int k = 0; k < data -> s_n; k++ )
-			trimString( data -> s_p[ k ].u_s , " \t\n\r\v" );
-	}
-
-	void sort() {
-		rfc_lst_sort( data , NULL , NULL );
-	}
-
-	void clear() {
-		rfc_lst_clear( data );
-	}
-
-	rfc_list *data;
 };
 
 // #############################################################################
