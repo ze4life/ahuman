@@ -105,6 +105,16 @@ XmlNerveInfo *XmlNerves::createNerveInfo( String nerve , Xml xmlitem , XmlNerveI
 	info.mods.trim();
 	info.action = xmlitem.getAttribute( "action" , "" );
 	
+	// data integrity
+	for( int k = 0; k < info.mods.count(); k++ ) {
+		String nm = info.mods.get( k );
+
+		ASSERTMSG( nm.equals( "general sensory" ) || nm.equals( "cranial motor" ) || nm.equals( "visceral motor" ) || 
+			nm.equals( "sympathetic motor" ) || nm.equals( "parasympathetic motor" ) || 
+			nm.equals( "autonomic sensory" ) || nm.equals( "special sensory" ) || nm.equals( "flexor motor" ) || nm.equals( "extensor motor" ) ,
+			"createNerveInfo: nerve=" + info.name + ", unknown modality=" + nm );
+	}
+
 	for( Xml item = xmlitem.getFirstChild( "fibers" ); item.exists(); item = item.getNextChild( "fibers" ) ) {
 		XmlNerveFiberInfo *nf = new XmlNerveFiberInfo;
 		info.fibers.add( nf );
@@ -112,6 +122,11 @@ XmlNerveInfo *XmlNerves::createNerveInfo( String nerve , Xml xmlitem , XmlNerveI
 		nf -> type = item.getAttribute( "type" );
 		nf -> src = item.getAttribute( "src" );
 		nf -> dst = item.getAttribute( "dst" );
+
+		// data integrity
+		String nt = nf -> type;
+		ASSERTMSG( nt.equals( "GSE" ) || nt.equals( "GSA" ) || nt.equals( "GVE" ) || nt.equals( "GVA" ) || nt.equals( "SVA" ) || nt.equals( "SVE" ) || nt.equals( "SSA" ) ,
+			"createNerveInfo: nerve=" + info.name + ", unknown fiber type=" + nt );
 
 		for( Xml mid = item.getFirstChild( "mid" ); mid.exists(); mid = mid.getNextChild( "mid" ) ) {
 			String id = mid.getAttribute( "id" );

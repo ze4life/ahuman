@@ -22,7 +22,7 @@ fi
 
 tools console -s localhost:20002 -i $F_XNAME -o $F_NAME.out
 
-if [ "$P_IMG" != "no" ]; then
+if [ "$P_IMG" = "yes" ]; then
 	# wait
 	echo press enter to continue...
 	read x

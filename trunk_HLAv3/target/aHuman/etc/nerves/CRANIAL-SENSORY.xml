@@ -7,7 +7,7 @@
 			origin="the nerves of smell, consisting of about 20 bundles which arise in the OLFACTORY EPITHELIUM"
 			distribution="pass through the cribriform plate of the ethmoid bone to the olfactory bulb"
 			imgsrc="http://www.ncbi.nlm.nih.gov/books/NBK10982/bin/ch15f1.jpg" imgheight="500"
-			modality="sensory"
+			modality="special sensory"
 			>
 			<fibers type="SVA" src="TARGET.TSA.NOSE" dst="PHA.FT.AON"><mid id="AVA.PN.SG.OLB"/></fibers>
 		</element>
@@ -17,7 +17,7 @@
 			origin="actually part of the central nervous system throughout its course; it consists chiefly of axons and central processes of cells of the ganglionic layer of the RETINA"
 			distribution="leave the orbit through the optic canal, and joins with its opposite number to form the optic chiasm (the medial fibers of each nerve crossing over to the opposite side), then continues as the optic tract to end in the lateral geniculate body"
 			imgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0012160607009098-gr2.jpg"
-			modality="sensory"
+			modality="special sensory"
 			>
 			<fibers type="SSA" src="TARGET.TSA.EYE" dst="VBA.FD.RT"></fibers>
 			<fibers type="SSA" src="VBA.FD.RT" dst="VBA.FD.LGN"></fibers>
@@ -30,7 +30,8 @@
 			synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne128.htm TRIGEMINAL NERVE]; fifth cranial nerve, V"
 			origin="emerges from the lateral surface of the pons as a MOTOR and a SENSORY ROOT, together with some intermediate fibers, fine touch to principal, crude touch and pain to spinal"
 			distribution="The sensory root expands into the trigeminal ganglion, which contains the cells of origin of most of the sensory fibers, and from which the three divisions of the nerve arise"
-			modality="The trigeminal nerve is sensory in supplying the face, teeth, mouth, and nasal cavity, and motor in supplying the muscles of mastication"
+			notes="The trigeminal nerve is sensory in supplying the face, teeth, mouth, and nasal cavity, and motor in supplying the muscles of mastication"
+			modality="general sensory"
 			>
 			<fibers type="GSA" src="AVA.PN.SG.TRG" dst="HMA.HP.PTP.PTR"></fibers>
 			<fibers type="GSA" src="AVA.PN.SG.TRG" dst="HMA.HM.TGM.STR"></fibers>
@@ -39,7 +40,7 @@
 				origin="trigeminal GANGLION"
 				distribution="passing through the foramen ovale to the infratemporal fossa, extensive distribution to muscles of mastication, skin of face, mucous membrane of mouth, and teeth"
 				imgsrc="http://www.cambridgequestions.co.uk/diagrams/Mandibular%20nerve.png"
-				modality="general sensory and motor"
+				modality="cranial motor, general sensory"
 				>
 				<element name="mandibular nerve, anterior trunk"
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne159.htm ANTERIOR TRUNK OF MANDIBULAR NERVE]"
@@ -57,7 +58,7 @@
 						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne161.htm MASSETERIC NERVE]"
 						origin="mandibular division of trigeminal nerve"
 						distribution="masseter muscle and temporomandibular joint, proprioception"
-						modality="motor and general sensory"
+						modality="cranial motor, general sensory"
 						>
 						<fibers type="GSA" src="TARGET.TEA.MOUTH" dst="HMA.MM.MSTR"></fibers>
 						<fibers type="GSE" src="HMA.MM.MSTR" dst="TARGET.TEA.MOUTH"><mid id="HMA.HP.PTP.TRM"/></fibers>
@@ -66,7 +67,7 @@
 						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne162.htm DEEP TEMPORAL NERVES]"
 						origin="usually two in number, anterior and posterior, with a third middle one often seen, mandibular nerve"
 						distribution="temporal muscles"
-						modality="motor"
+						modality="cranial motor"
 						>
 						<fibers type="GSE" src="HMA.HP.PTP.TRM" dst="TARGET.TEA.MOUTH"></fibers>
 					</element>
@@ -74,7 +75,7 @@
 						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne163.htm NERVE TO LATERAL PTERYGOID]"
 						origin="mandibular nerve"
 						distribution="lateral pterygoid muscle"
-						modality="motor"
+						modality="cranial motor"
 						>
 						<fibers type="GSE" src="HMA.HP.PTP.TRM" dst="TARGET.TEA.MOUTH"></fibers>
 					</element>
@@ -87,7 +88,7 @@
 						imgsrc="http://www.surgicalneurologyint.com/articles/2011/2/1/images/SurgNeurolInt_2011_2_1_178_90699_u1.jpg"
 						origin="by two roots from the mandibular nerve"
 						distribution="parotid gland, scalp in temporal region, tympanic membrane"
-						modality="parasympathetic, general sensory"
+						modality="parasympathetic motor, general sensory"
 						>
 						<element name="auricular nerves, anterior"
 							origin="auriculotemporal nerve"
@@ -106,21 +107,21 @@
 						<element name="auriculotemporal nerve, parotid branch"
 							origin="auriculotemporal nerve passes medially to the neck of the mandible, gives off parotid branches and then turns superior"
 							distribution="secretomotor fibers from tympanic plexus to the parotid gland"
-							modality="parasympathetic"
+							modality="parasympathetic motor"
 							>
 							<fibers type="GVE" src="AVA.HM.SAL.ISL" dst="TARGET.TEA.MOUTH"><mid id="AVA.PN.PSYM.OTG"/></fibers>
 						</element>
 						<element name="auriculotemporal nerve, branch to tympanic membrane"
 							origin="auriculotemporal nerve comprises exclusively somatosensory fibers, which ascend to the superficial temporal region and there it supplies the supplies the auricle, external acoustic meatus, outer side of the tympanic membrane and the skin in the temporal region"
 							distribution="outer side of the tympanic membrane and the skin in the temporal region"
-							modality="sensory"
+							modality="general sensory"
 							>
 							<fibers type="GSA" src="TARGET.TSA.EAR" dst="AVA.PN.SG.TRG"></fibers>
 						</element>
 						<element name="auriculotemporal nerve, branches communicating with facial nerve"
 							origin="The auriculotemporal nerve then pierces the parotid fascia and enters the retromandibular region of the parotid gland; Within the parotid gland, it breaks up in a spray of branches that immediately and abruptly diverge; Anterior and posterior communicating ramus with the facial nerve"
 							distribution="They provide sensory fibers for the zygomatic, buccal, and mandibular divisions of the facial nerve to the skin, convey proprioceptive impulses from orbicularis oculi"
-							modality="sensory"
+							modality="general sensory"
 							>
 							<fibers type="SSA" src="TARGET.TSA.EYE" dst="AVA.PN.SG.TRG"></fibers>
 						</element>
@@ -130,20 +131,20 @@
 						origin="mandibular nerve"
 						distribution="teeth and gums of lower jaw, skin of chin and lower lip, mylohyoid muscle and anterior belly of digastric muscle"
 						imgsrc="http://www.exodontia.info/sitebuilder/images/Inferior_Alveolar_Mental_Nerves-518x720.jpg" imgheight="500"
-						modality="motor and general sensory"
+						modality="cranial motor, general sensory"
 						>
 						<element name="inferior alveolar nerve, dental branches"
 							synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne168.htm INCISIVE NERVE]"
 							origin="Within the canal or in their intraosseous course the fascicles of the IAN can either unite into single or double stranded bundles as well as ramify into an ample plexus formation. These neural structures give rise to the inferior dental branches and the inferior gingival branches"
 							distribution="providing sensation to the teeth and gums"
-							modality="sensory"
+							modality="general sensory"
 							>
 							<fibers type="GVA" src="TARGET.TEA.MOUTH" dst="AVA.PN.SG.TRG"></fibers>
 						</element>
 						<element name="inferior alveolar nerve, gingival branches"
 							origin="see dental branches"
 							distribution="mandibular (lower jaw) gingiva, interteeth tissue"
-							modality="sensory"
+							modality="general sensory"
 							>
 							<fibers type="GVA" src="TARGET.TEA.MOUTH" dst="AVA.PN.SG.TRG"></fibers>
 						</element>
@@ -159,7 +160,7 @@
 							synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne167.htm MYLOHYOID NERVE]"
 							origin="inferior alveolar nerve"
 							distribution="mylohyoid muscle, anterior belly of digastric muscle"
-							modality="motor"
+							modality="cranial motor"
 							>
 							<fibers type="GVE" src="HMA.HP.PTP.TRM" dst="TARGET.TEA.MOUTH"></fibers>
 						</element>
@@ -169,7 +170,7 @@
 						origin="mandibular nerve"
 						distribution="descending to the tongue, first medial to the mandible and then under cover of the mucous membrane of the mouth; anterior two-thirds of tongue, adjacent areas of mouth, gums, isthmus of fauces"
 						imgsrc="http://img.tfd.com/MosbyMD/hypoglossal_nerve.jpg" imgheight="400"
-						modality="parasympathetic, general sensory, visceral efferent"
+						modality="parasympathetic motor, general sensory"
 						>
 						<element name="lingual nerve, branch to isthmus of fauces"
 							distribution="conveying general sensation from the oral mucosa between the oral cavity and oropharynx"
@@ -187,7 +188,7 @@
 						<element name="sublingual nerve"
 							origin="lingual nerve"
 							distribution="visceral efferent (secretomotor) fibers to the submandibular and sublingual salivary glands and overlying mucous membrane; a branch of the lingual nerve supplying parasympathetic fibers to the sublingual gland and sensory fibers to the mucous membrane of the floor of the mouth"
-							modality="parasympathetic and general sensory"
+							modality="parasympathetic motor, general sensory"
 							>
 							<fibers type="GVE" src="AVA.HM.SAL.SSL" dst="TARGET.TEA.MOUTH"><mid id="AVA.PN.PSYM.SXG"/></fibers>
 							<fibers type="GSA" src="TARGET.TEA.MOUTH" dst="AVA.PN.SG.TRG"></fibers>
@@ -197,7 +198,7 @@
 				<element name="mandibular nerve, meningeal branch"
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne157.htm NERVUS SPINOSUS]; recurrent branch"
 					distribution="supplies the dura mater, supplies mastoid cells that communicate with middle ear"
-					modality="sensory"
+					modality="general sensory"
 					>
 					<fibers type="GSA" src="TARGET.TSA.MINDCOVER" dst="AVA.PN.SG.TRG"></fibers>
 				</element>
@@ -205,18 +206,18 @@
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne158.htm NERVE TO MEDIAL PTERYGOID]"
 					origin="mandibular nerve"
 					distribution="medial pterygoid, tensor tympani, and tensor veli palatini muscles"
-					modality="motor"
+					modality="cranial motor"
 					>
 					<fibers type="GSE" src="HMA.HP.PTP.TRM" dst="TARGET.TEA.MOUTH"></fibers>
 					<element name="nerve to tensor tympani"
 						origin="mandibular nerve via nerve to medial pterygoid MUSCLE and otic GANGLION"
 						distribution="tensor tympani muscle"
-						modality="motor"
+						modality="cranial motor"
 						/>
 					<element name="nerve to tensor veli palatini"
 						origin="mandibular nerve via nerve to medial pterygoid MUSCLE and otic GANGLION"
 						distribution="tensor veli palatini muscle"
-						modality="motor"
+						modality="cranial motor"
 						/>
 				</element>
 			</element>
@@ -231,7 +232,7 @@
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne146.htm POSTERIOR SUPERIOR ALVEOLAR NERVE]"
 					origin="arise from the maxillary nerve"
 					distribution="innervate the teeth of the upper jaw and the maxillary sinus, and forming the superior dental plexus, molars"
-					modality="sensory"
+					modality="general sensory"
 					>
 					<fibers type="GSE" src="TARGET.TEA.MOUTH" dst="AVA.PN.SG.TRG"></fibers>
 				</element>
@@ -239,6 +240,7 @@
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne142.htm GANGLIONIC BRANCHES OF MAXILLARY NERVE],[http://www.oluwoleogunranti.com/course/course1/nerves/ne153.htm PTERYGOPALATINE GANGLION]"
 					distribution="Eye, lacrimal gland; Nose, nasal gland; Mouth, mucosal glands of palate and pharynx"
 					imgsrc="http://classconnection.s3.amazonaws.com/33/flashcards/602033/jpg/cn_vii_-_greater_petrosal_nerve_forms_nerve_of_pterygoid_canal_(edit)1316912096227.jpg"
+					modality="general sensory"
 					>
 					<element name="nasopalatine nerve, sensory fibers"
 						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne231.htm NASOPALATINE NERVE]"
@@ -256,11 +258,13 @@
 							synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne226.htm GREATER PALATINE NERVE]; palatine nerve, sensory fibers, anterior"
 							origin="pterygopalatine GANGLION"
 							distribution="emerges through the greater palatine foramen and supplies the palate"
+							modality="general sensory"
 							/>
 						<element name="palatine nerves, lesser, sensory fibers"
 							synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne227.htm LESSER PALATINE NERVES]"
 							origin="pterygopalatine GANGLION"
 							distribution="emerge through the lesser palatine foramen and supply the soft palate and tonsil, uvula"
+							modality="general sensory"
 							/>
 					</element>
 				</element>
@@ -275,33 +279,33 @@
 						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne147.htm MIDDLE SUPERIOR ALVEOLAR NERVE],[http://www.oluwoleogunranti.com/course/course1/nerves/ne148.htm ANTERIOR SUPERIOR ALVEOLAR NERVE]; nasodental ramus"
 						origin="arise from infraorbital nerves"
 						distribution="innervate the teeth of the upper jaw and the maxillary sinus, and forming the superior dental plexus, incisors (anterior), premolars (middle)"
-						modality="sensory"
+						modality="general sensory"
 						>
 						<fibers type="GVA" src="TARGET.TEA.MOUTH" dst="AVA.PN.SG.TRG"></fibers>
 					</element>
 					<element name="infraorbital nerve, external nasal branch"
 						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne220.htm EXTERNAL NASAL NERVE]"
 						distribution="nasal alae, inferior and lateral aspects of the nose"
-						modality="sensory"
+						modality="general sensory"
 						>
 						<fibers type="GSA" src="TARGET.TSA.NOSE" dst="AVA.PN.SG.TRG"></fibers>
 					</element>
 					<element name="infraorbital nerve, inferior palpebral branch"
 						distribution="supply the skin and conjunctiva of the lower eyelid, joining at the lateral angle of the orbit with the facial and zygomaticofacial nerves"
-						modality="sensory"
+						modality="general sensory"
 						>
 						<fibers type="GSA" src="TARGET.TSA.EYE" dst="AVA.PN.SG.TRG"></fibers>
 					</element>
 					<element name="internal nasal nerve"
 						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne222.htm INTERNAL NASAL NERVES]"
 						distribution="supply the septum, pass to skin of nasal vestibule"
-						modality="sensory"
+						modality="general sensory"
 						>
 						<fibers type="GSA" src="TARGET.TSA.NOSE" dst="AVA.PN.SG.TRG"></fibers>
 					</element>
 					<element name="superior labial branch"
 						distribution="skin of the upper lip"
-						modality="sensory"
+						modality="general sensory"
 						>
 						<fibers type="GVA" src="TARGET.TEA.MOUTH" dst="AVA.PN.SG.TRG"></fibers>
 					</element>
@@ -310,7 +314,7 @@
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne141.htm MENINGEAL BRANCH OF MAXILLARY NERVE]"
 					origin="maxillary nerve directly after its origin from the semilunar ganglion, before enters the foramen rotundum"
 					distribution="supplies the dura mater"
-					modality="sensory"
+					modality="general sensory"
 					>
 					<fibers type="GSA" src="TARGET.TSA.MINDCOVER" dst="AVA.PN.SG.TRG"></fibers>
 				</element>
@@ -323,9 +327,11 @@
 					<fibers type="GSA" src="TARGET.TEA.FACE" dst="AVA.PN.SG.TRG"></fibers>
 					<element name="zygomatic nerve, zygomaticofacial branch"
 						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne144.htm ZYGOMATICOFACIAL NERVE]"
+						modality="general sensory"
 						/>
 					<element name="zygomatic nerve, zygomaticotemporal branch"
 						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne145.htm ZYGOMATICOTEMPORAL NERVE]"
+						modality="general sensory"
 						/>
 				</element>
 			</element>
@@ -360,7 +366,8 @@
 				<element name="lacrimal nerve"
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne223.htm LACRIMAL NERVE]"
 					origin="ophthalmic division of trigeminal nerve, entering the orbit through the superior orbital fissure"
-					distribution="lacrimal gland, conjunctiva, lateral commissure of eye, and skin of upper eyelid; MODALITY={general sensory"
+					distribution="lacrimal gland, conjunctiva, lateral commissure of eye, and skin of upper eyelid"
+					modality="autonomic sensory, general sensory"
 					>
 					<fibers type="GSA" src="TARGET.TSA.EYE" dst="AVA.PN.SG.TRG"></fibers>
 				</element>
@@ -378,11 +385,13 @@
 							synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne136.htm LONG CILIARY NERVES]"
 							origin="nasociliary nerve, from ophthalmic nerve"
 							distribution="dilator muscle of pupil, uvea, cornea"
+							modality="general sensory"
 							/>
 						<element name="ciliary nerves, short, sensory fibers"
 							synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne224.htm SHORT CILIARY NERVES]"
 							origin="ciliary GANGLION"
 							distribution="smooth muscle and tunics of eye"
+							modality="general sensory"
 							/>
 					</element>
 					<element name="ethmoidal nerve"
@@ -393,11 +402,13 @@
 							synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne134.htm ANTERIOR ETHMOIDAL NERVE]"
 							origin="continuation of nasociliary nerve, from ophthalmic nerve"
 							distribution="mucosa of upper and anterior nasal septum, lateral wall of nasal cavity, skin of lower bridge and tip of nose"
+							modality="general sensory"
 							/>
 						<element name="ethmoidal nerve, posterior"
 							synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne138.htm POSTERIOR ETHMOIDAL NERVE]"
 							origin="nasociliary nerve, from ophthalmic nerve"
 							distribution="mucosa of posterior ethmoid cells and of sphenoidal sinus"
+							modality="general sensory"
 							/>
 					</element>
 					<element name="infratrochlear nerve"
@@ -430,7 +441,7 @@
 				origin="the part of the vestibulocochlear nerve concerned with hearing"
 				distribution="consisting of fibers that arise from the bipolar cells in the spiral ganglion and have their receptors in the spiral organ of the cochlea"
 				imgsrc="http://otah2o.wikispaces.com/file/view/organ_of_corti.gif/218355072/organ_of_corti.gif"
-				modality="sensory"
+				modality="general sensory"
 				>
 				<fibers type="SSA" src="TARGET.TSA.EAR" dst="ABA.HM.COCH"><mid id="ABA.PN.SG.SP"/></fibers>
 			</element>
@@ -439,36 +450,43 @@
 				origin="the posterior part of the vestibulocochlear nerve, which is concerned with the sense of equilibrium"
 				distribution="It consists of fibers arising from bipolar cells in the vestibular ganglion, and divides peripherally into a rostral and a caudal part, with receptors in the ampullae of the semicircular canals, the utricle, and the saccule"
 				imgsrc="http://webmedia.unmc.edu/medicine/todd/papt/Wk15-Aud-Vest_files/slide0065_image024.jpg"
-				modality="sensory"
+				modality="general sensory"
 				>
 				<fibers type="SSA" src="TARGET.TSA.EAR" dst="BMA.HP.VB"><mid id="ABA.PN.SG.SP"/></fibers>
 				<element name="ampullar nerve"
+					modality="general sensory"
 					>
 					<element name="ampullar nerve, anterior"
 						synonyms="ampullar nerve, superior"
 						origin="the branch of the vestibular nerve"
 						distribution="innervates the ampulla of the anterior semicircular duct, ending around the hair cells of the ampullary crest"
+						modality="general sensory"
 						/>
 					<element name="ampullar nerve, lateral"
 						origin="the branch of the vestibular nerve"
 						distribution="innervates the ampulla of the lateral semicircular duct, ending around the hair cells of the ampullary crest"
+						modality="general sensory"
 						/>
 					<element name="ampullar nerve, posterior"
 						synonyms="ampullar nerve, inferior"
 						origin="the branch of the vestibular nerve that innervates the ampulla of the posterior semicircular duct, ending around the hair cells of the ampullary crest"
+						modality="general sensory"
 						/>
 				</element>
 				<element name="saccular nerve"
 					origin="the branch of the vestibular nerve"
 					distribution="innervates the macula of the saccule"
+					modality="general sensory"
 					/>
 				<element name="utricular nerve"
 					origin="the branch of the vestibular nerve"
 					distribution="innervates the macula of the utricle"
+					modality="general sensory"
 					/>
 				<element name="utriculoampullary nerve"
 					origin="a nerve that arises by peripheral division of the vestibular nerve"
 					distribution="supplies the utricle and ampullae of the semicircular ducts"
+					modality="general sensory"
 					/>
 			</element>
 		</element>
