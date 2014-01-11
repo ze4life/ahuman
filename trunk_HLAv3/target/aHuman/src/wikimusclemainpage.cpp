@@ -63,7 +63,11 @@ void WikiMuscleMainPage::addMuscles( int level , XmlMuscleDivision& div , MapStr
 		XmlMuscleInfo& mc = items.getClassRefByIndex( k );
 
 		String page = ( mc.link.isEmpty() )? div.page : mc.link;
-		lines.add( prefix + "[" + page + " " + mc.name + "]" );
+		String item = "[" + page + " " + mc.name + "]";
+		if( !mc.type.isEmpty() )
+			 item += " - " + mc.type;
+
+		lines.add( prefix + item );
 
 		addMuscles( level + 1 , div , mc.childs , lines );
 	}

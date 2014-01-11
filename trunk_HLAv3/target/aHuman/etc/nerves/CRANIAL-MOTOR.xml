@@ -22,7 +22,7 @@
 				distribution="the internal branch to the vagus and thereby to the palate, pharynx, larynx, and thoracic viscera, pharyngeal and superior laryngeal branches of the vagus, muscles of the pharynx, larynx, and soft palate"
 				modality="cranial motor"
 				>
-				<fibers type="SVE" src="HMA.HM.AMB" dst="TARGET.TEA.MOUTH"></fibers>
+				<fibers type="GSE" src="HMA.HM.AMB" dst="TARGET.TEA.MOUTH"></fibers>
 			</element>
 			<element name="accessory nerve, external"
 				origin="by spinal roots from the side of the spinal cord (from the upper three or more cervical segments), from the nucleus of accessory nerve"
@@ -51,7 +51,7 @@
 					modality="cranial motor, general sensory"
 					>
 					<fibers type="GSA" src="TARGET.TSA.EAR" dst="AVA.PN.SG.GNG"></fibers>
-					<fibers type="SVE" src="HMA.HP.FCM" dst="TARGET.TSA.EAR"></fibers>
+					<fibers type="GSE" src="HMA.HP.FCM" dst="TARGET.TSA.EAR"></fibers>
 				</element>
 				<element name="auricular nerve, posterior, occipital branch"
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne242.htm OCCIPITAL BRANCH OF POSTERIOR AURICULAR NERVE]"
@@ -59,7 +59,7 @@
 					modality="cranial motor, general sensory"
 					>
 					<fibers type="GSA" src="TARGET.TEA.FACE" dst="AVA.PN.SG.GNG"></fibers>
-					<fibers type="SVE" src="HMA.HP.FCM" dst="TARGET.TEA.FACE"></fibers>
+					<fibers type="GSE" src="HMA.HP.FCM" dst="TARGET.TEA.FACE"></fibers>
 				</element>
 			</element>
 			<element name="stapedius nerve"
@@ -68,13 +68,13 @@
 				distribution="stapedius muscle"
 				modality="cranial motor"
 				>
-				<fibers type="SVE" src="HMA.HP.FCM" dst="TARGET.TSA.EAR"></fibers>
+				<fibers type="GSE" src="HMA.HP.FCM" dst="TARGET.TSA.EAR"></fibers>
 			</element>
 			<element name="facial nerve, mouth opening muscles"
 				imgsrc="http://teachmeanatomy.info/wp-content/uploads/Lateral-View-of-the-Neck-Showing-the-Stylohyoid-and-Digastric-Muscles.png"
 				modality="cranial motor"
 				>
-				<fibers type="SVE" src="HMA.HP.FCM" dst="TARGET.TEA.MOUTH"></fibers>
+				<fibers type="GSE" src="HMA.HP.FCM" dst="TARGET.TEA.MOUTH"></fibers>
 				<element name="facial nerve, digastric branch"
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne239.htm DIGASTRIC BRANCH OF FACIAL NERVE]"
 					branches="muscular branches to posterior belly of digastric, communicating branch to the glossopharyngeal nerve"
@@ -91,7 +91,7 @@
 				imgsrc="http://o.quizlet.com/i/Xc5TCBFZXr6AYTjSt04acA.jpg"
 				modality="cranial motor"
 				>
-				<fibers type="SVE" src="HMA.HP.FCM" dst="TARGET.TEA.FACE"></fibers>
+				<fibers type="GSE" src="HMA.HP.FCM" dst="TARGET.TEA.FACE"></fibers>
 				<element name="facial nerve, temporal branch"
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne178.htm TEMPORAL BRANCHES OF FACIAL NERVE]"
 					distribution="muscular branches to frontal belly of occipitofrontalis, anterior/posterior auricular muscle, orbicularis oculi, corrugator supercilii; communicating branches to supraorbital nerve, lacrimal nerve"
@@ -141,29 +141,27 @@
 			distribution="entering the orbit through the superior orbital fissure, the branches supply the levator muscle of upper eyelid, all extrinsic eye muscles except the lateral rectus and superior oblique, and carry parasympathetic fibers for the ciliary muscle and sphincter pupillae"
 			modality="cranial motor, parasympathetic motor"
 			>
-			<fibers type="GSE" src="VBA.MM.OCN" dst="TARGET.TSA.EYE"></fibers>
-			<fibers type="GVE" src="VBA.MM.EWN" dst="TARGET.TSA.EYE"><mid id="VBA.PN.PSYM.CLG"/></fibers>
 			<element name="oculomotor nerve, inferior branch"
 				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne221.htm INFERIOR RAMUS OF OCULOMOTOR NERVE]"
 				distribution="inferior rectus"
 				imgsrc="http://what-when-how.com/wp-content/uploads/2012/04/tmp15F41_thumb.jpg" imgheight="500"
 				modality="cranial motor"
-				/>
+				>
+				<fibers type="GSE" src="VBA.MM.OCN" dst="TARGET.TSA.EYE"></fibers>
+			</element>
 			<element name="oculomotor nerve, superior branch"
 				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne225.htm SUPERIOR RAMUS OF OCULOMOTOR NERVE]"
 				distribution="supplies superior rectus and levator palpebrae superioris"
 				modality="parasympathetic motor"
 				>
-				modality="parasympathetic motor"
+				<fibers type="GVE" src="VBA.MM.EWN" dst="TARGET.TSA.EYE"><mid id="VBA.PN.PSYM.CLG"/></fibers>
 				<element name="ciliary nerves, short, parasympathetic fibers"
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne224.htm SHORT CILIARY NERVES]"
 					origin="ciliary GANGLION"
 					distribution="smooth muscle and tunics of eye"
 					imgsrc="http://upload.wikimedia.org/wikipedia/en/thumb/c/cb/Ciliary_ganglion_pathways.png/800px-Ciliary_ganglion_pathways.png"
 					modality="parasympathetic motor"
-					>
-					<fibers type="GVE" src="VBA.MM.EWN" dst="TARGET.TSA.EYE"><mid id="VBA.PN.PSYM.CLG"/></fibers>
-				</element>
+					/>
 			</element>
 		</element>
 
