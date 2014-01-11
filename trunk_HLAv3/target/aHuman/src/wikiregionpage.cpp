@@ -78,7 +78,7 @@ void WikiRegionPage::createHeading() {
 	// function
 	if( !info.brodmannid.isEmpty() )
 		lines.add( "  * *Brodmann ID*: " + info.brodmannid );
-	lines.add( "  * *Role*: " + region -> getRegionInfo() -> getRole() );
+	lines.add( "  * *Role*: " + region -> getRegionInfo() -> getRoleName() );
 	lines.add( "  * *Function*: " + info.function );
 	if( !info.comment.isEmpty() )
 		lines.add( "  * *Notes to structure*: " + info.comment );
