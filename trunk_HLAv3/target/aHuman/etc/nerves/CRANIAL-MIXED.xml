@@ -42,8 +42,15 @@
 					imgsrc="http://www.nature.com/jcbfm/journal/v20/n4/images/9590926f7.jpg"
 					modality="parasympathetic motor, general sensory"
 					>
-					<fibers type="GVE" src="AVA.HM.SAL.SSL" dst="AVA.PN.PSYM.PTG"></fibers>
-					<fibers type="SVA" src="TARGET.TEA.MOUTH" dst="HMA.HM.SOL"><mid id="AVA.PN.SG.GNG"/></fibers>
+					<element name="petrosal nerve, greater, to lacrimal gland"
+						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne231.htm NASOPALATINE NERVE]"
+						origin="pterygopalatine GANGLION"
+						distribution="Postganglonic fibers issue from the ganglion and join the maxillary nerve to enter the zygomatic nerve and then the zygomaticotemporal branch of the zygomatic nerve. The fibers finally reach the lacrimal nerve and are distributed to the lacrimal gland where they are secretomotor to the gland and cause lacrimation."
+						imgsrc="http://dc387.4shared.com/doc/fUgedyJo/preview_html_mbca1f6c.gif"
+						modality="parasympathetic motor"
+						>
+						<fibers type="GVE" src="AVA.HM.SAL.SSL" dst="TARGET.TSA.EYE"><mid id="AVA.PN.PSYM.PTG"/></fibers>
+					</element>
 					<element name="nasopalatine nerve, parasympathetic fibers"
 						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne231.htm NASOPALATINE NERVE]"
 						origin="pterygopalatine GANGLION"
@@ -52,9 +59,9 @@
 						>
 						<fibers type="GVE" src="AVA.HM.SAL.SSL" dst="TARGET.TSA.NOSE"><mid id="AVA.PN.PSYM.PTG"/></fibers>
 					</element>
-					<element name="palatine nerve, parasympathetic fibers"
+					<element name="palatine nerves, parasympathetic fibers"
 						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne151.htm PALATINE BRANCHES OF PTERYGOPALATINE GANGLION]"
-						modality="parasympathetic motor"
+						modality="parasympathetic motor, general sensory"
 						>
 						<fibers type="GVE" src="AVA.HM.SAL.SSL" dst="TARGET.TEA.MOUTH"><mid id="AVA.PN.PSYM.PTG"/></fibers>
 						<element name="palatine nerve, greater, parasympathetic fibers"
@@ -67,12 +74,15 @@
 							synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne227.htm LESSER PALATINE NERVES]"
 							origin="pterygopalatine GANGLION"
 							distribution="lesser palatine nerve synapses at the soft palate and controls sparse taste receptors and mucous gland, to uvula (middle palatine), to tonsils (posterior palatine), racemose glands, and some muscular fibers (musculus uvulae)"
-							modality="parasympathetic motor"
-							/>
+							modality="parasympathetic motor, general sensory"
+							>
+							<fibers type="SVA" src="TARGET.TEA.MOUTH" dst="HMA.HM.SOL"><mid id="AVA.PN.SG.GNG"/></fibers>
+						</element>
 					</element>
 					<element name="pharyngeal nerve"
 						origin="a nerve running from the posterior part of the pterygopalatine GANGLION, through the pharyngeal canal with the pharyngeal branch of the maxillary artery"
 						distribution="to the mucous membrane of the nasal part of the pharynx posterior to the auditory tube, pharyngeal gland"
+						imgsrc="http://www.emory.edu/ANATOMY/AnatomyManual/124a.jpg"
 						modality="parasympathetic motor"
 						>
 						<fibers type="GVE" src="AVA.HM.SAL.SSL" dst="TARGET.TEA.MOUTH"><mid id="AVA.PN.PSYM.PTG"/></fibers>
@@ -94,13 +104,13 @@
 				distribution="mucous membrane of tympanic cavity, mastoid air cells, auditory tube, and, via lesser petrosal nerve and otic ganglion, the parotid gland"
 				modality="parasympathetic motor, general sensory"
 				>
-				<fibers type="GSA" src="TARGET.TSA.EAR" dst="HMA.HM.TGM.STR"><mid id="AVA.PN.SG.PET"/></fibers>
+				<fibers type="SVA" src="TARGET.TSA.EAR" dst="HMA.HM.TGM.STR"><mid id="AVA.PN.SG.PET"/></fibers>
 				<fibers type="GVE" src="AVA.HM.SAL.ISL" dst="TARGET.TEA.MOUTH"><mid id="AVA.PN.PSYM.OTG"/></fibers>
 				<element name="petrosal nerve, lesser"
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne187.htm LESSER PETROSAL NERVE]"
 					origin="tympanic PLEXUS"
 					distribution="parotid GLAND via otic GANGLION and auriculotemporal nerve"
-					modality="parasympathetic motor"
+					modality="parasympathetic motor, general sensory"
 					/>
 			</element>
 			<element name="glossopharyngeal nerve, stylopharyngeal branch"
@@ -108,7 +118,7 @@
 				distribution="muscle of the pharynx, stylopharyngeus"
 				modality="cranial motor"
 				>
-				<fibers type="SVE" src="HMA.HM.AMB" dst="TARGET.TEA.MOUTH"></fibers>
+				<fibers type="GSE" src="HMA.HM.AMB" dst="TARGET.TEA.MOUTH"></fibers>
 			</element>
 			<element name="glossopharyngeal nerve, tonsillar branch"
 				origin="sensory fibers from palatine tonsillar fossa"
@@ -116,7 +126,7 @@
 				distribution="supply the palatine tonsil, forming around it a plexus from which filaments are distributed to the soft palate and fauces, where they communicate with the palatine nerves, taste"
 				modality="general sensory"
 				>
-				<fibers type="GVA" src="TARGET.TEA.MOUTH" dst="HMA.HM.SOL"><mid id="AVA.PN.SG.JUG"/></fibers>
+				<fibers type="SVA" src="TARGET.TEA.MOUTH" dst="HMA.HM.SOL"><mid id="AVA.PN.SG.JUG"/></fibers>
 			</element>
 			<element name="glossopharyngeal nerve, lingual branch"
 				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne240.htm LINGUAL BRANCHES OF GLOSSOPHARYNGEAL NERVE]"
@@ -142,55 +152,70 @@
 			synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne128.htm TRIGEMINAL NERVE]; fifth cranial nerve, V"
 			origin="emerges from the lateral surface of the pons as a MOTOR and a SENSORY ROOT, together with some intermediate fibers, fine touch to principal, crude touch and pain to spinal"
 			distribution="The sensory root expands into the trigeminal ganglion, which contains the cells of origin of most of the sensory fibers, and from which the three divisions of the nerve arise"
+			imgsrc="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/trigeminal-nuclei.png"
 			notes="The trigeminal nerve is sensory in supplying the face, teeth, mouth, and nasal cavity, and motor in supplying the muscles of mastication"
-			modality="parasympathetic motor, cranial motor, general sensory"
+			modality="parasympathetic motor, cranial motor, general sensory, visceral motor"
 			>
-			<fibers type="GSA" src="AVA.PN.SG.TRG" dst="HMA.HP.PTP.PTR"></fibers>
-			<fibers type="GSA" src="AVA.PN.SG.TRG" dst="HMA.HM.TGM.STR"></fibers>
 			<element name="mandibular nerve"
 				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne156.htm MANDIBULAR NERVE]; one of three terminal divisions of the trigeminal nerve"
 				origin="trigeminal GANGLION"
 				distribution="passing through the foramen ovale to the infratemporal fossa, extensive distribution to muscles of mastication, skin of face, mucous membrane of mouth, and teeth"
 				imgsrc="http://www.cambridgequestions.co.uk/diagrams/Mandibular%20nerve.png"
-				modality="parasympathetic motor, cranial motor, general sensory"
+				modality="parasympathetic motor, cranial motor, general sensory, visceral motor"
 				>
 				<element name="mandibular nerve, anterior trunk"
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne159.htm ANTERIOR TRUNK OF MANDIBULAR NERVE]"
 					imgsrc="http://classconnection.s3.amazonaws.com/13/flashcards/2213013/png/innervation_of_the_face1351918585768.png" imgheight="500"
-					modality="general sensory"
+					modality="general sensory, visceral motor"
 					>
 					<element name="buccal nerve"
 						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne160.htm BUCCAL NERVE]"
 						origin="mandibular nerve"
 						distribution="skin and mucous membrane of cheeks, gums, and perhaps the first two molars and the premolars"
-						modality="cranial motor, general sensory"
+						modality="general sensory"
 						>
-						<fibers type="GSA" src="TARGET.TEA.MOUTH" dst="AVA.PN.SG.TRG"></fibers>
+						<fibers type="GSA" src="TARGET.TEA.MOUTH" dst="HMA.HM.TGM.STR"><mid id="AVA.PN.SG.TRG"/></fibers>
 					</element>
-					<element name="masseteric nerve"
-						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne161.htm MASSETERIC NERVE]"
-						origin="mandibular division of trigeminal nerve"
-						distribution="masseter muscle and temporomandibular joint, proprioception"
-						modality="cranial motor, general sensory"
+					<element name="nerves to masticatory muscles"
+						modality="general sensory, visceral motor"
 						>
-						<fibers type="GSA" src="TARGET.TEA.MOUTH" dst="HMA.MM.MSTR"></fibers>
-						<fibers type="GSE" src="HMA.MM.MSTR" dst="TARGET.TEA.MOUTH"><mid id="HMA.HP.PTP.TRM"/></fibers>
-					</element>
-					<element name="temporal nerves, deep"
-						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne162.htm DEEP TEMPORAL NERVES]"
-						origin="usually two in number, anterior and posterior, with a third middle one often seen, mandibular nerve"
-						distribution="temporal muscles"
-						modality="cranial motor"
-						>
-						<fibers type="GSE" src="HMA.HP.PTP.TRM" dst="TARGET.TEA.MOUTH"></fibers>
-					</element>
-					<element name="pterygoid nerve, lateral"
-						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne163.htm NERVE TO LATERAL PTERYGOID]"
-						origin="mandibular nerve"
-						distribution="lateral pterygoid muscle"
-						modality="cranial motor"
-						>
-						<fibers type="GSE" src="HMA.HP.PTP.TRM" dst="TARGET.TEA.MOUTH"></fibers>
+						<fibers type="SVE" src="HMA.HP.PTP.TRM" dst="TARGET.TEA.MOUTH"></fibers>
+						<fibers type="GSA" src="TARGET.TEA.MOUTH" dst="HMA.HP.PTP.PTR"><mid id="HMA.MM.MSTR"/></fibers>
+						<fibers type="GSA" src="TARGET.TEA.MOUTH" dst="HMA.HP.PTP.TRM"><mid id="HMA.MM.MSTR"/></fibers>
+						<element name="masseteric nerve"
+							synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne161.htm MASSETERIC NERVE]"
+							origin="mandibular division of trigeminal nerve"
+							distribution="masseter muscle and temporomandibular joint, proprioception"
+							modality="general sensory, visceral motor"
+							/>
+						<element name="temporal nerves, deep"
+							synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne162.htm DEEP TEMPORAL NERVES]"
+							origin="usually two in number, anterior and posterior, with a third middle one often seen, mandibular nerve"
+							distribution="temporal muscles"
+							modality="general sensory, visceral motor"
+							/>
+						<element name="pterygoid nerve, lateral"
+							synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne163.htm NERVE TO LATERAL PTERYGOID]"
+							origin="mandibular nerve"
+							modality="general sensory, visceral motor"
+							/>
+						<element name="pterygoid nerve, medial"
+							synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne158.htm NERVE TO MEDIAL PTERYGOID]"
+							origin="mandibular nerve"
+							distribution="medial pterygoid, tensor tympani, and tensor veli palatini muscles"
+							modality="general sensory, visceral motor"
+							>
+							<element name="nerve to tensor tympani"
+								origin="mandibular nerve via nerve to medial pterygoid MUSCLE and otic GANGLION"
+								distribution="tensor tympani muscle"
+								modality="general sensory, visceral motor"
+								/>
+							<element name="nerve to tensor veli palatini"
+								origin="mandibular nerve via nerve to medial pterygoid MUSCLE and otic GANGLION"
+								distribution="tensor veli palatini muscle"
+								modality="general sensory, visceral motor"
+								/>
+						</element>
 					</element>
 				</element>
 				<element name="mandibular nerve, posterior trunk"
@@ -237,7 +262,7 @@
 							distribution="They provide sensory fibers for the zygomatic, buccal, and mandibular divisions of the facial nerve to the skin, convey proprioceptive impulses from orbicularis oculi"
 							modality="general sensory"
 							>
-							<fibers type="SSA" src="TARGET.TSA.EYE" dst="AVA.PN.SG.TRG"></fibers>
+							<fibers type="GSA" src="TARGET.TSA.EYE" dst="AVA.PN.SG.TRG"></fibers>
 						</element>
 					</element>
 					<element name="inferior alveolar nerve"
@@ -315,24 +340,6 @@
 					modality="general sensory"
 					>
 					<fibers type="GSA" src="TARGET.TSA.MINDCOVER" dst="AVA.PN.SG.TRG"></fibers>
-				</element>
-				<element name="pterygoid nerve, medial"
-					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne158.htm NERVE TO MEDIAL PTERYGOID]"
-					origin="mandibular nerve"
-					distribution="medial pterygoid, tensor tympani, and tensor veli palatini muscles"
-					modality="cranial motor"
-					>
-					<fibers type="GSE" src="HMA.HP.PTP.TRM" dst="TARGET.TEA.MOUTH"></fibers>
-					<element name="nerve to tensor tympani"
-						origin="mandibular nerve via nerve to medial pterygoid MUSCLE and otic GANGLION"
-						distribution="tensor tympani muscle"
-						modality="cranial motor"
-						/>
-					<element name="nerve to tensor veli palatini"
-						origin="mandibular nerve via nerve to medial pterygoid MUSCLE and otic GANGLION"
-						distribution="tensor veli palatini muscle"
-						modality="cranial motor"
-						/>
 				</element>
 			</element>
 			<element name="maxillary nerve"
