@@ -25,7 +25,8 @@ Circuit is part of aHuman target integrated biological model.
 ||  || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || Ventral Tegmental Area || Excitatory Nucleus || Respond to novel stimuli, unexpected rewards, and reward predictive sensory cues ||
 || [BrainAreaFCA FCA] || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || Dorsolateral Prefrontal Cortex || Neocortex, BA 09,46 || Temporal Integration ||
 ||  || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || Neocortex, BA 10,11,12 || Personality ||
-|| [BrainAreaHMA HMA] || [BrainRegionHMA_MM_MSTR HMA.MM.MSTR] || Mesencephalic Trigeminal Nucleus || 1-order Sensory Nucleus || Facial Somatic Sensations ||
+|| [BrainAreaHMA HMA] || [BrainRegionHMA_HP_PTP_PTR HMA.HP.PTP.PTR] || Principal Trigeminal Nucleus || 1-order Sensory Nucleus || Facial Somatic Sensations ||
+|| [BrainAreaFMA FMA] || [BrainRegionHMA_MM_MSTR HMA.MM.MSTR] || Mesencephalic Trigeminal Nucleus || 1-order Sensory Ganglion || unconscious proprioception from muscle spindles; facial somatic sensations from muscles of mastication, monosynaptic masticatory reflex ||
 || [BrainAreaHTA HTA] || [BrainRegionHTA_FD_HT_PO HTA.FD.HT.PO] || Preoptic Area || Excitatory Nucleus || Thermoregulation ||
 ||  || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || Paraventricular Nucleus || Excitatory Nucleus || Regulate appetite and autonomic functions ||
 || [BrainAreaMBA MBA] || [BrainRegionMBA_HP_BR MBA.HP.BR] || Barrington's Nucleus || Excitatory Nucleus || Supraspinal regulation of urination ||
@@ -39,7 +40,6 @@ Circuit is part of aHuman target integrated biological model.
 ||  || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || Supplementary Motor Cortex || Neocortex, BA 06 || Process sequences of movements and coordinate bilateral movements ||
 || [BrainAreaPHA PHA] || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || Perirhinal Cortex || Neocortex, BA 35 || Associate different visual views of objects and their various nonvisual attributes ||
 || [BrainAreaSMA SMA] || [BrainRegionSMA_FD_TH_VPL SMA.FD.TH.VPL] || Ventral Posterolateral Nucleus || Excitatory Nucleus || Relays somatic information from body to S1 ||
-||  || [BrainRegionSMA_FD_TH_VPM SMA.FD.TH.VPM] || Ventral Posteromedial Nucleus || Excitatory Nucleus || Relays somatic information from face to S1 ||
 ||  || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || Somatosensory Cortex || Neocortex, BA 01,02,03 || Muscle and skin receptors ||
 || [BrainAreaVCA VCA] || [BrainRegionVCA_NC_IPS_AIP VCA.NC.IPS.AIP] || Anterior Intraparietal Sulcus || Neocortex, BA 39 || Represent shape, size, and orientation of objects to be grasped ||
 ||  || [BrainRegionVCA_NC_IPS_VIP VCA.NC.IPS.VIP] || Ventral Intraparietal Sulcus || Neocortex, BA 39 || Merge visual, somatosensory, auditory, and vestibular senses ||
@@ -65,7 +65,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitMuscleControl.dot.jpg
 || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionHTA_FD_HT_PO HTA.FD.HT.PO] || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (VTA -> MPOA)] ||
 ||  || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (VTA -> PVN)] ||
 || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || [BrainRegionMCA_FD_TH_VA MCA.FD.TH.VA] || neocortex-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (LPFC -> TH, abstract)] ||
-|| [BrainRegionHMA_MM_MSTR HMA.MM.MSTR] || [BrainRegionSMA_FD_TH_VPM SMA.FD.TH.VPM] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionHMA_MM_MSTR HMA.MM.MSTR] || [BrainRegionHMA_HP_PTP_PTR HMA.HP.PTP.PTR] || ganglion-nucleus || (unknown reference) ||
 || [BrainRegionMBA_HP_BR MBA.HP.BR] || [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || nucleus-nucleus || [http://jp.physoc.org/content/557/1/287/F9.expansion.html Schematic overview of spinobulbospinal micturition reflex pathway (BAR -> IML)] ||
 || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || nucleus-neocortex || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (CR -> LPFC)] ||
 ||  || [BrainRegionMCA_FD_TH_VL MCA.FD.TH.VL] || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s1VL -> VL)] ||
