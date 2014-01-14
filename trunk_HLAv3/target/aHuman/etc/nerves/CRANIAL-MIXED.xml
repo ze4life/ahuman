@@ -154,7 +154,7 @@
 			distribution="The sensory root expands into the trigeminal ganglion, which contains the cells of origin of most of the sensory fibers, and from which the three divisions of the nerve arise"
 			imgsrc="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/trigeminal-nuclei.png"
 			notes="The trigeminal nerve is sensory in supplying the face, teeth, mouth, and nasal cavity, and motor in supplying the muscles of mastication"
-			modality="parasympathetic motor, cranial motor, general sensory, visceral motor"
+			modality="parasympathetic motor, cranial motor, general sensory, autonomic sensory, visceral motor"
 			>
 			<element name="mandibular nerve"
 				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne156.htm MANDIBULAR NERVE]; one of three terminal divisions of the trigeminal nerve"
@@ -278,30 +278,32 @@
 							distribution="providing sensation to the teeth and gums"
 							modality="general sensory"
 							>
-							<fibers type="GVA" src="TARGET.TEA.MOUTH" dst="AVA.PN.SG.TRG"></fibers>
+							<fibers type="GSA" src="TARGET.TEA.MOUTH" dst="AVA.PN.SG.TRG"></fibers>
 						</element>
 						<element name="inferior alveolar nerve, gingival branches"
 							origin="see dental branches"
 							distribution="mandibular (lower jaw) gingiva, interteeth tissue"
 							modality="general sensory"
 							>
-							<fibers type="GVA" src="TARGET.TEA.MOUTH" dst="AVA.PN.SG.TRG"></fibers>
+							<fibers type="GSA" src="TARGET.TEA.MOUTH" dst="AVA.PN.SG.TRG"></fibers>
 						</element>
 						<element name="mental nerve"
 							synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne169.htm MENTAL NERVE]"
 							origin="inferior alveolar nerve"
 							distribution="skin of chin, and lower lip"
+							imgsrc="https://www2.aofoundation.org/AOFileServerSurgery/MyPortalFiles?FilePath=/Surgery/en/_img/surgery/04-Approaches/95b/A320/A320-i160_540.gif"
 							modality="general sensory"
 							>
-							<fibers type="GVA" src="TARGET.TEA.MOUTH" dst="AVA.PN.SG.TRG"></fibers>
+							<fibers type="GSA" src="TARGET.TEA.MOUTH" dst="AVA.PN.SG.TRG"></fibers>
 						</element>
 						<element name="mylohyoid nerve"
 							synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne167.htm MYLOHYOID NERVE]"
 							origin="inferior alveolar nerve"
 							distribution="mylohyoid muscle, anterior belly of digastric muscle"
+							imgsrc="http://classconnection.s3.amazonaws.com/619/flashcards/483619/png/neck2.png"
 							modality="cranial motor"
 							>
-							<fibers type="GVE" src="HMA.HP.PTP.TRM" dst="TARGET.TEA.MOUTH"></fibers>
+							<fibers type="GSE" src="HMA.HP.PTP.TRM" dst="TARGET.TEA.MOUTH"></fibers>
 						</element>
 					</element>
 					<element name="lingual nerve"
@@ -355,7 +357,7 @@
 					distribution="innervate the teeth of the upper jaw and the maxillary sinus, and forming the superior dental plexus, molars"
 					modality="general sensory"
 					>
-					<fibers type="GSE" src="TARGET.TEA.MOUTH" dst="AVA.PN.SG.TRG"></fibers>
+					<fibers type="GSA" src="TARGET.TEA.MOUTH" dst="AVA.PN.SG.TRG"></fibers>
 				</element>
 				<element name="branches of the pterygopalatine ganglion, sensory fibers"
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne142.htm GANGLIONIC BRANCHES OF MAXILLARY NERVE],[http://www.oluwoleogunranti.com/course/course1/nerves/ne153.htm PTERYGOPALATINE GANGLION]"
@@ -374,7 +376,7 @@
 					<element name="palatine nerve, sensory fibers"
 						modality="general sensory"
 						>
-						<fibers type="GSE" src="TARGET.TEA.MOUTH" dst="AVA.PN.SG.TRG"></fibers>
+						<fibers type="GSA" src="TARGET.TEA.MOUTH" dst="AVA.PN.SG.TRG"></fibers>
 						<element name="palatine nerve, greater, sensory fibers"
 							synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne226.htm GREATER PALATINE NERVE]; palatine nerve, sensory fibers, anterior"
 							origin="pterygopalatine GANGLION"
@@ -402,7 +404,7 @@
 						distribution="innervate the teeth of the upper jaw and the maxillary sinus, and forming the superior dental plexus, incisors (anterior), premolars (middle)"
 						modality="general sensory"
 						>
-						<fibers type="GVA" src="TARGET.TEA.MOUTH" dst="AVA.PN.SG.TRG"></fibers>
+						<fibers type="GSA" src="TARGET.TEA.MOUTH" dst="AVA.PN.SG.TRG"></fibers>
 					</element>
 					<element name="infraorbital nerve, external nasal branch"
 						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne220.htm EXTERNAL NASAL NERVE]"
@@ -428,7 +430,7 @@
 						distribution="skin of the upper lip"
 						modality="general sensory"
 						>
-						<fibers type="GVA" src="TARGET.TEA.MOUTH" dst="AVA.PN.SG.TRG"></fibers>
+						<fibers type="GSA" src="TARGET.TEA.MOUTH" dst="AVA.PN.SG.TRG"></fibers>
 					</element>
 				</element>
 				<element name="maxillary nerve, meningeal branch"
@@ -461,7 +463,7 @@
 				origin="one of the three terminal divisions of the trigeminal nerve, trigeminal GANGLION"
 				distribution="eyeball and conjunctiva, lacrimal gland and sac, nasal mucosa and frontal sinus, external nose, upper eyelid, forehead, and scalp"
 				imgsrc="http://www.cambridgequestions.co.uk/diagrams/Ophthalmic%20nerve.png"
-				modality="general sensory"
+				modality="autonomic sensory, general sensory"
 				>
 				<element name="frontal nerve"
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne130.htm FRONTAL NERVE]"
@@ -491,6 +493,7 @@
 					modality="autonomic sensory, general sensory"
 					>
 					<fibers type="GSA" src="TARGET.TSA.EYE" dst="AVA.PN.SG.TRG"></fibers>
+					<fibers type="GVA" src="TARGET.TSA.EYE" dst="AVA.PN.SG.TRG"></fibers>
 				</element>
 				<element name="nasociliary nerve"
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne133.htm NASOCILIARY NERVE]"
@@ -673,7 +676,7 @@
 				</element>
 				<element name="vagus nerve, bronchial branch"
 					distribution="distributed as 2-3 branches on the anterior surface of the root of the lung, form the anterior and posterior  pulmonary plexus"
-					modality="general sensory, cranial motor"
+					modality="autonomic sensory, cranial motor"
 					>
 					<fibers type="GVA" src="TARGET.TEA.LUNG" dst="HMA.HM.SOL"><mid id="AVA.PN.SG.NOD"/></fibers>
 					<fibers type="GVE" src="AVA.HM.SAL.ISL" dst="TARGET.TEA.LUNG"><mid id="AVA.PN.PSYM.PUG"/></fibers>
@@ -681,17 +684,17 @@
 					<element name="vagus nerve, bronchial branch, anterior"
 						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne194.htm ANTERIOR PULMONARY BRANCHES OF VAGUS NERVE]"
 						distribution="anterior pulmonary plexus to pulmonary neuroepithelial bodies, glands in thoracic viscera, smooth muscles of the trachea and the bronchial tree"
-						modality="general sensory, cranial motor"
+						modality="autonomic sensory, cranial motor"
 						/>
 					<element name="vagus nerve, bronchial branch, posterior"
 						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne265.htm POSTERIOR PULMONARY BRANCHES OF VAGUS NERVE]"
 						distribution="posterior pulmonary plexus"
-						modality="general sensory, cranial motor"
+						modality="autonomic sensory, cranial motor"
 						/>
 					<element name="vagus nerve, pulmonary plexus"
 						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne249.htm ANTERIOR PULMONARY PLEXUS],[http://www.oluwoleogunranti.com/course/course1/nerves/ne266.htm POSTERIOR PULMONARY PLEXUS]"
 						distribution="Branches from this plexus accompany the ramifications of the bronchi through the substance of the lung"
-						modality="general sensory, cranial motor"
+						modality="autonomic sensory, cranial motor"
 						/>
 				</element>
 			</element>
