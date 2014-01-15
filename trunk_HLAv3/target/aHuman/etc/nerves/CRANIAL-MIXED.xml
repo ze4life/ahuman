@@ -559,63 +559,63 @@
 			origin="by numerous ROOTLETS from lateral side of medulla oblongata in the groove between the olive and the inferior cerebellar peduncle"
 			distribution="descending through the jugular foramen, it presents as a superior and an inferior ganglion, and continues through the neck and thorax into the abdomen. It supplies sensory fibers to the ear, tongue, pharynx, and larynx, motor fibers to the pharynx, larynx, and esophagus, and parasympathetic and visceral afferent fibers to thoracic and abdominal viscera"
 			imgsrc="http://img.tfd.com/MosbyMD/vagus_nerve.jpg" imgheight="500"
-			modality="parasympathetic motor, cranial motor, autonomic sensory, general sensory"
+			modality="parasympathetic motor, visceral motor, autonomic sensory, general sensory"
 			>
 			<element name="vagus nerve, neck"
-				modality="parasympathetic motor, cranial motor, autonomic sensory"
+				modality="parasympathetic motor, visceral motor, autonomic sensory, general sensory"
 				>
 				<element name="laryngeal nerve"
 					synonyms="Galen's nerve, [http://www.emory.edu/ANATOMY/AnatomyManual/pharynx.html Pharynx and Larynx]"
 					imgsrc="http://static-www.icr.org/i/articles/af/laryngeal_nerve.jpg"
-					modality="parasympathetic motor, cranial motor, autonomic sensory"
+					modality="parasympathetic motor, visceral motor, autonomic sensory, general sensory"
 					>
 					<element name="recurrent laryngeal nerve"
+						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne260.htm LEFT RECURRENT LARYNGEAL NERVE]; MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne271.htm RIGHT RECURRENT LARYNGEAL NERVE]"
 						origin="vagus nerve (chiefly the cranial part of the accessory nerve)"
 						distribution="tracheal mucosa, esophagus, cardiac plexus"
 						imgsrc="http://img.medscape.com/pi/emed/ckb/clinical_procedures/79926-1412901-1923100-1975290.jpg"
-						modality="parasympathetic motor, cranial motor, autonomic sensory"
+						modality="parasympathetic motor, visceral motor, autonomic sensory"
 						>
 						<element name="inferior laryngeal nerve"
-							synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne260.htm LEFT RECURRENT LARYNGEAL NERVE]; anterior"
+							synonyms="anterior"
 							origin="recurrent laryngeal nerve, especially the terminal portion of this nerve"
 							distribution="intrinsic muscles of larynx, except cricothyroid; communicates with the internal laryngeal nerve, all muscles of larynx (EXCEPT cricothryoid)"
 							imgsrc="http://academic.amc.edu/martino/grossanatomy/site/Medical/CASES/GI/pop%20ups/pop%20up%20images/larynx.jpg"
-							modality="cranial motor"
+							modality="visceral motor, parasympathetic motor"
 							>
-							<fibers type="SVE" src="HMA.HM.AMB" dst="TARGET.TEA.MOUTH"></fibers>
+							<fibers type="SVE" src="HMA.HM.AMB" dst="TARGET.TEA.LUNG"></fibers>
+							<fibers type="GVE" src="AVA.HM.VG" dst="TARGET.TEA.LUNG"><mid id="AVA.PN.PSYM.ILG"/></fibers>
 						</element>
 						<element name="recurrent laryngeal nerve, posterior"
-							synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne271.htm RIGHT RECURRENT LARYNGEAL NERVE]; tracheal, esophageal, and inferior cardiac branches"
+							synonyms="tracheal, esophageal, and inferior cardiac branches"
 							distribution="glottis, subglottis, and trachea; recurrent laryngeal nerve supplies the trachea and the esophagus with parasympathetic secretomotor innervation for glands associated with them; trachea, oesophagus and pyriform sinuses receive their sensory fibers from the posterior division of the recurrent laryngeal nerve before entering the larynx"
-							modality="autonomic sensory, parasympathetic motor"
+							modality="autonomic sensory"
 							>
-							<fibers type="GVA" src="TARGET.TEA.MOUTH" dst="HMA.HM.TGM.STR"><mid id="AVA.PN.SG.NOD"/></fibers>
-							<fibers type="GVE" src="AVA.HM.VG" dst="TARGET.TEA.MOUTH"><mid id="AVA.PN.PSYM.ILG"/></fibers>
+							<fibers type="GVA" src="TARGET.TEA.LUNG" dst="HMA.HM.SOL"><mid id="AVA.PN.SG.NOD"/></fibers>
 						</element>
 					</element>
 					<element name="laryngeal nerve, superior"
 						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne192.htm SUPERIOR LARYNGEAL NERVE]"
 						origin="inferior GANGLION of vagus nerve"
 						distribution="inferior constrictor of the pharynx, cricothyroid muscle, and mucous membrane of back of tongue and larynx"
-						modality="autonomic sensory, cranial motor, parasympathetic motor"
+						modality="autonomic sensory, visceral motor, parasympathetic motor"
 						>
 						<element name="laryngeal nerve, external"
 							synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne256.htm EXTERNAL LARYNGEAL NERVE]"
 							origin="the smaller of the two branches into which the superior laryngeal nerve divides"
 							distribution="descending under cover of the sternothyroid muscle and innervating the cricothyroid and the inferior constrictor of the pharynx"
-							modality="cranial motor"
+							modality="visceral motor, parasympathetic motor"
 							>
-							<fibers type="SVE" src="HMA.HM.AMB" dst="TARGET.TEA.MOUTH"></fibers>
+							<fibers type="SVE" src="HMA.HM.AMB" dst="TARGET.TEA.LUNG"></fibers>
+							<fibers type="GVE" src="AVA.HM.VG" dst="TARGET.TEA.LUNG"><mid id="AVA.PN.PSYM.ILG"/></fibers>
 						</element>
 						<element name="laryngeal nerve, internal"
 							synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne259.htm INTERNAL LARYNGEAL NERVE]"
 							origin="the larger of the two branches of the superior laryngeal nerve"
 							distribution="innervates the mucosa of the epiglottis, base of the tongue, and larynx; somatic: mucosae of larynx above the vocal cords, epiglottis, vallecullae; special visceral sensory: taste from the region of the valleculae"
-							modality="autonomic sensory, parasympathetic motor"
+							modality="autonomic sensory"
 							>
-							<fibers type="GVA" src="TARGET.TEA.MOUTH" dst="HMA.HM.TGM.STR"><mid id="AVA.PN.SG.NOD"/></fibers>
-							<fibers type="SVA" src="TARGET.TEA.MOUTH" dst="HMA.HM.SOL"><mid id="AVA.PN.SG.NOD"/></fibers>
-							<fibers type="GVE" src="AVA.HM.VG" dst="TARGET.TEA.MOUTH"><mid id="AVA.PN.PSYM.ILG"/></fibers>
+							<fibers type="GVA" src="TARGET.TEA.LUNG" dst="HMA.HM.SOL"><mid id="AVA.PN.SG.NOD"/></fibers>
 						</element>
 					</element>
 				</element>
@@ -640,19 +640,21 @@
 					origin="arises from the upper part of the ganglion nodosum, and consists principally of filaments from the cranial portion of the accessory nerve"
 					distribution="passes across the internal carotid artery to the upper border of the Constrictor pharyngis medius, where it divides into numerous filaments, which join with branches from the glossopharyngeal, sympathetic, and external laryngeal to form the pharyngeal plexus; sensory innervates the mesopharyngeal epithelium, GSE - see accessory nerve"
 					imgsrc="http://classconnection.s3.amazonaws.com/33/flashcards/602033/jpg/cn_x_-_superior_laryngeal_nerve_(edit)1317319244856.jpg"
-					modality="general sensory, cranial motor"
+					modality="visceral motor, general sensory"
 					>
-					<fibers type="GVA" src="TARGET.TEA.MOUTH" dst="HMA.HM.SOL"><mid id="AVA.PN.SG.JUG"/></fibers>
+					<fibers type="SVA" src="TARGET.TEA.MOUTH" dst="HMA.HM.SOL"><mid id="AVA.PN.SG.JUG"/></fibers>
 					<element name="vagus nerve, pharyngeal plexus"
 						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne263.htm PHARYNGEAL PLEXUS], [http://www.oluwoleogunranti.com/course/course1/nerves/ne268.htm RAMUS LINGUALIS VAGI]"
 						distribution="From the plexus, branches are distributed to the muscles and mucous membrane of the pharynx and the muscles of the soft palate, except the Tensor veli palatini. A minute filament descends and joins the hypoglossal nerve as it winds around the occipital artery"
-						modality="general sensory, cranial motor"
-						/>
+						modality="general sensory, visceral motor"
+						>
+						<fibers type="SVE" src="HMA.HM.AMB" dst="TARGET.TEA.MOUTH"></fibers>
+					</element>
 				</element>
 			</element>
 			<element name="vagus nerve, heart and lung"
 				imgsrc="http://antranik.org/wp-content/uploads/2011/12/external-innervation-heart-vagus-nerve-visceral-sensory-fibers-interneurons-cardioacceleratory-center-cardioinhibitory-center.jpg" imgheight="500"
-				modality="parasympathetic motor, autonomic sensory, general sensory, cranial motor"
+				modality="parasympathetic motor, autonomic sensory, general sensory"
 				>
 				<element name="vagus nerve, cardiac branch"
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne252.htm CERVICAL CARDIAC BRANCHES OF VAGUS NERVE]"
@@ -676,7 +678,7 @@
 				</element>
 				<element name="vagus nerve, bronchial branch"
 					distribution="distributed as 2-3 branches on the anterior surface of the root of the lung, form the anterior and posterior  pulmonary plexus"
-					modality="autonomic sensory, cranial motor"
+					modality="autonomic sensory, parasympathetic motor"
 					>
 					<fibers type="GVA" src="TARGET.TEA.LUNG" dst="HMA.HM.SOL"><mid id="AVA.PN.SG.NOD"/></fibers>
 					<fibers type="GVE" src="AVA.HM.SAL.ISL" dst="TARGET.TEA.LUNG"><mid id="AVA.PN.PSYM.PUG"/></fibers>
@@ -684,17 +686,17 @@
 					<element name="vagus nerve, bronchial branch, anterior"
 						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne194.htm ANTERIOR PULMONARY BRANCHES OF VAGUS NERVE]"
 						distribution="anterior pulmonary plexus to pulmonary neuroepithelial bodies, glands in thoracic viscera, smooth muscles of the trachea and the bronchial tree"
-						modality="autonomic sensory, cranial motor"
+						modality="autonomic sensory, parasympathetic motor"
 						/>
 					<element name="vagus nerve, bronchial branch, posterior"
 						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne265.htm POSTERIOR PULMONARY BRANCHES OF VAGUS NERVE]"
 						distribution="posterior pulmonary plexus"
-						modality="autonomic sensory, cranial motor"
+						modality="autonomic sensory, parasympathetic motor"
 						/>
 					<element name="vagus nerve, pulmonary plexus"
 						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne249.htm ANTERIOR PULMONARY PLEXUS],[http://www.oluwoleogunranti.com/course/course1/nerves/ne266.htm POSTERIOR PULMONARY PLEXUS]"
 						distribution="Branches from this plexus accompany the ramifications of the bronchi through the substance of the lung"
-						modality="autonomic sensory, cranial motor"
+						modality="autonomic sensory, parasympathetic motor"
 						/>
 				</element>
 			</element>
