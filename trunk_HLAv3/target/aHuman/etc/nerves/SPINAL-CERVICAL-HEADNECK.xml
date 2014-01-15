@@ -47,16 +47,17 @@
 			imgsrc="http://1.bp.blogspot.com/-xcHyQKvK2K0/Tf9bFTmZkhI/AAAAAAAAH5o/7YzfCwbmWok/s1600/Great_Auricular_Nerve.JPG"
 			modality="general sensory, extensor motor"
 			>
+			<fibers type="GSA" src="AVA.PN.SG.DRG.CX" dst="BMA.SC.PH.MG"></fibers>
+			<fibers type="GSA" src="AVA.PN.SG.DRG.CX" dst="BMA.SC.PH.SG"></fibers>
+			<fibers type="GSA" src="AVA.PN.SG.DRG.CX" dst="BMA.HM.ACU"></fibers>
 			<element name="cervical nerve, transverse"
 				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/transversecervical.htm TRANSVERSE CERVICAL NERVE]; cutaneous nerve of neck, anterior"
 				imgsrc="http://studydroid.com/imageCards/05/er/card-5729362-front.jpg"
-				origin="cervical PLEXUS (C3)"
-				distribution="skin on side and front of neck"
+				origin="cervical PLEXUS (C2,C3)"
+				distribution="skin on side and front of neck, VPL"
 				modality="general sensory"
 				>
-				<fibers type="GSA" src="TARGET.TEA.NECK" dst="SMA.FD.TH.VPL"><mid id="AVA.PN.SG.DRG.CX"/><mid id="BMA.HM.CU"/></fibers>
-				<fibers type="GVA" src="TARGET.TEA.NECK" dst="BMA.SC.PH.MG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
-				<fibers type="GVA" src="TARGET.TEA.NECK" dst="BMA.SC.PH.SG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
+				<fibers type="GSA" src="TARGET.TEA.NECK" dst="AVA.PN.SG.DRG.CX"></fibers>
 			</element>
 			<element name="great auricular nerve"
 				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/greaterauricular.htm GREATER AURICULAR NERVE]"
@@ -70,18 +71,14 @@
 					distribution="face; anterior branch is sensory to facial skin over the parotid gland"
 					modality="general sensory"
 					>
-					<fibers type="GSA" src="TARGET.TEA.FACE" dst="SMA.FD.TH.VPM"><mid id="AVA.PN.SG.DRG.CX"/><mid id="BMA.HM.CU"/></fibers>
-					<fibers type="GVA" src="TARGET.TEA.FACE" dst="BMA.SC.PH.MG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
-					<fibers type="GVA" src="TARGET.TEA.FACE" dst="BMA.SC.PH.SG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
+					<fibers type="GSA" src="TARGET.TEA.FACE" dst="AVA.PN.SG.DRG.CX"></fibers>
 				</element>
 				<element name="great auricular nerve, posterior branch"
 					origin="C3"
 					distribution="ear; posterior branch supplies the skin over the mastoid process, back of the auricle, lobule and a portion of the scalp"
 					modality="general sensory"
 					>
-					<fibers type="GSA" src="TARGET.TSA.EAR" dst="SMA.FD.TH.VPM"><mid id="AVA.PN.SG.DRG.CX"/><mid id="BMA.HM.CU"/></fibers>
-					<fibers type="GVA" src="TARGET.TSA.EAR" dst="BMA.SC.PH.MG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
-					<fibers type="GVA" src="TARGET.TSA.EAR" dst="BMA.SC.PH.SG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
+					<fibers type="GSA" src="TARGET.TSA.EAR" dst="AVA.PN.SG.DRG.CX"></fibers>
 				</element>
 			</element>
 			<element name="jugular nerve, sensory"
@@ -103,21 +100,23 @@
 				imgsrc="http://o.quizlet.com/BOpC1X9RipzmNSxz6TvK-g.png"
 				modality="general sensory, extensor motor"
 				>
-				<fibers type="GSA" src="TARGET.TEA.FACE" dst="SMA.FD.TH.VPM"><mid id="AVA.PN.SG.DRG.CX"/><mid id="BMA.HM.CU"/></fibers>
-				<fibers type="GVA" src="TARGET.TEA.FACE" dst="BMA.SC.PH.MG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
-				<fibers type="GVA" src="TARGET.TEA.FACE" dst="BMA.SC.PH.SG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
-				<element name="occipital nerve, greater"
-					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/greateroccipitalnerve.htm GREATER OCCIPITAL NERVE]"
-					origin="medial branch of dorsal branch of C2; spinalis dorsi"
-					distribution="semispinal muscle of head and skin of scalp as far forward as the vertex"
+				<element name="occipital nerve, face"
 					modality="general sensory, extensor motor"
-					/>
-				<element name="occipital nerve, lesser"
-					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/lesseroccipital.htm LESSER OCCIPITAL NERVE]"
-					origin="superficial cervical PLEXUS (C2-C3)"
-					distribution="ascends behind the auricle and supplies some of the skin on the side of the head and on the cranial surface of the auricle"
-					modality="general sensory"
-					/>
+					>
+					<fibers type="GSA" src="TARGET.TEA.FACE" dst="AVA.PN.SG.DRG.CX"></fibers>
+					<element name="occipital nerve, greater"
+						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/greateroccipitalnerve.htm GREATER OCCIPITAL NERVE]"
+						origin="medial branch of dorsal branch of C2; spinalis dorsi"
+						distribution="semispinal muscle of head and skin of scalp as far forward as the vertex"
+						modality="general sensory, extensor motor"
+						/>
+					<element name="occipital nerve, lesser"
+						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/lesseroccipital.htm LESSER OCCIPITAL NERVE]"
+						origin="superficial cervical PLEXUS (C2-C3)"
+						distribution="ascends behind the auricle and supplies some of the skin on the side of the head and on the cranial surface of the auricle"
+						modality="general sensory"
+						/>
+				</element>
 				<element name="occipital nerve, third"
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/thirdoccipital.htm THIRD OCCIPITAL NERVE]"
 					origin="medial branch of dorsal branch of C3"
@@ -137,18 +136,14 @@
 				imgsrc="http://www.uptomed.ir/Digimed.ir/Williams-Atlas-Anatomy/Williams_Atlas_Anatomy/1%20-%20The%20Back_files/C1FF16.png"
 				modality="general sensory, extensor motor"
 				>
-				<fibers type="GSA" src="TARGET.TEA.NECK" dst="SMA.FD.TH.VPL"><mid id="AVA.PN.SG.DRG.CX"/><mid id="BMA.HM.CU"/></fibers>
-				<fibers type="GVA" src="TARGET.TEA.NECK" dst="BMA.SC.PH.MG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
-				<fibers type="GVA" src="TARGET.TEA.NECK" dst="BMA.SC.PH.SG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
+				<fibers type="GSA" src="TARGET.TEA.NECK" dst="AVA.PN.SG.DRG.CX"></fibers>
 			</element>
 			<element name="supraclavicular nerves"
 				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/supraclavicularnerves.htm SUPRACLAVICULAR NERVES]"
 				distribution="neck and upper cutaneous parts of female breast"
 				modality="general sensory"
 				>
-				<fibers type="GSA" src="TARGET.TEA.NECK" dst="SMA.FD.TH.VPL"><mid id="AVA.PN.SG.DRG.CX"/><mid id="BMA.HM.CU"/></fibers>
-				<fibers type="GVA" src="TARGET.TEA.NECK" dst="BMA.SC.PH.MG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
-				<fibers type="GVA" src="TARGET.TEA.NECK" dst="BMA.SC.PH.SG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
+				<fibers type="GSA" src="TARGET.TEA.NECK" dst="AVA.PN.SG.DRG.CX"></fibers>
 				<element name="supraclavicular nerves, intermediate"
 					synonyms="middle supraclavicular nerves"
 					origin="cervical PLEXUS (C3-C4)"
