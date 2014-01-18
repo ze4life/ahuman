@@ -36,12 +36,18 @@
 				imgsrc="http://www.medicalartlibrary.com/respiratory/images/diaphragm-phrenic-nerve.jpg"
 				modality="extensor motor, general sensory"
 				>
-				<fibers type="GVE" src="BMA.SC.VH.PHR" dst="TARGET.TEA.LUNG"></fibers>
-				<fibers type="GSA" src="TARGET.TEA.LUNG" dst="BMA.SC.PH.NP"></fibers>
-				<element name="phrenic nerves, accessory"
+				<element name="phrenic nerve, accessory"
 					origin="an inconstant contribution of the fifth cervical nerve to the phrenic nerve; when present, they run a separate course to the root of the neck or into the thorax before joining the phrenic nerve"
 					modality="general sensory"
-					/>
+					>
+					<fibers type="GSA" src="TARGET.TEA.LUNG" dst="BMA.SC.PH.NP"></fibers>
+				</element>
+				<element name="phrenic nerve, motor"
+					origin="an inconstant contribution of the fifth cervical nerve to the phrenic nerve; when present, they run a separate course to the root of the neck or into the thorax before joining the phrenic nerve"
+					modality="extensor motor"
+					>
+					<fibers type="GSE" src="BMA.SC.VH.PHR" dst="TARGET.TEA.LUNG"></fibers>
+				</element>
 			</element>
 		</element>
 

@@ -8,8 +8,8 @@
 			distribution="skin of thigh and leg, muscles of front of thigh, and hip and knee joints"
 			modality="general sensory"
 			>	
-			<fibers type="GVA" src="TARGET.TEA.LEG" dst="BMA.SC.PH.MG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
-			<fibers type="GVA" src="TARGET.TEA.LEG" dst="BMA.SC.PH.SG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
+			<fibers type="GSA" src="TARGET.TEA.LEG" dst="BMA.SC.PH.MG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
+			<fibers type="GSA" src="TARGET.TEA.LEG" dst="BMA.SC.PH.SG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
 			<element name="saphenous nerve"
 				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne78.htm SAPHENOUS NERVE]"
 					origin="termination of femoral nerve, descending first with femoral vessels and then on medial side of leg and foot, L3/L4"
@@ -35,8 +35,8 @@
 			imgsrc="http://classconnection.s3.amazonaws.com/661/flashcards/1011661/jpg/sacral-plexus-tibial-nerve-common-fibular-nerve1333654508571.jpg"
 			modality="general sensory, flexor motor, extensor motor"
 			>
-			<fibers type="GVA" src="TARGET.TEA.LEG" dst="BMA.SC.PH.MG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
-			<fibers type="GVA" src="TARGET.TEA.LEG" dst="BMA.SC.PH.SG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
+			<fibers type="GSA" src="TARGET.TEA.LEG" dst="BMA.SC.PH.MG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
+			<fibers type="GSA" src="TARGET.TEA.LEG" dst="BMA.SC.PH.SG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
 
 			<element name="common peroneal nerve"
 				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne54.htm COMMON PERONEAL NERVE]; popliteal nerve; common fibular nerve"
@@ -48,7 +48,7 @@
 					origin="common peroneal nerve"
 					distribution="articular branches to the knee joint"
 					imgsrc="http://home.comcast.net/~wnor/poplitealfossacontents.jpg" imgheight="400"
-					modality="flexor motor"
+					modality="general sensory, flexor motor"
 					>
 					<fibers type="GSE" src="BMA.SC.VH.PL" dst="TARGET.TEA.LEG"></fibers>
 				</element>
@@ -71,14 +71,15 @@
 					modality="general sensory, flexor motor"
 					action="Eversion and weak plantar flexion of foot"
 					>
-					<fibers type="GSE" src="BMA.SC.VH.PL" dst="TARGET.TEA.LEG"></fibers>
 					<element name="cutaneous nerve of foot, medial dorsal"
 						origin="superficial fibular nerve"
 						branches="dorsal digital nerves of foot"
 						distribution="nerves supplying 3-5 toes, skin and joints of medial side of foot and 1 toe, and adjacent sides of 2/3 toes; nerves supplying 1/2 toes, skin and joints of adjacent sides of 1/2 toes"
-						modality="general sensory"
+						modality="general sensory, flexor motor"
 						imgsrc="http://www.t-nation.com/img/photos/2008/08-030-training/image017.gif"
-						/>
+						>
+						<fibers type="GSE" src="BMA.SC.VH.PL" dst="TARGET.TEA.LEG"></fibers>
+					</element>
 					<element name="cutaneous nerve of foot, intermediate dorsal"
 						origin="superficial fibular nerve"
 						branches="dorsal digital nerves of foot"
@@ -133,7 +134,7 @@
 					origin="tibial nerve"
 					distribution="Gastrocnemius"
 					imgsrc="http://www.floota.com/images/calf%20anatomy.jpg"
-					modality="flexor motor"
+					modality="general sensory, flexor motor"
 					action="Plantar flexion of foot; flexion of leg of free limb"
 					>
 					<fibers type="GSE" src="BMA.SC.VH.PL" dst="TARGET.TEA.LEG"></fibers>
@@ -182,13 +183,13 @@
 								branches="common digital nerve to 1/2, 2/3, 3/4 toes"
 								distribution="1-4 toes"
 								imgsrc="http://web.uni-plovdiv.bg/stu1104541018/docs/res/anatomy_atlas_-_Patrick_W._Tank/3%20-%20The%20Lower%20Limb_files/C3FF53.jpg"
-								modality="general sensory"
+								modality="general sensory, flexor motor"
 								/>
 						</element>
 						<element name="plantar nerve, medial, branches to LAFF muscles"
 							distribution="muscular branches to first lumbrical/abductor hallucis/flexor hallucis brevis/flexor digitorum"
 							imgsrc="http://web.uni-plovdiv.bg/stu1104541018/docs/res/anatomy_atlas_-_Patrick_W._Tank/3%20-%20The%20Lower%20Limb_files/C3FF50.jpg"
-							modality="flexor motor"
+							modality="general sensory, flexor motor"
 							action="flexion of metatarsophalangeal joints, proximal phalanx of big toe, middle phalanges of lateral four toes"
 							>
 						</element>
@@ -201,12 +202,12 @@
 						imgsrc="http://clubs.maryville.edu/myu/image/Sheath.gif"
 						modality="general sensory, flexor motor"
 						>
-						<fibers type="GSE" src="BMA.SC.IZ.RPL" dst="TARGET.TEA.LEG"></fibers>
 						<element name="plantar nerve, lateral, superficial branch"
 							synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne92.htm SUPERFICIAL BRANCH OF LATERAL PLANTAR NERVE]"
 							origin="lateral plantar nerve"
 							modality="general sensory, flexor motor"
 							>
+							<fibers type="GSE" src="BMA.SC.IZ.RPL" dst="TARGET.TEA.LEG"></fibers>
 							<element name="plantar nerve, lateral, digital branches branch"
 								synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne212.htm DIGITAL BRANCHES OF LATERAL PLANTAR NERVE]"
 								distribution="lateral side of 4th/5th toe, interdigital cleft for 4th and 5th; flexor digiti minimi brevis, Abductor digiti minimi, Dorsal interossei, Plantar interossei"
@@ -222,7 +223,7 @@
 									<element name="digital nerves of lateral plantar nerve, proper plantar"
 										origin="common plantar digital nerves"
 										distribution="short flexor muscle of little toe, skin and joints of lateral side of sole and little toe, and adjacent sides of fourth and fifth toes"
-										modality="general sensory"
+										modality="flexor motor, general sensory"
 										/>
 								</element>
 							</element>
