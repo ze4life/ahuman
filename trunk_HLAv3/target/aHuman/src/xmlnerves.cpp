@@ -31,6 +31,7 @@ void XmlNerves::load() {
 
 		Xml xmlFile = es -> loadXml( file );
 		Xml xmlDivisionFile = xmlFile.getChildNamedNode( "division" , name );
+		ASSERTMSG( xmlDivisionFile.exists() , "unable to read division=" + name + " from file=" + file );
 
 		XmlNerveInfo *division = new XmlNerveInfo;
 		division -> div = NULL;
