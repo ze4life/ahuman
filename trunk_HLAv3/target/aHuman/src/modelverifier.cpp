@@ -341,7 +341,6 @@ bool ModelVerifier::checkNerves_verifyModalityByChilds( XmlNerveInfo& nerve , Ma
 		childMods.addnew( child.mods , this );
 	}
 
-	// own modality should be equals to child modality plus fibers
 	// check childs are present in nerve
 	for( int k = 0; k < childMods.count(); k++ ) {
 		String mod = childMods.getKeyByIndex( k );
@@ -360,6 +359,21 @@ bool ModelVerifier::checkNerves_verifyModalityByChilds( XmlNerveInfo& nerve , Ma
 		}
 	}
 
+	// own modality should be covered by child modality or by fibers
+	for( int k = 0; k < nerve.mods.count(); k++ ) {
+		String mod = nerve.mods.get( k );
+
+		// check childs
+		if( childMods.get( mod ) != NULL )
+			continue;
+		
+		// check fibers
+		if( !checkNerves_verifyModalityIsCoveredByFibers( mod , fibers ) ) {
+			logger.logError( "checkNerves_verifyModalityByChilds: nerve modality=" + mod + " is not found in childs or fibers, nerve=" + nerve.name );
+			res = false;
+		}
+	}
+
 	return( res );
 }
 
@@ -371,6 +385,19 @@ bool ModelVerifier::checkNerves_verifyFiberIsCovered( String ft , StringList& mo
 					return( true );
 			return( false );
 		}
+	return( false );
+}
+
+bool ModelVerifier::checkNerves_verifyModalityIsCoveredByFibers( String mod , MapStringToPtr& fibers ) {
+	for( int v = 0; v < fibers.count(); v++ ) {
+		String ft = fibers.getKeyByIndex( v );
+		for( int k = 0; k < S_FIBER_MAX; k++ )
+			if( ft.equals( staticFiberTypeNerveMods[ k ][ 0 ] ) ) {
+				for( int z = 1; staticFiberTypeNerveMods[ k ][ z ] != NULL; z++ )
+					if( mod.find( staticFiberTypeNerveMods[ k ][ z ] ) >= 0 )
+						return( true );
+			}
+	}
 	return( false );
 }
 
