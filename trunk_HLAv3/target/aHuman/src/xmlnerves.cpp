@@ -32,12 +32,14 @@ void XmlNerves::load() {
 		Xml xmlFile = es -> loadXml( file );
 		Xml xmlDivisionFile = xmlFile.getChildNamedNode( "division" , name );
 		ASSERTMSG( xmlDivisionFile.exists() , "unable to read division=" + name + " from file=" + file );
+		bool tree = xmlDivisionFile.getBooleanAttribute( "tree" , true );
 
 		XmlNerveInfo *division = new XmlNerveInfo;
 		division -> div = NULL;
 		division -> name = name;
 		division -> xml = xmlDivisionFile;
 		division -> origin = page;
+		division -> tree = tree;
 		divisions.add( division );
 
 		addChilds( division , division );

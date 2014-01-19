@@ -30,6 +30,9 @@ void WikiNerveMainPage::execute() {
 	StringList lines;
 	for( int k = 0; k < divs.count(); k++ ) {
 		XmlNerveInfo& div = divs.getRef( k );
+		if( !div.tree )
+			continue;
+
 		String divPage = div.origin;
 		addNerve( 0 , divPage , div , lines );
 	}
