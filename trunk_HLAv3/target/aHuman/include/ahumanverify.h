@@ -40,6 +40,7 @@ private:
 	bool checkNerves_verifyComponents( String nerve );
 	bool checkNerves_verifyModalityByChilds( XmlNerveInfo& nerve , MapStringToPtr& parentFibers );
 	bool checkNerves_verifyFiberIsCovered( String ft , StringList& mods );
+	bool checkNerves_verifyModalityIsCoveredByFibers( String mod , MapStringToPtr& fibers );
 	bool checkNerves_verifyLinks( XmlNerveInfo& info , XmlNerveFiberInfo& nf );
 	bool checkNerves_verifyFiberChain( XmlNerveInfo& info , XmlNerveFiberInfo& nf , String regionSrcId , String regionDstId , ModelVerifierFiberChainPosEnum pos , int midleft , int midright );
 	bool checkMuscles_verifyNerves( String muscle );

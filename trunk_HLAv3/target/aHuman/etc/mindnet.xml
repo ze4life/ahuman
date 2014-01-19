@@ -183,7 +183,7 @@
 		<connection type="neocortex-neocortex" primary="true" src="VCA.NC.MT" dst="ACA.NC.A4"/>
 	</circuit>
 
-	<!-- ================= subcortical auditory stream processing =============== -->
+	<!-- ================= subcortical auditory and vestibular stream processing =============== -->
 	<circuit id="CircuitAuditionNuclei" name="Audition Perception in Subcortical Nuclei" enabled="true">
 		<connection type="ganglion-nucleus" primary="true" src="ABA.PN.SG.SP" dst="ABA.HM.COCH"/>
 		<connection type="nucleus-nucleus" primary="true" src="ABA.HM.COCH" dst="ABA.MM.SOC"/>
@@ -218,6 +218,7 @@
 		<connection type="nucleus-nucleus" primary="true" src="ABA.HM.COCH" dst="ABA.MM.IC"/>
 		<connection type="nucleus-ganglion" primary="true" src="HMA.HP.FCM" dst="AVA.PN.SG.GNG"/>
 		<connection type="ganglion-nucleus" primary="true" src="AVA.PN.SG.JUG" dst="HMA.HM.TGM.STR"/>
+		<connection type="ganglion-nucleus" primary="true" src="ABA.PN.SG.SP" dst="BMA.HP.VB"/>
 	</circuit>
 
 	<!-- ================= somatic perception =============== -->
@@ -734,6 +735,7 @@
 		<connection type="ganglion-nucleus" primary="true" src="AVA.PN.SG.DRG" dst="HMA.HM.TGM.STR"/>
 		<connection type="ganglion-nucleus" primary="true" src="AVA.PN.SG.DRG" dst="BMA.SC.PH.SG"/>
 		<connection type="nucleus-nucleus" primary="true" src="BMA.SC.PH.SG" dst="SMA.FD.TH.VPI"/>
+		<connection type="nucleus-ganglion" primary="true" src="AVA.HM.SAL.ISL" dst="AVA.PN.PSYM.GUT"/>
 	</circuit>
 
 	<circuit id="CircuitSleepWakeCycle" name="Sleep-Wake Cycle" enabled="true">

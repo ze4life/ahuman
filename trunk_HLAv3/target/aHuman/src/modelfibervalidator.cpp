@@ -117,7 +117,8 @@ bool ModelFiberValidator::isValid_SSA_begin( XmlNerveInfo& info , MindRegion *sr
 	}
 
 	MindRegionRoleEnum role2 = dst -> getRegionInfo() -> getRole();
-	if( ( role2 != MIND_REGION_ROLE_RELAY && role2 != MIND_REGION_ROLE_PROCESSOR ) || !dst -> getRegionInfo() -> getTypeName().equals( "nucleus" ) ) {
+	if( ( role2 != MIND_REGION_ROLE_SENSORY && role2 != MIND_REGION_ROLE_RELAY && role2 != MIND_REGION_ROLE_PROCESSOR ) || 
+		( dst -> getRegionInfo() -> getTypeName().equals( "nucleus" ) == false && dst -> getRegionInfo() -> getTypeName().equals( "ganglion" ) == false ) ) {
 		res = false;
 		logger.logError( "isValid_SSA_begin: invalid destination role in link from region=" + src -> getRegionId() + " to region=" + dst -> getRegionId() + ", from nerve=" + info.name );
 	}

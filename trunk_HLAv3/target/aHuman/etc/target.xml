@@ -77,6 +77,8 @@
 		</sensor>
 
 		<sensor id="TARGET.TSA.MINDCOVER" run="true">
+			<connector entity="cranial-meninges" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.JUG" connector="ganglion.input" primary="true"/>
 		</sensor>
 
 	</sensors>
@@ -138,15 +140,49 @@
 		</effector>
 
 		<effector id="TARGET.TEA.FACE" run="true">
+			<connector entity="face-depressor-supercilii-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.HP.FCM" connector="nucleus.output" primary="true"/>
+			<connector entity="face-levator-labii-superioris-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.HP.FCM" connector="nucleus.output" primary="true"/>
+			<connector entity="face-orbicularis-oculi-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.HP.FCM" connector="nucleus.output" primary="true"/>
+			<connector entity="face-zygomaticus-major-muscle-proper" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.HP.FCM" connector="nucleus.output" primary="true"/>
+
+			<connector entity="face-skin" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.TRG" connector="ganglion.input" primary="true"/>
 		</effector>
 
 		<effector id="TARGET.TEA.NECK" run="true">
 		</effector>
 
 		<effector id="TARGET.TEA.LIVER" run="true">
+			<connector entity="glucose-and-osmoreceptors" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.NOD" connector="ganglion.input" primary="true"/>
+			<connector entity="glands" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.PSYM.GUT" connector="ganglion.output" primary="true"/>
 		</effector>
 
 		<effector id="TARGET.TEA.STOMACH" run="true">
+			<connector entity="stomach-wall" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.PSYM.GUT" connector="ganglion.output" primary="true"/>
+			<connector entity="stomach-mucosal-gastric-glands" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.PSYM.GUT" connector="ganglion.output" primary="true"/>
+
+			<connector entity="stomach" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.NOD" connector="ganglion.input" primary="true"/>
+			<connector entity="duodentum" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.NOD" connector="ganglion.input" primary="true"/>
+			<connector entity="pancreas" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.NOD" connector="ganglion.input" primary="true"/>
+			<connector entity="spleen" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.NOD" connector="ganglion.input" primary="true"/>
+			<connector entity="kidney" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.NOD" connector="ganglion.input" primary="true"/>
+			<connector entity="small-intestine" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.NOD" connector="ganglion.input" primary="true"/>
+			<connector entity="colon" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.NOD" connector="ganglion.input" primary="true"/>
 		</effector>
 
 		<effector id="TARGET.TEA.LUNG" run="true">

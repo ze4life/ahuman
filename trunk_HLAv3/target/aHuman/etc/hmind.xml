@@ -114,6 +114,8 @@
 				dotdef="color=firebrick1"
 				function="Mind Protection"
 				>
+				<element id="cranial-meninges" name="Cranial meninges" type="connector" 
+					function="primary function of the meninges and of the cerebrospinal fluid is to protect the central nervous system"/>
 			</element>
 
 		</element>
@@ -200,6 +202,17 @@
 				>
 				<element id="face-occipitofrontal-muscles" name="Occipitofrontal Muscles" type="connector" 
 					function="move the scalp"/>
+				<element id="face-depressor-supercilii-muscle" name="Depressor supercilii muscle" type="connector" 
+					function="depression of eyebrow"/>
+				<element id="face-levator-labii-superioris-muscle" name="Levator labii superioris muscle" type="connector" 
+					function="elevates the upper lip"/>
+				<element id="face-orbicularis-oculi-muscle" name="Orbicularis oculi muscle, zygomatic" type="connector"
+					function="closes the eyelids"/>
+				<element id="face-zygomaticus-major-muscle-proper" name="Zygomaticus major muscle, proper" type="connector"
+					function="draws angle of mouth upward and laterally"/>
+
+				<element id="face-skin" name="Face skin" type="connector"
+					function="sensory fibers from the skin"/>
 			</element>
 
 			<element id="TARGET.TEA.NECK" name="Neck" mapped="true" type="Effector"
@@ -212,12 +225,35 @@
 				dotdef="color=firebrick1"
 				function="Blood Sanity"
 				>
+				<element id="glucose-and-osmoreceptors" name="Glucose and osmoreceptors" type="connector"
+					function="sensation of lipids, glucose, and metabolites (after eating and drinking) and triggers the nervous system to make appropriate physiological changes"/>
+				<element id="glands" name="Abdominal alimentary tract glands" type="connector"
+					function="Increase plasma protein synthesis and secretion"/>
 			</element>
 
 			<element id="TARGET.TEA.STOMACH" name="Stomach" mapped="true" type="Effector"
 				dotdef="color=firebrick1"
 				function="Digestion"
 				>
+				<element id="stomach-wall" name="Outer longitudinal and inner circular smooth muscles" type="connector"
+					function="acetylcholine activates muscarinic receptors on smooth muscles - increasing motility of the stomach"/>
+				<element id="stomach-mucosal-gastric-glands" name="Stomach mucosal gastric glands" type="connector"
+					function="acetylcholine activates muscarinic receptors cause an increase in gastric juice secretion"/>
+
+				<element id="stomach" name="Stomach" type="connector"
+					function="secretes protein-digesting enzymes called proteases and strong acids to aid in food digestion; digestion; nutrition sensor; some absorption"/>
+				<element id="duodentum" name="Duodentum" type="connector"
+					function="food intake regulation, via glucoreception in taste receptors"/>
+				<element id="small-intestine" name="Small intestine" type="connector"
+					function="where most chemical digestion takes place; food from stomach is allowed into duodenum through pylorus by pyloric sphincter; absorb nutrients from ingested food"/>
+				<element id="colon" name="Colon" type="connector"
+					function="extracts water and salt from solid wastes; storing waste"/>
+				<element id="pancreas" name="Pancreas" type="connector"
+					function="secret digestive enzymes that act in small intestine"/>
+				<element id="spleen" name="Spleen" type="connector"
+					function="red pulp - blood filter, removes old red blood cells, holds a reserve of blood, recycles iron; white pulp - synthesizes antibodies in its white pulp and removes antibody-coated bacteria and antibody-coated blood cells by way of blood and lymph node circulation"/>
+				<element id="kidney" name="Kidney" type="connector"
+					function="regulating acid-base balance, electrolyte concentrations, extracellular fluid volume, blood pressure, filter to urine"/>
 			</element>
 
 			<element id="TARGET.TEA.LUNG" name="Lung" mapped="true" type="Effector"
@@ -2024,9 +2060,10 @@
 				function="Lung"
 				/>
 			<element id="AVA.PN.PSYM.GUT" mapped="true" name="Parasympathetic Gut Brain" type="Parasymp. Gang."
-				function="Autonomic control of stomach"
+				function="Autonomic control of stomach, liver"
 				>
 				<element id="AVA.PN.PSYM.MTG" name="Myenteric Ganglion"
+					synonyms="myenteric (Auerbach's) plexus"
 					function="Controls gastrointestinal movements"
 					notes="ganglion is outer neural layer around stomach"
 					/>
