@@ -186,6 +186,7 @@ private:
 
 class XmlNerveInfo {
 public:
+	XmlNerveInfo() { tree = false; };
 	~XmlNerveInfo() { fibers.destroy(); };
 
 	Xml xml;
@@ -201,6 +202,7 @@ public:
 	String modality;
 	StringList mods;
 	String action;
+	bool tree;
 
 	ClassList<XmlNerveFiberInfo> fibers;
 	MapStringToClass<XmlNerveInfo> childs;
