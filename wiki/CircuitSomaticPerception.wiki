@@ -11,10 +11,14 @@ Circuit is part of aHuman target integrated biological model.
 
 || *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||
 || [BrainAreaACA ACA] || [BrainRegionACA_NC_IPL_SMW ACA.NC.IPL.SMW] || Supramarginal Wernike Cortex || Neocortex, BA 40 || Phonological and articulatory processing of words ||
+|| [BrainAreaFMA FMA] || [BrainRegionAVA_PN_SG_JUG AVA.PN.SG.JUG] || Jugular Ganglion || Sensory Ganglion || Integration of external auditory meatus (auricular branch), cranial meninges (meningeal branch), and external surface of tympanic membrane ||
+||  || [BrainRegionAVA_PN_SG_PET AVA.PN.SG.PET] || Petrosal Ganglion || Sensory Ganglion || Integration of afferent signaling from viscera ||
 || [BrainAreaBMA BMA] || [BrainRegionBMA_SC_IZ_CCV BMA.SC.IZ.CCV] || Central Cervical Nucleus || 1-order Sensory Nucleus || Coordinate voluntary movements, maintain balance, and learn motor skills ||
 ||  || [BrainRegionBMA_SC_PH_MG BMA.SC.PH.MG] || Marginal Nucleus || 1-order Sensory Nucleus || Relay information related to pain and temperature sensation ||
 || [BrainAreaCGA CGA] || [BrainRegionCGA_NC_SPL_PF CGA.NC.SPL.PF] || Rostral Precuneus || Neocortex, BA 07 || Spatial orientation, representation of the self ||
-|| [BrainAreaHMA HMA] || [BrainRegionHMA_HP_PTP_PTR HMA.HP.PTP.PTR] || Principal Trigeminal Nucleus || 1-order Sensory Nucleus || Facial Somatic Sensations ||
+|| [BrainAreaHMA HMA] || [BrainRegionHMA_HM_SOL HMA.HM.SOL] || Solitary Nucleus || Sensory Nucleus || Carry taste buds, thoracic and abdominal viscera ||
+||  || [BrainRegionHMA_HM_TGM_STR HMA.HM.TGM.STR] || Spinal Trigeminal Nucleus || Sensory Nucleus || Discriminative sensation and light touch of face, conscious proprioception ||
+||  || [BrainRegionHMA_HP_PTP_PTR HMA.HP.PTP.PTR] || Principal Trigeminal Nucleus || 1-order Sensory Nucleus || Facial Somatic Sensations ||
 || [BrainAreaMBA MBA] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || Excitatory Nucleus || Motor coordination ||
 || [BrainAreaMCA MCA] || [BrainRegionMCA_NC_PMC_F7 MCA.NC.PMC.F7] || Dorsal Rostral Premotor Cortex || Neocortex, BA 06 || Associate arbitrary sensory stimuli with specific movements ||
 || [BrainAreaPHA PHA] || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || Anterior Insular Cortex || Neocortex, BA 14 || Risky and moral decision making, articulation ||
@@ -36,6 +40,8 @@ Circuit is part of aHuman target integrated biological model.
 http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitSomaticPerception.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionAVA_PN_SG_JUG AVA.PN.SG.JUG] || [BrainRegionHMA_HM_SOL HMA.HM.SOL] || ganglion-nucleus || (unknown reference) ||
+|| [BrainRegionAVA_PN_SG_PET AVA.PN.SG.PET] || [BrainRegionHMA_HM_TGM_STR HMA.HM.TGM.STR] || ganglion-nucleus || (unknown reference) ||
 || [BrainRegionBMA_SC_IZ_CCV BMA.SC.IZ.CCV] || [BrainRegionSMA_FD_TH_RIL SMA.FD.TH.RIL] || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionSMA_FD_TH_VPL SMA.FD.TH.VPL] || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s1P -> P, abstract)] ||
 || [BrainRegionBMA_SC_PH_MG BMA.SC.PH.MG] || [BrainRegionSMA_FD_TH_VPL SMA.FD.TH.VPL] || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sVPL -> VPL)] ||
