@@ -63,7 +63,10 @@
 					comments="from auditory meatus to genuculate ganglion"
 					function="from skin to geniculate ganglion to spinal trigeminal nucleus"/>
 				<element id="ear-visceral" name="Visceral Receptors" type="connector"
-					notes="CN IX, from STR to VPM"
+					notes="CN IX, from STR to VPM, timpanic cavity"
+					function="pain, temperature, and touch"/>
+				<element id="ear-timpanic-cavity" name="Timpanic cavity" type="connector"
+					notes="STR to VPM"
 					function="pain, temperature, and touch"/>
 
 				<element id="ear-outer-hair-cells" name="Outer Hair Cells" type="connector"
@@ -189,6 +192,8 @@
 					function="move vocal cords together and serve production of voice"/>
 				<element id="mouth-larynx-respiratory-muscles" name="Respiratory Muscles" type="connector" 
 					function="move vocal cords apart and serve breathing"/>
+				<element id="mouth-larynx-thyrohyoid-muscle" name="Thyrohyoid Muscle" type="connector" 
+					function="depresses the hyoid and elevates the larynx"/>
 
 				<element id="mouth-posterior-digastric-muscles" name="Posterior Belly of Digastric Muscles" type="connector" 
 					function="elevate hyoid bone to open mouth"/>
@@ -260,18 +265,45 @@
 				dotdef="color=firebrick1"
 				function="Oxigen Supply"
 				>
+				<element id="pulmonary-neuroepithelial-bodies" name="Pulmonary neuroepithelial bodies" type="connector"
+					function="trachea, bronchial tree and lungs - intraepithelial receptors"/>
+				<element id="visceral-glands" name="Glands of trachea, lungs, and bronchi" type="connector"
+					function="increase in airway secretions"/>
+				<element id="smooth-muscles" name="Smooth muscles of trachea and bronchial tree" type="connector"
+					function="constriction of trachea and bronchioles"/>
 			</element>
 
 			<element id="TARGET.TEA.HAND" name="Hand" mapped="true" type="Effector"
 				dotdef="color=firebrick1"
 				function="Primary Execution Motor"
 				>
+				<element id="flexor-profundus-digitorum-muscle" name="Flexor profundus digitorum" type="connector"
+					function="flexor of the wrist (midcarpal), metacarpophalangeal and interphalangeal joints; flexes the 2-5 digits"/>
+				<element id="flexor-longus-pollicis-muscle" name="Flexor longus pollicis" type="connector"
+					function="flexor of the phalanges of the thumb"/>
+				<element id="flexor-sublimis-digitorum-muscle" name="Flexor sublimis digitorum" type="connector"
+					function="flexion of the middle phalanges of the fingers at the proximal interphalangeal joints"/>
+				<element id="palmaris-longus-muscle" name="Palmaris longus" type="connector"
+					function="weak flexor"/>
 			</element>
 
 			<element id="TARGET.TEA.LEG" name="Leg" mapped="true" type="Effector"
 				dotdef="color=firebrick1"
 				function="Primary Execution Motor"
 				>
+				<element id="flexor-longus-digitorum-muscle" name="Flexor longus digitorum" type="connector"
+					function="flex digits"/>
+				<element id="flexor-longus-hallucis-muscle" name="Flexor longus hallucis" type="connector"
+					function="flexes all joints of the big toe, plantar flexion of the ankle joint"/>
+
+				<element id="gastrocnemius-muscle" name="Gastrocnemius muscle" type="connector"
+					function="plantar flexion, flexion of knee (minor)"/>
+				<element id="plantaris-muscle" name="Plantaris muscle" type="connector"
+					function="plantar flexes foot and flexes knee"/>
+				<element id="popliteus-muscle" name="Popliteus muscle" type="connector"
+					function="medial rotation and flexion of knee"/>
+				<element id="tibialis-posterior-muscle" name="Tibialis posterior muscle" type="connector"
+					function="inversion of the foot, plantar flexion of the foot at the ankle; key muscle and tendon for stabilization, produce inversion and assists in the plantar flexion of the foot at the ankle"/>
 			</element>
 
 			<element id="TARGET.TEA.TRUNK" name="Trunk" mapped="true" type="Effector"
