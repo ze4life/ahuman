@@ -33,17 +33,22 @@ void WikiNerveMainPage::execute() {
 		if( !div.tree )
 			continue;
 
-		String divPage = div.origin;
-		addNerve( 0 , divPage , div , lines );
+		addNerve( 0 , div , lines );
 	}
 
 	wm -> updateFileSection( wikiDir , wikiPage , sectionName , lines );
 }
 
-void WikiNerveMainPage::addNerve( int level , String divPage , XmlNerveInfo& nerve , StringList& lines ) {
+void WikiNerveMainPage::addNerve( int level , XmlNerveInfo& nerve , StringList& lines ) {
 	String prefix = "  * ";
 	if( level > 0 )
 		prefix = String( " " ).replicate( level ) + prefix;
+
+	String divPage;
+	if( nerve.div != NULL )
+		divPage = nerve.div -> origin;
+	else
+		divPage = nerve.origin;
 
 	String ns = "[" + divPage + " " + nerve.name + "]";
 	if( !nerve.modality.isEmpty() )
@@ -53,7 +58,7 @@ void WikiNerveMainPage::addNerve( int level , String divPage , XmlNerveInfo& ner
 
 	for( int k = 0; k < nerve.childs.count(); k++ ) {
 		XmlNerveInfo *nc = nerve.childs.getClassByIndex( k );
-		addNerve( level + 1 , divPage , *nc , lines );
+		addNerve( level + 1 , *nc , lines );
 	}
 }
 

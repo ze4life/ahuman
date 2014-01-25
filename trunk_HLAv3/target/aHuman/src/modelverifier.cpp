@@ -330,23 +330,33 @@ bool ModelVerifier::checkNerves_verifyModalityByChilds( XmlNerveInfo& nerve , Ma
 	for( int k = 0; k < nerve.fibers.count(); k++ )
 		fibers.addnew( nerve.fibers.getRef( k ).type , this );
 
-	// verify childs
+	// get child modalities
 	MapStringToPtr childMods;
-	for( int k = 0; k < nerve.childs.count(); k++ ) {
-		XmlNerveInfo& child = nerve.childs.getClassRefByIndex( k );
-		if( !checkNerves_verifyModalityByChilds( child , fibers ) )
-			res = false;
-
-		// get modality from childs
-		childMods.addnew( child.mods , this );
+	if( nerve.type.equals( "root" ) ) {
+		for( int k = 0; k < nerve.rootNerves.count(); k++ ) {
+			String rn = nerve.rootNerves.get( k );
+			XmlNerveInfo& rootnerve = nervesxml.getNerveInfo( rn );
+			childMods.addnew( rootnerve.mods , this );
+		}
 	}
+	else {
+		// verify childs if not root
+		for( int k = 0; k < nerve.childs.count(); k++ ) {
+			XmlNerveInfo& child = nerve.childs.getClassRefByIndex( k );
+			if( !checkNerves_verifyModalityByChilds( child , fibers ) )
+				res = false;
 
-	// check childs are present in nerve
-	for( int k = 0; k < childMods.count(); k++ ) {
-		String mod = childMods.getKeyByIndex( k );
-		if( nerve.mods.find( mod ) < 0 ) {
-			logger.logError( "checkNerves_verifyModalityByChilds: child nerve modality=" + mod + " is not found in nerve=" + nerve.name );
-			res = false;
+			// get modality from childs
+			childMods.addnew( child.mods , this );
+		}
+
+		// check childs are present in nerve
+		for( int k = 0; k < childMods.count(); k++ ) {
+			String mod = childMods.getKeyByIndex( k );
+			if( nerve.mods.find( mod ) < 0 ) {
+				logger.logError( "checkNerves_verifyModalityByChilds: child nerve modality=" + mod + " is not found in nerve=" + nerve.name );
+				res = false;
+			}
 		}
 	}
 
@@ -367,7 +377,7 @@ bool ModelVerifier::checkNerves_verifyModalityByChilds( XmlNerveInfo& nerve , Ma
 		if( childMods.get( mod ) != NULL )
 			continue;
 		
-		// check fibers
+		// check fibers or nerves
 		if( !checkNerves_verifyModalityIsCoveredByFibers( mod , fibers ) ) {
 			logger.logError( "checkNerves_verifyModalityByChilds: nerve modality=" + mod + " is not found in childs or fibers, nerve=" + nerve.name );
 			res = false;

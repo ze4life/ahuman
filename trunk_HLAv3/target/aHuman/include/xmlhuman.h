@@ -193,8 +193,9 @@ public:
 
 	XmlNerveInfo *div;
 	String name;
+	String type;
 	String synonyms;
-	String origin;
+	String origin;		// page in division
 	String branches;
 	String distribution;
 	String imgsrc;
@@ -206,6 +207,7 @@ public:
 
 	ClassList<XmlNerveFiberInfo> fibers;
 	MapStringToClass<XmlNerveInfo> childs;
+	StringList rootNerves;
 };
 
 /*#########################################################################*/
