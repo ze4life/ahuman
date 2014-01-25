@@ -214,7 +214,7 @@ public:
 	void execute();
 
 private:
-	void addNerve( int level , String divPage , XmlNerveInfo& nerve , StringList& lines );
+	void addNerve( int level , XmlNerveInfo& nerve , StringList& lines );
 
 private:
 	WikiMaker *wm;
@@ -236,6 +236,7 @@ private:
 	void addNerveDivision( XmlNerveInfo& div );
 	void addNerveList( int level , XmlNerveInfo& div , StringList& lines );
 	String getNerveDivision_fibers( ClassList<XmlNerveFiberInfo>& fibers );
+	String getNerveDivision_rootNerves( StringList rootNerves );
 	String getNerveDivision_fiberchain( XmlNerveFiberInfo& fiber );
 	String getNerveDivision_muscles( String name );
 

@@ -97,6 +97,7 @@ XmlNerveInfo *XmlNerves::createNerveInfo( String nerve , Xml xmlitem , XmlNerveI
 	info.div = div;
 
 	info.name = xmlitem.getAttribute( "name" );
+	info.type = xmlitem.getAttribute( "type" , "" );
 	info.synonyms = xmlitem.getAttribute( "synonyms" , "" );
 	info.origin = xmlitem.getAttribute( "origin" , "" );
 	info.branches = xmlitem.getAttribute( "branches" , "" );
@@ -137,6 +138,12 @@ XmlNerveInfo *XmlNerves::createNerveInfo( String nerve , Xml xmlitem , XmlNerveI
 			String id = mid.getAttribute( "id" );
 			nf -> mids.add( id );
 		}
+	}
+
+	// root nerves
+	for( Xml item = xmlitem.getFirstChild( "nerve" ); item.exists(); item = item.getNextChild( "nerve" ) ) {
+		String nerve = item.getAttribute( "name" );
+		info.rootNerves.add( nerve );
 	}
 
 	return( pinfo );
