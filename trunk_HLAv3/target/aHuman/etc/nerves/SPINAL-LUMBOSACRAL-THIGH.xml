@@ -83,6 +83,16 @@
 				/>
 		</element>
 
+		<element name="nerve to quadratus lumborum"
+			origin="lumbosacral plexus (L1/L4), ventral branches"
+			distribution="quadratus lumborum is a muscle in the lower back"
+			imgsrc="http://upload.wikimedia.org/wikipedia/commons/8/8d/Quadratuslumborum.png"
+			modality="extensor motor"
+			action="extension of lumbar vertebral column, with bilateral contraction"
+			>
+			<fibers type="GSE" src="BMA.SC.VH.VM" dst="TARGET.TEA.TRUNK"></fibers>
+		</element>
+
 		<element name="nerve of quadrate muscle of thigh"
 			synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne79.htm NERVE TO QUADRATUS FEMORIS]"
 			origin="lumbosacral plexus (L4/L5, S1), ventral branches"
@@ -190,15 +200,19 @@
 						imgsrc="http://o.quizlet.com/i/VdcQbe0TshrRdOzz9AuRGw.jpg"
 						modality="general sensory"
 						/>
-					<element name="cutaneous nerve of thigh, lateral"
-						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne72.htm LATERAL CUTANEOUS NERVE OF THIGH]; lateral femoral cutaneous nerve"
-						origin="lumbar PLEXUS L2-L3" 
-						distribution="skin of lateral and frontal aspects of thigh"
-						imgsrc="http://www.wehealny.org/services/bi_nervecenter/images/meralgia_tunnel.jpg"
-						modality="general sensory"
-						/>
 				</element>
 			</element>
+		</element>
+
+		<element name="cutaneous nerve of thigh, lateral"
+			synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne72.htm LATERAL CUTANEOUS NERVE OF THIGH]; lateral femoral cutaneous nerve"
+			origin="lumbar PLEXUS L2-L3" 
+			distribution="skin of lateral and frontal aspects of thigh"
+			imgsrc="http://www.wehealny.org/services/bi_nervecenter/images/meralgia_tunnel.jpg"
+			modality="general sensory"
+			>
+			<fibers type="GSA" src="TARGET.TEA.LEG" dst="BMA.SC.PH.MG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
+			<fibers type="GSA" src="TARGET.TEA.LEG" dst="BMA.SC.PH.SG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
 		</element>
 
 		<element name="obturator nerve"
