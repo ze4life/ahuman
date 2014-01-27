@@ -2,57 +2,97 @@
 
 	<division category="MUSCLES - TORSO" name="Back" group="Muscles of the back; Axioappendicular muscles, Posterior axioappendicular muscles, Extrinsic shoulder muscles, Superficial Posterior Axioappendicular muscles">
 
-		<element name="Splenius muscles">
-			<element name="Splenius capitis muscle" type="extensor" link="http://en.wikipedia.org/wiki/Splenius_capitis_muscle"
-				nerve="nerve to splenius capitis muscle"
-				action="prime mover for head extension; can also allow lateral flexion and rotation of the cervical spine"
-				/>
-			<element name="Splenius cervicis muscle" type="extensor" link="http://en.wikipedia.org/wiki/Splenius_cervicis_muscle"
-				nerve="nerve to splenius cervilis muscle"
-				action="bilaterally: extend the head and neck, unilaterally: lateral flexion to the same side, rotation to the same side"
-				/>
-		</element>
-
 		<element name="Erector spinae muscles" link="http://en.wikipedia.org/wiki/Erector_spinae"
-			nervelist="CERVICAL NERVES - MOTOR ROOTS, THORACIC NERVES - MOTOR ROOTS, LUMBAR NERVES - ROOTS, SACRAL AND COCCYGEAL NERVES - ROOTS"
-			action="extends the vertebral column"
+			notes="CERVICAL NERVES - MOTOR ROOTS, THORACIC NERVES - MOTOR ROOTS, LUMBAR NERVES - ROOTS, SACRAL AND COCCYGEAL NERVES - ROOTS"
+			action="extends the vertebral column; unilaterally: flex the head and neck to the same side; bilaterally: extend the vertebral column"
 			>
-			<element name="Iliocostalis muscle" link="http://en.wikipedia.org/wiki/Iliocostalis"/>
-			<element name="Longissimus muscle" link="http://en.wikipedia.org/wiki/Longissimus"/>
-			<element name="Spinalis muscle" link="http://en.wikipedia.org/wiki/Spinalis"/>
+			<element name="Iliocostalis muscle" type="flexor" link="http://en.wikipedia.org/wiki/Iliocostalis"
+				nerve="motor nerves of back, flexors"
+				action="extends and lateral flexes spine"
+				>
+				<element name="Iliocostalis cervicis"
+					/>
+				<element name="Iliocostalis dorsi"
+					synonyms="musculus accessorius; iliocostalis thoracis"
+					/>
+				<element name="Iliocostalis lumborum"
+					synonyms="iliocostalis muscle; sacrolumbalis muscle"
+					/>
+			</element>
+			<element name="Longissimus muscle" type="extensor" link="http://en.wikipedia.org/wiki/Longissimus"
+				nerve="motor nerves of back, extensors"
+				action="extends spine"
+				>
+				<element name="Longissimus thoracis"
+					/>
+				<element name="Longissimus cervicis"
+					synonyms="transversalis cervicis"
+					/>
+				<element name="Longissimus capitis"
+					synonyms="trachelomastoid muscle"
+					/>
+			</element>
+			<element name="Spinalis muscle" type="flexor" link="http://en.wikipedia.org/wiki/Spinalis"
+				nerve="motor nerves of back, flexors"
+				action="lateral flexion of spine"
+				>
+				<element name="Spinalis dorsi"
+					/>
+				<element name="Spinalis cervicis"
+					synonyms="spinalis colli"
+					/>
+				<element name="Spinalis capitis"
+					synonyms="biventer cervicis"
+					/>
+			</element>
 		</element>
 
 		<element name="Transversospinales muscles">
-			<element name="Interspinales muscles" link="http://en.wikipedia.org/wiki/Interspinales_muscle"
-				nervelist="CERVICAL NERVES - MOTOR ROOTS, 01, T1 nerve, 12, T12 nerve, LUMBAR NERVES - ROOTS"
-				action="extension, flexion and rotation of vertebral column"
-				/>
-			<element name="Intertransversarii muscle" link="http://en.wikipedia.org/wiki/Intertransversarii_muscle"
-				nervelist="CERVICAL NERVES - MOTOR ROOTS, 01, T1 nerve, 12, T12 nerve, LUMBAR NERVES - ROOTS"
-				action="lateral flexion of trunk"
-				/>
-			<element name="Multifidus muscle" link="http://en.wikipedia.org/wiki/Multifidus_muscle"
-				nervelist="CERVICAL NERVES - MOTOR ROOTS, THORACIC NERVES - MOTOR ROOTS, LUMBAR NERVES - ROOTS, SACRAL AND COCCYGEAL NERVES - ROOTS"
+			<element name="Multifidus muscle" type="extensor" link="http://en.wikipedia.org/wiki/Multifidus_muscle"
+				notes="CERVICAL NERVES - C5-C8, THORACIC NERVES - all, LUMBAR NERVES - all, SACRAL AND COCCYGEAL NERVES - S1-S4"
+				nerve="motor nerves of back, extensors"
 				action="stabilizes vertebrae in local movements of vertebral column"
 				/>
-			<element name="Rotatores muscles" link="http://en.wikipedia.org/wiki/Rotatores_muscle"
-				nervelist="THORACIC NERVES - MOTOR ROOTS"
+			<element name="Rotatores muscles" type="flexor" link="http://en.wikipedia.org/wiki/Rotatores_muscle"
+				notes="THORACIC NERVES - MOTOR ROOTS"
+				nerve="motor nerves of back, flexors"
 				action="facilitates the unilateral rotation and bilateral extension of the spine"
 				/>
-			<element name="Semispinalis capitis" type="extensor" link="http://en.wikipedia.org/wiki/Semispinalis_capitis"
-				nerve="occipital nerve, greater"
-				action="extend the head"
-				/>
-			<element name="Semispinalis cervicis" type="extensor" link="http://en.wikipedia.org/wiki/Semispinalis_cervicis"
-				nervelist="C3, C4, C5, T2, T3, T4, T5"
-				action="extends and rotates the head to the contralateral side and also extends the ribs"
-				/>
+			<element name="Semispinalis">
+				<element name="Semispinalis capitis" type="extensor" link="http://en.wikipedia.org/wiki/Semispinalis_capitis"
+					nerve="occipital nerve, greater"
+					action="extend the head"
+					/>
+				<element name="Semispinalis cervicis" type="extensor" link="http://en.wikipedia.org/wiki/Semispinalis_cervicis"
+					notes="C3, C4, C5"
+					nerve="motor nerves of back, extensors"
+					action="extends and rotates the head to the contralateral side and also extends the ribs"
+					/>
+				<element name="Semispinalis dorsi (thoracis)" type="extensor" link="http://en.wikipedia.org/wiki/Semispinalis_dorsi"
+					notes="T2, T3, T4, T5"
+					nerve="motor nerves of back, extensors"
+					action="extends vertebral column"
+					/>
+			</element>
 		</element>
 
-		<element name="Semispinalis dorsi (thoracis)" type="extensor" link="http://en.wikipedia.org/wiki/Semispinalis_dorsi"
-			nerve="thoracic intercostal nerves, extensors"
-			action="extends vertebral column"
-			/>
+		<element name="Minor deep layer of intrinsic back muscles">
+			<element name="Levatores costarum muscles" type="extensor" link="http://en.wikipedia.org/wiki/Levatores_costarum_muscles"
+				nerve="motor nerves of back, extensors"
+				notes="C8-T11"
+				action="elevate ribs, assisting respiration; assist with lateral flexion of vertebral column"
+				/>
+			<element name="Interspinales muscles" type="extensor" link="http://en.wikipedia.org/wiki/Interspinales_muscle"
+				nerve="motor nerves of back, extensors"
+				notes="CERVICAL NERVES - MOTOR ROOTS, 01, T1 nerve, 12, T12 nerve, LUMBAR NERVES - ROOTS"
+				action="aid in extension and rotation of vertebral column"
+				/>
+			<element name="Intertransversarii muscle" type="extensor" link="http://en.wikipedia.org/wiki/Intertransversarii_muscle"
+				nerve="motor nerves of back, extensors"
+				notes="CERVICAL NERVES - MOTOR ROOTS, 01, T1 nerve, 12, T12 nerve, LUMBAR NERVES - ROOTS"
+				action="aid in lateral flexion of vertebral column; acting bilaterally, stabilize vertebral column"
+				/>
+		</element>
 
 	</division>
 
@@ -84,10 +124,6 @@
 	<division category="MUSCLES - TORSO" name="Chest" group="Muscles of the back">
 
 		<element name="Intercostales">
-			<element name="Levatores costarum muscles" type="extensor" link="http://en.wikipedia.org/wiki/Levatores_costarum_muscles"
-				nerve="thoracic intercostal nerves, extensors"
-				action="extends vertebral column"
-				/>
 			<element name="External intercostal muscles" type="flexor" link="http://en.wikipedia.org/wiki/External_intercostal_muscles"
 				nerve="thoracic and thoracicoabdominal intercostal nerves, flexors"
 				action="aid in quiet and forced inhalation"
