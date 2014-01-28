@@ -3,7 +3,7 @@
 	<division category="Spinal Nerves" name="LUMBOSACRAL NERVES - GENITAL AND GASTROINTESTINAL">
 
 		<element name="Rectum nerves, somatic"
-			modality="general sensory, flexor motor"
+			modality="general sensory, flexor motor, extensor motor"
 			>
 			<fibers type="GSA" src="TARGET.TEA.RECTUM" dst="BMA.SC.PH.MG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
 			<fibers type="GSA" src="TARGET.TEA.RECTUM" dst="BMA.SC.PH.SG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
@@ -13,7 +13,7 @@
 				origin="sacral PLEXUS (S2-S4)"
 				branches="enters pudendal canal, gives off inferior anal nerve, and then divides into perineal nerve and dorsal nerve of penis (clitoris)"
 				distribution="muscles, skin, and erectile tissue of perineum"
-				modality="general sensory, flexor motor"
+				modality="general sensory, flexor motor, extensor motor"
 				>
 				<element name="inferior rectal nerve"
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne97.htm INFERIOR RECTAL NERVE]; anal nerves, inferior; rectal nerves, inferior hemorrhoidal nerves"
@@ -30,19 +30,24 @@
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/perinealS4.htm PERINEAL BRANCH OF S4]; MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne98.htm PERINEAL NERVE]"
 					origin="pudendal nerve, S4"
 					branches="muscular branches and posterior scrotal or labial nerves"
-					distribution="muscular branches supply superficial transverse perineal muscles, the external anal sphincter and levator ani muscles"
-					modality="general sensory, flexor motor"
+					distribution="muscular branches supply superficial transverse perineal muscles and levator ani muscles"
+					modality="general sensory, flexor motor, extensor motor"
 					>
+					<fibers type="GSE" src="BMA.SC.VH.PM" dst="TARGET.TEA.RECTUM"></fibers>
 					<element name="nerve to levator ani"
 						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/nervelevatorani.htm NERVE TO LEVATOR ANI]"
 						distribution="pelvic surface of levator ani"
 						imgsrc="http://naturalhealingcyprus.files.wordpress.com/2013/07/muscles-of-the-pelvic-floor-diaphragm-levator-ani-coccygeus-pubococcygeus-iliococcygeus.jpg"
-						modality="general sensory, flexor motor"
-						/>
+						modality="general sensory, flexor motor, extensor motor"
+						action="supports the viscera in pelvic cavity; in quadruped animals with tails, are responsible for moving the tail around"
+						>
+						<fibers type="GSE" src="BMA.SC.VH.VM" dst="TARGET.TEA.RECTUM"></fibers>
+					</element>
 					<element name="nerve to superficial transverse perineal"
 						distribution="pelvic surface of levator ani"
 						imgsrc="http://www.emory.edu/ANATOMY/AnatomyManual/91a.jpg"
 						modality="general sensory, flexor motor"
+						action="fixation of central tendon of perineum, support of pelvic floor"
 						/>
 				</element>
 			</element>
