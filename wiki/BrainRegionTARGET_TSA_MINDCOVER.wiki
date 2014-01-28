@@ -16,6 +16,9 @@ Region is part of aHuman target integrated biological model.
 
 *Component items*:
   * *Cranial meninges (cranial-meninges)*: primary function of the meninges and of the cerebrospinal fluid is to protect the central nervous system
+  * *Arterial vasoconstrictors (arterial-vasoconstrictors)*: increase in systemic blood pressure
+  * *Tentorium cerebelli dura mater visceral receptors (tentorium-cerebelli-dura-matter)*: visceral sensation of tentorium cerebelli and supratentorial falx cerebri
+  * *Wall of brachial artery (brachial-artery-vasoconstrictors)*: increase in systemic blood pressure
 
 = Connectivity =
 (generated)
@@ -24,12 +27,16 @@ Region is part of aHuman target integrated biological model.
 http://ahuman.googlecode.com/svn/images/dot/aHuman/TARGET.TSA.MINDCOVER.dot.jpg
 
 *Inbound Region Connections:*
-  * no connections
+
+|| *Source Area* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| [BrainAreaAVA AVA] || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || Superior Cervical Ganglion || brachial-artery-vasoconstrictors || (unknown reference) ||
+||  || [BrainRegionAVA_PN_SYM_TG AVA.PN.SYM.TG] || Sympathetic Thoracic Ganglia || arterial-vasoconstrictors || (unknown reference) ||
 
 *Outbound Region Connections:*
 
 || *Target Area* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || [BrainAreaFMA FMA] || [BrainRegionAVA_PN_SG_JUG AVA.PN.SG.JUG] || Jugular Ganglion || cranial-meninges || (unknown reference) ||
+||  || [BrainRegionAVA_PN_SG_TRG AVA.PN.SG.TRG] || Trigeminal Ganglion || tentorium-cerebelli-dura-matter || (unknown reference) ||
 
 = Thirdparty Circuits =
 (generated)
