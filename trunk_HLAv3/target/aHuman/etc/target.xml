@@ -81,6 +81,12 @@
 		<sensor id="TARGET.TSA.MINDCOVER" run="true">
 			<connector entity="cranial-meninges" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.SG.JUG" connector="ganglion.input" primary="true"/>
+			<connector entity="tentorium-cerebelli-dura-matter" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.TRG" connector="ganglion.input" primary="true"/>
+			<connector entity="arterial-vasoconstrictors" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SYM.TG" connector="ganglion.output" primary="true"/>
+			<connector entity="brachial-artery-vasoconstrictors" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SYM.SCG" connector="ganglion.output" primary="true"/>
 		</sensor>
 
 	</sensors>
@@ -89,6 +95,8 @@
 		<effector id="TARGET.TEA.HEART" run="true">
 			<connector entity="heart-symp-control" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.SYM.STG" connector="ganglion.output" primary="true"/>
+			<connector entity="heart-cardiac-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SYM.SCG" connector="ganglion.output" primary="true"/>
 			<connector entity="heart-psymp-control" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.PSYM.CRG" connector="ganglion.output" primary="true"/>
 
@@ -158,6 +166,8 @@
 		</effector>
 
 		<effector id="TARGET.TEA.NECK" run="true">
+			<connector entity="neck-low-cutaneous-receptors" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.DRG" connector="ganglion.input" primary="true"/>
 		</effector>
 
 		<effector id="TARGET.TEA.LIVER" run="true">
@@ -207,6 +217,11 @@
 				region="BMA.SC.IZ.RPL" connector="nucleus.output" primary="true"/>
 			<connector entity="palmaris-longus-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="BMA.SC.IZ.RPL" connector="nucleus.output" primary="true"/>
+
+			<connector entity="infraspinatus-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
+			<connector entity="supraspinatus-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
 		</effector>
 
 		<effector id="TARGET.TEA.LEG" run="true">
@@ -254,6 +269,10 @@
 		</effector>
 
 		<effector id="TARGET.TEA.BREAST" run="true">
+			<connector entity="breast-skin-receptors" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.DRG" connector="ganglion.input" primary="true"/>
+			<connector entity="breast-upper-cutaneous-receptors" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.DRG" connector="ganglion.input" primary="true"/>
 		</effector>
 
 		<effector id="TARGET.TEA.GENITALIA" run="true">
