@@ -43,11 +43,13 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/AVA.dot.jpg
 ||  || [BrainRegionAVA_PN_PSYM_PUG AVA.PN.PSYM.PUG] || nucleus-ganglion || (unknown reference) ||
 || [BrainRegionAVA_HM_VG AVA.HM.VG] || [BrainRegionAVA_PN_PSYM_CRG AVA.PN.PSYM.CRG] || nucleus-ganglion || (unknown reference) ||
 ||  || [BrainRegionAVA_PN_PSYM_PUG AVA.PN.PSYM.PUG] || nucleus-ganglion || (unknown reference) ||
+|| [BrainRegionAVA_PN_SG_DRG AVA.PN.SG.DRG] || [BrainRegionAVA_SC_IZ_IMM AVA.SC.IZ.IMM] || ganglion-nucleus || (unknown reference) ||
 || [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || [BrainRegionAVA_PN_PSYM_PPG AVA.PN.PSYM.PPG] || nucleus-ganglion || [http://jp.physoc.org/content/557/1/287/F9.expansion.html Schematic overview of spinobulbospinal micturition reflex pathway (IML -> PEL)] ||
 ||  || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || nucleus-ganglion || (unknown reference) ||
 ||  || [BrainRegionAVA_PN_SYM_STG AVA.PN.SYM.STG] || nucleus-ganglion || (unknown reference) ||
 ||  || [BrainRegionAVA_PN_SYM_TG AVA.PN.SYM.TG] || nucleus-ganglion || (unknown reference) ||
 ||  || [BrainRegionAVA_SC_VH_ONF AVA.SC.VH.ONF] || nucleus-nucleus || [http://jp.physoc.org/content/557/1/287/F9.expansion.html Schematic overview of spinobulbospinal micturition reflex pathway (IML -> ONF)] ||
+|| [BrainRegionAVA_SC_IZ_SPS AVA.SC.IZ.SPS] || [BrainRegionAVA_PN_PSYM_PPG AVA.PN.PSYM.PPG] || nucleus-ganglion || (unknown reference) ||
 
 *External Inbound Region Connections:*
 
@@ -64,8 +66,13 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/AVA.dot.jpg
 || [BrainAreaVBA VBA] || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || [BrainRegionVBA_SC_IZ_CSC VBA.SC.IZ.CSC] || Ciliospinal Center || nucleus-ganglion || [http://www.nature.com/pr/journal/v71/n3/fig_tab/pr201138f1.html Sympathetic and parasympathetic eye pathways (CC -> SCG)] ||
 || <font color="red">Target</font> || || || || || ||
 || [BrainAreaTEA TEA] || [BrainRegionAVA_PN_SG_DRG AVA.PN.SG.DRG] || [BrainRegionTARGET_TEA_BREAST TARGET.TEA.BREAST] || Breast || breast-skin-receptors || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_GENITALIA TARGET.TEA.GENITALIA] || Genitalia || utetovaginal-visceral-receptors || (unknown reference) ||
 ||  ||  || [BrainRegionTARGET_TEA_HEART TARGET.TEA.HEART] || Heart || heart-visceral || (unknown reference) ||
 ||  ||  || [BrainRegionTARGET_TEA_NECK TARGET.TEA.NECK] || Neck || neck-low-cutaneous-receptors || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_RECTUM TARGET.TEA.RECTUM] || Rectum || large-intestine-visceral-receptors || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_STOMACH TARGET.TEA.STOMACH] || Stomach || stomach-nutrition-sensor || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_TRUNK TARGET.TEA.TRUNK] || Trunk || trunk-abdominal-somatic-receptors || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_URETER TARGET.TEA.URETER] || Ureter || ureter-visceral-receptors || (unknown reference) ||
 
 *External Outbound Region Connections:*
 
@@ -86,11 +93,17 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/AVA.dot.jpg
 || [BrainAreaTEA TEA] || [BrainRegionAVA_PN_PSYM_CRG AVA.PN.PSYM.CRG] || [BrainRegionTARGET_TEA_HEART TARGET.TEA.HEART] || Heart || heart-psymp-control || (unknown reference) ||
 ||  || [BrainRegionAVA_PN_PSYM_GUT AVA.PN.PSYM.GUT] || [BrainRegionTARGET_TEA_LIVER TARGET.TEA.LIVER] || Liver || glands || (unknown reference) ||
 ||  ||  || [BrainRegionTARGET_TEA_STOMACH TARGET.TEA.STOMACH] || Stomach || stomach-wall || (unknown reference) ||
+||  || [BrainRegionAVA_PN_PSYM_PPG AVA.PN.PSYM.PPG] || [BrainRegionTARGET_TEA_BREAST TARGET.TEA.BREAST] || Breast || nipple-smooth-muscles || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_GENITALIA TARGET.TEA.GENITALIA] || Genitalia || uterus-parasympathetic || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_RECTUM TARGET.TEA.RECTUM] || Rectum || sphincter-ani-internus-muscle-parasympathetic || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_STOMACH TARGET.TEA.STOMACH] || Stomach || muscularis-mucosae || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_URETER TARGET.TEA.URETER] || Ureter || detrusor-urinae-muscle-parasympathetic || (unknown reference) ||
 ||  || [BrainRegionAVA_PN_PSYM_PUG AVA.PN.PSYM.PUG] || [BrainRegionTARGET_TEA_LUNG TARGET.TEA.LUNG] || Lung || visceral-glands || (unknown reference) ||
 ||  || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || [BrainRegionTARGET_TEA_HEART TARGET.TEA.HEART] || Heart || heart-cardiac-muscle || (unknown reference) ||
 ||  || [BrainRegionAVA_PN_SYM_STG AVA.PN.SYM.STG] || [BrainRegionTARGET_TEA_HEART TARGET.TEA.HEART] || Heart || heart-symp-control || (unknown reference) ||
 || [BrainAreaTSA TSA] || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || eye-muscle-pupil-open || [http://www.nature.com/pr/journal/v71/n3/fig_tab/pr201138f1.html Sympathetic and parasympathetic eye pathways (SCG -> EYE)] ||
 ||  ||  || [BrainRegionTARGET_TSA_MINDCOVER TARGET.TSA.MINDCOVER] || Mind Cover || brachial-artery-vasoconstrictors || (unknown reference) ||
+||  || [BrainRegionAVA_PN_SYM_STG AVA.PN.SYM.STG] || [BrainRegionTARGET_TSA_MINDCOVER TARGET.TSA.MINDCOVER] || Mind Cover || arm-blood-vessels || (unknown reference) ||
 ||  || [BrainRegionAVA_PN_SYM_TG AVA.PN.SYM.TG] || [BrainRegionTARGET_TSA_MINDCOVER TARGET.TSA.MINDCOVER] || Mind Cover || arterial-vasoconstrictors || (unknown reference) ||
 
 = Thirdparty Circuits =

@@ -24,6 +24,8 @@ Region is part of aHuman target integrated biological model.
   * *Pancreas (pancreas)*: secret digestive enzymes that act in small intestine
   * *Spleen (spleen)*: red pulp - blood filter, removes old red blood cells, holds a reserve of blood, recycles iron; white pulp - synthesizes antibodies in its white pulp and removes antibody-coated bacteria and antibody-coated blood cells by way of blood and lymph node circulation
   * *Kidney (kidney)*: regulating acid-base balance, electrolyte concentrations, extracellular fluid volume, blood pressure, filter to urine
+  * *Muscularis mucosae (muscularis-mucosae)*: keep the mucosal surface and underlying glands in a constant state of gentle agitation to expel contents of glandular crypts and enhance contact between epithelium and the contents of the lumen
+  * *Stomach nutrition sensor (stomach-nutrition-sensor)*: sense independently to tongue and oral taste receptors glucose, carbohydrates proteins, and fats
 
 = Connectivity =
 (generated)
@@ -35,10 +37,12 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/TARGET.TEA.STOMACH.dot.jpg
 
 || *Source Area* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || [BrainAreaAVA AVA] || [BrainRegionAVA_PN_PSYM_GUT AVA.PN.PSYM.GUT] || Parasympathetic Gut Brain || stomach-wall || (unknown reference) ||
+||  || [BrainRegionAVA_PN_PSYM_PPG AVA.PN.PSYM.PPG] || Pelvic Peripheral Ganglion || muscularis-mucosae || (unknown reference) ||
 
 *Outbound Region Connections:*
 
 || *Target Area* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| [BrainAreaAVA AVA] || [BrainRegionAVA_PN_SG_DRG AVA.PN.SG.DRG] || Dorsal Root Ganglion || stomach-nutrition-sensor || (unknown reference) ||
 || [BrainAreaFMA FMA] || [BrainRegionAVA_PN_SG_NOD AVA.PN.SG.NOD] || Nodose Ganglion || stomach || (unknown reference) ||
 
 = Thirdparty Circuits =

@@ -124,6 +124,7 @@ Adult Sources of Neurons:
     * *Arterial vasoconstrictors (arterial-vasoconstrictors)*
     * *Tentorium cerebelli dura mater visceral receptors (tentorium-cerebelli-dura-matter)*
     * *Wall of brachial artery (brachial-artery-vasoconstrictors)*
+    * *Arm blood vessels (arm-blood-vessels)*
   * *Human Effectors (aHumanEffectors)* -> [BrainAreaTEA]
    * [BrainRegionTARGET_TEA_HEART Heart] * (TARGET.TEA.HEART, unknown)*
     * *NE Receptors of Atrium Muscles (heart-symp-control)*
@@ -162,6 +163,10 @@ Adult Sources of Neurons:
     * *Face skin (face-skin)*
    * [BrainRegionTARGET_TEA_NECK Neck] * (TARGET.TEA.NECK, unknown)*
     * *Cutaneous receptors of low neck (neck-low-cutaneous-receptors)*
+    * *Obliquus capitis inferior muscle (obliquus-capitis-inferior-muscle)*
+    * *Obliquus capitis superior muscle (obliquus-capitis-superior-muscle)*
+    * *Rectus capitis posterior major muscle (rectus-capitis-posterior-major-muscle)*
+    * *Rectus capitis posterior minor muscle (rectus-capitis-posterior-minor-muscle)*
    * [BrainRegionTARGET_TEA_LIVER Liver] * (TARGET.TEA.LIVER, unknown)*
     * *Glucose and osmoreceptors (glucose-and-osmoreceptors)*
     * *Abdominal alimentary tract glands (glands)*
@@ -175,6 +180,8 @@ Adult Sources of Neurons:
     * *Pancreas (pancreas)*
     * *Spleen (spleen)*
     * *Kidney (kidney)*
+    * *Muscularis mucosae (muscularis-mucosae)*
+    * *Stomach nutrition sensor (stomach-nutrition-sensor)*
    * [BrainRegionTARGET_TEA_LUNG Lung] * (TARGET.TEA.LUNG, unknown)*
     * *Pulmonary neuroepithelial bodies (pulmonary-neuroepithelial-bodies)*
     * *Glands of trachea, lungs, and bronchi (visceral-glands)*
@@ -186,6 +193,9 @@ Adult Sources of Neurons:
     * *Palmaris longus (palmaris-longus-muscle)*
     * *Infraspinatus muscle (infraspinatus-muscle)*
     * *Supraspinatus muscle (supraspinatus-muscle)*
+    * *Subscapularis muscle (shoulder-subscapularis-muscle)*
+    * *Teres major muscle (shoulder-teres-major-muscle)*
+    * *Latissimus dorsi muscle (shoulder-latissimus-dorsi-muscle)*
    * [BrainRegionTARGET_TEA_LEG Leg] * (TARGET.TEA.LEG, unknown)*
     * *Flexor longus digitorum (flexor-longus-digitorum-muscle)*
     * *Flexor longus hallucis (flexor-longus-hallucis-muscle)*
@@ -205,12 +215,25 @@ Adult Sources of Neurons:
     * *Serratus posterior inferior (trunk-serratus-posterior-inferior)*
     * *Internal oblique muscle (trunk-internal-oblique-muscle)*
     * *Pyramidalis muscle (trunk-pyramidalis-muscle)*
+    * *Abdominal somatic receptors (trunk-abdominal-somatic-receptors)*
    * [BrainRegionTARGET_TEA_BREAST Breast] * (TARGET.TEA.BREAST, unknown)*
     * *Breast skin receptors (breast-skin-receptors)*
     * *Breast upper cutaneous receptors (breast-upper-cutaneous-receptors)*
+    * *Nipple smooth muscles (nipple-smooth-muscles)*
    * [BrainRegionTARGET_TEA_GENITALIA Genitalia] * (TARGET.TEA.GENITALIA, unknown)*
+    * *Parasympathetic uterus vasodilators (uterus-parasympathetic)*
+    * *Parasympathetic vaginal vasodilators (vagina-parasympathetic)*
+    * *Utetovaginal visceral receptors (utetovaginal-visceral-receptors)*
+    * *Corpus cavernosum clitoridis (corpus-cavernosum-clitoridis)*
+    * *Corpus cavernosum penis (corpus-cavernosum-penis)*
+    * *Visceral sexual receptors (visceral-sexual-receptors)*
    * [BrainRegionTARGET_TEA_URETER Ureter] * (TARGET.TEA.URETER, unknown)*
+    * *Detrusor urinae muscle parasympathetic receptors (detrusor-urinae-muscle-parasympathetic)*
+    * *Internal urethral sphincter parasympathetic receptors (internal-urethral-sphincter-parasympathetic)*
+    * *Ureter visceral receptors (ureter-visceral-receptors)*
    * [BrainRegionTARGET_TEA_RECTUM Rectum] * (TARGET.TEA.RECTUM, unknown)*
+    * *Sphincter ani internus muscle parasympathetic receptors (sphincter-ani-internus-muscle-parasympathetic)*
+    * *Large intestine visceral receptors (large-intestine-visceral-receptors)*
 
 = Brodmann Areas of Cerebral Cortex =
 
@@ -497,7 +520,7 @@ Coverage verified by:
   * [BrainRegionFBA_HM_RP Raphe Nucleus of Medulla] * (FBA.HM.RP, relay)* = NL:[http://neurolex.org/wiki/Category:Medullary_raphe_nuclear_complex Medullary raphe nuclear complex] -> [BrainAreaFBA]
   * *Salivatory Nucleus (AVA.HM.SAL)* -> [BrainAreaAVA]
    * [BrainRegionAVA_HM_SAL_ISL Inferior Salivatory Nucleus] * (AVA.HM.SAL.ISL, parasympathetic)* = NL:[http://neurolex.org/wiki/Category:Inferior_salivatory_nucleus Inferior salivatory nucleus]
-   * [BrainRegionAVA_HM_SAL_SSL Superior Salivatory Nucleus] * (AVA.HM.SAL.SSL, relay)* = NL:[http://neurolex.org/wiki/Category:Superior_salivatory_nucleus Inferior salivatory nucleus]
+   * [BrainRegionAVA_HM_SAL_SSL Superior Salivatory Nucleus] * (AVA.HM.SAL.SSL, parasympathetic)* = NL:[http://neurolex.org/wiki/Category:Superior_salivatory_nucleus Inferior salivatory nucleus]
   * [BrainRegionHMA_HM_SOL Solitary Nucleus] * (HMA.HM.SOL, relay)* = NL:[http://neurolex.org/wiki/Category:Solitary_nucleus Solitary nucleus] -> [BrainAreaHMA]
   * *Trigeminal Nucleus (HMA.HM.TGM)*
    * [BrainRegionHMA_HM_TGM_STR Spinal Trigeminal Nucleus] * (HMA.HM.TGM.STR, relay)* = NL:[http://neurolex.org/wiki/Category:Spinal_trigeminal_nucleus Spinal trigeminal nucleus] -> [BrainAreaHMA]
@@ -529,7 +552,7 @@ Coverage verified by:
     * *Intermediolateral Column (AVA.SC.IZ.IMLC)*
      * [BrainRegionAVA_SC_IZ_IML Intermediolateral Nucleus] * (AVA.SC.IZ.IML, sympathetic)* = NA:Intermediolateral nucleus = BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&conceptid=FMA%3A73915 Intermediolateral nucleus] -> [BrainAreaAVA]
      * [BrainRegionVBA_SC_IZ_CSC Ciliospinal Center] * (VBA.SC.IZ.CSC, relay)* = NA:[http://en.wikipedia.org/wiki/Ciliospinal_center Ciliospinal Center] -> [BrainAreaVBA]
-     * [BrainRegionAVA_SC_IZ_SPS Sacral Parasympathetic Nucleus] * (AVA.SC.IZ.SPS, relay)* = BP:[http://www.nan.upol.cz/neuro/cd56_en.html Sacral parasympathetic nuclei] -> [BrainAreaAVA]
+     * [BrainRegionAVA_SC_IZ_SPS Sacral Parasympathetic Nucleus] * (AVA.SC.IZ.SPS, parasympathetic)* = BP:[http://www.nan.upol.cz/neuro/cd56_en.html Sacral parasympathetic nuclei] -> [BrainAreaAVA]
   * *Anterior/Ventral Horn (SC.VH)*
    * *Lamina VIII (SC.VH.L8)* -> [BrainAreaBMA]
     * [BrainRegionBMA_SC_VH_VM Ventromedial Nucleus] * (BMA.SC.VH.VM, relay)* = NA:Anteromedial Nucleus = BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&conceptid=FMA%3A73930 Medial motor nucleus of spinal cord]
