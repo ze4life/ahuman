@@ -208,6 +208,11 @@
 				region="AVA.PN.SG.NOD" connector="ganglion.input" primary="true"/>
 			<connector entity="colon" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.SG.NOD" connector="ganglion.input" primary="true"/>
+
+			<connector entity="muscularis-mucosae" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.PSYM.PPG" connector="ganglion.output" primary="true"/>
+			<connector entity="stomach-nutrition-sensor" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.DRG" connector="ganglion.input" primary="true"/>
 		</effector>
 
 		<effector id="TARGET.TEA.LUNG" run="true">
@@ -294,6 +299,8 @@
 				region="AVA.PN.SG.DRG" connector="ganglion.input" primary="true"/>
 			<connector entity="breast-upper-cutaneous-receptors" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.SG.DRG" connector="ganglion.input" primary="true"/>
+			<connector entity="nipple-smooth-muscles" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.PSYM.PPG" connector="ganglion.output" primary="true"/>
 		</effector>
 
 		<effector id="TARGET.TEA.GENITALIA" run="true">
@@ -302,6 +309,13 @@
 			<connector entity="vagina-parasympathetic" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.PSYM.PPG" connector="ganglion.output" primary="true"/>
 			<connector entity="utetovaginal-visceral-receptors" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.DRG" connector="ganglion.input" primary="true"/>
+
+			<connector entity="corpus-cavernosum-clitoridis" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.PSYM.PPG" connector="ganglion.output" primary="true"/>
+			<connector entity="corpus-cavernosum-penis" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.PSYM.PPG" connector="ganglion.output" primary="true"/>
+			<connector entity="visceral-sexual-receptors" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.SG.DRG" connector="ganglion.input" primary="true"/>
 		</effector>
 
@@ -315,6 +329,10 @@
 		</effector>
 
 		<effector id="TARGET.TEA.RECTUM" run="true">
+			<connector entity="sphincter-ani-internus-muscle-parasympathetic" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.PSYM.PPG" connector="ganglion.output" primary="true"/>
+			<connector entity="large-intestine-visceral-receptors" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.DRG" connector="ganglion.input" primary="true"/>
 		</effector>
 
 	</effectors>
