@@ -245,6 +245,17 @@
 				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
 			<connector entity="shoulder-latissimus-dorsi-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
+
+			<connector entity="hand-somatic-receptors" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.DRG" connector="ganglion.input" primary="true"/>
+			<connector entity="anterior-deltoid-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
+			<connector entity="posteriolateral-deltoid-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
+			<connector entity="teres-minor-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
+			<connector entity="triceps-brachii-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
 		</effector>
 
 		<effector id="TARGET.TEA.LEG" run="true">
@@ -261,6 +272,11 @@
 				region="BMA.SC.VH.PL" connector="nucleus.output" primary="true"/>
 			<connector entity="tibialis-posterior-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="BMA.SC.VH.PL" connector="nucleus.output" primary="true"/>
+
+			<connector entity="leg-somatic-receptors" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.DRG" connector="ganglion.input" primary="true"/>
+			<connector entity="piriformis-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
 		</effector>
 
 		<effector id="TARGET.TEA.TRUNK" run="true">
@@ -333,6 +349,8 @@
 				region="AVA.PN.PSYM.PPG" connector="ganglion.output" primary="true"/>
 			<connector entity="large-intestine-visceral-receptors" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.SG.DRG" connector="ganglion.input" primary="true"/>
+			<connector entity="sphincter-ani-internus-muscle-sympathetic" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.SC.IZ.IML" connector="ganglion.output" primary="true"/>
 		</effector>
 
 	</effectors>
