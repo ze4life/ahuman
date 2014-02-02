@@ -11,10 +11,13 @@ Circuit is part of aHuman target integrated biological model.
 
 || *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||
 || [BrainAreaACA ACA] || [BrainRegionACA_NC_IPL_SMW ACA.NC.IPL.SMW] || Supramarginal Wernike Cortex || Neocortex, BA 40 || Phonological and articulatory processing of words ||
+|| [BrainAreaAVA AVA] || [BrainRegionAVA_PN_SG_DRG AVA.PN.SG.DRG] || Dorsal Root Ganglion || Sensory Ganglion || Integration of afferent signaling from viscera ||
 || [BrainAreaFMA FMA] || [BrainRegionAVA_PN_SG_JUG AVA.PN.SG.JUG] || Jugular Ganglion || Sensory Ganglion || Integration of external auditory meatus (auricular branch), cranial meninges (meningeal branch), and external surface of tympanic membrane ||
 ||  || [BrainRegionAVA_PN_SG_PET AVA.PN.SG.PET] || Petrosal Ganglion || Sensory Ganglion || Integration of afferent signaling from viscera ||
-|| [BrainAreaBMA BMA] || [BrainRegionBMA_SC_IZ_CCV BMA.SC.IZ.CCV] || Central Cervical Nucleus || 1-order Sensory Nucleus || Coordinate voluntary movements, maintain balance, and learn motor skills ||
+|| [BrainAreaBMA BMA] || [BrainRegionBMA_HM_IO BMA.HM.IO] || Inferior Olivary Nucleus || Sensory Relay Nucleus || Proprioception Relay from Spinal Cord to Cerebellum ||
+||  || [BrainRegionBMA_SC_IZ_CCV BMA.SC.IZ.CCV] || Central Cervical Nucleus || 1-order Sensory Nucleus || Coordinate voluntary movements, maintain balance, and learn motor skills ||
 ||  || [BrainRegionBMA_SC_PH_MG BMA.SC.PH.MG] || Marginal Nucleus || 1-order Sensory Nucleus || Relay information related to pain and temperature sensation ||
+||  || [BrainRegionBMA_SC_PH_NP BMA.SC.PH.NP] || Proprius Nucleus || 1-order Sensory Nucleus || Relay light touch, pain and temperature information ||
 || [BrainAreaCGA CGA] || [BrainRegionCGA_NC_SPL_PF CGA.NC.SPL.PF] || Rostral Precuneus || Neocortex, BA 07 || Spatial orientation, representation of the self ||
 || [BrainAreaHMA HMA] || [BrainRegionHMA_HM_SOL HMA.HM.SOL] || Solitary Nucleus || Sensory Nucleus || Carry taste buds, thoracic and abdominal viscera ||
 ||  || [BrainRegionHMA_HM_TGM_STR HMA.HM.TGM.STR] || Spinal Trigeminal Nucleus || Sensory Nucleus || Discriminative sensation and light touch of face, conscious proprioception ||
@@ -40,11 +43,15 @@ Circuit is part of aHuman target integrated biological model.
 http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitSomaticPerception.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionAVA_PN_SG_DRG AVA.PN.SG.DRG] || [BrainRegionBMA_SC_IZ_CCV BMA.SC.IZ.CCV] || ganglion-nucleus || (unknown reference) ||
+||  || [BrainRegionBMA_SC_PH_NP BMA.SC.PH.NP] || ganglion-nucleus || (unknown reference) ||
 || [BrainRegionAVA_PN_SG_JUG AVA.PN.SG.JUG] || [BrainRegionHMA_HM_SOL HMA.HM.SOL] || ganglion-nucleus || (unknown reference) ||
 || [BrainRegionAVA_PN_SG_PET AVA.PN.SG.PET] || [BrainRegionHMA_HM_TGM_STR HMA.HM.TGM.STR] || ganglion-nucleus || (unknown reference) ||
-|| [BrainRegionBMA_SC_IZ_CCV BMA.SC.IZ.CCV] || [BrainRegionSMA_FD_TH_RIL SMA.FD.TH.RIL] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionBMA_SC_IZ_CCV BMA.SC.IZ.CCV] || [BrainRegionBMA_HM_IO BMA.HM.IO] || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionSMA_FD_TH_RIL SMA.FD.TH.RIL] || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionSMA_FD_TH_VPL SMA.FD.TH.VPL] || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s1P -> P, abstract)] ||
 || [BrainRegionBMA_SC_PH_MG BMA.SC.PH.MG] || [BrainRegionSMA_FD_TH_VPL SMA.FD.TH.VPL] || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sVPL -> VPL)] ||
+|| [BrainRegionBMA_SC_PH_NP BMA.SC.PH.NP] || [BrainRegionBMA_HM_IO BMA.HM.IO] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionHMA_HP_PTP_PTR HMA.HP.PTP.PTR] || [BrainRegionSMA_FD_TH_VPM SMA.FD.TH.VPM] || nucleus-nucleus || [http://www.lookfordiagnosis.com/mesh_info.php?term=Trigeminal+Nucleilang=1 Trigeminal Nuclei (CSN -> VPM)] ||
 || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionSMA_FD_TH_RIL SMA.FD.TH.RIL] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionMCA_NC_PMC_F7 MCA.NC.PMC.F7] || [BrainRegionSMA_NC_SPL_SA SMA.NC.SPL.SA] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1053810011000080 Cortico-Cortical Connectivity (MA -> SA, abstract)] ||

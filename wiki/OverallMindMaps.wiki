@@ -104,6 +104,7 @@ Adult Sources of Neurons:
     * *Outer Hair Cells Feedback (ear-outer-hair-cells-feedback)*
     * *Cristae and Maculae (ear-cristae-maculae)*
     * *Somatic Receptors (ear-somatic)*
+    * *Acoustic meatus skin (ear-acoustic-meatus-skin)*
     * *Visceral Receptors (ear-visceral)*
     * *Timpanic cavity (ear-timpanic-cavity)*
     * *Outer Hair Cells (ear-outer-hair-cells)*
@@ -125,6 +126,7 @@ Adult Sources of Neurons:
     * *Tentorium cerebelli dura mater visceral receptors (tentorium-cerebelli-dura-matter)*
     * *Wall of brachial artery (brachial-artery-vasoconstrictors)*
     * *Arm blood vessels (arm-blood-vessels)*
+    * *Arm blood vessels (forearm-blood-vessels)*
   * *Human Effectors (aHumanEffectors)* -> [BrainAreaTEA]
    * [BrainRegionTARGET_TEA_HEART Heart] * (TARGET.TEA.HEART, unknown)*
     * *NE Receptors of Atrium Muscles (heart-symp-control)*
@@ -158,6 +160,14 @@ Adult Sources of Neurons:
     * *Hard palate mucous gland (hard-palate-mucous-gland)*
     * *Soft palate mucous gland (soft-palate-mucous-gland)*
     * *Soft palate sparse taste receptors (soft-palate-sparse-taste-receptors)*
+    * *Masseter muscle (masticatory-masseter-muscle)*
+    * *Lateral pterygoid muscle (masticatory-lateral-pterygoid-muscle)*
+    * *Medial pterygoid muscle (masticatory-medial-pterygoid-muscle)*
+    * *Tensor tympani muscle (masticatory-tensor-tympani-muscle)*
+    * *Tensor veli palatini muscle (masticatory-tensor-veli-palatini-muscle)*
+    * *Temporal muscle (masticatory-temporal-muscle)*
+    * *Proprioception receptors of masticatory muscles (masticatory-unconscious-muscle-spindles)*
+    * *Thyroid gland (thyroid-gland)*
    * [BrainRegionTARGET_TEA_FACE Face] * (TARGET.TEA.FACE, unknown)*
     * *Occipitofrontal Muscles (face-occipitofrontal-muscles)*
     * *Depressor supercilii muscle (face-depressor-supercilii-muscle)*
@@ -171,6 +181,12 @@ Adult Sources of Neurons:
     * *Obliquus capitis superior muscle (obliquus-capitis-superior-muscle)*
     * *Rectus capitis posterior major muscle (rectus-capitis-posterior-major-muscle)*
     * *Rectus capitis posterior minor muscle (rectus-capitis-posterior-minor-muscle)*
+    * *Semispinalis capitis (neck-semispinalis-capitis)*
+    * *Levator scapulae muscle (levator-scapulae-capitis)*
+    * *Scalenus anterior (scalenus-anterior)*
+    * *Scalenus medius (scalenus-medius)*
+    * *Scalenus posterior (scalenus-posterior)*
+    * *Geniohyoid muscle (geniohyoid-muscle)*
    * [BrainRegionTARGET_TEA_LIVER Liver] * (TARGET.TEA.LIVER, unknown)*
     * *Glucose and osmoreceptors (glucose-and-osmoreceptors)*
     * *Abdominal alimentary tract glands (glands)*
@@ -221,6 +237,9 @@ Adult Sources of Neurons:
     * *Anconeus muscle (anconeus-muscle)*
     * *Brachioradialis muscle (brachioradialis-muscle)*
     * *Extensor carpi radialis longus muscle (extensor-carpi-radialis-longus-muscle)*
+    * *Biceps muscle (biceps-muscle)*
+    * *Brachialis muscle (brachialis-muscle)*
+    * *Coracobrachialis muscle (coracobrachialis-muscle)*
    * [BrainRegionTARGET_TEA_LEG Leg] * (TARGET.TEA.LEG, unknown)*
     * *Flexor longus digitorum (flexor-longus-digitorum-muscle)*
     * *Flexor longus hallucis (flexor-longus-hallucis-muscle)*
@@ -243,6 +262,7 @@ Adult Sources of Neurons:
     * *Internal oblique muscle (trunk-internal-oblique-muscle)*
     * *Pyramidalis muscle (trunk-pyramidalis-muscle)*
     * *Abdominal somatic receptors (trunk-abdominal-somatic-receptors)*
+    * *Adrenal gland (adrenal-gland)*
    * [BrainRegionTARGET_TEA_BREAST Breast] * (TARGET.TEA.BREAST, unknown)*
     * *Breast skin receptors (breast-skin-receptors)*
     * *Breast upper cutaneous receptors (breast-upper-cutaneous-receptors)*
@@ -258,6 +278,8 @@ Adult Sources of Neurons:
     * *External sphincter muscle of female urethra (external-sphincter-female-urethra)*
     * *External sphincter muscle of male urethra (external-sphincter-male-urethra)*
     * *Ischiocavernosus muscle (ischiocavernosus-muscle)*
+    * *Testicle gland (testicle-gland)*
+    * *Ovary gland (ovary-gland)*
    * [BrainRegionTARGET_TEA_URETER Ureter] * (TARGET.TEA.URETER, unknown)*
     * *Detrusor urinae muscle parasympathetic receptors (detrusor-urinae-muscle-parasympathetic)*
     * *Internal urethral sphincter parasympathetic receptors (internal-urethral-sphincter-parasympathetic)*
@@ -462,7 +484,7 @@ Coverage verified by:
 (generated)
 
   * [BrainRegionFBA_MM_CNF Cuneiform Nucleus] * (FBA.MM.CNF, relay)* = NL:[http://neurolex.org/wiki/Category:Cuneiform_nucleus Cuneiform nucleus] -> [BrainAreaFBA]
-  * [BrainRegionVBA_MM_EWN Edinger-Westphal Nucleus] * (VBA.MM.EWN, relay)* = NL:[http://neurolex.org/wiki/Category:Parvocellular_oculomotor_nucleus Parvocellular oculomotor nucleus] -> [BrainAreaVBA]
+  * [BrainRegionVBA_MM_EWN Edinger-Westphal Nucleus] * (VBA.MM.EWN, parasympathetic)* = NL:[http://neurolex.org/wiki/Category:Parvocellular_oculomotor_nucleus Parvocellular oculomotor nucleus] -> [BrainAreaVBA]
   * [BrainRegionABA_MM_IC Inferior Colliculus] * (ABA.MM.IC, relay)* = NL:[http://neurolex.org/wiki/Category:Inferior_colliculus Inferior colliculus] -> [BrainAreaABA]
   * [BrainRegionHMA_MM_MSTR Mesencephalic Trigeminal Nucleus] * (HMA.MM.MSTR, sensory)* = NL:[http://neurolex.org/wiki/Category:Mesencephalic_nucleus_of_trigeminal_nerve Mesencephalic nucleus of trigeminal nerve] -> [BrainAreaFMA] (sensory neurons of masticatory muscles, the teeth, the mandibular joint, the mandible, the maxilla and the intraocular muscles; most to motor trigeminal, few - to principal trigeminal)
   * *Mesencephalic Reticular Formation (MM.MRF)*
