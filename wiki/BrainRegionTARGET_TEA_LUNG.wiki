@@ -18,6 +18,9 @@ Region is part of aHuman target integrated biological model.
   * *Pulmonary neuroepithelial bodies (pulmonary-neuroepithelial-bodies)*: trachea, bronchial tree and lungs - intraepithelial receptors
   * *Glands of trachea, lungs, and bronchi (visceral-glands)*: increase in airway secretions
   * *Smooth muscles of trachea and bronchial tree (smooth-muscles)*: constriction of trachea and bronchioles
+  * *Thoracic diaphragm (thoracic-diaphragm)*: increases thoracic cavity volume; inhalation
+  * *Pericardium and pleura receptors (pericardium-pleura-receptors)*: somatic sensations
+  * *Pharyngeal tonsils (pharyngeal-tonsils)*: defense mechanism against air infections, produce white blood cells which are essential for immunity
 
 = Connectivity =
 (generated)
@@ -29,10 +32,13 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/TARGET.TEA.LUNG.dot.jpg
 
 || *Source Area* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || [BrainAreaAVA AVA] || [BrainRegionAVA_PN_PSYM_PUG AVA.PN.PSYM.PUG] || Pulmonary Peripheral Ganglion || visceral-glands || (unknown reference) ||
+|| [BrainAreaBMA BMA] || [BrainRegionBMA_SC_VH_PHR BMA.SC.VH.PHR] || Phrenic Nucleus || thoracic-diaphragm || (unknown reference) ||
+|| [BrainAreaFMA FMA] || [BrainRegionAVA_PN_PSYM_PTG AVA.PN.PSYM.PTG] || Pterygopalatine Ganglion || pharyngeal-tonsils || (unknown reference) ||
 
 *Outbound Region Connections:*
 
 || *Target Area* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| [BrainAreaAVA AVA] || [BrainRegionAVA_PN_SG_DRG AVA.PN.SG.DRG] || Dorsal Root Ganglion || pericardium-pleura-receptors || (unknown reference) ||
 || [BrainAreaFMA FMA] || [BrainRegionAVA_PN_SG_NOD AVA.PN.SG.NOD] || Nodose Ganglion || pulmonary-neuroepithelial-bodies || (unknown reference) ||
 
 = Thirdparty Circuits =
