@@ -17,13 +17,15 @@ Circuit is part of aHuman target integrated biological model.
 ||  || [BrainRegionAVA_PN_PSYM_GUT AVA.PN.PSYM.GUT] || Parasympathetic Gut Brain || Parasymp. Gang. || Autonomic control of stomach, liver ||
 || [BrainAreaFMA FMA] || [BrainRegionAVA_PN_PSYM_OTG AVA.PN.PSYM.OTG] || Otic Ganglion || Parasymp. Gang. || Parotid gland ||
 || [BrainAreaAVA AVA] || [BrainRegionAVA_PN_PSYM_PPG AVA.PN.PSYM.PPG] || Pelvic Peripheral Ganglion || Parasymp. Gang. || Sigmoid, rectum, bladder, and external genitalia ||
-||  || [BrainRegionAVA_PN_PSYM_PUG AVA.PN.PSYM.PUG] || Pulmonary Peripheral Ganglion || Parasymp. Gang. || Lung ||
+|| [BrainAreaFMA FMA] || [BrainRegionAVA_PN_PSYM_PTG AVA.PN.PSYM.PTG] || Pterygopalatine Ganglion || Parasymp. Gang. || Lacrimal, nasal and palatine glands ||
+|| [BrainAreaAVA AVA] || [BrainRegionAVA_PN_PSYM_PUG AVA.PN.PSYM.PUG] || Pulmonary Peripheral Ganglion || Parasymp. Gang. || Lung ||
 || [BrainAreaFMA FMA] || [BrainRegionAVA_PN_PSYM_SPG AVA.PN.PSYM.SPG] || Sphenopalatine Ganglion || Parasymp. Gang. || Lacrimal gland and mucous membranes ||
 ||  || [BrainRegionAVA_PN_PSYM_SXG AVA.PN.PSYM.SXG] || Submandibular Ganglion || Parasymp. Gang. || Submaxillary and sublingual salivary glands ||
 || [BrainAreaAVA AVA] || [BrainRegionAVA_PN_SG_DRG AVA.PN.SG.DRG] || Dorsal Root Ganglion || Sensory Ganglion || Integration of afferent signaling from viscera ||
 || [BrainAreaFMA FMA] || [BrainRegionAVA_PN_SG_NOD AVA.PN.SG.NOD] || Nodose Ganglion || Sensory Ganglion || Integration of afferent signaling from viscera ||
 ||  || [BrainRegionAVA_PN_SG_PET AVA.PN.SG.PET] || Petrosal Ganglion || Sensory Ganglion || Integration of afferent signaling from viscera ||
-|| [BrainAreaAVA AVA] || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || Superior Cervical Ganglion || Symp. Gang. || Eye, tear and salivatory glands ||
+|| [BrainAreaAVA AVA] || [BrainRegionAVA_PN_SYM_IMG AVA.PN.SYM.IMG] || Inferior Mesenteric Ganglion || Symp. Gang. || Bladder, rectum, reproductive organs ||
+||  || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || Superior Cervical Ganglion || Symp. Gang. || Eye, tear and salivatory glands ||
 ||  || [BrainRegionAVA_PN_SYM_STG AVA.PN.SYM.STG] || Stellate Ganglion || Symp. Gang. || Heart, Lung ||
 ||  || [BrainRegionAVA_PN_SYM_TG AVA.PN.SYM.TG] || Sympathetic Thoracic Ganglia || Symp. Gang. || Heart ||
 ||  || [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || Intermediolateral Nucleus || Preganglionic Symp. Nucleus || Mediate entire sympathetic innervation of body ||
@@ -67,7 +69,8 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitBloodPressure.dot.jpg
 || [BrainRegionAVA_HM_SAL_ISL AVA.HM.SAL.ISL] || [BrainRegionAVA_PN_PSYM_GUT AVA.PN.PSYM.GUT] || nucleus-ganglion || (unknown reference) ||
 ||  || [BrainRegionAVA_PN_PSYM_OTG AVA.PN.PSYM.OTG] || nucleus-ganglion || [http://www.neurophysiology.ws/autonomicns.htm Autonomic nervous system (ISL -> OTG)] ||
 ||  || [BrainRegionAVA_PN_PSYM_PUG AVA.PN.PSYM.PUG] || nucleus-ganglion || (unknown reference) ||
-|| [BrainRegionAVA_HM_SAL_SSL AVA.HM.SAL.SSL] || [BrainRegionAVA_PN_PSYM_SPG AVA.PN.PSYM.SPG] || nucleus-ganglion || [http://www.neurophysiology.ws/autonomicns.htm Autonomic nervous system (SSL -> SPG)] ||
+|| [BrainRegionAVA_HM_SAL_SSL AVA.HM.SAL.SSL] || [BrainRegionAVA_PN_PSYM_PTG AVA.PN.PSYM.PTG] || nucleus-ganglion || (unknown reference) ||
+||  || [BrainRegionAVA_PN_PSYM_SPG AVA.PN.PSYM.SPG] || nucleus-ganglion || [http://www.neurophysiology.ws/autonomicns.htm Autonomic nervous system (SSL -> SPG)] ||
 ||  || [BrainRegionAVA_PN_PSYM_SXG AVA.PN.PSYM.SXG] || nucleus-ganglion || [http://www.neurophysiology.ws/autonomicns.htm Autonomic nervous system (SSL -> SMG)] ||
 || [BrainRegionAVA_HM_VG AVA.HM.VG] || [BrainRegionAVA_PN_PSYM_CRG AVA.PN.PSYM.CRG] || nucleus-ganglion || (unknown reference) ||
 ||  || [BrainRegionAVA_PN_PSYM_PUG AVA.PN.PSYM.PUG] || nucleus-ganglion || (unknown reference) ||
@@ -76,7 +79,8 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitBloodPressure.dot.jpg
 || [BrainRegionAVA_PN_SG_NOD AVA.PN.SG.NOD] || [BrainRegionHMA_HM_SOL HMA.HM.SOL] || ganglion-nucleus || (unknown reference) ||
 || [BrainRegionAVA_PN_SG_PET AVA.PN.SG.PET] || [BrainRegionHMA_HM_SOL HMA.HM.SOL] || ganglion-nucleus || (unknown reference) ||
 || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || [BrainRegionBFA_FD_PNG BFA.FD.PNG] || ganglion-nucleus || (unknown reference) ||
-|| [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || [BrainRegionAVA_PN_SYM_STG AVA.PN.SYM.STG] || nucleus-ganglion || (unknown reference) ||
+|| [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || [BrainRegionAVA_PN_SYM_IMG AVA.PN.SYM.IMG] || nucleus-ganglion || (unknown reference) ||
+||  || [BrainRegionAVA_PN_SYM_STG AVA.PN.SYM.STG] || nucleus-ganglion || (unknown reference) ||
 ||  || [BrainRegionAVA_PN_SYM_TG AVA.PN.SYM.TG] || nucleus-ganglion || (unknown reference) ||
 || [BrainRegionAVA_SC_IZ_SPS AVA.SC.IZ.SPS] || [BrainRegionAVA_PN_PSYM_PPG AVA.PN.PSYM.PPG] || nucleus-ganglion || (unknown reference) ||
 || [BrainRegionBFA_FD_HB BFA.FD.HB] || [BrainRegionBFA_FD_PNG BFA.FD.PNG] || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (MHb -> PB)] ||
