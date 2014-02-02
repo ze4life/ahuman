@@ -152,6 +152,7 @@
 		<connection type="nucleus-nucleus" primary="true" src="BMA.HP.VB" dst="BMA.MM.DSCH"/>
 		<connection type="nucleus-nucleus" primary="true" src="MBA.HP.CR" dst="BMA.MM.DSCH" notes="from interposed nucleus"/>
 		<connection type="nucleus-nucleus" primary="true" src="MBA.HP.CR" dst="VBA.MM.PT.PR"/>
+		<connection type="nucleus-nucleus" primary="true" src="BMA.SC.IZ.CCV" dst="BMA.HP.VB"/>
 	</circuit>
 
 	<!-- ================= intracortical auditory stream processing =============== -->
@@ -223,8 +224,12 @@
 
 	<!-- ================= somatic perception =============== -->
 	<circuit id="CircuitSomaticPerception" name="Somatic Perception" enabled="true">
+		<connection type="ganglion-nucleus" primary="true" src="AVA.PN.SG.DRG" dst="BMA.SC.PH.NP"/>
+		<connection type="ganglion-nucleus" primary="true" src="AVA.PN.SG.DRG" dst="BMA.SC.IZ.CCV"/>
 		<connection type="nucleus-nucleus" primary="true" src="BMA.SC.IZ.CCV" dst="SMA.FD.TH.VPL"/>
 		<connection type="nucleus-nucleus" primary="true" src="BMA.SC.IZ.CCV" dst="SMA.FD.TH.RIL"/>
+		<connection type="nucleus-nucleus" primary="true" src="BMA.SC.IZ.CCV" dst="BMA.HM.IO"/>
+		<connection type="nucleus-nucleus" primary="true" src="BMA.SC.PH.NP" dst="BMA.HM.IO"/>
 		<connection type="nucleus-nucleus" primary="true" src="MBA.HP.CR" dst="SMA.FD.TH.RIL"/>
 		<connection type="nucleus-nucleus" primary="true" src="BMA.SC.PH.MG" dst="SMA.FD.TH.VPL"/>
 		<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PTP.PTR" dst="SMA.FD.TH.VPM"/>
@@ -571,6 +576,8 @@
 		<connection type="nucleus-neocortex" primary="true" src="PHA.FT.AON" dst="PHA.NC.PH.PIR"/>
 		<connection type="neocortex-neocortex" primary="true" src="PHA.NC.PH.PIR" dst="PHA.NC.PH.ET"/>
 		<connection type="ganglion-nucleus" primary="true" src="AVA.PN.SG.GNG" dst="HMA.HM.TGM.STR"/>
+		<connection type="ganglion-nucleus" primary="true" src="AVA.PN.SG.GNG" dst="HMA.HM.SOL"/>
+		<connection type="ganglion-nucleus" primary="true" src="AVA.PN.SG.OLB" dst="PHA.FT.AON"/>
 	</circuit>
 
 	<!-- ================= cognitive processing =============== -->
@@ -673,6 +680,9 @@
 		<connection type="ganglion-nucleus" primary="true" src="AVA.PN.SYM.IMG" dst="FBA.MM.PAG"/>
 		<connection type="ganglion-nucleus" primary="true" src="AVA.PN.SYM.IMG" dst="MBA.HP.BR"/>
 		<connection type="nucleus-ganglion" primary="true" src="AVA.SC.IZ.IML" dst="AVA.PN.SYM.SCG"/>
+		<connection type="nucleus-ganglion" primary="true" src="AVA.SC.IZ.IML" dst="AVA.PN.SYM.MCG"/>
+		<connection type="nucleus-ganglion" primary="true" src="AVA.SC.IZ.IML" dst="AVA.PN.SYM.ARG"/>
+		<connection type="nucleus-ganglion" primary="true" src="AVA.SC.IZ.IML" dst="AVA.PN.SYM.SMG"/>
 	</circuit>
 
 	<!-- ================= pain and temperature perception =============== -->

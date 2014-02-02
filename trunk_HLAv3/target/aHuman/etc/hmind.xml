@@ -62,6 +62,8 @@
 				<element id="ear-somatic" name="Somatic Receptors" type="connector"
 					comments="from auditory meatus to genuculate ganglion"
 					function="from skin to geniculate ganglion to spinal trigeminal nucleus"/>
+				<element id="ear-acoustic-meatus-skin" name="Acoustic meatus skin" type="connector"
+					function="from skin lining external acoustic meatus, and tympanic membrane to trigeminal gangion"/>
 				<element id="ear-visceral" name="Visceral Receptors" type="connector"
 					notes="CN IX, from STR to VPM, timpanic cavity"
 					function="pain, temperature, and touch"/>
@@ -127,6 +129,8 @@
 					function="increase in systemic blood pressure"/>
 				<element id="arm-blood-vessels" name="Arm blood vessels" type="connector"
 					function="constrict vessels resulting in poor circulation to limb"/>
+				<element id="forearm-blood-vessels" name="Arm blood vessels" type="connector"
+					function="vasomotor forearm sympathetic fibers"/>
 			</element>
 
 		</element>
@@ -193,7 +197,7 @@
 					function="providing antibodies against illnesses and diseases such as diphtheria"/>
 				<element id="mouth-lingual-tonsil" name="Lingual Tonsil" type="connector" 
 					function="production of antibodies that are part of natural immune system"/>
-				<element id="mouth-uvula" name="Uvula" type="connector" 
+				<element id="mouth-uvula-receptors" name="Uvula receptors" type="connector" 
 					function="preventing food from entering the nasal cavity"/>
 				<element id="mouth-teeth" name="Teeth" type="connector" 
 					function="chewing"/>
@@ -209,6 +213,34 @@
 					function="elevate hyoid bone to open mouth"/>
 				<element id="mouth-stylohyoid-muscles" name="Posterior Belly of Digastric Muscles" type="connector" 
 					function="draw hyoid bone backwards and elevate tongue"/>
+
+				<element id="mouth-uvula-muscle" name="Uvula muscle" type="connector" 
+					function="shortens and broadens the uvula"/>
+				<element id="hard-palate-mucous-gland" name="Hard palate mucous gland" type="connector" 
+					function="produce mucous fluid"/>
+				<element id="soft-palate-mucous-gland" name="Soft palate mucous gland" type="connector" 
+					function="produce mucous fluid"/>
+				<element id="soft-palate-sparse-taste-receptors" name="Soft palate sparse taste receptors" type="connector" 
+					function="taste sensation"/>
+
+				<element id="masticatory-masseter-muscle" name="Masseter muscle" type="connector" 
+					function="elevation (as in closing of the mouth) and retraction of mandible"/>
+				<element id="masticatory-lateral-pterygoid-muscle" name="Lateral pterygoid muscle" type="connector" 
+					function="depresses mandible"/>
+				<element id="masticatory-medial-pterygoid-muscle" name="Medial pterygoid muscle" type="connector" 
+					function="elevates mandible, closes jaw, helps lateral pterygoids in moving the jaw from side to side"/>
+				<element id="masticatory-tensor-tympani-muscle" name="Tensor tympani muscle" type="connector" 
+					function="tensing the tympanic membrane"/>
+				<element id="masticatory-tensor-veli-palatini-muscle" name="Tensor veli palatini muscle" type="connector" 
+					function="tension of the soft palate"/>
+				<element id="masticatory-temporal-muscle" name="Temporal muscle" type="connector" 
+					function="elevation and retraction of mandible"/>
+
+				<element id="masticatory-unconscious-muscle-spindles" name="Proprioception receptors of masticatory muscles" type="connector" 
+					function="unconscious proprioception from muscle spindles; monosynaptic masticatory reflex"/>
+
+				<element id="thyroid-gland" name="Thyroid gland" type="connector" 
+					function="release thyroid hormones into blood"/>
 			</element>
 
 			<element id="TARGET.TEA.FACE" name="Face" mapped="true" type="Effector"
@@ -245,6 +277,21 @@
 					function="ipsilateral rotation of head and extension"/>
 				<element id="rectus-capitis-posterior-minor-muscle" name="Rectus capitis posterior minor muscle" type="connector"
 					function="extends the head at the neck, but is considered to be more of a sensory organ than a muscle"/>
+
+				<element id="neck-semispinalis-capitis" name="Semispinalis capitis" type="connector"
+					function="extend the head"/>
+
+				<element id="levator-scapulae-capitis" name="Levator scapulae muscle" type="connector"
+					function="elevates scapula and tilts its glenoid cavity inferiorly by rotating scapula"/>
+				<element id="scalenus-anterior" name="Scalenus anterior" type="connector"
+					function="elevates first rib, rotate the neck to the opposite side"/>
+				<element id="scalenus-medius" name="Scalenus medius" type="connector"
+					function="elevate 1st rib, laterally flex (bend) the neck to the same side"/>
+				<element id="scalenus-posterior" name="Scalenus posterior" type="connector"
+					function="elevate 2nd rib, tilt the neck to the same side"/>
+
+				<element id="geniohyoid-muscle" name="Geniohyoid muscle" type="connector"
+					function="carry hyoid bone and the tongue upward during deglutition"/>
 			</element>
 
 			<element id="TARGET.TEA.LIVER" name="Liver" mapped="true" type="Effector"
@@ -285,7 +332,6 @@
 					function="keep the mucosal surface and underlying glands in a constant state of gentle agitation to expel contents of glandular crypts and enhance contact between epithelium and the contents of the lumen"/>
 				<element id="stomach-nutrition-sensor" name="Stomach nutrition sensor" type="connector"
 					function="sense independently to tongue and oral taste receptors glucose, carbohydrates proteins, and fats"/>
-
 			</element>
 
 			<element id="TARGET.TEA.LUNG" name="Lung" mapped="true" type="Effector"
@@ -368,6 +414,13 @@
 					function="stabilizer of elbow joint"/>
 				<element id="extensor-carpi-radialis-longus-muscle" name="Extensor carpi radialis longus muscle" type="connector"
 					function="extensor and abductor of the hand at the wrist joint"/>
+
+				<element id="biceps-muscle" name="Biceps muscle" type="connector"
+					function="flexes elbow and supinates forearm"/>
+				<element id="brachialis-muscle" name="Brachialis muscle" type="connector"
+					function="flexion at elbow joint"/>
+				<element id="coracobrachialis-muscle" name="Coracobrachialis muscle" type="connector"
+					function="flexes and adducts humerus"/>
 			</element>
 
 			<element id="TARGET.TEA.LEG" name="Leg" mapped="true" type="Effector"
@@ -426,6 +479,9 @@
 
 				<element id="trunk-abdominal-somatic-receptors" name="Abdominal somatic receptors" type="connector"
 					function="somatic sensation from skin of lower abdomen and lateral side of gluteal region"/>
+
+				<element id="adrenal-gland" name="Adrenal gland" type="connector"
+					function="releasing hormones in response to stress"/>
 			</element>
 
 			<element id="TARGET.TEA.BREAST" name="Breast" mapped="true" type="Effector"
@@ -457,6 +513,20 @@
 					function="penile erection; simultaneously the ischiocavernosus and bulbospongiosus muscles compress the veins of the corpora cavernosa restricting the egress and circulation of this blood"/>
 				<element id="visceral-sexual-receptors" name="Visceral sexual receptors" type="connector"
 					function="sexual sensations"/>
+
+				<element id="bulbospongiosus-muscle" name="Bulbospongiosus muscle" type="connector"
+					function="in males, empties the urethra; in females, clenches the vagina"/>
+				<element id="external-sphincter-female-urethra" name="External sphincter muscle of female urethra" type="connector"
+					function="control urination, constricts urethra, maintain urinary continence"/>
+				<element id="external-sphincter-male-urethra" name="External sphincter muscle of male urethra" type="connector"
+					function="control urination, constricts urethra, maintain urinary continence"/>
+				<element id="ischiocavernosus-muscle" name="Ischiocavernosus muscle" type="connector"
+					function="stabilize the erect penis or (in females) tense the vagina during orgasm"/>
+
+				<element id="testicle-gland" name="Testicle gland" type="connector"
+					function="produce androgens, primarily testosterone (growth of muscle mass and strength, regulator of cognitive and physical energy, sperm development"/>
+				<element id="ovary-gland" name="Ovary gland" type="connector"
+					function="secretes estrogen (maturation and maintenance of the reproductive organs), testosterone (prepares the uterus for pregnancy, and the mammary glands for lactation) and progesterone (promoting menstrual cycle changes in the endometrium"/>
 			</element>
 
 			<element id="TARGET.TEA.URETER" name="Ureter" mapped="true" type="Effector"
@@ -481,6 +551,11 @@
 					function="stimulate and maintain internal anal sphincter contraction"/>
 				<element id="large-intestine-visceral-receptors" name="Large intestine visceral receptors" type="connector"
 					function="sensations of fullness and urgency, pain"/>
+
+				<element id="puborectalis-muscle" name="Puborectalis muscle" type="connector"
+					function="inhibit defecation"/>
+				<element id="superficial-ransverse-perineal-muscle" name="Superficial transverse perineal muscle" type="connector"
+					function="fixation of central tendon of perineum, support of pelvic floor"/>
 			</element>
 
 		</element>
