@@ -198,6 +198,17 @@
 				region="HMA.HM.AMB" connector="nucleus.output" primary="true"/>
 			<connector entity="thyroid-gland-levator-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="HMA.HM.AMB" connector="nucleus.output" primary="true"/>
+
+			<connector entity="lateral-cricoarytenoid-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.PSYM.ILG" connector="ganglion.output" primary="true"/>
+			<connector entity="oblique-arytenoid-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.PSYM.ILG" connector="ganglion.output" primary="true"/>
+			<connector entity="posterior-cricoarytenoid-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.PSYM.ILG" connector="ganglion.output" primary="true"/>
+			<connector entity="thyroarytenoid-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.PSYM.ILG" connector="ganglion.output" primary="true"/>
+			<connector entity="thyroepiglottic-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.PSYM.ILG" connector="ganglion.output" primary="true"/>
 		</effector>
 
 		<effector id="TARGET.TEA.FACE" run="true">
@@ -290,6 +301,9 @@
 				region="AVA.PN.SG.DRG" connector="ganglion.input" primary="true"/>
 			<connector entity="pharyngeal-tonsils" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.PSYM.PTG" connector="ganglion.output" primary="true"/>
+
+			<connector entity="pulmonary-stretch-receptors" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.JUG" connector="ganglion.input" primary="true"/>
 		</effector>
 
 		<effector id="TARGET.TEA.HAND" run="true">
@@ -422,6 +436,8 @@
 				region="AVA.PN.SG.DRG" connector="ganglion.input" primary="true"/>
 			<connector entity="nipple-smooth-muscles" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.PSYM.PPG" connector="ganglion.output" primary="true"/>
+			<connector entity="mammary-gland-vasomotor" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SYM.TG" connector="ganglion.output" primary="true"/>
 		</effector>
 
 		<effector id="TARGET.TEA.GENITALIA" run="true">
