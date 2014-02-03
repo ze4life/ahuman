@@ -31,6 +31,8 @@
 
 			<connector entity="eye-tears-gland" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.PSYM.PTG" connector="ganglion.output" primary="true"/>
+			<connector entity="eye-lacrimal-gland-conjunctiva-receptors" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.TRG" connector="ganglion.input" primary="true"/>
 		</sensor>
 
 		<sensor id="TARGET.TSA.EAR" run="true">
@@ -113,6 +115,9 @@
 				region="AVA.PN.SG.PET" connector="ganglion.input" primary="true"/>
 			<connector entity="heart-visceral" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.SG.DRG" connector="ganglion.input" primary="true"/>
+
+			<connector entity="heart-carotid-inhibitors" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SYM.SCG" connector="ganglion.output" primary="true"/>
 		</effector>
 
 		<effector id="TARGET.TEA.MOUTH" run="true">
@@ -184,6 +189,15 @@
 
 			<connector entity="thyroid-gland" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.SYM.MCG" connector="ganglion.output" primary="true"/>
+
+			<connector entity="arytenoid-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.HM.AMB" connector="nucleus.output" primary="true"/>
+			<connector entity="cricothyroid-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.HM.AMB" connector="nucleus.output" primary="true"/>
+			<connector entity="inferior-pharyngeal-constrictor-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.HM.AMB" connector="nucleus.output" primary="true"/>
+			<connector entity="thyroid-gland-levator-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.HM.AMB" connector="nucleus.output" primary="true"/>
 		</effector>
 
 		<effector id="TARGET.TEA.FACE" run="true">
@@ -438,6 +452,11 @@
 				region="AVA.PN.SYM.ARG" connector="ganglion.output" primary="true"/>
 			<connector entity="ovary-gland" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.SYM.ARG" connector="ganglion.output" primary="true"/>
+
+			<connector entity="uterus-sympathetic" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SYM.IMG" connector="ganglion.output" primary="true"/>
+			<connector entity="vagina-sympathetic" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SYM.IMG" connector="ganglion.output" primary="true"/>
 		</effector>
 
 		<effector id="TARGET.TEA.URETER" run="true">
@@ -447,6 +466,11 @@
 				region="AVA.PN.PSYM.PPG" connector="ganglion.output" primary="true"/>
 			<connector entity="ureter-visceral-receptors" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.SG.DRG" connector="ganglion.input" primary="true"/>
+
+			<connector entity="detrusor-urinae-muscle-sympathetic" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SYM.IMG" connector="ganglion.output" primary="true"/>
+			<connector entity="internal-urethral-sphincter-sympathetic" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SYM.IMG" connector="ganglion.output" primary="true"/>
 		</effector>
 
 		<effector id="TARGET.TEA.RECTUM" run="true">
