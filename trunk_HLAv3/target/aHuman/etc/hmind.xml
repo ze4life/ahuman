@@ -43,6 +43,9 @@
 				<element id="eye-tears-gland" name="Lacrimal Gland" type="connector"
 					notes="from superior salivatory to sphenopalatine ganglion"
 					function="tears"/>
+				<element id="eye-lacrimal-gland-conjunctiva-receptors" name="Lacrimal gland and conjunctiva receptors" type="connector"
+					notes="sensory innervation to the gland and the conjunctiva, skin of the upper eyelid"
+					function="tears"/>
 			</element>
 
 			<element id="TARGET.TSA.EAR" name="Ear" mapped="true" type="Sensor"
@@ -159,6 +162,9 @@
 				<element id="heart-visceral" name="Visceral Receptors" type="connector"
 					notes="Chemoreceptors" 
 					function="temperature and pain"/>
+
+				<element id="heart-carotid-inhibitors" name="Baroreceptors inhibitors" type="connector"
+					function="decrease of blood pressure signal"/>
 			</element>
 
 			<element id="TARGET.TEA.MOUTH" name="Mouth" mapped="true" type="Effector"
@@ -241,6 +247,15 @@
 
 				<element id="thyroid-gland" name="Thyroid gland" type="connector" 
 					function="release thyroid hormones into blood"/>
+
+				<element id="arytenoid-muscle" name="Arytenoid muscle" type="connector" 
+					function="approximate the arytenoid cartilages (close rima glottidis)"/>
+				<element id="cricothyroid-muscle" name="Cricothyroid muscle" type="connector" 
+					function="tension and elongation of the vocal folds (has minor adductory effect)"/>
+				<element id="inferior-pharyngeal-constrictor-muscle" name="Inferior pharyngeal constrictor muscle" type="connector" 
+					function="swallowing"/>
+				<element id="thyroid-gland-levator-muscle" name="Levator muscle of thyroid gland" type="connector" 
+					function="elevates the thyroid gland"/>
 			</element>
 
 			<element id="TARGET.TEA.FACE" name="Face" mapped="true" type="Effector"
@@ -527,6 +542,11 @@
 					function="produce androgens, primarily testosterone (growth of muscle mass and strength, regulator of cognitive and physical energy, sperm development"/>
 				<element id="ovary-gland" name="Ovary gland" type="connector"
 					function="secretes estrogen (maturation and maintenance of the reproductive organs), testosterone (prepares the uterus for pregnancy, and the mammary glands for lactation) and progesterone (promoting menstrual cycle changes in the endometrium"/>
+
+				<element id="uterus-sympathetic" name="Uterus, sympathetic receptors" type="connector"
+					function="contraction of smooth muscles of myometrium, decreased blood flow, loss of erection"/>
+				<element id="vagina-sympathetic" name="Vagina, sympathetic receptors" type="connector"
+					function="vasoconstriction of fibromuscular tube, loss of erection"/>
 			</element>
 
 			<element id="TARGET.TEA.URETER" name="Ureter" mapped="true" type="Effector"
@@ -539,6 +559,11 @@
 					function="parasympathetic relaxes the muscle"/>
 				<element id="ureter-visceral-receptors" name="Ureter visceral receptors" type="connector"
 					function="respond to stretch and free nerve endings in the bladder mucosa that respond to pain and temperature"/>
+
+				<element id="detrusor-urinae-muscle-sympathetic" name="Detrusor urinae muscle sympathetic receptors" type="connector"
+					function="sympathetic relaxes, to store urine"/>
+				<element id="internal-urethral-sphincter-sympathetic" name="Internal urethral sphincter sympathetic receptors" type="connector"
+					function="sympathetic contracts the muscle"/>
 			</element>
 
 			<element id="TARGET.TEA.RECTUM" name="Rectum" mapped="true" type="Effector"
