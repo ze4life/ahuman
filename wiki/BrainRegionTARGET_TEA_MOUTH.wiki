@@ -17,6 +17,8 @@ Region is part of aHuman target integrated biological model.
 *Component items*:
   * *Submandibular Gland (mouth-submandibular-gland)*: produces 70% of saliva in oral cavity, mixed serous (moisturing) and mucous (process food)
   * *Sublingual Gland (mouth-sublingual-gland)*: produces 5% of saliva in oral cavity, mostly mucous
+  * *Submandibular Gland Vasoconstrictors (mouth-submandibular-gland-vasoconstrictors)*: reduces glandular bloodflow, thereby decreasing the volume of fluid in salivary secretions
+  * *Sublingual Gland Vasoconstrictors (mouth-sublingual-gland-vasoconstrictors)*: reduces glandular bloodflow
   * *Parotid Gland (mouth-parotid-gland)*: produces 25% of saliva in oral cavity, mostly serous
   * *Oral Mucosa (mouth-oral-mucosal-gland)*: lubrication, immunological defence
   * *Tongue Gustatory Hair Cell (mouth-tongue-hair-cell)*: taste sensation
@@ -39,6 +41,7 @@ Region is part of aHuman target integrated biological model.
   * *Hard palate mucous gland (hard-palate-mucous-gland)*: produce mucous fluid
   * *Soft palate mucous gland (soft-palate-mucous-gland)*: produce mucous fluid
   * *Soft palate sparse taste receptors (soft-palate-sparse-taste-receptors)*: taste sensation
+  * *Soft palate sparse taste receptors (palatine-tonsil-receptors)*: visceral mucous membrane over soft palate and tonsil
   * *Masseter muscle (masticatory-masseter-muscle)*: elevation (as in closing of the mouth) and retraction of mandible
   * *Lateral pterygoid muscle (masticatory-lateral-pterygoid-muscle)*: depresses mandible
   * *Medial pterygoid muscle (masticatory-medial-pterygoid-muscle)*: elevates mandible, closes jaw, helps lateral pterygoids in moving the jaw from side to side
@@ -47,6 +50,16 @@ Region is part of aHuman target integrated biological model.
   * *Temporal muscle (masticatory-temporal-muscle)*: elevation and retraction of mandible
   * *Proprioception receptors of masticatory muscles (masticatory-unconscious-muscle-spindles)*: unconscious proprioception from muscle spindles; monosynaptic masticatory reflex
   * *Thyroid gland (thyroid-gland)*: release thyroid hormones into blood
+  * *Arytenoid muscle (arytenoid-muscle)*: approximate the arytenoid cartilages (close rima glottidis)
+  * *Cricothyroid muscle (cricothyroid-muscle)*: tension and elongation of the vocal folds (has minor adductory effect)
+  * *Inferior pharyngeal constrictor muscle (inferior-pharyngeal-constrictor-muscle)*: swallowing
+  * *Levator muscle of thyroid gland (thyroid-gland-levator-muscle)*: elevates the thyroid gland
+  * *Lateral cricoarytenoid muscle (lateral-cricoarytenoid-muscle)*: adduct and medially rotate the cartilage, pulling the vocal ligaments towards the midline and backwards and so closing off the rima glottidis
+  * *Oblique arytenoid muscle (oblique-arytenoid-muscle)*: sphincter of the laryngeal inlet
+  * *Posterior cricoarytenoid muscle (posterior-cricoarytenoid-muscle)*: abducts and laterally rotates the cartilage, pulling the vocal ligaments away from the midline and forward and so opening the rima glottidis
+  * *Thyroarytenoid muscle (thyroarytenoid-muscle)*: thickens the vocal folds and decreases length; also helps to adduct the vocal folds during speech
+  * *Thyroepiglottic muscle (thyroepiglottic-muscle)*: closes the inlet to the larynx
+  * *Occipitalis muscle (occipitalis-muscle)*: moves the scalp back
 
 = Connectivity =
 (generated)
@@ -57,7 +70,9 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/TARGET.TEA.MOUTH.dot.jpg
 *Inbound Region Connections:*
 
 || *Source Area* || *Source Region* || *Source Name* || *Type* || *Reference* ||
-|| [BrainAreaAVA AVA] || [BrainRegionAVA_PN_SYM_MCG AVA.PN.SYM.MCG] || Middle Cervical Ganglion || thyroid-gland || (unknown reference) ||
+|| [BrainAreaAVA AVA] || [BrainRegionAVA_PN_PSYM_ILG AVA.PN.PSYM.ILG] || Intralaryngeal Peripheral Ganglion || lateral-cricoarytenoid-muscle || (unknown reference) ||
+||  || [BrainRegionAVA_PN_SYM_MCG AVA.PN.SYM.MCG] || Middle Cervical Ganglion || thyroid-gland || (unknown reference) ||
+||  || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || Superior Cervical Ganglion || mouth-submandibular-gland-vasoconstrictors || (unknown reference) ||
 || [BrainAreaBMA BMA] || [BrainRegionBMA_SC_VH_VM BMA.SC.VH.VM] || Ventromedial Nucleus || mouth-larynx-thyrohyoid-muscle || (unknown reference) ||
 || [BrainAreaFMA FMA] || [BrainRegionAVA_PN_PSYM_OTG AVA.PN.PSYM.OTG] || Otic Ganglion || mouth-parotid-gland || (unknown reference) ||
 ||  || [BrainRegionAVA_PN_PSYM_PTG AVA.PN.PSYM.PTG] || Pterygopalatine Ganglion || mouth-uvula-muscle || (unknown reference) ||
@@ -71,6 +86,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/TARGET.TEA.MOUTH.dot.jpg
 
 || *Target Area* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || [BrainAreaFMA FMA] || [BrainRegionAVA_PN_SG_GNG AVA.PN.SG.GNG] || Geniculate Ganglion || soft-palate-sparse-taste-receptors || (unknown reference) ||
+||  || [BrainRegionAVA_PN_SG_JUG AVA.PN.SG.JUG] || Jugular Ganglion || palatine-tonsil-receptors || (unknown reference) ||
 ||  || [BrainRegionAVA_PN_SG_NOD AVA.PN.SG.NOD] || Nodose Ganglion || mouth-epiglottis-taste-buds || (unknown reference) ||
 ||  || [BrainRegionAVA_PN_SG_TRG AVA.PN.SG.TRG] || Trigeminal Ganglion || mouth-lingual-tonsil || (unknown reference) ||
 ||  || [BrainRegionHMA_MM_MSTR HMA.MM.MSTR] || Mesencephalic Trigeminal Nucleus || masticatory-unconscious-muscle-spindles || (unknown reference) ||

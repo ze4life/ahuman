@@ -99,11 +99,13 @@ Adult Sources of Neurons:
     * *Orbicularis Oculi (eye-muscle-close-conscious)*
     * *Ligamentum Palpebrale (eye-muscle-close-involuntary)*
     * *Lacrimal Gland (eye-tears-gland)*
+    * *Lacrimal gland and conjunctiva receptors (eye-lacrimal-gland-conjunctiva-receptors)*
    * [BrainRegionTARGET_TSA_EAR Ear] * (TARGET.TSA.EAR, unknown)*
     * *Inner Hair Cells (ear-inner-hair-cells)*
     * *Outer Hair Cells Feedback (ear-outer-hair-cells-feedback)*
     * *Cristae and Maculae (ear-cristae-maculae)*
     * *Somatic Receptors (ear-somatic)*
+    * *Outer ear skin (ear-external-skin)*
     * *Acoustic meatus skin (ear-acoustic-meatus-skin)*
     * *Visceral Receptors (ear-visceral)*
     * *Timpanic cavity (ear-timpanic-cavity)*
@@ -127,17 +129,23 @@ Adult Sources of Neurons:
     * *Wall of brachial artery (brachial-artery-vasoconstrictors)*
     * *Arm blood vessels (arm-blood-vessels)*
     * *Arm blood vessels (forearm-blood-vessels)*
+    * *Stomach blood vessels (stomach-blood-vessels)*
+    * *Liver blood vessels (liver-blood-vessels)*
   * *Human Effectors (aHumanEffectors)* -> [BrainAreaTEA]
    * [BrainRegionTARGET_TEA_HEART Heart] * (TARGET.TEA.HEART, unknown)*
     * *NE Receptors of Atrium Muscles (heart-symp-control)*
-    * *Cardiac muscle (heart-cardiac-muscle)*
+    * *Cardiac muscle (heart-cardiac-upper-muscle)*
+    * *Cardiac muscle (heart-cardiac-lower-muscle)*
     * *ACh Receptors of Atrium Muscles (heart-psymp-control)*
     * *Baroreceptors in Aorta (heart-aorta-baroreceptors)*
     * *Baroreceptors in Carotid Artery (heart-carotid-baroreceptors)*
     * *Visceral Receptors (heart-visceral)*
+    * *Baroreceptors inhibitors (heart-carotid-inhibitors)*
    * [BrainRegionTARGET_TEA_MOUTH Mouth] * (TARGET.TEA.MOUTH, unknown)*
     * *Submandibular Gland (mouth-submandibular-gland)*
     * *Sublingual Gland (mouth-sublingual-gland)*
+    * *Submandibular Gland Vasoconstrictors (mouth-submandibular-gland-vasoconstrictors)*
+    * *Sublingual Gland Vasoconstrictors (mouth-sublingual-gland-vasoconstrictors)*
     * *Parotid Gland (mouth-parotid-gland)*
     * *Oral Mucosa (mouth-oral-mucosal-gland)*
     * *Tongue Gustatory Hair Cell (mouth-tongue-hair-cell)*
@@ -160,6 +168,7 @@ Adult Sources of Neurons:
     * *Hard palate mucous gland (hard-palate-mucous-gland)*
     * *Soft palate mucous gland (soft-palate-mucous-gland)*
     * *Soft palate sparse taste receptors (soft-palate-sparse-taste-receptors)*
+    * *Soft palate sparse taste receptors (palatine-tonsil-receptors)*
     * *Masseter muscle (masticatory-masseter-muscle)*
     * *Lateral pterygoid muscle (masticatory-lateral-pterygoid-muscle)*
     * *Medial pterygoid muscle (masticatory-medial-pterygoid-muscle)*
@@ -168,6 +177,16 @@ Adult Sources of Neurons:
     * *Temporal muscle (masticatory-temporal-muscle)*
     * *Proprioception receptors of masticatory muscles (masticatory-unconscious-muscle-spindles)*
     * *Thyroid gland (thyroid-gland)*
+    * *Arytenoid muscle (arytenoid-muscle)*
+    * *Cricothyroid muscle (cricothyroid-muscle)*
+    * *Inferior pharyngeal constrictor muscle (inferior-pharyngeal-constrictor-muscle)*
+    * *Levator muscle of thyroid gland (thyroid-gland-levator-muscle)*
+    * *Lateral cricoarytenoid muscle (lateral-cricoarytenoid-muscle)*
+    * *Oblique arytenoid muscle (oblique-arytenoid-muscle)*
+    * *Posterior cricoarytenoid muscle (posterior-cricoarytenoid-muscle)*
+    * *Thyroarytenoid muscle (thyroarytenoid-muscle)*
+    * *Thyroepiglottic muscle (thyroepiglottic-muscle)*
+    * *Occipitalis muscle (occipitalis-muscle)*
    * [BrainRegionTARGET_TEA_FACE Face] * (TARGET.TEA.FACE, unknown)*
     * *Occipitofrontal Muscles (face-occipitofrontal-muscles)*
     * *Depressor supercilii muscle (face-depressor-supercilii-muscle)*
@@ -175,6 +194,7 @@ Adult Sources of Neurons:
     * *Orbicularis oculi muscle, zygomatic (face-orbicularis-oculi-muscle)*
     * *Zygomaticus major muscle, proper (face-zygomaticus-major-muscle-proper)*
     * *Face skin (face-skin)*
+    * *Face skin (face-parotid-skin)*
    * [BrainRegionTARGET_TEA_NECK Neck] * (TARGET.TEA.NECK, unknown)*
     * *Cutaneous receptors of low neck (neck-low-cutaneous-receptors)*
     * *Obliquus capitis inferior muscle (obliquus-capitis-inferior-muscle)*
@@ -190,6 +210,7 @@ Adult Sources of Neurons:
    * [BrainRegionTARGET_TEA_LIVER Liver] * (TARGET.TEA.LIVER, unknown)*
     * *Glucose and osmoreceptors (glucose-and-osmoreceptors)*
     * *Abdominal alimentary tract glands (glands)*
+    * *Visceral receptors (visceral-receptors)*
    * [BrainRegionTARGET_TEA_STOMACH Stomach] * (TARGET.TEA.STOMACH, unknown)*
     * *Outer longitudinal and inner circular smooth muscles (stomach-wall)*
     * *Stomach mucosal gastric glands (stomach-mucosal-gastric-glands)*
@@ -209,6 +230,7 @@ Adult Sources of Neurons:
     * *Thoracic diaphragm (thoracic-diaphragm)*
     * *Pericardium and pleura receptors (pericardium-pleura-receptors)*
     * *Pharyngeal tonsils (pharyngeal-tonsils)*
+    * *Pulmonary stretch receptors (pulmonary-stretch-receptors)*
    * [BrainRegionTARGET_TEA_HAND Hand] * (TARGET.TEA.HAND, unknown)*
     * *Flexor profundus digitorum (flexor-profundus-digitorum-muscle)*
     * *Flexor longus pollicis (flexor-longus-pollicis-muscle)*
@@ -249,6 +271,12 @@ Adult Sources of Neurons:
     * *Tibialis posterior muscle (tibialis-posterior-muscle)*
     * *Leg somatic receptors (leg-somatic-receptors)*
     * *Piriformis muscle (piriformis-muscle)*
+    * *Gluteus maximus muscle (gluteus-maximus-muscle)*
+    * *Extensor digitorum brevis muscle (extensor-digitorum-brevis-muscle)*
+    * *Extensor digitorum longus muscle (extensor-digitorum-longus-muscle)*
+    * *Extensor hallucis longus muscle (extensor-hallucis-longus-muscle)*
+    * *Fibularis tertius muscle (fibularis-tertius-muscle)*
+    * *Tibialis anterior muscle (tibialis-anterior-muscle)*
    * [BrainRegionTARGET_TEA_TRUNK Trunk] * (TARGET.TEA.TRUNK, unknown)*
     * *Rectus abdominis (trunk-rectus-abdominis)*
     * *External intercostal muscles (trunk-external-intercostal-muscles)*
@@ -267,6 +295,7 @@ Adult Sources of Neurons:
     * *Breast skin receptors (breast-skin-receptors)*
     * *Breast upper cutaneous receptors (breast-upper-cutaneous-receptors)*
     * *Nipple smooth muscles (nipple-smooth-muscles)*
+    * *Vasomotor muscles of mammary gland (mammary-gland-vasomotor)*
    * [BrainRegionTARGET_TEA_GENITALIA Genitalia] * (TARGET.TEA.GENITALIA, unknown)*
     * *Parasympathetic uterus vasodilators (uterus-parasympathetic)*
     * *Parasympathetic vaginal vasodilators (vagina-parasympathetic)*
@@ -280,10 +309,14 @@ Adult Sources of Neurons:
     * *Ischiocavernosus muscle (ischiocavernosus-muscle)*
     * *Testicle gland (testicle-gland)*
     * *Ovary gland (ovary-gland)*
+    * *Uterus, sympathetic receptors (uterus-sympathetic)*
+    * *Vagina, sympathetic receptors (vagina-sympathetic)*
    * [BrainRegionTARGET_TEA_URETER Ureter] * (TARGET.TEA.URETER, unknown)*
     * *Detrusor urinae muscle parasympathetic receptors (detrusor-urinae-muscle-parasympathetic)*
     * *Internal urethral sphincter parasympathetic receptors (internal-urethral-sphincter-parasympathetic)*
     * *Ureter visceral receptors (ureter-visceral-receptors)*
+    * *Detrusor urinae muscle sympathetic receptors (detrusor-urinae-muscle-sympathetic)*
+    * *Internal urethral sphincter sympathetic receptors (internal-urethral-sphincter-sympathetic)*
    * [BrainRegionTARGET_TEA_RECTUM Rectum] * (TARGET.TEA.RECTUM, unknown)*
     * *Sphincter ani internus muscle parasympathetic receptors (sphincter-ani-internus-muscle-parasympathetic)*
     * *Sphincter ani internus muscle sympathetic receptors (sphincter-ani-internus-muscle-sympathetic)*

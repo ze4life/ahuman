@@ -11,8 +11,10 @@ Circuit is part of aHuman target integrated biological model.
 
 || *Mind Area* || *Component ID* || *Component Name* || *Type* || *Function* ||
 || [BrainAreaAVA AVA] || [BrainRegionAVA_HM_VG AVA.HM.VG] || Vagus Nucleus || Preganglionic Nucleus || Parasympathetic vagal functions in the gastrointestinal tract, lungs ||
+||  || [BrainRegionAVA_PN_PSYM_ILG AVA.PN.PSYM.ILG] || Intralaryngeal Peripheral Ganglion || Symp. Gang. || parasympathetic motor of larynx,  c.n. X ||
 ||  || [BrainRegionAVA_PN_PSYM_PPG AVA.PN.PSYM.PPG] || Pelvic Peripheral Ganglion || Parasymp. Gang. || Sigmoid, rectum, bladder, and external genitalia ||
 ||  || [BrainRegionAVA_PN_SYM_ARG AVA.PN.SYM.ARG] || Aorticorenal Ganglion || Symp. Gang. || Kidney, Ureter ||
+||  || [BrainRegionAVA_PN_SYM_CEG AVA.PN.SYM.CEG] || Coelic Ganglion || Symp. Gang. || Liver, stomach, pancreas, small intestine ||
 ||  || [BrainRegionAVA_PN_SYM_IMG AVA.PN.SYM.IMG] || Inferior Mesenteric Ganglion || Symp. Gang. || Bladder, rectum, reproductive organs ||
 ||  || [BrainRegionAVA_PN_SYM_MCG AVA.PN.SYM.MCG] || Middle Cervical Ganglion || Symp. Gang. || Eye, tear and salivatory glands ||
 ||  || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || Superior Cervical Ganglion || Symp. Gang. || Eye, tear and salivatory glands ||
@@ -55,10 +57,12 @@ Circuit is part of aHuman target integrated biological model.
 http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitMuscleControl.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionAVA_HM_VG AVA.HM.VG] || [BrainRegionAVA_PN_PSYM_ILG AVA.PN.PSYM.ILG] || nucleus-ganglion || (unknown reference) ||
 || [BrainRegionAVA_PN_SYM_IMG AVA.PN.SYM.IMG] || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || ganglion-nucleus || [http://jp.physoc.org/content/557/1/287/F9.expansion.html Schematic overview of spinobulbospinal micturition reflex pathway (IMG -> PAG)] ||
 ||  || [BrainRegionMBA_HP_BR MBA.HP.BR] || ganglion-nucleus || [http://jp.physoc.org/content/557/1/287/F9.expansion.html Schematic overview of spinobulbospinal micturition reflex pathway (IMG -> BAR)] ||
 || [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || [BrainRegionAVA_PN_PSYM_PPG AVA.PN.PSYM.PPG] || nucleus-ganglion || [http://jp.physoc.org/content/557/1/287/F9.expansion.html Schematic overview of spinobulbospinal micturition reflex pathway (IML -> PEL)] ||
 ||  || [BrainRegionAVA_PN_SYM_ARG AVA.PN.SYM.ARG] || nucleus-ganglion || (unknown reference) ||
+||  || [BrainRegionAVA_PN_SYM_CEG AVA.PN.SYM.CEG] || nucleus-ganglion || (unknown reference) ||
 ||  || [BrainRegionAVA_PN_SYM_MCG AVA.PN.SYM.MCG] || nucleus-ganglion || (unknown reference) ||
 ||  || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || nucleus-ganglion || (unknown reference) ||
 ||  || [BrainRegionAVA_PN_SYM_SMG AVA.PN.SYM.SMG] || nucleus-ganglion || (unknown reference) ||
