@@ -44,6 +44,7 @@ private:
 	bool checkNerves_verifyLinks( XmlNerveInfo& info , XmlNerveFiberInfo& nf );
 	bool checkNerves_verifyFiberChain( XmlNerveInfo& info , XmlNerveFiberInfo& nf , String regionSrcId , String regionDstId , ModelVerifierFiberChainPosEnum pos , int midleft , int midright );
 	bool checkMuscles_verifyNerves( String muscle );
+	bool checkMuscles_verifyNerve( XmlMuscleInfo& muscle , String nerve , String cdef );
 	bool checkFiberComp( XmlNerveInfo& info , XmlNerveFiberInfo& nf , String comp );
 	bool checkFiberType( XmlNerveInfo& info , XmlNerveFiberInfo& nf , String type );
 	bool checkMindModel_verifyRegion( MindRegionDef *regionDef );

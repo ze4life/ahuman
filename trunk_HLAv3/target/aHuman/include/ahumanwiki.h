@@ -278,6 +278,7 @@ public:
 private:
 	void addMuscleDivision( XmlMuscleDivision& div );
 	void addMuscleList( int level , XmlMuscleInfo& muscle , StringList& lines );
+	String getNerveList( XmlMuscleInfo& muscle );
 
 private:
 	WikiMaker *wm;

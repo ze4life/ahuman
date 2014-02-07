@@ -226,6 +226,9 @@
 	<circuit id="CircuitSomaticPerception" name="Somatic Perception" enabled="true">
 		<connection type="ganglion-nucleus" primary="true" src="AVA.PN.SG.DRG" dst="BMA.SC.PH.NP"/>
 		<connection type="ganglion-nucleus" primary="true" src="AVA.PN.SG.DRG" dst="BMA.SC.IZ.CCV"/>
+		<connection type="ganglion-nucleus" primary="true" src="AVA.PN.SG.DRG" dst="BMA.SC.IZ.CBS"/>
+		<connection type="ganglion-nucleus" primary="true" src="AVA.PN.SG.DRG" dst="BMA.HM.CU"/>
+		<connection type="nucleus-nucleus" primary="true" src="BMA.HM.CU" dst="SMA.FD.TH.VPL"/>
 		<connection type="nucleus-nucleus" primary="true" src="BMA.SC.IZ.CCV" dst="SMA.FD.TH.VPL"/>
 		<connection type="nucleus-nucleus" primary="true" src="BMA.SC.IZ.CCV" dst="SMA.FD.TH.RIL"/>
 		<connection type="nucleus-nucleus" primary="true" src="BMA.SC.IZ.CCV" dst="BMA.HM.IO"/>
@@ -252,6 +255,7 @@
 		<connection type="nucleus-neocortex" primary="true" src="SMA.FD.PV.OPV" dst="CGA.NC.SPL.PF"/>
 		<connection type="ganglion-nucleus" primary="true" src="AVA.PN.SG.JUG" dst="HMA.HM.SOL"/>
 		<connection type="ganglion-nucleus" primary="true" src="AVA.PN.SG.PET" dst="HMA.HM.TGM.STR"/>
+		<connection type="ganglion-nucleus" primary="true" src="AVA.PN.SG.TRG" dst="HMA.HM.TGM.STR"/>
 	</circuit>
 
 	<!-- ================= intracortical sensory integration to generate memory items in hippocampus =============== -->
@@ -683,6 +687,7 @@
 		<connection type="nucleus-ganglion" primary="true" src="AVA.SC.IZ.IML" dst="AVA.PN.SYM.MCG"/>
 		<connection type="nucleus-ganglion" primary="true" src="AVA.SC.IZ.IML" dst="AVA.PN.SYM.ARG"/>
 		<connection type="nucleus-ganglion" primary="true" src="AVA.SC.IZ.IML" dst="AVA.PN.SYM.SMG"/>
+		<connection type="nucleus-ganglion" primary="true" src="AVA.SC.IZ.IML" dst="AVA.PN.SYM.CEG"/>
 		<connection type="nucleus-ganglion" primary="true" src="AVA.HM.VG" dst="AVA.PN.PSYM.ILG"/>
 	</circuit>
 
