@@ -106,6 +106,11 @@ String XmlHMind::createRegionElement( Xml item ) {
 	XmlHMindElementInfo *info = new XmlHMindElementInfo();
 	createElementInfo( mapId , item , *info );
 	nodeInfo.add( mapId , info );
+
+	// add connectors to the map
+	if( info -> type.equals( "connector" ) )
+		connectorInfo.add( info -> name , info );
+
 	return( mapId );
 }
 
@@ -136,6 +141,11 @@ void XmlHMind::createElementInfo( String mapId , Xml item , XmlHMindElementInfo&
 const XmlHMindElementInfo& XmlHMind::getElementInfo( String node ) {
 	XmlHMindElementInfo *ni = nodeInfo.get( node );
 	return( *ni );
+}
+
+const XmlHMindElementInfo *XmlHMind::getConnectorInfo( String name ) {
+	XmlHMindElementInfo *ni = connectorInfo.get( name );
+	return( ni );
 }
 
 String XmlHMind::getMappedRegion( String node ) {

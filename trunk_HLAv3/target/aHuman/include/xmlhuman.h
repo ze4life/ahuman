@@ -38,6 +38,8 @@ public:
 	void getElements( String parentNode , StringList& elements );
 	void getIdentifiedElements( String parentNode , StringList& elements );
 	const XmlHMindElementInfo& getElementInfo( String node );
+	const XmlHMindElementInfo *getConnectorInfo( String name );
+
 	String getMappedRegion( String node );
 	void getChildRegions( String node , StringList& regions );
 	String getDotDef( String node );
@@ -55,6 +57,7 @@ private:
 private:
 	Xml xml;
 	MapStringToClass<XmlHMindElementInfo> nodeInfo;
+	MapStringToClass<XmlHMindElementInfo> connectorInfo;
 };
 
 /*#########################################################################*/
@@ -245,6 +248,7 @@ private:
 	Xml getMuscleCategoryXml( Xml categoryItem );
 	XmlMuscleInfo *createMuscleInfo( String muscle , Xml xmlitem );
 	void addChilds( XmlMuscleDivision *division , Xml parent , MapStringToClass<XmlMuscleInfo>& list );
+	void addNerveMuscles( XmlMuscleInfo *muscle );
 
 private:
 	MapStringToClass<XmlMuscleInfo> muscles;
@@ -264,8 +268,7 @@ public:
 	String name;
 	String type;
 	String link;
-	String nerve;
-	String nervelist;
+	MapStringToString nerves;
 	String action;
 	String imgsrc;
 	String imgheight;

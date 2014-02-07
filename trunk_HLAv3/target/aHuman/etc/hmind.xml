@@ -7,43 +7,43 @@
 				dotdef="color=firebrick1"
 				function="Light and Color Perception Sensor"
 				>
-				<element id="eye-edge-output" name="Rods and Cones" type="connector"
+				<element id="eye-edge-output" name="Eye - rods and cones" type="connector"
 					function="after on-center/off-center edge extraction and zipping 100:1"/>
-				<element id="eye-somatic" name="Somatic Receptors" type="connector"
+				<element id="eye-somatic" name="Eye - somatic receptors" type="connector"
 					function="eye -> semilunar ganglion/ophthalmic -> PTR"/>
-				<element id="eye-visceral" name="Visceral Receptors" type="connector"
+				<element id="eye-visceral" name="Eye - visceral receptors" type="connector"
 					function="eye -> semilunar ganglion/ophthalmic -> STR, proprioception"/>
 
-				<element id="eye-muscle-rotate-major" name="Inferior Oblique, and Superior, Medial, and Inferior Rectus Muscles" type="connector"
+				<element id="eye-muscle-rotate-major" name="Eye - inferior oblique, and superior, medial, and inferior rectus muscles" type="connector"
 					function="levator palpebrae superioris, the inferior oblique, and superior, medial, and inferior rectus muscles"/>
-				<element id="eye-muscle-rotate-minor" name="Superior Oblique Muscles" type="connector"
+				<element id="eye-muscle-rotate-minor" name="Eye - superior oblique muscles" type="connector"
 					function="superior oblique, rotation in a vertical plane - looking down and up, rotation in the plane of the face"/>
-				<element id="eye-muscle-rotate-vestibular" name="Lateral Rectus" type="connector"
+				<element id="eye-muscle-rotate-vestibular" name="Eye - lateral rectus" type="connector"
 					function="lateral rectus, quick turn to the right -> compensatory reflex turning of two eyes to the left"
 					notes="vestibular nucleus -> PPRF -> ABD -> this, larger motor neurons, c.n. VI"/>
 
-				<element id="eye-muscle-curvature" name="Ciliary Muscle" type="connector"
+				<element id="eye-muscle-curvature" name="Eye - ciliary muscle" type="connector"
 					function="to ciliary muscle to accomodate eye"/>
-				<element id="eye-muscle-pupil-close" name="Sphincter Pupillae Muscle" type="connector"
+				<element id="eye-muscle-pupil-close" name="Eye - sphincter pupillae muscle" type="connector"
 					notes="sphincter pupillae is situated along the edge of the iris contracts to close the opening in the pupil"
 					function="to sphincter pupillae to close pupil"/>
-				<element id="eye-muscle-pupil-open" name="Dilator Pupillae Muscle" type="connector"
+				<element id="eye-muscle-pupil-open" name="Eye - dilator pupillae muscle" type="connector"
 					notes="dilator pupillae runs radially, like the spokes of a wheel, through the iris, and when it contracts this opens the pupil"
 					function="to dilator pupillae to open pupil"/>
 
-				<element id="eye-muscle-close-conscious" name="Orbicularis Oculi" type="connector"
+				<element id="eye-muscle-close-conscious" name="Eye - orbicularis oculi" type="connector"
 					notes="squints the eyes, and the part that is labeled, or outer part, is the basis for AU 6 in FACS, from intermediate facial subnucleus"
 					comments="the inner part, mostly on the eyelids is the basis for AU 7 in FACS"
 					function="conscious muscle to close eye"/>
-				<element id="eye-muscle-close-involuntary" name="Ligamentum Palpebrale" type="connector"
+				<element id="eye-muscle-close-involuntary" name="Eye - ligamentum palpebrale" type="connector"
 					notes="sleep, blink, corneal/clinking reflex"
 					comments="small muscle at the corner of the eye"
 					function="involuntary muscle to close eye"/>
 
-				<element id="eye-tears-gland" name="Lacrimal Gland" type="connector"
+				<element id="eye-tears-gland" name="Eye - lacrimal gland" type="connector"
 					notes="from superior salivatory to sphenopalatine ganglion"
 					function="tears"/>
-				<element id="eye-lacrimal-gland-conjunctiva-receptors" name="Lacrimal gland and conjunctiva receptors" type="connector"
+				<element id="eye-lacrimal-gland-conjunctiva-receptors" name="Eye - lacrimal gland and conjunctiva receptors" type="connector"
 					notes="sensory innervation to the gland and the conjunctiva, skin of the upper eyelid"
 					function="tears"/>
 			</element>
@@ -52,43 +52,45 @@
 				dotdef="color=firebrick1"
 				function="Auditory and Vestibular Sensor"
 				>
-				<element id="ear-inner-hair-cells" name="Inner Hair Cells" type="connector"
+				<element id="ear-inner-hair-cells" name="Ear - inner hair cells" type="connector"
 					notes="transform cochlea fluid vibrations into electrical signals"
 					function="frequency-aligned tonotopic mapping"/>
-				<element id="ear-outer-hair-cells-feedback" name="Outer Hair Cells Feedback" type="connector"
+				<element id="ear-outer-hair-cells-feedback" name="Ear - outer hair cells feedback" type="connector"
 					function="verifies amplify actions done"/>
 
-				<element id="ear-cristae-maculae" name="Cristae and Maculae" type="connector"
+				<element id="ear-cristae-maculae" name="Ear - cristae and maculae" type="connector"
 					notes="located in ampullae of semicircular canals, saccule and utricle"
 					function="activate afferent receptors in response to rotational and linear acceleration"/>
 
-				<element id="ear-somatic" name="Somatic Receptors" type="connector"
+				<element id="ear-somatic" name="Ear - somatic receptors" type="connector"
 					comments="from auditory meatus to genuculate ganglion"
 					function="from skin to geniculate ganglion to spinal trigeminal nucleus"/>
-				<element id="ear-acoustic-meatus-skin" name="Acoustic meatus skin" type="connector"
+				<element id="ear-external-skin" name="Ear - outer ear skin" type="connector"
+					function="skin over the mastoid process, back of the auricle, lobule and a portion of the scalp"/>
+				<element id="ear-acoustic-meatus-skin" name="Ear - acoustic meatus skin" type="connector"
 					function="from skin lining external acoustic meatus, and tympanic membrane to trigeminal gangion"/>
-				<element id="ear-visceral" name="Visceral Receptors" type="connector"
+				<element id="ear-visceral" name="Ear - visceral receptors" type="connector"
 					notes="CN IX, from STR to VPM, timpanic cavity"
 					function="pain, temperature, and touch"/>
-				<element id="ear-timpanic-cavity" name="Timpanic cavity" type="connector"
+				<element id="ear-timpanic-cavity" name="Ear - timpanic cavity" type="connector"
 					notes="STR to VPM"
 					function="pain, temperature, and touch"/>
 
-				<element id="ear-outer-hair-cells" name="Outer Hair Cells" type="connector"
+				<element id="ear-outer-hair-cells" name="Ear - outer hair cells" type="connector"
 					notes="without functioning outer hair cells, the sensitivity decreases by approximately 50 dB, allows frequency discrimination, extend hearing range to about 200 kHz in some marine mammals" 
 					function="mechanically amplify low-level sound that enters cochlea"/>
-				<element id="ear-stapedius" name="Stapedius" type="connector"
+				<element id="ear-stapedius" name="Ear - stapedius" type="connector"
 					notes="control amplitude of sound waves from general external environment to inner ear" 
 					function="dampens vibrations of stapes"/>
-				<element id="ear-tensor-tympani" name="Tympanic Membrane" type="connector"
+				<element id="ear-tensor-tympani" name="Ear - tympanic membrane" type="connector"
 					notes="pull malleus medially, tensing tympanic membrane, damping vibration in ear ossicles" 
 					function="dampen sounds, such as those produced from chewing"/>
-				<element id="ear-auricularis" name="Auricularis Muscle" type="connector"
+				<element id="ear-auricularis" name="Ear - auricularis muscle" type="connector"
 					notes="auricularis posterior, superioris, anterior" 
 					comments="auricula - part of outer ear"
 					function="move scalp and to point auricula in direction of source of sound"/>
 
-				<element id="ear-posterior-auricular-muscles" name="Posterior Auricular Muscles" type="connector" 
+				<element id="ear-posterior-auricular-muscles" name="Ear - posterior auricular muscles" type="connector" 
 					function="adjust the direction of the pinna (outer ear)"/>
 			</element>
 
@@ -96,25 +98,25 @@
 				dotdef="color=firebrick1"
 				function="Olfaction Sensor"
 				>
-				<element id="nose-olfactory-mucosa" name="Olfactory Mucosa" type="connector" 
+				<element id="nose-olfactory-mucosa" name="Nose - olfactory mucosa" type="connector" 
 					notes="Chemoreceptors" 
 					function="Sensing smells"/>
 
-				<element id="nose-proprioceptors" name="Proprioceptors" type="connector" 
+				<element id="nose-proprioceptors" name="Nose - proprioceptors" type="connector" 
 					function="proprioception"/>
-				<element id="nose-somatic" name="Touch Receptors" type="connector" 
+				<element id="nose-somatic" name="Nose - touch receptors" type="connector" 
 					function="touch"/>
-				<element id="nose-visceral-vagus" name="Visceral Nodose Receptors" type="connector" 
+				<element id="nose-visceral-vagus" name="Nose - visceral nodose receptors" type="connector" 
 					notes="to nodose ganglion to SOL" 
 					function="visceral sensations"/>
-				<element id="nose-visceral-pharynx" name="Visceral Pharynx Receptors" type="connector" 
+				<element id="nose-visceral-pharynx" name="Nose - visceral pharynx receptors" type="connector" 
 					notes="to petrosal ganglion to SOL" 
 					function="visceral sensations"/>
 
-				<element id="nose-nasal-glands" name="Nasal Glands" type="connector" 
+				<element id="nose-nasal-glands" name="Nose - nasal glands" type="connector" 
 					notes="from pterygopalatine ganglion (parasympathetic)" 
 					function="smelling control and moisturing"/>
-				<element id="nose-muscles" name="Nasalis, Depressor Septi, Procerus, Dilator Naris, Accessory Labial Muscles" type="connector" 
+				<element id="nose-muscles" name="Nose - nasalis, depressor septi, procerus, dilator naris, accessory labial muscles" type="connector" 
 					function="constricts nostrils, lower alar pars and helps to wrinkle nose"/>
 			</element>
 
@@ -122,18 +124,22 @@
 				dotdef="color=firebrick1"
 				function="Mind Protection"
 				>
-				<element id="cranial-meninges" name="Cranial meninges" type="connector" 
+				<element id="cranial-meninges" name="Mindcover - cranial meninges" type="connector" 
 					function="primary function of the meninges and of the cerebrospinal fluid is to protect the central nervous system"/>
-				<element id="arterial-vasoconstrictors" name="Arterial vasoconstrictors" type="connector" 
+				<element id="arterial-vasoconstrictors" name="Mindcover - arterial vasoconstrictors" type="connector" 
 					function="increase in systemic blood pressure"/>
-				<element id="tentorium-cerebelli-dura-matter" name="Tentorium cerebelli dura mater visceral receptors" type="connector" 
+				<element id="tentorium-cerebelli-dura-matter" name="Mindcover - tentorium cerebelli dura mater visceral receptors" type="connector" 
 					function="visceral sensation of tentorium cerebelli and supratentorial falx cerebri"/>
-				<element id="brachial-artery-vasoconstrictors" name="Wall of brachial artery" type="connector" 
+				<element id="brachial-artery-vasoconstrictors" name="Mindcover - wall of brachial artery" type="connector" 
 					function="increase in systemic blood pressure"/>
-				<element id="arm-blood-vessels" name="Arm blood vessels" type="connector"
+				<element id="arm-blood-vessels" name="Mindcover - arm blood vessels" type="connector"
 					function="constrict vessels resulting in poor circulation to limb"/>
-				<element id="forearm-blood-vessels" name="Arm blood vessels" type="connector"
+				<element id="forearm-blood-vessels" name="Mindcover - forearm blood vessels" type="connector"
 					function="vasomotor forearm sympathetic fibers"/>
+				<element id="stomach-blood-vessels" name="Mindcover - stomach blood vessels" type="connector"
+					function="vasomotor stomach sympathetic fibers"/>
+				<element id="liver-blood-vessels" name="Mindcover - liver blood vessels" type="connector"
+					function="vasomotor liver sympathetic fibers"/>
 			</element>
 
 		</element>
@@ -144,26 +150,28 @@
 				dotdef="color=firebrick1"
 				function="Blood Supply"
 				>
-				<element id="heart-symp-control" name="NE Receptors of Atrium Muscles" type="connector"
+				<element id="heart-symp-control" name="Heart - NE receptors of atrium muscles" type="connector"
 					notes="lowers the threshold potential of SA node cells, vasoconstriction of arteries and veins" 
 					function="increase overall activity of heart"/>
-				<element id="heart-cardiac-muscle" name="Cardiac muscle" type="connector"
+				<element id="heart-cardiac-upper-muscle" name="Heart - upper cardiac muscle" type="connector"
 					function="increase spontaneous diastonic muscle cells depolarization; increase matabolic demands of heart"/>
-				<element id="heart-psymp-control" name="ACh Receptors of Atrium Muscles" type="connector"
+				<element id="heart-cardiac-lower-muscle" name="Heart - lower cardiac muscle" type="connector"
+					function="increase heart rate (chronotropic effect) and force of cardiac contraction (inotropic effect)"/>
+				<element id="heart-psymp-control" name="Heart - ACh receptors of atrium muscles" type="connector"
 					notes="creating state of hyperpolarity in which cells are less easily excited" 
 					function="decrease firing rate of SA node, slowing transmission of pacemaker impulse"/>
 
-				<element id="heart-aorta-baroreceptors" name="Baroreceptors in Aorta" type="connector"
+				<element id="heart-aorta-baroreceptors" name="Heart - baroreceptors in aorta" type="connector"
 					notes="walls of arteries are distended by increase in blood pressure" 
 					function="increase in blood pressure signal"/>
-				<element id="heart-carotid-baroreceptors" name="Baroreceptors in Carotid Artery" type="connector"
+				<element id="heart-carotid-baroreceptors" name="Heart - baroreceptors in carotid artery" type="connector"
 					notes="walls of arteries are distended by increase in blood pressure" 
 					function="increase in blood pressure signal"/>
-				<element id="heart-visceral" name="Visceral Receptors" type="connector"
+				<element id="heart-visceral" name="Heart - visceral receptors" type="connector"
 					notes="Chemoreceptors" 
 					function="temperature and pain"/>
 
-				<element id="heart-carotid-inhibitors" name="Baroreceptors inhibitors" type="connector"
+				<element id="heart-carotid-inhibitors" name="Heart - baroreceptors inhibitors" type="connector"
 					function="decrease of blood pressure signal"/>
 			</element>
 
@@ -171,152 +179,164 @@
 				dotdef="color=firebrick1"
 				function="Eating, Speaking"
 				>
-				<element id="mouth-submandibular-gland" name="Submandibular Gland" type="connector" 
+				<element id="mouth-submandibular-gland" name="Mouth - submandibular gland" type="connector" 
 					notes="one of salivary glands, from submandibular (submaxillary) ganglion" 
 					function="produces 70% of saliva in oral cavity, mixed serous (moisturing) and mucous (process food)"/>
-				<element id="mouth-sublingual-gland" name="Sublingual Gland" type="connector" 
+				<element id="mouth-sublingual-gland" name="Mouth - sublingual gland" type="connector" 
 					notes="one of salivary glands, from submandibular (submaxillary) ganglion" 
 					function="produces 5% of saliva in oral cavity, mostly mucous"/>
-				<element id="mouth-parotid-gland" name="Parotid Gland" type="connector" 
+				<element id="mouth-submandibular-gland-vasoconstrictors" name="Mouth - submandibular gland vasoconstrictors" type="connector" 
+					notes="volume decreases, but the secretions are increased by parasympathetic and sympathetic innervation" 
+					function="reduces glandular bloodflow, thereby decreasing the volume of fluid in salivary secretions"/>
+				<element id="mouth-sublingual-gland-vasoconstrictors" name="Mouth - sublingual gland vasoconstrictors" type="connector" 
+					function="reduces glandular bloodflow"/>
+				<element id="mouth-parotid-gland" name="Mouth - parotid gland" type="connector" 
 					notes="one of salivary glands, from otic ganglion, hidration for chewing and swallowing"
 					function="produces 25% of saliva in oral cavity, mostly serous"/>
-				<element id="mouth-oral-mucosal-gland" name="Oral Mucosa" type="connector" 
+				<element id="mouth-oral-mucosal-gland" name="Mouth - oral mucosa" type="connector" 
 					function="lubrication, immunological defence"/>
 
-				<element id="mouth-tongue-hair-cell" name="Tongue Gustatory Hair Cell" type="connector" 
+				<element id="mouth-tongue-hair-cell" name="Mouth - tongue gustatory hair cell" type="connector" 
 					function="taste sensation"/>
-				<element id="mouth-epiglottis-taste-buds" name="Epiglottis" type="connector" 
+				<element id="mouth-epiglottis-taste-buds" name="Mouth - epiglottis" type="connector" 
 					function="taste sensation"/>
 
-				<element id="mouth-tongue-muscles" name="Tongue Muscles" type="connector" 
+				<element id="mouth-tongue-muscles" name="Mouth - tongue muscles" type="connector" 
 					function="move tongue"/>
-				<element id="mouth-lips-muscles" name="Lips Muscles" type="connector" 
+				<element id="mouth-lips-muscles" name="Mouth - lips muscles" type="connector" 
 					function="move lips"/>
-				<element id="mouth-genioglossus-muscle" name="Genioglossus Muscle" type="connector" 
+				<element id="mouth-genioglossus-muscle" name="Mouth - genioglossus muscle" type="connector" 
 					function="keeps airway open and enables tongue to stick out and retract"/>
-				<element id="mouth-hyoglossus-muscle" name="Hyoglossus Muscle" type="connector" 
+				<element id="mouth-hyoglossus-muscle" name="Mouth - hyoglossus muscle" type="connector" 
 					function="depress and retract the tongue, important in singing"/>
-				<element id="mouth-styloglossus-muscle" name="Styloglossus Muscle" type="connector" 
+				<element id="mouth-styloglossus-muscle" name="Mouth - styloglossus muscle" type="connector" 
 					function="chewing, talking, suckling, and many other functions of tongue"/>
 
-				<element id="mouth-palatine-tonsil" name="Palatine Tonsil" type="connector" 
+				<element id="mouth-palatine-tonsil" name="Mouth - palatine tonsil" type="connector" 
 					function="providing antibodies against illnesses and diseases such as diphtheria"/>
-				<element id="mouth-lingual-tonsil" name="Lingual Tonsil" type="connector" 
+				<element id="mouth-lingual-tonsil" name="Mouth - lingual tonsil" type="connector" 
 					function="production of antibodies that are part of natural immune system"/>
-				<element id="mouth-uvula-receptors" name="Uvula receptors" type="connector" 
+				<element id="mouth-uvula-receptors" name="Mouth - uvula receptors" type="connector" 
 					function="preventing food from entering the nasal cavity"/>
-				<element id="mouth-teeth" name="Teeth" type="connector" 
+				<element id="mouth-teeth" name="Mouth - teeth" type="connector" 
 					function="chewing"/>
 
-				<element id="mouth-larynx-phonatory-muscles" name="Phonatory Muscles" type="connector" 
+				<element id="mouth-larynx-phonatory-muscles" name="Mouth - phonatory larynx muscles" type="connector" 
 					function="move vocal cords together and serve production of voice"/>
-				<element id="mouth-larynx-respiratory-muscles" name="Respiratory Muscles" type="connector" 
+				<element id="mouth-larynx-respiratory-muscles" name="Mouth - respiratory larynx muscles" type="connector" 
 					function="move vocal cords apart and serve breathing"/>
-				<element id="mouth-larynx-thyrohyoid-muscle" name="Thyrohyoid Muscle" type="connector" 
+				<element id="mouth-larynx-thyrohyoid-muscle" name="Mouth - thyrohyoid muscle" type="connector" 
 					function="depresses the hyoid and elevates the larynx"/>
 
-				<element id="mouth-posterior-digastric-muscles" name="Posterior Belly of Digastric Muscles" type="connector" 
+				<element id="mouth-posterior-digastric-muscles" name="Mouth - posterior belly of digastric muscles" type="connector" 
 					function="elevate hyoid bone to open mouth"/>
-				<element id="mouth-stylohyoid-muscles" name="Posterior Belly of Digastric Muscles" type="connector" 
+				<element id="mouth-stylohyoid-muscles" name="Mouth - stylohyoid muscles" type="connector" 
 					function="draw hyoid bone backwards and elevate tongue"/>
 
-				<element id="mouth-uvula-muscle" name="Uvula muscle" type="connector" 
+				<element id="mouth-uvula-muscle" name="Mouth - uvula muscle" type="connector" 
 					function="shortens and broadens the uvula"/>
-				<element id="hard-palate-mucous-gland" name="Hard palate mucous gland" type="connector" 
+				<element id="hard-palate-mucous-gland" name="Mouth - hard palate mucous gland" type="connector" 
 					function="produce mucous fluid"/>
-				<element id="soft-palate-mucous-gland" name="Soft palate mucous gland" type="connector" 
+				<element id="soft-palate-mucous-gland" name="Mouth - soft palate mucous gland" type="connector" 
 					function="produce mucous fluid"/>
-				<element id="soft-palate-sparse-taste-receptors" name="Soft palate sparse taste receptors" type="connector" 
+				<element id="soft-palate-sparse-taste-receptors" name="Mouth - soft palate sparse taste receptors" type="connector" 
 					function="taste sensation"/>
+				<element id="palatine-tonsil-receptors" name="Mouth - palatine tonsil receptors" type="connector" 
+					function="visceral mucous membrane over soft palate and tonsil"/>
 
-				<element id="masticatory-masseter-muscle" name="Masseter muscle" type="connector" 
+				<element id="masticatory-masseter-muscle" name="Mouth - masseter muscle" type="connector" 
 					function="elevation (as in closing of the mouth) and retraction of mandible"/>
-				<element id="masticatory-lateral-pterygoid-muscle" name="Lateral pterygoid muscle" type="connector" 
+				<element id="masticatory-lateral-pterygoid-muscle" name="Mouth - lateral pterygoid muscle" type="connector" 
 					function="depresses mandible"/>
-				<element id="masticatory-medial-pterygoid-muscle" name="Medial pterygoid muscle" type="connector" 
+				<element id="masticatory-medial-pterygoid-muscle" name="Mouth - medial pterygoid muscle" type="connector" 
 					function="elevates mandible, closes jaw, helps lateral pterygoids in moving the jaw from side to side"/>
-				<element id="masticatory-tensor-tympani-muscle" name="Tensor tympani muscle" type="connector" 
+				<element id="masticatory-tensor-tympani-muscle" name="Mouth - tensor tympani muscle" type="connector" 
 					function="tensing the tympanic membrane"/>
 				<element id="masticatory-tensor-veli-palatini-muscle" name="Tensor veli palatini muscle" type="connector" 
 					function="tension of the soft palate"/>
-				<element id="masticatory-temporal-muscle" name="Temporal muscle" type="connector" 
+				<element id="masticatory-temporal-muscle" name="Mouth - temporal muscle" type="connector" 
 					function="elevation and retraction of mandible"/>
 
-				<element id="masticatory-unconscious-muscle-spindles" name="Proprioception receptors of masticatory muscles" type="connector" 
+				<element id="masticatory-unconscious-muscle-spindles" name="Mouth - proprioception receptors of masticatory muscles" type="connector" 
 					function="unconscious proprioception from muscle spindles; monosynaptic masticatory reflex"/>
 
-				<element id="thyroid-gland" name="Thyroid gland" type="connector" 
+				<element id="thyroid-gland" name="Mouth - thyroid gland" type="connector" 
 					function="release thyroid hormones into blood"/>
 
-				<element id="arytenoid-muscle" name="Arytenoid muscle" type="connector" 
+				<element id="arytenoid-muscle" name="Mouth - arytenoid muscle" type="connector" 
 					function="approximate the arytenoid cartilages (close rima glottidis)"/>
-				<element id="cricothyroid-muscle" name="Cricothyroid muscle" type="connector" 
+				<element id="cricothyroid-muscle" name="Mouth - cricothyroid muscle" type="connector" 
 					function="tension and elongation of the vocal folds (has minor adductory effect)"/>
-				<element id="inferior-pharyngeal-constrictor-muscle" name="Inferior pharyngeal constrictor muscle" type="connector" 
+				<element id="inferior-pharyngeal-constrictor-muscle" name="Mouth - inferior pharyngeal constrictor muscle" type="connector" 
 					function="swallowing"/>
-				<element id="thyroid-gland-levator-muscle" name="Levator muscle of thyroid gland" type="connector" 
+				<element id="thyroid-gland-levator-muscle" name="Mouth - levator muscle of thyroid gland" type="connector" 
 					function="elevates the thyroid gland"/>
 
-				<element id="lateral-cricoarytenoid-muscle" name="Lateral cricoarytenoid muscle" type="connector" 
+				<element id="lateral-cricoarytenoid-muscle" name="Mouth - lateral cricoarytenoid muscle" type="connector" 
 					function="adduct and medially rotate the cartilage, pulling the vocal ligaments towards the midline and backwards and so closing off the rima glottidis"/>
-				<element id="oblique-arytenoid-muscle" name="Oblique arytenoid muscle" type="connector" 
+				<element id="oblique-arytenoid-muscle" name="Mouth - oblique arytenoid muscle" type="connector" 
 					function="sphincter of the laryngeal inlet"/>
-				<element id="posterior-cricoarytenoid-muscle" name="Posterior cricoarytenoid muscle" type="connector" 
+				<element id="posterior-cricoarytenoid-muscle" name="Mouth - posterior cricoarytenoid muscle" type="connector" 
 					function="abducts and laterally rotates the cartilage, pulling the vocal ligaments away from the midline and forward and so opening the rima glottidis"/>
-				<element id="thyroarytenoid-muscle" name="Thyroarytenoid muscle" type="connector" 
+				<element id="thyroarytenoid-muscle" name="Mouth - thyroarytenoid muscle" type="connector" 
 					function="thickens the vocal folds and decreases length; also helps to adduct the vocal folds during speech"/>
-				<element id="thyroepiglottic-muscle" name="Thyroepiglottic muscle" type="connector" 
+				<element id="thyroepiglottic-muscle" name="Mouth - thyroepiglottic muscle" type="connector" 
 					function="closes the inlet to the larynx"/>
+
+				<element id="occipitalis-muscle" name="Mouth - occipitalis muscle" type="connector" 
+					function="moves the scalp back"/>
 			</element>
 
 			<element id="TARGET.TEA.FACE" name="Face" mapped="true" type="Effector"
 				dotdef="color=firebrick1"
 				function="Mimics"
 				>
-				<element id="face-occipitofrontal-muscles" name="Occipitofrontal Muscles" type="connector" 
+				<element id="face-occipitofrontal-muscles" name="Face - occipitofrontal muscles" type="connector" 
 					function="move the scalp"/>
-				<element id="face-depressor-supercilii-muscle" name="Depressor supercilii muscle" type="connector" 
+				<element id="face-depressor-supercilii-muscle" name="Face - depressor supercilii muscle" type="connector" 
 					function="depression of eyebrow"/>
-				<element id="face-levator-labii-superioris-muscle" name="Levator labii superioris muscle" type="connector" 
+				<element id="face-levator-labii-superioris-muscle" name="Face - levator labii superioris muscle" type="connector" 
 					function="elevates the upper lip"/>
-				<element id="face-orbicularis-oculi-muscle" name="Orbicularis oculi muscle, zygomatic" type="connector"
+				<element id="face-orbicularis-oculi-muscle" name="Face - orbicularis oculi muscle, zygomatic" type="connector"
 					function="closes the eyelids"/>
-				<element id="face-zygomaticus-major-muscle-proper" name="Zygomaticus major muscle, proper" type="connector"
+				<element id="face-zygomaticus-major-muscle-proper" name="Face - zygomaticus major muscle, proper" type="connector"
 					function="draws angle of mouth upward and laterally"/>
 
-				<element id="face-skin" name="Face skin" type="connector"
+				<element id="face-skin" name="Face - face skin" type="connector"
 					function="sensory fibers from the skin"/>
+				<element id="face-parotid-skin" name="Face - parotid skin" type="connector"
+					function="facial skin over the parotid gland"/>
 			</element>
 
 			<element id="TARGET.TEA.NECK" name="Neck" mapped="true" type="Effector"
 				dotdef="color=firebrick1"
 				function="Move Head"
 				>
-				<element id="neck-low-cutaneous-receptors" name="Cutaneous receptors of low neck" type="connector"
+				<element id="neck-low-cutaneous-receptors" name="Neck - cutaneous receptors of low neck" type="connector"
 					function="skin of medial infraclavicular region"/>
 
-				<element id="obliquus-capitis-inferior-muscle" name="Obliquus capitis inferior muscle" type="connector"
+				<element id="obliquus-capitis-inferior-muscle" name="Neck - obliquus capitis inferior muscle" type="connector"
 					function="rotation of head and neck"/>
-				<element id="obliquus-capitis-superior-muscle" name="Obliquus capitis superior muscle" type="connector"
+				<element id="obliquus-capitis-superior-muscle" name="Neck - obliquus capitis superior muscle" type="connector"
 					function="extends head and flex head to the ipsilateral side"/>
-				<element id="rectus-capitis-posterior-major-muscle" name="Rectus capitis posterior major muscle" type="connector"
+				<element id="rectus-capitis-posterior-major-muscle" name="Neck - rectus capitis posterior major muscle" type="connector"
 					function="ipsilateral rotation of head and extension"/>
-				<element id="rectus-capitis-posterior-minor-muscle" name="Rectus capitis posterior minor muscle" type="connector"
+				<element id="rectus-capitis-posterior-minor-muscle" name="Neck - rectus capitis posterior minor muscle" type="connector"
 					function="extends the head at the neck, but is considered to be more of a sensory organ than a muscle"/>
 
-				<element id="neck-semispinalis-capitis" name="Semispinalis capitis" type="connector"
+				<element id="neck-semispinalis-capitis" name="Neck - semispinalis capitis" type="connector"
 					function="extend the head"/>
 
-				<element id="levator-scapulae-capitis" name="Levator scapulae muscle" type="connector"
+				<element id="levator-scapulae-capitis" name="Neck - levator scapulae muscle" type="connector"
 					function="elevates scapula and tilts its glenoid cavity inferiorly by rotating scapula"/>
-				<element id="scalenus-anterior" name="Scalenus anterior" type="connector"
+				<element id="scalenus-anterior" name="Neck - scalenus anterior" type="connector"
 					function="elevates first rib, rotate the neck to the opposite side"/>
-				<element id="scalenus-medius" name="Scalenus medius" type="connector"
+				<element id="scalenus-medius" name="Neck - scalenus medius" type="connector"
 					function="elevate 1st rib, laterally flex (bend) the neck to the same side"/>
-				<element id="scalenus-posterior" name="Scalenus posterior" type="connector"
+				<element id="scalenus-posterior" name="Neck - scalenus posterior" type="connector"
 					function="elevate 2nd rib, tilt the neck to the same side"/>
 
-				<element id="geniohyoid-muscle" name="Geniohyoid muscle" type="connector"
+				<element id="geniohyoid-muscle" name="Neck - geniohyoid muscle" type="connector"
 					function="carry hyoid bone and the tongue upward during deglutition"/>
 			</element>
 
@@ -324,39 +344,41 @@
 				dotdef="color=firebrick1"
 				function="Blood Sanity"
 				>
-				<element id="glucose-and-osmoreceptors" name="Glucose and osmoreceptors" type="connector"
+				<element id="glucose-and-osmoreceptors" name="Liver - glucose and osmoreceptors" type="connector"
 					function="sensation of lipids, glucose, and metabolites (after eating and drinking) and triggers the nervous system to make appropriate physiological changes"/>
-				<element id="glands" name="Abdominal alimentary tract glands" type="connector"
+				<element id="glands" name="Liver - abdominal alimentary tract glands" type="connector"
 					function="Increase plasma protein synthesis and secretion"/>
+				<element id="visceral-receptors" name="Liver - visceral receptors" type="connector"
+					function="pain from the liver parenchyma"/>
 			</element>
 
 			<element id="TARGET.TEA.STOMACH" name="Stomach" mapped="true" type="Effector"
 				dotdef="color=firebrick1"
 				function="Digestion"
 				>
-				<element id="stomach-wall" name="Outer longitudinal and inner circular smooth muscles" type="connector"
+				<element id="stomach-wall" name="Stomach - outer longitudinal and inner circular smooth muscles" type="connector"
 					function="acetylcholine activates muscarinic receptors on smooth muscles - increasing motility of the stomach"/>
-				<element id="stomach-mucosal-gastric-glands" name="Stomach mucosal gastric glands" type="connector"
+				<element id="stomach-mucosal-gastric-glands" name="Stomach - mucosal gastric glands" type="connector"
 					function="acetylcholine activates muscarinic receptors cause an increase in gastric juice secretion"/>
 
-				<element id="stomach" name="Stomach" type="connector"
+				<element id="stomach" name="Stomach - enzyme glands" type="connector"
 					function="secretes protein-digesting enzymes called proteases and strong acids to aid in food digestion; digestion; nutrition sensor; some absorption"/>
-				<element id="duodentum" name="Duodentum" type="connector"
+				<element id="duodentum" name="Stomach - duodentum" type="connector"
 					function="food intake regulation, via glucoreception in taste receptors"/>
-				<element id="small-intestine" name="Small intestine" type="connector"
+				<element id="small-intestine" name="Stomach - small intestine" type="connector"
 					function="where most chemical digestion takes place; food from stomach is allowed into duodenum through pylorus by pyloric sphincter; absorb nutrients from ingested food"/>
-				<element id="colon" name="Colon" type="connector"
+				<element id="colon" name="Stomach - colon" type="connector"
 					function="extracts water and salt from solid wastes; storing waste"/>
-				<element id="pancreas" name="Pancreas" type="connector"
+				<element id="pancreas" name="Stomach - pancreas" type="connector"
 					function="secret digestive enzymes that act in small intestine"/>
-				<element id="spleen" name="Spleen" type="connector"
+				<element id="spleen" name="Stomach - spleen" type="connector"
 					function="red pulp - blood filter, removes old red blood cells, holds a reserve of blood, recycles iron; white pulp - synthesizes antibodies in its white pulp and removes antibody-coated bacteria and antibody-coated blood cells by way of blood and lymph node circulation"/>
-				<element id="kidney" name="Kidney" type="connector"
+				<element id="kidney" name="Stomach - kidney" type="connector"
 					function="regulating acid-base balance, electrolyte concentrations, extracellular fluid volume, blood pressure, filter to urine"/>
 
-				<element id="muscularis-mucosae" name="Muscularis mucosae" type="connector"
+				<element id="muscularis-mucosae" name="Stomach - muscularis mucosae" type="connector"
 					function="keep the mucosal surface and underlying glands in a constant state of gentle agitation to expel contents of glandular crypts and enhance contact between epithelium and the contents of the lumen"/>
-				<element id="stomach-nutrition-sensor" name="Stomach nutrition sensor" type="connector"
+				<element id="stomach-nutrition-sensor" name="Stomach - stomach nutrition sensor" type="connector"
 					function="sense independently to tongue and oral taste receptors glucose, carbohydrates proteins, and fats"/>
 			</element>
 
@@ -364,20 +386,20 @@
 				dotdef="color=firebrick1"
 				function="Oxigen Supply"
 				>
-				<element id="pulmonary-neuroepithelial-bodies" name="Pulmonary neuroepithelial bodies" type="connector"
+				<element id="pulmonary-neuroepithelial-bodies" name="Lung - pulmonary neuroepithelial bodies" type="connector"
 					function="trachea, bronchial tree and lungs - intraepithelial receptors"/>
-				<element id="visceral-glands" name="Glands of trachea, lungs, and bronchi" type="connector"
+				<element id="visceral-glands" name="Lung - glands of trachea, lungs, and bronchi" type="connector"
 					function="increase in airway secretions"/>
-				<element id="smooth-muscles" name="Smooth muscles of trachea and bronchial tree" type="connector"
+				<element id="smooth-muscles" name="Lung - smooth muscles of trachea and bronchial tree" type="connector"
 					function="constriction of trachea and bronchioles"/>
-				<element id="thoracic-diaphragm" name="Thoracic diaphragm" type="connector"
+				<element id="thoracic-diaphragm" name="Lung - thoracic diaphragm" type="connector"
 					function="increases thoracic cavity volume; inhalation"/>
-				<element id="pericardium-pleura-receptors" name="Pericardium and pleura receptors" type="connector"
+				<element id="pericardium-pleura-receptors" name="Lung - pericardium and pleura receptors" type="connector"
 					function="somatic sensations"/>
-				<element id="pharyngeal-tonsils" name="Pharyngeal tonsils" type="connector"
+				<element id="pharyngeal-tonsils" name="Lung - pharyngeal tonsils" type="connector"
 					function="defense mechanism against air infections, produce white blood cells which are essential for immunity"/>
 
-				<element id="pulmonary-stretch-receptors" name="Pulmonary stretch receptors" type="connector"
+				<element id="pulmonary-stretch-receptors" name="Lung - pulmonary stretch receptors" type="connector"
 					function="imitate the Hering-Breuer reflex, which reduces the respiratory rate; increased firing from the stretch receptors also increases production of pulmonary surfactant"/>
 			</element>
 
@@ -385,70 +407,70 @@
 				dotdef="color=firebrick1"
 				function="Primary Execution Motor"
 				>
-				<element id="flexor-profundus-digitorum-muscle" name="Flexor profundus digitorum" type="connector"
+				<element id="flexor-profundus-digitorum-muscle" name="Hand - flexor profundus digitorum" type="connector"
 					function="flexor of the wrist (midcarpal), metacarpophalangeal and interphalangeal joints; flexes the 2-5 digits"/>
-				<element id="flexor-longus-pollicis-muscle" name="Flexor longus pollicis" type="connector"
+				<element id="flexor-longus-pollicis-muscle" name="Hand - flexor longus pollicis" type="connector"
 					function="flexor of the phalanges of the thumb"/>
-				<element id="flexor-sublimis-digitorum-muscle" name="Flexor sublimis digitorum" type="connector"
+				<element id="flexor-sublimis-digitorum-muscle" name="Hand - flexor sublimis digitorum" type="connector"
 					function="flexion of the middle phalanges of the fingers at the proximal interphalangeal joints"/>
 				<element id="palmaris-longus-muscle" name="Palmaris longus" type="connector"
 					function="weak flexor"/>
 
-				<element id="infraspinatus-muscle" name="Infraspinatus muscle" type="connector"
+				<element id="infraspinatus-muscle" name="Hand - infraspinatus muscle" type="connector"
 					function="lateral rotation of arm; adduction of arm and stabilizes humerus"/>
-				<element id="supraspinatus-muscle" name="Supraspinatus muscle" type="connector"
+				<element id="supraspinatus-muscle" name="Hand - supraspinatus muscle" type="connector"
 					function="abduction of arm and stabilizes humerus"/>
 
-				<element id="shoulder-subscapularis-muscle" name="Subscapularis muscle" type="connector"
+				<element id="shoulder-subscapularis-muscle" name="Hand - subscapularis muscle" type="connector"
 					function="rotates medially humerus; stabilizes shoulder"/>
-				<element id="shoulder-teres-major-muscle" name="Teres major muscle" type="connector"
+				<element id="shoulder-teres-major-muscle" name="Hand - teres major muscle" type="connector"
 					function="internal rotation of the humerus"/>
-				<element id="shoulder-latissimus-dorsi-muscle" name="Latissimus dorsi muscle" type="connector"
+				<element id="shoulder-latissimus-dorsi-muscle" name="Hand - latissimus dorsi muscle" type="connector"
 					function="pulls the forelimb dorsally and caudally"/>
 
-				<element id="hand-somatic-receptors" name="Hand somatic receptors" type="connector"
+				<element id="hand-somatic-receptors" name="Hand - hand somatic receptors" type="connector"
 					function="somatic sensations"/>
-				<element id="anterior-deltoid-muscle" name="Deltoid muscle, anterior" type="connector"
+				<element id="anterior-deltoid-muscle" name="Hand - deltoid muscle, anterior" type="connector"
 					function="shoulder flexion"/>
-				<element id="posteriolateral-deltoid-muscle" name="Deltoid muscle, lateral and posterior" type="connector"
+				<element id="posteriolateral-deltoid-muscle" name="Hand - deltoid muscle, lateral and posterior" type="connector"
 					function="shoulder abduction, extension"/>
-				<element id="teres-minor-muscle" name="Teres minor muscle" type="connector"
+				<element id="teres-minor-muscle" name="Hand - teres minor muscle" type="connector"
 					function="laterally rotates and adducts the arm"/>
-				<element id="triceps-brachii-muscle" name="Triceps brachii muscle" type="connector"
+				<element id="triceps-brachii-muscle" name="Hand - triceps brachii muscle" type="connector"
 					function="extends forearm, caput longum adducts shoulder"/>
 
-				<element id="articularis-cubiti-muscle" name="Articularis cubiti muscle" type="connector"
+				<element id="articularis-cubiti-muscle" name="Hand - articularis cubiti muscle" type="connector"
 					function="lifts capsule away from joint"/>
-				<element id="abductor-pollicis-longus-muscle" name="Abductor pollicis longus muscle" type="connector"
+				<element id="abductor-pollicis-longus-muscle" name="Hand - abductor pollicis longus muscle" type="connector"
 					function="abduction, extension of thumb"/>
-				<element id="extensor-carpi-ulnaris-muscle" name="Extensor carpi ulnaris muscle" type="connector"
+				<element id="extensor-carpi-ulnaris-muscle" name="Hand - extensor carpi ulnaris muscle" type="connector"
 					function="extends the little finger at all joints"/>
-				<element id="extensor-digiti-minimi-muscle" name="Extensor digiti minimi muscle" type="connector"
+				<element id="extensor-digiti-minimi-muscle" name="Hand - extensor digiti minimi muscle" type="connector"
 					function="extends and adducts the wrist"/>
-				<element id="extensor-digitorum-muscle" name="Extensor digitorum muscle" type="connector"
+				<element id="extensor-digitorum-muscle" name="Hand - extensor digitorum muscle" type="connector"
 					function="extension of hand and fingers"/>
-				<element id="extensor-indicis-muscle" name="Extensor indicis muscle" type="connector"
+				<element id="extensor-indicis-muscle" name="Hand - extensor indicis muscle" type="connector"
 					function="extends index finger, wrist"/>
-				<element id="extensor-pollicis-brevis-muscle" name="Extensor pollicis brevis muscle" type="connector"
+				<element id="extensor-pollicis-brevis-muscle" name="Hand - extensor pollicis brevis muscle" type="connector"
 					function="extension of thumb at metacarpophalangeal joint"/>
-				<element id="extensor-pollicis-longus-muscle" name="Extensor pollicis longus muscle" type="connector"
+				<element id="extensor-pollicis-longus-muscle" name="Hand - extensor pollicis longus muscle" type="connector"
 					function="extension of the thumb (metacarpophalangeal and interphalangeal)"/>
-				<element id="supinator-muscle" name="Supinator muscle" type="connector"
+				<element id="supinator-muscle" name="Hand - supinator muscle" type="connector"
 					function="supinates forearm"/>
-				<element id="extensor-carpi-radialis-brevis-muscle" name="Extensor carpi radialis brevis muscle" type="connector"
+				<element id="extensor-carpi-radialis-brevis-muscle" name="Hand - extensor carpi radialis brevis muscle" type="connector"
 					function="extensor at the wrist joint, abducts the hand at the wrist"/>
-				<element id="anconeus-muscle" name="Anconeus muscle" type="connector"
+				<element id="anconeus-muscle" name="Hand - anconeus muscle" type="connector"
 					function="partly blended in with the triceps, which it assists in extension of the forearm; stabilises the elbow and abducts the ulna during pronation"/>
-				<element id="brachioradialis-muscle" name="Brachioradialis muscle" type="connector"
+				<element id="brachioradialis-muscle" name="Hand - brachioradialis muscle" type="connector"
 					function="stabilizer of elbow joint"/>
-				<element id="extensor-carpi-radialis-longus-muscle" name="Extensor carpi radialis longus muscle" type="connector"
+				<element id="extensor-carpi-radialis-longus-muscle" name="Hand - extensor carpi radialis longus muscle" type="connector"
 					function="extensor and abductor of the hand at the wrist joint"/>
 
-				<element id="biceps-muscle" name="Biceps muscle" type="connector"
+				<element id="biceps-muscle" name="Hand - biceps muscle" type="connector"
 					function="flexes elbow and supinates forearm"/>
-				<element id="brachialis-muscle" name="Brachialis muscle" type="connector"
+				<element id="brachialis-muscle" name="Hand - brachialis muscle" type="connector"
 					function="flexion at elbow joint"/>
-				<element id="coracobrachialis-muscle" name="Coracobrachialis muscle" type="connector"
+				<element id="coracobrachialis-muscle" name="Hand - coracobrachialis muscle" type="connector"
 					function="flexes and adducts humerus"/>
 			</element>
 
@@ -456,60 +478,74 @@
 				dotdef="color=firebrick1"
 				function="Primary Execution Motor"
 				>
-				<element id="flexor-longus-digitorum-muscle" name="Flexor longus digitorum" type="connector"
+				<element id="flexor-longus-digitorum-muscle" name="Leg - flexor longus digitorum" type="connector"
 					function="flex digits"/>
-				<element id="flexor-longus-hallucis-muscle" name="Flexor longus hallucis" type="connector"
+				<element id="flexor-longus-hallucis-muscle" name="Leg - flexor longus hallucis" type="connector"
 					function="flexes all joints of the big toe, plantar flexion of the ankle joint"/>
 
-				<element id="gastrocnemius-muscle" name="Gastrocnemius muscle" type="connector"
+				<element id="gastrocnemius-muscle" name="Leg - gastrocnemius muscle" type="connector"
 					function="plantar flexion, flexion of knee (minor)"/>
-				<element id="plantaris-muscle" name="Plantaris muscle" type="connector"
+				<element id="plantaris-muscle" name="Leg - plantaris muscle" type="connector"
 					function="plantar flexes foot and flexes knee"/>
-				<element id="popliteus-muscle" name="Popliteus muscle" type="connector"
+				<element id="popliteus-muscle" name="Leg - popliteus muscle" type="connector"
 					function="medial rotation and flexion of knee"/>
-				<element id="tibialis-posterior-muscle" name="Tibialis posterior muscle" type="connector"
+				<element id="tibialis-posterior-muscle" name="Leg - tibialis posterior muscle" type="connector"
 					function="inversion of the foot, plantar flexion of the foot at the ankle; key muscle and tendon for stabilization, produce inversion and assists in the plantar flexion of the foot at the ankle"/>
 
-				<element id="leg-somatic-receptors" name="Leg somatic receptors" type="connector"
+				<element id="leg-somatic-receptors" name="Leg - somatic receptors" type="connector"
 					function="somatic sensations"/>
-				<element id="piriformis-muscle" name="Piriformis muscle" type="connector"
+				<element id="piriformis-muscle" name="Leg - piriformis muscle" type="connector"
 					function="rotate laterally (outward) the thigh"/>
+
+				<element id="gluteus-maximus-muscle" name="Leg - gluteus maximus muscle" type="connector"
+					function="external rotation and extension of the hip joint, supports the extended knee through the iliotibial tract, chief antigravity muscle in sitting"/>
+
+				<element id="extensor-digitorum-brevis-muscle" name="Leg - extensor digitorum brevis muscle" type="connector"
+					function="extends digits 2, 3, and 4"/>
+				<element id="extensor-digitorum-longus-muscle" name="Leg - extensor digitorum longus muscle" type="connector"
+					function="extension of toes and ankle; Extensor hallucis brevis muscle - extension of hallux"/>
+				<element id="extensor-hallucis-longus-muscle" name="Leg - extensor hallucis longus muscle" type="connector"
+					function="extends the big toe and assists in dorsiflexion of the foot at the ankle; also is a weak invertor"/>
+				<element id="fibularis-tertius-muscle" name="Leg - fibularis tertius muscle" type="connector"
+					function="dorsi flexes and everts foot"/>
+				<element id="tibialis-anterior-muscle" name="Leg - tibialis anterior muscle" type="connector"
+					function="dorsiflex and invert the foot"/>
 			</element>
 
 			<element id="TARGET.TEA.TRUNK" name="Trunk" mapped="true" type="Effector"
 				dotdef="color=firebrick1"
 				function="Body Movements"
 				>
-				<element id="trunk-rectus-abdominis" name="Rectus abdominis" type="connector"
+				<element id="trunk-rectus-abdominis" name="Trunk - rectus abdominis" type="connector"
 					function="flexion of trunk/lumbar vertebrae; keeping the internal organs intact and in creating intra-abdominal pressure, such as when exercising or lifting heavy weights"/>
-				<element id="trunk-external-intercostal-muscles" name="External intercostal muscles" type="connector"
+				<element id="trunk-external-intercostal-muscles" name="Trunk - external intercostal muscles" type="connector"
 					function="aid in quiet and forced inhalation"/>
-				<element id="trunk-serratus-posterior-superior-muscle" name="Serratus posterior superior muscle" type="connector"
+				<element id="trunk-serratus-posterior-superior-muscle" name="Trunk - serratus posterior superior muscle" type="connector"
 					function="elevate the ribs which aids in inspiration"/>
 
-				<element id="trunk-semispinalis-dorsi-thoracis" name="Semispinalis dorsi (thoracis)" type="connector"
+				<element id="trunk-semispinalis-dorsi-thoracis" name="Trunk - semispinalis dorsi (thoracis)" type="connector"
 					function="extends vertebral column"/>
-				<element id="trunk-transversus-thoracis-muscle" name="Transversus thoracis muscle" type="connector"
+				<element id="trunk-transversus-thoracis-muscle" name="Trunk - transversus thoracis muscle" type="connector"
 					function="depresses the ribs; aids in exertional expiration by decreasing the transverse diameter of the thoracic cage"/>
-				<element id="trunk-subcostalis-muscle" name="Subcostalis muscle" type="connector"
+				<element id="trunk-subcostalis-muscle" name="Trunk - subcostalis muscle" type="connector"
 					function="synergist in aiding the internal intercostal muscles with forced exhalation"/>
-				<element id="trunk-transversus-abdominis" name="Transversus abdominis" type="connector"
+				<element id="trunk-transversus-abdominis" name="Trunk - transversus abdominis" type="connector"
 					function="compress the ribs and viscera, providing thoracic and pelvic stability"/>
 
-				<element id="trunk-internal-intercostal-muscles" name="Internal intercostal muscles" type="connector"
+				<element id="trunk-internal-intercostal-muscles" name="Trunk - internal intercostal muscles" type="connector"
 					function="aid in forced expiration"/>
-				<element id="trunk-serratus-posterior-inferior" name="Serratus posterior inferior" type="connector"
+				<element id="trunk-serratus-posterior-inferior" name="Trunk - serratus posterior inferior" type="connector"
 					function="depress the lower ribs, aiding in expiration"/>
 
-				<element id="trunk-internal-oblique-muscle" name="Internal oblique muscle" type="connector"
+				<element id="trunk-internal-oblique-muscle" name="Trunk - internal oblique muscle" type="connector"
 					function="compresses abdomen and rotates vertebral column"/>
-				<element id="trunk-pyramidalis-muscle" name="Pyramidalis muscle" type="connector"
+				<element id="trunk-pyramidalis-muscle" name="Trunk - pyramidalis muscle" type="connector"
 					function="tensing the linea alba"/>
 
-				<element id="trunk-abdominal-somatic-receptors" name="Abdominal somatic receptors" type="connector"
+				<element id="trunk-abdominal-somatic-receptors" name="Trunk - abdominal somatic receptors" type="connector"
 					function="somatic sensation from skin of lower abdomen and lateral side of gluteal region"/>
 
-				<element id="adrenal-gland" name="Adrenal gland" type="connector"
+				<element id="adrenal-gland" name="Trunk - adrenal gland" type="connector"
 					function="releasing hormones in response to stress"/>
 			</element>
 
@@ -517,13 +553,13 @@
 				dotdef="color=firebrick1"
 				function="Milk Supply"
 				>
-				<element id="breast-skin-receptors" name="Breast skin receptors" type="connector"
+				<element id="breast-skin-receptors" name="Breast - skin receptors" type="connector"
 					function="proper breasy somatic sensation"/>
-				<element id="breast-upper-cutaneous-receptors" name="Breast upper cutaneous receptors" type="connector"
+				<element id="breast-upper-cutaneous-receptors" name="Breast - upper cutaneous receptors" type="connector"
 					function="upper breast somatic sensation"/>
-				<element id="nipple-smooth-muscles" name="Nipple smooth muscles" type="connector"
+				<element id="nipple-smooth-muscles" name="Breast - nipple smooth muscles" type="connector"
 					function="female - erection of nipples due to contraction of smooth muscle"/>
-				<element id="mammary-gland-vasomotor" name="Vasomotor muscles of mammary gland" type="connector"
+				<element id="mammary-gland-vasomotor" name="Breast - vasomotor muscles of mammary gland" type="connector"
 					function="regulation of blood flow"/>
 			</element>
 
@@ -531,37 +567,37 @@
 				dotdef="color=firebrick1"
 				function="Reproductive system"
 				>
-				<element id="uterus-parasympathetic" name="Parasympathetic uterus vasodilators" type="connector"
+				<element id="uterus-parasympathetic" name="Genitalia - parasympathetic uterus vasodilators" type="connector"
 					function="female - contraction of smooth muscles of myometrium, increased blood flow; sexual response by directing blood flow to the pelvis and to the external genitalia, including the ovaries, vagina, labia, and clitoris"/>
-				<element id="vagina-parasympathetic" name="Parasympathetic vaginal vasodilators" type="connector"
+				<element id="vagina-parasympathetic" name="Genitalia - parasympathetic vaginal vasodilators" type="connector"
 					function="female - contraction of smooth muscles of myometrium, increased blood flow"/>
-				<element id="utetovaginal-visceral-receptors" name="Utetovaginal visceral receptors" type="connector"
+				<element id="utetovaginal-visceral-receptors" name="Genitalia - utetovaginal visceral receptors" type="connector"
 					function="sexual sensations"/>
 
-				<element id="corpus-cavernosum-clitoridis" name="Corpus cavernosum clitoridis" type="connector"
+				<element id="corpus-cavernosum-clitoridis" name="Genitalia - corpus cavernosum clitoridis" type="connector"
 					function="clitoral erection; simultaneously the ischiocavernosus and bulbospongiosus muscles compress the veins of the corpora cavernosa restricting the egress and circulation of this blood"/>
-				<element id="corpus-cavernosum-penis" name="Corpus cavernosum penis" type="connector"
+				<element id="corpus-cavernosum-penis" name="Genitalia - corpus cavernosum penis" type="connector"
 					function="penile erection; simultaneously the ischiocavernosus and bulbospongiosus muscles compress the veins of the corpora cavernosa restricting the egress and circulation of this blood"/>
-				<element id="visceral-sexual-receptors" name="Visceral sexual receptors" type="connector"
+				<element id="visceral-sexual-receptors" name="Genitalia - visceral sexual receptors" type="connector"
 					function="sexual sensations"/>
 
-				<element id="bulbospongiosus-muscle" name="Bulbospongiosus muscle" type="connector"
+				<element id="bulbospongiosus-muscle" name="Genitalia - bulbospongiosus muscle" type="connector"
 					function="in males, empties the urethra; in females, clenches the vagina"/>
-				<element id="external-sphincter-female-urethra" name="External sphincter muscle of female urethra" type="connector"
+				<element id="external-sphincter-female-urethra" name="Genitalia - external sphincter muscle of female urethra" type="connector"
 					function="control urination, constricts urethra, maintain urinary continence"/>
-				<element id="external-sphincter-male-urethra" name="External sphincter muscle of male urethra" type="connector"
+				<element id="external-sphincter-male-urethra" name="Genitalia - external sphincter muscle of male urethra" type="connector"
 					function="control urination, constricts urethra, maintain urinary continence"/>
-				<element id="ischiocavernosus-muscle" name="Ischiocavernosus muscle" type="connector"
+				<element id="ischiocavernosus-muscle" name="Genitalia - ischiocavernosus muscle" type="connector"
 					function="stabilize the erect penis or (in females) tense the vagina during orgasm"/>
 
-				<element id="testicle-gland" name="Testicle gland" type="connector"
+				<element id="testicle-gland" name="Genitalia - testicle gland" type="connector"
 					function="produce androgens, primarily testosterone (growth of muscle mass and strength, regulator of cognitive and physical energy, sperm development"/>
-				<element id="ovary-gland" name="Ovary gland" type="connector"
+				<element id="ovary-gland" name="Genitalia - ovary gland" type="connector"
 					function="secretes estrogen (maturation and maintenance of the reproductive organs), testosterone (prepares the uterus for pregnancy, and the mammary glands for lactation) and progesterone (promoting menstrual cycle changes in the endometrium"/>
 
-				<element id="uterus-sympathetic" name="Uterus, sympathetic receptors" type="connector"
+				<element id="uterus-sympathetic" name="Genitalia - uterus, sympathetic receptors" type="connector"
 					function="contraction of smooth muscles of myometrium, decreased blood flow, loss of erection"/>
-				<element id="vagina-sympathetic" name="Vagina, sympathetic receptors" type="connector"
+				<element id="vagina-sympathetic" name="Genitalia - vagina, sympathetic receptors" type="connector"
 					function="vasoconstriction of fibromuscular tube, loss of erection"/>
 			</element>
 
@@ -569,16 +605,16 @@
 				dotdef="color=firebrick1"
 				function="Extract urine from blood in kidney and propel urine to urinary bladder and to outside"
 				>
-				<element id="detrusor-urinae-muscle-parasympathetic" name="Detrusor urinae muscle parasympathetic receptors" type="connector"
+				<element id="detrusor-urinae-muscle-parasympathetic" name="Ureter - detrusor urinae muscle parasympathetic receptors" type="connector"
 					function="parasympathetic contracts, to urinate"/>
-				<element id="internal-urethral-sphincter-parasympathetic" name="Internal urethral sphincter parasympathetic receptors" type="connector"
+				<element id="internal-urethral-sphincter-parasympathetic" name="Ureter - internal urethral sphincter parasympathetic receptors" type="connector"
 					function="parasympathetic relaxes the muscle"/>
-				<element id="ureter-visceral-receptors" name="Ureter visceral receptors" type="connector"
+				<element id="ureter-visceral-receptors" name="Ureter - ureter visceral receptors" type="connector"
 					function="respond to stretch and free nerve endings in the bladder mucosa that respond to pain and temperature"/>
 
-				<element id="detrusor-urinae-muscle-sympathetic" name="Detrusor urinae muscle sympathetic receptors" type="connector"
+				<element id="detrusor-urinae-muscle-sympathetic" name="Ureter - detrusor urinae muscle sympathetic receptors" type="connector"
 					function="sympathetic relaxes, to store urine"/>
-				<element id="internal-urethral-sphincter-sympathetic" name="Internal urethral sphincter sympathetic receptors" type="connector"
+				<element id="internal-urethral-sphincter-sympathetic" name="Ureter - internal urethral sphincter sympathetic receptors" type="connector"
 					function="sympathetic contracts the muscle"/>
 			</element>
 
@@ -586,16 +622,16 @@
 				dotdef="color=firebrick1"
 				function="Removal of undigested materials from the digestive tract through defecation"
 				>
-				<element id="sphincter-ani-internus-muscle-parasympathetic" name="Sphincter ani internus muscle parasympathetic receptors" type="connector"
+				<element id="sphincter-ani-internus-muscle-parasympathetic" name="Rectum - sphincter ani internus muscle parasympathetic receptors" type="connector"
 					function="keep the anal canal and anus closed, aids in the expulsion of the feces, inhibit contraction"/>
-				<element id="sphincter-ani-internus-muscle-sympathetic" name="Sphincter ani internus muscle sympathetic receptors" type="connector"
+				<element id="sphincter-ani-internus-muscle-sympathetic" name="Rectum - sphincter ani internus muscle sympathetic receptors" type="connector"
 					function="stimulate and maintain internal anal sphincter contraction"/>
-				<element id="large-intestine-visceral-receptors" name="Large intestine visceral receptors" type="connector"
+				<element id="large-intestine-visceral-receptors" name="Rectum - large intestine visceral receptors" type="connector"
 					function="sensations of fullness and urgency, pain"/>
 
-				<element id="puborectalis-muscle" name="Puborectalis muscle" type="connector"
+				<element id="puborectalis-muscle" name="Rectum - puborectalis muscle" type="connector"
 					function="inhibit defecation"/>
-				<element id="superficial-ransverse-perineal-muscle" name="Superficial transverse perineal muscle" type="connector"
+				<element id="superficial-ransverse-perineal-muscle" name="Rectum - superficial transverse perineal muscle" type="connector"
 					function="fixation of central tendon of perineum, support of pelvic floor"/>
 			</element>
 

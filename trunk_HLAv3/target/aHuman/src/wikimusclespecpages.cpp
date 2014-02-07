@@ -39,6 +39,21 @@ void WikiMuscleSpecPages::addMuscleDivision( XmlMuscleDivision& div ) {
 	wm -> updateFileSection( wikiDir , divPage , divSection , lines );
 }
 
+String WikiMuscleSpecPages::getNerveList( XmlMuscleInfo& muscle ) {
+	String s;
+	for( int k = 0; k < muscle.nerves.count(); k++ ) {
+		String nerve = muscle.nerves.getKeyByIndex( k );
+		String page = wm -> getNerveWikiPage( nerve );
+		String pagelink = "[" + page + " " + nerve + "]";
+
+		if( k > 0 )
+			s += "; ";
+		s += pagelink;
+	}
+
+	return( s );
+}
+
 void WikiMuscleSpecPages::addMuscleList( int level , XmlMuscleInfo& muscle , StringList& lines ) {
 	// item string
 	String name;
@@ -50,13 +65,8 @@ void WikiMuscleSpecPages::addMuscleList( int level , XmlMuscleInfo& muscle , Str
 
 	if( !muscle.type.isEmpty() )
 		s += "; TYPE={" + muscle.type + "}";
-	if( !muscle.nerve.isEmpty() ) {
-		String page = wm -> getNerveWikiPage( muscle.nerve );
-		String pagelink = "[" + page + " " + muscle.nerve + "]";
-		s += "; NERVE={" + pagelink + "}";
-	}
-	if( !muscle.nervelist.isEmpty() )
-		s += "; NERVELIST={" + muscle.nervelist + "}";
+	if( muscle.nerves.count() > 0 )
+		s += "; NERVES={" + getNerveList( muscle ) + "}";
 	if( !muscle.action.isEmpty() )
 		s += "; ACTION={" + muscle.action + "}";
 	lines.add( s );

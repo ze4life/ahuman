@@ -51,6 +51,21 @@ void XmlMuscles::load() {
 	}
 }
 
+void XmlMuscles::addNerveMuscles( XmlMuscleInfo *muscle ) {
+	for( int k = 0; k < muscle -> nerves.count(); k++ ) {
+		String nerve = muscle -> nerves.getKeyByIndex( k );
+		if( !nerve.isEmpty() ) {
+			StringList *muscles = nerveMuscles.get( nerve );
+			if( muscles == NULL ) {
+				muscles = new StringList;
+				nerveMuscles.add( nerve , muscles );
+			}
+
+			muscles -> add( muscle -> name );
+		}
+	}
+}
+
 void XmlMuscles::addChilds( XmlMuscleDivision *division , Xml parent , MapStringToClass<XmlMuscleInfo>& list ) {
 	for( Xml item = parent.getFirstChild( "element" ); item.exists(); item = item.getNextChild( "element" ) ) {
 		String id = item.getAttribute( "name" );
@@ -61,16 +76,7 @@ void XmlMuscles::addChilds( XmlMuscleDivision *division , Xml parent , MapString
 		muscles.add( id , muscleInfo );
 		list.add( id , muscleInfo );
 
-		String nerve = muscleInfo -> nerve;
-		if( !nerve.isEmpty() ) {
-			StringList *muscles = nerveMuscles.get( nerve );
-			if( muscles == NULL ) {
-				muscles = new StringList;
-				nerveMuscles.add( nerve , muscles );
-			}
-
-			muscles -> add( id );
-		}
+		addNerveMuscles( muscleInfo );
 
 		addChilds( division , item , muscleInfo -> childs );
 	}
@@ -109,12 +115,39 @@ XmlMuscleInfo *XmlMuscles::createMuscleInfo( String muscle , Xml xmlitem ) {
 	info.name = xmlitem.getAttribute( "name" );
 	info.type = xmlitem.getAttribute( "type" , "" );
 	info.link = xmlitem.getAttribute( "link" , "" );
-	info.nerve = xmlitem.getAttribute( "nerve" , "" );
-	info.nervelist = xmlitem.getAttribute( "nervelist" , "" );
 	info.action = xmlitem.getAttribute( "action" , "" );
 
+	String nerves = xmlitem.getAttribute( "nerves" , "" );
+	StringList pairs;
+	nerves.split( pairs, ";" );
+
+	String pair;
+	String nerve;
+	String connectordet;
+	for( int k = 0; k < pairs.count(); k++ ) {
+		String pair = pairs.get( k );
+		pair.trim();
+
+		int pos = pair.find( ":" );
+		if( pos < 0 ) {
+			nerve = pair;
+			connectordet.clear();
+		}
+		else {
+			nerve = pair.getMid( 0 , pos );
+			connectordet = pair.getMid( pos + 1 );
+		}
+
+		nerve.trim();
+		connectordet.trim();
+		if( connectordet.isEmpty() )
+			connectordet = "default";
+
+		info.nerves.add( nerve , connectordet );
+	}
+
 	// data integrity
-	if( !info.nerve.isEmpty() )
+	if( info.nerves.count() > 0 )
 		ASSERTMSG( info.type.equals( "flexor" ) || info.type.equals( "extensor" ) || info.type.equals( "cranial" ) || info.type.equals( "gland" ) ,
 			"createMuscleInfo: muscle=" + info.name + " - invalid muscle type=" + info.type );
 
