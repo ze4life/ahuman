@@ -85,6 +85,65 @@
 				/>
 		</element>
 
+		<element name="glossopharyngeal nerve"
+			synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne186.htm GLOSSOPHARYNGEAL NERVE]; ninth cranial nerve, IX"
+			origin="several ROOTLETS from lateral side of upper part of medulla oblongata, between the olive and the inferior cerebellar peduncle"
+			distribution="it has two enlargements (superior and inferior ganglia) and supplies the tongue, pharynx, and parotid gland"
+			imgsrc="http://jacusers.johnabbott.qc.ca/~paul.anderson/806%20LAB%20ANSWERS/BRAINLAB/glossopharyngealIX.JPG"
+			modality="cranial motor, parasympathetic motor, general sensory"
+			>
+			<element name="tympanic nerve"
+				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne190.htm TYMPANIC BRANCH OF GLOSSOPHARYNGEAL NERVE]; Jacobson's nerve"
+				origin="inferior GANGLION of glossopharyngeal nerve"
+				distribution="mucous membrane of tympanic cavity, mastoid air cells, auditory tube, and, via lesser petrosal nerve and otic ganglion, the parotid gland"
+				modality="parasympathetic motor, general sensory"
+				>
+				<fibers type="SVA" src="TARGET.TSA.EAR" dst="HMA.HM.TGM.STR"><mid id="AVA.PN.SG.PET"/></fibers>
+				<fibers type="GVE" src="AVA.HM.SAL.ISL" dst="TARGET.TEA.MOUTH"><mid id="AVA.PN.PSYM.OTG"/></fibers>
+				<element name="petrosal nerve, lesser"
+					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne187.htm LESSER PETROSAL NERVE]"
+					origin="tympanic PLEXUS"
+					distribution="parotid GLAND via otic GANGLION and auriculotemporal nerve"
+					modality="parasympathetic motor, general sensory"
+					/>
+			</element>
+			<element name="glossopharyngeal nerve, stylopharyngeal branch"
+				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne245.htm NERVE TO STYLOPHARYNGEUS], [http://www.oluwoleogunranti.com/course/course1/nerves/ne189.htm PHARYNGEAL BRANCHES OF GLOSSOPHARYNGEAL NERVE]"
+				distribution="muscle of the pharynx, stylopharyngeus"
+				modality="cranial motor"
+				>
+				<fibers type="GSE" src="HMA.HM.AMB" dst="TARGET.TEA.MOUTH"></fibers>
+			</element>
+			<element name="glossopharyngeal nerve, tonsillar branch"
+				origin="sensory fibers from palatine tonsillar fossa"
+				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne247.htm TONSILLAR BRANCHES OF GLOSSOPHARYNGEAL NERVE]"
+				distribution="supply the palatine tonsil, forming around it a plexus from which filaments are distributed to the soft palate and fauces, where they communicate with the palatine nerves, taste"
+				modality="general sensory"
+				>
+				<fibers type="SVA" src="TARGET.TEA.MOUTH" dst="HMA.HM.SOL"><mid id="AVA.PN.SG.JUG"/></fibers>
+			</element>
+			<element name="glossopharyngeal nerve, lingual branch"
+				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne240.htm LINGUAL BRANCHES OF GLOSSOPHARYNGEAL NERVE]"
+				distribution="one supplies the vallate papilla and the mucous membrane covering the base of the tongue; the other supplies the mucous membrane and follicular glands of the posterior part of the tongue, and communicates with the lingual nerve, innervate all the muscles of the tongue except for palatoglossus"
+				modality="general sensory"
+				>
+				<fibers type="GSA" src="TARGET.TEA.MOUTH" dst="HMA.HM.TGM.STR"><mid id="AVA.PN.SG.JUG"/></fibers>
+			</element>
+			<element name="glossopharyngeal nerve, meningeal branches"
+				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne241.htm MENINGEAL BRANCHES OF GLOSSOPHARYNGEAL NERVE]"
+				modality="general sensory"
+				>
+				<fibers type="GSA" src="TARGET.TSA.MINDCOVER" dst="AVA.PN.SG.TRG"></fibers>
+			</element>
+			<element name="Hering's nerve"
+				synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne253.htm CAROTID BODY NERVE], MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne237.htm CAROTID SINUS NERVE]; glossopharyngeal nerve, branch to carotid sinus"
+				distribution="innervate the carotid sinus and the carotid body, communicates with the vagus nerve and sympathetic then divides in the angle of bifurcation of the common carotid artery to supply the carotid body (chemoreceptors) and carotid sinus (baroreceptors)"
+				modality="general sensory"
+				>
+				<fibers type="SVA" src="TARGET.TEA.HEART" dst="HMA.HM.SOL"><mid id="AVA.PN.SG.PET"/></fibers>
+			</element>
+		</element>
+
 		<element name="olfactory nerves"
 			synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/olfactory.htm OLFACTORY NERVE]; first cranial nerve, I"
 			origin="the nerves of smell, consisting of about 20 bundles which arise in the OLFACTORY EPITHELIUM"
@@ -154,28 +213,6 @@
 					distribution="supplies the utricle and ampullae of the semicircular ducts"
 					modality="special sensory"
 					/>
-			</element>
-		</element>
-
-		<element name="accessory nerve"
-			synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/ne198.htm ACCESSORY NERVE]; eleventh cranial nerve, XI"
-			imgsrc="http://www.edoctoronline.com/media/19/photos_584F5F8B-BB77-4B55-B7AE-E3D5F97F3938.gif"
-			modality="cranial motor, flexor motor, extensor motor"
-			>
-			<element name="accessory nerve, internal"
-				origin="by cranial ROOTS from the side of the medulla oblongata, from the ambiguus nucleus"
-				distribution="the internal branch to the vagus and thereby to the palate, pharynx, larynx, and thoracic viscera, pharyngeal and superior laryngeal branches of the vagus, muscles of the pharynx, larynx, and soft palate"
-				modality="cranial motor"
-				>
-				<fibers type="GSE" src="HMA.HM.AMB" dst="TARGET.TEA.MOUTH"></fibers>
-			</element>
-			<element name="accessory nerve, external"
-				origin="by spinal roots from the side of the spinal cord (from the upper three or more cervical segments), from the nucleus of accessory nerve"
-				distribution="the external branch branches to the sternocleidomastoid and trapezius muscles (shoulder)"
-				modality="flexor motor, extensor motor"
-				>
-				<fibers type="GSE" src="HMA.SC.VH.SAN" dst="TARGET.TEA.NECK"></fibers>
-				<fibers type="GSE" src="BMA.SC.VH.VM" dst="TARGET.TEA.NECK"></fibers>
 			</element>
 		</element>
 
