@@ -18,16 +18,25 @@ Region is part of aHuman target integrated biological model.
   * *Eye - rods and cones (eye-edge-output)*: after on-center/off-center edge extraction and zipping 100:1
   * *Eye - somatic receptors (eye-somatic)*: eye -> semilunar ganglion/ophthalmic -> PTR
   * *Eye - visceral receptors (eye-visceral)*: eye -> semilunar ganglion/ophthalmic -> STR, proprioception
-  * *Eye - inferior oblique, and superior, medial, and inferior rectus muscles (eye-muscle-rotate-major)*: levator palpebrae superioris, the inferior oblique, and superior, medial, and inferior rectus muscles
-  * *Eye - superior oblique muscles (eye-muscle-rotate-minor)*: superior oblique, rotation in a vertical plane - looking down and up, rotation in the plane of the face
-  * *Eye - lateral rectus (eye-muscle-rotate-vestibular)*: lateral rectus, quick turn to the right -> compensatory reflex turning of two eyes to the left
-  * *Eye - ciliary muscle (eye-muscle-curvature)*: to ciliary muscle to accomodate eye
-  * *Eye - sphincter pupillae muscle (eye-muscle-pupil-close)*: to sphincter pupillae to close pupil
-  * *Eye - dilator pupillae muscle (eye-muscle-pupil-open)*: to dilator pupillae to open pupil
-  * *Eye - orbicularis oculi (eye-muscle-close-conscious)*: conscious muscle to close eye
-  * *Eye - ligamentum palpebrale (eye-muscle-close-involuntary)*: involuntary muscle to close eye
+  * *Eye - inferior oblique muscle (eye-muscle-rotate-major-inferior-oblique)*: extorsion, elevation, abduction
+  * *Eye - inferior rectus muscle (eye-muscle-rotate-major-inferior-rectus)*: depression and adduction
+  * *Eye - medial rectus muscle (eye-muscle-rotate-major-medial-rectus)*: adducts the eyeball
+  * *Eye - superior rectus muscle (eye-muscle-rotate-major-superior-rectus)*: elevates, adducts, and rotates medially the eye
+  * *Eye - levator palpebrae superioris muscle (eye-muscle-rotate-major-levator-palpebrae)*: retracts/elevates eyelid
+  * *Eye - superior oblique muscle (eye-muscle-rotate-minor)*: superior oblique, rotation in a vertical plane - looking down and up, rotation in the plane of the face
+  * *Eye - lateral rectus muscle (eye-muscle-rotate-vestibular)*: lateral rectus, quick turn to the right -> compensatory reflex turning of two eyes to the left
+  * *Eye - ciliary muscle - sympathetic (eye-muscle-curvature-sympathetic)*: to ciliary muscle to increase eye accomodation
+  * *Eye - ciliary muscle - parasympathetic (eye-muscle-curvature-parasympathetic)*: to ciliary muscle to inhibit eye accomodation
+  * *Eye - iris sphincter muscle (eye-muscle-pupil-close)*: to sphincter pupillae to close pupil
+  * *Eye - iris dilator muscle (eye-muscle-pupil-open)*: to dilator pupillae to open pupil
+  * *Eye - orbicularis oculi muscle - temporal (eye-muscle-close-conscious-orbital)*: orbital portion, contraction of the orbital to reduce glare
+  * *Eye - orbicularis oculi muscle - zygomatic (eye-muscle-close-conscious-lacrimal)*: lacrimal part (tensor tarsi), conscious muscle to close eye; draws the eyelids and the ends of the lacrimal canals medialward and compresses them against the surface of the globe of the eye; compresses the lacrimal sac
+  * *Eye - orbicularis oculi muscle - palpebrale (eye-muscle-close-involuntary-palpebrale)*: palpebral portion, acts involuntarily, closing the lids gently; involuntary muscle to close eye
   * *Eye - lacrimal gland (eye-tears-gland)*: tears
   * *Eye - lacrimal gland and conjunctiva receptors (eye-lacrimal-gland-conjunctiva-receptors)*: tears
+  * *Eye - superior tarsal muscle (eye-muscle-superior-tarsal)*: raise the upper eyelid
+  * *Eye - inferior tarsal muscle (eye-muscle-inferior-tarsal)*: lower lid retraction
+  * *Eye - orbitalis muscle (eye-orbitalis-muscle)*: protrusion of eyeball
 
 = Connectivity =
 (generated)
@@ -38,13 +47,13 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/TARGET.TSA.EYE.dot.jpg
 *Inbound Region Connections:*
 
 || *Source Area* || *Source Region* || *Source Name* || *Type* || *Reference* ||
-|| [BrainAreaAVA AVA] || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || Superior Cervical Ganglion || eye-muscle-pupil-open || [http://www.nature.com/pr/journal/v71/n3/fig_tab/pr201138f1.html Sympathetic and parasympathetic eye pathways (SCG -> EYE)] ||
+|| [BrainAreaAVA AVA] || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || Superior Cervical Ganglion || eye-muscle-curvature-sympathetic || [http://www.nature.com/pr/journal/v71/n3/fig_tab/pr201138f1.html Sympathetic and parasympathetic eye pathways (SCG -> EYE)] ||
 || [BrainAreaFMA FMA] || [BrainRegionAVA_PN_PSYM_PTG AVA.PN.PSYM.PTG] || Pterygopalatine Ganglion || eye-tears-gland || (unknown reference) ||
-||  || [BrainRegionHMA_HP_FCM HMA.HP.FCM] || Facial Motor Nucleus || eye-muscle-close-conscious || (unknown reference) ||
-||  || [BrainRegionVBA_PN_PSYM_CLG VBA.PN.PSYM.CLG] || Ciliary Ganglion || eye-muscle-curvature || [http://www.neurophysiology.ws/autonomicns.htm Autonomic nervous system (CLG -> EYE)] ||
+||  || [BrainRegionHMA_HP_FCM HMA.HP.FCM] || Facial Motor Nucleus || eye-muscle-close-conscious-orbital || (unknown reference) ||
+||  || [BrainRegionVBA_PN_PSYM_CLG VBA.PN.PSYM.CLG] || Ciliary Ganglion || eye-muscle-curvature-parasympathetic || [http://www.neurophysiology.ws/autonomicns.htm Autonomic nervous system (CLG -> EYE)] ||
 ||  || [BrainRegionVBA_PN_PSYM_EPG VBA.PN.PSYM.EPG] || Episcleral Ganglion || eye-muscle-pupil-close || [http://www.neurophysiology.ws/autonomicns.htm Autonomic nervous system (EPG -> EYE)] ||
 || [BrainAreaVBA VBA] || [BrainRegionVBA_HP_ABD VBA.HP.ABD] || Abducens Nucleus || eye-muscle-rotate-vestibular || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Abducens -> EYE)] ||
-||  || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || Oculomotor Nucleus || eye-muscle-rotate-major || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Oculomotor -> EYE)] ||
+||  || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || Oculomotor Nucleus || eye-muscle-rotate-major-inferior-oblique || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Oculomotor -> EYE)] ||
 ||  || [BrainRegionVBA_MM_TRH VBA.MM.TRH] || Trochlear Nucleus || eye-muscle-rotate-minor || [http://what-when-how.com/neuroscience/the-cranial-nerves-organization-of-the-central-nervous-system-part-4 Extraocular eye muscles (TRC -> EYE)] ||
 
 *Outbound Region Connections:*
