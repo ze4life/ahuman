@@ -7,45 +7,78 @@
 				dotdef="color=firebrick1"
 				function="Light and Color Perception Sensor"
 				>
-				<element id="eye-edge-output" name="Eye - rods and cones" type="connector"
-					function="after on-center/off-center edge extraction and zipping 100:1"/>
-				<element id="eye-somatic" name="Eye - somatic receptors" type="connector"
-					function="eye -> semilunar ganglion/ophthalmic -> PTR"/>
-				<element id="eye-visceral" name="Eye - visceral receptors" type="connector"
-					function="eye -> semilunar ganglion/ophthalmic -> STR, proprioception"/>
+				<element id="eye-sensory" name="Eye - sensory data">
+					<element id="eye-edge-output" name="Eye - rods and cones" type="connector"
+						function="after on-center/off-center edge extraction and zipping 100:1"/>
+					<element id="eye-somatic" name="Eye - somatic receptors" type="connector"
+						function="eye -> semilunar ganglion/ophthalmic -> PTR"/>
+					<element id="eye-visceral" name="Eye - visceral receptors" type="connector"
+						function="eye -> semilunar ganglion/ophthalmic -> STR, proprioception"/>
+				</element>
 
-				<element id="eye-muscle-rotate-major" name="Eye - inferior oblique, and superior, medial, and inferior rectus muscles" type="connector"
-					function="levator palpebrae superioris, the inferior oblique, and superior, medial, and inferior rectus muscles"/>
-				<element id="eye-muscle-rotate-minor" name="Eye - superior oblique muscles" type="connector"
-					function="superior oblique, rotation in a vertical plane - looking down and up, rotation in the plane of the face"/>
-				<element id="eye-muscle-rotate-vestibular" name="Eye - lateral rectus" type="connector"
-					function="lateral rectus, quick turn to the right -> compensatory reflex turning of two eyes to the left"
-					notes="vestibular nucleus -> PPRF -> ABD -> this, larger motor neurons, c.n. VI"/>
+				<element id="eye-rotation-motor" name="Eye - rotation motor muscles">
+					<element id="eye-muscle-rotate-major-inferior-oblique" name="Eye - inferior oblique muscle" type="connector"
+						function="extorsion, elevation, abduction"/>
+					<element id="eye-muscle-rotate-major-inferior-rectus" name="Eye - inferior rectus muscle" type="connector"
+						function="depression and adduction"/>
+					<element id="eye-muscle-rotate-major-medial-rectus" name="Eye - medial rectus muscle" type="connector"
+						function="adducts the eyeball"/>
+					<element id="eye-muscle-rotate-major-superior-rectus" name="Eye - superior rectus muscle" type="connector"
+						function="elevates, adducts, and rotates medially the eye"/>
+					<element id="eye-muscle-rotate-major-levator-palpebrae" name="Eye - levator palpebrae superioris muscle" type="connector"
+						function="retracts/elevates eyelid"/>
 
-				<element id="eye-muscle-curvature" name="Eye - ciliary muscle" type="connector"
-					function="to ciliary muscle to accomodate eye"/>
-				<element id="eye-muscle-pupil-close" name="Eye - sphincter pupillae muscle" type="connector"
-					notes="sphincter pupillae is situated along the edge of the iris contracts to close the opening in the pupil"
-					function="to sphincter pupillae to close pupil"/>
-				<element id="eye-muscle-pupil-open" name="Eye - dilator pupillae muscle" type="connector"
-					notes="dilator pupillae runs radially, like the spokes of a wheel, through the iris, and when it contracts this opens the pupil"
-					function="to dilator pupillae to open pupil"/>
+					<element id="eye-muscle-rotate-minor" name="Eye - superior oblique muscle" type="connector"
+						function="superior oblique, rotation in a vertical plane - looking down and up, rotation in the plane of the face"/>
+					<element id="eye-muscle-rotate-vestibular" name="Eye - lateral rectus muscle" type="connector"
+						function="lateral rectus, quick turn to the right -> compensatory reflex turning of two eyes to the left"
+						notes="vestibular nucleus -> PPRF -> ABD -> this, larger motor neurons, c.n. VI"/>
+				</element>
 
-				<element id="eye-muscle-close-conscious" name="Eye - orbicularis oculi" type="connector"
-					notes="squints the eyes, and the part that is labeled, or outer part, is the basis for AU 6 in FACS, from intermediate facial subnucleus"
-					comments="the inner part, mostly on the eyelids is the basis for AU 7 in FACS"
-					function="conscious muscle to close eye"/>
-				<element id="eye-muscle-close-involuntary" name="Eye - ligamentum palpebrale" type="connector"
-					notes="sleep, blink, corneal/clinking reflex"
-					comments="small muscle at the corner of the eye"
-					function="involuntary muscle to close eye"/>
+				<element id="eye-pupil-motor" name="Eye - pupil and accomodation motor muscles">
+					<element id="eye-muscle-curvature-sympathetic" name="Eye - ciliary muscle - sympathetic" type="connector"
+						function="to ciliary muscle to increase eye accomodation"/>
+					<element id="eye-muscle-curvature-parasympathetic" name="Eye - ciliary muscle - parasympathetic" type="connector"
+						function="to ciliary muscle to inhibit eye accomodation"/>
+					<element id="eye-muscle-pupil-close" name="Eye - iris sphincter muscle" type="connector"
+						notes="sphincter pupillae is situated along the edge of the iris contracts to close the opening in the pupil"
+						function="to sphincter pupillae to close pupil"/>
+					<element id="eye-muscle-pupil-open" name="Eye - iris dilator muscle" type="connector"
+						notes="dilator pupillae runs radially, like the spokes of a wheel, through the iris, and when it contracts this opens the pupil"
+						function="to dilator pupillae to open pupil"/>
+				</element>
 
-				<element id="eye-tears-gland" name="Eye - lacrimal gland" type="connector"
-					notes="from superior salivatory to sphenopalatine ganglion"
-					function="tears"/>
-				<element id="eye-lacrimal-gland-conjunctiva-receptors" name="Eye - lacrimal gland and conjunctiva receptors" type="connector"
-					notes="sensory innervation to the gland and the conjunctiva, skin of the upper eyelid"
-					function="tears"/>
+				<element id="eyelid-motor" name="Eyelid - motor muscles">
+					<element id="eye-muscle-close-conscious-orbital" name="Eye - orbicularis oculi muscle - temporal" type="connector"
+						notes="squints the eyes, and the part that is labeled, or outer part, is the basis for AU 6 in FACS, from intermediate facial subnucleus"
+						comments="the inner part, mostly on the eyelids is the basis for AU 7 in FACS"
+						function="orbital portion, contraction of the orbital to reduce glare"/>
+					<element id="eye-muscle-close-conscious-lacrimal" name="Eye - orbicularis oculi muscle - zygomatic" type="connector"
+						notes="squints the eyes, and the part that is labeled, or outer part, is the basis for AU 6 in FACS, from intermediate facial subnucleus"
+						comments="the inner part, mostly on the eyelids is the basis for AU 7 in FACS"
+						function="lacrimal part (tensor tarsi), conscious muscle to close eye; draws the eyelids and the ends of the lacrimal canals medialward and compresses them against the surface of the globe of the eye; compresses the lacrimal sac"/>
+					<element id="eye-muscle-close-involuntary-palpebrale" name="Eye - orbicularis oculi muscle - palpebrale" type="connector"
+						notes="sleep, blink, corneal/blinking reflex"
+						comments="small muscle at the corner of the eye"
+						function="palpebral portion, acts involuntarily, closing the lids gently; involuntary muscle to close eye"/>
+
+					<element id="eye-muscle-superior-tarsal" name="Eye - superior tarsal muscle" type="connector"
+						function="raise the upper eyelid"/>
+					<element id="eye-muscle-inferior-tarsal" name="Eye - inferior tarsal muscle" type="connector"
+						function="lower lid retraction"/>
+					<element id="eye-orbitalis-muscle" name="Eye - orbitalis muscle" type="connector"
+						function="protrusion of eyeball"/>
+				</element>
+
+				<element id="eye-glands" name="Eye - glands">
+					<element id="eye-tears-gland" name="Eye - lacrimal gland" type="connector"
+						notes="from superior salivatory to sphenopalatine ganglion"
+						function="tears"/>
+					<element id="eye-lacrimal-gland-conjunctiva-receptors" name="Eye - lacrimal gland and conjunctiva receptors" type="connector"
+						notes="sensory innervation to the gland and the conjunctiva, skin of the upper eyelid"
+						function="tears"/>
+				</element>
+
 			</element>
 
 			<element id="TARGET.TSA.EAR" name="Ear" mapped="true" type="Sensor"
@@ -79,19 +112,24 @@
 				<element id="ear-outer-hair-cells" name="Ear - outer hair cells" type="connector"
 					notes="without functioning outer hair cells, the sensitivity decreases by approximately 50 dB, allows frequency discrimination, extend hearing range to about 200 kHz in some marine mammals" 
 					function="mechanically amplify low-level sound that enters cochlea"/>
-				<element id="ear-stapedius" name="Ear - stapedius" type="connector"
+				<element id="ear-stapedius" name="Ear - stapedius muscle" type="connector"
 					notes="control amplitude of sound waves from general external environment to inner ear" 
 					function="dampens vibrations of stapes"/>
-				<element id="ear-tensor-tympani" name="Ear - tympanic membrane" type="connector"
+				<element id="ear-tensor-tympani-muscle" name="Ear - tympanic membrane muscle" type="connector"
 					notes="pull malleus medially, tensing tympanic membrane, damping vibration in ear ossicles" 
 					function="dampen sounds, such as those produced from chewing"/>
-				<element id="ear-auricularis" name="Ear - auricularis muscle" type="connector"
-					notes="auricularis posterior, superioris, anterior" 
-					comments="auricula - part of outer ear"
-					function="move scalp and to point auricula in direction of source of sound"/>
 
-				<element id="ear-posterior-auricular-muscles" name="Ear - posterior auricular muscles" type="connector" 
-					function="adjust the direction of the pinna (outer ear)"/>
+				<element id="ear-anterior-auricular-muscle" name="Ear - anterior auricular muscle" type="connector"
+					function="pulls ear forward"/>
+				<element id="ear-posterior-auricular-muscle" name="Ear - posterior auricular muscle" type="connector" 
+					function="pulls ear backward"/>
+				<element id="ear-superior-auricular-muscle" name="Ear - superior auricular muscle" type="connector" 
+					function="pulls ear upward"/>
+				<element id="ear-oblique-auricular-muscle" name="Ear - oblique muscle of auricle" type="connector" 
+					function="movement of the ears"/>
+
+				<element id="ear-temporoparietalis-muscle" name="Ear - temporoparietalis muscle" type="connector" 
+					function="assist the frontal belly in drawing the epicranial aponeurosis towards the front of the cranium"/>
 			</element>
 
 			<element id="TARGET.TSA.NOSE" name="Nose" mapped="true" type="Sensor"
@@ -291,8 +329,8 @@
 				dotdef="color=firebrick1"
 				function="Mimics"
 				>
-				<element id="face-occipitofrontal-muscles" name="Face - occipitofrontal muscles" type="connector" 
-					function="move the scalp"/>
+				<element id="face-corrugator-supercilii-muscle" name="Face - corrugator supercilii muscle" type="connector" 
+					function="wrinkles forehead"/>
 				<element id="face-depressor-supercilii-muscle" name="Face - depressor supercilii muscle" type="connector" 
 					function="depression of eyebrow"/>
 				<element id="face-levator-labii-superioris-muscle" name="Face - levator labii superioris muscle" type="connector" 
@@ -301,11 +339,19 @@
 					function="closes the eyelids"/>
 				<element id="face-zygomaticus-major-muscle-proper" name="Face - zygomaticus major muscle, proper" type="connector"
 					function="draws angle of mouth upward and laterally"/>
+				<element id="face-frontalis-muscle" name="Face - frontalis muscle" type="connector"
+					function="raises the eyebrows"/>
+				<element id="face-occipitalis-muscle" name="Face - occipitalis muscle" type="connector"
+					function="moves the scalp back"/>
+				<element id="face-platysma-muscle" name="Face - platysma muscle" type="connector"
+					function="draws the corners of the mouth inferiorly and widens it (as in expressions of sadness and fright). Also draws the skin of the neck superiorly when teeth are clenched"/>
 
 				<element id="face-skin" name="Face - face skin" type="connector"
 					function="sensory fibers from the skin"/>
 				<element id="face-parotid-skin" name="Face - parotid skin" type="connector"
 					function="facial skin over the parotid gland"/>
+				<element id="face-occipitofrontal-muscles" name="Face - occipitofrontal muscles" type="connector" 
+					function="move the scalp"/>
 			</element>
 
 			<element id="TARGET.TEA.NECK" name="Neck" mapped="true" type="Effector"
@@ -411,11 +457,10 @@
 					function="flexor of the wrist (midcarpal), metacarpophalangeal and interphalangeal joints; flexes the 2-5 digits"/>
 				<element id="flexor-longus-pollicis-muscle" name="Hand - flexor longus pollicis" type="connector"
 					function="flexor of the phalanges of the thumb"/>
+				<element id="flexor-pollicis-brevis-muscle" name="Flexor pollicis brevis muscle, median" type="connector"
+					function="flexion of thumb"/>
 				<element id="flexor-sublimis-digitorum-muscle" name="Hand - flexor sublimis digitorum" type="connector"
 					function="flexion of the middle phalanges of the fingers at the proximal interphalangeal joints"/>
-				<element id="palmaris-longus-muscle" name="Palmaris longus" type="connector"
-					function="weak flexor"/>
-
 				<element id="infraspinatus-muscle" name="Hand - infraspinatus muscle" type="connector"
 					function="lateral rotation of arm; adduction of arm and stabilizes humerus"/>
 				<element id="supraspinatus-muscle" name="Hand - supraspinatus muscle" type="connector"
@@ -436,7 +481,9 @@
 					function="shoulder abduction, extension"/>
 				<element id="teres-minor-muscle" name="Hand - teres minor muscle" type="connector"
 					function="laterally rotates and adducts the arm"/>
-				<element id="triceps-brachii-muscle" name="Hand - triceps brachii muscle" type="connector"
+				<element id="triceps-brachii-muscle-axillary" name="Hand - triceps brachii muscle, axillary" type="connector"
+					function="extends forearm, caput longum adducts shoulder"/>
+				<element id="triceps-brachii-muscle-radial" name="Hand - triceps brachii muscle, radial" type="connector"
 					function="extends forearm, caput longum adducts shoulder"/>
 
 				<element id="articularis-cubiti-muscle" name="Hand - articularis cubiti muscle" type="connector"
@@ -447,14 +494,20 @@
 					function="extends the little finger at all joints"/>
 				<element id="extensor-digiti-minimi-muscle" name="Hand - extensor digiti minimi muscle" type="connector"
 					function="extends and adducts the wrist"/>
+				<element id="abductor-digiti-minimi-muscle" name="Hand - abductor digiti minimi muscle of hand" type="connector"
+					function="abduction of little finger"/>
 				<element id="extensor-digitorum-muscle" name="Hand - extensor digitorum muscle" type="connector"
 					function="extension of hand and fingers"/>
 				<element id="extensor-indicis-muscle" name="Hand - extensor indicis muscle" type="connector"
 					function="extends index finger, wrist"/>
 				<element id="extensor-pollicis-brevis-muscle" name="Hand - extensor pollicis brevis muscle" type="connector"
 					function="extension of thumb at metacarpophalangeal joint"/>
+				<element id="abductor-pollicis-brevis-muscle" name="Hand - abductor pollicis brevis muscle" type="connector"
+					function="abduction of thumb"/>
 				<element id="extensor-pollicis-longus-muscle" name="Hand - extensor pollicis longus muscle" type="connector"
 					function="extension of the thumb (metacarpophalangeal and interphalangeal)"/>
+				<element id="adductor-pollicis-muscle" name="Hand - adductor pollicis muscle" type="connector"
+					function="adducts the thumb at the carpometacarpal joint"/>
 				<element id="supinator-muscle" name="Hand - supinator muscle" type="connector"
 					function="supinates forearm"/>
 				<element id="extensor-carpi-radialis-brevis-muscle" name="Hand - extensor carpi radialis brevis muscle" type="connector"
@@ -465,6 +518,25 @@
 					function="stabilizer of elbow joint"/>
 				<element id="extensor-carpi-radialis-longus-muscle" name="Hand - extensor carpi radialis longus muscle" type="connector"
 					function="extensor and abductor of the hand at the wrist joint"/>
+				<element id="dorsal-interossei-muscle-hand" name="Hand - dorsal interossei muscles of the hand" type="connector"
+					function="abduct fingers"/>
+
+				<element id="flexor-carpi-radialis-muscle" name="Hand - flexor carpi radialis muscle" type="connector"
+					function="flexion and abduction at wrist"/>
+				<element id="flexor-carpi-ulnaris-muscle" name="Hand - flexor carpi ulnaris muscle" type="connector"
+					function="flexion and adduction of wrist"/>
+				<element id="flexor-digiti-minimi-brevis-muscle-hand" name="Hand - flexor digiti minimi brevis of hand" type="connector"
+					function="flexes little finger"/>
+				<element id="flexor-digitorum-profundus-muscle-interosseous" name="Hand - flexor digitorum profundus muscle, interosseous" type="connector"
+					function="flex hand, interphalangeal joints"/>
+				<element id="flexor-digitorum-profundus-muscle-ulnar" name="Hand - flexor digitorum profundus muscle, ulnar" type="connector"
+					function="flex hand, interphalangeal joints"/>
+				<element id="flexor-digitorum-superficialis-muscle" name="Hand - flexor digitorum superficialis muscle" type="connector"
+					function="flexor of fingers (primarily at proximal interphalangeal joints)"/>
+				<element id="flexor-pollicis-brevis-muscle-ulnar" name="Hand - flexor pollicis brevis muscle, ulnar" type="connector"
+					function="flexion of thumb"/>
+				<element id="flexor-pollicis-longus-muscle" name="Hand - flexor pollicis longus muscle" type="connector"
+					function="flexion of thumb"/>
 
 				<element id="biceps-muscle" name="Hand - biceps muscle" type="connector"
 					function="flexes elbow and supinates forearm"/>
@@ -472,6 +544,51 @@
 					function="flexion at elbow joint"/>
 				<element id="coracobrachialis-muscle" name="Hand - coracobrachialis muscle" type="connector"
 					function="flexes and adducts humerus"/>
+
+				<element id="levator-claviculae-muscle" name="Hand - levator claviculae muscle" type="connector"
+					function="lifts clavicle"/>
+				<element id="levator-scapulae-muscle-roots" name="Hand - levator scapulae muscle, roots" type="connector"
+					function="elevates scapula and tilts its glenoid cavity inferiorly by rotating scapula"/>
+				<element id="levator-scapulae-muscle-scapular" name="Hand - levator scapulae muscle, scapular" type="connector"
+					function="elevates scapula and tilts its glenoid cavity inferiorly by rotating scapula"/>
+				<element id="lumbricals-hand-muscles-median" name="Hand - lumbricals of the hand muscles, median" type="connector"
+					function="flex metacarpophalangeal joints, extend interphalangeal joints"/>
+				<element id="lumbricals-hand-muscles-ulnar" name="Hand - lumbricals of the hand muscles, ulnar" type="connector"
+					function="flex metacarpophalangeal joints, extend interphalangeal joints"/>
+				<element id="opponens-digiti-minimi-muscles" name="Hand - opponens digiti minimi muscle" type="connector"
+					function="draws 5th metacarpal anteriorly and rotates it, bringing little finger (5th digit) into opposition with thumb"/>
+				<element id="opponens-pollicis-muscle" name="Hand - opponens pollicis muscle" type="connector"
+					function="opposition of the thumb"/>
+				<element id="palmar-interossei-muscles" name="Hand - palmar interossei muscles" type="connector"
+					function="adduction"/>
+				<element id="palmaris-longus-muscle" name="Hand - palmaris longus muscle" type="connector"
+					function="wrist flexor"/>
+				<element id="palmaris-brevis-muscle" name="Hand - palmaris brevis muscle" type="connector"
+					function="wrinkle skin of palm"/>
+				<element id="pectoralis-major-muscle" name="Hand - pectoralis major muscle" type="connector"
+					function="clavicular head: flexes the humerus; sternocostal head: extends the humerus; as a whole, adducts and medially rotates the humerus. It also draws the scapula anteriorly and inferiorly"/>
+				<element id="pectoralis-minor-muscle" name="Hand - pectoralis minor muscle" type="connector"
+					function="stabilizes the scapula by drawing it inferiorly and anteriorly against the thoracic wall"/>
+				<element id="pronator-quadratus-muscle" name="Hand - pronator quadratus muscle" type="connector"
+					function="pronates the forearm"/>
+				<element id="pronator-teres-muscle" name="Hand - pronator teres muscle" type="connector"
+					function="pronation of forearm, flexes elbow"/>
+				<element id="rhomboid-major-muscle" name="Hand - rhomboid major muscle" type="connector"
+					function="retracts the scapula and rotates it to depress the glenoid cavity; it also fixes the scapula to the thoracic wall"/>
+				<element id="rhomboid-minor-muscle" name="Hand - rhomboid minor muscle" type="connector"
+					function="retracts the scapula and rotates it to depress the glenoid cavity; it also fixes the scapula to the thoracic wall"/>
+				<element id="serratus-anterior-muscle" name="Hand - serratus anterior muscle" type="connector"
+					function="retracts the scapula and rotates it to depress the glenoid cavity; it also fixes the scapula to the thoracic wall"/>
+				<element id="sternalis-muscle" name="Hand - sternalis muscle" type="connector"
+					function="protract and stabilize scapula, assists in upward rotation"/>
+				<element id="subclavius-muscle" name="Hand - subclavius muscle" type="connector"
+					function="depression of clavicle"/>
+				<element id="subscapularis-muscle-lower" name="Hand - subscapularis muscle, lower" type="connector"
+					function="rotates medially humerus; stabilizes shoulder"/>
+				<element id="subscapularis-muscle-upper" name="Hand - subscapularis muscle, upper" type="connector"
+					function="rotates medially humerus; stabilizes shoulder"/>
+				<element id="trapezius-muscle" name="Hand - trapezius muscle" type="connector"
+					function="descending (superior) part elevates; ascending (inferior) part depresses; and middle part (or all parts together) retracts scapula; descending and ascending parts act together to rotate glenoid cavity superiorly"/>
 			</element>
 
 			<element id="TARGET.TEA.LEG" name="Leg" mapped="true" type="Effector"
@@ -510,6 +627,29 @@
 					function="dorsi flexes and everts foot"/>
 				<element id="tibialis-anterior-muscle" name="Leg - tibialis anterior muscle" type="connector"
 					function="dorsiflex and invert the foot"/>
+
+				<element id="leg-abductor-digiti-minimi-muscle" name="Leg - abductor digiti minimi muscle of foot" type="connector"
+					function="flex and abduct the fifth toe"/>
+				<element id="leg-abductor-hallucis-muscle" name="Leg - abductor hallucis muscle" type="connector"
+					function="abducts hallux"/>
+				<element id="leg-flexor-digitorum-brevis-muscle" name="Leg - flexor digitorum brevis muscle" type="connector"
+					function="flexes lateral four toes"/>
+				<element id="leg-quadratus-plantae-muscle" name="Leg - quadratus plantae muscle" type="connector"
+					function="assists flexor digitorum longus in flexion of DIP joints"/>
+				<element id="leg-lumbrical-muscle-lateral" name="Leg - lumbrical muscle of foot, lateral" type="connector"
+					function="flex proximal phalanges and extend middle and distal phalanges of lateral four digits"/>
+				<element id="leg-lumbrical-muscle-medial" name="Leg - lumbrical muscle of foot, medial" type="connector"
+					function="flex proximal phalanges and extend middle and distal phalanges of lateral four digits"/>
+				<element id="leg-flexor-digiti-minimi-brevis-muscle" name="Leg - flexor digiti minimi brevis muscle of foot" type="connector"
+					function="flex and adduct the fifth toe"/>
+				<element id="leg-flexor-hallucis-brevis-muscle" name="Leg - flexor hallucis brevis muscle" type="connector"
+					function="plantar nerve, medial, branches to LAFF muscles"/>
+				<element id="leg-adductor-hallucis-muscle" name="Leg - adductor hallucis muscle" type="connector"
+					function="adducts hallux"/>
+				<element id="leg-dorsal-interossei-muscles" name="Leg - dorsal interossei muscles of the foot" type="connector"
+					function="abduct toes"/>
+				<element id="leg-plantar-interossei-muscles" name="Leg - plantar interossei muscles" type="connector"
+					function="abduct toes"/>
 			</element>
 
 			<element id="TARGET.TEA.TRUNK" name="Trunk" mapped="true" type="Effector"
@@ -567,38 +707,73 @@
 				dotdef="color=firebrick1"
 				function="Reproductive system"
 				>
-				<element id="uterus-parasympathetic" name="Genitalia - parasympathetic uterus vasodilators" type="connector"
-					function="female - contraction of smooth muscles of myometrium, increased blood flow; sexual response by directing blood flow to the pelvis and to the external genitalia, including the ovaries, vagina, labia, and clitoris"/>
-				<element id="vagina-parasympathetic" name="Genitalia - parasympathetic vaginal vasodilators" type="connector"
-					function="female - contraction of smooth muscles of myometrium, increased blood flow"/>
-				<element id="utetovaginal-visceral-receptors" name="Genitalia - utetovaginal visceral receptors" type="connector"
-					function="sexual sensations"/>
+				<element id="genitalia-urination" name="Genitalia - urination and support muscles">
+					<element id="bulbospongiosus-muscle" name="Genitalia - bulbospongiosus muscle" type="connector"
+						function="in males, empties the urethra; in females, clenches the vagina"/>
+					<element id="external-sphincter-female-urethra" name="Genitalia - external sphincter muscle of female urethra" type="connector"
+						function="control urination, constricts urethra, maintain urinary continence"/>
+					<element id="external-sphincter-male-urethra" name="Genitalia - external sphincter muscle of male urethra" type="connector"
+						function="control urination, constricts urethra, maintain urinary continence"/>
+				</element>
 
-				<element id="corpus-cavernosum-clitoridis" name="Genitalia - corpus cavernosum clitoridis" type="connector"
-					function="clitoral erection; simultaneously the ischiocavernosus and bulbospongiosus muscles compress the veins of the corpora cavernosa restricting the egress and circulation of this blood"/>
-				<element id="corpus-cavernosum-penis" name="Genitalia - corpus cavernosum penis" type="connector"
-					function="penile erection; simultaneously the ischiocavernosus and bulbospongiosus muscles compress the veins of the corpora cavernosa restricting the egress and circulation of this blood"/>
-				<element id="visceral-sexual-receptors" name="Genitalia - visceral sexual receptors" type="connector"
-					function="sexual sensations"/>
+				<element id="genitalia-erection" name="Genitalia - erection muscles">
+					<element id="uterus-parasympathetic" name="Genitalia - parasympathetic uterus vasodilators" type="connector"
+						function="female - contraction of smooth muscles of myometrium, increased blood flow; sexual response by directing blood flow to the pelvis and to the external genitalia, including the ovaries, vagina, labia, and clitoris"/>
+					<element id="vagina-parasympathetic" name="Genitalia - parasympathetic vaginal vasodilators" type="connector"
+						function="female - contraction of smooth muscles of myometrium, increased blood flow"/>
 
-				<element id="bulbospongiosus-muscle" name="Genitalia - bulbospongiosus muscle" type="connector"
-					function="in males, empties the urethra; in females, clenches the vagina"/>
-				<element id="external-sphincter-female-urethra" name="Genitalia - external sphincter muscle of female urethra" type="connector"
-					function="control urination, constricts urethra, maintain urinary continence"/>
-				<element id="external-sphincter-male-urethra" name="Genitalia - external sphincter muscle of male urethra" type="connector"
-					function="control urination, constricts urethra, maintain urinary continence"/>
-				<element id="ischiocavernosus-muscle" name="Genitalia - ischiocavernosus muscle" type="connector"
-					function="stabilize the erect penis or (in females) tense the vagina during orgasm"/>
+					<element id="corpus-cavernosum-clitoridis" name="Genitalia - corpus cavernosum clitoridis" type="connector"
+						function="clitoral erection; simultaneously the ischiocavernosus and bulbospongiosus muscles compress the veins of the corpora cavernosa restricting the egress and circulation of this blood"/>
+					<element id="corpus-cavernosum-penis" name="Genitalia - corpus cavernosum penis" type="connector"
+						function="penile erection; simultaneously the ischiocavernosus and bulbospongiosus muscles compress the veins of the corpora cavernosa restricting the egress and circulation of this blood"/>
 
-				<element id="testicle-gland" name="Genitalia - testicle gland" type="connector"
-					function="produce androgens, primarily testosterone (growth of muscle mass and strength, regulator of cognitive and physical energy, sperm development"/>
-				<element id="ovary-gland" name="Genitalia - ovary gland" type="connector"
-					function="secretes estrogen (maturation and maintenance of the reproductive organs), testosterone (prepares the uterus for pregnancy, and the mammary glands for lactation) and progesterone (promoting menstrual cycle changes in the endometrium"/>
+					<element id="ischiocavernosus-muscle" name="Genitalia - ischiocavernosus muscle" type="connector"
+						function="stabilize the erect penis or (in females) tense the vagina during orgasm"/>
 
-				<element id="uterus-sympathetic" name="Genitalia - uterus, sympathetic receptors" type="connector"
-					function="contraction of smooth muscles of myometrium, decreased blood flow, loss of erection"/>
-				<element id="vagina-sympathetic" name="Genitalia - vagina, sympathetic receptors" type="connector"
-					function="vasoconstriction of fibromuscular tube, loss of erection"/>
+					<element id="uterus-sympathetic" name="Genitalia - uterus, sympathetic contractors" type="connector"
+						function="contraction of smooth muscles of myometrium, decreased blood flow, loss of erection"/>
+					<element id="vagina-sympathetic" name="Genitalia - vagina, sympathetic vasoconstrictors" type="connector"
+						function="vasoconstriction of fibromuscular tube, loss of erection"/>
+				</element>
+
+				<element id="genitalia-ejaculation" name="Genitalia - ejaculation muscles and glands, pregnancy and lifecycle support">
+					<element id="bartholin-gland" name="Genitalia - bartholin gland" type="connector"
+						function="secretes mucus to lubricate the vagina"/>
+					<element id="cowper-gland" name="Genitalia - cowper gland" type="connector"
+						function="produces a clear, salty, viscous secretion known as pre-ejaculate, homologous to Bartholin glands in females"/>
+					<element id="prostate-gland" name="Genitalia - prostate gland" type="connector"
+						function="secrete a slightly alkaline fluid, milky or white in appearance, constitutes 50–75 percents of the volume of the semen along with spermatozoa and seminal vesicle fluid"/>
+					<element id="skenes-gland" name="Genitalia - skenes gland" type="connector"
+						function="cause female ejaculation and G-Spot orgasms"/>
+					<element id="cervix-gland" name="Genitalia - cervix" type="connector"
+						function="female - produces cervical mucus that changes in consistency during the menstrual cycle to prevent or promote pregnancy"/>
+
+					<element id="testicle-gland" name="Genitalia - testicle gland" type="connector"
+						function="produce androgens, primarily testosterone (growth of muscle mass and strength, regulator of cognitive and physical energy, sperm development"/>
+					<element id="ovary-gland" name="Genitalia - ovary gland" type="connector"
+						function="secretes estrogen (maturation and maintenance of the reproductive organs), testosterone (prepares the uterus for pregnancy, and the mammary glands for lactation) and progesterone (promoting menstrual cycle changes in the endometrium"/>
+
+					<element id="vas-deferens" name="Genitalia - vas deferens" type="connector"
+						function="male - emission (prior to ejaculation), contracts, propelling sperm forward"/>
+					<element id="deep-transverse-perineal-muscle-penis" name="Genitalia - deep transverse perineal muscle, penis" type="connector"
+						function="fixation of central tendon of perineum, support of pelvic floor, expulsion of semen in males and last drops of urine in both sexes"/>
+					<element id="deep-transverse-perineal-muscle-clitoris" name="Genitalia - deep transverse perineal muscle, clitoris" type="connector"
+						function="fixation of central tendon of perineum, support of pelvic floor and last drops of urine in both sexes"/>
+				</element>
+
+				<element id="genitalia-sensory" name="Genitalia - sensations">
+					<element id="utetovaginal-visceral-receptors" name="Genitalia - utetovaginal visceral receptors" type="connector"
+						function="sexual sensations"/>
+					<element id="visceral-sexual-receptors" name="Genitalia - visceral sexual receptors" type="connector"
+						function="sexual sensations"/>
+				</element>
+
+				<element id="genitalia-scrotum-muscles" name="Genitalia - scrotum muscles">
+					<element id="cremaster-muscle" name="Genitalia - cremaster muscle" type="connector"
+						function="raise and lower the scrotum, acts quickly, it is a reflex"/>
+					<element id="dartos-muscle" name="Genitalia - dartos muscle" type="connector"
+						function="corrugates the scrotum; contraction reduces the surface area available for heat loss, thus reducing heat loss and warming the testicles; expansion increases the surface area, promoting heat loss and thus cooling the testicles."/>
+				</element>
 			</element>
 
 			<element id="TARGET.TEA.URETER" name="Ureter" mapped="true" type="Effector"

@@ -55,7 +55,7 @@
 		</element>
 
 		<element name="Genitalia nerves, somatic"
-			modality="general sensory, flexor motor"
+			modality="general sensory, flexor motor, sympathetic motor"
 			>
 			<fibers type="GSA" src="TARGET.TEA.GENITALIA" dst="BMA.SC.PH.MG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
 			<fibers type="GSA" src="TARGET.TEA.GENITALIA" dst="BMA.SC.PH.SG"><mid id="AVA.PN.SG.DRG.CX"/></fibers>
@@ -65,7 +65,7 @@
 				origin="lumbar PLEXUS (L1-L2)"
 				branches="genital"
 				distribution="cremaster muscle, skin of scrotum or labium majus"
-				modality="general sensory, flexor motor"
+				modality="general sensory, flexor motor, sympathetic motor"
 				>
 				<fibers type="GSE" src="BMA.SC.VH.PM" dst="TARGET.TEA.GENITALIA"></fibers>
 
@@ -74,8 +74,10 @@
 					origin="genitofemoral nerve (L1-L2)"
 					distribution="muscular branches to cremaster muscle (male only, raise and lower testes in order to regulate temperature of testes and promote spermatogenesis); cutaneous branches to skin of scrotum/male and labium majus/female, mons pubis/female"
 					imgsrc="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/genitofemoral-female.png"
-					modality="general sensory, flexor motor"
-					/>
+					modality="general sensory, flexor motor, sympathetic motor"
+					>
+					<fibers type="GVE" src="AVA.SC.IZ.IML" dst="TARGET.TEA.GENITALIA"><mid id="AVA.PN.SYM.IMG"/></fibers>
+				</element>
 			</element>
 
 			<element name="ilioinguinal nerve"
@@ -113,7 +115,7 @@
 				origin="sacral PLEXUS (S2-S4)"
 				branches="enters pudendal canal, gives off inferior anal nerve, and then divides into perineal nerve and dorsal nerve of penis (clitoris)"
 				distribution="muscles, skin, and erectile tissue of perineum"
-				modality="general sensory, flexor motor"
+				modality="general sensory, flexor motor, sympathetic motor"
 				>
 				<element name="nerve to urethral bulb"
 					synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/Ne100.htm NERVE TO URETHRAL BULB]"
@@ -149,7 +151,7 @@
 					origin="pudendal nerve"
 					branches="muscular branches and posterior scrotal or labial nerves"
 					distribution="muscular branches supply bulbocavernous, ischiocavernous, bulb of the penis; scrotal (labial) nerves supply scrotum or labium majus"
-					modality="general sensory, flexor motor"
+					modality="general sensory, flexor motor, sympathetic motor"
 					>
 					<element name="perineal nerve, deep branch"
 						synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/posteriorlabial.htm POSTERIOR LABIAL NERVES]"
@@ -161,7 +163,7 @@
 						<fibers type="GSE" src="BMA.SC.VH.PM" dst="TARGET.TEA.GENITALIA"></fibers>
 					</element>
 					<element name="perineal nerve, superficial branch"
-						modality="general sensory"
+						modality="general sensory, sympathetic motor"
 						>
 						<element name="labial nerve, posterior"
 							synonyms="MA:[http://www.oluwoleogunranti.com/course/course1/nerves/posteriorlabial.htm POSTERIOR LABIAL NERVES]"
@@ -175,8 +177,10 @@
 							origin="pudendal nerve"
 							distribution="skin of scrotum"
 							imgsrc="http://www.pudendalhope.info/sites/default/files/AC1357_02A.jpg" imgheight="400"
-							modality="general sensory"
-							/>
+							modality="general sensory, sympathetic motor"
+							>
+							<fibers type="GVE" src="AVA.SC.IZ.IML" dst="TARGET.TEA.GENITALIA"><mid id="AVA.PN.SYM.IMG"/></fibers>
+						</element>
 					</element>
 				</element>
 			</element>
