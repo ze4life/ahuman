@@ -49,7 +49,6 @@ Region is part of aHuman target integrated biological model.
   * *Tensor veli palatini muscle (masticatory-tensor-veli-palatini-muscle)*: tension of the soft palate
   * *Mouth - temporal muscle (masticatory-temporal-muscle)*: elevation and retraction of mandible
   * *Mouth - proprioception receptors of masticatory muscles (masticatory-unconscious-muscle-spindles)*: unconscious proprioception from muscle spindles; monosynaptic masticatory reflex
-  * *Mouth - thyroid gland (thyroid-gland)*: release thyroid hormones into blood
   * *Mouth - arytenoid muscle (arytenoid-muscle)*: approximate the arytenoid cartilages (close rima glottidis)
   * *Mouth - cricothyroid muscle (cricothyroid-muscle)*: tension and elongation of the vocal folds (has minor adductory effect)
   * *Mouth - inferior pharyngeal constrictor muscle (inferior-pharyngeal-constrictor-muscle)*: swallowing
@@ -60,6 +59,35 @@ Region is part of aHuman target integrated biological model.
   * *Mouth - thyroarytenoid muscle (thyroarytenoid-muscle)*: thickens the vocal folds and decreases length; also helps to adduct the vocal folds during speech
   * *Mouth - thyroepiglottic muscle (thyroepiglottic-muscle)*: closes the inlet to the larynx
   * *Mouth - occipitalis muscle (occipitalis-muscle)*: moves the scalp back
+  * *Mouth - aryepiglottic muscle (aryepiglottic-muscle)*: close the inlet
+  * *Mouth - buccinator muscle (buccinator-muscle)*: compress the cheeks against the teeth (blowing), mastication
+  * *Mouth - chondroglossus muscle (chondroglossus-muscle)*: depresses tongue
+  * *Mouth - depressor anguli oris muscle (depressor-anguli-oris-muscle)*: depresses angle of mouth
+  * *Mouth - depressor labii inferioris muscle (depressor-labii-inferioris-muscle)*: depress the lower lip
+  * *Mouth - digastric muscle, facial (digastric-muscle-facial)*: opens the jaw when the masseter and the temporalis are relaxed
+  * *Mouth - digastric muscle, trigeminal (digastric-muscle-trigeminal)*: opens the jaw when the masseter and the temporalis are relaxed
+  * *Mouth - geniohyoid muscle (geniohyoid-muscle)*: carry hyoid bone and the tongue upward during deglutition
+  * *Mouth - inferior longitudinal muscle of tongue (tongue-inferior-longitudinal-muscle)*: shortens, retracts, pulls tip downward
+  * *Mouth - levator anguli oris muscle (levator-anguli-oris-muscle)*: smile (elevates angle of mouth)
+  * *Mouth - levator veli palatini muscle (levator-veli-palatini-muscle)*: elevates soft palate
+  * *Mouth - mentalis muscle (mentalis-muscle)*: elevates and wrinkles skin of chin, protrudes lower lip
+  * *Mouth - middle pharyngeal constrictor muscle (middle-pharyngeal-constrictor-muscle)*: swallowing
+  * *Mouth - musculus uvulae muscle (musculus-uvulae-muscle)*: elevates and retracts the uvula, thickening the central part of the soft palate
+  * *Mouth - mylohyoid muscle (mylohyoid-muscle)*: raises oral cavity floor, elevates hyoid, depresses mandible
+  * *Mouth - omohyoid muscle (omohyoid-muscle)*: depresses the larynx and hyoid bone; carries hyoid bone backward and to the side
+  * *Mouth - orbicularis oris muscle (orbicularis-oris-muscle)*: pucker the lips
+  * *Mouth - palatoglossus muscle (palatoglossus-muscle)*: raising the back part of the tongue
+  * *Mouth - palatopharyngeus muscle (palatopharyngeus-muscle)*: pulls pharynx and larynx
+  * *Mouth - risorius muscle (risorius-muscle)*: assist with pulling the lower lip downward and help to tighten the skin over the chin
+  * *Mouth - sternohyoid muscle (sternohyoid-muscle)*: depress hyoid bone
+  * *Mouth - sternothyroid muscle (sternothyroid-muscle)*: elevates larynx, may slightly depress hyoid bone
+  * *Mouth - stylohyoid muscle (stylohyoid-muscle)*: elevate the hyoid during swallowing
+  * *Mouth - superior longitudinal muscle of tongue (superior-longitudinal-muscle-tongue)*: shortens, turns tip upward, turns lateral margins upward
+  * *Mouth - superior pharyngeal constrictor muscle (superior-pharyngeal-constrictor-muscle)*: swallowing
+  * *Mouth - tensor veli palatini muscle (tensor-veli-palatini-muscle)*: tension of the soft palate
+  * *Mouth - transverse muscle of the chin (transverse-chin-muscle)*: assist with pulling the lower lip downward and help to tighten the skin over the chin
+  * *Mouth - transverse muscle of tongue (transverse-tongue-muscle)*: narrows and elongates tongue
+  * *Mouth - vertical muscle of tongue (vertical-tongue-muscle)*: flattens tongue
 
 = Connectivity =
 (generated)
@@ -71,7 +99,6 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/TARGET.TEA.MOUTH.dot.jpg
 
 || *Source Area* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || [BrainAreaAVA AVA] || [BrainRegionAVA_PN_PSYM_ILG AVA.PN.PSYM.ILG] || Intralaryngeal Peripheral Ganglion || lateral-cricoarytenoid-muscle || (unknown reference) ||
-||  || [BrainRegionAVA_PN_SYM_MCG AVA.PN.SYM.MCG] || Middle Cervical Ganglion || thyroid-gland || (unknown reference) ||
 ||  || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || Superior Cervical Ganglion || mouth-submandibular-gland-vasoconstrictors || (unknown reference) ||
 || [BrainAreaBMA BMA] || [BrainRegionBMA_SC_VH_VM BMA.SC.VH.VM] || Ventromedial Nucleus || mouth-larynx-thyrohyoid-muscle || (unknown reference) ||
 || [BrainAreaFMA FMA] || [BrainRegionAVA_PN_PSYM_OTG AVA.PN.PSYM.OTG] || Otic Ganglion || mouth-parotid-gland || (unknown reference) ||
@@ -81,6 +108,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/TARGET.TEA.MOUTH.dot.jpg
 ||  || [BrainRegionHMA_HM_HYG HMA.HM.HYG] || Hypoglossal Motor Nucleus || mouth-tongue-muscles || (unknown reference) ||
 ||  || [BrainRegionHMA_HP_FCM HMA.HP.FCM] || Facial Motor Nucleus || mouth-lips-muscles || (unknown reference) ||
 || [BrainAreaHMA HMA] || [BrainRegionHMA_HP_PTP_TRM HMA.HP.PTP.TRM] || Trigeminal Motor Nucleus || masticatory-masseter-muscle || (unknown reference) ||
+||  || [BrainRegionHMA_SC_VH_SAN HMA.SC.VH.SAN] || Spinal Accessory Nucleus || geniohyoid-muscle || (unknown reference) ||
 
 *Outbound Region Connections:*
 
