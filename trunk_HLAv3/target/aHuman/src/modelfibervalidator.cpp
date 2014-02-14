@@ -22,7 +22,7 @@ bool ModelFiberValidator::isValid_GSE_end( XmlNerveInfo& info , MindRegion *src 
 	}
 
 	role = dst -> getRegionInfo() -> getRole();
-	if( role != MIND_REGION_ROLE_TARGET ) {
+	if( role != MIND_REGION_ROLE_TARGETSENSOR && role != MIND_REGION_ROLE_TARGETEFFECTOR ) {
 		res = false;
 		logger.logError( "isValid_GSE_end: invalid destination role in link from region=" + src -> getRegionId() + " to region=" + dst -> getRegionId() + ", from nerve=" + info.name );
 	}
@@ -35,7 +35,7 @@ bool ModelFiberValidator::isValid_GSA_begin( XmlNerveInfo& info , MindRegion *sr
 
 	// src=target, dst=sensory
 	MindRegionRoleEnum role = src -> getRegionInfo() -> getRole();
-	if( role != MIND_REGION_ROLE_TARGET ) {
+	if( role != MIND_REGION_ROLE_TARGETSENSOR && role != MIND_REGION_ROLE_TARGETEFFECTOR ) {
 		res = false;
 		logger.logError( "isValid_GSA_begin: invalid source role in link from region=" + src -> getRegionId() + " to region=" + dst -> getRegionId() + ", from nerve=" + info.name );
 	}
@@ -60,7 +60,7 @@ bool ModelFiberValidator::isValid_GSA_afterbegin( XmlNerveInfo& info , MindRegio
 	}
 
 	role = dst -> getRegionInfo() -> getRole();
-	if( role == MIND_REGION_ROLE_TARGET || role == MIND_REGION_ROLE_SENSORY ) {
+	if( role == MIND_REGION_ROLE_TARGETSENSOR || role == MIND_REGION_ROLE_TARGETEFFECTOR  || role == MIND_REGION_ROLE_SENSORY ) {
 		res = false;
 		logger.logError( "isValid_GSA_afterbegin: invalid destination role in link from region=" + src -> getRegionId() + " to region=" + dst -> getRegionId() + ", from nerve=" + info.name );
 	}
@@ -79,7 +79,7 @@ bool ModelFiberValidator::isValid_GVE_end( XmlNerveInfo& info , MindRegion *src 
 	}
 
 	role = dst -> getRegionInfo() -> getRole();
-	if( role != MIND_REGION_ROLE_TARGET ) {
+	if( role != MIND_REGION_ROLE_TARGETSENSOR && role != MIND_REGION_ROLE_TARGETEFFECTOR ) {
 		res = false;
 		logger.logError( "isValid_GVE_end: invalid destination role in link from region=" + src -> getRegionId() + " to region=" + dst -> getRegionId() + ", from nerve=" + info.name );
 	}
@@ -111,7 +111,7 @@ bool ModelFiberValidator::isValid_SSA_begin( XmlNerveInfo& info , MindRegion *sr
 
 	// src=target, dst=relay or processor nucleus
 	MindRegionRoleEnum role1 = src -> getRegionInfo() -> getRole();
-	if( role1 != MIND_REGION_ROLE_TARGET ) {
+	if( role1 != MIND_REGION_ROLE_TARGETSENSOR && role1 != MIND_REGION_ROLE_TARGETEFFECTOR ) {
 		res = false;
 		logger.logError( "isValid_SSA_begin: invalid source role in link from region=" + src -> getRegionId() + " to region=" + dst -> getRegionId() + ", from nerve=" + info.name );
 	}
@@ -131,7 +131,7 @@ bool ModelFiberValidator::isValid_SVA_begin( XmlNerveInfo& info , MindRegion *sr
 
 	// src=target, dst=sensory ganglion
 	MindRegionRoleEnum role1 = src -> getRegionInfo() -> getRole();
-	if( role1 != MIND_REGION_ROLE_TARGET ) {
+	if( role1 != MIND_REGION_ROLE_TARGETSENSOR && role1 != MIND_REGION_ROLE_TARGETEFFECTOR ) {
 		res = false;
 		logger.logError( "isValid_SVA_begin: invalid source role in link from region=" + src -> getRegionId() + " to region=" + dst -> getRegionId() + ", from nerve=" + info.name );
 	}

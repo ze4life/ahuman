@@ -34,6 +34,7 @@ private:
 	void checkMindModel();
 
 	bool checkHierarchy_verifyChild( String node , bool checkMapping );
+	bool checkHierarchy_verifyConnectors( MindRegionDef *rd , const XmlHMindElementInfo& info );
 	bool checkCircuits_verifyComponents( String circuit );
 	bool checkCircuits_verifyLinks( String circuit );
 	bool checkCircuits_verifyCircuitLink( XmlCircuitInfo& circuit , XmlCircuitLinkInfo& link );

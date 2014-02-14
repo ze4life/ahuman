@@ -36,6 +36,7 @@ public:
 
 	void getDivisions( StringList& divisions );
 	void getElements( String parentNode , StringList& elements );
+	void getConnectors( String parentNode , StringList& elements );
 	void getIdentifiedElements( String parentNode , StringList& elements );
 	const XmlHMindElementInfo& getElementInfo( String node );
 	const XmlHMindElementInfo *getConnectorInfo( String name );
@@ -240,6 +241,7 @@ public:
 	Xml getMuscleXml( String id );
 	XmlMuscleInfo& getMuscleInfo( String muscle );
 	void getMusclesByNerve( String nerve , StringList& muscles );
+	XmlMuscleInfo *findByConnector( String name );
 
 	void getCategories( StringList& categories );
 	MapStringToClass<XmlMuscleDivision>& getDivisions() { return( divisions ); };
@@ -254,6 +256,7 @@ private:
 	MapStringToClass<XmlMuscleInfo> muscles;
 	MapStringToClass<XmlMuscleDivision> divisions;
 	MapStringToClass<StringList> nerveMuscles;
+	MapStringToClass<XmlMuscleInfo> muscleConnectors;
 };
 
 /*#########################################################################*/

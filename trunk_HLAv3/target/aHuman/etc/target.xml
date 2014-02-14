@@ -109,10 +109,17 @@
 			<connector entity="nose-visceral-pharynx" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.SG.PET" connector="ganglion.input" primary="true"/>
 
+			<element id="nose-nasalis-muscle" name="Nose - nasalis muscle" type="connector"
+				region="HMA.HP.FCM" connector="nucleus.output" primary="true"/>
+			<element id="nose-depressor-septi-nasi" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.HP.FCM" connector="nucleus.output" primary="true"/>
+			<element id="nose-levator-labii-superioris-alaeque-nasi" name="Nose - levator labii superioris alaeque nasi muscle" type="connector"
+				region="HMA.HP.FCM" connector="nucleus.output" primary="true"/>
+
 			<connector entity="nose-nasal-glands" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.PSYM.PTG" connector="ganglion.output" primary="true"/>
-			<connector entity="nose-muscles" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
-				region="HMA.HP.FCM" connector="nucleus.output" primary="true"/>
+			<element id="nose-salpingopharyngeus" name="Nose - salpingopharyngeus muscle" type="connector"
+				region="HMA.HM.AMB" connector="nucleus.output" primary="true"/>
 		</sensor>
 
 		<sensor id="TARGET.TSA.MINDCOVER" run="true">
@@ -132,6 +139,8 @@
 				region="AVA.PN.SYM.CEG" connector="ganglion.output" primary="true"/>
 			<connector entity="liver-blood-vessels" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.SYM.CEG" connector="ganglion.output" primary="true"/>
+			<connector entity="thyroid-gland" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SYM.MCG" connector="ganglion.output" primary="true"/>
 		</sensor>
 
 	</sensors>
@@ -231,9 +240,6 @@
 			<connector entity="masticatory-unconscious-muscle-spindles" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="HMA.MM.MSTR" connector="ganglion.input" primary="true"/>
 
-			<connector entity="thyroid-gland" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
-				region="AVA.PN.SYM.MCG" connector="ganglion.output" primary="true"/>
-
 			<connector entity="arytenoid-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="HMA.HM.AMB" connector="nucleus.output" primary="true"/>
 			<connector entity="cricothyroid-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
@@ -253,6 +259,66 @@
 				region="AVA.PN.PSYM.ILG" connector="ganglion.output" primary="true"/>
 			<connector entity="thyroepiglottic-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.PSYM.ILG" connector="ganglion.output" primary="true"/>
+
+			<connector entity="aryepiglottic-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU"
+				region="AVA.PN.PSYM.ILG" connector="ganglion.output" primary="true"/>
+			<connector entity="buccinator-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU"
+				region="HMA.HP.FCM" connector="nucleus.output" primary="true"/>
+			<connector entity="chondroglossus-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.HM.HYG" connector="nucleus.output" primary="true"/>
+			<connector entity="depressor-anguli-oris-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.HP.FCM" connector="nucleus.output" primary="true"/>
+			<connector entity="depressor-labii-inferioris-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.HP.FCM" connector="nucleus.output" primary="true"/>
+			<connector entity="digastric-muscle-facial" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.HP.FCM" connector="nucleus.output" primary="true"/>
+			<connector entity="digastric-muscle-trigeminal" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.HP.PTP.TRM" connector="nucleus.output" primary="true"/>
+			<connector entity="geniohyoid-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.SC.VH.SAN" connector="nucleus.output" primary="true"/>
+			<connector entity="tongue-inferior-longitudinal-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.HM.HYG" connector="nucleus.output" primary="true"/>
+			<connector entity="levator-anguli-oris-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.HP.FCM" connector="nucleus.output" primary="true"/>
+			<connector entity="levator-veli-palatini-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.HM.AMB" connector="nucleus.output" primary="true"/>
+			<connector entity="mentalis-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.HP.FCM" connector="nucleus.output" primary="true"/>
+			<connector entity="middle-pharyngeal-constrictor-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.HM.AMB" connector="nucleus.output" primary="true"/>
+			<connector entity="musculus-uvulae-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.PSYM.PTG" connector="nucleus.output" primary="true"/>
+			<connector entity="mylohyoid-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.HP.PTP.TRM" connector="nucleus.output" primary="true"/>
+			<connector entity="omohyoid-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
+			<connector entity="orbicularis-oris-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.HP.FCM" connector="nucleus.output" primary="true"/>
+			<connector entity="palatoglossus-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.HM.AMB" connector="nucleus.output" primary="true"/>
+			<connector entity="palatopharyngeus-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.HM.AMB" connector="nucleus.output" primary="true"/>
+			<connector entity="risorius-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.HP.FCM" connector="nucleus.output" primary="true"/>
+			<connector entity="sternohyoid-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
+			<connector entity="sternothyroid-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
+			<connector entity="stylohyoid-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.HP.FCM" connector="nucleus.output" primary="true"/>
+			<connector entity="superior-longitudinal-muscle-tongue" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.HM.HYG" connector="nucleus.output" primary="true"/>
+			<connector entity="superior-pharyngeal-constrictor-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.HM.AMB" connector="nucleus.output" primary="true"/>
+			<connector entity="tensor-veli-palatini-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.HP.PTP.TRM" connector="nucleus.output" primary="true"/>
+
+			<connector entity="transverse-chin-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU"
+				region="HMA.HP.FCM" connector="nucleus.output" primary="true"/>
+			<connector entity="transverse-tongue-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU"
+				region="HMA.HM.HYG" connector="nucleus.output" primary="true"/>
+			<connector entity="vertical-tongue-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU"
+				region="HMA.HM.HYG" connector="nucleus.output" primary="true"/>
 		</effector>
 
 		<effector id="TARGET.TEA.FACE" run="true">
@@ -263,8 +329,6 @@
 			<connector entity="face-levator-labii-superioris-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="HMA.HP.FCM" connector="nucleus.output" primary="true"/>
 			<connector entity="face-orbicularis-oculi-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
-				region="HMA.HP.FCM" connector="nucleus.output" primary="true"/>
-			<connector entity="face-zygomaticus-major-muscle-proper" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="HMA.HP.FCM" connector="nucleus.output" primary="true"/>
 			<connector entity="face-frontalis-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="HMA.HP.FCM" connector="nucleus.output" primary="true"/>
@@ -280,35 +344,56 @@
 
 			<connector entity="occipitalis-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="HMA.HP.FCM" connector="nucleus.output" primary="true"/>
+			<connector entity="zygomaticus-major-muscle-buccal" type="target" implementation="mock" nttype="excitatory" nt="GLU"
+				region="HMA.HP.FCM" connector="nucleus.output" primary="true"/>
+			<connector entity="zygomaticus-major-muscle-proper" type="target" implementation="mock" nttype="excitatory" nt="GLU"
+				region="HMA.HP.FCM" connector="nucleus.output" primary="true"/>
+			<connector entity="zygomaticus-minor-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU"
+				region="HMA.HP.FCM" connector="nucleus.output" primary="true"/>
+
+			<connector entity="face-procerus" type="target" implementation="mock" nttype="excitatory" nt="GLU"
+				region="HMA.HP.FCM" connector="nucleus.output" primary="true"/>
 		</effector>
 
 		<effector id="TARGET.TEA.NECK" run="true">
 			<connector entity="neck-low-cutaneous-receptors" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.SG.DRG" connector="ganglion.input" primary="true"/>
 
-			<connector entity="obliquus-capitis-inferior-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+			<connector entity="neck-obliquus-capitis-inferior-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
-			<connector entity="obliquus-capitis-superior-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+			<connector entity="neck-obliquus-capitis-superior-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
-			<connector entity="rectus-capitis-posterior-major-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+			<connector entity="neck-rectus-capitis-posterior-major-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
-			<connector entity="rectus-capitis-posterior-minor-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+			<connector entity="neck-rectus-capitis-posterior-minor-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
 
 			<connector entity="neck-semispinalis-capitis" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
 
-			<connector entity="levator-scapulae-capitis" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+			<connector entity="neck-levator-scapulae-capitis" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="HMA.SC.VH.SAN" connector="nucleus.output" primary="true"/>
-			<connector entity="scalenus-anterior" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+			<connector entity="neck-scalenus-anterior" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="HMA.SC.VH.SAN" connector="nucleus.output" primary="true"/>
-			<connector entity="scalenus-medius" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+			<connector entity="neck-scalenus-medius" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="HMA.SC.VH.SAN" connector="nucleus.output" primary="true"/>
-			<connector entity="scalenus-posterior" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+			<connector entity="neck-scalenus-posterior" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="HMA.SC.VH.SAN" connector="nucleus.output" primary="true"/>
 
-			<connector entity="geniohyoid-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+			<connector entity="neck-longus-capitis" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="HMA.SC.VH.SAN" connector="nucleus.output" primary="true"/>
+			<connector entity="neck-longus-colli" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.SC.VH.SAN" connector="nucleus.output" primary="true"/>
+			<connector entity="neck-rectus-capitis-anterior" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.SC.VH.SAN" connector="nucleus.output" primary="true"/>
+			<connector entity="neck-rectus-capitis-lateralis" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HMA.SC.VH.SAN" connector="nucleus.output" primary="true"/>
+			<connector entity="neck-splenius-capitis" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
+			<connector entity="neck-splenius-cervicis" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
+			<connector entity="neck-sternocleidomastoid" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
 		</effector>
 
 		<effector id="TARGET.TEA.LIVER" run="true">
@@ -363,6 +448,8 @@
 
 			<connector entity="pulmonary-stretch-receptors" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.SG.JUG" connector="ganglion.input" primary="true"/>
+			<connector entity="stylopharyngeus-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU"
+				region="HMA.HM.AMB" connector="nucleus.output" primary="true"/>
 		</effector>
 
 		<effector id="TARGET.TEA.HAND" run="true">
@@ -560,6 +647,80 @@
 				region="BMA.SC.IZ.RPL" connector="nucleus.output" primary="true"/>
 			<connector entity="leg-plantar-interossei-muscles" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="BMA.SC.IZ.RPL" connector="nucleus.output" primary="true"/>
+
+			<connector entity="leg-accessory-soleus-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PL" connector="nucleus.output" primary="true"/>
+			<connector entity="leg-adductor-brevis-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
+			<connector entity="leg-adductor-longus-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
+			<connector entity="leg-adductor-magnus-muscle-obturator" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
+			<connector entity="leg-adductor-magnus-muscle-tibial" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
+			<connector entity="leg-adductor-minimus-muscle-obturator" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
+			<connector entity="leg-adductor-minimus-muscle-tibial" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
+			<connector entity="leg-articularis-genu-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.VL" connector="nucleus.output" primary="true"/>
+			<connector entity="leg-biceps-femoris-muscle-peroneal" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PL" connector="nucleus.output" primary="true"/>
+			<connector entity="leg-biceps-femoris-muscle-tibial" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PL" connector="nucleus.output" primary="true"/>
+			<connector entity="leg-extensor-hallucis-brevis-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.VL" connector="nucleus.output" primary="true"/>
+			<connector entity="leg-fibularis-brevis-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PL" connector="nucleus.output" primary="true"/>
+			<connector entity="leg-fibularis-longus-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PL" connector="nucleus.output" primary="true"/>
+			<connector entity="leg-gemellus-inferior-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
+			<connector entity="leg-gemellus-superior-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
+
+			<connector entity="leg-gluteus-medius-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
+			<connector entity="leg-gluteus-minimus-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
+			<connector entity="leg-gracilis-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PL" connector="nucleus.output" primary="true"/>
+			<connector entity="leg-iliacus-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
+			<connector entity="leg-obliquus-genu-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
+			<connector entity="leg-obturator-externus-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
+			<connector entity="leg-obturator-internus-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
+			<connector entity="leg-pectineus-muscle-femoral" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
+			<connector entity="leg-pectineus-muscle-obturator" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
+			<connector entity="leg-psoas-major-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
+			<connector entity="leg-psoas-minor-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
+			<connector entity="leg-quadratus-femoris-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
+			<connector entity="leg-rectus-femoris-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
+			<connector entity="leg-sartorius-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
+			<connector entity="leg-semimembranosus-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
+			<connector entity="leg-semitendinosus-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
+			<connector entity="leg-soleus-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PL" connector="nucleus.output" primary="true"/>
+			<connector entity="leg-tensor-fasciae-latae-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
+			<connector entity="leg-vastus-intermedius-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
+			<connector entity="leg-vastus-lateralis-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
+			<connector entity="leg-vastus-medialis-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
 		</effector>
 
 		<effector id="TARGET.TEA.TRUNK" run="true">
@@ -579,6 +740,8 @@
 			<connector entity="trunk-transversus-abdominis" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
 
+			<connector entity="semispinalis-capitis-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
 			<connector entity="trunk-internal-intercostal-muscles" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
 			<connector entity="trunk-serratus-posterior-inferior" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
@@ -592,8 +755,45 @@
 			<connector entity="trunk-abdominal-somatic-receptors" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.SG.DRG" connector="ganglion.input" primary="true"/>
 
-			<connector entity="adrenal-gland" name="Adrenal gland" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+			<connector entity="adrenal-gland" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.SYM.SMG" connector="ganglion.output" primary="true"/>
+
+			<connector entity="trunk-abdominal-external-oblique-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
+			<connector entity="trunk-abdominal-internal-oblique-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
+			<connector entity="trunk-iliocostalis-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
+			<connector entity="trunk-interspinales-muscles" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
+			<connector entity="trunk-intertransversarii-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
+			<connector entity="trunk-levatores-costarum-muscles" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
+			<connector entity="trunk-longissimus-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
+			<connector entity="trunk-multifidus-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
+			<connector entity="trunk-obliquus-capitis-inferior-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
+			<connector entity="trunk-obliquus-capitis-superior-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
+			<connector entity="trunk-quadratus-lumborum-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
+			<connector entity="trunk-rectus-abdominis-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
+			<connector entity="trunk-rectus-capitis-posterior-major-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
+			<connector entity="trunk-rectus-capitis-posterior-minor-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
+			<connector entity="trunk-rotatores-muscles" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
+			<connector entity="trunk-semispinalis-cervicis-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
+			<connector entity="trunk-serratus-posterior-inferior-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
+			<connector entity="trunk-spinalis-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
 		</effector>
 
 		<effector id="TARGET.TEA.BREAST" run="true">
@@ -636,7 +836,9 @@
 			<connector entity="deep-transverse-perineal-muscle-clitoris" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
 			<connector entity="vas-deferens" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
-				region="AVA.PN.SYM.IMG" connector="nucleus.output" primary="true"/>
+				region="AVA.PN.SYM.IMG" connector="ganglion.output" primary="true"/>
+			<connector entity="pubococcygeus-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
 
 			<connector entity="cremaster-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.SYM.IMG" connector="ganglion.output" primary="true"/>
@@ -677,6 +879,11 @@
 				region="AVA.PN.SYM.IMG" connector="ganglion.output" primary="true"/>
 			<connector entity="internal-urethral-sphincter-sympathetic" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.SYM.IMG" connector="ganglion.output" primary="true"/>
+
+			<connector entity="external-urethral-sphincter-female" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
+			<connector entity="external-urethral-sphincter-male" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
 		</effector>
 
 		<effector id="TARGET.TEA.RECTUM" run="true">
@@ -690,6 +897,15 @@
 			<connector entity="puborectalis-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
 			<connector entity="superficial-ransverse-perineal-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
+
+			<connector entity="coccygeus-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
+			<connector entity="corrugator-cutis-ani-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
+			<connector entity="iliococcygeus-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
+			<connector entity="sphincter-ani-externus-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
 		</effector>
 

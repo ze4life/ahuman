@@ -140,8 +140,14 @@ XmlMuscleInfo *XmlMuscles::createMuscleInfo( String muscle , Xml xmlitem ) {
 
 		nerve.trim();
 		connectordet.trim();
-		if( connectordet.isEmpty() )
+		if( connectordet.isEmpty() ) {
 			connectordet = "default";
+			muscleConnectors.add( muscle , pinfo );
+		}
+		else {
+			String connector = muscle + ":" + connectordet;
+			muscleConnectors.add( connector , pinfo );
+		}
 
 		info.nerves.add( nerve , connectordet );
 	}
@@ -168,3 +174,6 @@ void XmlMuscles::getCategories( StringList& categories ) {
 	categories.sort();
 }
 
+XmlMuscleInfo *XmlMuscles::findByConnector( String name ) {
+	return( muscleConnectors.get( name ) );
+}
