@@ -137,7 +137,8 @@ typedef enum {
 	MIND_REGION_ROLE_PARASYMPATHETIC = 5,	// parasympathetic ganglion/nucleus
 	MIND_REGION_ROLE_FLEXOR = 6,			// flexor somatic motor
 	MIND_REGION_ROLE_EXTENSOR = 7,			// extensor somatic motor
-	MIND_REGION_ROLE_TARGET = 8				// target sensor or motor
+	MIND_REGION_ROLE_TARGETSENSOR = 8,		// target sensor
+	MIND_REGION_ROLE_TARGETEFFECTOR = 9		// target motor
 } MindRegionRoleEnum;
 
 class MindRegionDef : public Object {
