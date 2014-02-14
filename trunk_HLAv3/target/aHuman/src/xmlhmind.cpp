@@ -74,6 +74,23 @@ void XmlHMind::getElements( String parentNode , StringList& elements ) {
 	}
 }
 
+void XmlHMind::getConnectors( String parentNode , StringList& elements ) {
+	Xml xmlParent = getNodeXml( parentNode );
+	for( Xml xmlChild = xmlParent.getFirstChild( "element" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "element" ) ) {
+		if( xmlChild.getBooleanAttribute( "ignore" , false ) )
+			continue;
+
+		String id = xmlChild.getAttribute( "id" , "" );
+		if( !id.isEmpty() ) {
+			String type = xmlChild.getAttribute( "type" , "" );
+			if( type.equals( "connector" ) )
+				elements.add( id );
+			else
+				getConnectors( id , elements );
+		}
+	}
+}
+
 void XmlHMind::getIdentifiedElements( String parentNode , StringList& elements ) {
 	Xml xmlParent = getNodeXml( parentNode );
 	for( Xml xmlChild = xmlParent.getFirstChild( "element" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "element" ) ) {
