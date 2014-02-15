@@ -7,7 +7,7 @@ static const char *staticFiberTypeNerveMods[ S_FIBER_MAX ][6] = {
 	{ "GSA" , "general sensory" , NULL , NULL , NULL } ,
 	{ "SVA" , "general sensory" , NULL , NULL , NULL } ,
 	{ "GVA" , "autonomic sensory" , NULL , NULL , NULL } ,
-	{ "GVE" , "sympathetic motor" , "parasympathetic motor" , NULL , NULL } ,
+	{ "GVE" , "sympathetic motor" , "parasympathetic motor" , "cranial motor" , NULL } ,
 	{ "SSA" , "special sensory" , NULL , NULL , NULL } ,
 	{ "SVE" , "visceral motor" , NULL , NULL , NULL }
 };

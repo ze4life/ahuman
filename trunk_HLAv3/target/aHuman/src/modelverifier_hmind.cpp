@@ -112,7 +112,7 @@ bool ModelVerifier::checkHierarchy_verifyConnectors( MindRegionDef *rd , const X
 		// ensure motor
 		if( !region -> getNeuroLinkTarget( connector ) ) {
 			logger.logError( "checkHierarchy_verifyConnectors: muscle id=" + info.id + " - unknown target connector id=" + connector );
-			return( false );
+			status = false;
 		}
 
 		// verify motor connector
