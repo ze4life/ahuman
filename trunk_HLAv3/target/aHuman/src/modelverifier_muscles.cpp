@@ -67,7 +67,7 @@ bool ModelVerifier::checkMuscles_verifyNerve( XmlMuscleInfo& muscle , String ner
 	if( cdef.equals( "default" ) )
 		cname = muscle.name;
 	else
-		cname = muscle.name + " - " + cdef;
+		cname = muscle.name + ":" + cdef;
 
 	const XmlHMindElementInfo *ni = hmindxml.getConnectorInfo( cname );
 	if( ni == NULL ) {

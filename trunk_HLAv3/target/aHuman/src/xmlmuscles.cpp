@@ -142,11 +142,11 @@ XmlMuscleInfo *XmlMuscles::createMuscleInfo( String muscle , Xml xmlitem ) {
 		connectordet.trim();
 		if( connectordet.isEmpty() ) {
 			connectordet = "default";
-			muscleConnectors.add( muscle , pinfo );
+			muscleConnectors.addnew( muscle , pinfo );
 		}
 		else {
 			String connector = muscle + ":" + connectordet;
-			muscleConnectors.add( connector , pinfo );
+			muscleConnectors.addnew( connector , pinfo );
 		}
 
 		info.nerves.add( nerve , connectordet );
