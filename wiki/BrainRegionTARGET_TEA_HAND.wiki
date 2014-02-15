@@ -15,13 +15,13 @@ Region is part of aHuman target integrated biological model.
 
 
 *Component items*:
-  * *Hand - flexor profundus digitorum (flexor-profundus-digitorum-muscle)*: flexor of the wrist (midcarpal), metacarpophalangeal and interphalangeal joints; flexes the 2-5 digits
-  * *Hand - flexor longus pollicis (flexor-longus-pollicis-muscle)*: flexor of the phalanges of the thumb
+  * *Hand - flexor pollicis longus muscle (flexor-pollicis-longus-muscle)*: flexor of the phalanges of the thumb
   * *Flexor pollicis brevis muscle, median (flexor-pollicis-brevis-muscle)*: flexion of thumb
-  * *Hand - flexor sublimis digitorum (flexor-sublimis-digitorum-muscle)*: flexion of the middle phalanges of the fingers at the proximal interphalangeal joints
+  * *Hand - flexor digitorum superficialis muscle (flexor-digitorum-superficialis-muscle)*: flexor of fingers (primarily at proximal interphalangeal joints); flexion of the middle phalanges of the fingers at the proximal interphalangeal joints
   * *Hand - infraspinatus muscle (infraspinatus-muscle)*: lateral rotation of arm; adduction of arm and stabilizes humerus
   * *Hand - supraspinatus muscle (supraspinatus-muscle)*: abduction of arm and stabilizes humerus
-  * *Hand - subscapularis muscle (shoulder-subscapularis-muscle)*: rotates medially humerus; stabilizes shoulder
+  * *Hand - subscapularis muscle, lower (subscapularis-muscle-lower)*: rotates medially humerus; stabilizes shoulder
+  * *Hand - subscapularis muscle, upper (subscapularis-muscle-upper)*: rotates medially humerus; stabilizes shoulder
   * *Hand - teres major muscle (shoulder-teres-major-muscle)*: internal rotation of the humerus
   * *Hand - latissimus dorsi muscle (shoulder-latissimus-dorsi-muscle)*: pulls the forelimb dorsally and caudally
   * *Hand - hand somatic receptors (hand-somatic-receptors)*: somatic sensations
@@ -50,11 +50,9 @@ Region is part of aHuman target integrated biological model.
   * *Hand - flexor carpi radialis muscle (flexor-carpi-radialis-muscle)*: flexion and abduction at wrist
   * *Hand - flexor carpi ulnaris muscle (flexor-carpi-ulnaris-muscle)*: flexion and adduction of wrist
   * *Hand - flexor digiti minimi brevis of hand (flexor-digiti-minimi-brevis-muscle-hand)*: flexes little finger
-  * *Hand - flexor digitorum profundus muscle, interosseous (flexor-digitorum-profundus-muscle-interosseous)*: flex hand, interphalangeal joints
-  * *Hand - flexor digitorum profundus muscle, ulnar (flexor-digitorum-profundus-muscle-ulnar)*: flex hand, interphalangeal joints
-  * *Hand - flexor digitorum superficialis muscle (flexor-digitorum-superficialis-muscle)*: flexor of fingers (primarily at proximal interphalangeal joints)
+  * *Hand - flexor digitorum profundus muscle, interosseous (flexor-digitorum-profundus-muscle-interosseous)*: flex hand, interphalangeal joints; flexor of the wrist (midcarpal), metacarpophalangeal and interphalangeal joints; flexes the 2-5 digits
+  * *Hand - flexor digitorum profundus muscle, ulnar (flexor-digitorum-profundus-muscle-ulnar)*: flex hand, interphalangeal joints; flexor of the wrist (midcarpal), metacarpophalangeal and interphalangeal joints; flexes the 2-5 digits
   * *Hand - flexor pollicis brevis muscle, ulnar (flexor-pollicis-brevis-muscle-ulnar)*: flexion of thumb
-  * *Hand - flexor pollicis longus muscle (flexor-pollicis-longus-muscle)*: flexion of thumb
   * *Hand - biceps muscle (biceps-muscle)*: flexes elbow and supinates forearm
   * *Hand - brachialis muscle (brachialis-muscle)*: flexion at elbow joint
   * *Hand - coracobrachialis muscle (coracobrachialis-muscle)*: flexes and adducts humerus
@@ -77,8 +75,6 @@ Region is part of aHuman target integrated biological model.
   * *Hand - serratus anterior muscle (serratus-anterior-muscle)*: retracts the scapula and rotates it to depress the glenoid cavity; it also fixes the scapula to the thoracic wall
   * *Hand - sternalis muscle (sternalis-muscle)*: protract and stabilize scapula, assists in upward rotation
   * *Hand - subclavius muscle (subclavius-muscle)*: depression of clavicle
-  * *Hand - subscapularis muscle, lower (subscapularis-muscle-lower)*: rotates medially humerus; stabilizes shoulder
-  * *Hand - subscapularis muscle, upper (subscapularis-muscle-upper)*: rotates medially humerus; stabilizes shoulder
   * *Hand - trapezius muscle (trapezius-muscle)*: descending (superior) part elevates; ascending (inferior) part depresses; and middle part (or all parts together) retracts scapula; descending and ascending parts act together to rotate glenoid cavity superiorly
 
 = Connectivity =
@@ -90,11 +86,11 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/TARGET.TEA.HAND.dot.jpg
 *Inbound Region Connections:*
 
 || *Source Area* || *Source Region* || *Source Name* || *Type* || *Reference* ||
-|| [BrainAreaBMA BMA] || [BrainRegionBMA_SC_IZ_RPL BMA.SC.IZ.RPL] || Retroposterolateral Nucleus || flexor-profundus-digitorum-muscle || (unknown reference) ||
+|| [BrainAreaBMA BMA] || [BrainRegionBMA_SC_IZ_RPL BMA.SC.IZ.RPL] || Retroposterolateral Nucleus || flexor-pollicis-longus-muscle || (unknown reference) ||
 ||  || [BrainRegionBMA_SC_VH_PL BMA.SC.VH.PL] || Posterolateral Nucleus || biceps-muscle || (unknown reference) ||
 ||  || [BrainRegionBMA_SC_VH_PM BMA.SC.VH.PM] || Posteromedial Nucleus || infraspinatus-muscle || (unknown reference) ||
 ||  || [BrainRegionBMA_SC_VH_VL BMA.SC.VH.VL] || Ventrolateral Nucleus || articularis-cubiti-muscle || (unknown reference) ||
-||  || [BrainRegionBMA_SC_VH_VM BMA.SC.VH.VM] || Ventromedial Nucleus || shoulder-subscapularis-muscle || (unknown reference) ||
+||  || [BrainRegionBMA_SC_VH_VM BMA.SC.VH.VM] || Ventromedial Nucleus || subscapularis-muscle-lower || (unknown reference) ||
 
 *Outbound Region Connections:*
 
