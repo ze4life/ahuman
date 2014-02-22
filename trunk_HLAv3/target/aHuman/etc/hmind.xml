@@ -179,33 +179,14 @@
 				</element>
 			</element>
 
-			<element id="TARGET.TSA.MINDCOVER" name="Mind Cover" mapped="true" type="Sensor"
+			<element id="TARGET.TSA.MENINGES" name="Meninges" mapped="true" type="Sensor"
 				dotdef="color=firebrick1"
 				function="Mind Protection"
 				>
-				<element id="heart-blood-vessels" name="Mindcover - heart blood vessels" type="connector"
-					function="constrict vessels resulting in poor circulation"/>
-				<element id="cranial-meninges" name="Mindcover - cranial meninges" type="connector" 
+				<element id="cranial-meninges" name="Meninges - cranial meninges" type="connector" 
 					function="primary function of the meninges and of the cerebrospinal fluid is to protect the central nervous system"/>
-				<element id="arterial-thoracic-vasoconstrictors" name="Mindcover - thorathic arterial vasoconstrictors" type="connector" 
-					function="increase in systemic blood pressure"/>
-				<element id="tentorium-cerebelli-dura-matter" name="Mindcover - tentorium cerebelli dura mater visceral receptors" type="connector" 
+				<element id="tentorium-cerebelli-dura-matter" name="Meninges - tentorium cerebelli dura mater visceral receptors" type="connector" 
 					function="visceral sensation of tentorium cerebelli and supratentorial falx cerebri"/>
-				<element id="brachial-artery-vasoconstrictors" name="Mindcover - wall of brachial artery smooth muscles" type="connector" 
-					function="increase in systemic blood pressure"/>
-				<element id="arm-blood-vessels" name="Mindcover - arm blood vessels" type="connector"
-					function="constrict vessels resulting in poor circulation to limb"/>
-				<element id="forearm-blood-vessels" name="Mindcover - forearm blood vessels" type="connector"
-					function="vasomotor forearm sympathetic fibers"/>
-				<element id="breast-blood-vessels" name="Mindcover - breast blood vessels" type="connector"
-					function="vasomotor breast sympathetic fibers"/>
-				<element id="stomach-blood-vessels" name="Mindcover - stomach blood vessels" type="connector"
-					function="vasomotor stomach sympathetic fibers"/>
-				<element id="liver-blood-vessels" name="Mindcover - liver blood vessels" type="connector"
-					function="vasomotor liver sympathetic fibers"/>
-
-				<element id="thyroid-gland" name="Mindcover - thyroid gland" type="connector"
-					function="release thyroid hormones into blood"/>
 			</element>
 
 		</element>
@@ -505,8 +486,6 @@
 					function="where most chemical digestion takes place; food from stomach is allowed into duodenum through pylorus by pyloric sphincter; absorb nutrients from ingested food"/>
 				<element id="colon" name="Stomach - colon" type="connector"
 					function="extracts water and salt from solid wastes; storing waste"/>
-				<element id="pancreas" name="Stomach - pancreas" type="connector"
-					function="secret digestive enzymes that act in small intestine"/>
 				<element id="spleen" name="Stomach - spleen" type="connector"
 					function="red pulp - blood filter, removes old red blood cells, holds a reserve of blood, recycles iron; white pulp - synthesizes antibodies in its white pulp and removes antibody-coated bacteria and antibody-coated blood cells by way of blood and lymph node circulation"/>
 				<element id="kidney" name="Stomach - kidney" type="connector"
@@ -923,11 +902,6 @@
 					<element id="cervix-gland" name="Genitalia - cervix" type="connector"
 						function="female - produces cervical mucus that changes in consistency during the menstrual cycle to prevent or promote pregnancy"/>
 
-					<element id="testicle-gland" name="Genitalia - testicle gland" type="connector"
-						function="produce androgens, primarily testosterone (growth of muscle mass and strength, regulator of cognitive and physical energy, sperm development"/>
-					<element id="ovary-gland" name="Genitalia - ovary gland" type="connector"
-						function="secretes estrogen (maturation and maintenance of the reproductive organs), testosterone (prepares the uterus for pregnancy, and the mammary glands for lactation) and progesterone (promoting menstrual cycle changes in the endometrium"/>
-
 					<element id="vas-deferens" name="Genitalia - vas deferens" type="connector"
 						function="male - emission (prior to ejaculation), contracts, propelling sperm forward"/>
 					<element id="deep-transverse-perineal-muscle-penis" name="Genitalia - deep transverse perineal muscle, penis" type="connector"
@@ -997,6 +971,82 @@
 					function="supports the viscera in pelvic cavity"/>
 				<element id="sphincter-ani-externus-muscle" name="Rectum - sphincter ani externus muscle" type="connector"
 					function="keep the anal canal and anus closed, aids in the expulsion of the feces"/>
+			</element>
+
+			<element id="TARGET.TEA.VESSELS" name="Blood vessels" mapped="true" type="Sensor"
+				dotdef="color=firebrick1"
+				function="Blood pressure control"
+				>
+				<element id="heart-blood-vessels" name="Vessels - heart blood vessels" type="connector"
+					function="constrict vessels resulting in poor circulation"/>
+				<element id="arterial-thoracic-vasoconstrictors" name="Vessels - thorathic arterial vasoconstrictors" type="connector" 
+					function="increase in systemic blood pressure"/>
+				<element id="brachial-artery-vasoconstrictors" name="Vessels - wall of brachial artery smooth muscles" type="connector" 
+					function="increase in systemic blood pressure"/>
+				<element id="arm-blood-vessels" name="Vessels - arm blood vessels" type="connector"
+					function="constrict vessels resulting in poor circulation to limb"/>
+				<element id="forearm-blood-vessels" name="Vessels - forearm blood vessels" type="connector"
+					function="vasomotor forearm sympathetic fibers"/>
+				<element id="breast-blood-vessels" name="Vessels - breast blood vessels" type="connector"
+					function="vasomotor breast sympathetic fibers"/>
+				<element id="stomach-blood-vessels" name="Vessels - stomach blood vessels" type="connector"
+					function="vasomotor stomach sympathetic fibers"/>
+				<element id="liver-blood-vessels" name="Vessels - liver blood vessels" type="connector"
+					function="vasomotor liver sympathetic fibers"/>
+			</element>
+
+			<element id="TARGET.TEA.ENDOCRINE" name="Endocrine Glands" mapped="true" type="Effector"
+				dotdef="color=firebrick1"
+
+				<element id="endocrine.hypophysis" name="Endocrine - pituitary gland" type="connector"
+					refs="NL:[http://neurolex.org/wiki/Category:Hypophysis Hypophysis]"
+					function="Release hormones by request from HT"
+					notes="Secretes most of the hormones, also known as Hypophysis"
+					>
+					<element name="Adenohypophysis" refs="NL:[http://neurolex.org/wiki/Category:Adenohypophysis Adenohypophysis]">
+						<element name="Distal Part of Hypophysis" refs="NL:[http://neurolex.org/wiki/Category:Distal_part_of_hypophysis Distal part of hypophysis]"/>
+						<element name="Intermediate Part of Hypophysis" refs="NL:[http://neurolex.org/wiki/Category:Intermediate_part_of_hypophysis Intermediate part of hypophysis]"/>
+						<element name="Tuberal Part of Hypophysis" refs="NL:[http://neurolex.org/wiki/Category:Tuberal_part_of_hypophysis Tuberal part of hypophysis]"/>
+					</element>
+					<element name="Lateral Eminence of Hypophysis" refs="NL:[http://neurolex.org/wiki/Category:Lateral_eminence_of_hypophysis Lateral eminence of hypophysis]"/>
+					<element name="Nucleus of Medial Eminence" refs="NL:[http://neurolex.org/wiki/Category:Median_eminence Median eminence];NL:[http://neurolex.org/wiki/Category:Nucleus_of_medial_eminence Nucleus of medial eminence]">
+						<element name="Anterior Median Eminence" refs="NL:[http://neurolex.org/wiki/Category:Anterior_median_eminence Anterior median eminence]"/>
+						<element name="Posterior Median Eminence" refs="NL:[http://neurolex.org/wiki/Category:Posterior_median_eminence Posterior median eminence]"/>
+					</element>
+					<element name="Neurohypophysis" refs="NL:[http://neurolex.org/wiki/Category:Neurohypophysis Neurohypophysis]">
+						<element name="Infundibular Stem" refs="NL:[http://neurolex.org/wiki/Category:Infundibular_stem Infundibular stem]"/>
+						<element name="Pars Nervosa of Hypophysis" refs="NL:[http://neurolex.org/wiki/Category:Pars_nervosa_of_hypophysis Pars nervosa of hypophysis]"/>
+					</element>
+				</element>
+
+				<element id="endocrine-thyroid-gland" name="Endocrine - thyroid gland" type="connector"
+					function="release thyroid hormones into blood to rise oxygen use and heat production"/>
+				<element id="endocrine-parathyroid-gland" name="Endocrine - parathyroid gland" type="connector"
+					function="release parathyroid hormones into blood to increase in blood calcium levels"/>
+
+				<element id="endocrine-pancreas" name="Endocrine - pancreas"
+					function="release digestive enzymes that act in small intestine to increase rate of glucose uptake and metabolism by most body cells"
+					>
+					<element id="endocrine-pancreas-adrenergic" name="Endocrine - pancreas" type="connector"
+						function="sympathetic, a2: decreases secretion from beta cells, increases secretion from alpha cells, b2: increases secretion from beta cells"/>
+					<element id="endocrine-pancreas-muscarinic" name="Endocrine - pancreas" type="connector"
+						function="parasympathetic, stimulates insulin secretion, M3: increases stimulation of alpha cells and beta cells"/>
+				</element>
+
+				<element id="endocrine-gonads" name="Endocrine - gonads"
+					function="release estrogen, progesterone and testosterone hormones to promote maturation of reproductive organs"
+					>
+					<element id="endocrine-testicle-gland" name="Endocrine - testicle gland" type="connector"
+						function="produce androgens, primarily testosterone (growth of muscle mass and strength, regulator of cognitive and physical energy, sperm development"/>
+					<element id="endocrine-ovary-gland" name="Endocrine - ovary gland" type="connector"
+						function="secretes estrogen (maturation and maintenance of the reproductive organs), testosterone (prepares the uterus for pregnancy, and the mammary glands for lactation) and progesterone (promoting menstrual cycle changes in the endometrium"/>
+				</element>
+
+				<element id="endocrine-pineal-gland" name="Endocrine - pineal gland" mapped="true" type="Hormone Nucleus" 
+					refs="NL:[http://neurolex.org/wiki/Category:Pineal_body Pineal body]"
+					function="Control of sexual development"
+					/>
+
 			</element>
 
 		</element>
@@ -1731,32 +1781,6 @@
 			<element name="Ventral Nucleus of Medial Geniculate Body" refs="NL:[http://neurolex.org/wiki/Category:Ventral_nucleus_of_medial_geniculate_body Ventral nucleus of medial geniculate body]">
 				<element name="Medial Geniculate Body Lateral Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_geniculate_body_lateral_nucleus Medial geniculate body lateral nucleus]"/>
 				<element name="Medial Geniculate Body Ovoid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_geniculate_body_ovoid_nucleus Medial geniculate body ovoid nucleus]"/>
-			</element>
-		</element>
-
-		<element id="BFA.FD.PNG" name="Pineal Gland" mapped="true" type="Hormone Nucleus" 
-			refs="NL:[http://neurolex.org/wiki/Category:Pineal_body Pineal body]"
-			function="Control of sexual development"
-			/>
-
-		<element id="HTA.FD.HYP" name="Pituitary Gland" mapped="true" type="Hormone Nucleus"
-			refs="NL:[http://neurolex.org/wiki/Category:Hypophysis Hypophysis]"
-			function="Release hormones by request from HT"
-			notes="Secretes most of the hormones, also known as Hypophysis"
-			>
-			<element name="Adenohypophysis" refs="NL:[http://neurolex.org/wiki/Category:Adenohypophysis Adenohypophysis]">
-				<element name="Distal Part of Hypophysis" refs="NL:[http://neurolex.org/wiki/Category:Distal_part_of_hypophysis Distal part of hypophysis]"/>
-				<element name="Intermediate Part of Hypophysis" refs="NL:[http://neurolex.org/wiki/Category:Intermediate_part_of_hypophysis Intermediate part of hypophysis]"/>
-				<element name="Tuberal Part of Hypophysis" refs="NL:[http://neurolex.org/wiki/Category:Tuberal_part_of_hypophysis Tuberal part of hypophysis]"/>
-			</element>
-			<element name="Lateral Eminence of Hypophysis" refs="NL:[http://neurolex.org/wiki/Category:Lateral_eminence_of_hypophysis Lateral eminence of hypophysis]"/>
-			<element name="Nucleus of Medial Eminence" refs="NL:[http://neurolex.org/wiki/Category:Median_eminence Median eminence];NL:[http://neurolex.org/wiki/Category:Nucleus_of_medial_eminence Nucleus of medial eminence]">
-				<element name="Anterior Median Eminence" refs="NL:[http://neurolex.org/wiki/Category:Anterior_median_eminence Anterior median eminence]"/>
-				<element name="Posterior Median Eminence" refs="NL:[http://neurolex.org/wiki/Category:Posterior_median_eminence Posterior median eminence]"/>
-			</element>
-			<element name="Neurohypophysis" refs="NL:[http://neurolex.org/wiki/Category:Neurohypophysis Neurohypophysis]">
-				<element name="Infundibular Stem" refs="NL:[http://neurolex.org/wiki/Category:Infundibular_stem Infundibular stem]"/>
-				<element name="Pars Nervosa of Hypophysis" refs="NL:[http://neurolex.org/wiki/Category:Pars_nervosa_of_hypophysis Pars nervosa of hypophysis]"/>
 			</element>
 		</element>
 

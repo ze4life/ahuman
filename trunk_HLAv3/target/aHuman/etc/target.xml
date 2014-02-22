@@ -122,29 +122,11 @@
 				region="HMA.HM.AMB" connector="nucleus.output" primary="true"/>
 		</sensor>
 
-		<sensor id="TARGET.TSA.MINDCOVER" run="true">
+		<sensor id="TARGET.TSA.MENINGES" run="true">
 			<connector entity="cranial-meninges" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.SG.JUG" connector="ganglion.input" primary="true"/>
 			<connector entity="tentorium-cerebelli-dura-matter" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.SG.TRG" connector="ganglion.input" primary="true"/>
-			<connector entity="arterial-thoracic-vasoconstrictors" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
-				region="AVA.PN.SYM.TG" connector="ganglion.output" primary="true"/>
-			<connector entity="brachial-artery-vasoconstrictors" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
-				region="AVA.PN.SYM.SCG" connector="ganglion.output" primary="true"/>
-			<connector entity="heart-blood-vessels" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
-				region="AVA.PN.SYM.SCG" connector="ganglion.output" primary="true"/>
-			<connector entity="arm-blood-vessels" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
-				region="AVA.PN.SYM.STG" connector="ganglion.output" primary="true"/>
-			<connector entity="forearm-blood-vessels" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
-				region="AVA.PN.SYM.MCG" connector="ganglion.output" primary="true"/>
-			<connector entity="breast-blood-vessels" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
-				region="AVA.PN.SYM.TG" connector="ganglion.output" primary="true"/>
-			<connector entity="stomach-blood-vessels" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
-				region="AVA.PN.SYM.CEG" connector="ganglion.output" primary="true"/>
-			<connector entity="liver-blood-vessels" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
-				region="AVA.PN.SYM.CEG" connector="ganglion.output" primary="true"/>
-			<connector entity="thyroid-gland" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
-				region="AVA.PN.SYM.MCG" connector="ganglion.output" primary="true"/>
 		</sensor>
 
 	</sensors>
@@ -807,11 +789,6 @@
 			<connector entity="cervix-gland" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.SYM.IMG" connector="ganglion.output" primary="true"/>
 
-			<connector entity="testicle-gland" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
-				region="AVA.PN.SYM.ARG" connector="ganglion.output" primary="true"/>
-			<connector entity="ovary-gland" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
-				region="AVA.PN.SYM.ARG" connector="ganglion.output" primary="true"/>
-
 			<connector entity="uterus-sympathetic" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.SYM.IMG" connector="ganglion.output" primary="true"/>
 			<connector entity="vagina-sympathetic" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
@@ -858,6 +835,42 @@
 				region="BMA.SC.VH.VM" connector="nucleus.output" primary="true"/>
 			<connector entity="sphincter-ani-externus-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="BMA.SC.VH.PM" connector="nucleus.output" primary="true"/>
+		</effector>
+
+		<effector id="TARGET.TEA.VESSELS" run="true">
+			<connector entity="arterial-thoracic-vasoconstrictors" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SYM.TG" connector="ganglion.output" primary="true"/>
+			<connector entity="brachial-artery-vasoconstrictors" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SYM.SCG" connector="ganglion.output" primary="true"/>
+			<connector entity="heart-blood-vessels" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SYM.SCG" connector="ganglion.output" primary="true"/>
+			<connector entity="arm-blood-vessels" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SYM.STG" connector="ganglion.output" primary="true"/>
+			<connector entity="forearm-blood-vessels" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SYM.MCG" connector="ganglion.output" primary="true"/>
+			<connector entity="breast-blood-vessels" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SYM.TG" connector="ganglion.output" primary="true"/>
+			<connector entity="stomach-blood-vessels" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SYM.CEG" connector="ganglion.output" primary="true"/>
+			<connector entity="liver-blood-vessels" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SYM.CEG" connector="ganglion.output" primary="true"/>
+		</effector>
+
+		<effector id="TARGET.TEA.ENDOCRINE" run="true">
+			<connector entity="endocrine.hypophysis" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HTA.FD.HT.PV" connector="nucleus.output" primary="true"/>
+			<connector entity="thyroid-gland" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SYM.MCG" connector="ganglion.output" primary="true"/>
+			<connector entity="endocrine-parathyroid-gland" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SYM.MCG" connector="ganglion.output" primary="true"/>
+			<connector entity="endocrine-pancreas-adrenergic" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SYM.CEG" connector="ganglion.output" primary="true"/>
+			<connector entity="endocrine-pancreas-muscarinic" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.PSYM.GUT" connector="ganglion.output" primary="true"/>
+			<connector entity="endocrine-testicle-gland" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SYM.ARG" connector="ganglion.output" primary="true"/>
+			<connector entity="endocrine-ovary-gland" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SYM.ARG" connector="ganglion.output" primary="true"/>
 		</effector>
 
 	</effectors>
