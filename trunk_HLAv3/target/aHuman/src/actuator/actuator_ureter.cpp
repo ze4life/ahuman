@@ -68,14 +68,14 @@ void EffectorUreter::createEffector( MindRegionCreateInfo *createInfo ) {
 
 void EffectorUreter::createSourceConnector( MindRegionCreateInfo *createInfo , MindRegionConnectorDef *connector ) {
 	NeuroLinkSource *source = new NeuroLinkSource();
+	source -> create( this , connector -> getId() );
 	source -> setHandler( ( MindRegion::NeuroLinkSourceHandler )&EffectorUreter::sourceHandler );
-	MindEffector::addSourceEntity( connector -> getId() , source );
 }
 
 void EffectorUreter::createTargetConnector( MindRegionCreateInfo *createInfo , MindRegionConnectorDef *connector ) {
 	NeuroLinkTarget *target = new NeuroLinkTarget();
+	target -> create( this , connector -> getId() );
 	target -> setHandler( ( MindRegion::NeuroLinkTargetHandler )&EffectorUreter::targetHandler );
-	MindEffector::addTargetEntity( connector -> getId() , target );
 }
 
 NeuroSignal *EffectorUreter::sourceHandler( NeuroLink *link , NeuroLinkSource *point ) {

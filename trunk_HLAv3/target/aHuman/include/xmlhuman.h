@@ -66,6 +66,9 @@ private:
 
 class XmlHMindElementInfo {
 public:
+	bool isConnector() const { return( type.equals( "connector" ) ); };
+
+public:
 	String mapId;
 	Xml xml;
 

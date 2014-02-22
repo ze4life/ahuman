@@ -4,14 +4,14 @@
 // #############################################################################
 // #############################################################################
 
-class EffectorBreast : public MindEffector {
+class EffectorVessels : public MindEffector {
 private:
 	bool continueRunFlag;
 
 public:
-	EffectorBreast( EffectorArea *area );
-	virtual ~EffectorBreast();
-	virtual const char *getClass() { return( "EffectorBreast" ); };
+	EffectorVessels( EffectorArea *area );
+	virtual ~EffectorVessels();
+	virtual const char *getClass() { return( "EffectorVessels" ); };
 
 public:
 	// effector lifecycle
@@ -32,27 +32,27 @@ private:
 	Xml config;
 };
 
-MindEffector *AHumanTarget::createBreast( EffectorArea *area ) {
-	return( new EffectorBreast( area ) );
+MindEffector *AHumanTarget::createUreter( EffectorArea *area ) {
+	return( new EffectorVessels( area ) );
 }
 
 // #############################################################################
 // #############################################################################
 
-EffectorBreast::EffectorBreast( EffectorArea *p_area )
+EffectorVessels::EffectorVessels( EffectorArea *p_area )
 :	MindEffector( p_area ) {
 	attachLogger();
 	continueRunFlag = false;
 }
 
-EffectorBreast::~EffectorBreast() {
+EffectorVessels::~EffectorVessels() {
 }
 
-void EffectorBreast::configureEffector( Xml p_config ) {
+void EffectorVessels::configureEffector( Xml p_config ) {
 	config = p_config;
 }
 
-void EffectorBreast::createEffector( MindRegionCreateInfo *createInfo ) {
+void EffectorVessels::createEffector( MindRegionCreateInfo *createInfo ) {
 	// set connectors
 	TargetRegionDef *info = MindEffector::getEffectorInfo();
 	MindRegionTypeDef *type = info -> getType();
@@ -66,22 +66,22 @@ void EffectorBreast::createEffector( MindRegionCreateInfo *createInfo ) {
 	}
 }
 
-void EffectorBreast::createSourceConnector( MindRegionCreateInfo *createInfo , MindRegionConnectorDef *connector ) {
+void EffectorVessels::createSourceConnector( MindRegionCreateInfo *createInfo , MindRegionConnectorDef *connector ) {
 	NeuroLinkSource *source = new NeuroLinkSource();
 	source -> create( this , connector -> getId() );
-	source -> setHandler( ( MindRegion::NeuroLinkSourceHandler )&EffectorBreast::sourceHandler );
+	source -> setHandler( ( MindRegion::NeuroLinkSourceHandler )&EffectorVessels::sourceHandler );
 }
 
-void EffectorBreast::createTargetConnector( MindRegionCreateInfo *createInfo , MindRegionConnectorDef *connector ) {
+void EffectorVessels::createTargetConnector( MindRegionCreateInfo *createInfo , MindRegionConnectorDef *connector ) {
 	NeuroLinkTarget *target = new NeuroLinkTarget();
 	target -> create( this , connector -> getId() );
-	target -> setHandler( ( MindRegion::NeuroLinkTargetHandler )&EffectorBreast::targetHandler );
+	target -> setHandler( ( MindRegion::NeuroLinkTargetHandler )&EffectorVessels::targetHandler );
 }
 
-NeuroSignal *EffectorBreast::sourceHandler( NeuroLink *link , NeuroLinkSource *point ) {
+NeuroSignal *EffectorVessels::sourceHandler( NeuroLink *link , NeuroLinkSource *point ) {
 	return( NULL );
 }
 
-NeuroSignalSet *EffectorBreast::targetHandler( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *srcData ) {
+NeuroSignalSet *EffectorVessels::targetHandler( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *srcData ) {
 	return( NULL );
 }

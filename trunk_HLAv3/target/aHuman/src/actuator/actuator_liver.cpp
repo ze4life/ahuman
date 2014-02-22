@@ -68,14 +68,14 @@ void EffectorLiver::createEffector( MindRegionCreateInfo *createInfo ) {
 
 void EffectorLiver::createSourceConnector( MindRegionCreateInfo *createInfo , MindRegionConnectorDef *connector ) {
 	NeuroLinkSource *source = new NeuroLinkSource();
+	source -> create( this , connector -> getId() );
 	source -> setHandler( ( MindRegion::NeuroLinkSourceHandler )&EffectorLiver::sourceHandler );
-	MindEffector::addSourceEntity( connector -> getId() , source );
 }
 
 void EffectorLiver::createTargetConnector( MindRegionCreateInfo *createInfo , MindRegionConnectorDef *connector ) {
 	NeuroLinkTarget *target = new NeuroLinkTarget();
+	target -> create( this , connector -> getId() );
 	target -> setHandler( ( MindRegion::NeuroLinkTargetHandler )&EffectorLiver::targetHandler );
-	MindEffector::addTargetEntity( connector -> getId() , target );
 }
 
 NeuroSignal *EffectorLiver::sourceHandler( NeuroLink *link , NeuroLinkSource *point ) {

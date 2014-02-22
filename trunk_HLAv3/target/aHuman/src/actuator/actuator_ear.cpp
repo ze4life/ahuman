@@ -76,14 +76,14 @@ void SensorEar::createSensor( MindRegionCreateInfo *createInfo ) {
 
 void SensorEar::createSourceConnector( MindRegionCreateInfo *createInfo , MindRegionConnectorDef *connector ) {
 	NeuroLinkSource *source = new NeuroLinkSource();
+	source -> create( this , connector -> getId() );
 	source -> setHandler( ( MindRegion::NeuroLinkSourceHandler )&SensorEar::sourceHandler );
-	MindSensor::addSourceEntity( connector -> getId() , source );
 }
 
 void SensorEar::createTargetConnector( MindRegionCreateInfo *createInfo , MindRegionConnectorDef *connector ) {
 	NeuroLinkTarget *target = new NeuroLinkTarget();
+	target -> create( this , connector -> getId() );
 	target -> setHandler( ( MindRegion::NeuroLinkTargetHandler )&SensorEar::targetHandler );
-	MindSensor::addTargetEntity( connector -> getId() , target );
 }
 
 NeuroSignal *SensorEar::sourceHandler( NeuroLink *link , NeuroLinkSource *point ) {

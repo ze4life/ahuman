@@ -76,14 +76,14 @@ void SensorEye::createSensor( MindRegionCreateInfo *createInfo ) {
 
 void SensorEye::createSourceConnector( MindRegionCreateInfo *createInfo , MindRegionConnectorDef *connector ) {
 	NeuroLinkSource *source = new NeuroLinkSource();
+	source -> create( this , connector -> getId() );
 	source -> setHandler( ( MindRegion::NeuroLinkSourceHandler )&SensorEye::sourceHandler );
-	MindSensor::addSourceEntity( connector -> getId() , source );
 }
 
 void SensorEye::createTargetConnector( MindRegionCreateInfo *createInfo , MindRegionConnectorDef *connector ) {
 	NeuroLinkTarget *target = new NeuroLinkTarget();
+	target -> create( this , connector -> getId() );
 	target -> setHandler( ( MindRegion::NeuroLinkTargetHandler )&SensorEye::targetHandler );
-	MindSensor::addTargetEntity( connector -> getId() , target );
 }
 
 NeuroSignal *SensorEye::sourceHandler( NeuroLink *link , NeuroLinkSource *point ) {

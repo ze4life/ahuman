@@ -68,14 +68,14 @@ void EffectorHand::createEffector( MindRegionCreateInfo *createInfo ) {
 
 void EffectorHand::createSourceConnector( MindRegionCreateInfo *createInfo , MindRegionConnectorDef *connector ) {
 	NeuroLinkSource *source = new NeuroLinkSource();
+	source -> create( this , connector -> getId() );
 	source -> setHandler( ( MindRegion::NeuroLinkSourceHandler )&EffectorHand::sourceHandler );
-	MindEffector::addSourceEntity( connector -> getId() , source );
 }
 
 void EffectorHand::createTargetConnector( MindRegionCreateInfo *createInfo , MindRegionConnectorDef *connector ) {
 	NeuroLinkTarget *target = new NeuroLinkTarget();
+	target -> create( this , connector -> getId() );
 	target -> setHandler( ( MindRegion::NeuroLinkTargetHandler )&EffectorHand::targetHandler );
-	MindEffector::addTargetEntity( connector -> getId() , target );
 }
 
 NeuroSignal *EffectorHand::sourceHandler( NeuroLink *link , NeuroLinkSource *point ) {

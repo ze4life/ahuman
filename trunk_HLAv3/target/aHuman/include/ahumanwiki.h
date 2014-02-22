@@ -184,6 +184,7 @@ private:
 
 	void createChildTableSection();
 	void createChildTableSection_addChilds( Xml node , String prefix , StringList& lines );
+	String createChildTableSection_getChildDetails( String id );
 
 	void createConnectivitySection();
 	void createConnectivitySection_getExternalConnections( MapStringToClass<MindRegionLink>& connections , bool isin );

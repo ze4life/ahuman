@@ -68,14 +68,14 @@ void EffectorGenitalia::createEffector( MindRegionCreateInfo *createInfo ) {
 
 void EffectorGenitalia::createSourceConnector( MindRegionCreateInfo *createInfo , MindRegionConnectorDef *connector ) {
 	NeuroLinkSource *source = new NeuroLinkSource();
+	source -> create( this , connector -> getId() );
 	source -> setHandler( ( MindRegion::NeuroLinkSourceHandler )&EffectorGenitalia::sourceHandler );
-	MindEffector::addSourceEntity( connector -> getId() , source );
 }
 
 void EffectorGenitalia::createTargetConnector( MindRegionCreateInfo *createInfo , MindRegionConnectorDef *connector ) {
 	NeuroLinkTarget *target = new NeuroLinkTarget();
+	target -> create( this , connector -> getId() );
 	target -> setHandler( ( MindRegion::NeuroLinkTargetHandler )&EffectorGenitalia::targetHandler );
-	MindEffector::addTargetEntity( connector -> getId() , target );
 }
 
 NeuroSignal *EffectorGenitalia::sourceHandler( NeuroLink *link , NeuroLinkSource *point ) {
