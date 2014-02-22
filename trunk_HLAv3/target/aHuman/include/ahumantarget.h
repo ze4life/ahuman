@@ -47,7 +47,7 @@ private:
 	MindSensor *createEye( SensorArea *sensorArea );
 	MindSensor *createEar( SensorArea *sensorArea );
 	MindSensor *createNose( SensorArea *sensorArea );
-	MindSensor *createMindCover( SensorArea *sensorArea );
+	MindSensor *createMeninges( SensorArea *sensorArea );
 
 	// effector construction
 	MindEffector *createHeart( EffectorArea *area );
@@ -64,6 +64,7 @@ private:
 	MindEffector *createGenitalia( EffectorArea *area );
 	MindEffector *createRectum( EffectorArea *area );
 	MindEffector *createUreter( EffectorArea *area );
+	MindEffector *createVessels( EffectorArea *area );
 };
 
 /*#########################################################################*/

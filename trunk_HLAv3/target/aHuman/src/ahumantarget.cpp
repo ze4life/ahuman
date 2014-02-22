@@ -15,8 +15,8 @@ void AHumanTarget::createTarget( SensorArea *sensorArea , EffectorArea *effector
 	MindTarget::addSensor( "TARGET.TSA.EYE" , AHumanTarget::createEye( sensorArea ) );
 	MindTarget::addSensor( "TARGET.TSA.EAR" , AHumanTarget::createEar( sensorArea ) );
 	MindTarget::addSensor( "TARGET.TSA.NOSE" , AHumanTarget::createNose( sensorArea ) );
+	MindTarget::addSensor( "TARGET.TSA.MENINGES" , AHumanTarget::createMeninges( sensorArea ) );
 
-	MindTarget::addSensor( "TARGET.TSA.MINDCOVER" , AHumanTarget::createMindCover( sensorArea ) );
 	MindTarget::addEffector( "TARGET.TEA.HEART" , AHumanTarget::createHeart( effectorArea ) );
 	MindTarget::addEffector( "TARGET.TEA.MOUTH" , AHumanTarget::createMouth( effectorArea ) );
 	MindTarget::addEffector( "TARGET.TEA.FACE" , AHumanTarget::createFace( effectorArea ) );
@@ -31,6 +31,7 @@ void AHumanTarget::createTarget( SensorArea *sensorArea , EffectorArea *effector
 	MindTarget::addEffector( "TARGET.TEA.GENITALIA" , AHumanTarget::createGenitalia( effectorArea ) );
 	MindTarget::addEffector( "TARGET.TEA.RECTUM" , AHumanTarget::createRectum( effectorArea ) );
 	MindTarget::addEffector( "TARGET.TEA.URETER" , AHumanTarget::createUreter( effectorArea ) );
+	MindTarget::addEffector( "TARGET.TEA.VESSELS" , AHumanTarget::createVessels( effectorArea ) );
 }
 
 void AHumanTarget::initTarget() {

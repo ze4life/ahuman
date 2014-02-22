@@ -4,14 +4,14 @@
 // #############################################################################
 // #############################################################################
 
-class SensorMindCover : public MindSensor {
+class SensorMeninges : public MindSensor {
 private:
 	bool continueRunFlag;
 
 public:
-	SensorMindCover( SensorArea *area );
-	virtual ~SensorMindCover();
-	virtual const char *getClass() { return( "SensorMindCover" ); };
+	SensorMeninges( SensorArea *area );
+	virtual ~SensorMeninges();
+	virtual const char *getClass() { return( "SensorMeninges" ); };
 
 public:
 	// sensor lifecycle
@@ -37,14 +37,14 @@ private:
 	Xml config;
 };
 
-MindSensor *AHumanTarget::createMindCover( SensorArea *area ) {
-	return( new SensorMindCover( area ) );
+MindSensor *AHumanTarget::createMeninges( SensorArea *area ) {
+	return( new SensorMeninges( area ) );
 }
 
 // #############################################################################
 // #############################################################################
 
-SensorMindCover::SensorMindCover( SensorArea *p_area )
+SensorMeninges::SensorMeninges( SensorArea *p_area )
 :	MindSensor( p_area ) {
 	attachLogger();
 	continueRunFlag = false;
@@ -53,14 +53,14 @@ SensorMindCover::SensorMindCover( SensorArea *p_area )
 	MindSensor::setPollState( false );
 }
 
-SensorMindCover::~SensorMindCover() {
+SensorMeninges::~SensorMeninges() {
 }
 
-void SensorMindCover::configureSensor( Xml p_config ) {
+void SensorMeninges::configureSensor( Xml p_config ) {
 	config = p_config;
 }
 
-void SensorMindCover::createSensor( MindRegionCreateInfo *createInfo ) {
+void SensorMeninges::createSensor( MindRegionCreateInfo *createInfo ) {
 	// set connectors
 	TargetRegionDef *info = MindSensor::getSensorInfo();
 	MindRegionTypeDef *type = info -> getType();
@@ -74,22 +74,22 @@ void SensorMindCover::createSensor( MindRegionCreateInfo *createInfo ) {
 	}
 }
 
-void SensorMindCover::createSourceConnector( MindRegionCreateInfo *createInfo , MindRegionConnectorDef *connector ) {
+void SensorMeninges::createSourceConnector( MindRegionCreateInfo *createInfo , MindRegionConnectorDef *connector ) {
 	NeuroLinkSource *source = new NeuroLinkSource();
-	source -> setHandler( ( MindRegion::NeuroLinkSourceHandler )&SensorMindCover::sourceHandler );
-	MindSensor::addSourceEntity( connector -> getId() , source );
+	source -> create( this , connector -> getId() );
+	source -> setHandler( ( MindRegion::NeuroLinkSourceHandler )&SensorMeninges::sourceHandler );
 }
 
-void SensorMindCover::createTargetConnector( MindRegionCreateInfo *createInfo , MindRegionConnectorDef *connector ) {
+void SensorMeninges::createTargetConnector( MindRegionCreateInfo *createInfo , MindRegionConnectorDef *connector ) {
 	NeuroLinkTarget *target = new NeuroLinkTarget();
-	target -> setHandler( ( MindRegion::NeuroLinkTargetHandler )&SensorMindCover::targetHandler );
-	MindSensor::addTargetEntity( connector -> getId() , target );
+	target -> create( this , connector -> getId() );
+	target -> setHandler( ( MindRegion::NeuroLinkTargetHandler )&SensorMeninges::targetHandler );
 }
 
-NeuroSignal *SensorMindCover::sourceHandler( NeuroLink *link , NeuroLinkSource *point ) {
+NeuroSignal *SensorMeninges::sourceHandler( NeuroLink *link , NeuroLinkSource *point ) {
 	return( NULL );
 }
 
-NeuroSignalSet *SensorMindCover::targetHandler( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *srcData ) {
+NeuroSignalSet *SensorMeninges::targetHandler( NeuroLink *link , NeuroLinkTarget *point , NeuroSignal *srcData ) {
 	return( NULL );
 }

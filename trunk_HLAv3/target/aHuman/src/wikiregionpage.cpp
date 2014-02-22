@@ -124,7 +124,7 @@ void WikiRegionPage::createChildTableSection_addChilds( Xml node , String prefix
 			if( value.isEmpty() )
 				value = id;
 			else
-				value += " (" + id + ")";
+				value += " (" + createChildTableSection_getChildDetails( id ) + ")";
 		}
 
 		value = "*" + value + "*";
@@ -135,6 +135,32 @@ void WikiRegionPage::createChildTableSection_addChilds( Xml node , String prefix
 
 		createChildTableSection_addChilds( nodeChild , " " + prefix , lines );
 	}
+}
+
+String WikiRegionPage::createChildTableSection_getChildDetails( String id ) {
+	const XmlHMindElementInfo& child = wm -> hmindxml.getElementInfo( id );
+	if( !child.isConnector() )
+		return( id );
+
+	// find connector
+	NeuroLinkSource *ns = region -> getNeuroLinkSource( id );
+	NeuroLinkTarget *nt = NULL;
+	if( ns == NULL ) {
+		nt = region -> getNeuroLinkTarget( id );
+		ASSERTMSG( nt != NULL , "createChildTableSection_getChildDetails: unexpected not found entity=" + id );
+
+		ClassList<NeuroLink>& links = nt -> getLinks();
+		ASSERTMSG( links.count() == 1 , "createChildTableSection_getChildDetails: unexpected missing or multiple links to connector=" + id );
+		String regionId = links.getRef( 0 ).getSource() -> getRegion() -> getRegionId();
+
+		return( wm -> getRegionPage( regionId ) + " -> " + id );
+	}
+
+	ClassList<NeuroLink>& links = ns -> getLinks();
+	ASSERTMSG( links.count() == 1 , "createChildTableSection_getChildDetails: unexpected missing or multiple links to connector=" + id );
+	String regionId = links.getRef( 0 ).getTarget() -> getRegion() -> getRegionId();
+
+	return( id + " -> " + wm -> getRegionPage( regionId ) );
 }
 
 void WikiRegionPage::createConnectivitySection() {
