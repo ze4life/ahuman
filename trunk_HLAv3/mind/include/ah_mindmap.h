@@ -69,6 +69,7 @@ private:
 	void createConnectionTypeDefSet( Xml xml );
 	void createCircuitDefSet( Xml xml );
 	void createRegionMap( MindAreaDef *info );
+	void createTargetMeta_defineCircuit( Xml xml , TargetAreaDef *areaDef , bool sensors );
 
 private:
 // own data
@@ -516,7 +517,7 @@ public:
 	virtual const char *getClass() { return( "TargetConnectionLinkTypeDef" ); };
 
 public:
-	void defineConnectionLinkTypeDef( TargetCircuitDef *circuitInfoTarget , TargetRegionConnectorDef *regionConnection , Xml xml );
+	void defineConnectionLinkTypeDef( TargetCircuitDef *circuitInfoTarget , TargetRegionConnectorDef *regionConnection , TargetConnectionTypeDef *connectionType , Xml xml );
 };
 
 /*#########################################################################*/

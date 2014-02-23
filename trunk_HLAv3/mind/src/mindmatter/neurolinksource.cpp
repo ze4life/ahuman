@@ -7,6 +7,7 @@
 NeuroLinkSource::NeuroLinkSource() {
 	attachLogger();
 
+	sizeX = sizeY = 0;
 	region = NULL;
 	pfn = NULL;
 	sourcePool = NULL;

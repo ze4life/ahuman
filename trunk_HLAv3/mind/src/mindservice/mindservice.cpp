@@ -310,10 +310,12 @@ NeuroLink *MindService::createNeuroLink( MindConnectionTypeDef *connectionTypeDe
 	regionNeuroLinkMap.add( key , neurolink );
 	regionLink -> addNeuroLink( neurolink );
 
-	logger.logInfo( "createNeuroLink: neurolink created type=" + linkDef -> getType() + 
-		", direction=" + ( ( linkDef -> isBackward() )? "backward" : "forward" ) +
-		", implementation=" + linkDef -> getImplementation() + ", srcRegion=" + linkSrcRegion -> getRegionId() + 
-		", dstRegion=" + linkDstRegion -> getRegionId() );
+	logger.logInfo( "createNeuroLink: neurolink created srcRegion=" + linkSrcRegion -> getRegionId() + 
+		", dstRegion=" + linkDstRegion -> getRegionId() + 
+		", type=" + linkType +
+		", direction=" + ( ( linkDef -> isBackward() )? "backward" : "forward" ) + 
+		", implementation=" + linkDef -> getImplementation() );
+
 	return( neurolink );
 }
 

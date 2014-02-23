@@ -33,7 +33,7 @@ void TargetConnectionTypeDef::defineConnectionTypeDef( TargetCircuitDef *circuit
 
 	// add single connection
 	linkInfo = new TargetConnectionLinkTypeDef( this );
-	linkInfo -> defineConnectionLinkTypeDef( circuitInfoTarget , regionConnection , xml );
+	linkInfo -> defineConnectionLinkTypeDef( circuitInfoTarget , regionConnection , this , xml );
 	MindConnectionTypeDef::links.add( linkInfo );
 	MindConnectionTypeDef::linkMap.add( regionConnection -> getConnector() , linkInfo );
 }

@@ -156,52 +156,48 @@ void MindMap::getMapRegions( MapStringToClass<MindRegionDef>& regionMap ) {
 	}
 }
 
+void MindMap::createTargetMeta_defineCircuit( Xml xml , TargetAreaDef *areaDef , bool sensors ) {
+	if( sensors )
+		areaDef -> defineSensorArea();
+	else
+		areaDef -> defineEffectorArea();
+
+	mindAreaMap.add( areaDef -> getAreaId() , areaDef );
+
+	// create sensor meta
+	String itemsElement = ( sensors )? "sensors" :  "effectors";
+	String itemElement = ( sensors )? "sensor" :  "effector";
+
+	Xml config = xml.getChildNode( itemsElement );
+	for( Xml xmlChild = config.getFirstChild( itemElement ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( itemElement ) ) {
+		TargetRegionDef *regionInfo = new TargetRegionDef( areaDef );
+
+		if( sensors )
+			regionInfo -> defineSensorRegion( xmlChild );
+		else
+			regionInfo -> defineEffectorRegion( xmlChild );
+
+		// add to maps
+		areaDef -> addRegion( regionInfo );
+		mindRegionMap.add( regionInfo -> getId() , regionInfo );
+		TargetRegionTypeDef *regionTypeInfo = ( TargetRegionTypeDef * )regionInfo -> getType();
+		regionTypeMap.add( regionTypeInfo -> getName() , regionTypeInfo );
+
+		TargetCircuitDef *circuitInfo = regionTypeInfo -> getCircuitInfo();
+		mindCircuitMap.add( circuitInfo -> getName() , circuitInfo );
+
+		regionInfo -> setCircuitDef( circuitInfo );
+	}
+}
+
 void MindMap::createTargetMeta( Xml xml ) {
 	// sensor area
 	sensorAreaInfo = new TargetAreaDef();
-	sensorAreaInfo -> defineSensorArea();
-	mindAreaMap.add( sensorAreaInfo -> getAreaId() , sensorAreaInfo );
-
-	// create sensor meta
-	Xml configSensors = xml.getChildNode( "sensors" );
-	for( Xml xmlChild = configSensors.getFirstChild( "sensor" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "sensor" ) ) {
-		TargetRegionDef *regionInfo = new TargetRegionDef( sensorAreaInfo );
-		regionInfo -> defineSensorRegion( xmlChild );
-
-		// add to maps
-		sensorAreaInfo -> addRegion( regionInfo );
-		mindRegionMap.add( regionInfo -> getId() , regionInfo );
-		TargetRegionTypeDef *regionTypeInfo = ( TargetRegionTypeDef * )regionInfo -> getType();
-		regionTypeMap.add( regionTypeInfo -> getName() , regionTypeInfo );
-
-		TargetCircuitDef *circuitInfo = regionTypeInfo -> getCircuitInfo();
-		mindCircuitMap.add( circuitInfo -> getName() , circuitInfo );
-
-		regionInfo -> setCircuitDef( circuitInfo );
-	}
+	createTargetMeta_defineCircuit( xml , sensorAreaInfo , true );
 
 	// effector area
 	effectorAreaInfo = new TargetAreaDef();
-	effectorAreaInfo -> defineEffectorArea();
-	mindAreaMap.add( effectorAreaInfo -> getAreaId() , effectorAreaInfo );
-
-	// create sensor meta
-	Xml configEffectors = xml.getChildNode( "effectors" );
-	for( Xml xmlChild = configEffectors.getFirstChild( "effector" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "effector" ) ) {
-		TargetRegionDef *regionInfo = new TargetRegionDef( effectorAreaInfo );
-		regionInfo -> defineEffectorRegion( xmlChild );
-
-		// add to maps
-		effectorAreaInfo -> addRegion( regionInfo );
-		mindRegionMap.add( regionInfo -> getId() , regionInfo );
-		TargetRegionTypeDef *regionTypeInfo = ( TargetRegionTypeDef * )regionInfo -> getType();
-		regionTypeMap.add( regionTypeInfo -> getName() , regionTypeInfo );
-
-		TargetCircuitDef *circuitInfo = regionTypeInfo -> getCircuitInfo();
-		mindCircuitMap.add( circuitInfo -> getName() , circuitInfo );
-
-		regionInfo -> setCircuitDef( circuitInfo );
-	}
+	createTargetMeta_defineCircuit( xml , effectorAreaInfo , false );
 }
 
 TargetRegionDef *MindMap::getTargetRegionDefById( String regionId ) {
