@@ -119,15 +119,15 @@ void WikiRegionPage::createChildTableSection_addChilds( Xml node , String prefix
 	for( Xml nodeChild = node.getFirstChild( "element" ); nodeChild.exists(); nodeChild = nodeChild.getNextChild( "element" ) ) {
 		String id = nodeChild.getAttribute( "id" , "" );
 		String name = nodeChild.getAttribute( "name" , "" );
-		value = name;
 		if( !id.isEmpty() ) {
 			if( value.isEmpty() )
-				value = id;
+				value = "*" + id + "*";
 			else
-				value += " (" + createChildTableSection_getChildDetails( id ) + ")";
+				value = "*" + name + "* (" + createChildTableSection_getChildDetails( id ) + ")";
 		}
+		else
+			value = "*" + name + "*";
 
-		value = "*" + value + "*";
 		String function = nodeChild.getAttribute( "function" , "" );
 		if( !function.isEmpty() )
 			value += ": " + function;
@@ -150,17 +150,19 @@ String WikiRegionPage::createChildTableSection_getChildDetails( String id ) {
 		ASSERTMSG( nt != NULL , "createChildTableSection_getChildDetails: unexpected not found entity=" + id );
 
 		ClassList<NeuroLink>& links = nt -> getLinks();
-		ASSERTMSG( links.count() == 1 , "createChildTableSection_getChildDetails: unexpected missing or multiple links to connector=" + id );
+		ASSERTMSG( links.count() > 0 , "createChildTableSection_getChildDetails: unexpected missing links to connector=" + id );
+		ASSERTMSG( links.count() == 1 , "createChildTableSection_getChildDetails: unexpected multiple links to connector=" + id );
 		String regionId = links.getRef( 0 ).getSource() -> getRegion() -> getRegionId();
 
-		return( wm -> getRegionPage( regionId ) + " -> " + id );
+		return( wm -> getRegionReference( regionId ) + " -> " + id );
 	}
 
 	ClassList<NeuroLink>& links = ns -> getLinks();
-	ASSERTMSG( links.count() == 1 , "createChildTableSection_getChildDetails: unexpected missing or multiple links to connector=" + id );
+	ASSERTMSG( links.count() > 0 , "createChildTableSection_getChildDetails: unexpected missing links to connector=" + id );
+	ASSERTMSG( links.count() == 1 , "createChildTableSection_getChildDetails: unexpected multiple links to connector=" + id );
 	String regionId = links.getRef( 0 ).getTarget() -> getRegion() -> getRegionId();
 
-	return( id + " -> " + wm -> getRegionPage( regionId ) );
+	return( id + " -> " + wm -> getRegionReference( regionId ) );
 }
 
 void WikiRegionPage::createConnectivitySection() {

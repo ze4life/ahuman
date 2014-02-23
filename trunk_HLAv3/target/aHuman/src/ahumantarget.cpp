@@ -32,6 +32,7 @@ void AHumanTarget::createTarget( SensorArea *sensorArea , EffectorArea *effector
 	MindTarget::addEffector( "TARGET.TEA.RECTUM" , AHumanTarget::createRectum( effectorArea ) );
 	MindTarget::addEffector( "TARGET.TEA.URETER" , AHumanTarget::createUreter( effectorArea ) );
 	MindTarget::addEffector( "TARGET.TEA.VESSELS" , AHumanTarget::createVessels( effectorArea ) );
+	MindTarget::addEffector( "TARGET.TEA.ENDOCRINE" , AHumanTarget::createEndocrine( effectorArea ) );
 }
 
 void AHumanTarget::initTarget() {
