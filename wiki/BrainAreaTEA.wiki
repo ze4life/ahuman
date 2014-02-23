@@ -9,6 +9,7 @@
 
 || *Component ID* || *Component Name* || *Type* || *Function* || *Comments* ||
 || [BrainRegionTARGET_TEA_BREAST TARGET.TEA.BREAST] || Breast || Effector || Milk Supply ||  ||
+|| [BrainRegionTARGET_TEA_ENDOCRINE TARGET.TEA.ENDOCRINE] || Endocrine Glands || Effector || Secrete hormones directly into the circulatory system to be carried toward a<BR>distant target organ ||  ||
 || [BrainRegionTARGET_TEA_FACE TARGET.TEA.FACE] || Face || Effector || Mimics ||  ||
 || [BrainRegionTARGET_TEA_GENITALIA TARGET.TEA.GENITALIA] || Genitalia || Effector || Reproductive system ||  ||
 || [BrainRegionTARGET_TEA_HAND TARGET.TEA.HAND] || Hand || Effector || Primary Execution Motor ||  ||
@@ -22,6 +23,7 @@
 || [BrainRegionTARGET_TEA_STOMACH TARGET.TEA.STOMACH] || Stomach || Effector || Digestion ||  ||
 || [BrainRegionTARGET_TEA_TRUNK TARGET.TEA.TRUNK] || Trunk || Effector || Body Movements ||  ||
 || [BrainRegionTARGET_TEA_URETER TARGET.TEA.URETER] || Ureter || Effector || Extract urine from blood in kidney and propel urine to urinary bladder and to<BR>outside ||  ||
+|| [BrainRegionTARGET_TEA_VESSELS TARGET.TEA.VESSELS] || Blood vessels || Sensor || Blood pressure control ||  ||
 
 = Connectivity =
 (generated)
@@ -30,10 +32,15 @@
 *External Inbound Region Connections:*
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| <font color="red">Hindbrain</font> || || || || || ||
+|| [BrainAreaHTA HTA] || [BrainRegionTARGET_TEA_ENDOCRINE TARGET.TEA.ENDOCRINE] || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || Paraventricular Nucleus || endocrine-hypophysis || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (HT.PV -> PUT)] ||
 || <font color="red">Motor</font> || || || || || ||
 || [BrainAreaAVA AVA] || [BrainRegionTARGET_TEA_BREAST TARGET.TEA.BREAST] || [BrainRegionAVA_PN_PSYM_PPG AVA.PN.PSYM.PPG] || Pelvic Peripheral Ganglion || nipple-smooth-muscles || (unknown reference) ||
+||  || [BrainRegionTARGET_TEA_ENDOCRINE TARGET.TEA.ENDOCRINE] || [BrainRegionAVA_PN_PSYM_GUT AVA.PN.PSYM.GUT] || Parasympathetic Gut Brain || endocrine-pancreas-muscarinic || (unknown reference) ||
+||  ||  || [BrainRegionAVA_PN_SYM_ARG AVA.PN.SYM.ARG] || Aorticorenal Ganglion || endocrine-testicle-gland || (unknown reference) ||
+||  ||  || [BrainRegionAVA_PN_SYM_CEG AVA.PN.SYM.CEG] || Coelic Ganglion || endocrine-pancreas-adrenergic || (unknown reference) ||
+||  ||  || [BrainRegionAVA_PN_SYM_MCG AVA.PN.SYM.MCG] || Middle Cervical Ganglion || endocrine-thyroid-gland || (unknown reference) ||
 ||  || [BrainRegionTARGET_TEA_GENITALIA TARGET.TEA.GENITALIA] || [BrainRegionAVA_PN_PSYM_PPG AVA.PN.PSYM.PPG] || Pelvic Peripheral Ganglion || uterus-parasympathetic || (unknown reference) ||
-||  ||  || [BrainRegionAVA_PN_SYM_ARG AVA.PN.SYM.ARG] || Aorticorenal Ganglion || testicle-gland || (unknown reference) ||
 ||  ||  || [BrainRegionAVA_PN_SYM_IMG AVA.PN.SYM.IMG] || Inferior Mesenteric Ganglion || vas-deferens || (unknown reference) ||
 ||  || [BrainRegionTARGET_TEA_HEART TARGET.TEA.HEART] || [BrainRegionAVA_PN_PSYM_CRG AVA.PN.PSYM.CRG] || Cardiac Ganglion || heart-psymp-control || (unknown reference) ||
 ||  ||  || [BrainRegionAVA_PN_SYM_MCG AVA.PN.SYM.MCG] || Middle Cervical Ganglion || heart-cardiac-lower-muscle || (unknown reference) ||
@@ -50,6 +57,12 @@
 ||  || [BrainRegionTARGET_TEA_TRUNK TARGET.TEA.TRUNK] || [BrainRegionAVA_PN_SYM_SMG AVA.PN.SYM.SMG] || Superior Mesenteric Ganglion || adrenal-gland || (unknown reference) ||
 ||  || [BrainRegionTARGET_TEA_URETER TARGET.TEA.URETER] || [BrainRegionAVA_PN_PSYM_PPG AVA.PN.PSYM.PPG] || Pelvic Peripheral Ganglion || detrusor-urinae-muscle-parasympathetic || (unknown reference) ||
 ||  ||  || [BrainRegionAVA_PN_SYM_IMG AVA.PN.SYM.IMG] || Inferior Mesenteric Ganglion || detrusor-urinae-muscle-sympathetic || (unknown reference) ||
+||  || [BrainRegionTARGET_TEA_VESSELS TARGET.TEA.VESSELS] || [BrainRegionAVA_PN_SYM_ARG AVA.PN.SYM.ARG] || Aorticorenal Ganglion || renal-blood-vessels || (unknown reference) ||
+||  ||  || [BrainRegionAVA_PN_SYM_CEG AVA.PN.SYM.CEG] || Coelic Ganglion || stomach-blood-vessels || (unknown reference) ||
+||  ||  || [BrainRegionAVA_PN_SYM_MCG AVA.PN.SYM.MCG] || Middle Cervical Ganglion || forearm-blood-vessels || (unknown reference) ||
+||  ||  || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || Superior Cervical Ganglion || brachial-artery-vasoconstrictors || (unknown reference) ||
+||  ||  || [BrainRegionAVA_PN_SYM_STG AVA.PN.SYM.STG] || Stellate Ganglion || arm-blood-vessels || (unknown reference) ||
+||  ||  || [BrainRegionAVA_PN_SYM_TG AVA.PN.SYM.TG] || Sympathetic Thoracic Ganglia || arterial-thoracic-vasoconstrictors || (unknown reference) ||
 || [BrainAreaBMA BMA] || [BrainRegionTARGET_TEA_GENITALIA TARGET.TEA.GENITALIA] || [BrainRegionBMA_SC_VH_PM BMA.SC.VH.PM] || Posteromedial Nucleus || bulbospongiosus-muscle || (unknown reference) ||
 ||  ||  || [BrainRegionBMA_SC_VH_VM BMA.SC.VH.VM] || Ventromedial Nucleus || pubococcygeus-muscle || (unknown reference) ||
 ||  || [BrainRegionTARGET_TEA_HAND TARGET.TEA.HAND] || [BrainRegionBMA_SC_IZ_RPL BMA.SC.IZ.RPL] || Retroposterolateral Nucleus || flexor-pollicis-longus-muscle || (unknown reference) ||
@@ -82,6 +95,8 @@
 || [BrainAreaHMA HMA] || [BrainRegionTARGET_TEA_MOUTH TARGET.TEA.MOUTH] || [BrainRegionHMA_HP_PTP_TRM HMA.HP.PTP.TRM] || Trigeminal Motor Nucleus || masticatory-masseter-muscle || (unknown reference) ||
 ||  ||  || [BrainRegionHMA_SC_VH_SAN HMA.SC.VH.SAN] || Spinal Accessory Nucleus || geniohyoid-muscle || (unknown reference) ||
 ||  || [BrainRegionTARGET_TEA_NECK TARGET.TEA.NECK] || [BrainRegionHMA_SC_VH_SAN HMA.SC.VH.SAN] || Spinal Accessory Nucleus || neck-scalenus-anterior || (unknown reference) ||
+|| <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaBFA BFA] || [BrainRegionTARGET_TEA_ENDOCRINE TARGET.TEA.ENDOCRINE] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || endocrine-pineal-gland || [http://www.scholarpedia.org/article/Habenula Habenula Connections (MHb -> PB)] ||
 
 *External Outbound Region Connections:*
 
