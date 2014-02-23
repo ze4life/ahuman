@@ -738,8 +738,6 @@
 		<effector id="TARGET.TEA.BREAST" run="true">
 			<connector entity="breast-skin-receptors" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.SG.DRG" connector="ganglion.input" primary="true"/>
-			<connector entity="breast-upper-cutaneous-receptors" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
-				region="AVA.PN.SG.DRG" connector="ganglion.input" primary="true"/>
 			<connector entity="nipple-smooth-muscles" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.PSYM.PPG" connector="ganglion.output" primary="true"/>
 		</effector>
@@ -854,12 +852,14 @@
 				region="AVA.PN.SYM.CEG" connector="ganglion.output" primary="true"/>
 			<connector entity="liver-blood-vessels" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.SYM.CEG" connector="ganglion.output" primary="true"/>
+			<connector entity="renal-blood-vessels" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SYM.ARG" connector="ganglion.output" primary="true"/>
 		</effector>
 
 		<effector id="TARGET.TEA.ENDOCRINE" run="true">
-			<connector entity="endocrine.hypophysis" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+			<connector entity="endocrine-hypophysis" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="HTA.FD.HT.PV" connector="nucleus.output" primary="true"/>
-			<connector entity="thyroid-gland" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+			<connector entity="endocrine-thyroid-gland" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.SYM.MCG" connector="ganglion.output" primary="true"/>
 			<connector entity="endocrine-parathyroid-gland" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.SYM.MCG" connector="ganglion.output" primary="true"/>
