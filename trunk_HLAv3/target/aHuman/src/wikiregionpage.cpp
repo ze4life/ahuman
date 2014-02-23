@@ -120,7 +120,7 @@ void WikiRegionPage::createChildTableSection_addChilds( Xml node , String prefix
 		String id = nodeChild.getAttribute( "id" , "" );
 		String name = nodeChild.getAttribute( "name" , "" );
 		if( !id.isEmpty() ) {
-			if( value.isEmpty() )
+			if( name.isEmpty() )
 				value = "*" + id + "*";
 			else
 				value = "*" + name + "* (" + createChildTableSection_getChildDetails( id ) + ")";
