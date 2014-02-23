@@ -11,9 +11,9 @@ TargetConnectionLinkTypeDef::TargetConnectionLinkTypeDef( TargetConnectionTypeDe
 TargetConnectionLinkTypeDef::~TargetConnectionLinkTypeDef() {
 }
 
-void TargetConnectionLinkTypeDef::defineConnectionLinkTypeDef( TargetCircuitDef *circuitInfoTarget , TargetRegionConnectorDef *regionConnection , Xml xml ) {
+void TargetConnectionLinkTypeDef::defineConnectionLinkTypeDef( TargetCircuitDef *circuitInfoTarget , TargetRegionConnectorDef *regionConnection , TargetConnectionTypeDef *connectionType , Xml xml ) {
 	// attributes
-	MindConnectionLinkTypeDef::name = "theonly";
+	MindConnectionLinkTypeDef::name = connectionType -> getName();
 	Object::setInstance( MindConnectionLinkTypeDef::name );
 
 	MindConnectionLinkTypeDef::implementation = xml.getAttribute( "implementation" );
