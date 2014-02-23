@@ -65,6 +65,7 @@ private:
 	MindEffector *createRectum( EffectorArea *area );
 	MindEffector *createUreter( EffectorArea *area );
 	MindEffector *createVessels( EffectorArea *area );
+	MindEffector *createEndocrine( EffectorArea *area );
 };
 
 /*#########################################################################*/
