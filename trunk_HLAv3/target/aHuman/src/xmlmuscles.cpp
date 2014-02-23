@@ -118,44 +118,51 @@ XmlMuscleInfo *XmlMuscles::createMuscleInfo( String muscle , Xml xmlitem ) {
 	info.action = xmlitem.getAttribute( "action" , "" );
 
 	String nerves = xmlitem.getAttribute( "nerves" , "" );
-	StringList pairs;
-	nerves.split( pairs, ";" );
+	if( nerves.isEmpty() )
+		return( pinfo );
 
-	String pair;
-	String nerve;
-	String connectordet;
-	for( int k = 0; k < pairs.count(); k++ ) {
-		String pair = pairs.get( k );
-		pair.trim();
+	if( nerves.equals( "INTERNAL" ) ) {
+		muscleConnectors.addnew( muscle , pinfo );
+	}
+	else {
+		StringList pairs;
+		nerves.split( pairs, ";" );
 
-		int pos = pair.find( ":" );
-		if( pos < 0 ) {
-			nerve = pair;
-			connectordet.clear();
-		}
-		else {
-			nerve = pair.getMid( 0 , pos );
-			connectordet = pair.getMid( pos + 1 );
-		}
+		String pair;
+		String nerve;
+		String connectordet;
+		for( int k = 0; k < pairs.count(); k++ ) {
+			String pair = pairs.get( k );
+			pair.trim();
 
-		nerve.trim();
-		connectordet.trim();
-		if( connectordet.isEmpty() ) {
-			connectordet = "default";
-			muscleConnectors.addnew( muscle , pinfo );
-		}
-		else {
-			String connector = muscle + ":" + connectordet;
-			muscleConnectors.addnew( connector , pinfo );
-		}
+			int pos = pair.find( ":" );
+			if( pos < 0 ) {
+				nerve = pair;
+				connectordet.clear();
+			}
+			else {
+				nerve = pair.getMid( 0 , pos );
+				connectordet = pair.getMid( pos + 1 );
+			}
 
-		info.nerves.add( nerve , connectordet );
+			nerve.trim();
+			connectordet.trim();
+			if( connectordet.isEmpty() ) {
+				connectordet = "default";
+				muscleConnectors.addnew( muscle , pinfo );
+			}
+			else {
+				String connector = muscle + ":" + connectordet;
+				muscleConnectors.addnew( connector , pinfo );
+			}
+
+			info.nerves.add( nerve , connectordet );
+		}
 	}
 
 	// data integrity
-	if( info.nerves.count() > 0 )
-		ASSERTMSG( info.type.equals( "flexor" ) || info.type.equals( "extensor" ) || info.type.equals( "cranial" ) || info.type.equals( "gland" ) ,
-			"createMuscleInfo: muscle=" + info.name + " - invalid muscle type=" + info.type );
+	ASSERTMSG( info.type.equals( "flexor" ) || info.type.equals( "extensor" ) || info.type.equals( "cranial" ) || info.type.equals( "gland" ) ,
+		"createMuscleInfo: muscle=" + info.name + " - invalid muscle type=" + info.type );
 
 	return( pinfo );
 }
