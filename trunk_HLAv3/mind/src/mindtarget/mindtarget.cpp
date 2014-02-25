@@ -102,8 +102,10 @@ void MindTarget::addEffector( String p_id , MindEffector *effector ) {
 	Xml configEffectors = config.getChildNode( "effectors" );
 	Xml xconfig = configEffectors.findChildByPathAttr( "effector" , "id" , p_id );
 
+	ASSERTMSG( xconfig.exists() , "addEffector: unknown target id=" + p_id );
+
 	bool offline = true;
-	if( xconfig.exists() && xconfig.getBooleanAttribute( "run" , true ) ) {
+	if( xconfig.getBooleanAttribute( "run" , true ) ) {
 		effector -> configureEffector( xconfig );
 		offline = false;
 	}
