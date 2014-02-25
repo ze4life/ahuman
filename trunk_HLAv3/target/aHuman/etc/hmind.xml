@@ -227,18 +227,6 @@
 				</element>
 			</element>
 
-			<element id="TARGET.TSA.MENINGES" name="Meninges" mapped="true" type="Sensor"
-				dotdef="color=firebrick1"
-				function="Mind Protection"
-				>
-				<element id="cranial-meninges" name="Meninges - cranial meninges" type="connector" 
-					function="primary function of the meninges and of the cerebrospinal fluid is to protect the central nervous system"
-					/>
-				<element id="tentorium-cerebelli-dura-matter" name="Meninges - tentorium cerebelli dura mater visceral receptors" type="connector" 
-					function="visceral sensation of tentorium cerebelli and supratentorial falx cerebri"
-					/>
-			</element>
-
 		</element>
 
 		<element id="aHumanEffectors" name="Human Effectors">
@@ -276,21 +264,30 @@
 					/>
 			</element>
 
-			<element id="TARGET.TEA.IMMUNITY" name="Immunity subsystem" mapped="true" type="Effector"
+			<element id="TARGET.TEA.PROTECTOR" name="Immunity glands and meninges" mapped="true" type="Effector"
 				dotdef="color=firebrick1"
 				function="Biological defences to avoid infection, disease, or other unwanted biological invasion"
 				>
-				<element id="immunity-palatine-tonsil" name="Immunity - palatine tonsil" type="connector" 
-					function="providing antibodies against illnesses and diseases such as diphtheria"
+				<element id="cranial-meninges" name="Protector - cranial meninges" type="connector" 
+					function="primary function of the meninges and of the cerebrospinal fluid is to protect the central nervous system"
 					/>
-				<element id="immunity-lingual-tonsil" name="Immunity - lingual tonsil" type="connector" 
-					function="production of antibodies that are part of natural immune system"
+				<element id="tentorium-cerebelli-dura-matter" name="Protector - tentorium cerebelli dura mater visceral receptors" type="connector" 
+					function="visceral sensation of tentorium cerebelli and supratentorial falx cerebri"
 					/>
 
-				<element id="hard-palate-mucosal-gland" name="Immunity - hard palate mucous gland" type="connector" 
+				<element id="palatine-tonsil" name="Protector - palatine tonsil" type="connector" 
+					function="providing antibodies against illnesses and diseases such as diphtheria"
+					/>
+				<element id="lingual-tonsil" name="Protector - lingual tonsil" type="connector" 
+					function="production of antibodies that are part of natural immune system"
+					/>
+				<element id="pharyngeal-tonsils" name="Lung - pharyngeal tonsils" type="connector"
+					function="defense mechanism against air infections, produce white blood cells which are essential for immunity"/>
+
+				<element id="hard-palate-mucosal-gland" name="Protector - hard palate mucous gland" type="connector" 
 					function="produce mucous fluid; lubrication, immunological defence"
 					/>
-				<element id="soft-palate-mucosal-gland" name="Immunity - soft palate mucous gland" type="connector" 
+				<element id="soft-palate-mucosal-gland" name="Protector - soft palate mucous gland" type="connector" 
 					function="produce mucous fluid; lubrication, immunological defence"
 					/>
 			</element>
@@ -628,8 +625,6 @@
 					function="increases thoracic cavity volume; inhalation"/>
 				<element id="pericardium-pleura-receptors" name="Lung - pericardium and pleura receptors" type="connector"
 					function="somatic sensations"/>
-				<element id="pharyngeal-tonsils" name="Lung - pharyngeal tonsils" type="connector"
-					function="defense mechanism against air infections, produce white blood cells which are essential for immunity"/>
 
 				<element id="pulmonary-stretch-receptors" name="Lung - pulmonary stretch receptors" type="connector"
 					function="imitate the Hering-Breuer reflex, which reduces the respiratory rate; increased firing from the stretch receptors also increases production of pulmonary surfactant"/>
