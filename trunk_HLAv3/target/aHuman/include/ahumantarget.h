@@ -47,11 +47,12 @@ private:
 	MindSensor *createEye( SensorArea *sensorArea );
 	MindSensor *createEar( SensorArea *sensorArea );
 	MindSensor *createNose( SensorArea *sensorArea );
-	MindSensor *createMeninges( SensorArea *sensorArea );
 
 	// effector construction
 	MindEffector *createHeart( EffectorArea *area );
-	MindEffector *createMouth( EffectorArea *area );
+	MindEffector *createProtector( EffectorArea *area );
+	MindEffector *createFeeder( EffectorArea *area );
+	MindEffector *createSpeaker( EffectorArea *area );
 	MindEffector *createFace( EffectorArea *area );
 	MindEffector *createNeck( EffectorArea *area );
 	MindEffector *createLung( EffectorArea *area );

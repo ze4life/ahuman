@@ -15,10 +15,11 @@ void AHumanTarget::createTarget( SensorArea *sensorArea , EffectorArea *effector
 	MindTarget::addSensor( "TARGET.TSA.EYE" , AHumanTarget::createEye( sensorArea ) );
 	MindTarget::addSensor( "TARGET.TSA.EAR" , AHumanTarget::createEar( sensorArea ) );
 	MindTarget::addSensor( "TARGET.TSA.NOSE" , AHumanTarget::createNose( sensorArea ) );
-	MindTarget::addSensor( "TARGET.TSA.MENINGES" , AHumanTarget::createMeninges( sensorArea ) );
 
 	MindTarget::addEffector( "TARGET.TEA.HEART" , AHumanTarget::createHeart( effectorArea ) );
-	MindTarget::addEffector( "TARGET.TEA.MOUTH" , AHumanTarget::createMouth( effectorArea ) );
+	MindTarget::addEffector( "TARGET.TEA.PROTECTOR" , AHumanTarget::createProtector( effectorArea ) );
+	MindTarget::addEffector( "TARGET.TEA.FEEDER" , AHumanTarget::createFeeder( effectorArea ) );
+	MindTarget::addEffector( "TARGET.TEA.SPEAKER" , AHumanTarget::createSpeaker( effectorArea ) );
 	MindTarget::addEffector( "TARGET.TEA.FACE" , AHumanTarget::createFace( effectorArea ) );
 	MindTarget::addEffector( "TARGET.TEA.NECK" , AHumanTarget::createNeck( effectorArea ) );
 	MindTarget::addEffector( "TARGET.TEA.LUNG" , AHumanTarget::createLung( effectorArea ) );

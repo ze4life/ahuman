@@ -122,13 +122,6 @@
 				region="HMA.HM.AMB" connector="nucleus.output" primary="true"/>
 		</sensor>
 
-		<sensor id="TARGET.TSA.MENINGES" run="true">
-			<connector entity="cranial-meninges" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
-				region="AVA.PN.SG.JUG" connector="ganglion.input" primary="true"/>
-			<connector entity="tentorium-cerebelli-dura-matter" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
-				region="AVA.PN.SG.TRG" connector="ganglion.input" primary="true"/>
-		</sensor>
-
 	</sensors>
 
 	<effectors>
@@ -150,11 +143,18 @@
 				region="AVA.PN.SG.DRG" connector="ganglion.input" primary="true"/>
 		</effector>
 
-		<effector id="TARGET.TEA.IMMUNITY" run="true">
-			<connector entity="immunity-lingual-tonsil" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+		<effector id="TARGET.TEA.PROTECTOR" run="true">
+			<connector entity="cranial-meninges" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.JUG" connector="ganglion.input" primary="true"/>
+			<connector entity="tentorium-cerebelli-dura-matter" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.SG.TRG" connector="ganglion.input" primary="true"/>
-			<connector entity="immunity-palatine-tonsil" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+
+			<connector entity="lingual-tonsil" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.SG.TRG" connector="ganglion.input" primary="true"/>
+			<connector entity="palatine-tonsil" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.TRG" connector="ganglion.input" primary="true"/>
+			<connector entity="pharyngeal-tonsils" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.PSYM.PTG" connector="ganglion.output" primary="true"/>
 
 			<connector entity="hard-palate-mucosal-gland" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.PSYM.PTG" connector="ganglion.output" primary="true"/>
@@ -400,8 +400,6 @@
 				region="BMA.SC.VH.PHR" connector="nucleus.output" primary="true"/>
 			<connector entity="pericardium-pleura-receptors" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.SG.DRG" connector="ganglion.input" primary="true"/>
-			<connector entity="pharyngeal-tonsils" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
-				region="AVA.PN.PSYM.PTG" connector="ganglion.output" primary="true"/>
 
 			<connector entity="pulmonary-stretch-receptors" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.SG.JUG" connector="ganglion.input" primary="true"/>
