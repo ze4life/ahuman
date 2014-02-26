@@ -244,7 +244,10 @@
 				<element id="heart-cardiac-upper-muscle" name="Heart - upper cardiac muscle" type="connector"
 					function="increase spontaneous diastonic muscle cells depolarization; increase matabolic demands of heart"
 					/>
-				<element id="heart-cardiac-lower-muscle" name="Heart - lower cardiac muscle" type="connector"
+				<element id="heart-cardiac-lower-muscle-middle" name="Heart - lower cardiac muscle, middle" type="connector"
+					function="increase heart rate (chronotropic effect) and force of cardiac contraction (inotropic effect)"
+					/>
+				<element id="heart-cardiac-lower-muscle-stellar" name="Heart - lower cardiac muscle, stellar" type="connector"
 					function="increase heart rate (chronotropic effect) and force of cardiac contraction (inotropic effect)"
 					/>
 				<element id="heart-psymp-control" name="Heart - ACh receptors of atrium muscles" type="connector"
@@ -972,60 +975,78 @@
 				dotdef="color=firebrick1"
 				function="Body Movements"
 				>
-				<element id="trunk-rectus-abdominis-muscle" name="Trunk - rectus abdominis muscle" type="connector"
-					function="flexion of trunk/lumbar vertebrae; keeping the internal organs intact and in creating intra-abdominal pressure, such as when exercising or lifting heavy weights"/>
-				<element id="trunk-external-intercostal-muscles" name="Trunk - external intercostal muscles" type="connector"
-					function="aid in quiet and forced inhalation"/>
-				<element id="trunk-serratus-posterior-superior-muscle" name="Trunk - serratus posterior superior muscle" type="connector"
-					function="elevate the ribs which aids in inspiration"/>
+				<element id="trunk-sensory-data" name="Trunk sensory data">
+					<element id="trunk-somatic-receptors" name="Trunk - somatic receptors" type="connector"
+						function="somatic sensation from skin of lower abdomen and lateral side of gluteal region"/>
+				</element>
 
-				<element id="trunk-semispinalis-dorsi-thoracis" name="Trunk - semispinalis dorsi (thoracis)" type="connector"
-					function="extends vertebral column"/>
-				<element id="trunk-transversus-thoracis-muscle" name="Trunk - transversus thoracis muscle" type="connector"
-					function="depresses the ribs; aids in exertional expiration by decreasing the transverse diameter of the thoracic cage"/>
-				<element id="trunk-subcostalis-muscle" name="Trunk - subcostalis muscle" type="connector"
-					function="synergist in aiding the internal intercostal muscles with forced exhalation"/>
-				<element id="trunk-transversus-abdominis" name="Trunk - transversus abdominis muscle" type="connector"
-					function="compress the ribs and viscera, providing thoracic and pelvic stability"/>
+				<element id="trunk-back" name="Trunk back">
+					<element id="trunk-back-flexors" name="Trunk back flexors">
+						<element id="trunk-iliocostalis-muscle" name="Trunk - iliocostalis muscle" type="connector"
+							function="extends and lateral flexes spine"/>
+						<element id="trunk-rotatores-muscles" name="Trunk - rotatores muscles" type="connector"
+							function="facilitates the unilateral rotation and bilateral extension of the spine"/>
+						<element id="trunk-spinalis-muscle" name="Trunk - spinalis muscle" type="connector"
+							function="lateral flexion of spine"/>
+					</element>
 
-				<element id="trunk-internal-intercostal-muscles" name="Trunk - internal intercostal muscles" type="connector"
-					function="aid in forced expiration"/>
-				<element id="trunk-serratus-posterior-inferior-muscle" name="Trunk - serratus posterior inferior muscle" type="connector"
-					function="depress the lower ribs, aiding in expiration"/>
+					<element id="trunk-back-extensors" name="Trunk back extensors">
+						<element id="trunk-semispinalis-dorsi-thoracis" name="Trunk - semispinalis dorsi (thoracis)" type="connector"
+							function="extends vertebral column"/>
+						<element id="trunk-interspinales-muscles" name="Trunk - interspinales muscles" type="connector"
+							function="aid in extension and rotation of vertebral column"/>
+						<element id="trunk-intertransversarii-muscle" name="Trunk - intertransversarii muscle" type="connector"
+							function="aid in lateral flexion of vertebral column; acting bilaterally, stabilize vertebral column"/>
+						<element id="trunk-levatores-costarum-muscles" name="Trunk - levatores costarum muscles" type="connector"
+							function="elevate ribs, assisting respiration; assist with lateral flexion of vertebral column}"/>
+						<element id="trunk-longissimus-muscle" name="Trunk - longissimus muscle" type="connector"
+							function="extends spine"/>
+						<element id="trunk-multifidus-muscle" name="Trunk - multifidus muscle" type="connector"
+							function="stabilizes vertebrae in local movements of vertebral column"/>
+						<element id="trunk-quadratus-lumborum-muscle" name="Trunk - quadratus lumborum muscle" type="connector"
+							function="extension of lumbar vertebral column, with bilateral contraction; alone, lateral flexion of vertebral column; together, depression of thoracic rib cage"/>
+						<element id="trunk-semispinalis-cervicis-muscle" name="Trunk - semispinalis cervicis" type="connector"
+							function="extends and rotates the head to the contralateral side and also extends the ribs"/>
+					</element>
+				</element>
 
-				<element id="trunk-internal-oblique-muscle" name="Trunk - abdominal internal oblique muscle" type="connector"
-					function="compresses abdomen and rotates vertebral column"/>
-				<element id="trunk-pyramidalis-muscle" name="Trunk - pyramidalis muscle" type="connector"
-					function="tensing the linea alba"/>
+				<element id="trunk-chest" name="Trunk chest">
+					<element id="trunk-chest-flexors" name="Trunk chest flexors">
+						<element id="trunk-external-intercostal-muscles" name="Trunk - external intercostal muscles" type="connector"
+							function="aid in quiet and forced inhalation"/>
+						<element id="trunk-serratus-posterior-superior-muscle" name="Trunk - serratus posterior superior muscle" type="connector"
+							function="elevate the ribs which aids in inspiration"/>
+					</element>
 
-				<element id="trunk-abdominal-somatic-receptors" name="Trunk - abdominal somatic receptors" type="connector"
-					function="somatic sensation from skin of lower abdomen and lateral side of gluteal region"/>
+					<element id="trunk-chest-extensors" name="Trunk chest extensors">
+						<element id="trunk-subcostalis-muscle" name="Trunk - subcostalis muscle" type="connector"
+							function="synergist in aiding the internal intercostal muscles with forced exhalation"/>
+						<element id="trunk-transversus-thoracis-muscle" name="Trunk - transversus thoracis muscle" type="connector"
+							function="depresses the ribs; aids in exertional expiration by decreasing the transverse diameter of the thoracic cage"/>
+						<element id="trunk-internal-intercostal-muscles" name="Trunk - internal intercostal muscles" type="connector"
+							function="aid in forced expiration"/>
+						<element id="trunk-serratus-posterior-inferior-muscle" name="Trunk - serratus posterior inferior muscle" type="connector"
+							function="depress the lower ribs, aiding in expiration"/>
+					</element>
+				</element>
 
-				<element id="adrenal-gland" name="Trunk - adrenal gland" type="connector"
-					function="releasing hormones in response to stress"/>
+				<element id="trunk-abdomen" name="Trunk abdomen">
+					<element id="trunk-abdomen-flexors" name="Trunk abdomen flexors">
+						<element id="trunk-rectus-abdominis-muscle" name="Trunk - rectus abdominis muscle" type="connector"
+							function="flexion of trunk/lumbar vertebrae; keeping the internal organs intact and in creating intra-abdominal pressure, such as when exercising or lifting heavy weights"/>
+						<element id="trunk-internal-oblique-muscle" name="Trunk - abdominal internal oblique muscle" type="connector"
+							function="compresses abdomen and rotates vertebral column"/>
+						<element id="trunk-pyramidalis-muscle" name="Trunk - pyramidalis muscle" type="connector"
+							function="tensing the linea alba"/>
+						<element id="trunk-abdominal-external-oblique-muscle" name="Trunk - abdominal external oblique muscle" type="connector"
+							function="rotates torso"/>
+					</element>
 
-				<element id="trunk-abdominal-external-oblique-muscle" name="Trunk - abdominal external oblique muscle" type="connector"
-					function="rotates torso"/>
-				<element id="trunk-iliocostalis-muscle" name="Trunk - iliocostalis muscle" type="connector"
-					function="extends and lateral flexes spine"/>
-				<element id="trunk-interspinales-muscles" name="Trunk - interspinales muscles" type="connector"
-					function="aid in extension and rotation of vertebral column"/>
-				<element id="trunk-intertransversarii-muscle" name="Trunk - intertransversarii muscle" type="connector"
-					function="aid in lateral flexion of vertebral column; acting bilaterally, stabilize vertebral column"/>
-				<element id="trunk-levatores-costarum-muscles" name="Trunk - levatores costarum muscles" type="connector"
-					function="elevate ribs, assisting respiration; assist with lateral flexion of vertebral column}"/>
-				<element id="trunk-longissimus-muscle" name="Trunk - longissimus muscle" type="connector"
-					function="extends spine"/>
-				<element id="trunk-multifidus-muscle" name="Trunk - multifidus muscle" type="connector"
-					function="stabilizes vertebrae in local movements of vertebral column"/>
-				<element id="trunk-quadratus-lumborum-muscle" name="Trunk - quadratus lumborum muscle" type="connector"
-					function="extension of lumbar vertebral column, with bilateral contraction; alone, lateral flexion of vertebral column; together, depression of thoracic rib cage"/>
-				<element id="trunk-rotatores-muscles" name="Trunk - rotatores muscles" type="connector"
-					function="facilitates the unilateral rotation and bilateral extension of the spine"/>
-				<element id="trunk-semispinalis-cervicis-muscle" name="Trunk - semispinalis cervicis" type="connector"
-					function="extends and rotates the head to the contralateral side and also extends the ribs"/>
-				<element id="trunk-spinalis-muscle" name="Trunk - spinalis muscle" type="connector"
-					function="lateral flexion of spine"/>
+					<element id="trunk-abdomen-extensors" name="Trunk abdomen extensors">
+						<element id="trunk-transversus-abdominis" name="Trunk - transversus abdominis muscle" type="connector"
+							function="compress the ribs and viscera, providing thoracic and pelvic stability"/>
+					</element>
+				</element>
 			</element>
 
 			<element id="TARGET.TEA.BREAST" name="Breast" mapped="true" type="Effector"
@@ -1228,13 +1249,18 @@
 						function="release parathyroid hormones into blood to increase in blood calcium levels"/>
 				</element>
 
-				<element id="endocrine-pancreas" name="Endocrine - pancreas"
-					function="release digestive enzymes that act in small intestine to increase rate of glucose uptake and metabolism by most body cells"
-					>
-					<element id="endocrine-pancreas-adrenergic" name="Endocrine - pancreas, sympathetic" type="connector"
-						function="sympathetic, a2: decreases secretion from beta cells, increases secretion from alpha cells, b2: increases secretion from beta cells"/>
-					<element id="endocrine-pancreas-muscarinic" name="Endocrine - pancreas, parasympathetic" type="connector"
-						function="parasympathetic, stimulates insulin secretion, M3: increases stimulation of alpha cells and beta cells"/>
+				<element id="endocrine-body" name="Endocrine body">
+					<element id="endocrine-pancreas" name="Endocrine - pancreas"
+						function="release digestive enzymes that act in small intestine to increase rate of glucose uptake and metabolism by most body cells"
+						>
+						<element id="endocrine-pancreas-adrenergic" name="Endocrine - pancreas, sympathetic" type="connector"
+							function="sympathetic, a2: decreases secretion from beta cells, increases secretion from alpha cells, b2: increases secretion from beta cells"/>
+						<element id="endocrine-pancreas-muscarinic" name="Endocrine - pancreas, parasympathetic" type="connector"
+							function="parasympathetic, stimulates insulin secretion, M3: increases stimulation of alpha cells and beta cells"/>
+					</element>
+
+					<element id="endocrine-adrenal-gland" name="Endocrine - adrenal gland" type="connector"
+						function="releasing hormones in response to stress"/>
 				</element>
 
 				<element id="endocrine-gonads" name="Endocrine - gonads"
