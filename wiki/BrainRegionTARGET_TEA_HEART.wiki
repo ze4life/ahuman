@@ -15,9 +15,10 @@ Region is part of aHuman target integrated biological model.
 
 
 *Component items*:
-  * *Heart - NE receptors of atrium muscles* ([BrainRegionAVA_PN_SYM_STG AVA.PN.SYM.STG] -> heart-symp-control): increase overall activity of heart
+  * *Heart - NE receptors of atrium muscles* ([BrainRegionAVA_PN_SYM_SMG AVA.PN.SYM.SMG] -> heart-symp-control): increase overall activity of heart
   * *Heart - upper cardiac muscle* ([BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] -> heart-cardiac-upper-muscle): increase spontaneous diastonic muscle cells depolarization; increase matabolic demands of heart
-  * *Heart - lower cardiac muscle* ([BrainRegionAVA_PN_SYM_MCG AVA.PN.SYM.MCG] -> heart-cardiac-lower-muscle): increase heart rate (chronotropic effect) and force of cardiac contraction (inotropic effect)
+  * *Heart - lower cardiac muscle, middle* ([BrainRegionAVA_PN_SYM_MCG AVA.PN.SYM.MCG] -> heart-cardiac-lower-muscle-middle): increase heart rate (chronotropic effect) and force of cardiac contraction (inotropic effect)
+  * *Heart - lower cardiac muscle, stellar* ([BrainRegionAVA_PN_SYM_STG AVA.PN.SYM.STG] -> heart-cardiac-lower-muscle-stellar): increase heart rate (chronotropic effect) and force of cardiac contraction (inotropic effect)
   * *Heart - ACh receptors of atrium muscles* ([BrainRegionAVA_PN_PSYM_CRG AVA.PN.PSYM.CRG] -> heart-psymp-control): decrease firing rate of SA node, slowing transmission of pacemaker impulse
   * *Heart - baroreceptors in aorta* (heart-aorta-baroreceptors -> [BrainRegionAVA_PN_SG_NOD AVA.PN.SG.NOD]): increase in blood pressure signal
   * *Heart - baroreceptors in carotid artery* (heart-carotid-baroreceptors -> [BrainRegionAVA_PN_SG_PET AVA.PN.SG.PET]): increase in blood pressure signal
@@ -33,9 +34,10 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/TARGET.TEA.HEART.dot.jpg
 
 || *Source Area* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || [BrainAreaAVA AVA] || [BrainRegionAVA_PN_PSYM_CRG AVA.PN.PSYM.CRG] || Cardiac Ganglion || heart-psymp-control || (unknown reference) ||
-||  || [BrainRegionAVA_PN_SYM_MCG AVA.PN.SYM.MCG] || Middle Cervical Ganglion || heart-cardiac-lower-muscle || (unknown reference) ||
+||  || [BrainRegionAVA_PN_SYM_MCG AVA.PN.SYM.MCG] || Middle Cervical Ganglion || heart-cardiac-lower-muscle-middle || (unknown reference) ||
 ||  || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || Superior Cervical Ganglion || heart-cardiac-upper-muscle || (unknown reference) ||
-||  || [BrainRegionAVA_PN_SYM_STG AVA.PN.SYM.STG] || Stellate Ganglion || heart-symp-control || (unknown reference) ||
+||  || [BrainRegionAVA_PN_SYM_SMG AVA.PN.SYM.SMG] || Superior Mesenteric Ganglion || heart-symp-control || (unknown reference) ||
+||  || [BrainRegionAVA_PN_SYM_STG AVA.PN.SYM.STG] || Stellate Ganglion || heart-cardiac-lower-muscle-stellar || (unknown reference) ||
 
 *Outbound Region Connections:*
 
