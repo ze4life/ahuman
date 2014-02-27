@@ -281,6 +281,15 @@ String WikiMaker::getRegionReference( String region ) {
 	return( "[" + getRegionPage( region ) + " " + region + "]" );
 }
 
+String WikiMaker::getMuscleReference( String name , String text ) {
+	XmlMuscleInfo *muscle = musclesxml.findByConnector( name );
+	if( muscle == NULL )
+		return( text );
+
+	String link = "[" + muscle -> division -> page + " " + text + "]";
+	return( link );
+}
+
 String WikiMaker::getAreaReference( String area ) {
 	return( "[" + getAreaPage( area ) + " " + area + "]" );
 }

@@ -118,15 +118,16 @@ void WikiRegionPage::createChildTableSection_addChilds( Xml node , String prefix
 	StringList refList;
 	for( Xml nodeChild = node.getFirstChild( "element" ); nodeChild.exists(); nodeChild = nodeChild.getNextChild( "element" ) ) {
 		String id = nodeChild.getAttribute( "id" , "" );
-		String name = nodeChild.getAttribute( "name" , "" );
+		String nameItem = createChildTableSection_getChildNameItem( nodeChild );
 		if( !id.isEmpty() ) {
+			String name = nodeChild.getAttribute( "name" , "" );
 			if( name.isEmpty() )
-				value = "*" + id + "*";
+				value = createChildTableSection_getChildIdItem( nodeChild );
 			else
-				value = "*" + name + "* (" + createChildTableSection_getChildDetails( id ) + ")";
+				value = nameItem + " (" + createChildTableSection_getChildDetails( nodeChild ) + ")";
 		}
 		else
-			value = "*" + name + "*";
+			value = nameItem;
 
 		String function = nodeChild.getAttribute( "function" , "" );
 		if( !function.isEmpty() )
@@ -137,10 +138,37 @@ void WikiRegionPage::createChildTableSection_addChilds( Xml node , String prefix
 	}
 }
 
-String WikiRegionPage::createChildTableSection_getChildDetails( String id ) {
+String WikiRegionPage::createChildTableSection_getChildNameItem( Xml node ) {
+	String name = node.getAttribute( "name" , "" );
+	String id = node.getAttribute( "id" , "" );
+	if( id.isEmpty() )
+		return( "*" + name + "*" );
+
 	const XmlHMindElementInfo& child = wm -> hmindxml.getElementInfo( id );
 	if( !child.isConnector() )
-		return( id );
+		return( "*" + name + "*" );
+
+	XmlMuscleInfo *muscle = wm -> musclesxml.findByConnector( name );
+	if( muscle == NULL )
+		return( name );
+
+	if( muscle -> link.isEmpty() )
+		return( name );
+
+	return( "[" + muscle -> link + " " + name + "]" );
+}
+
+String WikiRegionPage::createChildTableSection_getChildIdItem( Xml node ) {
+	String name = node.getAttribute( "name" , "" );
+	String id = node.getAttribute( "id" , "" );
+	return( wm -> getMuscleReference( name , id ) );
+}
+
+String WikiRegionPage::createChildTableSection_getChildDetails( Xml node ) {
+	String id = node.getAttribute( "id" , "" );
+	const XmlHMindElementInfo& child = wm -> hmindxml.getElementInfo( id );
+	if( !child.isConnector() )
+		return( "*" + id + "*" );
 
 	// find connector
 	NeuroLinkSource *ns = region -> getNeuroLinkSource( id );
@@ -154,7 +182,7 @@ String WikiRegionPage::createChildTableSection_getChildDetails( String id ) {
 		ASSERTMSG( links.count() == 1 , "createChildTableSection_getChildDetails: unexpected multiple links to connector=" + id );
 		String regionId = links.getRef( 0 ).getSource() -> getRegion() -> getRegionId();
 
-		return( wm -> getRegionReference( regionId ) + " -> " + id );
+		return( wm -> getRegionReference( regionId ) + " -> " + createChildTableSection_getChildIdItem( node ) );
 	}
 
 	ClassList<NeuroLink>& links = ns -> getLinks();
@@ -162,7 +190,7 @@ String WikiRegionPage::createChildTableSection_getChildDetails( String id ) {
 	ASSERTMSG( links.count() == 1 , "createChildTableSection_getChildDetails: unexpected multiple links to connector=" + id );
 	String regionId = links.getRef( 0 ).getTarget() -> getRegion() -> getRegionId();
 
-	return( id + " -> " + wm -> getRegionReference( regionId ) );
+	return( createChildTableSection_getChildIdItem( node ) + " -> " + wm -> getRegionReference( regionId ) );
 }
 
 void WikiRegionPage::createConnectivitySection() {

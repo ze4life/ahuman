@@ -251,7 +251,7 @@ public:
 
 private:
 	Xml getMuscleCategoryXml( Xml categoryItem );
-	XmlMuscleInfo *createMuscleInfo( String muscle , Xml xmlitem );
+	XmlMuscleInfo *createMuscleInfo( XmlMuscleDivision *division , String muscle , Xml xmlitem );
 	void addChilds( XmlMuscleDivision *division , Xml parent , MapStringToClass<XmlMuscleInfo>& list );
 	void addNerveMuscles( XmlMuscleInfo *muscle );
 
@@ -271,6 +271,7 @@ public:
 
 	Xml xml;
 
+	XmlMuscleDivision *division;
 	String name;
 	String type;
 	String link;

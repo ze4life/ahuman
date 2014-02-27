@@ -41,6 +41,7 @@ public:
 	String getRegionPage( String region );
 	String getAreaReference( String area );
 	String getRegionReference( String region );
+	String getMuscleReference( String name , String text );
 
 	void clearRepeats1( String& value1 );
 	void clearRepeats2( String& value1 , String& value2 );
@@ -184,7 +185,9 @@ private:
 
 	void createChildTableSection();
 	void createChildTableSection_addChilds( Xml node , String prefix , StringList& lines );
-	String createChildTableSection_getChildDetails( String id );
+	String createChildTableSection_getChildDetails( Xml node );
+	String createChildTableSection_getChildNameItem( Xml node );
+	String createChildTableSection_getChildIdItem( Xml node );
 
 	void createConnectivitySection();
 	void createConnectivitySection_getExternalConnections( MapStringToClass<MindRegionLink>& connections , bool isin );

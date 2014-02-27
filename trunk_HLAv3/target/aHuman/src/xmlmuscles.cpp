@@ -72,7 +72,7 @@ void XmlMuscles::addChilds( XmlMuscleDivision *division , Xml parent , MapString
 		ASSERTMSG( muscles.get( id ) == NULL , "Duplicate muscle division=" + division -> name + ", name=" + id );
 
 		// add item
-		XmlMuscleInfo *muscleInfo = createMuscleInfo( id , item );
+		XmlMuscleInfo *muscleInfo = createMuscleInfo( division , id , item );
 		muscles.add( id , muscleInfo );
 		list.add( id , muscleInfo );
 
@@ -106,12 +106,13 @@ XmlMuscleInfo& XmlMuscles::getMuscleInfo( String muscle ) {
 	return( *pinfo );
 }
 
-XmlMuscleInfo *XmlMuscles::createMuscleInfo( String muscle , Xml xmlitem ) {
+XmlMuscleInfo *XmlMuscles::createMuscleInfo( XmlMuscleDivision *division , String muscle , Xml xmlitem ) {
 	XmlMuscleInfo *pinfo = new XmlMuscleInfo;
 
 	XmlMuscleInfo& info = *pinfo;
 	info.xml = xmlitem;
 
+	info.division = division;
 	info.name = xmlitem.getAttribute( "name" );
 	info.type = xmlitem.getAttribute( "type" , "" );
 	info.link = xmlitem.getAttribute( "link" , "" );
