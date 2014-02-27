@@ -393,17 +393,17 @@
 		<effector id="TARGET.TEA.LUNG" run="true">
 			<connector entity="pulmonary-neuroepithelial-bodies" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.SG.NOD" connector="ganglion.input" primary="true"/>
+			<connector entity="pericardium-pleura-receptors" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.DRG" connector="ganglion.input" primary="true"/>
+			<connector entity="pulmonary-stretch-receptors" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="AVA.PN.SG.JUG" connector="ganglion.input" primary="true"/>
+
 			<connector entity="visceral-glands" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.PSYM.PUG" connector="ganglion.output" primary="true"/>
 			<connector entity="smooth-muscles" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.PSYM.PUG" connector="ganglion.output" primary="true"/>
 			<connector entity="thoracic-diaphragm" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="BMA.SC.VH.PHR" connector="nucleus.output" primary="true"/>
-			<connector entity="pericardium-pleura-receptors" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
-				region="AVA.PN.SG.DRG" connector="ganglion.input" primary="true"/>
-
-			<connector entity="pulmonary-stretch-receptors" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
-				region="AVA.PN.SG.JUG" connector="ganglion.input" primary="true"/>
 			<connector entity="stylopharyngeus-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU"
 				region="HMA.HM.AMB" connector="nucleus.output" primary="true"/>
 		</effector>
