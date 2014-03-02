@@ -18,6 +18,7 @@ class XmlNerveFiberInfo;
 class XmlMuscles;
 class XmlMuscleInfo;
 class XmlMuscleDivision;
+class XmlSpinalCordLayout;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -48,7 +49,7 @@ public:
 	bool checkAbstractLinkCoveredByRegionLink( String compSrc , String compDst , String linkRegionSrc , String linkRegionDst );
 
 private:
-	Xml createDivisionElement( Xml item );
+	void createDivisionElement( Xml item );
 	String createRegionElement( Xml item );
 	void scanChildItems( Xml xmlChild );
 	void scanChildRegions( Xml xmlChild , StringList& regions );
@@ -59,6 +60,8 @@ private:
 	Xml xml;
 	MapStringToClass<XmlHMindElementInfo> nodeInfo;
 	MapStringToClass<XmlHMindElementInfo> connectorInfo;
+	XmlSpinalCordLayout *layout;
+	MapStringToClass<XmlHMindElementInfo> mapIndex;
 };
 
 /*#########################################################################*/
@@ -74,6 +77,7 @@ public:
 
 	bool ignore;
 	String id;
+	String index;
 	String name;
 	bool mapped;
 	String refs;
@@ -300,6 +304,25 @@ public:
 	String divgroup;
 
 	MapStringToClass<XmlMuscleInfo> childs;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class XmlSpinalCordLayout {
+public:
+	XmlSpinalCordLayout( XmlHMind *hmind );
+	~XmlSpinalCordLayout();
+
+	void load( Xml xmlDiv );
+
+private:
+	void loadLevel( Xml xmlLevel , MapStringToClass<StringList>& levelData );
+
+private:
+	XmlHMind *hmind;
+	String imgSrc;
+	MapStringToClass<MapStringToClass<StringList> > data;
 };
 
 /*#########################################################################*/
