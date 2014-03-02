@@ -48,7 +48,7 @@ public:
 	bool checkAbstractLinkCoveredByRegionLink( String compSrc , String compDst , String linkRegionSrc , String linkRegionDst );
 
 private:
-	String createDivisionElement( Xml item );
+	Xml createDivisionElement( Xml item );
 	String createRegionElement( Xml item );
 	void scanChildItems( Xml xmlChild );
 	void scanChildRegions( Xml xmlChild , StringList& regions );
