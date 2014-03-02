@@ -22,9 +22,25 @@ void XmlHMind::load() {
 		if( xmlChild.getBooleanAttribute( "ignore" , false ) )
 			continue;
 
-		createDivisionElement( xmlChild );
-		scanChildItems( xmlChild );
+		Xml xmlFile = createDivisionElement( xmlChild );
+		scanChildItems( xmlFile );
 	}
+}
+
+Xml XmlHMind::createDivisionElement( Xml item ) {
+	String mapId = item.getAttribute( "name" );
+	String xmlFileName = item.getAttribute( "xmlfile" );
+
+	EnvService *es = EnvService::getService();
+	Xml xmlFile = es -> loadXml( xmlFileName );
+	ASSERTMSG( xmlFile.exists() , "unable to read file " + xmlFileName );
+	Xml div = xmlFile.getChildNamedNode( "division" , mapId );
+	ASSERTMSG( div.exists() , "unable to find division name=" + mapId );
+
+	XmlHMindElementInfo *info = new XmlHMindElementInfo();
+	createElementInfo( mapId , div , *info );
+	nodeInfo.add( mapId , info );
+	return( div );
 }
 
 void XmlHMind::scanChildItems( Xml xmlItem ) {
@@ -101,14 +117,6 @@ void XmlHMind::getIdentifiedElements( String parentNode , StringList& elements )
 		if( !id.isEmpty() )
 			elements.add( id );
 	}
-}
-
-String XmlHMind::createDivisionElement( Xml item ) {
-	String mapId = item.getAttribute( "name" );
-	XmlHMindElementInfo *info = new XmlHMindElementInfo();
-	createElementInfo( mapId , item , *info );
-	nodeInfo.add( mapId , info );
-	return( mapId );
 }
 
 String XmlHMind::getRegionMapId( Xml item ) {
