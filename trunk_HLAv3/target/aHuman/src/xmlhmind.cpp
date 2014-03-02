@@ -5,10 +5,12 @@
 /*#########################################################################*/
 
 XmlHMind::XmlHMind() {
+	layout = new XmlSpinalCordLayout( this );
 }
 
 XmlHMind::~XmlHMind() {
 	nodeInfo.destroy();
+	delete layout;
 }
 
 void XmlHMind::load() {
@@ -22,12 +24,11 @@ void XmlHMind::load() {
 		if( xmlChild.getBooleanAttribute( "ignore" , false ) )
 			continue;
 
-		Xml xmlFile = createDivisionElement( xmlChild );
-		scanChildItems( xmlFile );
+		createDivisionElement( xmlChild );
 	}
 }
 
-Xml XmlHMind::createDivisionElement( Xml item ) {
+void XmlHMind::createDivisionElement( Xml item ) {
 	String mapId = item.getAttribute( "name" );
 	String xmlFileName = item.getAttribute( "xmlfile" );
 
@@ -40,7 +41,11 @@ Xml XmlHMind::createDivisionElement( Xml item ) {
 	XmlHMindElementInfo *info = new XmlHMindElementInfo();
 	createElementInfo( mapId , div , *info );
 	nodeInfo.add( mapId , info );
-	return( div );
+
+	scanChildItems( div );
+
+	if( mapId.equals( "Spinal Cord" ) )
+		layout -> load( div );
 }
 
 void XmlHMind::scanChildItems( Xml xmlItem ) {
@@ -144,6 +149,10 @@ void XmlHMind::createElementInfo( String mapId , Xml item , XmlHMindElementInfo&
 	info.xml = item;
 
 	info.id = item.getAttribute( "id" , "" );
+	info.index = item.getAttribute( "index" , "" );
+	if( !info.index.isEmpty() )
+		mapIndex.add( info.index , &info );
+
 	info.ignore = item.getBooleanAttribute( "ignore" , false );
 	info.mapped = item.getBooleanAttribute( "mapped" , false );
 	info.name = item.getAttribute( "name" , "" );
