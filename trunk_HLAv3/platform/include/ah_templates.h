@@ -868,6 +868,11 @@ public:
 
 		return( l_value );
 	};
+	T& getRef( const char *key ) {
+		T *l_value = get( key );
+		ASSERTMSG( l_value != NULL , "cannot find key=" + String( key ) );
+		return( *l_value );
+	};
 	// return item from which given string begins
 	T *getPartial( const char *key ) {
 		int n = rfc_map_strcount( mapData );

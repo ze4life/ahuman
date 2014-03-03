@@ -27,6 +27,12 @@ void WikiMaker::createPages() {
 	createNerveSpecPages();
 	createMuscleMainPage();
 	createMuscleSpecPages();
+	createSpinalCordPage();
+}
+
+void WikiMaker::createSpinalCordPage() {
+	WikiSpinalCordPage maker( this );
+	maker.execute();
 }
 
 void WikiMaker::createMainPage() {
@@ -337,5 +343,13 @@ String WikiMaker::getNerveWikiPage( String nerve ) {
 	nervesxml.load();
 	XmlNerveInfo& div = nervesxml.getNerveDivision( nerve );
 	return( div.origin );
+}
+
+String WikiMaker::getImageWikiLink( String imgsrc , String height ) {
+	String s = "<img src=\"" + imgsrc + "\"";
+	if( !height.isEmpty() )
+		s += " height=" + height;
+	s += ">";
+	return( s );
 }
 

@@ -15,6 +15,7 @@ class WikiNerveMainPage;
 class WikiNerveSpecPages;
 class WikiMuscleMainPage;
 class WikiMuscleSpecPages;
+class WikiSpinalCordPage;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -42,6 +43,7 @@ public:
 	String getAreaReference( String area );
 	String getRegionReference( String region );
 	String getMuscleReference( String name , String text );
+	String getImageWikiLink( String imgsrc , String height );
 
 	void clearRepeats1( String& value1 );
 	void clearRepeats2( String& value1 , String& value2 );
@@ -57,6 +59,7 @@ private:
 	void createNerveSpecPages();
 	void createMuscleMainPage();
 	void createMuscleSpecPages();
+	void createSpinalCordPage();
 
 public:
 	Xml wiki;
@@ -283,6 +286,24 @@ private:
 	void addMuscleDivision( XmlMuscleDivision& div );
 	void addMuscleList( int level , XmlMuscleInfo& muscle , StringList& lines );
 	String getNerveList( XmlMuscleInfo& muscle );
+
+private:
+	WikiMaker *wm;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class WikiSpinalCordPage : public Object {
+public:
+	WikiSpinalCordPage( WikiMaker *wm );
+	virtual ~WikiSpinalCordPage();
+	virtual const char *getClass() { return "WikiSpinalCordPage"; };
+
+public:
+	void execute();
+
+private:
 
 private:
 	WikiMaker *wm;

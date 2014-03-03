@@ -28,7 +28,7 @@ void WikiHierarchyPage::execute() {
 	wm -> hmindxml.getDivisions( divisions );
 	for( int k = 0; k < divisions.count(); k++ ) {
 		String division = divisions.get( k );
-		if( division.equals( "Neocortex" ) )
+		if( division.equals( "Cortex" ) )
 			updateHierarchyPage_walkNeocortex( division , wikiDir , wikiPage );
 		else {
 			StringList lines;

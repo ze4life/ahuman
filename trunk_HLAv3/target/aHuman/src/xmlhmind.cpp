@@ -182,6 +182,10 @@ const XmlHMindElementInfo *XmlHMind::getConnectorInfo( String name ) {
 	return( ni );
 }
 
+XmlHMindElementInfo *XmlHMind::getIndexedElement( String index ) {
+	return( mapIndex.get( index ) );
+}
+
 String XmlHMind::getMappedRegion( String node ) {
 	Xml item = getNodeXml( node );
 	while( item.exists() ) {
