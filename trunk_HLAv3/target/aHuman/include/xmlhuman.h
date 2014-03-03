@@ -41,6 +41,8 @@ public:
 	void getIdentifiedElements( String parentNode , StringList& elements );
 	const XmlHMindElementInfo& getElementInfo( String node );
 	const XmlHMindElementInfo *getConnectorInfo( String name );
+	XmlSpinalCordLayout *getLayout() { return( layout ); };
+	XmlHMindElementInfo *getIndexedElement( String index );
 
 	String getMappedRegion( String node );
 	void getChildRegions( String node , StringList& regions );
@@ -315,6 +317,10 @@ public:
 	~XmlSpinalCordLayout();
 
 	void load( Xml xmlDiv );
+	String getImageSrc() { return( imgSrc ); };
+	const char **getLevels();
+	const char **getLaminas();
+	StringList& getCellItems( String level , String lamina );
 
 private:
 	void loadLevel( Xml xmlLevel , MapStringToClass<StringList>& levelData );

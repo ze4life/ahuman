@@ -66,10 +66,7 @@ void WikiNerveSpecPages::addNerveList( int level , XmlNerveInfo& nerve , StringL
 
 	// image
 	if( !nerve.imgsrc.isEmpty() ) {
-		s = String( " " ).replicate( level + 3 ) + "* <img src=\"" + nerve.imgsrc + "\"";
-		if( !nerve.imgheight.isEmpty() )
-			s += " height=" + nerve.imgheight;
-		s += ">";
+		s = String( " " ).replicate( level + 3 ) + "* " + wm -> getImageWikiLink( nerve.imgsrc , nerve.imgheight );
 		lines.add( s );
 	}
 

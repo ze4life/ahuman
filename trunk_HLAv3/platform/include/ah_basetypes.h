@@ -275,6 +275,17 @@ public:
 		rfc_lst_clear( data );
 	}
 
+	String combine( String delimiter ) {
+		if( data -> s_n == 0 )
+			return( "" );
+
+		String s = data -> s_p[ 0 ].u_s;
+		for( int k = 1; k < data -> s_n; k++ )
+			s += delimiter + data -> s_p[ k ].u_s;
+
+		return( s );
+	}
+
 	rfc_list *data;
 };
 

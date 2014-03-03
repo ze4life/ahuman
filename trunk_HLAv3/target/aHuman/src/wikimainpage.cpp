@@ -13,7 +13,7 @@ WikiMainPage::~WikiMainPage() {
 }
 
 void WikiMainPage::execute() {
-	bool createMainPage = wm -> wiki.getBooleanProperty( "createMainPage" , true );
+	bool createMainPage = wm -> wiki.getBooleanProperty( "createMainPages" , true );
 	if( createMainPage == false ) {
 		logger.logInfo( "skip creating main page" );
 		return;
