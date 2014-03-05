@@ -402,6 +402,91 @@
 			</level>
 		</layout>
 
+		<tracts imgsrc="http://intranet.tdmu.edu.ua/data/kafedra/internal/anatomy/classes_stud/en/med/lik/ptn/1/19%20SPINAL%20CORD.%20BASE%20OF%20THE%20BRAIN.files/image044.jpg">
+
+			<tract name="Ascending Tracts">
+
+				<tract name="posterior column"
+					synonyms="dorsal column; medial lemniscus"
+					function="well-localized discriminative fine touch and proprioception, alpha/beta mechanoreceptors, conscious"
+					notes="discrimination of those sensations that an animal must explore actively"
+					>
+					<tract name="fasciculus cuneatus" receptors="A-beta"
+						synonyms="tract of Burdach"
+						function="fine touch, fine pressure, vibration, and proprioception"
+						source="receptors of C1-T6 dermatomes"
+						notes="sacral-toward-contralateral and lumbar slices"
+						>
+						<path src="AVA.PN.SG.DRG" mids="BMA.HM.CU,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1" 
+							function="conscious sensations of head" 
+							notes="BA 3b"
+							/>
+						<path src="AVA.PN.SG.DRG" mids="BMA.HM.CU,SMA.FD.TH.VPL" dst="SMA.NC.PG.S1" 
+							function="conscious sensations of neck, trunk, and extremities" 
+							notes="BA 3b"
+							/>
+
+						<tract name="tract of Lissauer, fast pain, upper" receptors="A-delta"
+							function="initial sharp localization of pain"
+							source="A-delta pain fibers to posterior column"
+							notes="fast pain - pain duration equals to stimulus duration; from lateral LSN; joins fasciculus cuneatus"
+							>
+							<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.MG,BMA.SC.LH.LSN,BMA.HM.CU,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1"
+								function="fast, pain duration equals to stimulus duration"
+								/>
+						</tract>
+					</tract>
+					<tract name="fasciculus gracilis" receptors="A-beta"
+						synonyms="tract of Goll"
+						function="tactile and pressure"
+						source="receptors of thoracic and lower limbs, T7-CX"
+						notes="thoracic-toward-contralateral and cervical slices"
+						>
+						<path src="AVA.PN.SG.DRG" mids="BMA.HM.GR,SMA.FD.TH.VPL" dst="SMA.NC.PG.S1"
+							function="epicritic, kinesthetic, and conscious proprioceptive information from lower body" notes="BA 3b"
+							/>
+
+						<tract name="tract of Lissauer, fast pain, lower" receptors="A-delta"
+							function="initial sharp localization of pain"
+							source="A-delta pain fibers to posterior column"
+							notes="fast pain - pain duration equals to stimulus duration; from medial LSN; joins fasciculus gracilis"
+							>
+							<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.MG,BMA.SC.LH.LSN,BMA.HM.GR,SMA.FD.TH.VPL" dst="SMA.NC.PG.S1"
+								function="fast, pain duration equals to stimulus duration"
+								/>
+						</tract>
+					</tract>
+				</tract>
+
+				<tract name="dorsolateral column"
+					synonyms="dorsolateral fasciculus, dorsolateral funiculus"
+					>
+					<tract name="tract of Lissauer"
+						synonyms="fasciculus of Lissauer, tract/zone of Lissauer; DLF"
+						function="intraspinal, discriminative pain and temperature information - location, intensity and quality"
+						>
+						<tract name="tract of Lissauer, fast pain, upper" ref="true"/>
+						<tract name="tract of Lissauer, fast pain, lower" ref="true"/>
+						<tract name="tract of Lissauer, slow pain" ref="true"/>
+					</tract>
+					<tract name="spinocervical tract" receptors="A-alpha,A-beta"
+						synonyms="Morin's tract"
+						function="static position, Ruffini endings"
+						source="receptors of thoracic and lower limbs, T7-CX"
+						notes="thoracic-toward-contralateral and cervical slices"
+						>
+						<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.NP,BMA.SC.LH.LCV,SMA.FD.TH.VPL" dst="SMA.NC.PG.S1"
+							function=""
+							/>
+						<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.NP,BMA.SC.LH.LCV" dst="FBA.MM.PAG"
+							function=""
+							/>
+					</tract>
+				</tract>
+			</tract>
+
+		</tracts>
+
 	</division>
 
 </hmind>
