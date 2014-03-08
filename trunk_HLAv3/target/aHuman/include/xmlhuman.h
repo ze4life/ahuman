@@ -19,6 +19,9 @@ class XmlMuscles;
 class XmlMuscleInfo;
 class XmlMuscleDivision;
 class XmlSpinalCord;
+class XmlSpinalTractSet;
+class XmlSpinalTract;
+class XmlSpinalTractPath;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -331,6 +334,67 @@ private:
 	XmlHMind *hmind;
 	String imgSrc;
 	MapStringToClass<MapStringToClass<StringList> > data;
+	MapStringToClass<XmlSpinalTractSet> tractsets;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class XmlSpinalTractSet {
+public:
+	XmlSpinalTractSet();
+	~XmlSpinalTractSet();
+
+	void load( Xml xml );
+
+public:
+	String name;
+	String imgsrc;
+	String imgheight;
+	MapStringToClass<XmlSpinalTract> tracts;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class XmlSpinalTract {
+public:
+	XmlSpinalTract();
+	~XmlSpinalTract();
+
+	void load( Xml xml );
+
+public:
+	bool final;
+	String name;
+	String link;
+	String synonyms;
+	String function;
+	String source;
+	String target;
+	String notes;
+	String imgsrc;
+	String imgheight;
+	MapStringToClass<XmlSpinalTract> tracts;
+	ClassList<XmlSpinalTractPath> paths;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class XmlSpinalTractPath {
+public:
+	XmlSpinalTractPath();
+	~XmlSpinalTractPath();
+
+	void load( Xml xml );
+
+public:
+	String function;
+	String source;
+	String target;
+	StringList fibers;
+	StringList items;
 };
 
 /*#########################################################################*/
