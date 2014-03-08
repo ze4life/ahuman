@@ -18,7 +18,7 @@ class XmlNerveFiberInfo;
 class XmlMuscles;
 class XmlMuscleInfo;
 class XmlMuscleDivision;
-class XmlSpinalCordLayout;
+class XmlSpinalCord;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -41,7 +41,7 @@ public:
 	void getIdentifiedElements( String parentNode , StringList& elements );
 	const XmlHMindElementInfo& getElementInfo( String node );
 	const XmlHMindElementInfo *getConnectorInfo( String name );
-	XmlSpinalCordLayout *getLayout() { return( layout ); };
+	XmlSpinalCord *getSpinalCord() { return( spinalCord ); };
 	XmlHMindElementInfo *getIndexedElement( String index );
 
 	String getMappedRegion( String node );
@@ -62,7 +62,7 @@ private:
 	Xml xml;
 	MapStringToClass<XmlHMindElementInfo> nodeInfo;
 	MapStringToClass<XmlHMindElementInfo> connectorInfo;
-	XmlSpinalCordLayout *layout;
+	XmlSpinalCord *spinalCord;
 	MapStringToClass<XmlHMindElementInfo> mapIndex;
 };
 
@@ -311,10 +311,10 @@ public:
 /*#########################################################################*/
 /*#########################################################################*/
 
-class XmlSpinalCordLayout {
+class XmlSpinalCord {
 public:
-	XmlSpinalCordLayout( XmlHMind *hmind );
-	~XmlSpinalCordLayout();
+	XmlSpinalCord( XmlHMind *hmind );
+	~XmlSpinalCord();
 
 	void load( Xml xmlDiv );
 	String getImageSrc() { return( imgSrc ); };
@@ -323,7 +323,9 @@ public:
 	StringList& getCellItems( String level , String lamina );
 
 private:
-	void loadLevel( Xml xmlLevel , MapStringToClass<StringList>& levelData );
+	void loadLayout( Xml xmlDiv );
+	void loadLayoutLevel( Xml xmlLevel , MapStringToClass<StringList>& levelData );
+	void loadTracts( Xml xmlDiv );
 
 private:
 	XmlHMind *hmind;

@@ -304,6 +304,8 @@ public:
 	void execute();
 
 private:
+	void createLayout();
+	void createTracts();
 
 private:
 	WikiMaker *wm;
