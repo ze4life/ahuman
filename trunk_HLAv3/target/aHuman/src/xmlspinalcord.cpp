@@ -37,6 +37,7 @@ XmlSpinalCord::~XmlSpinalCord() {
 		item.destroy();
 	}
 	data.destroy();
+	tractsets.destroy();
 }
 
 void XmlSpinalCord::load( Xml xmlDiv ) {
@@ -90,5 +91,10 @@ StringList& XmlSpinalCord::getCellItems( String level , String lamina ) {
 }
 
 void XmlSpinalCord::loadTracts( Xml xmlDiv ) {
+	for( Xml xmlChild = xmlDiv.getFirstChild( "tracts" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "tracts" ) ) {
+		XmlSpinalTractSet *ts = new XmlSpinalTractSet();
+		ts -> load( xmlChild );
+		tractsets.add( ts -> name , ts );
+	}
 }
 
