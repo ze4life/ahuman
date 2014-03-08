@@ -13,7 +13,7 @@
 			<element id="BMA.SC.LH.LSN" name="Lateral Spinal Nucleus" mapped="true" type="1-order Sensory Nucleus" index="LSN"
 				refs="NL:[http://neurolex.org/wiki/Category:Lateral_spinal_nucleus Lateral spinal nucleus]"
 				function="Integrate autonomic and homeostatic functions"
-				notes="Projects to HT and lateral globus pallidus"
+				notes="Projects to HT and lateral globus pallidus;  integrative nucleus for autonomic and homeostatic functions, and related motivational and affective responses to autonomic function"
 				/>
 		</element>
 
@@ -402,89 +402,128 @@
 			</level>
 		</layout>
 
-		<tracts imgsrc="http://intranet.tdmu.edu.ua/data/kafedra/internal/anatomy/classes_stud/en/med/lik/ptn/1/19%20SPINAL%20CORD.%20BASE%20OF%20THE%20BRAIN.files/image044.jpg">
-
-			<tract name="Ascending Tracts">
-
-				<tract name="posterior column"
-					synonyms="dorsal column; medial lemniscus"
+		<tracts name="Ascending Tracts"
+			imgsrc="http://intranet.tdmu.edu.ua/data/kafedra/internal/anatomy/classes_stud/en/med/lik/ptn/1/19%20SPINAL%20CORD.%20BASE%20OF%20THE%20BRAIN.files/image044.jpg"
+			>
+			<tract name="medial lemniscus" link="http://en.wikipedia.org/wiki/Medial_lemniscus">
+				<tract name="posterior column" link="http://en.wikipedia.org/wiki/Posterior_column-medial_lemniscus_pathway"
+					synonyms="dorsal column"
 					function="well-localized discriminative fine touch and proprioception, alpha/beta mechanoreceptors, conscious"
 					notes="discrimination of those sensations that an animal must explore actively"
 					>
-					<tract name="fasciculus cuneatus" receptors="A-beta"
+					<tract name="fasciculus cuneatus" receptors="A-beta" link="http://en.wikipedia.org/wiki/Cuneate_fasciculus"
 						synonyms="tract of Burdach"
 						function="fine touch, fine pressure, vibration, and proprioception"
 						source="receptors of C1-T6 dermatomes"
+						target="neocortex BA 3b, lateral"
 						notes="sacral-toward-contralateral and lumbar slices"
 						>
 						<path src="AVA.PN.SG.DRG" mids="BMA.HM.CU,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1" 
 							function="conscious sensations of head" 
-							notes="BA 3b"
 							/>
 						<path src="AVA.PN.SG.DRG" mids="BMA.HM.CU,SMA.FD.TH.VPL" dst="SMA.NC.PG.S1" 
 							function="conscious sensations of neck, trunk, and extremities" 
-							notes="BA 3b"
 							/>
-
-						<tract name="tract of Lissauer, fast pain, upper" receptors="A-delta"
-							function="initial sharp localization of pain"
-							source="A-delta pain fibers to posterior column"
-							notes="fast pain - pain duration equals to stimulus duration; from lateral LSN; joins fasciculus cuneatus"
-							>
-							<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.MG,BMA.SC.LH.LSN,BMA.HM.CU,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1"
-								function="fast, pain duration equals to stimulus duration"
-								/>
-						</tract>
 					</tract>
-					<tract name="fasciculus gracilis" receptors="A-beta"
+
+					<tract name="fasciculus gracilis" receptors="A-beta" link="http://en.wikipedia.org/wiki/Gracile_fasciculus"
 						synonyms="tract of Goll"
 						function="tactile and pressure"
 						source="receptors of thoracic and lower limbs, T7-CX"
+						target="neocortex BA 3b, medial"
 						notes="thoracic-toward-contralateral and cervical slices"
 						>
 						<path src="AVA.PN.SG.DRG" mids="BMA.HM.GR,SMA.FD.TH.VPL" dst="SMA.NC.PG.S1"
-							function="epicritic, kinesthetic, and conscious proprioceptive information from lower body" notes="BA 3b"
+							function="epicritic, kinesthetic, and conscious proprioceptive information from lower body"
 							/>
-
-						<tract name="tract of Lissauer, fast pain, lower" receptors="A-delta"
-							function="initial sharp localization of pain"
-							source="A-delta pain fibers to posterior column"
-							notes="fast pain - pain duration equals to stimulus duration; from medial LSN; joins fasciculus gracilis"
-							>
-							<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.MG,BMA.SC.LH.LSN,BMA.HM.GR,SMA.FD.TH.VPL" dst="SMA.NC.PG.S1"
-								function="fast, pain duration equals to stimulus duration"
-								/>
-						</tract>
 					</tract>
 				</tract>
-
-				<tract name="dorsolateral column"
+	
+				<tract name="dorsolateral column" link="http://en.wikipedia.org/wiki/Posterolateral_tract"
 					synonyms="dorsolateral fasciculus, dorsolateral funiculus"
 					>
-					<tract name="tract of Lissauer"
+					<tract name="tract of Lissauer, fast pain" receptors="A-delta"
 						synonyms="fasciculus of Lissauer, tract/zone of Lissauer; DLF"
-						function="intraspinal, discriminative pain and temperature information - location, intensity and quality"
+						function="fast pain; intraspinal, discriminative pain and temperature information - location, intensity and quality"
+						source="A-delta pain fibers to hypothalamus, to posterior column"
+						target="neocortex BA 3b"
+						notes="pain duration equals to stimulus duration"
 						>
-						<tract name="tract of Lissauer, fast pain, upper" ref="true"/>
-						<tract name="tract of Lissauer, fast pain, lower" ref="true"/>
-						<tract name="tract of Lissauer, slow pain" ref="true"/>
+						<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.MG,BMA.SC.LH.LSN" dst="HTA.FD.HT"
+							notes="autonomic and homeostatic functions, and related motivational and affective responses to autonomic function"
+							/>
+						<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.MG,BMA.SC.LH.LSN,BMA.HM.CU,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1"
+							notes="from lateral LSN; joins fasciculus cuneatus; initial sharp localization of pain"
+							/>
+						<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.MG,BMA.SC.LH.LSN,BMA.HM.GR,SMA.FD.TH.VPL" dst="SMA.NC.PG.S1"
+							notes="from medial LSN; joins fasciculus gracilis; initial sharp localization of pain"
+							/>
 					</tract>
-					<tract name="spinocervical tract" receptors="A-alpha,A-beta"
+
+					<tract name="spinocervical tract" receptors="A-alpha,A-beta" link="http://en.wikipedia.org/wiki/Spinocervical_pathway"
 						synonyms="Morin's tract"
 						function="static position, Ruffini endings"
 						source="receptors of thoracic and lower limbs, T7-CX"
 						notes="thoracic-toward-contralateral and cervical slices"
 						>
 						<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.NP,BMA.SC.LH.LCV,SMA.FD.TH.VPL" dst="SMA.NC.PG.S1"
-							function=""
+							function="four-neuron, fast-conducting, tactile/pressure pathway from the spinal cord to sensory cortex"
 							/>
 						<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.NP,BMA.SC.LH.LCV" dst="FBA.MM.PAG"
-							function=""
+							function="alerts about presence of cutaneous stimuli that might represent danger, necessitating flight"
 							/>
 					</tract>
 				</tract>
 			</tract>
 
+			<tract name="anterolateral system" link="http://en.wikipedia.org/wiki/Anterolateral_system"
+				>
+				<tract name="spinothalamic tract" index="STT"
+					notes="conscious"
+					>
+					<tract name="trigeminothalamic tract" index="TTT"
+						synonyms="neospinothalamic tract"
+						>
+						<tract name="trigeminothalamic tract, location" receptors="A-delta"
+							function="awareness of the exact location of the painful stimulus"
+							notes="to SCI - BA 1,2"
+							>
+							<path src="AVA.PN.SG.TRG" mids="HMA.HM.TGM.STR,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1" 
+								source="head, face and intraoral structures nociceptors"
+								/>
+							<path src="AVA.PN.SG.GNG" mids="HMA.HM.TGM.STR,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1"
+								source="nociceptors of cranial nerves VII" 
+								/>
+							<path src="AVA.PN.SG.JUG" mids="HMA.HM.TGM.STR,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1"
+								source="nociceptors of cranial nerves IX,X" 
+								/>
+							<path src="AVA.PN.SG.NOD" mids="HMA.HM.TGM.STR,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1"
+								source="nociceptors of cranial nerves X"
+								/>
+						</tract>
+						<tract name="trigeminothalamic tract, pain awareness" receptors="C"
+							function="immediate awareness of a painful sensation; face dull, burning pain, deep, aching pain, temperature and crude touch"
+							notes="to SII - BA 40,43"
+							>
+							<path src="AVA.PN.SG.TRG" mids="HMA.HP.PTP.PTR,BGA.FD.TH.IL" dst="SMA.NC.PO.PCC"
+								source="head, face and intraoral structures"
+								/>
+						</tract>
+					</tract>
+					<tract name="paleospinothalamic tract"
+						notes="cervical-anterior-toward-contralateral, thoracic, lumbar, sacral-lateral slices"
+						>
+						<tract name="anterior spinothalamic tract" receptors="C" index="ASTT"
+							synonyms="anterolateral tract"
+							function="unconscious proprioception; crude, nondiscriminative or light touch"
+							>
+							<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.SG,BMA.SC.PH.CL" dst="SMA.FD.TH.VPL" 
+								source="head, face and intraoral structures nociceptors"
+								/>
+						</tract>
+					</tract>
+				</tract>
+			</tract>
 		</tracts>
 
 	</division>

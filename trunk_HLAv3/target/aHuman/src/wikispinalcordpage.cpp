@@ -19,19 +19,24 @@ void WikiSpinalCordPage::execute() {
 		return;
 	}
 
+	createLayout();
+	createTracts();
+}
+
+void WikiSpinalCordPage::createLayout() {
 	String wikiDir = wm -> wiki.getProperty( "wikiPath" );
 	String wikiPage = wm -> wiki.getProperty( "wikiPageSpinalCord" );
 	String sectionName = wm -> wiki.getProperty( "wikiSpinalCordLayoutSection" );
 
 	// collect section lines
 	StringList lines;
-	XmlSpinalCordLayout *layout = wm -> hmindxml.getLayout();
-	String s = wm -> getImageWikiLink( layout -> getImageSrc() , "" );
+	XmlSpinalCord *cord = wm -> hmindxml.getSpinalCord();
+	String s = wm -> getImageWikiLink( cord -> getImageSrc() , "" );
 	lines.add( s );
 	lines.add( "" );
 
-	const char **levels = layout -> getLevels();
-	const char **laminas = layout -> getLaminas();
+	const char **levels = cord -> getLevels();
+	const char **laminas = cord -> getLaminas();
 	s = "|| *Level/Lamina* ||";
 	for( int m = 0; laminas[ m ] != NULL; m++ )
 		s += " *" + String( laminas[ m ] ) + "* ||";
@@ -40,7 +45,7 @@ void WikiSpinalCordPage::execute() {
 	for( int k = 0; levels[ k ] != NULL; k++ ) {
 		String line = "|| " + String( levels[ k ] ) + " ||";
 		for( int m = 0; laminas[ m ] != NULL; m++ ) {
-			StringList& items = layout -> getCellItems( levels[ k ] , laminas[ m ] );
+			StringList& items = cord -> getCellItems( levels[ k ] , laminas[ m ] );
 			if( items.count() > 0 )
 				line += " " + items.combine( "," ) + " ||";
 			else
@@ -51,3 +56,7 @@ void WikiSpinalCordPage::execute() {
 
 	wm -> updateFileSection( wikiDir , wikiPage , sectionName , lines );
 }
+
+void WikiSpinalCordPage::createTracts() {
+}
+

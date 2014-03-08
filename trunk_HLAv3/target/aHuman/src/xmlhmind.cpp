@@ -5,12 +5,12 @@
 /*#########################################################################*/
 
 XmlHMind::XmlHMind() {
-	layout = new XmlSpinalCordLayout( this );
+	spinalCord = new XmlSpinalCord( this );
 }
 
 XmlHMind::~XmlHMind() {
 	nodeInfo.destroy();
-	delete layout;
+	delete spinalCord;
 }
 
 void XmlHMind::load() {
@@ -45,7 +45,7 @@ void XmlHMind::createDivisionElement( Xml item ) {
 	scanChildItems( div );
 
 	if( mapId.equals( "Spinal Cord" ) )
-		layout -> load( div );
+		spinalCord -> load( div );
 }
 
 void XmlHMind::scanChildItems( Xml xmlItem ) {

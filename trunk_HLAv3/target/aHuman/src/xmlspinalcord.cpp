@@ -19,7 +19,7 @@ static const char *laminas[12] = {
 	NULL
 };
 
-XmlSpinalCordLayout::XmlSpinalCordLayout( XmlHMind *p_hmind ) {
+XmlSpinalCord::XmlSpinalCord( XmlHMind *p_hmind ) {
 	hmind = p_hmind;
 
 	for( int k = 0; levels[ k ] != NULL; k++ ) {
@@ -31,7 +31,7 @@ XmlSpinalCordLayout::XmlSpinalCordLayout( XmlHMind *p_hmind ) {
 	}
 }
 
-XmlSpinalCordLayout::~XmlSpinalCordLayout() {
+XmlSpinalCord::~XmlSpinalCord() {
 	for( int k = 0; k < data.count(); k++ ) {
 		MapStringToClass<StringList>& item = data.getClassRefByIndex( k );
 		item.destroy();
@@ -39,7 +39,12 @@ XmlSpinalCordLayout::~XmlSpinalCordLayout() {
 	data.destroy();
 }
 
-void XmlSpinalCordLayout::load( Xml xmlDiv ) {
+void XmlSpinalCord::load( Xml xmlDiv ) {
+	loadLayout( xmlDiv );
+	loadTracts( xmlDiv );
+}
+
+void XmlSpinalCord::loadLayout( Xml xmlDiv ) {
 	Xml layout = xmlDiv.getFirstChild( "layout" );
 	ASSERTMSG( layout.exists() , "layout is not found" );
 
@@ -49,11 +54,11 @@ void XmlSpinalCordLayout::load( Xml xmlDiv ) {
 		String id = xmlChild.getAttribute( "id" );
 		MapStringToClass<StringList>& levelData = data.getRef( id );
 
-		loadLevel( xmlChild , levelData );
+		loadLayoutLevel( xmlChild , levelData );
 	}
 }
 
-void XmlSpinalCordLayout::loadLevel( Xml xmlLevel , MapStringToClass<StringList>& levelData ) {
+void XmlSpinalCord::loadLayoutLevel( Xml xmlLevel , MapStringToClass<StringList>& levelData ) {
 	for( Xml xmlChild = xmlLevel.getFirstChild( "lamina" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "lamina" ) ) {
 		String id = xmlChild.getAttribute( "id" );
 		String elements = xmlChild.getAttribute( "elements" );
@@ -71,15 +76,19 @@ void XmlSpinalCordLayout::loadLevel( Xml xmlLevel , MapStringToClass<StringList>
 	}
 }
 
-const char **XmlSpinalCordLayout::getLevels() {
+const char **XmlSpinalCord::getLevels() {
 	return( levels );
 }
 
-const char **XmlSpinalCordLayout::getLaminas() {
+const char **XmlSpinalCord::getLaminas() {
 	return( laminas );
 }
 
-StringList& XmlSpinalCordLayout::getCellItems( String level , String lamina ) {
+StringList& XmlSpinalCord::getCellItems( String level , String lamina ) {
 	MapStringToClass<StringList>& levelData = data.getRef( level );
 	return( levelData.getRef( lamina ) );
 }
+
+void XmlSpinalCord::loadTracts( Xml xmlDiv ) {
+}
+
