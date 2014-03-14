@@ -422,21 +422,25 @@
 						>
 						<path src="AVA.PN.SG.DRG" mids="BMA.HM.CU,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1" 
 							function="conscious sensations of head" 
+							source="geniohyoid (C1), head top (C2), head back above neck (C3)"
+							target="S1 medial"
 							/>
 						<path src="AVA.PN.SG.DRG" mids="BMA.HM.CU,SMA.FD.TH.VPL" dst="SMA.NC.PG.S1" 
 							function="conscious sensations of neck, trunk, and extremities" 
+							source="neck (C4), trunk (T1-T6), and extremities - arms (C5-T2)"
+							target="S1 lateral"
 							/>
 					</tract>
 
 					<tract name="fasciculus gracilis" final="true" receptors="A-beta" link="http://en.wikipedia.org/wiki/Gracile_fasciculus" 
 						synonyms="tract of Goll"
 						function="tactile and pressure"
-						source="receptors of thoracic and lower limbs, T7-CX"
-						target="neocortex BA 3b, medial"
 						notes="thoracic-toward-contralateral and cervical slices"
 						>
 						<path src="AVA.PN.SG.DRG" mids="BMA.HM.GR,SMA.FD.TH.VPL" dst="SMA.NC.PG.S1"
 							function="epicritic, kinesthetic, and conscious proprioceptive information from lower body"
+							source="receptors of thoracic and lower limbs, T7-CX"
+							target="neocortex BA 3b, medial"
 							/>
 					</tract>
 				</tract>
@@ -453,13 +457,19 @@
 						notes="pain duration equals to stimulus duration"
 						>
 						<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.MG,BMA.SC.LH.LSN" dst="HTA.FD.HT"
-							notes="autonomic and homeostatic functions, and related motivational and affective responses to autonomic function"
+							function="autonomic and homeostatic functions, and related motivational and affective responses to autonomic function"
+							source="A-delta"
+							target="hypothalamus"
 							/>
 						<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.MG,BMA.SC.LH.LSN,BMA.HM.CU,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1"
-							notes="from lateral LSN; joins fasciculus cuneatus; initial sharp localization of pain"
+							function="from lateral LSN; joins fasciculus cuneatus; initial sharp localization of pain"
+							source="A-delta"
+							target="neocortex BA 3b"
 							/>
 						<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.MG,BMA.SC.LH.LSN,BMA.HM.GR,SMA.FD.TH.VPL" dst="SMA.NC.PG.S1"
-							notes="from medial LSN; joins fasciculus gracilis; initial sharp localization of pain"
+							function="from medial LSN; joins fasciculus gracilis; initial sharp localization of pain"
+							source="A-delta"
+							target="neocortex BA 3b"
 							/>
 					</tract>
 
@@ -471,9 +481,13 @@
 						>
 						<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.NP,BMA.SC.LH.LCV,SMA.FD.TH.VPL" dst="SMA.NC.PG.S1"
 							function="four-neuron, fast-conducting, tactile/pressure pathway from the spinal cord to sensory cortex"
+							source="tactile/pressure"
+							target="S1"
 							/>
 						<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.NP,BMA.SC.LH.LCV" dst="FBA.MM.PAG"
 							function="alerts about presence of cutaneous stimuli that might represent danger, necessitating flight"
+							source="cutaneous stimuli"
+							target="PAG"
 							/>
 					</tract>
 				</tract>
@@ -495,24 +509,34 @@
 							notes="to SCI - BA 1,2"
 							>
 							<path src="AVA.PN.SG.TRG" mids="HMA.HM.TGM.STR,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1" 
+								function="nociceptors"
 								source="head, face and intraoral structures nociceptors"
+								target="S1"
 								/>
 							<path src="AVA.PN.SG.GNG" mids="HMA.HM.TGM.STR,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1"
+								function="nociceptors"
 								source="nociceptors of cranial nerves VII" 
+								target="S1"
 								/>
 							<path src="AVA.PN.SG.JUG" mids="HMA.HM.TGM.STR,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1"
+								function="nociceptors"
 								source="nociceptors of cranial nerves IX,X" 
+								target="S1"
 								/>
 							<path src="AVA.PN.SG.NOD" mids="HMA.HM.TGM.STR,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1"
+								function="nociceptors"
 								source="nociceptors of cranial nerves X"
+								target="S1"
 								/>
 						</tract>
 						<tract name="trigeminothalamic tract, pain awareness" final="true" receptors="C"
-							function="immediate awareness of a painful sensation; face dull, burning pain, deep, aching pain, temperature and crude touch"
+							function="immediate awareness of a painful sensation"
 							notes="to SII - BA 40,43"
 							>
 							<path src="AVA.PN.SG.TRG" mids="HMA.HP.PTP.PTR,BGA.FD.TH.IL" dst="SMA.NC.PO.PCC"
+								function="face dull, burning pain, deep, aching pain, temperature and crude touch"
 								source="head, face and intraoral structures"
+								target="Precentral Cortex"
 								/>
 						</tract>
 					</tract>
@@ -525,7 +549,9 @@
 							function="unconscious proprioception; crude, nondiscriminative or light touch"
 							>
 							<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.SG,BMA.SC.PH.CL" dst="SMA.FD.TH.VPL" 
+								function="unconscious nociceptors"
 								source="head, face and intraoral structures nociceptors"
+								target="VPL"
 								/>
 						</tract>
 					</tract>
