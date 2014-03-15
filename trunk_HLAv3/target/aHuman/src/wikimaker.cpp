@@ -287,6 +287,13 @@ String WikiMaker::getRegionReference( String region ) {
 	return( "[" + getRegionPage( region ) + " " + region + "]" );
 }
 
+String WikiMaker::getComponentReference( String comp ) {
+	String region = hmindxml.getMappedRegion( comp );
+	const XmlHMindElementInfo& info = hmindxml.getElementInfo( region );
+
+	return( "[" + getRegionPage( region ) + " " + info.name + "," + comp + "]" );
+}
+
 String WikiMaker::getMuscleReference( String name , String text ) {
 	XmlMuscleInfo *muscle = musclesxml.findByConnector( name );
 	if( muscle == NULL )
@@ -351,5 +358,16 @@ String WikiMaker::getImageWikiLink( String imgsrc , String height ) {
 		s += " height=" + height;
 	s += ">";
 	return( s );
+}
+
+String WikiMaker::getWikiLink( String link , String text ) {
+	if( link.isEmpty() )
+		return( text );
+
+	return( "[" + link + " " + text + "]" );
+}
+
+String WikiMaker::getWikiBold( String text ) {
+	return( "*" + text + "*" );
 }
 

@@ -422,6 +422,13 @@
 				function="touch"
 				notes="slowly adapting, low threshold; Peritrichial endings - nerve plexus wrapped around hair roots"
 				/>
+			<receptor id="FN" name="Nonencapsulated free-nerve endings" 
+				function="pain and temperature"
+				/>
+			<receptor id="RC" name="Ruffini corpuscles" 
+				function="stretching of skin, crude touch"
+				notes="End-bulbs of Krause and Ruffini; deep receptors, slowly adapting, low threshold"
+				/>
 		</receptors>
 
 		<tracts name="Ascending Tracts"
@@ -444,13 +451,11 @@
 						>
 						<path src="AVA.PN.SG.DRG" mids="BMA.HM.CU,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1" fibers="A-beta"
 							function="conscious sensations of head" 
-							source="geniohyoid (C1), head top (C2), head back above neck (C3)"
-							target="S1 medial"
+							pathway="geniohyoid (C1), head top (C2), head back above neck (C3) to S1 medial"
 							/>
 						<path src="AVA.PN.SG.DRG" mids="BMA.HM.CU,SMA.FD.TH.VPL" dst="SMA.NC.PG.S1" fibers="A-beta"
 							function="conscious sensations of neck, trunk, and extremities" 
-							source="neck (C4), trunk (T1-T6), and extremities - arms (C5-T2)"
-							target="S1 lateral"
+							pathway="neck (C4), trunk (T1-T6), and extremities - arms (C5-T2) to S1 lateral"
 							/>
 					</tract>
 
@@ -463,8 +468,7 @@
 						>
 						<path src="AVA.PN.SG.DRG" mids="BMA.HM.GR,SMA.FD.TH.VPL" dst="SMA.NC.PG.S1" fibers="A-beta" 
 							function="epicritic, kinesthetic, and conscious proprioceptive information from lower body"
-							source="receptors of thoracic and lower limbs, T7-CX"
-							target="neocortex BA 3b, medial"
+							pathway="receptors of thoracic and lower limbs, T7-CX to neocortex BA 3b, medial"
 							/>
 					</tract>
 				</tract>
@@ -482,18 +486,15 @@
 						>
 						<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.MG,BMA.SC.LH.LSN" dst="HTA.FD.HT" fibers="A-delta" 
 							function="autonomic and homeostatic functions, and related motivational and affective responses to autonomic function"
-							source="A-delta"
-							target="hypothalamus"
+							pathway="A-delta to hypothalamus"
 							/>
 						<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.MG,BMA.SC.LH.LSN,BMA.HM.CU,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1" fibers="A-delta" 
 							function="from lateral LSN; joins fasciculus cuneatus; initial sharp localization of pain"
-							source="A-delta"
-							target="neocortex BA 3b"
+							pathway="A-delta to neocortex BA 3b"
 							/>
 						<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.MG,BMA.SC.LH.LSN,BMA.HM.GR,SMA.FD.TH.VPL" dst="SMA.NC.PG.S1" fibers="A-delta" 
 							function="from medial LSN; joins fasciculus gracilis; initial sharp localization of pain"
-							source="A-delta"
-							target="neocortex BA 3b"
+							pathway="A-delta to neocortex BA 3b"
 							/>
 					</tract>
 
@@ -506,13 +507,11 @@
 						>
 						<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.NP,BMA.SC.LH.LCV,SMA.FD.TH.VPL" dst="SMA.NC.PG.S1" fibers="A-alpha,A-beta" 
 							function="four-neuron, fast-conducting, tactile/pressure pathway from the spinal cord to sensory cortex"
-							source="tactile/pressure"
-							target="S1"
+							pathway="tactile/pressure to S1"
 							/>
 						<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.NP,BMA.SC.LH.LCV" dst="FBA.MM.PAG" fibers="A-alpha,A-beta" 
 							function="alerts about presence of cutaneous stimuli that might represent danger, necessitating flight"
-							source="cutaneous stimuli"
-							target="PAG"
+							pathway="cutaneous stimuli to PAG"
 							/>
 					</tract>
 				</tract>
@@ -536,23 +535,19 @@
 							>
 							<path src="AVA.PN.SG.TRG" mids="HMA.HM.TGM.STR,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1" fibers="A-delta"
 								function="nociceptors"
-								source="head, face and intraoral structures nociceptors"
-								target="S1"
+								pathway="head, face and intraoral structures nociceptors to S1"
 								/>
 							<path src="AVA.PN.SG.GNG" mids="HMA.HM.TGM.STR,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1" fibers="A-delta"
 								function="nociceptors"
-								source="nociceptors of cranial nerves VII" 
-								target="S1"
+								pathway="nociceptors of cranial nerves VII to S1" 
 								/>
 							<path src="AVA.PN.SG.JUG" mids="HMA.HM.TGM.STR,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1" fibers="A-delta"
 								function="nociceptors"
-								source="nociceptors of cranial nerves IX,X" 
-								target="S1"
+								pathway="nociceptors of cranial nerves IX,X to S1"
 								/>
 							<path src="AVA.PN.SG.NOD" mids="HMA.HM.TGM.STR,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1" fibers="A-delta"
 								function="nociceptors"
-								source="nociceptors of cranial nerves X"
-								target="S1"
+								pathway="nociceptors of cranial nerves X to S1"
 								/>
 						</tract>
 						<tract name="trigeminothalamic tract, pain awareness" final="true" 
@@ -562,8 +557,7 @@
 							>
 							<path src="AVA.PN.SG.TRG" mids="HMA.HP.PTP.PTR,BGA.FD.TH.IL" dst="SMA.NC.PO.PCC" fibers="C"
 								function="face dull, burning pain, deep, aching pain, temperature and crude touch"
-								source="head, face and intraoral structures"
-								target="Precentral Cortex"
+								pathway="head, face and intraoral structures to Precentral Cortex"
 								/>
 						</tract>
 					</tract>
@@ -573,15 +567,33 @@
 						>
 						<tract name="anterior spinothalamic tract" final="true" index="ASTT"
 							synonyms="anterolateral tract"
-							function="crude, nondiscriminative or light touch"
+							function="pain, temperature, light touch (tactile sensibility), two-point discrimination, stereognosis"
 							source="skin - slow pain, temperature, slightly tactile"
 							target="BA 3,1,2"
 							>
 							<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.SG,FD.TH.VPL" dst="SMA.NC.PG.S1" fibers="C"
-								function="slow pain, temperature, slightly tactile"
-								source="head and body MD,MC,PC,HF receptors"
-								target="S1"
+								function="slightly tactile"
+								pathway="head and body MD,MC,PC,HF receptors to S1"
 								/>
+						</tract>
+						<tract name="lateral spinothalamic tract" final="true" index="LSTT"
+							function="pain, temperature"
+							source="body pain, temperature, crude touch"
+							target="BA 3,1,2"
+							>
+							<path src="AVA.PN.SG.DRG" dst="BMA.SC.PH.MG" fibers="A-delta,C"
+								function="pain, temperature"
+								pathway="head and body FN,RC receptors to marginal nucleus"
+								>
+								<path src="BMA.SC.PH.MG" mids="SMA.FD.TH.VPI" dst="PHA.NC.INS" fibers="A-delta,C"
+									function="pain, temperature for emotion"
+									pathway="marginal nucleus to insula"
+									/>
+								<path src="BMA.SC.PH.MG" mids="FCA.FD.TH.MD" dst="CGA.NC.DACG" fibers="A-delta,C"
+									function="pain, temperature for reward"
+									pathway="marginal nucleus to frontal lobe"
+									/>
+							</path>
 						</tract>
 					</tract>
 				</tract>

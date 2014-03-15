@@ -42,8 +42,11 @@ public:
 	String getRegionPage( String region );
 	String getAreaReference( String area );
 	String getRegionReference( String region );
+	String getComponentReference( String comp );
 	String getMuscleReference( String name , String text );
 	String getImageWikiLink( String imgsrc , String height );
+	String getWikiLink( String link , String text );
+	String getWikiBold( String text );
 
 	void clearRepeats1( String& value1 );
 	void clearRepeats2( String& value1 , String& value2 );
@@ -306,6 +309,9 @@ public:
 private:
 	void createLayout();
 	void createTracts();
+	void createTracts_addTractSetLines( XmlSpinalTractSet& ts , StringList& lines );
+	void createTracts_addTractLines( int level , XmlSpinalTract& tract , StringList& lines );
+	void createTracts_addTractPathLines( int level , XmlSpinalTractPath& path , StringList& lines );
 
 private:
 	WikiMaker *wm;
