@@ -402,6 +402,28 @@
 			</level>
 		</layout>
 
+		<receptors>
+			<receptor id="MD" name="Merkel disk receptors" 
+				function="vibration 5-15 Hz"
+				notes="respond to slight change in skin surface; high resolution tactile discrimination, static touch/pressure, mechanoceptors in hairless skin and mucosa, pressure and texture, slowly adapting, sustained response, low threshold"
+				/>
+			<receptor id="MC" name="Meissner’s corpuscles" 
+				function="vibration 20-50 Hz"
+				notes="tactile, dynamic touch/pressure, texture, rapidly adapting, superficial papillary receptor, low threshold, especially sensitive to light touch - like fingers and lips"
+				>
+				<receptor id="GC" name="Genital corpuscles" 
+					/>
+			</receptor>
+			<receptor id="PC" name="Pacinian corpuscles" 
+				function="vibration 60-400 Hz"
+				notes="deep receptors, subcutaneous tissue, viscera, rapidly adaptng, low threshold"
+				/>
+			<receptor id="HF" name="Hair follicle receptors" 
+				function="touch"
+				notes="slowly adapting, low threshold; Peritrichial endings - nerve plexus wrapped around hair roots"
+				/>
+		</receptors>
+
 		<tracts name="Ascending Tracts"
 			imgsrc="http://intranet.tdmu.edu.ua/data/kafedra/internal/anatomy/classes_stud/en/med/lik/ptn/1/19%20SPINAL%20CORD.%20BASE%20OF%20THE%20BRAIN.files/image044.jpg"
 			>
@@ -413,31 +435,31 @@
 					function="well-localized discriminative fine touch and proprioception, alpha/beta mechanoreceptors, conscious"
 					notes="discrimination of those sensations that an animal must explore actively"
 					>
-					<tract name="fasciculus cuneatus" final="true" receptors="A-beta" link="http://en.wikipedia.org/wiki/Cuneate_fasciculus" 
+					<tract name="fasciculus cuneatus" final="true" link="http://en.wikipedia.org/wiki/Cuneate_fasciculus" 
 						synonyms="tract of Burdach"
 						function="fine touch, fine pressure, vibration, and proprioception"
 						source="receptors of C1-T6 dermatomes"
 						target="neocortex BA 3b, lateral"
 						notes="sacral-toward-contralateral and lumbar slices"
 						>
-						<path src="AVA.PN.SG.DRG" mids="BMA.HM.CU,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1" 
+						<path src="AVA.PN.SG.DRG" mids="BMA.HM.CU,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1" fibers="A-beta"
 							function="conscious sensations of head" 
 							source="geniohyoid (C1), head top (C2), head back above neck (C3)"
 							target="S1 medial"
 							/>
-						<path src="AVA.PN.SG.DRG" mids="BMA.HM.CU,SMA.FD.TH.VPL" dst="SMA.NC.PG.S1" 
+						<path src="AVA.PN.SG.DRG" mids="BMA.HM.CU,SMA.FD.TH.VPL" dst="SMA.NC.PG.S1" fibers="A-beta"
 							function="conscious sensations of neck, trunk, and extremities" 
 							source="neck (C4), trunk (T1-T6), and extremities - arms (C5-T2)"
 							target="S1 lateral"
 							/>
 					</tract>
 
-					<tract name="fasciculus gracilis" final="true" receptors="A-beta" link="http://en.wikipedia.org/wiki/Gracile_fasciculus" 
+					<tract name="fasciculus gracilis" final="true" link="http://en.wikipedia.org/wiki/Gracile_fasciculus" 
 						synonyms="tract of Goll"
 						function="tactile and pressure"
 						notes="thoracic-toward-contralateral and cervical slices"
 						>
-						<path src="AVA.PN.SG.DRG" mids="BMA.HM.GR,SMA.FD.TH.VPL" dst="SMA.NC.PG.S1"
+						<path src="AVA.PN.SG.DRG" mids="BMA.HM.GR,SMA.FD.TH.VPL" dst="SMA.NC.PG.S1" fibers="A-beta" 
 							function="epicritic, kinesthetic, and conscious proprioceptive information from lower body"
 							source="receptors of thoracic and lower limbs, T7-CX"
 							target="neocortex BA 3b, medial"
@@ -449,42 +471,42 @@
 					synonyms="dorsolateral fasciculus, dorsolateral funiculus, posterolateract tract"
 					function="discriminative pain and temperature information (location, intensity and quality)"
 					>
-					<tract name="tract of Lissauer, fast pain" final="true" receptors="A-delta" 
+					<tract name="tract of Lissauer, fast pain" final="true" 
 						synonyms="fasciculus of Lissauer, tract/zone of Lissauer; DLF"
 						function="fast pain; intraspinal, discriminative pain and temperature information - location, intensity and quality"
 						source="A-delta pain fibers to hypothalamus, to posterior column"
 						target="neocortex BA 3b"
 						notes="pain duration equals to stimulus duration"
 						>
-						<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.MG,BMA.SC.LH.LSN" dst="HTA.FD.HT"
+						<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.MG,BMA.SC.LH.LSN" dst="HTA.FD.HT" fibers="A-delta" 
 							function="autonomic and homeostatic functions, and related motivational and affective responses to autonomic function"
 							source="A-delta"
 							target="hypothalamus"
 							/>
-						<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.MG,BMA.SC.LH.LSN,BMA.HM.CU,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1"
+						<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.MG,BMA.SC.LH.LSN,BMA.HM.CU,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1" fibers="A-delta" 
 							function="from lateral LSN; joins fasciculus cuneatus; initial sharp localization of pain"
 							source="A-delta"
 							target="neocortex BA 3b"
 							/>
-						<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.MG,BMA.SC.LH.LSN,BMA.HM.GR,SMA.FD.TH.VPL" dst="SMA.NC.PG.S1"
+						<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.MG,BMA.SC.LH.LSN,BMA.HM.GR,SMA.FD.TH.VPL" dst="SMA.NC.PG.S1" fibers="A-delta" 
 							function="from medial LSN; joins fasciculus gracilis; initial sharp localization of pain"
 							source="A-delta"
 							target="neocortex BA 3b"
 							/>
 					</tract>
 
-					<tract name="spinocervical tract" final="true" receptors="A-alpha,A-beta" link="http://en.wikipedia.org/wiki/Spinocervical_pathway" 
+					<tract name="spinocervical tract" final="true" link="http://en.wikipedia.org/wiki/Spinocervical_pathway" 
 						synonyms="Morin's tract"
 						function="static position, Ruffini endings"
 						source="receptors of thoracic and lower limbs, T7-CX"
 						notes="thoracic-toward-contralateral and cervical slices"
 						>
-						<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.NP,BMA.SC.LH.LCV,SMA.FD.TH.VPL" dst="SMA.NC.PG.S1"
+						<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.NP,BMA.SC.LH.LCV,SMA.FD.TH.VPL" dst="SMA.NC.PG.S1" fibers="A-alpha,A-beta" 
 							function="four-neuron, fast-conducting, tactile/pressure pathway from the spinal cord to sensory cortex"
 							source="tactile/pressure"
 							target="S1"
 							/>
-						<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.NP,BMA.SC.LH.LCV" dst="FBA.MM.PAG"
+						<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.NP,BMA.SC.LH.LCV" dst="FBA.MM.PAG" fibers="A-alpha,A-beta" 
 							function="alerts about presence of cutaneous stimuli that might represent danger, necessitating flight"
 							source="cutaneous stimuli"
 							target="PAG"
@@ -504,36 +526,38 @@
 						function="all somatosensory submodalities from head"
 						synonyms="neospinothalamic tract"
 						>
-						<tract name="trigeminothalamic tract, location" final="true" receptors="A-delta"
+						<tract name="trigeminothalamic tract, location" final="true" 
 							function="awareness of the exact location of the painful stimulus"
-							notes="to SCI - BA 1,2"
+							source="head"
+							target="SI - BA 1,2"
 							>
-							<path src="AVA.PN.SG.TRG" mids="HMA.HM.TGM.STR,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1" 
+							<path src="AVA.PN.SG.TRG" mids="HMA.HM.TGM.STR,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1" fibers="A-delta"
 								function="nociceptors"
 								source="head, face and intraoral structures nociceptors"
 								target="S1"
 								/>
-							<path src="AVA.PN.SG.GNG" mids="HMA.HM.TGM.STR,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1"
+							<path src="AVA.PN.SG.GNG" mids="HMA.HM.TGM.STR,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1" fibers="A-delta"
 								function="nociceptors"
 								source="nociceptors of cranial nerves VII" 
 								target="S1"
 								/>
-							<path src="AVA.PN.SG.JUG" mids="HMA.HM.TGM.STR,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1"
+							<path src="AVA.PN.SG.JUG" mids="HMA.HM.TGM.STR,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1" fibers="A-delta"
 								function="nociceptors"
 								source="nociceptors of cranial nerves IX,X" 
 								target="S1"
 								/>
-							<path src="AVA.PN.SG.NOD" mids="HMA.HM.TGM.STR,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1"
+							<path src="AVA.PN.SG.NOD" mids="HMA.HM.TGM.STR,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1" fibers="A-delta"
 								function="nociceptors"
 								source="nociceptors of cranial nerves X"
 								target="S1"
 								/>
 						</tract>
-						<tract name="trigeminothalamic tract, pain awareness" final="true" receptors="C"
+						<tract name="trigeminothalamic tract, pain awareness" final="true" 
 							function="immediate awareness of a painful sensation"
-							notes="to SII - BA 40,43"
+							source="head"
+							target="SII - BA 40,43"
 							>
-							<path src="AVA.PN.SG.TRG" mids="HMA.HP.PTP.PTR,BGA.FD.TH.IL" dst="SMA.NC.PO.PCC"
+							<path src="AVA.PN.SG.TRG" mids="HMA.HP.PTP.PTR,BGA.FD.TH.IL" dst="SMA.NC.PO.PCC" fibers="C"
 								function="face dull, burning pain, deep, aching pain, temperature and crude touch"
 								source="head, face and intraoral structures"
 								target="Precentral Cortex"
@@ -544,14 +568,16 @@
 						function="transmits pain mainly from the peripheral slow-chronic type C pain fibers"
 						notes="cervical-anterior-toward-contralateral, thoracic, lumbar, sacral-lateral slices"
 						>
-						<tract name="anterior spinothalamic tract" final="true" receptors="C" index="ASTT"
+						<tract name="anterior spinothalamic tract" final="true" index="ASTT"
 							synonyms="anterolateral tract"
-							function="unconscious proprioception; crude, nondiscriminative or light touch"
+							function="crude, nondiscriminative or light touch"
+							source="skin - slow pain, temperature, slightly tactile"
+							target="BA 3,1,2"
 							>
-							<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.SG,BMA.SC.PH.CL" dst="SMA.FD.TH.VPL" 
-								function="unconscious nociceptors"
-								source="head, face and intraoral structures nociceptors"
-								target="VPL"
+							<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.SG,FD.TH.VPL" dst="SMA.NC.PG.S1" fibers="C"
+								function="slow pain, temperature, slightly tactile"
+								source="head and body MD,MC,PC,HF receptors"
+								target="S1"
 								/>
 						</tract>
 					</tract>
