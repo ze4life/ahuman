@@ -325,6 +325,8 @@ public:
 	const char **getLaminas();
 	StringList& getCellItems( String level , String lamina );
 
+	MapStringToClass<XmlSpinalTractSet>& getTracts() { return( tractsets ); };
+
 private:
 	void loadLayout( Xml xmlDiv );
 	void loadLayoutLevel( Xml xmlLevel , MapStringToClass<StringList>& levelData );
@@ -391,10 +393,10 @@ public:
 
 public:
 	String function;
-	String source;
-	String target;
+	String pathway;
 	StringList fibers;
 	StringList items;
+	ClassList<XmlSpinalTractPath> childs;
 };
 
 /*#########################################################################*/

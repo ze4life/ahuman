@@ -58,5 +58,75 @@ void WikiSpinalCordPage::createLayout() {
 }
 
 void WikiSpinalCordPage::createTracts() {
+	String wikiDir = wm -> wiki.getProperty( "wikiPath" );
+	String wikiPage = wm -> wiki.getProperty( "wikiPageSpinalCord" );
+	String sectionName = wm -> wiki.getProperty( "wikiSpinalCordTractsSection" );
+
+	// collect section lines
+	StringList lines;
+	XmlSpinalCord *cord = wm -> hmindxml.getSpinalCord();
+	
+	MapStringToClass<XmlSpinalTractSet>& tractsets = cord -> getTracts();
+	for( int k = 0; k < tractsets.count(); k++ ) {
+		XmlSpinalTractSet& one = tractsets.getClassRefByIndex( k );
+		createTracts_addTractSetLines( one , lines );
+	}
+
+	wm -> updateFileSection( wikiDir , wikiPage , sectionName , lines );
+}
+
+void WikiSpinalCordPage::createTracts_addTractSetLines( XmlSpinalTractSet& ts , StringList& lines ) {
+	lines.add( "TRACT SET: *" + ts.name + "*" );
+	lines.add( "" );
+	String s = wm -> getImageWikiLink( ts.imgsrc , ts.imgheight );
+	lines.add( s );
+	lines.add( "" );
+
+	for( int k = 0; k < ts.tracts.count(); k++ ) {
+		XmlSpinalTract& tract = ts.tracts.getClassRefByIndex( k );
+		createTracts_addTractLines( 0 , tract , lines );
+	}
+}
+
+void WikiSpinalCordPage::createTracts_addTractLines( int level , XmlSpinalTract& tract , StringList& lines ) {
+	// tract info
+	String s = String( " " ).replicate( level + 1 ) + "* " + wm -> getWikiLink( tract.link , "TRACT" ) + ": " + wm -> getWikiBold( tract.name );
+	if( !tract.synonyms.isEmpty() )
+		s += " (" + tract.synonyms + ")";
+	s += "; function: " + tract.function;
+	if( !tract.notes.isEmpty() )
+		s += " (" + tract.notes + ")";
+	if( tract.final )
+		s += "; path: {" + tract.source + "} -> {" + tract.target + "}";
+	lines.add( s );
+
+	// tracts paths
+	for( int k = 0; k < tract.paths.count(); k++ ) {
+		XmlSpinalTractPath& path = tract.paths.getRef( k );
+		createTracts_addTractPathLines( level + 1 , path , lines );
+	}
+
+	// child tract
+	for( int k = 0; k < tract.tracts.count(); k++ ) {
+		XmlSpinalTract& child = tract.tracts.getClassRefByIndex( k );
+		createTracts_addTractLines( level + 1 , child , lines );
+	}
+}
+
+void WikiSpinalCordPage::createTracts_addTractPathLines( int level , XmlSpinalTractPath& path , StringList& lines ) {
+	String s = String( " " ).replicate( level + 1 ) + "* " + path.function + " (" + path.pathway + "/" + path.fibers.combine(",") + "): ";
+
+	for( int k = 0; k < path.items.count(); k++ ) {
+		if( k > 0 )
+			s += " -> ";
+		s += wm -> getComponentReference( path.items.get( k ) );
+	}
+
+	lines.add( s );
+
+	for( int k = 0; k < path.childs.count(); k++ ) {
+		XmlSpinalTractPath& child = path.childs.getRef( k );
+		createTracts_addTractPathLines( level + 1 , child , lines );
+	}
 }
 

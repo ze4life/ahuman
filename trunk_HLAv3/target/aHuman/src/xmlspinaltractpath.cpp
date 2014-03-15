@@ -12,12 +12,11 @@ XmlSpinalTractPath::~XmlSpinalTractPath() {
 
 void XmlSpinalTractPath::load( Xml xml ) {
 	function = xml.getAttribute( "function" );
-	source = xml.getAttribute( "source" );
-	target = xml.getAttribute( "target" );
+	pathway = xml.getAttribute( "pathway" );
 
 	String src = xml.getAttribute( "src" );
 	String dst = xml.getAttribute( "dst" );
-	String mids = xml.getAttribute( "mids" );
+	String mids = xml.getAttribute( "mids" , "" );
 
 	items.add( src );
 	StringList midlist;
@@ -27,4 +26,10 @@ void XmlSpinalTractPath::load( Xml xml ) {
 
 	String fibersvalue = xml.getAttribute( "fibers" );
 	fibersvalue.split( fibers , "," );
+
+	for( Xml xmlChild = xml.getFirstChild( "path" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "path" ) ) {
+		XmlSpinalTractPath *path = new XmlSpinalTractPath();
+		path -> load( xmlChild );
+		childs.add( path );
+	}
 }
