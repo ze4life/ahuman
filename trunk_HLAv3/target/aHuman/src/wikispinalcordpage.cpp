@@ -90,10 +90,14 @@ void WikiSpinalCordPage::createTracts_addTractSetLines( XmlSpinalTractSet& ts , 
 
 void WikiSpinalCordPage::createTracts_addTractLines( int level , XmlSpinalTract& tract , StringList& lines ) {
 	// tract info
-	String s = String( " " ).replicate( level + 1 ) + "* " + wm -> getWikiLink( tract.link , "TRACT" ) + ": " + wm -> getWikiBold( tract.name );
+	String sname = "TRACT";
+	if( !tract.index.isEmpty() )
+		sname += " " + tract.index;
+
+	String s = String( " " ).replicate( level + 1 ) + "* " + wm -> getWikiLink( tract.link , sname ) + ": " + wm -> getWikiBold( tract.name );
 	if( !tract.synonyms.isEmpty() )
 		s += " (" + tract.synonyms + ")";
-	s += "; function: " + tract.function;
+	s += "; " + tract.function;
 	if( !tract.notes.isEmpty() )
 		s += " (" + tract.notes + ")";
 	if( tract.final )

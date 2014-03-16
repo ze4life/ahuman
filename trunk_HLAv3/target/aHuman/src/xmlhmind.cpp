@@ -174,6 +174,7 @@ void XmlHMind::createElementInfo( String mapId , Xml item , XmlHMindElementInfo&
 
 const XmlHMindElementInfo& XmlHMind::getElementInfo( String node ) {
 	XmlHMindElementInfo *ni = nodeInfo.get( node );
+	ASSERTMSG( ni != NULL , "unknown node=" + node );
 	return( *ni );
 }
 

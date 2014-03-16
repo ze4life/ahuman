@@ -368,6 +368,7 @@ public:
 
 public:
 	bool final;
+	String index;
 	String name;
 	String link;
 	String synonyms;

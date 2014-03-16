@@ -438,7 +438,7 @@
 				function="transmits touch, vibration sense, proprioception data"
 				>
 				<tract name="posterior column" link="http://en.wikipedia.org/wiki/Posterior_column-medial_lemniscus_pathway"
-					synonyms="dorsal column"
+					synonyms="dorsal column, Reils band, Reils ribbon"
 					function="well-localized discriminative fine touch and proprioception, alpha/beta mechanoreceptors, conscious"
 					notes="discrimination of those sensations that an animal must explore actively"
 					>
@@ -477,25 +477,30 @@
 					synonyms="dorsolateral fasciculus, dorsolateral funiculus, posterolateract tract"
 					function="discriminative pain and temperature information (location, intensity and quality)"
 					>
-					<tract name="tract of Lissauer, fast pain" final="true" 
-						synonyms="fasciculus of Lissauer, tract/zone of Lissauer; DLF"
+					<tract name="tract of Lissauer, fast pain" final="true" index="DLF" link="http://en.wikipedia.org/wiki/Posterolateral_tract"
+						synonyms="fasciculus of Lissauer, tract/zone of Lissauer, dorsolateral fasciculus, dorsolateral tract"
 						function="fast pain; intraspinal, discriminative pain and temperature information - location, intensity and quality"
 						source="A-delta pain fibers to hypothalamus, to posterior column"
 						target="neocortex BA 3b"
 						notes="pain duration equals to stimulus duration"
 						>
-						<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.MG,BMA.SC.LH.LSN" dst="HTA.FD.HT" fibers="A-delta" 
-							function="autonomic and homeostatic functions, and related motivational and affective responses to autonomic function"
-							pathway="A-delta to hypothalamus"
-							/>
-						<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.MG,BMA.SC.LH.LSN,BMA.HM.CU,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1" fibers="A-delta" 
-							function="from lateral LSN; joins fasciculus cuneatus; initial sharp localization of pain"
-							pathway="A-delta to neocortex BA 3b"
-							/>
-						<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.MG,BMA.SC.LH.LSN,BMA.HM.GR,SMA.FD.TH.VPL" dst="SMA.NC.PG.S1" fibers="A-delta" 
-							function="from medial LSN; joins fasciculus gracilis; initial sharp localization of pain"
-							pathway="A-delta to neocortex BA 3b"
-							/>
+						<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.MG" dst="BMA.SC.LH.LSN" fibers="A-delta" 
+							function="autonomic and homeostatic functions, initial sharp localization of pain"
+							pathway="body to hypothalamus and neocortex"
+							>
+							<path src="BMA.SC.LH.LSN" dst="HTA.FD.HT.AH" fibers="A-delta" 
+								function="autonomic and homeostatic functions, and related motivational and affective responses to autonomic function"
+								pathway="body to hypothalamus"
+								/>
+							<path src="BMA.SC.LH.LSN" mids="BMA.HM.CU,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1" fibers="A-delta" 
+								function="from lateral LSN; joins fasciculus cuneatus; initial sharp localization of pain"
+								pathway="upper body to neocortex BA 3b"
+								/>
+							<path src="BMA.SC.LH.LSN" mids="BMA.HM.GR,SMA.FD.TH.VPL" dst="SMA.NC.PG.S1" fibers="A-delta" 
+								function="from medial LSN; joins fasciculus gracilis; initial sharp localization of pain"
+								pathway="lower body to neocortex BA 3b"
+								/>
+						</path>
 					</tract>
 
 					<tract name="spinocervical tract" final="true" link="http://en.wikipedia.org/wiki/Spinocervical_pathway" 
@@ -505,14 +510,19 @@
 						target="somatosensory cortex"
 						notes="thoracic-toward-contralateral and cervical slices"
 						>
-						<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.NP,BMA.SC.LH.LCV,SMA.FD.TH.VPL" dst="SMA.NC.PG.S1" fibers="A-alpha,A-beta" 
-							function="four-neuron, fast-conducting, tactile/pressure pathway from the spinal cord to sensory cortex"
+						<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.NP" dst="BMA.SC.LH.LCV" fibers="A-alpha,A-beta" 
+							function="tactile/pressure pathway from the spinal cord to sensory cortex"
 							pathway="tactile/pressure to S1"
-							/>
-						<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.NP,BMA.SC.LH.LCV" dst="FBA.MM.PAG" fibers="A-alpha,A-beta" 
-							function="alerts about presence of cutaneous stimuli that might represent danger, necessitating flight"
-							pathway="cutaneous stimuli to PAG"
-							/>
+							>
+							<path src="BMA.SC.LH.LCV" mids="SMA.FD.TH.VPL" dst="SMA.NC.PG.S1" fibers="A-alpha,A-beta" 
+								function="four-neuron, fast-conducting, tactile/pressure pathway from the spinal cord to sensory cortex"
+								pathway="tactile/pressure to S1"
+								/>
+							<path src="BMA.SC.LH.LCV" dst="FBA.MM.PAG" fibers="A-alpha,A-beta" 
+								function="alerts about presence of cutaneous stimuli that might represent danger, necessitating flight"
+								pathway="cutaneous stimuli to PAG"
+								/>
+						</path>
 					</tract>
 				</tract>
 			</tract>
@@ -520,63 +530,82 @@
 			<tract name="anterolateral system" link="http://en.wikipedia.org/wiki/Anterolateral_system"
 				function="conveys pain, temperature (protopathic sensation), and crude touch from the periphery to the brain"
 				>
-				<tract name="spinothalamic tract" index="STT"
+				<tract name="spinothalamic tract" index="STT" link="http://en.wikipedia.org/wiki/Spinothalamic_tract"
 					function="transmits information to thalamus about pain, temperature, itch and crude touch"
 					notes="conscious"
 					>
-					<tract name="trigeminothalamic tract" index="TTT"
+					<tract name="trigeminothalamic tract" index="TTT" link="http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/03CNV.html"
 						function="all somatosensory submodalities from head"
 						synonyms="neospinothalamic tract"
 						>
-						<tract name="trigeminothalamic tract, location" final="true" 
-							function="awareness of the exact location of the painful stimulus"
-							source="head"
+						<tract name="anterior trigeminothalamic tract" final="true" link="http://en.wikipedia.org/wiki/Anterior_trigeminothalamic_tract"
+							synonyms="ventral trigeminothalamic tract"
+							function="awareness of the exact location of the painful stimulus; pain, temperature, and crude touch pathway"
+							source="face, head and neck"
 							target="SI - BA 1,2"
 							>
-							<path src="AVA.PN.SG.TRG" mids="HMA.HM.TGM.STR,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1" fibers="A-delta"
+							<path src="AVA.PN.SG.TRG" dst="HMA.HM.TGM.STR" fibers="A-delta"
 								function="nociceptors"
-								pathway="head, face and intraoral structures nociceptors to S1"
+								pathway="head, face and intraoral structures nociceptors to spinal trigeminal nucleus"
 								/>
-							<path src="AVA.PN.SG.GNG" mids="HMA.HM.TGM.STR,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1" fibers="A-delta"
+							<path src="AVA.PN.SG.GNG" dst="HMA.HM.TGM.STR" fibers="A-delta"
 								function="nociceptors"
-								pathway="nociceptors of cranial nerves VII to S1" 
+								pathway="nociceptors of cranial nerves VII to spinal trigeminal nucleus" 
 								/>
-							<path src="AVA.PN.SG.JUG" mids="HMA.HM.TGM.STR,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1" fibers="A-delta"
+							<path src="AVA.PN.SG.JUG" dst="HMA.HM.TGM.STR" fibers="A-delta"
 								function="nociceptors"
-								pathway="nociceptors of cranial nerves IX,X to S1"
+								pathway="nociceptors of cranial nerves IX,X to spinal trigeminal nucleus"
 								/>
-							<path src="AVA.PN.SG.NOD" mids="HMA.HM.TGM.STR,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1" fibers="A-delta"
+							<path src="AVA.PN.SG.NOD" dst="HMA.HM.TGM.STR" fibers="A-delta"
 								function="nociceptors"
-								pathway="nociceptors of cranial nerves X to S1"
+								pathway="nociceptors of cranial nerves X to spinal trigeminal nucleus"
+								/>
+							<path src="HMA.HM.TGM.STR" mids="SMA.FD.TH.VPM" dst="SMA.NC.PG.S1" fibers="A-delta"
+								function="nociceptors"
+								pathway="spinal trigeminal nucleus to S1"
 								/>
 						</tract>
-						<tract name="trigeminothalamic tract, pain awareness" final="true" 
-							function="immediate awareness of a painful sensation"
-							source="head"
+						<tract name="dorsal trigeminal tract" final="true" link="http://en.wikipedia.org/wiki/Dorsal_trigeminal_tract"
+							synonyms="dorsal trigeminothalamic tract, lemniscus"
+							function="immediate awareness of a painful sensation; pressure and tactile discrimination sensation"
+							source="head MC,PC"
 							target="SII - BA 40,43"
 							>
-							<path src="AVA.PN.SG.TRG" mids="HMA.HP.PTP.PTR,BGA.FD.TH.IL" dst="SMA.NC.PO.PCC" fibers="C"
+							<path src="AVA.PN.SG.TRG" dst="HMA.HP.PTP.PTR" fibers="C"
 								function="face dull, burning pain, deep, aching pain, temperature and crude touch"
 								pathway="head, face and intraoral structures to Precentral Cortex"
-								/>
+								>
+								<path src="HMA.HP.PTP.PTR" mids="BGA.FD.TH.PF" dst="SMA.NC.PO.PCC" fibers="C"
+									function="face dull, burning pain, deep, aching pain, temperature and crude touch"
+									pathway="head, face and intraoral structures to Precentral Cortex"
+									/>
+								<path src="HMA.HP.PTP.PTR" mids="SMA.FD.TH.VPI" dst="PHA.NC.INS.PIC" fibers="C"
+									function="pain, temperature for emotion"
+									pathway="marginal nucleus to insula"
+									/>
+								<path src="HMA.HP.PTP.PTR" mids="FCA.FD.TH.MD" dst="CGA.NC.DACG" fibers="C"
+									function="pain, temperature for reward"
+									pathway="marginal nucleus to frontal lobe"
+									/>
+							</path>
 						</tract>
 					</tract>
-					<tract name="paleospinothalamic tract"
+					<tract name="paleospinothalamic tract" index="PSTT" link="http://en.wikipedia.org/wiki/Nociception"
 						function="transmits pain mainly from the peripheral slow-chronic type C pain fibers"
 						notes="cervical-anterior-toward-contralateral, thoracic, lumbar, sacral-lateral slices"
 						>
-						<tract name="anterior spinothalamic tract" final="true" index="ASTT"
+						<tract name="anterior spinothalamic tract" final="true" index="ASTT" link="http://en.wikipedia.org/wiki/Anterior_spinothalamic_tract"
 							synonyms="anterolateral tract"
 							function="pain, temperature, light touch (tactile sensibility), two-point discrimination, stereognosis"
 							source="skin - slow pain, temperature, slightly tactile"
 							target="BA 3,1,2"
 							>
-							<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.SG,FD.TH.VPL" dst="SMA.NC.PG.S1" fibers="C"
+							<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.SG,SMA.FD.TH.VPL" dst="SMA.NC.PG.S1" fibers="C"
 								function="slightly tactile"
 								pathway="head and body MD,MC,PC,HF receptors to S1"
 								/>
 						</tract>
-						<tract name="lateral spinothalamic tract" final="true" index="LSTT"
+						<tract name="lateral spinothalamic tract" final="true" index="LSTT" link="http://en.wikipedia.org/wiki/Lateral_spinothalamic_tract"
 							function="pain, temperature"
 							source="body pain, temperature, crude touch"
 							target="BA 3,1,2"
@@ -585,7 +614,7 @@
 								function="pain, temperature"
 								pathway="head and body FN,RC receptors to marginal nucleus"
 								>
-								<path src="BMA.SC.PH.MG" mids="SMA.FD.TH.VPI" dst="PHA.NC.INS" fibers="A-delta,C"
+								<path src="BMA.SC.PH.MG" mids="SMA.FD.TH.VPI" dst="PHA.NC.INS.PIC" fibers="A-delta,C"
 									function="pain, temperature for emotion"
 									pathway="marginal nucleus to insula"
 									/>
