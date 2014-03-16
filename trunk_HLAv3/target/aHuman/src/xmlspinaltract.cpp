@@ -14,6 +14,7 @@ XmlSpinalTract::~XmlSpinalTract() {
 
 void XmlSpinalTract::load( Xml xml ) {
 	final = xml.getBooleanAttribute( "final" , false );
+	index = xml.getAttribute( "index" , "" );
 	name = xml.getAttribute( "name" );
 	link = xml.getAttribute( "link" , "" );
 	synonyms = xml.getAttribute( "synonyms" , "" );

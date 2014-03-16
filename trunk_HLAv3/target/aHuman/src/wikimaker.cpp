@@ -98,6 +98,7 @@ void WikiMaker::updateFileSection( String wikiDir , String wikiPage , String sec
 	// find start of section
 	bool found = false;
 	while( !feof( fr ) ) {
+		s.clear();
 		fgets( s.getBuffer() , maxSize , fr );
 		fputs( s , fw );
 
@@ -126,6 +127,7 @@ void WikiMaker::updateFileSection( String wikiDir , String wikiPage , String sec
 
 	// skip current section content
 	while( !feof( fr ) ) {
+		s.clear();
 		fgets( s.getBuffer() , maxSize , fr );
 		if( s.startsFrom( "= " ) || s.startsFrom( "== " ) || s.startsFrom( "=== " ) ) {
 			fputs( s , fw );
@@ -135,6 +137,7 @@ void WikiMaker::updateFileSection( String wikiDir , String wikiPage , String sec
 
 	// write remaining file content
 	while( !feof( fr ) ) {
+		s.clear();
 		fgets( s.getBuffer() , maxSize , fr );
 		fputs( s , fw );
 	}
@@ -289,9 +292,11 @@ String WikiMaker::getRegionReference( String region ) {
 
 String WikiMaker::getComponentReference( String comp ) {
 	String region = hmindxml.getMappedRegion( comp );
+	ASSERTMSG( !region.isEmpty() , "no region includes component=" + comp );
 	const XmlHMindElementInfo& info = hmindxml.getElementInfo( region );
 
-	return( "[" + getRegionPage( region ) + " " + info.name + "," + comp + "]" );
+	String s = "[" + getRegionPage( region ) + " " + info.name + "," + comp + "]";
+	return( s );
 }
 
 String WikiMaker::getMuscleReference( String name , String text ) {
