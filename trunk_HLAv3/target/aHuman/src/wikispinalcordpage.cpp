@@ -118,7 +118,9 @@ void WikiSpinalCordPage::createTracts_addTractLines( int level , XmlSpinalTract&
 }
 
 void WikiSpinalCordPage::createTracts_addTractPathLines( int level , XmlSpinalTractPath& path , StringList& lines ) {
-	String s = String( " " ).replicate( level + 1 ) + "* " + path.function + " (" + path.pathway + "/" + path.fibers.combine(",") + "): ";
+	String s = String( " " ).replicate( level + 1 ) + "* " + path.function + " (" + path.pathway + 
+		": fibers=" + path.fibers.combine(",") + 
+		", receptors=" + path.receptors.combine(",") + "): ";
 
 	for( int k = 0; k < path.items.count(); k++ ) {
 		if( k > 0 )

@@ -4,7 +4,7 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-static const char *levels[32] = {
+static const char *levels[] = {
 	"C1" , "C2" , "C3" , "C4" , "C5" , "C6" , "C7" , "C8" ,
 	"T1" , "T2" , "T3" , "T4" , "T5" , "T6" , "T7" , "T8" , "T9" , "T10" , "T11" , "T12" ,
 	"L1" , "L2" , "L3" , "L4" , "L5" , 
@@ -13,9 +13,9 @@ static const char *levels[32] = {
 	NULL
 };
 
-static const char *laminas[12] = {
+static const char *laminas[] = {
 	"LO" ,
-	"LI" , "LII" , "LIII" , "LIV" , "LV" , "LVI" , "LVII" , "LVIII" , "LIX" , "LX" ,
+	"LI" , "LII" , "LIII-IV" , "LV-VI" , "LVIIS" , "LVIIM" , "LVIII" , "LIX" , "LX" ,
 	NULL
 };
 
