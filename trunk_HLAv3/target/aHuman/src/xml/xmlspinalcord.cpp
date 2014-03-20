@@ -41,8 +41,29 @@ XmlSpinalCord::~XmlSpinalCord() {
 }
 
 void XmlSpinalCord::load( Xml xmlDiv ) {
+	loadFibers( xmlDiv );
+	loadEndings( xmlDiv );
 	loadLayout( xmlDiv );
 	loadTracts( xmlDiv );
+}
+
+void XmlSpinalCord::loadFibers( Xml xmlDiv ) {
+	Xml fiberset = xmlDiv.getFirstChild( "fibers" );
+	ASSERTMSG( fiberset.exists() , "fibers is not found" );
+
+	for( Xml xmlChild = fiberset.getFirstChild( "fiber" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "fiber" ) ) {
+		XmlSpinalFiber *f = new XmlSpinalFiber();
+		f -> load( xmlChild );
+		fibers.add( f -> id , f );
+	}
+}
+
+void XmlSpinalCord::loadEndings( Xml xmlDiv ) {
+	for( Xml xmlChild = xmlDiv.getFirstChild( "endings" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "endings" ) ) {
+		XmlSpinalEndingSet *es = new XmlSpinalEndingSet();
+		es -> load( xmlChild );
+		endings.add( es -> type , es );
+	}
 }
 
 void XmlSpinalCord::loadLayout( Xml xmlDiv ) {
