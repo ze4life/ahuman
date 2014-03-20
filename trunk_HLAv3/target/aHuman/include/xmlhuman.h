@@ -22,6 +22,9 @@ class XmlSpinalCord;
 class XmlSpinalTractSet;
 class XmlSpinalTract;
 class XmlSpinalTractPath;
+class XmlSpinalFiber;
+class XmlSpinalEndingSet;
+class XmlSpinalEnding;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -328,6 +331,8 @@ public:
 	MapStringToClass<XmlSpinalTractSet>& getTracts() { return( tractsets ); };
 
 private:
+	void loadFibers( Xml xmlDiv );
+	void loadEndings( Xml xmlDiv );
 	void loadLayout( Xml xmlDiv );
 	void loadLayoutLevel( Xml xmlLevel , MapStringToClass<StringList>& levelData );
 	void loadTracts( Xml xmlDiv );
@@ -337,6 +342,8 @@ private:
 	String imgSrc;
 	MapStringToClass<MapStringToClass<StringList> > data;
 	MapStringToClass<XmlSpinalTractSet> tractsets;
+	MapStringToClass<XmlSpinalFiber> fibers;
+	MapStringToClass<XmlSpinalEndingSet> endings;
 };
 
 /*#########################################################################*/
@@ -395,9 +402,67 @@ public:
 public:
 	String function;
 	String pathway;
+	StringList receptors;
 	StringList fibers;
 	StringList items;
 	ClassList<XmlSpinalTractPath> childs;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class XmlSpinalFiber {
+public:
+	XmlSpinalFiber();
+	~XmlSpinalFiber();
+
+	void load( Xml xml );
+
+public:
+	String id;
+	String name;
+	String type;
+	String mcm;
+	String msec;
+	String endings;
+	String function;
+	String notes;
+	ClassList<XmlSpinalFiber> childs;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class XmlSpinalEndingSet {
+public:
+	XmlSpinalEndingSet();
+	~XmlSpinalEndingSet();
+
+	void load( Xml xml );
+
+public:
+	String name;
+	String type;
+	String imgsrc;
+	MapStringToClass<XmlSpinalEnding> childs;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class XmlSpinalEnding {
+public:
+	XmlSpinalEnding();
+	~XmlSpinalEnding();
+
+	void load( Xml xml );
+
+public:
+	String id;
+	String name;
+	String function;
+	String notes;
+	ClassList<XmlSpinalEnding> childs;
 };
 
 /*#########################################################################*/
