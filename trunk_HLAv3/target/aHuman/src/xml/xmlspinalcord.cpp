@@ -71,6 +71,7 @@ void XmlSpinalCord::loadLayout( Xml xmlDiv ) {
 	ASSERTMSG( layout.exists() , "layout is not found" );
 
 	imgSrc = layout.getAttribute( "imgsrc" , "" );
+	imgHeight = layout.getAttribute( "imgheight" , "" );
 
 	for( Xml xmlChild = layout.getFirstChild( "level" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "level" ) ) {
 		String id = xmlChild.getAttribute( "id" );
