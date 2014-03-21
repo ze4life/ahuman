@@ -12,7 +12,7 @@ XmlSpinalFiber::~XmlSpinalFiber() {
 
 void XmlSpinalFiber::load( Xml xml ) {
 	id = xml.getAttribute( "id" );
-	name = xml.getAttribute( "name" , id );
+	name = xml.getAttribute( "name" , "" );
 	type = xml.getAttribute( "type" , "mixed" );
 	mcm = xml.getAttribute( "mcm" , "" );
 	msec = xml.getAttribute( "msec" , "" );
@@ -23,6 +23,6 @@ void XmlSpinalFiber::load( Xml xml ) {
 	for( Xml xmlChild = xml.getFirstChild( "fiber" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "fiber" ) ) {
 		XmlSpinalFiber *fiber = new XmlSpinalFiber();
 		fiber -> load( xmlChild );
-		childs.add( fiber );
+		childs.add( fiber -> id , fiber );
 	}
 }

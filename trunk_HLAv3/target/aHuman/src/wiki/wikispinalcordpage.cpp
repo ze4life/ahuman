@@ -19,8 +19,93 @@ void WikiSpinalCordPage::execute() {
 		return;
 	}
 
+	createNeurons();
 	createLayout();
 	createTracts();
+}
+
+void WikiSpinalCordPage::createNeurons() {
+	String wikiDir = wm -> wiki.getProperty( "wikiPath" );
+	String wikiPage = wm -> wiki.getProperty( "wikiPageSpinalCord" );
+	String sectionName = wm -> wiki.getProperty( "wikiSpinalCordNeuronsSection" );
+
+	// collect section lines
+	StringList lines;
+	XmlSpinalCord *cord = wm -> hmindxml.getSpinalCord();
+
+	MapStringToClass<XmlSpinalEndingSet>& endings = cord -> getEndings();
+	for( int k = 0; k < endings.count(); k++ ) {
+		XmlSpinalEndingSet& set = endings.getClassRefByIndex( k );
+		createNeurons_addEndings( set , lines );
+	}
+
+	lines.add( "*Fibers by thickness*:" );
+	lines.add( "" );
+	MapStringToClass<XmlSpinalFiber>& fibers = cord -> getFibers();
+	createNeurons_addFibers( 0 , fibers , lines );
+
+	wm -> updateFileSection( wikiDir , wikiPage , sectionName , lines );
+}
+
+void WikiSpinalCordPage::createNeurons_addEndings( XmlSpinalEndingSet& set , StringList& lines ) {
+	lines.add( "*" + set.name + "*:" );
+	lines.add( "" );
+	String s = wm -> getImageWikiLink( set.imgsrc , set.imgheight );
+	lines.add( s );
+	lines.add( "" );
+
+	for( int k = 0; k < set.childs.count(); k++ )
+		createNeurons_addEndingItem( 0 , set.childs.getClassRefByIndex( k ) , lines );
+	
+	lines.add( "" );
+}
+
+void WikiSpinalCordPage::createNeurons_addEndingItem( int level , XmlSpinalEnding& item , StringList& lines ) {
+	String s = String( " " ).replicate( level + 1 ) + "* *" + item.name + "*";
+	if( !item.id.isEmpty() )
+		s += " (" + item.id + ")";
+	if( !item.function.isEmpty() ) {
+		s += ": " + item.function;
+		if( !item.notes.isEmpty() )
+			s += " (" + item.notes + ")";
+	}
+	lines.add( s );
+
+	for( int k = 0; k < item.childs.count(); k++ )
+		createNeurons_addEndingItem( level + 1 , item.childs.getClassRefByIndex( k ) , lines );
+}
+
+void WikiSpinalCordPage::createNeurons_addFibers( int level , MapStringToClass<XmlSpinalFiber>& fibers , StringList& lines ) {
+	for( int k = 0; k < fibers.count(); k++ ) {
+		XmlSpinalFiber& fiber = fibers.getClassRefByIndex( k );
+		createNeurons_addFiberInfo( level , fiber , lines );
+	}
+}
+
+void WikiSpinalCordPage::createNeurons_addFiberInfo( int level , XmlSpinalFiber& fiber , StringList& lines ) {
+	String s = String( " " ).replicate( level + 1 ) + "* *" + fiber.id + "*";
+	if( !fiber.name.isEmpty() )
+		s += " - " + fiber.name;
+	if( !fiber.type.isEmpty() ) {
+		s += " (" + fiber.type;
+		if( !fiber.mcm.isEmpty() )
+			s += ", " + fiber.mcm;
+		if( !fiber.msec.isEmpty() )
+			s += ", " + fiber.msec;
+		if( !fiber.endings.isEmpty() )
+			s += "; endings: " + fiber.endings;
+		s += ")";
+	}
+
+	if( !fiber.function.isEmpty() ) {
+		s += ": " + fiber.function;
+		if( !fiber.notes.isEmpty() )
+			s += " (" + fiber.notes + ")";
+	}
+
+	lines.add( s );
+
+	createNeurons_addFibers( level + 1 , fiber.childs , lines );
 }
 
 void WikiSpinalCordPage::createLayout() {
@@ -31,7 +116,7 @@ void WikiSpinalCordPage::createLayout() {
 	// collect section lines
 	StringList lines;
 	XmlSpinalCord *cord = wm -> hmindxml.getSpinalCord();
-	String s = wm -> getImageWikiLink( cord -> getImageSrc() , "" );
+	String s = wm -> getImageWikiLink( cord -> getImageSrc() , cord -> getImageHeight() );
 	lines.add( s );
 	lines.add( "" );
 

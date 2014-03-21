@@ -324,10 +324,13 @@ public:
 
 	void load( Xml xmlDiv );
 	String getImageSrc() { return( imgSrc ); };
+	String getImageHeight() { return( imgHeight ); };
 	const char **getLevels();
 	const char **getLaminas();
 	StringList& getCellItems( String level , String lamina );
 
+	MapStringToClass<XmlSpinalEndingSet>& getEndings() { return( endings ); };
+	MapStringToClass<XmlSpinalFiber>& getFibers() { return( fibers ); };
 	MapStringToClass<XmlSpinalTractSet>& getTracts() { return( tractsets ); };
 
 private:
@@ -340,6 +343,7 @@ private:
 private:
 	XmlHMind *hmind;
 	String imgSrc;
+	String imgHeight;
 	MapStringToClass<MapStringToClass<StringList> > data;
 	MapStringToClass<XmlSpinalTractSet> tractsets;
 	MapStringToClass<XmlSpinalFiber> fibers;
@@ -427,7 +431,7 @@ public:
 	String endings;
 	String function;
 	String notes;
-	ClassList<XmlSpinalFiber> childs;
+	MapStringToClass<XmlSpinalFiber> childs;
 };
 
 /*#########################################################################*/
@@ -444,6 +448,7 @@ public:
 	String name;
 	String type;
 	String imgsrc;
+	String imgheight;
 	MapStringToClass<XmlSpinalEnding> childs;
 };
 
@@ -455,14 +460,15 @@ public:
 	XmlSpinalEnding();
 	~XmlSpinalEnding();
 
-	void load( Xml xml );
+	void load( Xml xml , String element );
 
 public:
 	String id;
+	String type;
 	String name;
 	String function;
 	String notes;
-	ClassList<XmlSpinalEnding> childs;
+	MapStringToClass<XmlSpinalEnding> childs;
 };
 
 /*#########################################################################*/
