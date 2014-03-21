@@ -135,7 +135,7 @@
 			</element>
 		</element>
 
-		<element id="AVA.SC.CC" name="Cenral canal">
+		<element id="AVA.SC.CC" name="Central canal">
 			<element id="AVA.SC.CC.L10" name="Lamina X">
 				<element id="AVA.SC.CC.DCN" name="Dorsal Commisural Nucleus" mapped="true" type="Parasymp. Visceral Sensory Nucleus" index="DCN"
 					refs="BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&amp;conceptid=FMA%3A73900 Commissural nucleus of spinal cord]"
@@ -401,6 +401,132 @@
 			</level>
 		</layout>
 
+		<endings name="Motor Endings" type="motor"
+			imgsrc="http://classconnection.s3.amazonaws.com/997/flashcards/1355997/gif/reflexarcs1336087730891.gif"
+			>
+			<effector id="MFF" name="FF-type alpha motoneurons"
+				function="fast-twitch fatigable"
+				notes="generate large force, poor efficiency; biggest motoneurons, type IIB extrafusal muscle fibers; affected by static beta motoneurons"
+				/>
+			<effector id="MFR" name="FR-type alpha motoneurons"
+				function="fast-twitch fatigue-resistant"
+				notes="type IIA extrafusal muscle fibers; affected by static beta motoneurons"
+				/>
+			<effector id="MS" name="S-type alpha motoneurons"
+				function="slow-twitch fatigue-resistant"
+				notes="type I muscle fibers; little force, metabolically efficient, affected by dynamic beta motoneurons"
+				/>
+			<effector id="MBD" name="beta dynamic motoneurons"
+				function="slow contracting motor units"
+				notes="type I extrafusal muscle fibers and the intrafusal bag1 fiber"
+				/>
+			<effector id="MBS" name="beta static motoneurons"
+				function="fast contracting motor units"
+				notes="type IIA or IIB extrafusal fibers and the intrafusal bag2 fiber"
+				/>
+			<effector id="MGD" name="gamma dynamic motoneurons"
+				function="contract muscle spindles from both ends"
+				notes="intrafusal bag1 fiber "
+				/>
+			<effector id="MGS" name="gamma static motoneurons"
+				function="contract muscle spindles from both ends"
+				notes="intrafusal bag2 fiber and the nuclear chain fibers"
+				/>
+			<effector id="MPA" name="preganglionic autonomic motoneurons"
+				function="preganglionic paravertebral/prevertebral sympathetic, spinal/cranial parasympathetic"
+				>
+				<effector id="MPA-SPAV" name="preganglionic paravertebral sympathetic"
+					function="short to paravertebral sympathetic ganglia"
+					notes="close to vertebral, fibers ascend/descend to reach all spinal cord levels"
+					/>
+				<effector id="MPA-SPRV" name="preganglionic prevertebral sympathetic"
+					function="long to prevertebral sympathetic ganglia"
+					notes="celiac, superior/inferior mesenteric ganglia"
+					/>
+				<effector id="MPA-PS" name="preganglionic parasympathetic spinal"
+					function="spinal cord long fibers to parasympathetic ganglia"
+					notes="splantic nerves, abdominal organs"
+					/>
+				<effector id="MPA-PC" name="preganglionic parasympathetic cranial"
+					function="cranial nerves III, VII, IX and X long fibers to parasympathetic ganglia"
+					notes="eye iris, lacrimal/submandibular/subingual glands, thorax, abdomen, GI tract"
+					/>
+			</effector>
+
+			<effector id="MPG" name="postganglionic autonomic motoneurons"
+				function="postganglionic autonomic"
+				>
+				<effector id="MPG-S" name="postganglionic sympathetic motoneurons"
+					function="muscles and skin, pre/post - temporal summation and spatial summation"
+					notes="one-to-many, wide-spread, long and unmyelinated, NE"
+					/>
+				<effector id="MPG-P" name="postganglionic parasympathetic motoneurons"
+					function="visceral activity and repose, short, local"
+					notes="from ganglia in/on wall of organ"
+					/>
+			</effector>
+		</endings>
+
+		<endings name="Sensory Endings" type="sensory"
+			imgsrc="https://highered.mcgraw-hill.com/sites/dl/free/0072507470/234428/mc_ch14_fig01.jpg"
+			>
+			<receptor id="SMD" name="Merkel disk receptors" 
+				function="vibration 5-15 Hz, static (sustained) touch/pressure"
+				notes="respond to slight change in skin surface; high resolution tactile discrimination, mechanoceptors in hairless skin and mucosa, pressure and texture, slowly adapting, sustained response, low threshold; weak position and strong velocity - irregular discharge, type I, hairy/hairless skin"
+				/>
+			<receptor id="SMC" name="Meissner corpuscles" 
+				function="vibration 20-50 Hz; dynamic touch/pressure"
+				notes="tactile, texture, rapidly adapting, superficial papillary receptor, low threshold, especially sensitive to light touch - like fingers and lips"
+				>
+				<receptor id="S-GC" name="Genital corpuscles" 
+					/>
+			</receptor>
+			<receptor id="SPC" name="Pacinian corpuscles" 
+				function="vibration 60-400 Hz, deep"
+				notes="greater signal from more massive or rapid deformation; deep receptors, subcutaneous tissue, viscera, rapidly adapting, low threshold; transient receptors, connective tissue, vibration, intrafusal muscles, tonic proprioceptive endings, flower-spray type"
+				/>
+			<receptor id="SHF" name="Hair follicle receptors" 
+				function="touch, hairy skin velocity"
+				notes="slowly adapting, low threshold; Peritrichial endings - nerve plexus wrapped around hair roots; large hair follicles, slow and rapid movement of hairs and deflection of the skin"
+				/>
+			<receptor id="SFN" name="Nonencapsulated free-nerve endings" 
+				function="pain and temperature"
+				notes="the only nociceptors"
+				>
+				<receptor id="SFN-CN" name="C fiber nociceptors" 
+					function="responsible for the second, burning pain"
+					/>
+				<receptor id="SFN-CW" name="C fiber warming-specific receptors" 
+					function="responsible for warmth"
+					/>
+				<receptor id="SFN-CI" name="ultra-slow histamine-selective C fibers" 
+					function="responsible for itch"
+					/>
+				<receptor id="SFN-CT" name="tactile C fibers" 
+					function="sensual touch"
+					notes="includes CT fibres, also known as C low-threshold mechanoreceptors (CLTM), which are unmyelinated afferents found in human hairy skin, and have a low mechanical threshold less than 5 milliNewtons; have moderate adaptation and may exhibit fatigue on repetitive stimulation and after discharges for several seconds after a stimulus"
+					/>
+				<receptor id="SFN-CM" name="C mechano- and metabo- receptors in muscles or joints" 
+					function="responsible for muscle exercise, burn and cramp"
+					/>
+			</receptor>
+			<receptor id="SRC" name="Ruffini corpuscles" 
+				function="stretching of skin, crude touch"
+				notes="End-bulbs of Krause and Ruffini; deep receptors, slowly adapting, low threshold; strong position and weak velocity receptors - regular discharge, type II, hairy/hairless skin"
+				/>
+			<receptor id="SMS" name="Muscle spindles" 
+				function="skeletal muscle, stretch by muscle length, fast"
+				/>
+			<receptor id="SGT" name="Golgi tendon organs" 
+				function="muscle tension"
+				notes="slowly adapting, low threshold"
+				/>
+			<receptor id="SCR" name="Cold receptors" 
+				function="respond to low temperature"
+				notes="channel: TRPM8 (less than 28C), TRPA1 (less than 18C)"
+				/>
+		</endings>
+
 		<fibers>
 			<fiber id="A-alpha" type="mixed"
 				mcm="12-22 mcm" msec="70-120 m/sec"
@@ -440,7 +566,7 @@
 			<fiber id="A-delta-sensory" type="sensory"
 				mcm="1-4 mcm" msec="5-15 m/sec"
 				function="noxious, cold, pressure; 20ms after stimulus" endings="SFN,SCR,SPC"
-				notes="III; thinly-myelinated; noxious receptors (first/fast, sharp, well-localized pain); cold receptors (temperature, high-threshold mechano/heat, phasic); pressure (rapidly adapting mechanosensitive, directional selectivity, crude touch)"
+				notes="type III; thinly-myelinated; noxious receptors - first/fast, sharp, well-localized pain; cold receptors - temperature, high-threshold mechano/heat, phasic; pressure - rapidly adapting mechanosensitive, directional selectivity, crude touch"
 				/>
 			<fiber id="B-motor" type="motor"
 				mcm="1-3 mcm" msec="3-14 m/sec"
@@ -460,115 +586,6 @@
 					/>
 			</fiber>
 		</fibers>
-
-		<endings name="Motor Endings" type="motor"
-			imgsrc="http://classconnection.s3.amazonaws.com/997/flashcards/1355997/gif/reflexarcs1336087730891.gif"
-			>
-			<effector id="MFF" name="FF-type alpha motoneurons"
-				function="fast-twitch fatigable"
-				notes="generate large force, poor efficiency; biggest motoneurons, type IIB extrafusal muscle fibers; affected by static beta motoneurons"
-				/>
-			<effector id="MFR" name="FR-type alpha motoneurons"
-				function="fast-twitch fatigue-resistant"
-				notes="type IIA extrafusal muscle fibers; affected by static beta motoneurons"
-				/>
-			<effector id="MS" name="S-type alpha motoneurons"
-				function="slow-twitch fatigue-resistant"
-				notes="type I muscle fibers; little force, metabolically efficient, affected by dynamic beta motoneurons"
-				/>
-			<effector id="MBD" name="beta dynamic motoneurons"
-				function="slow contracting motor units"
-				notes="type I extrafusal muscle fibers and the intrafusal bag1 fiber"
-				/>
-			<effector id="MBS" name="beta static motoneurons"
-				function="fast contracting motor units"
-				notes="type IIA or IIB extrafusal fibers and the intrafusal bag2 fiber"
-				/>
-			<effector id="MGD" name="gamma dynamic motoneurons"
-				function="contract muscle spindles from both ends"
-				notes="intrafusal bag1 fiber "
-				/>
-			<effector id="MGS" name="gamma static motoneurons"
-				function="contract muscle spindles from both ends"
-				notes="intrafusal bag2 fiber and the nuclear chain fibers"
-				/>
-			<effector id="MPA" name="preganglionic autonomic motoneurons"
-				function="preganglionic paravertebral/prevertebral sympathetic, spinal/cranial parasympathetic"
-				notes="paravertebral sympathetic (short to paravertebral sympathetic ganglia, close to vertebral, fibers ascend/descend to reach all spinal cord levels); prevertebral sympathetic (long to prevertebral sympathetic ganglia, celiac, superior/inferior mesenteric ganglia); parasympathetic spinal (spinal cord long fibers to parasympathetic ganglia, splantic nerves, abdominal organs); parasympathetic cranial (cranial nerves III, VII, IX and X long fibers to parasympathetic ganglia, eye iris, lacrimal/submandibular/subingual glands, thorax, abdomen, GI tract)"
-				/>
-			<effector id="MPG" name="postganglionic autonomic motoneurons"
-				function="postganglionic autonomic"
-				>
-				<effector id="MPG-S" name="postganglionic sympathetic motoneurons"
-					function="muscles and skin, pre/post - temporal summation and spatial summation"
-					notes="one-to-many, wide-spread, long and unmyelinated, NE"
-					/>
-				<effector id="MPG-P" name="postganglionic parasympathetic motoneurons"
-					function="visceral activity and repose, short, local"
-					notes="from ganglia in/on wall of organ"
-					/>
-			</effector>
-		</endings>
-
-		<endings name="Sensory Endings" type="sensory"
-			imgsrc="https://highered.mcgraw-hill.com/sites/dl/free/0072507470/234428/mc_ch14_fig01.jpg"
-			>
-			<receptor id="SMD" name="Merkel disk receptors" 
-				function="vibration 5-15 Hz, static (sustained) touch/pressure"
-				notes="respond to slight change in skin surface; high resolution tactile discrimination, mechanoceptors in hairless skin and mucosa, pressure and texture, slowly adapting, sustained response, low threshold; weak position and strong velocity - irregular discharge, type I, hairy/hairless skin"
-				/>
-			<receptor id="SMC" name="Meissner’s corpuscles" 
-				function="vibration 20-50 Hz; dynamic touch/pressure"
-				notes="tactile, texture, rapidly adapting, superficial papillary receptor, low threshold, especially sensitive to light touch - like fingers and lips"
-				>
-				<receptor id="S-GC" name="Genital corpuscles" 
-					/>
-			</receptor>
-			<receptor id="SPC" name="Pacinian corpuscles" 
-				function="vibration 60-400 Hz, deep"
-				notes="greater signal from more massive or rapid deformation; deep receptors, subcutaneous tissue, viscera, rapidly adapting, low threshold; transient receptors, connective tissue, vibration, intrafusal muscles, tonic proprioceptive endings, flower-spray type"
-				/>
-			<receptor id="SHF" name="Hair follicle receptors" 
-				function="touch, hairy skin velocity"
-				notes="slowly adapting, low threshold; Peritrichial endings - nerve plexus wrapped around hair roots; large hair follicles, slow and rapid movement of hairs and deflection of the skin"
-				/>
-			<receptor id="SFN" name="Nonencapsulated free-nerve endings" 
-				function="pain and temperature"
-				notes="the only nociceptors"
-				>
-				<receptor id="SFN-CN" name="C fiber nociceptors" 
-					function="responsible for the second, burning pain"
-					/>
-				<receptor id="SFN-CW" name="C fiber warming-specific receptors" 
-					function="responsible for warmth"
-					/>
-				<receptor id="SFN-CI" name="ultra-slow histamine-selective C fibers" 
-					function="responsible for itch"
-					/>
-				<receptor id="SFN-CT" name="tactile C fibers" 
-					function="sensual touch"
-					notes="includes CT fibres, also known as C low-threshold mechanoreceptors (CLTM), which are unmyelinated afferents found in human hairy skin, and have a low mechanical threshold < 5 milliNewtons; have moderate adaptation and may exhibit fatigue on repetitive stimulation and "afterdischarges" for several seconds after a stimulus"
-					/>
-				<receptor id="SFN-CM" name="C mechano- and metabo- receptors in muscles or joints" 
-					function="responsible for muscle exercise, burn and cramp"
-					/>
-			</receptor>
-			<receptor id="SRC" name="Ruffini corpuscles" 
-				function="stretching of skin, crude touch"
-				notes="End-bulbs of Krause and Ruffini; deep receptors, slowly adapting, low threshold; strong position and weak velocity receptors - regular discharge, type II, hairy/hairless skin"
-				/>
-			<receptor id="SMS" name="Muscle spindles" 
-				function="skeletal muscle, stretch by muscle length, fast"
-				/>
-			<receptor id="SGT" name="Golgi tendon organs" 
-				function="muscle tension"
-				notes="slowly adapting, low threshold"
-				/>
-			<receptor id="SCR" name="Cold receptors" 
-				function="respond to low temperature"
-				notes="channel: TRPM8 (<28C), TRPA1 (<18C)"
-				/>
-		</endings>
 
 		<tracts name="Ascending Tracts"
 			imgsrc="http://intranet.tdmu.edu.ua/data/kafedra/internal/anatomy/classes_stud/en/med/lik/ptn/1/19%20SPINAL%20CORD.%20BASE%20OF%20THE%20BRAIN.files/image044.jpg"
