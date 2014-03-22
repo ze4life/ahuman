@@ -26,8 +26,8 @@ void XmlSpinalTractPath::load( Xml xml ) {
 
 	String fibersvalue = xml.getAttribute( "fibers" );
 	fibersvalue.split( fibers , "," );
-	String receptorsvalue = xml.getAttribute( "endings" );
-	receptorsvalue.split( receptors , "," );
+	String value = xml.getAttribute( "endings" );
+	value.split( endings , "," );
 
 	for( Xml xmlChild = xml.getFirstChild( "path" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "path" ) ) {
 		XmlSpinalTractPath *path = new XmlSpinalTractPath();

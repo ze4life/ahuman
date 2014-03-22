@@ -332,13 +332,17 @@ public:
 	MapStringToClass<XmlSpinalEndingSet>& getEndings() { return( endings ); };
 	MapStringToClass<XmlSpinalFiber>& getFibers() { return( fibers ); };
 	MapStringToClass<XmlSpinalTractSet>& getTracts() { return( tractsets ); };
+	MapStringToClass<XmlSpinalTract>& getTractMap() { return( tractMap ); };
 
-	XmlSpinalEnding *getEnding( String id );
-	XmlSpinalFiber *getFiber( String id );
+	XmlSpinalEnding& getEnding( String id );
+	XmlSpinalFiber& getFiber( String id );
 
 	XmlSpinalEnding *findEnding( String id );
+	XmlSpinalFiber *findFiber( String id );
+
 	void addEnding( XmlSpinalEnding *ending );
 	void addFiber( XmlSpinalFiber *fiber );
+	void addTract( XmlSpinalTract *tract );
 
 private:
 	void loadFibers( Xml xmlDiv );
@@ -347,6 +351,8 @@ private:
 	void loadLayoutLevel( Xml xmlLevel , MapStringToClass<StringList>& levelData );
 	void loadTracts( Xml xmlDiv );
 	void linkFibers();
+	void linkTracts();
+	void linkTractPaths( XmlSpinalTract& tract , ClassList<XmlSpinalTractPath>& paths );
 
 private:
 	XmlHMind *hmind;
@@ -359,6 +365,7 @@ private:
 
 	MapStringToClass<XmlSpinalEnding> endingMap;
 	MapStringToClass<XmlSpinalFiber> fiberMap;
+	MapStringToClass<XmlSpinalTract> tractMap;
 };
 
 /*#########################################################################*/
@@ -417,7 +424,7 @@ public:
 public:
 	String function;
 	String pathway;
-	StringList receptors;
+	StringList endings;
 	StringList fibers;
 	StringList items;
 	ClassList<XmlSpinalTractPath> childs;
@@ -432,6 +439,7 @@ public:
 	~XmlSpinalFiber();
 
 	void load( XmlSpinalCord& sc , Xml xml );
+	void addTract( XmlSpinalTract *tract );
 
 public:
 	String id;
@@ -443,6 +451,8 @@ public:
 	String function;
 	String notes;
 	MapStringToClass<XmlSpinalFiber> childs;
+
+	ClassList<XmlSpinalTract> tracts;
 };
 
 /*#########################################################################*/
@@ -473,6 +483,7 @@ public:
 
 	void load( XmlSpinalCord& sc , Xml xml , String element );
 	void addFiber( XmlSpinalFiber *fiber );
+	void addTract( XmlSpinalTract *tract );
 
 public:
 	String id;
@@ -483,6 +494,7 @@ public:
 	MapStringToClass<XmlSpinalEnding> childs;
 
 	StringList fibers;
+	ClassList<XmlSpinalTract> tracts;
 };
 
 /*#########################################################################*/

@@ -73,6 +73,18 @@ void WikiSpinalCordPage::createNeurons_addEndingItem( int level , XmlSpinalEndin
 	if( ending.fibers.count() > 0 )
 		s += "; FIBERS={" + ending.fibers.combine( "," ) + "}";
 
+	if( ending.tracts.count() > 0 ) {
+		String ts;
+		for( int k = 0; k < ending.tracts.count(); k++ ) {
+			XmlSpinalTract& tract = ending.tracts.getRef( k );
+			if( k > 0 )
+				ts += ", ";
+			ts += tract.name;
+		}
+
+		s += "; TRACTS={" + ts + "}";
+	}
+
 	lines.add( s );
 
 	for( int k = 0; k < ending.childs.count(); k++ )
@@ -107,6 +119,18 @@ void WikiSpinalCordPage::createNeurons_addFiberInfo( int level , XmlSpinalFiber&
 
 	if( fiber.endings.count() > 0 )
 		s += "; ENDINGS={" + fiber.endings.combine( "," ) + "}";
+
+	if( fiber.tracts.count() > 0 ) {
+		String ts;
+		for( int k = 0; k < fiber.tracts.count(); k++ ) {
+			XmlSpinalTract& tract = fiber.tracts.getRef( k );
+			if( k > 0 )
+				ts += ", ";
+			ts += tract.name;
+		}
+
+		s += "; TRACTS={" + ts + "}";
+	}
 
 	lines.add( s );
 
@@ -208,9 +232,9 @@ void WikiSpinalCordPage::createTracts_addTractLines( int level , XmlSpinalTract&
 }
 
 void WikiSpinalCordPage::createTracts_addTractPathLines( int level , XmlSpinalTractPath& path , StringList& lines ) {
-	String s = String( " " ).replicate( level + 1 ) + "* " + path.function + " (" + path.pathway + 
-		": fibers=" + path.fibers.combine(",") + 
-		", receptors=" + path.receptors.combine(",") + "): ";
+	String s = String( " " ).replicate( level + 1 ) + "* " + path.function + " (" + path.pathway + ")" + 
+		"; FIBERS={" + path.fibers.combine(",") + "}" + 
+		", ENDINGS={" + path.endings.combine(",") + "}: ";
 
 	for( int k = 0; k < path.items.count(); k++ ) {
 		if( k > 0 )

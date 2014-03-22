@@ -54,6 +54,10 @@ private:
 	bool checkMindModel_verifyRegionCircuits( MindRegionDef *regionDef , MindRegion *region );
 	bool checkSpinal_verifyFibers();
 	bool checkSpinal_verifyFiberData( XmlSpinalFiber& fiber );
+	bool checkSpinal_verifyTracts();
+	bool checkSpinal_verifyTractSet( XmlSpinalTractSet& set );
+	bool checkSpinal_verifyTractData( XmlSpinalTract& tract );
+	bool checkSpinal_verifyTractPathData( XmlSpinalTract& tract , XmlSpinalTractPath& path );
 
 private:
 	Xml modelArea;

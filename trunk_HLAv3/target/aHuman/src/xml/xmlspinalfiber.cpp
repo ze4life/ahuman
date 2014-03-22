@@ -29,3 +29,8 @@ void XmlSpinalFiber::load( XmlSpinalCord& sc , Xml xml ) {
 		childs.add( fiber -> id , fiber );
 	}
 }
+
+void XmlSpinalFiber::addTract( XmlSpinalTract *tract ) {
+	tracts.add( tract );
+}
+
