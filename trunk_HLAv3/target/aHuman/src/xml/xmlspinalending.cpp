@@ -29,3 +29,7 @@ void XmlSpinalEnding::addFiber( XmlSpinalFiber *fiber ) {
 	fibers.add( fiber -> id );
 }
 
+void XmlSpinalEnding::addTract( XmlSpinalTract *tract ) {
+	tracts.add( tract );
+}
+

@@ -46,8 +46,8 @@ void XmlSpinalCord::load( Xml xmlDiv ) {
 	loadLayout( xmlDiv );
 	loadTracts( xmlDiv );
 
-	// project fiber data ro endings
 	linkFibers();
+	linkTracts();
 }
 
 void XmlSpinalCord::loadFibers( Xml xmlDiv ) {
@@ -123,8 +123,24 @@ void XmlSpinalCord::loadTracts( Xml xmlDiv ) {
 	}
 }
 
+XmlSpinalEnding& XmlSpinalCord::getEnding( String id ) {
+	XmlSpinalEnding *ending = endingMap.get( id );
+	ASSERTMSG( ending != NULL , "getEnding: unable to find ending id=" + id );
+	return( *ending );
+}
+
+XmlSpinalFiber& XmlSpinalCord::getFiber( String id ) {
+	XmlSpinalFiber *fiber = fiberMap.get( id );
+	ASSERTMSG( fiber != NULL , "getFiber: unable to find fiber id=" + id );
+	return( *fiber );
+}
+
 XmlSpinalEnding *XmlSpinalCord::findEnding( String id ) {
 	return( endingMap.get( id ) );
+}
+
+XmlSpinalFiber *XmlSpinalCord::findFiber( String id ) {
+	return( fiberMap.get( id ) );
 }
 
 void XmlSpinalCord::addEnding( XmlSpinalEnding *ending ) {
@@ -133,6 +149,10 @@ void XmlSpinalCord::addEnding( XmlSpinalEnding *ending ) {
 
 void XmlSpinalCord::addFiber( XmlSpinalFiber *fiber ) {
 	fiberMap.add( fiber -> id , fiber );
+}
+
+void XmlSpinalCord::addTract( XmlSpinalTract *tract ) {
+	tractMap.add( tract -> name , tract );
 }
 
 void XmlSpinalCord::linkFibers() {
@@ -144,6 +164,34 @@ void XmlSpinalCord::linkFibers() {
 			if( ending != NULL )
 				ending -> addFiber( &fiber );
 		}
+	}
+}
+
+void XmlSpinalCord::linkTracts() {
+	for( int k = 0; k < tractMap.count(); k++ ) {
+		XmlSpinalTract& tract = tractMap.getClassRefByIndex( k );
+		linkTractPaths( tract , tract.paths );
+	}
+}
+
+void XmlSpinalCord::linkTractPaths( XmlSpinalTract& tract , ClassList<XmlSpinalTractPath>& paths ) {
+	for( int k = 0; k < paths.count(); k++ ) {
+		XmlSpinalTractPath& path = paths.getRef( k );
+
+		for( int m = 0; m < path.endings.count(); m++ ) {
+			String endingId = path.endings.get( m );
+			XmlSpinalEnding *ending = endingMap.get( endingId );
+			if( ending != NULL )
+				ending -> addTract( &tract );
+		}
+		for( int m = 0; m < path.fibers.count(); m++ ) {
+			String fiberId = path.fibers.get( m );
+			XmlSpinalFiber *fiber = fiberMap.get( fiberId );
+			if( fiber != NULL )
+				fiber -> addTract( &tract );
+		}
+
+		linkTractPaths( tract , path.childs );
 	}
 }
 
