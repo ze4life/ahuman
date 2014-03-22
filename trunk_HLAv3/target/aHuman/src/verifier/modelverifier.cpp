@@ -26,6 +26,7 @@ void ModelVerifier::verify() {
 	bool verifyCircuits = modelArea.getBooleanProperty( "verifyCircuits" , true );
 	bool verifyNerves = modelArea.getBooleanProperty( "verifyNerves" , true );
 	bool verifyMuscles = modelArea.getBooleanProperty( "verifyMuscles" , true );
+	bool verifySpinal = modelArea.getBooleanProperty( "verifySpinal" , true );
 	bool verifyMindModel = modelArea.getBooleanProperty( "verifyMindModel" , true );
 
 	// verify
@@ -37,6 +38,8 @@ void ModelVerifier::verify() {
 		checkNerves();
 	if( verifyMuscles )
 		checkMuscles();
+	if( verifyMuscles )
+		checkSpinal();
 	if( verifyMindModel )
 		checkMindModel();
 }
