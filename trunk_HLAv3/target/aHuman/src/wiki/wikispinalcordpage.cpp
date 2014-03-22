@@ -60,19 +60,23 @@ void WikiSpinalCordPage::createNeurons_addEndings( XmlSpinalEndingSet& set , Str
 	lines.add( "" );
 }
 
-void WikiSpinalCordPage::createNeurons_addEndingItem( int level , XmlSpinalEnding& item , StringList& lines ) {
-	String s = String( " " ).replicate( level + 1 ) + "* *" + item.name + "*";
-	if( !item.id.isEmpty() )
-		s += " (" + item.id + ")";
-	if( !item.function.isEmpty() ) {
-		s += ": " + item.function;
-		if( !item.notes.isEmpty() )
-			s += " (" + item.notes + ")";
+void WikiSpinalCordPage::createNeurons_addEndingItem( int level , XmlSpinalEnding& ending , StringList& lines ) {
+	String s = String( " " ).replicate( level + 1 ) + "* *" + ending.name + "*";
+	if( !ending.id.isEmpty() )
+		s += " (" + ending.id + ")";
+	if( !ending.function.isEmpty() ) {
+		s += ": " + ending.function;
+		if( !ending.notes.isEmpty() )
+			s += " (" + ending.notes + ")";
 	}
+
+	if( ending.fibers.count() > 0 )
+		s += "; FIBERS={" + ending.fibers.combine( "," ) + "}";
+
 	lines.add( s );
 
-	for( int k = 0; k < item.childs.count(); k++ )
-		createNeurons_addEndingItem( level + 1 , item.childs.getClassRefByIndex( k ) , lines );
+	for( int k = 0; k < ending.childs.count(); k++ )
+		createNeurons_addEndingItem( level + 1 , ending.childs.getClassRefByIndex( k ) , lines );
 }
 
 void WikiSpinalCordPage::createNeurons_addFibers( int level , MapStringToClass<XmlSpinalFiber>& fibers , StringList& lines ) {
@@ -92,8 +96,6 @@ void WikiSpinalCordPage::createNeurons_addFiberInfo( int level , XmlSpinalFiber&
 			s += ", " + fiber.mcm;
 		if( !fiber.msec.isEmpty() )
 			s += ", " + fiber.msec;
-		if( !fiber.endings.isEmpty() )
-			s += "; endings: " + fiber.endings;
 		s += ")";
 	}
 
@@ -102,6 +104,9 @@ void WikiSpinalCordPage::createNeurons_addFiberInfo( int level , XmlSpinalFiber&
 		if( !fiber.notes.isEmpty() )
 			s += " (" + fiber.notes + ")";
 	}
+
+	if( fiber.endings.count() > 0 )
+		s += "; ENDINGS={" + fiber.endings.combine( "," ) + "}";
 
 	lines.add( s );
 

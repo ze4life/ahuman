@@ -45,6 +45,9 @@ void XmlSpinalCord::load( Xml xmlDiv ) {
 	loadEndings( xmlDiv );
 	loadLayout( xmlDiv );
 	loadTracts( xmlDiv );
+
+	// project fiber data ro endings
+	linkFibers();
 }
 
 void XmlSpinalCord::loadFibers( Xml xmlDiv ) {
@@ -53,7 +56,7 @@ void XmlSpinalCord::loadFibers( Xml xmlDiv ) {
 
 	for( Xml xmlChild = fiberset.getFirstChild( "fiber" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "fiber" ) ) {
 		XmlSpinalFiber *f = new XmlSpinalFiber();
-		f -> load( xmlChild );
+		f -> load( *this , xmlChild );
 		fibers.add( f -> id , f );
 	}
 }
@@ -61,7 +64,7 @@ void XmlSpinalCord::loadFibers( Xml xmlDiv ) {
 void XmlSpinalCord::loadEndings( Xml xmlDiv ) {
 	for( Xml xmlChild = xmlDiv.getFirstChild( "endings" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "endings" ) ) {
 		XmlSpinalEndingSet *es = new XmlSpinalEndingSet();
-		es -> load( xmlChild );
+		es -> load( *this , xmlChild );
 		endings.add( es -> type , es );
 	}
 }
@@ -117,6 +120,30 @@ void XmlSpinalCord::loadTracts( Xml xmlDiv ) {
 		XmlSpinalTractSet *ts = new XmlSpinalTractSet();
 		ts -> load( xmlChild );
 		tractsets.add( ts -> name , ts );
+	}
+}
+
+XmlSpinalEnding *XmlSpinalCord::findEnding( String id ) {
+	return( endingMap.get( id ) );
+}
+
+void XmlSpinalCord::addEnding( XmlSpinalEnding *ending ) {
+	endingMap.add( ending -> id , ending );
+}
+
+void XmlSpinalCord::addFiber( XmlSpinalFiber *fiber ) {
+	fiberMap.add( fiber -> id , fiber );
+}
+
+void XmlSpinalCord::linkFibers() {
+	for( int k = 0; k < fiberMap.count(); k++ ) {
+		XmlSpinalFiber& fiber = fiberMap.getClassRefByIndex( k );
+		for( int m = 0; m < fiber.endings.count(); m++ ) {
+			String endingId = fiber.endings.get( m );
+			XmlSpinalEnding *ending = endingMap.get( endingId );
+			if( ending != NULL )
+				ending -> addFiber( &fiber );
+		}
 	}
 }
 

@@ -10,7 +10,7 @@ XmlSpinalEndingSet::XmlSpinalEndingSet() {
 XmlSpinalEndingSet::~XmlSpinalEndingSet() {
 }
 
-void XmlSpinalEndingSet::load( Xml xml ) {
+void XmlSpinalEndingSet::load( XmlSpinalCord& sc , Xml xml ) {
 	name = xml.getAttribute( "name" );
 	type = xml.getAttribute( "type" );
 	imgsrc = xml.getAttribute( "imgsrc" , "" );
@@ -24,7 +24,7 @@ void XmlSpinalEndingSet::load( Xml xml ) {
 
 	for( Xml xmlChild = xml.getFirstChild( element ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( element ) ) {
 		XmlSpinalEnding *ending = new XmlSpinalEnding();
-		ending -> load( xmlChild , element );
+		ending -> load( sc , xmlChild , element );
 		childs.add( ending -> name , ending );
 	}
 }

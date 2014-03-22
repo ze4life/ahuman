@@ -333,12 +333,20 @@ public:
 	MapStringToClass<XmlSpinalFiber>& getFibers() { return( fibers ); };
 	MapStringToClass<XmlSpinalTractSet>& getTracts() { return( tractsets ); };
 
+	XmlSpinalEnding *getEnding( String id );
+	XmlSpinalFiber *getFiber( String id );
+
+	XmlSpinalEnding *findEnding( String id );
+	void addEnding( XmlSpinalEnding *ending );
+	void addFiber( XmlSpinalFiber *fiber );
+
 private:
 	void loadFibers( Xml xmlDiv );
 	void loadEndings( Xml xmlDiv );
 	void loadLayout( Xml xmlDiv );
 	void loadLayoutLevel( Xml xmlLevel , MapStringToClass<StringList>& levelData );
 	void loadTracts( Xml xmlDiv );
+	void linkFibers();
 
 private:
 	XmlHMind *hmind;
@@ -348,6 +356,9 @@ private:
 	MapStringToClass<XmlSpinalTractSet> tractsets;
 	MapStringToClass<XmlSpinalFiber> fibers;
 	MapStringToClass<XmlSpinalEndingSet> endings;
+
+	MapStringToClass<XmlSpinalEnding> endingMap;
+	MapStringToClass<XmlSpinalFiber> fiberMap;
 };
 
 /*#########################################################################*/
@@ -420,7 +431,7 @@ public:
 	XmlSpinalFiber();
 	~XmlSpinalFiber();
 
-	void load( Xml xml );
+	void load( XmlSpinalCord& sc , Xml xml );
 
 public:
 	String id;
@@ -428,7 +439,7 @@ public:
 	String type;
 	String mcm;
 	String msec;
-	String endings;
+	StringList endings;
 	String function;
 	String notes;
 	MapStringToClass<XmlSpinalFiber> childs;
@@ -442,7 +453,7 @@ public:
 	XmlSpinalEndingSet();
 	~XmlSpinalEndingSet();
 
-	void load( Xml xml );
+	void load( XmlSpinalCord& sc , Xml xml );
 
 public:
 	String name;
@@ -460,7 +471,8 @@ public:
 	XmlSpinalEnding();
 	~XmlSpinalEnding();
 
-	void load( Xml xml , String element );
+	void load( XmlSpinalCord& sc , Xml xml , String element );
+	void addFiber( XmlSpinalFiber *fiber );
 
 public:
 	String id;
@@ -469,6 +481,8 @@ public:
 	String function;
 	String notes;
 	MapStringToClass<XmlSpinalEnding> childs;
+
+	StringList fibers;
 };
 
 /*#########################################################################*/
