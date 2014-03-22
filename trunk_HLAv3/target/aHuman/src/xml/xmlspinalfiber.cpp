@@ -31,6 +31,6 @@ void XmlSpinalFiber::load( XmlSpinalCord& sc , Xml xml ) {
 }
 
 void XmlSpinalFiber::addTract( XmlSpinalTract *tract ) {
-	tracts.add( tract );
+	tracts.addnew( tract -> name , tract );
 }
 

@@ -76,7 +76,7 @@ void WikiSpinalCordPage::createNeurons_addEndingItem( int level , XmlSpinalEndin
 	if( ending.tracts.count() > 0 ) {
 		String ts;
 		for( int k = 0; k < ending.tracts.count(); k++ ) {
-			XmlSpinalTract& tract = ending.tracts.getRef( k );
+			XmlSpinalTract& tract = ending.tracts.getClassRefByIndex( k );
 			if( k > 0 )
 				ts += ", ";
 			ts += tract.name;
@@ -123,7 +123,7 @@ void WikiSpinalCordPage::createNeurons_addFiberInfo( int level , XmlSpinalFiber&
 	if( fiber.tracts.count() > 0 ) {
 		String ts;
 		for( int k = 0; k < fiber.tracts.count(); k++ ) {
-			XmlSpinalTract& tract = fiber.tracts.getRef( k );
+			XmlSpinalTract& tract = fiber.tracts.getClassRefByIndex( k );
 			if( k > 0 )
 				ts += ", ";
 			ts += tract.name;

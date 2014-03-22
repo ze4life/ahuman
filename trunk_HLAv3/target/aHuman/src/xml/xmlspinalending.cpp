@@ -30,6 +30,6 @@ void XmlSpinalEnding::addFiber( XmlSpinalFiber *fiber ) {
 }
 
 void XmlSpinalEnding::addTract( XmlSpinalTract *tract ) {
-	tracts.add( tract );
+	tracts.addnew( tract -> name , tract );
 }
 
