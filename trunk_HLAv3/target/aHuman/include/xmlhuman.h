@@ -376,7 +376,7 @@ public:
 	XmlSpinalTractSet();
 	~XmlSpinalTractSet();
 
-	void load( Xml xml );
+	void load( XmlSpinalCord& sc , Xml xml );
 
 public:
 	String name;
@@ -393,7 +393,7 @@ public:
 	XmlSpinalTract();
 	~XmlSpinalTract();
 
-	void load( Xml xml );
+	void load( XmlSpinalCord& sc , Xml xml );
 
 public:
 	bool final;
@@ -452,7 +452,7 @@ public:
 	String notes;
 	MapStringToClass<XmlSpinalFiber> childs;
 
-	ClassList<XmlSpinalTract> tracts;
+	MapStringToClass<XmlSpinalTract> tracts;
 };
 
 /*#########################################################################*/
@@ -494,7 +494,7 @@ public:
 	MapStringToClass<XmlSpinalEnding> childs;
 
 	StringList fibers;
-	ClassList<XmlSpinalTract> tracts;
+	MapStringToClass<XmlSpinalTract> tracts;
 };
 
 /*#########################################################################*/

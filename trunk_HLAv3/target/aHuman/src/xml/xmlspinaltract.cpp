@@ -12,7 +12,7 @@ XmlSpinalTract::~XmlSpinalTract() {
 	paths.destroy();
 }
 
-void XmlSpinalTract::load( Xml xml ) {
+void XmlSpinalTract::load( XmlSpinalCord& sc , Xml xml ) {
 	final = xml.getBooleanAttribute( "final" , false );
 	index = xml.getAttribute( "index" , "" );
 	name = xml.getAttribute( "name" );
@@ -25,6 +25,8 @@ void XmlSpinalTract::load( Xml xml ) {
 	imgsrc = xml.getAttribute( "imgsrc" , "" );
 	imgheight = xml.getAttribute( "imgheight" , "" );
 
+	sc.addTract( this );
+
 	if( final ) {
 		for( Xml xmlChild = xml.getFirstChild( "path" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "path" ) ) {
 			XmlSpinalTractPath *path = new XmlSpinalTractPath();
@@ -35,7 +37,7 @@ void XmlSpinalTract::load( Xml xml ) {
 	else {
 		for( Xml xmlChild = xml.getFirstChild( "tract" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "tract" ) ) {
 			XmlSpinalTract *tract = new XmlSpinalTract();
-			tract -> load( xmlChild );
+			tract -> load( sc , xmlChild );
 			tracts.add( tract -> name , tract );
 		}
 	}
