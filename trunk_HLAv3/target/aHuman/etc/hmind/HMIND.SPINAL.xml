@@ -404,34 +404,46 @@
 		<endings name="Motor Endings" type="motor"
 			imgsrc="http://classconnection.s3.amazonaws.com/997/flashcards/1355997/gif/reflexarcs1336087730891.gif"
 			>
-			<effector id="MFF" name="FF-type alpha motoneurons"
-				function="fast-twitch fatigable"
-				notes="generate large force, poor efficiency; biggest motoneurons, type IIB extrafusal muscle fibers; affected by static beta motoneurons"
-				/>
-			<effector id="MFR" name="FR-type alpha motoneurons"
-				function="fast-twitch fatigue-resistant"
-				notes="type IIA extrafusal muscle fibers; affected by static beta motoneurons"
-				/>
-			<effector id="MS" name="S-type alpha motoneurons"
-				function="slow-twitch fatigue-resistant"
-				notes="type I muscle fibers; little force, metabolically efficient, affected by dynamic beta motoneurons"
-				/>
-			<effector id="MBD" name="beta dynamic motoneurons"
-				function="slow contracting motor units"
-				notes="type I extrafusal muscle fibers and the intrafusal bag1 fiber"
-				/>
-			<effector id="MBS" name="beta static motoneurons"
-				function="fast contracting motor units"
-				notes="type IIA or IIB extrafusal fibers and the intrafusal bag2 fiber"
-				/>
-			<effector id="MGD" name="gamma dynamic motoneurons"
-				function="contract muscle spindles from both ends"
-				notes="intrafusal bag1 fiber "
-				/>
-			<effector id="MGS" name="gamma static motoneurons"
-				function="contract muscle spindles from both ends"
-				notes="intrafusal bag2 fiber and the nuclear chain fibers"
-				/>
+			<effector id="MA" name="Alpha motoneurons"
+				function="generate large force"
+				>
+				<effector id="MA-FF" name="FF-type alpha motoneurons"
+					function="fast-twitch fatigable"
+					notes="generate large force, poor efficiency; biggest motoneurons, type IIB extrafusal muscle fibers; affected by static beta motoneurons"
+					/>
+				<effector id="MA-FR" name="FR-type alpha motoneurons"
+					function="fast-twitch fatigue-resistant"
+					notes="type IIA extrafusal muscle fibers; affected by static beta motoneurons"
+					/>
+				<effector id="MA-S" name="S-type alpha motoneurons"
+					function="slow-twitch fatigue-resistant"
+					notes="type I muscle fibers; little force, metabolically efficient, affected by dynamic beta motoneurons"
+					/>
+			</effector>
+			<effector id="MB" name="Beta motoneurons"
+				function="affect both extrafusal and intrafusal muscle fibers"
+				>
+				<effector id="MB-D" name="beta dynamic motoneurons"
+					function="slow contracting motor units"
+					notes="type I extrafusal muscle fibers and the intrafusal bag1 fiber"
+					/>
+				<effector id="MB-S" name="beta static motoneurons"
+					function="fast contracting motor units"
+					notes="type IIA or IIB extrafusal fibers and the intrafusal bag2 fiber"
+					/>
+			</effector>
+			<effector id="MG" name="Gamma motoneurons"
+				function="enforce alpha motoneurons"
+				>
+				<effector id="MG-D" name="gamma dynamic motoneurons"
+					function="contract muscle spindles from both ends"
+					notes="intrafusal bag1 fiber "
+					/>
+				<effector id="MG-S" name="gamma static motoneurons"
+					function="contract muscle spindles from both ends"
+					notes="intrafusal bag2 fiber and the nuclear chain fibers"
+					/>
+			</effector>
 			<effector id="MPA" name="preganglionic autonomic motoneurons"
 				function="preganglionic paravertebral/prevertebral sympathetic, spinal/cranial parasympathetic"
 				>
@@ -470,61 +482,69 @@
 		<endings name="Sensory Endings" type="sensory"
 			imgsrc="https://highered.mcgraw-hill.com/sites/dl/free/0072507470/234428/mc_ch14_fig01.jpg"
 			>
-			<receptor id="SMD" name="Merkel disk receptors" 
-				function="vibration 5-15 Hz, static (sustained) touch/pressure"
-				notes="respond to slight change in skin surface; high resolution tactile discrimination, mechanoceptors in hairless skin and mucosa, pressure and texture, slowly adapting, sustained response, low threshold; weak position and strong velocity - irregular discharge, type I, hairy/hairless skin"
-				/>
-			<receptor id="SMC" name="Meissner corpuscles" 
-				function="vibration 20-50 Hz; dynamic touch/pressure"
-				notes="tactile, texture, rapidly adapting, superficial papillary receptor, low threshold, especially sensitive to light touch - like fingers and lips"
-				>
-				<receptor id="S-GC" name="Genital corpuscles" 
+			<receptor id="SMECH" name="Mechanoreceptors">
+				<receptor id="SMECH-SKIN" name="Skin mechanoreceptors">
+					<receptor id="SMD" name="Merkel disk receptors" 
+						function="vibration 5-15 Hz, static (sustained) touch/pressure"
+						notes="respond to slight change in skin surface; high resolution tactile discrimination, mechanoceptors in hairless skin and mucosa, pressure and texture, slowly adapting, sustained response, low threshold; weak position and strong velocity - irregular discharge, type I, hairy/hairless skin"
+						/>
+					<receptor id="SMC" name="Meissner corpuscles" 
+						function="vibration 20-50 Hz; dynamic touch/pressure"
+						notes="tactile, texture, rapidly adapting, superficial papillary receptor, low threshold, especially sensitive to light touch - like fingers and lips"
+						>
+						<receptor id="S-GC" name="Genital corpuscles" 
+							/>
+					</receptor>
+					<receptor id="SHF" name="Hair follicle receptors" 
+						function="touch, hairy skin velocity"
+						notes="slowly adapting, low threshold; Peritrichial endings - nerve plexus wrapped around hair roots; large hair follicles, slow and rapid movement of hairs and deflection of the skin"
+						/>
+				</receptor>
+				<receptor id="SMECH-DEEP" name="Deep tissue mechanoreceptors">
+					<receptor id="SPC" name="Pacinian corpuscles" 
+						function="vibration 60-400 Hz, deep"
+						notes="greater signal from more massive or rapid deformation; deep receptors, subcutaneous tissue, viscera, rapidly adapting, low threshold; transient receptors, connective tissue, vibration, intrafusal muscles, tonic proprioceptive endings, flower-spray type"
+						/>
+					<receptor id="SRC" name="Ruffini corpuscles" 
+						function="stretching of skin, crude touch"
+						notes="End-bulbs of Krause and Ruffini; deep receptors, slowly adapting, low threshold; strong position and weak velocity receptors - regular discharge, type II, hairy/hairless skin"
+						/>
+					<receptor id="SMS" name="Muscle spindles" 
+						function="skeletal muscle, stretch by muscle length, fast"
+						/>
+					<receptor id="SGT" name="Golgi tendon organs" 
+						function="muscle tension"
+						notes="slowly adapting, low threshold"
+						/>
+				</receptor>
+			</receptor>
+			<receptor id="SPT" name="Pain and temperature receptors">
+				<receptor id="SFN" name="Nonencapsulated free-nerve endings" 
+					function="pain and temperature"
+					notes="the only nociceptors"
+					>
+					<receptor id="SFN-CN" name="C fiber nociceptors" 
+						function="responsible for the second, burning pain"
+						/>
+					<receptor id="SFN-CW" name="C fiber warming-specific receptors" 
+						function="responsible for warmth"
+						/>
+					<receptor id="SFN-CI" name="ultra-slow histamine-selective C fibers" 
+						function="responsible for itch"
+						/>
+					<receptor id="SFN-CT" name="tactile C fibers" 
+						function="sensual touch"
+						notes="includes CT fibres, also known as C low-threshold mechanoreceptors (CLTM), which are unmyelinated afferents found in human hairy skin, and have a low mechanical threshold less than 5 milliNewtons; have moderate adaptation and may exhibit fatigue on repetitive stimulation and after discharges for several seconds after a stimulus"
+						/>
+					<receptor id="SFN-CM" name="C mechano- and metabo- receptors in muscles or joints" 
+						function="responsible for muscle exercise, burn and cramp"
+						/>
+				</receptor>
+				<receptor id="SCR" name="Cold receptors" 
+					function="respond to low temperature"
+					notes="channel: TRPM8 (less than 28C), TRPA1 (less than 18C)"
 					/>
 			</receptor>
-			<receptor id="SPC" name="Pacinian corpuscles" 
-				function="vibration 60-400 Hz, deep"
-				notes="greater signal from more massive or rapid deformation; deep receptors, subcutaneous tissue, viscera, rapidly adapting, low threshold; transient receptors, connective tissue, vibration, intrafusal muscles, tonic proprioceptive endings, flower-spray type"
-				/>
-			<receptor id="SHF" name="Hair follicle receptors" 
-				function="touch, hairy skin velocity"
-				notes="slowly adapting, low threshold; Peritrichial endings - nerve plexus wrapped around hair roots; large hair follicles, slow and rapid movement of hairs and deflection of the skin"
-				/>
-			<receptor id="SFN" name="Nonencapsulated free-nerve endings" 
-				function="pain and temperature"
-				notes="the only nociceptors"
-				>
-				<receptor id="SFN-CN" name="C fiber nociceptors" 
-					function="responsible for the second, burning pain"
-					/>
-				<receptor id="SFN-CW" name="C fiber warming-specific receptors" 
-					function="responsible for warmth"
-					/>
-				<receptor id="SFN-CI" name="ultra-slow histamine-selective C fibers" 
-					function="responsible for itch"
-					/>
-				<receptor id="SFN-CT" name="tactile C fibers" 
-					function="sensual touch"
-					notes="includes CT fibres, also known as C low-threshold mechanoreceptors (CLTM), which are unmyelinated afferents found in human hairy skin, and have a low mechanical threshold less than 5 milliNewtons; have moderate adaptation and may exhibit fatigue on repetitive stimulation and after discharges for several seconds after a stimulus"
-					/>
-				<receptor id="SFN-CM" name="C mechano- and metabo- receptors in muscles or joints" 
-					function="responsible for muscle exercise, burn and cramp"
-					/>
-			</receptor>
-			<receptor id="SRC" name="Ruffini corpuscles" 
-				function="stretching of skin, crude touch"
-				notes="End-bulbs of Krause and Ruffini; deep receptors, slowly adapting, low threshold; strong position and weak velocity receptors - regular discharge, type II, hairy/hairless skin"
-				/>
-			<receptor id="SMS" name="Muscle spindles" 
-				function="skeletal muscle, stretch by muscle length, fast"
-				/>
-			<receptor id="SGT" name="Golgi tendon organs" 
-				function="muscle tension"
-				notes="slowly adapting, low threshold"
-				/>
-			<receptor id="SCR" name="Cold receptors" 
-				function="respond to low temperature"
-				notes="channel: TRPM8 (less than 28C), TRPA1 (less than 18C)"
-				/>
 		</endings>
 
 		<fibers>
@@ -538,7 +558,7 @@
 						function="skin, two-point discrimination"
 						notes="muscle spindle primary sensory endings; extrafusal muscles, Meissner's corpuscles"
 						/>
-					<fiber id="A-alpha-Ia-motor" name="alpha motoneurons" type="motor" endings="MFF,MFR,MS"
+					<fiber id="A-alpha-Ia-motor" name="alpha motoneurons" type="motor" endings="MA-FF,MA-FR,MA-S"
 						notes="extrafusal muscle fibers, skeletal movements, brainstem/spinal cord"
 						/>
 				</fiber>
@@ -554,13 +574,13 @@
 				<fiber id="A-beta-sensory" type="sensory" endings="SMD,SRC,SHF,SPC"
 					function="fine touch, kinesthesia"
 					/>
-				<fiber id="A-beta-motor" name="beta motoneurons" type="motor" endings="MBD,MBS"
+				<fiber id="A-beta-motor" name="beta motoneurons" type="motor" endings="MB-D,MB-S"
 					function="skeleto-fusimotor, intrafusal fibers and collaterals to extrafusal muscle fibers, muscle spindles, increase dynamic sensitivity of ending"
 					/>
 			</fiber>
 			<fiber id="A-gamma-motor" type="motor"
 				mcm="4-8 mcm" msec="15-40 m/sec"
-				function="intrafusal muscle fibers, 6ms after stimulus" endings="MGD,MGS"
+				function="intrafusal muscle fibers, 6ms after stimulus" endings="MG-D,MG-S"
 				notes="skeletal muscle tone, contract muscle spindles from both ends, fusimotor gamma neurons, affect Ia/II"
 				/>
 			<fiber id="A-delta-sensory" type="sensory"
@@ -570,7 +590,7 @@
 				/>
 			<fiber id="B-motor" type="motor"
 				mcm="1-3 mcm" msec="3-14 m/sec"
-				function="preganglionic autonomic" endings="MPA"
+				function="preganglionic autonomic" endings="MPA-SPAV,MPA-SPRV,MPA-PS,MPA-PC"
 				notes="myelinated, ACh, sympathetic only in T1-L3, IML"
 				/>
 			<fiber id="C" type="mixed"
