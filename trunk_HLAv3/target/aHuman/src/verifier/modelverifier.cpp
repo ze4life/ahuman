@@ -38,7 +38,7 @@ void ModelVerifier::verify() {
 		checkNerves();
 	if( verifyMuscles )
 		checkMuscles();
-	if( verifyMuscles )
+	if( verifySpinal )
 		checkSpinal();
 	if( verifyMindModel )
 		checkMindModel();
