@@ -31,6 +31,7 @@ private:
 	void checkCircuits();
 	void checkNerves();
 	void checkMuscles();
+	void checkSpinal();
 	void checkMindModel();
 
 	bool checkHierarchy_verifyChild( String node , bool checkMapping );
