@@ -102,17 +102,27 @@ void XmlSpinalCord::loadLayoutLevel( Xml xmlLevel , MapStringToClass<StringList>
 	}
 }
 
-const char **XmlSpinalCord::getLevels() {
+const char **XmlSpinalCord::getLayoutLevels() {
 	return( levels );
 }
 
-const char **XmlSpinalCord::getLaminas() {
+const char **XmlSpinalCord::getLayoutLaminas() {
 	return( laminas );
 }
 
-StringList& XmlSpinalCord::getCellItems( String level , String lamina ) {
+StringList& XmlSpinalCord::getLayoutCellItems( String level , String lamina ) {
 	MapStringToClass<StringList>& levelData = data.getRef( level );
 	return( levelData.getRef( lamina ) );
+}
+
+void XmlSpinalCord::getLayoutItems( StringList& items ) {
+	for( int k = 0; k < data.count(); k++ ) {
+		MapStringToClass<StringList>& levelData = data.getClassRefByIndex( k );
+		for( int m = 0; m < levelData.count(); m++ ) {
+			StringList *levelItems = levelData.getClassByIndex( m );
+			items.add( levelItems );
+		}
+	}
 }
 
 void XmlSpinalCord::loadTracts( Xml xmlDiv ) {
@@ -192,6 +202,25 @@ void XmlSpinalCord::linkTractPaths( XmlSpinalTract& tract , ClassList<XmlSpinalT
 		}
 
 		linkTractPaths( tract , path.childs );
+	}
+}
+
+void XmlSpinalCord::getLayoutItemLayers( String item , StringList& items ) {
+	for( int k = 0; k < data.count(); k++ ) {
+		MapStringToClass<StringList>& levelData = data.getClassRefByIndex( k );
+		for( int m = 0; m < levelData.count(); m++ ) {
+			StringList *levelItems = levelData.getClassByIndex( m );
+			if( levelItems -> find( item ) >= 0 )
+				items.addnew( data.getKeyByIndex( k ) );
+		}
+	}
+}
+
+void XmlSpinalCord::getRegionTracts( String region , StringList& regionTracts ) {
+	for( int k = 0; k < tractMap.count(); k++ ) {
+		XmlSpinalTract& tract = tractMap.getClassRefByIndex( k );
+		if( tract.referencesRegion( region ) )
+			regionTracts.add( tract.name );
 	}
 }
 

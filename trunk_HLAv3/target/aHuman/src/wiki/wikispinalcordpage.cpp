@@ -21,6 +21,7 @@ void WikiSpinalCordPage::execute() {
 
 	createNeurons();
 	createLayout();
+	createNuclei();
 	createTracts();
 }
 
@@ -149,8 +150,8 @@ void WikiSpinalCordPage::createLayout() {
 	lines.add( s );
 	lines.add( "" );
 
-	const char **levels = cord -> getLevels();
-	const char **laminas = cord -> getLaminas();
+	const char **levels = cord -> getLayoutLevels();
+	const char **laminas = cord -> getLayoutLaminas();
 	s = "|| *Level/Lamina* ||";
 	for( int m = 0; laminas[ m ] != NULL; m++ )
 		s += " *" + String( laminas[ m ] ) + "* ||";
@@ -159,7 +160,7 @@ void WikiSpinalCordPage::createLayout() {
 	for( int k = 0; levels[ k ] != NULL; k++ ) {
 		String line = "|| " + String( levels[ k ] ) + " ||";
 		for( int m = 0; laminas[ m ] != NULL; m++ ) {
-			StringList& items = cord -> getCellItems( levels[ k ] , laminas[ m ] );
+			StringList& items = cord -> getLayoutCellItems( levels[ k ] , laminas[ m ] );
 			if( items.count() > 0 )
 				line += " " + items.combine( "," ) + " ||";
 			else
@@ -248,5 +249,94 @@ void WikiSpinalCordPage::createTracts_addTractPathLines( int level , XmlSpinalTr
 		XmlSpinalTractPath& child = path.childs.getRef( k );
 		createTracts_addTractPathLines( level + 1 , child , lines );
 	}
+}
+
+void WikiSpinalCordPage::createNuclei() {
+	String wikiDir = wm -> wiki.getProperty( "wikiPath" );
+	String wikiPage = wm -> wiki.getProperty( "wikiPageSpinalCord" );
+	String sectionName = wm -> wiki.getProperty( "wikiSpinalCordNucleiSection" );
+
+	// collect section lines
+	StringList lines;
+	String s;
+
+	StringList items;
+	XmlSpinalCord *cord = wm -> hmindxml.getSpinalCord();
+	cord -> getLayoutItems( items );
+	items.sort();
+
+	// group items by type and fgroup
+	MapStringToClass<MapStringToClass<MapStringToClass<XmlHMindElementInfo> > > groups;
+	for( int k = 0; k < items.count(); k++ ) {
+		String item = items.get( k );
+		XmlHMindElementInfo *comp = wm -> hmindxml.getIndexedElement( item );
+		MapStringToClass<MapStringToClass<XmlHMindElementInfo> > *tgroup = groups.get( comp -> type );
+		if( tgroup == NULL ) {
+			tgroup = new MapStringToClass<MapStringToClass<XmlHMindElementInfo> >;
+			groups.add( comp -> type , tgroup );
+		}
+
+		String fgrouptext = comp -> fgroup;
+		if( fgrouptext.isEmpty() )
+			fgrouptext = "none";
+
+		MapStringToClass<XmlHMindElementInfo> *fgroup = tgroup -> get( fgrouptext );
+		if( fgroup == NULL ) {
+			fgroup = new MapStringToClass<XmlHMindElementInfo>;
+			tgroup -> add( fgrouptext , fgroup );
+		}
+
+		fgroup -> addnew( item , comp );
+	}
+
+	// create page content
+	for( int k = 0; k < groups.count(); k++ ) {
+		MapStringToClass<MapStringToClass<XmlHMindElementInfo> >& tgroup = groups.getClassRefByIndex( k );
+		s = groups.getKeyByIndex( k ) + String( ":" );
+		lines.add( s );
+
+		for( int m = 0; m < tgroup.count(); m++ ) {
+			MapStringToClass<XmlHMindElementInfo>& fgroup = tgroup.getClassRefByIndex( m );
+
+			String fgtext = tgroup.getKeyByIndex( m );
+			String prefix;
+			if( fgtext.equals( "none" ) )
+				prefix = "  * ";
+			else {
+				s = "  * " + fgtext;
+				lines.add( s );
+				prefix = "   * ";
+			}
+
+			for( int t = 0; t < fgroup.count(); t++ ) {
+				XmlHMindElementInfo& comp = fgroup.getClassRefByIndex( t );
+
+				// add comp info
+				s = prefix + comp.index + ": ";
+				s += wm -> getRegionReference( comp.id );
+				s += " - " + comp.function;
+				if( !comp.notes.isEmpty() )
+					s += " (" + comp.notes + ")";
+
+				// layers
+				StringList layers;
+				cord -> getLayoutItemLayers( comp.index , layers );
+				s += "; LAYERS={" + layers.combine( "," ) + "}";
+
+				// tracts
+				StringList tracts;
+				cord -> getRegionTracts( comp.id , tracts );
+				s += "; TRACTS={" + tracts.combine( "," ) + "}";
+
+				lines.add( s );
+			}
+		}
+	}
+
+	for( int k = 0; k < groups.count(); k++ )
+		groups.getClassRefByIndex( k ).destroy();
+	groups.destroy();
+
+	wm -> updateFileSection( wikiDir , wikiPage , sectionName , lines );
 }
 
