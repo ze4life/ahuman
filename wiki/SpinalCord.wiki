@@ -41,14 +41,14 @@ http://www.ib.cnea.gov.ar/~redneu/2013/BOOKS/Principles%20of%20Neural%20Science%
 
 <img src="http://classconnection.s3.amazonaws.com/997/flashcards/1355997/gif/reflexarcs1336087730891.gif">
 
- * *Alpha motoneurons* (MA): generate large force
+ * *Alpha motoneurons* (MA): generate large force (extrafusal muscle fibres, voluntary movement)
   * *FF-type alpha motoneurons* (MA-FF): fast-twitch fatigable (generate large force, poor efficiency; biggest motoneurons, type IIB extrafusal muscle fibers; affected by static beta motoneurons); FIBERS={A-alpha-Ia-motor}
   * *FR-type alpha motoneurons* (MA-FR): fast-twitch fatigue-resistant (type IIA extrafusal muscle fibers; affected by static beta motoneurons); FIBERS={A-alpha-Ia-motor}
   * *S-type alpha motoneurons* (MA-S): slow-twitch fatigue-resistant (type I muscle fibers; little force, metabolically efficient, affected by dynamic beta motoneurons); FIBERS={A-alpha-Ia-motor}
- * *Beta motoneurons* (MB): affect both extrafusal and intrafusal muscle fibers
+ * *Beta motoneurons* (MB): affect both extrafusal and intrafusal muscle fibers (intrafusal/extrafusal muscle fibres, voluntary movement)
   * *beta dynamic motoneurons* (MB-D): slow contracting motor units (type I extrafusal muscle fibers and the intrafusal bag1 fiber); FIBERS={A-beta-motor}
   * *beta static motoneurons* (MB-S): fast contracting motor units (type IIA or IIB extrafusal fibers and the intrafusal bag2 fiber); FIBERS={A-beta-motor}
- * *Gamma motoneurons* (MG): enforce alpha motoneurons
+ * *Gamma motoneurons* (MG): enforce alpha motoneurons (intrafusal muscle fibers, muscle tonus, additional contracts to maintain sensitivity in stretched state)
   * *gamma dynamic motoneurons* (MG-D): contract muscle spindles from both ends (intrafusal bag1 fiber ); FIBERS={A-gamma-motor}
   * *gamma static motoneurons* (MG-S): contract muscle spindles from both ends (intrafusal bag2 fiber and the nuclear chain fibers); FIBERS={A-gamma-motor}
  * *postganglionic autonomic motoneurons* (MPG): postganglionic autonomic
@@ -107,6 +107,43 @@ http://www.ib.cnea.gov.ar/~redneu/2013/BOOKS/Principles%20of%20Neural%20Science%
   * *C-sensory* (sensory): pain and temperature; ENDINGS={SFN-CN,SFN-CW,SFN-CI,SFN-CT,SFN-CM}; TRACTS={anterior spinothalamic tract, dorsal trigeminal tract, lateral spinothalamic tract}
 
 == SPINAL CORD NUCLEI ==
+(generated)
+
+1-order Motor Nucleus:
+  * Lateral Motor Nuclei (distal muscles motor neurons)
+   * PHN: [BrainRegionBMA_SC_VH_PHR BMA.SC.VH.PHR] - Innervation of diaphragm (Projections from Nucleus Solitarius); LAYERS={C3,C4,C5}; TRACTS={}
+   * PLN: [BrainRegionBMA_SC_VH_PL BMA.SC.VH.PL] - Innervation of limb muscles (Upper and lower); LAYERS={C4,C5,C6,C7,C8,L2,L3,L4,L5,S1}; TRACTS={}
+   * RPL: [BrainRegionBMA_SC_IZ_RPL BMA.SC.IZ.RPL] - Innervation of limbs muscles; LAYERS={C8,S1,S2,S3,T1}; TRACTS={}
+   * VLN: [BrainRegionBMA_SC_VH_VL BMA.SC.VH.VL] - Innervation of limb muscles (Upper and lower); LAYERS={C4,C5,C6,C7,C8,L2,L3,L4,L5,S1}; TRACTS={}
+  * Medial Motor Nuclei (axial muscles motor neurons)
+   * VMN: [BrainRegionBMA_SC_VH_VM BMA.SC.VH.VM] - Innervation of trunk muscles (Upper and lower); LAYERS={C1,C2,C3,C4,C5,C6,C7,C8,CX,L1,L2,L3,L4,L5,S1,S2,S3,S4,S5,T1,T10,T11,T12,T2,T3,T4,T5,T6,T7,T8,T9}; TRACTS={}
+  * PMN: [BrainRegionBMA_SC_VH_PM BMA.SC.VH.PM] - Innervation of trunk muscles (Upper and lower); LAYERS={L1,L2,T1,T10,T11,T12,T2,T3,T4,T5,T6,T7,T8,T9}; TRACTS={}
+1-order Sensory Nucleus:
+  * ACN: [BrainRegionBMA_HM_ACU BMA.HM.ACU] - receives input from cervical spinal nerves and transmits that information to cerebellum (upper extremity equivalent of Clarke's column); LAYERS={C1,C2,C3,C4,C5,C6,C7}; TRACTS={}
+  * CBN: [BrainRegionBMA_SC_IZ_CBS BMA.SC.IZ.CBS] - Unconscious proprioception to CR (Upper extremity, relay motor feedback to CR, major site of termination for dorsal root fibers); LAYERS={C5,C6,C7,C8}; TRACTS={}
+  * CCN: [BrainRegionBMA_SC_IZ_CCV BMA.SC.IZ.CCV] - Coordinate voluntary movements, maintain balance, and learn motor skills (Receive neck and vestibular input and project to CR and vestibular nuclei); LAYERS={C1,C2,C3,C4}; TRACTS={}
+  * LCN: [BrainRegionBMA_SC_LH_LCV BMA.SC.LH.LCV] - Relay Low-threshold Mechanoreceptors to CR (From Lamina V); LAYERS={C1,C2,C3,C4,C5,C6,C7,C8}; TRACTS={spinocervical tract}
+  * LSN: [BrainRegionBMA_SC_LH_LSN BMA.SC.LH.LSN] - Integrate autonomic and homeostatic functions (Projects to HT and lateral globus pallidus;  integrative nucleus for autonomic and homeostatic functions, and related motivational and affective responses to autonomic function); LAYERS={L1,L2,T1,T10,T11,T12,T2,T3,T4,T5,T6,T7,T8,T9}; TRACTS={tract of Lissauer, fast pain}
+  * MN: [BrainRegionBMA_SC_PH_MG BMA.SC.PH.MG] - Relay information related to pain and temperature sensation (Pain sensation cannot be modulated); LAYERS={C1,C2,C3,C4,C5,C6,C7,C8,CX,L1,L2,L3,L4,L5,S1,S2,S3,S4,S5,T1,T10,T11,T12,T2,T3,T4,T5,T6,T7,T8,T9}; TRACTS={lateral spinothalamic tract,tract of Lissauer, fast pain}
+  * NPR: [BrainRegionBMA_SC_PH_NP BMA.SC.PH.NP] - Relay light touch, pain and temperature information (With Clarke's Nucleus sensing fine touch and proprioception); LAYERS={C1,C2,C3,C4,C5,C6,C7,C8,CX,L1,L2,L3,L4,L5,S1,S2,S3,S4,S5,T1,T10,T11,T12,T2,T3,T4,T5,T6,T7,T8,T9}; TRACTS={spinocervical tract}
+  * SG: [BrainRegionBMA_SC_PH_SG BMA.SC.PH.SG] - Relay for C-fibers of slowly conducting, poorly localized pain sensation (Second of two after proprius 1-order neurons); LAYERS={C1,C2,C3,C4,C5,C6,C7,C8,CX,L1,L2,L3,L4,L5,S1,S2,S3,S4,S5,T1,T10,T11,T12,T2,T3,T4,T5,T6,T7,T8,T9}; TRACTS={anterior spinothalamic tract}
+Parasymp. Visceral Sensory Nucleus:
+  * DCN: [BrainRegionAVA_SC_CC_DCN AVA.SC.CC.DCN] - Relay of sensory information from pelvic viscera (Includes nociception); LAYERS={L1,L2,S1,S2,S3,S4}; TRACTS={}
+Preganglionic Nucleus:
+  * ONN: [BrainRegionAVA_SC_VH_ONF AVA.SC.VH.ONF] - Maintenance of urination and defecation, muscular contraction during orgasm (From Barrington's Nucleus); LAYERS={S1,S2,S3}; TRACTS={}
+Preganglionic Parasymp. Nucleus:
+  * Intermediolateral Cell Column, Intermediate Zone
+   * SPS: [BrainRegionAVA_SC_IZ_SPS AVA.SC.IZ.SPS] - parasympathetic impulses pass via postganglionic fibers to the urinary bladder, erectile tissues, and the smooth muscles and glands in the colon and rectum (from Lamina VII, visceral parasympathetic); LAYERS={S1,S2,S3}; TRACTS={}
+Preganglionic Symp. Nucleus:
+  * Intermediolateral Cell Column, Intermediate Zone
+   * CSC: [BrainRegionVBA_SC_IZ_CSC VBA.SC.IZ.CSC] - Control of iris dilator muscle (Budge's Center, intermediolateral cell column); LAYERS={T1,T2}; TRACTS={}
+   * IML: [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] - Mediate entire sympathetic innervation of body (from Lamina VII, visceral sensory); LAYERS={L1,L2,T1,T10,T11,T12,T2,T3,T4,T5,T6,T7,T8,T9}; TRACTS={}
+  * IMM: [BrainRegionAVA_SC_IZ_IMM AVA.SC.IZ.IMM] - Visceral sensory (ventral spinocerebellar tract); LAYERS={L1,L2,T1,T10,T11,T12,T2,T3,T4,T5,T6,T7,T8,T9}; TRACTS={}
+Premotor Nucleus:
+  * Lateral Motor Nuclei (distal muscles motor neurons)
+   * SAN: [BrainRegionHMA_SC_VH_SAN HMA.SC.VH.SAN] - Control of neck (Rotate head, continuus from AMB); LAYERS={C1,C2,C3,C4,C5,C6}; TRACTS={}
+Sensory Relay Nucleus:
+  * CLN: [BrainRegionBMA_SC_PH_CL BMA.SC.PH.CL] - Unconscious Proprioception (To CR); LAYERS={C8,L1,L2,L3,T1,T10,T11,T12,T2,T3,T4,T5,T6,T7,T8,T9}; TRACTS={}
 
 == SPINAL CORD LAMINAE AND LEVELS ==
 (generated)
