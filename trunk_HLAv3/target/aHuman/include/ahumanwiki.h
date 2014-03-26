@@ -313,6 +313,7 @@ private:
 	void createNeurons_addFibers( int level , MapStringToClass<XmlSpinalFiber>& fibers , StringList& lines );
 	void createNeurons_addFiberInfo( int level , XmlSpinalFiber& fiber , StringList& lines );
 	void createLayout();
+	void createNuclei();
 	void createTracts();
 	void createTracts_addTractSetLines( XmlSpinalTractSet& ts , StringList& lines );
 	void createTracts_addTractLines( int level , XmlSpinalTract& tract , StringList& lines );

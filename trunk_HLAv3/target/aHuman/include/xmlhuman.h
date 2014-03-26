@@ -92,6 +92,7 @@ public:
 	String comment;
 	String brodmannid;
 	String type;
+	String fgroup;
 	String function;
 	String notes;
 	String dotdef;
@@ -325,9 +326,12 @@ public:
 	void load( Xml xmlDiv );
 	String getImageSrc() { return( imgSrc ); };
 	String getImageHeight() { return( imgHeight ); };
-	const char **getLevels();
-	const char **getLaminas();
-	StringList& getCellItems( String level , String lamina );
+	const char **getLayoutLevels();
+	const char **getLayoutLaminas();
+	StringList& getLayoutCellItems( String level , String lamina );
+	void getLayoutItems( StringList& items );
+	void getLayoutItemLayers( String item , StringList& items );
+	void getRegionTracts( String region , StringList& tracts );
 
 	MapStringToClass<XmlSpinalEndingSet>& getEndings() { return( endings ); };
 	MapStringToClass<XmlSpinalFiber>& getFibers() { return( fibers ); };
@@ -394,6 +398,8 @@ public:
 	~XmlSpinalTract();
 
 	void load( XmlSpinalCord& sc , Xml xml );
+	void addPath( XmlSpinalTractPath *path );
+	bool referencesRegion( String region );
 
 public:
 	bool final;
@@ -409,6 +415,7 @@ public:
 	String imgheight;
 	MapStringToClass<XmlSpinalTract> tracts;
 	ClassList<XmlSpinalTractPath> paths;
+	ClassList<XmlSpinalTractPath> allpaths;
 };
 
 /*#########################################################################*/
@@ -419,7 +426,7 @@ public:
 	XmlSpinalTractPath();
 	~XmlSpinalTractPath();
 
-	void load( Xml xml );
+	void load( XmlSpinalTract *tract , Xml xml );
 
 public:
 	String function;

@@ -10,7 +10,7 @@ XmlSpinalTractPath::XmlSpinalTractPath() {
 XmlSpinalTractPath::~XmlSpinalTractPath() {
 }
 
-void XmlSpinalTractPath::load( Xml xml ) {
+void XmlSpinalTractPath::load( XmlSpinalTract *tract , Xml xml ) {
 	function = xml.getAttribute( "function" );
 	pathway = xml.getAttribute( "pathway" );
 
@@ -24,6 +24,8 @@ void XmlSpinalTractPath::load( Xml xml ) {
 	items.add( &midlist );
 	items.add( dst );
 
+	tract -> addPath( this );
+
 	String fibersvalue = xml.getAttribute( "fibers" );
 	fibersvalue.split( fibers , "," );
 	String value = xml.getAttribute( "endings" );
@@ -31,7 +33,7 @@ void XmlSpinalTractPath::load( Xml xml ) {
 
 	for( Xml xmlChild = xml.getFirstChild( "path" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "path" ) ) {
 		XmlSpinalTractPath *path = new XmlSpinalTractPath();
-		path -> load( xmlChild );
+		path -> load( tract , xmlChild );
 		childs.add( path );
 	}
 }

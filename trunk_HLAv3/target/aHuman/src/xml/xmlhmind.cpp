@@ -162,6 +162,7 @@ void XmlHMind::createElementInfo( String mapId , Xml item , XmlHMindElementInfo&
 	info.comment = item.getAttribute( "comment" , "" );
 	info.brodmannid = item.getAttribute( "brodmannid" , "" );
 	info.type = item.getAttribute( "type" , "" );
+	info.fgroup = item.getAttribute( "fgroup" , "" );
 	info.function = item.getAttribute( "function" , "" );
 	info.notes = item.getAttribute( "notes" , "" );
 	info.dotdef = item.getAttribute( "dotdef" , "" );

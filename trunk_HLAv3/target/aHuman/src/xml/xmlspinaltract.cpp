@@ -30,7 +30,7 @@ void XmlSpinalTract::load( XmlSpinalCord& sc , Xml xml ) {
 	if( final ) {
 		for( Xml xmlChild = xml.getFirstChild( "path" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "path" ) ) {
 			XmlSpinalTractPath *path = new XmlSpinalTractPath();
-			path -> load( xmlChild );
+			path -> load( this , xmlChild );
 			paths.add( path );
 		}
 	}
@@ -42,4 +42,17 @@ void XmlSpinalTract::load( XmlSpinalCord& sc , Xml xml ) {
 		}
 	}
 }
-	
+
+void XmlSpinalTract::addPath( XmlSpinalTractPath *path ) {
+	allpaths.add( path );
+}
+
+bool XmlSpinalTract::referencesRegion( String region ) {
+	for( int k = 0; k < allpaths.count(); k++ ) {
+		XmlSpinalTractPath& path = allpaths.getRef( k );
+		if( path.items.find( region ) >= 0 )
+			return( true );
+	}
+
+	return( false );
+}
