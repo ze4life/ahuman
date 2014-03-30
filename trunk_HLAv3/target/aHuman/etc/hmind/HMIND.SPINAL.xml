@@ -7,13 +7,15 @@
 		<element id="BMA.SC.LH" name="Lateral Horn/Funiculus">
 			<element id="BMA.SC.LH.LCV" name="Lateral Cervical Nucleus" mapped="true" type="1-order Sensory Nucleus" index="LCN"
 				refs="NL:[http://neurolex.org/wiki/Category:Lateral_cervical_nucleus Lateral cervical nucleus]"
+				fgroup="Mechanoreception and Proprioception"
 				function="Relay Low-threshold Mechanoreceptors to CR"
 				notes="From Lamina V"
 				/>
 			<element id="BMA.SC.LH.LSN" name="Lateral Spinal Nucleus" mapped="true" type="1-order Sensory Nucleus" index="LSN"
 				refs="NL:[http://neurolex.org/wiki/Category:Lateral_spinal_nucleus Lateral spinal nucleus]"
+				fgroup="Pain and Temperature"
 				function="Integrate autonomic and homeostatic functions"
-				notes="Projects to HT and lateral globus pallidus;  integrative nucleus for autonomic and homeostatic functions, and related motivational and affective responses to autonomic function"
+				notes="Projects to HT and lateral globus pallidus; integrative nucleus for autonomic and homeostatic functions, and related motivational and affective responses to autonomic function"
 				/>
 		</element>
 
@@ -21,6 +23,7 @@
 			<element id="BMA.SC.PH.L1" name="Lamina I">
 				<element id="BMA.SC.PH.MG" name="Marginal Nucleus" mapped="true" type="1-order Sensory Nucleus" index="MN"
 					refs="NA:Marginal Nucleus;BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&amp;conceptid=FMA%3A73903 Posteromarginal nucleus]"
+					fgroup="Pain and Temperature"
 					function="Relay information related to pain and temperature sensation"
 					notes="Pain sensation cannot be modulated"
 					/>
@@ -28,13 +31,15 @@
 			<element id="BMA.SC.PH.L2" name="Lamina II">
 				<element id="BMA.SC.PH.SG" name="Substantia Gelatinosa" mapped="true" type="1-order Sensory Nucleus" index="SG"
 					refs="NA:Gelatinosus substance = BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&amp;conceptid=FMA%3A74019 Substantia gelatinosa]"
+					fgroup="Pain and Temperature"
 					function="Relay for C-fibers of slowly conducting, poorly localized pain sensation"
 					notes="Second of two after proprius 1-order neurons"
 					/>
 			</element>
 			<element id="BMA.SC.PH.L34" name="Lamina III, IV">
-				<element id="BMA.SC.PH.NP" name="Proprius Nucleus" mapped="true" type="1-order Sensory Nucleus" index="NPR"
+				<element id="BMA.SC.PH.NP" name="Proprius Nucleus" mapped="true" type="Sensory Relay Nucleus" index="NPR"
 					refs="NA:Nucleus Proprius;NL:[http://neurolex.org/wiki/Category:Nucleus_proprius Nucleus proprius];BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&amp;conceptid=FMA%3A73906 Nucleus proprius dorsalis]"
+					fgroup="Pain and Temperature"
 					function="Relay light touch, pain and temperature information"
 					notes="With Clarke's Nucleus sensing fine touch and proprioception"
 					/>
@@ -42,6 +47,7 @@
 			<element id="BMA.SC.PH.L56" name="Lamina V, VI">
 				<element id="BMA.SC.PH.CL" name="Clarke's Nucleus" mapped="true" type="Sensory Relay Nucleus" index="CLN"
 					refs="NA:Nucleus thoracicus;NL:[http://neurolex.org/wiki/Category:Clarke%27s_Nucleus Clarke's Nucleus];BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&amp;conceptid=FMA%3A73912 Dorsal nucleus of Clarke]"
+					fgroup="Mechanoreception and Proprioception"
 					function="Unconscious Proprioception"
 					notes="To CR"
 					>
@@ -55,16 +61,19 @@
 			<element id="SC.IZ.L7" name="Lamina VII">
 				<element id="BMA.SC.IZ.CCV" name="Central Cervical Nucleus" mapped="true" type="1-order Sensory Nucleus" index="CCN"
 					refs="NL:[http://neurolex.org/wiki/Category:Central_cervical_nucleus Central cervical nucleus]"
+					fgroup="Mechanoreception and Proprioception"
 					function="Coordinate voluntary movements, maintain balance, and learn motor skills"
 					notes="Receive neck and vestibular input and project to CR and vestibular nuclei"
 					/>
 				<element id="BMA.SC.IZ.CBS" name="Centrobasalis Nucleus" mapped="true" type="1-order Sensory Nucleus" index="CBN"
 					refs="NA:Central Nucleus;NL:[http://neurolex.org/wiki/Category:Nucleus_centrobasalis Nucleus centrobasalis]"
+					fgroup="Mechanoreception and Proprioception"
 					function="Unconscious proprioception to CR"
 					notes="Upper extremity, relay motor feedback to CR, major site of termination for dorsal root fibers"
 					/>
-				<element id="AVA.SC.IZ.IMM" name="Intermediomedial Nucleus" mapped="true" type="Preganglionic Symp. Nucleus" index="IMM"
+				<element id="AVA.SC.IZ.IMM" name="Intermediomedial Nucleus" mapped="true" type="1-order Sensory Nucleus" index="IMM"
 					refs="NA:Intermediomedial nucleus;BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&amp;conceptid=FMA%3A73918 Intermediomedial nucleus]"
+					fgroup="Mechanoreception and Proprioception"
 					function="Visceral sensory"
 					notes="ventral spinocerebellar tract"
 					/>
@@ -125,7 +134,7 @@
 					fgroup="Lateral Motor Nuclei (distal muscles motor neurons)"
 					function="Innervation of limbs muscles"
 					/>
-				<element id="HMA.SC.VH.SAN" name="Spinal Accessory Nucleus" mapped="true" type="Premotor Nucleus" index="SAN" 
+				<element id="HMA.SC.VH.SAN" name="Spinal Accessory Nucleus" mapped="true" type="1-order Motor Nucleus" index="SAN" 
 					refs="NA:Nucleus of Accessory Nerve;NL:[http://neurolex.org/wiki/Category:Accessory_nucleus Accessory nucleus]"
 					fgroup="Lateral Motor Nuclei (distal muscles motor neurons)"
 					function="Control of neck"
@@ -133,12 +142,13 @@
 					/>
 				<element id="BMA.SC.VH.PHR" name="Phrenic Nucleus" mapped="true" type="1-order Motor Nucleus" index="PHN" 
 					refs="NA:Nucleus of Phrenic Nerve;NL:[http://neurolex.org/wiki/Category:Phrenic_nucleus Phrenic nucleus]"
-					fgroup="Lateral Motor Nuclei (distal muscles motor neurons)"
+					fgroup="Medial Motor Nuclei (axial muscles motor neurons)"
 					function="Innervation of diaphragm"
 					notes="Projections from Nucleus Solitarius"
 					/>
-				<element id="AVA.SC.VH.ONF" name="Onuf's Nucleus" mapped="true" type="Preganglionic Nucleus" index="ONN"
+				<element id="AVA.SC.VH.ONF" name="Onuf's Nucleus" mapped="true" type="1-order Motor Nucleus" index="ONN"
 					refs="NA:Lumbosacral Nucleus;NL:[http://neurolex.org/wiki/Category:Onuf%27s_nucleus Onuf's nucleus]"
+					fgroup="Medial Motor Nuclei (axial muscles motor neurons)"
 					function="Maintenance of urination and defecation, muscular contraction during orgasm"
 					notes="From Barrington's Nucleus"
 					/>
@@ -147,8 +157,9 @@
 
 		<element id="AVA.SC.CC" name="Central canal">
 			<element id="AVA.SC.CC.L10" name="Lamina X">
-				<element id="AVA.SC.CC.DCN" name="Dorsal Commisural Nucleus" mapped="true" type="Parasymp. Visceral Sensory Nucleus" index="DCN"
+				<element id="AVA.SC.CC.DCN" name="Dorsal Commisural Nucleus" mapped="true" type="Sensory Relay Nucleus" index="DCN"
 					refs="BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&amp;conceptid=FMA%3A73900 Commissural nucleus of spinal cord]"
+					fgroup="Pain and Temperature"
 					function="Relay of sensory information from pelvic viscera"
 					notes="Includes nociception"
 					>
@@ -527,10 +538,7 @@
 					<receptor id="SMC" name="Meissner corpuscles" 
 						function="vibration 20-50 Hz; dynamic touch/pressure"
 						notes="tactile, texture, rapidly adapting, superficial papillary receptor, low threshold, especially sensitive to light touch - like fingers and lips"
-						>
-						<receptor id="S-GC" name="Genital corpuscles" 
-							/>
-					</receptor>
+						/>
 					<receptor id="SHF" name="Hair follicle receptors" 
 						function="touch, hairy skin velocity"
 						notes="slowly adapting, low threshold; Peritrichial endings - nerve plexus wrapped around hair roots; large hair follicles, slow and rapid movement of hairs and deflection of the skin"
@@ -658,11 +666,11 @@
 						target="neocortex BA 3b, lateral"
 						notes="muscle afferents and cutaneous mechanoreceptors (C1-T6 dermatomes); thoracic-toward-contralateral and cervical slices"
 						>
-						<path src="AVA.PN.SG.DRG" mids="BMA.HM.CU,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1" fibers="A-alpha-Ia,A-beta" endings="SMC,SPC,SHF"
+						<path id="PCT.CUM" src="AVA.PN.SG.DRG" mids="BMA.HM.CU,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1" fibers="A-alpha-Ia,A-beta" endings="SMC,SPC,SHF"
 							function="conscious sensations of head" 
 							pathway="geniohyoid (C1), head top (C2), head back above neck (C3) to S1 medial"
 							/>
-						<path src="AVA.PN.SG.DRG" mids="BMA.HM.CU,SMA.FD.TH.VPL" dst="SMA.NC.PG.S1" fibers="A-beta" endings="SMC,SPC,SHF"
+						<path id="PCT.CUL" src="AVA.PN.SG.DRG" mids="BMA.HM.CU,SMA.FD.TH.VPL" dst="SMA.NC.PG.S1" fibers="A-beta" endings="SMC,SPC,SHF"
 							function="conscious sensations of neck, trunk, and extremities" 
 							pathway="neck (C4), trunk (T1-T6), and extremities - arms (C5-T2) to S1 lateral"
 							/>
@@ -675,7 +683,7 @@
 						target="somatosensory cortex"
 						notes="sacral-toward-contralateral and lumbar slices; mostly cutaneous (proprioception via CLN)"
 						>
-						<path src="AVA.PN.SG.DRG" mids="BMA.HM.GR,SMA.FD.TH.VPL" dst="SMA.NC.PG.S1" fibers="A-beta" endings="SMS,SPC"
+						<path id="PCT.GRL" src="AVA.PN.SG.DRG" mids="BMA.HM.GR,SMA.FD.TH.VPL" dst="SMA.NC.PG.S1" fibers="A-beta" endings="SMS,SPC"
 							function="epicritic, kinesthetic, and conscious proprioceptive information from lower body"
 							pathway="receptors of thoracic and lower limbs, T7-CX to neocortex BA 3b, medial"
 							/>
@@ -693,23 +701,18 @@
 						target="neocortex BA 3b"
 						notes="pain duration equals to stimulus duration"
 						>
-						<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.MG" dst="BMA.SC.LH.LSN" fibers="A-delta-sensory" endings="SFN"
+						<path id="DLF" src="AVA.PN.SG.DRG" mids="BMA.SC.PH.MG" dst="BMA.SC.LH.LSN" fibers="A-delta-sensory" endings="SFN"
 							function="autonomic and homeostatic functions, initial sharp localization of pain"
 							pathway="body to hypothalamus and neocortex"
-							>
-							<path src="BMA.SC.LH.LSN" dst="HTA.FD.HT.AH" fibers="A-delta-sensory" endings="SFN"
-								function="autonomic and homeostatic functions, and related motivational and affective responses to autonomic function"
-								pathway="body to hypothalamus"
-								/>
-							<path src="BMA.SC.LH.LSN" mids="BMA.HM.CU,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1" fibers="A-delta-sensory" endings="SFN"
-								function="from lateral LSN; joins fasciculus cuneatus; initial sharp localization of pain"
-								pathway="upper body to neocortex BA 3b"
-								/>
-							<path src="BMA.SC.LH.LSN" mids="BMA.HM.GR,SMA.FD.TH.VPL" dst="SMA.NC.PG.S1" fibers="A-delta-sensory" endings="SFN"
-								function="from medial LSN; joins fasciculus gracilis; initial sharp localization of pain"
-								pathway="lower body to neocortex BA 3b"
-								/>
-						</path>
+							/>
+						<path id="DLF.VPM" src="BMA.SC.LH.LSN" mids="BMA.HM.CU,SMA.FD.TH.VPM" dst="SMA.NC.PG.S1" fibers="A-delta-sensory" endings="SFN"
+							function="from lateral LSN; joins fasciculus cuneatus; initial sharp localization of pain"
+							pathway="upper body to neocortex BA 3b"
+							/>
+						<path id="DLF.VPL" src="BMA.SC.LH.LSN" mids="BMA.HM.GR,SMA.FD.TH.VPL" dst="SMA.NC.PG.S1" fibers="A-delta-sensory" endings="SFN"
+							function="from medial LSN; joins fasciculus gracilis; initial sharp localization of pain"
+							pathway="lower body to neocortex BA 3b"
+							/>
 					</tract>
 
 					<tract name="spinocervical tract" final="true" link="http://en.wikipedia.org/wiki/Spinocervical_pathway" 
@@ -719,19 +722,18 @@
 						target="somatosensory cortex"
 						notes="thoracic-toward-contralateral and cervical slices"
 						>
-						<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.NP" dst="BMA.SC.LH.LCV" fibers="A-alpha,A-beta" endings="SRC"
+						<path id="SCVT" src="AVA.PN.SG.DRG" mids="BMA.SC.PH.NP" dst="BMA.SC.LH.LCV" fibers="A-alpha,A-beta" endings="SRC"
 							function="tactile/pressure pathway from the spinal cord to sensory cortex"
 							pathway="tactile/pressure to S1"
-							>
-							<path src="BMA.SC.LH.LCV" mids="SMA.FD.TH.VPL" dst="SMA.NC.PG.S1" fibers="A-alpha,A-beta" endings="SRC"
-								function="four-neuron, fast-conducting, tactile/pressure pathway from the spinal cord to sensory cortex"
-								pathway="tactile/pressure to S1"
-								/>
-							<path src="BMA.SC.LH.LCV" dst="FBA.MM.PAG" fibers="A-alpha,A-beta" endings="SRC"
-								function="alerts about presence of cutaneous stimuli that might represent danger, necessitating flight"
-								pathway="cutaneous stimuli to PAG"
-								/>
-						</path>
+							/>
+						<path id="SCVT.VPL" src="BMA.SC.LH.LCV" mids="SMA.FD.TH.VPL" dst="SMA.NC.PG.S1" fibers="A-alpha,A-beta" endings="SRC"
+							function="four-neuron, fast-conducting, tactile/pressure pathway from the spinal cord to sensory cortex"
+							pathway="tactile/pressure to S1"
+							/>
+						<path id="SCVT.PAG" src="BMA.SC.LH.LCV" dst="FBA.MM.PAG" fibers="A-alpha,A-beta" endings="SRC"
+							function="alerts about presence of cutaneous stimuli that might represent danger, necessitating flight"
+							pathway="cutaneous stimuli to PAG"
+							/>
 					</tract>
 				</tract>
 			</tract>
@@ -753,23 +755,24 @@
 							source="face, head and neck"
 							target="SI - BA 1,2"
 							>
-							<path src="AVA.PN.SG.TRG" dst="HMA.HM.TGM.STR" fibers="A-delta-sensory" endings="SFN"
+							<path id="TTT.TRG" src="AVA.PN.SG.TRG" dst="HMA.HM.TGM.STR" fibers="A-delta-sensory" endings="SFN"
 								function="nociceptors"
 								pathway="head, face and intraoral structures nociceptors to spinal trigeminal nucleus"
 								/>
-							<path src="AVA.PN.SG.GNG" dst="HMA.HM.TGM.STR" fibers="A-delta-sensory" endings="SFN"
+							<path id="TTT.GNG" src="AVA.PN.SG.GNG" dst="HMA.HM.TGM.STR" fibers="A-delta-sensory" endings="SFN"
 								function="nociceptors"
 								pathway="nociceptors of cranial nerves VII to spinal trigeminal nucleus" 
 								/>
-							<path src="AVA.PN.SG.JUG" dst="HMA.HM.TGM.STR" fibers="A-delta-sensory" endings="SFN"
+							<path id="TTT.JUG" src="AVA.PN.SG.JUG" dst="HMA.HM.TGM.STR" fibers="A-delta-sensory" endings="SFN"
 								function="nociceptors"
 								pathway="nociceptors of cranial nerves IX,X to spinal trigeminal nucleus"
 								/>
-							<path src="AVA.PN.SG.NOD" dst="HMA.HM.TGM.STR" fibers="A-delta-sensory" endings="SFN"
+							<path id="TTT.NOD" src="AVA.PN.SG.NOD" dst="HMA.HM.TGM.STR" fibers="A-delta-sensory" endings="SFN"
 								function="nociceptors"
 								pathway="nociceptors of cranial nerves X to spinal trigeminal nucleus"
 								/>
-							<path src="HMA.HM.TGM.STR" mids="SMA.FD.TH.VPM" dst="SMA.NC.PG.S1" fibers="A-delta-sensory" endings="SFN"
+
+							<path id="TTT.VPM" src="HMA.HM.TGM.STR" mids="SMA.FD.TH.VPM" dst="SMA.NC.PG.S1" fibers="A-delta-sensory" endings="SFN"
 								function="nociceptors"
 								pathway="spinal trigeminal nucleus to S1"
 								/>
@@ -780,23 +783,22 @@
 							source="head MC,PC"
 							target="SII - BA 40,43"
 							>
-							<path src="AVA.PN.SG.TRG" dst="HMA.HP.PTP.PTR" fibers="C-sensory" endings="SFN"
+							<path id="DTT" src="AVA.PN.SG.TRG" dst="HMA.HP.PTP.PTR" fibers="C-sensory" endings="SFN"
 								function="face dull, burning pain, deep, aching pain, temperature and crude touch"
 								pathway="head, face and intraoral structures to Precentral Cortex"
-								>
-								<path src="HMA.HP.PTP.PTR" mids="BGA.FD.TH.PF" dst="SMA.NC.PO.PCC" fibers="C-sensory" endings="SFN"
-									function="face dull, burning pain, deep, aching pain, temperature and crude touch"
-									pathway="head, face and intraoral structures to Precentral Cortex"
-									/>
-								<path src="HMA.HP.PTP.PTR" mids="SMA.FD.TH.VPI" dst="PHA.NC.INS.PIC" fibers="C-sensory" endings="SFN"
-									function="pain, temperature for emotion"
-									pathway="marginal nucleus to insula"
-									/>
-								<path src="HMA.HP.PTP.PTR" mids="FCA.FD.TH.MD" dst="CGA.NC.DACG" fibers="C-sensory" endings="SFN"
-									function="pain, temperature for reward"
-									pathway="marginal nucleus to frontal lobe"
-									/>
-							</path>
+								/>
+							<path id="DTT.PF" src="HMA.HP.PTP.PTR" mids="BGA.FD.TH.PF" dst="SMA.NC.PO.PCC" fibers="C-sensory" endings="SFN"
+								function="face dull, burning pain, deep, aching pain, temperature and crude touch"
+								pathway="head, face and intraoral structures to Precentral Cortex"
+								/>
+							<path id="DTT.VPI" src="HMA.HP.PTP.PTR" mids="SMA.FD.TH.VPI" dst="PHA.NC.INS.PIC" fibers="C-sensory" endings="SFN"
+								function="pain, temperature for emotion"
+								pathway="marginal nucleus to insula"
+								/>
+							<path id="DTT.MD" src="HMA.HP.PTP.PTR" mids="FCA.FD.TH.MD" dst="CGA.NC.DACG" fibers="C-sensory" endings="SFN"
+								function="pain, temperature for reward"
+								pathway="marginal nucleus to frontal lobe"
+								/>
 						</tract>
 					</tract>
 					<tract name="paleospinothalamic tract" index="PSTT" link="http://en.wikipedia.org/wiki/Nociception"
@@ -809,7 +811,7 @@
 							source="skin - slow pain, temperature, slightly tactile"
 							target="BA 3,1,2"
 							>
-							<path src="AVA.PN.SG.DRG" mids="BMA.SC.PH.SG,SMA.FD.TH.VPL" dst="SMA.NC.PG.S1" fibers="C-sensory" endings="SFN"
+							<path id="ASTT" src="AVA.PN.SG.DRG" mids="BMA.SC.PH.SG,SMA.FD.TH.VPL" dst="SMA.NC.PG.S1" fibers="C-sensory" endings="SFN"
 								function="slightly tactile"
 								pathway="head and body MD,MC,PC,HF receptors to S1"
 								/>
@@ -819,23 +821,105 @@
 							source="body pain, temperature, crude touch"
 							target="BA 3,1,2"
 							>
-							<path src="AVA.PN.SG.DRG" dst="BMA.SC.PH.MG" fibers="A-delta-sensory,C-sensory" endings="SFN"
+							<path id="LSTT" src="AVA.PN.SG.DRG" dst="BMA.SC.PH.MG" fibers="A-delta-sensory" endings="SAD"
 								function="pain, temperature"
 								pathway="head and body FN,RC receptors to marginal nucleus"
-								>
-								<path src="BMA.SC.PH.MG" mids="SMA.FD.TH.VPI" dst="PHA.NC.INS.PIC" fibers="A-delta-sensory" endings="SAD"
-									function="pain, temperature for emotion"
-									pathway="marginal nucleus to insula"
-									/>
-								<path src="BMA.SC.PH.MG" mids="FCA.FD.TH.MD" dst="CGA.NC.DACG" fibers="C-sensory" endings="SFN"
-									function="pain, temperature for reward"
-									pathway="marginal nucleus to frontal lobe"
-									/>
-							</path>
+								/>
+							<path id="LSTT.VPI" src="BMA.SC.PH.MG" mids="SMA.FD.TH.VPI" dst="PHA.NC.INS.PIC" fibers="A-delta-sensory" endings="SAD"
+								function="pain, temperature for emotion"
+								pathway="pain to insula"
+								/>
+							<path id="LSTT.MD" src="BMA.SC.PH.SG" mids="FCA.FD.TH.MD" dst="CGA.NC.DACG" fibers="C-sensory" endings="SFN"
+								function="pain, temperature for reward"
+								pathway="pain to frontal lobe"
+								/>
+						</tract>
+						<tract name="spinomesencephalic tract" final="true" index="SMT" link="http://en.wikipedia.org/wiki/Periaqueductal_gray"
+							function="ascending pain and temperature fibers of the spinothalamic tract also send information to the PAG"
+							source="MG nucleus"
+							target="PAG, MRF"
+							>
+							<path id="SMT.PAG" src="AVA.PN.SG.DRG" mids="BMA.SC.PH.MG" dst="FBA.MM.PAG" fibers="A-delta-sensory" endings="SAD"
+								function="initiates pain inhibition"
+								pathway="activates enkephalin-releasing neurons that project to raphe nuclei, descending to inhibitory interneurons located in Laminae II"
+								/>
+							<path id="SMT.MRF" src="AVA.PN.SG.DRG" mids="BMA.SC.PH.MG" dst="MBA.HM.RF.MED" fibers="A-delta-sensory" endings="SAD"
+								function="attentional and alerting mechanisms"
+								pathway="visceral and somatic pain to MRF"
+								/>
 						</tract>
 					</tract>
 				</tract>
+
+				<tract name="spinolimbic pathways"
+					function="connect spinal cord with limbic structures"
+					>
+					<tract name="lateral spinal nucleus tract" final="true" index="LSNT" link="http://www.ncbi.nlm.nih.gov/pubmed/8613771"
+						function="nociception inegration"
+						source="body pain, temperature"
+						target="LNS"
+						>
+						<path id="SHT.LSN" src="AVA.PN.SG.DRG" dst="BMA.SC.LH.LSN" fibers="C-sensory" endings="SFN"
+							function="pain, temperature for ANS"
+							pathway="pain fibers to spinal integrator LSN"
+							/>
+
+						<tract name="spinohypothalamic tract" final="true" index="SHT" link="http://www.ncbi.nlm.nih.gov/pubmed/8613771"
+							function="provide nociceptive information to a variety of nuclei throughout the diencephalon and brainstem bilaterally"
+							source="body pain, temperature"
+							target="hypothalamus"
+							>
+							<path id="SHT.HT.LT" src="BMA.SC.LH.LSN" dst="HTA.FD.HT.LT" fibers="C-sensory" endings="SFN"
+								function="affect thirst and hunger"
+								pathway="pain fibers to lateral nucleus"
+								/>
+							<path id="SHT.HT.DM" src="BMA.SC.LH.LSN" dst="HTA.FD.HT.DM" fibers="C-sensory" endings="SFN"
+								function="affect blood pressure, heart rate"
+								pathway="pain fibers to dorsomedial nucleus"
+								/>
+							<path id="SHT.HT.AHT" src="BMA.SC.LH.LSN" dst="HTA.FD.HT.AH" fibers="C-sensory" endings="SFN"
+								function="affect appetite, autonomic and homeostatic functions, and related motivational and affective responses to autonomic function"
+								pathway="pain fibers to anterior hypothalamus"
+								/>
+							<path id="SHT.HT.SCN" src="BMA.SC.LH.LSN" dst="HTA.FD.HT.SCN" fibers="C-sensory" endings="SFN"
+								function="affect 24-hour rhythms"
+								pathway="pain fibers to anterior hypothalamus"
+								/>
+							<path id="SHT.HT.SO" src="BMA.SC.LH.LSN" dst="HTA.FD.HT.SO" fibers="C-sensory" endings="SFN"
+								function="affect blood volume or blood pressure "
+								pathway="pain fibers to anterior hypothalamus"
+								/>
+						</tract>
+						<tract name="spinosolitary tract" final="true" index="SST" link="http://en.wikipedia.org/wiki/Solitary_tract"
+							function="central transmission of visceronoceptive messages"
+							source="body pain, temperature"
+							target="hypothalamus"
+							>
+							<path id="SST" src="BMA.SC.LH.LSN" dst="HMA.HM.SOL" fibers="C-sensory" endings="SFN"
+								function="conveying information regarding visceronociception"
+								pathway="pain fibers to solitary nucleus"
+								/>
+						</tract>
+					</tract>
+
+					<tract name="spinoreticular tract" final="true" index="SRT" link="http://en.wikipedia.org/wiki/Spinoreticular_tract"
+						function="automatic responses to pain"
+						source="visceral pain"
+						target="MRF, entire cortex"
+						>
+						<path id="SRT.MED" src="AVA.PN.SG.DRG" mids="AVA.SC.IZ.IMM" dst="MBA.HM.RF.MED" fibers="A-delta-sensory" endings="SAD"
+							function="automatic responses to pain"
+							pathway="viceral pain to spinal cord to medullary reticular formation"
+							/>
+						<path id="SRT.VA" src="AVA.PN.SG.DRG" mids="AVA.SC.IZ.IMM,HP.PRF.MPRF" dst="MCA.FD.TH.VA" fibers="A-delta-sensory" endings="SPC"
+							function="exerts excitatory influence predominantly on pontine reticular nuclei to facilitate contraction of extensor muscles of limb and trunk"
+							pathway="crude touch/vibration to spinal cord to pontine reticular formation to thalamus; utilizes four levels of neurons"
+							/>
+					</tract>
+				</tract>
 			</tract>
+
+
 		</tracts>
 
 	</division>
