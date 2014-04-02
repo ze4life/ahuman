@@ -4,13 +4,15 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-XmlSpinalTractPath::XmlSpinalTractPath() {
+XmlSpinalTractPath::XmlSpinalTractPath( XmlSpinalTract& p_tract , XmlSpinalTractPath *p_parent ) 
+: tract( p_tract ) , parent( p_parent ) {
 }
 
 XmlSpinalTractPath::~XmlSpinalTractPath() {
 }
 
-void XmlSpinalTractPath::load( XmlSpinalTract *tract , Xml xml ) {
+void XmlSpinalTractPath::load( Xml xml ) {
+	id = xml.getAttribute( "id" );
 	function = xml.getAttribute( "function" );
 	pathway = xml.getAttribute( "pathway" );
 
@@ -24,7 +26,7 @@ void XmlSpinalTractPath::load( XmlSpinalTract *tract , Xml xml ) {
 	items.add( &midlist );
 	items.add( dst );
 
-	tract -> addPath( this );
+	tract.addPath( this );
 
 	String fibersvalue = xml.getAttribute( "fibers" );
 	fibersvalue.split( fibers , "," );
@@ -32,8 +34,8 @@ void XmlSpinalTractPath::load( XmlSpinalTract *tract , Xml xml ) {
 	value.split( endings , "," );
 
 	for( Xml xmlChild = xml.getFirstChild( "path" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "path" ) ) {
-		XmlSpinalTractPath *path = new XmlSpinalTractPath();
-		path -> load( tract , xmlChild );
-		childs.add( path );
+		XmlSpinalTractPath *path = new XmlSpinalTractPath( tract , this );
+		path -> load( xmlChild );
+		childs.add( path -> id , path );
 	}
 }

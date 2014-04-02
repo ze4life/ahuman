@@ -6,6 +6,9 @@
 
 void ModelVerifier::checkSpinal() {
 	bool checkAll = true;
+
+	if( !checkSpinal_verifyEndings() )
+		checkAll = false;
 	if( !checkSpinal_verifyFibers() )
 		checkAll = false;
 	if( !checkSpinal_verifyTracts() )
@@ -15,6 +18,42 @@ void ModelVerifier::checkSpinal() {
 		logger.logInfo( "checkSpinal: SPINAL CORD IS OK" );
 	else
 		logger.logInfo( "checkSpinal: SPINAL CORD HAS ERRORS" );
+}
+
+bool ModelVerifier::checkSpinal_verifyEndings() {
+	XmlSpinalCord *sc = hmindxml.getSpinalCord();
+	MapStringToClass<XmlSpinalEnding>& endings = sc -> getEndingMap();
+
+	bool checkAll = true;
+	for( int k = 0; k < endings.count(); k++ ) {
+		XmlSpinalEnding& ending = endings.getClassRefByIndex( k );
+		if( !checkSpinal_verifyEndingData( ending ) )
+			checkAll = false;
+	}
+
+	return( checkAll );
+}
+
+bool ModelVerifier::checkSpinal_verifyEndingData( XmlSpinalEnding& ending ) {
+	XmlSpinalCord *sc = hmindxml.getSpinalCord();
+
+	// ignore non-leaf item
+	if( ending.childs.count() > 0 )
+		return( true );
+
+	bool checkAll = true;
+
+	if( ending.fibers.count() == 0 ) {
+		logger.logError( "checkSpinal_verifyEndingData: no fibers assigned to ending=" + ending.id );
+		checkAll = false;
+	}
+
+	if( ending.tracts.count() == 0 ) {
+		logger.logError( "checkSpinal_verifyEndingData: no tracts assigned to ending=" + ending.id );
+		checkAll = false;
+	}
+
+	return( checkAll );
 }
 
 bool ModelVerifier::checkSpinal_verifyFibers() {
@@ -32,9 +71,23 @@ bool ModelVerifier::checkSpinal_verifyFibers() {
 }
 
 bool ModelVerifier::checkSpinal_verifyFiberData( XmlSpinalFiber& fiber ) {
+	bool checkAll = true;
+
 	XmlSpinalCord *sc = hmindxml.getSpinalCord();
 
-	bool checkAll = true;
+	// check leaf items
+	if( fiber.childs.count() == 0 ) {
+		if( fiber.endings.count() == 0 ) {
+			logger.logError( "checkSpinal_verifyFiberData: no endings assigned to fiber=" + fiber.id );
+			checkAll = false;
+		}
+
+		if( fiber.tracts.count() == 0 ) {
+			logger.logError( "checkSpinal_verifyFiberData: no tracts assigned to fiber=" + fiber.id );
+			checkAll = false;
+		}
+	}
+
 	for( int k = 0; k < fiber.endings.count(); k++ ) {
 		String item = fiber.endings.get( k );
 
@@ -82,13 +135,15 @@ bool ModelVerifier::checkSpinal_verifyTractSet( XmlSpinalTractSet& ts ) {
 
 bool ModelVerifier::checkSpinal_verifyTractData( XmlSpinalTract& tract ) {
 	bool checkAll = true;
-	for( int k = 0; k < tract.tracts.count(); k++ ) {
-		XmlSpinalTract& child = tract.tracts.getClassRefByIndex( k );
+
+	for( int k = 0; k < tract.childs.count(); k++ ) {
+		XmlSpinalTract& child = tract.childs.getClassRefByIndex( k );
 		if( !checkSpinal_verifyTractData( child ) )
 			checkAll = false;
 	}
+
 	for( int k = 0; k < tract.paths.count(); k++ ) {
-		XmlSpinalTractPath& child = tract.paths.getRef( k );
+		XmlSpinalTractPath& child = tract.paths.getClassRefByIndex( k );
 		if( !checkSpinal_verifyTractPathData( tract , child ) )
 			checkAll = false;
 	}
@@ -98,6 +153,19 @@ bool ModelVerifier::checkSpinal_verifyTractData( XmlSpinalTract& tract ) {
 
 bool ModelVerifier::checkSpinal_verifyTractPathData( XmlSpinalTract& tract , XmlSpinalTractPath& path ) {
 	bool checkAll = true;
+
+	// check leaf items
+	if( path.childs.count() == 0 ) {
+		if( path.endings.count() == 0 ) {
+			logger.logError( "checkSpinal_verifyTractPathData: no endings assigned to fiber=" + path.id );
+			checkAll = false;
+		}
+
+		if( path.fibers.count() == 0 ) {
+			logger.logError( "checkSpinal_verifyTractPathData: no tracts assigned to fiber=" + path.id );
+			checkAll = false;
+		}
+	}
 
 	// chech fibers and endings
 	XmlSpinalCord *sc = hmindxml.getSpinalCord();
@@ -118,7 +186,7 @@ bool ModelVerifier::checkSpinal_verifyTractPathData( XmlSpinalTract& tract , Xml
 	}
 
 	for( int k = 0; k < path.childs.count(); k++ ) {
-		XmlSpinalTractPath& child = path.childs.getRef( k );
+		XmlSpinalTractPath& child = path.childs.getClassRefByIndex( k );
 		if( !checkSpinal_verifyTractPathData( tract , child ) )
 			checkAll = false;
 	}

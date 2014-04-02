@@ -4,16 +4,16 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-XmlSpinalTract::XmlSpinalTract() {
+XmlSpinalTract::XmlSpinalTract( XmlSpinalTractSet& p_ts , XmlSpinalTract *p_parent ) 
+: ts( p_ts ) , parent( p_parent ) {
 }
 
 XmlSpinalTract::~XmlSpinalTract() {
-	tracts.destroy();
+	childs.destroy();
 	paths.destroy();
 }
 
-void XmlSpinalTract::load( XmlSpinalCord& sc , Xml xml ) {
-	final = xml.getBooleanAttribute( "final" , false );
+void XmlSpinalTract::load( Xml xml ) {
 	index = xml.getAttribute( "index" , "" );
 	name = xml.getAttribute( "name" );
 	link = xml.getAttribute( "link" , "" );
@@ -25,31 +25,29 @@ void XmlSpinalTract::load( XmlSpinalCord& sc , Xml xml ) {
 	imgsrc = xml.getAttribute( "imgsrc" , "" );
 	imgheight = xml.getAttribute( "imgheight" , "" );
 
-	sc.addTract( this );
+	ts.sc.addTract( this );
 
-	if( final ) {
-		for( Xml xmlChild = xml.getFirstChild( "path" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "path" ) ) {
-			XmlSpinalTractPath *path = new XmlSpinalTractPath();
-			path -> load( this , xmlChild );
-			paths.add( path );
-		}
+	for( Xml xmlChild = xml.getFirstChild( "path" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "path" ) ) {
+		XmlSpinalTractPath *path = new XmlSpinalTractPath(  *this , NULL );
+		path -> load( xmlChild );
+		paths.add( path -> id , path );
+		ts.sc.addPath( path );
 	}
-	else {
-		for( Xml xmlChild = xml.getFirstChild( "tract" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "tract" ) ) {
-			XmlSpinalTract *tract = new XmlSpinalTract();
-			tract -> load( sc , xmlChild );
-			tracts.add( tract -> name , tract );
-		}
+
+	for( Xml xmlChild = xml.getFirstChild( "tract" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "tract" ) ) {
+		XmlSpinalTract *tract = new XmlSpinalTract( ts , this );
+		tract -> load( xmlChild );
+		childs.add( tract -> name , tract );
 	}
 }
 
 void XmlSpinalTract::addPath( XmlSpinalTractPath *path ) {
-	allpaths.add( path );
+	allpaths.add( path -> id , path );
 }
 
 bool XmlSpinalTract::referencesRegion( String region ) {
 	for( int k = 0; k < allpaths.count(); k++ ) {
-		XmlSpinalTractPath& path = allpaths.getRef( k );
+		XmlSpinalTractPath& path = allpaths.getClassRefByIndex( k );
 		if( path.items.find( region ) >= 0 )
 			return( true );
 	}

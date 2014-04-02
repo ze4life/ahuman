@@ -4,13 +4,14 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-XmlSpinalFiber::XmlSpinalFiber() {
+XmlSpinalFiber::XmlSpinalFiber( XmlSpinalCord& p_sc , XmlSpinalFiber *p_parent ) 
+: sc( p_sc ) , parent( p_parent ) {
 }
 
 XmlSpinalFiber::~XmlSpinalFiber() {
 }
 
-void XmlSpinalFiber::load( XmlSpinalCord& sc , Xml xml ) {
+void XmlSpinalFiber::load( Xml xml ) {
 	id = xml.getAttribute( "id" );
 	name = xml.getAttribute( "name" , "" );
 	type = xml.getAttribute( "type" , "mixed" );
@@ -24,8 +25,8 @@ void XmlSpinalFiber::load( XmlSpinalCord& sc , Xml xml ) {
 	value.split( endings , "," );
 
 	for( Xml xmlChild = xml.getFirstChild( "fiber" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "fiber" ) ) {
-		XmlSpinalFiber *fiber = new XmlSpinalFiber();
-		fiber -> load( sc , xmlChild );
+		XmlSpinalFiber *fiber = new XmlSpinalFiber( sc , this );
+		fiber -> load( xmlChild );
 		childs.add( fiber -> id , fiber );
 	}
 }

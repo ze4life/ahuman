@@ -291,11 +291,27 @@ String WikiMaker::getRegionReference( String region ) {
 }
 
 String WikiMaker::getComponentReference( String comp ) {
+	String s;
 	String region = hmindxml.getMappedRegion( comp );
-	ASSERTMSG( !region.isEmpty() , "no region includes component=" + comp );
-	const XmlHMindElementInfo& info = hmindxml.getElementInfo( region );
+	if( !region.isEmpty() ) {
+		const XmlHMindElementInfo& info = hmindxml.getElementInfo( region );
+		s = "[" + getRegionPage( region ) + " " + info.name + "," + comp + "]";
+	}
+	else {
+		StringList regions;
+		hmindxml.getChildRegions( comp , regions );
+		StringList regionRef;
+		for( int k = 0; k < regions.count(); k++ ) {
+			String child = regions.get( k );
+			const XmlHMindElementInfo& info = hmindxml.getElementInfo( child );
+			String ref = "[" + getRegionPage( child ) + " " + info.name + "," + child + "]";
+			regionRef.add( ref );
+		}
 
-	String s = "[" + getRegionPage( region ) + " " + info.name + "," + comp + "]";
+		const XmlHMindElementInfo& info = hmindxml.getElementInfo( comp );
+		s = info.name + "," + comp + " (" + regionRef.combine( ", " ) + ")";
+	}
+
 	return( s );
 }
 

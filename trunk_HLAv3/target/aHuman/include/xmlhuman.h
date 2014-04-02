@@ -331,11 +331,15 @@ public:
 	StringList& getLayoutCellItems( String level , String lamina );
 	void getLayoutItems( StringList& items );
 	void getLayoutItemLayers( String item , StringList& items );
+	void getLayoutItemLaminas( String item , StringList& items );
 	void getRegionTracts( String region , StringList& tracts );
 
 	MapStringToClass<XmlSpinalEndingSet>& getEndings() { return( endings ); };
 	MapStringToClass<XmlSpinalFiber>& getFibers() { return( fibers ); };
 	MapStringToClass<XmlSpinalTractSet>& getTracts() { return( tractsets ); };
+
+	MapStringToClass<XmlSpinalEnding>& getEndingMap() { return( endingMap ); };
+	MapStringToClass<XmlSpinalFiber>& getFiberMap() { return( fiberMap ); };
 	MapStringToClass<XmlSpinalTract>& getTractMap() { return( tractMap ); };
 
 	XmlSpinalEnding& getEnding( String id );
@@ -347,6 +351,7 @@ public:
 	void addEnding( XmlSpinalEnding *ending );
 	void addFiber( XmlSpinalFiber *fiber );
 	void addTract( XmlSpinalTract *tract );
+	void addPath( XmlSpinalTractPath *path );
 
 private:
 	void loadFibers( Xml xmlDiv );
@@ -356,7 +361,7 @@ private:
 	void loadTracts( Xml xmlDiv );
 	void linkFibers();
 	void linkTracts();
-	void linkTractPaths( XmlSpinalTract& tract , ClassList<XmlSpinalTractPath>& paths );
+	void linkTractPaths( XmlSpinalTract& tract , MapStringToClass<XmlSpinalTractPath>& paths );
 
 private:
 	XmlHMind *hmind;
@@ -370,6 +375,7 @@ private:
 	MapStringToClass<XmlSpinalEnding> endingMap;
 	MapStringToClass<XmlSpinalFiber> fiberMap;
 	MapStringToClass<XmlSpinalTract> tractMap;
+	MapStringToClass<XmlSpinalTractPath> pathMap;
 };
 
 /*#########################################################################*/
@@ -377,12 +383,14 @@ private:
 
 class XmlSpinalTractSet {
 public:
-	XmlSpinalTractSet();
+	XmlSpinalTractSet( XmlSpinalCord& sc );
 	~XmlSpinalTractSet();
 
-	void load( XmlSpinalCord& sc , Xml xml );
+	void load( Xml xml );
 
 public:
+	XmlSpinalCord& sc;
+
 	String name;
 	String imgsrc;
 	String imgheight;
@@ -394,15 +402,17 @@ public:
 
 class XmlSpinalTract {
 public:
-	XmlSpinalTract();
+	XmlSpinalTract( XmlSpinalTractSet& ts , XmlSpinalTract *parent );
 	~XmlSpinalTract();
 
-	void load( XmlSpinalCord& sc , Xml xml );
+	void load( Xml xml );
 	void addPath( XmlSpinalTractPath *path );
 	bool referencesRegion( String region );
 
 public:
-	bool final;
+	XmlSpinalTractSet& ts;
+	XmlSpinalTract *parent;
+
 	String index;
 	String name;
 	String link;
@@ -413,9 +423,9 @@ public:
 	String notes;
 	String imgsrc;
 	String imgheight;
-	MapStringToClass<XmlSpinalTract> tracts;
-	ClassList<XmlSpinalTractPath> paths;
-	ClassList<XmlSpinalTractPath> allpaths;
+	MapStringToClass<XmlSpinalTract> childs;
+	MapStringToClass<XmlSpinalTractPath> paths;
+	MapStringToClass<XmlSpinalTractPath> allpaths;
 };
 
 /*#########################################################################*/
@@ -423,18 +433,22 @@ public:
 
 class XmlSpinalTractPath {
 public:
-	XmlSpinalTractPath();
+	XmlSpinalTractPath( XmlSpinalTract& tract , XmlSpinalTractPath *parent );
 	~XmlSpinalTractPath();
 
-	void load( XmlSpinalTract *tract , Xml xml );
+	void load( Xml xml );
 
 public:
+	XmlSpinalTract& tract;
+	XmlSpinalTractPath *parent;
+
+	String id;
 	String function;
 	String pathway;
 	StringList endings;
 	StringList fibers;
 	StringList items;
-	ClassList<XmlSpinalTractPath> childs;
+	MapStringToClass<XmlSpinalTractPath> childs;
 };
 
 /*#########################################################################*/
@@ -442,13 +456,16 @@ public:
 
 class XmlSpinalFiber {
 public:
-	XmlSpinalFiber();
+	XmlSpinalFiber( XmlSpinalCord& sc , XmlSpinalFiber *parent );
 	~XmlSpinalFiber();
 
-	void load( XmlSpinalCord& sc , Xml xml );
+	void load( Xml xml );
 	void addTract( XmlSpinalTract *tract );
 
 public:
+	XmlSpinalCord& sc;
+	XmlSpinalFiber *parent;
+
 	String id;
 	String name;
 	String type;
@@ -467,12 +484,14 @@ public:
 
 class XmlSpinalEndingSet {
 public:
-	XmlSpinalEndingSet();
+	XmlSpinalEndingSet( XmlSpinalCord& sc );
 	~XmlSpinalEndingSet();
 
-	void load( XmlSpinalCord& sc , Xml xml );
+	void load( Xml xml );
 
 public:
+	XmlSpinalCord& sc;
+
 	String name;
 	String type;
 	String imgsrc;
@@ -485,14 +504,17 @@ public:
 
 class XmlSpinalEnding {
 public:
-	XmlSpinalEnding();
+	XmlSpinalEnding( XmlSpinalEndingSet& es , XmlSpinalEnding *parent );
 	~XmlSpinalEnding();
 
-	void load( XmlSpinalCord& sc , Xml xml , String element );
+	void load( Xml xml , String element );
 	void addFiber( XmlSpinalFiber *fiber );
 	void addTract( XmlSpinalTract *tract );
 
 public:
+	XmlSpinalEndingSet& es;
+	XmlSpinalEnding *parent;
+
 	String id;
 	String type;
 	String name;
