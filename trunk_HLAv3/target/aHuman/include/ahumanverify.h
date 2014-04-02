@@ -52,6 +52,8 @@ private:
 	bool checkMindModel_verifyRegion( MindRegionDef *regionDef );
 	bool checkMindModel_verifyLinkedConnectors( MindRegionDef *regionDef , MindRegion *region );
 	bool checkMindModel_verifyRegionCircuits( MindRegionDef *regionDef , MindRegion *region );
+	bool checkSpinal_verifyEndings();
+	bool checkSpinal_verifyEndingData( XmlSpinalEnding& ending );
 	bool checkSpinal_verifyFibers();
 	bool checkSpinal_verifyFiberData( XmlSpinalFiber& fiber );
 	bool checkSpinal_verifyTracts();

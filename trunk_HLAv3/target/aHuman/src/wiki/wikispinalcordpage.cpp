@@ -215,25 +215,25 @@ void WikiSpinalCordPage::createTracts_addTractLines( int level , XmlSpinalTract&
 	s += "; " + tract.function;
 	if( !tract.notes.isEmpty() )
 		s += " (" + tract.notes + ")";
-	if( tract.final )
+	if( !tract.source.isEmpty() )
 		s += "; path: {" + tract.source + "} -> {" + tract.target + "}";
 	lines.add( s );
 
 	// tracts paths
 	for( int k = 0; k < tract.paths.count(); k++ ) {
-		XmlSpinalTractPath& path = tract.paths.getRef( k );
+		XmlSpinalTractPath& path = tract.paths.getClassRefByIndex( k );
 		createTracts_addTractPathLines( level + 1 , path , lines );
 	}
 
 	// child tract
-	for( int k = 0; k < tract.tracts.count(); k++ ) {
-		XmlSpinalTract& child = tract.tracts.getClassRefByIndex( k );
+	for( int k = 0; k < tract.childs.count(); k++ ) {
+		XmlSpinalTract& child = tract.childs.getClassRefByIndex( k );
 		createTracts_addTractLines( level + 1 , child , lines );
 	}
 }
 
 void WikiSpinalCordPage::createTracts_addTractPathLines( int level , XmlSpinalTractPath& path , StringList& lines ) {
-	String s = String( " " ).replicate( level + 1 ) + "* " + path.function + " (" + path.pathway + ")" + 
+	String s = String( " " ).replicate( level + 1 ) + "* path *" + path.id + "*: " + path.function + " (" + path.pathway + ")" + 
 		"; FIBERS={" + path.fibers.combine(",") + "}" + 
 		", ENDINGS={" + path.endings.combine(",") + "}: ";
 
@@ -246,7 +246,7 @@ void WikiSpinalCordPage::createTracts_addTractPathLines( int level , XmlSpinalTr
 	lines.add( s );
 
 	for( int k = 0; k < path.childs.count(); k++ ) {
-		XmlSpinalTractPath& child = path.childs.getRef( k );
+		XmlSpinalTractPath& child = path.childs.getClassRefByIndex( k );
 		createTracts_addTractPathLines( level + 1 , child , lines );
 	}
 }
@@ -292,7 +292,7 @@ void WikiSpinalCordPage::createNuclei() {
 	// create page content
 	for( int k = 0; k < groups.count(); k++ ) {
 		MapStringToClass<MapStringToClass<XmlHMindElementInfo> >& tgroup = groups.getClassRefByIndex( k );
-		s = groups.getKeyByIndex( k ) + String( ":" );
+		s = String( "*" ) + groups.getKeyByIndex( k ) + "*:";
 		lines.add( s );
 
 		for( int m = 0; m < tgroup.count(); m++ ) {
@@ -312,16 +312,16 @@ void WikiSpinalCordPage::createNuclei() {
 				XmlHMindElementInfo& comp = fgroup.getClassRefByIndex( t );
 
 				// add comp info
-				s = prefix + comp.index + ": ";
-				s += wm -> getRegionReference( comp.id );
+				s = prefix + "*" + comp.index + "*: ";
+				s += wm -> getComponentReference( comp.id );
 				s += " - " + comp.function;
 				if( !comp.notes.isEmpty() )
 					s += " (" + comp.notes + ")";
 
 				// layers
-				StringList layers;
-				cord -> getLayoutItemLayers( comp.index , layers );
-				s += "; LAYERS={" + layers.combine( "," ) + "}";
+				StringList laminas;
+				cord -> getLayoutItemLaminas( comp.index , laminas );
+				s += "; LAMINA={" + laminas.combine( "," ) + "}";
 
 				// tracts
 				StringList tracts;
