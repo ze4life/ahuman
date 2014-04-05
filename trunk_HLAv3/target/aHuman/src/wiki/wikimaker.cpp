@@ -290,6 +290,14 @@ String WikiMaker::getRegionReference( String region ) {
 	return( "[" + getRegionPage( region ) + " " + region + "]" );
 }
 
+const XmlHMindElementInfo& WikiMaker::getComponentReferenceInfo( String comp ) {
+	String region = hmindxml.getMappedRegion( comp );
+	if( !region.isEmpty() )
+		return( hmindxml.getElementInfo( region ) );
+
+	return( hmindxml.getElementInfo( comp ) );
+}
+
 String WikiMaker::getComponentReference( String comp ) {
 	String s;
 	String region = hmindxml.getMappedRegion( comp );

@@ -532,26 +532,26 @@
 			<receptor id="SMECH" name="Mechanoreceptors">
 				<receptor id="SMECH-SKIN" name="Skin mechanoreceptors">
 					<receptor id="SMD" name="Merkel disk receptors" 
-						function="vibration 5-15 Hz, static (sustained) touch/pressure"
-						notes="respond to slight change in skin surface; high resolution tactile discrimination, mechanoceptors in hairless skin and mucosa, pressure and texture, slowly adapting, sustained response, low threshold; weak position and strong velocity - irregular discharge, type I, hairy/hairless skin"
+						function="responds to pressure on skin; vibration 5-15 Hz, static (sustained) touch/pressure"
+						notes="epidermis of glabrous skin; respond to slight change in skin surface; high resolution tactile discrimination, mechanoceptors in hairless skin and mucosa, pressure and texture, slowly adapting, sustained response, low threshold; weak position and strong velocity - irregular discharge, type I, hairy/hairless skin"
 						/>
 					<receptor id="SMC" name="Meissner corpuscles" 
-						function="vibration 20-50 Hz; dynamic touch/pressure"
-						notes="tactile, texture, rapidly adapting, superficial papillary receptor, low threshold, especially sensitive to light touch - like fingers and lips"
+						function="responds to vibration; vibration 20-50 Hz; dynamic touch/pressure"
+						notes="dermis of glabrous skin; tactile, texture, rapidly adapting, superficial papillary receptor, low threshold, especially sensitive to light touch - like fingers and lips"
 						/>
 					<receptor id="SHF" name="Hair follicle receptors" 
-						function="touch, hairy skin velocity"
-						notes="slowly adapting, low threshold; Peritrichial endings - nerve plexus wrapped around hair roots; large hair follicles, slow and rapid movement of hairs and deflection of the skin"
+						function="responds to hair displacement; touch, hairy skin velocity"
+						notes="slowly adapting, low threshold; peritrichial endings - nerve plexus wrapped around hair roots; large hair follicles, slow and rapid movement of hairs and deflection of the skin"
 						/>
 				</receptor>
 				<receptor id="SMECH-DEEP" name="Deep tissue mechanoreceptors">
-					<receptor id="SPC" name="Pacinian corpuscles" 
-						function="vibration 60-400 Hz, deep"
-						notes="greater signal from more massive or rapid deformation; deep receptors, subcutaneous tissue, viscera, rapidly adapting, low threshold; transient receptors, connective tissue, vibration, intrafusal muscles, tonic proprioceptive endings, flower-spray type"
-						/>
 					<receptor id="SRC" name="Ruffini corpuscles" 
-						function="stretching of skin, crude touch"
-						notes="End-bulbs of Krause and Ruffini; deep receptors, slowly adapting, low threshold; strong position and weak velocity receptors - regular discharge, type II, hairy/hairless skin"
+						function="responds to pressure on skin; stretching of skin, crude touch"
+						notes="end-bulbs of Krause - dermis of both hairy and glabrous skin and Ruffini - lips, tongue, and genitals; deep receptors, slowly adapting, low threshold; strong position and weak velocity receptors - regular discharge, type II, hairy/hairless skin"
+						/>
+					<receptor id="SPC" name="Pacinian corpuscles" 
+						function="responds to vibration; vibration 60-400 Hz, deep"
+						notes="deep layers of dermis in both hairy and glabrous skin; greater signal from more massive or rapid deformation; deep receptors, subcutaneous tissue, viscera, rapidly adapting, low threshold; transient receptors, connective tissue, vibration, intrafusal muscles, tonic proprioceptive endings, flower-spray type"
 						/>
 				</receptor>
 			</receptor>
@@ -657,6 +657,7 @@
 				<tract name="posterior column" link="http://en.wikipedia.org/wiki/Posterior_column-medial_lemniscus_pathway"
 					synonyms="dorsal column, Reils band, Reils ribbon"
 					function="two point discrimination (fine touch, fine pressure - MC), pressure (deep receptors - PC), vibration (PC), conscious proprioception (MS)"
+					imgsrc="http://what-when-how.com/wp-content/uploads/2012/04/tmp1499.jpg" imgheight="700"
 					notes="alpha/beta mechanoreceptors, conscious; discrimination of those sensations that an animal must explore actively"
 					>
 					<tract name="fasciculus cuneatus" link="http://en.wikipedia.org/wiki/Cuneate_fasciculus" 
@@ -855,9 +856,9 @@
 					function="connect spinal cord with limbic structures"
 					>
 					<tract name="lateral spinal nucleus tracts" index="LSNT" link="http://www.ncbi.nlm.nih.gov/pubmed/8613771"
-						function="nociception inegration"
+						function="nociception integration, from C-fibers innervating muscles"
 						source="body pain, temperature"
-						target="LNS"
+						target="LSN"
 						>
 						<path id="SHT.LSN" src="AVA.PN.SG.DRG" dst="BMA.SC.LH.LSN" fibers="C-sensory" endings="SFN"
 							function="pain, temperature for ANS"
@@ -892,12 +893,13 @@
 						</tract>
 						<tract name="spinosolitary tract" index="SST" link="http://en.wikipedia.org/wiki/Solitary_tract"
 							function="central transmission of visceronoceptive messages"
+							notes="visceronociception, short-latency nociceptive input"
 							source="body pain, temperature"
-							target="hypothalamus"
+							target="solitary nucleus"
 							>
-							<path id="SST" src="BMA.SC.LH.LSN" dst="HMA.HM.SOL" fibers="C-sensory" endings="SFN"
-								function="conveying information regarding visceronociception"
-								pathway="pain fibers to solitary nucleus"
+							<path id="SST" src="BMA.SC.LH.LSN" mids="HMA.HM.SOL" dst="BMA.HP.PB" fibers="C-sensory" endings="SFN"
+								function="autonomic regulation of of stress response to painful visceral stimuli"
+								pathway="pain fibers to solitary nucleus to parabrachial nucleus"
 								/>
 						</tract>
 					</tract>
@@ -919,6 +921,94 @@
 				</tract>
 			</tract>
 
+			<tract name="spinocerebellar tracts" link="http://en.wikipedia.org/wiki/Spinocerebellar_tract"
+				function="spinal cord to cerebellum"
+				>
+				<tract name="spinometencephalic pathways"
+					function="spinal cord to intermediate nucleus to cerebellum"
+					imgsrc="http://what-when-how.com/wp-content/uploads/2012/04/tmp15F109.jpg" imgheight="500"
+					>
+					<tract name="spinoolivary tract" index="SOT" link="http://en.wikipedia.org/wiki/Spino-olivary_tract"
+						synonyms="Helwegs tract"
+						function="automatic movements of head, neck & upper limb"
+						source="proprioception information from muscles and tendons, cutaneous impulses"
+						target="cerebellum"
+						>
+						<path id="SOT.CCV" src="AVA.PN.SG.DRG" mids="BMA.SC.IZ.CCV,BMA.HM.IO" dst="MBA.HP.CR" fibers="A-alpha-Ia-sensory" endings="SMC,SMD"
+							function="cutaneous information to cerebellum"
+							pathway="skin mechanoreceptors to inferior olivary nucleus to cerebellum"
+							/>
+						<path id="SOT.NPR" src="AVA.PN.SG.DRG" mids="BMA.SC.PH.NP,BMA.HM.IO" dst="MBA.HP.CR" fibers="A-alpha-Ib-sensory" endings="SGT,SMS"
+							function="proprioception to cerebellum"
+							pathway="muscle spindles and Golgi tendons to inferior olivary nucleus to cerebellum"
+							/>
+					</tract>
+					<tract name="spinovestibular tract" index="SVT" link="http://en.wikipedia.org/wiki/Spino-olivary_tract"
+						function="information from cutaneous and proprioceptive organs to CR"
+						source="proprioception information from muscles and tendons, cutaneous impulses"
+						target="cerebellum"
+						>
+						<path id="SVT.CCV" src="AVA.PN.SG.DRG" mids="BMA.SC.IZ.CCV,BMA.HP.VB" dst="MBA.HP.CR" fibers="A-alpha-Ia-sensory" endings="SMC,SMD"
+							function="cutaneous information to cerebellum"
+							pathway="skin mechanoreceptors to vestibular nucleus to cerebellum; C1-C4"
+							/>
+					</tract>
+				</tract>
+				<tract name="direct spinocerebellar pathways"
+					function="spinal cord nuclei to cerebellum"
+					notes="lower are dorsal and ventral SC tracts; upper are cuneocerebellar and rostral spinocerebellar tract"
+					>
+					<tract name="cuneocerebellar tract" index="CSCT" link="http://en.wikipedia.org/wiki/Posterior_external_arcuate_fibers"
+						function="relay information about limb position and movement to the cerebellum"
+						imgsrc="http://what-when-how.com/wp-content/uploads/2012/04/tmp14100_thumb.jpg"
+						notes="upper extremity equivalent of Clarkes column to CR tract - posterior spinocerebellar tract"
+						source="proprioceptive/fine touch/vibration, C1-C7"
+						target="cerebellum, vermis and paravermis of the ipsilateral posterior lobe"
+						>
+						<path id="CSCT" src="AVA.PN.SG.DRG" mids="BMA.HM.ACU" dst="MBA.HP.CR" fibers="A-alpha-Ib-sensory,A-beta-sensory" endings="SMS,SGT,SRC,SMD"
+							function="proprioceptive and exteroceptive information"
+							pathway="upper limb muscles to accessory cuneate nucleus to cerebellum"
+							/>
+					</tract>
+					<tract name="dorsal spinocerebellar tract" index="DSCT" link="http://en.wikipedia.org/wiki/Dorsal_spinocerebellar_tract"
+						synonyms="posterior spinocerebellar tract, Flechsigs tract"
+						function="conveys proprioceptive information from proprioceptors in the skeletal muscles and joints to the cerebellum"
+						notes="ipsilateral, proprioceptive and tactile information"
+						source="neuromuscular spindles and Golgi tendon organs, joint receptors, cutaneous receptors, lower limbs, below L3"
+						target="cerebellum, mainly ipsilateral anterior lobe"
+						>
+						<path id="DSCT" src="AVA.PN.SG.DRG" mids="BMA.SC.PH.CL" dst="MBA.HP.CR" fibers="A-alpha-Ib-sensory,A-beta-sensory" endings="SMS,SGT,SRC,SMD"
+							function="proprioceptive and exteroceptive information"
+							pathway="lower limb muscles to clarkes nucleus to cerebellum"
+							/>
+					</tract>
+					<tract name="rostral spinocerebellar tract" index="RSCT" link="http://en.wikipedia.org/wiki/Rostral_spinocerebellar_tract"
+						function="transmits information from the golgi tendon organs of the cranial half of the body to the cerebellum"
+						imgsrc="http://classconnection.s3.amazonaws.com/74/flashcards/874074/png/ventral:rostral_spinocerebellar_tracts1323673590697.png"
+						notes="upper extremity equivalent of ventral spinocerebellar tract"
+						source="proprioceptive/fine touch/vibration, C1-C7"
+						target="cerebellum, anterior lobe"
+						>
+						<path id="RSCT" src="AVA.PN.SG.DRG" mids="BMA.SC.IZ.CCV" dst="MBA.HP.CR" fibers="A-alpha-Ib-sensory" endings="SGT"
+							function="proprioceptive information"
+							pathway="upper limb muscles to centrobasalis nucleus to cerebellum"
+							/>
+					</tract>
+					<tract name="ventral spinocerebellar tract" index="VSCT" link="http://en.wikipedia.org/wiki/Ventral_spinocerebellar_tract"
+						synonyms="anterior spinocerebellar tract, Gowers tract"
+						function="conveys information about postural stability of the lower limbs to cerebellum"
+						imgsrc="http://what-when-how.com/wp-content/uploads/2012/04/tmp14101_thumb.jpg" imgheight="500"
+						notes="bilaterally, double cross, proprioceptive/fine touch/vibration"
+						source="neuromuscular spindles and Golgi tendon organs, trunk, C8-L3"
+						target="cerebellum"
+						>
+						<path id="VSCT" src="AVA.PN.SG.DRG" mids="AVA.SC.IZ.IMM" dst="MBA.HP.CR" fibers="A-alpha-Ib-sensory" endings="SMS,SGT"
+							function="proprioceptive information"
+							pathway="body muscles to intermediomedial nucleus to cerebellum"
+							/>
+					</tract>
+				</tract>
+			</tract>
 
 		</tracts>
 

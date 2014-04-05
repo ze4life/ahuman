@@ -43,6 +43,7 @@ public:
 	String getAreaReference( String area );
 	String getRegionReference( String region );
 	String getComponentReference( String comp );
+	const XmlHMindElementInfo& getComponentReferenceInfo( String comp );
 	String getMuscleReference( String name , String text );
 	String getImageWikiLink( String imgsrc , String height );
 	String getWikiLink( String link , String text );
@@ -249,6 +250,7 @@ private:
 	String getNerveDivision_rootNerves( StringList rootNerves );
 	String getNerveDivision_fiberchain( XmlNerveFiberInfo& fiber );
 	String getNerveDivision_muscles( String name );
+	void addNucleiGroup( XmlNerveInfo& div , String group , StringList& nuclei , StringList& lines );
 
 private:
 	WikiMaker *wm;

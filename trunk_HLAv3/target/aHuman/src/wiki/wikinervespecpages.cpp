@@ -32,11 +32,45 @@ void WikiNerveSpecPages::addNerveDivision( XmlNerveInfo& div ) {
 	String divPage = div.origin;
 	String divSection = div.name;
 
+	StringList motorNuclei;
+	div.getMotorNuclei( motorNuclei );
+	addNucleiGroup( div , "motor nuclei/ganglia" , motorNuclei , lines );
+
+	StringList sensorNuclei;
+	div.getSensoryNuclei( sensorNuclei );
+	addNucleiGroup( div , "sensory nuclei/ganglia" , sensorNuclei , lines );
+
+	lines.add( "*nerves*:" );
 	for( int k = 0; k < div.childs.count(); k++ )
 		addNerveList( 0 , div.childs.getClassRefByIndex( k ) , lines );
 
 	String wikiDir = wm -> wiki.getProperty( "wikiPath" );
 	wm -> updateFileSection( wikiDir , divPage , divSection , lines );
+}
+
+void WikiNerveSpecPages::addNucleiGroup( XmlNerveInfo& div , String group , StringList& nuclei , StringList& lines ) {
+	lines.add( "*" + group + "*:" );
+
+	MapStringToString gl;
+	for( int k = 0; k < nuclei.count(); k++ ) {
+		String item  = nuclei.get( k );
+		StringList nerves;
+		div.getNervesByComponent( item , nerves );
+
+		const XmlHMindElementInfo& info = wm -> getComponentReferenceInfo( item );
+		String s = wm -> getComponentReference( item );
+		if( nerves.count() > 0 )
+			s += "; NERVES={" + nerves.combine( "; " ) + "}";
+
+		gl.add( info.name + item , s );
+	}
+
+	for( int k = 0; k < gl.count(); k++ ) {
+		String item  = gl.getClassByIndex( k );
+		lines.add( "  * " + item );
+	}
+
+	lines.add( "" );
 }
 
 void WikiNerveSpecPages::addNerveList( int level , XmlNerveInfo& nerve , StringList& lines ) {
