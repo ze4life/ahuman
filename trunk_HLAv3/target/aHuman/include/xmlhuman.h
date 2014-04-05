@@ -211,6 +211,15 @@ public:
 
 	Xml xml;
 
+public:
+	void getMotorNuclei( StringList& items );
+	void getSensoryNuclei( StringList& items );
+
+	void getFiberMotorNuclei( XmlNerveFiberInfo& fiber , StringList& items );
+	void getFiberSensoryNuclei( XmlNerveFiberInfo& fiber , StringList& items );
+	void getNervesByComponent( String item , StringList& nerves );
+
+public:
 	XmlNerveInfo *div;
 	String name;
 	String type;

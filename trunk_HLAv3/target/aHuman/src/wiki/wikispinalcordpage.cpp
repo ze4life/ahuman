@@ -72,14 +72,14 @@ void WikiSpinalCordPage::createNeurons_addEndingItem( int level , XmlSpinalEndin
 	}
 
 	if( ending.fibers.count() > 0 )
-		s += "; FIBERS={" + ending.fibers.combine( "," ) + "}";
+		s += "; FIBERS={" + ending.fibers.combine( "; " ) + "}";
 
 	if( ending.tracts.count() > 0 ) {
 		String ts;
 		for( int k = 0; k < ending.tracts.count(); k++ ) {
 			XmlSpinalTract& tract = ending.tracts.getClassRefByIndex( k );
 			if( k > 0 )
-				ts += ", ";
+				ts += "; ";
 			ts += tract.name;
 		}
 
@@ -126,7 +126,7 @@ void WikiSpinalCordPage::createNeurons_addFiberInfo( int level , XmlSpinalFiber&
 		for( int k = 0; k < fiber.tracts.count(); k++ ) {
 			XmlSpinalTract& tract = fiber.tracts.getClassRefByIndex( k );
 			if( k > 0 )
-				ts += ", ";
+				ts += "; ";
 			ts += tract.name;
 		}
 
@@ -219,6 +219,11 @@ void WikiSpinalCordPage::createTracts_addTractLines( int level , XmlSpinalTract&
 		s += "; path: {" + tract.source + "} -> {" + tract.target + "}";
 	lines.add( s );
 
+	if( !tract.imgsrc.isEmpty() ) {
+		s = String( " " ).replicate( level + 1 ) + "* " + wm -> getImageWikiLink( tract.imgsrc , tract.imgheight );
+		lines.add( s );
+	}
+
 	// tracts paths
 	for( int k = 0; k < tract.paths.count(); k++ ) {
 		XmlSpinalTractPath& path = tract.paths.getClassRefByIndex( k );
@@ -234,7 +239,7 @@ void WikiSpinalCordPage::createTracts_addTractLines( int level , XmlSpinalTract&
 
 void WikiSpinalCordPage::createTracts_addTractPathLines( int level , XmlSpinalTractPath& path , StringList& lines ) {
 	String s = String( " " ).replicate( level + 1 ) + "* path *" + path.id + "*: " + path.function + " (" + path.pathway + ")" + 
-		"; FIBERS={" + path.fibers.combine(",") + "}" + 
+		"; FIBERS={" + path.fibers.combine("; ") + "}" + 
 		", ENDINGS={" + path.endings.combine(",") + "}: ";
 
 	for( int k = 0; k < path.items.count(); k++ ) {
@@ -326,7 +331,7 @@ void WikiSpinalCordPage::createNuclei() {
 				// tracts
 				StringList tracts;
 				cord -> getRegionTracts( comp.id , tracts );
-				s += "; TRACTS={" + tracts.combine( "," ) + "}";
+				s += "; TRACTS={" + tracts.combine( "; " ) + "}";
 
 				lines.add( s );
 			}
