@@ -423,6 +423,7 @@ public:
 	XmlSpinalTract *parent;
 
 	String index;
+	String brief;
 	String name;
 	String link;
 	String synonyms;
