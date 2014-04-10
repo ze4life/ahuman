@@ -180,14 +180,43 @@ void WikiSpinalCordPage::createTracts() {
 	// collect section lines
 	StringList lines;
 	XmlSpinalCord *cord = wm -> hmindxml.getSpinalCord();
-	
 	MapStringToClass<XmlSpinalTractSet>& tractsets = cord -> getTracts();
+	
+	createTracts_addTractTableLines( tractsets , lines );
+	lines.add( "" );
+
 	for( int k = 0; k < tractsets.count(); k++ ) {
 		XmlSpinalTractSet& one = tractsets.getClassRefByIndex( k );
 		createTracts_addTractSetLines( one , lines );
 	}
 
 	wm -> updateFileSection( wikiDir , wikiPage , sectionName , lines );
+}
+
+void WikiSpinalCordPage::createTracts_addTractTableLines( MapStringToClass<XmlSpinalTractSet>& tractsets , StringList& lines ) {
+	lines.add( "*Tracts overview*:" );
+	lines.add( "|| *Tract* || *Name* || *Function* ||" );
+	for( int k = 0; k < tractsets.count(); k++ ) {
+		XmlSpinalTractSet& one = tractsets.getClassRefByIndex( k );
+		createTracts_addTractSetTableLines( one , lines );
+	}
+}
+
+void WikiSpinalCordPage::createTracts_addTractSetTableLines( XmlSpinalTractSet& ts , StringList& lines ) {
+	lines.add( "|| *" + ts.name + "* || || ||" );
+	for( int k = 0; k < ts.tracts.count(); k++ ) {
+		XmlSpinalTract& tract = ts.tracts.getClassRefByIndex( k );
+		createTracts_addTractTableLines( 0 , tract , lines );
+	}
+}
+
+void WikiSpinalCordPage::createTracts_addTractTableLines( int level , XmlSpinalTract& tract , StringList& lines ) {
+	lines.add( "|| " + String( "----" ).replicate( level ) + " " + wm -> getWikiLink( tract.link , tract.index ) + " || *" + 
+		tract.name + "* || " + tract.brief + " ||" );
+	for( int k = 0; k < tract.childs.count(); k++ ) {
+		XmlSpinalTract& child = tract.childs.getClassRefByIndex( k );
+		createTracts_addTractTableLines( level + 1 , child , lines );
+	}
 }
 
 void WikiSpinalCordPage::createTracts_addTractSetLines( XmlSpinalTractSet& ts , StringList& lines ) {
@@ -220,7 +249,7 @@ void WikiSpinalCordPage::createTracts_addTractLines( int level , XmlSpinalTract&
 	lines.add( s );
 
 	if( !tract.imgsrc.isEmpty() ) {
-		s = String( " " ).replicate( level + 1 ) + "* " + wm -> getImageWikiLink( tract.imgsrc , tract.imgheight );
+		s = String( " " ).replicate( level + 2 ) + "* " + wm -> getImageWikiLink( tract.imgsrc , tract.imgheight );
 		lines.add( s );
 	}
 

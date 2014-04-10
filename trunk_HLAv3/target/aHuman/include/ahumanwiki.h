@@ -317,6 +317,9 @@ private:
 	void createLayout();
 	void createNuclei();
 	void createTracts();
+	void createTracts_addTractTableLines( MapStringToClass<XmlSpinalTractSet>& tractsets , StringList& lines );
+	void createTracts_addTractSetTableLines( XmlSpinalTractSet& ts , StringList& lines );
+	void createTracts_addTractTableLines( int level , XmlSpinalTract& tract , StringList& lines );
 	void createTracts_addTractSetLines( XmlSpinalTractSet& ts , StringList& lines );
 	void createTracts_addTractLines( int level , XmlSpinalTract& tract , StringList& lines );
 	void createTracts_addTractPathLines( int level , XmlSpinalTractPath& path , StringList& lines );
