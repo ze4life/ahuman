@@ -226,6 +226,13 @@ public:
 		int index = rfc_lst_add( data , &v );
 		return( index );
 	}
+	int addnew( const char *value ) {
+		int index = find( value );
+		if( index < 0 )
+			index = add( value );
+
+		return( index );
+	}
 	int add( StringList *p ) {
 		if( p == NULL )
 			return( 0 );
@@ -241,6 +248,16 @@ public:
 	String get( int index ) {
 		ASSERT( index >= 0 && index < data -> s_n );
 		return( rfc_lst_get( data , index ) -> u_c );
+	}
+
+	String first() {
+		ASSERT( data -> s_n > 0 );
+		return( rfc_lst_get( data , 0 ) -> u_c );
+	}
+
+	String last() {
+		ASSERT( data -> s_n > 0 );
+		return( rfc_lst_get( data , data -> s_n - 1 ) -> u_c );
 	}
 
 	void remove( int index ) {
