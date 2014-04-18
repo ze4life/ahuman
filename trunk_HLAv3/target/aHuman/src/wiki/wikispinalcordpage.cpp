@@ -23,6 +23,7 @@ void WikiSpinalCordPage::execute() {
 	createLayout();
 	createNuclei();
 	createTracts();
+	createConnectivity();
 }
 
 void WikiSpinalCordPage::createNeurons() {
@@ -183,8 +184,10 @@ void WikiSpinalCordPage::createTracts() {
 	MapStringToClass<XmlSpinalTractSet>& tractsets = cord -> getTracts();
 	
 	createTracts_addTractTableLines( tractsets , lines );
-	lines.add( "" );
+	wm -> updateFileSection( wikiDir , wikiPage , sectionName , lines );
 
+	lines.clear();
+	wikiPage = wm -> wiki.getProperty( "wikiPageSpinalCordTracts" );
 	for( int k = 0; k < tractsets.count(); k++ ) {
 		XmlSpinalTractSet& one = tractsets.getClassRefByIndex( k );
 		createTracts_addTractSetLines( one , lines );
@@ -211,8 +214,13 @@ void WikiSpinalCordPage::createTracts_addTractSetTableLines( XmlSpinalTractSet& 
 }
 
 void WikiSpinalCordPage::createTracts_addTractTableLines( int level , XmlSpinalTract& tract , StringList& lines ) {
-	lines.add( "|| " + String( "----" ).replicate( level ) + " " + wm -> getWikiLink( tract.link , tract.index ) + " || *" + 
-		tract.name + "* || " + tract.brief + " ||" );
+	String tname = tract.name;
+	if( tract.childs.count() > 0 )
+		tname = "*" + tname + "*";
+
+	lines.add( "|| " + String( "----" ).replicate( level ) + " " + wm -> getWikiLink( tract.link , tract.index ) + " || " + 
+		tname + " || " + tract.brief + " ||" );
+
 	for( int k = 0; k < tract.childs.count(); k++ ) {
 		XmlSpinalTract& child = tract.childs.getClassRefByIndex( k );
 		createTracts_addTractTableLines( level + 1 , child , lines );
@@ -304,10 +312,10 @@ void WikiSpinalCordPage::createNuclei() {
 	for( int k = 0; k < items.count(); k++ ) {
 		String item = items.get( k );
 		XmlHMindElementInfo *comp = wm -> hmindxml.getIndexedElement( item );
-		MapStringToClass<MapStringToClass<XmlHMindElementInfo> > *tgroup = groups.get( comp -> type );
+		MapStringToClass<MapStringToClass<XmlHMindElementInfo> > *tgroup = groups.get( comp -> eltypename );
 		if( tgroup == NULL ) {
 			tgroup = new MapStringToClass<MapStringToClass<XmlHMindElementInfo> >;
-			groups.add( comp -> type , tgroup );
+			groups.add( comp -> eltypename , tgroup );
 		}
 
 		String fgrouptext = comp -> fgroup;
@@ -372,5 +380,152 @@ void WikiSpinalCordPage::createNuclei() {
 	groups.destroy();
 
 	wm -> updateFileSection( wikiDir , wikiPage , sectionName , lines );
+}
+
+void WikiSpinalCordPage::createConnectivity() {
+	// get spinal items
+	MapStringToClass<XmlHMindElementInfo> spinalitems;
+	StringList layoutitems;
+	XmlSpinalCord *cord = wm -> hmindxml.getSpinalCord();
+	cord -> getLayoutItems( layoutitems );
+	for( int k = 0; k < layoutitems.count(); k++ ) {
+		String item = layoutitems.get( k );
+		XmlHMindElementInfo *comp = wm -> hmindxml.getIndexedElement( item );
+		spinalitems.add( comp -> id , comp );
+	}
+
+	MapStringToClass<XmlSpinalTractPath>& paths = cord -> getTractPathMap();
+
+	// collect nuclei
+	MapStringToClass<StringList> sensoryNuclei;
+	MapStringToClass<StringList> motorNuclei;
+	MapStringToClass<StringList> reciprocalNuclei;
+	MapStringToClass<StringList> ganglia;
+	for( int k = 0; k < paths.count(); k++ ) {
+		XmlSpinalTractPath& path = paths.getClassRefByIndex( k );
+		createConnectivity_extractNuclei( spinalitems , path , sensoryNuclei , motorNuclei , ganglia );
+	}
+
+	for( int k = 0; k < sensoryNuclei.count(); k++ ) {
+		String key = sensoryNuclei.getKeyByIndex( k );
+		if( motorNuclei.get( key ) != NULL ) {
+			StringList *tracts = new StringList;
+			tracts -> add( sensoryNuclei.getClassByIndex( k ) );
+			tracts -> addnew( motorNuclei.get( key ) );
+			reciprocalNuclei.add( key , tracts );
+		}
+	}
+
+	// output to sections
+	createConnectivity_fillSection( "wikiSpinalCordSensoryLinkSection" , sensoryNuclei );
+	createConnectivity_fillSection( "wikiSpinalCordMotorLinkSection" , motorNuclei );
+	createConnectivity_fillSection( "wikiSpinalCordReciprocalLinkSection" , reciprocalNuclei );
+	createConnectivity_fillSection( "wikiSpinalCordGangliaLinkSection" , ganglia );
+
+	sensoryNuclei.destroy();
+	motorNuclei.destroy();
+	reciprocalNuclei.destroy();
+	ganglia.destroy();
+}
+
+void WikiSpinalCordPage::createConnectivity_fillSection( String section , MapStringToClass<StringList>& nuclei ) {
+	String wikiDir = wm -> wiki.getProperty( "wikiPath" );
+	String wikiPage = wm -> wiki.getProperty( "wikiPageSpinalCord" );
+	
+	// extract subtree
+	MapStringToClass<XmlHMindElementInfo> subtree;
+	for( int k = 0; k < nuclei.count(); k++ ) {
+		String id = nuclei.getKeyByIndex( k );
+		XmlHMindElementInfo& item = wm -> hmindxml.getElementInfo( id );
+		subtree.add( item.id , &item );
+		for( XmlHMindElementInfo *parent = item.getParent(); parent != NULL; parent = parent -> getParent() )
+			subtree.addnew( parent -> id , parent );
+	}
+
+	// walk subtree
+	StringList lines;
+	StringList divs;
+	wm -> hmindxml.getDivisions( divs );
+	for( int k = 0; k < divs.count(); k++ ) {
+		String div = divs.get( k );
+		XmlHMindElementInfo& divitem = wm -> hmindxml.getElementInfo( div );
+		if( subtree.get( divitem.id ) != NULL )
+			createConnectivity_fillSectionTree( nuclei , 0 , divitem , subtree , lines );
+	}
+
+	String sectionName = wm -> wiki.getProperty( section );
+	wm -> updateFileSection( wikiDir , wikiPage , sectionName , lines );
+}
+
+void WikiSpinalCordPage::createConnectivity_fillSectionTree( MapStringToClass<StringList>& nuclei , int level , XmlHMindElementInfo& item , MapStringToClass<XmlHMindElementInfo>& subtree , StringList& lines ) {
+	String s = String( " " ).replicate( level + 2 ) + "* " + wm -> getAvailableReference( item.id );
+	if( !item.function.isEmpty() )
+		s += ": " + item.function;
+
+	// extract tracts
+	StringList *tracts = nuclei.get( item.id );
+	if( tracts != NULL ) {
+		tracts -> sort();
+		s += "; TRACTS={" + tracts -> combine( "; " ) + "}";
+	}
+
+	lines.add( s );
+
+	StringList elements;
+	wm -> hmindxml.getElements( item.id , elements );
+	for( int k = 0; k < elements.count(); k++ ) {
+		String element = elements.get( k );
+		XmlHMindElementInfo *child = subtree.get( element );
+		if( child != NULL )
+			createConnectivity_fillSectionTree( nuclei , level + 1 , *child , subtree , lines );
+	}
+}
+
+void WikiSpinalCordPage::createConnectivity_extractNuclei( MapStringToClass<XmlHMindElementInfo>& spinalitems , XmlSpinalTractPath& path , MapStringToClass<StringList>& sensoryNuclei , MapStringToClass<StringList>& motorNuclei , MapStringToClass<StringList>& ganglia ) {
+	if( path.type.equals( "sensory" ) ) {
+		for( int k = 0; k < path.items.count(); k++ ) {
+			String item = path.items.get( k );
+			XmlHMindElementInfo& el = wm -> hmindxml.getElementInfo( item );
+			if( el.isTarget() || spinalitems.get( item ) != NULL )
+				continue;
+
+			if( el.isGanglion() ) {
+				createConnectivity_addTract( ganglia , el , path );
+				continue;
+			}
+
+			// add to sensory if not target/ganglia/spinal
+			createConnectivity_addTract( sensoryNuclei , el , path );
+			return;
+		}
+	}
+	else
+	if( path.type.equals( "motor" ) ) {
+		for( int k = path.items.count() - 1; k >= 0; k-- ) {
+			String item = path.items.get( k );
+			XmlHMindElementInfo& el = wm -> hmindxml.getElementInfo( item );
+			if( el.isTarget() || spinalitems.get( item ) != NULL )
+				continue;
+
+			if( el.isGanglion() ) {
+				createConnectivity_addTract( ganglia , el , path );
+				continue;
+			}
+
+			// add to motor if not target/ganglia/spinal
+			createConnectivity_addTract( motorNuclei , el , path );
+			return;
+		}
+	}
+}
+
+void WikiSpinalCordPage::createConnectivity_addTract( MapStringToClass<StringList>& map , XmlHMindElementInfo& comp , XmlSpinalTractPath& path ) {
+	StringList *tracts = map.get( comp.id );
+	if( tracts == NULL ) {
+		tracts = new StringList;
+		map.add( comp.id , tracts );
+	}
+
+	tracts -> addnew( path.tract.name );
 }
 

@@ -226,6 +226,7 @@ public:
 		int index = rfc_lst_add( data , &v );
 		return( index );
 	}
+
 	int addnew( const char *value ) {
 		int index = find( value );
 		if( index < 0 )
@@ -233,11 +234,30 @@ public:
 
 		return( index );
 	}
+
 	int add( StringList *p ) {
 		if( p == NULL )
 			return( 0 );
-		for( int k = 0; k < p -> count(); k++ )
-			add( p -> get( k ) );
+		RFC_TYPE v;
+		for( int k = 0; k < p -> count(); k++ ) {
+			const char *value = rfc_lst_get( p -> data , k ) -> u_c;
+			v.u_c = value;
+			rfc_lst_add( data , &v );
+		}
+		return( p -> count() );
+	}
+
+	int addnew( StringList *p ) {
+		if( p == NULL )
+			return( 0 );
+		RFC_TYPE v;
+		for( int k = 0; k < p -> count(); k++ ) {
+			const char *value = rfc_lst_get( p -> data , k ) -> u_c;
+			if( find( value ) < 0 ) {
+				v.u_c = value;
+				rfc_lst_add( data , &v );
+			}
+		}
 		return( p -> count() );
 	}
 

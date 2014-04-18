@@ -29,33 +29,35 @@ void XmlHMind::load() {
 }
 
 void XmlHMind::createDivisionElement( Xml item ) {
-	String mapId = item.getAttribute( "name" );
 	String xmlFileName = item.getAttribute( "xmlfile" );
+	String divname = item.getAttribute( "name" );
 
 	EnvService *es = EnvService::getService();
 	Xml xmlFile = es -> loadXml( xmlFileName );
 	ASSERTMSG( xmlFile.exists() , "unable to read file " + xmlFileName );
-	Xml div = xmlFile.getChildNamedNode( "division" , mapId );
-	ASSERTMSG( div.exists() , "unable to find division name=" + mapId );
+	Xml div = xmlFile.getChildNamedNode( "division" , divname );
+	ASSERTMSG( div.exists() , "unable to find division name=" + divname );
+	String mapId = div.getAttribute( "id" );
 
-	XmlHMindElementInfo *info = new XmlHMindElementInfo();
+	XmlHMindElementInfo *info = new XmlHMindElementInfo( NULL );
 	createElementInfo( mapId , div , *info );
 	nodeInfo.add( mapId , info );
+	divs.add( mapId , info );
 
-	scanChildItems( div );
+	scanChildItems( div , info );
 
-	if( mapId.equals( "Spinal Cord" ) )
+	if( mapId.equals( "SPC" ) )
 		spinalCord -> load( div );
 }
 
-void XmlHMind::scanChildItems( Xml xmlItem ) {
+void XmlHMind::scanChildItems( Xml xmlItem , XmlHMindElementInfo *parent ) {
 	// childs
 	for( Xml xmlChild = xmlItem.getFirstChild( "element" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "element" ) ) {
 		if( xmlChild.getBooleanAttribute( "ignore" , false ) )
 			continue;
 
-		createRegionElement( xmlChild );
-		scanChildItems( xmlChild );
+		XmlHMindElementInfo *child = createRegionElement( xmlChild , parent );
+		scanChildItems( xmlChild , child );
 	}
 }
 
@@ -75,13 +77,8 @@ bool XmlHMind::isComponent( String node ) {
 }
 
 void XmlHMind::getDivisions( StringList& divisions ) {
-	for( Xml xmlChild = xml.getFirstChild( "division" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "division" ) ) {
-		if( xmlChild.getBooleanAttribute( "ignore" , false ) )
-			continue;
-
-		String name = xmlChild.getAttribute( "name" );
-		divisions.add( name );
-	}
+	for( int k = 0; k < divs.count(); k++ )
+		divisions.add( divs.getKeyByIndex( k ) );
 }
 
 void XmlHMind::getElements( String parentNode , StringList& elements ) {
@@ -131,17 +128,17 @@ String XmlHMind::getRegionMapId( Xml item ) {
 	return( mapId );
 }
 
-String XmlHMind::createRegionElement( Xml item ) {
+XmlHMindElementInfo *XmlHMind::createRegionElement( Xml item , XmlHMindElementInfo *parent ) {
 	String mapId = getRegionMapId( item );
-	XmlHMindElementInfo *info = new XmlHMindElementInfo();
+	XmlHMindElementInfo *info = new XmlHMindElementInfo( parent );
 	createElementInfo( mapId , item , *info );
 	nodeInfo.add( mapId , info );
 
 	// add connectors to the map
-	if( info -> type.equals( "connector" ) )
+	if( info -> isConnector() )
 		connectorInfo.add( info -> name , info );
 
-	return( mapId );
+	return( info );
 }
 
 void XmlHMind::createElementInfo( String mapId , Xml item , XmlHMindElementInfo& info ) {
@@ -161,19 +158,43 @@ void XmlHMind::createElementInfo( String mapId , Xml item , XmlHMindElementInfo&
 	info.refs = item.getAttribute( "refs" , "" );
 	info.comment = item.getAttribute( "comment" , "" );
 	info.brodmannid = item.getAttribute( "brodmannid" , "" );
-	info.type = item.getAttribute( "type" , "" );
+	info.eltypename = item.getAttribute( "type" , "" );
 	info.fgroup = item.getAttribute( "fgroup" , "" );
 	info.function = item.getAttribute( "function" , "" );
 	info.notes = item.getAttribute( "notes" , "" );
 	info.dotdef = item.getAttribute( "dotdef" , "" );
 
 	if( info.brodmannid.isEmpty() )
-		info.batype = info.type;
+		info.batype = info.eltypename;
 	else
-		info.batype = info.type + ", BA " + info.brodmannid;
+		info.batype = info.eltypename + ", BA " + info.brodmannid;
+
+	// ensure types
+	if( info.eltypename.isEmpty() )
+		info.eltype = HMIND_ELEMENT_NOTYPE;
+	else if( info.eltypename.equals( "connector" ) )
+		info.eltype = HMIND_ELEMENT_CONNECTOR;
+	else if( info.eltypename.equals( "sensor" ) )
+		info.eltype = HMIND_ELEMENT_SENSOR;
+	else if( info.eltypename.equals( "effector" ) )
+		info.eltype = HMIND_ELEMENT_EFFECTOR;
+	else if( info.eltypename.equals( "sensory ganglion" ) )
+		info.eltype = HMIND_ELEMENT_GANGLION_SENSORY;
+	else if( info.eltypename.equals( "sympathetic ganglion" ) )
+		info.eltype = HMIND_ELEMENT_GANGLION_SYMP;
+	else if( info.eltypename.equals( "parasympathetic ganglion" ) )
+		info.eltype = HMIND_ELEMENT_GANGLION_PSYMP;
+	else if( info.eltypename.equals( "cortex" ) )
+		info.eltype = HMIND_ELEMENT_CORTEX;
+	else if( info.eltypename.equals( "nucleus" ) )
+		info.eltype = HMIND_ELEMENT_NUCLEUS;
+	else if( info.eltypename.equals( "gland" ) )
+		info.eltype = HMIND_ELEMENT_GLAND;
+	else
+		ASSERTFAILED( "invalid element type id=" + info.id + ", name=" + info.name + ", type=" + info.eltypename );
 }
 
-const XmlHMindElementInfo& XmlHMind::getElementInfo( String node ) {
+XmlHMindElementInfo& XmlHMind::getElementInfo( String node ) {
 	XmlHMindElementInfo *ni = nodeInfo.get( node );
 	ASSERTMSG( ni != NULL , "unknown node=" + node );
 	return( *ni );

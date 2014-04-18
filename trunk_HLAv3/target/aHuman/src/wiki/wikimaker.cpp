@@ -298,6 +298,22 @@ const XmlHMindElementInfo& WikiMaker::getComponentReferenceInfo( String comp ) {
 	return( hmindxml.getElementInfo( comp ) );
 }
 
+String WikiMaker::getAvailableReference( String comp ) {
+	String s;
+	const XmlHMindElementInfo& info = hmindxml.getElementInfo( comp );
+
+	if( info.mapped ) {
+		s = "[" + getRegionPage( comp ) + " " + info.name + "," + comp + "]";
+	}
+	else if( info.parent == NULL ) {
+		s = "*" + info.name + "*";
+	}
+	else
+		s = info.name + "," + comp;
+
+	return( s );
+}
+
 String WikiMaker::getComponentReference( String comp ) {
 	String s;
 	String region = hmindxml.getMappedRegion( comp );
