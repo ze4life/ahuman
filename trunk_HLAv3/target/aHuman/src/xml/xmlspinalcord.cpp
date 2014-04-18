@@ -120,7 +120,7 @@ void XmlSpinalCord::getLayoutItems( StringList& items ) {
 		MapStringToClass<StringList>& levelData = data.getClassRefByIndex( k );
 		for( int m = 0; m < levelData.count(); m++ ) {
 			StringList *levelItems = levelData.getClassByIndex( m );
-			items.add( levelItems );
+			items.addnew( levelItems );
 		}
 	}
 }

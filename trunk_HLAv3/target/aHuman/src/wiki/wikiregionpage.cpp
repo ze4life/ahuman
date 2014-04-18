@@ -70,6 +70,7 @@ void WikiRegionPage::createHeading() {
 			s += " -> ";
 	}
 	lines.add( "  * *Top-down path to region*: " + s + " (see [OverallMindMaps Mind Maps])" );
+	lines.add( "  * *Type*: " + info.eltypename );
 
 	// mind area
 	MindArea *area = region -> getArea();
@@ -446,7 +447,6 @@ void WikiRegionPage::createDotFile( MapStringToClass<MindRegion>& regions , MapS
 		text.add( "\t\t<TABLE BORDER=\"0\" CELLBORDER=\"1\" CELLSPACING=\"0\" CELLPADDING=\"4\">" );
 
 		// regions
-		XmlHMindElementInfo infoPair;
 		for( int k = 0; k < regions.count(); k++ ) {
 			MindRegion *region = regions.getClassByIndex( k );
 			if( region -> getArea() != area )

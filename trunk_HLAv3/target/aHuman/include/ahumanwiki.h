@@ -43,6 +43,8 @@ public:
 	String getAreaReference( String area );
 	String getRegionReference( String region );
 	String getComponentReference( String comp );
+	String getAvailableReference( String comp );
+
 	const XmlHMindElementInfo& getComponentReferenceInfo( String comp );
 	String getMuscleReference( String name , String text );
 	String getImageWikiLink( String imgsrc , String height );
@@ -323,6 +325,11 @@ private:
 	void createTracts_addTractSetLines( XmlSpinalTractSet& ts , StringList& lines );
 	void createTracts_addTractLines( int level , XmlSpinalTract& tract , StringList& lines );
 	void createTracts_addTractPathLines( int level , XmlSpinalTractPath& path , StringList& lines );
+	void createConnectivity();
+	void createConnectivity_extractNuclei( MapStringToClass<XmlHMindElementInfo>& spinalitems , XmlSpinalTractPath& path , MapStringToClass<StringList>& sensoryNuclei , MapStringToClass<StringList>& motorNuclei , MapStringToClass<StringList>& ganglia );
+	void createConnectivity_fillSection( String section , MapStringToClass<StringList>& nuclei );
+	void createConnectivity_fillSectionTree( MapStringToClass<StringList>& nuclei , int level , XmlHMindElementInfo& item , MapStringToClass<XmlHMindElementInfo>& subtree , StringList& lines );
+	void createConnectivity_addTract( MapStringToClass<StringList>& map , XmlHMindElementInfo& comp , XmlSpinalTractPath& path );
 
 private:
 	WikiMaker *wm;

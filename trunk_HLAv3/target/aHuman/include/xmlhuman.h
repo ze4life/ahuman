@@ -45,7 +45,7 @@ public:
 	void getElements( String parentNode , StringList& elements );
 	void getConnectors( String parentNode , StringList& elements );
 	void getIdentifiedElements( String parentNode , StringList& elements );
-	const XmlHMindElementInfo& getElementInfo( String node );
+	XmlHMindElementInfo& getElementInfo( String node );
 	const XmlHMindElementInfo *getConnectorInfo( String name );
 	XmlSpinalCord *getSpinalCord() { return( spinalCord ); };
 	XmlHMindElementInfo *getIndexedElement( String index );
@@ -58,14 +58,15 @@ public:
 
 private:
 	void createDivisionElement( Xml item );
-	String createRegionElement( Xml item );
-	void scanChildItems( Xml xmlChild );
+	XmlHMindElementInfo *createRegionElement( Xml item , XmlHMindElementInfo *parent );
+	void scanChildItems( Xml xmlChild , XmlHMindElementInfo *parent );
 	void scanChildRegions( Xml xmlChild , StringList& regions );
 	void createElementInfo( String mapId , Xml item , XmlHMindElementInfo& info );
 	String getRegionMapId( Xml item );
 
 private:
 	Xml xml;
+	MapStringToClass<XmlHMindElementInfo> divs;
 	MapStringToClass<XmlHMindElementInfo> nodeInfo;
 	MapStringToClass<XmlHMindElementInfo> connectorInfo;
 	XmlSpinalCord *spinalCord;
@@ -75,13 +76,32 @@ private:
 /*#########################################################################*/
 /*#########################################################################*/
 
+typedef enum {
+	HMIND_ELEMENT_NOTYPE = 0,
+	HMIND_ELEMENT_CONNECTOR = 1,
+	HMIND_ELEMENT_SENSOR = 2,
+	HMIND_ELEMENT_EFFECTOR = 3,
+	HMIND_ELEMENT_GANGLION_SENSORY = 4,
+	HMIND_ELEMENT_GANGLION_SYMP = 5,
+	HMIND_ELEMENT_GANGLION_PSYMP = 6,
+	HMIND_ELEMENT_CORTEX = 7,
+	HMIND_ELEMENT_NUCLEUS = 8,
+	HMIND_ELEMENT_GLAND = 9
+} XmlHMindElementInfoType;
+
 class XmlHMindElementInfo {
 public:
-	bool isConnector() const { return( type.equals( "connector" ) ); };
+	XmlHMindElementInfo( XmlHMindElementInfo *p_parent ) { parent = p_parent; ignore = true; mapped = false; };
+
+	XmlHMindElementInfo *getParent() { return( parent ); };
+	bool isConnector() const { return( eltype == HMIND_ELEMENT_CONNECTOR ); };
+	bool isTarget() const { return( eltype == HMIND_ELEMENT_SENSOR || eltype == HMIND_ELEMENT_EFFECTOR ); };
+	bool isGanglion() const { return( eltype == HMIND_ELEMENT_GANGLION_SENSORY || eltype == HMIND_ELEMENT_GANGLION_SYMP || eltype == HMIND_ELEMENT_GANGLION_PSYMP ); };
 
 public:
 	String mapId;
 	Xml xml;
+	XmlHMindElementInfo *parent;
 
 	bool ignore;
 	String id;
@@ -91,7 +111,8 @@ public:
 	String refs;
 	String comment;
 	String brodmannid;
-	String type;
+	XmlHMindElementInfoType eltype;
+	String eltypename;
 	String fgroup;
 	String function;
 	String notes;
@@ -350,6 +371,7 @@ public:
 	MapStringToClass<XmlSpinalEnding>& getEndingMap() { return( endingMap ); };
 	MapStringToClass<XmlSpinalFiber>& getFiberMap() { return( fiberMap ); };
 	MapStringToClass<XmlSpinalTract>& getTractMap() { return( tractMap ); };
+	MapStringToClass<XmlSpinalTractPath>& getTractPathMap() { return( pathMap ); };
 
 	XmlSpinalEnding& getEnding( String id );
 	XmlSpinalFiber& getFiber( String id );
@@ -453,6 +475,7 @@ public:
 	XmlSpinalTractPath *parent;
 
 	String id;
+	String type;
 	String function;
 	String pathway;
 	StringList endings;

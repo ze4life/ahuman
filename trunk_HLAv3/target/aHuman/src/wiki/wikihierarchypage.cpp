@@ -28,12 +28,14 @@ void WikiHierarchyPage::execute() {
 	wm -> hmindxml.getDivisions( divisions );
 	for( int k = 0; k < divisions.count(); k++ ) {
 		String division = divisions.get( k );
-		if( division.equals( "Cortex" ) )
+		XmlHMindElementInfo& info = wm -> hmindxml.getElementInfo( division );
+
+		if( division.equals( "CTX" ) )
 			updateHierarchyPage_walkNeocortex( division , wikiDir , wikiPage );
 		else {
 			StringList lines;
 			updateHierarchyPage_walkTree( division , 0 , lines , NULL , NULL );
-			wm -> updateFileSection( wikiDir , wikiPage , division , lines );
+			wm -> updateFileSection( wikiDir , wikiPage , info.name , lines );
 		}
 	}
 }

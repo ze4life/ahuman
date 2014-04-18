@@ -13,6 +13,7 @@ XmlSpinalTractPath::~XmlSpinalTractPath() {
 
 void XmlSpinalTractPath::load( Xml xml ) {
 	id = xml.getAttribute( "id" );
+	type = xml.getAttribute( "type" );
 	function = xml.getAttribute( "function" );
 	pathway = xml.getAttribute( "pathway" );
 
