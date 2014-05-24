@@ -599,19 +599,6 @@
 		<element id="MM.MRF" name="Mesencephalic Reticular Formation"
 			notes="Saccades, fixation, gaze holding and vergence. Space-time coordinated rapid eye movements"
 			>
-			<element id="HMA.MM.CJ" name="Cajal Nucleus" mapped="true" type="nucleus"
-				refs="NL:[http://neurolex.org/wiki/Category:Interstitial_nucleus_of_Cajal Interstitial nucleus of Cajal]"
-				function="Integration of head and eye movements, controls vertical gaze"
-				comments="Relay of extrapyramidal control for automatic movements"
-				notes="Projects to CN3, CN4 nuclei, rotation of body about its long axis, Project to vestibular nuclei"
-				/>
-			<element id="BMA.MM.DSCH" name="Darkschewitsch Nucleus" mapped="true" type="nucleus"
-				refs="NL:[http://neurolex.org/wiki/Category:Nucleus_of_Darkschewitsch Nucleus of Darkschewitsch]"
-				function="Mediate the consensual pupillary light reflex"
-				comments="Accessory oculomotor nucleus"
-				notes="Light in one eye results in pupil changes in another eye"
-				/>
-			
 			<element id="VBA.MM.OCN" name="Oculomotor Nucleus" mapped="true" type="nucleus"
 				refs="NL:[http://neurolex.org/wiki/Category:Oculomotor_nuclear_complex Oculomotor nuclear complex]"
 				function="Change Eye Direction"
@@ -625,11 +612,29 @@
 				<element name="Medial Oculomotor Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_oculomotor_nucleus Medial oculomotor nucleus]"/>
 				<element name="Ventral Oculomotor Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Ventral_oculomotor_nucleus Ventral oculomotor nucleus]"/>
 			</element>
-			<element id="VBA.MM.SOA" name="Supraoculomotor Area" mapped="true" type="nucleus"
+
+			<element id="VBA.MM.SOA" name="Supraoculomotor Area"
 				refs="NL:[http://neurolex.org/wiki/Category:Oculomotor_nuclear_complex Oculomotor nuclear complex]"
 				function="Control of vergence"
 				notes="Dorsal to OCN, send premotor commands to OCN"
-				/>
+				>
+				<element id="HMA.MM.CJ" name="Cajal Nucleus" mapped="true" type="nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Interstitial_nucleus_of_Cajal Interstitial nucleus of Cajal]"
+					function="Integration of head and eye movements, controls downward vertical gaze"
+					comments="Relay of extrapyramidal control for automatic movements"
+					notes="Projects to CN3, CN4 nuclei, rotation of body about its long axis, Project to vestibular nuclei"
+					/>
+				<element id="HMA.MM.RIMLF" name="Rostral Interstitial Nucleus of MLF" mapped="true" type="nucleus"
+					function="Integration of head and eye movements, controls upward vertical gaze"
+					/>
+				<element id="BMA.MM.DSCH" name="Darkschewitsch Nucleus" mapped="true" type="nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Nucleus_of_Darkschewitsch Nucleus of Darkschewitsch]"
+					function="Mediate the consensual pupillary light reflex"
+					comments="Accessory oculomotor nucleus"
+					notes="Light in one eye results in pupil changes in another eye"
+					/>
+			
+			</element>
 		</element>
 
 		<element id="FBA.MM.PAG" name="Periaqueductal Gray Matter" mapped="true" type="nucleus"
@@ -903,11 +908,6 @@
 						notes="Grinding of the teeth in sleep, projections from superior colliculus, to spinal cord, extends to facial"
 						/>
 				</element>
-				<element id="HMA.HP.PRF.GCR" name="Gigantocellular Reticular Nucleus" mapped="true" type="nucleus"
-					refs="NL:[http://neurolex.org/wiki/Category:Lateral_paragigantocellular_nucleus Lateral paragigantocellular nucleus]"
-					function="Mediate head movements"
-					notes="Projects to hypoglossal nucleus, abducens"
-					/>
 				<element id="HMA.HP.PRF.PDT" name="Pontine Reticulotegmental Nucleus" mapped="true" type="nucleus"
 					refs="NL:[http://neurolex.org/wiki/Category:Reticulotegmental_nucleus Reticulotegmental nucleus]"
 					function="Mediate saccadic eye movements"
@@ -1073,6 +1073,12 @@
 			<element name="Central Medullary Reticular Nucleus"/>
 			<element name="Lateral Reticular Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_reticular_nucleus Lateral reticular nucleus]"/>
 		</element>
+
+		<element id="HMA.HP.PRF.GCR" name="Gigantocellular Reticular Nucleus" mapped="true" type="nucleus"
+			refs="NL:[http://neurolex.org/wiki/Category:Lateral_paragigantocellular_nucleus Lateral paragigantocellular nucleus]"
+			function="Mediate head movements"
+			notes="Projects to hypoglossal nucleus, abducens"
+			/>
 
 		<element id="VBA.HM.NPH" name="Prepositus Nucleus" mapped="true" type="nucleus"
 			refs="NL:[http://neurolex.org/wiki/Category:Nucleus_prepositus Nucleus prepositus]"

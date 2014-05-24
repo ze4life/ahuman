@@ -431,15 +431,15 @@
 				>
 				<effector id="MA-FF" name="FF-type alpha motoneurons"
 					function="fast-twitch fatigable"
-					notes="generate large force, poor efficiency; biggest motoneurons, type IIB extrafusal muscle fibers; affected by static beta motoneurons"
+					notes="run; generate large force, poor efficiency; biggest motoneurons, type IIB extrafusal muscle fibers; affected by static beta motoneurons"
 					/>
 				<effector id="MA-FR" name="FR-type alpha motoneurons"
 					function="fast-twitch fatigue-resistant"
-					notes="type IIA extrafusal muscle fibers; affected by static beta motoneurons"
+					notes="walk; type IIA extrafusal muscle fibers; affected by static beta motoneurons"
 					/>
 				<effector id="MA-S" name="S-type alpha motoneurons"
 					function="slow-twitch fatigue-resistant"
-					notes="type I muscle fibers; little force, metabolically efficient, affected by dynamic beta motoneurons"
+					notes="stand; type I muscle fibers; little force, metabolically efficient, affected by dynamic beta motoneurons"
 					/>
 			</effector>
 			<effector id="MB" name="Beta motoneurons"
@@ -457,7 +457,7 @@
 			</effector>
 			<effector id="MG" name="Gamma motoneurons"
 				function="enforce alpha motoneurons"
-				notes="intrafusal muscle fibers, muscle tonus, additional contracts to maintain sensitivity in stretched state"
+				notes="intrafusal muscle fibers, muscle tonus, additional contracts to maintain sensitivity in stretched state; originate in pontine RF"
 				>
 				<effector id="MG-D" name="gamma dynamic motoneurons"
 					function="contract muscle spindles from both ends"
@@ -1104,7 +1104,7 @@
 				brief="flexor control"
 				function="control flexor muscles"
 				>
-				<tract name="lateral corticospinal tract" index="ASTT" link="http://en.wikipedia.org/wiki/Lateral_corticospinal_tract"
+				<tract name="lateral corticospinal tract" index="LSTT" link="http://en.wikipedia.org/wiki/Lateral_corticospinal_tract"
 					imgsrc="http://www.ib.cnea.gov.ar/~redneu/2013/BOOKS/Principles%20of%20Neural%20Science%20-%20Kandel/gateway.ut.ovid.com/fulltextservice/ct%7B06b9ee1beed594190674f1983457a7dd32af6a0d5a4c9892~23/da4c18ff8.gif.png" imgheight="800"
 					brief="conscious flexor control"
 					function="flexor motor, pyramidal tract, conscious; volitional skilled motor activity"
@@ -1112,25 +1112,85 @@
 					target="muscle groups that require concentration and conscious thought to control; upper limb digits"
 					notes="90 percents of corticospinal fibers; 80 percents - contrallateral; 10 percents - unilateral; cervical-medial, thoracic, lumbar-lateral, distal muscles, decussating to contralateral and ipsilateral"
 					>
+					<path id="LCST.PM" type="motor" 
+						src="MCA.NC.MC" mids="" dst="BMA.SC.VH.PM" fibers="MA,MG" endings="A-alpha-Ia-motor,A-beta-motor"
+						function="conscious control of axial flexors"
+						pathway="cortex to spinal cord PM"
+						/>
+					<path id="LCST.PL" type="motor" 
+						src="MCA.NC.MC" mids="" dst="BMA.SC.VH.PL" fibers="MA,MG" endings="A-alpha-Ia-motor,A-beta-motor"
+						function="conscious control of proximal flexors"
+						pathway="cortex to spinal cord PL"
+						/>
+					<path id="LCST.RPL" type="motor" 
+						src="MCA.NC.MC" mids="" dst="BMA.SC.VH.RPL" fibers="MA,MG" endings="A-alpha-Ia-motor,A-beta-motor"
+						function="conscious control of distal flexors"
+						pathway="cortex to spinal cord RPL"
+						/>
 				</tract>
-				<tract name="corticobulbospinal system" index="BSS" link="https://www.dartmouth.edu/~rswenson/NeuroSci/chapter_8A.html"
-					brief="indirect corticospinal projections"
-					function="pattern locomotion, inhibit reflex activity in spinal cord"
+				<tract name="corticobulbar tract" index="CBT" link="http://en.wikipedia.org/wiki/Corticobulbar_tract"
+					brief="cranial flexor control"
+					imgsrc="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/spinobulbar.jpg" imgheight="800"
+					function="carrying the motor function of the non-oculomotor cranial nerves"
+					notes="V, VII, XI, and XII; indirectly - via IX and X in nucleus ambiguus"
 					>
-					<tract name="corticobulbar tract" index="CBT" link="http://en.wikipedia.org/wiki/Corticobulbar_tract"
-						brief="cranial flexor control"
-						imgsrc="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/spinobulbar.jpg" imgheight="800"
-						function="carrying the motor function of the non-oculomotor cranial nerves"
-						notes="V, VII, XI, and XII; indirectly - via IX and X in nucleus ambiguus"
-						>
-					</tract>
-					<tract name="rubrospinal tract" index="RBST" link="http://en.wikipedia.org/wiki/Rubrospinal_tract"
-						brief="automatic flexor control"
-						imgsrc="http://www.neuroanatomy.wisc.edu/virtualbrain/Images/22B.jpg" imgheight="600"
-						function="mediation of voluntary movement, upper limbs; control of flexor tone"
-						notes="extrapyramidal; activates flexors, inhibits extensors"
-						>
-					</tract>
+					<path id="CBT.FACE" type="motor" 
+						src="MCA.NC.MC" mids="" dst="HMA.HP.FCM" fibers="MA,MG" endings="A-alpha-Ia-motor,A-beta-motor"
+						function="conscious face expression"
+						pathway="cortex to face muscles"
+						/>
+					<path id="CBT.MOUTH" type="motor" 
+						src="MCA.NC.MC" mids="" dst="HMA.HP.PTP.TRM" fibers="MA,MG" endings="A-alpha-Ia-motor,A-beta-motor"
+						function="conscious jaw move"
+						pathway="cortex to jaw muscles"
+						/>
+					<path id="CBT.TONGUE" type="motor" 
+						src="MCA.NC.MC" mids="" dst="HMA.HM.HYG" fibers="MA,MG" endings="A-alpha-Ia-motor,A-beta-motor"
+						function="conscious tongue move"
+						pathway="cortex to tongue muscles"
+						/>
+					<path id="CBT.NECK" type="motor" 
+						src="MCA.NC.MC" mids="" dst="HMA.SC.VH.SAN" fibers="MA,MG" endings="A-alpha-Ia-motor,A-beta-motor"
+						function="conscious neck move"
+						pathway="cortex to neck muscles"
+						/>
+					<path id="CBT.THROAT" type="motor" 
+						src="MCA.NC.MC" mids="" dst="HMA.HM.AMB" fibers="MA,MG" endings="A-alpha-Ia-motor,A-beta-motor"
+						function="conscious pharynx/larynx move"
+						pathway="cortex to throat muscles"
+						/>
+				</tract>
+				<tract name="rubrospinal tract" index="RBST" link="http://en.wikipedia.org/wiki/Rubrospinal_tract"
+					brief="automatic flexor control"
+					imgsrc="http://www.neuroanatomy.wisc.edu/virtualbrain/Images/22B.jpg" imgheight="600"
+					function="mediation of voluntary movement, upper limbs; control of flexor tone"
+					notes="extrapyramidal; activates flexors, inhibits extensors; pattern locomotion, inhibit reflex activity in spinal cord"
+					>
+					<path id="RBST.CR" type="motor" 
+						src="MBA.HP.CR" mids="" dst="MBA.MM.RD" fibers="MA,MG" endings="A-alpha-Ia-motor,A-beta-motor"
+						function="automatic control of flexors"
+						pathway="cerebellum to red nucleus"
+						/>
+					<path id="RBST.MC" type="motor" 
+						src="MCA.NC.MC" mids="" dst="MBA.MM.RD" fibers="MA,MG" endings="A-alpha-Ia-motor,A-beta-motor"
+						function="conscious modulation of automatic flexors activity"
+						pathway="cortex to red nucleus"
+						/>
+					<path id="RBST.PM" type="motor" 
+						src="MBA.MM.RD" mids="" dst="BMA.SC.VH.PM" fibers="MA,MG" endings="A-alpha-Ia-motor,A-beta-motor"
+						function="automatic control of axial flexors"
+						pathway="red nucleus to spinal cord PM"
+						/>
+					<path id="RBST.PL" type="motor" 
+						src="MBA.MM.RD" mids="" dst="BMA.SC.VH.PL" fibers="MA,MG" endings="A-alpha-Ia-motor,A-beta-motor"
+						function="automatic control of proximal flexors"
+						pathway="red nucleus to spinal cord PL"
+						/>
+					<path id="RBST.RPL" type="motor" 
+						src="MBA.MM.RD" mids="" dst="BMA.SC.VH.RPL" fibers="MA,MG" endings="A-alpha-Ia-motor,A-beta-motor"
+						function="automatic control of distal flexors"
+						pathway="red nucleus to spinal cord RPL"
+						/>
 				</tract>
 			</tract>
 			<tract name="extensor somatic system" index="ESS"
@@ -1144,22 +1204,38 @@
 					function="extensor motor, pyramidal tract, conscious"
 					notes="premotor BA 6, parietal BA 1,2,3"
 					>
+					<path id="ACST.VM" type="motor" 
+						src="MCA.NC.PMC.F3" mids="" dst="BMA.SC.VH.VM" fibers="MA,MG" endings="A-alpha-Ia-motor,A-beta-motor"
+						function="conscious control of axial extensors"
+						pathway="premotor cortex to spinal cord VM"
+						/>
+					<path id="ACST.VL" type="motor" 
+						src="MCA.NC.PMC.F2" mids="" dst="BMA.SC.VH.VL" fibers="MA,MG" endings="A-alpha-Ia-motor,A-beta-motor"
+						function="conscious control of distal extensors"
+						pathway="premotor cortex to spinal cord VL"
+						/>
 				</tract>
 				<tract name="reticulospinal system" index="RTSS" link="http://en.wikipedia.org/wiki/Reticulospinal_tract"
 					brief="automatic and autonomic control"
 					imgsrc="http://what-when-how.com/wp-content/uploads/2012/04/tmp14107.jpg" imgheight="600"
-					function="locomotion and postural control; medial is responsible for exciting anti-gravity, extensor muscles; lateral is responsible for inhibiting excitatory axial extensor muscles of movement"
-					notes="extrapyramidal; proximal muscles, postural control; integrates information from the motor systems to coordinate automatic movements of locomotion and posture; Facilitates and inhibits voluntary movement; influences muscle tone; mediates autonomic functions; modulates pain impulses; influences blood flow to lateral geniculate nucleus of the thalamus"
+					function="locomotion and postural control"
+					notes="extrapyramidal; proximal muscles, postural control; integrates information from the motor systems to coordinate automatic movements of locomotion and posture; facilitates and inhibits voluntary movement; influences muscle tone; mediates autonomic functions; modulates pain impulses; influences blood flow to lateral geniculate nucleus of the thalamus"
 					>
-					<tract name="pontine reticulospinal tract" index="PRST"
+					<tract name="pontine reticulospinal tract" index="PRST" 
+						imgsrc="http://what-when-how.com/wp-content/uploads/2012/04/tmp3624.jpg" imgheight="600"
 						synonyms="medial reticulospinal tract"
 						brief="excite extensors"
+						source="Oral Pontine Reticular Nucleus"
+						target="extensor muscles"
 						function="exciting anti-gravity, extensor muscles"
 						>
 					</tract>
-					<tract name="medullary reticulospinal tract" index="MRST"
+					<tract name="medullary reticulospinal tract" index="MRST" 
+						imgsrc="http://instruct.uwo.ca/anatomy/530/descmoto.gif" imgheight="600"
 						synonyms="lateral reticulospinal tract"
 						brief="inhibit extensors"
+						source="Gigantocellular Reticular Nucleus"
+						target="extensor muscles"
 						function="inhibiting excitatory axial extensor muscles of movement"
 						>
 					</tract>
