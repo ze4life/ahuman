@@ -4,14 +4,14 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-XmlSpinalFiber::XmlSpinalFiber( XmlSpinalCord& p_sc , XmlSpinalFiber *p_parent ) 
+XmlBrainFiber::XmlBrainFiber( XmlTracts& p_sc , XmlBrainFiber *p_parent ) 
 : sc( p_sc ) , parent( p_parent ) {
 }
 
-XmlSpinalFiber::~XmlSpinalFiber() {
+XmlBrainFiber::~XmlBrainFiber() {
 }
 
-void XmlSpinalFiber::load( Xml xml ) {
+void XmlBrainFiber::load( Xml xml ) {
 	id = xml.getAttribute( "id" );
 	name = xml.getAttribute( "name" , "" );
 	type = xml.getAttribute( "type" , "mixed" );
@@ -25,13 +25,12 @@ void XmlSpinalFiber::load( Xml xml ) {
 	value.split( endings , "," );
 
 	for( Xml xmlChild = xml.getFirstChild( "fiber" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "fiber" ) ) {
-		XmlSpinalFiber *fiber = new XmlSpinalFiber( sc , this );
+		XmlBrainFiber *fiber = new XmlBrainFiber( sc , this );
 		fiber -> load( xmlChild );
 		childs.add( fiber -> id , fiber );
 	}
 }
 
-void XmlSpinalFiber::addTract( XmlSpinalTract *tract ) {
+void XmlBrainFiber::addTract( XmlBrainTract *tract ) {
 	tracts.addnew( tract -> name , tract );
 }
-

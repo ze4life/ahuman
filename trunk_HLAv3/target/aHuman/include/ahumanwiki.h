@@ -312,24 +312,24 @@ public:
 
 private:
 	void createNeurons();
-	void createNeurons_addEndings( XmlSpinalEndingSet& set , StringList& lines );
-	void createNeurons_addEndingItem( int level , XmlSpinalEnding& item , StringList& lines );
-	void createNeurons_addFibers( int level , MapStringToClass<XmlSpinalFiber>& fibers , StringList& lines );
-	void createNeurons_addFiberInfo( int level , XmlSpinalFiber& fiber , StringList& lines );
+	void createNeurons_addEndings( XmlBrainEndingSet& set , StringList& lines );
+	void createNeurons_addEndingItem( int level , XmlBrainEnding& item , StringList& lines );
+	void createNeurons_addFibers( int level , MapStringToClass<XmlBrainFiber>& fibers , StringList& lines );
+	void createNeurons_addFiberInfo( int level , XmlBrainFiber& fiber , StringList& lines );
 	void createLayout();
 	void createNuclei();
 	void createTracts();
-	void createTracts_addTractTableLines( MapStringToClass<XmlSpinalTractSet>& tractsets , StringList& lines );
-	void createTracts_addTractSetTableLines( XmlSpinalTractSet& ts , StringList& lines );
-	void createTracts_addTractTableLines( int level , XmlSpinalTract& tract , StringList& lines );
-	void createTracts_addTractSetLines( XmlSpinalTractSet& ts , StringList& lines );
-	void createTracts_addTractLines( int level , XmlSpinalTract& tract , StringList& lines );
-	void createTracts_addTractPathLines( int level , XmlSpinalTractPath& path , StringList& lines );
+	void createTracts_addTractTableLines( MapStringToClass<XmlBrainTractSet>& tractsets , StringList& lines );
+	void createTracts_addTractSetTableLines( XmlBrainTractSet& ts , StringList& lines );
+	void createTracts_addTractTableLines( int level , XmlBrainTract& tract , StringList& lines );
+	void createTracts_addTractSetLines( XmlBrainTractSet& ts , StringList& lines );
+	void createTracts_addTractLines( int level , XmlBrainTract& tract , StringList& lines );
+	void createTracts_addTractPathLines( int level , XmlBrainTractPath& path , StringList& lines );
 	void createConnectivity();
-	void createConnectivity_extractNuclei( MapStringToClass<XmlHMindElementInfo>& spinalitems , XmlSpinalTractPath& path , MapStringToClass<StringList>& sensoryNuclei , MapStringToClass<StringList>& motorNuclei , MapStringToClass<StringList>& ganglia );
+	void createConnectivity_extractNuclei( MapStringToClass<XmlHMindElementInfo>& spinalitems , XmlBrainTractPath& path , MapStringToClass<StringList>& sensoryNuclei , MapStringToClass<StringList>& motorNuclei , MapStringToClass<StringList>& ganglia );
 	void createConnectivity_fillSection( String section , MapStringToClass<StringList>& nuclei );
 	void createConnectivity_fillSectionTree( MapStringToClass<StringList>& nuclei , int level , XmlHMindElementInfo& item , MapStringToClass<XmlHMindElementInfo>& subtree , StringList& lines );
-	void createConnectivity_addTract( MapStringToClass<StringList>& map , XmlHMindElementInfo& comp , XmlSpinalTractPath& path );
+	void createConnectivity_addTract( MapStringToClass<StringList>& map , XmlHMindElementInfo& comp , XmlBrainTractPath& path );
 
 private:
 	WikiMaker *wm;

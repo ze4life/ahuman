@@ -18,13 +18,14 @@ class XmlNerveFiberInfo;
 class XmlMuscles;
 class XmlMuscleInfo;
 class XmlMuscleDivision;
+class XmlTracts;
 class XmlSpinalCord;
-class XmlSpinalTractSet;
-class XmlSpinalTract;
-class XmlSpinalTractPath;
-class XmlSpinalFiber;
-class XmlSpinalEndingSet;
-class XmlSpinalEnding;
+class XmlBrainTractSet;
+class XmlBrainTract;
+class XmlBrainTractPath;
+class XmlBrainFiber;
+class XmlBrainEndingSet;
+class XmlBrainEnding;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -47,6 +48,7 @@ public:
 	void getIdentifiedElements( String parentNode , StringList& elements );
 	XmlHMindElementInfo& getElementInfo( String node );
 	const XmlHMindElementInfo *getConnectorInfo( String name );
+	XmlTracts *getTracts() { return( tracts ); };
 	XmlSpinalCord *getSpinalCord() { return( spinalCord ); };
 	XmlHMindElementInfo *getIndexedElement( String index );
 
@@ -69,6 +71,7 @@ private:
 	MapStringToClass<XmlHMindElementInfo> divs;
 	MapStringToClass<XmlHMindElementInfo> nodeInfo;
 	MapStringToClass<XmlHMindElementInfo> connectorInfo;
+	XmlTracts *tracts;
 	XmlSpinalCord *spinalCord;
 	MapStringToClass<XmlHMindElementInfo> mapIndex;
 };
@@ -348,6 +351,59 @@ public:
 /*#########################################################################*/
 /*#########################################################################*/
 
+class XmlTracts {
+public:
+	XmlTracts( XmlHMind *hmind );
+	~XmlTracts();
+
+	void load( Xml xml );
+	void getRegionTracts( String region , StringList& tracts );
+
+	MapStringToClass<XmlBrainEndingSet>& getEndings() { return( endings ); };
+	MapStringToClass<XmlBrainFiber>& getFibers() { return( fibers ); };
+	MapStringToClass<XmlBrainTractSet>& getTracts() { return( tractsets ); };
+
+	MapStringToClass<XmlBrainEnding>& getEndingMap() { return( endingMap ); };
+	MapStringToClass<XmlBrainFiber>& getFiberMap() { return( fiberMap ); };
+	MapStringToClass<XmlBrainTract>& getTractMap() { return( tractMap ); };
+	MapStringToClass<XmlBrainTractPath>& getTractPathMap() { return( pathMap ); };
+
+	XmlBrainEnding& getEnding( String id );
+	XmlBrainFiber& getFiber( String id );
+
+	XmlBrainEnding *findEnding( String id );
+	XmlBrainFiber *findFiber( String id );
+
+	void addEnding( XmlBrainEnding *ending );
+	void addFiber( XmlBrainFiber *fiber );
+	void addTract( XmlBrainTract *tract );
+	void addPath( XmlBrainTractPath *path );
+
+private:
+	void loadFibers( Xml xmlDiv );
+	void loadEndings( Xml xmlDiv );
+	void loadTracts( Xml xmlDiv );
+	void linkFibers();
+	void linkTracts();
+	void linkTractPaths( XmlBrainTract& tract , MapStringToClass<XmlBrainTractPath>& paths );
+
+private:
+	XmlHMind *hmind;
+	String imgSrc;
+	String imgHeight;
+	MapStringToClass<XmlBrainTractSet> tractsets;
+	MapStringToClass<XmlBrainFiber> fibers;
+	MapStringToClass<XmlBrainEndingSet> endings;
+
+	MapStringToClass<XmlBrainEnding> endingMap;
+	MapStringToClass<XmlBrainFiber> fiberMap;
+	MapStringToClass<XmlBrainTract> tractMap;
+	MapStringToClass<XmlBrainTractPath> pathMap;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
 class XmlSpinalCord {
 public:
 	XmlSpinalCord( XmlHMind *hmind );
@@ -362,87 +418,52 @@ public:
 	void getLayoutItems( StringList& items );
 	void getLayoutItemLayers( String item , StringList& items );
 	void getLayoutItemLaminas( String item , StringList& items );
-	void getRegionTracts( String region , StringList& tracts );
-
-	MapStringToClass<XmlSpinalEndingSet>& getEndings() { return( endings ); };
-	MapStringToClass<XmlSpinalFiber>& getFibers() { return( fibers ); };
-	MapStringToClass<XmlSpinalTractSet>& getTracts() { return( tractsets ); };
-
-	MapStringToClass<XmlSpinalEnding>& getEndingMap() { return( endingMap ); };
-	MapStringToClass<XmlSpinalFiber>& getFiberMap() { return( fiberMap ); };
-	MapStringToClass<XmlSpinalTract>& getTractMap() { return( tractMap ); };
-	MapStringToClass<XmlSpinalTractPath>& getTractPathMap() { return( pathMap ); };
-
-	XmlSpinalEnding& getEnding( String id );
-	XmlSpinalFiber& getFiber( String id );
-
-	XmlSpinalEnding *findEnding( String id );
-	XmlSpinalFiber *findFiber( String id );
-
-	void addEnding( XmlSpinalEnding *ending );
-	void addFiber( XmlSpinalFiber *fiber );
-	void addTract( XmlSpinalTract *tract );
-	void addPath( XmlSpinalTractPath *path );
 
 private:
-	void loadFibers( Xml xmlDiv );
-	void loadEndings( Xml xmlDiv );
 	void loadLayout( Xml xmlDiv );
 	void loadLayoutLevel( Xml xmlLevel , MapStringToClass<StringList>& levelData );
-	void loadTracts( Xml xmlDiv );
-	void linkFibers();
-	void linkTracts();
-	void linkTractPaths( XmlSpinalTract& tract , MapStringToClass<XmlSpinalTractPath>& paths );
 
 private:
 	XmlHMind *hmind;
 	String imgSrc;
 	String imgHeight;
 	MapStringToClass<MapStringToClass<StringList> > data;
-	MapStringToClass<XmlSpinalTractSet> tractsets;
-	MapStringToClass<XmlSpinalFiber> fibers;
-	MapStringToClass<XmlSpinalEndingSet> endings;
-
-	MapStringToClass<XmlSpinalEnding> endingMap;
-	MapStringToClass<XmlSpinalFiber> fiberMap;
-	MapStringToClass<XmlSpinalTract> tractMap;
-	MapStringToClass<XmlSpinalTractPath> pathMap;
 };
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-class XmlSpinalTractSet {
+class XmlBrainTractSet {
 public:
-	XmlSpinalTractSet( XmlSpinalCord& sc );
-	~XmlSpinalTractSet();
+	XmlBrainTractSet( XmlTracts& sc );
+	~XmlBrainTractSet();
 
 	void load( Xml xml );
 
 public:
-	XmlSpinalCord& sc;
+	XmlTracts& sc;
 
 	String name;
 	String imgsrc;
 	String imgheight;
-	MapStringToClass<XmlSpinalTract> tracts;
+	MapStringToClass<XmlBrainTract> tracts;
 };
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-class XmlSpinalTract {
+class XmlBrainTract {
 public:
-	XmlSpinalTract( XmlSpinalTractSet& ts , XmlSpinalTract *parent );
-	~XmlSpinalTract();
+	XmlBrainTract( XmlBrainTractSet& ts , XmlBrainTract *parent );
+	~XmlBrainTract();
 
 	void load( Xml xml );
-	void addPath( XmlSpinalTractPath *path );
+	void addPath( XmlBrainTractPath *path );
 	bool referencesRegion( String region );
 
 public:
-	XmlSpinalTractSet& ts;
-	XmlSpinalTract *parent;
+	XmlBrainTractSet& ts;
+	XmlBrainTract *parent;
 
 	String index;
 	String brief;
@@ -455,24 +476,24 @@ public:
 	String notes;
 	String imgsrc;
 	String imgheight;
-	MapStringToClass<XmlSpinalTract> childs;
-	MapStringToClass<XmlSpinalTractPath> paths;
-	MapStringToClass<XmlSpinalTractPath> allpaths;
+	MapStringToClass<XmlBrainTract> childs;
+	MapStringToClass<XmlBrainTractPath> paths;
+	MapStringToClass<XmlBrainTractPath> allpaths;
 };
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-class XmlSpinalTractPath {
+class XmlBrainTractPath {
 public:
-	XmlSpinalTractPath( XmlSpinalTract& tract , XmlSpinalTractPath *parent );
-	~XmlSpinalTractPath();
+	XmlBrainTractPath( XmlBrainTract& tract , XmlBrainTractPath *parent );
+	~XmlBrainTractPath();
 
 	void load( Xml xml );
 
 public:
-	XmlSpinalTract& tract;
-	XmlSpinalTractPath *parent;
+	XmlBrainTract& tract;
+	XmlBrainTractPath *parent;
 
 	String id;
 	String type;
@@ -481,23 +502,23 @@ public:
 	StringList endings;
 	StringList fibers;
 	StringList items;
-	MapStringToClass<XmlSpinalTractPath> childs;
+	MapStringToClass<XmlBrainTractPath> childs;
 };
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-class XmlSpinalFiber {
+class XmlBrainFiber {
 public:
-	XmlSpinalFiber( XmlSpinalCord& sc , XmlSpinalFiber *parent );
-	~XmlSpinalFiber();
+	XmlBrainFiber( XmlTracts& sc , XmlBrainFiber *parent );
+	~XmlBrainFiber();
 
 	void load( Xml xml );
-	void addTract( XmlSpinalTract *tract );
+	void addTract( XmlBrainTract *tract );
 
 public:
-	XmlSpinalCord& sc;
-	XmlSpinalFiber *parent;
+	XmlTracts& sc;
+	XmlBrainFiber *parent;
 
 	String id;
 	String name;
@@ -507,56 +528,56 @@ public:
 	StringList endings;
 	String function;
 	String notes;
-	MapStringToClass<XmlSpinalFiber> childs;
+	MapStringToClass<XmlBrainFiber> childs;
 
-	MapStringToClass<XmlSpinalTract> tracts;
+	MapStringToClass<XmlBrainTract> tracts;
 };
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-class XmlSpinalEndingSet {
+class XmlBrainEndingSet {
 public:
-	XmlSpinalEndingSet( XmlSpinalCord& sc );
-	~XmlSpinalEndingSet();
+	XmlBrainEndingSet( XmlTracts& sc );
+	~XmlBrainEndingSet();
 
 	void load( Xml xml );
 
 public:
-	XmlSpinalCord& sc;
+	XmlTracts& sc;
 
 	String name;
 	String type;
 	String imgsrc;
 	String imgheight;
-	MapStringToClass<XmlSpinalEnding> childs;
+	MapStringToClass<XmlBrainEnding> childs;
 };
 
 /*#########################################################################*/
 /*#########################################################################*/
 
-class XmlSpinalEnding {
+class XmlBrainEnding {
 public:
-	XmlSpinalEnding( XmlSpinalEndingSet& es , XmlSpinalEnding *parent );
-	~XmlSpinalEnding();
+	XmlBrainEnding( XmlBrainEndingSet& es , XmlBrainEnding *parent );
+	~XmlBrainEnding();
 
 	void load( Xml xml , String element );
-	void addFiber( XmlSpinalFiber *fiber );
-	void addTract( XmlSpinalTract *tract );
+	void addFiber( XmlBrainFiber *fiber );
+	void addTract( XmlBrainTract *tract );
 
 public:
-	XmlSpinalEndingSet& es;
-	XmlSpinalEnding *parent;
+	XmlBrainEndingSet& es;
+	XmlBrainEnding *parent;
 
 	String id;
 	String type;
 	String name;
 	String function;
 	String notes;
-	MapStringToClass<XmlSpinalEnding> childs;
+	MapStringToClass<XmlBrainEnding> childs;
 
 	StringList fibers;
-	MapStringToClass<XmlSpinalTract> tracts;
+	MapStringToClass<XmlBrainTract> tracts;
 };
 
 /*#########################################################################*/
