@@ -4,16 +4,16 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-XmlSpinalTract::XmlSpinalTract( XmlSpinalTractSet& p_ts , XmlSpinalTract *p_parent ) 
+XmlBrainTract::XmlBrainTract( XmlBrainTractSet& p_ts , XmlBrainTract *p_parent ) 
 : ts( p_ts ) , parent( p_parent ) {
 }
 
-XmlSpinalTract::~XmlSpinalTract() {
+XmlBrainTract::~XmlBrainTract() {
 	childs.destroy();
 	paths.destroy();
 }
 
-void XmlSpinalTract::load( Xml xml ) {
+void XmlBrainTract::load( Xml xml ) {
 	index = xml.getAttribute( "index" , "" );
 	brief = xml.getAttribute( "brief" , "" );
 	name = xml.getAttribute( "name" );
@@ -29,26 +29,26 @@ void XmlSpinalTract::load( Xml xml ) {
 	ts.sc.addTract( this );
 
 	for( Xml xmlChild = xml.getFirstChild( "path" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "path" ) ) {
-		XmlSpinalTractPath *path = new XmlSpinalTractPath(  *this , NULL );
+		XmlBrainTractPath *path = new XmlBrainTractPath(  *this , NULL );
 		path -> load( xmlChild );
 		paths.add( path -> id , path );
 		ts.sc.addPath( path );
 	}
 
 	for( Xml xmlChild = xml.getFirstChild( "tract" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "tract" ) ) {
-		XmlSpinalTract *tract = new XmlSpinalTract( ts , this );
+		XmlBrainTract *tract = new XmlBrainTract( ts , this );
 		tract -> load( xmlChild );
 		childs.add( tract -> name , tract );
 	}
 }
 
-void XmlSpinalTract::addPath( XmlSpinalTractPath *path ) {
+void XmlBrainTract::addPath( XmlBrainTractPath *path ) {
 	allpaths.add( path -> id , path );
 }
 
-bool XmlSpinalTract::referencesRegion( String region ) {
+bool XmlBrainTract::referencesRegion( String region ) {
 	for( int k = 0; k < allpaths.count(); k++ ) {
-		XmlSpinalTractPath& path = allpaths.getClassRefByIndex( k );
+		XmlBrainTractPath& path = allpaths.getClassRefByIndex( k );
 		if( path.items.find( region ) >= 0 )
 			return( true );
 	}

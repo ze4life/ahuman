@@ -4,14 +4,14 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-XmlSpinalEndingSet::XmlSpinalEndingSet( XmlSpinalCord& p_sc ) 
+XmlBrainEndingSet::XmlBrainEndingSet( XmlTracts& p_sc ) 
 : sc( p_sc ) {
 }
 
-XmlSpinalEndingSet::~XmlSpinalEndingSet() {
+XmlBrainEndingSet::~XmlBrainEndingSet() {
 }
 
-void XmlSpinalEndingSet::load( Xml xml ) {
+void XmlBrainEndingSet::load( Xml xml ) {
 	name = xml.getAttribute( "name" );
 	type = xml.getAttribute( "type" );
 	imgsrc = xml.getAttribute( "imgsrc" , "" );
@@ -24,7 +24,7 @@ void XmlSpinalEndingSet::load( Xml xml ) {
 		element = "effector";
 
 	for( Xml xmlChild = xml.getFirstChild( element ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( element ) ) {
-		XmlSpinalEnding *ending = new XmlSpinalEnding( *this , NULL );
+		XmlBrainEnding *ending = new XmlBrainEnding( *this , NULL );
 		ending -> load( xmlChild , element );
 		childs.add( ending -> name , ending );
 	}

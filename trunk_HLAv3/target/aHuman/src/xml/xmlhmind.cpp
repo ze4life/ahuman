@@ -5,12 +5,14 @@
 /*#########################################################################*/
 
 XmlHMind::XmlHMind() {
+	tracts = new XmlTracts( this );
 	spinalCord = new XmlSpinalCord( this );
 }
 
 XmlHMind::~XmlHMind() {
 	nodeInfo.destroy();
 	delete spinalCord;
+	delete tracts;
 }
 
 void XmlHMind::load() {
@@ -26,6 +28,14 @@ void XmlHMind::load() {
 
 		createDivisionElement( xmlChild );
 	}
+
+	// read tracts
+	Xml xmltracts = xml.getFirstChild( "tracts" );
+	ASSERTMSG( xmltracts.exists() , "unable to find tract information" );
+	String xmlFileName = xmltracts.getAttribute( "xmlfile" );
+	Xml xmlFile = es -> loadXml( xmlFileName );
+	ASSERTMSG( xmlFile.exists() , "unable to read file " + xmlFileName );
+	tracts -> load( xmlFile );
 }
 
 void XmlHMind::createDivisionElement( Xml item ) {

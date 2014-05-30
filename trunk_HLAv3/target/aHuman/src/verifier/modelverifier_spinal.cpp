@@ -21,12 +21,12 @@ void ModelVerifier::checkSpinal() {
 }
 
 bool ModelVerifier::checkSpinal_verifyEndings() {
-	XmlSpinalCord *sc = hmindxml.getSpinalCord();
-	MapStringToClass<XmlSpinalEnding>& endings = sc -> getEndingMap();
+	XmlTracts *tm = hmindxml.getTracts();
+	MapStringToClass<XmlBrainEnding>& endings = tm -> getEndingMap();
 
 	bool checkAll = true;
 	for( int k = 0; k < endings.count(); k++ ) {
-		XmlSpinalEnding& ending = endings.getClassRefByIndex( k );
+		XmlBrainEnding& ending = endings.getClassRefByIndex( k );
 		if( !checkSpinal_verifyEndingData( ending ) )
 			checkAll = false;
 	}
@@ -34,9 +34,7 @@ bool ModelVerifier::checkSpinal_verifyEndings() {
 	return( checkAll );
 }
 
-bool ModelVerifier::checkSpinal_verifyEndingData( XmlSpinalEnding& ending ) {
-	XmlSpinalCord *sc = hmindxml.getSpinalCord();
-
+bool ModelVerifier::checkSpinal_verifyEndingData( XmlBrainEnding& ending ) {
 	// ignore non-leaf item
 	if( ending.childs.count() > 0 )
 		return( true );
@@ -57,12 +55,12 @@ bool ModelVerifier::checkSpinal_verifyEndingData( XmlSpinalEnding& ending ) {
 }
 
 bool ModelVerifier::checkSpinal_verifyFibers() {
-	XmlSpinalCord *sc = hmindxml.getSpinalCord();
-	MapStringToClass<XmlSpinalFiber>& fibers = sc -> getFibers();
+	XmlTracts *tm = hmindxml.getTracts();
+	MapStringToClass<XmlBrainFiber>& fibers = tm -> getFibers();
 
 	bool checkAll = true;
 	for( int k = 0; k < fibers.count(); k++ ) {
-		XmlSpinalFiber& fiber = fibers.getClassRefByIndex( k );
+		XmlBrainFiber& fiber = fibers.getClassRefByIndex( k );
 		if( !checkSpinal_verifyFiberData( fiber ) )
 			checkAll = false;
 	}
@@ -70,10 +68,10 @@ bool ModelVerifier::checkSpinal_verifyFibers() {
 	return( checkAll );
 }
 
-bool ModelVerifier::checkSpinal_verifyFiberData( XmlSpinalFiber& fiber ) {
+bool ModelVerifier::checkSpinal_verifyFiberData( XmlBrainFiber& fiber ) {
 	bool checkAll = true;
 
-	XmlSpinalCord *sc = hmindxml.getSpinalCord();
+	XmlTracts *tm = hmindxml.getTracts();
 
 	// check leaf items
 	if( fiber.childs.count() == 0 ) {
@@ -92,7 +90,7 @@ bool ModelVerifier::checkSpinal_verifyFiberData( XmlSpinalFiber& fiber ) {
 		String item = fiber.endings.get( k );
 
 		// find ending
-		if( sc -> findEnding( item ) == NULL ) {
+		if( tm -> findEnding( item ) == NULL ) {
 			logger.logError( "checkSpinal_verifyFiberData: unknown ending=" + item + " in fiber id=" + fiber.id );
 			checkAll = false;
 		}
@@ -100,7 +98,7 @@ bool ModelVerifier::checkSpinal_verifyFiberData( XmlSpinalFiber& fiber ) {
 
 	// childs
 	for( int k = 0; k < fiber.childs.count(); k++ ) {
-		XmlSpinalFiber& child = fiber.childs.getClassRefByIndex( k );
+		XmlBrainFiber& child = fiber.childs.getClassRefByIndex( k );
 		if( !checkSpinal_verifyFiberData( child ) )
 			checkAll = false;
 	}
@@ -109,12 +107,12 @@ bool ModelVerifier::checkSpinal_verifyFiberData( XmlSpinalFiber& fiber ) {
 }
 
 bool ModelVerifier::checkSpinal_verifyTracts() {
-	XmlSpinalCord *sc = hmindxml.getSpinalCord();
+	XmlTracts *tm = hmindxml.getTracts();
 
 	bool checkAll = true;
-	MapStringToClass<XmlSpinalTractSet>& tractsets = sc -> getTracts();
+	MapStringToClass<XmlBrainTractSet>& tractsets = tm -> getTracts();
 	for( int k = 0; k < tractsets.count(); k++ ) {
-		XmlSpinalTractSet& one = tractsets.getClassRefByIndex( k );
+		XmlBrainTractSet& one = tractsets.getClassRefByIndex( k );
 		if( !checkSpinal_verifyTractSet( one ) )
 			checkAll = false;
 	}
@@ -122,10 +120,10 @@ bool ModelVerifier::checkSpinal_verifyTracts() {
 	return( checkAll );
 }
 
-bool ModelVerifier::checkSpinal_verifyTractSet( XmlSpinalTractSet& ts ) {
+bool ModelVerifier::checkSpinal_verifyTractSet( XmlBrainTractSet& ts ) {
 	bool checkAll = true;
 	for( int k = 0; k < ts.tracts.count(); k++ ) {
-		XmlSpinalTract& tract = ts.tracts.getClassRefByIndex( k );
+		XmlBrainTract& tract = ts.tracts.getClassRefByIndex( k );
 		if( !checkSpinal_verifyTractData( tract ) )
 			checkAll = false;
 	}
@@ -133,17 +131,17 @@ bool ModelVerifier::checkSpinal_verifyTractSet( XmlSpinalTractSet& ts ) {
 	return( checkAll );
 }
 
-bool ModelVerifier::checkSpinal_verifyTractData( XmlSpinalTract& tract ) {
+bool ModelVerifier::checkSpinal_verifyTractData( XmlBrainTract& tract ) {
 	bool checkAll = true;
 
 	for( int k = 0; k < tract.childs.count(); k++ ) {
-		XmlSpinalTract& child = tract.childs.getClassRefByIndex( k );
+		XmlBrainTract& child = tract.childs.getClassRefByIndex( k );
 		if( !checkSpinal_verifyTractData( child ) )
 			checkAll = false;
 	}
 
 	for( int k = 0; k < tract.paths.count(); k++ ) {
-		XmlSpinalTractPath& child = tract.paths.getClassRefByIndex( k );
+		XmlBrainTractPath& child = tract.paths.getClassRefByIndex( k );
 		if( !checkSpinal_verifyTractPathData( tract , child ) )
 			checkAll = false;
 	}
@@ -151,7 +149,7 @@ bool ModelVerifier::checkSpinal_verifyTractData( XmlSpinalTract& tract ) {
 	return( checkAll );
 }
 
-bool ModelVerifier::checkSpinal_verifyTractPathData( XmlSpinalTract& tract , XmlSpinalTractPath& path ) {
+bool ModelVerifier::checkSpinal_verifyTractPathData( XmlBrainTract& tract , XmlBrainTractPath& path ) {
 	bool checkAll = true;
 
 	// check leaf items
@@ -168,10 +166,10 @@ bool ModelVerifier::checkSpinal_verifyTractPathData( XmlSpinalTract& tract , Xml
 	}
 
 	// chech fibers and endings
-	XmlSpinalCord *sc = hmindxml.getSpinalCord();
+	XmlTracts *tm = hmindxml.getTracts();
 	for( int k = 0; k < path.endings.count(); k++ ) {
 		String ending = path.endings.get( k );
-		if( sc -> findEnding( ending ) == NULL ) {
+		if( tm -> findEnding( ending ) == NULL ) {
 			logger.logError( "checkSpinal_verifyTractPathData: unknown ending=" + ending + " in tract name=" + tract.name );
 			checkAll = false;
 		}
@@ -179,14 +177,14 @@ bool ModelVerifier::checkSpinal_verifyTractPathData( XmlSpinalTract& tract , Xml
 
 	for( int k = 0; k < path.fibers.count(); k++ ) {
 		String fiber = path.fibers.get( k );
-		if( sc -> findFiber( fiber ) == NULL ) {
+		if( tm -> findFiber( fiber ) == NULL ) {
 			logger.logError( "checkSpinal_verifyTractPathData: unknown fiber=" + fiber + " in tract name=" + tract.name );
 			checkAll = false;
 		}
 	}
 
 	for( int k = 0; k < path.childs.count(); k++ ) {
-		XmlSpinalTractPath& child = path.childs.getClassRefByIndex( k );
+		XmlBrainTractPath& child = path.childs.getClassRefByIndex( k );
 		if( !checkSpinal_verifyTractPathData( tract , child ) )
 			checkAll = false;
 	}

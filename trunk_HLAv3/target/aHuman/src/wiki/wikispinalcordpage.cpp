@@ -33,23 +33,23 @@ void WikiSpinalCordPage::createNeurons() {
 
 	// collect section lines
 	StringList lines;
-	XmlSpinalCord *cord = wm -> hmindxml.getSpinalCord();
+	XmlTracts *tm = wm -> hmindxml.getTracts();
 
-	MapStringToClass<XmlSpinalEndingSet>& endings = cord -> getEndings();
+	MapStringToClass<XmlBrainEndingSet>& endings = tm -> getEndings();
 	for( int k = 0; k < endings.count(); k++ ) {
-		XmlSpinalEndingSet& set = endings.getClassRefByIndex( k );
+		XmlBrainEndingSet& set = endings.getClassRefByIndex( k );
 		createNeurons_addEndings( set , lines );
 	}
 
 	lines.add( "*Fibers by thickness*:" );
 	lines.add( "" );
-	MapStringToClass<XmlSpinalFiber>& fibers = cord -> getFibers();
+	MapStringToClass<XmlBrainFiber>& fibers = tm -> getFibers();
 	createNeurons_addFibers( 0 , fibers , lines );
 
 	wm -> updateFileSection( wikiDir , wikiPage , sectionName , lines );
 }
 
-void WikiSpinalCordPage::createNeurons_addEndings( XmlSpinalEndingSet& set , StringList& lines ) {
+void WikiSpinalCordPage::createNeurons_addEndings( XmlBrainEndingSet& set , StringList& lines ) {
 	lines.add( "*" + set.name + "*:" );
 	lines.add( "" );
 	String s = wm -> getImageWikiLink( set.imgsrc , set.imgheight );
@@ -62,7 +62,7 @@ void WikiSpinalCordPage::createNeurons_addEndings( XmlSpinalEndingSet& set , Str
 	lines.add( "" );
 }
 
-void WikiSpinalCordPage::createNeurons_addEndingItem( int level , XmlSpinalEnding& ending , StringList& lines ) {
+void WikiSpinalCordPage::createNeurons_addEndingItem( int level , XmlBrainEnding& ending , StringList& lines ) {
 	String s = String( " " ).replicate( level + 1 ) + "* *" + ending.name + "*";
 	if( !ending.id.isEmpty() )
 		s += " (" + ending.id + ")";
@@ -78,7 +78,7 @@ void WikiSpinalCordPage::createNeurons_addEndingItem( int level , XmlSpinalEndin
 	if( ending.tracts.count() > 0 ) {
 		String ts;
 		for( int k = 0; k < ending.tracts.count(); k++ ) {
-			XmlSpinalTract& tract = ending.tracts.getClassRefByIndex( k );
+			XmlBrainTract& tract = ending.tracts.getClassRefByIndex( k );
 			if( k > 0 )
 				ts += "; ";
 			ts += tract.name;
@@ -93,14 +93,14 @@ void WikiSpinalCordPage::createNeurons_addEndingItem( int level , XmlSpinalEndin
 		createNeurons_addEndingItem( level + 1 , ending.childs.getClassRefByIndex( k ) , lines );
 }
 
-void WikiSpinalCordPage::createNeurons_addFibers( int level , MapStringToClass<XmlSpinalFiber>& fibers , StringList& lines ) {
+void WikiSpinalCordPage::createNeurons_addFibers( int level , MapStringToClass<XmlBrainFiber>& fibers , StringList& lines ) {
 	for( int k = 0; k < fibers.count(); k++ ) {
-		XmlSpinalFiber& fiber = fibers.getClassRefByIndex( k );
+		XmlBrainFiber& fiber = fibers.getClassRefByIndex( k );
 		createNeurons_addFiberInfo( level , fiber , lines );
 	}
 }
 
-void WikiSpinalCordPage::createNeurons_addFiberInfo( int level , XmlSpinalFiber& fiber , StringList& lines ) {
+void WikiSpinalCordPage::createNeurons_addFiberInfo( int level , XmlBrainFiber& fiber , StringList& lines ) {
 	String s = String( " " ).replicate( level + 1 ) + "* *" + fiber.id + "*";
 	if( !fiber.name.isEmpty() )
 		s += " - " + fiber.name;
@@ -125,7 +125,7 @@ void WikiSpinalCordPage::createNeurons_addFiberInfo( int level , XmlSpinalFiber&
 	if( fiber.tracts.count() > 0 ) {
 		String ts;
 		for( int k = 0; k < fiber.tracts.count(); k++ ) {
-			XmlSpinalTract& tract = fiber.tracts.getClassRefByIndex( k );
+			XmlBrainTract& tract = fiber.tracts.getClassRefByIndex( k );
 			if( k > 0 )
 				ts += "; ";
 			ts += tract.name;
@@ -180,8 +180,8 @@ void WikiSpinalCordPage::createTracts() {
 
 	// collect section lines
 	StringList lines;
-	XmlSpinalCord *cord = wm -> hmindxml.getSpinalCord();
-	MapStringToClass<XmlSpinalTractSet>& tractsets = cord -> getTracts();
+	XmlTracts *tm = wm -> hmindxml.getTracts();
+	MapStringToClass<XmlBrainTractSet>& tractsets = tm -> getTracts();
 	
 	createTracts_addTractTableLines( tractsets , lines );
 	wm -> updateFileSection( wikiDir , wikiPage , sectionName , lines );
@@ -189,31 +189,31 @@ void WikiSpinalCordPage::createTracts() {
 	lines.clear();
 	wikiPage = wm -> wiki.getProperty( "wikiPageSpinalCordTracts" );
 	for( int k = 0; k < tractsets.count(); k++ ) {
-		XmlSpinalTractSet& one = tractsets.getClassRefByIndex( k );
+		XmlBrainTractSet& one = tractsets.getClassRefByIndex( k );
 		createTracts_addTractSetLines( one , lines );
 	}
 
 	wm -> updateFileSection( wikiDir , wikiPage , sectionName , lines );
 }
 
-void WikiSpinalCordPage::createTracts_addTractTableLines( MapStringToClass<XmlSpinalTractSet>& tractsets , StringList& lines ) {
+void WikiSpinalCordPage::createTracts_addTractTableLines( MapStringToClass<XmlBrainTractSet>& tractsets , StringList& lines ) {
 	lines.add( "*Tracts overview*:" );
 	lines.add( "|| *Tract* || *Name* || *Function* ||" );
 	for( int k = 0; k < tractsets.count(); k++ ) {
-		XmlSpinalTractSet& one = tractsets.getClassRefByIndex( k );
+		XmlBrainTractSet& one = tractsets.getClassRefByIndex( k );
 		createTracts_addTractSetTableLines( one , lines );
 	}
 }
 
-void WikiSpinalCordPage::createTracts_addTractSetTableLines( XmlSpinalTractSet& ts , StringList& lines ) {
+void WikiSpinalCordPage::createTracts_addTractSetTableLines( XmlBrainTractSet& ts , StringList& lines ) {
 	lines.add( "|| *" + ts.name + "* || || ||" );
 	for( int k = 0; k < ts.tracts.count(); k++ ) {
-		XmlSpinalTract& tract = ts.tracts.getClassRefByIndex( k );
+		XmlBrainTract& tract = ts.tracts.getClassRefByIndex( k );
 		createTracts_addTractTableLines( 0 , tract , lines );
 	}
 }
 
-void WikiSpinalCordPage::createTracts_addTractTableLines( int level , XmlSpinalTract& tract , StringList& lines ) {
+void WikiSpinalCordPage::createTracts_addTractTableLines( int level , XmlBrainTract& tract , StringList& lines ) {
 	String tname = tract.name;
 	if( tract.childs.count() > 0 )
 		tname = "*" + tname + "*";
@@ -222,12 +222,12 @@ void WikiSpinalCordPage::createTracts_addTractTableLines( int level , XmlSpinalT
 		tname + " || " + tract.brief + " ||" );
 
 	for( int k = 0; k < tract.childs.count(); k++ ) {
-		XmlSpinalTract& child = tract.childs.getClassRefByIndex( k );
+		XmlBrainTract& child = tract.childs.getClassRefByIndex( k );
 		createTracts_addTractTableLines( level + 1 , child , lines );
 	}
 }
 
-void WikiSpinalCordPage::createTracts_addTractSetLines( XmlSpinalTractSet& ts , StringList& lines ) {
+void WikiSpinalCordPage::createTracts_addTractSetLines( XmlBrainTractSet& ts , StringList& lines ) {
 	lines.add( "TRACT SET: *" + ts.name + "*" );
 	lines.add( "" );
 	String s = wm -> getImageWikiLink( ts.imgsrc , ts.imgheight );
@@ -235,12 +235,12 @@ void WikiSpinalCordPage::createTracts_addTractSetLines( XmlSpinalTractSet& ts , 
 	lines.add( "" );
 
 	for( int k = 0; k < ts.tracts.count(); k++ ) {
-		XmlSpinalTract& tract = ts.tracts.getClassRefByIndex( k );
+		XmlBrainTract& tract = ts.tracts.getClassRefByIndex( k );
 		createTracts_addTractLines( 0 , tract , lines );
 	}
 }
 
-void WikiSpinalCordPage::createTracts_addTractLines( int level , XmlSpinalTract& tract , StringList& lines ) {
+void WikiSpinalCordPage::createTracts_addTractLines( int level , XmlBrainTract& tract , StringList& lines ) {
 	// tract info
 	String sname = "TRACT";
 	if( !tract.index.isEmpty() )
@@ -263,18 +263,18 @@ void WikiSpinalCordPage::createTracts_addTractLines( int level , XmlSpinalTract&
 
 	// tracts paths
 	for( int k = 0; k < tract.paths.count(); k++ ) {
-		XmlSpinalTractPath& path = tract.paths.getClassRefByIndex( k );
+		XmlBrainTractPath& path = tract.paths.getClassRefByIndex( k );
 		createTracts_addTractPathLines( level + 1 , path , lines );
 	}
 
 	// child tract
 	for( int k = 0; k < tract.childs.count(); k++ ) {
-		XmlSpinalTract& child = tract.childs.getClassRefByIndex( k );
+		XmlBrainTract& child = tract.childs.getClassRefByIndex( k );
 		createTracts_addTractLines( level + 1 , child , lines );
 	}
 }
 
-void WikiSpinalCordPage::createTracts_addTractPathLines( int level , XmlSpinalTractPath& path , StringList& lines ) {
+void WikiSpinalCordPage::createTracts_addTractPathLines( int level , XmlBrainTractPath& path , StringList& lines ) {
 	String s = String( " " ).replicate( level + 1 ) + "* path *" + path.id + "*: " + path.function + " (" + path.pathway + ")" + 
 		"; FIBERS={" + path.fibers.combine("; ") + "}" + 
 		", ENDINGS={" + path.endings.combine(",") + "}: ";
@@ -288,7 +288,7 @@ void WikiSpinalCordPage::createTracts_addTractPathLines( int level , XmlSpinalTr
 	lines.add( s );
 
 	for( int k = 0; k < path.childs.count(); k++ ) {
-		XmlSpinalTractPath& child = path.childs.getClassRefByIndex( k );
+		XmlBrainTractPath& child = path.childs.getClassRefByIndex( k );
 		createTracts_addTractPathLines( level + 1 , child , lines );
 	}
 }
@@ -303,6 +303,7 @@ void WikiSpinalCordPage::createNuclei() {
 	String s;
 
 	StringList items;
+	XmlTracts *tm = wm -> hmindxml.getTracts();
 	XmlSpinalCord *cord = wm -> hmindxml.getSpinalCord();
 	cord -> getLayoutItems( items );
 	items.sort();
@@ -367,7 +368,7 @@ void WikiSpinalCordPage::createNuclei() {
 
 				// tracts
 				StringList tracts;
-				cord -> getRegionTracts( comp.id , tracts );
+				tm -> getRegionTracts( comp.id , tracts );
 				s += "; TRACTS={" + tracts.combine( "; " ) + "}";
 
 				lines.add( s );
@@ -394,7 +395,8 @@ void WikiSpinalCordPage::createConnectivity() {
 		spinalitems.add( comp -> id , comp );
 	}
 
-	MapStringToClass<XmlSpinalTractPath>& paths = cord -> getTractPathMap();
+	XmlTracts *tm = wm -> hmindxml.getTracts();
+	MapStringToClass<XmlBrainTractPath>& paths = tm -> getTractPathMap();
 
 	// collect nuclei
 	MapStringToClass<StringList> sensoryNuclei;
@@ -402,7 +404,7 @@ void WikiSpinalCordPage::createConnectivity() {
 	MapStringToClass<StringList> reciprocalNuclei;
 	MapStringToClass<StringList> ganglia;
 	for( int k = 0; k < paths.count(); k++ ) {
-		XmlSpinalTractPath& path = paths.getClassRefByIndex( k );
+		XmlBrainTractPath& path = paths.getClassRefByIndex( k );
 		createConnectivity_extractNuclei( spinalitems , path , sensoryNuclei , motorNuclei , ganglia );
 	}
 
@@ -481,7 +483,7 @@ void WikiSpinalCordPage::createConnectivity_fillSectionTree( MapStringToClass<St
 	}
 }
 
-void WikiSpinalCordPage::createConnectivity_extractNuclei( MapStringToClass<XmlHMindElementInfo>& spinalitems , XmlSpinalTractPath& path , MapStringToClass<StringList>& sensoryNuclei , MapStringToClass<StringList>& motorNuclei , MapStringToClass<StringList>& ganglia ) {
+void WikiSpinalCordPage::createConnectivity_extractNuclei( MapStringToClass<XmlHMindElementInfo>& spinalitems , XmlBrainTractPath& path , MapStringToClass<StringList>& sensoryNuclei , MapStringToClass<StringList>& motorNuclei , MapStringToClass<StringList>& ganglia ) {
 	if( path.type.equals( "sensory" ) ) {
 		for( int k = 0; k < path.items.count(); k++ ) {
 			String item = path.items.get( k );
@@ -519,7 +521,7 @@ void WikiSpinalCordPage::createConnectivity_extractNuclei( MapStringToClass<XmlH
 	}
 }
 
-void WikiSpinalCordPage::createConnectivity_addTract( MapStringToClass<StringList>& map , XmlHMindElementInfo& comp , XmlSpinalTractPath& path ) {
+void WikiSpinalCordPage::createConnectivity_addTract( MapStringToClass<StringList>& map , XmlHMindElementInfo& comp , XmlBrainTractPath& path ) {
 	StringList *tracts = map.get( comp.id );
 	if( tracts == NULL ) {
 		tracts = new StringList;
@@ -528,4 +530,3 @@ void WikiSpinalCordPage::createConnectivity_addTract( MapStringToClass<StringLis
 
 	tracts -> addnew( path.tract.name );
 }
-

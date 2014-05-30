@@ -53,13 +53,13 @@ private:
 	bool checkMindModel_verifyLinkedConnectors( MindRegionDef *regionDef , MindRegion *region );
 	bool checkMindModel_verifyRegionCircuits( MindRegionDef *regionDef , MindRegion *region );
 	bool checkSpinal_verifyEndings();
-	bool checkSpinal_verifyEndingData( XmlSpinalEnding& ending );
+	bool checkSpinal_verifyEndingData( XmlBrainEnding& ending );
 	bool checkSpinal_verifyFibers();
-	bool checkSpinal_verifyFiberData( XmlSpinalFiber& fiber );
+	bool checkSpinal_verifyFiberData( XmlBrainFiber& fiber );
 	bool checkSpinal_verifyTracts();
-	bool checkSpinal_verifyTractSet( XmlSpinalTractSet& set );
-	bool checkSpinal_verifyTractData( XmlSpinalTract& tract );
-	bool checkSpinal_verifyTractPathData( XmlSpinalTract& tract , XmlSpinalTractPath& path );
+	bool checkSpinal_verifyTractSet( XmlBrainTractSet& set );
+	bool checkSpinal_verifyTractData( XmlBrainTract& tract );
+	bool checkSpinal_verifyTractPathData( XmlBrainTract& tract , XmlBrainTractPath& path );
 
 private:
 	Xml modelArea;

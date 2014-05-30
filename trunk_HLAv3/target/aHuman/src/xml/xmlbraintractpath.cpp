@@ -4,14 +4,14 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-XmlSpinalTractPath::XmlSpinalTractPath( XmlSpinalTract& p_tract , XmlSpinalTractPath *p_parent ) 
+XmlBrainTractPath::XmlBrainTractPath( XmlBrainTract& p_tract , XmlBrainTractPath *p_parent ) 
 : tract( p_tract ) , parent( p_parent ) {
 }
 
-XmlSpinalTractPath::~XmlSpinalTractPath() {
+XmlBrainTractPath::~XmlBrainTractPath() {
 }
 
-void XmlSpinalTractPath::load( Xml xml ) {
+void XmlBrainTractPath::load( Xml xml ) {
 	id = xml.getAttribute( "id" );
 	type = xml.getAttribute( "type" );
 	function = xml.getAttribute( "function" );
@@ -35,7 +35,7 @@ void XmlSpinalTractPath::load( Xml xml ) {
 	value.split( endings , "," );
 
 	for( Xml xmlChild = xml.getFirstChild( "path" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "path" ) ) {
-		XmlSpinalTractPath *path = new XmlSpinalTractPath( tract , this );
+		XmlBrainTractPath *path = new XmlBrainTractPath( tract , this );
 		path -> load( xmlChild );
 		childs.add( path -> id , path );
 	}

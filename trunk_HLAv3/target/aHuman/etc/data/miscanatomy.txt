@@ -382,3 +382,26 @@ http://www.oluwoleogunranti.com/course/course1/nerves/ne287.htm - CERVICAL SYMPA
 *thoracic sympatetic chain ganglia* = http://www.oluwoleogunranti.com/course/course1/nerves/ne324.htm - THORACIC SYMPATHETIC TRUNK & GANGLIA
 http://www.oluwoleogunranti.com/course/course1/nerves/ne57.htm - CERVICAL NERVES
   * *vertebral nerve*; ORIGIN={cervicothoracic and vertebral GANGLIA}; DISTRIBUTION={ascends with vertebral artery and gives fibers to spinal meninges, cervical nerves, and posterior cranial fossa}; MODALITY={sympathetic}
+
+eye circuits:
+					<path id="CBT.EYE" type="motor" 
+						src="MCA.NC.PMC.FEF" mids="" dst="HMA.HP.PRF.RPO" fibers="MA,MG" endings="A-alpha-Ia-motor,A-beta-motor"
+						function="conscious eye move"
+						pathway="cortex to eye control center"
+						/>
+
+					<path id="CBT.ABD" type="motor"
+						src="HMA.HP.PRF.RPO" mids="VBA.HP.ABD" dst="VBA.MM.OCN" fibers="MA,MG" endings="A-alpha-Ia-motor,A-beta-motor"
+						function="conjugated horizontal gaze"
+						pathway="PPRF to ocular nuclei to medial/lateral rectus muscles of eye"
+						/>
+					<path id="CBT.MLF" type="motor"
+						src="HMA.MM.RIMLF" mids="" dst="VBA.MM.OCN" fibers="MA,MG" endings="A-alpha-Ia-motor,A-beta-motor"
+						function="conjugated upward vertical gaze"
+						pathway="PPRF to ocular nuclei to superior rectus muscles of eye"
+						/>
+					<path id="CBT.CJ" type="motor"
+						src="HMA.MM.CJ" mids="" dst="VBA.MM.OCN" fibers="MA,MG" endings="A-alpha-Ia-motor,A-beta-motor"
+						function="conjugated downward vertical gaze"
+						pathway="PPRF to ocular nuclei to inferior rectus muscles of eye"
+						/>
