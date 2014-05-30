@@ -18,7 +18,7 @@ Circuit is part of aHuman target integrated biological model.
 ||  || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || Retrosplenial Cortex || cortex, BA 26,29,30 || Processing of emotionally salient stimuli ||
 || [BrainAreaHBA HBA] || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || Subiculum || cortex || Spatial navigation and mnemonic processing ||
 || [BrainAreaHMA HMA] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus || Mediation of changing to and from REM sleep ||
-||  || [BrainRegionHMA_MM_CJ HMA.MM.CJ] || Cajal Nucleus || nucleus || Integration of head and eye movements, controls vertical gaze ||
+||  || [BrainRegionHMA_MM_CJ HMA.MM.CJ] || Cajal Nucleus || nucleus || Integration of head and eye movements, controls downward vertical gaze ||
 || [BrainAreaHTA HTA] || [BrainRegionHTA_FD_HT_PN HTA.FD.HT.PN] || Posterior Nucleus || nucleus || Blood pressure, pupillary dilation ||
 ||  || [BrainRegionHTA_FD_HT_SCN HTA.FD.HT.SCN] || Suprachiasmatic Nucleus || nucleus || 24-hour rhythms ||
 || [BrainAreaMBA MBA] || [BrainRegionMBA_MM_SC_DEEP MBA.MM.SC.DEEP] || Deep Superior Colliculus || nucleus || Head and eye attention to non-visual stimuli ||
@@ -35,7 +35,7 @@ Circuit is part of aHuman target integrated biological model.
 ||  || [BrainRegionVBA_MM_PT_PR VBA.MM.PT.PR] || Principal Pretectal Nucleus || nucleus || Pupillary light reflex ||
 ||  || [BrainRegionVBA_MM_PT_SL VBA.MM.PT.SL] || Sublentiform Nucleus || nucleus || Accomodation reflex ||
 ||  || [BrainRegionVBA_MM_SC_SUP VBA.MM.SC.SUP] || Superficial Superior Colliculus || nucleus || Head and eye attention to visual stimuli ||
-||  || [BrainRegionVBA_MM_SOA VBA.MM.SOA] || Supraoculomotor Area || nucleus || Control of vergence ||
+||  || [BrainRegionVBA_MM_SOA VBA.MM.SOA] || Supraoculomotor Area ||  || Control of vergence ||
 ||  || [BrainRegionVBA_MM_TRH VBA.MM.TRH] || Trochlear Nucleus || nucleus || Control superior oblique muscles of eyes ||
 || [BrainAreaFMA FMA] || [BrainRegionVBA_PN_PSYM_CLG VBA.PN.PSYM.CLG] || Ciliary Ganglion || parasympathetic ganglion || Control pupillary diameter ||
 ||  || [BrainRegionVBA_PN_PSYM_EPG VBA.PN.PSYM.EPG] || Episcleral Ganglion || parasympathetic ganglion || Control curvature of lens ||
@@ -62,7 +62,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitVisionEyeControl.dot.j
 || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || allocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (SUB -> PCGRSP, abstract)] ||
 || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || [BrainRegionVBA_HP_ABD VBA.HP.ABD] || nucleus-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) (PPRF -> Abducens, abstract)] ||
 ||  || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (RF -> OPN, abstract)] ||
-|| [BrainRegionHMA_MM_CJ HMA.MM.CJ] || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionHMA_MM_CJ HMA.MM.CJ] || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SupraOculomotor -> Oculomotor, abstract)] ||
 ||  || [BrainRegionVBA_MM_TRH VBA.MM.TRH] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionHTA_FD_HT_PN HTA.FD.HT.PN] || [BrainRegionVBA_SC_IZ_CSC VBA.SC.IZ.CSC] || nucleus-nucleus || [http://www.nature.com/pr/journal/v71/n3/fig_tab/pr201138f1.html Sympathetic and parasympathetic eye pathways (PHT -> CC)] ||
 || [BrainRegionHTA_FD_HT_SCN HTA.FD.HT.SCN] || [BrainRegionVBA_MM_PT_NOT VBA.MM.PT.NOT] || nucleus-nucleus || (unknown reference) ||
@@ -87,16 +87,16 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CircuitVisionEyeControl.dot.j
 ||  || [BrainRegionVBA_FD_PV_MPV VBA.FD.PV.MPV] || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionVBA_MM_EWN VBA.MM.EWN] || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Pretectum -> EWN, abstract)] ||
 ||  || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || nucleus-nucleus || (unknown reference) ||
-|| [BrainRegionVBA_MM_SOA VBA.MM.SOA] || [BrainRegionVBA_MM_EWN VBA.MM.EWN] || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SupraOculomotor -> EWN)] ||
-||  || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SupraOculomotor -> Oculomotor)] ||
+|| [BrainRegionVBA_MM_SOA VBA.MM.SOA] || [BrainRegionVBA_MM_EWN VBA.MM.EWN] || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionVBA_SC_IZ_CSC VBA.SC.IZ.CSC] || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || nucleus-ganglion || [http://www.nature.com/pr/journal/v71/n3/fig_tab/pr201138f1.html Sympathetic and parasympathetic eye pathways (CC -> SCG)] ||
 || [BrainRegionVCA_NC_IPL_MST VCA.NC.IPL.MST] || [BrainRegionVBA_MM_SC_SUP VBA.MM.SC.SUP] || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> SCi, abstract)] ||
 || [BrainRegionVCA_NC_IPS_PEF VCA.NC.IPS.PEF] || [BrainRegionMBA_MM_SC_DEEP MBA.MM.SC.DEEP] || neocortex-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (PEF -> SC, abstract)] ||
-||  || [BrainRegionVBA_MM_SOA VBA.MM.SOA] || neocortex-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Vision Components (VAC -> SOA)] ||
+||  || [BrainRegionVBA_MM_SOA VBA.MM.SOA] || neocortex-nucleus || (unknown reference) ||
 || [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || neocortex-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (TEF -> DLPN, abstract)] ||
 || [BrainRegionVCA_NC_IT_TEO VCA.NC.IT.TEO] || [BrainRegionVCA_NC_IPS_PEF VCA.NC.IPS.PEF] || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (IT -> IPS, abstract)] ||
 || [BrainRegionVCA_NC_V1 VCA.NC.V1] || [BrainRegionVBA_MM_PT_SL VBA.MM.PT.SL] || neocortex-nucleus || (unknown reference) ||
 ||  || [BrainRegionVBA_MM_SC_SUP VBA.MM.SC.SUP] || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (VisualCortex -> SCs, abstract)] ||
 || [BrainRegionVCA_NC_V2 VCA.NC.V2] || [BrainRegionVBA_MM_SC_SUP VBA.MM.SC.SUP] || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (VisualCortex -> SCs, abstract)] ||
-|| [BrainRegionVCA_NC_V3 VCA.NC.V3] || [BrainRegionVBA_MM_SOA VBA.MM.SOA] || neocortex-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (VAC -> SupraOculomotor)] ||
+|| [BrainRegionVCA_NC_V3 VCA.NC.V3] || [BrainRegionVBA_MM_SOA VBA.MM.SOA] || neocortex-nucleus || (unknown reference) ||
 
