@@ -21,6 +21,9 @@ void XmlHMind::load() {
 	xml = es -> loadXml( "hmind.xml" );
 	ASSERTMSG( xml.exists() , "unable to read file hmind.xml" );
 
+	// read categories
+	loadCategories( xml );
+
 	// scan
 	for( Xml xmlChild = xml.getFirstChild( "division" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "division" ) ) {
 		if( xmlChild.getBooleanAttribute( "ignore" , false ) )
@@ -36,6 +39,15 @@ void XmlHMind::load() {
 	Xml xmlFile = es -> loadXml( xmlFileName );
 	ASSERTMSG( xmlFile.exists() , "unable to read file " + xmlFileName );
 	tracts -> load( xmlFile );
+}
+
+void XmlHMind::loadCategories( Xml xml ) {
+	Xml xmltracts = xml.getFirstChild( "categories" );
+	for( Xml xmlChild = xml.getFirstChild( "category" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "category" ) ) {
+		XmlBrainCategory *category = new XmlBrainCategory( this );
+		category -> load( xmlChild );
+		categories.add( category -> getId() , category );
+	}
 }
 
 void XmlHMind::createDivisionElement( Xml item ) {
@@ -84,6 +96,12 @@ bool XmlHMind::isComponent( String node ) {
 	if( info -> id.isEmpty() )
 		return( false );
 	return( true );
+}
+
+XmlBrainCategory *XmlHMind::getCategory( String category ) {
+	XmlBrainCategory *ct = categories.get( category );
+	ASSERTMSG( ct != NULL , "unknown brain category=" + category );
+	return( ct );
 }
 
 void XmlHMind::getDivisions( StringList& divisions ) {
@@ -156,6 +174,8 @@ void XmlHMind::createElementInfo( String mapId , Xml item , XmlHMindElementInfo&
 	info.xml = item;
 
 	info.id = item.getAttribute( "id" , "" );
+	String parentCategory = ( info.parent == NULL )? "" : info.parent -> category;
+	info.category = item.getAttribute( "category" , parentCategory );
 	info.index = item.getAttribute( "index" , "" );
 	if( !info.index.isEmpty() )
 		mapIndex.add( info.index , &info );
@@ -202,6 +222,12 @@ void XmlHMind::createElementInfo( String mapId , Xml item , XmlHMindElementInfo&
 		info.eltype = HMIND_ELEMENT_GLAND;
 	else
 		ASSERTFAILED( "invalid element type id=" + info.id + ", name=" + info.name + ", type=" + info.eltypename );
+
+	if( !info.category.isEmpty() ) {
+		XmlBrainCategory *category = categories.get( info.category );
+		ASSERTMSG( category != NULL , "region " + info.id + ": unknown category - " + info.category );
+		category -> addElement( &info );
+	}
 }
 
 XmlHMindElementInfo& XmlHMind::getElementInfo( String node ) {
