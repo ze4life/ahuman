@@ -16,6 +16,8 @@ class WikiNerveSpecPages;
 class WikiMuscleMainPage;
 class WikiMuscleSpecPages;
 class WikiSpinalCordPage;
+class WikiCategoryPage;
+class WikiTractsPage;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -66,6 +68,8 @@ private:
 	void createMuscleMainPage();
 	void createMuscleSpecPages();
 	void createSpinalCordPage();
+	void createPeripheralPage();
+	void createTractsPage();
 
 public:
 	Xml wiki;
@@ -301,6 +305,30 @@ private:
 /*#########################################################################*/
 /*#########################################################################*/
 
+class WikiCategoryPage : public Object {
+public:
+	WikiCategoryPage( WikiMaker *wm );
+	virtual ~WikiCategoryPage();
+	virtual const char *getClass() { return "WikiCategoryPage"; };
+
+public:
+	void execute( String category , String settingPage );
+
+private:
+	void createRegions( XmlBrainCategory *braincategory , String page );
+	void createConnectivity( XmlBrainCategory *braincategory , String page );
+	void createConnectivity_extractNuclei( MapStringToClass<XmlHMindElementInfo>& spinalitems , XmlBrainTractPath& path , MapStringToClass<StringList>& sensoryNuclei , MapStringToClass<StringList>& motorNuclei , MapStringToClass<StringList>& ganglia );
+	void createConnectivity_fillSection( String page , String section , MapStringToClass<StringList>& nuclei );
+	void createConnectivity_fillSectionTree( MapStringToClass<StringList>& nuclei , int level , XmlHMindElementInfo& item , MapStringToClass<XmlHMindElementInfo>& subtree , StringList& lines );
+	void createConnectivity_addTract( MapStringToClass<StringList>& map , XmlHMindElementInfo& comp , XmlBrainTractPath& path );
+
+private:
+	WikiMaker *wm;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
 class WikiSpinalCordPage : public Object {
 public:
 	WikiSpinalCordPage( WikiMaker *wm );
@@ -311,13 +339,31 @@ public:
 	void execute();
 
 private:
+	void createLayout();
+
+private:
+	WikiMaker *wm;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class WikiTractsPage : public Object {
+public:
+	WikiTractsPage( WikiMaker *wm );
+	virtual ~WikiTractsPage();
+	virtual const char *getClass() { return "WikiTractsPage"; };
+
+public:
+	void execute();
+
+private:
 	void createNeurons();
 	void createNeurons_addEndings( XmlBrainEndingSet& set , StringList& lines );
 	void createNeurons_addEndingItem( int level , XmlBrainEnding& item , StringList& lines );
 	void createNeurons_addFibers( int level , MapStringToClass<XmlBrainFiber>& fibers , StringList& lines );
 	void createNeurons_addFiberInfo( int level , XmlBrainFiber& fiber , StringList& lines );
-	void createLayout();
-	void createNuclei();
+
 	void createTracts();
 	void createTracts_addTractTableLines( MapStringToClass<XmlBrainTractSet>& tractsets , StringList& lines );
 	void createTracts_addTractSetTableLines( XmlBrainTractSet& ts , StringList& lines );
@@ -325,11 +371,6 @@ private:
 	void createTracts_addTractSetLines( XmlBrainTractSet& ts , StringList& lines );
 	void createTracts_addTractLines( int level , XmlBrainTract& tract , StringList& lines );
 	void createTracts_addTractPathLines( int level , XmlBrainTractPath& path , StringList& lines );
-	void createConnectivity();
-	void createConnectivity_extractNuclei( MapStringToClass<XmlHMindElementInfo>& spinalitems , XmlBrainTractPath& path , MapStringToClass<StringList>& sensoryNuclei , MapStringToClass<StringList>& motorNuclei , MapStringToClass<StringList>& ganglia );
-	void createConnectivity_fillSection( String section , MapStringToClass<StringList>& nuclei );
-	void createConnectivity_fillSectionTree( MapStringToClass<StringList>& nuclei , int level , XmlHMindElementInfo& item , MapStringToClass<XmlHMindElementInfo>& subtree , StringList& lines );
-	void createConnectivity_addTract( MapStringToClass<StringList>& map , XmlHMindElementInfo& comp , XmlBrainTractPath& path );
 
 private:
 	WikiMaker *wm;

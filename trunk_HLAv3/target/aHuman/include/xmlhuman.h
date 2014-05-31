@@ -6,8 +6,9 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-class XmlHMindElementInfo;
 class XmlHMind;
+class XmlBrainCategory;
+class XmlHMindElementInfo;
 class XmlCircuits;
 class XmlCircuitInfo;
 class XmlCircuitLinkInfo;
@@ -38,10 +39,12 @@ public:
 
 public:
 	void load();
+	void loadCategories( Xml xml );
 
 	Xml getNodeXml( String node );
 	bool isComponent( String node );
 
+	XmlBrainCategory *getCategory( String category );
 	void getDivisions( StringList& divisions );
 	void getElements( String parentNode , StringList& elements );
 	void getConnectors( String parentNode , StringList& elements );
@@ -74,6 +77,29 @@ private:
 	XmlTracts *tracts;
 	XmlSpinalCord *spinalCord;
 	MapStringToClass<XmlHMindElementInfo> mapIndex;
+	MapStringToClass<XmlBrainCategory> categories;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
+class XmlBrainCategory {
+public:
+	XmlBrainCategory( XmlHMind *hmind );
+
+	String getId() { return( id ); };
+	String getName() { return( name ); };
+	MapStringToClass<XmlHMindElementInfo>& getMappedElements() { return( mappedElements ); };
+
+	void load( Xml xml );
+	void addElement( XmlHMindElementInfo *item );
+	void getMappedItems( StringList& items );
+
+private:
+	XmlHMind *hmind;
+	String id;
+	String name;
+	MapStringToClass<XmlHMindElementInfo> mappedElements;
 };
 
 /*#########################################################################*/
@@ -108,6 +134,7 @@ public:
 
 	bool ignore;
 	String id;
+	String category;
 	String index;
 	String name;
 	bool mapped;

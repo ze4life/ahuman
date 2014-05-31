@@ -28,11 +28,23 @@ void WikiMaker::createPages() {
 	createMuscleMainPage();
 	createMuscleSpecPages();
 	createSpinalCordPage();
+	createTractsPage();
+	createPeripheralPage();
 }
 
 void WikiMaker::createSpinalCordPage() {
 	WikiSpinalCordPage maker( this );
 	maker.execute();
+}
+
+void WikiMaker::createTractsPage() {
+	WikiTractsPage maker( this );
+	maker.execute();
+}
+
+void WikiMaker::createPeripheralPage() {
+	WikiCategoryPage maker( this );
+	maker.execute( "peripheral" , "wikiPagePeripheral" );
 }
 
 void WikiMaker::createMainPage() {
