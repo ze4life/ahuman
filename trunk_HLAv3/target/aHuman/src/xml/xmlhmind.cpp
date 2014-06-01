@@ -43,7 +43,7 @@ void XmlHMind::load() {
 
 void XmlHMind::loadCategories( Xml xml ) {
 	Xml xmltracts = xml.getFirstChild( "categories" );
-	for( Xml xmlChild = xml.getFirstChild( "category" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "category" ) ) {
+	for( Xml xmlChild = xmltracts.getFirstChild( "category" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "category" ) ) {
 		XmlBrainCategory *category = new XmlBrainCategory( this );
 		category -> load( xmlChild );
 		categories.add( category -> getId() , category );
@@ -238,11 +238,14 @@ XmlHMindElementInfo& XmlHMind::getElementInfo( String node ) {
 
 const XmlHMindElementInfo *XmlHMind::getConnectorInfo( String name ) {
 	XmlHMindElementInfo *ni = connectorInfo.get( name );
+	ASSERTMSG( ni != NULL , "unknown connector - " + name );
 	return( ni );
 }
 
 XmlHMindElementInfo *XmlHMind::getIndexedElement( String index ) {
-	return( mapIndex.get( index ) );
+	XmlHMindElementInfo *ni = mapIndex.get( index );
+	ASSERTMSG( ni != NULL , "unknown indexed element - " + index );
+	return( ni );
 }
 
 String XmlHMind::getMappedRegion( String node ) {

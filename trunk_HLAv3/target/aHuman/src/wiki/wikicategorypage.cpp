@@ -43,14 +43,14 @@ void WikiCategoryPage::createRegions( XmlBrainCategory *braincategory , String w
 	MapStringToClass<MapStringToClass<MapStringToClass<XmlHMindElementInfo> > > groups;
 	for( int k = 0; k < items.count(); k++ ) {
 		String item = items.get( k );
-		XmlHMindElementInfo *comp = wm -> hmindxml.getIndexedElement( item );
-		MapStringToClass<MapStringToClass<XmlHMindElementInfo> > *tgroup = groups.get( comp -> eltypename );
+		XmlHMindElementInfo& comp = wm -> hmindxml.getElementInfo( item );
+		MapStringToClass<MapStringToClass<XmlHMindElementInfo> > *tgroup = groups.get( comp.eltypename );
 		if( tgroup == NULL ) {
 			tgroup = new MapStringToClass<MapStringToClass<XmlHMindElementInfo> >;
-			groups.add( comp -> eltypename , tgroup );
+			groups.add( comp.eltypename , tgroup );
 		}
 
-		String fgrouptext = comp -> fgroup;
+		String fgrouptext = comp.fgroup;
 		if( fgrouptext.isEmpty() )
 			fgrouptext = "none";
 
@@ -60,7 +60,7 @@ void WikiCategoryPage::createRegions( XmlBrainCategory *braincategory , String w
 			tgroup -> add( fgrouptext , fgroup );
 		}
 
-		fgroup -> addnew( item , comp );
+		fgroup -> addnew( item , &comp );
 	}
 
 	// create page content
@@ -116,8 +116,8 @@ void WikiCategoryPage::createConnectivity( XmlBrainCategory *braincategory , Str
 	braincategory -> getMappedItems( items );
 	for( int k = 0; k < items.count(); k++ ) {
 		String item = items.get( k );
-		XmlHMindElementInfo *comp = wm -> hmindxml.getIndexedElement( item );
-		spinalitems.add( comp -> id , comp );
+		XmlHMindElementInfo& comp = wm -> hmindxml.getElementInfo( item );
+		spinalitems.add( comp.id , &comp );
 	}
 
 	XmlTracts *tm = wm -> hmindxml.getTracts();

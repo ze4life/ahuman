@@ -19,8 +19,8 @@ void WikiTractsPage::execute() {
 		return;
 	}
 
-	createTracts();
 	createNeurons();
+	createTracts();
 }
 
 void WikiTractsPage::createTracts() {
