@@ -30,7 +30,11 @@ for x in `find nerves -name "*\.xml"`; do
 	f_exec $x
 done
 
-F_SPECFILES="hmind.xml mind.xml mindnet.xml target.xml"
+for x in `find hmind -name "*\.xml"`; do
+	f_exec $x
+done
+
+F_SPECFILES="mind.xml mindnet.xml target.xml"
 for x in $F_SPECFILES; do
 	f_exec $x
 done
