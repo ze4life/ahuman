@@ -1,6 +1,6 @@
 <hmind>
 
-	<division id="FTC" name="Forebrain Telencephalon"
+	<division id="FTC" name="Forebrain Telencephalon" category="forebrain"
 		dotdef="color=slateblue"
 		>
 
@@ -119,7 +119,7 @@
 			</element>
 		</element>
 
-		<element id="PHA.FT.EPF" name="Endopiriform Nucleus" mapped="true" type="nucleus"
+		<element id="PHA.FT.EPF" name="Endopiriform Nucleus" mapped="true" type="nucleus" 
 			refs="NL:[http://neurolex.org/wiki/Category:Endopiriform_nucleus Endopiriform nucleus]"
 			function="Putative relay of limbic-associated cortical-like areas subserving affective information"
 			/>
@@ -191,7 +191,7 @@
 
 	</division>
 
-	<division id="FDC" name="Forebrain Diencephalon"
+	<division id="FDC" name="Forebrain Diencephalon" category="forebrain"
 		dotdef="color=yellow"
 		>
 
@@ -566,51 +566,60 @@
 		dotdef="color=goldenrod"
 		>
 
-		<element id="FBA.MM.CNF" name="Cuneiform Nucleus" mapped="true" type="nucleus"
-			refs="NL:[http://neurolex.org/wiki/Category:Cuneiform_nucleus Cuneiform nucleus]"
-			function="Passive coping strategy to novel, painful or threatening stimuli"
-			notes="modulatory nucleus"
+		<element id="VBA.MM.OCN" name="Oculomotor Nucleus" mapped="true" type="nucleus" index="OCM" category="peripheral"
+			refs="NL:[http://neurolex.org/wiki/Category:Oculomotor_nuclear_complex Oculomotor nuclear complex]"
+			fgroup="Cranial Motor"
+			function="Change Eye Direction"
+			notes="Muscle nucleus"
 			>
-			<element name="Subcuneiform Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Subcuneiform_nucleus Subcuneiform nucleus]"/>
+			<element name="Anterior Median Oculomotor Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Anterior_median_oculomotor_nucleus Anterior median oculomotor nucleus]"/>
+			<element name="Caudal Central Oculomotor Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Caudal_central_oculomotor_nucleus Caudal central oculomotor nucleus]"/>
+			<element name="Central Oculomotor Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Central_oculomotor_nucleus Central oculomotor nucleus]"/>
+			<element name="Dorsal Oculomotor Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Dorsal_oculomotor_nucleus Dorsal oculomotor nucleus]"/>
+			<element name="Intermediate Oculomotor Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Intermediate_oculomotor_nucleus Intermediate oculomotor nucleus]"/>
+			<element name="Medial Oculomotor Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_oculomotor_nucleus Medial oculomotor nucleus]"/>
+			<element name="Ventral Oculomotor Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Ventral_oculomotor_nucleus Ventral oculomotor nucleus]"/>
 		</element>
 
-		<element id="VBA.MM.EWN" name="Edinger-Westphal Nucleus" mapped="true" type="nucleus"
-			refs="NL:[http://neurolex.org/wiki/Category:Parvocellular_oculomotor_nucleus Parvocellular oculomotor nucleus]"
-			function="Change Eye Pupil"
-			notes="Muscle nucleus, parvocellular extention of OCN; preganglionic nucleus"
+		<element id="VBA.MM.TRH" name="Trochlear Nucleus" mapped="true" type="nucleus" index="TRH" category="peripheral"
+			refs="NL:[http://neurolex.org/wiki/Category:Trochlear_nucleus Trochlear nucleus]"
+			fgroup="Cranial Motor"
+			function="Control superior oblique muscles of eyes"
+			notes="Muscle nucleus, change eye direction"
 			/>
 
-		<element id="ABA.MM.IC" name="Inferior Colliculus" mapped="true" type="nucleus"
-			refs="NL:[http://neurolex.org/wiki/Category:Inferior_colliculus Inferior colliculus]"
-			function="Reflex centres of hearing"
-			>
-			<element name="Central Nucleus of Inferior Colliculus" refs="NL:[http://neurolex.org/wiki/Category:Central_nucleus_of_inferior_colliculus Central nucleus of inferior colliculus]"/>
-			<element name="External Nucleus of Inferior Colliculus" refs="NL:[http://neurolex.org/wiki/Category:External_nucleus_of_inferior_colliculus External nucleus of inferior colliculus]"/>
-			<element name="Pericentral Nucleus of Inferior Colliculus" refs="NL:[http://neurolex.org/wiki/Category:Pericentral_nucleus_of_inferior_colliculus Pericentral nucleus of inferior colliculus]"/>
-		</element>
+		<element id="VBA.MM.EWN" name="Edinger-Westphal Nucleus" mapped="true" type="nucleus" index="EWN" category="peripheral"
+			refs="NL:[http://neurolex.org/wiki/Category:Parvocellular_oculomotor_nucleus Parvocellular oculomotor nucleus]"
+			fgroup="Autonomic Nuclei"
+			function="Change Eye Pupil"
+			notes="Parasympathetic nucleus, parvocellular extention of OCN"
+			/>
 
-		<element id="HMA.MM.MSTR" name="Mesencephalic Trigeminal Nucleus" mapped="true" type="sensory ganglion"
+		<element id="HMA.MM.MSTR" name="Mesencephalic Trigeminal Nucleus" mapped="true" type="sensory ganglion" category="target"
 			refs="NL:[http://neurolex.org/wiki/Category:Mesencephalic_nucleus_of_trigeminal_nerve Mesencephalic nucleus of trigeminal nerve]"
 			function="unconscious proprioception from muscle spindles; facial somatic sensations from muscles of mastication, monosynaptic masticatory reflex"
 			notes="Lower, mandibular - ganglion; mandible and maxilla - tooth pulp, surrounding gingiva, periodontal membrane and a vast portion of the oral mucosa"
 			comment="sensory neurons of masticatory muscles, the teeth, the mandibular joint, the mandible, the maxilla and the intraocular muscles; most to motor trigeminal, few - to principal trigeminal"
 			/>
 
-		<element id="MM.MRF" name="Mesencephalic Reticular Formation"
+		<element id="MM.MRF" name="Mesencephalic Reticular Formation" category="midbrain"
 			notes="Saccades, fixation, gaze holding and vergence. Space-time coordinated rapid eye movements"
 			>
-			<element id="VBA.MM.OCN" name="Oculomotor Nucleus" mapped="true" type="nucleus"
-				refs="NL:[http://neurolex.org/wiki/Category:Oculomotor_nuclear_complex Oculomotor nuclear complex]"
-				function="Change Eye Direction"
-				notes="Muscle nucleus"
+			<element id="FBA.MM.CNF" name="Cuneiform Nucleus" mapped="true" type="nucleus"
+				refs="NL:[http://neurolex.org/wiki/Category:Cuneiform_nucleus Cuneiform nucleus]"
+				function="Passive coping strategy to novel, painful or threatening stimuli"
+				notes="modulatory nucleus; medial part of midbrain RF"
 				>
-				<element name="Anterior Median Oculomotor Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Anterior_median_oculomotor_nucleus Anterior median oculomotor nucleus]"/>
-				<element name="Caudal Central Oculomotor Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Caudal_central_oculomotor_nucleus Caudal central oculomotor nucleus]"/>
-				<element name="Central Oculomotor Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Central_oculomotor_nucleus Central oculomotor nucleus]"/>
-				<element name="Dorsal Oculomotor Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Dorsal_oculomotor_nucleus Dorsal oculomotor nucleus]"/>
-				<element name="Intermediate Oculomotor Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Intermediate_oculomotor_nucleus Intermediate oculomotor nucleus]"/>
-				<element name="Medial Oculomotor Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_oculomotor_nucleus Medial oculomotor nucleus]"/>
-				<element name="Ventral Oculomotor Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Ventral_oculomotor_nucleus Ventral oculomotor nucleus]"/>
+				<element name="Subcuneiform Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Subcuneiform_nucleus Subcuneiform nucleus]"/>
+			</element>
+
+			<element id="ABA.MM.IC" name="Inferior Colliculus" mapped="true" type="nucleus"
+				refs="NL:[http://neurolex.org/wiki/Category:Inferior_colliculus Inferior colliculus]"
+				function="Reflex centres of hearing"
+				>
+				<element name="Central Nucleus of Inferior Colliculus" refs="NL:[http://neurolex.org/wiki/Category:Central_nucleus_of_inferior_colliculus Central nucleus of inferior colliculus]"/>
+				<element name="External Nucleus of Inferior Colliculus" refs="NL:[http://neurolex.org/wiki/Category:External_nucleus_of_inferior_colliculus External nucleus of inferior colliculus]"/>
+				<element name="Pericentral Nucleus of Inferior Colliculus" refs="NL:[http://neurolex.org/wiki/Category:Pericentral_nucleus_of_inferior_colliculus Pericentral nucleus of inferior colliculus]"/>
 			</element>
 
 			<element id="VBA.MM.SOA" name="Supraoculomotor Area"
@@ -633,17 +642,18 @@
 					comments="Accessory oculomotor nucleus"
 					notes="Light in one eye results in pupil changes in another eye"
 					/>
-			
 			</element>
 		</element>
 
-		<element id="FBA.MM.PAG" name="Periaqueductal Gray Matter" mapped="true" type="nucleus"
+		<element id="FBA.MM.PAG" name="Periaqueductal Gray Matter" mapped="true" type="nucleus" category="midbrain"
 			refs="NL:[http://neurolex.org/wiki/Category:Ventral_periaqueductal_gray Ventral periaqueductal gray]"
 			function="Descending modulation of pain and in defensive behaviour"
 			notes="if there is a lesion in the PAG, then consciousness is lost; electrical stimulation of the PAG results in immediate and profound analgesia; modulatory nucleus"
 			/>
 
-		<element id="MM.PT" name="Pretectum" refs="NL:[http://neurolex.org/wiki/Category:Pretectum Pretectum]">
+		<element id="MM.PT" name="Pretectum" category="midbrain"
+			refs="NL:[http://neurolex.org/wiki/Category:Pretectum Pretectum]" 
+			> 
 			<element id="BMA.MM.PT.PTA" name="Anterior Pretectum Nucleus" mapped="true" type="nucleus"
 				refs="NL:[http://neurolex.org/wiki/Category:Anterior_pretectal_nucleus Anterior pretectal nucleus]"
 				function="Mediate somatosensory and nociceptive information"
@@ -674,7 +684,9 @@
 				/>
 		</element>
 
-		<element id="FBA.MM.RP.MB" name="Raphe Nuclei of Midbrain" refs="NL:[http://neurolex.org/wiki/Category:Midbrain_raphe_nuclei Midbrain raphe nuclei]">
+		<element id="FBA.MM.RP.MB" name="Raphe Nuclei of Midbrain" category="midbrain"
+			refs="NL:[http://neurolex.org/wiki/Category:Midbrain_raphe_nuclei Midbrain raphe nuclei]"
+			>
 			<element id="FBA.MM.RP.MRN" name="Median Raphe Nucleus" mapped="true" type="nucleus" 
 				refs="NL:[http://neurolex.org/wiki/Category:Superior_central_nucleus Superior central nucleus]"
 				function="Block or temporarily suspend mnemonic processes in the hippocampus"
@@ -695,7 +707,7 @@
 				/>
 		</element>
 
-		<element id="MBA.MM.RD" name="Red Nucleus" mapped="true" type="nucleus" 
+		<element id="MBA.MM.RD" name="Red Nucleus" mapped="true" type="nucleus" category="midbrain"
 			refs="NL:[http://neurolex.org/wiki/Category:Red_nucleus Red nucleus]"
 			function="Motor coordination"
 			notes="Crawling of babies is controlled by RN"
@@ -704,7 +716,7 @@
 			<element name="Parvocellular Part of Red Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Parvocellular_part_of_red_nucleus Parvocellular part of red nucleus]"/>
 		</element>
 
-		<element id="MM.SC" name="Superior Colliculus"
+		<element id="MM.SC" name="Superior Colliculus" category="midbrain"
 			refs="NL:[http://neurolex.org/wiki/Category:Superior_colliculus Superior colliculus]"
 			function="Direct behavioral responses toward specific points in egocentric space, induce saccadic eye movement"
 			notes="Superficial layers are sensory-related, deep layers are motor-related"
@@ -735,7 +747,7 @@
 			<element refs="NL:[http://neurolex.org/wiki/Category:Superior_colliculus_stratum_lemnisci Superior colliculus stratum lemnisci]" ignore="true" notes="unused subdivision"/>
 		</element>
 
-		<element id="ABA.MM.SOC" name="Superior Olivary Complex" mapped="true" type="nucleus"
+		<element id="ABA.MM.SOC" name="Superior Olivary Complex" mapped="true" type="nucleus" category="midbrain"
 			refs="NL:[http://neurolex.org/wiki/Category:Superior_olivary_complex Superior olivary complex]"
 			function="Bilateral Audition"
 			notes="Projections from both left and right ABA.CN"
@@ -754,13 +766,7 @@
 			</element>
 		</element>
 
-		<element id="VBA.MM.TRH" name="Trochlear Nucleus" mapped="true" type="nucleus"
-			refs="NL:[http://neurolex.org/wiki/Category:Trochlear_nucleus Trochlear nucleus]"
-			function="Control superior oblique muscles of eyes"
-			notes="Muscle nucleus, change eye direction"
-			/>
-
-		<element id="FBA.MM.VTA" name="Ventral Tegmental Area" mapped="true" type="nucleus"
+		<element id="FBA.MM.VTA" name="Ventral Tegmental Area" mapped="true" type="nucleus" category="midbrain"
 			refs="NL:[http://neurolex.org/wiki/Category:Ventral_tegmental_nucleus Ventral tegmental nucleus];NL:[http://neurolex.org/wiki/Category:Ventral_tegmental_area Ventral tegmental area]"
 			function="Respond to novel stimuli, unexpected rewards, and reward predictive sensory cues"
 			>
@@ -775,19 +781,20 @@
 		dotdef="color=sandybrown"
 		>
 
-		<element id="VBA.HP.ABD" name="Abducens Nucleus" mapped="true" type="nucleus"
+		<element id="VBA.HP.ABD" name="Abducens Nucleus" mapped="true" type="nucleus" index="ABD" category="peripheral"
 			refs="NL:[http://neurolex.org/wiki/Category:Accessory_abducens_nucleus Accessory abducens nucleus]"
+			fgroup="Cranial Motor"
 			function="Conjugated movements of both eyes"
 			notes="Motoneurons - to muscle, interneurons - to OCN"
 			/>
-		<element id="MBA.HP.BR" name="Barrington's Nucleus" mapped="true" type="nucleus"
+		<element id="MBA.HP.BR" name="Barrington's Nucleus" mapped="true" type="nucleus" category="midbrain"
 			refs="NL:[http://neurolex.org/wiki/Category:Barrington%27s_nucleus Barrington's nucleus]"
 			function="Supraspinal regulation of urination"
 			notes="Sends projections to Sacral Precerebellar Nucleus"
 			comments="M-region, pontine micturition center (PMC)"
 			/>
 
-		<element id="MBA.HP.CR" name="Cerebellum" mapped="true" type="nucleus"
+		<element id="MBA.HP.CR" name="Cerebellum" mapped="true" type="nucleus" category="midbrain"
 			refs="[BrainComponentCerebellum Cerebellum]"
 			function="Motor coordination"
 			notes="Deep Nuclei and cerebellum cortex"
@@ -812,18 +819,19 @@
 			</element>
 		</element>
 
-		<element id="HMA.HP.FCM" name="Facial Motor Nucleus" mapped="true" type="nucleus"
+		<element id="HMA.HP.FCM" name="Facial Motor Nucleus" mapped="true" type="nucleus" index="FCM" category="peripheral"
 			refs="NL:[http://neurolex.org/wiki/Category:Facial_nucleus Facial nucleus]"
+			fgroup="Cranial Motor"
 			function="Control of face"
 			notes="Pons"
 			/>
-		<element id="FBA.HP.NI" name="Incertus Nucleus" mapped="true" type="nucleus"
+		<element id="FBA.HP.NI" name="Incertus Nucleus" mapped="true" type="nucleus" category="forebrain"
 			refs="NL:[http://neurolex.org/wiki/Category:Nucleus_incertus Nucleus incertus]"
 			function="Behavioural activation and the response to stress"
 			notes="Modulating influences on prefrontal and hippocampal cortical activity, midline behavior control; modulatory nucleus"
 			/>
 
-		<element id="MBA.MM.TG.LDT" name="Laterodorsal Tegmental Nucleus" mapped="true" type="nucleus"
+		<element id="MBA.MM.TG.LDT" name="Laterodorsal Tegmental Nucleus" mapped="true" type="nucleus" category="midbrain"
 			refs="NL:[http://neurolex.org/wiki/Category:Laterodorsal_tegmental_nucleus Laterodorsal tegmental nucleus]"
 			function="Modulating sustained attention or in mediating alerting responses"
 			>
@@ -834,13 +842,13 @@
 			</element>
 		</element>
 
-		<element id="FBA.HP.LC" name="Locus Coeruleus" mapped="true" type="nucleus"
+		<element id="FBA.HP.LC" name="Locus Coeruleus" mapped="true" type="nucleus" category="midbrain"
 			refs="NL:[http://neurolex.org/wiki/Category:Locus_ceruleus Locus ceruleus]"
 			function="Regulate the intensity of responses to salient stimuli"
 			notes="NE Source, enhance signal-to-noise ratio, suppressing irrelevant stimuli (lateral inhibition); inhibitory nucleus"
 			/>
 
-		<element id="BMA.HP.PB" name="Parabrachial Nucleus" mapped="true" type="nucleus"
+		<element id="BMA.HP.PB" name="Parabrachial Nucleus" mapped="true" type="nucleus" category="midbrain"
 			refs="NL:[http://neurolex.org/wiki/Category:Parabrachial_nucleus Parabrachial nucleus]"
 			function="Source of short-latency nociceptive input"
 			>
@@ -851,9 +859,9 @@
 			<element name="Medial Parabrachial Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_parabrachial_nucleus Medial parabrachial nucleus]"/>
 		</element>
 
-		<element id="BGA.HP.PPN" name="Pedunculopontine Nucleus" mapped="true" type="nucleus"
+		<element id="BGA.HP.PPN" name="Pedunculopontine Nucleus" mapped="true" type="nucleus" category="midbrain"
 			refs="NL:[http://neurolex.org/wiki/Category:Pedunculopontine_tegmental_nucleus Pedunculopontine tegmental nucleus]"
-			function="Provide sensory feedback to cerebral cortex"
+			function="Provide sensory feedback to cerebral cortex; modulatory"
 			>
 			<element name="Entopeduncular Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Entopeduncular_nucleus Entopeduncular nucleus]"/>
 			<element id="BGA.HP.PPN.IPD" name="Interpeduncular Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Interpeduncular_nucleus Interpeduncular nucleus]"/>
@@ -862,7 +870,9 @@
 			<element name="Dissipated Subnucleus"/>
 		</element>
 
-		<element id="MBA.HP.PN" name="Pontine Nuclear Complex" refs="NL:[http://neurolex.org/wiki/Category:Pontine_nuclear_complex Pontine nuclear complex]">
+		<element id="MBA.HP.PN" name="Pontine Nuclear Complex" category="midbrain"
+			refs="NL:[http://neurolex.org/wiki/Category:Pontine_nuclear_complex Pontine nuclear complex]"
+			>
 			<element id="MBA.HP.PN.PBB" name="Pontobulbar Body" mapped="true" type="nucleus"
 				refs="NL:[http://neurolex.org/wiki/Category:Pontobulbar_nucleus Pontobulbar nucleus]"
 				function="Control voluntary muscle activities"
@@ -894,7 +904,9 @@
 				/>
 		</element>
 
-		<element id="HP.PRF" name="Pontine Reticular Formation" refs="NL:[http://neurolex.org/wiki/Category:Pontine_reticular_formation Pontine reticular formation]">
+		<element id="HP.PRF" name="Pontine Reticular Formation" category="midbrain" 
+			refs="NL:[http://neurolex.org/wiki/Category:Pontine_reticular_formation Pontine reticular formation]"
+			>
 			<element id="HP.PRF.MPRF" name="Medial Pontine Reticular Formation" refs="NL:[http://neurolex.org/wiki/Category:Medial_pontine_reticular_formation Medial pontine reticular formation]">
 				<element id="HP.PRF.PPRF" name="Paramedian Pontine Reticular Formation">
 					<element id="HMA.HP.PRF.RPO" name="Oral Pontine Reticular Nucleus" mapped="true" type="nucleus"
@@ -924,7 +936,9 @@
 			</element>
 		</element>
 
-		<element id="FBA.HP.RP" name="Raphe Nuclei of Pons" comment="Paramedian Reticular Nucleus">
+		<element id="FBA.HP.RP" name="Raphe Nuclei of Pons" category="midbrain"
+			comment="Paramedian Reticular Nucleus"
+			>
 			<element id="FBA.HP.RP.PRN" name="Pontine Raphe Nucleus" mapped="true" type="nucleus" 
 				refs="NL:[http://neurolex.org/wiki/Category:Pontine_raphe_nucleus Pontine raphe nucleus]"
 				function="Regulation of sleep cycle"
@@ -942,20 +956,23 @@
 				/>
 		</element>
 
-		<element id="HMA.HP.PTP" name="Trigeminal Nucleus of Pons">
-			<element id="HMA.HP.PTP.PTR" name="Principal Trigeminal Nucleus" mapped="true" type="nucleus"
+		<element id="HMA.HP.PTP" name="Trigeminal Nucleus of Pons" category="peripheral"
+			>
+			<element id="HMA.HP.PTP.PTR" name="Principal Trigeminal Nucleus" mapped="true" type="nucleus" index="PTR" 
 				refs="NL:[http://neurolex.org/wiki/Category:Principal_sensory_nucleus_of_trigeminal_nerve Principal sensory nucleus of trigeminal nerve]"
+				fgroup="Cranial Mechanoreception and Proprioception"
 				function="Facial Somatic Sensations"
 				notes="Upper, maxillary, ophthalmic"
 				/>
-			<element id="HMA.HP.PTP.TRM" name="Trigeminal Motor Nucleus" mapped="true" type="nucleus"
+			<element id="HMA.HP.PTP.TRM" name="Trigeminal Motor Nucleus" mapped="true" type="nucleus" index="TRM" 
 				refs="NL:[http://neurolex.org/wiki/Category:Motor_root_of_trigeminal_nerve Motor root of trigeminal nerve]"
+				fgroup="Cranial Motor"
 				function="Muscles of first branchial arch"
 				notes="Pontine Nuclei, lower face and jaw control, Motor Nucleus of V n."
 				/>
 		</element>
 
-		<element id="BMA.HP.VB" name="Vestibular Nucleus" mapped="true" type="nucleus"
+		<element id="BMA.HP.VB" name="Vestibular Nucleus" mapped="true" type="nucleus" category="midbrain"
 			refs="NL:[http://neurolex.org/wiki/Category:Vestibular_nuclear_complex Vestibular nuclear complex]"
 			function="Equilibrium, Postural Reflexes"
 			notes="Pons"
@@ -979,7 +996,7 @@
 				/>
 		</element>
 
-		<element id="BMA.HP.VG" name="Vestibular Ganglion" mapped="true" type="sensory ganglion"
+		<element id="BMA.HP.VG" name="Vestibular Ganglion" mapped="true" type="sensory ganglion" category="target"
 			refs="NL:[http://neurolex.org/wiki/Category:Vestibular_ganglion Vestibular ganglion]"
 			function="Contact with hair cells of vestibular sensory end organs"
 			notes="Scarpas ganglion"
@@ -991,36 +1008,39 @@
 		dotdef="color=peachpuff1"
 		>
 
-		<element id="BMA.HM.ACU" name="Accessory Cuneate Nucleus" mapped="true" type="nucleus" index="ACN"
+		<element id="BMA.HM.ACU" name="Accessory Cuneate Nucleus" mapped="true" type="nucleus" index="ACN" category="peripheral"
 			refs="NL:[http://neurolex.org/wiki/Category:Accessory_cuneate_nucleus Accessory cuneate nucleus]"
-			fgroup="Mechanoreception and Proprioception"
+			fgroup="Spinal Mechanoreception and Proprioception"
 			function="receives input from cervical spinal nerves and transmits that information to cerebellum"
 			notes="upper extremity equivalent of Clarke's column"
 			/>
 
-		<element id="HMA.HM.RC" name="Expiratory Center"
+		<element id="HMA.HM.RC" name="Expiratory Center" category="peripheral"
 			notes="Ventral Respiratory Group, sends inhibitory impulse to the apneustic centre"
 			>
-			<element id="HMA.HM.AMB" name="Ambiguus Nucleus" mapped="true" type="nucleus"
+			<element id="HMA.HM.AMB" name="Ambiguus Nucleus" mapped="true" type="nucleus" index="AMB" 
 				refs="NL:[http://neurolex.org/wiki/Category:Nucleus_ambiguus Nucleus ambiguus]"
+				fgroup="Cranial Motor"
 				function="Control muscles of pharynx"
 				notes="On par with VGM, speech"
 				/>
-			<element id="HMA.HM.RA" name="Retroambigualis Nucleus" mapped="true" type="nucleus"
+			<element id="HMA.HM.RA" name="Retroambigualis Nucleus" mapped="true" type="nucleus" index="RAM" 
 				refs="NL:[http://neurolex.org/wiki/Category:Nucleus_retroambigualis Nucleus retroambigualis]"
+				fgroup="Cranial Motor"
 				function="Groups of premotor interneurons producing detailed motor actions"
 				notes="Different combination of activation of these premotor neurons determines vocalization, vomiting, coughing, sneezing, mating posture, or child delivery"
 				/>
 		</element>
 
-		<element id="BMA.HM.ARC" name="Arcuate Nucleus of Medulla" mapped="true" type="nucleus"
+		<element id="BMA.HM.ARC" name="Arcuate Nucleus of Medulla" mapped="true" type="nucleus" category="midbrain"
 			refs="NL:[http://neurolex.org/wiki/Category:Arcuate_nucleus_of_medulla Arcuate nucleus of medulla]"
 			function="Controlling respiratory frequency"
 			notes="Receives fibers from spitothalamic tract and sends to CR"
 			/>
 
-		<element id="ABA.HM.COCH" name="Cochlear Nucleus" mapped="true" type="nucleus"
+		<element id="ABA.HM.COCH" name="Cochlear Nucleus" mapped="true" type="nucleus" index="CON" category="peripheral"
 			refs="NL:[http://neurolex.org/wiki/Category:Cochlear_nuclear_complex Cochlear nuclear complex]"
+			fgroup="Cranial Mechanoreception and Proprioception"
 			function="Divergence in representation of auditory information"
 			notes="Carry sound information from organ of Corti"
 			>
@@ -1031,24 +1051,27 @@
 			</element>
 		</element>
 
-		<element id="BMA.HM.CU" name="Cuneate Nucleus" mapped="true" type="nucleus"
+		<element id="BMA.HM.CU" name="Cuneate Nucleus" mapped="true" type="nucleus" index="CUN" category="peripheral"
 			refs="NL:[http://neurolex.org/wiki/Category:Cuneate_nucleus Cuneate nucleus]"
+			fgroup="Spinal Mechanoreception and Proprioception"
 			function="Carry fine touch and proprioceptive information from upper body"
 			>
 			<element name="Lateral Pericuneate Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_pericuneate_nucleus Lateral pericuneate nucleus]"/>
 			<element name="Medial Pericuneate Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_pericuneate_nucleus Medial pericuneate nucleus]"/>
 		</element>
 
-		<element id="BMA.HM.GR" name="Gracile Nucleus" mapped="true" type="nucleus"
+		<element id="BMA.HM.GR" name="Gracile Nucleus" mapped="true" type="nucleus" index="GRN" category="peripheral"
 			refs="NL:[http://neurolex.org/wiki/Category:Gracile_nucleus Gracile nucleus]"
+			fgroup="Spinal Mechanoreception and Proprioception"
 			function="Carry epicritic, kinesthetic, and conscious proprioceptive information from lower body"
 			/>
-		<element id="HMA.HM.HYG" name="Hypoglossal Motor Nucleus" mapped="true" type="nucleus"
+		<element id="HMA.HM.HYG" name="Hypoglossal Motor Nucleus" mapped="true" type="nucleus" index="HYG" category="peripheral"
 			refs="NL:[http://neurolex.org/wiki/Category:Hypoglossal_nucleus Hypoglossal nucleus]"
+			fgroup="Cranial Motor"
 			function="Control of tongue"
 			/>
 
-		<element id="BMA.HM.IO" name="Inferior Olivary Nucleus" mapped="true" type="nucleus"
+		<element id="BMA.HM.IO" name="Inferior Olivary Nucleus" mapped="true" type="nucleus" category="midbrain"
 			refs="NL:[http://neurolex.org/wiki/Category:Inferior_olivary_complex Inferior olivary complex]"
 			function="Proprioception Relay from Spinal Cord to Cerebellum"
 			>
@@ -1059,13 +1082,13 @@
 			<element name="Rostral Portion of Medial Accessory Olive" refs="NL:[http://neurolex.org/wiki/Category:Rostral_portion_of_the_medial_accessory_olive Rostral portion of the medial accessory olive]"/>
 		</element>
 
-		<element id="HMA.HM.INM" name="Intercalated Nucleus of Medulla" mapped="true" type="nucleus"
+		<element id="HMA.HM.INM" name="Intercalated Nucleus of Medulla" mapped="true" type="nucleus" category="midbrain"
 			refs="NL:[http://neurolex.org/wiki/Category:Nucleus_intercalatus Nucleus intercalatus]"
 			function="Coordinate tongue movements, vestibuloocular reflex"
 			notes="Receives sensory inputs from neck region"
 			/>
 
-		<element id="MBA.HM.RF.MED" name="Medullary Reticular Formation" mapped="true" type="nucleus"
+		<element id="MBA.HM.RF.MED" name="Medullary Reticular Formation" mapped="true" type="nucleus" category="midbrain"
 			refs="NL:[http://neurolex.org/wiki/Category:Medullary_reticular_formation Medullary reticular formation]"
 			function="Somatic motor control, cardiovascular control, pain modulation, sleep and consciousness, habituation"
 			notes="100 small neural networks, habituation - sleep in load city but awake from crying baby"
@@ -1074,19 +1097,19 @@
 			<element name="Lateral Reticular Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_reticular_nucleus Lateral reticular nucleus]"/>
 		</element>
 
-		<element id="HMA.HP.PRF.GCR" name="Gigantocellular Reticular Nucleus" mapped="true" type="nucleus"
+		<element id="HMA.HP.PRF.GCR" name="Gigantocellular Reticular Nucleus" mapped="true" type="nucleus" category="midbrain"
 			refs="NL:[http://neurolex.org/wiki/Category:Lateral_paragigantocellular_nucleus Lateral paragigantocellular nucleus]"
 			function="Mediate head movements"
 			notes="Projects to hypoglossal nucleus, abducens"
 			/>
 
-		<element id="VBA.HM.NPH" name="Prepositus Nucleus" mapped="true" type="nucleus"
+		<element id="VBA.HM.NPH" name="Prepositus Nucleus" mapped="true" type="nucleus" category="midbrain"
 			refs="NL:[http://neurolex.org/wiki/Category:Nucleus_prepositus Nucleus prepositus]"
 			function="Integrate PPRF phasic signal to provide tonic signal of abducens"
 			notes="Part of horizontal gaze holding system"
 			/>
 
-		<element id="FBA.HM.RP" name="Raphe Nucleus of Medulla" mapped="true" type="nucleus"
+		<element id="FBA.HM.RP" name="Raphe Nucleus of Medulla" mapped="true" type="nucleus" category="midbrain"
 			refs="NL:[http://neurolex.org/wiki/Category:Medullary_raphe_nuclear_complex Medullary raphe nuclear complex]"
 			function="Regulate moods, temper anxiety, and relieve depression"
 			notes="Releases 5HT (serotonin) hormone (happiness); inhibitory nucleus"
@@ -1098,21 +1121,25 @@
 			<element name="Raphe Pallidus Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Nucleus_raphe_pallidus Nucleus raphe pallidus]"/>
 		</element>
 
-		<element id="AVA.HM.SAL" name="Salivatory Nucleus">
-			<element id="AVA.HM.SAL.ISL" name="Inferior Salivatory Nucleus" mapped="true" type="nucleus"
+		<element id="AVA.HM.SAL" name="Salivatory Nucleus" category="peripheral"
+			>
+			<element id="AVA.HM.SAL.ISL" name="Inferior Salivatory Nucleus" mapped="true" type="nucleus" index="ISL" 
 				refs="NL:[http://neurolex.org/wiki/Category:Inferior_salivatory_nucleus Inferior salivatory nucleus]"
+				fgroup="Autonomic Nuclei"
 				function="Control of parotid gland"
 				notes="Swallowing; preganglionic nucleus"
 				/>
-			<element id="AVA.HM.SAL.SSL" name="Superior Salivatory Nucleus" mapped="true" type="nucleus"
+			<element id="AVA.HM.SAL.SSL" name="Superior Salivatory Nucleus" mapped="true" type="nucleus" index="SSL"
 				refs="NL:[http://neurolex.org/wiki/Category:Superior_salivatory_nucleus Inferior salivatory nucleus]"
+				fgroup="Autonomic Nuclei"
 				function="Eye water"
 				notes="preganglionic nucleus"
 				/>
 		</element>
 
-		<element id="HMA.HM.SOL" name="Solitary Nucleus" mapped="true" type="nucleus"
+		<element id="HMA.HM.SOL" name="Solitary Nucleus" mapped="true" type="nucleus" index="SOL" category="peripheral"
 			refs="NL:[http://neurolex.org/wiki/Category:Solitary_nucleus Solitary nucleus]"
+			fgroup="Cranial Mechanoreception and Proprioception"
 			function="Carry taste buds, thoracic and abdominal viscera"
 			notes="c.n. VII, IX, X"
 			>
@@ -1123,9 +1150,11 @@
 			<element name="Rostral Nucleus of Solitary Tract" refs="NL:[http://neurolex.org/wiki/Category:Rostral_nucleus_of_the_solitary_tract Rostral nucleus of the solitary tract]"/>
 		</element>
 
-		<element id="HMA.HM.TGM" name="Trigeminal Nucleus">
-			<element id="HMA.HM.TGM.STR" name="Spinal Trigeminal Nucleus" mapped="true" type="nucleus"
+		<element id="HMA.HM.TGM" name="Trigeminal Nucleus" category="peripheral"
+			>
+			<element id="HMA.HM.TGM.STR" name="Spinal Trigeminal Nucleus" mapped="true" type="nucleus" index="STR" 
 				refs="NL:[http://neurolex.org/wiki/Category:Spinal_trigeminal_nucleus Spinal trigeminal nucleus]"
+				fgroup="Cranial Pain and Temperature"
 				function="Discriminative sensation and light touch of face, conscious proprioception"
 				notes="Pontine Nuclei, part of cranial nerve nuclei, ear"
 				>
@@ -1133,20 +1162,23 @@
 				<element name="Interpolar Part of Spinal Trigeminal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Interpolar_part_of_spinal_trigeminal_nucleus Interpolar part of spinal trigeminal nucleus]"/>
 				<element name="Oral Part of Spinal Trigeminal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Oral_part_of_spinal_trigeminal_nucleus Oral part of spinal trigeminal nucleus]"/>
 			</element>
-			<element id="HMA.HM.TGM.PA5" name="Paratrigeminal Nucleus" mapped="true" type="nucleus"
+			<element id="HMA.HM.TGM.PA5" name="Paratrigeminal Nucleus" mapped="true" type="nucleus" index="PA5" 
 				refs="NL:[http://neurolex.org/wiki/Category:Paratrigeminal_nucleus_of_PHT00 Paratrigeminal nucleus]"
+				fgroup="Cranial Pain and Temperature"
 				function="Orofacial nociceptive sensory processing"
 				notes="Somatosensory reflex, site for nociceptive inputs from sciatic innervation field"
 				/>
-			<element id="HMA.HM.TGM.PE5" name="Peritrigeminal Nucleus" mapped="true" type="nucleus"
+			<element id="HMA.HM.TGM.PE5" name="Peritrigeminal Nucleus" mapped="true" type="nucleus" index="PE5" 
 				refs="NL:[http://neurolex.org/wiki/Category:Peritrigeminal_nucleus Peritrigeminal nucleus]"
+				fgroup="Cranial Pain and Temperature"
 				function="Thermoregulation"
 				notes="Project to thermosensitive neurons of medial preoptic area"
 				/>
 		</element>
 
-		<element id="AVA.HM.VG" name="Vagus Nucleus" mapped="true" type="nucleus"
+		<element id="AVA.HM.VG" name="Vagus Nucleus" mapped="true" type="nucleus" index="VGN" category="peripheral"
 			refs="NL:[http://neurolex.org/wiki/Category:Dorsal_motor_nucleus_of_vagus_nerve Dorsal motor nucleus of vagus nerve]"
+			fgroup="Autonomic Nuclei"
 			function="Parasympathetic vagal functions in the gastrointestinal tract, lungs"
 			notes="Dorsal Motor Nucleus, Cardioinhibitory Center; preganglionic nucleus"
 			/>
