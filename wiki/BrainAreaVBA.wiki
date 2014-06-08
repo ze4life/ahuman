@@ -15,7 +15,7 @@
 || [BrainRegionVBA_FD_RT VBA.FD.RT] || Retina || nucleus || Spatial decorrelation through center surround inhibition || 100:1 cones/rods to ganglion cells aggregation,<BR>edge extraction ||
 || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || Prepositus Nucleus || nucleus || Integrate PPRF phasic signal to provide tonic signal of abducens || Part of horizontal gaze holding system ||
 || [BrainRegionVBA_HP_ABD VBA.HP.ABD] || Abducens Nucleus || nucleus || Conjugated movements of both eyes || Motoneurons - to muscle, interneurons - to OCN ||
-|| [BrainRegionVBA_MM_EWN VBA.MM.EWN] || Edinger-Westphal Nucleus || nucleus || Change Eye Pupil || Muscle nucleus, parvocellular extention of OCN;<BR>preganglionic nucleus ||
+|| [BrainRegionVBA_MM_EWN VBA.MM.EWN] || Edinger-Westphal Nucleus || nucleus || Change Eye Pupil || Parasympathetic nucleus, parvocellular extention of<BR>OCN ||
 || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || Oculomotor Nucleus || nucleus || Change Eye Direction || Muscle nucleus ||
 || [BrainRegionVBA_MM_PT_NOT VBA.MM.PT.NOT] || Nucleus of Optic Tract || nucleus || Encode retinal error information during smooth pursuit eye movements || Guide motor learning during horizontal SP ||
 || [BrainRegionVBA_MM_PT_PON VBA.MM.PT.PON] || Pretectal Olivary Nucleus || nucleus || Pupillary light reflex and modulating subcortical nuclei involved in circadian<BR>rhythms || Primary visual centre, involved in the pupillary<BR>light reflex, receives retinal input ||
@@ -23,7 +23,6 @@
 || [BrainRegionVBA_MM_PT_SL VBA.MM.PT.SL] || Sublentiform Nucleus || nucleus || Accomodation reflex || Combines visual cortex and retinal input to project<BR>to OCN, receives retinal input ||
 || [BrainRegionVBA_MM_RP_RIP VBA.MM.RP.RIP] || Raphe Interpositus Nucleus || nucleus || Premotor network for saccades || Gate activity of burst neurons for vertical and<BR>horizontal saccades ||
 || [BrainRegionVBA_MM_SC_SUP VBA.MM.SC.SUP] || Superficial Superior Colliculus || nucleus || Head and eye attention to visual stimuli || Receive input primarily from the visual system and<BR>show primarily visual responses ||
-|| [BrainRegionVBA_MM_SOA VBA.MM.SOA] || Supraoculomotor Area || nucleus || Control of vergence || Dorsal to OCN, send premotor commands to OCN ||
 || [BrainRegionVBA_MM_TRH VBA.MM.TRH] || Trochlear Nucleus || nucleus || Control superior oblique muscles of eyes || Muscle nucleus, change eye direction ||
 || [BrainRegionVBA_SC_IZ_CSC VBA.SC.IZ.CSC] || Ciliospinal Center || nucleus || Control of iris dilator muscle || Budge's Center, intermediolateral cell column ||
 
@@ -56,8 +55,6 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/VBA.dot.jpg
 ||  || [BrainRegionVBA_FD_PV_LPV VBA.FD.PV.LPV] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCs -> Pulvinar, abstract)] ||
 ||  || [BrainRegionVBA_MM_PT_NOT VBA.MM.PT.NOT] || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionVBA_MM_RP_RIP VBA.MM.RP.RIP] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (SC -> RIP, abstract)] ||
-|| [BrainRegionVBA_MM_SOA VBA.MM.SOA] || [BrainRegionVBA_MM_EWN VBA.MM.EWN] || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SupraOculomotor -> EWN)] ||
-||  || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SupraOculomotor -> Oculomotor)] ||
 
 *External Inbound Region Connections:*
 
@@ -70,8 +67,6 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/VBA.dot.jpg
 ||  || [BrainRegionVBA_MM_SC_SUP VBA.MM.SC.SUP] || [BrainRegionVCA_NC_IPL_MST VCA.NC.IPL.MST] || Medial Superior Temporal Area || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> SCi, abstract)] ||
 ||  ||  || [BrainRegionVCA_NC_V1 VCA.NC.V1] || Primary Visual Cortex || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (VisualCortex -> SCs, abstract)] ||
 ||  ||  || [BrainRegionVCA_NC_V2 VCA.NC.V2] || Secondary Visual Cortex || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (VisualCortex -> SCs, abstract)] ||
-||  || [BrainRegionVBA_MM_SOA VBA.MM.SOA] || [BrainRegionVCA_NC_IPS_PEF VCA.NC.IPS.PEF] || Posterior Eye Field || neocortex-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Vision Components (VAC -> SOA)] ||
-||  ||  || [BrainRegionVCA_NC_V3 VCA.NC.V3] || Associative Visual Cortex || neocortex-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (VAC -> SupraOculomotor)] ||
 || <font color="red">Hindbrain</font> || || || || || ||
 || [BrainAreaHTA HTA] || [BrainRegionVBA_MM_PT_NOT VBA.MM.PT.NOT] || [BrainRegionHTA_FD_HT_SCN HTA.FD.HT.SCN] || Suprachiasmatic Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionVBA_SC_IZ_CSC VBA.SC.IZ.CSC] || [BrainRegionHTA_FD_HT_PN HTA.FD.HT.PN] || Posterior Nucleus || nucleus-nucleus || [http://www.nature.com/pr/journal/v71/n3/fig_tab/pr201138f1.html Sympathetic and parasympathetic eye pathways (PHT -> CC)] ||
@@ -83,11 +78,13 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/VBA.dot.jpg
 || <font color="red">Motor</font> || || || || || ||
 || [BrainAreaBMA BMA] || [BrainRegionVBA_FD_PV_MPV VBA.FD.PV.MPV] || [BrainRegionBMA_MM_PT_PTA BMA.MM.PT.PTA] || Anterior Pretectum Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || [BrainRegionBMA_HP_VB BMA.HP.VB] || Vestibular Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (MVSN -> NPRP)] ||
+||  || [BrainRegionVBA_MM_EWN VBA.MM.EWN] || [BrainRegionBMA_MM_DSCH BMA.MM.DSCH] || Darkschewitsch Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SupraOculomotor -> EWN, abstract)] ||
 || [BrainAreaFMA FMA] || [BrainRegionVBA_HP_ABD VBA.HP.ABD] || [BrainRegionHMA_HP_FCM HMA.HP.FCM] || Facial Motor Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Facial -> Abducens)] ||
 || [BrainAreaHMA HMA] || [BrainRegionVBA_HP_ABD VBA.HP.ABD] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) (PPRF -> Abducens, abstract)] ||
 ||  || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || [BrainRegionHMA_HM_TGM_STR HMA.HM.TGM.STR] || Spinal Trigeminal Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SpinalTrigeminal -> Oculomotor)] ||
 ||  ||  || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (RF -> OPN, abstract)] ||
-||  ||  || [BrainRegionHMA_MM_CJ HMA.MM.CJ] || Cajal Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionHMA_MM_CJ HMA.MM.CJ] || Cajal Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SupraOculomotor -> Oculomotor, abstract)] ||
+||  ||  || [BrainRegionHMA_MM_RIMLF HMA.MM.RIMLF] || Rostral Interstitial Nucleus of MLF || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SupraOculomotor -> Oculomotor, abstract)] ||
 ||  || [BrainRegionVBA_MM_TRH VBA.MM.TRH] || [BrainRegionHMA_MM_CJ HMA.MM.CJ] || Cajal Nucleus || nucleus-nucleus || (unknown reference) ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaBFA BFA] || [BrainRegionVBA_FD_PV_MPV VBA.FD.PV.MPV] || [BrainRegionBFA_FD_TH_PT BFA.FD.TH.PT] || Paratenial Nucleus of Thalamus || nucleus-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (MID -> mPULV, abstract)] ||
@@ -127,21 +124,21 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/VBA.dot.jpg
 = Thirdparty Circuits =
 (generated)
 
-  * [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/vision-subcortical.jpg Vision Components] - see [http://neuroscience.uth.tmc.edu/s3/chapter07.html Reference]
-
-<img src="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/vision-subcortical.jpg" alt="unavailable">
-
   * [http://2.bp.blogspot.com/-mjoruMnWeaU/TVp_YcF7meI/AAAAAAAAAsQ/8oZIVJrZVnw/s1600/Gray722.png Retina and superior colliculus targets] - see [http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html Reference]
 
 <img src="http://2.bp.blogspot.com/-mjoruMnWeaU/TVp_YcF7meI/AAAAAAAAAsQ/8oZIVJrZVnw/s1600/Gray722.png" alt="unavailable">
 
-  * [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/oculomotor.jpg Eye blink reflex and pupillary light reflex] - see [http://neuroscience.uth.tmc.edu/s3/chapter07.html Reference]
+  * [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/vision-subcortical.jpg Vision Components] - see [http://neuroscience.uth.tmc.edu/s3/chapter07.html Reference]
 
-<img src="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/oculomotor.jpg" alt="unavailable">
+<img src="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/vision-subcortical.jpg" alt="unavailable">
 
   * [http://what-when-how.com/wp-content/uploads/2012/04/tmp15F38_thumb.jpg Extraocular eye muscles] - see [http://what-when-how.com/neuroscience/the-cranial-nerves-organization-of-the-central-nervous-system-part-4 Reference]
 
 <img src="http://what-when-how.com/wp-content/uploads/2012/04/tmp15F38_thumb.jpg" alt="unavailable"height=400width=400>
+
+  * [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/oculomotor.jpg Eye blink reflex and pupillary light reflex] - see [http://neuroscience.uth.tmc.edu/s3/chapter07.html Reference]
+
+<img src="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/oculomotor.jpg" alt="unavailable">
 
   * [http://ars.els-cdn.com/content/image/1-s2.0-S0959438808001566-gr1.jpg Global visual system] - see [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Reference]
 
@@ -223,8 +220,8 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/VBA.dot.jpg
 = References =
 (generated)
 
-  * http://neuroscience.uth.tmc.edu/s3/chapter07.html
   * http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html
+  * http://neuroscience.uth.tmc.edu/s3/chapter07.html
   * http://what-when-how.com/neuroscience/the-cranial-nerves-organization-of-the-central-nervous-system-part-4
   * http://www.sciencedirect.com/science/article/pii/S0959438808001566
   * http://www.nature.com/pr/journal/v71/n3/fig_tab/pr201138f1.html
