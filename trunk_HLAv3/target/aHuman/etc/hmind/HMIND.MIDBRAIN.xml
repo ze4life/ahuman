@@ -4,41 +4,44 @@
 		dotdef="color=goldenrod"
 		>
 
-		<element id="VBA.MM.OCN" name="Oculomotor Nucleus" mapped="true" type="nucleus" index="OCM" category="peripheral"
-			refs="NL:[http://neurolex.org/wiki/Category:Oculomotor_nuclear_complex Oculomotor nuclear complex]"
-			fgroup="Cranial Motor"
-			function="Change Eye Direction"
-			notes="Muscle nucleus"
+		<element id="MM.PER" name="Perhipheral Nuclei of Midbrain Mesencephalon" category="midbrain"
+			notes="Sensory relay or direct motor control"
 			>
-			<element name="Anterior Median Oculomotor Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Anterior_median_oculomotor_nucleus Anterior median oculomotor nucleus]"/>
-			<element name="Caudal Central Oculomotor Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Caudal_central_oculomotor_nucleus Caudal central oculomotor nucleus]"/>
-			<element name="Central Oculomotor Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Central_oculomotor_nucleus Central oculomotor nucleus]"/>
-			<element name="Dorsal Oculomotor Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Dorsal_oculomotor_nucleus Dorsal oculomotor nucleus]"/>
-			<element name="Intermediate Oculomotor Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Intermediate_oculomotor_nucleus Intermediate oculomotor nucleus]"/>
-			<element name="Medial Oculomotor Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_oculomotor_nucleus Medial oculomotor nucleus]"/>
-			<element name="Ventral Oculomotor Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Ventral_oculomotor_nucleus Ventral oculomotor nucleus]"/>
+			<element id="VBA.MM.OCN" name="Oculomotor Nucleus" mapped="true" type="nucleus" index="OCM" category="peripheral"
+				refs="NL:[http://neurolex.org/wiki/Category:Oculomotor_nuclear_complex Oculomotor nuclear complex]"
+				fgroup="Cranial Motor"
+				function="Change Eye Direction"
+				notes="Muscle nucleus"
+				>
+				<element name="Anterior Median Oculomotor Nucleus" notes="" refs="NL:[http://neurolex.org/wiki/Category:Anterior_median_oculomotor_nucleus Anterior median oculomotor nucleus]"/>
+				<element name="Central Oculomotor Nucleus" notes="" refs="NL:[http://neurolex.org/wiki/Category:Central_oculomotor_nucleus Central oculomotor nucleus]"/>
+				<element name="Caudal Central Oculomotor Nucleus" notes="levator palpebrae supeioris" refs="NL:[http://neurolex.org/wiki/Category:Caudal_central_oculomotor_nucleus Caudal central oculomotor nucleus]"/>
+				<element name="Dorsal Oculomotor Nucleus" notes="IR" refs="NL:[http://neurolex.org/wiki/Category:Dorsal_oculomotor_nucleus Dorsal oculomotor nucleus]"/>
+				<element name="Intermediate Oculomotor Nucleus" notes="IO" refs="NL:[http://neurolex.org/wiki/Category:Intermediate_oculomotor_nucleus Intermediate oculomotor nucleus]"/>
+				<element name="Medial Oculomotor Nucleus" notes="SR" refs="NL:[http://neurolex.org/wiki/Category:Medial_oculomotor_nucleus Medial oculomotor nucleus]"/>
+				<element name="Ventral Oculomotor Nucleus" notes="MR" refs="NL:[http://neurolex.org/wiki/Category:Ventral_oculomotor_nucleus Ventral oculomotor nucleus]"/>
+			</element>
+
+			<element id="VBA.MM.TRH" name="Trochlear Nucleus" mapped="true" type="nucleus" index="TRH" category="peripheral"
+				refs="NL:[http://neurolex.org/wiki/Category:Trochlear_nucleus Trochlear nucleus]"
+				fgroup="Cranial Motor"
+				function="Control superior oblique muscles of eyes"
+				notes="Muscle nucleus, change eye direction"
+				/>
+			<element id="VBA.MM.EWN" name="Edinger-Westphal Nucleus" mapped="true" type="nucleus" index="EWN" category="peripheral"
+				refs="NL:[http://neurolex.org/wiki/Category:Parvocellular_oculomotor_nucleus Parvocellular oculomotor nucleus]"
+				fgroup="Autonomic Nuclei"
+				function="Change Eye Pupil"
+				notes="Parasympathetic nucleus, parvocellular extention of OCN"
+				/>
+
+			<element id="HMA.MM.MSTR" name="Mesencephalic Trigeminal Nucleus" mapped="true" type="sensory ganglion" category="target"
+				refs="NL:[http://neurolex.org/wiki/Category:Mesencephalic_nucleus_of_trigeminal_nerve Mesencephalic nucleus of trigeminal nerve]"
+				function="unconscious proprioception from muscle spindles; facial somatic sensations from muscles of mastication, monosynaptic masticatory reflex"
+				notes="Lower, mandibular - ganglion; mandible and maxilla - tooth pulp, surrounding gingiva, periodontal membrane and a vast portion of the oral mucosa"
+				comment="sensory neurons of masticatory muscles, the teeth, the mandibular joint, the mandible, the maxilla and the intraocular muscles; most to motor trigeminal, few - to principal trigeminal"
+				/>
 		</element>
-
-		<element id="VBA.MM.TRH" name="Trochlear Nucleus" mapped="true" type="nucleus" index="TRH" category="peripheral"
-			refs="NL:[http://neurolex.org/wiki/Category:Trochlear_nucleus Trochlear nucleus]"
-			fgroup="Cranial Motor"
-			function="Control superior oblique muscles of eyes"
-			notes="Muscle nucleus, change eye direction"
-			/>
-
-		<element id="VBA.MM.EWN" name="Edinger-Westphal Nucleus" mapped="true" type="nucleus" index="EWN" category="peripheral"
-			refs="NL:[http://neurolex.org/wiki/Category:Parvocellular_oculomotor_nucleus Parvocellular oculomotor nucleus]"
-			fgroup="Autonomic Nuclei"
-			function="Change Eye Pupil"
-			notes="Parasympathetic nucleus, parvocellular extention of OCN"
-			/>
-
-		<element id="HMA.MM.MSTR" name="Mesencephalic Trigeminal Nucleus" mapped="true" type="sensory ganglion" category="target"
-			refs="NL:[http://neurolex.org/wiki/Category:Mesencephalic_nucleus_of_trigeminal_nerve Mesencephalic nucleus of trigeminal nerve]"
-			function="unconscious proprioception from muscle spindles; facial somatic sensations from muscles of mastication, monosynaptic masticatory reflex"
-			notes="Lower, mandibular - ganglion; mandible and maxilla - tooth pulp, surrounding gingiva, periodontal membrane and a vast portion of the oral mucosa"
-			comment="sensory neurons of masticatory muscles, the teeth, the mandibular joint, the mandible, the maxilla and the intraocular muscles; most to motor trigeminal, few - to principal trigeminal"
-			/>
 
 		<element id="MM.MRF" name="Mesencephalic Reticular Formation" category="midbrain"
 			notes="Saccades, fixation, gaze holding and vergence. Space-time coordinated rapid eye movements"
@@ -51,98 +54,156 @@
 				<element name="Subcuneiform Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Subcuneiform_nucleus Subcuneiform nucleus]"/>
 			</element>
 
-			<element id="ABA.MM.IC" name="Inferior Colliculus" mapped="true" type="nucleus"
-				refs="NL:[http://neurolex.org/wiki/Category:Inferior_colliculus Inferior colliculus]"
-				function="Reflex centres of hearing"
+			<element id="FBA.MM.RP.MB" name="Raphe Nuclei of Midbrain" category="midbrain"
+				fgroup="menian column"
+				refs="NL:[http://neurolex.org/wiki/Category:Midbrain_raphe_nuclei Midbrain raphe nuclei]"
 				>
-				<element name="Central Nucleus of Inferior Colliculus" refs="NL:[http://neurolex.org/wiki/Category:Central_nucleus_of_inferior_colliculus Central nucleus of inferior colliculus]"/>
-				<element name="External Nucleus of Inferior Colliculus" refs="NL:[http://neurolex.org/wiki/Category:External_nucleus_of_inferior_colliculus External nucleus of inferior colliculus]"/>
-				<element name="Pericentral Nucleus of Inferior Colliculus" refs="NL:[http://neurolex.org/wiki/Category:Pericentral_nucleus_of_inferior_colliculus Pericentral nucleus of inferior colliculus]"/>
+				<element id="FBA.MM.RP.MRN" name="Median Raphe Nucleus" mapped="true" type="nucleus" 
+					refs="NL:[http://neurolex.org/wiki/Category:Superior_central_nucleus Superior central nucleus]"
+					function="Block or temporarily suspend mnemonic processes in the hippocampus"
+					notes="Directs HC to disregard insignificant events; inhibitory nucleus"
+					/>
+				<element id="FBA.MM.RP.DRN" name="Dorsal Raphe Nucleus" mapped="true" type="nucleus" 
+					refs="NL:[http://neurolex.org/wiki/Category:Dorsal_raphe_nucleus Dorsal raphe nucleus]"
+					function="Regulation of sleep and mood"
+					notes="Major source of 5HT; inhibitory nucleus"
+					>
+					<element name="Serotonergic cell group B6"/>
+					<element name="Serotonergic cell group B7" refs="NL:[http://neurolex.org/wiki/Category:Serotonergic_cell_group_B7 Serotonergic cell group B7]"/>
+				</element>
+				<element id="VBA.MM.RP.RIP" name="Raphe Interpositus Nucleus" mapped="true" type="nucleus" 
+					refs="NL:[http://neurolex.org/wiki/Category:Raphe_interpositus_nucleus_of_PHT00 Raphe interpositus nucleus]"
+					function="Premotor network for saccades"
+					notes="Gate activity of burst neurons for vertical and horizontal saccades"
+					/>
 			</element>
 
-			<element id="VBA.MM.SOA" name="Supraoculomotor Area"
-				refs="NL:[http://neurolex.org/wiki/Category:Oculomotor_nuclear_complex Oculomotor nuclear complex]"
-				function="Control of vergence"
-				notes="Dorsal to OCN, send premotor commands to OCN"
-				>
-				<element id="HMA.MM.CJ" name="Cajal Nucleus" mapped="true" type="nucleus"
-					refs="NL:[http://neurolex.org/wiki/Category:Interstitial_nucleus_of_Cajal Interstitial nucleus of Cajal]"
-					function="Integration of head and eye movements, controls downward vertical gaze"
-					comments="Relay of extrapyramidal control for automatic movements"
-					notes="Projects to CN3, CN4 nuclei, rotation of body about its long axis, Project to vestibular nuclei"
-					/>
-				<element id="HMA.MM.RIMLF" name="Rostral Interstitial Nucleus of MLF" mapped="true" type="nucleus"
-					function="Integration of head and eye movements, controls upward vertical gaze"
-					/>
-				<element id="BMA.MM.DSCH" name="Darkschewitsch Nucleus" mapped="true" type="nucleus"
-					refs="NL:[http://neurolex.org/wiki/Category:Nucleus_of_Darkschewitsch Nucleus of Darkschewitsch]"
-					function="Mediate the consensual pupillary light reflex"
-					comments="Accessory oculomotor nucleus"
-					notes="Light in one eye results in pupil changes in another eye"
-					/>
-			</element>
 		</element>
 
-		<element id="FBA.MM.PAG" name="Periaqueductal Gray Matter" mapped="true" type="nucleus" category="midbrain"
-			refs="NL:[http://neurolex.org/wiki/Category:Ventral_periaqueductal_gray Ventral periaqueductal gray]"
-			function="Descending modulation of pain and in defensive behaviour"
-			notes="if there is a lesion in the PAG, then consciousness is lost; electrical stimulation of the PAG results in immediate and profound analgesia; modulatory nucleus"
-			/>
-
-		<element id="MM.PT" name="Pretectum" category="midbrain"
-			refs="NL:[http://neurolex.org/wiki/Category:Pretectum Pretectum]" 
-			> 
-			<element id="BMA.MM.PT.PTA" name="Anterior Pretectum Nucleus" mapped="true" type="nucleus"
-				refs="NL:[http://neurolex.org/wiki/Category:Anterior_pretectal_nucleus Anterior pretectal nucleus]"
-				function="Mediate somatosensory and nociceptive information"
-				comments="Nucleus of pretectal area"
-				notes="3 parallel flows from MC, anterior interpositus nucleus of TH, GR to dorsal accessory IO"
-				/>
-			<element id="VBA.MM.PT.NOT" name="Nucleus of Optic Tract" mapped="true" type="nucleus"
-				refs="NL:[http://neurolex.org/wiki/Category:Nucleus_of_optic_tract Nucleus of optic tract]"
-				function="Encode retinal error information during smooth pursuit eye movements"
-				notes="Guide motor learning during horizontal SP"
-				/>
-			<element id="VBA.MM.PT.PON" name="Pretectal Olivary Nucleus" mapped="true" type="nucleus"
-				refs="NL:[http://neurolex.org/wiki/Category:Olivary_pretectal_nucleus Olivary pretectal nucleus]"
-				function="Pupillary light reflex and modulating subcortical nuclei involved in circadian rhythms"
-				notes="Primary visual centre, involved in the pupillary light reflex, receives retinal input"
-				/>
-			<element id="VBA.MM.PT.PR" name="Principal Pretectal Nucleus" mapped="true" type="nucleus"
-				refs="NL:[http://neurolex.org/wiki/Category:Principal_pretectal_nucleus Principal pretectal nucleus]"
-				function="Pupillary light reflex"
-				comments="Medial pretectal nucleus"
-				notes="Affected by visual cortex and projects to EWN"
-				/>
-			<element id="VBA.MM.PT.SL" name="Sublentiform Nucleus" mapped="true" type="nucleus"
-				refs="NL:[http://neurolex.org/wiki/Category:Sublentiform_nucleus Sublentiform nucleus]"
-				function="Accomodation reflex"
-				comments="Posterior pretectal nucleus"
-				notes="Combines visual cortex and retinal input to project to OCN, receives retinal input"
-				/>
-		</element>
-
-		<element id="FBA.MM.RP.MB" name="Raphe Nuclei of Midbrain" category="midbrain"
-			refs="NL:[http://neurolex.org/wiki/Category:Midbrain_raphe_nuclei Midbrain raphe nuclei]"
+		<element id="MM.REF" name="Reflexes Nuclei of Midbrain Mesencephalon" category="midbrain"
+			notes="Generate simple motor signal by sensory without cortex"
 			>
-			<element id="FBA.MM.RP.MRN" name="Median Raphe Nucleus" mapped="true" type="nucleus" 
-				refs="NL:[http://neurolex.org/wiki/Category:Superior_central_nucleus Superior central nucleus]"
-				function="Block or temporarily suspend mnemonic processes in the hippocampus"
-				notes="Directs HC to disregard insignificant events; inhibitory nucleus"
-				/>
-			<element id="FBA.MM.RP.DRN" name="Dorsal Raphe Nucleus" mapped="true" type="nucleus" 
-				refs="NL:[http://neurolex.org/wiki/Category:Dorsal_raphe_nucleus Dorsal raphe nucleus]"
-				function="Regulation of sleep and mood"
-				notes="Major source of 5HT; inhibitory nucleus"
+			<element id="MM.REF.AUD" name="Auditory Reflexes Nuclei of Midbrain Mesencephalon" category="midbrain"
+				notes="Control auditory muscles"
 				>
-				<element name="Serotonergic cell group B6"/>
-				<element name="Serotonergic cell group B7" refs="NL:[http://neurolex.org/wiki/Category:Serotonergic_cell_group_B7 Serotonergic cell group B7]"/>
+				<element id="ABA.MM.IC" name="Inferior Colliculus" mapped="true" type="nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Inferior_colliculus Inferior colliculus]"
+					function="Reflex centres of hearing"
+					>
+					<element name="Central Nucleus of Inferior Colliculus" refs="NL:[http://neurolex.org/wiki/Category:Central_nucleus_of_inferior_colliculus Central nucleus of inferior colliculus]"/>
+					<element name="External Nucleus of Inferior Colliculus" refs="NL:[http://neurolex.org/wiki/Category:External_nucleus_of_inferior_colliculus External nucleus of inferior colliculus]"/>
+					<element name="Pericentral Nucleus of Inferior Colliculus" refs="NL:[http://neurolex.org/wiki/Category:Pericentral_nucleus_of_inferior_colliculus Pericentral nucleus of inferior colliculus]"/>
+				</element>
+
+				<element id="ABA.MM.SOC" name="Superior Olivary Complex" mapped="true" type="nucleus" category="midbrain"
+					refs="NL:[http://neurolex.org/wiki/Category:Superior_olivary_complex Superior olivary complex]"
+					function="Bilateral Audition"
+					notes="Projections from both left and right ABA.CN"
+					>
+					<element name="Periolivary Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Periolivary_nucleus Periolivary nucleus]"/>
+					<element name="Preolivary Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Preolivary_nucleus Preolivary nucleus]"/>
+					<element name="Superior Olive" refs="NL:[http://neurolex.org/wiki/Category:Superior_olive Superior olive]">
+						<element name="Lateral Superior Olivary Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_superior_olivary_nucleus Lateral superior olivary nucleus]"/>
+						<element name="Medial Superior Olivary Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_superior_olivary_nucleus Medial superior olivary nucleus]"/>
+					</element>
+					<element name="Superior Paraolivary Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Superior_paraolivary_nucleus Superior paraolivary nucleus]"/>
+					<element id="ABA.MM.SOC.TZ" name="Trapezoid Body Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Trapezoid_nuclear_complex Trapezoid nuclear complex];NL:[http://neurolex.org/wiki/Category:Trapezoid_body Trapezoid body]">
+						<element name="Dorsal Nucleus of Trapezoid Body" refs="NL:[http://neurolex.org/wiki/Category:Dorsal_nucleus_of_trapezoid_body Dorsal nucleus of trapezoid body]"/>
+						<element name="Medial Nucleus of Trapezoid Body" refs="NL:[http://neurolex.org/wiki/Category:Medial_nucleus_of_trapezoid_body Medial nucleus of trapezoid body]"/>
+						<element name="Ventral Nucleus of Trapezoid Body" refs="NL:[http://neurolex.org/wiki/Category:Ventral_nucleus_of_trapezoid_body Ventral nucleus of trapezoid body]"/>
+					</element>
+				</element>
 			</element>
-			<element id="VBA.MM.RP.RIP" name="Raphe Interpositus Nucleus" mapped="true" type="nucleus" 
-				refs="NL:[http://neurolex.org/wiki/Category:Raphe_interpositus_nucleus_of_PHT00 Raphe interpositus nucleus]"
-				function="Premotor network for saccades"
-				notes="Gate activity of burst neurons for vertical and horizontal saccades"
-				/>
+
+			<element id="MM.REF.VIS" name="Visual Reflexes Nuclei of Midbrain Mesencephalon" category="midbrain"
+				notes="Control oculomotor muscles"
+				>
+				<element id="MM.SC" name="Superior Colliculus" category="midbrain"
+					refs="NL:[http://neurolex.org/wiki/Category:Superior_colliculus Superior colliculus]"
+					function="Direct behavioral responses toward specific points in egocentric space, induce saccadic eye movement"
+					notes="Superficial layers are sensory-related, deep layers are motor-related"
+					>
+					<element id="VBA.MM.SC.SUP" name="Superficial Superior Colliculus" mapped="true" type="nucleus"
+						refs="wiki:[http://en.wikipedia.org/wiki/Superior_colliculus Superficial Superior colliculus]"
+						function="Head and eye attention to visual stimuli"
+						notes="Receive input primarily from the visual system and show primarily visual responses"
+						>
+						<element id="VBA.MM.SC.SZ" name="Stratum Zonale, Lamina I" refs="NL:[http://neurolex.org/wiki/Category:Superior_colliculus_stratum_zonale Superior colliculus stratum zonale]"/>
+						<element id="VBA.MM.SC.SGZ" name="Stratum Griseum Supeficiale, Lamina II" refs="NL:[http://neurolex.org/wiki/Category:Superior_colliculus_superficial_gray_layer Superior colliculus superficial gray layer]"/>
+						<element id="VBA.MM.SC.SO" name="Stratum Opticum, Lamina III" refs="NL:[http://neurolex.org/wiki/Category:Superior_colliculus_stratum_opticum Superior colliculus stratum opticum]"/>
+					</element>
+					<element id="MBA.MM.SC.DEEP" name="Deep Superior Colliculus" mapped="true" type="nucleus"
+						refs="wiki:[http://en.wikipedia.org/wiki/Superior_colliculus Superficial Superior colliculus]"
+						function="Head and eye attention to non-visual stimuli"
+						notes="Receive many types of input and project to numerous motor-related brain areas"
+						>
+						<element id="VBA.MM.SC.SGI" name="Stratum Griseum Intermediale, Lamina IV"/>
+						<element id="VBA.MM.SC.SAI" name="Stratum Album Intermediale, Lamina V"/>
+						<element id="VBA.MM.SC.SGP" name="Stratum Griseum Profundum, Lamina VI"/>
+						<element id="VBA.MM.SC.SAP" name="Stratum Album Profundum, Lamina VII"/>
+					</element>
+	
+					<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_superior_colliculus Lateral superior colliculus]" ignore="true" notes="unused subdivision"/>
+					<element refs="NL:[http://neurolex.org/wiki/Category:Medial_superior_colliculus Medial superior colliculus]" ignore="true" notes="unused subdivision"/>
+					<element refs="NL:[http://neurolex.org/wiki/Category:Rostral_half_of_the_superior_colliculus Rostral half of the superior colliculus]" ignore="true" notes="unused subdivision"/>
+					<element refs="NL:[http://neurolex.org/wiki/Category:Superior_colliculus_stratum_lemnisci Superior colliculus stratum lemnisci]" ignore="true" notes="unused subdivision"/>
+				</element>
+
+				<element id="VBA.MM.SOA" name="Supraoculomotor Area"
+					refs="NL:[http://neurolex.org/wiki/Category:Oculomotor_nuclear_complex Oculomotor nuclear complex]"
+					function="Control of vergence"
+					notes="Dorsal to OCN, send premotor commands to OCN"
+					>
+					<element id="HMA.MM.CJ" name="Cajal Nucleus" mapped="true" type="nucleus"
+						refs="NL:[http://neurolex.org/wiki/Category:Interstitial_nucleus_of_Cajal Interstitial nucleus of Cajal]"
+						function="Integration of head and eye movements, controls downward vertical gaze"
+						comments="Relay of extrapyramidal control for automatic movements"
+						notes="Projects to CN3, CN4 nuclei, rotation of body about its long axis, Project to vestibular nuclei"
+						/>
+					<element id="HMA.MM.RIMLF" name="Rostral Interstitial Nucleus of MLF" mapped="true" type="nucleus"
+						function="Integration of head and eye movements, controls upward vertical gaze"
+						/>
+					<element id="BMA.MM.DSCH" name="Darkschewitsch Nucleus" mapped="true" type="nucleus"
+						refs="NL:[http://neurolex.org/wiki/Category:Nucleus_of_Darkschewitsch Nucleus of Darkschewitsch]"
+						function="Mediate the consensual pupillary light reflex"
+						comments="Accessory oculomotor nucleus"
+						notes="Light in one eye results in pupil changes in another eye"
+						/>
+				</element>
+
+				<element id="MM.PT" name="Pretectum" category="midbrain"
+					refs="NL:[http://neurolex.org/wiki/Category:Pretectum Pretectum]" 
+					> 
+					<element id="BMA.MM.PT.PTA" name="Anterior Pretectum Nucleus" mapped="true" type="nucleus"
+						refs="NL:[http://neurolex.org/wiki/Category:Anterior_pretectal_nucleus Anterior pretectal nucleus]"
+						function="Mediate somatosensory and nociceptive information"
+						comments="Nucleus of pretectal area"
+						notes="3 parallel flows from MC, anterior interpositus nucleus of TH, GR to dorsal accessory IO"
+						/>
+					<element id="VBA.MM.PT.NOT" name="Nucleus of Optic Tract" mapped="true" type="nucleus"
+						refs="NL:[http://neurolex.org/wiki/Category:Nucleus_of_optic_tract Nucleus of optic tract]"
+						function="Encode retinal error information during smooth pursuit eye movements"
+						notes="Guide motor learning during horizontal SP"
+						/>
+					<element id="VBA.MM.PT.PON" name="Pretectal Olivary Nucleus" mapped="true" type="nucleus"
+						refs="NL:[http://neurolex.org/wiki/Category:Olivary_pretectal_nucleus Olivary pretectal nucleus]"
+						function="Pupillary light reflex and modulating subcortical nuclei involved in circadian rhythms"
+						notes="Primary visual centre, involved in the pupillary light reflex, receives retinal input"
+						/>
+					<element id="VBA.MM.PT.PR" name="Principal Pretectal Nucleus" mapped="true" type="nucleus"
+						refs="NL:[http://neurolex.org/wiki/Category:Principal_pretectal_nucleus Principal pretectal nucleus]"
+						function="Pupillary light reflex"
+						comments="Medial pretectal nucleus"
+						notes="Affected by visual cortex and projects to EWN"
+						/>
+					<element id="VBA.MM.PT.SL" name="Sublentiform Nucleus" mapped="true" type="nucleus"
+						refs="NL:[http://neurolex.org/wiki/Category:Sublentiform_nucleus Sublentiform nucleus]"
+						function="Accomodation reflex"
+						comments="Posterior pretectal nucleus"
+						notes="Combines visual cortex and retinal input to project to OCN, receives retinal input"
+						/>
+				</element>
+			</element>
 		</element>
 
 		<element id="MBA.MM.RD" name="Red Nucleus" mapped="true" type="nucleus" category="midbrain"
@@ -154,55 +215,11 @@
 			<element name="Parvocellular Part of Red Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Parvocellular_part_of_red_nucleus Parvocellular part of red nucleus]"/>
 		</element>
 
-		<element id="MM.SC" name="Superior Colliculus" category="midbrain"
-			refs="NL:[http://neurolex.org/wiki/Category:Superior_colliculus Superior colliculus]"
-			function="Direct behavioral responses toward specific points in egocentric space, induce saccadic eye movement"
-			notes="Superficial layers are sensory-related, deep layers are motor-related"
-			>
-			<element id="VBA.MM.SC.SUP" name="Superficial Superior Colliculus" mapped="true" type="nucleus"
-				refs="wiki:[http://en.wikipedia.org/wiki/Superior_colliculus Superficial Superior colliculus]"
-				function="Head and eye attention to visual stimuli"
-				notes="Receive input primarily from the visual system and show primarily visual responses"
-				>
-				<element id="VBA.MM.SC.SZ" name="Stratum Zonale, Lamina I" refs="NL:[http://neurolex.org/wiki/Category:Superior_colliculus_stratum_zonale Superior colliculus stratum zonale]"/>
-				<element id="VBA.MM.SC.SGZ" name="Stratum Griseum Supeficiale, Lamina II" refs="NL:[http://neurolex.org/wiki/Category:Superior_colliculus_superficial_gray_layer Superior colliculus superficial gray layer]"/>
-				<element id="VBA.MM.SC.SO" name="Stratum Opticum, Lamina III" refs="NL:[http://neurolex.org/wiki/Category:Superior_colliculus_stratum_opticum Superior colliculus stratum opticum]"/>
-			</element>
-			<element id="MBA.MM.SC.DEEP" name="Deep Superior Colliculus" mapped="true" type="nucleus"
-				refs="wiki:[http://en.wikipedia.org/wiki/Superior_colliculus Superficial Superior colliculus]"
-				function="Head and eye attention to non-visual stimuli"
-				notes="Receive many types of input and project to numerous motor-related brain areas"
-				>
-				<element id="VBA.MM.SC.SGI" name="Stratum Griseum Intermediale, Lamina IV"/>
-				<element id="VBA.MM.SC.SAI" name="Stratum Album Intermediale, Lamina V"/>
-				<element id="VBA.MM.SC.SGP" name="Stratum Griseum Profundum, Lamina VI"/>
-				<element id="VBA.MM.SC.SAP" name="Stratum Album Profundum, Lamina VII"/>
-			</element>
-
-			<element refs="NL:[http://neurolex.org/wiki/Category:Lateral_superior_colliculus Lateral superior colliculus]" ignore="true" notes="unused subdivision"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Medial_superior_colliculus Medial superior colliculus]" ignore="true" notes="unused subdivision"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Rostral_half_of_the_superior_colliculus Rostral half of the superior colliculus]" ignore="true" notes="unused subdivision"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Superior_colliculus_stratum_lemnisci Superior colliculus stratum lemnisci]" ignore="true" notes="unused subdivision"/>
-		</element>
-
-		<element id="ABA.MM.SOC" name="Superior Olivary Complex" mapped="true" type="nucleus" category="midbrain"
-			refs="NL:[http://neurolex.org/wiki/Category:Superior_olivary_complex Superior olivary complex]"
-			function="Bilateral Audition"
-			notes="Projections from both left and right ABA.CN"
-			>
-			<element name="Periolivary Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Periolivary_nucleus Periolivary nucleus]"/>
-			<element name="Preolivary Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Preolivary_nucleus Preolivary nucleus]"/>
-			<element name="Superior Olive" refs="NL:[http://neurolex.org/wiki/Category:Superior_olive Superior olive]">
-				<element name="Lateral Superior Olivary Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_superior_olivary_nucleus Lateral superior olivary nucleus]"/>
-				<element name="Medial Superior Olivary Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_superior_olivary_nucleus Medial superior olivary nucleus]"/>
-			</element>
-			<element name="Superior Paraolivary Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Superior_paraolivary_nucleus Superior paraolivary nucleus]"/>
-			<element id="ABA.MM.SOC.TZ" name="Trapezoid Body Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Trapezoid_nuclear_complex Trapezoid nuclear complex];NL:[http://neurolex.org/wiki/Category:Trapezoid_body Trapezoid body]">
-				<element name="Dorsal Nucleus of Trapezoid Body" refs="NL:[http://neurolex.org/wiki/Category:Dorsal_nucleus_of_trapezoid_body Dorsal nucleus of trapezoid body]"/>
-				<element name="Medial Nucleus of Trapezoid Body" refs="NL:[http://neurolex.org/wiki/Category:Medial_nucleus_of_trapezoid_body Medial nucleus of trapezoid body]"/>
-				<element name="Ventral Nucleus of Trapezoid Body" refs="NL:[http://neurolex.org/wiki/Category:Ventral_nucleus_of_trapezoid_body Ventral nucleus of trapezoid body]"/>
-			</element>
-		</element>
+		<element id="FBA.MM.PAG" name="Periaqueductal Gray Matter" mapped="true" type="nucleus" category="midbrain"
+			refs="NL:[http://neurolex.org/wiki/Category:Ventral_periaqueductal_gray Ventral periaqueductal gray]"
+			function="Descending modulation of pain and in defensive behaviour"
+			notes="if there is a lesion in the PAG, then consciousness is lost; electrical stimulation of the PAG results in immediate and profound analgesia; modulatory nucleus"
+			/>
 
 		<element id="FBA.MM.VTA" name="Ventral Tegmental Area" mapped="true" type="nucleus" category="midbrain"
 			refs="NL:[http://neurolex.org/wiki/Category:Ventral_tegmental_nucleus Ventral tegmental nucleus];NL:[http://neurolex.org/wiki/Category:Ventral_tegmental_area Ventral tegmental area]"
