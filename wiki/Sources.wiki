@@ -5,61 +5,22 @@
 
 ==Repository Contents==
 
-Entire Subversion repository is related to code. All the documentation is on Wiki Pages.
+googlecode repository consists of:
 
-Top-level Subversion directories contain:
-
-*branches*
-Stable baseline of sources. All the sub-projects are released simultaneously once per quarter and branches are named appropriately. It represents "Time Window" iterative development approach - see Development Cycle for details. Only quarterly releases branches are there. Latest branch is supported within next quarter - only critical bugfixes are implemented. Bugfixes require immediate merge into mainline (sources). 
-
-*builds*
-All the distributives for internal libraries, opposed to third-party (external) libraries (see externals). See Development Cycle to understand how manage distributives. Complete distributives covering all the Human project are located in Files and exist for all yearly quarters, no matter how many new features have been added. 
-
-*externals*
-All third-party distributives, being used "as is", without customising. Customised distributives are regarded as internal libraries and stored in sources. Though you need to reference original distributive on Development Environment in Third Party Projects section. 
-
-*research*
-There can be both branches from mainline/stable releases or standalone development trees. Please read Research Cycle on how to arrange code in these directories. Its contents is quite non-restricted, but we need easily to identify related research activity described in Neural Networks Research or Artificial Intelligence Research. No direct merging expected from these branches to mainline. Research activity does not have the goal to create the working code. It is intended to create an algorithm or prove certain idea (i.e. prototyping), or to calculate performance characteristics or something else like that. 
-
-  * *articles* - knowledge database with any external articles, written for AI theme, that could help for Human Project research
-
-*trunk*
-This is the mainline (long-term development branch), where all the current feature development occurs. It does not cover research, where could be also certain coding activities for prototyping or something like that. Opposite to branches and tags, it exists in one instance over the all Human project life. See Development Cycle to see when and what activities are expected in mainline. Scope of current development is presented on Mainline Development. 
-
-  * *aiapi* - API library, to be used in any client, connecting to AI server
-
-  * *aiconsole* - console client, allowing to supply text or xml commands to AI server and obtain command results
-
-  * *aiengine* - AI server, implementing all-in-one AI functionality
-
-  * *aihtmview* - test program for testing HTM with computer vision task as an example using any images you have
-
-  * *deploy* - test configuration files, overall build, packaging and deployment code
-
-  * *generic* - library with generally used data structures and algorithms, not related specifically to AI
-
-*tags*
-Any fixed version of any application or library. Always has corresponding entry in builds. Not intended for amending, which is opposite to any branch in branches where changes are permitted and lead to new versions. Tags and branches are very cheap and fast in Subversions, so can be used intensively. 
-
-*wiki*
-Standard code.google directory for all Wiki pages, including this one
-
-==Latest Code==
-
-The latest code committed to project repository can be found in sources - it is what I name Mainline Development. Of course it is not stable code and the code not assigned to clear feature set. To find latest stable branch - open branches and find directory for latest quarter. E.g. if now is July, 2009, then check for 2009Q2 directory. Any branch in branches has the same structure as sources.
-
-*How To*
-
-  * Create root folder for Human project and run there below command: 
-{{{
-svn checkout https://ahuman.googlecode.com/svn/trunk/human --username <username> --password <password>
-}}}
-
-  * After successful downloading sources run below command for any file and check no errors occurs: 
-{{{
- svn log <file>
-}}}
+  * codebase of high level architecture (HLA) version branches ($HOME/trunk_HLAv2, $HOME/trunk_HLAv3)
+  * external code used with related materials - their headers and built libs are commited to trunk_HLAv3/library and used from there; if something should be changed in externals - you need to update externals, make build there, and commit resulting library to current HLA branch ($HOME/externals)
+  * research area - place to commit various articles and documents, arranging them in a systematic manner ($HOME/research)
+  * storage of diagrams and pictures copied from varied sources to make it constantly available, as well as own aHuman content created manually or generated using graphviz ($HOME/images)
 
 ==Build==
 
-  * TBD (you now can open engine application - open corresponding project (sources/engine/engine.dsp) using VC++ and execute Build All)
+  * primary development area is aHuman solution ($HOME/trunk_HLAv3/human.sln) which includes all active projects
+  * not all dependencies are included into project settings, so sequence to build is:
+{{{
+1. build platform project (general functions and services)
+2. build mind project (mind engine)
+3. build ahuman project (for aHuman target)
+4. build tools project (which is set of tiny programs)
+Includes console client which is able to connect 
+to running target process and execute specific command
+}}}
