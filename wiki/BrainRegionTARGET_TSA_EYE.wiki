@@ -18,8 +18,8 @@ Region is part of aHuman target integrated biological model.
 *Component items*:
   * *Eye sensory data* (*eye-sensory*)
    * Eye - rods and cones (eye-edge-output -> [BrainRegionVBA_FD_RT VBA.FD.RT]): after on-center/off-center edge extraction and zipping 100:1
-   * Eye - somatic receptors (eye-somatic -> [BrainRegionHMA_HP_PTP_PTR HMA.HP.PTP.PTR]): eye -> semilunar ganglion/ophthalmic -> PTR
-   * Eye - visceral receptors (eye-visceral -> [BrainRegionHMA_HM_TGM_STR HMA.HM.TGM.STR]): eye -> semilunar ganglion/ophthalmic -> STR, proprioception
+   * Eye - somatic receptors (eye-somatic -> [BrainRegionAVA_PN_SG_TRG AVA.PN.SG.TRG]): eye -> semilunar ganglion/ophthalmic -> PTR
+   * Eye - visceral receptors (eye-visceral -> [BrainRegionHMA_MM_MSTR HMA.MM.MSTR]): eye -> semilunar ganglion/ophthalmic -> STR, proprioception
   * *Eye rotation motor muscles* (*eye-rotation-motor*)
    * [http://en.wikipedia.org/wiki/Inferior_oblique_muscle Eye - inferior oblique muscle] ([BrainRegionVBA_MM_OCN VBA.MM.OCN] -> [HumanMusclesHead eye-muscle-rotate-major-inferior-oblique]): extorsion, elevation, abduction
    * [http://en.wikipedia.org/wiki/Inferior_rectus_muscle Eye - inferior rectus muscle] ([BrainRegionVBA_MM_OCN VBA.MM.OCN] -> [HumanMusclesHead eye-muscle-rotate-major-inferior-rectus]): depression and adduction
@@ -65,9 +65,8 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/TARGET.TSA.EYE.dot.jpg
 *Outbound Region Connections:*
 
 || *Target Area* || *Target Region* || *Target Name* || *Type* || *Reference* ||
-|| [BrainAreaFMA FMA] || [BrainRegionAVA_PN_SG_TRG AVA.PN.SG.TRG] || Trigeminal Ganglion || eye-lacrimal-gland-conjunctiva-receptors || (unknown reference) ||
-|| [BrainAreaHMA HMA] || [BrainRegionHMA_HM_TGM_STR HMA.HM.TGM.STR] || Spinal Trigeminal Nucleus || eye-visceral || [http://www.lookfordiagnosis.com/mesh_info.php?term=Trigeminal+Nucleilang=1 Trigeminal Nuclei (EYE -> STR)] ||
-||  || [BrainRegionHMA_HP_PTP_PTR HMA.HP.PTP.PTR] || Principal Trigeminal Nucleus || eye-somatic || [http://www.lookfordiagnosis.com/mesh_info.php?term=Trigeminal+Nucleilang=1 Trigeminal Nuclei (EYE -> CSN)] ||
+|| [BrainAreaFMA FMA] || [BrainRegionAVA_PN_SG_TRG AVA.PN.SG.TRG] || Trigeminal Ganglion || eye-somatic || (unknown reference) ||
+||  || [BrainRegionHMA_MM_MSTR HMA.MM.MSTR] || Mesencephalic Trigeminal Nucleus || eye-visceral || (unknown reference) ||
 || [BrainAreaVBA VBA] || [BrainRegionVBA_FD_RT VBA.FD.RT] || Retina || eye-edge-output || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Vision Components (EYE -> RT)] ||
 
 = Thirdparty Circuits =
