@@ -34,15 +34,15 @@
 *External Inbound Region Connections:*
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
-|| <font color="red">Hindbrain</font> || || || || || ||
-|| [BrainAreaHTA HTA] || [BrainRegionTARGET_TEA_ENDOCRINE TARGET.TEA.ENDOCRINE] || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || Paraventricular Nucleus || endocrine-hypophysis || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (HT.PV -> PUT)] ||
-|| <font color="red">Motor</font> || || || || || ||
-|| [BrainAreaAVA AVA] || [BrainRegionTARGET_TEA_BREAST TARGET.TEA.BREAST] || [BrainRegionAVA_PN_PSYM_PPG AVA.PN.PSYM.PPG] || Pelvic Peripheral Ganglion || nipple-smooth-muscles || (unknown reference) ||
+|| <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaFAA FAA] || [BrainRegionTARGET_TEA_ENDOCRINE TARGET.TEA.ENDOCRINE] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || endocrine-pineal-gland || [http://www.scholarpedia.org/article/Habenula Habenula Connections (MHb -> PB)] ||
+|| [BrainAreaMAA MAA] || [BrainRegionTARGET_TEA_BREAST TARGET.TEA.BREAST] || [BrainRegionAVA_PN_PSYM_PPG AVA.PN.PSYM.PPG] || Pelvic Peripheral Ganglion || nipple-smooth-muscles || (unknown reference) ||
 ||  || [BrainRegionTARGET_TEA_ENDOCRINE TARGET.TEA.ENDOCRINE] || [BrainRegionAVA_PN_PSYM_GUT AVA.PN.PSYM.GUT] || Parasympathetic Gut Brain || endocrine-pancreas-muscarinic || (unknown reference) ||
 ||  ||  || [BrainRegionAVA_PN_SYM_ARG AVA.PN.SYM.ARG] || Aorticorenal Ganglion || endocrine-testicle-gland || (unknown reference) ||
 ||  ||  || [BrainRegionAVA_PN_SYM_CEG AVA.PN.SYM.CEG] || Coelic Ganglion || endocrine-pancreas-adrenergic || (unknown reference) ||
 ||  ||  || [BrainRegionAVA_PN_SYM_MCG AVA.PN.SYM.MCG] || Middle Cervical Ganglion || endocrine-thyroid-gland || (unknown reference) ||
 ||  ||  || [BrainRegionAVA_PN_SYM_SMG AVA.PN.SYM.SMG] || Superior Mesenteric Ganglion || endocrine-adrenal-gland || (unknown reference) ||
+||  ||  || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || Paraventricular Nucleus || endocrine-hypophysis || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (HT.PV -> PUT)] ||
 ||  || [BrainRegionTARGET_TEA_GENITALIA TARGET.TEA.GENITALIA] || [BrainRegionAVA_PN_PSYM_PPG AVA.PN.PSYM.PPG] || Pelvic Peripheral Ganglion || uterus-parasympathetic || (unknown reference) ||
 ||  ||  || [BrainRegionAVA_PN_SYM_IMG AVA.PN.SYM.IMG] || Inferior Mesenteric Ganglion || vas-deferens || (unknown reference) ||
 ||  || [BrainRegionTARGET_TEA_HEART TARGET.TEA.HEART] || [BrainRegionAVA_PN_PSYM_CRG AVA.PN.PSYM.CRG] || Cardiac Ganglion || heart-psymp-control || (unknown reference) ||
@@ -65,7 +65,17 @@
 ||  ||  || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || Superior Cervical Ganglion || brachial-artery-vasoconstrictors || (unknown reference) ||
 ||  ||  || [BrainRegionAVA_PN_SYM_STG AVA.PN.SYM.STG] || Stellate Ganglion || arm-blood-vessels || (unknown reference) ||
 ||  ||  || [BrainRegionAVA_PN_SYM_TG AVA.PN.SYM.TG] || Sympathetic Thoracic Ganglia || arterial-thoracic-vasoconstrictors || (unknown reference) ||
-|| [BrainAreaBMA BMA] || [BrainRegionTARGET_TEA_GENITALIA TARGET.TEA.GENITALIA] || [BrainRegionBMA_SC_VH_PM BMA.SC.VH.PM] || Posteromedial Nucleus || bulbospongiosus-muscle || (unknown reference) ||
+|| [BrainAreaPPA PPA] || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || [BrainRegionAVA_PN_PSYM_OTG AVA.PN.PSYM.OTG] || Otic Ganglion || parotid-gland || (unknown reference) ||
+||  ||  || [BrainRegionAVA_PN_PSYM_SPG AVA.PN.PSYM.SPG] || Sphenopalatine Ganglion || uvulae-muscle || (unknown reference) ||
+||  ||  || [BrainRegionAVA_PN_PSYM_SXG AVA.PN.PSYM.SXG] || Submandibular Ganglion || submandibular-gland || (unknown reference) ||
+||  || [BrainRegionTARGET_TEA_PROTECTOR TARGET.TEA.PROTECTOR] || [BrainRegionAVA_PN_PSYM_SPG AVA.PN.PSYM.SPG] || Sphenopalatine Ganglion || pharyngeal-tonsils || (unknown reference) ||
+|| [BrainAreaPSA PSA] || [BrainRegionTARGET_TEA_FACE TARGET.TEA.FACE] || [BrainRegionHMA_HP_FCM HMA.HP.FCM] || Facial Motor Nucleus || face-corrugator-supercilii-muscle || (unknown reference) ||
+||  || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || [BrainRegionHMA_HM_AMB HMA.HM.AMB] || Ambiguus Nucleus || palatoglossus-muscle || (unknown reference) ||
+||  ||  || [BrainRegionHMA_HM_HYG HMA.HM.HYG] || Hypoglossal Motor Nucleus || genioglossus-muscle || (unknown reference) ||
+||  ||  || [BrainRegionHMA_HP_FCM HMA.HP.FCM] || Facial Motor Nucleus || stylohyoid-muscle || (unknown reference) ||
+||  ||  || [BrainRegionHMA_HP_PTP_TRM HMA.HP.PTP.TRM] || Trigeminal Motor Nucleus || digastric-muscle-trigeminal || (unknown reference) ||
+||  ||  || [BrainRegionHMA_SC_VH_SAN HMA.SC.VH.SAN] || Spinal Accessory Nucleus || geniohyoid-muscle || (unknown reference) ||
+||  || [BrainRegionTARGET_TEA_GENITALIA TARGET.TEA.GENITALIA] || [BrainRegionBMA_SC_VH_PM BMA.SC.VH.PM] || Posteromedial Nucleus || bulbospongiosus-muscle || (unknown reference) ||
 ||  ||  || [BrainRegionBMA_SC_VH_VM BMA.SC.VH.VM] || Ventromedial Nucleus || pubococcygeus-muscle || (unknown reference) ||
 ||  || [BrainRegionTARGET_TEA_HAND TARGET.TEA.HAND] || [BrainRegionBMA_SC_VH_PL BMA.SC.VH.PL] || Posterolateral Nucleus || biceps-muscle || (unknown reference) ||
 ||  ||  || [BrainRegionBMA_SC_VH_PM BMA.SC.VH.PM] || Posteromedial Nucleus || infraspinatus-muscle || (unknown reference) ||
@@ -78,34 +88,22 @@
 ||  ||  || [BrainRegionBMA_SC_VH_VL BMA.SC.VH.VL] || Ventrolateral Nucleus || extensor-digitorum-brevis-muscle || (unknown reference) ||
 ||  ||  || [BrainRegionBMA_SC_VH_VM BMA.SC.VH.VM] || Ventromedial Nucleus || gluteus-maximus-muscle || (unknown reference) ||
 ||  || [BrainRegionTARGET_TEA_LUNG TARGET.TEA.LUNG] || [BrainRegionBMA_SC_VH_PHR BMA.SC.VH.PHR] || Phrenic Nucleus || thoracic-diaphragm || (unknown reference) ||
+||  ||  || [BrainRegionHMA_HM_AMB HMA.HM.AMB] || Ambiguus Nucleus || stylopharyngeus-muscle || (unknown reference) ||
 ||  || [BrainRegionTARGET_TEA_NECK TARGET.TEA.NECK] || [BrainRegionBMA_SC_VH_VM BMA.SC.VH.VM] || Ventromedial Nucleus || neck-obliquus-capitis-inferior-muscle || (unknown reference) ||
+||  ||  || [BrainRegionHMA_SC_VH_SAN HMA.SC.VH.SAN] || Spinal Accessory Nucleus || neck-scalenus-anterior || (unknown reference) ||
 ||  || [BrainRegionTARGET_TEA_RECTUM TARGET.TEA.RECTUM] || [BrainRegionBMA_SC_VH_PM BMA.SC.VH.PM] || Posteromedial Nucleus || superficial-transverse-perineal-muscle || (unknown reference) ||
 ||  ||  || [BrainRegionBMA_SC_VH_VM BMA.SC.VH.VM] || Ventromedial Nucleus || puborectalis-muscle || (unknown reference) ||
 ||  || [BrainRegionTARGET_TEA_SPEAKER TARGET.TEA.SPEAKER] || [BrainRegionBMA_SC_VH_VM BMA.SC.VH.VM] || Ventromedial Nucleus || larynx-thyrohyoid-muscle || (unknown reference) ||
+||  ||  || [BrainRegionHMA_HM_AMB HMA.HM.AMB] || Ambiguus Nucleus || arytenoid-muscle || (unknown reference) ||
 ||  || [BrainRegionTARGET_TEA_TRUNK TARGET.TEA.TRUNK] || [BrainRegionBMA_SC_VH_PM BMA.SC.VH.PM] || Posteromedial Nucleus || trunk-rectus-abdominis-muscle || (unknown reference) ||
 ||  ||  || [BrainRegionBMA_SC_VH_VM BMA.SC.VH.VM] || Ventromedial Nucleus || trunk-semispinalis-dorsi-thoracis || (unknown reference) ||
 ||  || [BrainRegionTARGET_TEA_URETER TARGET.TEA.URETER] || [BrainRegionBMA_SC_VH_PM BMA.SC.VH.PM] || Posteromedial Nucleus || external-urethral-sphincter-female || (unknown reference) ||
-|| [BrainAreaFMA FMA] || [BrainRegionTARGET_TEA_FACE TARGET.TEA.FACE] || [BrainRegionHMA_HP_FCM HMA.HP.FCM] || Facial Motor Nucleus || face-corrugator-supercilii-muscle || (unknown reference) ||
-||  || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || [BrainRegionAVA_PN_PSYM_OTG AVA.PN.PSYM.OTG] || Otic Ganglion || parotid-gland || (unknown reference) ||
-||  ||  || [BrainRegionAVA_PN_PSYM_SPG AVA.PN.PSYM.SPG] || Sphenopalatine Ganglion || uvulae-muscle || (unknown reference) ||
-||  ||  || [BrainRegionAVA_PN_PSYM_SXG AVA.PN.PSYM.SXG] || Submandibular Ganglion || submandibular-gland || (unknown reference) ||
-||  ||  || [BrainRegionHMA_HM_AMB HMA.HM.AMB] || Ambiguus Nucleus || palatoglossus-muscle || (unknown reference) ||
-||  ||  || [BrainRegionHMA_HM_HYG HMA.HM.HYG] || Hypoglossal Motor Nucleus || genioglossus-muscle || (unknown reference) ||
-||  ||  || [BrainRegionHMA_HP_FCM HMA.HP.FCM] || Facial Motor Nucleus || stylohyoid-muscle || (unknown reference) ||
-||  || [BrainRegionTARGET_TEA_LUNG TARGET.TEA.LUNG] || [BrainRegionHMA_HM_AMB HMA.HM.AMB] || Ambiguus Nucleus || stylopharyngeus-muscle || (unknown reference) ||
-||  || [BrainRegionTARGET_TEA_PROTECTOR TARGET.TEA.PROTECTOR] || [BrainRegionAVA_PN_PSYM_SPG AVA.PN.PSYM.SPG] || Sphenopalatine Ganglion || pharyngeal-tonsils || (unknown reference) ||
-||  || [BrainRegionTARGET_TEA_SPEAKER TARGET.TEA.SPEAKER] || [BrainRegionHMA_HM_AMB HMA.HM.AMB] || Ambiguus Nucleus || arytenoid-muscle || (unknown reference) ||
-|| [BrainAreaHMA HMA] || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || [BrainRegionHMA_HP_PTP_TRM HMA.HP.PTP.TRM] || Trigeminal Motor Nucleus || digastric-muscle-trigeminal || (unknown reference) ||
-||  ||  || [BrainRegionHMA_SC_VH_SAN HMA.SC.VH.SAN] || Spinal Accessory Nucleus || geniohyoid-muscle || (unknown reference) ||
-||  || [BrainRegionTARGET_TEA_NECK TARGET.TEA.NECK] || [BrainRegionHMA_SC_VH_SAN HMA.SC.VH.SAN] || Spinal Accessory Nucleus || neck-scalenus-anterior || (unknown reference) ||
-|| <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaBFA BFA] || [BrainRegionTARGET_TEA_ENDOCRINE TARGET.TEA.ENDOCRINE] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || endocrine-pineal-gland || [http://www.scholarpedia.org/article/Habenula Habenula Connections (MHb -> PB)] ||
 
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
-|| <font color="red">Motor</font> || || || || || ||
-|| [BrainAreaAVA AVA] || [BrainRegionTARGET_TEA_BREAST TARGET.TEA.BREAST] || [BrainRegionAVA_PN_SG_DRG AVA.PN.SG.DRG] || Dorsal Root Ganglion || breast-skin-receptors || (unknown reference) ||
+|| <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaMAA MAA] || [BrainRegionTARGET_TEA_BREAST TARGET.TEA.BREAST] || [BrainRegionAVA_PN_SG_DRG AVA.PN.SG.DRG] || Dorsal Root Ganglion || breast-skin-receptors || (unknown reference) ||
 ||  || [BrainRegionTARGET_TEA_FACE TARGET.TEA.FACE] || [BrainRegionAVA_PN_SG_DRG AVA.PN.SG.DRG] || Dorsal Root Ganglion || face-parotid-skin || (unknown reference) ||
 ||  || [BrainRegionTARGET_TEA_GENITALIA TARGET.TEA.GENITALIA] || [BrainRegionAVA_PN_SG_DRG AVA.PN.SG.DRG] || Dorsal Root Ganglion || utetovaginal-visceral-receptors || (unknown reference) ||
 ||  || [BrainRegionTARGET_TEA_HAND TARGET.TEA.HAND] || [BrainRegionAVA_PN_SG_DRG AVA.PN.SG.DRG] || Dorsal Root Ganglion || hand-somatic-receptors || (unknown reference) ||
@@ -118,7 +116,7 @@
 ||  || [BrainRegionTARGET_TEA_STOMACH TARGET.TEA.STOMACH] || [BrainRegionAVA_PN_SG_DRG AVA.PN.SG.DRG] || Dorsal Root Ganglion || stomach-nutrition-sensor || (unknown reference) ||
 ||  || [BrainRegionTARGET_TEA_TRUNK TARGET.TEA.TRUNK] || [BrainRegionAVA_PN_SG_DRG AVA.PN.SG.DRG] || Dorsal Root Ganglion || trunk-somatic-receptors || (unknown reference) ||
 ||  || [BrainRegionTARGET_TEA_URETER TARGET.TEA.URETER] || [BrainRegionAVA_PN_SG_DRG AVA.PN.SG.DRG] || Dorsal Root Ganglion || ureter-visceral-receptors || (unknown reference) ||
-|| [BrainAreaFMA FMA] || [BrainRegionTARGET_TEA_FACE TARGET.TEA.FACE] || [BrainRegionAVA_PN_SG_TRG AVA.PN.SG.TRG] || Trigeminal Ganglion || face-skin || (unknown reference) ||
+|| [BrainAreaPPA PPA] || [BrainRegionTARGET_TEA_FACE TARGET.TEA.FACE] || [BrainRegionAVA_PN_SG_TRG AVA.PN.SG.TRG] || Trigeminal Ganglion || face-skin || (unknown reference) ||
 ||  || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || [BrainRegionAVA_PN_SG_GNG AVA.PN.SG.GNG] || Geniculate Ganglion || soft-palate-sparse-taste-receptors || (unknown reference) ||
 ||  ||  || [BrainRegionAVA_PN_SG_NOD AVA.PN.SG.NOD] || Nodose Ganglion || epiglottis-taste-buds || (unknown reference) ||
 ||  ||  || [BrainRegionAVA_PN_SG_TRG AVA.PN.SG.TRG] || Trigeminal Ganglion || tongue-hair-cell || (unknown reference) ||
