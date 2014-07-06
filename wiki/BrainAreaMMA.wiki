@@ -8,159 +8,349 @@
 (generated)
 
 || *Component ID* || *Component Name* || *Type* || *Function* || *Comments* ||
-|| [BrainRegionBMA_HP_PB BMA.HP.PB] || Parabrachial Nucleus || nucleus || Source of short-latency nociceptive input ||  ||
-|| [BrainRegionFBA_HM_RP FBA.HM.RP] || Raphe Nucleus of Medulla || nucleus || Regulate moods, temper anxiety, and relieve depression || Releases 5HT (serotonin) hormone (happiness);<BR>inhibitory nucleus ||
-|| [BrainRegionFBA_HP_LC FBA.HP.LC] || Locus Coeruleus || nucleus || Regulate the intensity of responses to salient stimuli || NE Source, enhance signal-to-noise ratio,<BR>suppressing irrelevant stimuli (lateral<BR>inhibition); inhibitory nucleus ||
-|| [BrainRegionFBA_HP_NI FBA.HP.NI] || Incertus Nucleus || nucleus || Behavioural activation and the response to stress || Modulating influences on prefrontal and hippocampal<BR>cortical activity, midline behavior control;<BR>modulatory nucleus ||
-|| [BrainRegionFBA_HP_RP_LI FBA.HP.RP.LI] || Nucleus Linearis || nucleus || Release of 5-HT was only obtained on stimulation of this nucleus || Does not project to CR, but to forebrain ||
-|| [BrainRegionFBA_HP_RP_MRN FBA.HP.RP.MRN] || Superior Central Raphe Nucleus || nucleus || Hallucinations || Insomnia; inhibitory nucleus ||
-|| [BrainRegionFBA_HP_RP_PRN FBA.HP.RP.PRN] || Pontine Raphe Nucleus || nucleus || Regulation of sleep cycle || Projects to CR, forebrain; inhibitory nucleus ||
-|| [BrainRegionFBA_MM_CNF FBA.MM.CNF] || Cuneiform Nucleus || nucleus || Passive coping strategy to novel, painful or threatening stimuli || modulatory nucleus; medial part of midbrain RF ||
-|| [BrainRegionFBA_MM_PAG FBA.MM.PAG] || Periaqueductal Gray Matter || nucleus || Descending modulation of pain and in defensive behaviour || if there is a lesion in the PAG, then consciousness<BR>is lost; electrical stimulation of the PAG results<BR>in immediate and profound analgesia; modulatory<BR>nucleus ||
-|| [BrainRegionFBA_MM_RP_DRN FBA.MM.RP.DRN] || Dorsal Raphe Nucleus || nucleus || Regulation of sleep and mood || Major source of 5HT; inhibitory nucleus ||
-|| [BrainRegionFBA_MM_RP_MRN FBA.MM.RP.MRN] || Median Raphe Nucleus || nucleus || Block or temporarily suspend mnemonic processes in the hippocampus || Directs HC to disregard insignificant events;<BR>inhibitory nucleus ||
-|| [BrainRegionFBA_MM_VTA FBA.MM.VTA] || Ventral Tegmental Area || nucleus || Respond to novel stimuli, unexpected rewards, and reward predictive sensory cues ||  ||
-|| [BrainRegionVBA_MM_RP_RIP VBA.MM.RP.RIP] || Raphe Interpositus Nucleus || nucleus || Premotor network for saccades || Gate activity of burst neurons for vertical and<BR>horizontal saccades ||
+|| [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || nucleus || Relay for impulses coming from AM and HC || Memory, recognition, spatial awareness, and<BR>interpreting the context of events ||
+|| [BrainRegionHBA_FD_TH_RE HBA.FD.TH.RE] || Reuniens Nucleus of Thalamus || nucleus || Gate information between OMPFC and HC dependent upon attentive/arousal states || Regulate amount of neural traffic with changes in<BR>attentiveness ||
+|| [BrainRegionHBA_FD_TH_RH HBA.FD.TH.RH] || Rhomboidal Nucleus of Thalamus || nucleus || Communication of information across memory delays to guide memory responses || like RE, return projection from PFC to HC, spatial<BR>working memory ||
+|| [BrainRegionHBA_FT_DG HBA.FT.DG] || Dentate Gyrus || cortex || Distinguishing multiple instances of similar events ||  ||
+|| [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || Ventrolateral Cornu Ammonis of Hippocampus || cortex || Representing sequences of episodic memory - long-term || Hippocampus ||
+|| [BrainRegionHBA_FT_HC_CA2 HBA.FT.HC.CA2] || Dorsolateral Cornu Ammonis of Hippocampus || cortex || Gate controlled by the activity of the supramammillary nucleus to control signal<BR>propagation between HC lamines || Hippocampus. Receives theta rithm input from Septum<BR>Nucleus ||
+|| [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || Dorsomedial Cornu Ammonis of Hippocampus || cortex || Representing sequences of episodic memory - short-term || Hippocampus ||
+|| [BrainRegionHBA_FT_HC_CA4 HBA.FT.HC.CA4] || Ventromedial Cornu Ammonis of Hippocampus || cortex || Mediate dynamic regulation of pattern separation in the dentate gyrus || Hippocampus ||
+|| [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || Subiculum || cortex || Spatial navigation and mnemonic processing ||  ||
+|| [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || Lateral Mammillary Nucleus || nucleus || Generate theta rythm and relay to HC || Memory, recognition, spatial awareness, and<BR>interpreting the context of events ||
+|| [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || Anterior Insular Cortex || cortex, BA 14 || Risky and moral decision making, articulation ||  ||
+|| [BrainRegionPHA_NC_INS_HR PHA.NC.INS.HR] || Anterior Temporal Lobe || cortex, BA 15 || Relaying blood pressure and blood chemistry information to brain || Cortical target of information coming through<BR>Hering's nerves, active during panic attacks ||
+|| [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || Posterior Insular Cortex || cortex, BA 13 || Awareness and sensation of pain ||  ||
+|| [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || Peripaleocortical Claustral || cortex, BA 16 || Relays proprioception || Dentate gyrus -> lateropolaris magnoceflularis -><BR>this, agranular orbital, lateral ||
+|| [BrainRegionPHA_NC_PAS PHA.NC.PAS] || Parasubiculum || cortex, BA 49 || Spatial navigation and the integration of head-directional information || Major projects to ET, from CA1,AM ||
+|| [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || cortex, BA 28 || Memory consolidation || Parahippocampal gyrus ||
+|| [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || Piriform Cortex || cortex, BA 34 || Perception of smells || Olfaction ||
+|| [BrainRegionPHA_NC_PH_PPG PHA.NC.PH.PPG] || Ectorhinal Cortex || cortex, BA 36 || Spatial declarative memory || Postrhinal Cortex ||
+|| [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || Perirhinal Cortex || cortex, BA 35 || Associate different visual views of objects and their various nonvisual<BR>attributes || Parahippocampal gyrus ||
+|| [BrainRegionPHA_NC_PH_TFTH PHA.NC.PH.TFTH] || Posterior Parahippocampal Gyrus || cortex, BA 99 || Spatial declarative memory || No Brodmann ID assigned ||
+|| [BrainRegionPHA_NC_PRS PHA.NC.PRS] || Presubiculum || cortex, BA 27 || Path integration, head direction || Major projects to ET, from TH.LD ||
+|| [BrainRegionPHA_NC_PSS PHA.NC.PSS] || Postsubiculum || cortex, BA 48 || Visual association || Integrate visual landmarks with internal<BR>representations of environments ||
+|| [BrainRegionPHA_NC_TPC PHA.NC.TPC] || Temporopolar Cortex || cortex, BA 38 || Self representation, semantic (left) and autobiographic (right) ||  ||
 
 = Connectivity =
 (generated)
 
 *Internal Region Connections:*
 
-http://ahuman.googlecode.com/svn/images/dot/aHuman/MMA.dot.jpg
+http://ahuman.googlecode.com/svn/images/dot/aHuman/FHA.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionHBA_FD_TH_RE HBA.FD.TH.RE] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || nucleus-allocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (MID -> HC, abstract)] ||
+||  || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || nucleus-allocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (MID -> SubPrePara, abstract)] ||
+|| [BrainRegionHBA_FD_TH_RH HBA.FD.TH.RH] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || nucleus-allocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (MID -> HC, abstract)] ||
+||  || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || nucleus-allocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (MID -> SubPrePara, abstract)] ||
+|| [BrainRegionHBA_FT_DG HBA.FT.DG] || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || allocortex-allocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (DG -> CA3)] ||
+||  || [BrainRegionHBA_FT_HC_CA4 HBA.FT.HC.CA4] || allocortex-allocortex || (unknown reference) ||
+|| [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || allocortex-nucleus || [http://neurondevelopment.org/hippocampal-development Hippocampus and Septal Area (CA1 -> MB)] ||
+||  || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || allocortex-allocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (CA1 -> SUB)] ||
+||  || [BrainRegionPHA_NC_PAS PHA.NC.PAS] || allocortex-neocortex || (unknown reference) ||
+||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || allocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (CA1 -> EC)] ||
+||  || [BrainRegionPHA_NC_PH_TFTH PHA.NC.PH.TFTH] || allocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763411001722 Entorhinal Cortex Inputs and Outputs (CA1 -> TFTH)] ||
+|| [BrainRegionHBA_FT_HC_CA2 HBA.FT.HC.CA2] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || allocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S030645220600755X Flow of impulses in hippocampal region (CA2 -> CA1)] ||
+|| [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || allocortex-nucleus || [http://highered.mcgraw-hill.com/sites/dl/free/0071402357/156721/figure350_1.html Principal Connections of Hippocampus (HC -> MB)] ||
+||  || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || allocortex-allocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (CA3 -> CA1)] ||
+||  || [BrainRegionHBA_FT_HC_CA2 HBA.FT.HC.CA2] || allocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S1571064507000243 KIV model of cortico-hippocampal formation with subcortical projections for motor actions (CA3 -> CA2)] ||
+||  || [BrainRegionHBA_FT_HC_CA4 HBA.FT.HC.CA4] || allocortex-allocortex || (unknown reference) ||
+|| [BrainRegionHBA_FT_HC_CA4 HBA.FT.HC.CA4] || [BrainRegionHBA_FT_DG HBA.FT.DG] || allocortex-allocortex || (unknown reference) ||
+|| [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || allocortex-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Mammillary bodies: two memory systems in one (SUB -> MMB)] ||
+||  || [BrainRegionHBA_FD_TH_RE HBA.FD.TH.RE] || allocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (Sub -> MID, abstract)] ||
+||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || allocortex-neocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (SUB -> EC)] ||
+||  || [BrainRegionPHA_NC_PRS PHA.NC.PRS] || allocortex-neocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (SUB -> PRESUB)] ||
+||  || [BrainRegionPHA_NC_PSS PHA.NC.PSS] || allocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (Sub -> PoS)] ||
+|| [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || [BrainRegionPHA_NC_PRS PHA.NC.PRS] || nucleus-neocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (MBOUT -> PRESUB)] ||
+|| [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (Iav -> PrC, abstract)] ||
+|| [BrainRegionPHA_NC_INS_HR PHA.NC.INS.HR] || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763409002061 Contribution of hippocampal region CA3 to consciousness (AnteriorTemporal -> PRCortex)] ||
+|| [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (Iav -> IadIap, abstract)] ||
+||  || [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (Iav -> IadIap, abstract)] ||
+|| [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || neocortex-neocortex || (unknown reference) ||
+||  || [BrainRegionPHA_NC_PRS PHA.NC.PRS] || neocortex-neocortex || (unknown reference) ||
+|| [BrainRegionPHA_NC_PAS PHA.NC.PAS] || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || neocortex-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Mammillary bodies: two memory systems in one (PAS -> LMB)] ||
+||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || neocortex-neocortex || (unknown reference) ||
+|| [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || neocortex-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Mammillary bodies: two memory systems in one (MedialEC -> MMB)] ||
+||  || [BrainRegionHBA_FT_DG HBA.FT.DG] || neocortex-allocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (EC -> DG)] ||
+||  || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || neocortex-allocortex || [http://www.impulsecontroldisorders.org/html/cravings.html Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning (EC -> CA1)] ||
+||  || [BrainRegionHBA_FT_HC_CA2 HBA.FT.HC.CA2] || neocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S030645220600755X Flow of impulses in hippocampal region (ENT -> CA2)] ||
+||  || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || neocortex-allocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (EC -> CA3)] ||
+||  || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || neocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S030100820900183X Simplified model of hippocampal formation anatomy (EC -> SUB)] ||
+|| [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PiR -> Iav, abstract)] ||
+||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1571064507000243 KIV model of cortico-hippocampal formation with subcortical projections for motor actions (PC -> EC)] ||
+|| [BrainRegionPHA_NC_PH_PPG PHA.NC.PH.PPG] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || neocortex-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (PRHC -> EC)] ||
+|| [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || [BrainRegionHBA_FT_DG HBA.FT.DG] || neocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PrC -> HF, abstract)] ||
+||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || neocortex-neocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (PRPH -> ER)] ||
+|| [BrainRegionPHA_NC_PH_TFTH PHA.NC.PH.TFTH] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763411001722 Entorhinal Cortex Inputs and Outputs (TFTH -> EC)] ||
+|| [BrainRegionPHA_NC_PRS PHA.NC.PRS] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || neocortex-nucleus || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (PRESUB -> MBIN)] ||
+||  || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || neocortex-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Mammillary bodies: two memory systems in one (PRS -> LMB)] ||
+||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || neocortex-neocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (PRESUB -> EC)] ||
+|| [BrainRegionPHA_NC_PSS PHA.NC.PSS] || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || neocortex-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (PSUB -> LMB)] ||
+||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || neocortex-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (PSUB -> EC)] ||
+|| [BrainRegionPHA_NC_TPC PHA.NC.TPC] || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || neocortex-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (tPole -> Insula, abstract)] ||
 
 *External Inbound Region Connections:*
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
-|| [BrainAreaNEA NEA] || [BrainRegionBMA_HP_PB BMA.HP.PB] || [BrainRegionCGA_NC_SGC CGA.NC.SGC] || Subgenual Cortex || neocortex-nucleus || (unknown reference) ||
-||  || [BrainRegionFBA_HP_LC FBA.HP.LC] || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || Ventral Anterior Cingulate Area || neocortex-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || neocortex-nucleus || (unknown reference) ||
-||  || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || [BrainRegionCGA_NC_SGC CGA.NC.SGC] || Subgenual Cortex || neocortex-nucleus || (unknown reference) ||
-||  || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || neocortex-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (OMPFC -> VTA)] ||
-|| [BrainAreaNMA NMA] || [BrainRegionVBA_MM_RP_RIP VBA.MM.RP.RIP] || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || Supplementary Motor Cortex || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (FEFSEF -> RIP, abstract)] ||
+|| [BrainAreaNBA NBA] || [BrainRegionPHA_NC_INS_HR PHA.NC.INS.HR] || [BrainRegionSMA_FD_TH_VPL SMA.FD.TH.VPL] || Ventral Posterolateral Nucleus || nucleus-neocortex || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (TH -> INS, abstract)] ||
+||  || [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || [BrainRegionSMA_FD_TH_VPI SMA.FD.TH.VPI] || Ventral Posteroinferior Nucleus || nucleus-neocortex || [http://users.atw.hu/blp6/BLP6/HTML/C0079780323045827.htm Pain matrix (TH.VPI -> INS)] ||
+||  ||  || [BrainRegionSMA_FD_TH_VPM SMA.FD.TH.VPM] || Ventral Posteromedial Nucleus || nucleus-neocortex || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (TH -> INS, abstract)] ||
+||  ||  || [BrainRegionSMA_NC_SPL_SA SMA.NC.SPL.SA] || Somatosensory Association Cortex || neocortex-neocortex || (unknown reference) ||
+||  || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || Somatosensory Cortex || neocortex-neocortex || (unknown reference) ||
+|| [BrainAreaNEA NEA] || [BrainRegionHBA_FD_TH_RE HBA.FD.TH.RE] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || neocortex-nucleus || (unknown reference) ||
+||  || [BrainRegionHBA_FD_TH_RH HBA.FD.TH.RH] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || neocortex-nucleus || (unknown reference) ||
+||  || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || Anterior Nucleus of Thalamus || nucleus-allocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (AN -> HC, abstract)] ||
+||  ||  || [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || Lateral Dorsal Nucleus of Thalamus || nucleus-allocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (LD -> HC, abstract)] ||
+||  ||  || [BrainRegionCGA_NC_MPL_PCG CGA.NC.MPL.PCG] || Posterior Cingulate Cortex || neocortex-allocortex || [http://www.nature.com/nrn/journal/v5/n7 Feeling (CG -> HC, abstract)] ||
+||  || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || Retrosplenial Cortex || neocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S0149763409002061 Contribution of hippocampal region CA3 to consciousness (Retrosplenial -> CA1)] ||
+||  || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || Anterior Nucleus of Thalamus || nucleus-allocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (AN -> SubPrePara)] ||
+||  ||  || [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || Lateral Dorsal Nucleus of Thalamus || nucleus-allocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (LD -> SubPrePara)] ||
+||  ||  || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || Retrosplenial Cortex || neocortex-allocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (PCGRSP -> SUB, abstract)] ||
+||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionCGA_NC_MPL_PCG CGA.NC.MPL.PCG] || Posterior Cingulate Cortex || neocortex-neocortex || [http://www.thebrainlabs.com Cingulate Gyrus (CG -> ET)] ||
+||  ||  || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || Retrosplenial Cortex || neocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (PCGRSP -> EnthCortex, abstract)] ||
+||  || [BrainRegionPHA_NC_PRS PHA.NC.PRS] || [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || Lateral Dorsal Nucleus of Thalamus || nucleus-neocortex || (unknown reference) ||
+||  || [BrainRegionPHA_NC_PSS PHA.NC.PSS] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || Anterior Nucleus of Thalamus || nucleus-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (AD -> PSUB)] ||
+||  ||  || [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || Lateral Dorsal Nucleus of Thalamus || nucleus-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LD -> PSUB)] ||
+||  ||  || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || Retrosplenial Cortex || neocortex-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (RSP -> PSUB)] ||
+|| [BrainAreaNSA NSA] || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || [BrainRegionVCA_NC_IPL_MST VCA.NC.IPL.MST] || Medial Superior Temporal Area || neocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S0149763409002061 Contribution of hippocampal region CA3 to consciousness (IPL -> CA1, abstract)] ||
+||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || Inferotemporal Cortex || neocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (ITCortex -> EnthCortex, abstract)] ||
+||  || [BrainRegionPHA_NC_PH_PPG PHA.NC.PH.PPG] || [BrainRegionVCA_NC_IPL_MST VCA.NC.IPL.MST] || Medial Superior Temporal Area || neocortex-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (PC -> PRHC, abstract)] ||
+||  || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || Inferotemporal Cortex || neocortex-neocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (IT -> PRPH)] ||
+||  || [BrainRegionPHA_NC_PSS PHA.NC.PSS] || [BrainRegionVCA_NC_V2 VCA.NC.V2] || Secondary Visual Cortex || neocortex-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (VC -> PSUB, abstract)] ||
+||  || [BrainRegionPHA_NC_TPC PHA.NC.TPC] || [BrainRegionACA_NC_A3 ACA.NC.A3] || Wernicke's area A3 || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1364661312002823 Language-Related Regions (STG22a -> TC)] ||
+||  ||  || [BrainRegionVCA_NC_IT_TEO VCA.NC.IT.TEO] || Preoccipital Inferotemporal Area || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1364661312002823 Language-Related Regions (MTG21 -> TC)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFAA FAA] || [BrainRegionBMA_HP_PB BMA.HP.PB] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> PB)] ||
-||  ||  || [BrainRegionBFA_FT_IPAC BFA.FT.IPAC] || Interstitial Anterior Commissural Nucleus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionFBA_HP_LC FBA.HP.LC] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> LC)] ||
-||  || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> PAG)] ||
-||  || [BrainRegionFBA_MM_RP_DRN FBA.MM.RP.DRN] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> DR)] ||
-||  || [BrainRegionFBA_MM_RP_MRN FBA.MM.RP.MRN] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> MR)] ||
-||  || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> VTA)] ||
-|| [BrainAreaFEA FEA] || [BrainRegionFBA_HP_LC FBA.HP.LC] || [BrainRegionBGA_FT_PU BGA.FT.PU] || Putamen || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (PU -> LC)] ||
-||  || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionBGA_FT_ACC BGA.FT.ACC] || Accumbens Nucleus || nucleus-nucleus || [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reward circuit of human brain (NACC -> VTA)] ||
-||  ||  || [BrainRegionBGA_FT_VP BGA.FT.VP] || Ventral Pallidum || nucleus-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (VPAL -> VTA)] ||
-|| [BrainAreaFHA FHA] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Medial mammillary nucleus and theta rhythm (MMB -> VTN)] ||
-|| [BrainAreaFMA FMA] || [BrainRegionFBA_MM_RP_DRN FBA.MM.RP.DRN] || [BrainRegionFBA_FD_TH_SF FBA.FD.TH.SF] || Subfascicular Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaMAA MAA] || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || [BrainRegionAVA_PN_SYM_IMG AVA.PN.SYM.IMG] || Inferior Mesenteric Ganglion || ganglion-nucleus || [http://jp.physoc.org/content/557/1/287/F9.expansion.html Schematic overview of spinobulbospinal micturition reflex pathway (IMG -> PAG)] ||
-|| [BrainAreaMLA MLA] || [BrainRegionFBA_HP_LC FBA.HP.LC] || [BrainRegionMBA_HM_RF_MED MBA.HM.RF.MED] || Medullary Reticular Formation || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaPRA PRA] || [BrainRegionVBA_MM_RP_RIP VBA.MM.RP.RIP] || [BrainRegionVBA_MM_SC_SUP VBA.MM.SC.SUP] || Superficial Superior Colliculus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (SC -> RIP, abstract)] ||
-|| [BrainAreaPSA PSA] || [BrainRegionBMA_HP_PB BMA.HP.PB] || [BrainRegionHMA_HM_SOL HMA.HM.SOL] || Solitary Nucleus || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (SOL -> PB)] ||
+|| [BrainAreaFAA FAA] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || Septal Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Mammillary bodies: two memory systems in one (SEP -> MMB)] ||
+||  || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-allocortex || [http://www.sciencedirect.com/science/article/pii/S030100820900183X Simplified model of hippocampal formation anatomy (Amyg -> CA1)] ||
+||  || [BrainRegionHBA_FT_HC_CA2 HBA.FT.HC.CA2] || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || Septal Nucleus || nucleus-allocortex || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Medial mammillary nucleus and theta rhythm (SEP -> HF, abstract)] ||
+||  || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-allocortex || [http://www.sciencedirect.com/science/article/pii/S030100820900183X Simplified model of hippocampal formation anatomy (Amyg -> SUB)] ||
+||  || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || Septal Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Mammillary bodies: two memory systems in one (SEP -> LMB)] ||
+||  || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || [BrainRegionPHA_FT_EPF PHA.FT.EPF] || Endopiriform Nucleus || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (EnP -> Iav, abstract)] ||
+||  || [BrainRegionPHA_NC_PAS PHA.NC.PAS] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-neocortex || (unknown reference) ||
+||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionBFA_FD_TH_PT BFA.FD.TH.PT] || Paratenial Nucleus of Thalamus || nucleus-neocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (MID -> EC, abstract)] ||
+||  ||  || [BrainRegionBFA_FD_TH_PV BFA.FD.TH.PV] || Paraventricular Nucleus of Thalamus || nucleus-neocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (MID -> EC, abstract)] ||
+||  ||  || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-neocortex || [http://highered.mcgraw-hill.com/sites/dl/free/0071402357/156721/figure350_1.html Principal Connections of Hippocampus (AM -> EC)] ||
+||  || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || [BrainRegionBFA_FD_TH_PV BFA.FD.TH.PV] || Paraventricular Nucleus of Thalamus || nucleus-neocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (MID -> Perirhinal, abstract)] ||
+|| [BrainAreaFEA FEA] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionBGA_FD_TH_CM BGA.FD.TH.CM] || Centromedian Nucleus of Thalamus || nucleus-allocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (CM -> HC, abstract)] ||
+||  || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionBGA_FD_TH_CM BGA.FD.TH.CM] || Centromedian Nucleus of Thalamus || nucleus-allocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (CM -> SubPrePara)] ||
+||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionBGA_FD_TH_CM BGA.FD.TH.CM] || Centromedian Nucleus of Thalamus || nucleus-neocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (CM -> EC)] ||
+|| [BrainAreaFMA FMA] || [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || [BrainRegionPHA_FD_TH_LI PHA.FD.TH.LI] || Limitans Nucleus of Thalamus || nucleus-neocortex || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (TH -> INS, abstract)] ||
+|| [BrainAreaMAA MAA] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || [BrainRegionHTA_FD_HT_LT HTA.FD.HT.LT] || Lateral Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Mammillary bodies: two memory systems in one (TuberoMM -> MMB)] ||
+||  ||  || [BrainRegionHTA_FD_HT_PN HTA.FD.HT.PN] || Posterior Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Mammillary bodies: two memory systems in one (SupraMM -> MMB)] ||
+||  || [BrainRegionHBA_FT_DG HBA.FT.DG] || [BrainRegionHTA_FD_HT_PN HTA.FD.HT.PN] || Posterior Nucleus || nucleus-allocortex || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Medial mammillary nucleus and theta rhythm (SupraMM -> HF, abstract)] ||
+||  || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || [BrainRegionHTA_FD_HT_PN HTA.FD.HT.PN] || Posterior Nucleus || nucleus-allocortex || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Medial mammillary nucleus and theta rhythm (SupraMM -> HF, abstract)] ||
+||  || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || [BrainRegionHTA_FD_HT_LT HTA.FD.HT.LT] || Lateral Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Mammillary bodies: two memory systems in one (TuberoMM -> LMB)] ||
+||  ||  || [BrainRegionHTA_FD_HT_PN HTA.FD.HT.PN] || Posterior Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Mammillary bodies: two memory systems in one (SupraMM -> LMB)] ||
+|| [BrainAreaMMA MMA] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || Ventral Tegmental Area || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Mammillary bodies: two memory systems in one (VTN -> MMB)] ||
+||  || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || Ventral Tegmental Area || nucleus-allocortex || [http://www.impulsecontroldisorders.org/html/cravings.html Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning (VTA -> CA1)] ||
+||  || [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || [BrainRegionBMA_HP_PB BMA.HP.PB] || Parabrachial Nucleus || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PB -> Gud, abstract)] ||
+||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || Ventral Tegmental Area || nucleus-neocortex || [http://www.impulsecontroldisorders.org/html/cravings.html Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning (VTA -> EC)] ||
+|| [BrainAreaPRA PRA] || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (DTN -> LMam)] ||
+|| [BrainAreaPSA PSA] || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || [BrainRegionPHA_FT_AON PHA.FT.AON] || Anterior Olfactory Nucleus || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S1571064507000243 KIV model of cortico-hippocampal formation with subcortical projections for motor actions (AON -> PC)] ||
 
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
-|| [BrainAreaNBA NBA] || [BrainRegionBMA_HP_PB BMA.HP.PB] || [BrainRegionSMA_FD_TH_VPI SMA.FD.TH.VPI] || Ventral Posteroinferior Nucleus || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionSMA_FD_TH_VPM SMA.FD.TH.VPM] || Ventral Posteromedial Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PB -> VPMpc)] ||
-|| [BrainAreaNEA NEA] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionCGA_NC_DACG CGA.NC.DACG] || Dorsal Anterior Cingulate Area || nucleus-neocortex || (unknown reference) ||
-||  ||  || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || nucleus-neocortex || [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reward circuit of human brain (VTA -> PFC)] ||
+|| [BrainAreaNEA NEA] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || Anterior Nucleus of Thalamus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Mammillary bodies: two memory systems in one (MMB -> AMTH)] ||
+||  || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || allocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S030100820900183X Simplified model of hippocampal formation anatomy (CA1 -> mPFC)] ||
+||  || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || Anterior Nucleus of Thalamus || allocortex-nucleus || [http://highered.mcgraw-hill.com/sites/dl/free/0071402357/156721/figure350_1.html Principal Connections of Hippocampus (HC -> AN)] ||
+||  || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || Anterior Nucleus of Thalamus || allocortex-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s1A -> A)] ||
+||  ||  || [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || Lateral Dorsal Nucleus of Thalamus || allocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (Sub -> LD)] ||
+||  ||  || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || Retrosplenial Cortex || allocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (SUB -> PCGRSP, abstract)] ||
+||  ||  || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || allocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S030100820900183X Simplified model of hippocampal formation anatomy (SUB -> mPFC)] ||
+||  || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || Anterior Nucleus of Thalamus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LMB -> AD)] ||
+||  || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || Ventral Anterior Cingulate Area || neocortex-neocortex || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (INS -> ACG, abstract)] ||
+||  ||  || [BrainRegionFCA_NC_IPG FCA.NC.IPG] || Inferior Prefrontal Gyrus || neocortex-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (Insula -> fPole, abstract)] ||
+||  || [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || [BrainRegionCGA_NC_DACG CGA.NC.DACG] || Dorsal Anterior Cingulate Area || neocortex-neocortex || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (INS -> ACG, abstract)] ||
+||  ||  || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || neocortex-neocortex || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (INS -> MPFC, abstract)] ||
+||  || [BrainRegionPHA_NC_PAS PHA.NC.PAS] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || Anterior Nucleus of Thalamus || neocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (Parasub -> AV)] ||
+||  ||  || [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || Lateral Dorsal Nucleus of Thalamus || neocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (Parasub -> LD)] ||
+||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || Anterior Nucleus of Thalamus || neocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (EC -> AN)] ||
+||  ||  || [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || Lateral Dorsal Nucleus of Thalamus || neocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (EC -> LD)] ||
+||  ||  || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || Mediodorsal Nucleus of Thalamus || neocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (EC -> MDmc)] ||
+||  || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || Mediodorsal Nucleus of Thalamus || neocortex-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s2MD -> MD)] ||
+||  || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || Mediodorsal Nucleus of Thalamus || neocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (Perirhinal -> MDmc)] ||
+||  || [BrainRegionPHA_NC_PRS PHA.NC.PRS] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || Anterior Nucleus of Thalamus || neocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (Presub -> AV)] ||
+||  ||  || [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || Lateral Dorsal Nucleus of Thalamus || neocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (Presub -> LD)] ||
+||  || [BrainRegionPHA_NC_PSS PHA.NC.PSS] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || Anterior Nucleus of Thalamus || neocortex-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (PSUB -> AD)] ||
+||  ||  || [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || Lateral Dorsal Nucleus of Thalamus || neocortex-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (PSUB -> LD)] ||
+||  ||  || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || Retrosplenial Cortex || neocortex-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (PSUB -> RSP)] ||
+||  || [BrainRegionPHA_NC_TPC PHA.NC.TPC] || [BrainRegionFCA_NC_IPG FCA.NC.IPG] || Inferior Prefrontal Gyrus || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1364661312002823 Language-Related Regions (TC -> vIFC)] ||
+|| [BrainAreaNSA NSA] || [BrainRegionPHA_NC_TPC PHA.NC.TPC] || [BrainRegionACA_NC_BRA ACA.NC.BRA] || Broca's Area || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1364661312002823 Language-Related Regions (TC -> BA45)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFAA FAA] || [BrainRegionBMA_HP_PB BMA.HP.PB] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (PB -> AM)] ||
-||  || [BrainRegionFBA_HP_LC FBA.HP.LC] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || [BrainRegionBFA_FD_TH_PV BFA.FD.TH.PV] || Paraventricular Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionFBA_MM_RP_DRN FBA.MM.RP.DRN] || [BrainRegionBFA_FD_TH_PV BFA.FD.TH.PV] || Paraventricular Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-nucleus || [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reward circuit of human brain (VTA -> AM)] ||
-|| [BrainAreaFEA FEA] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionBGA_FT_ACC BGA.FT.ACC] || Accumbens Nucleus || nucleus-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (VTA -> NACC)] ||
-||  ||  || [BrainRegionBGA_FT_VP BGA.FT.VP] || Ventral Pallidum || nucleus-nucleus || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (VTA -> VentPal)] ||
-|| [BrainAreaFHA FHA] || [BrainRegionBMA_HP_PB BMA.HP.PB] || [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || Posterior Insular Cortex || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PB -> Gud, abstract)] ||
-||  || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Mammillary bodies: two memory systems in one (VTN -> MMB)] ||
-||  ||  || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || Ventrolateral Cornu Ammonis of Hippocampus || nucleus-allocortex || [http://www.impulsecontroldisorders.org/html/cravings.html Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning (VTA -> CA1)] ||
-||  ||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || nucleus-neocortex || [http://www.impulsecontroldisorders.org/html/cravings.html Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning (VTA -> EC)] ||
-|| [BrainAreaFMA FMA] || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || [BrainRegionFBA_FD_TH_SF FBA.FD.TH.SF] || Subfascicular Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaMAA MAA] || [BrainRegionBMA_HP_PB BMA.HP.PB] || [BrainRegionAVA_HM_VG AVA.HM.VG] || Vagus Nucleus || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (PBN -> DVM)] ||
-||  || [BrainRegionFBA_HP_LC FBA.HP.LC] || [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || Intermediolateral Nucleus || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (LC -> IML)] ||
-||  || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || [BrainRegionMBA_HP_BR MBA.HP.BR] || Barrington's Nucleus || nucleus-nucleus || [http://jp.physoc.org/content/557/1/287/F9.expansion.html Schematic overview of spinobulbospinal micturition reflex pathway (PAG -> BAR)] ||
-||  || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionHTA_FD_HT_PO HTA.FD.HT.PO] || Preoptic Area || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (VTA -> MPOA)] ||
-||  ||  || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || Paraventricular Nucleus || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (VTA -> PVN)] ||
-|| [BrainAreaPRA PRA] || [BrainRegionVBA_MM_RP_RIP VBA.MM.RP.RIP] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (RIP -> PPRF, abstract)] ||
+|| [BrainAreaFAA FAA] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || allocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S030100820900183X Simplified model of hippocampal formation anatomy (CA1 -> Amyg)] ||
+||  ||  || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || Septal Nucleus || allocortex-nucleus || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (CA1 -> SEP)] ||
+||  || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || Septal Nucleus || allocortex-nucleus || [http://highered.mcgraw-hill.com/sites/dl/free/0071402357/156721/figure350_1.html Principal Connections of Hippocampus (HC -> SEP)] ||
+||  || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || allocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S030100820900183X Simplified model of hippocampal formation anatomy (SUB -> Amyg)] ||
+||  || [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || neocortex-nucleus || (unknown reference) ||
+||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionBFA_FD_TH_PT BFA.FD.TH.PT] || Paratenial Nucleus of Thalamus || neocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (EC -> MID, abstract)] ||
+||  ||  || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S030100820900183X Simplified model of hippocampal formation anatomy (EC -> Amyg)] ||
+||  || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || [BrainRegionBFA_FT_IPAC BFA.FT.IPAC] || Interstitial Anterior Commissural Nucleus || neocortex-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionPHA_FT_EPF PHA.FT.EPF] || Endopiriform Nucleus || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PiR -> EnP)] ||
+|| [BrainAreaFEA FEA] || [BrainRegionHBA_FD_TH_RH HBA.FD.TH.RH] || [BrainRegionBGA_FT_CN BGA.FT.CN] || Caudate Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionBGA_FT_ACC BGA.FT.ACC] || Accumbens Nucleus || allocortex-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/nucleus-accumbens.jpg Nucleus Accumbens (CA1 -> NACC)] ||
+||  || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || [BrainRegionBGA_FT_ACC BGA.FT.ACC] || Accumbens Nucleus || allocortex-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/nucleus-accumbens.jpg Nucleus Accumbens (CA3 -> NACC)] ||
+||  || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionBGA_FT_ACC BGA.FT.ACC] || Accumbens Nucleus || allocortex-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/nucleus-accumbens.jpg Nucleus Accumbens (SUB -> NACC)] ||
+||  || [BrainRegionPHA_NC_PAS PHA.NC.PAS] || [BrainRegionBGA_FT_ACC BGA.FT.ACC] || Accumbens Nucleus || neocortex-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/nucleus-accumbens.jpg Nucleus Accumbens (PAS -> NACC)] ||
+||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionBGA_FT_ACC BGA.FT.ACC] || Accumbens Nucleus || neocortex-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/nucleus-accumbens.jpg Nucleus Accumbens (EC -> NACC)] ||
+||  || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || [BrainRegionBGA_FT_ACC BGA.FT.ACC] || Accumbens Nucleus || neocortex-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/nucleus-accumbens.jpg Nucleus Accumbens (PRR -> NACC)] ||
+|| [BrainAreaMAA MAA] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionHTA_FD_HT_AH HTA.FD.HT.AH] || Anterior Hypothalamic Nucleus || allocortex-nucleus || [http://www.nature.com/nrn/journal/v5/n7 Feeling (HC -> HT, abstract)] ||
+||  ||  || [BrainRegionHTA_FD_HT_PO HTA.FD.HT.PO] || Preoptic Area || allocortex-nucleus || [http://www.nature.com/nrn/journal/v5/n7 Feeling (HC -> HT, abstract)] ||
+||  || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || Paraventricular Nucleus || allocortex-nucleus || (unknown reference) ||
+|| [BrainAreaMMA MMA] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || Ventral Tegmental Area || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Medial mammillary nucleus and theta rhythm (MMB -> VTN)] ||
+|| [BrainAreaPRA PRA] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || [BrainRegionHMA_HP_PRF_PDT HMA.HP.PRF.PDT] || Pontine Reticulotegmental Nucleus || nucleus-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/mb.jpg Mammillary Body (MMB -> RTG)] ||
+||  ||  || [BrainRegionMBA_HP_PN_RP MBA.HP.PN.RP] || Rostral Pontine Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || [BrainRegionHMA_HP_PRF_PDT HMA.HP.PRF.PDT] || Pontine Reticulotegmental Nucleus || nucleus-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/mb.jpg Mammillary Body (LMB -> RTG)] ||
+||  ||  || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LMB -> DTN)] ||
+|| [BrainAreaPSA PSA] || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || [BrainRegionVBA_FD_PV_MPV VBA.FD.PV.MPV] || Medial Pulvinar || neocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (Perirhinal -> mPULV)] ||
+||  || [BrainRegionPHA_NC_PRS PHA.NC.PRS] || [BrainRegionVBA_FD_PV_MPV VBA.FD.PV.MPV] || Medial Pulvinar || neocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (Presub -> mPULV)] ||
 
 = Thirdparty Circuits =
 (generated)
 
-  * [http://www.scholarpedia.org/w/images/thumb/2/2d/Hb-connections-small.jpg/800px-Hb-connections-small.jpg Habenula Connections] - see [http://www.scholarpedia.org/article/Habenula Reference]
+  * [http://learnmem.cshlp.org/content/14/11/714/F1.large.jpg Attractor Network in Hippocampus] - see [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Reference]
 
-<img src="http://www.scholarpedia.org/w/images/thumb/2/2d/Hb-connections-small.jpg/800px-Hb-connections-small.jpg" alt="unavailable">
+<img src="http://learnmem.cshlp.org/content/14/11/714/F1.large.jpg" alt="unavailable">
 
-  * [http://www.intechopen.com/source/html/40109/media/image1.jpeg Physiology and pathophysiology of lower urinary tract] - see [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Reference]
+  * [http://ahuman.googlecode.com/svn/images/wiki/research/brain/HF.jpg Hippocampal Formation] - see [article:2009-Hippocampus-Thesis.pdf Reference]
 
-<img src="http://www.intechopen.com/source/html/40109/media/image1.jpeg" alt="unavailable">
+<img src="http://ahuman.googlecode.com/svn/images/wiki/research/brain/HF.jpg" alt="unavailable">
 
-  * [http://neuropolitics.org/connect-amygdala.jpg Amygdalar disruption of prefrontal cortex] - see [http://neuropolitics.org/defaultmay10.asp Reference]
+  * [http://ars.els-cdn.com/content/image/1-s2.0-S030645220600755X-gr1.jpg Flow of impulses in hippocampal region] - see [http://www.sciencedirect.com/science/article/pii/S030645220600755X Reference]
 
-<img src="http://neuropolitics.org/connect-amygdala.jpg" alt="unavailable">
-
-  * [http://ars.els-cdn.com/content/image/1-s2.0-S0006899301025987-gr1.gif Horizontal saccades and smooth pursuit movements] - see [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Reference]
-
-<img src="http://ars.els-cdn.com/content/image/1-s2.0-S0006899301025987-gr1.gif" alt="unavailable">
-
-  * [http://brmlab.cz/lib/exe/fetch.php?hash=fca48f&media=http%3A%2F%2Fars.els-cdn.com%2Fcontent%2Fimage%2F1-s2.0-S1364661308002490-gr2.jpg Regulation of Social Brain] - see [http://brmlab.cz/project/brain_hacking/tdcs/pfc Reference]
-
-<img src="http://brmlab.cz/lib/exe/fetch.php?hash=fca48f&media=http%3A%2F%2Fars.els-cdn.com%2Fcontent%2Fimage%2F1-s2.0-S1364661308002490-gr2.jpg" alt="unavailable">
-
-  * [http://www.nature.com/nrn/journal/v5/n1/images/nrn1299-f4.jpg Medial mammillary nucleus and theta rhythm] - see [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Reference]
-
-<img src="http://www.nature.com/nrn/journal/v5/n1/images/nrn1299-f4.jpg" alt="unavailable">
+<img src="http://ars.els-cdn.com/content/image/1-s2.0-S030645220600755X-gr1.jpg" alt="unavailable">
 
   * [http://www.nature.com/nrn/journal/v5/n1/images/nrn1299-f2.jpg Mammillary bodies: two memory systems in one] - see [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Reference]
 
 <img src="http://www.nature.com/nrn/journal/v5/n1/images/nrn1299-f2.jpg" alt="unavailable">
 
+  * [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/nucleus-accumbens.jpg Nucleus Accumbens] (unknown reference)
+
+<img src="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/nucleus-accumbens.jpg" alt="unavailable">
+
+  * [http://ars.els-cdn.com/content/image/1-s2.0-S1571064507000243-gr008.jpg KIV model of cortico-hippocampal formation with subcortical projections for motor actions] - see [http://www.sciencedirect.com/science/article/pii/S1571064507000243 Reference]
+
+<img src="http://ars.els-cdn.com/content/image/1-s2.0-S1571064507000243-gr008.jpg" alt="unavailable">
+
+  * [http://learnmem.cshlp.org/content/18/6/384/F1.large.jpg Contributions of Diencephalon to Recognition Memory] - see [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Reference]
+
+<img src="http://learnmem.cshlp.org/content/18/6/384/F1.large.jpg" alt="unavailable">
+
+  * [http://ars.els-cdn.com/content/image/1-s2.0-S0149763409002061-gr1.jpg Contribution of hippocampal region CA3 to consciousness] - see [http://www.sciencedirect.com/science/article/pii/S0149763409002061 Reference]
+
+<img src="http://ars.els-cdn.com/content/image/1-s2.0-S0149763409002061-gr1.jpg" alt="unavailable">
+
+  * [http://ars.els-cdn.com/content/image/1-s2.0-S030100820900183X-gr4.jpg Simplified model of hippocampal formation anatomy] - see [http://www.sciencedirect.com/science/article/pii/S030100820900183X Reference]
+
+<img src="http://ars.els-cdn.com/content/image/1-s2.0-S030100820900183X-gr4.jpg" alt="unavailable">
+
   * [http://www.impulsecontroldisorders.org/images/6-HippocampalVTA.jpg Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning] - see [http://www.impulsecontroldisorders.org/html/cravings.html Reference]
 
 <img src="http://www.impulsecontroldisorders.org/images/6-HippocampalVTA.jpg" alt="unavailable">
 
-  * [http://img.springerimages.com/Images/Springer/PUB=Springer-Verlag-Berlin-Heidelberg/JOU=00359/VOL=2005.191/ISU=3/ART=2004_565/MediaObjects/WATER_s00359-004-0565-9fhc1.jpg Oculomotor decision-making] - see [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Reference]
+  * [http://highered.mcgraw-hill.com/sites/dl/free/0071402357/156721/figure350_1.gif Principal Connections of Hippocampus] - see [http://highered.mcgraw-hill.com/sites/dl/free/0071402357/156721/figure350_1.html Reference]
 
-<img src="http://img.springerimages.com/Images/Springer/PUB=Springer-Verlag-Berlin-Heidelberg/JOU=00359/VOL=2005.191/ISU=3/ART=2004_565/MediaObjects/WATER_s00359-004-0565-9fhc1.jpg" alt="unavailable">
+<img src="http://highered.mcgraw-hill.com/sites/dl/free/0071402357/156721/figure350_1.gif" alt="unavailable">
 
-  * [http://neurowiki2012.wikispaces.com/file/view/Reward_circuit.jpg/315908202/Reward_circuit.jpg Reward circuit of human brain] - see [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reference]
+  * [http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png Head Direction Cell Circuit] - see [http://www.scholarpedia.org/article/Head_direction_cells Reference]
 
-<img src="http://neurowiki2012.wikispaces.com/file/view/Reward_circuit.jpg/315908202/Reward_circuit.jpg" alt="unavailable">
+<img src="http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png" alt="unavailable">
 
-  * [http://www.impulsecontroldisorders.org/images/8-Urges9proof.jpg Craving] - see [http://www.impulsecontroldisorders.org/html/cravings.html Reference]
+  * [http://what-when-how.com/wp-content/uploads/2012/04/tmp3637_thumb.jpg Hippocampus in Detail] - see [http://what-when-how.com/neuroscience/the-limbic-system-integrative-systems-part-1/ Reference]
 
-<img src="http://www.impulsecontroldisorders.org/images/8-Urges9proof.jpg" alt="unavailable">
+<img src="http://what-when-how.com/wp-content/uploads/2012/04/tmp3637_thumb.jpg" alt="unavailable">
 
-  * [http://jp.physoc.org/content/557/1/287/F9.large.jpg Schematic overview of spinobulbospinal micturition reflex pathway] - see [http://jp.physoc.org/content/557/1/287/F9.expansion.html Reference]
+  * [http://media.wiley.com/mrw_images/compphys/articles/cp010508/image_n/ncp01050839.jpg Entorhinal Cortex Inputs and Outputs] - see [http://www.sciencedirect.com/science/article/pii/S0149763411001722 Reference]
 
-<img src="http://jp.physoc.org/content/557/1/287/F9.large.jpg" alt="unavailable">
+<img src="http://media.wiley.com/mrw_images/compphys/articles/cp010508/image_n/ncp01050839.jpg" alt="unavailable">
 
-  * [http://www.springerimages.com/img/Images/Springer/JOU=10194/VOL=2006.7/ISU=4/ART=2006_307/MediaObjects/MEDIUM_10194_2006_Article_307_Fig1.jpg Pain matrix] - see [http://www.springerimages.com/Images/MedicineAndPublicHealth/1-10.1007_s10194-006-0307-1-0 Reference]
+  * [http://ahuman.googlecode.com/svn/images/wiki/research/human/22-reticular-formation-and-limbic-system/F22-2.png Basal Nucleus of Meynert] - see [article:Biological/2005-The-Human-Nervous-System.pdf Reference]
 
-<img src="http://www.springerimages.com/img/Images/Springer/JOU=10194/VOL=2006.7/ISU=4/ART=2006_307/MediaObjects/MEDIUM_10194_2006_Article_307_Fig1.jpg" alt="unavailable">
+<img src="http://ahuman.googlecode.com/svn/images/wiki/research/human/22-reticular-formation-and-limbic-system/F22-2.png" alt="unavailable">
 
   * [http://ars.els-cdn.com/content/image/1-s2.0-S0149763401000215-gr4a.gif Gustatory sensory system of rat and macaque] - see [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Reference]
 
 <img src="http://ars.els-cdn.com/content/image/1-s2.0-S0149763401000215-gr4a.gif" alt="unavailable">
 
+  * [http://www.scholarpedia.org/w/images/thumb/f/f2/ITCortex_pathway.jpg/400px-ITCortex_pathway.jpg Visual Path to Hippocampus] - see [http://www.scholarpedia.org/article/Inferior_temporal_cortex Reference]
+
+<img src="http://www.scholarpedia.org/w/images/thumb/f/f2/ITCortex_pathway.jpg/400px-ITCortex_pathway.jpg" alt="unavailable">
+
+  * [http://what-when-how.com/wp-content/uploads/2012/04/tmp3649_thumb1_thumb.jpg Thalamocortical relationships] - see [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Reference]
+
+<img src="http://what-when-how.com/wp-content/uploads/2012/04/tmp3649_thumb1_thumb.jpg" alt="unavailable"height=400width=400>
+
+  * [http://www.nature.com/nrn/journal/v3/n2/images/nrn726-f3.jpg McNaughton Spatial Processing Network] - see [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html Reference]
+
+<img src="http://www.nature.com/nrn/journal/v3/n2/images/nrn726-f3.jpg" alt="unavailable">
+
+  * [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/mb.jpg Mammillary Body] (unknown reference)
+
+<img src="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/mb.jpg" alt="unavailable">
+
+  * [http://neurondevelopment.org/userfiles/image/hippocampal-dev-page.gif Hippocampus and Septal Area] - see [http://neurondevelopment.org/hippocampal-development Reference]
+
+<img src="http://neurondevelopment.org/userfiles/image/hippocampal-dev-page.gif" alt="unavailable">
+
+  * [http://c431376.r76.cf2.rackcdn.com/18691/fnhum-06-00184-HTML/image_m/fnhum-06-00184-g001.jpg Directed Effort Network] - see [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Reference]
+
+<img src="http://c431376.r76.cf2.rackcdn.com/18691/fnhum-06-00184-HTML/image_m/fnhum-06-00184-g001.jpg" alt="unavailable">
+
+  * [http://ars.els-cdn.com/content/image/1-s2.0-S1364661312002823-gr2.jpg Language-Related Regions] - see [http://www.sciencedirect.com/science/article/pii/S1364661312002823 Reference]
+
+<img src="http://ars.els-cdn.com/content/image/1-s2.0-S1364661312002823-gr2.jpg" alt="unavailable">
+
+  * [http://www.nature.com/npp/journal/v35/n1/images/npp2009104f10.jpg Medial prefrontal network] - see [http://www.nature.com/npp/journal/v35/n1/fig_tab/npp2009104f10.html Reference]
+
+<img src="http://www.nature.com/npp/journal/v35/n1/images/npp2009104f10.jpg" alt="unavailable">
+
+  * [http://brmlab.cz/lib/exe/fetch.php?hash=fca48f&media=http%3A%2F%2Fars.els-cdn.com%2Fcontent%2Fimage%2F1-s2.0-S1364661308002490-gr2.jpg Regulation of Social Brain] - see [http://brmlab.cz/project/brain_hacking/tdcs/pfc Reference]
+
+<img src="http://brmlab.cz/lib/exe/fetch.php?hash=fca48f&media=http%3A%2F%2Fars.els-cdn.com%2Fcontent%2Fimage%2F1-s2.0-S1364661308002490-gr2.jpg" alt="unavailable">
+
+  * [http://www.thebrainlabs.com/Images/cingulate_gyrus.gif Cingulate Gyrus] - see [http://www.thebrainlabs.com Reference]
+
+<img src="http://www.thebrainlabs.com/Images/cingulate_gyrus.gif" alt="unavailable">
+
+  * [http://users.atw.hu/blp6/BLP6/HTML/common/M9780323045827-007-f005.jpg Pain matrix] - see [http://users.atw.hu/blp6/BLP6/HTML/C0079780323045827.htm Reference]
+
+<img src="http://users.atw.hu/blp6/BLP6/HTML/common/M9780323045827-007-f005.jpg" alt="unavailable">
+
+  * [http://www.nature.com/nrn/journal/v5/n1/images/nrn1299-f4.jpg Medial mammillary nucleus and theta rhythm] - see [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Reference]
+
+<img src="http://www.nature.com/nrn/journal/v5/n1/images/nrn1299-f4.jpg" alt="unavailable">
+
 
 = References =
 (generated)
 
-  * http://www.scholarpedia.org/article/Habenula
-  * http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders
-  * http://neuropolitics.org/defaultmay10.asp
-  * http://www.sciencedirect.com/science/article/pii/S0006899301025987
-  * http://brmlab.cz/project/brain_hacking/tdcs/pfc
-  * http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html
+  * http://learnmem.cshlp.org/content/14/11/714/F1.expansion
+  * article:2009-Hippocampus-Thesis.pdf
+  * http://www.sciencedirect.com/science/article/pii/S030645220600755X
   * http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html
+  * http://www.sciencedirect.com/science/article/pii/S1571064507000243
+  * http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html
+  * http://www.sciencedirect.com/science/article/pii/S0149763409002061
+  * http://www.sciencedirect.com/science/article/pii/S030100820900183X
   * http://www.impulsecontroldisorders.org/html/cravings.html
-  * http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0
-  * http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity
-  * http://jp.physoc.org/content/557/1/287/F9.expansion.html
-  * http://www.springerimages.com/Images/MedicineAndPublicHealth/1-10.1007_s10194-006-0307-1-0
+  * http://highered.mcgraw-hill.com/sites/dl/free/0071402357/156721/figure350_1.html
+  * http://www.scholarpedia.org/article/Head_direction_cells
+  * http://what-when-how.com/neuroscience/the-limbic-system-integrative-systems-part-1/
+  * http://www.sciencedirect.com/science/article/pii/S0149763411001722
+  * article:Biological/2005-The-Human-Nervous-System.pdf
   * http://www.sciencedirect.com/science/article/pii/S0149763401000215
+  * http://www.scholarpedia.org/article/Inferior_temporal_cortex
+  * http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/
+  * http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html
+  * http://neurondevelopment.org/hippocampal-development
+  * http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full
+  * http://www.sciencedirect.com/science/article/pii/S1364661312002823
+  * http://www.nature.com/npp/journal/v35/n1/fig_tab/npp2009104f10.html
+  * http://brmlab.cz/project/brain_hacking/tdcs/pfc
+  * http://www.thebrainlabs.com
+  * http://users.atw.hu/blp6/BLP6/HTML/C0079780323045827.htm
+  * http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html
 
