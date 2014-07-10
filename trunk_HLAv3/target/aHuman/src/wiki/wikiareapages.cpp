@@ -67,6 +67,7 @@ void WikiAreaPages::createAreaPages_createRegionTableSection( String wikiDir , M
 
 void WikiAreaPages::createAreaPages_createRegionTableService( MindServiceDef *service , StringList& lines ) {
 	String s = "|| *" + service -> getServiceId() + "* || <font color=\"red\">" + service -> getServiceName() + "</font> || || ||";
+	lines.add( s );
 
 	MapStringToClass<MindRegionDef>& regionMap = service -> getRegions();
 	for( int k = 0; k < regionMap.count(); k++ ) {
