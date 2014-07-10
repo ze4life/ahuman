@@ -9,6 +9,7 @@
 
 || *Component ID* || *Component Name* || *Type* || *Function* || *Comments* ||
 || [BrainRegionBMA_HP_PB BMA.HP.PB] || Parabrachial Nucleus || nucleus || Source of short-latency nociceptive input ||  ||
+|| [BrainRegionFBA_FD_TH_SF FBA.FD.TH.SF] || Subfascicular Nucleus of Thalamus || nucleus || Relays from PAG to Rhape nuclei, Inferior olive nucleus ||  ||
 || [BrainRegionFBA_HM_RP FBA.HM.RP] || Raphe Nucleus of Medulla || nucleus || Regulate moods, temper anxiety, and relieve depression || Releases 5HT (serotonin) hormone (happiness);<BR>inhibitory nucleus ||
 || [BrainRegionFBA_HP_LC FBA.HP.LC] || Locus Coeruleus || nucleus || Regulate the intensity of responses to salient stimuli || NE Source, enhance signal-to-noise ratio,<BR>suppressing irrelevant stimuli (lateral<BR>inhibition); inhibitory nucleus ||
 || [BrainRegionFBA_HP_NI FBA.HP.NI] || Incertus Nucleus || nucleus || Behavioural activation and the response to stress || Modulating influences on prefrontal and hippocampal<BR>cortical activity, midline behavior control;<BR>modulatory nucleus ||
@@ -20,6 +21,8 @@
 || [BrainRegionFBA_MM_RP_DRN FBA.MM.RP.DRN] || Dorsal Raphe Nucleus || nucleus || Regulation of sleep and mood || Major source of 5HT; inhibitory nucleus ||
 || [BrainRegionFBA_MM_RP_MRN FBA.MM.RP.MRN] || Median Raphe Nucleus || nucleus || Block or temporarily suspend mnemonic processes in the hippocampus || Directs HC to disregard insignificant events;<BR>inhibitory nucleus ||
 || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || Ventral Tegmental Area || nucleus || Respond to novel stimuli, unexpected rewards, and reward predictive sensory cues ||  ||
+|| [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus || Modulating sustained attention or in mediating alerting responses ||  ||
+|| [BrainRegionPHA_FD_TH_LI PHA.FD.TH.LI] || Limitans Nucleus of Thalamus || nucleus || Multisensory projection to striatum || From SC, trigeminal nucleus, superior and inferior<BR>colliculus ||
 || [BrainRegionVBA_MM_RP_RIP VBA.MM.RP.RIP] || Raphe Interpositus Nucleus || nucleus || Premotor network for saccades || Gate activity of burst neurons for vertical and<BR>horizontal saccades ||
 
 = Connectivity =
@@ -27,65 +30,79 @@
 
 *Internal Region Connections:*
 
-http://ahuman.googlecode.com/svn/images/dot/aHuman/MMA.dot.jpg
+http://ahuman.googlecode.com/svn/images/dot/aHuman/MCA.dot.jpg
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionFBA_FD_TH_SF FBA.FD.TH.SF] || [BrainRegionFBA_MM_RP_DRN FBA.MM.RP.DRN] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionFBA_MM_PAG FBA.MM.PAG] || [BrainRegionFBA_FD_TH_SF FBA.FD.TH.SF] || nucleus-nucleus || (unknown reference) ||
 
 *External Inbound Region Connections:*
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
-|| [BrainAreaNEA NEA] || [BrainRegionBMA_HP_PB BMA.HP.PB] || [BrainRegionCGA_NC_SGC CGA.NC.SGC] || Subgenual Cortex || neocortex-nucleus || (unknown reference) ||
+|| [BrainAreaEPA EPA] || [BrainRegionBMA_HP_PB BMA.HP.PB] || [BrainRegionCGA_NC_SGC CGA.NC.SGC] || Subgenual Cortex || neocortex-nucleus || (unknown reference) ||
 ||  || [BrainRegionFBA_HP_LC FBA.HP.LC] || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || Ventral Anterior Cingulate Area || neocortex-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || neocortex-nucleus || (unknown reference) ||
 ||  || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || [BrainRegionCGA_NC_SGC CGA.NC.SGC] || Subgenual Cortex || neocortex-nucleus || (unknown reference) ||
 ||  || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || neocortex-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (OMPFC -> VTA)] ||
-|| [BrainAreaNMA NMA] || [BrainRegionVBA_MM_RP_RIP VBA.MM.RP.RIP] || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || Supplementary Motor Cortex || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (FEFSEF -> RIP, abstract)] ||
+|| [BrainAreaMAA MAA] || [BrainRegionVBA_MM_RP_RIP VBA.MM.RP.RIP] || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || Supplementary Motor Cortex || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (FEFSEF -> RIP, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFAA FAA] || [BrainRegionBMA_HP_PB BMA.HP.PB] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> PB)] ||
+|| [BrainAreaACA ACA] || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || [BrainRegionAVA_PN_SYM_IMG AVA.PN.SYM.IMG] || Inferior Mesenteric Ganglion || ganglion-nucleus || [http://jp.physoc.org/content/557/1/287/F9.expansion.html Schematic overview of spinobulbospinal micturition reflex pathway (IMG -> PAG)] ||
+|| [BrainAreaAMA AMA] || [BrainRegionBMA_HP_PB BMA.HP.PB] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> PB)] ||
 ||  ||  || [BrainRegionBFA_FT_IPAC BFA.FT.IPAC] || Interstitial Anterior Commissural Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionFBA_HP_LC FBA.HP.LC] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> LC)] ||
 ||  || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> PAG)] ||
 ||  || [BrainRegionFBA_MM_RP_DRN FBA.MM.RP.DRN] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> DR)] ||
 ||  || [BrainRegionFBA_MM_RP_MRN FBA.MM.RP.MRN] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> MR)] ||
 ||  || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> VTA)] ||
-|| [BrainAreaFEA FEA] || [BrainRegionFBA_HP_LC FBA.HP.LC] || [BrainRegionBGA_FT_PU BGA.FT.PU] || Putamen || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (PU -> LC)] ||
+||  || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LHAB -> DTN)] ||
+|| [BrainAreaECA ECA] || [BrainRegionFBA_HP_LC FBA.HP.LC] || [BrainRegionBGA_FT_PU BGA.FT.PU] || Putamen || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (PU -> LC)] ||
 ||  || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionBGA_FT_ACC BGA.FT.ACC] || Accumbens Nucleus || nucleus-nucleus || [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reward circuit of human brain (NACC -> VTA)] ||
 ||  ||  || [BrainRegionBGA_FT_VP BGA.FT.VP] || Ventral Pallidum || nucleus-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (VPAL -> VTA)] ||
-|| [BrainAreaFHA FHA] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Medial mammillary nucleus and theta rhythm (MMB -> VTN)] ||
-|| [BrainAreaFMA FMA] || [BrainRegionFBA_MM_RP_DRN FBA.MM.RP.DRN] || [BrainRegionFBA_FD_TH_SF FBA.FD.TH.SF] || Subfascicular Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaMAA MAA] || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || [BrainRegionAVA_PN_SYM_IMG AVA.PN.SYM.IMG] || Inferior Mesenteric Ganglion || ganglion-nucleus || [http://jp.physoc.org/content/557/1/287/F9.expansion.html Schematic overview of spinobulbospinal micturition reflex pathway (IMG -> PAG)] ||
-|| [BrainAreaMLA MLA] || [BrainRegionFBA_HP_LC FBA.HP.LC] || [BrainRegionMBA_HM_RF_MED MBA.HM.RF.MED] || Medullary Reticular Formation || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaPRA PRA] || [BrainRegionVBA_MM_RP_RIP VBA.MM.RP.RIP] || [BrainRegionVBA_MM_SC_SUP VBA.MM.SC.SUP] || Superficial Superior Colliculus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (SC -> RIP, abstract)] ||
-|| [BrainAreaPSA PSA] || [BrainRegionBMA_HP_PB BMA.HP.PB] || [BrainRegionHMA_HM_SOL HMA.HM.SOL] || Solitary Nucleus || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (SOL -> PB)] ||
+||  || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || [BrainRegionBGA_HP_PPN BGA.HP.PPN] || Pedunculopontine Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (IPD -> DTN)] ||
+|| [BrainAreaLCA LCA] || [BrainRegionFBA_HP_LC FBA.HP.LC] || [BrainRegionMBA_HM_RF_MED MBA.HM.RF.MED] || Medullary Reticular Formation || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaMMA MMA] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Medial mammillary nucleus and theta rhythm (MMB -> VTN)] ||
+||  || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || Lateral Mammillary Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LMB -> DTN)] ||
+|| [BrainAreaMRA MRA] || [BrainRegionVBA_MM_RP_RIP VBA.MM.RP.RIP] || [BrainRegionVBA_MM_SC_SUP VBA.MM.SC.SUP] || Superficial Superior Colliculus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (SC -> RIP, abstract)] ||
+|| [BrainAreaPCA PCA] || [BrainRegionBMA_HP_PB BMA.HP.PB] || [BrainRegionHMA_HM_SOL HMA.HM.SOL] || Solitary Nucleus || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (SOL -> PB)] ||
+||  || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || Suprageniculate Nucleus of Thalamus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (SUPGEN -> DTN)] ||
+||  || [BrainRegionPHA_FD_TH_LI PHA.FD.TH.LI] || [BrainRegionBMA_SC_PH_MG BMA.SC.PH.MG] || Marginal Nucleus || nucleus-nucleus || (unknown reference) ||
 
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
-|| [BrainAreaNBA NBA] || [BrainRegionBMA_HP_PB BMA.HP.PB] || [BrainRegionSMA_FD_TH_VPI SMA.FD.TH.VPI] || Ventral Posteroinferior Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaBAA BAA] || [BrainRegionBMA_HP_PB BMA.HP.PB] || [BrainRegionSMA_FD_TH_VPI SMA.FD.TH.VPI] || Ventral Posteroinferior Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionSMA_FD_TH_VPM SMA.FD.TH.VPM] || Ventral Posteromedial Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PB -> VPMpc)] ||
-|| [BrainAreaNEA NEA] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionCGA_NC_DACG CGA.NC.DACG] || Dorsal Anterior Cingulate Area || nucleus-neocortex || (unknown reference) ||
+|| [BrainAreaEPA EPA] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionCGA_NC_DACG CGA.NC.DACG] || Dorsal Anterior Cingulate Area || nucleus-neocortex || (unknown reference) ||
 ||  ||  || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || nucleus-neocortex || [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reward circuit of human brain (VTA -> PFC)] ||
+||  || [BrainRegionPHA_FD_TH_LI PHA.FD.TH.LI] || [BrainRegionCGA_NC_DACG CGA.NC.DACG] || Dorsal Anterior Cingulate Area || nucleus-neocortex || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (Thalamus -> FrontalCortex, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFAA FAA] || [BrainRegionBMA_HP_PB BMA.HP.PB] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (PB -> AM)] ||
-||  || [BrainRegionFBA_HP_LC FBA.HP.LC] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || [BrainRegionBFA_FD_TH_PV BFA.FD.TH.PV] || Paraventricular Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionFBA_MM_RP_DRN FBA.MM.RP.DRN] || [BrainRegionBFA_FD_TH_PV BFA.FD.TH.PV] || Paraventricular Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-nucleus || [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reward circuit of human brain (VTA -> AM)] ||
-|| [BrainAreaFEA FEA] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionBGA_FT_ACC BGA.FT.ACC] || Accumbens Nucleus || nucleus-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (VTA -> NACC)] ||
-||  ||  || [BrainRegionBGA_FT_VP BGA.FT.VP] || Ventral Pallidum || nucleus-nucleus || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (VTA -> VentPal)] ||
-|| [BrainAreaFHA FHA] || [BrainRegionBMA_HP_PB BMA.HP.PB] || [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || Posterior Insular Cortex || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PB -> Gud, abstract)] ||
-||  || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Mammillary bodies: two memory systems in one (VTN -> MMB)] ||
-||  ||  || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || Ventrolateral Cornu Ammonis of Hippocampus || nucleus-allocortex || [http://www.impulsecontroldisorders.org/html/cravings.html Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning (VTA -> CA1)] ||
-||  ||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || nucleus-neocortex || [http://www.impulsecontroldisorders.org/html/cravings.html Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning (VTA -> EC)] ||
-|| [BrainAreaFMA FMA] || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || [BrainRegionFBA_FD_TH_SF FBA.FD.TH.SF] || Subfascicular Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaMAA MAA] || [BrainRegionBMA_HP_PB BMA.HP.PB] || [BrainRegionAVA_HM_VG AVA.HM.VG] || Vagus Nucleus || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (PBN -> DVM)] ||
+|| [BrainAreaACA ACA] || [BrainRegionBMA_HP_PB BMA.HP.PB] || [BrainRegionAVA_HM_VG AVA.HM.VG] || Vagus Nucleus || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (PBN -> DVM)] ||
 ||  || [BrainRegionFBA_HP_LC FBA.HP.LC] || [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || Intermediolateral Nucleus || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (LC -> IML)] ||
 ||  || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || [BrainRegionMBA_HP_BR MBA.HP.BR] || Barrington's Nucleus || nucleus-nucleus || [http://jp.physoc.org/content/557/1/287/F9.expansion.html Schematic overview of spinobulbospinal micturition reflex pathway (PAG -> BAR)] ||
 ||  || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionHTA_FD_HT_PO HTA.FD.HT.PO] || Preoptic Area || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (VTA -> MPOA)] ||
 ||  ||  || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || Paraventricular Nucleus || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (VTA -> PVN)] ||
-|| [BrainAreaPRA PRA] || [BrainRegionVBA_MM_RP_RIP VBA.MM.RP.RIP] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (RIP -> PPRF, abstract)] ||
+||  || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || [BrainRegionAVA_HM_SAL_ISL AVA.HM.SAL.ISL] || Inferior Salivatory Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionAVA_HM_SAL_SSL AVA.HM.SAL.SSL] || Superior Salivatory Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaAMA AMA] || [BrainRegionBMA_HP_PB BMA.HP.PB] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (PB -> AM)] ||
+||  || [BrainRegionFBA_HP_LC FBA.HP.LC] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || [BrainRegionBFA_FD_TH_PV BFA.FD.TH.PV] || Paraventricular Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionFBA_MM_RP_DRN FBA.MM.RP.DRN] || [BrainRegionBFA_FD_TH_PV BFA.FD.TH.PV] || Paraventricular Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-nucleus || [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reward circuit of human brain (VTA -> AM)] ||
+|| [BrainAreaECA ECA] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionBGA_FT_ACC BGA.FT.ACC] || Accumbens Nucleus || nucleus-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (VTA -> NACC)] ||
+||  ||  || [BrainRegionBGA_FT_VP BGA.FT.VP] || Ventral Pallidum || nucleus-nucleus || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (VTA -> VentPal)] ||
+||  || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || [BrainRegionBGA_HP_PPN BGA.HP.PPN] || Pedunculopontine Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (DTN -> IPD)] ||
+|| [BrainAreaLCA LCA] || [BrainRegionFBA_FD_TH_SF FBA.FD.TH.SF] || [BrainRegionBMA_HM_IO BMA.HM.IO] || Inferior Olivary Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaMMA MMA] || [BrainRegionBMA_HP_PB BMA.HP.PB] || [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || Posterior Insular Cortex || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PB -> Gud, abstract)] ||
+||  || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Mammillary bodies: two memory systems in one (VTN -> MMB)] ||
+||  ||  || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || Ventrolateral Cornu Ammonis of Hippocampus || nucleus-allocortex || [http://www.impulsecontroldisorders.org/html/cravings.html Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning (VTA -> CA1)] ||
+||  ||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || nucleus-neocortex || [http://www.impulsecontroldisorders.org/html/cravings.html Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning (VTA -> EC)] ||
+||  || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || Lateral Mammillary Nucleus || nucleus-nucleus || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (DTN -> LMam)] ||
+||  || [BrainRegionPHA_FD_TH_LI PHA.FD.TH.LI] || [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || Peripaleocortical Claustral || nucleus-neocortex || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (TH -> INS, abstract)] ||
+|| [BrainAreaMRA MRA] || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || Prepositus Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (DTN -> NPRP)] ||
+||  || [BrainRegionVBA_MM_RP_RIP VBA.MM.RP.RIP] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (RIP -> PPRF, abstract)] ||
+|| [BrainAreaPCA PCA] || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || Suprageniculate Nucleus of Thalamus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (DTN -> SUPGEN)] ||
 
 = Thirdparty Circuits =
 (generated)
@@ -102,9 +119,21 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/MMA.dot.jpg
 
 <img src="http://neuropolitics.org/connect-amygdala.jpg" alt="unavailable">
 
+  * [http://www.nature.com/nrn/journal/v5/n1/images/nrn1299-f2.jpg Mammillary bodies: two memory systems in one] - see [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Reference]
+
+<img src="http://www.nature.com/nrn/journal/v5/n1/images/nrn1299-f2.jpg" alt="unavailable">
+
   * [http://ars.els-cdn.com/content/image/1-s2.0-S0006899301025987-gr1.gif Horizontal saccades and smooth pursuit movements] - see [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Reference]
 
 <img src="http://ars.els-cdn.com/content/image/1-s2.0-S0006899301025987-gr1.gif" alt="unavailable">
+
+  * [http://ahuman.googlecode.com/svn/images/wiki/research/brain/HF.jpg Hippocampal Formation] - see [article:2009-Hippocampus-Thesis.pdf Reference]
+
+<img src="http://ahuman.googlecode.com/svn/images/wiki/research/brain/HF.jpg" alt="unavailable">
+
+  * [http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png Head Direction Cell Circuit] - see [http://www.scholarpedia.org/article/Head_direction_cells Reference]
+
+<img src="http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png" alt="unavailable">
 
   * [http://brmlab.cz/lib/exe/fetch.php?hash=fca48f&media=http%3A%2F%2Fars.els-cdn.com%2Fcontent%2Fimage%2F1-s2.0-S1364661308002490-gr2.jpg Regulation of Social Brain] - see [http://brmlab.cz/project/brain_hacking/tdcs/pfc Reference]
 
@@ -113,10 +142,6 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/MMA.dot.jpg
   * [http://www.nature.com/nrn/journal/v5/n1/images/nrn1299-f4.jpg Medial mammillary nucleus and theta rhythm] - see [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Reference]
 
 <img src="http://www.nature.com/nrn/journal/v5/n1/images/nrn1299-f4.jpg" alt="unavailable">
-
-  * [http://www.nature.com/nrn/journal/v5/n1/images/nrn1299-f2.jpg Mammillary bodies: two memory systems in one] - see [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Reference]
-
-<img src="http://www.nature.com/nrn/journal/v5/n1/images/nrn1299-f2.jpg" alt="unavailable">
 
   * [http://www.impulsecontroldisorders.org/images/6-HippocampalVTA.jpg Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning] - see [http://www.impulsecontroldisorders.org/html/cravings.html Reference]
 
@@ -153,10 +178,12 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/MMA.dot.jpg
   * http://www.scholarpedia.org/article/Habenula
   * http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders
   * http://neuropolitics.org/defaultmay10.asp
+  * http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html
   * http://www.sciencedirect.com/science/article/pii/S0006899301025987
+  * article:2009-Hippocampus-Thesis.pdf
+  * http://www.scholarpedia.org/article/Head_direction_cells
   * http://brmlab.cz/project/brain_hacking/tdcs/pfc
   * http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html
-  * http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html
   * http://www.impulsecontroldisorders.org/html/cravings.html
   * http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0
   * http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity
