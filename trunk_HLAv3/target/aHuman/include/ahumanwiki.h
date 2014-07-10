@@ -167,7 +167,8 @@ private:
 	void createAreaPages_addExternalConnections( MindArea *area , StringList& lines , MapStringToClass<MindRegionLink>& connections , bool p_inputs );
 	String createAreaPages_getCircuitKey( MindArea *area , XmlCircuitInfo& info );
 	void createAreaPages_getCircuitLines( XmlCircuitInfo& info , StringList& lines );
-	String createAreaPages_getRegionTableRow( MindRegion *region );
+	String createAreaPages_getRegionTableRow( MindRegionDef *region );
+	void createAreaPages_createRegionTableService( MindServiceDef *service , StringList& lines );
 	String createAreaPages_getTableCellAttribute( const XmlHMindElementInfo& info , String attribute , String value , bool required , int columnWidth );
 	void createAreaPages_getInternalConnections( MindArea *area , MapStringToClass<MindRegionLink>& connections );
 	void createAreaPages_getInternalConnectionTableLine( MindArea *area , MindRegionLink *link , StringList& lines );

@@ -54,18 +54,29 @@ void WikiAreaPages::createAreaPages_createRegionTableSection( String wikiDir , M
 	lines.add( s );
 
 	// regions
-	MapStringToClass<MindRegion>& regionMap = area -> getRegions();
-	for( int k = 0; k < regionMap.count(); k++ ) {
-		MindRegion *region = regionMap.getClassByIndex( k );
-		s = createAreaPages_getRegionTableRow( region );
-		lines.add( s );
+	MindAreaDef *areaDef = area -> getMindAreaDef();
+	MapStringToClass<MindServiceDef>& services = areaDef -> getServices();
+	for( int k = 0; k < services.count(); k++ ) {
+		MindServiceDef *service = services.getClassByIndex( k );
+		createAreaPages_createRegionTableService( service , lines );
 	}
 
 	String sectionName = "Components";
 	wm -> updateFileSection( wikiDir , wikiPage , sectionName , lines );
 }
 
-String WikiAreaPages::createAreaPages_getRegionTableRow( MindRegion *region ) {
+void WikiAreaPages::createAreaPages_createRegionTableService( MindServiceDef *service , StringList& lines ) {
+	String s = "|| *" + service -> getServiceId() + "* || <font color=\"red\">" + service -> getServiceName() + "</font> || || ||";
+
+	MapStringToClass<MindRegionDef>& regionMap = service -> getRegions();
+	for( int k = 0; k < regionMap.count(); k++ ) {
+		MindRegionDef *region = regionMap.getClassByIndex( k );
+		s = createAreaPages_getRegionTableRow( region );
+		lines.add( s );
+	}
+}
+
+String WikiAreaPages::createAreaPages_getRegionTableRow( MindRegionDef *region ) {
 	String value;
 
 	// heading
@@ -75,7 +86,7 @@ String WikiAreaPages::createAreaPages_getRegionTableRow( MindRegion *region ) {
 	}
 
 	// region row
-	String regionId = region -> getRegionId();
+	String regionId = region -> getId();
 	const XmlHMindElementInfo& info = wm -> hmindxml.getElementInfo( regionId );
 	
 	value = "|| " + wm -> getRegionReference( regionId ) + " || " + 
