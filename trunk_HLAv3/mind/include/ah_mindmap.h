@@ -11,6 +11,7 @@ class MindRegionTypeDef;
 class MindRegionDef;
 class MindRegionConnectorDef;
 class MindCircuitDef;
+class MindServiceDef;
 class MindAreaDef;
 class MindConnectionTypeDef;
 class MindConnectionLinkTypeDef;
@@ -231,6 +232,34 @@ public:
 /*#########################################################################*/
 /*#########################################################################*/
 
+class MindServiceDef : public Object {
+public:
+	MindServiceDef( MindAreaDef *areaDef );
+	virtual ~MindServiceDef();
+	virtual const char *getClass() { return( "MindServiceDef" ); };
+
+// operations
+public:
+	void createFromXml( Xml xml );
+
+	String getServiceId() { return( serviceId ); };
+	String getServiceName() { return( serviceName ); };
+	MindAreaDef *getAreaDef() { return( area ); };
+	MapStringToClass<MindRegionDef>& getRegions() { return( regionMap ); };
+
+protected:
+// utility
+	String serviceId;
+	String serviceName;
+
+// references
+	MindAreaDef *area;
+	MapStringToClass<MindRegionDef> regionMap;
+};
+
+/*#########################################################################*/
+/*#########################################################################*/
+
 class MindAreaDef : public Object {
 public:
 	MindAreaDef();
@@ -247,8 +276,11 @@ public:
 	String getAreaName() { return( areaName ); };
 	String getAreaFunction() { return( areaFunction ); };
 	bool runEnabled() { return( enabled ); };
+
+	MapStringToClass<MindServiceDef>& getServices() { return( serviceMap ); };
 	ClassList<MindRegionDef>& getRegions() { return( regions ); };
 
+	void addRegion( MindRegionDef *region );
 	MindRegionDef *findRegion( String region );
 
 protected:
@@ -260,9 +292,11 @@ protected:
 	bool enabled;
 
 // own data
+	ClassList<MindServiceDef> services;
 	ClassList<MindRegionDef> regions;
 
 // references
+	MapStringToClass<MindServiceDef> serviceMap;
 	MapStringToClass<MindRegionDef> regionMap;
 };
 
