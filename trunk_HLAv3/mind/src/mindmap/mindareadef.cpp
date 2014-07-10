@@ -10,6 +10,8 @@ MindAreaDef::MindAreaDef() {
 }
 
 MindAreaDef::~MindAreaDef() {
+	services.destroy();
+	regions.destroy();
 };
 
 void MindAreaDef::createFromXml( Xml xml ) {
@@ -24,13 +26,13 @@ void MindAreaDef::createFromXml( Xml xml ) {
 	if( !enabled )
 		return;
 
-	// read regions
-	for( Xml xmlChild = xml.getFirstChild( "region" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "region" ) ) {
+	// read services
+	for( Xml xmlChild = xml.getFirstChild( "service" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "service" ) ) {
 		// construct MindArea from attributes
-		MindRegionDef *region = new MindRegionDef( this );
-		region -> createFromXml( xmlChild );
-		regions.add( region );
-		regionMap.add( region -> getId() , region );
+		MindServiceDef *service = new MindServiceDef( this );
+		service -> createFromXml( xmlChild );
+		services.add( service );
+		serviceMap.add( service -> getServiceId() , service );
 	}
 }
 
@@ -43,3 +45,7 @@ MindRegionDef *MindAreaDef::findRegion( String region ) {
 	return( regionMap.get( region ) );
 }
 
+void MindAreaDef::addRegion( MindRegionDef *region ) {
+	regions.add( region );
+	regionMap.add( region -> getId() , region );
+}
