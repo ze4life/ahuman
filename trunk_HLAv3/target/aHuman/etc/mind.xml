@@ -111,54 +111,71 @@
 
 			<!-- ================= Physical Mind =============== -->
 			<area id="PCA" type="Subcortical" name="Lower Brain - Peripheral Control Area" enabled="true" function="Conscious Control of Target">
-				<service id="LSC" name="Capture Sensory Data">
-					<region id="AVA.PN.SG.DRG" type="ganglion" role="sensory"/>
-					<region id="HMA.MM.MSTR" type="ganglion" role="sensory"/>
-					<region id="ABA.PN.SG.SP" type="ganglion" role="sensory"/>
-					<region id="AVA.PN.SG.OLB" type="ganglion" role="sensory"/>
-					<region id="AVA.PN.SG.TRG" type="ganglion" role="sensory"/>
-					<region id="AVA.PN.SG.PET" type="ganglion" role="sensory"/>
-					<region id="AVA.PN.SG.NOD" type="ganglion" role="sensory"/>
-					<region id="AVA.PN.SG.GNG" type="ganglion" role="sensory"/>
-					<region id="AVA.PN.SG.JUG" type="ganglion" role="sensory"/>
-					<region id="BMA.HP.VG" type="ganglion" role="sensory"/>
-					<region id="VBA.FD.RT" type="nucleus" role="relay"/>
-					<region id="MBA.PN.SG.VB" type="ganglion" role="sensory"/>
-				</service>
-				<service id="LSM" name="Sensory Modulation">
-					<region id="PHA.FT.AON" type="nucleus" role="processor"/>
-					<region id="VBA.FD.LGN" type="nucleus" role="relay"/>
-					<region id="VBA.FD.PV.IPV" type="nucleus" role="relay"/>
-					<region id="VBA.FD.PV.LPV" type="nucleus" role="relay"/>
-					<region id="VBA.FD.PV.MPV" type="nucleus" role="relay"/>
-					<region id="ABA.FD.TH.MGB" type="nucleus" role="relay"/>
-					<region id="ABA.HM.COCH" type="nucleus" role="relay"/>
-					<region id="ACA.FD.TH.SG" type="nucleus" role="processor"/>
-					<region id="HMA.HP.PTP.PTR" type="nucleus" role="relay"/>
-					<region id="HMA.HM.TGM.STR" type="nucleus" role="relay"/>
-					<region id="HMA.HM.SOL" type="nucleus" role="relay"/>
-					<region id="BMA.HM.CU" type="nucleus" role="relay"/>
-					<region id="BMA.HM.ACU" type="nucleus" role="relay"/>
-					<region id="BMA.HM.GR" type="nucleus" role="relay"/>
-					<region id="BMA.SC.PH.MG" type="nucleus" role="relay"/>
-					<region id="BMA.SC.PH.SG" type="nucleus" role="relay"/>
-					<region id="BMA.SC.PH.NP" type="nucleus" role="relay"/>
-				</service>
-				<service id="LMD" name="Direct Motor Control">
-					<region id="VBA.MM.TRH" type="nucleus" role="relay"/>
-					<region id="VBA.MM.OCN" type="nucleus" role="relay"/>
-					<region id="VBA.HP.ABD" type="nucleus" role="relay"/>
-					<region id="HMA.HP.FCM" type="nucleus" role="relay"/>
-					<region id="HMA.HM.HYG" type="nucleus" role="relay"/>
-					<region id="HMA.HP.PTP.TRM" type="nucleus" role="relay"/>
-					<region id="HMA.SC.VH.SAN" type="nucleus" role="relay"/>
-					<region id="BMA.SC.VH.RPL" type="nucleus" role="relay"/>
-					<region id="BMA.SC.VH.PM" type="nucleus" role="relay"/>
-					<region id="BMA.SC.VH.PL" type="nucleus" role="relay"/>
-					<region id="BMA.SC.VH.VL" type="nucleus" role="relay"/>
-					<region id="BMA.SC.VH.VM" type="nucleus" role="relay"/>
-					<region id="BMA.SC.VH.PHR" type="nucleus" role="relay"/>
-				</service>
+				<services>
+					<service id="LSC" name="Capture Sensory Data"/>
+					<service id="LSM" name="Sensory Modulation"/>
+					<service id="LMD" name="Direct Motor Control"/>
+				</services>
+
+				<circuit id="LSC" name="Body Muscles">
+					<region id="AVA.PN.SG.DRG" type="ganglion" service="LSC" role="sensory"/>
+					<region id="BMA.HM.ACU" type="nucleus" service="LSM" role="relay"/>
+					<region id="BMA.HM.CU" type="nucleus" service="LSM" role="relay"/>
+					<region id="BMA.HM.GR" type="nucleus" service="LSM" role="relay"/>
+					<region id="BMA.SC.PH.MG" type="nucleus" service="LSM" role="relay"/>
+					<region id="BMA.SC.PH.SG" type="nucleus" service="LSM" role="relay"/>
+					<region id="BMA.SC.PH.NP" type="nucleus" service="LSM" role="relay"/>
+					<region id="HMA.SC.VH.SAN" type="nucleus" service="LMD" role="relay"/>
+					<region id="BMA.SC.VH.RPL" type="nucleus" service="LMD" role="relay"/>
+					<region id="BMA.SC.VH.PM" type="nucleus" service="LMD" role="relay"/>
+					<region id="BMA.SC.VH.PL" type="nucleus" service="LMD" role="relay"/>
+					<region id="BMA.SC.VH.VL" type="nucleus" service="LMD" role="relay"/>
+					<region id="BMA.SC.VH.VM" type="nucleus" service="LMD" role="relay"/>
+				</circuit>
+
+				<circuit id="LSC" name="Face Muscles">
+					<region id="HMA.MM.MSTR" type="ganglion" service="LSC" role="sensory"/>
+					<region id="AVA.PN.SG.TRG" type="ganglion" service="LSC" role="sensory"/>
+					<region id="HMA.HP.PTP.PTR" type="nucleus" service="LSM" role="relay"/>
+					<region id="HMA.HM.TGM.STR" type="nucleus" service="LSM" role="relay"/>
+					<region id="HMA.HP.FCM" type="nucleus" service="LMD" role="relay"/>
+					<region id="HMA.HM.HYG" type="nucleus" service="LMD" role="relay"/>
+					<region id="HMA.HP.PTP.TRM" type="nucleus" service="LMD" role="relay"/>
+					<region id="AVA.PN.SG.JUG" type="ganglion" service="LSC" role="sensory"/>
+				</circuit>
+
+				<circuit id="LSC" name="Auditory Sense">
+					<region id="ABA.PN.SG.SP" type="ganglion" service="LSC" role="sensory"/>
+					<region id="ABA.HM.COCH" type="nucleus" service="LSM" role="relay"/>
+					<region id="ABA.FD.TH.MGB" type="nucleus" service="LSM" role="relay"/>
+					<region id="ACA.FD.TH.SG" type="nucleus" service="LSM" role="processor"/>
+				</circuit>
+
+				<circuit id="LSC" name="Taste and Smell Senses">
+					<region id="PHA.FT.AON" type="nucleus" service="LSM" role="processor"/>
+					<region id="AVA.PN.SG.OLB" type="ganglion" service="LSC" role="sensory"/>
+					<region id="HMA.HM.SOL" type="nucleus" service="LSM" role="relay"/>
+					<region id="AVA.PN.SG.GNG" type="ganglion" service="LSC" role="sensory"/>
+					<region id="AVA.PN.SG.NOD" type="ganglion" service="LSC" role="sensory"/>
+				</circuit>
+
+				<circuit id="LSC" name="Vision">
+					<region id="VBA.FD.RT" type="nucleus" service="LSC" role="relay"/>
+					<region id="VBA.FD.LGN" type="nucleus" service="LSM" role="relay"/>
+					<region id="VBA.FD.PV.IPV" type="nucleus" service="LSM" role="relay"/>
+					<region id="VBA.FD.PV.LPV" type="nucleus" service="LSM" role="relay"/>
+					<region id="VBA.FD.PV.MPV" type="nucleus" service="LSM" role="relay"/>
+					<region id="VBA.MM.TRH" type="nucleus" service="LMD" role="relay"/>
+					<region id="VBA.MM.OCN" type="nucleus" service="LMD" role="relay"/>
+					<region id="VBA.HP.ABD" type="nucleus" service="LMD" role="relay"/>
+				</circuit>
+
+				<circuit id="LSC" name="Autonomic">
+					<region id="AVA.PN.SG.PET" type="ganglion" service="LSC" role="sensory"/>
+					<region id="BMA.HP.VBG" type="ganglion" service="LSC" role="sensory"/>
+					<region id="MBA.PN.SG.VB" type="ganglion" service="LSC" role="sensory"/>
+					<region id="BMA.SC.VH.PHR" type="nucleus" service="LMD" role="relay"/>
+				</circuit>
 			</area>
 
 			<area id="MRA" type="Subcortical" name="Lower Brain - Motor Reflex Area" enabled="true" function="Reflexive Motor Behavior">
@@ -196,7 +213,7 @@
 					<region id="HMA.HP.PRF.CRF" type="nucleus" role="relay"/>
 				</service>
 				<service id="LRT" name="Vestibular Reflexes">
-					<region id="BMA.HP.VB" type="nucleus" role="relay"/>
+					<region id="BMA.HP.VBN" type="nucleus" role="relay"/>
 				</service>
 			</area>
 
@@ -232,7 +249,7 @@
 					<region id="AVA.PN.PSYM.SPG" type="ganglion" role="parasympathetic"/>
 					<region id="AVA.PN.SYM.CEG" type="ganglion" role="sympathetic"/>
 					<region id="AVA.PN.SYM.MCG" type="ganglion" role="sympathetic"/>
-					<region id="AVA.HM.VG" type="nucleus" role="parasympathetic"/>
+					<region id="AVA.HM.VGN" type="nucleus" role="parasympathetic"/>
 					<region id="HTA.FD.HT.VM" type="nucleus" role="relay"/>
 					<region id="HTA.FD.HT.PV" type="nucleus" role="relay"/>
 					<region id="HTA.FD.HT.LT" type="nucleus" role="relay"/>
