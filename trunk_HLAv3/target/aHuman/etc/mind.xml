@@ -131,6 +131,7 @@
 					<region id="BMA.SC.VH.PL" type="nucleus" service="LMD" role="relay"/>
 					<region id="BMA.SC.VH.VL" type="nucleus" service="LMD" role="relay"/>
 					<region id="BMA.SC.VH.VM" type="nucleus" service="LMD" role="relay"/>
+					<region id="BMA.SC.VH.PHR" type="nucleus" service="LMD" role="relay"/>
 				</circuit>
 
 				<circuit id="LSC" name="Face Muscles">
@@ -157,48 +158,47 @@
 					<region id="HMA.HM.SOL" type="nucleus" service="LSM" role="relay"/>
 					<region id="AVA.PN.SG.GNG" type="ganglion" service="LSC" role="sensory"/>
 					<region id="AVA.PN.SG.NOD" type="ganglion" service="LSC" role="sensory"/>
+					<region id="AVA.PN.SG.PET" type="ganglion" service="LSC" role="sensory"/>
 				</circuit>
 
 				<circuit id="LSC" name="Vision">
 					<region id="VBA.FD.RT" type="nucleus" service="LSC" role="relay"/>
 					<region id="VBA.FD.LGN" type="nucleus" service="LSM" role="relay"/>
-					<region id="VBA.FD.PV.IPV" type="nucleus" service="LSM" role="relay"/>
-					<region id="VBA.FD.PV.LPV" type="nucleus" service="LSM" role="relay"/>
-					<region id="VBA.FD.PV.MPV" type="nucleus" service="LSM" role="relay"/>
 					<region id="VBA.MM.TRH" type="nucleus" service="LMD" role="relay"/>
 					<region id="VBA.MM.OCN" type="nucleus" service="LMD" role="relay"/>
 					<region id="VBA.HP.ABD" type="nucleus" service="LMD" role="relay"/>
 				</circuit>
 
-				<circuit id="LSC" name="Autonomic">
-					<region id="AVA.PN.SG.PET" type="ganglion" service="LSC" role="sensory"/>
-					<region id="BMA.HP.VBG" type="ganglion" service="LSC" role="sensory"/>
+				<circuit id="LSC" name="Vestibular">
 					<region id="MBA.PN.SG.VB" type="ganglion" service="LSC" role="sensory"/>
-					<region id="BMA.SC.VH.PHR" type="nucleus" service="LMD" role="relay"/>
+					<region id="BMA.HP.VBN" type="nucleus" service="LSM" role="relay"/>
 				</circuit>
 			</area>
 
 			<area id="MRA" type="Subcortical" name="Lower Brain - Motor Reflex Area" enabled="true" function="Reflexive Motor Behavior">
+				<services>
+					<service id="LRS" name="Reflex Sensory Data"/>
+					<service id="LRM" name="Reflex Motor Control"/>
+					<service id="LRC" name="Reflex Coordinator"/>
+				</services>
+
 				<service id="LRB" name="Breathing Reflexes">
-					<region id="HMA.HM.AMB" type="nucleus" role="relay"/>
-					<region id="HMA.HM.RA" type="nucleus" role="relay"/>
-					<region id="HMA.HP.PN.KFN" type="nucleus" role="relay"/>
-					<region id="BMA.HP.PRF.PVR" type="nucleus" role="relay"/>
-					<region id="BMA.HM.ARC" type="nucleus" role="relay"/>
+					<region id="HMA.HM.AMB" type="nucleus" service="LRM" role="relay"/>
+					<region id="HMA.HM.RA" type="nucleus" service="LRM" role="relay"/>
+					<region id="HMA.HP.PN.KFN" type="nucleus" service="LRM" role="relay"/>
+					<region id="BMA.HP.PRF.PVR" type="nucleus" service="LRM" role="relay"/>
 				</service>
 				<service id="LRV" name="Visual Reflexes">
-					<region id="VBA.MM.PT.NOT" type="nucleus" role="relay"/>
-					<region id="VBA.MM.PT.PON" type="nucleus" role="relay"/>
-					<region id="VBA.MM.PT.PR" type="nucleus" role="relay"/>
-					<region id="VBA.MM.PT.SL" type="nucleus" role="relay"/>
-					<region id="VBA.HM.NPH" type="nucleus" role="relay"/>
-					<region id="VBA.MM.SC.SUP" type="nucleus" role="relay"/>
-					<region id="MBA.MM.SC.DEEP" type="nucleus" role="relay"/>
-					<region id="HMA.MM.CJ" type="nucleus" role="relay"/>
-					<region id="HMA.MM.RIMLF" type="nucleus" role="relay"/>
-					<region id="HMA.HP.PRF.RPO" type="nucleus" role="relay"/>
-					<region id="HMA.HP.PRF.PDT" type="nucleus" role="relay"/>
-					<region id="BMA.MM.DSCH" type="nucleus" role="relay"/>
+					<region id="VBA.MM.PT.NOT" type="nucleus" service="LRS" role="relay"/>
+					<region id="VBA.MM.PT.PON" type="nucleus" service="LRS" role="relay"/>
+					<region id="VBA.MM.PT.PR" type="nucleus" service="LRM" role="relay"/>
+					<region id="VBA.MM.PT.SL" type="nucleus" service="LRS" role="relay"/>
+					<region id="VBA.MM.SC.SUP" type="nucleus" service="LRC" role="relay"/>
+					<region id="MBA.MM.SC.DEEP" type="nucleus" service="LRC" role="relay"/>
+					<region id="HMA.MM.CJ" type="nucleus" service="LRM" role="relay"/>
+					<region id="HMA.MM.RIMLF" type="nucleus" service="LRM" role="relay"/>
+					<region id="HMA.HP.PRF.RPO" type="nucleus" service="LRM" role="relay"/>
+					<region id="BMA.MM.DSCH" type="nucleus" service="LRM" role="relay"/>
 				</service>
 				<service id="LRA" name="Auditory Reflexes">
 					<region id="ABA.MM.IC" type="nucleus" role="relay"/>
@@ -211,9 +211,6 @@
 					<region id="HMA.HP.PN.SC" type="nucleus" role="relay"/>
 					<region id="HMA.HP.PRF.GCR" type="nucleus" role="relay"/>
 					<region id="HMA.HP.PRF.CRF" type="nucleus" role="relay"/>
-				</service>
-				<service id="LRT" name="Vestibular Reflexes">
-					<region id="BMA.HP.VBN" type="nucleus" role="relay"/>
 				</service>
 			</area>
 
@@ -293,11 +290,14 @@
 					<region id="MBA.HP.PN.PBB" type="nucleus" role="relay"/>
 					<region id="MBA.HP.PN.RP" type="nucleus" role="relay"/>
 					<region id="BMA.MM.PT.PTA" type="nucleus" role="relay"/>
+					<region id="BMA.HM.ARC" type="nucleus" role="relay"/>
+					<region id="HMA.HP.PRF.PDT" type="nucleus" role="relay"/>
 				</service>
 				<service id="LLM" name="Locomotor Activity">
 					<region id="MBA.MM.RD" type="nucleus" role="relay"/>
 					<region id="MBA.HP.CR" type="nucleus" role="relay"/>
 					<region id="MBA.HM.RF.MED" type="nucleus" role="relay"/>
+					<region id="VBA.HM.NPH" type="nucleus" role="relay"/>
 				</service>
 			</area>
 
@@ -395,6 +395,9 @@
 					<region id="VCA.NC.IPS.VIP" type="neocortex" role="processor"/>
 					<region id="VCA.NC.IPS.AIP" type="neocortex" role="processor"/>
 					<region id="VCA.NC.IPL.MST" type="neocortex" role="processor"/>
+					<region id="VBA.FD.PV.IPV" type="nucleus" service="LSM" role="relay"/>
+					<region id="VBA.FD.PV.LPV" type="nucleus" service="LSM" role="relay"/>
+					<region id="VBA.FD.PV.MPV" type="nucleus" service="LSM" role="relay"/>
 
 					<region id="ACA.NC.A1" type="neocortex" role="processor"/>
 					<region id="ACA.NC.A2" type="neocortex" role="processor"/>
