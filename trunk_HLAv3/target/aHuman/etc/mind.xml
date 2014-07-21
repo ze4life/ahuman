@@ -117,7 +117,7 @@
 					<service id="LMD" name="Direct Motor Control"/>
 				</services>
 
-				<circuit id="LSC" name="Body Muscles">
+				<circuit id="LSC" name="Body Muscles" enabled="true">
 					<region id="AVA.PN.SG.DRG" type="ganglion" service="LSC" role="sensory"/>
 					<region id="BMA.HM.ACU" type="nucleus" service="LSM" role="relay"/>
 					<region id="BMA.HM.CU" type="nucleus" service="LSM" role="relay"/>
@@ -134,7 +134,7 @@
 					<region id="BMA.SC.VH.PHR" type="nucleus" service="LMD" role="relay"/>
 				</circuit>
 
-				<circuit id="LSC" name="Face Muscles">
+				<circuit id="LSC" name="Face Muscles" enabled="true">
 					<region id="HMA.MM.MSTR" type="ganglion" service="LSC" role="sensory"/>
 					<region id="AVA.PN.SG.TRG" type="ganglion" service="LSC" role="sensory"/>
 					<region id="HMA.HP.PTP.PTR" type="nucleus" service="LSM" role="relay"/>
@@ -145,14 +145,14 @@
 					<region id="AVA.PN.SG.JUG" type="ganglion" service="LSC" role="sensory"/>
 				</circuit>
 
-				<circuit id="LSC" name="Auditory Sense">
+				<circuit id="LSC" name="Auditory Sense" enabled="true">
 					<region id="ABA.PN.SG.SP" type="ganglion" service="LSC" role="sensory"/>
 					<region id="ABA.HM.COCH" type="nucleus" service="LSM" role="relay"/>
 					<region id="ABA.FD.TH.MGB" type="nucleus" service="LSM" role="relay"/>
 					<region id="ACA.FD.TH.SG" type="nucleus" service="LSM" role="processor"/>
 				</circuit>
 
-				<circuit id="LSC" name="Taste and Smell Senses">
+				<circuit id="LSC" name="Taste and Smell Senses" enabled="true">
 					<region id="PHA.FT.AON" type="nucleus" service="LSM" role="processor"/>
 					<region id="AVA.PN.SG.OLB" type="ganglion" service="LSC" role="sensory"/>
 					<region id="HMA.HM.SOL" type="nucleus" service="LSM" role="relay"/>
@@ -161,15 +161,19 @@
 					<region id="AVA.PN.SG.PET" type="ganglion" service="LSC" role="sensory"/>
 				</circuit>
 
-				<circuit id="LSC" name="Vision">
+				<circuit id="LSC" name="Vision" enabled="true">
 					<region id="VBA.FD.RT" type="nucleus" service="LSC" role="relay"/>
 					<region id="VBA.FD.LGN" type="nucleus" service="LSM" role="relay"/>
 					<region id="VBA.MM.TRH" type="nucleus" service="LMD" role="relay"/>
 					<region id="VBA.MM.OCN" type="nucleus" service="LMD" role="relay"/>
 					<region id="VBA.HP.ABD" type="nucleus" service="LMD" role="relay"/>
+					<connection type="nucleus-nucleus" primary="true" src="VBA.FD.RT" dst="VBA.FD.LGN"/>
+					<connection type="nucleus-neocortex" primary="true" src="VBA.FD.LGN" dst="VCA.NC.V1"/>
+					<connection type="nucleus-nucleus" primary="true" src="VBA.FD.RT" dst="VBA.FD.PV.MPV"/>
+					<connection type="nucleus-nucleus" primary="true" src="VBA.FD.RT" dst="VBA.MM.PT.PON"/>
 				</circuit>
 
-				<circuit id="LSC" name="Vestibular">
+				<circuit id="LSC" name="Vestibular" enabled="true">
 					<region id="MBA.PN.SG.VB" type="ganglion" service="LSC" role="sensory"/>
 					<region id="BMA.HP.VBN" type="nucleus" service="LSM" role="relay"/>
 				</circuit>
@@ -182,13 +186,13 @@
 					<service id="LRC" name="Reflex Coordinator"/>
 				</services>
 
-				<service id="LRB" name="Breathing Reflexes">
+				<circuit id="LRB" name="Breathing Reflexes" enabled="true">
 					<region id="HMA.HM.AMB" type="nucleus" service="LRM" role="relay"/>
 					<region id="HMA.HM.RA" type="nucleus" service="LRM" role="relay"/>
 					<region id="HMA.HP.PN.KFN" type="nucleus" service="LRM" role="relay"/>
 					<region id="BMA.HP.PRF.PVR" type="nucleus" service="LRM" role="relay"/>
-				</service>
-				<service id="LRV" name="Visual Reflexes">
+				</circuit>
+				<circuit id="LRV" name="Visual Reflexes" enabled="true">
 					<region id="VBA.MM.PT.NOT" type="nucleus" service="LRS" role="relay"/>
 					<region id="VBA.MM.PT.PON" type="nucleus" service="LRS" role="relay"/>
 					<region id="VBA.MM.PT.PR" type="nucleus" service="LRM" role="relay"/>
@@ -199,88 +203,93 @@
 					<region id="HMA.MM.RIMLF" type="nucleus" service="LRM" role="relay"/>
 					<region id="HMA.HP.PRF.RPO" type="nucleus" service="LRM" role="relay"/>
 					<region id="BMA.MM.DSCH" type="nucleus" service="LRM" role="relay"/>
-				</service>
-				<service id="LRA" name="Auditory Reflexes">
-					<region id="ABA.MM.IC" type="nucleus" role="relay"/>
-					<region id="ABA.MM.SOC" type="nucleus" role="relay"/>
-					<region id="ABA.HP.PN.LL" type="nucleus" role="relay"/>
-				</service>
-				<service id="LRF" name="Head Motor Reflexes">
-					<region id="HMA.HM.TGM.PA5" type="nucleus" role="relay"/>
-					<region id="HMA.HM.INM" type="nucleus" role="relay"/>
-					<region id="HMA.HP.PN.SC" type="nucleus" role="relay"/>
-					<region id="HMA.HP.PRF.GCR" type="nucleus" role="relay"/>
-					<region id="HMA.HP.PRF.CRF" type="nucleus" role="relay"/>
-				</service>
+					<connection type="nucleus-nucleus" primary="true" src="VBA.MM.PT.PON" dst="VBA.FD.LGN"/>
+					<connection type="nucleus-nucleus" primary="true" src="VBA.MM.SC.SUP" dst="VBA.FD.LGN"/>
+					<connection type="nucleus-nucleus" primary="true" src="VBA.MM.SC.SUP" dst="VBA.FD.PV.IPV"/>
+					<connection type="nucleus-nucleus" primary="true" src="VBA.MM.SC.SUP" dst="VBA.FD.PV.LPV"/>
+				</circuit>
+				<circuit id="LRA" name="Auditory Reflexes" enabled="true">
+					<region id="ABA.MM.IC" type="nucleus" service="LRC" role="relay"/>
+					<region id="ABA.MM.SOC" type="nucleus" service="LRM" role="relay"/>
+					<region id="ABA.HP.PN.LL" type="nucleus" service="LRS" role="relay"/>
+				</circuit>
+				<circuit id="LRF" name="Head Motor Reflexes" enabled="true">
+					<region id="HMA.HM.TGM.PA5" type="nucleus" service="LRS" role="relay"/>
+					<region id="HMA.HM.INM" type="nucleus" service="LRC" role="relay"/>
+					<region id="HMA.HP.PN.SC" type="nucleus" service="LRM" role="relay"/>
+					<region id="HMA.HP.PRF.GCR" type="nucleus" service="LRM" role="relay"/>
+					<region id="HMA.HP.PRF.CRF" type="nucleus" service="LRM" role="relay"/>
+				</circuit>
 			</area>
 
 			<area id="ACA" type="Subcortical" name="Lower Brain - Autonomous Control Area" enabled="true" function="Autonomic Nuclei and Ganglia">
-				<service id="LAV" name="Vision Autonomic Control">
-					<region id="VBA.SC.IZ.CSC" type="nucleus" role="relay"/>
-					<region id="VBA.MM.EWN" type="nucleus" role="parasympathetic"/>
-					<region id="VBA.PN.PSYM.CLG" type="ganglion" role="parasympathetic"/>
-					<region id="VBA.PN.PSYM.EPG" type="ganglion" role="parasympathetic"/>
-					<region id="AVA.PN.SYM.SCG" type="ganglion" role="sympathetic"/>
-					<region id="HTA.FD.HT.PN" type="nucleus" role="relay"/>
-				</service>
-				<service id="LAX" name="Sacral Autonomic Control">
-					<region id="MBA.HP.BR" type="nucleus" role="relay"/>
-					<region id="AVA.SC.VH.ONF" type="nucleus" role="relay"/>
-					<region id="AVA.SC.IZ.SPS" type="nucleus" role="parasympathetic"/>
-					<region id="AVA.PN.SYM.ARG" type="ganglion" role="sympathetic"/>
-					<region id="AVA.PN.PSYM.PPG" type="ganglion" role="parasympathetic"/>
-					<region id="AVA.PN.SYM.IMG" type="ganglion" role="sympathetic"/>
-					<region id="HTA.FD.HT.AVPV" type="nucleus" role="relay"/>
-				</service>
-				<service id="LAS" name="Sensory to Autonomic Control">
-					<region id="BMA.SC.LH.LSN" type="nucleus" role="relay"/>
-					<region id="AVA.SC.CC.DCN" type="nucleus" role="relay"/>
-				</service>
-				<service id="LAD" name="Digestion and Tears Control">
-					<region id="AVA.HM.SAL.ISL" type="nucleus" role="parasympathetic"/>
-					<region id="AVA.HM.SAL.SSL" type="nucleus" role="parasympathetic"/>
-					<region id="AVA.PN.PSYM.SXG" type="ganglion" role="parasympathetic"/>
-					<region id="AVA.PN.PSYM.GUT" type="ganglion" role="parasympathetic"/>
-					<region id="AVA.PN.SYM.SMG" type="ganglion" role="sympathetic"/>
-					<region id="AVA.PN.PSYM.OTG" type="ganglion" role="parasympathetic"/>
-					<region id="AVA.PN.PSYM.SPG" type="ganglion" role="parasympathetic"/>
-					<region id="AVA.PN.SYM.CEG" type="ganglion" role="sympathetic"/>
-					<region id="AVA.PN.SYM.MCG" type="ganglion" role="sympathetic"/>
-					<region id="AVA.HM.VGN" type="nucleus" role="parasympathetic"/>
-					<region id="HTA.FD.HT.VM" type="nucleus" role="relay"/>
-					<region id="HTA.FD.HT.PV" type="nucleus" role="relay"/>
-					<region id="HTA.FD.HT.LT" type="nucleus" role="relay"/>
-					<region id="HTA.FD.HT.AR" type="nucleus" role="relay"/>
-				</service>
-				<service id="LAB" name="Autonomic Breathing Control">
-					<region id="AVA.PN.PSYM.ILG" type="ganglion" role="parasympathetic"/>
-					<region id="AVA.PN.PSYM.PUG" type="ganglion" role="parasympathetic"/>
-				</service>
-				<service id="LAH" name="Heart and Blood Pressure Control">
-					<region id="AVA.PN.PSYM.CRG" type="ganglion" role="parasympathetic"/>
-					<region id="AVA.PN.SYM.TG" type="ganglion" role="sympathetic"/>
-					<region id="AVA.PN.SYM.STG" type="ganglion" role="sympathetic"/>
-					<region id="AVA.SC.IZ.IML" type="nucleus" role="sympathetic"/>
-					<region id="HTA.FD.HT.SO" type="nucleus" role="relay"/>
-					<region id="HTA.FD.HT.DM" type="nucleus" role="relay"/>
-				</service>
-				<service id="LAC" name="Daily Cycle Control">
-					<region id="HTA.FD.HT.TBC" type="nucleus" role="relay"/>
-					<region id="HTA.FD.HT.SCN" type="nucleus" role="relay"/>
-				</service>
-				<service id="LAM" name="Autonomic Motivations Control">
-					<region id="HTA.FD.HT.PVI" type="nucleus" role="relay"/>
-					<region id="HTA.FD.HT.RCH" type="nucleus" role="relay"/>
-				</service>
-				<service id="LAT" name="Autonomic Thermoregulation">
-					<region id="HMA.HM.TGM.PE5" type="nucleus" role="relay"/>
-					<region id="HTA.FD.HT.PO" type="nucleus" role="relay"/>
-					<region id="HTA.FD.HT.AH" type="nucleus" role="relay"/>
-				</service>
+				<services>
+					<service id="LAG" name="Autonomic Motor Ganglion"/>
+					<service id="LAM" name="Autonomic Motor Nucleus"/>
+					<service id="LAS" name="Autonomic Sensory Nucleus"/>
+					<service id="LAC" name="Autonomic Coordinator"/>
+				</services>
+
+				<circuit id="LAV" name="Vision and Daily Cycle Autonomic Control" enabled="true">
+					<region id="VBA.SC.IZ.CSC" type="nucleus" service="LAM" role="relay"/>
+					<region id="VBA.MM.EWN" type="nucleus" service="LAM" role="parasympathetic"/>
+					<region id="VBA.PN.PSYM.CLG" type="ganglion" service="LAG" role="parasympathetic"/>
+					<region id="VBA.PN.PSYM.EPG" type="ganglion" service="LAG" role="parasympathetic"/>
+					<region id="AVA.PN.SYM.SCG" type="ganglion" service="LAG" role="sympathetic"/>
+					<region id="HTA.FD.HT.PN" type="nucleus" service="LAC" role="relay"/>
+					<region id="HTA.FD.HT.TBC" type="nucleus" service="LAC" role="relay"/>
+					<region id="HTA.FD.HT.SCN" type="nucleus" service="LAC" role="relay"/>
+				</circuit>
+				<circuit id="LAX" name="Sacral Autonomic Control" enabled="true">
+					<region id="MBA.HP.BR" type="nucleus" service="LAC" role="relay"/>
+					<region id="AVA.SC.VH.ONF" type="nucleus" service="LAM" role="relay"/>
+					<region id="AVA.SC.IZ.SPS" type="nucleus" service="LAM" role="parasympathetic"/>
+					<region id="AVA.PN.SYM.ARG" type="ganglion" service="LAG" role="sympathetic"/>
+					<region id="AVA.PN.PSYM.PPG" type="ganglion" service="LAG" role="parasympathetic"/>
+					<region id="AVA.PN.SYM.IMG" type="ganglion" service="LAG" role="sympathetic"/>
+					<region id="HTA.FD.HT.AVPV" type="nucleus" service="LAC" role="relay"/>
+					<region id="AVA.SC.CC.DCN" type="nucleus" service="LAS" role="relay"/>
+				</circuit>
+				<circuit id="LAD" name="Breathing, Digestion and Tears Control" enabled="true">
+					<region id="AVA.HM.SAL.ISL" type="nucleus" service="LAM" role="parasympathetic"/>
+					<region id="AVA.HM.SAL.SSL" type="nucleus" service="LAM" role="parasympathetic"/>
+					<region id="AVA.PN.PSYM.SXG" type="ganglion" service="LAG" role="parasympathetic"/>
+					<region id="AVA.PN.PSYM.GUT" type="ganglion" service="LAG" role="parasympathetic"/>
+					<region id="AVA.PN.SYM.SMG" type="ganglion" service="LAG" role="sympathetic"/>
+					<region id="AVA.PN.PSYM.OTG" type="ganglion" service="LAG" role="parasympathetic"/>
+					<region id="AVA.PN.PSYM.SPG" type="ganglion" service="LAG" role="parasympathetic"/>
+					<region id="AVA.PN.SYM.CEG" type="ganglion" service="LAG" role="sympathetic"/>
+					<region id="AVA.PN.SYM.MCG" type="ganglion" service="LAG" role="sympathetic"/>
+					<region id="AVA.HM.VGN" type="nucleus" service="LAM" role="parasympathetic"/>
+					<region id="HTA.FD.HT.VM" type="nucleus" service="LAC" role="relay"/>
+					<region id="HTA.FD.HT.PV" type="nucleus" service="LAC" role="relay"/>
+					<region id="HTA.FD.HT.LT" type="nucleus" service="LAC" role="relay"/>
+					<region id="HTA.FD.HT.AR" type="nucleus" service="LAC" role="relay"/>
+					<region id="AVA.PN.PSYM.ILG" type="ganglion" service="LAG" role="parasympathetic"/>
+					<region id="AVA.PN.PSYM.PUG" type="ganglion" service="LAG" role="parasympathetic"/>
+				</circuit>
+				<circuit id="LAH" name="Heart and Blood Pressure Control" enabled="true">
+					<region id="AVA.PN.PSYM.CRG" type="ganglion" service="LAG" role="parasympathetic"/>
+					<region id="AVA.PN.SYM.TG" type="ganglion" service="LAG" role="sympathetic"/>
+					<region id="AVA.PN.SYM.STG" type="ganglion" service="LAG" role="sympathetic"/>
+					<region id="AVA.SC.IZ.IML" type="nucleus" service="LAM" role="sympathetic"/>
+					<region id="HTA.FD.HT.SO" type="nucleus" service="LAC" role="relay"/>
+					<region id="HTA.FD.HT.DM" type="nucleus" service="LAC" role="relay"/>
+				</circuit>
+				<circuit id="LAM" name="Autonomic Motivations Control" enabled="true">
+					<region id="HTA.FD.HT.PVI" type="nucleus" service="LAC" role="relay"/>
+					<region id="HTA.FD.HT.RCH" type="nucleus" service="LAC" role="relay"/>
+					<region id="BMA.SC.LH.LSN" type="nucleus" service="LAS" role="relay"/>
+				</circuit>
+				<circuit id="LAT" name="Autonomic Thermoregulation" enabled="true">
+					<region id="HMA.HM.TGM.PE5" type="nucleus" service="LAS" role="relay"/>
+					<region id="HTA.FD.HT.PO" type="nucleus" service="LAC" role="relay"/>
+					<region id="HTA.FD.HT.AH" type="nucleus" service="LAC" role="relay"/>
+				</circuit>
 			</area>
 
 			<area id="LCA" type="Subcortical" name="Lower Brain - Locomotion Control Area" enabled="true" function="Learned Rythmic Movements">
-				<service id="LLS" name="Locomotor Sensory">
+				<circuit id="LLS" name="Locomotor Sensory" enabled="true">
 					<region id="BMA.HM.IO" type="nucleus" role="relay"/>
 					<region id="BMA.SC.PH.CL" type="nucleus" role="relay"/>
 					<region id="AVA.SC.IZ.IMM" type="nucleus" role="relay"/>
@@ -292,17 +301,17 @@
 					<region id="BMA.MM.PT.PTA" type="nucleus" role="relay"/>
 					<region id="BMA.HM.ARC" type="nucleus" role="relay"/>
 					<region id="HMA.HP.PRF.PDT" type="nucleus" role="relay"/>
-				</service>
-				<service id="LLM" name="Locomotor Activity">
+				</circuit>
+				<circuit id="LLM" name="Locomotor Activity" enabled="true">
 					<region id="MBA.MM.RD" type="nucleus" role="relay"/>
 					<region id="MBA.HP.CR" type="nucleus" role="relay"/>
 					<region id="MBA.HM.RF.MED" type="nucleus" role="relay"/>
 					<region id="VBA.HM.NPH" type="nucleus" role="relay"/>
-				</service>
+				</circuit>
 			</area>
 
 			<area id="MCA" type="Subcortical" name="Lower Brain - Modulatory Contol Area" enabled="true" function="Ascending and Descending Non-Specific Modulation">
-				<service id="TBD" name="TBD">
+				<circuit id="TBD" name="TBD" enabled="true">
 					<region id="VBA.MM.RP.RIP" type="nucleus" role="relay"/>
 					<region id="FBA.MM.RP.MRN" type="nucleus" role="relay"/>
 					<region id="FBA.MM.RP.DRN" type="nucleus" role="relay"/>
@@ -319,11 +328,11 @@
 					<region id="PHA.FD.TH.LI" type="nucleus" role="processor"/>
 					<region id="FBA.FD.TH.SF" type="nucleus" role="relay"/>
 					<region id="MBA.MM.TG.LDT" type="nucleus" role="relay"/>
-				</service>
+				</circuit>
 			</area>
 
 			<area id="ECA" type="Subcortical" name="Forebrain - Execution Control Area" enabled="true" function="Execution Control">
-				<service id="TBD" name="TBD">
+				<circuit id="TBD" name="TBD" enabled="true">
 					<region id="BGA.FT.GPE" type="nucleus" role="relay"/>
 					<region id="BGA.FT.GPI" type="nucleus" role="relay"/>
 					<region id="BGA.FT.SN.PC" type="nucleus" role="relay"/>
@@ -336,11 +345,11 @@
 					<region id="BGA.FT.VP" type="nucleus" role="relay"/>
 					<region id="BGA.FT.CN" type="nucleus" role="relay"/>
 					<region id="BGA.FT.PU" type="nucleus" role="relay"/>
-				</service>
+				</circuit>
 			</area>
 
 			<area id="MMA" type="Subcortical" name="Forebrain - Memory Management Area" enabled="true" function="Establish Hierarchical Memory">
-				<service id="TBD" name="TBD">
+				<circuit id="TBD" name="TBD" enabled="true">
 					<region id="PHA.NC.INS.PPC" type="neocortex" role="processor"/>
 					<region id="PHA.NC.INS.HR" type="neocortex" role="processor"/>
 					<region id="PHA.NC.PH.ET" type="neocortex" role="processor"/>
@@ -364,11 +373,11 @@
 					<region id="HBA.FD.MB.MMB" type="nucleus" role="relay" size="100"/>
 					<region id="HBA.FD.TH.RE" type="nucleus" role="relay" size="100"/>
 					<region id="HBA.FD.TH.RH" type="nucleus" role="relay" size="100"/>
-				</service>
+				</circuit>
 			</area>
 
 			<area id="AMA" type="Subcortical" name="Forebrain - Affective Motivations Area" enabled="true" function="Aggregate Body and Mental Motivations">
-				<service id="TBD" name="TBD">
+				<circuit id="TBD" name="TBD" enabled="true">
 					<region id="PHA.FT.EPF" type="nucleus" role="relay"/>
 					<region id="BFA.FT.AM" type="nucleus" role="relay"/>
 					<region id="BFA.FT.NBM" type="nucleus" role="relay"/>
@@ -378,11 +387,12 @@
 					<region id="BFA.FD.HB" type="nucleus" role="relay"/>
 					<region id="BFA.FD.TH.PT" type="nucleus" role="relay"/>
 					<region id="BFA.FD.TH.PV" type="nucleus" role="relay"/>
-				</service>
+					<connection type="nucleus-neocortex" primary="true" src="BFA.FT.NBM" dst="VCA.NC.V1"/>
+				</circuit>
 			</area> 
 
 			<area id="SAA" type="Cortical" name="Neocortical Brain - Sensory Aggregation Area" enabled="true" function="Somatic Hierarhical Aggregation">
-				<service id="TBD" name="TBD">
+				<circuit id="NSV" name="Neocortical Vision Aggregation" enabled="true">
 					<region id="VCA.NC.V1" type="neocortex" role="processor"/>
 					<region id="VCA.NC.V2" type="neocortex" role="processor"/>
 					<region id="VCA.NC.V3" type="neocortex" role="processor"/>
@@ -398,7 +408,49 @@
 					<region id="VBA.FD.PV.IPV" type="nucleus" service="LSM" role="relay"/>
 					<region id="VBA.FD.PV.LPV" type="nucleus" service="LSM" role="relay"/>
 					<region id="VBA.FD.PV.MPV" type="nucleus" service="LSM" role="relay"/>
+					<connection type="nucleus-neocortex" primary="true" src="VBA.FD.PV.IPV" dst="VCA.NC.IPL.MST"/>
+					<connection type="nucleus-neocortex" primary="true" src="VBA.FD.PV.LPV" dst="VCA.NC.V2"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.V1" dst="VCA.NC.V2"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.V1" dst="VCA.NC.MT"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.V1" dst="CGA.NC.MPL.RSC"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.V2" dst="VCA.NC.V3"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.V2" dst="VCA.NC.V4"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.V2" dst="VCA.NC.MT"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.V2" dst="VCA.NC.PO"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.V2" dst="FCA.NC.LPFC"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.V3" dst="VCA.NC.V4"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.V3" dst="VCA.NC.MT"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.V3" dst="VCA.NC.PO"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.V3" dst="VCA.NC.IPS.PEF"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.V4" dst="VCA.NC.MT"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.V4" dst="VCA.NC.IT.TEO"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.V4" dst="VCA.NC.IT.TE"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.MT" dst="VCA.NC.IPS.VIP"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.MT" dst="VCA.NC.IPL.MST"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.MT" dst="VCA.NC.IPS.PEF"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.MT" dst="SMA.NC.SPL.PG"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.PO" dst="VCA.NC.IPS.VIP"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.PO" dst="SMA.NC.SPL.PG"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.PO" dst="VCA.NC.IPL.MST"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.PO" dst="VCA.NC.IPS.PEF"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IT.TEO" dst="VCA.NC.IT.TE"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IT.TE" dst="PHA.NC.PH.ET"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IT.TE" dst="MCA.NC.PMC.FEF"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IPS.VIP" dst="SMA.NC.SPL.PG"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IPS.VIP" dst="ACA.NC.IPL.SMW"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IPS.PEF" dst="SMA.NC.SPL.PG"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IPL.MST" dst="SMA.NC.SPL.PG"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IPL.MST" dst="ACA.NC.IPL.SMW"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IPS.VIP" dst="CGA.NC.SPL.PF"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IPS.PEF" dst="VCA.NC.IPS.AIP"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IPL.MST" dst="MCA.NC.PMC.F4"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IPL.MST" dst="FCA.NC.LPFC"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IPS.PEF" dst="MCA.NC.PMC.FEF"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IPS.PEF" dst="FCA.NC.LPFC"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IPS.PEF" dst="CGA.NC.MPL.PCG"/>
+				</circuit>
 
+				<circuit id="NSA" name="Neocortical Audition Aggregation" enabled="true">
 					<region id="ACA.NC.A1" type="neocortex" role="processor"/>
 					<region id="ACA.NC.A2" type="neocortex" role="processor"/>
 					<region id="ACA.NC.A3" type="neocortex" role="processor"/>
@@ -406,11 +458,11 @@
 					<region id="ACA.NC.IPL.SMW" type="neocortex" role="processor"/>
 					<region id="ACA.NC.BRA" type="neocortex" role="processor"/>
 					<region id="ACA.NC.PRI" type="neocortex" role="processor"/>
-				</service>
+				</circuit>
 			</area>
 
 			<area id="BAA" type="Cortical" name="Neocortical Brain - Body Aggregation Area" enabled="true" function="Neocortical Body Aggregation">
-				<service id="TBD" name="TBD">
+				<circuit id="TBD" name="TBD" enabled="true">
 					<region id="SMA.NC.PG.S1" type="neocortex" role="processor"/>
 					<region id="SMA.FD.TH.VPL" type="nucleus" role="relay"/>
 					<region id="SMA.FD.TH.VPM" type="nucleus" role="relay"/>
@@ -421,11 +473,12 @@
 					<region id="SMA.FD.PV.OPV" type="nucleus" role="processor"/>
 					<region id="SMA.NC.SPL.PG" type="neocortex" role="processor"/>
 					<region id="SMA.FD.TH.LP" type="nucleus" role="processor"/>
-				</service>
+					<connection type="neocortex-neocortex" primary="true" src="SMA.NC.SPL.PG" dst="MCA.NC.PMC.F2"/>
+				</circuit>
 			</area>
 
 			<area id="MAA" type="Cortical" name="Neocortical Brain - Motor Aggregation Area" enabled="true" function="Motor Hierarhical Aggregation">
-				<service id="TBD" name="TBD">
+				<circuit id="TBD" name="TBD" enabled="true">
 					<region id="MCA.NC.PMC.F2" type="neocortex" role="processor"/>
 					<region id="MCA.NC.PMC.F7" type="neocortex" role="processor"/>
 					<region id="MCA.NC.PMC.F4" type="neocortex" role="processor"/>
@@ -435,11 +488,21 @@
 					<region id="MCA.FD.TH.VL" type="nucleus" role="relay" size="100"/>
 					<region id="MCA.NC.PMC.FEF" type="neocortex" role="processor"/>
 					<region id="MCA.NC.SMC" type="neocortex" role="processor"/>
-				</service>
+					<connection type="neocortex-nucleus" primary="true" src="MCA.NC.PMC.FEF" dst="MBA.MM.SC.DEEP"/>
+					<connection type="neocortex-nucleus" primary="true" src="MCA.NC.PMC.FEF" dst="HMA.HP.PRF.RPO"/>
+					<connection type="neocortex-nucleus" primary="true" src="MCA.NC.PMC.FEF" dst="HMA.HP.PRF.GCR"/>
+					<connection type="neocortex-nucleus" primary="true" src="MCA.NC.PMC.FEF" dst="HMA.MM.CJ"/>
+					<connection type="neocortex-nucleus" primary="true" src="MCA.NC.PMC.FEF" dst="BGA.FT.CN"/>
+					<connection type="neocortex-neocortex" primary="true" src="MCA.NC.SMC" dst="MCA.NC.PMC.FEF"/>
+					<connection type="neocortex-neocortex" primary="true" src="MCA.NC.SMC" dst="MCA.NC.PMC.F5"/>
+					<connection type="neocortex-neocortex" primary="true" src="MCA.NC.SMC" dst="MCA.NC.PMC.F2"/>
+					<connection type="neocortex-neocortex" primary="true" src="MCA.NC.PMC.F5" dst="MCA.NC.MC"/>
+					<connection type="neocortex-neocortex" primary="true" src="MCA.NC.PMC.F2" dst="MCA.NC.MC"/>
+				</circuit>
 			</area>
 
 			<area id="EPA" type="Cortical" name="Neocortical Brain - Execution Planning Area" enabled="true" function="Sensory-Drive Associations with Working Memory ">
-				<service id="TBD" name="TBD">
+				<circuit id="TBD" name="TBD" enabled="true">
 					<region id="FCA.NC.IPG" type="neocortex" role="processor"/>
 					<region id="FCA.NC.LPFC" type="neocortex" role="processor"/>
 					<region id="FCA.NC.OMPFC" type="neocortex" role="processor"/>
@@ -454,7 +517,11 @@
 					<region id="CGA.FD.TH.AN" type="nucleus" role="processor" size="100"/>
 					<region id="CGA.FD.TH.LD" type="nucleus" role="processor" size="100"/>
 					<region id="CGA.FD.TH.SM" type="nucleus" role="relay" size="100"/>
-				</service>
+					<connection type="neocortex-neocortex" primary="true" src="FCA.NC.LPFC" dst="MCA.NC.PMC.FEF"/>
+					<connection type="neocortex-neocortex" primary="true" src="FCA.NC.LPFC" dst="MCA.NC.PMC.F5"/>
+					<connection type="neocortex-neocortex" primary="true" src="FCA.NC.LPFC" dst="MCA.NC.SMC"/>
+					<connection type="nucleus-neocortex" primary="true" src="FCA.FD.TH.MD" dst="MCA.NC.PMC.FEF"/>
+				</circuit>
 			</area>
 
 		</component-set>
