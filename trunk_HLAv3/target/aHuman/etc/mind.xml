@@ -143,6 +143,11 @@
 					<region id="HMA.HM.HYG" type="nucleus" service="LMD" role="relay"/>
 					<region id="HMA.HP.PTP.TRM" type="nucleus" service="LMD" role="relay"/>
 					<region id="AVA.PN.SG.JUG" type="ganglion" service="LSC" role="sensory"/>
+					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.FCM" dst="VBA.HP.ABD"/>
+					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PTP.PTR" dst="HMA.HM.TGM.STR"/>
+					<connection type="nucleus-nucleus" primary="true" src="HMA.HM.TGM.STR" dst="HMA.HP.PRF.GCR"/>
+					<connection type="nucleus-nucleus" primary="true" src="HMA.HM.TGM.STR" dst="VBA.MM.OCN"/>
+					<connection type="ganglion-nucleus" primary="true" src="HMA.MM.MSTR" dst="HMA.HP.PTP.TRM"/>
 				</circuit>
 
 				<circuit id="LSC" name="Auditory Sense" enabled="true">
@@ -168,14 +173,24 @@
 					<region id="VBA.MM.OCN" type="nucleus" service="LMD" role="relay"/>
 					<region id="VBA.HP.ABD" type="nucleus" service="LMD" role="relay"/>
 					<connection type="nucleus-nucleus" primary="true" src="VBA.FD.RT" dst="VBA.FD.LGN"/>
-					<connection type="nucleus-neocortex" primary="true" src="VBA.FD.LGN" dst="VCA.NC.V1"/>
 					<connection type="nucleus-nucleus" primary="true" src="VBA.FD.RT" dst="VBA.FD.PV.MPV"/>
 					<connection type="nucleus-nucleus" primary="true" src="VBA.FD.RT" dst="VBA.MM.PT.PON"/>
+					<connection type="nucleus-nucleus" primary="true" src="VBA.FD.RT" dst="VBA.MM.PT.NOT"/>
+					<connection type="nucleus-nucleus" primary="true" src="VBA.FD.RT" dst="VBA.MM.PT.PON"/>
+					<connection type="nucleus-nucleus" primary="true" src="VBA.FD.RT" dst="VBA.MM.SC.SUP"/>
+					<connection type="nucleus-nucleus" primary="true" src="VBA.FD.RT" dst="VBA.MM.PT.SL"/>
+					<connection type="nucleus-neocortex" primary="true" src="VBA.FD.LGN" dst="VCA.NC.V1"/>
+					<connection type="nucleus-nucleus" primary="true" src="VBA.FD.LGN" dst="VBA.MM.PT.NOT"/>
+					<connection type="nucleus-nucleus" primary="true" src="VBA.HP.ABD" dst="VBA.MM.OCN"/>
+					<connection type="nucleus-ganglion" primary="true" src="VBA.MM.OCN" dst="VBA.PN.PSYM.CLG"/>
 				</circuit>
 
 				<circuit id="LSC" name="Vestibular" enabled="true">
 					<region id="MBA.PN.SG.VB" type="ganglion" service="LSC" role="sensory"/>
 					<region id="BMA.HP.VBN" type="nucleus" service="LSM" role="relay"/>
+					<connection type="ganglion-nucleus" primary="true" src="MBA.PN.SG.VB" dst="BMA.HP.VBN"/>
+					<connection type="nucleus-nucleus" primary="true" src="BMA.HP.VBN" dst="HMA.HP.PRF.CRF"/>
+					<connection type="nucleus-nucleus" primary="true" src="BMA.HP.VBN" dst="BMA.MM.DSCH"/>
 				</circuit>
 			</area>
 
@@ -191,7 +206,10 @@
 					<region id="HMA.HM.RA" type="nucleus" service="LRM" role="relay"/>
 					<region id="HMA.HP.PN.KFN" type="nucleus" service="LRM" role="relay"/>
 					<region id="BMA.HP.PRF.PVR" type="nucleus" service="LRM" role="relay"/>
+					<connection type="nucleus-nucleus" primary="true" src="BMA.HP.PRF.PVR" dst="HMA.HP.PTP.TRM"/>
+					<connection type="nucleus-nucleus" primary="true" src="BMA.HP.PRF.PVR" dst="HMA.HP.FCM"/>
 				</circuit>
+
 				<circuit id="LRV" name="Visual Reflexes" enabled="true">
 					<region id="VBA.MM.PT.NOT" type="nucleus" service="LRS" role="relay"/>
 					<region id="VBA.MM.PT.PON" type="nucleus" service="LRS" role="relay"/>
@@ -207,18 +225,50 @@
 					<connection type="nucleus-nucleus" primary="true" src="VBA.MM.SC.SUP" dst="VBA.FD.LGN"/>
 					<connection type="nucleus-nucleus" primary="true" src="VBA.MM.SC.SUP" dst="VBA.FD.PV.IPV"/>
 					<connection type="nucleus-nucleus" primary="true" src="VBA.MM.SC.SUP" dst="VBA.FD.PV.LPV"/>
+					<connection type="nucleus-nucleus" primary="true" src="VBA.MM.SC.SUP" dst="VBA.MM.PT.NOT"/>
+					<connection type="nucleus-nucleus" primary="true" src="VBA.MM.SC.SUP" dst="SMA.FD.TH.LP"/>
+					<connection type="nucleus-nucleus" primary="true" src="VBA.MM.SC.SUP" dst="HMA.HP.PRF.PDT"/>
+					<connection type="nucleus-nucleus" primary="true" src="VBA.MM.SC.SUP" dst="VBA.MM.RP.RIP"/>
+					<connection type="nucleus-nucleus" primary="true" src="VBA.MM.SC.SUP" dst="MBA.MM.SC.DEEP"/>
+					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PRF.RPO" dst="VBA.HP.ABD"/>
+					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PRF.RPO" dst="VBA.MM.OCN"/>
+					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PRF.RPO" dst="HMA.SC.VH.SAN"/>
+					<connection type="nucleus-nucleus" primary="true" src="HMA.MM.CJ" dst="VBA.MM.OCN"/>
+					<connection type="nucleus-nucleus" primary="true" src="HMA.MM.CJ" dst="VBA.MM.TRH"/>
+					<connection type="nucleus-nucleus" primary="true" src="VBA.MM.PT.NOT" dst="VBA.MM.SC.SUP"/>
+					<connection type="nucleus-nucleus" primary="true" src="VBA.MM.PT.PON" dst="VBA.MM.EWN"/>
+					<connection type="nucleus-nucleus" primary="true" src="VBA.MM.PT.SL" dst="SMA.FD.TH.LP"/>
+					<connection type="nucleus-nucleus" primary="true" src="VBA.MM.PT.SL" dst="VBA.FD.PV.MPV"/>
+					<connection type="nucleus-nucleus" primary="true" src="VBA.MM.PT.SL" dst="VBA.MM.EWN"/>
+					<connection type="nucleus-nucleus" primary="true" src="VBA.MM.PT.SL" dst="VBA.MM.OCN"/>
+					<connection type="nucleus-nucleus" primary="true" src="MBA.MM.SC.DEEP" dst="CGA.FD.TH.AN"/>
+					<connection type="nucleus-nucleus" primary="true" src="MBA.MM.SC.DEEP" dst="VBA.HP.ABD"/>
+					<connection type="nucleus-nucleus" primary="true" src="MBA.MM.SC.DEEP" dst="VBA.MM.OCN"/>
+					<connection type="nucleus-nucleus" primary="true" src="MBA.MM.SC.DEEP" dst="VBA.MM.TRH"/>
+					<connection type="nucleus-nucleus" primary="true" src="MBA.MM.SC.DEEP" dst="HMA.SC.VH.SAN"/>
+					<connection type="nucleus-nucleus" primary="true" src="MBA.MM.SC.DEEP" dst="HMA.HP.PRF.RPO"/>
+					<connection type="nucleus-nucleus" primary="true" src="MBA.MM.SC.DEEP" dst="HMA.MM.CJ"/>
+					<connection type="nucleus-nucleus" primary="true" src="MBA.MM.SC.DEEP" dst="BMA.HP.VBN"/>
+					<connection type="nucleus-nucleus" primary="true" src="BMA.MM.DSCH" dst="VBA.MM.EWN"/>
+					<connection type="nucleus-nucleus" primary="true" src="HMA.MM.RIMLF" dst="VBA.MM.OCN"/>
+					<connection type="nucleus-nucleus" primary="true" src="VBA.MM.PT.PR" dst="VBA.MM.EWN"/>
+					<connection type="nucleus-nucleus" primary="true" src="BMA.MM.DSCH" dst="BMA.HM.IO"/>
 				</circuit>
+
 				<circuit id="LRA" name="Auditory Reflexes" enabled="true">
 					<region id="ABA.MM.IC" type="nucleus" service="LRC" role="relay"/>
 					<region id="ABA.MM.SOC" type="nucleus" service="LRM" role="relay"/>
 					<region id="ABA.HP.PN.LL" type="nucleus" service="LRS" role="relay"/>
 				</circuit>
+
 				<circuit id="LRF" name="Head Motor Reflexes" enabled="true">
 					<region id="HMA.HM.TGM.PA5" type="nucleus" service="LRS" role="relay"/>
 					<region id="HMA.HM.INM" type="nucleus" service="LRC" role="relay"/>
 					<region id="HMA.HP.PN.SC" type="nucleus" service="LRM" role="relay"/>
 					<region id="HMA.HP.PRF.GCR" type="nucleus" service="LRM" role="relay"/>
 					<region id="HMA.HP.PRF.CRF" type="nucleus" service="LRM" role="relay"/>
+					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PRF.GCR" dst="BMA.SC.VH.RPL"/>
+					<connection type="nucleus-nucleus" primary="true" src="HMA.HM.TGM.PA5" dst="HMA.HP.FCM"/>
 				</circuit>
 			</area>
 
@@ -239,6 +289,11 @@
 					<region id="HTA.FD.HT.PN" type="nucleus" service="LAC" role="relay"/>
 					<region id="HTA.FD.HT.TBC" type="nucleus" service="LAC" role="relay"/>
 					<region id="HTA.FD.HT.SCN" type="nucleus" service="LAC" role="relay"/>
+					<connection type="nucleus-ganglion" primary="true" src="VBA.MM.EWN" dst="VBA.PN.PSYM.CLG"/>
+					<connection type="nucleus-ganglion" primary="true" src="VBA.MM.EWN" dst="VBA.PN.PSYM.EPG"/>
+					<connection type="nucleus-nucleus" primary="true" src="HTA.FD.HT.SCN" dst="VBA.MM.PT.NOT"/>
+					<connection type="nucleus-nucleus" primary="true" src="HTA.FD.HT.PN" dst="VBA.SC.IZ.CSC"/>
+					<connection type="nucleus-ganglion" primary="true" src="VBA.SC.IZ.CSC" dst="AVA.PN.SYM.SCG"/>
 				</circuit>
 				<circuit id="LAX" name="Sacral Autonomic Control" enabled="true">
 					<region id="MBA.HP.BR" type="nucleus" service="LAC" role="relay"/>
@@ -301,12 +356,20 @@
 					<region id="BMA.MM.PT.PTA" type="nucleus" role="relay"/>
 					<region id="BMA.HM.ARC" type="nucleus" role="relay"/>
 					<region id="HMA.HP.PRF.PDT" type="nucleus" role="relay"/>
+					<connection type="nucleus-nucleus" primary="true" src="BMA.MM.PT.PTA" dst="BGA.FD.STN" notes="to Zona Incerta"/>
+					<connection type="nucleus-nucleus" primary="true" src="BMA.MM.PT.PTA" dst="SMA.FD.TH.LP"/>
+					<connection type="nucleus-nucleus" primary="true" src="BMA.MM.PT.PTA" dst="VBA.FD.PV.MPV"/>
+					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PRF.PDT" dst="HMA.HP.FCM"/>
+					<connection type="nucleus-nucleus" primary="true" src="BMA.SC.IZ.CCV" dst="BMA.HP.VBN"/>
 				</circuit>
 				<circuit id="LLM" name="Locomotor Activity" enabled="true">
 					<region id="MBA.MM.RD" type="nucleus" role="relay"/>
 					<region id="MBA.HP.CR" type="nucleus" role="relay"/>
 					<region id="MBA.HM.RF.MED" type="nucleus" role="relay"/>
 					<region id="VBA.HM.NPH" type="nucleus" role="relay"/>
+					<connection type="nucleus-nucleus" primary="true" src="VBA.HM.NPH" dst="VBA.MM.PT.NOT"/>
+					<connection type="nucleus-nucleus" primary="true" src="MBA.HP.CR" dst="BMA.MM.DSCH" notes="from interposed nucleus"/>
+					<connection type="nucleus-nucleus" primary="true" src="MBA.HP.CR" dst="VBA.MM.PT.PR"/>
 				</circuit>
 			</area>
 
@@ -328,6 +391,7 @@
 					<region id="PHA.FD.TH.LI" type="nucleus" role="processor"/>
 					<region id="FBA.FD.TH.SF" type="nucleus" role="relay"/>
 					<region id="MBA.MM.TG.LDT" type="nucleus" role="relay"/>
+					<connection type="nucleus-nucleus" primary="true" src="VBA.MM.RP.RIP" dst="HMA.HP.PRF.RPO"/>
 				</circuit>
 			</area>
 
@@ -373,6 +437,9 @@
 					<region id="HBA.FD.MB.MMB" type="nucleus" role="relay" size="100"/>
 					<region id="HBA.FD.TH.RE" type="nucleus" role="relay" size="100"/>
 					<region id="HBA.FD.TH.RH" type="nucleus" role="relay" size="100"/>
+					<connection type="allocortex-neocortex" primary="true" src="HBA.FT.SC.SUB" dst="CGA.NC.MPL.RSC"/>
+					<connection type="neocortex-neocortex" primary="true" src="PHA.NC.TPC" dst="FCA.NC.IPG"/>
+					<connection type="neocortex-neocortex" primary="true" src="PHA.NC.TPC" dst="ACA.NC.BRA"/>
 				</circuit>
 			</area>
 
@@ -408,20 +475,23 @@
 					<region id="VBA.FD.PV.IPV" type="nucleus" service="LSM" role="relay"/>
 					<region id="VBA.FD.PV.LPV" type="nucleus" service="LSM" role="relay"/>
 					<region id="VBA.FD.PV.MPV" type="nucleus" service="LSM" role="relay"/>
-					<connection type="nucleus-neocortex" primary="true" src="VBA.FD.PV.IPV" dst="VCA.NC.IPL.MST"/>
-					<connection type="nucleus-neocortex" primary="true" src="VBA.FD.PV.LPV" dst="VCA.NC.V2"/>
 					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.V1" dst="VCA.NC.V2"/>
 					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.V1" dst="VCA.NC.MT"/>
 					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.V1" dst="CGA.NC.MPL.RSC"/>
+					<connection type="neocortex-nucleus" primary="true" src="VCA.NC.V1" dst="VBA.MM.SC.SUP"/>
+					<connection type="neocortex-nucleus" primary="true" src="VCA.NC.V1" dst="VBA.MM.PT.SL"/>
 					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.V2" dst="VCA.NC.V3"/>
 					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.V2" dst="VCA.NC.V4"/>
 					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.V2" dst="VCA.NC.MT"/>
 					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.V2" dst="VCA.NC.PO"/>
 					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.V2" dst="FCA.NC.LPFC"/>
+					<connection type="neocortex-nucleus" primary="true" src="VCA.NC.V2" dst="VBA.MM.SC.SUP"/>
 					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.V3" dst="VCA.NC.V4"/>
 					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.V3" dst="VCA.NC.MT"/>
 					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.V3" dst="VCA.NC.PO"/>
 					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.V3" dst="VCA.NC.IPS.PEF"/>
+					<connection type="neocortex-nucleus" primary="true" src="VCA.NC.V3" dst="HMA.MM.CJ"/>
+					<connection type="neocortex-nucleus" primary="true" src="VCA.NC.V3" dst="HMA.MM.RIMLF"/>
 					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.V4" dst="VCA.NC.MT"/>
 					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.V4" dst="VCA.NC.IT.TEO"/>
 					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.V4" dst="VCA.NC.IT.TE"/>
@@ -429,25 +499,35 @@
 					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.MT" dst="VCA.NC.IPL.MST"/>
 					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.MT" dst="VCA.NC.IPS.PEF"/>
 					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.MT" dst="SMA.NC.SPL.PG"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.MT" dst="ACA.NC.A4"/>
 					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.PO" dst="VCA.NC.IPS.VIP"/>
 					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.PO" dst="SMA.NC.SPL.PG"/>
 					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.PO" dst="VCA.NC.IPL.MST"/>
 					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.PO" dst="VCA.NC.IPS.PEF"/>
 					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IT.TEO" dst="VCA.NC.IT.TE"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IT.TEO" dst="VCA.NC.IPS.PEF"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IT.TEO" dst="PHA.NC.TPC"/>
 					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IT.TE" dst="PHA.NC.PH.ET"/>
 					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IT.TE" dst="MCA.NC.PMC.FEF"/>
+					<connection type="neocortex-nucleus" primary="true" src="VCA.NC.IT.TE" dst="HMA.HP.PRF.RPO"/>
 					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IPS.VIP" dst="SMA.NC.SPL.PG"/>
 					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IPS.VIP" dst="ACA.NC.IPL.SMW"/>
-					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IPS.PEF" dst="SMA.NC.SPL.PG"/>
-					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IPL.MST" dst="SMA.NC.SPL.PG"/>
-					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IPL.MST" dst="ACA.NC.IPL.SMW"/>
 					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IPS.VIP" dst="CGA.NC.SPL.PF"/>
-					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IPS.PEF" dst="VCA.NC.IPS.AIP"/>
-					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IPL.MST" dst="MCA.NC.PMC.F4"/>
-					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IPL.MST" dst="FCA.NC.LPFC"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IPS.PEF" dst="SMA.NC.SPL.PG"/>
 					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IPS.PEF" dst="MCA.NC.PMC.FEF"/>
 					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IPS.PEF" dst="FCA.NC.LPFC"/>
 					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IPS.PEF" dst="CGA.NC.MPL.PCG"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IPS.PEF" dst="VCA.NC.IPS.AIP"/>
+					<connection type="neocortex-nucleus" primary="true" src="VCA.NC.IPS.PEF" dst="MBA.MM.SC.DEEP"/>
+					<connection type="neocortex-nucleus" primary="true" src="VCA.NC.IPS.PEF" dst="HMA.MM.CJ"/>
+					<connection type="neocortex-nucleus" primary="true" src="VCA.NC.IPS.PEF" dst="HMA.MM.RIMLF"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IPL.MST" dst="SMA.NC.SPL.PG"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IPL.MST" dst="ACA.NC.IPL.SMW"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IPL.MST" dst="MCA.NC.PMC.F4"/>
+					<connection type="neocortex-neocortex" primary="true" src="VCA.NC.IPL.MST" dst="FCA.NC.LPFC"/>
+					<connection type="neocortex-nucleus" primary="true" src="VCA.NC.IPL.MST" dst="VBA.MM.SC.SUP"/>
+					<connection type="nucleus-neocortex" primary="true" src="VBA.FD.PV.IPV" dst="VCA.NC.IPL.MST"/>
+					<connection type="nucleus-neocortex" primary="true" src="VBA.FD.PV.LPV" dst="VCA.NC.V2"/>
 				</circuit>
 
 				<circuit id="NSA" name="Neocortical Audition Aggregation" enabled="true">
@@ -458,6 +538,26 @@
 					<region id="ACA.NC.IPL.SMW" type="neocortex" role="processor"/>
 					<region id="ACA.NC.BRA" type="neocortex" role="processor"/>
 					<region id="ACA.NC.PRI" type="neocortex" role="processor"/>
+					<connection type="neocortex-neocortex" primary="true" src="ACA.NC.A1" dst="ACA.NC.A2"/>
+					<connection type="neocortex-neocortex" primary="true" src="ACA.NC.A1" dst="ACA.NC.A4"/>
+					<connection type="neocortex-neocortex" primary="true" src="ACA.NC.A1" dst="ACA.NC.IPL.SMW"/>
+					<connection type="neocortex-neocortex" primary="true" src="ACA.NC.A1" dst="ACA.NC.A3"/>
+					<connection type="neocortex-neocortex" primary="true" src="ACA.NC.A1" dst="MCA.NC.PMC.F7"/>
+					<connection type="neocortex-neocortex" primary="true" src="ACA.NC.A2" dst="ACA.NC.A4"/>
+					<connection type="neocortex-neocortex" primary="true" src="ACA.NC.A2" dst="CGA.NC.DACG"/>
+					<connection type="neocortex-neocortex" primary="true" src="ACA.NC.A3" dst="ACA.NC.BRA"/>
+					<connection type="neocortex-neocortex" primary="true" src="ACA.NC.A3" dst="MCA.NC.PMC.F4"/>
+					<connection type="neocortex-neocortex" primary="true" src="ACA.NC.A3" dst="PHA.NC.TPC"/>
+					<connection type="neocortex-neocortex" primary="true" src="ACA.NC.A3" dst="ACA.NC.IPL.SMW"/>
+					<connection type="neocortex-neocortex" primary="true" src="ACA.NC.A4" dst="ACA.NC.A3"/>
+					<connection type="neocortex-neocortex" primary="true" src="ACA.NC.A4" dst="ACA.NC.IPL.SMW"/>
+					<connection type="neocortex-neocortex" primary="true" src="ACA.NC.A4" dst="ACA.NC.BRA"/>
+					<connection type="neocortex-neocortex" primary="true" src="ACA.NC.A4" dst="MCA.NC.PMC.F4"/>
+					<connection type="neocortex-neocortex" primary="true" src="ACA.NC.BRA" dst="ACA.NC.IPL.SMW"/>
+					<connection type="neocortex-neocortex" primary="true" src="ACA.NC.BRA" dst="MCA.NC.PMC.FEF"/>
+					<connection type="neocortex-neocortex" primary="true" src="ACA.NC.IPL.SMW" dst="MCA.NC.PMC.F4"/>
+					<connection type="neocortex-neocortex" primary="true" src="ACA.NC.IPL.SMW" dst="MCA.NC.PMC.F2"/>
+					<connection type="neocortex-neocortex" primary="true" src="ACA.NC.PRI" dst="ACA.NC.IPL.SMW"/>
 				</circuit>
 			</area>
 
@@ -474,6 +574,8 @@
 					<region id="SMA.NC.SPL.PG" type="neocortex" role="processor"/>
 					<region id="SMA.FD.TH.LP" type="nucleus" role="processor"/>
 					<connection type="neocortex-neocortex" primary="true" src="SMA.NC.SPL.PG" dst="MCA.NC.PMC.F2"/>
+					<connection type="neocortex-nucleus" primary="true" src="SMA.NC.PG.S1" dst="HMA.HM.TGM.PA5"/>
+					<connection type="neocortex-neocortex" primary="true" src="SMA.NC.SPL.PG" dst="CGA.NC.MPL.RSC"/>
 				</circuit>
 			</area>
 
@@ -498,6 +600,10 @@
 					<connection type="neocortex-neocortex" primary="true" src="MCA.NC.SMC" dst="MCA.NC.PMC.F2"/>
 					<connection type="neocortex-neocortex" primary="true" src="MCA.NC.PMC.F5" dst="MCA.NC.MC"/>
 					<connection type="neocortex-neocortex" primary="true" src="MCA.NC.PMC.F2" dst="MCA.NC.MC"/>
+					<connection type="neocortex-nucleus" primary="true" src="MCA.NC.MC" dst="HMA.HP.PRF.PDT"/>
+					<connection type="neocortex-nucleus" primary="true" src="MCA.NC.SMC" dst="VBA.MM.RP.RIP"/>
+					<connection type="neocortex-nucleus" primary="true" src="MCA.NC.PMC.FEF" dst="BMA.MM.DSCH"/>
+					<connection type="neocortex-neocortex" primary="true" src="MCA.NC.PMC.FEF" dst="MCA.NC.PMC.F5"/>
 				</circuit>
 			</area>
 
@@ -521,6 +627,8 @@
 					<connection type="neocortex-neocortex" primary="true" src="FCA.NC.LPFC" dst="MCA.NC.PMC.F5"/>
 					<connection type="neocortex-neocortex" primary="true" src="FCA.NC.LPFC" dst="MCA.NC.SMC"/>
 					<connection type="nucleus-neocortex" primary="true" src="FCA.FD.TH.MD" dst="MCA.NC.PMC.FEF"/>
+					<connection type="neocortex-allocortex" primary="true" src="CGA.NC.MPL.RSC" dst="HBA.FT.SC.SUB"/>
+					<connection type="neocortex-neocortex" primary="true" src="CGA.NC.MPL.PCG" dst="VCA.NC.IPS.PEF"/>
 				</circuit>
 			</area>
 
