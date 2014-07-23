@@ -4,48 +4,78 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-WikiTractsPage::WikiTractsPage( WikiMaker *p_wm ) {
+WikiTractsPages::WikiTractsPages( WikiMaker *p_wm ) {
 	attachLogger();
 	wm = p_wm;
 }
 
-WikiTractsPage::~WikiTractsPage() {
+WikiTractsPages::~WikiTractsPages() {
 }
 
-void WikiTractsPage::execute() {
-	bool createMainPage = wm -> wiki.getBooleanProperty( "createMainPages" , false );
+void WikiTractsPages::execute() {
+	bool createMainPage = wm -> checkCreateMainPages();
 	if( createMainPage == false ) {
 		logger.logInfo( "skip creating tracts page" );
 		return;
 	}
 
 	createNeurons();
-	createTracts();
+	createTractsMain();
 }
 
-void WikiTractsPage::createTracts() {
-	String wikiDir = wm -> wiki.getProperty( "wikiPath" );
-	String wikiPage = wm -> wiki.getProperty( "wikiPageTracts" );
-	String sectionName = wm -> wiki.getProperty( "wikiTractsListSection" );
+void WikiTractsPages::createTractsMain() {
+	String wikiDir = wm -> getWikiPath();
+	String wikiPage = wm -> getMainTractPage();
+	String sectionName = wm -> getMainTractPageListSection();
 
 	// collect section lines
 	StringList lines;
 	XmlTracts *tm = wm -> hmindxml.getTracts();
 	MapStringToClass<XmlBrainTractSet>& tractsets = tm -> getTracts();
-	
+
 	createTracts_addTractTableLines( tractsets , lines );
 	wm -> updateFileSection( wikiDir , wikiPage , sectionName , lines );
 
 	lines.clear();
 	for( int k = 0; k < tractsets.count(); k++ ) {
 		XmlBrainTractSet& one = tractsets.getClassRefByIndex( k );
-		createTracts_addTractSetLines( one , lines );
+		createTracts_addTractSetLinks( one , lines );
 	}
 
 	wm -> updateFileSection( wikiDir , wikiPage , sectionName , lines );
 }
 
-void WikiTractsPage::createTracts_addTractTableLines( MapStringToClass<XmlBrainTractSet>& tractsets , StringList& lines ) {
+void WikiTractsPages::createTracts_addTractSetLinks( XmlBrainTractSet& ts , StringList& lines ) {
+	lines.add( "" );
+	lines.add("== " + ts.name + " ==" );
+	String indexValue = wm -> getTractPageLink( ts.id );
+	
+	lines.add( "TRACT SET: " + wm -> getWikiLink( indexValue , ts.name ) );      //ts.name gives the value from xml file
+	lines.add( "" );
+	for( int k = 0; k < ts.tracts.count(); k++ ) {
+		XmlBrainTract& tract = ts.tracts.getClassRefByIndex( k );
+		createTracts_addTractLinks( 0 , tract , lines );
+	}
+}
+
+void WikiTractsPages::createTracts_addTractLinks( int level , XmlBrainTract& tract , StringList& lines ) {
+	String sname = "TRACT";
+	if( !tract.index.isEmpty() )
+		sname += " " + tract.index ;
+
+	String s = String( " " ).replicate( level + 1 ) + "* " + wm -> getWikiLink( tract.link , sname ) + ": " + wm -> getWikiBold( tract.name );
+	if( !tract.synonyms.isEmpty() )
+		s += " (" + tract.synonyms + ")";
+
+	s += " - " + tract.brief;
+	lines.add( s );
+	for( int k = 0; k < tract.childs.count(); k++ ) {
+		XmlBrainTract& child = tract.childs.getClassRefByIndex( k );
+		createTracts_addTractLinks( level + 1 , child , lines );
+	}
+}
+
+void WikiTractsPages::createTracts_addTractTableLines( MapStringToClass<XmlBrainTractSet>& tractsets , StringList& lines ) {
 	lines.add( "*Tracts overview*:" );
 	lines.add( "|| *Tract* || *Name* || *Function* ||" );
 	for( int k = 0; k < tractsets.count(); k++ ) {
@@ -54,7 +84,7 @@ void WikiTractsPage::createTracts_addTractTableLines( MapStringToClass<XmlBrainT
 	}
 }
 
-void WikiTractsPage::createTracts_addTractSetTableLines( XmlBrainTractSet& ts , StringList& lines ) {
+void WikiTractsPages::createTracts_addTractSetTableLines( XmlBrainTractSet& ts , StringList& lines ) {
 	lines.add( "|| *" + ts.name + "* || || ||" );
 	for( int k = 0; k < ts.tracts.count(); k++ ) {
 		XmlBrainTract& tract = ts.tracts.getClassRefByIndex( k );
@@ -62,7 +92,7 @@ void WikiTractsPage::createTracts_addTractSetTableLines( XmlBrainTractSet& ts , 
 	}
 }
 
-void WikiTractsPage::createTracts_addTractTableLines( int level , XmlBrainTract& tract , StringList& lines ) {
+void WikiTractsPages::createTracts_addTractTableLines( int level , XmlBrainTract& tract , StringList& lines ) {
 	String tname = tract.name;
 	if( tract.childs.count() > 0 )
 		tname = "*" + tname + "*";
@@ -76,7 +106,7 @@ void WikiTractsPage::createTracts_addTractTableLines( int level , XmlBrainTract&
 	}
 }
 
-void WikiTractsPage::createTracts_addTractSetLines( XmlBrainTractSet& ts , StringList& lines ) {
+void WikiTractsPages::createTracts_addTractSetLines( XmlBrainTractSet& ts , StringList& lines ) {
 	lines.add( "TRACT SET: *" + ts.name + "*" );
 	lines.add( "" );
 	String s = wm -> getImageWikiLink( ts.imgsrc , ts.imgheight );
@@ -89,7 +119,7 @@ void WikiTractsPage::createTracts_addTractSetLines( XmlBrainTractSet& ts , Strin
 	}
 }
 
-void WikiTractsPage::createTracts_addTractLines( int level , XmlBrainTract& tract , StringList& lines ) {
+void WikiTractsPages::createTracts_addTractLines( int level , XmlBrainTract& tract , StringList& lines ) {
 	// tract info
 	String sname = "TRACT";
 	if( !tract.index.isEmpty() )
@@ -123,7 +153,7 @@ void WikiTractsPage::createTracts_addTractLines( int level , XmlBrainTract& trac
 	}
 }
 
-void WikiTractsPage::createTracts_addTractPathLines( int level , XmlBrainTractPath& path , StringList& lines ) {
+void WikiTractsPages::createTracts_addTractPathLines( int level , XmlBrainTractPath& path , StringList& lines ) {
 	String s = String( " " ).replicate( level + 1 ) + "* path *" + path.id + "*: " + path.function + " (" + path.pathway + ")" + 
 		"; FIBERS={" + path.fibers.combine("; ") + "}" + 
 		", ENDINGS={" + path.endings.combine(",") + "}: ";
@@ -142,10 +172,10 @@ void WikiTractsPage::createTracts_addTractPathLines( int level , XmlBrainTractPa
 	}
 }
 
-void WikiTractsPage::createNeurons() {
-	String wikiDir = wm -> wiki.getProperty( "wikiPath" );
-	String wikiPage = wm -> wiki.getProperty( "wikiPageTracts" );
-	String sectionName = wm -> wiki.getProperty( "wikiTractsNeuronsSection" );
+void WikiTractsPages::createNeurons() {
+	String wikiDir = wm -> getWikiPath();
+	String wikiPage = wm -> getMainTractPage();
+	String sectionName = wm -> getMainTractPageNeuronsSection();
 
 	// collect section lines
 	StringList lines;
@@ -165,7 +195,7 @@ void WikiTractsPage::createNeurons() {
 	wm -> updateFileSection( wikiDir , wikiPage , sectionName , lines );
 }
 
-void WikiTractsPage::createNeurons_addEndings( XmlBrainEndingSet& set , StringList& lines ) {
+void WikiTractsPages::createNeurons_addEndings( XmlBrainEndingSet& set , StringList& lines ) {
 	lines.add( "*" + set.name + "*:" );
 	lines.add( "" );
 	String s = wm -> getImageWikiLink( set.imgsrc , set.imgheight );
@@ -178,7 +208,7 @@ void WikiTractsPage::createNeurons_addEndings( XmlBrainEndingSet& set , StringLi
 	lines.add( "" );
 }
 
-void WikiTractsPage::createNeurons_addEndingItem( int level , XmlBrainEnding& ending , StringList& lines ) {
+void WikiTractsPages::createNeurons_addEndingItem( int level , XmlBrainEnding& ending , StringList& lines ) {
 	String s = String( " " ).replicate( level + 1 ) + "* *" + ending.name + "*";
 	if( !ending.id.isEmpty() )
 		s += " (" + ending.id + ")";
@@ -209,14 +239,14 @@ void WikiTractsPage::createNeurons_addEndingItem( int level , XmlBrainEnding& en
 		createNeurons_addEndingItem( level + 1 , ending.childs.getClassRefByIndex( k ) , lines );
 }
 
-void WikiTractsPage::createNeurons_addFibers( int level , MapStringToClass<XmlBrainFiber>& fibers , StringList& lines ) {
+void WikiTractsPages::createNeurons_addFibers( int level , MapStringToClass<XmlBrainFiber>& fibers , StringList& lines ) {
 	for( int k = 0; k < fibers.count(); k++ ) {
 		XmlBrainFiber& fiber = fibers.getClassRefByIndex( k );
 		createNeurons_addFiberInfo( level , fiber , lines );
 	}
 }
 
-void WikiTractsPage::createNeurons_addFiberInfo( int level , XmlBrainFiber& fiber , StringList& lines ) {
+void WikiTractsPages::createNeurons_addFiberInfo( int level , XmlBrainFiber& fiber , StringList& lines ) {
 	String s = String( " " ).replicate( level + 1 ) + "* *" + fiber.id + "*";
 	if( !fiber.name.isEmpty() )
 		s += " - " + fiber.name;

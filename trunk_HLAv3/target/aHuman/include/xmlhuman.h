@@ -470,6 +470,7 @@ public:
 public:
 	XmlTracts& sc;
 
+	String id;
 	String name;
 	String imgsrc;
 	String imgheight;

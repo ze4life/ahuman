@@ -13,20 +13,20 @@ WikiAreaPages::~WikiAreaPages() {
 }
 
 void WikiAreaPages::execute() {
-	bool createAreaPages = wm -> wiki.getBooleanProperty( "createAreaPages" , true );
+	bool createAreaPages = wm -> checkCreateAreaPages();
 	if( createAreaPages == false ) {
 		logger.logInfo( "skip creating area pages" );
 		return;
 	}
 
 	// get wiki file
-	String wikiDir = wm -> wiki.getProperty( "wikiPath" );
-	String selectedArea = wm -> wiki.getProperty( "selectedArea" , "" );
+	String wikiDir = wm -> getWikiPath();
+	String selectedArea = wm -> getSelectedArea();
 
 	MindService *ms = MindService::getService();
 
 	// by area
-	bool createRegionPages = wm -> wiki.getBooleanProperty( "createRegionPages" , true );
+	bool createRegionPages = wm -> checkCreateRegionPages();
 	MapStringToClass<MindArea>& areaMap = ms -> getMindAreas();
 	for( int k = 0; k < areaMap.count(); k++ ) {
 		MindArea *area = areaMap.getClassByIndex( k );
@@ -66,7 +66,7 @@ void WikiAreaPages::createAreaPages_createRegionTableSection( String wikiDir , M
 }
 
 void WikiAreaPages::createAreaPages_createRegionTableService( MindServiceDef *service , StringList& lines ) {
-	String s = "|| *" + service -> getServiceId() + "* || <font color=\"red\">" + service -> getServiceName() + "</font> || || ||";
+	String s = "|| *" + service -> getServiceId() + "* || <font color=\"red\">" + service -> getServiceName() + "</font> || || || ||";
 	lines.add( s );
 
 	MapStringToClass<MindRegionDef>& regionMap = service -> getRegions();
@@ -266,7 +266,7 @@ void WikiAreaPages::createAreaPages_getInternalConnectionTableLine( MindArea *ar
 		line = "*Internal Region Connections:*";
 		lines.add( line );
 		lines.add( "" );
-		String dotImageWikiPath = wm -> wiki.getProperty( "imageWikiPath" );
+		String dotImageWikiPath = wm -> getWikiImagePath();
 		line = dotImageWikiPath + "/" + area -> getAreaId() + ".dot.jpg";
 		lines.add( line );
 		lines.add( "" );
@@ -447,7 +447,7 @@ void WikiAreaPages::createAreaPages_createRegionPages( String wikiDir , MindArea
 
 void WikiAreaPages::createDotFile( MindArea *area , MapStringToClass<MindRegionLink>& internals , MapStringToClass<MindRegionLink>& inputs , MapStringToClass<MindRegionLink>& outputs ) {
 	// create dot file
-	String dotDir = wm -> wiki.getProperty( "dotPath" );
+	String dotDir = wm -> getWikiDotPath();
 	String fileName = dotDir + "/" + area -> getAreaId() + ".dot";
 	StringList text;
 
@@ -455,7 +455,7 @@ void WikiAreaPages::createDotFile( MindArea *area , MapStringToClass<MindRegionL
 	text.add( "digraph \"" + area -> getAreaId() + "\" {" );
 	text.add( "\tconcentrate=true;" );
 	text.add( "\tcompound=true;" );
-	String defaultDotSetup = wm -> wiki.getProperty( "defaultDotSetup" );
+	String defaultDotSetup = wm -> getDefaultDotSetup();
 	text.add( wm -> setSpecialCharacters( defaultDotSetup ) );
 	text.add( "" );
 

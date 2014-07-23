@@ -13,15 +13,15 @@ WikiMuscleMainPage::~WikiMuscleMainPage() {
 }
 
 void WikiMuscleMainPage::execute() {
-	bool createMainPage = wm -> wiki.getBooleanProperty( "createMusclePages" , true );
+	bool createMainPage = wm -> checkCreateMusclePages();
 	if( createMainPage == false ) {
 		logger.logInfo( "skip creating muscle main page" );
 		return;
 	}
 
-	String wikiDir = wm -> wiki.getProperty( "wikiPath" );
-	String wikiPage = wm -> wiki.getProperty( "wikiPageMuscleMain" );
-	String sectionName = wm -> wiki.getProperty( "wikiPageMuscleMainSection" );
+	String wikiDir = wm -> getWikiPath();
+	String wikiPage = wm -> getMainMusclePage();
+	String sectionName = wm -> getMainMusclePageListSection();
 
 	// get nerves from pns
 	StringList categories;

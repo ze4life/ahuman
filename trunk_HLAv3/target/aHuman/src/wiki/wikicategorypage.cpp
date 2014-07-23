@@ -12,14 +12,13 @@ WikiCategoryPage::WikiCategoryPage( WikiMaker *p_wm ) {
 WikiCategoryPage::~WikiCategoryPage() {
 }
 
-void WikiCategoryPage::execute( String category , String settingPage ) {
-	bool createMainPage = wm -> wiki.getBooleanProperty( "createMainPages" , false );
+void WikiCategoryPage::execute( String category , String wikiPage ) {
+	bool createMainPage = wm -> checkCreateMainPages();
 	if( createMainPage == false ) {
 		logger.logInfo( "skip creating category page" );
 		return;
 	}
 
-	String wikiPage = wm -> wiki.getProperty( settingPage );
 	XmlBrainCategory *braincategory = wm -> hmindxml.getCategory( category );
 
 	createRegions( braincategory , wikiPage );
@@ -27,8 +26,8 @@ void WikiCategoryPage::execute( String category , String settingPage ) {
 }
 
 void WikiCategoryPage::createRegions( XmlBrainCategory *braincategory , String wikiPage ) {
-	String wikiDir = wm -> wiki.getProperty( "wikiPath" );
-	String sectionName = wm -> wiki.getProperty( "wikiCategoryRegionSection" );
+	String wikiDir = wm -> getWikiPath();
+	String sectionName = wm -> getCategoryPageRegionSection();
 
 	// collect section lines
 	StringList lines;
@@ -144,10 +143,10 @@ void WikiCategoryPage::createConnectivity( XmlBrainCategory *braincategory , Str
 	}
 
 	// output to sections
-	createConnectivity_fillSection( wikiPage , "wikiCategorySensoryLinkSection" , sensoryNuclei );
-	createConnectivity_fillSection( wikiPage , "wikiCategoryMotorLinkSection" , motorNuclei );
-	createConnectivity_fillSection( wikiPage , "wikiCategoryReciprocalLinkSection" , reciprocalNuclei );
-	createConnectivity_fillSection( wikiPage , "wikiCategoryGangliaLinkSection" , ganglia );
+	createConnectivity_fillSection( wikiPage , wm -> getCategoryPageSensoryLinkSection() , sensoryNuclei );
+	createConnectivity_fillSection( wikiPage , wm -> getCategoryPageMotorLinkSection() , motorNuclei );
+	createConnectivity_fillSection( wikiPage , wm -> getCategoryPageReciprocalLinkSection() , reciprocalNuclei );
+	createConnectivity_fillSection( wikiPage , wm -> getCategoryPageGangliaLinkSection() , ganglia );
 
 	sensoryNuclei.destroy();
 	motorNuclei.destroy();
@@ -155,8 +154,8 @@ void WikiCategoryPage::createConnectivity( XmlBrainCategory *braincategory , Str
 	ganglia.destroy();
 }
 
-void WikiCategoryPage::createConnectivity_fillSection( String wikiPage , String section , MapStringToClass<StringList>& nuclei ) {
-	String wikiDir = wm -> wiki.getProperty( "wikiPath" );
+void WikiCategoryPage::createConnectivity_fillSection( String wikiPage , String sectionName , MapStringToClass<StringList>& nuclei ) {
+	String wikiDir = wm -> getWikiPath();
 	
 	// extract subtree
 	MapStringToClass<XmlHMindElementInfo> subtree;
@@ -179,7 +178,6 @@ void WikiCategoryPage::createConnectivity_fillSection( String wikiPage , String 
 			createConnectivity_fillSectionTree( nuclei , 0 , divitem , subtree , lines );
 	}
 
-	String sectionName = wm -> wiki.getProperty( section );
 	wm -> updateFileSection( wikiDir , wikiPage , sectionName , lines );
 }
 
