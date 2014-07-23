@@ -17,7 +17,7 @@ class WikiMuscleMainPage;
 class WikiMuscleSpecPages;
 class WikiSpinalCordPage;
 class WikiCategoryPage;
-class WikiTractsPage;
+class WikiTractsPages;
 
 /*#########################################################################*/
 /*#########################################################################*/
@@ -40,6 +40,42 @@ public:
 	String findReference( String srcRegion , String dstRegion );
 	String getDotColor( String dotdef );
 
+	bool checkCreateMainPages();
+	bool checkCreateNervePages();
+	bool checkCreateMusclePages();
+	bool checkCreateOverallHierarchyPage();
+	bool checkCreateCircuitPages();
+	bool checkCreateRegionPages();
+	bool checkCreateAreaPages();
+
+	String getWikiPath();
+	String getWikiImagePath();
+	String getWikiDotPath();
+
+	String getDefaultDotSetup();
+	String getDefaultDotRegionSetup();
+
+	String getMainPage();
+	String getOverallHierarchyPage();
+	String getSpinalCordPage();
+	String getSpinalCordPageLayoutSection();
+	String getMainTractPage();
+	String getMainTractPageListSection();
+	String getMainTractPageNeuronsSection();
+	String getMainNervePage();
+	String getMainNervePageListSection();
+	String getMainMusclePage();
+	String getMainMusclePageListSection();
+
+	String getPeripheralPage();
+	String getCategoryPageRegionSection();
+	String getCategoryPageSensoryLinkSection();
+	String getCategoryPageMotorLinkSection();
+	String getCategoryPageReciprocalLinkSection();
+	String getCategoryPageGangliaLinkSection();
+
+	String getSelectedArea();
+
 	String getAreaPage( String area );
 	String getRegionPage( String region );
 	String getAreaReference( String area );
@@ -57,21 +93,20 @@ public:
 	void clearRepeats2( String& value1 , String& value2 );
 
 	String getNerveWikiPage( String nerve );
+	String getTractPageLink( String tractSetId );
 
 private:
 	void createMainPage();
 	void createCircuitPages();
 	void updateHierarchyPage();
 	void createAreaPages();
-	void createNerveMainPage();
-	void createNerveSpecPages();
-	void createMuscleMainPage();
-	void createMuscleSpecPages();
+	void createNervePages();
+	void createMusclePages();
 	void createSpinalCordPage();
 	void createPeripheralPage();
-	void createTractsPage();
+	void createTractsPages();
 
-public:
+private:
 	Xml wiki;
 	String saveRepeats1;
 	String saveRepeats2;
@@ -313,13 +348,13 @@ public:
 	virtual const char *getClass() { return "WikiCategoryPage"; };
 
 public:
-	void execute( String category , String settingPage );
+	void execute( String category , String wikiPage );
 
 private:
 	void createRegions( XmlBrainCategory *braincategory , String page );
 	void createConnectivity( XmlBrainCategory *braincategory , String page );
 	void createConnectivity_extractNuclei( MapStringToClass<XmlHMindElementInfo>& spinalitems , XmlBrainTractPath& path , MapStringToClass<StringList>& sensoryNuclei , MapStringToClass<StringList>& motorNuclei , MapStringToClass<StringList>& ganglia );
-	void createConnectivity_fillSection( String page , String section , MapStringToClass<StringList>& nuclei );
+	void createConnectivity_fillSection( String page , String sectionName , MapStringToClass<StringList>& nuclei );
 	void createConnectivity_fillSectionTree( MapStringToClass<StringList>& nuclei , int level , XmlHMindElementInfo& item , MapStringToClass<XmlHMindElementInfo>& subtree , StringList& lines );
 	void createConnectivity_addTract( MapStringToClass<StringList>& map , XmlHMindElementInfo& comp , XmlBrainTractPath& path );
 
@@ -349,11 +384,11 @@ private:
 /*#########################################################################*/
 /*#########################################################################*/
 
-class WikiTractsPage : public Object {
+class WikiTractsPages : public Object {
 public:
-	WikiTractsPage( WikiMaker *wm );
-	virtual ~WikiTractsPage();
-	virtual const char *getClass() { return "WikiTractsPage"; };
+	WikiTractsPages( WikiMaker *wm );
+	virtual ~WikiTractsPages();
+	virtual const char *getClass() { return "WikiTractsPages"; };
 
 public:
 	void execute();
@@ -365,7 +400,10 @@ private:
 	void createNeurons_addFibers( int level , MapStringToClass<XmlBrainFiber>& fibers , StringList& lines );
 	void createNeurons_addFiberInfo( int level , XmlBrainFiber& fiber , StringList& lines );
 
-	void createTracts();
+	void createTractsMain();
+	void createTracts_addTractSetLinks( XmlBrainTractSet& ts , StringList& lines );
+	void createTracts_addTractLinks( int level , XmlBrainTract& tract , StringList& lines );
+
 	void createTracts_addTractTableLines( MapStringToClass<XmlBrainTractSet>& tractsets , StringList& lines );
 	void createTracts_addTractSetTableLines( XmlBrainTractSet& ts , StringList& lines );
 	void createTracts_addTractTableLines( int level , XmlBrainTract& tract , StringList& lines );

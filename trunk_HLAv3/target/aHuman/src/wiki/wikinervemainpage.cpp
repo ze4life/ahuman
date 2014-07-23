@@ -13,15 +13,15 @@ WikiNerveMainPage::~WikiNerveMainPage() {
 }
 
 void WikiNerveMainPage::execute() {
-	bool createMainPage = wm -> wiki.getBooleanProperty( "createNervePages" , true );
+	bool createMainPage = wm -> checkCreateNervePages();
 	if( createMainPage == false ) {
 		logger.logInfo( "skip creating nerve main page" );
 		return;
 	}
 
-	String wikiDir = wm -> wiki.getProperty( "wikiPath" );
-	String wikiPage = wm -> wiki.getProperty( "wikiPageNerveMain" );
-	String sectionName = wm -> wiki.getProperty( "wikiPageNerveMainSection" );
+	String wikiDir = wm -> getWikiPath();
+	String wikiPage = wm -> getMainNervePage();
+	String sectionName = wm -> getMainNervePageListSection();
 
 	// get nerves from pns
 	ClassList<XmlNerveInfo>& divs = wm -> nervesxml.getDivisions();

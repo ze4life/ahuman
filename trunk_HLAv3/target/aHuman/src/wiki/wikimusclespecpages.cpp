@@ -13,7 +13,7 @@ WikiMuscleSpecPages::~WikiMuscleSpecPages() {
 }
 
 void WikiMuscleSpecPages::execute() {
-	bool createMainPage = wm -> wiki.getBooleanProperty( "createMusclePages" , true );
+	bool createMainPage = wm -> checkCreateMusclePages();
 	if( createMainPage == false ) {
 		logger.logInfo( "skip creating muscle spec pages" );
 		return;
@@ -35,7 +35,7 @@ void WikiMuscleSpecPages::addMuscleDivision( XmlMuscleDivision& div ) {
 	for( int k = 0; k < div.childs.count(); k++ )
 		addMuscleList( 0 , div.childs.getClassRefByIndex( k ) , lines );
 
-	String wikiDir = wm -> wiki.getProperty( "wikiPath" );
+	String wikiDir = wm -> getWikiPath();
 	wm -> updateFileSection( wikiDir , divPage , divSection , lines );
 }
 

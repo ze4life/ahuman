@@ -23,12 +23,10 @@ void WikiMaker::createPages() {
 	createCircuitPages();
 	updateHierarchyPage();
 	createAreaPages();
-	createNerveMainPage();
-	createNerveSpecPages();
-	createMuscleMainPage();
-	createMuscleSpecPages();
+	createNervePages();
+	createMusclePages();
 	createSpinalCordPage();
-	createTractsPage();
+	createTractsPages();
 	createPeripheralPage();
 }
 
@@ -37,14 +35,14 @@ void WikiMaker::createSpinalCordPage() {
 	maker.execute();
 }
 
-void WikiMaker::createTractsPage() {
-	WikiTractsPage maker( this );
+void WikiMaker::createTractsPages() {
+	WikiTractsPages maker( this );
 	maker.execute();
 }
 
 void WikiMaker::createPeripheralPage() {
 	WikiCategoryPage maker( this );
-	maker.execute( "peripheral" , "wikiPagePeripheral" );
+	maker.execute( "peripheral" , getPeripheralPage() );
 }
 
 void WikiMaker::createMainPage() {
@@ -67,24 +65,20 @@ void WikiMaker::createAreaPages() {
 	maker.execute();
 }
 
-void WikiMaker::createNerveMainPage() {
-	WikiNerveMainPage maker( this );
-	maker.execute();
+void WikiMaker::createNervePages() {
+	WikiNerveMainPage maker1( this );
+	maker1.execute();
+
+	WikiNerveSpecPages maker2( this );
+	maker2.execute();
 }
 
-void WikiMaker::createMuscleMainPage() {
-	WikiMuscleMainPage maker( this );
-	maker.execute();
-}
+void WikiMaker::createMusclePages() {
+	WikiMuscleMainPage maker1( this );
+	maker1.execute();
 
-void WikiMaker::createNerveSpecPages() {
-	WikiNerveSpecPages maker( this );
-	maker.execute();
-}
-
-void WikiMaker::createMuscleSpecPages() {
-	WikiMuscleSpecPages maker( this );
-	maker.execute();
+	WikiMuscleSpecPages maker2( this );
+	maker2.execute();
 }
 
 /*#########################################################################*/
@@ -409,6 +403,10 @@ String WikiMaker::getNerveWikiPage( String nerve ) {
 	return( div.origin );
 }
 
+String WikiMaker::getTractPageLink( String location ) {
+	return( "MindTracts" + location );
+}
+
 String WikiMaker::getImageWikiLink( String imgsrc , String height ) {
 	String s = "<img src=\"" + imgsrc + "\"";
 	if( !height.isEmpty() )
@@ -426,5 +424,125 @@ String WikiMaker::getWikiLink( String link , String text ) {
 
 String WikiMaker::getWikiBold( String text ) {
 	return( "*" + text + "*" );
+}
+
+bool WikiMaker::checkCreateMainPages() {
+	return( wiki.getBooleanProperty( "createMainPages" , false ) );
+}
+
+bool WikiMaker::checkCreateNervePages() {
+	return( wiki.getBooleanProperty( "createNervePages" , true ) );
+}
+
+bool WikiMaker::checkCreateMusclePages() {
+	return( wiki.getBooleanProperty( "createMusclePages" , true ) );
+}
+
+bool WikiMaker::checkCreateOverallHierarchyPage() {
+	return( wiki.getBooleanProperty( "createPageHierarchy" , true ) );
+}
+
+bool WikiMaker::checkCreateCircuitPages() {
+	return( wiki.getBooleanProperty( "createCircuitPages" , true ) );
+}
+
+bool WikiMaker::checkCreateRegionPages() {
+	return( wiki.getBooleanProperty( "createRegionPages" , true ) );
+}
+
+bool WikiMaker::checkCreateAreaPages() {
+	return( wiki.getBooleanProperty( "createAreaPages" , true ) );
+}
+
+String WikiMaker::getWikiPath() {
+	return( wiki.getProperty( "wikiPath" ) );
+}
+
+String WikiMaker::getWikiImagePath() {
+	return( "http://ahuman.googlecode.com/svn/images/dot/aHuman" );
+}
+
+String WikiMaker::getWikiDotPath() {
+	return( wiki.getProperty( "dotPath" ) );
+}
+
+String WikiMaker::getDefaultDotSetup() {
+	return( "\\tnode [shape=box, style=filled, color=springgreen, fontsize=10];" );
+}
+
+String WikiMaker::getDefaultDotRegionSetup() {
+	return( "shape=box, style=bold, fontsize=10" );
+}
+
+String WikiMaker::getMainPage() {
+	return( "BiologicalLifeResearch" );
+}
+
+String WikiMaker::getOverallHierarchyPage() {
+	return( "OverallMindMaps" );
+}
+
+String WikiMaker::getSpinalCordPage() {
+	return( "SpinalCord" );
+}
+
+String WikiMaker::getSpinalCordPageLayoutSection() {
+	return( "SPINAL CORD LAMINAE AND LEVELS" );
+}
+
+String WikiMaker::getMainTractPage() {
+	return( "MindTracts" );
+}
+
+String WikiMaker::getMainTractPageListSection() {
+	return( "Tracts Hierarchy" );
+}
+
+String WikiMaker::getMainTractPageNeuronsSection() {
+	return( "Sensory and Motor Root Neurons" );
+}
+
+String WikiMaker::getMainNervePage() {
+	return( "HumanNerves" );
+}
+
+String WikiMaker::getMainNervePageListSection() {
+	return( "NERVES HIERARCHY" );
+}
+
+String WikiMaker::getMainMusclePage() {
+	return( "HumanMuscles" );
+}
+
+String WikiMaker::getMainMusclePageListSection() {
+	return( "MUSCLES HIERARCHY" );
+}
+
+String WikiMaker::getCategoryPageRegionSection() {
+	return( "INNER REGIONS" );
+}
+
+String WikiMaker::getCategoryPageSensoryLinkSection() {
+	return( "LINKED SENSORY REGIONS" );
+}
+
+String WikiMaker::getCategoryPageMotorLinkSection() {
+	return( "LINKED MOTOR REGIONS" );
+}
+
+String WikiMaker::getCategoryPageReciprocalLinkSection() {
+	return( "LINKED RECIPROCAL REGIONS" );
+}
+
+String WikiMaker::getCategoryPageGangliaLinkSection() {
+	return( "LINKED GANGLIA" );
+}
+
+String WikiMaker::getSelectedArea() {
+	return( wiki.getProperty( "selectedArea" , "" ) );
+}
+
+String WikiMaker::getPeripheralPage() {
+	return( "PeripheralBrain" );
 }
 

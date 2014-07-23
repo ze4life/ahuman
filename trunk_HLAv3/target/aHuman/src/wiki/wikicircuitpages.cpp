@@ -13,13 +13,13 @@ WikiCircuitPages::~WikiCircuitPages() {
 }
 
 void WikiCircuitPages::execute() {
-	bool createCircuitPages = wm -> wiki.getBooleanProperty( "createCircuitPages" , true );
+	bool createCircuitPages = wm -> checkCreateCircuitPages();
 	if( createCircuitPages == false ) {
 		logger.logInfo( "skip creating circuit pages" );
 		return;
 	}
 
-	String wikiDir = wm -> wiki.getProperty( "wikiPath" );
+	String wikiDir = wm -> getWikiPath();
 
 	// generate circuits
 	MindService *ms = MindService::getService();
@@ -156,20 +156,20 @@ void WikiCircuitPages::createCircuitPage_getNodesRow( MindCircuitDef *cd , MindR
 }
 
 void WikiCircuitPages::createCircuitPage_getDiagram( MindCircuitDef *cd , MapStringToClass<MindRegion>& nodes , MapStringToClass<MindCircuitConnectionDef>& links , StringList& lines ) {
-	String dotImageWikiPath = wm -> wiki.getProperty( "imageWikiPath" );
+	String dotImageWikiPath = wm -> getWikiImagePath();
 	String line = dotImageWikiPath + "/" + cd -> getId() + ".dot.jpg";
 	lines.add( line );
 	lines.add( "" );
 
 	// create dot file
-	String dotDir = wm -> wiki.getProperty( "dotPath" );
+	String dotDir = wm -> getWikiDotPath();
 	String fileName = dotDir + "/" + cd -> getId() + ".dot";
 	StringList text;
 
 	// header
 	text.add( "digraph \"" + cd -> getId() + "\" {" );
 	text.add( "\tconcentrate=true;" );
-	String defaultDotSetup = wm -> wiki.getProperty( "defaultDotSetup" );
+	String defaultDotSetup = wm -> getDefaultDotSetup();
 	text.add( wm -> setSpecialCharacters( defaultDotSetup ) );
 	text.add( "" );
 

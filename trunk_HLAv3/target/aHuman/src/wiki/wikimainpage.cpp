@@ -13,14 +13,14 @@ WikiMainPage::~WikiMainPage() {
 }
 
 void WikiMainPage::execute() {
-	bool createMainPage = wm -> wiki.getBooleanProperty( "createMainPages" , true );
+	bool createMainPage = wm -> checkCreateMainPages();
 	if( createMainPage == false ) {
 		logger.logInfo( "skip creating main page" );
 		return;
 	}
 
-	String wikiDir = wm -> wiki.getProperty( "wikiPath" );
-	String wikiPage = wm -> wiki.getProperty( "wikiPageMain" );
+	String wikiDir = wm -> getWikiPath();
+	String wikiPage = wm -> getMainPage();
 
 	// get sorted circuit list
 	MindService *ms = MindService::getService();

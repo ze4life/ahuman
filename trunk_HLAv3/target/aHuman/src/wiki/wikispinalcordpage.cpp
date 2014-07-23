@@ -13,7 +13,7 @@ WikiSpinalCordPage::~WikiSpinalCordPage() {
 }
 
 void WikiSpinalCordPage::execute() {
-	bool createMainPage = wm -> wiki.getBooleanProperty( "createMainPages" , false );
+	bool createMainPage = wm -> checkCreateMainPages();
 	if( createMainPage == false ) {
 		logger.logInfo( "skip creating spinal cord page" );
 		return;
@@ -23,9 +23,9 @@ void WikiSpinalCordPage::execute() {
 }
 
 void WikiSpinalCordPage::createLayout() {
-	String wikiDir = wm -> wiki.getProperty( "wikiPath" );
-	String wikiPage = wm -> wiki.getProperty( "wikiPageSpinalCord" );
-	String sectionName = wm -> wiki.getProperty( "wikiSpinalCordLayoutSection" );
+	String wikiDir = wm -> getWikiPath();
+	String wikiPage = wm -> getSpinalCordPage();
+	String sectionName = wm -> getSpinalCordPageLayoutSection();
 
 	// collect section lines
 	StringList lines;

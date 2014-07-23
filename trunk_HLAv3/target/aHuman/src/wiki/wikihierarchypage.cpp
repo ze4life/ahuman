@@ -13,15 +13,15 @@ WikiHierarchyPage::~WikiHierarchyPage() {
 }
 
 void WikiHierarchyPage::execute() {
-	bool createPageHierarchy = wm -> wiki.getBooleanProperty( "createPageHierarchy" , true );
+	bool createPageHierarchy = wm -> checkCreateOverallHierarchyPage();
 	if( createPageHierarchy == false ) {
 		logger.logInfo( "skip creating hierarchy page" );
 		return;
 	}
 
 	// get wiki file
-	String wikiDir = wm -> wiki.getProperty( "wikiPath" );
-	String wikiPage = wm -> wiki.getProperty( "wikiPageHierarchy" );
+	String wikiDir = wm -> getWikiPath();
+	String wikiPage = wm -> getOverallHierarchyPage();
 
 	// create hierarchy section
 	StringList divisions;

@@ -13,6 +13,7 @@ XmlBrainTractSet::~XmlBrainTractSet() {
 }
 
 void XmlBrainTractSet::load( Xml xml ) {
+	id = xml.getAttribute( "id" );
 	name = xml.getAttribute( "name" );
 	imgsrc = xml.getAttribute( "imgsrc" , "" );
 	imgheight = xml.getAttribute( "imgheight" , "" );

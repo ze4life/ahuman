@@ -13,7 +13,7 @@ WikiNerveSpecPages::~WikiNerveSpecPages() {
 }
 
 void WikiNerveSpecPages::execute() {
-	bool createMainPage = wm -> wiki.getBooleanProperty( "createNervePages" , true );
+	bool createMainPage = wm -> checkCreateNervePages();
 	if( createMainPage == false ) {
 		logger.logInfo( "skip creating nerve spec pages" );
 		return;
@@ -44,7 +44,7 @@ void WikiNerveSpecPages::addNerveDivision( XmlNerveInfo& div ) {
 	for( int k = 0; k < div.childs.count(); k++ )
 		addNerveList( 0 , div.childs.getClassRefByIndex( k ) , lines );
 
-	String wikiDir = wm -> wiki.getProperty( "wikiPath" );
+	String wikiDir = wm -> getWikiPath();
 	wm -> updateFileSection( wikiDir , divPage , divSection , lines );
 }
 

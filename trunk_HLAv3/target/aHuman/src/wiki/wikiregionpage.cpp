@@ -204,7 +204,7 @@ void WikiRegionPage::createConnectivitySection() {
 
 	// image
 	lines.add( "" );
-	String dotImageWikiPath = wm -> wiki.getProperty( "imageWikiPath" );
+	String dotImageWikiPath = wm -> getWikiImagePath();
 	String line = dotImageWikiPath + "/" + info.id + ".dot.jpg";
 	lines.add( line );
 
@@ -412,19 +412,19 @@ void WikiRegionPage::createThirdpartyAndReferencesSection_getCircuitLines( XmlCi
 }
 
 void WikiRegionPage::createDotFile( MapStringToClass<MindRegion>& regions , MapStringToClass<MindRegionLink>& connectionsTotal ) {
-	String dotDir = wm -> wiki.getProperty( "dotPath" );
+	String dotDir = wm -> getWikiDotPath();
 	String fileName = dotDir + "/" + info.id + ".dot";
 	StringList text;
 
 	// header
 	text.add( "digraph \"" + info.id.replace( "." , "_" ) + "\" {" );
-	String defaultDotSetup = wm -> wiki.getProperty( "defaultDotSetup" );
+	String defaultDotSetup = wm -> getDefaultDotSetup();
 	text.add( wm -> setSpecialCharacters( defaultDotSetup ) );
 	text.add( "\trankdir=LR;" );
 	text.add( "" );
 
 	// main item
-	String defaultDotRegionSetup = wm -> wiki.getProperty( "defaultDotRegionSetup" );
+	String defaultDotRegionSetup = wm -> getDefaultDotRegionSetup();
 	text.add( "\t\"" + info.id + "\" [" + wm -> setSpecialCharacters( defaultDotRegionSetup ) + "];" );
 	text.add( "" );
 
