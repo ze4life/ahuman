@@ -1,43 +1,5 @@
 <circuit-set>
 
-	<!-- ================= subcortical auditory and vestibular stream processing =============== -->
-	<circuit id="CircuitAuditionNuclei" name="Audition Perception in Subcortical Nuclei" enabled="true">
-		<connection type="ganglion-nucleus" primary="true" src="ABA.PN.SG.SP" dst="ABA.HM.COCH"/>
-		<connection type="nucleus-nucleus" primary="true" src="ABA.HM.COCH" dst="ABA.MM.SOC"/>
-		<connection type="nucleus-nucleus" primary="true" src="ABA.HM.COCH" dst="ABA.HP.PN.LL"/>
-		<connection type="nucleus-nucleus" primary="true" src="ABA.MM.SOC" dst="ABA.MM.IC"/>
-		<connection type="nucleus-nucleus" primary="true" src="ABA.MM.IC" dst="ABA.FD.TH.MGB"/>
-		<connection type="nucleus-neocortex" primary="true" src="ABA.FD.TH.MGB" dst="ACA.NC.A1"/>
-		<connection type="nucleus-nucleus" primary="true" src="ABA.HP.PN.LL" dst="ABA.MM.IC"/>
-		<connection type="nucleus-nucleus" primary="true" src="ABA.HM.COCH" dst="HMA.MM.CJ"/>
-		<connection type="neocortex-nucleus" primary="true" src="ACA.NC.A1" dst="ABA.MM.IC"/>
-		<connection type="nucleus-neocortex" primary="true" src="ACA.FD.TH.SG" dst="ACA.NC.A1" notes="to HFR region"/>
-		<connection type="nucleus-nucleus" primary="true" src="ACA.FD.TH.SG" dst="BFA.FT.AM"/>
-		<connection type="nucleus-nucleus" primary="true" src="MBA.MM.SC.DEEP" dst="ABA.MM.IC"/>
-		<connection type="nucleus-nucleus" primary="true" src="BFA.FT.AM" dst="ABA.MM.IC"/>
-		<connection type="nucleus-neocortex" primary="true" src="BFA.FT.AM" dst="ACA.NC.A1"/>
-		<connection type="nucleus-nucleus" primary="true" src="ABA.MM.IC" dst="ABA.HP.PN.LL"/>
-		<connection type="nucleus-nucleus" primary="true" src="ABA.MM.IC" dst="ABA.MM.SOC"/>
-		<connection type="nucleus-nucleus" primary="true" src="ABA.MM.IC" dst="MBA.MM.SC.DEEP"/>
-		<connection type="nucleus-nucleus" primary="true" src="ABA.HP.PN.LL" dst="ABA.MM.SOC"/>
-		<connection type="nucleus-nucleus" primary="true" src="BGA.FT.SN.PC" dst="BMA.HP.PRF.PVR"/>
-		<connection type="neocortex-nucleus" primary="true" src="MCA.NC.MC" dst="HMA.HP.PRF.CRF"/>
-		<connection type="neocortex-nucleus" primary="true" src="MCA.NC.SMC" dst="HMA.HP.PRF.CRF"/>
-		<connection type="neocortex-nucleus" primary="true" src="ACA.NC.BRA" dst="HMA.HP.PRF.RPO"/>
-		<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PRF.CRF" dst="HMA.HP.FCM"/>
-		<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PRF.CRF" dst="HMA.HP.PTP.TRM"/>
-		<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PRF.CRF" dst="HMA.HM.AMB"/>
-		<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PRF.CRF" dst="HMA.HM.HYG"/>
-		<connection type="neocortex-nucleus" primary="true" src="CGA.NC.VACG" dst="HMA.HP.PRF.PDT"/>
-		<connection type="neocortex-nucleus" primary="true" src="MCA.NC.SMC" dst="HMA.HP.PRF.PDT"/>
-		<connection type="neocortex-nucleus" primary="true" src="ACA.NC.BRA" dst="HMA.HP.PRF.PDT"/>
-		<connection type="nucleus-nucleus" primary="true" src="ABA.MM.SOC" dst="ABA.HP.PN.LL"/>
-		<connection type="nucleus-nucleus" primary="true" src="ABA.HM.COCH" dst="ABA.MM.IC"/>
-		<connection type="nucleus-ganglion" primary="true" src="HMA.HP.FCM" dst="AVA.PN.SG.GNG"/>
-		<connection type="ganglion-nucleus" primary="true" src="AVA.PN.SG.JUG" dst="HMA.HM.TGM.STR"/>
-		<connection type="ganglion-nucleus" primary="true" src="ABA.PN.SG.SP" dst="BMA.HP.VBN"/>
-	</circuit>
-
 	<!-- ================= somatic perception =============== -->
 	<circuit id="CircuitSomaticPerception" name="Somatic Perception" enabled="true">
 		<connection type="ganglion-nucleus" primary="true" src="AVA.PN.SG.DRG" dst="BMA.SC.PH.NP"/>
