@@ -77,6 +77,9 @@ void MindMap::createAreaDefSet( Xml xml ) {
 
 		// add regions to map
 		createRegionMap( info );
+
+		// add circuits
+		mindLocalCircuitSet.add( info -> getCircuits() );
 	}
 }
 
@@ -184,7 +187,7 @@ void MindMap::createTargetMeta_defineCircuit( Xml xml , TargetAreaDef *areaDef ,
 		regionTypeMap.add( regionTypeInfo -> getName() , regionTypeInfo );
 
 		TargetCircuitDef *circuitInfo = regionTypeInfo -> getCircuitInfo();
-		mindCircuitMap.add( circuitInfo -> getName() , circuitInfo );
+		mindLocalCircuitSet.add( circuitInfo );
 
 		regionInfo -> setCircuitDef( circuitInfo );
 	}

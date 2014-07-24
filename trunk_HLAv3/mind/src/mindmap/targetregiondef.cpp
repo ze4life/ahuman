@@ -4,7 +4,8 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-TargetRegionDef::TargetRegionDef( TargetAreaDef *areaInfo ) : MindRegionDef( areaInfo ) {
+TargetRegionDef::TargetRegionDef( TargetAreaDef *p_areaInfo ) : MindRegionDef( areaInfo , NULL ) {
+	areaInfo = p_areaInfo;
 	circuitInfo = NULL;
 }
 
@@ -22,7 +23,7 @@ void TargetRegionDef::defineSensorRegion( Xml xml ) {
 
 	// region type for sensor is the same as region itself
 	TargetRegionTypeDef *regionTypeInfo = new TargetRegionTypeDef();
-	regionTypeInfo -> defineSensorRegionType( xml );
+	regionTypeInfo -> defineSensorRegionType( areaInfo , xml );
 	MindRegionDef::type = regionTypeInfo;
 	MindRegionDef::typeName = regionTypeInfo -> getName();
 }
@@ -36,7 +37,7 @@ void TargetRegionDef::defineEffectorRegion( Xml xml ) {
 
 	// region type for effector is the same as region itself
 	TargetRegionTypeDef *regionTypeInfo = new TargetRegionTypeDef();
-	regionTypeInfo -> defineEffectorRegionType( xml );
+	regionTypeInfo -> defineEffectorRegionType( areaInfo , xml );
 	MindRegionDef::type = regionTypeInfo;
 	MindRegionDef::typeName = regionTypeInfo -> getName();
 }

@@ -227,20 +227,20 @@ void MindService::setMindTarget( MindTarget *p_target ) {
 
 // mind links
 void MindService::establishAreaLinks() {
-	ClassList<MindCircuitDef>& circuits = mindMap -> getMindCircuits();
+	ClassList<MindLocalCircuitDef>& circuits = mindMap -> getMindLocalCircuits();
 	for( int k = 0; k < circuits.count(); k++ )
 		createCircuitLinks( circuits.get( k ) );
 }
 
-void MindService::createCircuitLinks( MindCircuitDef *circuitDef ) {
+void MindService::createCircuitLinks( MindLocalCircuitDef *circuitDef ) {
 	logger.logInfo( "createCircuitLinks: create cicuit id=" + circuitDef -> getId() );
 
-	ClassList<MindCircuitConnectionDef>& connections = circuitDef -> getConnections();
+	MapStringToClass<MindCircuitConnectionDef>& connections = circuitDef -> getConnections();
 	for( int k = 0; k < connections.count(); k++ )
-		createCircuitConnection( circuitDef , connections.get( k ) );
+		createCircuitConnection( circuitDef , connections.getClassByIndex( k ) );
 }
 
-void MindService::createCircuitConnection( MindCircuitDef *circuitDef , MindCircuitConnectionDef *connectionDef ) {
+void MindService::createCircuitConnection( MindLocalCircuitDef *circuitDef , MindCircuitConnectionDef *connectionDef ) {
 	// get/create area link
 	String srcRegionName = connectionDef -> getSrcRegion();
 	MindRegion *srcRegion = regionSet -> getSetItemById( srcRegionName );
