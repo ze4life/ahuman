@@ -18,13 +18,4 @@ void MindServiceDef::createFromXml( Xml xml ) {
 	Object::setInstance( serviceId );
 
 	serviceName = xml.getAttribute( "name" );
-
-	// read regions
-	for( Xml xmlChild = xml.getFirstChild( "region" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "region" ) ) {
-		// construct MindArea from attributes
-		MindRegionDef *region = new MindRegionDef( area );
-		region -> createFromXml( xmlChild );
-		regionMap.add( region -> getId() , region );
-		area -> addRegion( region );
-	}
 }

@@ -4,7 +4,7 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-MindCircuitConnectionDef::MindCircuitConnectionDef( MindCircuitDef *p_circuit ) {
+MindCircuitConnectionDef::MindCircuitConnectionDef( MindLocalCircuitDef *p_circuit ) {
 	attachLogger();
 
 	circuitDef = p_circuit;
@@ -19,6 +19,10 @@ void MindCircuitConnectionDef::createFromXml( Xml xml ) {
 	primary = xml.getBooleanAttribute( "primary" , false );
 	srcRegion = xml.getAttribute( "src" );
 	dstRegion = xml.getAttribute( "dst" );
+}
+
+String MindCircuitConnectionDef::getId() {
+	return( srcRegion + "-" + dstRegion );
 }
 
 void MindCircuitConnectionDef::resolveReferences( MindMap *map ) {

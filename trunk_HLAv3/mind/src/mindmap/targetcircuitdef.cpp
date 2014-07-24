@@ -4,7 +4,7 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-TargetCircuitDef::TargetCircuitDef() {
+TargetCircuitDef::TargetCircuitDef( MindAreaDef *areaDef ) : MindLocalCircuitDef( areaDef ) {
 }
 
 TargetCircuitDef::~TargetCircuitDef() {
@@ -16,15 +16,15 @@ void TargetCircuitDef::defineCircuit( bool p_isSensorOption , Xml xmlRegion ) {
 	actuatorId = xmlRegion.getAttribute( "id" );
 
 	// circuit data
-	MindCircuitDef::id = actuatorId + ".CIRCUIT";
-	MindCircuitDef::name = actuatorId  + " Circuit";
-	Object::setInstance( MindCircuitDef::id );
-	MindCircuitDef::enabled = true;
+	MindLocalCircuitDef::id = actuatorId + ".CIRCUIT";
+	MindLocalCircuitDef::name = actuatorId  + " Circuit";
+	Object::setInstance( MindLocalCircuitDef::id );
+	MindLocalCircuitDef::enabled = true;
 }
 
 void TargetCircuitDef::defineCircuitConnection( TargetRegionConnectorDef *regionConnection , Xml xml ) {
 	TargetCircuitConnectionDef *connectionInfo = new TargetCircuitConnectionDef( this );
 	connectionInfo -> defineCircuitConnectorDef( regionConnection , xml );
-	MindCircuitDef::connections.add( connectionInfo );
+	MindLocalCircuitDef::connections.add( connectionInfo -> getId() , connectionInfo );
 }
 

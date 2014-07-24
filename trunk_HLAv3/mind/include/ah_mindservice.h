@@ -31,6 +31,7 @@ class NeuroLink;
 class NeuroPool;
 class MindAreaDef;
 class MindCircuitDef;
+class MindLocalCircuitDef;
 class MindCircuitConnectionDef;
 class MindConnectionTypeDef;
 class MindConnectionLinkTypeDef;
@@ -61,7 +62,7 @@ public:
 	NeuroLink *createNeuroLink( String implementation , String type , NeuroLinkSource *src , NeuroLinkTarget *dst , NeuroLinkInfo *info );
 
 	void addArea( MindArea *area );
-	void createCircuitLinks( MindCircuitDef *circuitDef );
+	void createCircuitLinks( MindLocalCircuitDef *circuitDef );
 
 // whole mind lifecycle
 public:
@@ -85,7 +86,7 @@ private:
 	void createAreas();
 	void createArea( MindAreaDef *areaInfo );
 	void establishAreaLinks();
-	void createCircuitConnection( MindCircuitDef *circuitDef , MindCircuitConnectionDef *connectionDef );
+	void createCircuitConnection( MindLocalCircuitDef *circuitDef , MindCircuitConnectionDef *connectionDef );
 	void createRegionConnection( MindConnectionTypeDef *connectionType , MindRegion *srcRegion , MindRegion *dstRegion , bool primary );
 	NeuroLink *createNeuroLink( MindConnectionTypeDef *connectionType , MindConnectionLinkTypeDef *linkDef , MindRegion *srcRegion , MindRegion *dstRegion , bool primary );
 	MindRegionLink *createRegionLink( MindConnectionTypeDef *connectionType , MindRegion *srcRegion , MindRegion *dstRegion , bool primary );

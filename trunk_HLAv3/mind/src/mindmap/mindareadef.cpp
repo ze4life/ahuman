@@ -12,6 +12,8 @@ MindAreaDef::MindAreaDef() {
 MindAreaDef::~MindAreaDef() {
 	services.destroy();
 	regions.destroy();
+	circuits.destroy();
+	connections.destroy();
 };
 
 void MindAreaDef::createFromXml( Xml xml ) {
@@ -34,6 +36,15 @@ void MindAreaDef::createFromXml( Xml xml ) {
 		services.add( service );
 		serviceMap.add( service -> getServiceId() , service );
 	}
+
+	// read circuits
+	for( Xml xmlChild = xml.getFirstChild( "circuit" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "circuit" ) ) {
+		// construct MindArea from attributes
+		MindLocalCircuitDef *circuit = new MindLocalCircuitDef( this );
+		circuit -> createFromXml( xmlChild );
+		circuits.add( circuit );
+		circuitMap.add( circuit -> getId() , circuit );
+	}
 }
 
 void MindAreaDef::resolveReferences( MindMap *map ) {
@@ -48,4 +59,8 @@ MindRegionDef *MindAreaDef::findRegion( String region ) {
 void MindAreaDef::addRegion( MindRegionDef *region ) {
 	regions.add( region );
 	regionMap.add( region -> getId() , region );
+}
+
+void MindAreaDef::addConnection( MindCircuitConnectionDef *connection ) {
+	connections.add( connection );
 }

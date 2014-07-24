@@ -4,9 +4,10 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-MindRegionDef::MindRegionDef( MindAreaDef *p_area ) {
+MindRegionDef::MindRegionDef( MindAreaDef *p_area , MindLocalCircuitDef *p_circuit ) {
 	attachLogger();
 	area = p_area;
+	circuit = p_circuit;
 	role = MIND_REGION_ROLE_NONE;
 }
 
