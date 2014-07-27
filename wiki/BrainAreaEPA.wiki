@@ -8,21 +8,6 @@
 (generated)
 
 || *Component ID* || *Component Name* || *Type* || *Function* || *Comments* ||
-|| *TBD* || <font color="red">TBD</font> || || ||
-|| [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || Anterior Nucleus of Thalamus || nucleus || Extended hippocampal system || Projects to L4 of presubiculum and receives from<BR>postsubiculum, also to CG, RSP; spatial learning<BR>and memory; attentional processes; head direction ||
-|| [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || Lateral Dorsal Nucleus of Thalamus || nucleus || Head direction, spatial learning || From RSP L5,6 BA17,18, RT, LGN ||
-|| [BrainRegionCGA_FD_TH_SM CGA.FD.TH.SM] || Submedial Nucleus of Thalamus || nucleus || Pain center || Projections from SC Lamina I, trigeminal nucleus to<BR>ACC ||
-|| [BrainRegionCGA_NC_DACG CGA.NC.DACG] || Dorsal Anterior Cingulate Area || cortex, BA 32 || Rational Thought Processes || Anticipate and detect targets, indicate novelty,<BR>influence motor responses, encode reward values,<BR>and signal errors, motor, attentional and cognitive<BR>functions ||
-|| [BrainRegionCGA_NC_MPL_PCG CGA.NC.MPL.PCG] || Posterior Cingulate Cortex || cortex, BA 23,31 || Self-awareness, pain and episodic memory retrieval ||  ||
-|| [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || Retrosplenial Cortex || cortex, BA 26,29,30 || Processing of emotionally salient stimuli ||  ||
-|| [BrainRegionCGA_NC_PACG CGA.NC.PACG] || Pregenual Area || cortex, BA 33 || Sensation of Emotion || Storage of emotional memory, emotions, mood and<BR>autonomic functions ||
-|| [BrainRegionCGA_NC_SGC CGA.NC.SGC] || Subgenual Cortex || cortex, BA 25 || Influences changes in appetite and sleep || Subdivision of cytoarchitecturally defined<BR>cingulate region, emotions, mood and autonomic<BR>functions ||
-|| [BrainRegionCGA_NC_SPL_PF CGA.NC.SPL.PF] || Rostral Precuneus || cortex, BA 07 || Spatial orientation, representation of the self || rostral, 7B=PF, heavy somatosensory input ||
-|| [BrainRegionCGA_NC_VACG CGA.NC.VACG] || Ventral Anterior Cingulate Area || cortex, BA 24 || Seat of Free Will || motor, attentional and cognitive functions ||
-|| [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || Mediodorsal Nucleus of Thalamus || nucleus || Attention, planning, organization, abstract thinking, multi-tasking, and active<BR>memory || Relay AM to FCA.LPFC, FCA.OMPFC ||
-|| [BrainRegionFCA_NC_IPG FCA.NC.IPG] || Inferior Prefrontal Gyrus || cortex, BA 47 || Processing of syntax in oral and sign languages || Personality, endurance ||
-|| [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || Dorsolateral Prefrontal Cortex || cortex, BA 09,46 || Temporal Integration || FEF is in PMC ||
-|| [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || cortex, BA 10,11,12 || Personality ||  ||
 
 = Connectivity =
 (generated)
@@ -79,14 +64,17 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/EPA.dot.jpg
 || [BrainAreaMAA MAA] || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || [BrainRegionMCA_NC_PMC_F4 MCA.NC.PMC.F4] || Ventral Caudal Premotor Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1053810011000080 Cortico-Cortical Connectivity (MA -> PFC, abstract)] ||
 || [BrainAreaSAA SAA] || [BrainRegionCGA_NC_DACG CGA.NC.DACG] || [BrainRegionACA_NC_A2 ACA.NC.A2] || Auditory Association Area || neocortex-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (ACA -> dACC)] ||
 ||  ||  || [BrainRegionVCA_NC_IPL_MST VCA.NC.IPL.MST] || Medial Superior Temporal Area || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> FrontalCortex, abstract)] ||
-||  || [BrainRegionCGA_NC_MPL_PCG CGA.NC.MPL.PCG] || [BrainRegionVCA_NC_IPL_MST VCA.NC.IPL.MST] || Medial Superior Temporal Area || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763409002061 Contribution of hippocampal region CA3 to consciousness (IPL -> PosteriorCingulate, abstract)] ||
+||  || [BrainRegionCGA_NC_MPL_PCG CGA.NC.MPL.PCG] || [BrainRegionVBA_FD_PV_MPV VBA.FD.PV.MPV] || Medial Pulvinar || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (Pulvinar -> ParietalCortex, abstract)] ||
+||  ||  || [BrainRegionVCA_NC_IPL_MST VCA.NC.IPL.MST] || Medial Superior Temporal Area || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763409002061 Contribution of hippocampal region CA3 to consciousness (IPL -> PosteriorCingulate, abstract)] ||
 ||  ||  || [BrainRegionVCA_NC_IPS_PEF VCA.NC.IPS.PEF] || Posterior Eye Field || neocortex-neocortex || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (LIP -> CGp)] ||
 ||  || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || [BrainRegionVCA_NC_V1 VCA.NC.V1] || Primary Visual Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1053811905008013 Category-Selectivity Paradigm (V1 -> RS)] ||
 ||  || [BrainRegionCGA_NC_SPL_PF CGA.NC.SPL.PF] || [BrainRegionVCA_NC_IPS_VIP VCA.NC.IPS.VIP] || Ventral Intraparietal Sulcus || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0166223697010679 Parietal Association Cortex (VIP -> 7b)] ||
-||  || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || [BrainRegionVCA_NC_IPL_MST VCA.NC.IPL.MST] || Medial Superior Temporal Area || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1053810011000080 Cortico-Cortical Connectivity (PTHA -> PFC, abstract)] ||
+||  || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || [BrainRegionVBA_FD_PV_MPV VBA.FD.PV.MPV] || Medial Pulvinar || nucleus-neocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (mPULV -> DLPFC)] ||
+||  ||  || [BrainRegionVCA_NC_IPL_MST VCA.NC.IPL.MST] || Medial Superior Temporal Area || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1053810011000080 Cortico-Cortical Connectivity (PTHA -> PFC, abstract)] ||
 ||  ||  || [BrainRegionVCA_NC_IPS_PEF VCA.NC.IPS.PEF] || Posterior Eye Field || neocortex-neocortex || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (PEF -> DLPFC)] ||
 ||  ||  || [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || Inferotemporal Cortex || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (IT -> LPC, abstract)] ||
 ||  ||  || [BrainRegionVCA_NC_V2 VCA.NC.V2] || Secondary Visual Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1053810011000080 Cortico-Cortical Connectivity (VA -> PFC, abstract)] ||
+||  || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || [BrainRegionVBA_FD_PV_MPV VBA.FD.PV.MPV] || Medial Pulvinar || nucleus-neocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (mPULV -> MPFC)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaACA ACA] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || Paraventricular Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n7 Feeling (HT -> AN, abstract)] ||
 || [BrainAreaAMA AMA] || [BrainRegionCGA_NC_MPL_PCG CGA.NC.MPL.PCG] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-neocortex || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (AMYG -> CGp)] ||
@@ -134,9 +122,6 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/EPA.dot.jpg
 ||  ||  || [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || Peripaleocortical Claustral || neocortex-neocortex || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (INS -> MPFC, abstract)] ||
 || [BrainAreaMRA MRA] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || [BrainRegionMBA_MM_SC_DEEP MBA.MM.SC.DEEP] || Deep Superior Colliculus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCi -> ATH, abstract)] ||
 || [BrainAreaPCA PCA] || [BrainRegionCGA_FD_TH_SM CGA.FD.TH.SM] || [BrainRegionBMA_SC_PH_MG BMA.SC.PH.MG] || Marginal Nucleus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionCGA_NC_MPL_PCG CGA.NC.MPL.PCG] || [BrainRegionVBA_FD_PV_MPV VBA.FD.PV.MPV] || Medial Pulvinar || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (Pulvinar -> ParietalCortex, abstract)] ||
-||  || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || [BrainRegionVBA_FD_PV_MPV VBA.FD.PV.MPV] || Medial Pulvinar || nucleus-neocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (mPULV -> DLPFC)] ||
-||  || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || [BrainRegionVBA_FD_PV_MPV VBA.FD.PV.MPV] || Medial Pulvinar || nucleus-neocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (mPULV -> MPFC)] ||
 
 *External Outbound Region Connections:*
 
@@ -162,7 +147,8 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/EPA.dot.jpg
 ||  || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || [BrainRegionBGA_FT_CN BGA.FT.CN] || Caudate Nucleus || neocortex-nucleus || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (DLPFC -> Caud)] ||
 ||  || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || [BrainRegionBGA_FT_ACC BGA.FT.ACC] || Accumbens Nucleus || neocortex-nucleus || [http://www.expertsmind.com/topic/emotion/affective-basal-ganglia-circuit-93570.aspx Affective basal ganglia circuit (OMPFC -> NACC)] ||
 ||  ||  || [BrainRegionBGA_FT_SN_PR BGA.FT.SN.PR] || Substantia Nigra Pars Reticulata || neocortex-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (OMPFC -> SNr)] ||
-|| [BrainAreaLCA LCA] || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || [BrainRegionMBA_MM_RD MBA.MM.RD] || Red Nucleus || neocortex-nucleus || (unknown reference) ||
+|| [BrainAreaLCA LCA] || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || [BrainRegionHMA_HP_PRF_PDT HMA.HP.PRF.PDT] || Pontine Reticulotegmental Nucleus || neocortex-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (Premotor24 -> RF, abstract)] ||
+||  ||  || [BrainRegionMBA_MM_RD MBA.MM.RD] || Red Nucleus || neocortex-nucleus || (unknown reference) ||
 || [BrainAreaMCA MCA] || [BrainRegionCGA_NC_SGC CGA.NC.SGC] || [BrainRegionBMA_HP_PB BMA.HP.PB] || Parabrachial Nucleus || neocortex-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || Periaqueductal Gray Matter || neocortex-nucleus || (unknown reference) ||
 ||  || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || [BrainRegionFBA_HP_LC FBA.HP.LC] || Locus Coeruleus || neocortex-nucleus || (unknown reference) ||
@@ -183,7 +169,6 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/EPA.dot.jpg
 ||  ||  || [BrainRegionPHA_NC_PSS PHA.NC.PSS] || Postsubiculum || neocortex-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (RSP -> PSUB)] ||
 ||  || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || [BrainRegionHBA_FD_TH_RE HBA.FD.TH.RE] || Reuniens Nucleus of Thalamus || neocortex-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionHBA_FD_TH_RH HBA.FD.TH.RH] || Rhomboidal Nucleus of Thalamus || neocortex-nucleus || (unknown reference) ||
-|| [BrainAreaMRA MRA] || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || [BrainRegionHMA_HP_PRF_PDT HMA.HP.PRF.PDT] || Pontine Reticulotegmental Nucleus || neocortex-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (Premotor24 -> RF, abstract)] ||
 
 = Thirdparty Circuits =
 (generated)

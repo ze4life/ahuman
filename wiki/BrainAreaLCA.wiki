@@ -8,20 +8,6 @@
 (generated)
 
 || *Component ID* || *Component Name* || *Type* || *Function* || *Comments* ||
-|| *LLM* || <font color="red">Locomotor Activity</font> || || ||
-|| [BrainRegionMBA_HM_RF_MED MBA.HM.RF.MED] || Medullary Reticular Formation || nucleus || Somatic motor control, cardiovascular control, pain modulation, sleep and<BR>consciousness, habituation || 100 small neural networks, habituation - sleep in<BR>load city but awake from crying baby ||
-|| [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus || Motor coordination || Deep Nuclei and cerebellum cortex ||
-|| [BrainRegionMBA_MM_RD MBA.MM.RD] || Red Nucleus || nucleus || Motor coordination || Crawling of babies is controlled by RN ||
-|| *LLS* || <font color="red">Locomotor Sensory</font> || || ||
-|| [BrainRegionAVA_SC_IZ_IMM AVA.SC.IZ.IMM] || Intermediomedial Nucleus || nucleus || Visceral sensory || ventral spinocerebellar tract ||
-|| [BrainRegionBMA_HM_IO BMA.HM.IO] || Inferior Olivary Nucleus || nucleus || Proprioception Relay from Spinal Cord to Cerebellum ||  ||
-|| [BrainRegionBMA_MM_PT_PTA BMA.MM.PT.PTA] || Anterior Pretectum Nucleus || nucleus || Mediate somatosensory and nociceptive information || 3 parallel flows from MC, anterior interpositus<BR>nucleus of TH, GR to dorsal accessory IO ||
-|| [BrainRegionBMA_SC_IZ_CBS BMA.SC.IZ.CBS] || Centrobasalis Nucleus || nucleus || Unconscious proprioception to CR || Upper extremity, relay motor feedback to CR, major<BR>site of termination for dorsal root fibers ||
-|| [BrainRegionBMA_SC_IZ_CCV BMA.SC.IZ.CCV] || Central Cervical Nucleus || nucleus || Coordinate voluntary movements, maintain balance, and learn motor skills || Receive neck and vestibular input and project to CR<BR>and vestibular nuclei ||
-|| [BrainRegionBMA_SC_LH_LCV BMA.SC.LH.LCV] || Lateral Cervical Nucleus || nucleus || Relay Low-threshold Mechanoreceptors to CR || From Lamina V ||
-|| [BrainRegionBMA_SC_PH_CL BMA.SC.PH.CL] || Clarke Nucleus || nucleus || Unconscious Proprioception || To CR ||
-|| [BrainRegionMBA_HP_PN_PBB MBA.HP.PN.PBB] || Pontobulbar Body || nucleus || Control voluntary muscle activities || Walking, speaking, breathing, part of<BR>corticopontocerebellar pathway ||
-|| [BrainRegionMBA_HP_PN_RP MBA.HP.PN.RP] || Rostral Pontine Nucleus || nucleus || Part of learning, motivation, spatial memory pathway || Relay from mammillary body to CR ||
 
 = Connectivity =
 (generated)
@@ -36,6 +22,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/LCA.dot.jpg
 || [BrainRegionBMA_SC_IZ_CCV BMA.SC.IZ.CCV] || [BrainRegionBMA_HM_IO BMA.HM.IO] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionBMA_SC_LH_LCV BMA.SC.LH.LCV] || [BrainRegionMBA_HP_CR MBA.HP.CR] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionBMA_SC_PH_CL BMA.SC.PH.CL] || [BrainRegionMBA_HP_CR MBA.HP.CR] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionBMA_SC_PH_NP BMA.SC.PH.NP] || [BrainRegionBMA_HM_IO BMA.HM.IO] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionMBA_MM_RD MBA.MM.RD] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionMBA_HP_PN_PBB MBA.HP.PN.PBB] || [BrainRegionMBA_HP_CR MBA.HP.CR] || nucleus-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (PN -> CR, abstract)] ||
 || [BrainRegionMBA_HP_PN_RP MBA.HP.PN.RP] || [BrainRegionMBA_HP_CR MBA.HP.CR] || nucleus-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (PN -> CR, abstract)] ||
@@ -45,22 +32,31 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/LCA.dot.jpg
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
-|| [BrainAreaEPA EPA] || [BrainRegionMBA_MM_RD MBA.MM.RD] || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || Ventral Anterior Cingulate Area || neocortex-nucleus || (unknown reference) ||
-|| [BrainAreaMAA MAA] || [BrainRegionMBA_HP_PN_PBB MBA.HP.PN.PBB] || [BrainRegionMCA_NC_MC MCA.NC.MC] || Motor Cortex || neocortex-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (MC -> PN, abstract)] ||
+|| [BrainAreaEPA EPA] || [BrainRegionHMA_HP_PRF_PDT HMA.HP.PRF.PDT] || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || Ventral Anterior Cingulate Area || neocortex-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (Premotor24 -> RF, abstract)] ||
+||  || [BrainRegionMBA_MM_RD MBA.MM.RD] || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || Ventral Anterior Cingulate Area || neocortex-nucleus || (unknown reference) ||
+|| [BrainAreaMAA MAA] || [BrainRegionHMA_HP_PRF_PDT HMA.HP.PRF.PDT] || [BrainRegionMCA_NC_MC MCA.NC.MC] || Motor Cortex || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> RF, abstract)] ||
+||  ||  || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || Supplementary Motor Cortex || neocortex-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (M2 -> RF, abstract)] ||
+||  || [BrainRegionMBA_HP_PN_PBB MBA.HP.PN.PBB] || [BrainRegionMCA_NC_MC MCA.NC.MC] || Motor Cortex || neocortex-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (MC -> PN, abstract)] ||
+|| [BrainAreaSAA SAA] || [BrainRegionHMA_HP_PRF_PDT HMA.HP.PRF.PDT] || [BrainRegionACA_NC_BRA ACA.NC.BRA] || Broca's Area || neocortex-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (Broca -> RF, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaACA ACA] || [BrainRegionMBA_HP_PN_RP MBA.HP.PN.RP] || [BrainRegionHTA_FD_HT_RCH HTA.FD.HT.RCH] || Retrochiasmatic Area || nucleus-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in emotional behavior (HT -> PN, abstract)] ||
 || [BrainAreaECA ECA] || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || Substantia Nigra Pars Compacta || nucleus-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (SN -> CR, abstract)] ||
 || [BrainAreaMCA MCA] || [BrainRegionBMA_HM_IO BMA.HM.IO] || [BrainRegionFBA_FD_TH_SF FBA.FD.TH.SF] || Subfascicular Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaMMA MMA] || [BrainRegionMBA_HP_PN_RP MBA.HP.PN.RP] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (DTN -> NPRP)] ||
+|| [BrainAreaMMA MMA] || [BrainRegionHMA_HP_PRF_PDT HMA.HP.PRF.PDT] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || nucleus-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/mb.jpg Mammillary Body (MMB -> RTG)] ||
+||  ||  || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || Lateral Mammillary Nucleus || nucleus-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/mb.jpg Mammillary Body (LMB -> RTG)] ||
+||  || [BrainRegionMBA_HP_PN_RP MBA.HP.PN.RP] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaMRA MRA] || [BrainRegionBMA_HM_IO BMA.HM.IO] || [BrainRegionBMA_MM_DSCH BMA.MM.DSCH] || Darkschewitsch Nucleus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionBMA_HP_VB BMA.HP.VB] || Vestibular Nucleus || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (DLPN -> CR)] ||
+||  || [BrainRegionHMA_HP_PRF_PDT HMA.HP.PRF.PDT] || [BrainRegionVBA_MM_SC_SUP VBA.MM.SC.SUP] || Superficial Superior Colliculus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (SC -> RF, abstract)] ||
+||  || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (DLPN -> CR)] ||
 ||  ||  || [BrainRegionMBA_MM_SC_DEEP MBA.MM.SC.DEEP] || Deep Superior Colliculus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (SCi -> CR, abstract)] ||
 || [BrainAreaPCA PCA] || [BrainRegionAVA_SC_IZ_IMM AVA.SC.IZ.IMM] || [BrainRegionAVA_PN_SG_DRG AVA.PN.SG.DRG] || Dorsal Root Ganglion || ganglion-nucleus || (unknown reference) ||
-||  || [BrainRegionBMA_HM_IO BMA.HM.IO] || [BrainRegionBMA_SC_PH_NP BMA.SC.PH.NP] || Proprius Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionBMA_SC_IZ_CBS BMA.SC.IZ.CBS] || [BrainRegionAVA_PN_SG_DRG AVA.PN.SG.DRG] || Dorsal Root Ganglion || ganglion-nucleus || (unknown reference) ||
 ||  || [BrainRegionBMA_SC_IZ_CCV BMA.SC.IZ.CCV] || [BrainRegionAVA_PN_SG_DRG AVA.PN.SG.DRG] || Dorsal Root Ganglion || ganglion-nucleus || (unknown reference) ||
+||  || [BrainRegionBMA_SC_PH_NP BMA.SC.PH.NP] || [BrainRegionAVA_PN_SG_DRG AVA.PN.SG.DRG] || Dorsal Root Ganglion || ganglion-nucleus || (unknown reference) ||
 ||  || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionBMA_HM_CU BMA.HM.CU] || Cuneate Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionBMA_HP_VBN BMA.HP.VBN] || Vestibular Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || [BrainRegionBMA_HP_VBN BMA.HP.VBN] || Vestibular Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (MVSN -> NPRP)] ||
 
 *External Outbound Region Connections:*
 
@@ -72,26 +68,34 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/LCA.dot.jpg
 ||  || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionSMA_FD_TH_RIL SMA.FD.TH.RIL] || Rostral Intralaminar Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaEPA EPA] || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || Dorsolateral Prefrontal Cortex || nucleus-neocortex || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (CR -> LPFC)] ||
 || [BrainAreaMAA MAA] || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionMCA_FD_TH_VL MCA.FD.TH.VL] || Ventral Lateral Nucleus || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s1VL -> VL)] ||
+|| [BrainAreaSAA SAA] || [BrainRegionBMA_MM_PT_PTA BMA.MM.PT.PTA] || [BrainRegionVBA_FD_PV_MPV VBA.FD.PV.MPV] || Medial Pulvinar || nucleus-nucleus || (unknown reference) ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaECA ECA] || [BrainRegionBMA_MM_PT_PTA BMA.MM.PT.PTA] || [BrainRegionBGA_FD_STN BGA.FD.STN] || Subthalamus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaMCA MCA] || [BrainRegionMBA_HM_RF_MED MBA.HM.RF.MED] || [BrainRegionFBA_HP_LC FBA.HP.LC] || Locus Coeruleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaMRA MRA] || [BrainRegionBMA_SC_IZ_CCV BMA.SC.IZ.CCV] || [BrainRegionBMA_HP_VB BMA.HP.VB] || Vestibular Nucleus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionBMA_HP_VB BMA.HP.VB] || Vestibular Nucleus || nucleus-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (CR -> Vestibular)] ||
-||  ||  || [BrainRegionBMA_MM_DSCH BMA.MM.DSCH] || Darkschewitsch Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaMRA MRA] || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionBMA_MM_DSCH BMA.MM.DSCH] || Darkschewitsch Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || Caudal Pontine Reticular Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (CR -> RF, abstract)] ||
 ||  ||  || [BrainRegionVBA_MM_PT_PR VBA.MM.PT.PR] || Principal Pretectal Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaPCA PCA] || [BrainRegionBMA_MM_PT_PTA BMA.MM.PT.PTA] || [BrainRegionVBA_FD_PV_MPV VBA.FD.PV.MPV] || Medial Pulvinar || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || [BrainRegionVBA_MM_PT_NOT VBA.MM.PT.NOT] || Nucleus of Optic Tract || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaPCA PCA] || [BrainRegionBMA_SC_IZ_CCV BMA.SC.IZ.CCV] || [BrainRegionBMA_HP_VBN BMA.HP.VBN] || Vestibular Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionHMA_HP_PRF_PDT HMA.HP.PRF.PDT] || [BrainRegionHMA_HP_FCM HMA.HP.FCM] || Facial Motor Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorVII, abstract)] ||
+||  || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionBMA_HP_VBN BMA.HP.VBN] || Vestibular Nucleus || nucleus-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (CR -> Vestibular)] ||
+||  || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || Suprageniculate Nucleus of Thalamus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (NPRP -> SUPGEN)] ||
+||  ||  || [BrainRegionBMA_HP_VBN BMA.HP.VBN] || Vestibular Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (NPRP -> MVSN)] ||
 
 = Thirdparty Circuits =
 (generated)
+
+  * [http://ars.els-cdn.com/content/image/1-s2.0-S0006899301025987-gr1.gif Horizontal saccades and smooth pursuit movements] - see [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Reference]
+
+<img src="http://ars.els-cdn.com/content/image/1-s2.0-S0006899301025987-gr1.gif" alt="unavailable">
 
   * [http://what-when-how.com/wp-content/uploads/2012/04/tmp3649_thumb1_thumb.jpg Thalamocortical relationships] - see [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Reference]
 
 <img src="http://what-when-how.com/wp-content/uploads/2012/04/tmp3649_thumb1_thumb.jpg" alt="unavailable"height=400width=400>
 
-  * [http://ars.els-cdn.com/content/image/1-s2.0-S0006899301025987-gr1.gif Horizontal saccades and smooth pursuit movements] - see [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Reference]
+  * [http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png Head Direction Cell Circuit] - see [http://www.scholarpedia.org/article/Head_direction_cells Reference]
 
-<img src="http://ars.els-cdn.com/content/image/1-s2.0-S0006899301025987-gr1.gif" alt="unavailable">
+<img src="http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png" alt="unavailable">
 
   * [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements] (unknown reference)
 
@@ -105,12 +109,17 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/LCA.dot.jpg
 
 <img src="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/motor_top.jpg" alt="unavailable">
 
+  * [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/mb.jpg Mammillary Body] (unknown reference)
+
+<img src="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/mb.jpg" alt="unavailable">
+
 
 = References =
 (generated)
 
-  * http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/
   * http://www.sciencedirect.com/science/article/pii/S0006899301025987
+  * http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/
+  * http://www.scholarpedia.org/article/Head_direction_cells
   * http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html
   * https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988
 
