@@ -34,9 +34,17 @@ void MindLocalCircuitDef::createFromXml( Xml xml ) {
 	// read connections
 	for( Xml xmlChild = xml.getFirstChild( "connection" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "connection" ) ) {
 		// construct MindArea from attributes
-		MindCircuitConnectionDef *connection = new MindCircuitConnectionDef( this );
+		MindLocalCircuitConnectionDef *connection = new MindLocalCircuitConnectionDef( this );
 		connection -> createFromXml( xmlChild );
 		area -> addConnection( connection );
 		connections.add( connection -> getId() , connection );
 	}
 }
+
+void MindLocalCircuitDef::resolveReferences( MindMap *map ) {
+	for( int k = 0; k < connections.count(); k++ ) {
+		MindLocalCircuitConnectionDef *connection = connections.getClassByIndex( k );
+		connection -> resolveReferences( map );
+	}
+}
+

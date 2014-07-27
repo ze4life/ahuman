@@ -4,11 +4,11 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-MindCircuitRegionDef::MindCircuitRegionDef( MindCircuitDef *p_circuit ) {
+MindGlobalCircuitRegionDef::MindGlobalCircuitRegionDef( MindGlobalCircuitDef *p_circuit ) {
 	circuit = p_circuit;
 }
 
-void MindCircuitRegionDef::createFromXml( Xml xml ) {
+void MindGlobalCircuitRegionDef::createFromXml( Xml xml ) {
 	id = xml.getAttribute( "id" );
 	role = xml.getAttribute( "role" );
 }

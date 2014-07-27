@@ -31,8 +31,10 @@ void MindMap::createFromXml( Xml xml ) {
 		mindAreaSet.get( k ) -> resolveReferences( this );
 	for( int k = 0; k < connectionTypeSet.count(); k++ )
 		connectionTypeSet.get( k ) -> resolveReferences( this );
-	for( int k = 0; k < mindCircuitSet.count(); k++ )
-		mindCircuitSet.get( k ) -> resolveReferences( this );
+	for( int k = 0; k < mindGlobalCircuitSet.count(); k++ )
+		mindGlobalCircuitSet.get( k ) -> resolveReferences( this );
+	for( int k = 0; k < mindLocalCircuitSet.count(); k++ )
+		mindLocalCircuitSet.get( k ) -> resolveReferences( this );
 }
 
 void MindMap::createRegionTypeDefSet( Xml xml ) {
@@ -108,10 +110,10 @@ void MindMap::createCircuitDefSet( Xml xml ) {
 
 	for( Xml xmlChild = xml.getFirstChild( "circuit" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "circuit" ) ) {
 		// construct MindArea from attributes
-		MindCircuitDef *circuit = new MindCircuitDef;
+		MindGlobalCircuitDef *circuit = new MindGlobalCircuitDef;
 		circuit -> createFromXml( xmlChild );
-		mindCircuitSet.add( circuit );
-		mindCircuitMap.add( circuit -> getName() , circuit );
+		mindGlobalCircuitSet.add( circuit );
+		mindGlobalCircuitMap.add( circuit -> getName() , circuit );
 	}
 }
 
