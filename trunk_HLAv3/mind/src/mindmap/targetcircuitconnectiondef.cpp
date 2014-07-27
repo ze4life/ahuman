@@ -4,7 +4,7 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-TargetCircuitConnectionDef::TargetCircuitConnectionDef( TargetCircuitDef *circuitInfo ) : MindCircuitConnectionDef( circuitInfo ) {
+TargetCircuitConnectionDef::TargetCircuitConnectionDef( TargetCircuitDef *circuitInfo ) : MindLocalCircuitConnectionDef( circuitInfo ) {
 	regionConnection = NULL;
 	connectionTypeDef = NULL;
 }
@@ -16,24 +16,24 @@ TargetCircuitConnectionDef::~TargetCircuitConnectionDef() {
 
 void TargetCircuitConnectionDef::defineCircuitConnectorDef( TargetRegionConnectorDef *p_regionConnection , Xml xml ) {
 	regionConnection = p_regionConnection;
-	TargetCircuitDef *circuitInfoTarget = ( TargetCircuitDef * )MindCircuitConnectionDef::circuitDef;
+	TargetCircuitDef *circuitInfoTarget = ( TargetCircuitDef * )MindLocalCircuitConnectionDef::circuitDef;
 
 	// check direction
 	if( regionConnection -> getType().equals( "target" ) ) {
-		MindCircuitConnectionDef::srcRegion = regionConnection -> getRegion();
-		MindCircuitConnectionDef::dstRegion = circuitInfoTarget -> getActuatorId();
+		MindLocalCircuitConnectionDef::srcRegion = regionConnection -> getRegion();
+		MindLocalCircuitConnectionDef::dstRegion = circuitInfoTarget -> getActuatorId();
 	}
 	else {
-		MindCircuitConnectionDef::srcRegion = circuitInfoTarget -> getActuatorId();
-		MindCircuitConnectionDef::dstRegion = regionConnection -> getRegion();
+		MindLocalCircuitConnectionDef::srcRegion = circuitInfoTarget -> getActuatorId();
+		MindLocalCircuitConnectionDef::dstRegion = regionConnection -> getRegion();
 	}
 
 	// create unique connection type
 	connectionTypeDef = new TargetConnectionTypeDef();
 	connectionTypeDef -> defineConnectionTypeDef( circuitInfoTarget , regionConnection , xml );
 
-	MindCircuitConnectionDef::typeName = connectionTypeDef -> getName();
-	Object::setInstance( MindCircuitConnectionDef::typeName );
-	MindCircuitConnectionDef::type = connectionTypeDef;
-	MindCircuitConnectionDef::primary = xml.getBooleanAttribute( "primary" , false );
+	MindLocalCircuitConnectionDef::typeName = connectionTypeDef -> getName();
+	Object::setInstance( MindLocalCircuitConnectionDef::typeName );
+	MindLocalCircuitConnectionDef::type = connectionTypeDef;
+	MindLocalCircuitConnectionDef::primary = xml.getBooleanAttribute( "primary" , false );
 }

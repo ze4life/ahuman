@@ -61,6 +61,6 @@ void MindAreaDef::addRegion( MindRegionDef *region ) {
 	regionMap.add( region -> getId() , region );
 }
 
-void MindAreaDef::addConnection( MindCircuitConnectionDef *connection ) {
+void MindAreaDef::addConnection( MindLocalCircuitConnectionDef *connection ) {
 	connections.add( connection );
 }

@@ -4,14 +4,14 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-MindCircuitConnectionDef::MindCircuitConnectionDef( MindLocalCircuitDef *p_circuit ) {
+MindLocalCircuitConnectionDef::MindLocalCircuitConnectionDef( MindLocalCircuitDef *p_circuit ) {
 	attachLogger();
 
 	circuitDef = p_circuit;
 	type = NULL;
 }
 
-void MindCircuitConnectionDef::createFromXml( Xml xml ) {
+void MindLocalCircuitConnectionDef::createFromXml( Xml xml ) {
 	// attributes are properties
 	typeName = xml.getAttribute( "type" );
 
@@ -22,11 +22,11 @@ void MindCircuitConnectionDef::createFromXml( Xml xml ) {
 	Object::setInstance( srcRegion + "-" + dstRegion );
 }
 
-String MindCircuitConnectionDef::getId() {
+String MindLocalCircuitConnectionDef::getId() {
 	return( Object::instance );
 }
 
-void MindCircuitConnectionDef::resolveReferences( MindMap *map ) {
+void MindLocalCircuitConnectionDef::resolveReferences( MindMap *map ) {
 	type = map -> getConnectionTypeDefByName( typeName );
 	ASSERTMSG( type != NULL , "connection type=" + typeName + " not found in circuit connection src=" + srcRegion + ", dst=" + dstRegion );
 

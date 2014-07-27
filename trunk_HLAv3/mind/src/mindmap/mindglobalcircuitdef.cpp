@@ -43,10 +43,10 @@ void MindCircuitDef::resolveReferences( MindMap *map ) {
 void MindCircuitDef::addConnectons( MindMap *map , String region ) {
 	MindRegionDef *regdef = map -> getRegionDefById( id );
 	MindLocalCircuitDef *circuit = regdef -> getCircuit();
-	MapStringToClass<MindCircuitConnectionDef>& connections = circuit -> getConnections();
+	MapStringToClass<MindLocalCircuitConnectionDef>& connections = circuit -> getConnections();
 
 	for( int k = 0; k < connections.count(); k++ ) {
-		MindCircuitConnectionDef *c = connections.getClassByIndex( k );
+		MindLocalCircuitConnectionDef *c = connections.getClassByIndex( k );
 		if( !region.equals( c -> getSrcRegion() ) )
 			continue;
 
