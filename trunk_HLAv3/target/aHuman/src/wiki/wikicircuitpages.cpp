@@ -24,16 +24,16 @@ void WikiCircuitPages::execute() {
 	// generate circuits
 	MindService *ms = MindService::getService();
 	MindMap *mm  = ms -> getMindMap();
-	ClassList<MindCircuitDef>& circuitList = mm -> getMindCircuits();
+	ClassList<MindGlobalCircuitDef>& circuitList = mm -> getMindGlobalCircuits();
 	for( int k = 0; k < circuitList.count(); k++ ) {
-		MindCircuitDef *cd = circuitList.get( k );
+		MindGlobalCircuitDef *cd = circuitList.get( k );
 
 		String wikiPage = cd -> getId();
 		createCircuitPage( wikiDir , wikiPage , cd );
 	}
 }
 
-void WikiCircuitPages::createCircuitPage( String wikiDir , String wikiPage , MindCircuitDef *cd ) {
+void WikiCircuitPages::createCircuitPage( String wikiDir , String wikiPage , MindGlobalCircuitDef *cd ) {
 	StringList lines;
 
 	StringList sections;
@@ -55,7 +55,7 @@ void WikiCircuitPages::createCircuitPage( String wikiDir , String wikiPage , Min
 	lines.clear();
 
 	// circuit graph section
-	MapStringToClass<MindCircuitConnectionDef> links;
+	MapStringToClass<MindLocalCircuitConnectionDef> links;
 	createCircuitPage_getLinkList( cd , links );
 	createCircuitPage_getDiagram( cd , nodes , links , lines );
 	createCircuitPage_getLinkSection( cd , links , lines );
@@ -64,7 +64,7 @@ void WikiCircuitPages::createCircuitPage( String wikiDir , String wikiPage , Min
 	lines.clear();
 }
 
-void WikiCircuitPages::createCircuitPage_getHeading( String wikiPage , MindCircuitDef *cd , StringList& lines ) {
+void WikiCircuitPages::createCircuitPage_getHeading( String wikiPage , MindGlobalCircuitDef *cd , StringList& lines ) {
 	lines.add( "#summary " + cd -> getName() );
 	lines.add( "@@[Home] -> [BiologicalLifeResearch] -> [" + cd -> getId() + "]" );
 	lines.add( "----" );
@@ -74,27 +74,27 @@ void WikiCircuitPages::createCircuitPage_getHeading( String wikiPage , MindCircu
 	lines.add( "" );
 }
 
-void WikiCircuitPages::createCircuitPage_getLinkList( MindCircuitDef *cd , MapStringToClass<MindCircuitConnectionDef>& links ) {
+void WikiCircuitPages::createCircuitPage_getLinkList( MindGlobalCircuitDef *cd , MapStringToClass<MindLocalCircuitConnectionDef>& links ) {
 	// rows - sorted by component id
-	ClassList<MindCircuitConnectionDef>& linklist = cd -> getConnections();
+	ClassList<MindLocalCircuitConnectionDef>& linklist = cd -> getConnections();
 	for( int k = 0; k < linklist.count(); k++ ) {
-		MindCircuitConnectionDef *link = linklist.get( k );
+		MindLocalCircuitConnectionDef *link = linklist.get( k );
 		String key = link -> getSrcRegion() + "-" + link -> getDstRegion();
 		links.add( key , link );
 	}
 }
 
-void WikiCircuitPages::createCircuitPage_getLinkSection( MindCircuitDef *cd , MapStringToClass<MindCircuitConnectionDef>& links , StringList& lines ) {
+void WikiCircuitPages::createCircuitPage_getLinkSection( MindGlobalCircuitDef *cd , MapStringToClass<MindLocalCircuitConnectionDef>& links , StringList& lines ) {
 	// heading
 	createCircuitPage_getLinksRow( cd , NULL , lines );
 
 	for( int k = 0; k < links.count(); k++ ) {
-		MindCircuitConnectionDef *link = links.getClassByIndex( k );
+		MindLocalCircuitConnectionDef *link = links.getClassByIndex( k );
 		createCircuitPage_getLinksRow( cd , link , lines );
 	}
 }
 
-void WikiCircuitPages::createCircuitPage_getLinksRow( MindCircuitDef *cd , MindCircuitConnectionDef *link , StringList& lines ) {
+void WikiCircuitPages::createCircuitPage_getLinksRow( MindGlobalCircuitDef *cd , MindLocalCircuitConnectionDef *link , StringList& lines ) {
 	String value1;
 	if( link == NULL ) {
 		// heading
@@ -111,12 +111,12 @@ void WikiCircuitPages::createCircuitPage_getLinksRow( MindCircuitDef *cd , MindC
 		link -> getTypeName() + " || " + reference + " ||" );
 }
 
-void WikiCircuitPages::createCircuitPage_getNodeList( MindCircuitDef *cd , MapStringToClass<MindRegion>& nodes ) {
+void WikiCircuitPages::createCircuitPage_getNodeList( MindGlobalCircuitDef *cd , MapStringToClass<MindRegion>& nodes ) {
 	// get nodes
 	MindService *ms = MindService::getService();
-	ClassList<MindCircuitConnectionDef>& links = cd -> getConnections();
+	ClassList<MindLocalCircuitConnectionDef>& links = cd -> getConnections();
 	for( int k = 0; k < links.count(); k++ ) {
-		MindCircuitConnectionDef *link = links.get( k );
+		MindLocalCircuitConnectionDef *link = links.get( k );
 		String region = link -> getSrcRegion();
 		if( nodes.get( region ) == NULL )
 			nodes.add( region , ms -> getMindRegion( region ) );
@@ -127,7 +127,7 @@ void WikiCircuitPages::createCircuitPage_getNodeList( MindCircuitDef *cd , MapSt
 	}
 }
 
-void WikiCircuitPages::createCircuitPage_getNodeSection( MindCircuitDef *cd , MapStringToClass<MindRegion>& nodes , StringList& lines ) {
+void WikiCircuitPages::createCircuitPage_getNodeSection( MindGlobalCircuitDef *cd , MapStringToClass<MindRegion>& nodes , StringList& lines ) {
 	// heading
 	createCircuitPage_getNodesRow( cd , NULL , lines );
 
@@ -137,7 +137,7 @@ void WikiCircuitPages::createCircuitPage_getNodeSection( MindCircuitDef *cd , Ma
 	}
 }
 
-void WikiCircuitPages::createCircuitPage_getNodesRow( MindCircuitDef *cd , MindRegion *region , StringList& lines ) {
+void WikiCircuitPages::createCircuitPage_getNodesRow( MindGlobalCircuitDef *cd , MindRegion *region , StringList& lines ) {
 	String value1;
 	if( region == NULL ) {
 		// heading
@@ -155,7 +155,7 @@ void WikiCircuitPages::createCircuitPage_getNodesRow( MindCircuitDef *cd , MindR
 		info.name + " || " + info.batype + " || " + info.function + " ||" );
 }
 
-void WikiCircuitPages::createCircuitPage_getDiagram( MindCircuitDef *cd , MapStringToClass<MindRegion>& nodes , MapStringToClass<MindCircuitConnectionDef>& links , StringList& lines ) {
+void WikiCircuitPages::createCircuitPage_getDiagram( MindGlobalCircuitDef *cd , MapStringToClass<MindRegion>& nodes , MapStringToClass<MindLocalCircuitConnectionDef>& links , StringList& lines ) {
 	String dotImageWikiPath = wm -> getWikiImagePath();
 	String line = dotImageWikiPath + "/" + cd -> getId() + ".dot.jpg";
 	lines.add( line );
@@ -191,7 +191,7 @@ void WikiCircuitPages::createCircuitPage_getDiagram( MindCircuitDef *cd , MapStr
 	// list connections
 	text.add( "" );
 	for( int k = 0; k < links.count(); k++ ) {
-		MindCircuitConnectionDef *link = links.getClassByIndex( k );
+		MindLocalCircuitConnectionDef *link = links.getClassByIndex( k );
 		String linkline = "\t\"" + link -> getSrcRegion() + "\" -> \"" + link -> getDstRegion() + "\";";
 		text.add( linkline );
 	}

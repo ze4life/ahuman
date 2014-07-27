@@ -25,17 +25,17 @@ void WikiMainPage::execute() {
 	// get sorted circuit list
 	MindService *ms = MindService::getService();
 	MindMap *mm  = ms -> getMindMap();
-	ClassList<MindCircuitDef>& circuitList = mm -> getMindCircuits();
-	MapStringToClass<MindCircuitDef> circuitMap;
+	ClassList<MindGlobalCircuitDef>& circuitList = mm -> getMindGlobalCircuits();
+	MapStringToClass<MindGlobalCircuitDef> circuitMap;
 	for( int k = 0; k < circuitList.count(); k++ ) {
-		MindCircuitDef *cd = circuitList.get( k );
+		MindGlobalCircuitDef *cd = circuitList.get( k );
 		circuitMap.add( cd -> getName() , cd );
 	}
 
 	// collect model circuit section lines
 	StringList lines;
 	for( int k = 0; k < circuitMap.count(); k++ ) {
-		MindCircuitDef *cd = circuitMap.getClassByIndex( k );
+		MindGlobalCircuitDef *cd = circuitMap.getClassByIndex( k );
 		String name = cd -> getName();
 		String id = cd -> getId();
 

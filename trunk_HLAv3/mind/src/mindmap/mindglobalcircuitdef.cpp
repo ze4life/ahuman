@@ -4,16 +4,16 @@
 /*#########################################################################*/
 /*#########################################################################*/
 
-MindCircuitDef::MindCircuitDef() {
+MindGlobalCircuitDef::MindGlobalCircuitDef() {
 	attachLogger();
 	enabled = false;
 }
 
-MindCircuitDef::~MindCircuitDef() {
+MindGlobalCircuitDef::~MindGlobalCircuitDef() {
 	connections.destroy();
 };
 
-void MindCircuitDef::createFromXml( Xml xml ) {
+void MindGlobalCircuitDef::createFromXml( Xml xml ) {
 	// attributes are properties
 	id = xml.getAttribute( "id" );
 	name = xml.getAttribute( "name" );
@@ -26,21 +26,21 @@ void MindCircuitDef::createFromXml( Xml xml ) {
 	// read circuit items
 	for( Xml xmlChild = xml.getFirstChild( "region" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "region" ) ) {
 		// construct MindArea from attributes
-		MindCircuitRegionDef *region = new MindCircuitRegionDef( this );
+		MindGlobalCircuitRegionDef *region = new MindGlobalCircuitRegionDef( this );
 		region -> createFromXml( xmlChild );
 		regionMap.add( region -> getId() , region );
 	}
 }
 
-void MindCircuitDef::resolveReferences( MindMap *map ) {
+void MindGlobalCircuitDef::resolveReferences( MindMap *map ) {
 	for( int k = 0; k < regionMap.count(); k++ ) {
-		MindCircuitRegionDef *region = regionMap.getClassByIndex( k );
+		MindGlobalCircuitRegionDef *region = regionMap.getClassByIndex( k );
 		String id = region -> getId();
 		addConnectons( map , id );
 	}
 }
 
-void MindCircuitDef::addConnectons( MindMap *map , String region ) {
+void MindGlobalCircuitDef::addConnectons( MindMap *map , String region ) {
 	MindRegionDef *regdef = map -> getRegionDefById( id );
 	MindLocalCircuitDef *circuit = regdef -> getCircuit();
 	MapStringToClass<MindLocalCircuitConnectionDef>& connections = circuit -> getConnections();

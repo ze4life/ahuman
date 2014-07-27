@@ -227,7 +227,7 @@ String WikiMaker::findReference( MindRegionLink *link ) {
 	return( findReference( link -> getSrcRegion() -> getRegionId() , link -> getDstRegion() -> getRegionId() ) );
 }
 
-String WikiMaker::findReference( MindCircuitConnectionDef *link ) {
+String WikiMaker::findReference( MindLocalCircuitConnectionDef *link ) {
 	return( findReference( link -> getSrcRegion() , link -> getDstRegion() ) );
 }
 
