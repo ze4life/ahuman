@@ -14,15 +14,16 @@ MindCircuitConnectionDef::MindCircuitConnectionDef( MindLocalCircuitDef *p_circu
 void MindCircuitConnectionDef::createFromXml( Xml xml ) {
 	// attributes are properties
 	typeName = xml.getAttribute( "type" );
-	Object::setInstance( typeName );
 
 	primary = xml.getBooleanAttribute( "primary" , false );
 	srcRegion = xml.getAttribute( "src" );
 	dstRegion = xml.getAttribute( "dst" );
+
+	Object::setInstance( srcRegion + "-" + dstRegion );
 }
 
 String MindCircuitConnectionDef::getId() {
-	return( srcRegion + "-" + dstRegion );
+	return( Object::instance );
 }
 
 void MindCircuitConnectionDef::resolveReferences( MindMap *map ) {
