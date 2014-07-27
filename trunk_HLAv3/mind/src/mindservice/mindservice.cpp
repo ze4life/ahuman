@@ -233,14 +233,14 @@ void MindService::establishAreaLinks() {
 }
 
 void MindService::createCircuitLinks( MindLocalCircuitDef *circuitDef ) {
-	logger.logInfo( "createCircuitLinks: create cicuit id=" + circuitDef -> getId() );
+	logger.logInfo( "createCircuitLinks: create circuit id=" + circuitDef -> getId() );
 
-	MapStringToClass<MindCircuitConnectionDef>& connections = circuitDef -> getConnections();
+	MapStringToClass<MindLocalCircuitConnectionDef>& connections = circuitDef -> getConnections();
 	for( int k = 0; k < connections.count(); k++ )
 		createCircuitConnection( circuitDef , connections.getClassByIndex( k ) );
 }
 
-void MindService::createCircuitConnection( MindLocalCircuitDef *circuitDef , MindCircuitConnectionDef *connectionDef ) {
+void MindService::createCircuitConnection( MindLocalCircuitDef *circuitDef , MindLocalCircuitConnectionDef *connectionDef ) {
 	// get/create area link
 	String srcRegionName = connectionDef -> getSrcRegion();
 	MindRegion *srcRegion = regionSet -> getSetItemById( srcRegionName );

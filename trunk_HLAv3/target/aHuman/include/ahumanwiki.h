@@ -36,7 +36,7 @@ public:
 	void createFileContent( String fileName , StringList& lines );
 	String setSpecialCharacters( String data );
 	String findReference( MindRegionLink *link );
-	String findReference( MindCircuitConnectionDef *link );
+	String findReference( MindLocalCircuitConnectionDef *link );
 	String findReference( String srcRegion , String dstRegion );
 	String getDotColor( String dotdef );
 
@@ -142,15 +142,15 @@ public:
 	void execute();
 
 private:
-	void createCircuitPage( String wikiDir , String wikiPage , MindCircuitDef *cd );
-	void createCircuitPage_getHeading( String wikiPage , MindCircuitDef *cd , StringList& lines );
-	void createCircuitPage_getLinkList( MindCircuitDef *cd , MapStringToClass<MindCircuitConnectionDef>& links );
-	void createCircuitPage_getLinkSection( MindCircuitDef *cd , MapStringToClass<MindCircuitConnectionDef>& links , StringList& lines );
-	void createCircuitPage_getLinksRow( MindCircuitDef *cd , MindCircuitConnectionDef *link , StringList& lines );
-	void createCircuitPage_getDiagram( MindCircuitDef *cd , MapStringToClass<MindRegion>& nodes , MapStringToClass<MindCircuitConnectionDef>& links , StringList& lines );
-	void createCircuitPage_getNodeList( MindCircuitDef *cd , MapStringToClass<MindRegion>& nodes );
-	void createCircuitPage_getNodeSection( MindCircuitDef *cd , MapStringToClass<MindRegion>& nodes , StringList& lines );
-	void createCircuitPage_getNodesRow( MindCircuitDef *cd , MindRegion *region , StringList& lines );
+	void createCircuitPage( String wikiDir , String wikiPage , MindGlobalCircuitDef *cd );
+	void createCircuitPage_getHeading( String wikiPage , MindGlobalCircuitDef *cd , StringList& lines );
+	void createCircuitPage_getLinkList( MindGlobalCircuitDef *cd , MapStringToClass<MindLocalCircuitConnectionDef>& links );
+	void createCircuitPage_getLinkSection( MindGlobalCircuitDef *cd , MapStringToClass<MindLocalCircuitConnectionDef>& links , StringList& lines );
+	void createCircuitPage_getLinksRow( MindGlobalCircuitDef *cd , MindLocalCircuitConnectionDef *link , StringList& lines );
+	void createCircuitPage_getDiagram( MindGlobalCircuitDef *cd , MapStringToClass<MindRegion>& nodes , MapStringToClass<MindLocalCircuitConnectionDef>& links , StringList& lines );
+	void createCircuitPage_getNodeList( MindGlobalCircuitDef *cd , MapStringToClass<MindRegion>& nodes );
+	void createCircuitPage_getNodeSection( MindGlobalCircuitDef *cd , MapStringToClass<MindRegion>& nodes , StringList& lines );
+	void createCircuitPage_getNodesRow( MindGlobalCircuitDef *cd , MindRegion *region , StringList& lines );
 
 private:
 	WikiMaker *wm;
