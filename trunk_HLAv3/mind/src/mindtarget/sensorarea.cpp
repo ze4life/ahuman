@@ -41,12 +41,6 @@ void SensorArea::initSensorArea() {
 	}
 
 	ms -> addArea( this );
-
-	// add links
-	for( int k = 0; k < sensors -> getCount(); k++ ) {
-		MindSensor *sensor = sensors -> getSetItem( k );
-		createSensorLinks( sensor );
-	}
 }
 
 void SensorArea::addSensor( MindSensor *sensor , bool offline ) {

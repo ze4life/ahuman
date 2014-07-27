@@ -42,12 +42,6 @@ void EffectorArea::initEffectorArea() {
 	}
 
 	ms -> addArea( this );
-
-	// add links
-	for( int k = 0; k < effectors -> getCount(); k++ ) {
-		MindEffector *effector = effectors -> getSetItem( k );
-		createEffectorLinks( effector );
-	}
 }
 
 void EffectorArea::addEffector( MindEffector *effector , bool offline ) {
