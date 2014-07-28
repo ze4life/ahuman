@@ -26,7 +26,6 @@ void WikiAreaPages::execute() {
 	MindService *ms = MindService::getService();
 
 	// by area
-	bool createRegionPages = wm -> checkCreateRegionPages();
 	MapStringToClass<MindArea>& areaMap = ms -> getMindAreas();
 	for( int k = 0; k < areaMap.count(); k++ ) {
 		MindArea *area = areaMap.getClassByIndex( k );
@@ -36,13 +35,18 @@ void WikiAreaPages::execute() {
 				continue;
 		}
 
-		createAreaPages_createRegionTableSection( wikiDir , area );
-		createAreaPages_createConnectivityTableSection( wikiDir , area );
-		createAreaPages_createCircuitsAndReferencesTableSection( wikiDir , area );
-
-		if( createRegionPages )
-			createAreaPages_createRegionPages( wikiDir , area );
+		createAreaPages_createArea( wikiDir , area );
 	}
+}
+
+void WikiAreaPages::createAreaPages_createArea( String wikiDir , MindArea *area ) {
+	createAreaPages_createRegionTableSection( wikiDir , area );
+	createAreaPages_createConnectivityTableSection( wikiDir , area );
+	createAreaPages_createCircuitsAndReferencesTableSection( wikiDir , area );
+
+	bool createRegionPages = wm -> checkCreateRegionPages();
+	if( createRegionPages )
+		createAreaPages_createRegionPages( wikiDir , area );
 }
 
 void WikiAreaPages::createAreaPages_createRegionTableSection( String wikiDir , MindArea *area ) {
