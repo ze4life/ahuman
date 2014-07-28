@@ -33,10 +33,6 @@ void WikiTractsPages::createTractsMain() {
 	XmlTracts *tm = wm -> hmindxml.getTracts();
 	MapStringToClass<XmlBrainTractSet>& tractsets = tm -> getTracts();
 
-	createTracts_addTractTableLines( tractsets , lines );
-	wm -> updateFileSection( wikiDir , wikiPage , sectionName , lines );
-
-	lines.clear();
 	for( int k = 0; k < tractsets.count(); k++ ) {
 		XmlBrainTractSet& one = tractsets.getClassRefByIndex( k );
 		createTracts_addTractSetLinks( one , lines );
@@ -47,10 +43,11 @@ void WikiTractsPages::createTractsMain() {
 
 void WikiTractsPages::createTracts_addTractSetLinks( XmlBrainTractSet& ts , StringList& lines ) {
 	lines.add( "" );
-	lines.add("== " + ts.name + " ==" );
+	lines.add( "== " + ts.name + " ==" );      //ts.name gives the value from xml file
+	lines.add( "" );
 	String indexValue = wm -> getTractPageLink( ts.id );
-	
 	lines.add( "TRACT SET: " + wm -> getWikiLink( indexValue , ts.name ) );      //ts.name gives the value from xml file
+
 	lines.add( "" );
 	for( int k = 0; k < ts.tracts.count(); k++ ) {
 		XmlBrainTract& tract = ts.tracts.getClassRefByIndex( k );

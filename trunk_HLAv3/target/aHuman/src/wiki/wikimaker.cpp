@@ -103,17 +103,28 @@ void WikiMaker::updateFileSection( String wikiDir , String wikiPage , String sec
 
 	// find start of section
 	bool found = false;
+	String sectionHeading;
 	while( !feof( fr ) ) {
 		s.clear();
 		fgets( s.getBuffer() , maxSize , fr );
 		fputs( s , fw );
 
-		s.trim();
-		s.trim( '=' );
-		s.trim();
-		if( s.equals( section ) ) {
-			found = true;
-			break;
+		if( s.startsFrom( "=" ) ) {
+			int index = s.find( " " );
+			if( index < 0 ) {
+				fclose( fr );
+				fclose( fw );
+				ASSERTFAILED( "invalid section name=" + s + " in page=" + wikiPage );
+			}
+
+			sectionHeading = s.getMid( 0 , index ) + "=";
+			s.trim();
+			s.trim( '=' );
+			s.trim();
+			if( s.equals( section ) ) {
+				found = true;
+				break;
+			}
 		}
 	}
 
@@ -135,7 +146,7 @@ void WikiMaker::updateFileSection( String wikiDir , String wikiPage , String sec
 	while( !feof( fr ) ) {
 		s.clear();
 		fgets( s.getBuffer() , maxSize , fr );
-		if( s.startsFrom( "= " ) || s.startsFrom( "== " ) || s.startsFrom( "=== " ) ) {
+		if( s.startsFrom( "=" ) && !s.startsFrom( sectionHeading ) ) {
 			fputs( s , fw );
 			break;
 		}

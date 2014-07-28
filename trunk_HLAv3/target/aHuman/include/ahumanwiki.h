@@ -195,6 +195,7 @@ public:
 	void execute();
 
 private:
+	void createAreaPages_createArea( String wikiDir , MindArea *area );
 	void createAreaPages_createRegionTableSection( String wikiDir , MindArea *area );
 	void createAreaPages_createConnectivityTableSection( String wikiDir , MindArea *area );
 	void createAreaPages_createCircuitsAndReferencesTableSection( String wikiDir , MindArea *area );
