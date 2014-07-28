@@ -29,12 +29,15 @@ void MindAreaDef::createFromXml( Xml xml ) {
 		return;
 
 	// read services
-	for( Xml xmlChild = xml.getFirstChild( "service" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "service" ) ) {
-		// construct MindArea from attributes
-		MindServiceDef *service = new MindServiceDef( this );
-		service -> createFromXml( xmlChild );
-		services.add( service );
-		serviceMap.add( service -> getServiceId() , service );
+	Xml xmlservices = xml.getFirstChild( "services" );
+	if( xmlservices.exists() ) {
+		for( Xml xmlChild = xmlservices.getFirstChild( "service" ); xmlChild.exists(); xmlChild = xmlChild.getNextChild( "service" ) ) {
+			// construct MindArea from attributes
+			MindServiceDef *service = new MindServiceDef( this );
+			service -> createFromXml( xmlChild );
+			services.add( service );
+			serviceMap.add( service -> getServiceId() , service );
+		}
 	}
 
 	// read circuits

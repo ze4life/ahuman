@@ -81,7 +81,13 @@ void MindMap::createAreaDefSet( Xml xml ) {
 		createRegionMap( info );
 
 		// add circuits
-		mindLocalCircuitSet.add( info -> getCircuits() );
+		MapStringToClass<MindLocalCircuitDef>& circuits = info -> getCircuits();
+		mindLocalCircuitSet.add( &circuits );
+		mindLocalCircuitMap.add( circuits );
+
+		// add services
+		MapStringToClass<MindServiceDef>& services = info -> getServices();
+		mindServiceMap.add( services );
 	}
 }
 
@@ -130,6 +136,12 @@ void MindMap::createRegionMap( MindAreaDef *info ) {
 
 MindConnectionTypeDef *MindMap::getConnectionTypeDefByName( String typeName ) {
 	return( connectionTypeMap.get( typeName ) );
+}
+
+MindServiceDef *MindMap::getServiceByName( String serviceName ) {
+	MindServiceDef *info = mindServiceMap.get( serviceName );
+	ASSERTMSG( info != NULL , "Wrong region type name=" + serviceName );
+	return( info );
 }
 
 MindRegionTypeDef *MindMap::getRegionTypeDefByName( String regionTypeName ) {

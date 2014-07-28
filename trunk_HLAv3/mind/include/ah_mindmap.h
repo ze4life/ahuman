@@ -61,6 +61,7 @@ public:
 	MindGlobalCircuitDef *getGlobalCircuitDefByName( String circuitName );
 	MindAreaDef *getAreaDefById( String areaId );
 	MindConnectionTypeDef *getConnectionTypeDefByName( String typeName );
+	MindServiceDef *getServiceByName( String serviceName );
 	void getMapRegions( MapStringToClass<MindRegionDef>& regionMap );
 
 	TargetAreaDef *getSensorAreaDef() { return( sensorAreaInfo ); };
@@ -91,7 +92,9 @@ private:
 	MapStringToClass<MindAreaDef> mindAreaMap;
 	MapStringToClass<MindConnectionTypeDef> connectionTypeMap;
 	MapStringToClass<MindGlobalCircuitDef> mindGlobalCircuitMap;
+	MapStringToClass<MindLocalCircuitDef> mindLocalCircuitMap;
 	MapStringToClass<MindRegionDef> mindRegionMap;
+	MapStringToClass<MindServiceDef> mindServiceMap;
 };
 
 /*#########################################################################*/
@@ -163,7 +166,9 @@ public:
 
 	String getId() { return( id ); };
 	String getTypeName() { return( typeName ); };
+	String getServiceName() { return( serviceName ); };
 	MindRegionTypeDef *getType() { return( type ); };
+	MindServiceDef *getService() { return( service ); };
 	MindRegionRoleEnum getRole() { return( role ); };
 	int getSize() { return( size ); };
 
@@ -173,12 +178,14 @@ protected:
 // utilities
 	String id;
 	String typeName;
+	String serviceName;
 	MindRegionRoleEnum role;
 	int size;
 
 // references
 	MindAreaDef *area;
 	MindLocalCircuitDef *circuit;
+	MindServiceDef *service;
 	MindRegionTypeDef *type;
 };
 
@@ -313,6 +320,9 @@ public:
 	MapStringToClass<MindRegionDef>& getRegions() { return( regionMap ); };
 	MapStringToClass<MindLocalCircuitConnectionDef>& getConnections() { return( connections ); };
 
+	void getInternalConnections( ClassList<MindLocalCircuitConnectionDef>& links );
+	void getExternalConnections( ClassList<MindLocalCircuitConnectionDef>& links , bool isin );
+
 protected:
 // utility
 	String id;
@@ -348,7 +358,7 @@ public:
 	MapStringToClass<MindServiceDef>& getServices() { return( serviceMap ); };
 	ClassList<MindRegionDef>& getRegions() { return( regions ); };
 	ClassList<MindLocalCircuitConnectionDef>& getConnections() { return( connections ); };
-	ClassList<MindLocalCircuitDef>& getCircuits() { return( circuits ); };
+	MapStringToClass<MindLocalCircuitDef>& getCircuits() { return( circuitMap ); };
 
 	void addRegion( MindRegionDef *region );
 	void addConnection( MindLocalCircuitConnectionDef *connection );

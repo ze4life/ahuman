@@ -28,6 +28,7 @@ void MindLocalCircuitDef::createFromXml( Xml xml ) {
 		// construct MindArea from attributes
 		MindRegionDef *region = new MindRegionDef( area , this );
 		region -> createFromXml( xmlChild );
+		regionMap.add( region -> getId() , region );
 		area -> addRegion( region );
 	}
 
@@ -48,3 +49,36 @@ void MindLocalCircuitDef::resolveReferences( MindMap *map ) {
 	}
 }
 
+void MindLocalCircuitDef::getInternalConnections( ClassList<MindLocalCircuitConnectionDef>& links ) {
+	for( int k = 0; k < connections.count(); k++ ) {
+		MindLocalCircuitConnectionDef *connection = connections.getClassByIndex( k );
+		if( regionMap.get( connection -> getSrcRegion() ) != NULL &&
+			regionMap.get( connection -> getDstRegion() ) != NULL )
+			links.add( connection );
+	}
+}
+
+void MindLocalCircuitDef::getExternalConnections( ClassList<MindLocalCircuitConnectionDef>& links , bool isin ) {
+	MindService *ms = MindService::getService();
+	MindMap *mm = ms -> getMindMap();
+
+	ClassList<MindLocalCircuitDef>& circuits = mm -> getMindLocalCircuits();
+	for( int k = 0; k < circuits.count(); k++ ) {
+		MindLocalCircuitDef *circuit = circuits.get( k );
+		MapStringToClass<MindLocalCircuitConnectionDef>& extlinks = circuit -> getConnections();
+
+		for( int m = 0; m < extlinks.count(); m++ ) {
+			MindLocalCircuitConnectionDef *link = extlinks.getClassByIndex( m );
+			if( isin ) {
+				if( regionMap.get( link -> getSrcRegion() ) == NULL &&
+					regionMap.get( link -> getDstRegion() ) != NULL )
+					links.add( link );
+			}
+			else {
+				if( regionMap.get( link -> getSrcRegion() ) != NULL &&
+					regionMap.get( link -> getDstRegion() ) == NULL )
+					links.add( link );
+			}
+		}
+	}
+}

@@ -371,7 +371,22 @@ public:
 	T *last() const { int n = count(); if( n == 0 ) return( NULL ); return( get( n - 1 ) ); };
 	T *operator [] ( int index ) const { return( get( index ) ); };
 	int add( T *p ) { RFC_TYPE val; val.u_p = p; return( rfc_lst_add( data , &val ) ); };
-	void add( ClassList<T> *pl ) { int n = pl -> data -> s_n; for( int k = 0; k < n; k++ ) { RFC_TYPE val; val.u_p = pl -> data -> s_p[ k ].u_p; rfc_lst_add( data , &val ); } };
+	void add( ClassList<T> *pl ) { 
+		int n = pl -> data -> s_n; 
+		for( int k = 0; k < n; k++ ) { 
+			RFC_TYPE val; 
+			val.u_p = pl -> data -> s_p[ k ].u_p; 
+			rfc_lst_add( data , &val ); 
+		} 
+	};
+	void add( MapStringToClass<T> *pl ) { 
+		int n = pl -> count(); 
+		for( int k = 0; k < n; k++ ) { 
+			RFC_TYPE val; 
+			val.u_p = pl -> getClassByIndex( k );
+			rfc_lst_add( data , &val ); 
+		} 
+	};
 	void add( ClassList<T>& pl ) { add( &pl ); };
 	void clear() { rfc_lst_clear( data ); };
 	void destroy() { for( int k = count() - 1; k >= 0; k-- ) delete (*this)[k]; clear(); };

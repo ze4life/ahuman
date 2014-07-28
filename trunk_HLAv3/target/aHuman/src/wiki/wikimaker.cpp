@@ -557,3 +557,50 @@ String WikiMaker::getPeripheralPage() {
 	return( "PeripheralBrain" );
 }
 
+String WikiMaker::getCircuitDotPath( MindLocalCircuitDef& circuit ) {
+	String line = getWikiDotPath() + "/" + circuit.getAreaDef() -> getAreaId() + "_" + circuit.getId() + ".dot";
+	return( line );
+}
+
+String WikiMaker::getCircuitImageRef( MindLocalCircuitDef& circuit ) {
+	String line = getWikiImagePath() + "/" + circuit.getAreaDef() -> getAreaId() + "_" + circuit.getId() + ".dot.jpg";
+	return( line );
+}
+
+String WikiMaker::getTableCellAttribute( const char *id , const char *attribute , String value , bool required , int columnWidth ) {
+	ASSERTMSG( ( required == false ) || ( value.isEmpty() == false ) , String( "attribute=" ) + attribute + " is empty for region=" + id );
+
+	if( columnWidth == 0 )
+		return( value );
+
+	if( value.length() <= columnWidth )
+		return( value );
+
+	// format to column width
+	StringList list;
+	value.split( list , " " );
+	value.clear();
+
+	String valueline;
+	for( int k = 0; k < list.count(); k++ ) {
+		String item = list.get( k );
+		if( valueline.length() + item.length() <= columnWidth || valueline.isEmpty() ) {
+			if( !valueline.isEmpty() )
+				valueline += " ";
+			valueline += item;
+			continue;
+		}
+
+		if( !value.isEmpty() )
+			value += "<BR>";
+		value += valueline;
+		valueline = item;
+	}
+
+	if( !value.isEmpty() )
+		value += "<BR>";
+	value += valueline;
+
+	return( value );
+}
+
