@@ -19,7 +19,10 @@ void MindRegionDef::createFromXml( Xml xml ) {
 	id = xml.getAttribute( "id" );
 	Object::setInstance( id );
 
+	logger.logDebug( "define region id=" + id + "..." );
+
 	typeName = xml.getAttribute( "type" );
+	serviceName = xml.getAttribute( "service" );
 	size = xml.getIntAttribute( "size" , 0 );
 
 	String roleName = xml.getAttribute( "role" );
@@ -44,6 +47,7 @@ void MindRegionDef::createFromXml( Xml xml ) {
 
 void MindRegionDef::resolveReferences( MindMap *map ) {
 	type = map -> getRegionTypeDefByName( typeName );
+	service = map -> getServiceByName( serviceName );
 }
 
 String MindRegionDef::getRoleName() {

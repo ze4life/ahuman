@@ -88,6 +88,9 @@ public:
 	String getImageWikiLink( String imgsrc , String height );
 	String getWikiLink( String link , String text );
 	String getWikiBold( String text );
+	String getTableCellAttribute( const char *id , const char *attribute , String value , bool required , int columnWidth );
+	String getCircuitDotPath( MindLocalCircuitDef& circuit );
+	String getCircuitImageRef( MindLocalCircuitDef& circuit );
 
 	void clearRepeats1( String& value1 );
 	void clearRepeats2( String& value1 , String& value2 );
@@ -196,23 +199,25 @@ public:
 
 private:
 	void createAreaPages_createArea( String wikiDir , MindArea *area );
-	void createAreaPages_createRegionTableSection( String wikiDir , MindArea *area );
-	void createAreaPages_createConnectivityTableSection( String wikiDir , MindArea *area );
 	void createAreaPages_createCircuitsAndReferencesTableSection( String wikiDir , MindArea *area );
-	void createAreaPages_createRegionPages( String wikiDir , MindArea *area );
-	void createAreaPages_addExternalConnections( MindArea *area , StringList& lines , MapStringToClass<MindRegionLink>& connections , bool p_inputs );
 	String createAreaPages_getCircuitKey( MindArea *area , XmlCircuitInfo& info );
 	void createAreaPages_getCircuitLines( XmlCircuitInfo& info , StringList& lines );
+	void createAreaPages_createRegionPages( String wikiDir , MindArea *area );
+
+	void createAreaPages_createAreaCircuit( MindArea *area , MindLocalCircuitDef& circuit , StringList& lines );
+
+	void createAreaPages_createRegionTableSection( MindArea *area , MindLocalCircuitDef& circuit , StringList& lines );
+	void createAreaPages_createConnectivityTableSection( MindArea *area , MindLocalCircuitDef& circuit , StringList& lines );
 	String createAreaPages_getRegionTableRow( MindRegionDef *region );
-	void createAreaPages_createRegionTableService( MindServiceDef *service , StringList& lines );
-	String createAreaPages_getTableCellAttribute( const XmlHMindElementInfo& info , String attribute , String value , bool required , int columnWidth );
-	void createAreaPages_getInternalConnections( MindArea *area , MapStringToClass<MindRegionLink>& connections );
-	void createAreaPages_getInternalConnectionTableLine( MindArea *area , MindRegionLink *link , StringList& lines );
-	void createAreaPages_getExternalConnections( MindArea *area , MapStringToClass<MindRegionLink>& connections , bool isin );
-	void createAreaPages_getExternalConnectionTableLine( MindArea *area , MindRegionLink *link , StringList& lines , bool isin , const char *areaType );
-	void createDotFile( MindArea *area , MapStringToClass<MindRegionLink>& internals , MapStringToClass<MindRegionLink>& inputs , MapStringToClass<MindRegionLink>& outputs );
-	void createDotFile_subgraph( MindArea *area , bool p_inputs , MapStringToClass<MindRegionLink>& connections , StringList& text , String& linkItem );
-	String createDotFile_getRegionLabel( MindRegion *region , MapStringToClass<MindRegionLink>& inputs , MapStringToClass<MindRegionLink>& outputs );
+
+	void createAreaPages_getInternalConnections( MindArea *area , MindLocalCircuitDef& circuit , MapStringToClass<MindLocalCircuitConnectionDef>& connections );
+	void createAreaPages_addExternalConnections( MindArea *area , MindLocalCircuitDef& circuit , StringList& lines , MapStringToClass<MindLocalCircuitConnectionDef>& connections , bool p_inputs );
+	void createAreaPages_getInternalConnectionTableLine( MindArea *area , MindLocalCircuitDef& circuit , MindLocalCircuitConnectionDef *link , StringList& lines );
+	void createAreaPages_getExternalConnections( MindArea *area , MindLocalCircuitDef& circuit , MapStringToClass<MindLocalCircuitConnectionDef>& connections , bool isin );
+	void createAreaPages_getExternalConnectionTableLine( MindArea *area , MindLocalCircuitDef& circuit , MindLocalCircuitConnectionDef *link , StringList& lines , bool isin , const char *areaType );
+	void createDotFile( MindArea *area , MindLocalCircuitDef& circuit , MapStringToClass<MindLocalCircuitConnectionDef>& internals , MapStringToClass<MindLocalCircuitConnectionDef>& inputs , MapStringToClass<MindLocalCircuitConnectionDef>& outputs );
+	void createDotFile_subgraph( MindArea *area , MindLocalCircuitDef& circuit , bool p_inputs , MapStringToClass<MindLocalCircuitConnectionDef>& connections , StringList& text , String& linkItem );
+	String createDotFile_getRegionLabel( MindRegionDef *region , MindLocalCircuitDef& circuit , MapStringToClass<MindLocalCircuitConnectionDef>& inputs , MapStringToClass<MindLocalCircuitConnectionDef>& outputs );
 
 private:
 	WikiMaker *wm;
