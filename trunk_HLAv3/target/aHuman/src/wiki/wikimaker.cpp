@@ -563,7 +563,7 @@ String WikiMaker::getCircuitDotPath( MindLocalCircuitDef& circuit ) {
 }
 
 String WikiMaker::getCircuitImageRef( MindLocalCircuitDef& circuit ) {
-	String line = getWikiImagePath() + "/" + circuit.getAreaDef() -> getAreaId() + "_" + circuit.getId() + ".dot.jpg";
+	String line = getWikiImagePath() + "/" + circuit.getAreaDef() -> getAreaId() + "_" + circuit.getId() + ".dot.png";
 	return( line );
 }
 

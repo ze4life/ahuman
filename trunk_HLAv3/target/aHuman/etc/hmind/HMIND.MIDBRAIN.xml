@@ -86,13 +86,18 @@
 			<element id="MM.REF.AUD" name="Auditory Reflexes Nuclei of Midbrain Mesencephalon" category="midbrain"
 				notes="Control auditory muscles"
 				>
-				<element id="ABA.MM.IC" name="Inferior Colliculus" mapped="true" type="nucleus"
+				<element id="ABA.MM.IC" name="Inferior Colliculus" 
 					refs="NL:[http://neurolex.org/wiki/Category:Inferior_colliculus Inferior colliculus]"
-					function="Reflex centres of hearing"
 					>
-					<element name="Central Nucleus of Inferior Colliculus" refs="NL:[http://neurolex.org/wiki/Category:Central_nucleus_of_inferior_colliculus Central nucleus of inferior colliculus]"/>
-					<element name="External Nucleus of Inferior Colliculus" refs="NL:[http://neurolex.org/wiki/Category:External_nucleus_of_inferior_colliculus External nucleus of inferior colliculus]"/>
-					<element name="Pericentral Nucleus of Inferior Colliculus" refs="NL:[http://neurolex.org/wiki/Category:Pericentral_nucleus_of_inferior_colliculus Pericentral nucleus of inferior colliculus]"/>
+					<element id="ABA.MM.CIC" name="Central Nucleus of Inferior Colliculus" mapped="true" type="nucleus" 
+						refs="NL:[http://neurolex.org/wiki/Category:Central_nucleus_of_inferior_colliculus Central nucleus of inferior colliculus]"
+						function="Integrate and relay auditory information to cortex, detection of pitch, spatial localization by binaural hearing"
+						/>
+					<element id="ABA.MM.EIC" name="External Nucleus of Inferior Colliculus" mapped="true" type="nucleus"
+						refs="NL:[http://neurolex.org/wiki/Category:External_nucleus_of_inferior_colliculus External nucleus of inferior colliculus]"
+						function="Middle ear reflex"
+						/>
+					<element name="Pericentral Nucleus of Inferior Colliculus" ignore="true" refs="NL:[http://neurolex.org/wiki/Category:Pericentral_nucleus_of_inferior_colliculus Pericentral nucleus of inferior colliculus]"/>
 				</element>
 
 				<element id="ABA.MM.SOC" name="Superior Olivary Complex" mapped="true" type="nucleus" category="midbrain"
@@ -487,14 +492,21 @@
 			notes="Receives fibers from spitothalamic tract and sends to CR"
 			/>
 
-		<element id="ABA.HM.COCH" name="Cochlear Nucleus" mapped="true" type="nucleus" index="CON" category="peripheral"
+		<element id="ABA.HM.COCH" name="Cochlear Nucleus" index="CON" category="peripheral"
 			refs="NL:[http://neurolex.org/wiki/Category:Cochlear_nuclear_complex Cochlear nuclear complex]"
-			fgroup="Cranial Mechanoreception and Proprioception"
 			function="Divergence in representation of auditory information"
 			notes="Carry sound information from organ of Corti"
 			>
-			<element name="Dorsal Cochlear Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Dorsal_cochlear_nucleus Dorsal cochlear nucleus]"/>
-			<element name="Ventral Cochlear Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Ventral_cochlear_nucleus Ventral cochlear nucleus]">
+			<element id="ABA.HM.DCOCH" name="Dorsal Cochlear Nucleus" mapped="true" type="nucleus" index="COND" category="peripheral" 
+				refs="NL:[http://neurolex.org/wiki/Category:Dorsal_cochlear_nucleus Dorsal cochlear nucleus]"
+				fgroup="Cranial Mechanoreception and Proprioception"
+				function="Analyzes quality of sound, picks apart tiny frequency differences between close sounds"
+				/>
+			<element id="ABA.HM.VCOCH" name="Ventral Cochlear Nucleus" mapped="true" type="nucleus" index="CONV" category="peripheral" 
+				refs="NL:[http://neurolex.org/wiki/Category:Ventral_cochlear_nucleus Ventral cochlear nucleus]"
+				fgroup="Cranial Mechanoreception and Proprioception"
+				function="determine direction sound came from, time-sensitive localization"
+				>
 				<element name="Anteroventral Cochlear Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Anteroventral_cochlear_nucleus Anteroventral cochlear nucleus]"/>
 				<element name="Posteroventral Cochlear Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Posteroventral_cochlear_nucleus Posteroventral cochlear nucleus]"/>
 			</element>
