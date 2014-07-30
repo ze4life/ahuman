@@ -122,7 +122,7 @@ class XmlHMindElementInfo {
 public:
 	XmlHMindElementInfo( XmlHMindElementInfo *p_parent ) { parent = p_parent; ignore = true; mapped = false; };
 
-	XmlHMindElementInfo *getParent() { return( parent ); };
+	XmlHMindElementInfo *getParent() const { return( parent ); };
 	bool isConnector() const { return( eltype == HMIND_ELEMENT_CONNECTOR ); };
 	bool isTarget() const { return( eltype == HMIND_ELEMENT_SENSOR || eltype == HMIND_ELEMENT_EFFECTOR ); };
 	bool isGanglion() const { return( eltype == HMIND_ELEMENT_GANGLION_SENSORY || eltype == HMIND_ELEMENT_GANGLION_SYMP || eltype == HMIND_ELEMENT_GANGLION_PSYMP ); };

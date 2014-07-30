@@ -173,19 +173,26 @@
 
 				<circuit id="LAC" name="Auditory Sense" enabled="true">
 					<region id="ABA.PN.SG.SP" type="ganglion" service="LSC" role="sensory"/>
-					<region id="ABA.HM.COCH" type="nucleus" service="LSM" role="relay"/>
-					<region id="ABA.FD.TH.MGB" type="nucleus" service="LSM" role="relay"/>
-					<region id="ACA.FD.TH.SG" type="nucleus" service="LSM" role="processor"/>
-					<connection type="ganglion-nucleus" primary="true" src="ABA.PN.SG.SP" dst="ABA.HM.COCH"/>
+					<region id="ABA.HM.DCOCH" type="nucleus" service="LSC" role="relay"/>
+					<region id="ABA.HM.VCOCH" type="nucleus" service="LSC" role="relay"/>
+					<region id="ABA.MM.CIC" type="nucleus" service="LSC" role="relay"/>
+					<region id="ABA.HP.PN.LL" type="nucleus" service="LSC" role="relay"/>
+					<region id="ABA.MM.SOC" type="nucleus" service="LSC" role="relay"/>
+					<connection type="ganglion-nucleus" primary="true" src="ABA.PN.SG.SP" dst="ABA.HM.DCOCH"/>
+					<connection type="ganglion-nucleus" primary="true" src="ABA.PN.SG.SP" dst="ABA.HM.VCOCH"/>
 					<connection type="ganglion-nucleus" primary="true" src="ABA.PN.SG.SP" dst="BMA.HP.VBN"/>
-					<connection type="nucleus-nucleus" primary="true" src="ABA.HM.COCH" dst="ABA.MM.SOC"/>
-					<connection type="nucleus-nucleus" primary="true" src="ABA.HM.COCH" dst="ABA.HP.PN.LL"/>
-					<connection type="nucleus-nucleus" primary="true" src="ABA.HM.COCH" dst="ABA.MM.IC"/>
-					<connection type="nucleus-nucleus" primary="true" src="ABA.HM.COCH" dst="HMA.MM.CJ"/>
-					<connection type="nucleus-neocortex" primary="true" src="ABA.FD.TH.MGB" dst="ACA.NC.A1"/>
-					<connection type="nucleus-neocortex" primary="true" src="ACA.FD.TH.SG" dst="ACA.NC.A1" notes="to HFR region"/>
-					<connection type="nucleus-nucleus" primary="true" src="ACA.FD.TH.SG" dst="BFA.FT.AM"/>
-					<connection type="nucleus-nucleus" primary="true" src="ACA.FD.TH.SG" dst="MBA.MM.TG.LDT"/>
+					<connection type="nucleus-nucleus" primary="true" src="ABA.MM.CIC" dst="ABA.HP.PN.LL"/>
+					<connection type="nucleus-nucleus" primary="true" src="ABA.MM.CIC" dst="ABA.MM.SOC"/>
+					<connection type="nucleus-nucleus" primary="true" src="ABA.MM.CIC" dst="ABA.MM.EIC"/>
+					<connection type="nucleus-nucleus" primary="true" src="ABA.MM.CIC" dst="ABA.FD.TH.MGB"/>
+					<connection type="nucleus-nucleus" primary="true" src="ABA.HM.DCOCH" dst="ABA.MM.CIC"/>
+					<connection type="nucleus-nucleus" primary="true" src="ABA.HM.DCOCH" dst="ABA.HP.PN.LL"/>
+					<connection type="nucleus-nucleus" primary="true" src="ABA.HM.VCOCH" dst="ABA.MM.SOC"/>
+					<connection type="nucleus-nucleus" primary="true" src="ABA.HM.VCOCH" dst="HMA.MM.CJ"/>
+					<connection type="nucleus-nucleus" primary="true" src="ABA.MM.SOC" dst="ABA.MM.CIC"/>
+					<connection type="nucleus-nucleus" primary="true" src="ABA.MM.SOC" dst="ABA.HP.PN.LL"/>
+					<connection type="nucleus-nucleus" primary="true" src="ABA.HP.PN.LL" dst="ABA.MM.CIC"/>
+					<connection type="nucleus-nucleus" primary="true" src="ABA.HP.PN.LL" dst="ABA.MM.SOC"/>
 				</circuit>
 
 				<circuit id="LTC" name="Taste and Smell Senses" enabled="true">
@@ -283,7 +290,7 @@
 					<connection type="nucleus-nucleus" primary="true" src="VBA.MM.SC.SUP" dst="VBA.MM.RP.RIP"/>
 					<connection type="nucleus-nucleus" primary="true" src="VBA.MM.SC.SUP" dst="MBA.MM.SC.DEEP"/>
 					<connection type="nucleus-nucleus" primary="true" src="VBA.MM.SC.SUP" dst="SMA.FD.TH.LP"/>
-					<connection type="nucleus-nucleus" primary="true" src="MBA.MM.SC.DEEP" dst="ABA.MM.IC"/>
+					<connection type="nucleus-nucleus" primary="true" src="MBA.MM.SC.DEEP" dst="ABA.MM.EIC"/>
 					<connection type="nucleus-nucleus" primary="true" src="MBA.MM.SC.DEEP" dst="VBA.HP.ABD"/>
 					<connection type="nucleus-nucleus" primary="true" src="MBA.MM.SC.DEEP" dst="VBA.MM.OCN"/>
 					<connection type="nucleus-nucleus" primary="true" src="MBA.MM.SC.DEEP" dst="VBA.MM.TRH"/>
@@ -307,17 +314,12 @@
 				</circuit>
 
 				<circuit id="LRA" name="Auditory Reflexes" enabled="true">
-					<region id="ABA.MM.IC" type="nucleus" service="LRC" role="relay"/>
-					<region id="ABA.MM.SOC" type="nucleus" service="LRM" role="relay"/>
-					<region id="ABA.HP.PN.LL" type="nucleus" service="LRS" role="relay"/>
-					<connection type="nucleus-nucleus" primary="true" src="ABA.MM.IC" dst="ABA.HP.PN.LL"/>
-					<connection type="nucleus-nucleus" primary="true" src="ABA.MM.IC" dst="ABA.MM.SOC"/>
-					<connection type="nucleus-nucleus" primary="true" src="ABA.MM.IC" dst="MBA.MM.SC.DEEP"/>
-					<connection type="nucleus-nucleus" primary="true" src="ABA.MM.IC" dst="ABA.FD.TH.MGB"/>
-					<connection type="nucleus-nucleus" primary="true" src="ABA.MM.SOC" dst="ABA.MM.IC"/>
-					<connection type="nucleus-nucleus" primary="true" src="ABA.MM.SOC" dst="ABA.HP.PN.LL"/>
-					<connection type="nucleus-nucleus" primary="true" src="ABA.HP.PN.LL" dst="ABA.MM.IC"/>
-					<connection type="nucleus-nucleus" primary="true" src="ABA.HP.PN.LL" dst="ABA.MM.SOC"/>
+					<region id="ACA.FD.TH.SG" type="nucleus" service="LSM" role="processor"/>
+					<region id="ABA.MM.EIC" type="nucleus" service="LSC" role="relay"/>
+					<connection type="nucleus-nucleus" primary="true" src="ABA.MM.EIC" dst="MBA.MM.SC.DEEP"/>
+					<connection type="nucleus-neocortex" primary="true" src="ACA.FD.TH.SG" dst="ACA.NC.A1" notes="to HFR region"/>
+					<connection type="nucleus-nucleus" primary="true" src="ACA.FD.TH.SG" dst="BFA.FT.AM"/>
+					<connection type="nucleus-nucleus" primary="true" src="ACA.FD.TH.SG" dst="MBA.MM.TG.LDT"/>
 				</circuit>
 
 				<circuit id="LRF" name="Head Motor Reflexes" enabled="true">
@@ -517,7 +519,7 @@
 				<services>
 					<service id="LUS" name="Unknown Service"/>
 				</services>
-				<circuit id="TBD" name="TBD" enabled="true">
+				<circuit id="MCAALL" name="TBD" enabled="true">
 					<region id="VBA.MM.RP.RIP" type="nucleus" service="LUS" role="relay"/>
 					<region id="FBA.MM.RP.MRN" type="nucleus" service="LUS" role="relay"/>
 					<region id="FBA.MM.RP.DRN" type="nucleus" service="LUS" role="relay"/>
@@ -573,7 +575,7 @@
 				<services>
 					<service id="FEU" name="Unknown Service"/>
 				</services>
-				<circuit id="TBD" name="TBD" enabled="true">
+				<circuit id="ECAALL" name="TBD" enabled="true">
 					<region id="BGA.FT.GPE" type="nucleus" service="FEU" role="relay"/>
 					<region id="BGA.FT.GPI" type="nucleus" service="FEU" role="relay"/>
 					<region id="BGA.FT.SN.PC" type="nucleus" service="FEU" role="relay"/>
@@ -646,7 +648,7 @@
 				<services>
 					<service id="FMU" name="Unknown Service"/>
 				</services>
-				<circuit id="TBD" name="TBD" enabled="true">
+				<circuit id="MMAALL" name="TBD" enabled="true">
 					<region id="PHA.NC.INS.PPC" type="neocortex" service="FMU" role="processor"/>
 					<region id="PHA.NC.INS.HR" type="neocortex" service="FMU" role="processor"/>
 					<region id="PHA.NC.PH.ET" type="neocortex" service="FMU" role="processor"/>
@@ -780,7 +782,7 @@
 				<services>
 					<service id="FAU" name="Unknown Service"/>
 				</services>
-				<circuit id="TBD" name="TBD" enabled="true">
+				<circuit id="AMAALL" name="TBD" enabled="true">
 					<region id="PHA.FT.EPF" type="nucleus" service="FAU" role="relay"/>
 					<region id="BFA.FT.AM" type="nucleus" service="FAU" role="relay"/>
 					<region id="BFA.FT.NBM" type="nucleus" service="FAU" role="relay"/>
@@ -799,7 +801,7 @@
 					<connection type="nucleus-neocortex" primary="true" src="BFA.FT.AM" dst="CGA.NC.PACG"/>
 					<connection type="nucleus-neocortex" primary="true" src="BFA.FT.AM" dst="PHA.NC.PAS"/>
 					<connection type="nucleus-neocortex" primary="true" src="BFA.FT.AM" dst="PHA.NC.PH.ET"/>
-					<connection type="nucleus-nucleus" primary="true" src="BFA.FT.AM" dst="ABA.MM.IC"/>
+					<connection type="nucleus-nucleus" primary="true" src="BFA.FT.AM" dst="ABA.MM.CIC"/>
 					<connection type="nucleus-nucleus" primary="true" src="BFA.FT.AM" dst="BFA.FD.TH.PV"/>
 					<connection type="nucleus-nucleus" primary="true" src="BFA.FT.AM" dst="FBA.HP.LC"/>
 					<connection type="nucleus-nucleus" primary="true" src="BFA.FT.AM" dst="HTA.FD.HT.PV"/>
@@ -936,6 +938,7 @@
 				</circuit>
 
 				<circuit id="NSA" name="Neocortical Audition Aggregation" enabled="true">
+					<region id="ABA.FD.TH.MGB" type="nucleus" service="LSM" role="relay"/>
 					<region id="ACA.NC.A1" type="neocortex" service="NSU" role="processor"/>
 					<region id="ACA.NC.A2" type="neocortex" service="NSU" role="processor"/>
 					<region id="ACA.NC.A3" type="neocortex" service="NSU" role="processor"/>
@@ -943,12 +946,13 @@
 					<region id="ACA.NC.IPL.SMW" type="neocortex" service="NSU" role="processor"/>
 					<region id="ACA.NC.BRA" type="neocortex" service="NSU" role="processor"/>
 					<region id="ACA.NC.PRI" type="neocortex" service="NSU" role="processor"/>
+					<connection type="nucleus-neocortex" primary="true" src="ABA.FD.TH.MGB" dst="ACA.NC.A1"/>
 					<connection type="neocortex-neocortex" primary="true" src="ACA.NC.A1" dst="ACA.NC.A2"/>
 					<connection type="neocortex-neocortex" primary="true" src="ACA.NC.A1" dst="ACA.NC.A4"/>
 					<connection type="neocortex-neocortex" primary="true" src="ACA.NC.A1" dst="ACA.NC.IPL.SMW"/>
 					<connection type="neocortex-neocortex" primary="true" src="ACA.NC.A1" dst="ACA.NC.A3"/>
 					<connection type="neocortex-neocortex" primary="true" src="ACA.NC.A1" dst="MCA.NC.PMC.F7"/>
-					<connection type="neocortex-nucleus" primary="true" src="ACA.NC.A1" dst="ABA.MM.IC"/>
+					<connection type="neocortex-nucleus" primary="true" src="ACA.NC.A1" dst="ABA.MM.CIC"/>
 					<connection type="neocortex-neocortex" primary="true" src="ACA.NC.A2" dst="ACA.NC.A4"/>
 					<connection type="neocortex-neocortex" primary="true" src="ACA.NC.A2" dst="CGA.NC.DACG"/>
 					<connection type="neocortex-neocortex" primary="true" src="ACA.NC.A3" dst="ACA.NC.BRA"/>
@@ -973,7 +977,7 @@
 				<services>
 					<service id="NBU" name="Unknown Service"/>
 				</services>
-				<circuit id="TBD" name="TBD" enabled="true">
+				<circuit id="BAAALL" name="TBD" enabled="true">
 					<region id="SMA.NC.PG.S1" type="neocortex" service="NBU" role="processor"/>
 					<region id="SMA.FD.TH.VPL" type="nucleus" service="NBU" role="relay"/>
 					<region id="SMA.FD.TH.VPM" type="nucleus" service="NBU" role="relay"/>
@@ -1020,7 +1024,7 @@
 				<services>
 					<service id="NMU" name="Unknown Service"/>
 				</services>
-				<circuit id="TBD" name="TBD" enabled="true">
+				<circuit id="MAAALL" name="TBD" enabled="true">
 					<region id="MCA.NC.PMC.F2" type="neocortex" service="NMU" role="processor"/>
 					<region id="MCA.NC.PMC.F7" type="neocortex" service="NMU" role="processor"/>
 					<region id="MCA.NC.PMC.F4" type="neocortex" service="NMU" role="processor"/>
@@ -1078,7 +1082,7 @@
 				<services>
 					<service id="NPU" name="Unknown Service"/>
 				</services>
-				<circuit id="TBD" name="TBD" enabled="true">
+				<circuit id="EPAALL" name="TBD" enabled="true">
 					<region id="FCA.NC.IPG" type="neocortex" service="NPU" role="processor"/>
 					<region id="FCA.NC.LPFC" type="neocortex" service="NPU" role="processor"/>
 					<region id="FCA.NC.OMPFC" type="neocortex" service="NPU" role="processor"/>

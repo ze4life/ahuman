@@ -217,7 +217,8 @@ private:
 	void createAreaPages_getExternalConnectionTableLine( MindArea *area , MindLocalCircuitDef& circuit , MindLocalCircuitConnectionDef *link , StringList& lines , bool isin , const char *areaType );
 	void createDotFile( MindArea *area , MindLocalCircuitDef& circuit , MapStringToClass<MindLocalCircuitConnectionDef>& internals , MapStringToClass<MindLocalCircuitConnectionDef>& inputs , MapStringToClass<MindLocalCircuitConnectionDef>& outputs );
 	void createDotFile_subgraph( MindArea *area , MindLocalCircuitDef& circuit , bool p_inputs , MapStringToClass<MindLocalCircuitConnectionDef>& connections , StringList& text , String& linkItem );
-	String createDotFile_getRegionLabel( MindRegionDef *region , MindLocalCircuitDef& circuit , MapStringToClass<MindLocalCircuitConnectionDef>& inputs , MapStringToClass<MindLocalCircuitConnectionDef>& outputs );
+	String createDotFile_getRegionLabel( MindRegionDef *region );
+	String getRegionColor( String regionId );
 
 private:
 	WikiMaker *wm;
