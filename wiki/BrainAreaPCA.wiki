@@ -14,24 +14,32 @@
 http://ahuman.googlecode.com/svn/images/dot/aHuman/PCA_LAC.dot.png
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionABA_FD_TH_MGB ABA.FD.TH.MGB] || Medial Geniculate Body || nucleus || LSM || Detection of the relative intensity and duration of a sound, relay to Auditory<BR>Cortex || Thalamus ||
-|| [BrainRegionABA_HM_COCH ABA.HM.COCH] || Cochlear Nucleus || nucleus || LSM || Divergence in representation of auditory information || Carry sound information from organ of Corti ||
+|| [BrainRegionABA_HM_DCOCH ABA.HM.DCOCH] || Dorsal Cochlear Nucleus || nucleus || LSM || Analyzes quality of sound, picks apart tiny frequency differences between close<BR>sounds ||  ||
+|| [BrainRegionABA_HM_VCOCH ABA.HM.VCOCH] || Ventral Cochlear Nucleus || nucleus || LSM || determine direction sound came from, time-sensitive localization ||  ||
+|| [BrainRegionABA_HP_PN_LL ABA.HP.PN.LL] || Nuclei of Lateral Lemniscus || nucleus || LRS || Decoding of amplitude modulated sounds || Prominent columnar organization, cochlea to IC ||
+|| [BrainRegionABA_MM_IC ABA.MM.IC] || Inferior Colliculus || nucleus || LRC || Reflex centres of hearing ||  ||
 || [BrainRegionABA_PN_SG_SP ABA.PN.SG.SP] || Spiral Ganglion || sensory ganglion || LSC || Auditory patterns || Fibres from bipolar cells in the spiral ganglion<BR>consist of peripheral branches that end in the<BR>organ of Corti and central branches that end in the<BR>ventral and dorsal cochlear nuclei ||
-|| [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || Suprageniculate Nucleus of Thalamus || nucleus || LSM || Spatial coding of auditory information || From tectum, somatic sensations ||
 
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| [BrainRegionABA_PN_SG_SP ABA.PN.SG.SP] || [BrainRegionABA_HM_COCH ABA.HM.COCH] || ganglion-nucleus || [http://www.benbest.com/science/anatmind/anatmd6.html Auditory System in Brain (CochleaGanglion -> Cochlea)] ||
+|| [BrainRegionABA_HM_DCOCH ABA.HM.DCOCH] || [BrainRegionABA_HP_PN_LL ABA.HP.PN.LL] || nucleus-nucleus || [http://lifeboat.com/ex/law.of.accelerating.returns Five Parallel Auditory Pathways (OC -> VNLL, abstract)] ||
+||  || [BrainRegionABA_MM_IC ABA.MM.IC] || nucleus-nucleus || [http://lifeboat.com/ex/law.of.accelerating.returns Five Parallel Auditory Pathways (DCN -> ICC, abstract)] ||
+|| [BrainRegionABA_HP_PN_LL ABA.HP.PN.LL] || [BrainRegionABA_MM_IC ABA.MM.IC] || nucleus-nucleus || [http://lifeboat.com/ex/law.of.accelerating.returns Five Parallel Auditory Pathways (VNLL -> ICC)] ||
+|| [BrainRegionABA_MM_IC ABA.MM.IC] || [BrainRegionABA_HP_PN_LL ABA.HP.PN.LL] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionABA_PN_SG_SP ABA.PN.SG.SP] || [BrainRegionABA_HM_DCOCH ABA.HM.DCOCH] || ganglion-nucleus || [http://www.benbest.com/science/anatmind/anatmd6.html Auditory System in Brain (CochleaGanglion -> Cochlea, abstract)] ||
+||  || [BrainRegionABA_HM_VCOCH ABA.HM.VCOCH] || ganglion-nucleus || [http://www.benbest.com/science/anatmind/anatmd6.html Auditory System in Brain (CochleaGanglion -> Cochlea, abstract)] ||
 
 *External Inbound Region Connections:*
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| <font color="red">Cortical</font> || || || || || ||
+|| [BrainAreaSAA SAA] || [BrainRegionABA_MM_IC ABA.MM.IC] || [BrainRegionACA_NC_A1 ACA.NC.A1] || Primary Auditory Cortex || neocortex-nucleus || [http://f1000research.com/articles/2-20/v1 Visual-Auditory Interactions in Tectum (AC -> IC)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaLCA LCA] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || Prepositus Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (NPRP -> SUPGEN)] ||
-|| [BrainAreaMCA MCA] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (DTN -> SUPGEN)] ||
-|| [BrainAreaMRA MRA] || [BrainRegionABA_FD_TH_MGB ABA.FD.TH.MGB] || [BrainRegionABA_MM_IC ABA.MM.IC] || Inferior Colliculus || nucleus-nucleus || [http://www.benbest.com/science/anatmind/anatmd6.html Auditory System in Brain (IC -> MGB)] ||
-|| [BrainAreaPCA PCA] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || [BrainRegionBMA_HP_VBN BMA.HP.VBN] || Vestibular Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (MVSN -> SUPGEN)] ||
+|| [BrainAreaAMA AMA] || [BrainRegionABA_MM_IC ABA.MM.IC] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-nucleus || [http://f1000research.com/articles/2-20/v1 Visual-Auditory Interactions in Tectum (AM -> IC)] ||
+|| [BrainAreaMRA MRA] || [BrainRegionABA_HP_PN_LL ABA.HP.PN.LL] || [BrainRegionABA_MM_SOC ABA.MM.SOC] || Superior Olivary Complex || nucleus-nucleus || [http://lifeboat.com/ex/law.of.accelerating.returns Five Parallel Auditory Pathways (LSO -> DNLL)] ||
+||  || [BrainRegionABA_MM_IC ABA.MM.IC] || [BrainRegionABA_MM_SOC ABA.MM.SOC] || Superior Olivary Complex || nucleus-nucleus || [http://www.benbest.com/science/anatmind/anatmd6.html Auditory System in Brain (Olive -> IC)] ||
+||  ||  || [BrainRegionMBA_MM_SC_DEEP MBA.MM.SC.DEEP] || Deep Superior Colliculus || nucleus-nucleus || [http://f1000research.com/articles/2-20/v1 Visual-Auditory Interactions in Tectum (SC -> IC, abstract)] ||
 || <font color="red">Target</font> || || || || || ||
 || [BrainAreaTSA TSA] || [BrainRegionABA_PN_SG_SP ABA.PN.SG.SP] || [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || Ear || ear-inner-hair-cells || [http://www.sciencedirect.com/science/article/pii/S1359644605035427 Auditory System Model (Ear -> CochleaGanglion)] ||
 
@@ -39,15 +47,13 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/PCA_LAC.dot.png
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
-|| [BrainAreaSAA SAA] || [BrainRegionABA_FD_TH_MGB ABA.FD.TH.MGB] || [BrainRegionACA_NC_A1 ACA.NC.A1] || Primary Auditory Cortex || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (MGN -> pMGN)] ||
-||  || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || [BrainRegionACA_NC_A1 ACA.NC.A1] || Primary Auditory Cortex || nucleus-neocortex || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2010.00134/full Echo-Location in Bats (SG -> A1)] ||
+|| [BrainAreaSAA SAA] || [BrainRegionABA_MM_IC ABA.MM.IC] || [BrainRegionABA_FD_TH_MGB ABA.FD.TH.MGB] || Medial Geniculate Body || nucleus-nucleus || [http://www.benbest.com/science/anatmind/anatmd6.html Auditory System in Brain (IC -> MGB)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaAMA AMA] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (TH -> AM, abstract)] ||
-|| [BrainAreaMCA MCA] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (SUPGEN -> DTN)] ||
-|| [BrainAreaMRA MRA] || [BrainRegionABA_HM_COCH ABA.HM.COCH] || [BrainRegionABA_HP_PN_LL ABA.HP.PN.LL] || Nuclei of Lateral Lemniscus || nucleus-nucleus || [http://lifeboat.com/ex/law.of.accelerating.returns Five Parallel Auditory Pathways (OC -> VNLL)] ||
-||  ||  || [BrainRegionABA_MM_IC ABA.MM.IC] || Inferior Colliculus || nucleus-nucleus || [http://lifeboat.com/ex/law.of.accelerating.returns Five Parallel Auditory Pathways (DCN -> ICC)] ||
-||  ||  || [BrainRegionABA_MM_SOC ABA.MM.SOC] || Superior Olivary Complex || nucleus-nucleus || [http://www.benbest.com/science/anatmind/anatmd6.html Auditory System in Brain (Cochlea -> Olive)] ||
+|| [BrainAreaMRA MRA] || [BrainRegionABA_HM_VCOCH ABA.HM.VCOCH] || [BrainRegionABA_MM_SOC ABA.MM.SOC] || Superior Olivary Complex || nucleus-nucleus || [http://www.benbest.com/science/anatmind/anatmd6.html Auditory System in Brain (Cochlea -> Olive, abstract)] ||
 ||  ||  || [BrainRegionHMA_MM_CJ HMA.MM.CJ] || Cajal Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionABA_HP_PN_LL ABA.HP.PN.LL] || [BrainRegionABA_MM_SOC ABA.MM.SOC] || Superior Olivary Complex || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionABA_MM_IC ABA.MM.IC] || [BrainRegionABA_MM_SOC ABA.MM.SOC] || Superior Olivary Complex || nucleus-nucleus || [http://lifeboat.com/ex/law.of.accelerating.returns Five Parallel Auditory Pathways (ICC -> VNTB)] ||
+||  ||  || [BrainRegionMBA_MM_SC_DEEP MBA.MM.SC.DEEP] || Deep Superior Colliculus || nucleus-nucleus || [http://lifeboat.com/ex/law.of.accelerating.returns Five Parallel Auditory Pathways (ICx -> SC, abstract)] ||
 || [BrainAreaPCA PCA] || [BrainRegionABA_PN_SG_SP ABA.PN.SG.SP] || [BrainRegionBMA_HP_VBN BMA.HP.VBN] || Vestibular Nucleus || ganglion-nucleus || (unknown reference) ||
 
 == Body Muscles ==
@@ -174,9 +180,9 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/PCA_LEC.dot.png
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLCA LCA] || [BrainRegionBMA_HP_VBN BMA.HP.VBN] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || Prepositus Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (MVSN -> NPRP)] ||
-|| [BrainAreaMRA MRA] || [BrainRegionBMA_HP_VBN BMA.HP.VBN] || [BrainRegionBMA_MM_DSCH BMA.MM.DSCH] || Darkschewitsch Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaMRA MRA] || [BrainRegionBMA_HP_VBN BMA.HP.VBN] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || Suprageniculate Nucleus of Thalamus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (MVSN -> SUPGEN)] ||
+||  ||  || [BrainRegionBMA_MM_DSCH BMA.MM.DSCH] || Darkschewitsch Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || Caudal Pontine Reticular Nucleus || nucleus-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) (VestibularNuclei -> PPRF, abstract)] ||
-|| [BrainAreaPCA PCA] || [BrainRegionBMA_HP_VBN BMA.HP.VBN] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || Suprageniculate Nucleus of Thalamus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (MVSN -> SUPGEN)] ||
 
 == Face Muscles ==
 
@@ -376,13 +382,13 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/PCA_LVC.dot.png
 
 <img src="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/oculomotor.jpg" alt="unavailable">
 
-  * [http://what-when-how.com/wp-content/uploads/2012/04/tmp3649_thumb1_thumb.jpg Thalamocortical relationships] - see [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Reference]
-
-<img src="http://what-when-how.com/wp-content/uploads/2012/04/tmp3649_thumb1_thumb.jpg" alt="unavailable"height=400width=400>
-
   * [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/vision-subcortical.jpg Vision Components] - see [http://neuroscience.uth.tmc.edu/s3/chapter07.html Reference]
 
 <img src="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/vision-subcortical.jpg" alt="unavailable">
+
+  * [http://what-when-how.com/wp-content/uploads/2012/04/tmp3649_thumb1_thumb.jpg Thalamocortical relationships] - see [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Reference]
+
+<img src="http://what-when-how.com/wp-content/uploads/2012/04/tmp3649_thumb1_thumb.jpg" alt="unavailable"height=400width=400>
 
   * [http://www.neuroanatomy.wisc.edu/virtualbrain/Images/13R.jpg Vestibulo-ocular reflex (VOR)] - see [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Reference]
 
@@ -403,14 +409,6 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/PCA_LVC.dot.png
   * [http://lifeboat.com/kurzweil/cochlea.gif Five Parallel Auditory Pathways] - see [http://lifeboat.com/ex/law.of.accelerating.returns Reference]
 
 <img src="http://lifeboat.com/kurzweil/cochlea.gif" alt="unavailable">
-
-  * [http://ars.sciencedirect.com/content/image/1-s2.0-S1359644605035427-gr1.jpg Auditory System Model] - see [http://www.sciencedirect.com/science/article/pii/S1359644605035427 Reference]
-
-<img src="http://ars.sciencedirect.com/content/image/1-s2.0-S1359644605035427-gr1.jpg" alt="unavailable">
-
-  * [http://www.benbest.com/science/anatmind/FigVI1.gif Auditory System in Brain] - see [http://www.benbest.com/science/anatmind/anatmd6.html Reference]
-
-<img src="http://www.benbest.com/science/anatmind/FigVI1.gif" alt="unavailable">
 
   * [http://asweknowit.ca/evcult/NatIntel/Fig12.GIF Visual perception abstraction] - see [http://asweknowit.ca/evcult/NatIntel/nat_intel.shtml Reference]
 
@@ -444,13 +442,13 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/PCA_LVC.dot.png
 
 <img src="http://ars.els-cdn.com/content/image/1-s2.0-S0006899301025987-gr1.gif" alt="unavailable">
 
-  * [http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png Head Direction Cell Circuit] - see [http://www.scholarpedia.org/article/Head_direction_cells Reference]
+  * [http://ars.sciencedirect.com/content/image/1-s2.0-S1359644605035427-gr1.jpg Auditory System Model] - see [http://www.sciencedirect.com/science/article/pii/S1359644605035427 Reference]
 
-<img src="http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png" alt="unavailable">
+<img src="http://ars.sciencedirect.com/content/image/1-s2.0-S1359644605035427-gr1.jpg" alt="unavailable">
 
-  * [http://cdn.f1000r.com.s3.amazonaws.com/manuscripts/1181/d6e9eca8-bb85-4382-8286-723b00f8b36f_figure7.gif Visual-Auditory Interactions in Tectum] - see [http://f1000research.com/articles/2-20/v1 Reference]
+  * [http://www.benbest.com/science/anatmind/FigVI1.gif Auditory System in Brain] - see [http://www.benbest.com/science/anatmind/anatmd6.html Reference]
 
-<img src="http://cdn.f1000r.com.s3.amazonaws.com/manuscripts/1181/d6e9eca8-bb85-4382-8286-723b00f8b36f_figure7.gif" alt="unavailable"height=400width=400>
+<img src="http://www.benbest.com/science/anatmind/FigVI1.gif" alt="unavailable">
 
   * [http://etc.usf.edu/clipart/53700/53763/53763_eye_md.gif Eye muscles] - see [http://etc.usf.edu/clipart/53700/53763/53763_eye.htm Reference]
 
@@ -484,13 +482,21 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/PCA_LVC.dot.png
 
 <img src="http://neuropolitics.org/connect-amygdala.jpg" alt="unavailable">
 
+  * [http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png Head Direction Cell Circuit] - see [http://www.scholarpedia.org/article/Head_direction_cells Reference]
+
+<img src="http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png" alt="unavailable">
+
   * [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements] (unknown reference)
 
 <img src="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg" alt="unavailable">
 
-  * [http://c431376.r76.cf2.rackcdn.com/1349/fnana-04-00134-HTML/image_m/fnana-04-00134-g001.jpg Echo-Location in Bats] - see [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2010.00134/full Reference]
+  * [http://cdn.f1000r.com.s3.amazonaws.com/manuscripts/1181/d6e9eca8-bb85-4382-8286-723b00f8b36f_figure7.gif Visual-Auditory Interactions in Tectum] - see [http://f1000research.com/articles/2-20/v1 Reference]
 
-<img src="http://c431376.r76.cf2.rackcdn.com/1349/fnana-04-00134-HTML/image_m/fnana-04-00134-g001.jpg" alt="unavailable"height=200width=600>
+<img src="http://cdn.f1000r.com.s3.amazonaws.com/manuscripts/1181/d6e9eca8-bb85-4382-8286-723b00f8b36f_figure7.gif" alt="unavailable"height=400width=400>
+
+  * [http://ars.els-cdn.com/content/image/1-s2.0-S1364661312002823-gr2.jpg Auditory system] - see [http://www.walkingwithataxia.com/Neuroanatomy.htm Reference]
+
+<img src="http://ars.els-cdn.com/content/image/1-s2.0-S1364661312002823-gr2.jpg" alt="unavailable">
 
 
 = References =
@@ -504,8 +510,6 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/PCA_LVC.dot.png
   * http://www.sciencedirect.com/science/article/pii/S0959438808001566
   * http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full
   * http://lifeboat.com/ex/law.of.accelerating.returns
-  * http://www.sciencedirect.com/science/article/pii/S1359644605035427
-  * http://www.benbest.com/science/anatmind/anatmd6.html
   * http://asweknowit.ca/evcult/NatIntel/nat_intel.shtml
   * http://www.hindawi.com/journals/nri/2012/719056
   * http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html
@@ -514,13 +518,15 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/PCA_LVC.dot.png
   * http://www.sciencedirect.com/science/article/pii/S0387760401003308
   * http://www.lookfordiagnosis.com/mesh_info.php?term=Trigeminal+Nucleilang=1
   * http://www.sciencedirect.com/science/article/pii/S0006899301025987
-  * http://www.scholarpedia.org/article/Head_direction_cells
-  * http://f1000research.com/articles/2-20/v1
+  * http://www.sciencedirect.com/science/article/pii/S1359644605035427
+  * http://www.benbest.com/science/anatmind/anatmd6.html
   * http://etc.usf.edu/clipart/53700/53763/53763_eye.htm
   * http://meded.ucsd.edu/clinicalmed/eyes.htm
   * http://www.sciencedirect.com/science/article/pii/S0166223697010679
   * http://www.sciencedirect.com/science/article/pii/S1571064507000243
   * http://www.sciencedirect.com/science/article/pii/S0149763401000215
   * http://neuropolitics.org/defaultmay10.asp
-  * http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2010.00134/full
+  * http://www.scholarpedia.org/article/Head_direction_cells
+  * http://f1000research.com/articles/2-20/v1
+  * http://www.walkingwithataxia.com/Neuroanatomy.htm
 
