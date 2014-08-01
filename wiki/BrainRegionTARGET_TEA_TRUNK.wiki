@@ -17,7 +17,8 @@ Region is part of aHuman target integrated biological model.
 
 *Component items*:
   * *Trunk sensory data* (*trunk-sensory-data*)
-   * Trunk - somatic receptors (trunk-somatic-receptors -> [BrainRegionAVA_PN_SG_DRG AVA.PN.SG.DRG]): somatic sensation from skin of lower abdomen and lateral side of gluteal region
+   * Trunk - upper somatic receptors (trunk-upper-somatic-receptors -> [BrainRegionAVA_PN_SG_UDRG AVA.PN.SG.UDRG]): somatic sensation from skin of upper region
+   * Trunk - lower somatic receptors (trunk-lower-somatic-receptors -> [BrainRegionAVA_PN_SG_LDRG AVA.PN.SG.LDRG]): somatic sensation from skin of lower abdomen and lateral side of gluteal region
   * *Trunk back* (*trunk-back*)
    * *Trunk back flexors* (*trunk-back-flexors*)
     * [http://en.wikipedia.org/wiki/Iliocostalis Trunk - iliocostalis muscle] ([BrainRegionBMA_SC_VH_PM BMA.SC.VH.PM] -> [HumanMusclesTorso trunk-iliocostalis-muscle]): extends and lateral flexes spine
@@ -65,7 +66,8 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/TARGET.TEA.TRUNK.dot.jpg
 *Outbound Region Connections:*
 
 || *Target Area* || *Target Region* || *Target Name* || *Type* || *Reference* ||
-|| [BrainAreaPCA PCA] || [BrainRegionAVA_PN_SG_DRG AVA.PN.SG.DRG] || Dorsal Root Ganglion || trunk-somatic-receptors || (unknown reference) ||
+|| [BrainAreaPCA PCA] || [BrainRegionAVA_PN_SG_LDRG AVA.PN.SG.LDRG] || Lower Dorsal Root Ganglion || trunk-lower-somatic-receptors || (unknown reference) ||
+||  || [BrainRegionAVA_PN_SG_UDRG AVA.PN.SG.UDRG] || Upper Dorsal Root Ganglion || trunk-upper-somatic-receptors || (unknown reference) ||
 
 = Thirdparty Circuits =
 (generated)

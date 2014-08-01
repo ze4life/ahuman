@@ -14,40 +14,32 @@
 http://ahuman.googlecode.com/svn/images/dot/aHuman/MRA_LRA.dot.png
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionABA_HP_PN_LL ABA.HP.PN.LL] || Nuclei of Lateral Lemniscus || nucleus || LRS || Decoding of amplitude modulated sounds || Prominent columnar organization, cochlea to IC ||
-|| [BrainRegionABA_MM_IC ABA.MM.IC] || Inferior Colliculus || nucleus || LRC || Reflex centres of hearing ||  ||
-|| [BrainRegionABA_MM_SOC ABA.MM.SOC] || Superior Olivary Complex || nucleus || LRM || Bilateral Audition || Projections from both left and right ABA.CN ||
+|| [BrainRegionABA_MM_EIC ABA.MM.EIC] || External Nucleus of Inferior Colliculus || nucleus || LSC || Middle ear reflex ||  ||
+|| [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || Suprageniculate Nucleus of Thalamus || nucleus || LSM || Spatial coding of auditory information || From tectum, somatic sensations ||
 
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| [BrainRegionABA_HP_PN_LL ABA.HP.PN.LL] || [BrainRegionABA_MM_IC ABA.MM.IC] || nucleus-nucleus || [http://lifeboat.com/ex/law.of.accelerating.returns Five Parallel Auditory Pathways (VNLL -> ICC)] ||
-||  || [BrainRegionABA_MM_SOC ABA.MM.SOC] || nucleus-nucleus || (unknown reference) ||
-|| [BrainRegionABA_MM_IC ABA.MM.IC] || [BrainRegionABA_HP_PN_LL ABA.HP.PN.LL] || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionABA_MM_SOC ABA.MM.SOC] || nucleus-nucleus || [http://lifeboat.com/ex/law.of.accelerating.returns Five Parallel Auditory Pathways (ICC -> VNTB)] ||
-|| [BrainRegionABA_MM_SOC ABA.MM.SOC] || [BrainRegionABA_HP_PN_LL ABA.HP.PN.LL] || nucleus-nucleus || [http://lifeboat.com/ex/law.of.accelerating.returns Five Parallel Auditory Pathways (LSO -> DNLL)] ||
-||  || [BrainRegionABA_MM_IC ABA.MM.IC] || nucleus-nucleus || [http://www.benbest.com/science/anatmind/anatmd6.html Auditory System in Brain (Olive -> IC)] ||
 
 *External Inbound Region Connections:*
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
-|| <font color="red">Cortical</font> || || || || || ||
-|| [BrainAreaSAA SAA] || [BrainRegionABA_MM_IC ABA.MM.IC] || [BrainRegionACA_NC_A1 ACA.NC.A1] || Primary Auditory Cortex || neocortex-nucleus || [http://f1000research.com/articles/2-20/v1 Visual-Auditory Interactions in Tectum (AC -> IC)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaAMA AMA] || [BrainRegionABA_MM_IC ABA.MM.IC] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-nucleus || [http://f1000research.com/articles/2-20/v1 Visual-Auditory Interactions in Tectum (AM -> IC)] ||
-|| [BrainAreaMRA MRA] || [BrainRegionABA_MM_IC ABA.MM.IC] || [BrainRegionMBA_MM_SC_DEEP MBA.MM.SC.DEEP] || Deep Superior Colliculus || nucleus-nucleus || [http://f1000research.com/articles/2-20/v1 Visual-Auditory Interactions in Tectum (SC -> IC, abstract)] ||
-|| [BrainAreaPCA PCA] || [BrainRegionABA_HP_PN_LL ABA.HP.PN.LL] || [BrainRegionABA_HM_COCH ABA.HM.COCH] || Cochlear Nucleus || nucleus-nucleus || [http://lifeboat.com/ex/law.of.accelerating.returns Five Parallel Auditory Pathways (OC -> VNLL)] ||
-||  || [BrainRegionABA_MM_IC ABA.MM.IC] || [BrainRegionABA_HM_COCH ABA.HM.COCH] || Cochlear Nucleus || nucleus-nucleus || [http://lifeboat.com/ex/law.of.accelerating.returns Five Parallel Auditory Pathways (DCN -> ICC)] ||
-||  || [BrainRegionABA_MM_SOC ABA.MM.SOC] || [BrainRegionABA_HM_COCH ABA.HM.COCH] || Cochlear Nucleus || nucleus-nucleus || [http://www.benbest.com/science/anatmind/anatmd6.html Auditory System in Brain (Cochlea -> Olive)] ||
+|| [BrainAreaLCA LCA] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || Prepositus Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (NPRP -> SUPGEN)] ||
+|| [BrainAreaMCA MCA] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (DTN -> SUPGEN)] ||
+|| [BrainAreaMRA MRA] || [BrainRegionABA_MM_EIC ABA.MM.EIC] || [BrainRegionMBA_MM_SC_DEEP MBA.MM.SC.DEEP] || Deep Superior Colliculus || nucleus-nucleus || [http://f1000research.com/articles/2-20/v1 Visual-Auditory Interactions in Tectum (SC -> IC, abstract)] ||
+|| [BrainAreaPCA PCA] || [BrainRegionABA_MM_EIC ABA.MM.EIC] || [BrainRegionABA_MM_CIC ABA.MM.CIC] || Central Nucleus of Inferior Colliculus || nucleus-nucleus || [http://lifeboat.com/ex/law.of.accelerating.returns Five Parallel Auditory Pathways (ICC -> ICx, abstract)] ||
+||  || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || [BrainRegionBMA_HP_VBN BMA.HP.VBN] || Vestibular Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (MVSN -> SUPGEN)] ||
 
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| <font color="red">Cortical</font> || || || || || ||
+|| [BrainAreaSAA SAA] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || [BrainRegionACA_NC_A1 ACA.NC.A1] || Primary Auditory Cortex || nucleus-neocortex || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2010.00134/full Echo-Location in Bats (SG -> A1)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaMRA MRA] || [BrainRegionABA_MM_IC ABA.MM.IC] || [BrainRegionMBA_MM_SC_DEEP MBA.MM.SC.DEEP] || Deep Superior Colliculus || nucleus-nucleus || [http://lifeboat.com/ex/law.of.accelerating.returns Five Parallel Auditory Pathways (ICx -> SC, abstract)] ||
-|| [BrainAreaPCA PCA] || [BrainRegionABA_MM_IC ABA.MM.IC] || [BrainRegionABA_FD_TH_MGB ABA.FD.TH.MGB] || Medial Geniculate Body || nucleus-nucleus || [http://www.benbest.com/science/anatmind/anatmd6.html Auditory System in Brain (IC -> MGB)] ||
-|| <font color="red">Target</font> || || || || || ||
-|| [BrainAreaTSA TSA] || [BrainRegionABA_MM_SOC ABA.MM.SOC] || [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || Ear || ear-outer-hair-cells || [http://lifeboat.com/ex/law.of.accelerating.returns Five Parallel Auditory Pathways (VNTB -> Cochlea)] ||
+|| [BrainAreaAMA AMA] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (TH -> AM, abstract)] ||
+|| [BrainAreaMCA MCA] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (SUPGEN -> DTN)] ||
+|| [BrainAreaMRA MRA] || [BrainRegionABA_MM_EIC ABA.MM.EIC] || [BrainRegionMBA_MM_SC_DEEP MBA.MM.SC.DEEP] || Deep Superior Colliculus || nucleus-nucleus || [http://lifeboat.com/ex/law.of.accelerating.returns Five Parallel Auditory Pathways (ICx -> SC, abstract)] ||
 
 == Breathing Reflexes ==
 
@@ -177,9 +169,9 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/MRA_LRV.dot.png
 ||  || [BrainRegionVBA_MM_PT_NOT VBA.MM.PT.NOT] || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || Prepositus Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionVBA_MM_PT_PR VBA.MM.PT.PR] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaMCA MCA] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || [BrainRegionVBA_MM_RP_RIP VBA.MM.RP.RIP] || Raphe Interpositus Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (RIP -> PPRF, abstract)] ||
-|| [BrainAreaMRA MRA] || [BrainRegionMBA_MM_SC_DEEP MBA.MM.SC.DEEP] || [BrainRegionABA_MM_IC ABA.MM.IC] || Inferior Colliculus || nucleus-nucleus || [http://lifeboat.com/ex/law.of.accelerating.returns Five Parallel Auditory Pathways (ICx -> SC, abstract)] ||
+|| [BrainAreaMRA MRA] || [BrainRegionMBA_MM_SC_DEEP MBA.MM.SC.DEEP] || [BrainRegionABA_MM_EIC ABA.MM.EIC] || External Nucleus of Inferior Colliculus || nucleus-nucleus || [http://lifeboat.com/ex/law.of.accelerating.returns Five Parallel Auditory Pathways (ICx -> SC, abstract)] ||
 || [BrainAreaPCA PCA] || [BrainRegionBMA_MM_DSCH BMA.MM.DSCH] || [BrainRegionBMA_HP_VBN BMA.HP.VBN] || Vestibular Nucleus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionHMA_MM_CJ HMA.MM.CJ] || [BrainRegionABA_HM_COCH ABA.HM.COCH] || Cochlear Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionHMA_MM_CJ HMA.MM.CJ] || [BrainRegionABA_HM_VCOCH ABA.HM.VCOCH] || Ventral Cochlear Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionVBA_MM_PT_NOT VBA.MM.PT.NOT] || [BrainRegionVBA_FD_LGN VBA.FD.LGN] || Lateral Geniculate Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionVBA_FD_RT VBA.FD.RT] || Retina || ganglion-nucleus || [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm Targets of retina neurons (Retina -> Pretectum, abstract)] ||
 ||  || [BrainRegionVBA_MM_PT_PON VBA.MM.PT.PON] || [BrainRegionVBA_FD_RT VBA.FD.RT] || Retina || ganglion-nucleus || [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm Targets of retina neurons (Retina -> Pretectum, abstract)] ||
@@ -208,7 +200,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/MRA_LRV.dot.png
 ||  || [BrainRegionMBA_MM_SC_DEEP MBA.MM.SC.DEEP] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (SCi -> CR, abstract)] ||
 ||  || [BrainRegionVBA_MM_SC_SUP VBA.MM.SC.SUP] || [BrainRegionHMA_HP_PRF_PDT HMA.HP.PRF.PDT] || Pontine Reticulotegmental Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (SC -> RF, abstract)] ||
 || [BrainAreaMCA MCA] || [BrainRegionVBA_MM_SC_SUP VBA.MM.SC.SUP] || [BrainRegionVBA_MM_RP_RIP VBA.MM.RP.RIP] || Raphe Interpositus Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (SC -> RIP, abstract)] ||
-|| [BrainAreaMRA MRA] || [BrainRegionMBA_MM_SC_DEEP MBA.MM.SC.DEEP] || [BrainRegionABA_MM_IC ABA.MM.IC] || Inferior Colliculus || nucleus-nucleus || [http://f1000research.com/articles/2-20/v1 Visual-Auditory Interactions in Tectum (SC -> IC, abstract)] ||
+|| [BrainAreaMRA MRA] || [BrainRegionMBA_MM_SC_DEEP MBA.MM.SC.DEEP] || [BrainRegionABA_MM_EIC ABA.MM.EIC] || External Nucleus of Inferior Colliculus || nucleus-nucleus || [http://f1000research.com/articles/2-20/v1 Visual-Auditory Interactions in Tectum (SC -> IC, abstract)] ||
 || [BrainAreaPCA PCA] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || [BrainRegionHMA_SC_VH_SAN HMA.SC.VH.SAN] || Spinal Accessory Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (RF -> SpinalCord, abstract)] ||
 ||  ||  || [BrainRegionVBA_HP_ABD VBA.HP.ABD] || Abducens Nucleus || nucleus-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) (PPRF -> Abducens, abstract)] ||
 ||  ||  || [BrainRegionVBA_MM_OCN VBA.MM.OCN] || Oculomotor Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (RF -> OPN, abstract)] ||
@@ -227,25 +219,9 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/MRA_LRV.dot.png
 = Thirdparty Circuits =
 (generated)
 
-  * [http://lifeboat.com/kurzweil/cochlea.gif Five Parallel Auditory Pathways] - see [http://lifeboat.com/ex/law.of.accelerating.returns Reference]
-
-<img src="http://lifeboat.com/kurzweil/cochlea.gif" alt="unavailable">
-
   * [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements] (unknown reference)
 
 <img src="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg" alt="unavailable">
-
-  * [http://cdn.f1000r.com.s3.amazonaws.com/manuscripts/1181/d6e9eca8-bb85-4382-8286-723b00f8b36f_figure7.gif Visual-Auditory Interactions in Tectum] - see [http://f1000research.com/articles/2-20/v1 Reference]
-
-<img src="http://cdn.f1000r.com.s3.amazonaws.com/manuscripts/1181/d6e9eca8-bb85-4382-8286-723b00f8b36f_figure7.gif" alt="unavailable"height=400width=400>
-
-  * [http://ars.sciencedirect.com/content/image/1-s2.0-S1359644605035427-gr1.jpg Auditory System Model] - see [http://www.sciencedirect.com/science/article/pii/S1359644605035427 Reference]
-
-<img src="http://ars.sciencedirect.com/content/image/1-s2.0-S1359644605035427-gr1.jpg" alt="unavailable">
-
-  * [http://www.benbest.com/science/anatmind/FigVI1.gif Auditory System in Brain] - see [http://www.benbest.com/science/anatmind/anatmd6.html Reference]
-
-<img src="http://www.benbest.com/science/anatmind/FigVI1.gif" alt="unavailable">
 
   * [http://www.cixip.com/Public/kindeditor/attached/image/20121030/20121030134649_52795.jpg Summary of eye movement control] - see [http://www.cixip.com/index.php/page/content/id/1190 Reference]
 
@@ -255,19 +231,20 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/MRA_LRV.dot.png
 
 <img src="http://c431376.r76.cf2.rackcdn.com/10053/fnana-05-00034-r1/image_m/fnana-05-00034-g002.jpg" alt="unavailable">
 
-  * [http://ars.els-cdn.com/content/image/1-s2.0-S1364661312002823-gr2.jpg Auditory system] - see [http://www.walkingwithataxia.com/Neuroanatomy.htm Reference]
+  * [http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png Head Direction Cell Circuit] - see [http://www.scholarpedia.org/article/Head_direction_cells Reference]
 
-<img src="http://ars.els-cdn.com/content/image/1-s2.0-S1364661312002823-gr2.jpg" alt="unavailable">
+<img src="http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png" alt="unavailable">
+
+  * [http://c431376.r76.cf2.rackcdn.com/1349/fnana-04-00134-HTML/image_m/fnana-04-00134-g001.jpg Echo-Location in Bats] - see [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2010.00134/full Reference]
+
+<img src="http://c431376.r76.cf2.rackcdn.com/1349/fnana-04-00134-HTML/image_m/fnana-04-00134-g001.jpg" alt="unavailable"height=200width=600>
 
 
 = References =
 (generated)
 
-  * http://lifeboat.com/ex/law.of.accelerating.returns
-  * http://f1000research.com/articles/2-20/v1
-  * http://www.sciencedirect.com/science/article/pii/S1359644605035427
-  * http://www.benbest.com/science/anatmind/anatmd6.html
   * http://www.cixip.com/index.php/page/content/id/1190
   * http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full
-  * http://www.walkingwithataxia.com/Neuroanatomy.htm
+  * http://www.scholarpedia.org/article/Head_direction_cells
+  * http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2010.00134/full
 

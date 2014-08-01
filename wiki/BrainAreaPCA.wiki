@@ -132,62 +132,98 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/PCA_LBF.dot.png
 ||  || [BrainRegionHMA_SC_VH_SAN HMA.SC.VH.SAN] || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || Mouth feeder || geniohyoid-muscle || (unknown reference) ||
 ||  ||  || [BrainRegionTARGET_TEA_NECK TARGET.TEA.NECK] || Neck || neck-longus-capitis || (unknown reference) ||
 
-== Body Conscious Sensations ==
+== Lower Body Conscious Sensations ==
 
 
-http://ahuman.googlecode.com/svn/images/dot/aHuman/PCA_LBS.dot.png
+http://ahuman.googlecode.com/svn/images/dot/aHuman/PCA_LBL.dot.png
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionAVA_PN_SG_DRG AVA.PN.SG.DRG] || Dorsal Root Ganglion || sensory ganglion || LSC || Integration of afferent signaling from viscera || Sensory nerves project to upper thoracic dorsal<BR>horn via dorsal root ganglia ||
-|| [BrainRegionBMA_HM_CU BMA.HM.CU] || Cuneate Nucleus || nucleus || LSM || Carry fine touch and proprioceptive information from upper body ||  ||
+|| [BrainRegionAVA_PN_SG_LDRG AVA.PN.SG.LDRG] || Lower Dorsal Root Ganglion || sensory ganglion || LSC || Integration of afferent signaling from lower thoracic and lumbosacral somatic and<BR>viscera || T7-T12,L1-L5,S1-S5,CX ||
 || [BrainRegionBMA_HM_GR BMA.HM.GR] || Gracile Nucleus || nucleus || LSM || Carry epicritic, kinesthetic, and conscious proprioceptive information from lower<BR>body ||  ||
-|| [BrainRegionBMA_SC_PH_MG BMA.SC.PH.MG] || Marginal Nucleus || nucleus || LSM || Relay information related to pain and temperature sensation || Pain sensation cannot be modulated ||
-|| [BrainRegionBMA_SC_PH_SG BMA.SC.PH.SG] || Substantia Gelatinosa || nucleus || LSM || Relay for C-fibers of slowly conducting, poorly localized pain sensation || Second of two after proprius 1-order neurons ||
+|| [BrainRegionBMA_SC_PH_LMG BMA.SC.PH.LMG] || Lower Marginal Nucleus || nucleus || LSM || Relay information related to pain and temperature sensation -<BR>T7-T12,L1-L5,S1-S5,CX ||  ||
+|| [BrainRegionBMA_SC_PH_LSG BMA.SC.PH.LSG] || Lower Substantia Gelatinosa || nucleus || LSM || Relay for C-fibers of slowly conducting, poorly localized pain sensation -<BR>T7-T12,L1-L5,S1-S5,CX ||  ||
 
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| [BrainRegionAVA_PN_SG_DRG AVA.PN.SG.DRG] || [BrainRegionBMA_HM_CU BMA.HM.CU] || ganglion-nucleus || (unknown reference) ||
-||  || [BrainRegionBMA_SC_PH_MG BMA.SC.PH.MG] || ganglion-nucleus || (unknown reference) ||
-||  || [BrainRegionBMA_SC_PH_SG BMA.SC.PH.SG] || ganglion-nucleus || (unknown reference) ||
+|| [BrainRegionAVA_PN_SG_LDRG AVA.PN.SG.LDRG] || [BrainRegionBMA_HM_GR BMA.HM.GR] || ganglion-nucleus || (unknown reference) ||
+||  || [BrainRegionBMA_SC_PH_LMG BMA.SC.PH.LMG] || ganglion-nucleus || (unknown reference) ||
+||  || [BrainRegionBMA_SC_PH_LSG BMA.SC.PH.LSG] || ganglion-nucleus || (unknown reference) ||
 
 *External Inbound Region Connections:*
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Target</font> || || || || || ||
-|| [BrainAreaTEA TEA] || [BrainRegionAVA_PN_SG_DRG AVA.PN.SG.DRG] || [BrainRegionTARGET_TEA_BREAST TARGET.TEA.BREAST] || Breast || breast-skin-receptors || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_FACE TARGET.TEA.FACE] || Face || face-parotid-skin || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_GENITALIA TARGET.TEA.GENITALIA] || Genitalia || utetovaginal-visceral-receptors || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_HAND TARGET.TEA.HAND] || Hand || hand-somatic-receptors || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_HEART TARGET.TEA.HEART] || Heart || heart-visceral || (unknown reference) ||
+|| [BrainAreaTEA TEA] || [BrainRegionAVA_PN_SG_LDRG AVA.PN.SG.LDRG] || [BrainRegionTARGET_TEA_GENITALIA TARGET.TEA.GENITALIA] || Genitalia || utetovaginal-visceral-receptors || (unknown reference) ||
 ||  ||  || [BrainRegionTARGET_TEA_LEG TARGET.TEA.LEG] || Leg || leg-somatic-receptors || (unknown reference) ||
 ||  ||  || [BrainRegionTARGET_TEA_LIVER TARGET.TEA.LIVER] || Liver || visceral-receptors || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_LUNG TARGET.TEA.LUNG] || Lung || pericardium-pleura-receptors || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_NECK TARGET.TEA.NECK] || Neck || neck-low-cutaneous-receptors || (unknown reference) ||
 ||  ||  || [BrainRegionTARGET_TEA_RECTUM TARGET.TEA.RECTUM] || Rectum || large-intestine-visceral-receptors || (unknown reference) ||
 ||  ||  || [BrainRegionTARGET_TEA_STOMACH TARGET.TEA.STOMACH] || Stomach || stomach-nutrition-sensor || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_TRUNK TARGET.TEA.TRUNK] || Trunk || trunk-somatic-receptors || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_TRUNK TARGET.TEA.TRUNK] || Trunk || trunk-lower-somatic-receptors || (unknown reference) ||
 ||  ||  || [BrainRegionTARGET_TEA_URETER TARGET.TEA.URETER] || Ureter || ureter-visceral-receptors || (unknown reference) ||
-|| [BrainAreaTSA TSA] || [BrainRegionAVA_PN_SG_DRG AVA.PN.SG.DRG] || [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || Ear || ear-external-skin || (unknown reference) ||
+
+*External Outbound Region Connections:*
+
+|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| <font color="red">Cortical</font> || || || || || ||
+|| [BrainAreaBAA BAA] || [BrainRegionBMA_HM_GR BMA.HM.GR] || [BrainRegionSMA_FD_TH_VPL SMA.FD.TH.VPL] || Ventral Posterolateral Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionBMA_SC_PH_LMG BMA.SC.PH.LMG] || [BrainRegionSMA_FD_TH_VPI SMA.FD.TH.VPI] || Ventral Posteroinferior Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionSMA_FD_TH_VPL SMA.FD.TH.VPL] || Ventral Posterolateral Nucleus || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sVPL -> VPL, abstract)] ||
+||  || [BrainRegionBMA_SC_PH_LSG BMA.SC.PH.LSG] || [BrainRegionSMA_FD_TH_VPI SMA.FD.TH.VPI] || Ventral Posteroinferior Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaEPA EPA] || [BrainRegionBMA_SC_PH_LMG BMA.SC.PH.LMG] || [BrainRegionCGA_FD_TH_SM CGA.FD.TH.SM] || Submedial Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
+|| <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaLCA LCA] || [BrainRegionAVA_PN_SG_LDRG AVA.PN.SG.LDRG] || [BrainRegionAVA_SC_IZ_IMM AVA.SC.IZ.IMM] || Intermediomedial Nucleus || ganglion-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionBMA_SC_PH_NP BMA.SC.PH.NP] || Proprius Nucleus || ganglion-nucleus || (unknown reference) ||
+|| [BrainAreaMCA MCA] || [BrainRegionBMA_SC_PH_LMG BMA.SC.PH.LMG] || [BrainRegionPHA_FD_TH_LI PHA.FD.TH.LI] || Limitans Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
+
+== Upper Body Conscious Sensations ==
+
+
+http://ahuman.googlecode.com/svn/images/dot/aHuman/PCA_LBU.dot.png
+
+|| *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
+|| [BrainRegionAVA_PN_SG_UDRG AVA.PN.SG.UDRG] || Upper Dorsal Root Ganglion || sensory ganglion || LSC || Integration of afferent signaling from cervical and upper thoracic somatic and<BR>viscera || C1-C8, T1-T6 ||
+|| [BrainRegionBMA_HM_CU BMA.HM.CU] || Cuneate Nucleus || nucleus || LSM || Carry fine touch and proprioceptive information from upper body ||  ||
+|| [BrainRegionBMA_SC_PH_UMG BMA.SC.PH.UMG] || Upper Marginal Nucleus || nucleus || LSM || Relay information related to pain and temperature sensation - C1-C8,T1-T6 ||  ||
+|| [BrainRegionBMA_SC_PH_USG BMA.SC.PH.USG] || Upper Substantia Gelatinosa || nucleus || LSM || Relay for C-fibers of slowly conducting, poorly localized pain sensation -<BR>C1-C8,T1-T6 ||  ||
+
+*Internal Region Connections:*
+
+|| *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionAVA_PN_SG_UDRG AVA.PN.SG.UDRG] || [BrainRegionBMA_HM_CU BMA.HM.CU] || ganglion-nucleus || (unknown reference) ||
+||  || [BrainRegionBMA_SC_PH_UMG BMA.SC.PH.UMG] || ganglion-nucleus || (unknown reference) ||
+||  || [BrainRegionBMA_SC_PH_USG BMA.SC.PH.USG] || ganglion-nucleus || (unknown reference) ||
+
+*External Inbound Region Connections:*
+
+|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| <font color="red">Target</font> || || || || || ||
+|| [BrainAreaTEA TEA] || [BrainRegionAVA_PN_SG_UDRG AVA.PN.SG.UDRG] || [BrainRegionTARGET_TEA_BREAST TARGET.TEA.BREAST] || Breast || breast-skin-receptors || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_FACE TARGET.TEA.FACE] || Face || face-parotid-skin || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_HAND TARGET.TEA.HAND] || Hand || hand-somatic-receptors || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_HEART TARGET.TEA.HEART] || Heart || heart-visceral || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_LUNG TARGET.TEA.LUNG] || Lung || pericardium-pleura-receptors || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_NECK TARGET.TEA.NECK] || Neck || neck-low-cutaneous-receptors || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_TRUNK TARGET.TEA.TRUNK] || Trunk || trunk-upper-somatic-receptors || (unknown reference) ||
+|| [BrainAreaTSA TSA] || [BrainRegionAVA_PN_SG_UDRG AVA.PN.SG.UDRG] || [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || Ear || ear-external-skin || (unknown reference) ||
 
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
 || [BrainAreaBAA BAA] || [BrainRegionBMA_HM_CU BMA.HM.CU] || [BrainRegionSMA_FD_TH_VPL SMA.FD.TH.VPL] || Ventral Posterolateral Nucleus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionBMA_HM_GR BMA.HM.GR] || [BrainRegionSMA_FD_TH_VPL SMA.FD.TH.VPL] || Ventral Posterolateral Nucleus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionBMA_SC_PH_MG BMA.SC.PH.MG] || [BrainRegionSMA_FD_TH_VPI SMA.FD.TH.VPI] || Ventral Posteroinferior Nucleus || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionSMA_FD_TH_VPL SMA.FD.TH.VPL] || Ventral Posterolateral Nucleus || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sVPL -> VPL)] ||
-||  || [BrainRegionBMA_SC_PH_SG BMA.SC.PH.SG] || [BrainRegionSMA_FD_TH_VPI SMA.FD.TH.VPI] || Ventral Posteroinferior Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaEPA EPA] || [BrainRegionBMA_SC_PH_MG BMA.SC.PH.MG] || [BrainRegionCGA_FD_TH_SM CGA.FD.TH.SM] || Submedial Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionBMA_SC_PH_UMG BMA.SC.PH.UMG] || [BrainRegionSMA_FD_TH_VPI SMA.FD.TH.VPI] || Ventral Posteroinferior Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionSMA_FD_TH_VPL SMA.FD.TH.VPL] || Ventral Posterolateral Nucleus || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sVPL -> VPL, abstract)] ||
+||  || [BrainRegionBMA_SC_PH_USG BMA.SC.PH.USG] || [BrainRegionSMA_FD_TH_VPI SMA.FD.TH.VPI] || Ventral Posteroinferior Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaEPA EPA] || [BrainRegionBMA_SC_PH_UMG BMA.SC.PH.UMG] || [BrainRegionCGA_FD_TH_SM CGA.FD.TH.SM] || Submedial Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaLCA LCA] || [BrainRegionAVA_PN_SG_DRG AVA.PN.SG.DRG] || [BrainRegionAVA_SC_IZ_IMM AVA.SC.IZ.IMM] || Intermediomedial Nucleus || ganglion-nucleus || (unknown reference) ||
+|| [BrainAreaLCA LCA] || [BrainRegionAVA_PN_SG_UDRG AVA.PN.SG.UDRG] || [BrainRegionAVA_SC_IZ_IMM AVA.SC.IZ.IMM] || Intermediomedial Nucleus || ganglion-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionBMA_SC_IZ_CBS BMA.SC.IZ.CBS] || Centrobasalis Nucleus || ganglion-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionBMA_SC_IZ_CCV BMA.SC.IZ.CCV] || Central Cervical Nucleus || ganglion-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionBMA_SC_PH_NP BMA.SC.PH.NP] || Proprius Nucleus || ganglion-nucleus || (unknown reference) ||
 ||  || [BrainRegionBMA_HM_CU BMA.HM.CU] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaMCA MCA] || [BrainRegionBMA_SC_PH_MG BMA.SC.PH.MG] || [BrainRegionPHA_FD_TH_LI PHA.FD.TH.LI] || Limitans Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaPCA PCA] || [BrainRegionAVA_PN_SG_DRG AVA.PN.SG.DRG] || [BrainRegionHMA_HM_TGM_STR HMA.HM.TGM.STR] || Spinal Trigeminal Nucleus || ganglion-nucleus || (unknown reference) ||
+|| [BrainAreaMCA MCA] || [BrainRegionBMA_SC_PH_UMG BMA.SC.PH.UMG] || [BrainRegionPHA_FD_TH_LI PHA.FD.TH.LI] || Limitans Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaPCA PCA] || [BrainRegionAVA_PN_SG_UDRG AVA.PN.SG.UDRG] || [BrainRegionHMA_HM_TGM_STR HMA.HM.TGM.STR] || Spinal Trigeminal Nucleus || ganglion-nucleus || (unknown reference) ||
 
 == Vestibular ==
 
@@ -261,9 +297,9 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/PCA_LFC.dot.png
 ||  ||  || [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || Caudal Pontine Reticular Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorVII, abstract)] ||
 ||  || [BrainRegionHMA_HP_PTP_TRM HMA.HP.PTP.TRM] || [BrainRegionBMA_HP_PRF_PVR BMA.HP.PRF.PVR] || Parvocellular Reticular Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorV, abstract)] ||
 ||  ||  || [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || Caudal Pontine Reticular Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorV, abstract)] ||
-|| [BrainAreaPCA PCA] || [BrainRegionHMA_HM_TGM_STR HMA.HM.TGM.STR] || [BrainRegionAVA_PN_SG_DRG AVA.PN.SG.DRG] || Dorsal Root Ganglion || ganglion-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionAVA_PN_SG_GNG AVA.PN.SG.GNG] || Geniculate Ganglion || ganglion-nucleus || (unknown reference) ||
+|| [BrainAreaPCA PCA] || [BrainRegionHMA_HM_TGM_STR HMA.HM.TGM.STR] || [BrainRegionAVA_PN_SG_GNG AVA.PN.SG.GNG] || Geniculate Ganglion || ganglion-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionAVA_PN_SG_PET AVA.PN.SG.PET] || Petrosal Ganglion || ganglion-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionAVA_PN_SG_UDRG AVA.PN.SG.UDRG] || Upper Dorsal Root Ganglion || ganglion-nucleus || (unknown reference) ||
 || <font color="red">Target</font> || || || || || ||
 || [BrainAreaTEA TEA] || [BrainRegionAVA_PN_SG_JUG AVA.PN.SG.JUG] || [BrainRegionTARGET_TEA_LUNG TARGET.TEA.LUNG] || Lung || pulmonary-stretch-receptors || (unknown reference) ||
 ||  ||  || [BrainRegionTARGET_TEA_PROTECTOR TARGET.TEA.PROTECTOR] || Immunity glands and meninges || cranial-meninges || (unknown reference) ||
@@ -427,10 +463,6 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/PCA_LVC.dot.png
 
 <img src="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/vision-subcortical.jpg" alt="unavailable">
 
-  * [http://what-when-how.com/wp-content/uploads/2012/04/tmp3649_thumb1_thumb.jpg Thalamocortical relationships] - see [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Reference]
-
-<img src="http://what-when-how.com/wp-content/uploads/2012/04/tmp3649_thumb1_thumb.jpg" alt="unavailable"height=400width=400>
-
   * [http://www.neuroanatomy.wisc.edu/virtualbrain/Images/13R.jpg Vestibulo-ocular reflex (VOR)] - see [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Reference]
 
 <img src="http://www.neuroanatomy.wisc.edu/virtualbrain/Images/13R.jpg" alt="unavailable">
@@ -446,6 +478,10 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/PCA_LVC.dot.png
   * [http://ars.els-cdn.com/content/image/1-s2.0-S0959438808001566-gr1.jpg Global visual system] - see [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Reference]
 
 <img src="http://ars.els-cdn.com/content/image/1-s2.0-S0959438808001566-gr1.jpg" alt="unavailable">
+
+  * [http://what-when-how.com/wp-content/uploads/2012/04/tmp3649_thumb1_thumb.jpg Thalamocortical relationships] - see [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Reference]
+
+<img src="http://what-when-how.com/wp-content/uploads/2012/04/tmp3649_thumb1_thumb.jpg" alt="unavailable"height=400width=400>
 
   * [http://c431376.r76.cf2.rackcdn.com/10053/fnana-05-00034-r1/image_m/fnana-05-00034-g002.jpg Vocal Control] - see [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Reference]
 
@@ -541,11 +577,11 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/PCA_LVC.dot.png
 
   * http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html
   * http://neuroscience.uth.tmc.edu/s3/chapter07.html
-  * http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/
   * http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html
   * http://lifeboat.com/ex/law.of.accelerating.returns
   * http://what-when-how.com/neuroscience/the-cranial-nerves-organization-of-the-central-nervous-system-part-4
   * http://www.sciencedirect.com/science/article/pii/S0959438808001566
+  * http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/
   * http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full
   * http://asweknowit.ca/evcult/NatIntel/nat_intel.shtml
   * http://www.hindawi.com/journals/nri/2012/719056
@@ -565,3 +601,4 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/PCA_LVC.dot.png
   * http://neuropolitics.org/defaultmay10.asp
   * http://www.scholarpedia.org/article/Head_direction_cells
   * http://f1000research.com/articles/2-20/v1
+
