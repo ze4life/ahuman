@@ -14,6 +14,7 @@
 http://ahuman.googlecode.com/svn/images/dot/aHuman/SAA_NSA.dot.png
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
+|| [BrainRegionABA_FD_TH_MGB ABA.FD.TH.MGB] || Medial Geniculate Body || nucleus || LSM || Detection of the relative intensity and duration of a sound, relay to Auditory<BR>Cortex || Thalamus ||
 || [BrainRegionACA_NC_A1 ACA.NC.A1] || Primary Auditory Cortex || cortex, BA 41 || NSU || Main topotonic map, extract phonemes || Core ||
 || [BrainRegionACA_NC_A2 ACA.NC.A2] || Auditory Association Area || cortex, BA 42 || NSU || Classify with respect to function || Belt ||
 || [BrainRegionACA_NC_A3 ACA.NC.A3] || Wernicke's area A3 || cortex, BA 22 || NSU || Classify with respect to content || 22a, Melody perception, sequences of tones ||
@@ -25,6 +26,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/SAA_NSA.dot.png
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionABA_FD_TH_MGB ABA.FD.TH.MGB] || [BrainRegionACA_NC_A1 ACA.NC.A1] || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (MGN -> pMGN)] ||
 || [BrainRegionACA_NC_A1 ACA.NC.A1] || [BrainRegionACA_NC_A2 ACA.NC.A2] || neocortex-neocortex || [http://www.nature.com/neuro/journal/v12/n6/fig_tab/nn.2331_F5.html Cortical Auditory System (Core41 -> Belt42)] ||
 ||  || [BrainRegionACA_NC_A3 ACA.NC.A3] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1053810011000080 Cortico-Cortical Connectivity (A1 -> AA)] ||
 ||  || [BrainRegionACA_NC_A4 ACA.NC.A4] || neocortex-neocortex || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (A1 -> Wernike)] ||
@@ -50,8 +52,8 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/SAA_NSA.dot.png
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaAMA AMA] || [BrainRegionACA_NC_A1 ACA.NC.A1] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-neocortex || [http://f1000research.com/articles/2-20/v1 Visual-Auditory Interactions in Tectum (AM -> AC)] ||
 || [BrainAreaMMA MMA] || [BrainRegionACA_NC_BRA ACA.NC.BRA] || [BrainRegionPHA_NC_TPC PHA.NC.TPC] || Temporopolar Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1364661312002823 Language-Related Regions (TC -> BA45)] ||
-|| [BrainAreaPCA PCA] || [BrainRegionACA_NC_A1 ACA.NC.A1] || [BrainRegionABA_FD_TH_MGB ABA.FD.TH.MGB] || Medial Geniculate Body || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (MGN -> pMGN)] ||
-||  ||  || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || Suprageniculate Nucleus of Thalamus || nucleus-neocortex || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2010.00134/full Echo-Location in Bats (SG -> A1)] ||
+|| [BrainAreaMRA MRA] || [BrainRegionACA_NC_A1 ACA.NC.A1] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || Suprageniculate Nucleus of Thalamus || nucleus-neocortex || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2010.00134/full Echo-Location in Bats (SG -> A1)] ||
+|| [BrainAreaPCA PCA] || [BrainRegionABA_FD_TH_MGB ABA.FD.TH.MGB] || [BrainRegionABA_MM_CIC ABA.MM.CIC] || Central Nucleus of Inferior Colliculus || nucleus-nucleus || [http://www.benbest.com/science/anatmind/anatmd6.html Auditory System in Brain (IC -> MGB, abstract)] ||
 
 *External Outbound Region Connections:*
 
@@ -67,8 +69,8 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/SAA_NSA.dot.png
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLCA LCA] || [BrainRegionACA_NC_BRA ACA.NC.BRA] || [BrainRegionHMA_HP_PRF_PDT HMA.HP.PRF.PDT] || Pontine Reticulotegmental Nucleus || neocortex-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (Broca -> RF, abstract)] ||
 || [BrainAreaMMA MMA] || [BrainRegionACA_NC_A3 ACA.NC.A3] || [BrainRegionPHA_NC_TPC PHA.NC.TPC] || Temporopolar Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1364661312002823 Language-Related Regions (STG22a -> TC)] ||
-|| [BrainAreaMRA MRA] || [BrainRegionACA_NC_A1 ACA.NC.A1] || [BrainRegionABA_MM_IC ABA.MM.IC] || Inferior Colliculus || neocortex-nucleus || [http://f1000research.com/articles/2-20/v1 Visual-Auditory Interactions in Tectum (AC -> IC)] ||
-||  || [BrainRegionACA_NC_BRA ACA.NC.BRA] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || neocortex-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (Broca -> RF, abstract)] ||
+|| [BrainAreaMRA MRA] || [BrainRegionACA_NC_BRA ACA.NC.BRA] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || neocortex-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (Broca -> RF, abstract)] ||
+|| [BrainAreaPCA PCA] || [BrainRegionACA_NC_A1 ACA.NC.A1] || [BrainRegionABA_MM_CIC ABA.MM.CIC] || Central Nucleus of Inferior Colliculus || neocortex-nucleus || [http://f1000research.com/articles/2-20/v1 Visual-Auditory Interactions in Tectum (AC -> IC, abstract)] ||
 
 == Neocortical Vision Aggregation ==
 
@@ -239,17 +241,33 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/SAA_NSV.dot.png
 
 <img src="http://c431376.r76.cf2.rackcdn.com/10053/fnana-05-00034-r1/image_m/fnana-05-00034-g002.jpg" alt="unavailable">
 
-  * [http://c431376.r76.cf2.rackcdn.com/18691/fnhum-06-00184-HTML/image_m/fnhum-06-00184-g001.jpg Directed Effort Network] - see [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Reference]
-
-<img src="http://c431376.r76.cf2.rackcdn.com/18691/fnhum-06-00184-HTML/image_m/fnhum-06-00184-g001.jpg" alt="unavailable">
-
   * [http://what-when-how.com/wp-content/uploads/2012/04/tmp3649_thumb1_thumb.jpg Thalamocortical relationships] - see [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Reference]
 
 <img src="http://what-when-how.com/wp-content/uploads/2012/04/tmp3649_thumb1_thumb.jpg" alt="unavailable"height=400width=400>
 
+  * [http://c431376.r76.cf2.rackcdn.com/18691/fnhum-06-00184-HTML/image_m/fnhum-06-00184-g001.jpg Directed Effort Network] - see [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Reference]
+
+<img src="http://c431376.r76.cf2.rackcdn.com/18691/fnhum-06-00184-HTML/image_m/fnhum-06-00184-g001.jpg" alt="unavailable">
+
   * [http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2846110/bin/nihms147975f1.jpg Dual Auditory Processing] - see [http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2846110/ Reference]
 
 <img src="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2846110/bin/nihms147975f1.jpg" alt="unavailable">
+
+  * [http://cdn.f1000r.com.s3.amazonaws.com/manuscripts/1181/d6e9eca8-bb85-4382-8286-723b00f8b36f_figure7.gif Visual-Auditory Interactions in Tectum] - see [http://f1000research.com/articles/2-20/v1 Reference]
+
+<img src="http://cdn.f1000r.com.s3.amazonaws.com/manuscripts/1181/d6e9eca8-bb85-4382-8286-723b00f8b36f_figure7.gif" alt="unavailable"height=400width=400>
+
+  * [http://lifeboat.com/kurzweil/cochlea.gif Five Parallel Auditory Pathways] - see [http://lifeboat.com/ex/law.of.accelerating.returns Reference]
+
+<img src="http://lifeboat.com/kurzweil/cochlea.gif" alt="unavailable">
+
+  * [http://ars.sciencedirect.com/content/image/1-s2.0-S1359644605035427-gr1.jpg Auditory System Model] - see [http://www.sciencedirect.com/science/article/pii/S1359644605035427 Reference]
+
+<img src="http://ars.sciencedirect.com/content/image/1-s2.0-S1359644605035427-gr1.jpg" alt="unavailable">
+
+  * [http://www.benbest.com/science/anatmind/FigVI1.gif Auditory System in Brain] - see [http://www.benbest.com/science/anatmind/anatmd6.html Reference]
+
+<img src="http://www.benbest.com/science/anatmind/FigVI1.gif" alt="unavailable">
 
   * [http://asweknowit.ca/evcult/NatIntel/Fig12.GIF Visual perception abstraction] - see [http://asweknowit.ca/evcult/NatIntel/nat_intel.shtml Reference]
 
@@ -311,25 +329,9 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/SAA_NSV.dot.png
 
 <img src="http://learnmem.cshlp.org/content/18/6/384/F1.large.jpg" alt="unavailable">
 
-  * [http://cdn.f1000r.com.s3.amazonaws.com/manuscripts/1181/d6e9eca8-bb85-4382-8286-723b00f8b36f_figure7.gif Visual-Auditory Interactions in Tectum] - see [http://f1000research.com/articles/2-20/v1 Reference]
-
-<img src="http://cdn.f1000r.com.s3.amazonaws.com/manuscripts/1181/d6e9eca8-bb85-4382-8286-723b00f8b36f_figure7.gif" alt="unavailable"height=400width=400>
-
-  * [http://lifeboat.com/kurzweil/cochlea.gif Five Parallel Auditory Pathways] - see [http://lifeboat.com/ex/law.of.accelerating.returns Reference]
-
-<img src="http://lifeboat.com/kurzweil/cochlea.gif" alt="unavailable">
-
   * [http://c431376.r76.cf2.rackcdn.com/1349/fnana-04-00134-HTML/image_m/fnana-04-00134-g001.jpg Echo-Location in Bats] - see [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2010.00134/full Reference]
 
 <img src="http://c431376.r76.cf2.rackcdn.com/1349/fnana-04-00134-HTML/image_m/fnana-04-00134-g001.jpg" alt="unavailable"height=200width=600>
-
-  * [http://ars.sciencedirect.com/content/image/1-s2.0-S1359644605035427-gr1.jpg Auditory System Model] - see [http://www.sciencedirect.com/science/article/pii/S1359644605035427 Reference]
-
-<img src="http://ars.sciencedirect.com/content/image/1-s2.0-S1359644605035427-gr1.jpg" alt="unavailable">
-
-  * [http://www.benbest.com/science/anatmind/FigVI1.gif Auditory System in Brain] - see [http://www.benbest.com/science/anatmind/anatmd6.html Reference]
-
-<img src="http://www.benbest.com/science/anatmind/FigVI1.gif" alt="unavailable">
 
 
 = References =
@@ -345,9 +347,13 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/SAA_NSV.dot.png
   * http://www.sciencedirect.com/science/article/pii/S1053811905008013
   * http://www.sciencedirect.com/science/article/pii/S0893608098000471
   * http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full
-  * http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full
   * http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/
+  * http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full
   * http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2846110/
+  * http://f1000research.com/articles/2-20/v1
+  * http://lifeboat.com/ex/law.of.accelerating.returns
+  * http://www.sciencedirect.com/science/article/pii/S1359644605035427
+  * http://www.benbest.com/science/anatmind/anatmd6.html
   * http://asweknowit.ca/evcult/NatIntel/nat_intel.shtml
   * http://neuroscience.uth.tmc.edu/s3/chapter07.html
   * http://www.ib.cnea.gov.ar/~redneu/2013/BOOKS/Principles%20of%20Neural%20Science%20-%20Kandel/gateway.ut.ovid.com/gw2/ovidweb.cgisidnjhkoalgmeho00dbookimagebookdb_7c_2fc~34.htm
@@ -360,9 +366,5 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/SAA_NSV.dot.png
   * http://www.sciencedirect.com/science/article/pii/S0028393205003568
   * http://cercor.oxfordjournals.org/content/early/2012/02/28/cercor.bhs048/F9.expansion.html
   * http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html
-  * http://f1000research.com/articles/2-20/v1
-  * http://lifeboat.com/ex/law.of.accelerating.returns
   * http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2010.00134/full
-  * http://www.sciencedirect.com/science/article/pii/S1359644605035427
-  * http://www.benbest.com/science/anatmind/anatmd6.html
 

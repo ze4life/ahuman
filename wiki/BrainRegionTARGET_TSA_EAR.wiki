@@ -20,7 +20,7 @@ Region is part of aHuman target integrated biological model.
    * Ear - inner hair cells (ear-inner-hair-cells -> [BrainRegionABA_PN_SG_SP ABA.PN.SG.SP]): frequency-aligned tonotopic mapping
    * Ear - outer hair cells feedback (ear-outer-hair-cells-feedback -> [BrainRegionABA_PN_SG_SP ABA.PN.SG.SP]): verifies amplify actions done
    * Ear - somatic receptors (ear-somatic -> [BrainRegionAVA_PN_SG_GNG AVA.PN.SG.GNG]): from skin to geniculate ganglion to spinal trigeminal nucleus
-   * Ear - outer ear skin (ear-external-skin -> [BrainRegionAVA_PN_SG_DRG AVA.PN.SG.DRG]): skin over the mastoid process, back of the auricle, lobule and a portion of the scalp
+   * Ear - outer ear skin (ear-external-skin -> [BrainRegionAVA_PN_SG_UDRG AVA.PN.SG.UDRG]): skin over the mastoid process, back of the auricle, lobule and a portion of the scalp
    * Ear - acoustic meatus skin (ear-acoustic-meatus-skin -> [BrainRegionAVA_PN_SG_TRG AVA.PN.SG.TRG]): from skin lining external acoustic meatus, and tympanic membrane to trigeminal gangion
    * Ear - visceral receptors (ear-visceral -> [BrainRegionAVA_PN_SG_JUG AVA.PN.SG.JUG]): pain, temperature, and touch
    * Ear - timpanic cavity (ear-timpanic-cavity -> [BrainRegionAVA_PN_SG_PET AVA.PN.SG.PET]): pain, temperature, and touch
@@ -46,19 +46,19 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/TARGET.TSA.EAR.dot.jpg
 *Inbound Region Connections:*
 
 || *Source Area* || *Source Region* || *Source Name* || *Type* || *Reference* ||
-|| [BrainAreaMRA MRA] || [BrainRegionABA_MM_SOC ABA.MM.SOC] || Superior Olivary Complex || ear-outer-hair-cells || [http://lifeboat.com/ex/law.of.accelerating.returns Five Parallel Auditory Pathways (VNTB -> Cochlea)] ||
-|| [BrainAreaPCA PCA] || [BrainRegionHMA_HP_FCM HMA.HP.FCM] || Facial Motor Nucleus || ear-anterior-auricular-muscle || (unknown reference) ||
+|| [BrainAreaPCA PCA] || [BrainRegionABA_MM_SOC ABA.MM.SOC] || Superior Olivary Complex || ear-outer-hair-cells || [http://lifeboat.com/ex/law.of.accelerating.returns Five Parallel Auditory Pathways (VNTB -> Cochlea)] ||
+||  || [BrainRegionHMA_HP_FCM HMA.HP.FCM] || Facial Motor Nucleus || ear-anterior-auricular-muscle || (unknown reference) ||
 ||  || [BrainRegionHMA_HP_PTP_TRM HMA.HP.PTP.TRM] || Trigeminal Motor Nucleus || ear-tensor-tympani-muscle || (unknown reference) ||
 
 *Outbound Region Connections:*
 
 || *Target Area* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || [BrainAreaPCA PCA] || [BrainRegionABA_PN_SG_SP ABA.PN.SG.SP] || Spiral Ganglion || ear-inner-hair-cells || [http://www.sciencedirect.com/science/article/pii/S1359644605035427 Auditory System Model (Ear -> CochleaGanglion)] ||
-||  || [BrainRegionAVA_PN_SG_DRG AVA.PN.SG.DRG] || Dorsal Root Ganglion || ear-external-skin || (unknown reference) ||
 ||  || [BrainRegionAVA_PN_SG_GNG AVA.PN.SG.GNG] || Geniculate Ganglion || ear-somatic || (unknown reference) ||
 ||  || [BrainRegionAVA_PN_SG_JUG AVA.PN.SG.JUG] || Jugular Ganglion || ear-visceral || (unknown reference) ||
 ||  || [BrainRegionAVA_PN_SG_PET AVA.PN.SG.PET] || Petrosal Ganglion || ear-timpanic-cavity || (unknown reference) ||
 ||  || [BrainRegionAVA_PN_SG_TRG AVA.PN.SG.TRG] || Trigeminal Ganglion || ear-acoustic-meatus-skin || (unknown reference) ||
+||  || [BrainRegionAVA_PN_SG_UDRG AVA.PN.SG.UDRG] || Upper Dorsal Root Ganglion || ear-external-skin || (unknown reference) ||
 ||  || [BrainRegionMBA_PN_SG_VB MBA.PN.SG.VB] || Vestibular Ganglion || ear-cristae-maculae || (unknown reference) ||
 
 = Thirdparty Circuits =

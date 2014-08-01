@@ -455,7 +455,8 @@ Adult Sources of Neurons:
       * *Leg - extensor hallucis longus muscle (extensor-hallucis-longus-muscle)*
    * [BrainRegionTARGET_TEA_TRUNK Trunk] * (TARGET.TEA.TRUNK, unknown)*
     * *Trunk sensory data (trunk-sensory-data)*
-     * *Trunk - somatic receptors (trunk-somatic-receptors)*
+     * *Trunk - upper somatic receptors (trunk-upper-somatic-receptors)*
+     * *Trunk - lower somatic receptors (trunk-lower-somatic-receptors)*
     * *Trunk back (trunk-back)*
      * *Trunk back flexors (trunk-back-flexors)*
       * *Trunk - iliocostalis muscle (trunk-iliocostalis-muscle)*
@@ -885,10 +886,14 @@ Coverage verified by:
    * [BrainRegionBMA_SC_LH_LCV Lateral Cervical Nucleus] * (BMA.SC.LH.LCV, relay)* = NL:[http://neurolex.org/wiki/Category:Lateral_cervical_nucleus Lateral cervical nucleus] -> [BrainAreaLCA]
    * [BrainRegionBMA_SC_LH_LSN Lateral Spinal Nucleus] * (BMA.SC.LH.LSN, relay)* = NL:[http://neurolex.org/wiki/Category:Lateral_spinal_nucleus Lateral spinal nucleus] -> [BrainAreaACA]
   * *Posterior/Dorsal Horn (BMA.SC.PH)*
-   * *Lamina I (BMA.SC.PH.L1, relay)* -> [BrainAreaPCA]
-    * [BrainRegionBMA_SC_PH_MG Marginal Nucleus] * (BMA.SC.PH.MG)* = NA:Marginal Nucleus = BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&conceptid=FMA%3A73903 Posteromarginal nucleus]
-   * *Lamina II (BMA.SC.PH.L2, relay)* -> [BrainAreaPCA]
-    * [BrainRegionBMA_SC_PH_SG Substantia Gelatinosa] * (BMA.SC.PH.SG)* = NA:Gelatinosus substance = BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&conceptid=FMA%3A74019 Substantia gelatinosa]
+   * *Lamina I (BMA.SC.PH.L1)* -> [BrainAreaPCA]
+    * *Marginal Nucleus (BMA.SC.PH.MG)* = NA:Marginal Nucleus = BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&conceptid=FMA%3A73903 Posteromarginal nucleus]
+     * [BrainRegionBMA_SC_PH_UMG Upper Marginal Nucleus] * (BMA.SC.PH.UMG, relay)*
+     * [BrainRegionBMA_SC_PH_LMG Lower Marginal Nucleus] * (BMA.SC.PH.LMG, relay)*
+   * *Lamina II (BMA.SC.PH.L2)* -> [BrainAreaPCA]
+    * *Substantia Gelatinosa (BMA.SC.PH.SG)* = NA:Gelatinosus substance = BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&conceptid=FMA%3A74019 Substantia gelatinosa]
+     * [BrainRegionBMA_SC_PH_USG Upper Substantia Gelatinosa] * (BMA.SC.PH.USG, relay)*
+     * [BrainRegionBMA_SC_PH_LSG Lower Substantia Gelatinosa] * (BMA.SC.PH.LSG, relay)*
    * *Lamina III, IV (BMA.SC.PH.L34, relay)* -> [BrainAreaLCA]
     * [BrainRegionBMA_SC_PH_NP Proprius Nucleus] * (BMA.SC.PH.NP)* = NA:Nucleus Proprius = NL:[http://neurolex.org/wiki/Category:Nucleus_proprius Nucleus proprius] = BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&conceptid=FMA%3A73906 Nucleus proprius dorsalis]
    * *Lamina V, VI (BMA.SC.PH.L56, relay)* -> [BrainAreaLCA]
@@ -953,12 +958,12 @@ Coverage verified by:
    * [BrainRegionAVA_PN_SG_OLB Olfactory Bulb] * (AVA.PN.SG.OLB, sensory)*
    * [BrainRegionABA_PN_SG_SP Spiral Ganglion] * (ABA.PN.SG.SP, sensory)*
    * [BrainRegionMBA_PN_SG_VB Vestibular Ganglion] * (MBA.PN.SG.VB, sensory)* = NL:[http://neurolex.org/wiki/Category:Vestibular_ganglion Vestibular ganglion]
-   * [BrainRegionAVA_PN_SG_DRG Dorsal Root Ganglion] * (AVA.PN.SG.DRG, sensory)*
-    * *Cervical Dorsal Root Ganglia (AVA.PN.SG.DRG.CX)*
-     * *Upper Cervical Dorsal Root Ganglia (AVA.PN.SG.DRG.UC)*
-     * *Lower Cervical Dorsal Root Ganglia (AVA.PN.SG.DRG.LC)*
-    * *Thoracic Dorsal Root Ganglia (AVA.PN.SG.DRG.TX)*
-     * *Upper Thoracic Dorsal Root Ganglia (AVA.PN.SG.DRG.UT)*
+   * *Dorsal Root Ganglion (AVA.PN.SG.DRG)*
+    * [BrainRegionAVA_PN_SG_UDRG Upper Dorsal Root Ganglion] * (AVA.PN.SG.UDRG, sensory)*
+     * *Cervical Dorsal Root Ganglia (AVA.PN.SG.DRG.CX)*
+      * *Upper Cervical Dorsal Root Ganglia (AVA.PN.SG.DRG.UC)*
+      * *Lower Cervical Dorsal Root Ganglia (AVA.PN.SG.DRG.LC)*
+    * [BrainRegionAVA_PN_SG_LDRG Lower Dorsal Root Ganglion] * (AVA.PN.SG.LDRG, sensory)*
 
 == Cranial Nerves ==
 

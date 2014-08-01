@@ -67,9 +67,11 @@ See also:
   * Spinal Pain and Temperature
    * *DCN*: [BrainRegionAVA_SC_CC_DCN Dorsal Commisural Nucleus,AVA.SC.CC.DCN] - Relay of sensory information from pelvic viscera (Includes nociception); TRACTS={}
    * *LSN*: [BrainRegionBMA_SC_LH_LSN Lateral Spinal Nucleus,BMA.SC.LH.LSN] - Integrate autonomic and homeostatic functions (Projects to HT and lateral globus pallidus; integrative nucleus for autonomic and homeostatic functions, and related motivational and affective responses to autonomic function); TRACTS={spinohypothalamic tract; spinosolitary tract; tract of Lissauer}
-   * *MG*: [BrainRegionBMA_SC_PH_MG Marginal Nucleus,BMA.SC.PH.MG] - Relay information related to pain and temperature sensation (Pain sensation cannot be modulated); TRACTS={lateral spinothalamic tract; spinomesencephalic tract; tract of Lissauer}
+   * *LMG*: [BrainRegionBMA_SC_PH_LMG Lower Marginal Nucleus,BMA.SC.PH.LMG] - Relay information related to pain and temperature sensation - T7-T12,L1-L5,S1-S5,CX; TRACTS={}
+   * *LSG*: [BrainRegionBMA_SC_PH_LSG Lower Substantia Gelatinosa,BMA.SC.PH.LSG] - Relay for C-fibers of slowly conducting, poorly localized pain sensation - T7-T12,L1-L5,S1-S5,CX; TRACTS={}
    * *NPR*: [BrainRegionBMA_SC_PH_NP Proprius Nucleus,BMA.SC.PH.NP] - Relay light touch, pain and temperature information (With Clarke's Nucleus sensing fine touch and proprioception); TRACTS={spinocervical tract; spinoolivary tract; spinotectal tract}
-   * *SG*: [BrainRegionBMA_SC_PH_SG Substantia Gelatinosa,BMA.SC.PH.SG] - Relay for C-fibers of slowly conducting, poorly localized pain sensation (Second of two after proprius 1-order neurons); TRACTS={anterior spinothalamic tract; lateral spinothalamic tract}
+   * *UMG*: [BrainRegionBMA_SC_PH_UMG Upper Marginal Nucleus,BMA.SC.PH.UMG] - Relay information related to pain and temperature sensation - C1-C8,T1-T6; TRACTS={}
+   * *USG*: [BrainRegionBMA_SC_PH_USG Upper Substantia Gelatinosa,BMA.SC.PH.USG] - Relay for C-fibers of slowly conducting, poorly localized pain sensation - C1-C8,T1-T6; TRACTS={}
 
 = Peripheral Brain Connectivity =
 
@@ -88,11 +90,11 @@ See also:
    * Thalamus,FD.TH
     * Intralaminar Nuclear Group of Thalamus,BGA.FD.TH.IL
      * [BrainRegionBGA_FD_TH_PF Parafascicular Nucleus of Thalamus,BGA.FD.TH.PF]: Stimulation of acetylcholine release in dorsal striata; TRACTS={dorsal trigeminal tract}
-    * [BrainRegionFCA_FD_TH_MD Mediodorsal Nucleus of Thalamus,FCA.FD.TH.MD]: Attention, planning, organization, abstract thinking, multi-tasking, and active memory; TRACTS={dorsal trigeminal tract; lateral spinothalamic tract}
+    * [BrainRegionFCA_FD_TH_MD Mediodorsal Nucleus of Thalamus,FCA.FD.TH.MD]: Attention, planning, organization, abstract thinking, multi-tasking, and active memory; TRACTS={dorsal trigeminal tract}
     * Ventral Thalamus,FD.TH.VTH
      * Ventral Posterior Nucleus,SMA.FD.TH.VP
-      * [BrainRegionSMA_FD_TH_VPI Ventral Posteroinferior Nucleus,SMA.FD.TH.VPI]: Relays pain and temperature from body to insula; TRACTS={dorsal trigeminal tract; lateral spinothalamic tract}
-      * [BrainRegionSMA_FD_TH_VPL Ventral Posterolateral Nucleus,SMA.FD.TH.VPL]: Relays somatic information from body to S1; TRACTS={anterior spinothalamic tract; fasciculus cuneatus tract; fasciculus gracilis tract; spinocervical tract; tract of Lissauer}
+      * [BrainRegionSMA_FD_TH_VPI Ventral Posteroinferior Nucleus,SMA.FD.TH.VPI]: Relays pain and temperature from body to insula; TRACTS={dorsal trigeminal tract}
+      * [BrainRegionSMA_FD_TH_VPL Ventral Posterolateral Nucleus,SMA.FD.TH.VPL]: Relays somatic information from body to S1; TRACTS={fasciculus cuneatus tract; fasciculus gracilis tract; spinocervical tract; tract of Lissauer}
       * [BrainRegionSMA_FD_TH_VPM Ventral Posteromedial Nucleus,SMA.FD.TH.VPM]: Relays somatic information from face to S1; TRACTS={anterior trigeminothalamic tract; fasciculus cuneatus tract; tract of Lissauer}
   * *Hindbrain Myelencephalon*
    * [BrainRegionBMA_HM_IO Inferior Olivary Nucleus,BMA.HM.IO]: Proprioception Relay from Spinal Cord to Cerebellum; TRACTS={spinoolivary tract}
@@ -108,7 +110,13 @@ See also:
     * Visual Reflexes Nuclei of Midbrain Mesencephalon,MM.REF.VIS
      * Superior Colliculus,MM.SC: Direct behavioral responses toward specific points in egocentric space, induce saccadic eye movement
       * [BrainRegionMBA_MM_SC_DEEP Deep Superior Colliculus,MBA.MM.SC.DEEP]: Head and eye attention to non-visual stimuli; TRACTS={spinotectal tract}
-   * [BrainRegionFBA_MM_PAG Periaqueductal Gray Matter,FBA.MM.PAG]: Descending modulation of pain and in defensive behaviour; TRACTS={spinocervical tract; spinomesencephalic tract}
+   * [BrainRegionFBA_MM_PAG Periaqueductal Gray Matter,FBA.MM.PAG]: Descending modulation of pain and in defensive behaviour; TRACTS={spinocervical tract}
+  * *Spinal Cord*
+   * Posterior/Dorsal Horn,BMA.SC.PH
+    * Lamina I,BMA.SC.PH.L1
+     * Marginal Nucleus,BMA.SC.PH.MG: Relay information related to pain and temperature sensation; TRACTS={lateral spinothalamic tract; spinomesencephalic tract; tract of Lissauer}
+    * Lamina II,BMA.SC.PH.L2
+     * Substantia Gelatinosa,BMA.SC.PH.SG: Relay for C-fibers of slowly conducting, poorly localized pain sensation; TRACTS={anterior spinothalamic tract; lateral spinothalamic tract}
 
 == LINKED MOTOR REGIONS ==
 (generated)
@@ -137,5 +145,5 @@ See also:
     * [BrainRegionAVA_PN_SG_GNG Geniculate Ganglion,AVA.PN.SG.GNG]: Trophic support for survival; TRACTS={anterior trigeminothalamic tract}
     * [BrainRegionAVA_PN_SG_JUG Jugular Ganglion,AVA.PN.SG.JUG]: Integration of external auditory meatus (auricular branch), cranial meninges (meningeal branch), and external surface of tympanic membrane; TRACTS={anterior trigeminothalamic tract}
     * [BrainRegionAVA_PN_SG_NOD Nodose Ganglion,AVA.PN.SG.NOD]: Integration of afferent signaling from viscera; TRACTS={anterior trigeminothalamic tract}
-    * [BrainRegionAVA_PN_SG_DRG Dorsal Root Ganglion,AVA.PN.SG.DRG]: Integration of afferent signaling from viscera; TRACTS={anterior spinothalamic tract; cuneocerebellar tract; dorsal spinocerebellar tract; fasciculus cuneatus tract; fasciculus gracilis tract; lateral spinothalamic tract; rostral spinocerebellar tract; spinocervical tract; spinohypothalamic tract; spinomedulloreticular tract; spinomesencephalic tract; spinoolivary tract; spinopontoreticular tract; spinosolitary tract; spinotectal tract; spinovestibular tract; tract of Lissauer; ventral spinocerebellar tract}
+    * Dorsal Root Ganglion,AVA.PN.SG.DRG: Integration of afferent signaling from somatic viscera; TRACTS={anterior spinothalamic tract; cuneocerebellar tract; dorsal spinocerebellar tract; fasciculus cuneatus tract; fasciculus gracilis tract; lateral spinothalamic tract; rostral spinocerebellar tract; spinocervical tract; spinohypothalamic tract; spinomedulloreticular tract; spinomesencephalic tract; spinoolivary tract; spinopontoreticular tract; spinosolitary tract; spinotectal tract; spinovestibular tract; tract of Lissauer; ventral spinocerebellar tract}
 
