@@ -58,10 +58,84 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/PCA_LAC.dot.png
 || <font color="red">Target</font> || || || || || ||
 || [BrainAreaTSA TSA] || [BrainRegionABA_MM_SOC ABA.MM.SOC] || [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || Ear || ear-outer-hair-cells || [http://lifeboat.com/ex/law.of.accelerating.returns Five Parallel Auditory Pathways (VNTB -> Cochlea)] ||
 
-== Body Muscles ==
+== Control Body Extensors ==
 
 
-http://ahuman.googlecode.com/svn/images/dot/aHuman/PCA_LBC.dot.png
+http://ahuman.googlecode.com/svn/images/dot/aHuman/PCA_LBE.dot.png
+
+|| *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
+|| [BrainRegionBMA_SC_VH_VL BMA.SC.VH.VL] || Ventrolateral Nucleus || nucleus || LMD || Innervation of limb muscles || Upper and lower ||
+|| [BrainRegionBMA_SC_VH_VM BMA.SC.VH.VM] || Ventromedial Nucleus || nucleus || LMD || Innervation of trunk muscles || Upper and lower ||
+
+*Internal Region Connections:*
+
+|| *Source Region* || *Target Region* || *Type* || *Reference* ||
+
+*External Inbound Region Connections:*
+  * no connections
+
+*External Outbound Region Connections:*
+
+|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaACA ACA] || [BrainRegionBMA_SC_VH_VL BMA.SC.VH.VL] || [BrainRegionHMA_HM_TGM_PE5 HMA.HM.TGM.PE5] || Peritrigeminal Nucleus || nucleus-nucleus || (unknown reference) ||
+|| <font color="red">Target</font> || || || || || ||
+|| [BrainAreaTEA TEA] || [BrainRegionBMA_SC_VH_VL BMA.SC.VH.VL] || [BrainRegionTARGET_TEA_HAND TARGET.TEA.HAND] || Hand || abductor-pollicis-longus-muscle || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_LEG TARGET.TEA.LEG] || Leg || extensor-digitorum-brevis-muscle || (unknown reference) ||
+||  || [BrainRegionBMA_SC_VH_VM BMA.SC.VH.VM] || [BrainRegionTARGET_TEA_GENITALIA TARGET.TEA.GENITALIA] || Genitalia || pubococcygeus-muscle || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_HAND TARGET.TEA.HAND] || Hand || posteriolateral-deltoid-muscle || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_LEG TARGET.TEA.LEG] || Leg || gluteus-maximus-muscle || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_NECK TARGET.TEA.NECK] || Neck || neck-obliquus-capitis-inferior-muscle || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_RECTUM TARGET.TEA.RECTUM] || Rectum || coccygeus-muscle || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_SPEAKER TARGET.TEA.SPEAKER] || Mouth speaker || larynx-thyrohyoid-muscle || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_TRUNK TARGET.TEA.TRUNK] || Trunk || semispinalis-capitis-muscle || (unknown reference) ||
+
+== Control Body Flexors ==
+
+
+http://ahuman.googlecode.com/svn/images/dot/aHuman/PCA_LBF.dot.png
+
+|| *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
+|| [BrainRegionBMA_SC_VH_PHR BMA.SC.VH.PHR] || Phrenic Nucleus || nucleus || LMD || Innervation of diaphragm || Projections from Nucleus Solitarius ||
+|| [BrainRegionBMA_SC_VH_PL BMA.SC.VH.PL] || Posterolateral Nucleus || nucleus || LMD || Innervation of limb muscles || Upper and lower proximal muscles ||
+|| [BrainRegionBMA_SC_VH_PM BMA.SC.VH.PM] || Posteromedial Nucleus || nucleus || LMD || Innervation of trunk muscles || Upper and lower ||
+|| [BrainRegionBMA_SC_VH_RPL BMA.SC.VH.RPL] || Retroposterolateral Nucleus || nucleus || LMD || Innervation of limbs muscles || Fingers ||
+|| [BrainRegionHMA_SC_VH_SAN HMA.SC.VH.SAN] || Spinal Accessory Nucleus || nucleus || LMD || Control of neck || Rotate head, continuus from AMB ||
+
+*Internal Region Connections:*
+
+|| *Source Region* || *Target Region* || *Type* || *Reference* ||
+
+*External Inbound Region Connections:*
+
+|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaMRA MRA] || [BrainRegionBMA_SC_VH_RPL BMA.SC.VH.RPL] || [BrainRegionHMA_HP_PRF_GCR HMA.HP.PRF.GCR] || Gigantocellular Reticular Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionHMA_SC_VH_SAN HMA.SC.VH.SAN] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (RF -> SpinalCord, abstract)] ||
+||  ||  || [BrainRegionMBA_MM_SC_DEEP MBA.MM.SC.DEEP] || Deep Superior Colliculus || nucleus-nucleus || (unknown reference) ||
+
+*External Outbound Region Connections:*
+
+|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| <font color="red">Target</font> || || || || || ||
+|| [BrainAreaTEA TEA] || [BrainRegionBMA_SC_VH_PHR BMA.SC.VH.PHR] || [BrainRegionTARGET_TEA_LUNG TARGET.TEA.LUNG] || Lung || thoracic-diaphragm || (unknown reference) ||
+||  || [BrainRegionBMA_SC_VH_PL BMA.SC.VH.PL] || [BrainRegionTARGET_TEA_HAND TARGET.TEA.HAND] || Hand || biceps-muscle || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_LEG TARGET.TEA.LEG] || Leg || gastrocnemius-muscle || (unknown reference) ||
+||  || [BrainRegionBMA_SC_VH_PM BMA.SC.VH.PM] || [BrainRegionTARGET_TEA_GENITALIA TARGET.TEA.GENITALIA] || Genitalia || bulbospongiosus-muscle || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_HAND TARGET.TEA.HAND] || Hand || anterior-deltoid-muscle || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_LEG TARGET.TEA.LEG] || Leg || leg-adductor-brevis-muscle || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_RECTUM TARGET.TEA.RECTUM] || Rectum || corrugator-cutis-ani-muscle || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_TRUNK TARGET.TEA.TRUNK] || Trunk || trunk-abdominal-external-oblique-muscle || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_URETER TARGET.TEA.URETER] || Ureter || external-urethral-sphincter-female || (unknown reference) ||
+||  || [BrainRegionBMA_SC_VH_RPL BMA.SC.VH.RPL] || [BrainRegionTARGET_TEA_HAND TARGET.TEA.HAND] || Hand || abductor-digiti-minimi-muscle || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_LEG TARGET.TEA.LEG] || Leg || flexor-longus-digitorum-muscle || (unknown reference) ||
+||  || [BrainRegionHMA_SC_VH_SAN HMA.SC.VH.SAN] || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || Mouth feeder || geniohyoid-muscle || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_NECK TARGET.TEA.NECK] || Neck || neck-longus-capitis || (unknown reference) ||
+
+== Body Conscious Sensations ==
+
+
+http://ahuman.googlecode.com/svn/images/dot/aHuman/PCA_LBS.dot.png
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
 || [BrainRegionAVA_PN_SG_DRG AVA.PN.SG.DRG] || Dorsal Root Ganglion || sensory ganglion || LSC || Integration of afferent signaling from viscera || Sensory nerves project to upper thoracic dorsal<BR>horn via dorsal root ganglia ||
@@ -69,13 +143,6 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/PCA_LBC.dot.png
 || [BrainRegionBMA_HM_GR BMA.HM.GR] || Gracile Nucleus || nucleus || LSM || Carry epicritic, kinesthetic, and conscious proprioceptive information from lower<BR>body ||  ||
 || [BrainRegionBMA_SC_PH_MG BMA.SC.PH.MG] || Marginal Nucleus || nucleus || LSM || Relay information related to pain and temperature sensation || Pain sensation cannot be modulated ||
 || [BrainRegionBMA_SC_PH_SG BMA.SC.PH.SG] || Substantia Gelatinosa || nucleus || LSM || Relay for C-fibers of slowly conducting, poorly localized pain sensation || Second of two after proprius 1-order neurons ||
-|| [BrainRegionBMA_SC_VH_PHR BMA.SC.VH.PHR] || Phrenic Nucleus || nucleus || LMD || Innervation of diaphragm || Projections from Nucleus Solitarius ||
-|| [BrainRegionBMA_SC_VH_PL BMA.SC.VH.PL] || Posterolateral Nucleus || nucleus || LMD || Innervation of limb muscles || Upper and lower proximal muscles ||
-|| [BrainRegionBMA_SC_VH_PM BMA.SC.VH.PM] || Posteromedial Nucleus || nucleus || LMD || Innervation of trunk muscles || Upper and lower ||
-|| [BrainRegionBMA_SC_VH_RPL BMA.SC.VH.RPL] || Retroposterolateral Nucleus || nucleus || LMD || Innervation of limbs muscles || Fingers ||
-|| [BrainRegionBMA_SC_VH_VL BMA.SC.VH.VL] || Ventrolateral Nucleus || nucleus || LMD || Innervation of limb muscles || Upper and lower ||
-|| [BrainRegionBMA_SC_VH_VM BMA.SC.VH.VM] || Ventromedial Nucleus || nucleus || LMD || Innervation of trunk muscles || Upper and lower ||
-|| [BrainRegionHMA_SC_VH_SAN HMA.SC.VH.SAN] || Spinal Accessory Nucleus || nucleus || LMD || Control of neck || Rotate head, continuus from AMB ||
 
 *Internal Region Connections:*
 
@@ -87,10 +154,6 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/PCA_LBC.dot.png
 *External Inbound Region Connections:*
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
-|| <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaMRA MRA] || [BrainRegionBMA_SC_VH_RPL BMA.SC.VH.RPL] || [BrainRegionHMA_HP_PRF_GCR HMA.HP.PRF.GCR] || Gigantocellular Reticular Nucleus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionHMA_SC_VH_SAN HMA.SC.VH.SAN] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (RF -> SpinalCord, abstract)] ||
-||  ||  || [BrainRegionMBA_MM_SC_DEEP MBA.MM.SC.DEEP] || Deep Superior Colliculus || nucleus-nucleus || (unknown reference) ||
 || <font color="red">Target</font> || || || || || ||
 || [BrainAreaTEA TEA] || [BrainRegionAVA_PN_SG_DRG AVA.PN.SG.DRG] || [BrainRegionTARGET_TEA_BREAST TARGET.TEA.BREAST] || Breast || breast-skin-receptors || (unknown reference) ||
 ||  ||  || [BrainRegionTARGET_TEA_FACE TARGET.TEA.FACE] || Face || face-parotid-skin || (unknown reference) ||
@@ -118,7 +181,6 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/PCA_LBC.dot.png
 ||  || [BrainRegionBMA_SC_PH_SG BMA.SC.PH.SG] || [BrainRegionSMA_FD_TH_VPI SMA.FD.TH.VPI] || Ventral Posteroinferior Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaEPA EPA] || [BrainRegionBMA_SC_PH_MG BMA.SC.PH.MG] || [BrainRegionCGA_FD_TH_SM CGA.FD.TH.SM] || Submedial Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaACA ACA] || [BrainRegionBMA_SC_VH_VL BMA.SC.VH.VL] || [BrainRegionHMA_HM_TGM_PE5 HMA.HM.TGM.PE5] || Peritrigeminal Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLCA LCA] || [BrainRegionAVA_PN_SG_DRG AVA.PN.SG.DRG] || [BrainRegionAVA_SC_IZ_IMM AVA.SC.IZ.IMM] || Intermediomedial Nucleus || ganglion-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionBMA_SC_IZ_CBS BMA.SC.IZ.CBS] || Centrobasalis Nucleus || ganglion-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionBMA_SC_IZ_CCV BMA.SC.IZ.CCV] || Central Cervical Nucleus || ganglion-nucleus || (unknown reference) ||
@@ -126,29 +188,6 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/PCA_LBC.dot.png
 ||  || [BrainRegionBMA_HM_CU BMA.HM.CU] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaMCA MCA] || [BrainRegionBMA_SC_PH_MG BMA.SC.PH.MG] || [BrainRegionPHA_FD_TH_LI PHA.FD.TH.LI] || Limitans Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaPCA PCA] || [BrainRegionAVA_PN_SG_DRG AVA.PN.SG.DRG] || [BrainRegionHMA_HM_TGM_STR HMA.HM.TGM.STR] || Spinal Trigeminal Nucleus || ganglion-nucleus || (unknown reference) ||
-|| <font color="red">Target</font> || || || || || ||
-|| [BrainAreaTEA TEA] || [BrainRegionBMA_SC_VH_PHR BMA.SC.VH.PHR] || [BrainRegionTARGET_TEA_LUNG TARGET.TEA.LUNG] || Lung || thoracic-diaphragm || (unknown reference) ||
-||  || [BrainRegionBMA_SC_VH_PL BMA.SC.VH.PL] || [BrainRegionTARGET_TEA_HAND TARGET.TEA.HAND] || Hand || biceps-muscle || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_LEG TARGET.TEA.LEG] || Leg || gastrocnemius-muscle || (unknown reference) ||
-||  || [BrainRegionBMA_SC_VH_PM BMA.SC.VH.PM] || [BrainRegionTARGET_TEA_GENITALIA TARGET.TEA.GENITALIA] || Genitalia || bulbospongiosus-muscle || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_HAND TARGET.TEA.HAND] || Hand || anterior-deltoid-muscle || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_LEG TARGET.TEA.LEG] || Leg || leg-adductor-brevis-muscle || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_RECTUM TARGET.TEA.RECTUM] || Rectum || corrugator-cutis-ani-muscle || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_TRUNK TARGET.TEA.TRUNK] || Trunk || trunk-abdominal-external-oblique-muscle || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_URETER TARGET.TEA.URETER] || Ureter || external-urethral-sphincter-female || (unknown reference) ||
-||  || [BrainRegionBMA_SC_VH_RPL BMA.SC.VH.RPL] || [BrainRegionTARGET_TEA_HAND TARGET.TEA.HAND] || Hand || abductor-digiti-minimi-muscle || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_LEG TARGET.TEA.LEG] || Leg || flexor-longus-digitorum-muscle || (unknown reference) ||
-||  || [BrainRegionBMA_SC_VH_VL BMA.SC.VH.VL] || [BrainRegionTARGET_TEA_HAND TARGET.TEA.HAND] || Hand || abductor-pollicis-longus-muscle || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_LEG TARGET.TEA.LEG] || Leg || extensor-digitorum-brevis-muscle || (unknown reference) ||
-||  || [BrainRegionBMA_SC_VH_VM BMA.SC.VH.VM] || [BrainRegionTARGET_TEA_GENITALIA TARGET.TEA.GENITALIA] || Genitalia || pubococcygeus-muscle || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_HAND TARGET.TEA.HAND] || Hand || posteriolateral-deltoid-muscle || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_LEG TARGET.TEA.LEG] || Leg || gluteus-maximus-muscle || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_NECK TARGET.TEA.NECK] || Neck || neck-obliquus-capitis-inferior-muscle || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_RECTUM TARGET.TEA.RECTUM] || Rectum || coccygeus-muscle || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_SPEAKER TARGET.TEA.SPEAKER] || Mouth speaker || larynx-thyrohyoid-muscle || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_TRUNK TARGET.TEA.TRUNK] || Trunk || semispinalis-capitis-muscle || (unknown reference) ||
-||  || [BrainRegionHMA_SC_VH_SAN HMA.SC.VH.SAN] || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || Mouth feeder || geniohyoid-muscle || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_NECK TARGET.TEA.NECK] || Neck || neck-longus-capitis || (unknown reference) ||
 
 == Vestibular ==
 
