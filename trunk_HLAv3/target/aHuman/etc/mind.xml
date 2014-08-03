@@ -110,7 +110,7 @@
 		<component-set>
 
 			<!-- ================= Physical Mind =============== -->
-			<area id="PCA" type="Subcortical" name="Lower Brain - Peripheral Control Area" enabled="true" function="Conscious Control of Target">
+			<area id="LPC" type="Subcortical" name="Lower Brain - Peripheral Control Area" enabled="true" function="Conscious Control of Target">
 				<services>
 					<service id="LSC" name="Capture Sensory Data"/>
 					<service id="LSM" name="Sensory Modulation"/>
@@ -276,6 +276,7 @@
 					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.IVBN" dst="HMA.HP.PRF.CRF"/>
 					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.LVBN" dst="LPC.SC.VH.PM"/>
 					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.LVBN" dst="LPC.SC.VH.VM"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.LVBN" dst="LPC.SC.VH.VL"/>
 					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.SVBN" dst="LPC.MM.OCN"/>
 					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.SVBN" dst="LPC.MM.TRH"/>
 					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.SVBN" dst="ACA.FD.TH.SG" comment="to BA5"/>
