@@ -136,12 +136,23 @@
 				comments="human has 30K, cat - 50K cells"
 				notes="Fibres from bipolar cells in the spiral ganglion consist of peripheral branches that end in the organ of Corti and central branches that end in the ventral and dorsal cochlear nuclei"
 				/>
-			<element id="LPC.PN.SG.VB" name="Vestibular Ganglion" mapped="true" type="sensory ganglion"
+
+			<element id="LPC.PN.SG.VB" name="Vestibular Ganglion"
 				synonyms="Scarpas ganglion"
 				refs="NL:[http://neurolex.org/wiki/Category:Vestibular_ganglion Vestibular ganglion]"
 				function="transform vestibular (balance) information into body coords"
 				comments="Contact with hair cells of vestibular sensory end organs"
-				/>
+				>
+				<element id="LPC.PN.SG.CVB" name="Vestibular Ganglion - Semicircular Canal Neurons" mapped="true" type="sensory ganglion"
+					function="Relay head movements in 3D coords"
+					/>
+				<element id="LPC.PN.SG.UVB" name="Vestibular Ganglion - Utricle Neurons" mapped="true" type="sensory ganglion"
+					function="Relay horizontal linear acceleration"
+					/>
+				<element id="LPC.PN.SG.SVB" name="Vestibular Ganglion - Saccule Neurons" mapped="true" type="sensory ganglion"
+					function="Relay vertical linear acceleration"
+					/>
+			</element>
 
 			<element id="AVA.PN.SG.DRG" name="Dorsal Root Ganglion" type="sensory ganglion"
 				function="Integration of afferent signaling from somatic viscera"

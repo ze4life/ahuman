@@ -202,7 +202,6 @@
 					<region id="LPC.MM.SOC" type="nucleus" service="LSC" role="relay"/>
 					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.SP" dst="LPC.HM.DCOCH"/>
 					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.SP" dst="LPC.HM.VCOCH"/>
-					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.SP" dst="LPC.HP.VBN"/>
 					<connection type="nucleus-nucleus" primary="true" src="LPC.MM.CIC" dst="LPC.HP.PN.LL"/>
 					<connection type="nucleus-nucleus" primary="true" src="LPC.MM.CIC" dst="LPC.MM.SOC"/>
 					<connection type="nucleus-nucleus" primary="true" src="LPC.MM.CIC" dst="ABA.MM.EIC"/>
@@ -254,14 +253,32 @@
 				</circuit>
 
 				<circuit id="LEC" name="Vestibular" enabled="true">
-					<region id="LPC.PN.SG.VB" type="ganglion" service="LSC" role="sensory"/>
-					<region id="LPC.HP.VBN" type="nucleus" service="LSM" role="relay"/>
-					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.VB" dst="LPC.HP.VBN"/>
-					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.VBN" dst="HMA.HP.PRF.CRF"/>
-					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.VBN" dst="BMA.MM.DSCH"/>
-					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.VBN" dst="ACA.FD.TH.SG"/>
-					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.VBN" dst="VBA.HM.NPH"/>
-					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.VBN" dst="MBA.HP.CR"/>
+					<region id="LPC.PN.SG.CVB" type="ganglion" service="LSC" role="sensory"/>
+					<region id="LPC.PN.SG.SVB" type="ganglion" service="LSC" role="sensory"/>
+					<region id="LPC.PN.SG.UVB" type="ganglion" service="LSC" role="sensory"/>
+					<region id="LPC.HP.LVBN" type="nucleus" service="LSM" role="relay"/>
+					<region id="LPC.HP.MVBN" type="nucleus" service="LSM" role="relay"/>
+					<region id="LPC.HP.IVBN" type="nucleus" service="LSM" role="relay"/>
+					<region id="LPC.HP.SVBN" type="nucleus" service="LSM" role="relay"/>
+					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.CVB" dst="LPC.HP.SVBN"/>
+					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.CVB" dst="LPC.HP.MVBN"/>
+					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.UVB" dst="LPC.HP.LVBN"/>
+					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.SVB" dst="LPC.HP.LVBN"/>
+					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.SVB" dst="LPC.HP.IVBN"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.MVBN" dst="MBA.HP.CR"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.MVBN" dst="LPC.SC.VH.SAN"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.MVBN" dst="LPC.HP.ABD"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.MVBN" dst="LPC.MM.OCN"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.MVBN" dst="LPC.MM.TRH"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.MVBN" dst="BMA.MM.DSCH"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.MVBN" dst="VBA.HM.NPH"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.IVBN" dst="MBA.HP.CR"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.IVBN" dst="HMA.HP.PRF.CRF"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.LVBN" dst="LPC.SC.VH.PM"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.LVBN" dst="LPC.SC.VH.VM"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.SVBN" dst="LPC.MM.OCN"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.SVBN" dst="LPC.MM.TRH"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.SVBN" dst="ACA.FD.TH.SG" comment="to BA5"/>
 				</circuit>
 			</area>
 
@@ -316,7 +333,8 @@
 					<connection type="nucleus-nucleus" primary="true" src="MBA.MM.SC.DEEP" dst="LPC.SC.VH.SAN"/>
 					<connection type="nucleus-nucleus" primary="true" src="MBA.MM.SC.DEEP" dst="HMA.HP.PRF.RPO"/>
 					<connection type="nucleus-nucleus" primary="true" src="MBA.MM.SC.DEEP" dst="HMA.MM.CJ"/>
-					<connection type="nucleus-nucleus" primary="true" src="MBA.MM.SC.DEEP" dst="LPC.HP.VBN"/>
+					<connection type="nucleus-nucleus" primary="true" src="MBA.MM.SC.DEEP" dst="LPC.HP.MVBN"/>
+					<connection type="nucleus-nucleus" primary="true" src="MBA.MM.SC.DEEP" dst="LPC.HP.IVBN"/>
 					<connection type="nucleus-nucleus" primary="true" src="MBA.MM.SC.DEEP" dst="BGA.FT.SN.PC"/>
 					<connection type="nucleus-nucleus" primary="true" src="MBA.MM.SC.DEEP" dst="MBA.HP.CR"/>
 					<connection type="nucleus-nucleus" primary="true" src="MBA.MM.SC.DEEP" dst="MCA.FD.TH.VA"/>
@@ -328,6 +346,7 @@
 					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PRF.RPO" dst="LPC.MM.OCN"/>
 					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PRF.RPO" dst="LPC.SC.VH.SAN"/>
 					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PRF.RPO" dst="MBA.HP.CR"/>
+					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PRF.RPO" dst="LPC.HP.IVBN"/>
 					<connection type="nucleus-nucleus" primary="true" src="BMA.MM.DSCH" dst="VBA.MM.EWN"/>
 					<connection type="nucleus-nucleus" primary="true" src="BMA.MM.DSCH" dst="BMA.HM.IO"/>
 				</circuit>
@@ -503,7 +522,7 @@
 					<connection type="nucleus-nucleus" primary="true" src="BMA.MM.PT.PTA" dst="VBA.FD.PV.MPV"/>
 					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PRF.PDT" dst="LPC.HP.FCM"/>
 					<connection type="nucleus-nucleus" primary="true" src="BMA.SC.IZ.CBS" dst="MBA.HP.CR"/>
-					<connection type="nucleus-nucleus" primary="true" src="BMA.SC.IZ.CCV" dst="LPC.HP.VBN"/>
+					<connection type="nucleus-nucleus" primary="true" src="BMA.SC.IZ.CCV" dst="LPC.HP.IVBN"/>
 					<connection type="nucleus-nucleus" primary="true" src="BMA.SC.IZ.CCV" dst="SMA.FD.TH.VPL"/>
 					<connection type="nucleus-nucleus" primary="true" src="BMA.SC.IZ.CCV" dst="SMA.FD.TH.RIL"/>
 					<connection type="nucleus-nucleus" primary="true" src="BMA.SC.IZ.CCV" dst="BMA.HM.IO"/>
@@ -521,11 +540,11 @@
 					<connection type="nucleus-nucleus" primary="true" src="MBA.MM.RD" dst="BMA.HM.IO"/>
 					<connection type="nucleus-nucleus" primary="true" src="VBA.HM.NPH" dst="VBA.MM.PT.NOT"/>
 					<connection type="nucleus-nucleus" primary="true" src="VBA.HM.NPH" dst="ACA.FD.TH.SG"/>
-					<connection type="nucleus-nucleus" primary="true" src="VBA.HM.NPH" dst="LPC.HP.VBN"/>
+					<connection type="nucleus-nucleus" primary="true" src="VBA.HM.NPH" dst="LPC.HP.MVBN"/>
 					<connection type="nucleus-neocortex" primary="true" src="MBA.HP.CR" dst="FCA.NC.LPFC"/>
 					<connection type="nucleus-nucleus" primary="true" src="MBA.HP.CR" dst="SMA.FD.TH.RIL"/>
 					<connection type="nucleus-nucleus" primary="true" src="MBA.HP.CR" dst="HMA.HP.PRF.CRF"/>
-					<connection type="nucleus-nucleus" primary="true" src="MBA.HP.CR" dst="LPC.HP.VBN"/>
+					<connection type="nucleus-nucleus" primary="true" src="MBA.HP.CR" dst="LPC.HP.LVBN"/>
 					<connection type="nucleus-nucleus" primary="true" src="MBA.HP.CR" dst="MBA.MM.RD"/>
 					<connection type="nucleus-nucleus" primary="true" src="MBA.HP.CR" dst="MCA.FD.TH.VL"/>
 					<connection type="nucleus-nucleus" primary="true" src="MBA.HP.CR" dst="BMA.MM.DSCH" notes="from interposed nucleus"/>

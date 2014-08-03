@@ -179,10 +179,11 @@
 				imgsrc="http://webmedia.unmc.edu/medicine/todd/papt/Wk15-Aud-Vest_files/slide0065_image024.jpg"
 				modality="special sensory"
 				>
-				<fibers type="SSA" src="TARGET.TSA.EAR" dst="LPC.HP.VBN"><mid id="LPC.PN.SG.SP"/></fibers>
 				<element name="ampullar nerve"
 					modality="special sensory"
 					>
+					<fibers type="SSA" src="TARGET.TSA.EAR" dst="LPC.HP.SVBN"><mid id="LPC.PN.SG.CVB"/></fibers>
+					<fibers type="SSA" src="TARGET.TSA.EAR" dst="LPC.HP.MVBN"><mid id="LPC.PN.SG.CVB"/></fibers>
 					<element name="ampullar nerve, anterior"
 						synonyms="ampullar nerve, superior"
 						origin="the branch of the vestibular nerve"
@@ -204,13 +205,18 @@
 					origin="the branch of the vestibular nerve"
 					distribution="innervates the macula of the saccule"
 					modality="special sensory"
-					/>
+					>
+					<fibers type="SSA" src="TARGET.TSA.EAR" dst="LPC.HP.LVBN"><mid id="LPC.PN.SG.SVB"/></fibers>
+					<fibers type="SSA" src="TARGET.TSA.EAR" dst="LPC.HP.IVBN"><mid id="LPC.PN.SG.SVB"/></fibers>
+				</element>
 				<element name="utricular nerve"
 					origin="the branch of the vestibular nerve"
 					distribution="innervates the macula of the utricle"
 					modality="special sensory"
-					/>
-				<element name="utriculoampullary nerve"
+					>
+					<fibers type="SSA" src="TARGET.TSA.EAR" dst="LPC.HP.LVBN"><mid id="LPC.PN.SG.UVB"/></fibers>
+				</element>
+				<element name="utriculoampullary nerve" ignore="true"
 					origin="a nerve that arises by peripheral division of the vestibular nerve"
 					distribution="supplies the utricle and ampullae of the semicircular ducts"
 					modality="special sensory"
