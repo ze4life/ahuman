@@ -17,7 +17,7 @@ Region is part of aHuman target integrated biological model.
 
 *Component items*:
   * *Speaker sensory data* (*speaker-sensory-data*)
-   * Speaker - palatine tonsil receptors (palatine-tonsil-receptors -> [BrainRegionAVA_PN_SG_JUG AVA.PN.SG.JUG]): visceral mucous membrane over soft palate and tonsil
+   * Speaker - palatine tonsil receptors (palatine-tonsil-receptors -> [BrainRegionLPC_PN_SG_JUG LPC.PN.SG.JUG]): visceral mucous membrane over soft palate and tonsil
   * *Speaker phonatory muscles* (*speaker-phonatory-muscles*): move vocal cords together and serve production of voice
    * [http://en.wikipedia.org/wiki/Lateral_cricoarytenoid_muscle Speaker - lateral cricoarytenoid muscle] ([BrainRegionAVA_PN_PSYM_ILG AVA.PN.PSYM.ILG] -> [HumanMusclesNeck lateral-cricoarytenoid-muscle]): adduct and medially rotate the cartilage, pulling the vocal ligaments towards the midline and backwards and so closing off the rima glottidis
    * [http://en.wikipedia.org/wiki/Arytenoid_muscle Speaker - arytenoid muscle] ([BrainRegionHMA_HM_AMB HMA.HM.AMB] -> [HumanMusclesNeck arytenoid-muscle]): approximate the arytenoid cartilages (close rima glottidis)
@@ -28,11 +28,11 @@ Region is part of aHuman target integrated biological model.
    * [http://en.wikipedia.org/wiki/Thyroepiglottic_muscle Speaker - thyroepiglottic muscle] ([BrainRegionAVA_PN_PSYM_ILG AVA.PN.PSYM.ILG] -> [HumanMusclesNeck thyroepiglottic-muscle]): closes the inlet to the larynx
    * [http://en.wikipedia.org/wiki/Aryepiglottic_muscle Speaker - aryepiglottic muscle] ([BrainRegionAVA_PN_PSYM_ILG AVA.PN.PSYM.ILG] -> [HumanMusclesNeck aryepiglottic-muscle]): close the inlet
   * *Speaker respiratory larynx muscles* (*speaker-respiratory-muscles*): move vocal cords apart and serve breathing
-   * [http://en.wikipedia.org/wiki/Thyrohyoid_muscle Speaker - thyrohyoid muscle] ([BrainRegionBMA_SC_VH_VM BMA.SC.VH.VM] -> [HumanMusclesNeck larynx-thyrohyoid-muscle]): depresses the hyoid and elevates the larynx
-   * [http://en.wikipedia.org/wiki/Omohyoid_muscle Speaker - omohyoid muscle] ([BrainRegionBMA_SC_VH_VM BMA.SC.VH.VM] -> [HumanMusclesNeck omohyoid-muscle]): depresses the larynx and hyoid bone; carries hyoid bone backward and to the side
+   * [http://en.wikipedia.org/wiki/Thyrohyoid_muscle Speaker - thyrohyoid muscle] ([BrainRegionLPC_SC_VH_VM LPC.SC.VH.VM] -> [HumanMusclesNeck larynx-thyrohyoid-muscle]): depresses the hyoid and elevates the larynx
+   * [http://en.wikipedia.org/wiki/Omohyoid_muscle Speaker - omohyoid muscle] ([BrainRegionLPC_SC_VH_VM LPC.SC.VH.VM] -> [HumanMusclesNeck omohyoid-muscle]): depresses the larynx and hyoid bone; carries hyoid bone backward and to the side
    * [http://en.wikipedia.org/wiki/Palatopharyngeus_muscle Speaker - palatopharyngeus muscle] ([BrainRegionHMA_HM_AMB HMA.HM.AMB] -> [HumanMusclesHead palatopharyngeus-muscle]): pulls pharynx and larynx
-   * [http://en.wikipedia.org/wiki/Sternohyoid_muscle Speaker - sternohyoid muscle] ([BrainRegionBMA_SC_VH_VM BMA.SC.VH.VM] -> [HumanMusclesNeck sternohyoid-muscle]): depress hyoid bone
-   * [http://en.wikipedia.org/wiki/Sternothyroid_muscle Speaker - sternothyroid muscle] ([BrainRegionBMA_SC_VH_VM BMA.SC.VH.VM] -> [HumanMusclesNeck sternothyroid-muscle]): elevates larynx, may slightly depress hyoid bone
+   * [http://en.wikipedia.org/wiki/Sternohyoid_muscle Speaker - sternohyoid muscle] ([BrainRegionLPC_SC_VH_VM LPC.SC.VH.VM] -> [HumanMusclesNeck sternohyoid-muscle]): depress hyoid bone
+   * [http://en.wikipedia.org/wiki/Sternothyroid_muscle Speaker - sternothyroid muscle] ([BrainRegionLPC_SC_VH_VM LPC.SC.VH.VM] -> [HumanMusclesNeck sternothyroid-muscle]): elevates larynx, may slightly depress hyoid bone
    * [http://en.wikipedia.org/wiki/Levator_muscle_of_thyroid_gland Speaker - levator muscle of thyroid gland] ([BrainRegionHMA_HM_AMB HMA.HM.AMB] -> [HumanMusclesNeck thyroid-gland-levator-muscle]): elevates the thyroid gland
 
 = Connectivity =
@@ -46,12 +46,12 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/TARGET.TEA.SPEAKER.dot.jpg
 || *Source Area* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || [BrainAreaACA ACA] || [BrainRegionAVA_PN_PSYM_ILG AVA.PN.PSYM.ILG] || Intralaryngeal Peripheral Ganglion || aryepiglottic-muscle || (unknown reference) ||
 || [BrainAreaMRA MRA] || [BrainRegionHMA_HM_AMB HMA.HM.AMB] || Ambiguus Nucleus || arytenoid-muscle || (unknown reference) ||
-|| [BrainAreaPCA PCA] || [BrainRegionBMA_SC_VH_VM BMA.SC.VH.VM] || Ventromedial Nucleus || larynx-thyrohyoid-muscle || (unknown reference) ||
+|| [BrainAreaPCA PCA] || [BrainRegionLPC_SC_VH_VM LPC.SC.VH.VM] || Ventromedial Nucleus || larynx-thyrohyoid-muscle || (unknown reference) ||
 
 *Outbound Region Connections:*
 
 || *Target Area* || *Target Region* || *Target Name* || *Type* || *Reference* ||
-|| [BrainAreaPCA PCA] || [BrainRegionAVA_PN_SG_JUG AVA.PN.SG.JUG] || Jugular Ganglion || palatine-tonsil-receptors || (unknown reference) ||
+|| [BrainAreaPCA PCA] || [BrainRegionLPC_PN_SG_JUG LPC.PN.SG.JUG] || Jugular Ganglion || palatine-tonsil-receptors || (unknown reference) ||
 
 = Thirdparty Circuits =
 (generated)
