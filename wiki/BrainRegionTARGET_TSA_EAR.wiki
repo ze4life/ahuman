@@ -25,7 +25,9 @@ Region is part of aHuman target integrated biological model.
    * Ear - visceral receptors (ear-visceral -> [BrainRegionLPC_PN_SG_JUG LPC.PN.SG.JUG]): pain, temperature, and touch
    * Ear - timpanic cavity (ear-timpanic-cavity -> [BrainRegionLPC_PN_SG_PET LPC.PN.SG.PET]): pain, temperature, and touch
   * *Ear vestibular sensory data* (*ear-sensory-vestibular-data*)
-   * Ear - cristae and maculae (ear-cristae-maculae -> [BrainRegionLPC_PN_SG_VB LPC.PN.SG.VB]): activate afferent receptors in response to rotational and linear acceleration
+   * Ear - semicircular canals, cristae (ear-semicircular-canals -> [BrainRegionLPC_PN_SG_CVB LPC.PN.SG.CVB]): activate afferent receptors in response to rotational acceleration
+   * Ear - utricle, maculae (ear-utricle -> [BrainRegionLPC_PN_SG_UVB LPC.PN.SG.UVB]): activate afferent receptors in response to horizontal linear acceleration
+   * Ear - saccule, maculae (ear-saccule -> [BrainRegionLPC_PN_SG_SVB LPC.PN.SG.SVB]): activate afferent receptors in response to vertical linear acceleration
   * *Ear sound sensory control* (*ear-sensory-control*)
    * [http://www.d.umn.edu/~jfitzake/Lectures/UndergradPharmacy/SensoryPhysiology/Audition/OHCFunction.html Ear - outer hair cells] ([BrainRegionLPC_MM_SOC LPC.MM.SOC] -> [HumanMusclesHead ear-outer-hair-cells]): contracts basilar membrane; mechanically amplify low-level sound that enters cochlea
    * [http://en.wikipedia.org/wiki/Stapedius Ear - stapedius muscle] ([BrainRegionLPC_HP_FCM LPC.HP.FCM] -> [HumanMusclesHead ear-stapedius]): dampens vibrations of stapes
@@ -53,13 +55,15 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/TARGET.TSA.EAR.dot.jpg
 *Outbound Region Connections:*
 
 || *Target Area* || *Target Region* || *Target Name* || *Type* || *Reference* ||
-|| [BrainAreaPCA PCA] || [BrainRegionLPC_PN_SG_GNG LPC.PN.SG.GNG] || Geniculate Ganglion || ear-somatic || (unknown reference) ||
+|| [BrainAreaPCA PCA] || [BrainRegionLPC_PN_SG_CVB LPC.PN.SG.CVB] || Vestibular Ganglion - Semicircular Canal Neurons || ear-semicircular-canals || (unknown reference) ||
+||  || [BrainRegionLPC_PN_SG_GNG LPC.PN.SG.GNG] || Geniculate Ganglion || ear-somatic || (unknown reference) ||
 ||  || [BrainRegionLPC_PN_SG_JUG LPC.PN.SG.JUG] || Jugular Ganglion || ear-visceral || (unknown reference) ||
 ||  || [BrainRegionLPC_PN_SG_PET LPC.PN.SG.PET] || Petrosal Ganglion || ear-timpanic-cavity || (unknown reference) ||
 ||  || [BrainRegionLPC_PN_SG_SP LPC.PN.SG.SP] || Spiral Ganglion || ear-inner-hair-cells || [http://www.sciencedirect.com/science/article/pii/S1359644605035427 Auditory System Model (Ear -> CochleaGanglion)] ||
+||  || [BrainRegionLPC_PN_SG_SVB LPC.PN.SG.SVB] || Vestibular Ganglion - Saccule Neurons || ear-saccule || (unknown reference) ||
 ||  || [BrainRegionLPC_PN_SG_TRG LPC.PN.SG.TRG] || Trigeminal Ganglion || ear-acoustic-meatus-skin || (unknown reference) ||
 ||  || [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG] || Upper Dorsal Root Ganglion || ear-external-skin || (unknown reference) ||
-||  || [BrainRegionLPC_PN_SG_VB LPC.PN.SG.VB] || Vestibular Ganglion || ear-cristae-maculae || (unknown reference) ||
+||  || [BrainRegionLPC_PN_SG_UVB LPC.PN.SG.UVB] || Vestibular Ganglion - Utricle Neurons || ear-utricle || (unknown reference) ||
 
 = Thirdparty Circuits =
 (generated)
