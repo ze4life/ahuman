@@ -417,7 +417,15 @@ void WikiAreaPages::createAreaPages_getExternalConnectionTableLine( MindArea *ar
 }
 
 String WikiAreaPages::createDotFile_getRegionLabel( MindRegionDef *region ) {
-	String label = "<b>" + region -> getId() + "</b><br/>" + region -> getTypeName() + "/" + region -> getServiceName();
+	String subtype;
+	if( region -> isTargetSensor() )
+		subtype = "sensor";
+	else if( region -> isTargetEffector() )
+		subtype = "effector";
+	else
+		subtype = region -> getTypeName() + "/" + region -> getServiceName();
+
+	String label = "<b>" + region -> getId() + "</b><br/>" + subtype;
 	return( label );
 }
 

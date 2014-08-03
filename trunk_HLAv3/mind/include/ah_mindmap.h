@@ -174,6 +174,10 @@ public:
 
 	String getRoleName();
 
+	bool isTarget() { return( target == true ); };
+	bool isTargetSensor() { return( target == true && sensor == true ); };
+	bool isTargetEffector() { return( target == true && sensor == false ); };
+
 protected:
 // utilities
 	String id;
@@ -181,6 +185,8 @@ protected:
 	String serviceName;
 	MindRegionRoleEnum role;
 	int size;
+	bool target;
+	bool sensor;
 
 // references
 	MindAreaDef *area;

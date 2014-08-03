@@ -98,12 +98,12 @@
 		</element>
 
 		<element id="PN.SG" name="Sensory Ganglia">
-			<element id="AVA.PN.SG.TRG" name="Trigeminal Ganglion" mapped="true" type="sensory ganglion"
+			<element id="LPC.PN.SG.TRG" name="Trigeminal Ganglion" mapped="true" type="sensory ganglion"
 				function="Integration of external auditory meatus (auricular branch), cranial meninges (meningeal branch), and external surface of tympanic membrane"
 				comments="Gasserian, semilunar"
 				notes="sensory fibers of ophthalmic, maxillary, mandibular nerves to principal trigeminal nucleus"
 				/>
-			<element id="AVA.PN.SG.GNG" name="Geniculate Ganglion" mapped="true" type="sensory ganglion"
+			<element id="LPC.PN.SG.GNG" name="Geniculate Ganglion" mapped="true" type="sensory ganglion"
 				function="Trophic support for survival"
 				notes="Innervation taste buds, ear skin"
 				comments="Sensory and Parasympathetic"
@@ -112,63 +112,64 @@
 				<element name="Superficial Petrosal Nerve" function="to other taste buds"/>
 				<element name="Posterior Auricular Nerve" function="to external ear skin"/>
 			</element>
-			<element id="AVA.PN.SG.JUG" name="Jugular Ganglion" mapped="true" type="sensory ganglion"
+			<element id="LPC.PN.SG.JUG" name="Jugular Ganglion" mapped="true" type="sensory ganglion"
 				function="Integration of external auditory meatus (auricular branch), cranial meninges (meningeal branch), and external surface of tympanic membrane"
 				comments="CN X, superior ganglion of vagus nerve"
 				notes="to Sensory Trigeminal Nucleus"
 				/>
-			<element id="AVA.PN.SG.PET" name="Petrosal Ganglion" mapped="true" type="sensory ganglion"
+			<element id="LPC.PN.SG.PET" name="Petrosal Ganglion" mapped="true" type="sensory ganglion"
 				function="Integration of afferent signaling from viscera"
 				comments="CN IX, superior and inferior ganglia of glossopharyngeal nerve, Hering's nerve"
 				notes="mucous membranes of pharynx, middle ear, carotid body and sinus, taste sensor on the posterior third of tongue to SOL"
 				/>
-			<element id="AVA.PN.SG.NOD" name="Nodose Ganglion" mapped="true" type="sensory ganglion"
+			<element id="LPC.PN.SG.NOD" name="Nodose Ganglion" mapped="true" type="sensory ganglion"
 				function="Integration of afferent signaling from viscera"
 				comments="CN X, inferior ganglion of vagus nerve"
 				notes="caudal SOL - larynx, trachea, gut, and aortic arch receptors; rostral SOL - taste receptors of posterior oral cavity"
 				/>
-			<element id="AVA.PN.SG.OLB" name="Olfactory Bulb" mapped="true" type="sensory ganglion"
+			<element id="LPC.PN.SG.OLB" name="Olfactory Bulb" mapped="true" type="sensory ganglion"
 				function="Olfaction patterns"
 				notes="in=glomeruli -> 1000x1 -> out=mitral"
 				/>
-			<element id="ABA.PN.SG.SP" name="Spiral Ganglion" mapped="true" type="sensory ganglion"
+			<element id="LPC.PN.SG.SP" name="Spiral Ganglion" mapped="true" type="sensory ganglion"
 				function="Auditory patterns"
 				comments="human has 30K, cat - 50K cells"
 				notes="Fibres from bipolar cells in the spiral ganglion consist of peripheral branches that end in the organ of Corti and central branches that end in the ventral and dorsal cochlear nuclei"
 				/>
-			<element id="MBA.PN.SG.VB" name="Vestibular Ganglion" mapped="true" type="sensory ganglion"
+			<element id="LPC.PN.SG.VB" name="Vestibular Ganglion" mapped="true" type="sensory ganglion"
 				synonyms="Scarpas ganglion"
 				refs="NL:[http://neurolex.org/wiki/Category:Vestibular_ganglion Vestibular ganglion]"
 				function="transform vestibular (balance) information into body coords"
 				comments="Contact with hair cells of vestibular sensory end organs"
 				/>
 
-			<element id="AVA.PN.SG.DRG" name="Dorsal Root Ganglion" mapped="true" type="sensory ganglion"
-				function="Integration of afferent signaling from viscera"
+			<element id="AVA.PN.SG.DRG" name="Dorsal Root Ganglion" type="sensory ganglion"
+				function="Integration of afferent signaling from somatic viscera"
 				notes="Sensory nerves project to upper thoracic dorsal horn via dorsal root ganglia"
 				>
-				<element id="AVA.PN.SG.DRG.CX" name="Cervical Dorsal Root Ganglia"
-					function="touch/proprioception/vibration sensory pathway"
-					notes="Integration of afferent signaling"
-					comments="C1:meningles, C2:head, C3-C4:neck, C5-C6:shoulder, C7-C8-arms"
+				<element id="LPC.PN.SG.UDRG" name="Upper Dorsal Root Ganglion" mapped="true" type="sensory ganglion"
+					function="Integration of afferent signaling from cervical and upper thoracic somatic and viscera"
+					notes="C1-C8, T1-T6"
 					>
-					<element id="AVA.PN.SG.DRG.UC" name="Upper Cervical Dorsal Root Ganglia" 
-						function="Integration of afferent signaling from meningles, head, neck"
-						notes="C1-C4"
-						/>
-					<element id="AVA.PN.SG.DRG.LC" name="Lower Cervical Dorsal Root Ganglia" 
-						function="Integration of afferent signaling from shoulder, arms"
-						notes="C5-C8"
-						/>
+					<element id="AVA.PN.SG.DRG.CX" name="Cervical Dorsal Root Ganglia"
+						function="touch/proprioception/vibration sensory pathway"
+						notes="Integration of afferent signaling"
+						comments="C1:meningles, C2:head, C3-C4:neck, C5-C6:shoulder, C7-C8-arms"
+						>
+						<element id="AVA.PN.SG.DRG.UC" name="Upper Cervical Dorsal Root Ganglia" 
+							function="Integration of afferent signaling from meningles, head, neck"
+							notes="C1-C4"
+							/>
+						<element id="AVA.PN.SG.DRG.LC" name="Lower Cervical Dorsal Root Ganglia" 
+							function="Integration of afferent signaling from shoulder, arms"
+							notes="C5-C8"
+							/>
+					</element>
 				</element>
-				<element id="AVA.PN.SG.DRG.TX" name="Thoracic Dorsal Root Ganglia" 
-					function="touch/proprioception/vibration sensory pathway"
-					>
-					<element id="AVA.PN.SG.DRG.UT" name="Upper Thoracic Dorsal Root Ganglia" 
-						function="Integration of afferent signaling from visceral heart"
-						notes="Sensory nerves project to upper thoracic dorsal horn via dorsal root ganglia"
-						/>
-				</element>
+				<element id="LPC.PN.SG.LDRG" name="Lower Dorsal Root Ganglion" mapped="true" type="sensory ganglion"
+					function="Integration of afferent signaling from lower thoracic and lumbosacral somatic and viscera"
+					notes="T7-T12,L1-L5,S1-S5,CX"
+					/>
 			</element>
 		</element>
 
