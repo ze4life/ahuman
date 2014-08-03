@@ -20,21 +20,39 @@
 		</element>
 
 		<element id="BMA.SC.PH" name="Posterior/Dorsal Horn">
-			<element id="BMA.SC.PH.L1" name="Lamina I">
-				<element id="BMA.SC.PH.MG" name="Marginal Nucleus" mapped="true" type="nucleus" index="MG"
+			<element id="LPC.SC.PH.L1" name="Lamina I">
+				<element id="LPC.SC.PH.MG" name="Marginal Nucleus" type="nucleus" index="MG"
 					refs="NA:Marginal Nucleus;BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&amp;conceptid=FMA%3A73903 Posteromarginal nucleus]"
 					fgroup="Spinal Pain and Temperature"
 					function="Relay information related to pain and temperature sensation"
 					notes="Pain sensation cannot be modulated"
-					/>
+					>
+					<element id="LPC.SC.PH.UMG" name="Upper Marginal Nucleus" mapped="true" type="nucleus" index="UMG"
+						fgroup="Spinal Pain and Temperature"
+						function="Relay information related to pain and temperature sensation - C1-C8,T1-T6"
+						/>
+					<element id="LPC.SC.PH.LMG" name="Lower Marginal Nucleus" mapped="true" type="nucleus" index="LMG"
+						fgroup="Spinal Pain and Temperature"
+						function="Relay information related to pain and temperature sensation - T7-T12,L1-L5,S1-S5,CX"
+						/>
+				</element>
 			</element>
-			<element id="BMA.SC.PH.L2" name="Lamina II">
-				<element id="BMA.SC.PH.SG" name="Substantia Gelatinosa" mapped="true" type="nucleus" index="SG"
+			<element id="LPC.SC.PH.L2" name="Lamina II">
+				<element id="LPC.SC.PH.SG" name="Substantia Gelatinosa" type="nucleus" index="SG"
 					refs="NA:Gelatinosus substance = BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&amp;conceptid=FMA%3A74019 Substantia gelatinosa]"
 					fgroup="Spinal Pain and Temperature"
 					function="Relay for C-fibers of slowly conducting, poorly localized pain sensation"
 					notes="Second of two after proprius 1-order neurons"
-					/>
+					>
+					<element id="LPC.SC.PH.USG" name="Upper Substantia Gelatinosa" mapped="true" type="nucleus" index="USG"
+						fgroup="Spinal Pain and Temperature"
+						function="Relay for C-fibers of slowly conducting, poorly localized pain sensation - C1-C8,T1-T6"
+						/>
+					<element id="LPC.SC.PH.LSG" name="Lower Substantia Gelatinosa" mapped="true" type="nucleus" index="LSG"
+						fgroup="Spinal Pain and Temperature"
+						function="Relay for C-fibers of slowly conducting, poorly localized pain sensation - T7-T12,L1-L5,S1-S5,CX"
+						/>
+				</element>
 			</element>
 			<element id="BMA.SC.PH.L34" name="Lamina III, IV">
 				<element id="BMA.SC.PH.NP" name="Proprius Nucleus" mapped="true" type="nucleus" index="NPR"
@@ -105,13 +123,13 @@
 
 		<element id="SC.VH" name="Anterior/Ventral Horn">
 			<element id="SC.VH.L8" name="Lamina VIII">
-				<element id="BMA.SC.VH.VM" name="Ventromedial Nucleus" mapped="true" type="nucleus" index="VMN"
+				<element id="LPC.SC.VH.VM" name="Ventromedial Nucleus" mapped="true" type="nucleus" index="VMN"
 					refs="NA:Anteromedial Nucleus;BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&amp;conceptid=FMA%3A73930 Medial motor nucleus of spinal cord]"
 					fgroup="Spinal Medial Motor Nuclei (axial muscles motor neurons)"
 					function="Innervation of trunk muscles"
 					notes="Upper and lower"
 					/>
-				<element id="BMA.SC.VH.PM" name="Posteromedial Nucleus" mapped="true" type="nucleus" index="PMN"
+				<element id="LPC.SC.VH.PM" name="Posteromedial Nucleus" mapped="true" type="nucleus" index="PMN"
 					refs="NA:Posteromedial Nucleus"
 					fgroup="Spinal Medial Motor Nuclei (axial muscles motor neurons)"
 					function="Innervation of trunk muscles"
@@ -119,31 +137,31 @@
 					/>
 			</element>
 			<element id="SC.VH.L9" name="Lamina IX">
-				<element id="BMA.SC.VH.VL" name="Ventrolateral Nucleus" mapped="true" type="nucleus" index="VLN"
+				<element id="LPC.SC.VH.VL" name="Ventrolateral Nucleus" mapped="true" type="nucleus" index="VLN"
 					refs="NA:Anterolateral Nucleus;BP:[http://bioportal.bioontology.org/ontologies/39927/?p=terms&amp;conceptid=FMA%3A73934 Lateral motor nucleus of spinal cord]"
 					fgroup="Spinal Lateral Motor Nuclei (distal muscles motor neurons)"
 					function="Innervation of limb muscles"
 					notes="Upper and lower"
 					/>
-				<element id="BMA.SC.VH.PL" name="Posterolateral Nucleus" mapped="true" type="nucleus" index="PLN"
+				<element id="LPC.SC.VH.PL" name="Posterolateral Nucleus" mapped="true" type="nucleus" index="PLN"
 					refs="NA:Posterolateral Nucleus"
 					fgroup="Spinal Lateral Motor Nuclei (distal muscles motor neurons)"
 					function="Innervation of limb muscles"
 					notes="Upper and lower proximal muscles"
 					/>
-				<element id="BMA.SC.VH.RPL" name="Retroposterolateral Nucleus" mapped="true" type="nucleus" index="RPL"
+				<element id="LPC.SC.VH.RPL" name="Retroposterolateral Nucleus" mapped="true" type="nucleus" index="RPL"
 					refs="NA:Retroposterior Lateral Nucleus"
 					fgroup="Spinal Lateral Motor Nuclei (distal muscles motor neurons)"
 					function="Innervation of limbs muscles"
 					notes="Fingers"
 					/>
-				<element id="HMA.SC.VH.SAN" name="Spinal Accessory Nucleus" mapped="true" type="nucleus" index="SAN" 
+				<element id="LPC.SC.VH.SAN" name="Spinal Accessory Nucleus" mapped="true" type="nucleus" index="SAN" 
 					refs="NA:Nucleus of Accessory Nerve;NL:[http://neurolex.org/wiki/Category:Accessory_nucleus Accessory nucleus]"
 					fgroup="Spinal Lateral Motor Nuclei (distal muscles motor neurons)"
 					function="Control of neck"
 					notes="Rotate head, continuus from AMB"
 					/>
-				<element id="BMA.SC.VH.PHR" name="Phrenic Nucleus" mapped="true" type="nucleus" index="PHN" 
+				<element id="LPC.SC.VH.PHR" name="Phrenic Nucleus" mapped="true" type="nucleus" index="PHN" 
 					refs="NA:Nucleus of Phrenic Nerve;NL:[http://neurolex.org/wiki/Category:Phrenic_nucleus Phrenic nucleus]"
 					fgroup="Spinal Medial Motor Nuclei (axial muscles motor neurons)"
 					function="Innervation of diaphragm"

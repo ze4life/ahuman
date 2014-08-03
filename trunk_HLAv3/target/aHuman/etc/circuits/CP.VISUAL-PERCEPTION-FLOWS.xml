@@ -26,7 +26,7 @@
 	<circuit id="CP.PRIMARY-VISUAL-FORWARD-FLOWS" name="Paths from Retina to Parietal Cortex and IT"
 		image="http://thebrain.mcgill.ca/flash/a/a_02/a_02_cr/a_02_cr_vis/a_02_cr_vis_3a.jpg"
 		reference="http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html"
-		components="Retina=VBA.FD.RT LGN=VBA.FD.LGN V1=VCA.NC.V1 V2=VCA.NC.V2 V3=VCA.NC.V3 V4=VCA.NC.V4 MT=VCA.NC.MT PO=VCA.NC.PO VIP=VCA.NC.IPS.VIP MST=VCA.NC.IPL.MST LIP=VCA.NC.IPS.LIP 7a=SMA.NC.SPL.PG TEO=VCA.NC.IT.TEO TE=VCA.NC.IT.TE"
+		components="Retina=LPC.FD.RT LGN=VBA.FD.LGN V1=VCA.NC.V1 V2=VCA.NC.V2 V3=VCA.NC.V3 V4=VCA.NC.V4 MT=VCA.NC.MT PO=VCA.NC.PO VIP=VCA.NC.IPS.VIP MST=VCA.NC.IPL.MST LIP=VCA.NC.IPS.LIP 7a=SMA.NC.SPL.PG TEO=VCA.NC.IT.TEO TE=VCA.NC.IT.TE"
 		>
 		<link src="Retina" dst="LGN"/>
 		<link src="LGN" dst="V1"/>
@@ -87,7 +87,7 @@
 	<circuit id="CP.VISUAL-DORSAL-PATHWAY" name="Visual Dorsal Pathway"
 		image="http://www.hindawi.com/journals/nri/2012/719056.fig.001.jpg"
 		reference="http://www.hindawi.com/journals/nri/2012/719056"
-		components="Retina=VBA.FD.RT LGN=VBA.FD.LGN V1=VCA.NC.V1 V2=VCA.NC.V2 V3=VCA.NC.V3 V4=VCA.NC.V4 V5=VCA.NC.MT MST=VCA.NC.IPL.MST IT=VCA.NC.IT V6=VCA.NC.PO IPL=NC.IPL SPL=NC.SPL"
+		components="Retina=LPC.FD.RT LGN=VBA.FD.LGN V1=VCA.NC.V1 V2=VCA.NC.V2 V3=VCA.NC.V3 V4=VCA.NC.V4 V5=VCA.NC.MT MST=VCA.NC.IPL.MST IT=VCA.NC.IT V6=VCA.NC.PO IPL=NC.IPL SPL=NC.SPL"
 		>
 		<link src="Retina" dst="LGN"/>
 		<link src="LGN" dst="V1"/>
@@ -151,7 +151,7 @@
 	<circuit id="CP.GLOBAL-VISUAL-SYSTEM" name="Global visual system"
 		image="http://ars.els-cdn.com/content/image/1-s2.0-S0959438808001566-gr1.jpg"
 		reference="http://www.sciencedirect.com/science/article/pii/S0959438808001566"
-		components="FrontalCortex=NC.LOBE.ANT BGA=BGA.FT.BG ParietalCortex=NC.LOBE.PAR VisualCortex=NC.LOBE.OCC LGN=VBA.FD.LGN Pulvinar=FD.PV ATH=CGA.FD.TH.AN Striatum=BGA.FT.ST SCs=MM.SC SCi=MM.SC SNr=BGA.FT.SN.PR SNc=BGA.FT.SN.PC RF=HP.PRF SpinalCord=SC.VH.L9 Retina=VBA.FD.RT OPN=VBA.MM.OCN"
+		components="FrontalCortex=NC.LOBE.ANT BGA=BGA.FT.BG ParietalCortex=NC.LOBE.PAR VisualCortex=NC.LOBE.OCC LGN=VBA.FD.LGN Pulvinar=FD.PV ATH=CGA.FD.TH.AN Striatum=BGA.FT.ST SCs=MM.SC SCi=MM.SC SNr=BGA.FT.SN.PR SNc=BGA.FT.SN.PC RF=HP.PRF SpinalCord=SC.VH.L9 Retina=LPC.FD.RT OPN=LPC.MM.OCN"
 		>
 		<link src="Retina" dst="LGN"/>
 		<link src="Retina" dst="SCs"/>
@@ -185,7 +185,7 @@
 	<circuit id="CP.VISUAL-PERCEPTION-ABSTRACTION" name="Visual perception abstraction"
 		image="http://asweknowit.ca/evcult/NatIntel/Fig12.GIF"
 		reference="http://asweknowit.ca/evcult/NatIntel/nat_intel.shtml"
-		components="FEF=MCA.NC.PMC.FEF IT=VCA.NC.IT Prestriate=VCA.NC.V3 OCC=NC.LOBE.OCC Pulvinar=FD.PV LGN=VBA.FD.LGN SC=MM.SC Retina=VBA.FD.RT"
+		components="FEF=MCA.NC.PMC.FEF IT=VCA.NC.IT Prestriate=VCA.NC.V3 OCC=NC.LOBE.OCC Pulvinar=FD.PV LGN=VBA.FD.LGN SC=MM.SC Retina=LPC.FD.RT"
 		>
 		<link src="Retina" dst="LGN"/>
 		<link src="Retina" dst="SC"/>

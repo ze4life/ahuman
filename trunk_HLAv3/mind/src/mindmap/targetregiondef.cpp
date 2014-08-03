@@ -16,6 +16,9 @@ TargetRegionDef::~TargetRegionDef() {
 
 void TargetRegionDef::defineSensorRegion( Xml xml ) {
 	MindRegionDef::id = xml.getAttribute( "id" );
+	MindRegionDef::target = true;
+	MindRegionDef::sensor = true;
+
 	Object::setInstance( MindRegionDef::id );
 
 	MindRegionDef::role = MIND_REGION_ROLE_TARGETSENSOR;
@@ -30,6 +33,9 @@ void TargetRegionDef::defineSensorRegion( Xml xml ) {
 
 void TargetRegionDef::defineEffectorRegion( Xml xml ) {
 	MindRegionDef::id = xml.getAttribute( "id" );
+	MindRegionDef::target = true;
+	MindRegionDef::sensor = false;
+
 	Object::setInstance( MindRegionDef::id );
 
 	MindRegionDef::role = MIND_REGION_ROLE_TARGETEFFECTOR;

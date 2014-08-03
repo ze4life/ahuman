@@ -13,7 +13,7 @@ function f_exec() {
 
 	if [ "`grep \"$P_SRC\" $P_FNAME`" != "" ]; then
 		echo execute for file: $P_FNAME ...
-		sed "s/\"$P_SRC\"/\"$P_DST\"/g;s/=$P_SRC /=$P_DST /g;s/=$P_SRC\"/=$P_DST\"/g" $P_FNAME > $P_FNAME.in
+		sed "s/\"$P_SRC\"/\"$P_DST\"/g;s/=$P_SRC /=$P_DST /g;s/=$P_SRC\"/=$P_DST\"/g;s/\"$P_SRC,/\"$P_DST,/g;s/,$P_SRC,/,$P_DST,/g;s/,$P_SRC\"/,$P_DST\"/g" $P_FNAME > $P_FNAME.in
 		rm $P_FNAME
 		mv $P_FNAME.in $P_FNAME
 	fi
@@ -58,5 +58,5 @@ fi
 
 if [ -f wiki/BrainRegion${P_SRCWIKI}.wiki ]; then
 	svn rename wiki/BrainRegion${P_SRCWIKI}.wiki wiki/BrainRegion${P_DSTWIKI}.wiki
-	svn rename images/dot/aHuman/${P_SRC}.dot.jpg images/dot/aHuman/${P_DST}.dot.jpg
+	svn rename images/dot/aHuman/${P_SRC}.dot.png images/dot/aHuman/${P_DST}.dot.png
 fi
