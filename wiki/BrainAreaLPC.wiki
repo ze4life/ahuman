@@ -231,6 +231,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_LBU.dot.png
 ||  ||  || [BrainRegionBMA_SC_IZ_CBS BMA.SC.IZ.CBS] || Centrobasalis Nucleus || ganglion-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionBMA_SC_IZ_CCV BMA.SC.IZ.CCV] || Central Cervical Nucleus || ganglion-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionBMA_SC_PH_NP BMA.SC.PH.NP] || Proprius Nucleus || ganglion-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLPC_HM_ACU LPC.HM.ACU] || Accessory Cuneate Nucleus || ganglion-nucleus || (unknown reference) ||
 || [BrainAreaLPC LPC] || [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG] || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || Spinal Trigeminal Nucleus || ganglion-nucleus || (unknown reference) ||
 || [BrainAreaMCA MCA] || [BrainRegionLPC_SC_PH_UMG LPC.SC.PH.UMG] || [BrainRegionPHA_FD_TH_LI PHA.FD.TH.LI] || Limitans Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
 
@@ -292,71 +293,38 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_LEC.dot.png
 ||  || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || [BrainRegionBMA_MM_DSCH BMA.MM.DSCH] || Darkschewitsch Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionLPC_HP_SVBN LPC.HP.SVBN] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || Suprageniculate Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
 
-== Face Muscles ==
+== Control Face Muscles ==
 
 
-http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_LFC.dot.png
+http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_LFM.dot.png
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionLPC_HM_ACU LPC.HM.ACU] || Accessory Cuneate Nucleus || nucleus || LSM || receives input from cervical spinal nerves and transmits that information to<BR>cerebellum || upper extremity equivalent of Clarke's column ||
 || [BrainRegionLPC_HM_HYG LPC.HM.HYG] || Hypoglossal Motor Nucleus || nucleus || LMD || Control of tongue ||  ||
-|| [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || Spinal Trigeminal Nucleus || nucleus || LSM || Discriminative sensation and light touch of face, conscious proprioception || Pontine Nuclei, part of cranial nerve nuclei, ear ||
 || [BrainRegionLPC_HP_FCM LPC.HP.FCM] || Facial Motor Nucleus || nucleus || LMD || Control of face || Pons ||
-|| [BrainRegionLPC_HP_PTP_PTR LPC.HP.PTP.PTR] || Principal Trigeminal Nucleus || nucleus || LSM || Facial Somatic Sensations || Upper, maxillary, ophthalmic ||
 || [BrainRegionLPC_HP_PTP_TRM LPC.HP.PTP.TRM] || Trigeminal Motor Nucleus || nucleus || LMD || Muscles of first branchial arch || Pontine Nuclei, lower face and jaw control, Motor<BR>Nucleus of V n. ||
-|| [BrainRegionLPC_MM_MSTR LPC.MM.MSTR] || Mesencephalic Trigeminal Nucleus || sensory ganglion || LSC || unconscious proprioception from muscle spindles; facial somatic sensations from<BR>muscles of mastication, monosynaptic masticatory reflex || Lower, mandibular - ganglion; mandible and maxilla<BR>- tooth pulp, surrounding gingiva, periodontal<BR>membrane and a vast portion of the oral mucosa ||
-|| [BrainRegionLPC_PN_SG_JUG LPC.PN.SG.JUG] || Jugular Ganglion || sensory ganglion || LSC || Integration of external auditory meatus (auricular branch), cranial meninges<BR>(meningeal branch), and external surface of tympanic membrane || to Sensory Trigeminal Nucleus ||
-|| [BrainRegionLPC_PN_SG_TRG LPC.PN.SG.TRG] || Trigeminal Ganglion || sensory ganglion || LSC || Integration of external auditory meatus (auricular branch), cranial meninges<BR>(meningeal branch), and external surface of tympanic membrane || sensory fibers of ophthalmic, maxillary, mandibular<BR>nerves to principal trigeminal nucleus ||
 
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| [BrainRegionLPC_HP_PTP_PTR LPC.HP.PTP.PTR] || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (PrincipalTrigeminal -> SpinalTrigeminal)] ||
-|| [BrainRegionLPC_MM_MSTR LPC.MM.MSTR] || [BrainRegionLPC_HP_PTP_PTR LPC.HP.PTP.PTR] || ganglion-nucleus || (unknown reference) ||
-||  || [BrainRegionLPC_HP_PTP_TRM LPC.HP.PTP.TRM] || ganglion-nucleus || (unknown reference) ||
-|| [BrainRegionLPC_PN_SG_JUG LPC.PN.SG.JUG] || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || ganglion-nucleus || (unknown reference) ||
-|| [BrainRegionLPC_PN_SG_TRG LPC.PN.SG.TRG] || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || ganglion-nucleus || (unknown reference) ||
 
 *External Inbound Region Connections:*
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLCA LCA] || [BrainRegionLPC_HP_FCM LPC.HP.FCM] || [BrainRegionHMA_HP_PRF_PDT HMA.HP.PRF.PDT] || Pontine Reticulotegmental Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorVII, abstract)] ||
-|| [BrainAreaLPC LPC] || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || [BrainRegionLPC_PN_SG_GNG LPC.PN.SG.GNG] || Geniculate Ganglion || ganglion-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionLPC_PN_SG_PET LPC.PN.SG.PET] || Petrosal Ganglion || ganglion-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG] || Upper Dorsal Root Ganglion || ganglion-nucleus || (unknown reference) ||
+|| [BrainAreaLPC LPC] || [BrainRegionLPC_HP_PTP_TRM LPC.HP.PTP.TRM] || [BrainRegionLPC_MM_MSTR LPC.MM.MSTR] || Mesencephalic Trigeminal Nucleus || ganglion-nucleus || (unknown reference) ||
 || [BrainAreaMRA MRA] || [BrainRegionLPC_HM_HYG LPC.HM.HYG] || [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || Caudal Pontine Reticular Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> NucleusXII, abstract)] ||
 ||  || [BrainRegionLPC_HP_FCM LPC.HP.FCM] || [BrainRegionBMA_HP_PRF_PVR BMA.HP.PRF.PVR] || Parvocellular Reticular Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorVII, abstract)] ||
 ||  ||  || [BrainRegionHMA_HM_TGM_PA5 HMA.HM.TGM.PA5] || Paratrigeminal Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || Caudal Pontine Reticular Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorVII, abstract)] ||
 ||  || [BrainRegionLPC_HP_PTP_TRM LPC.HP.PTP.TRM] || [BrainRegionBMA_HP_PRF_PVR BMA.HP.PRF.PVR] || Parvocellular Reticular Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorV, abstract)] ||
 ||  ||  || [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || Caudal Pontine Reticular Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorV, abstract)] ||
-|| <font color="red">Target</font> || || || || || ||
-|| [BrainAreaTEA TEA] || [BrainRegionLPC_MM_MSTR LPC.MM.MSTR] || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || Mouth feeder || masticatory-unconscious-muscle-spindles || (unknown reference) ||
-||  || [BrainRegionLPC_PN_SG_JUG LPC.PN.SG.JUG] || [BrainRegionTARGET_TEA_LUNG TARGET.TEA.LUNG] || Lung || pulmonary-stretch-receptors || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_PROTECTOR TARGET.TEA.PROTECTOR] || Immunity glands and meninges || cranial-meninges || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_SPEAKER TARGET.TEA.SPEAKER] || Mouth speaker || palatine-tonsil-receptors || (unknown reference) ||
-||  || [BrainRegionLPC_PN_SG_TRG LPC.PN.SG.TRG] || [BrainRegionTARGET_TEA_FACE TARGET.TEA.FACE] || Face || face-skin || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || Mouth feeder || teeth || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_PROTECTOR TARGET.TEA.PROTECTOR] || Immunity glands and meninges || lingual-tonsil || (unknown reference) ||
-|| [BrainAreaTSA TSA] || [BrainRegionLPC_MM_MSTR LPC.MM.MSTR] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || eye-visceral || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TSA_NOSE TARGET.TSA.NOSE] || Nose || nose-proprioceptors || (unknown reference) ||
-||  || [BrainRegionLPC_PN_SG_JUG LPC.PN.SG.JUG] || [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || Ear || ear-visceral || (unknown reference) ||
-||  || [BrainRegionLPC_PN_SG_TRG LPC.PN.SG.TRG] || [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || Ear || ear-acoustic-meatus-skin || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || eye-lacrimal-gland-conjunctiva-receptors || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TSA_NOSE TARGET.TSA.NOSE] || Nose || nose-somatic || (unknown reference) ||
 
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
-|| <font color="red">Cortical</font> || || || || || ||
-|| [BrainAreaBAA BAA] || [BrainRegionLPC_HM_ACU LPC.HM.ACU] || [BrainRegionSMA_FD_TH_VPM SMA.FD.TH.VPM] || Ventral Posteromedial Nucleus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionLPC_HP_PTP_PTR LPC.HP.PTP.PTR] || [BrainRegionSMA_FD_TH_VPM SMA.FD.TH.VPM] || Ventral Posteromedial Nucleus || nucleus-nucleus || [http://www.lookfordiagnosis.com/mesh_info.php?term=Trigeminal+Nucleilang=1 Trigeminal Nuclei (CSN -> VPM)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaLPC LPC] || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || [BrainRegionLPC_MM_OCN LPC.MM.OCN] || Oculomotor Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SpinalTrigeminal -> Oculomotor)] ||
-||  || [BrainRegionLPC_HP_FCM LPC.HP.FCM] || [BrainRegionLPC_HP_ABD LPC.HP.ABD] || Abducens Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Facial -> Abducens)] ||
-||  || [BrainRegionLPC_PN_SG_JUG LPC.PN.SG.JUG] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || Solitary Nucleus || ganglion-nucleus || (unknown reference) ||
-|| [BrainAreaMRA MRA] || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || [BrainRegionHMA_HP_PRF_GCR HMA.HP.PRF.GCR] || Gigantocellular Reticular Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLPC LPC] || [BrainRegionLPC_HP_FCM LPC.HP.FCM] || [BrainRegionLPC_HP_ABD LPC.HP.ABD] || Abducens Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Facial -> Abducens)] ||
 || <font color="red">Target</font> || || || || || ||
 || [BrainAreaTEA TEA] || [BrainRegionLPC_HM_HYG LPC.HM.HYG] || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || Mouth feeder || chondroglossus-muscle || (unknown reference) ||
 ||  || [BrainRegionLPC_HP_FCM LPC.HP.FCM] || [BrainRegionTARGET_TEA_FACE TARGET.TEA.FACE] || Face || depressor-anguli-oris-muscle || (unknown reference) ||
@@ -367,6 +335,53 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_LFC.dot.png
 ||  ||  || [BrainRegionTARGET_TSA_NOSE TARGET.TSA.NOSE] || Nose || nose-depressor-septi-nasi || (unknown reference) ||
 ||  || [BrainRegionLPC_HP_PTP_TRM LPC.HP.PTP.TRM] || [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || Ear || ear-tensor-tympani-muscle || (unknown reference) ||
 
+== Sensory Face ==
+
+
+http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_LFS.dot.png
+
+|| *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
+|| [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || Spinal Trigeminal Nucleus || nucleus || LSM || Discriminative sensation and light touch of face, conscious proprioception || Pontine Nuclei, part of cranial nerve nuclei, ear ||
+|| [BrainRegionLPC_HP_PTP_PTR LPC.HP.PTP.PTR] || Principal Trigeminal Nucleus || nucleus || LSM || Facial Somatic Sensations || Upper, maxillary, ophthalmic ||
+|| [BrainRegionLPC_MM_MSTR LPC.MM.MSTR] || Mesencephalic Trigeminal Nucleus || sensory ganglion || LSC || unconscious proprioception from muscle spindles; facial somatic sensations from<BR>muscles of mastication, monosynaptic masticatory reflex || Lower, mandibular - ganglion; mandible and maxilla<BR>- tooth pulp, surrounding gingiva, periodontal<BR>membrane and a vast portion of the oral mucosa ||
+|| [BrainRegionLPC_PN_SG_TRG LPC.PN.SG.TRG] || Trigeminal Ganglion || sensory ganglion || LSC || Integration of external auditory meatus (auricular branch), cranial meninges<BR>(meningeal branch), and external surface of tympanic membrane || sensory fibers of ophthalmic, maxillary, mandibular<BR>nerves to principal trigeminal nucleus ||
+
+*Internal Region Connections:*
+
+|| *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionLPC_HP_PTP_PTR LPC.HP.PTP.PTR] || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (PrincipalTrigeminal -> SpinalTrigeminal)] ||
+|| [BrainRegionLPC_MM_MSTR LPC.MM.MSTR] || [BrainRegionLPC_HP_PTP_PTR LPC.HP.PTP.PTR] || ganglion-nucleus || (unknown reference) ||
+|| [BrainRegionLPC_PN_SG_TRG LPC.PN.SG.TRG] || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || ganglion-nucleus || (unknown reference) ||
+
+*External Inbound Region Connections:*
+
+|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaLPC LPC] || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || [BrainRegionLPC_PN_SG_GNG LPC.PN.SG.GNG] || Geniculate Ganglion || ganglion-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLPC_PN_SG_JUG LPC.PN.SG.JUG] || Jugular Ganglion || ganglion-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLPC_PN_SG_PET LPC.PN.SG.PET] || Petrosal Ganglion || ganglion-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG] || Upper Dorsal Root Ganglion || ganglion-nucleus || (unknown reference) ||
+|| <font color="red">Target</font> || || || || || ||
+|| [BrainAreaTEA TEA] || [BrainRegionLPC_MM_MSTR LPC.MM.MSTR] || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || Mouth feeder || masticatory-unconscious-muscle-spindles || (unknown reference) ||
+||  || [BrainRegionLPC_PN_SG_TRG LPC.PN.SG.TRG] || [BrainRegionTARGET_TEA_FACE TARGET.TEA.FACE] || Face || face-skin || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || Mouth feeder || teeth || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_PROTECTOR TARGET.TEA.PROTECTOR] || Immunity glands and meninges || lingual-tonsil || (unknown reference) ||
+|| [BrainAreaTSA TSA] || [BrainRegionLPC_MM_MSTR LPC.MM.MSTR] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || eye-visceral || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TSA_NOSE TARGET.TSA.NOSE] || Nose || nose-proprioceptors || (unknown reference) ||
+||  || [BrainRegionLPC_PN_SG_TRG LPC.PN.SG.TRG] || [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || Ear || ear-acoustic-meatus-skin || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || eye-lacrimal-gland-conjunctiva-receptors || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TSA_NOSE TARGET.TSA.NOSE] || Nose || nose-somatic || (unknown reference) ||
+
+*External Outbound Region Connections:*
+
+|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| <font color="red">Cortical</font> || || || || || ||
+|| [BrainAreaBAA BAA] || [BrainRegionLPC_HP_PTP_PTR LPC.HP.PTP.PTR] || [BrainRegionSMA_FD_TH_VPM SMA.FD.TH.VPM] || Ventral Posteromedial Nucleus || nucleus-nucleus || [http://www.lookfordiagnosis.com/mesh_info.php?term=Trigeminal+Nucleilang=1 Trigeminal Nuclei (CSN -> VPM)] ||
+|| <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaLPC LPC] || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || [BrainRegionLPC_MM_OCN LPC.MM.OCN] || Oculomotor Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SpinalTrigeminal -> Oculomotor)] ||
+||  || [BrainRegionLPC_MM_MSTR LPC.MM.MSTR] || [BrainRegionLPC_HP_PTP_TRM LPC.HP.PTP.TRM] || Trigeminal Motor Nucleus || ganglion-nucleus || (unknown reference) ||
+|| [BrainAreaMRA MRA] || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || [BrainRegionHMA_HP_PRF_GCR HMA.HP.PRF.GCR] || Gigantocellular Reticular Nucleus || nucleus-nucleus || (unknown reference) ||
+
 == Taste and Smell Senses ==
 
 
@@ -376,6 +391,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_LTC.dot.png
 || [BrainRegionLPC_FT_AON LPC.FT.AON] || Anterior Olfactory Nucleus || nucleus || LSM || Regulate odor information flow ||  ||
 || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || Solitary Nucleus || nucleus || LSM || Carry taste buds, thoracic and abdominal viscera || c.n. VII, IX, X ||
 || [BrainRegionLPC_PN_SG_GNG LPC.PN.SG.GNG] || Geniculate Ganglion || sensory ganglion || LSC || Trophic support for survival || Innervation taste buds, ear skin ||
+|| [BrainRegionLPC_PN_SG_JUG LPC.PN.SG.JUG] || Jugular Ganglion || sensory ganglion || LSC || Integration of external auditory meatus (auricular branch), cranial meninges<BR>(meningeal branch), and external surface of tympanic membrane || to Sensory Trigeminal Nucleus ||
 || [BrainRegionLPC_PN_SG_NOD LPC.PN.SG.NOD] || Nodose Ganglion || sensory ganglion || LSC || Integration of afferent signaling from viscera || caudal SOL - larynx, trachea, gut, and aortic arch<BR>receptors; rostral SOL - taste receptors of<BR>posterior oral cavity ||
 || [BrainRegionLPC_PN_SG_OLB LPC.PN.SG.OLB] || Olfactory Bulb || sensory ganglion || LSC || Olfaction patterns || in=glomeruli -> 1000x1 -> out=mitral ||
 || [BrainRegionLPC_PN_SG_PET LPC.PN.SG.PET] || Petrosal Ganglion || sensory ganglion || LSC || Integration of afferent signaling from viscera || mucous membranes of pharynx, middle ear, carotid<BR>body and sinus, taste sensor on the posterior third<BR>of tongue to SOL ||
@@ -384,6 +400,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_LTC.dot.png
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionLPC_PN_SG_GNG LPC.PN.SG.GNG] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || ganglion-nucleus || (unknown reference) ||
+|| [BrainRegionLPC_PN_SG_JUG LPC.PN.SG.JUG] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || ganglion-nucleus || (unknown reference) ||
 || [BrainRegionLPC_PN_SG_NOD LPC.PN.SG.NOD] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || ganglion-nucleus || (unknown reference) ||
 || [BrainRegionLPC_PN_SG_OLB LPC.PN.SG.OLB] || [BrainRegionLPC_FT_AON LPC.FT.AON] || ganglion-nucleus || (unknown reference) ||
 || [BrainRegionLPC_PN_SG_PET LPC.PN.SG.PET] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || ganglion-nucleus || (unknown reference) ||
@@ -393,9 +410,11 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_LTC.dot.png
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaAMA AMA] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || [BrainRegionBFA_FT_IPAC BFA.FT.IPAC] || Interstitial Anterior Commissural Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaLPC LPC] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || [BrainRegionLPC_PN_SG_JUG LPC.PN.SG.JUG] || Jugular Ganglion || ganglion-nucleus || (unknown reference) ||
 || <font color="red">Target</font> || || || || || ||
 || [BrainAreaTEA TEA] || [BrainRegionLPC_PN_SG_GNG LPC.PN.SG.GNG] || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || Mouth feeder || soft-palate-sparse-taste-receptors || (unknown reference) ||
+||  || [BrainRegionLPC_PN_SG_JUG LPC.PN.SG.JUG] || [BrainRegionTARGET_TEA_LUNG TARGET.TEA.LUNG] || Lung || pulmonary-stretch-receptors || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_PROTECTOR TARGET.TEA.PROTECTOR] || Immunity glands and meninges || cranial-meninges || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_SPEAKER TARGET.TEA.SPEAKER] || Mouth speaker || palatine-tonsil-receptors || (unknown reference) ||
 ||  || [BrainRegionLPC_PN_SG_NOD LPC.PN.SG.NOD] || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || Mouth feeder || epiglottis-taste-buds || (unknown reference) ||
 ||  ||  || [BrainRegionTARGET_TEA_HEART TARGET.TEA.HEART] || Heart || heart-aorta-baroreceptors || (unknown reference) ||
 ||  ||  || [BrainRegionTARGET_TEA_LIVER TARGET.TEA.LIVER] || Liver || glucose-and-osmoreceptors || (unknown reference) ||
@@ -403,6 +422,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_LTC.dot.png
 ||  ||  || [BrainRegionTARGET_TEA_STOMACH TARGET.TEA.STOMACH] || Stomach || colon || (unknown reference) ||
 ||  || [BrainRegionLPC_PN_SG_PET LPC.PN.SG.PET] || [BrainRegionTARGET_TEA_HEART TARGET.TEA.HEART] || Heart || heart-carotid-baroreceptors || (unknown reference) ||
 || [BrainAreaTSA TSA] || [BrainRegionLPC_PN_SG_GNG LPC.PN.SG.GNG] || [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || Ear || ear-somatic || (unknown reference) ||
+||  || [BrainRegionLPC_PN_SG_JUG LPC.PN.SG.JUG] || [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || Ear || ear-visceral || (unknown reference) ||
 ||  || [BrainRegionLPC_PN_SG_NOD LPC.PN.SG.NOD] || [BrainRegionTARGET_TSA_NOSE TARGET.TSA.NOSE] || Nose || nose-visceral-vagus || (unknown reference) ||
 ||  || [BrainRegionLPC_PN_SG_OLB LPC.PN.SG.OLB] || [BrainRegionTARGET_TSA_NOSE TARGET.TSA.NOSE] || Nose || nose-olfactory-mucosa || (unknown reference) ||
 ||  || [BrainRegionLPC_PN_SG_PET LPC.PN.SG.PET] || [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || Ear || ear-timpanic-cavity || (unknown reference) ||
@@ -417,6 +437,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_LTC.dot.png
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaACA ACA] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || Paraventricular Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLPC LPC] || [BrainRegionLPC_PN_SG_GNG LPC.PN.SG.GNG] || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || Spinal Trigeminal Nucleus || ganglion-nucleus || (unknown reference) ||
+||  || [BrainRegionLPC_PN_SG_JUG LPC.PN.SG.JUG] || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || Spinal Trigeminal Nucleus || ganglion-nucleus || (unknown reference) ||
 ||  || [BrainRegionLPC_PN_SG_PET LPC.PN.SG.PET] || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || Spinal Trigeminal Nucleus || ganglion-nucleus || (unknown reference) ||
 || [BrainAreaMCA MCA] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || [BrainRegionBMA_HP_PB BMA.HP.PB] || Parabrachial Nucleus || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (SOL -> PB)] ||
 || [BrainAreaMMA MMA] || [BrainRegionLPC_FT_AON LPC.FT.AON] || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || Piriform Cortex || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S1571064507000243 KIV model of cortico-hippocampal formation with subcortical projections for motor actions (AON -> PC)] ||
@@ -468,7 +489,6 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_LVC.dot.png
 ||  ||  || [BrainRegionVBA_FD_PV_MPV VBA.FD.PV.MPV] || Medial Pulvinar || ganglion-nucleus || [http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html Retina and superior colliculus targets (Retina -> Pulvinar, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaACA ACA] || [BrainRegionLPC_FD_RT LPC.FD.RT] || [BrainRegionHTA_FD_HT_SCN HTA.FD.HT.SCN] || Suprachiasmatic Nucleus || ganglion-nucleus || [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm Targets of retina neurons (Retina -> HT, abstract)] ||
-||  || [BrainRegionLPC_MM_OCN LPC.MM.OCN] || [BrainRegionVBA_PN_PSYM_CLG VBA.PN.PSYM.CLG] || Ciliary Ganglion || nucleus-ganglion || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Vision Components (OCN -> CG)] ||
 || [BrainAreaMRA MRA] || [BrainRegionLPC_FD_RT LPC.FD.RT] || [BrainRegionVBA_MM_PT_NOT VBA.MM.PT.NOT] || Nucleus of Optic Tract || ganglion-nucleus || [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm Targets of retina neurons (Retina -> Pretectum, abstract)] ||
 ||  ||  || [BrainRegionVBA_MM_PT_PON VBA.MM.PT.PON] || Pretectal Olivary Nucleus || ganglion-nucleus || [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm Targets of retina neurons (Retina -> Pretectum, abstract)] ||
 ||  ||  || [BrainRegionVBA_MM_PT_SL VBA.MM.PT.SL] || Sublentiform Nucleus || ganglion-nucleus || [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm Targets of retina neurons (Retina -> Pretectum, abstract)] ||
