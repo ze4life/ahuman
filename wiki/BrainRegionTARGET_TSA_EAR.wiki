@@ -17,25 +17,25 @@ Region is part of aHuman target integrated biological model.
 
 *Component items*:
   * *Ear sound sensory data* (*ear-sensory-sound-data*)
-   * Ear - inner hair cells (ear-inner-hair-cells -> [BrainRegionABA_PN_SG_SP ABA.PN.SG.SP]): frequency-aligned tonotopic mapping
-   * Ear - outer hair cells feedback (ear-outer-hair-cells-feedback -> [BrainRegionABA_PN_SG_SP ABA.PN.SG.SP]): verifies amplify actions done
-   * Ear - somatic receptors (ear-somatic -> [BrainRegionAVA_PN_SG_GNG AVA.PN.SG.GNG]): from skin to geniculate ganglion to spinal trigeminal nucleus
-   * Ear - outer ear skin (ear-external-skin -> [BrainRegionAVA_PN_SG_UDRG AVA.PN.SG.UDRG]): skin over the mastoid process, back of the auricle, lobule and a portion of the scalp
-   * Ear - acoustic meatus skin (ear-acoustic-meatus-skin -> [BrainRegionAVA_PN_SG_TRG AVA.PN.SG.TRG]): from skin lining external acoustic meatus, and tympanic membrane to trigeminal gangion
-   * Ear - visceral receptors (ear-visceral -> [BrainRegionAVA_PN_SG_JUG AVA.PN.SG.JUG]): pain, temperature, and touch
-   * Ear - timpanic cavity (ear-timpanic-cavity -> [BrainRegionAVA_PN_SG_PET AVA.PN.SG.PET]): pain, temperature, and touch
+   * Ear - inner hair cells (ear-inner-hair-cells -> [BrainRegionLPC_PN_SG_SP LPC.PN.SG.SP]): frequency-aligned tonotopic mapping
+   * Ear - outer hair cells feedback (ear-outer-hair-cells-feedback -> [BrainRegionLPC_PN_SG_SP LPC.PN.SG.SP]): verifies amplify actions done
+   * Ear - somatic receptors (ear-somatic -> [BrainRegionLPC_PN_SG_GNG LPC.PN.SG.GNG]): from skin to geniculate ganglion to spinal trigeminal nucleus
+   * Ear - outer ear skin (ear-external-skin -> [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG]): skin over the mastoid process, back of the auricle, lobule and a portion of the scalp
+   * Ear - acoustic meatus skin (ear-acoustic-meatus-skin -> [BrainRegionLPC_PN_SG_TRG LPC.PN.SG.TRG]): from skin lining external acoustic meatus, and tympanic membrane to trigeminal gangion
+   * Ear - visceral receptors (ear-visceral -> [BrainRegionLPC_PN_SG_JUG LPC.PN.SG.JUG]): pain, temperature, and touch
+   * Ear - timpanic cavity (ear-timpanic-cavity -> [BrainRegionLPC_PN_SG_PET LPC.PN.SG.PET]): pain, temperature, and touch
   * *Ear vestibular sensory data* (*ear-sensory-vestibular-data*)
-   * Ear - cristae and maculae (ear-cristae-maculae -> [BrainRegionMBA_PN_SG_VB MBA.PN.SG.VB]): activate afferent receptors in response to rotational and linear acceleration
+   * Ear - cristae and maculae (ear-cristae-maculae -> [BrainRegionLPC_PN_SG_VB LPC.PN.SG.VB]): activate afferent receptors in response to rotational and linear acceleration
   * *Ear sound sensory control* (*ear-sensory-control*)
-   * [http://www.d.umn.edu/~jfitzake/Lectures/UndergradPharmacy/SensoryPhysiology/Audition/OHCFunction.html Ear - outer hair cells] ([BrainRegionABA_MM_SOC ABA.MM.SOC] -> [HumanMusclesHead ear-outer-hair-cells]): contracts basilar membrane; mechanically amplify low-level sound that enters cochlea
-   * [http://en.wikipedia.org/wiki/Stapedius Ear - stapedius muscle] ([BrainRegionHMA_HP_FCM HMA.HP.FCM] -> [HumanMusclesHead ear-stapedius]): dampens vibrations of stapes
-   * [http://en.wikipedia.org/wiki/Tensor_tympani Ear - tympanic membrane muscle] ([BrainRegionHMA_HP_PTP_TRM HMA.HP.PTP.TRM] -> [HumanMusclesHead ear-tensor-tympani-muscle]): dampen sounds, such as those produced from chewing
+   * [http://www.d.umn.edu/~jfitzake/Lectures/UndergradPharmacy/SensoryPhysiology/Audition/OHCFunction.html Ear - outer hair cells] ([BrainRegionLPC_MM_SOC LPC.MM.SOC] -> [HumanMusclesHead ear-outer-hair-cells]): contracts basilar membrane; mechanically amplify low-level sound that enters cochlea
+   * [http://en.wikipedia.org/wiki/Stapedius Ear - stapedius muscle] ([BrainRegionLPC_HP_FCM LPC.HP.FCM] -> [HumanMusclesHead ear-stapedius]): dampens vibrations of stapes
+   * [http://en.wikipedia.org/wiki/Tensor_tympani Ear - tympanic membrane muscle] ([BrainRegionLPC_HP_PTP_TRM LPC.HP.PTP.TRM] -> [HumanMusclesHead ear-tensor-tympani-muscle]): dampen sounds, such as those produced from chewing
   * *Ear move muscles* (*ear-move*)
-   * [http://en.wikipedia.org/wiki/Anterior_auricular_muscle Ear - anterior auricular muscle] ([BrainRegionHMA_HP_FCM HMA.HP.FCM] -> [HumanMusclesHead ear-anterior-auricular-muscle]): pulls ear forward
-   * [http://en.wikipedia.org/wiki/Posterior_auricular_muscle Ear - posterior auricular muscle] ([BrainRegionHMA_HP_FCM HMA.HP.FCM] -> [HumanMusclesHead ear-posterior-auricular-muscle]): pulls ear backward
-   * [http://en.wikipedia.org/wiki/Superior_auricular_muscle Ear - superior auricular muscle] ([BrainRegionHMA_HP_FCM HMA.HP.FCM] -> [HumanMusclesHead ear-superior-auricular-muscle]): pulls ear upward
-   * [http://en.wikipedia.org/wiki/Oblique_muscle_of_auricle Ear - oblique muscle of auricle] ([BrainRegionHMA_HP_FCM HMA.HP.FCM] -> [HumanMusclesHead ear-oblique-auricular-muscle]): movement of the ears
-   * [http://en.wikipedia.org/wiki/Temporoparietalis_muscle Ear - temporoparietalis muscle] ([BrainRegionHMA_HP_FCM HMA.HP.FCM] -> [HumanMusclesHead ear-temporoparietalis-muscle]): assist the frontal belly in drawing the epicranial aponeurosis towards the front of the cranium
+   * [http://en.wikipedia.org/wiki/Anterior_auricular_muscle Ear - anterior auricular muscle] ([BrainRegionLPC_HP_FCM LPC.HP.FCM] -> [HumanMusclesHead ear-anterior-auricular-muscle]): pulls ear forward
+   * [http://en.wikipedia.org/wiki/Posterior_auricular_muscle Ear - posterior auricular muscle] ([BrainRegionLPC_HP_FCM LPC.HP.FCM] -> [HumanMusclesHead ear-posterior-auricular-muscle]): pulls ear backward
+   * [http://en.wikipedia.org/wiki/Superior_auricular_muscle Ear - superior auricular muscle] ([BrainRegionLPC_HP_FCM LPC.HP.FCM] -> [HumanMusclesHead ear-superior-auricular-muscle]): pulls ear upward
+   * [http://en.wikipedia.org/wiki/Oblique_muscle_of_auricle Ear - oblique muscle of auricle] ([BrainRegionLPC_HP_FCM LPC.HP.FCM] -> [HumanMusclesHead ear-oblique-auricular-muscle]): movement of the ears
+   * [http://en.wikipedia.org/wiki/Temporoparietalis_muscle Ear - temporoparietalis muscle] ([BrainRegionLPC_HP_FCM LPC.HP.FCM] -> [HumanMusclesHead ear-temporoparietalis-muscle]): assist the frontal belly in drawing the epicranial aponeurosis towards the front of the cranium
 
 = Connectivity =
 (generated)
@@ -46,20 +46,20 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/TARGET.TSA.EAR.dot.jpg
 *Inbound Region Connections:*
 
 || *Source Area* || *Source Region* || *Source Name* || *Type* || *Reference* ||
-|| [BrainAreaPCA PCA] || [BrainRegionABA_MM_SOC ABA.MM.SOC] || Superior Olivary Complex || ear-outer-hair-cells || [http://lifeboat.com/ex/law.of.accelerating.returns Five Parallel Auditory Pathways (VNTB -> Cochlea)] ||
-||  || [BrainRegionHMA_HP_FCM HMA.HP.FCM] || Facial Motor Nucleus || ear-anterior-auricular-muscle || (unknown reference) ||
-||  || [BrainRegionHMA_HP_PTP_TRM HMA.HP.PTP.TRM] || Trigeminal Motor Nucleus || ear-tensor-tympani-muscle || (unknown reference) ||
+|| [BrainAreaPCA PCA] || [BrainRegionLPC_HP_FCM LPC.HP.FCM] || Facial Motor Nucleus || ear-anterior-auricular-muscle || (unknown reference) ||
+||  || [BrainRegionLPC_HP_PTP_TRM LPC.HP.PTP.TRM] || Trigeminal Motor Nucleus || ear-tensor-tympani-muscle || (unknown reference) ||
+||  || [BrainRegionLPC_MM_SOC LPC.MM.SOC] || Superior Olivary Complex || ear-outer-hair-cells || [http://lifeboat.com/ex/law.of.accelerating.returns Five Parallel Auditory Pathways (VNTB -> Cochlea)] ||
 
 *Outbound Region Connections:*
 
 || *Target Area* || *Target Region* || *Target Name* || *Type* || *Reference* ||
-|| [BrainAreaPCA PCA] || [BrainRegionABA_PN_SG_SP ABA.PN.SG.SP] || Spiral Ganglion || ear-inner-hair-cells || [http://www.sciencedirect.com/science/article/pii/S1359644605035427 Auditory System Model (Ear -> CochleaGanglion)] ||
-||  || [BrainRegionAVA_PN_SG_GNG AVA.PN.SG.GNG] || Geniculate Ganglion || ear-somatic || (unknown reference) ||
-||  || [BrainRegionAVA_PN_SG_JUG AVA.PN.SG.JUG] || Jugular Ganglion || ear-visceral || (unknown reference) ||
-||  || [BrainRegionAVA_PN_SG_PET AVA.PN.SG.PET] || Petrosal Ganglion || ear-timpanic-cavity || (unknown reference) ||
-||  || [BrainRegionAVA_PN_SG_TRG AVA.PN.SG.TRG] || Trigeminal Ganglion || ear-acoustic-meatus-skin || (unknown reference) ||
-||  || [BrainRegionAVA_PN_SG_UDRG AVA.PN.SG.UDRG] || Upper Dorsal Root Ganglion || ear-external-skin || (unknown reference) ||
-||  || [BrainRegionMBA_PN_SG_VB MBA.PN.SG.VB] || Vestibular Ganglion || ear-cristae-maculae || (unknown reference) ||
+|| [BrainAreaPCA PCA] || [BrainRegionLPC_PN_SG_GNG LPC.PN.SG.GNG] || Geniculate Ganglion || ear-somatic || (unknown reference) ||
+||  || [BrainRegionLPC_PN_SG_JUG LPC.PN.SG.JUG] || Jugular Ganglion || ear-visceral || (unknown reference) ||
+||  || [BrainRegionLPC_PN_SG_PET LPC.PN.SG.PET] || Petrosal Ganglion || ear-timpanic-cavity || (unknown reference) ||
+||  || [BrainRegionLPC_PN_SG_SP LPC.PN.SG.SP] || Spiral Ganglion || ear-inner-hair-cells || [http://www.sciencedirect.com/science/article/pii/S1359644605035427 Auditory System Model (Ear -> CochleaGanglion)] ||
+||  || [BrainRegionLPC_PN_SG_TRG LPC.PN.SG.TRG] || Trigeminal Ganglion || ear-acoustic-meatus-skin || (unknown reference) ||
+||  || [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG] || Upper Dorsal Root Ganglion || ear-external-skin || (unknown reference) ||
+||  || [BrainRegionLPC_PN_SG_VB LPC.PN.SG.VB] || Vestibular Ganglion || ear-cristae-maculae || (unknown reference) ||
 
 = Thirdparty Circuits =
 (generated)

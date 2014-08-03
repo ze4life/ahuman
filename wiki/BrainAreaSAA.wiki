@@ -53,7 +53,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/SAA_NSA.dot.png
 || [BrainAreaAMA AMA] || [BrainRegionACA_NC_A1 ACA.NC.A1] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-neocortex || [http://f1000research.com/articles/2-20/v1 Visual-Auditory Interactions in Tectum (AM -> AC)] ||
 || [BrainAreaMMA MMA] || [BrainRegionACA_NC_BRA ACA.NC.BRA] || [BrainRegionPHA_NC_TPC PHA.NC.TPC] || Temporopolar Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1364661312002823 Language-Related Regions (TC -> BA45)] ||
 || [BrainAreaMRA MRA] || [BrainRegionACA_NC_A1 ACA.NC.A1] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || Suprageniculate Nucleus of Thalamus || nucleus-neocortex || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2010.00134/full Echo-Location in Bats (SG -> A1)] ||
-|| [BrainAreaPCA PCA] || [BrainRegionABA_FD_TH_MGB ABA.FD.TH.MGB] || [BrainRegionABA_MM_CIC ABA.MM.CIC] || Central Nucleus of Inferior Colliculus || nucleus-nucleus || [http://www.benbest.com/science/anatmind/anatmd6.html Auditory System in Brain (IC -> MGB, abstract)] ||
+|| [BrainAreaPCA PCA] || [BrainRegionABA_FD_TH_MGB ABA.FD.TH.MGB] || [BrainRegionLPC_MM_CIC LPC.MM.CIC] || Central Nucleus of Inferior Colliculus || nucleus-nucleus || [http://www.benbest.com/science/anatmind/anatmd6.html Auditory System in Brain (IC -> MGB, abstract)] ||
 
 *External Outbound Region Connections:*
 
@@ -70,7 +70,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/SAA_NSA.dot.png
 || [BrainAreaLCA LCA] || [BrainRegionACA_NC_BRA ACA.NC.BRA] || [BrainRegionHMA_HP_PRF_PDT HMA.HP.PRF.PDT] || Pontine Reticulotegmental Nucleus || neocortex-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (Broca -> RF, abstract)] ||
 || [BrainAreaMMA MMA] || [BrainRegionACA_NC_A3 ACA.NC.A3] || [BrainRegionPHA_NC_TPC PHA.NC.TPC] || Temporopolar Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1364661312002823 Language-Related Regions (STG22a -> TC)] ||
 || [BrainAreaMRA MRA] || [BrainRegionACA_NC_BRA ACA.NC.BRA] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || neocortex-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (Broca -> RF, abstract)] ||
-|| [BrainAreaPCA PCA] || [BrainRegionACA_NC_A1 ACA.NC.A1] || [BrainRegionABA_MM_CIC ABA.MM.CIC] || Central Nucleus of Inferior Colliculus || neocortex-nucleus || [http://f1000research.com/articles/2-20/v1 Visual-Auditory Interactions in Tectum (AC -> IC, abstract)] ||
+|| [BrainAreaPCA PCA] || [BrainRegionACA_NC_A1 ACA.NC.A1] || [BrainRegionLPC_MM_CIC LPC.MM.CIC] || Central Nucleus of Inferior Colliculus || neocortex-nucleus || [http://f1000research.com/articles/2-20/v1 Visual-Auditory Interactions in Tectum (AC -> IC, abstract)] ||
 
 == Neocortical Vision Aggregation ==
 
@@ -78,6 +78,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/SAA_NSA.dot.png
 http://ahuman.googlecode.com/svn/images/dot/aHuman/SAA_NSV.dot.png
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
+|| [BrainRegionVBA_FD_LGN VBA.FD.LGN] || Lateral Geniculate Nucleus || nucleus || LSM || Temporal decorrelation || Only 10% of inputs to LGN come from the retina. 90%<BR>are modulatory inputs from cortex and the brainstem ||
 || [BrainRegionVBA_FD_PV_IPV VBA.FD.PV.IPV] || Inferior Pulvinar || nucleus || NSU || Dorsal =Where= Stream || Thalamus ||
 || [BrainRegionVBA_FD_PV_LPV VBA.FD.PV.LPV] || Lateral Pulvinar || nucleus || NSU || Ventral =What= Stream || Thalamus ||
 || [BrainRegionVBA_FD_PV_MPV VBA.FD.PV.MPV] || Medial Pulvinar || nucleus || NSU || Integration of associative cortical information and projects to<BR>visuomotor-related cortex || CG, PMC, PFC connections ||
@@ -97,6 +98,7 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/SAA_NSV.dot.png
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionVBA_FD_LGN VBA.FD.LGN] || [BrainRegionVCA_NC_V1 VCA.NC.V1] || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (LGN -> pLGN)] ||
 || [BrainRegionVBA_FD_PV_IPV VBA.FD.PV.IPV] || [BrainRegionVCA_NC_IPL_MST VCA.NC.IPL.MST] || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (Pulvinar -> ParietalCortex, abstract)] ||
 || [BrainRegionVBA_FD_PV_LPV VBA.FD.PV.LPV] || [BrainRegionVCA_NC_V2 VCA.NC.V2] || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (Pulvinar -> VisualCortex, abstract)] ||
 || [BrainRegionVCA_NC_IPS_PEF VCA.NC.IPS.PEF] || [BrainRegionVCA_NC_IPS_AIP VCA.NC.IPS.AIP] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (PIP -> AIP)] ||
@@ -132,14 +134,17 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/SAA_NSV.dot.png
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaAMA AMA] || [BrainRegionVBA_FD_PV_MPV VBA.FD.PV.MPV] || [BrainRegionBFA_FD_TH_PT BFA.FD.TH.PT] || Paratenial Nucleus of Thalamus || nucleus-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (MID -> mPULV, abstract)] ||
 ||  || [BrainRegionVCA_NC_V1 VCA.NC.V1] || [BrainRegionBFA_FT_NBM BFA.FT.NBM] || Basal Nucleus of Meynert || nucleus-neocortex || (unknown reference) ||
+|| [BrainAreaECA ECA] || [BrainRegionVBA_FD_LGN VBA.FD.LGN] || [BrainRegionBGA_HP_PPN BGA.HP.PPN] || Pedunculopontine Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (PPN -> LGN)] ||
 || [BrainAreaLCA LCA] || [BrainRegionVBA_FD_PV_MPV VBA.FD.PV.MPV] || [BrainRegionBMA_MM_PT_PTA BMA.MM.PT.PTA] || Anterior Pretectum Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaMMA MMA] || [BrainRegionVBA_FD_PV_MPV VBA.FD.PV.MPV] || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || Perirhinal Cortex || neocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (Perirhinal -> mPULV)] ||
 ||  ||  || [BrainRegionPHA_NC_PRS PHA.NC.PRS] || Presubiculum || neocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (Presub -> mPULV)] ||
-|| [BrainAreaMRA MRA] || [BrainRegionVBA_FD_PV_IPV VBA.FD.PV.IPV] || [BrainRegionVBA_MM_SC_SUP VBA.MM.SC.SUP] || Superficial Superior Colliculus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCs -> Pulvinar, abstract)] ||
+|| [BrainAreaMRA MRA] || [BrainRegionVBA_FD_LGN VBA.FD.LGN] || [BrainRegionVBA_MM_PT_PON VBA.MM.PT.PON] || Pretectal Olivary Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionVBA_MM_SC_SUP VBA.MM.SC.SUP] || Superficial Superior Colliculus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCs -> LGN, abstract)] ||
+||  || [BrainRegionVBA_FD_PV_IPV VBA.FD.PV.IPV] || [BrainRegionVBA_MM_SC_SUP VBA.MM.SC.SUP] || Superficial Superior Colliculus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCs -> Pulvinar, abstract)] ||
 ||  || [BrainRegionVBA_FD_PV_LPV VBA.FD.PV.LPV] || [BrainRegionVBA_MM_SC_SUP VBA.MM.SC.SUP] || Superficial Superior Colliculus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCs -> Pulvinar, abstract)] ||
 ||  || [BrainRegionVBA_FD_PV_MPV VBA.FD.PV.MPV] || [BrainRegionVBA_MM_PT_SL VBA.MM.PT.SL] || Sublentiform Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaPCA PCA] || [BrainRegionVBA_FD_PV_MPV VBA.FD.PV.MPV] || [BrainRegionVBA_FD_RT VBA.FD.RT] || Retina || ganglion-nucleus || [http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html Retina and superior colliculus targets (Retina -> Pulvinar, abstract)] ||
-||  || [BrainRegionVCA_NC_V1 VCA.NC.V1] || [BrainRegionVBA_FD_LGN VBA.FD.LGN] || Lateral Geniculate Nucleus || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (LGN -> pLGN)] ||
+|| [BrainAreaPCA PCA] || [BrainRegionVBA_FD_LGN VBA.FD.LGN] || [BrainRegionLPC_FD_RT LPC.FD.RT] || Retina || ganglion-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (Retina -> LGN)] ||
+||  || [BrainRegionVBA_FD_PV_MPV VBA.FD.PV.MPV] || [BrainRegionLPC_FD_RT LPC.FD.RT] || Retina || ganglion-nucleus || [http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html Retina and superior colliculus targets (Retina -> Pulvinar, abstract)] ||
 
 *External Outbound Region Connections:*
 
@@ -179,7 +184,8 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/SAA_NSV.dot.png
 ||  ||  || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || Perirhinal Cortex || neocortex-neocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (IT -> PRPH)] ||
 ||  || [BrainRegionVCA_NC_IT_TEO VCA.NC.IT.TEO] || [BrainRegionPHA_NC_TPC PHA.NC.TPC] || Temporopolar Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1364661312002823 Language-Related Regions (MTG21 -> TC)] ||
 ||  || [BrainRegionVCA_NC_V2 VCA.NC.V2] || [BrainRegionPHA_NC_PSS PHA.NC.PSS] || Postsubiculum || neocortex-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (VC -> PSUB, abstract)] ||
-|| [BrainAreaMRA MRA] || [BrainRegionVCA_NC_IPL_MST VCA.NC.IPL.MST] || [BrainRegionVBA_MM_SC_SUP VBA.MM.SC.SUP] || Superficial Superior Colliculus || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> SCi, abstract)] ||
+|| [BrainAreaMRA MRA] || [BrainRegionVBA_FD_LGN VBA.FD.LGN] || [BrainRegionVBA_MM_PT_NOT VBA.MM.PT.NOT] || Nucleus of Optic Tract || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionVCA_NC_IPL_MST VCA.NC.IPL.MST] || [BrainRegionVBA_MM_SC_SUP VBA.MM.SC.SUP] || Superficial Superior Colliculus || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> SCi, abstract)] ||
 ||  || [BrainRegionVCA_NC_IPS_PEF VCA.NC.IPS.PEF] || [BrainRegionHMA_MM_CJ HMA.MM.CJ] || Cajal Nucleus || neocortex-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Vision Components (VAC -> SOA, abstract)] ||
 ||  ||  || [BrainRegionHMA_MM_RIMLF HMA.MM.RIMLF] || Rostral Interstitial Nucleus of MLF || neocortex-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Vision Components (VAC -> SOA, abstract)] ||
 ||  ||  || [BrainRegionMBA_MM_SC_DEEP MBA.MM.SC.DEEP] || Deep Superior Colliculus || neocortex-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (PEF -> SC, abstract)] ||
@@ -225,6 +231,10 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/SAA_NSV.dot.png
 
 <img src="http://ars.els-cdn.com/content/image/1-s2.0-S1053810011000080-gr3.jpg" alt="unavailable">
 
+  * [http://what-when-how.com/wp-content/uploads/2012/04/tmp3649_thumb1_thumb.jpg Thalamocortical relationships] - see [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Reference]
+
+<img src="http://what-when-how.com/wp-content/uploads/2012/04/tmp3649_thumb1_thumb.jpg" alt="unavailable"height=400width=400>
+
   * [http://ars.els-cdn.com/content/image/1-s2.0-S1053811905008013-gr5.jpg Category-Selectivity Paradigm] - see [http://www.sciencedirect.com/science/article/pii/S1053811905008013 Reference]
 
 <img src="http://ars.els-cdn.com/content/image/1-s2.0-S1053811905008013-gr5.jpg" alt="unavailable">
@@ -241,9 +251,21 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/SAA_NSV.dot.png
 
 <img src="http://c431376.r76.cf2.rackcdn.com/10053/fnana-05-00034-r1/image_m/fnana-05-00034-g002.jpg" alt="unavailable">
 
-  * [http://what-when-how.com/wp-content/uploads/2012/04/tmp3649_thumb1_thumb.jpg Thalamocortical relationships] - see [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Reference]
+  * [http://asweknowit.ca/evcult/NatIntel/Fig12.GIF Visual perception abstraction] - see [http://asweknowit.ca/evcult/NatIntel/nat_intel.shtml Reference]
 
-<img src="http://what-when-how.com/wp-content/uploads/2012/04/tmp3649_thumb1_thumb.jpg" alt="unavailable"height=400width=400>
+<img src="http://asweknowit.ca/evcult/NatIntel/Fig12.GIF" alt="unavailable">
+
+  * [http://ars.els-cdn.com/content/image/1-s2.0-S0006899301025987-gr1.gif Horizontal saccades and smooth pursuit movements] - see [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Reference]
+
+<img src="http://ars.els-cdn.com/content/image/1-s2.0-S0006899301025987-gr1.gif" alt="unavailable">
+
+  * [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/vision-subcortical.jpg Vision Components] - see [http://neuroscience.uth.tmc.edu/s3/chapter07.html Reference]
+
+<img src="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/vision-subcortical.jpg" alt="unavailable">
+
+  * [http://www.nature.com/nrn/journal/v5/n3/images/nrn1345-i1.jpg Saccadic Vision] - see [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Reference]
+
+<img src="http://www.nature.com/nrn/journal/v5/n3/images/nrn1345-i1.jpg" alt="unavailable">
 
   * [http://c431376.r76.cf2.rackcdn.com/18691/fnhum-06-00184-HTML/image_m/fnhum-06-00184-g001.jpg Directed Effort Network] - see [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Reference]
 
@@ -269,10 +291,6 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/SAA_NSV.dot.png
 
 <img src="http://www.benbest.com/science/anatmind/FigVI1.gif" alt="unavailable">
 
-  * [http://asweknowit.ca/evcult/NatIntel/Fig12.GIF Visual perception abstraction] - see [http://asweknowit.ca/evcult/NatIntel/nat_intel.shtml Reference]
-
-<img src="http://asweknowit.ca/evcult/NatIntel/Fig12.GIF" alt="unavailable">
-
   * [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/oculomotor.jpg Eye blink reflex and pupillary light reflex] - see [http://neuroscience.uth.tmc.edu/s3/chapter07.html Reference]
 
 <img src="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/oculomotor.jpg" alt="unavailable">
@@ -281,10 +299,6 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/SAA_NSV.dot.png
 
 <img src="http://www.ib.cnea.gov.ar/~redneu/2013/BOOKS/Principles%20of%20Neural%20Science%20-%20Kandel/gateway.ut.ovid.com/fulltextservice/ct%7B06b9ee1beed594190674f1983457a7dd32af6a0d5a4c9892~34/da5c28ff2.gif.png" alt="unavailable">
 
-  * [http://ars.els-cdn.com/content/image/1-s2.0-S0006899301025987-gr1.gif Horizontal saccades and smooth pursuit movements] - see [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Reference]
-
-<img src="http://ars.els-cdn.com/content/image/1-s2.0-S0006899301025987-gr1.gif" alt="unavailable">
-
   * [http://www.jneurosci.org/content/31/5/1790/F12.medium.gif Similarities and differences between V6, V6Av, and V6Ad] - see [http://www.jneurosci.org/content/31/5/1790.full Reference]
 
 <img src="http://www.jneurosci.org/content/31/5/1790/F12.medium.gif" alt="unavailable">
@@ -292,14 +306,6 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/SAA_NSV.dot.png
   * [http://www.nature.com/nrn/journal/v3/n2/images/nrn726-f3.jpg McNaughton Spatial Processing Network] - see [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html Reference]
 
 <img src="http://www.nature.com/nrn/journal/v3/n2/images/nrn726-f3.jpg" alt="unavailable">
-
-  * [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/vision-subcortical.jpg Vision Components] - see [http://neuroscience.uth.tmc.edu/s3/chapter07.html Reference]
-
-<img src="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/vision-subcortical.jpg" alt="unavailable">
-
-  * [http://www.nature.com/nrn/journal/v5/n3/images/nrn1345-i1.jpg Saccadic Vision] - see [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Reference]
-
-<img src="http://www.nature.com/nrn/journal/v5/n3/images/nrn1345-i1.jpg" alt="unavailable">
 
   * [http://img.springerimages.com/Images/Springer/PUB=Springer-Verlag-Berlin-Heidelberg/JOU=00359/VOL=2005.191/ISU=3/ART=2004_565/MediaObjects/WATER_s00359-004-0565-9fhc1.jpg Oculomotor decision-making] - see [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Reference]
 
@@ -329,6 +335,22 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/SAA_NSV.dot.png
 
 <img src="http://learnmem.cshlp.org/content/18/6/384/F1.large.jpg" alt="unavailable">
 
+  * [http://2.bp.blogspot.com/-mjoruMnWeaU/TVp_YcF7meI/AAAAAAAAAsQ/8oZIVJrZVnw/s1600/Gray722.png Retina and superior colliculus targets] - see [http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html Reference]
+
+<img src="http://2.bp.blogspot.com/-mjoruMnWeaU/TVp_YcF7meI/AAAAAAAAAsQ/8oZIVJrZVnw/s1600/Gray722.png" alt="unavailable">
+
+  * [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision_files/image022.jpg Targets of retina neurons] - see [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm Reference]
+
+<img src="http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision_files/image022.jpg" alt="unavailable">
+
+  * [http://ars.els-cdn.com/content/image/1-s2.0-S0959438808001566-gr1.jpg Global visual system] - see [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Reference]
+
+<img src="http://ars.els-cdn.com/content/image/1-s2.0-S0959438808001566-gr1.jpg" alt="unavailable">
+
+  * [http://ars.els-cdn.com/content/image/1-s2.0-S0387760401003308-gr2.jpg Geniculate and Extyrageniculate Paths] - see [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Reference]
+
+<img src="http://ars.els-cdn.com/content/image/1-s2.0-S0387760401003308-gr2.jpg" alt="unavailable">
+
   * [http://c431376.r76.cf2.rackcdn.com/1349/fnana-04-00134-HTML/image_m/fnana-04-00134-g001.jpg Echo-Location in Bats] - see [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2010.00134/full Reference]
 
 <img src="http://c431376.r76.cf2.rackcdn.com/1349/fnana-04-00134-HTML/image_m/fnana-04-00134-g001.jpg" alt="unavailable"height=200width=600>
@@ -344,27 +366,31 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/SAA_NSV.dot.png
   * http://www.nature.com/neuro/journal/v12/n6/fig_tab/nn.2331_F5.html
   * http://www.sciencedirect.com/science/article/pii/S1364661312002823
   * http://www.sciencedirect.com/science/article/pii/S1053810011000080
+  * http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/
   * http://www.sciencedirect.com/science/article/pii/S1053811905008013
   * http://www.sciencedirect.com/science/article/pii/S0893608098000471
   * http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full
-  * http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/
+  * http://asweknowit.ca/evcult/NatIntel/nat_intel.shtml
+  * http://www.sciencedirect.com/science/article/pii/S0006899301025987
+  * http://neuroscience.uth.tmc.edu/s3/chapter07.html
+  * http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html
   * http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full
   * http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2846110/
   * http://f1000research.com/articles/2-20/v1
   * http://lifeboat.com/ex/law.of.accelerating.returns
   * http://www.sciencedirect.com/science/article/pii/S1359644605035427
   * http://www.benbest.com/science/anatmind/anatmd6.html
-  * http://asweknowit.ca/evcult/NatIntel/nat_intel.shtml
-  * http://neuroscience.uth.tmc.edu/s3/chapter07.html
   * http://www.ib.cnea.gov.ar/~redneu/2013/BOOKS/Principles%20of%20Neural%20Science%20-%20Kandel/gateway.ut.ovid.com/gw2/ovidweb.cgisidnjhkoalgmeho00dbookimagebookdb_7c_2fc~34.htm
-  * http://www.sciencedirect.com/science/article/pii/S0006899301025987
   * http://www.jneurosci.org/content/31/5/1790.full
   * http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html
-  * http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html
   * http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0
   * http://www.cixip.com/index.php/page/content/id/1190
   * http://www.sciencedirect.com/science/article/pii/S0028393205003568
   * http://cercor.oxfordjournals.org/content/early/2012/02/28/cercor.bhs048/F9.expansion.html
   * http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html
+  * http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html
+  * http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm
+  * http://www.sciencedirect.com/science/article/pii/S0959438808001566
+  * http://www.sciencedirect.com/science/article/pii/S0387760401003308
   * http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2010.00134/full
 

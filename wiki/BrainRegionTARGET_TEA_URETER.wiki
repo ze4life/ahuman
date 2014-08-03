@@ -17,15 +17,15 @@ Region is part of aHuman target integrated biological model.
 
 *Component items*:
   * *Ureter sensory data* (*ureter-sensory-data*)
-   * Ureter - ureter visceral receptors (ureter-visceral-receptors -> [BrainRegionAVA_PN_SG_LDRG AVA.PN.SG.LDRG]): respond to stretch and free nerve endings in the bladder mucosa that respond to pain and temperature
+   * Ureter - ureter visceral receptors (ureter-visceral-receptors -> [BrainRegionLPC_PN_SG_LDRG LPC.PN.SG.LDRG]): respond to stretch and free nerve endings in the bladder mucosa that respond to pain and temperature
   * *Ureter autonomic* (*ureter-autonomic*)
    * [http://en.wikipedia.org/wiki/Detrusor_urinae_muscle Ureter - detrusor urinae muscle, parasympathetic] ([BrainRegionAVA_PN_PSYM_PPG AVA.PN.PSYM.PPG] -> [HumanMusclesTorso detrusor-urinae-muscle-parasympathetic]): parasympathetic contracts, to urinate
    * [http://en.wikipedia.org/wiki/Internal_sphincter_muscle_of_urethra Ureter - internal sphincter muscle of urethra, parasympathetic] ([BrainRegionAVA_PN_PSYM_PPG AVA.PN.PSYM.PPG] -> [HumanMusclesTorso internal-urethral-sphincter-parasympathetic]): parasympathetic relaxes the muscle
    * [http://en.wikipedia.org/wiki/Detrusor_urinae_muscle Ureter - detrusor urinae muscle, sympathetic] ([BrainRegionAVA_PN_SYM_IMG AVA.PN.SYM.IMG] -> [HumanMusclesTorso detrusor-urinae-muscle-sympathetic]): sympathetic relaxes, to store urine
    * [http://en.wikipedia.org/wiki/Internal_sphincter_muscle_of_urethra Ureter - internal sphincter muscle of urethra, sympathetic] ([BrainRegionAVA_PN_SYM_IMG AVA.PN.SYM.IMG] -> [HumanMusclesTorso internal-urethral-sphincter-sympathetic]): sympathetic contracts the muscle
   * *Ureter conscious* (*ureter-conscious*)
-   * [http://en.wikipedia.org/wiki/External_sphincter_muscle_of_female_urethra Ureter - external sphincter muscle of female urethra] ([BrainRegionBMA_SC_VH_PM BMA.SC.VH.PM] -> [HumanMusclesTorso external-urethral-sphincter-female]): control urination, constricts urethra, maintain urinary continence
-   * [http://en.wikipedia.org/wiki/External_sphincter_muscle_of_male_urethra Ureter - external sphincter muscle of male urethra] ([BrainRegionBMA_SC_VH_PM BMA.SC.VH.PM] -> [HumanMusclesTorso external-urethral-sphincter-male]): control urination, constricts urethra, maintain urinary continence
+   * [http://en.wikipedia.org/wiki/External_sphincter_muscle_of_female_urethra Ureter - external sphincter muscle of female urethra] ([BrainRegionLPC_SC_VH_PM LPC.SC.VH.PM] -> [HumanMusclesTorso external-urethral-sphincter-female]): control urination, constricts urethra, maintain urinary continence
+   * [http://en.wikipedia.org/wiki/External_sphincter_muscle_of_male_urethra Ureter - external sphincter muscle of male urethra] ([BrainRegionLPC_SC_VH_PM LPC.SC.VH.PM] -> [HumanMusclesTorso external-urethral-sphincter-male]): control urination, constricts urethra, maintain urinary continence
 
 = Connectivity =
 (generated)
@@ -38,12 +38,12 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/TARGET.TEA.URETER.dot.jpg
 || *Source Area* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || [BrainAreaACA ACA] || [BrainRegionAVA_PN_PSYM_PPG AVA.PN.PSYM.PPG] || Pelvic Peripheral Ganglion || detrusor-urinae-muscle-parasympathetic || (unknown reference) ||
 ||  || [BrainRegionAVA_PN_SYM_IMG AVA.PN.SYM.IMG] || Inferior Mesenteric Ganglion || detrusor-urinae-muscle-sympathetic || (unknown reference) ||
-|| [BrainAreaPCA PCA] || [BrainRegionBMA_SC_VH_PM BMA.SC.VH.PM] || Posteromedial Nucleus || external-urethral-sphincter-female || (unknown reference) ||
+|| [BrainAreaPCA PCA] || [BrainRegionLPC_SC_VH_PM LPC.SC.VH.PM] || Posteromedial Nucleus || external-urethral-sphincter-female || (unknown reference) ||
 
 *Outbound Region Connections:*
 
 || *Target Area* || *Target Region* || *Target Name* || *Type* || *Reference* ||
-|| [BrainAreaPCA PCA] || [BrainRegionAVA_PN_SG_LDRG AVA.PN.SG.LDRG] || Lower Dorsal Root Ganglion || ureter-visceral-receptors || (unknown reference) ||
+|| [BrainAreaPCA PCA] || [BrainRegionLPC_PN_SG_LDRG LPC.PN.SG.LDRG] || Lower Dorsal Root Ganglion || ureter-visceral-receptors || (unknown reference) ||
 
 = Thirdparty Circuits =
 (generated)

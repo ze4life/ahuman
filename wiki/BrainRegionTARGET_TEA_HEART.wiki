@@ -21,9 +21,9 @@ Region is part of aHuman target integrated biological model.
   * [http://en.wikipedia.org/wiki/Heart Heart - lower cardiac muscle, middle] ([BrainRegionAVA_PN_SYM_MCG AVA.PN.SYM.MCG] -> [HumanMusclesTorso heart-cardiac-lower-muscle-middle]): increase heart rate (chronotropic effect) and force of cardiac contraction (inotropic effect)
   * [http://en.wikipedia.org/wiki/Heart Heart - lower cardiac muscle, stellar] ([BrainRegionAVA_PN_SYM_STG AVA.PN.SYM.STG] -> [HumanMusclesTorso heart-cardiac-lower-muscle-stellar]): increase heart rate (chronotropic effect) and force of cardiac contraction (inotropic effect)
   * [http://en.wikipedia.org/wiki/Heart Heart - ACh receptors of atrium muscles] ([BrainRegionAVA_PN_PSYM_CRG AVA.PN.PSYM.CRG] -> [HumanMusclesTorso heart-psymp-control]): decrease firing rate of SA node, slowing transmission of pacemaker impulse
-  * Heart - baroreceptors in aorta (heart-aorta-baroreceptors -> [BrainRegionAVA_PN_SG_NOD AVA.PN.SG.NOD]): increase in blood pressure signal
-  * Heart - baroreceptors in carotid artery (heart-carotid-baroreceptors -> [BrainRegionAVA_PN_SG_PET AVA.PN.SG.PET]): increase in blood pressure signal
-  * Heart - visceral receptors (heart-visceral -> [BrainRegionAVA_PN_SG_UDRG AVA.PN.SG.UDRG]): temperature and pain
+  * Heart - baroreceptors in aorta (heart-aorta-baroreceptors -> [BrainRegionLPC_PN_SG_NOD LPC.PN.SG.NOD]): increase in blood pressure signal
+  * Heart - baroreceptors in carotid artery (heart-carotid-baroreceptors -> [BrainRegionLPC_PN_SG_PET LPC.PN.SG.PET]): increase in blood pressure signal
+  * Heart - visceral receptors (heart-visceral -> [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG]): temperature and pain
 
 = Connectivity =
 (generated)
@@ -43,9 +43,9 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/TARGET.TEA.HEART.dot.jpg
 *Outbound Region Connections:*
 
 || *Target Area* || *Target Region* || *Target Name* || *Type* || *Reference* ||
-|| [BrainAreaPCA PCA] || [BrainRegionAVA_PN_SG_NOD AVA.PN.SG.NOD] || Nodose Ganglion || heart-aorta-baroreceptors || (unknown reference) ||
-||  || [BrainRegionAVA_PN_SG_PET AVA.PN.SG.PET] || Petrosal Ganglion || heart-carotid-baroreceptors || (unknown reference) ||
-||  || [BrainRegionAVA_PN_SG_UDRG AVA.PN.SG.UDRG] || Upper Dorsal Root Ganglion || heart-visceral || (unknown reference) ||
+|| [BrainAreaPCA PCA] || [BrainRegionLPC_PN_SG_NOD LPC.PN.SG.NOD] || Nodose Ganglion || heart-aorta-baroreceptors || (unknown reference) ||
+||  || [BrainRegionLPC_PN_SG_PET LPC.PN.SG.PET] || Petrosal Ganglion || heart-carotid-baroreceptors || (unknown reference) ||
+||  || [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG] || Upper Dorsal Root Ganglion || heart-visceral || (unknown reference) ||
 
 = Thirdparty Circuits =
 (generated)

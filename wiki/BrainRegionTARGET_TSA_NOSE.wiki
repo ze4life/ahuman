@@ -17,17 +17,17 @@ Region is part of aHuman target integrated biological model.
 
 *Component items*:
   * *Nose sensory data* (*nose-sensory-data*)
-   * Nose - olfactory mucosa (nose-olfactory-mucosa -> [BrainRegionAVA_PN_SG_OLB AVA.PN.SG.OLB]): Sensing smells
-   * Nose - proprioceptors (nose-proprioceptors -> [BrainRegionHMA_MM_MSTR HMA.MM.MSTR]): proprioception
-   * Nose - touch receptors (nose-somatic -> [BrainRegionAVA_PN_SG_TRG AVA.PN.SG.TRG]): touch
-   * Nose - visceral nodose receptors (nose-visceral-vagus -> [BrainRegionAVA_PN_SG_NOD AVA.PN.SG.NOD]): visceral sensations
-   * Nose - visceral pharynx receptors (nose-visceral-pharynx -> [BrainRegionAVA_PN_SG_PET AVA.PN.SG.PET]): visceral sensations
+   * Nose - olfactory mucosa (nose-olfactory-mucosa -> [BrainRegionLPC_PN_SG_OLB LPC.PN.SG.OLB]): Sensing smells
+   * Nose - proprioceptors (nose-proprioceptors -> [BrainRegionLPC_MM_MSTR LPC.MM.MSTR]): proprioception
+   * Nose - touch receptors (nose-somatic -> [BrainRegionLPC_PN_SG_TRG LPC.PN.SG.TRG]): touch
+   * Nose - visceral nodose receptors (nose-visceral-vagus -> [BrainRegionLPC_PN_SG_NOD LPC.PN.SG.NOD]): visceral sensations
+   * Nose - visceral pharynx receptors (nose-visceral-pharynx -> [BrainRegionLPC_PN_SG_PET LPC.PN.SG.PET]): visceral sensations
   * *Ear sensory control* (*nose-sensory-control*)
    * [http://en.wikipedia.org/wiki/Nasal_glands Nose - nasal glands] ([BrainRegionAVA_PN_PSYM_SPG AVA.PN.PSYM.SPG] -> [HumanMusclesHead nose-nasal-glands]): smelling control and moisturing
   * *Nose move muscles* (*nose-muscles*): constricts nostrils, lower alar pars and helps to wrinkle nose
-   * [http://en.wikipedia.org/wiki/Depressor_septi_nasi_muscle Nose - depressor septi nasi muscle] ([BrainRegionHMA_HP_FCM HMA.HP.FCM] -> [HumanMusclesHead nose-depressor-septi-nasi]): depression of nasal septum
-   * [http://en.wikipedia.org/wiki/Levator_labii_superioris_alaeque_nasi_muscle Nose - levator labii superioris alaeque nasi muscle] ([BrainRegionHMA_HP_FCM HMA.HP.FCM] -> [HumanMusclesHead nose-levator-labii-superioris-alaeque-nasi]): dilates the nostril; elevates the upper lip and wing of the nose
-   * [http://en.wikipedia.org/wiki/Nasalis_muscle Nose - nasalis muscle] ([BrainRegionHMA_HP_FCM HMA.HP.FCM] -> [HumanMusclesHead nose-nasalis]): compresses bridge, depresses tip of nose, elevates corners of nostrils
+   * [http://en.wikipedia.org/wiki/Depressor_septi_nasi_muscle Nose - depressor septi nasi muscle] ([BrainRegionLPC_HP_FCM LPC.HP.FCM] -> [HumanMusclesHead nose-depressor-septi-nasi]): depression of nasal septum
+   * [http://en.wikipedia.org/wiki/Levator_labii_superioris_alaeque_nasi_muscle Nose - levator labii superioris alaeque nasi muscle] ([BrainRegionLPC_HP_FCM LPC.HP.FCM] -> [HumanMusclesHead nose-levator-labii-superioris-alaeque-nasi]): dilates the nostril; elevates the upper lip and wing of the nose
+   * [http://en.wikipedia.org/wiki/Nasalis_muscle Nose - nasalis muscle] ([BrainRegionLPC_HP_FCM LPC.HP.FCM] -> [HumanMusclesHead nose-nasalis]): compresses bridge, depresses tip of nose, elevates corners of nostrils
    * [http://en.wikipedia.org/wiki/Salpingopharyngeus_muscle Nose - salpingopharyngeus muscle] ([BrainRegionHMA_HM_AMB HMA.HM.AMB] -> [HumanMusclesNeck nose-salpingopharyngeus]): raise the nasopharynx
 
 = Connectivity =
@@ -41,16 +41,16 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/TARGET.TSA.NOSE.dot.jpg
 || *Source Area* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || [BrainAreaACA ACA] || [BrainRegionAVA_PN_PSYM_SPG AVA.PN.PSYM.SPG] || Sphenopalatine Ganglion || nose-nasal-glands || (unknown reference) ||
 || [BrainAreaMRA MRA] || [BrainRegionHMA_HM_AMB HMA.HM.AMB] || Ambiguus Nucleus || nose-salpingopharyngeus || (unknown reference) ||
-|| [BrainAreaPCA PCA] || [BrainRegionHMA_HP_FCM HMA.HP.FCM] || Facial Motor Nucleus || nose-depressor-septi-nasi || (unknown reference) ||
+|| [BrainAreaPCA PCA] || [BrainRegionLPC_HP_FCM LPC.HP.FCM] || Facial Motor Nucleus || nose-depressor-septi-nasi || (unknown reference) ||
 
 *Outbound Region Connections:*
 
 || *Target Area* || *Target Region* || *Target Name* || *Type* || *Reference* ||
-|| [BrainAreaPCA PCA] || [BrainRegionAVA_PN_SG_NOD AVA.PN.SG.NOD] || Nodose Ganglion || nose-visceral-vagus || (unknown reference) ||
-||  || [BrainRegionAVA_PN_SG_OLB AVA.PN.SG.OLB] || Olfactory Bulb || nose-olfactory-mucosa || (unknown reference) ||
-||  || [BrainRegionAVA_PN_SG_PET AVA.PN.SG.PET] || Petrosal Ganglion || nose-visceral-pharynx || (unknown reference) ||
-||  || [BrainRegionAVA_PN_SG_TRG AVA.PN.SG.TRG] || Trigeminal Ganglion || nose-somatic || (unknown reference) ||
-||  || [BrainRegionHMA_MM_MSTR HMA.MM.MSTR] || Mesencephalic Trigeminal Nucleus || nose-proprioceptors || (unknown reference) ||
+|| [BrainAreaPCA PCA] || [BrainRegionLPC_MM_MSTR LPC.MM.MSTR] || Mesencephalic Trigeminal Nucleus || nose-proprioceptors || (unknown reference) ||
+||  || [BrainRegionLPC_PN_SG_NOD LPC.PN.SG.NOD] || Nodose Ganglion || nose-visceral-vagus || (unknown reference) ||
+||  || [BrainRegionLPC_PN_SG_OLB LPC.PN.SG.OLB] || Olfactory Bulb || nose-olfactory-mucosa || (unknown reference) ||
+||  || [BrainRegionLPC_PN_SG_PET LPC.PN.SG.PET] || Petrosal Ganglion || nose-visceral-pharynx || (unknown reference) ||
+||  || [BrainRegionLPC_PN_SG_TRG LPC.PN.SG.TRG] || Trigeminal Ganglion || nose-somatic || (unknown reference) ||
 
 = Thirdparty Circuits =
 (generated)
