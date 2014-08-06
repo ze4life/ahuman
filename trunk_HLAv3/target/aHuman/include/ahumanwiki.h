@@ -60,6 +60,7 @@ public:
 	String getSpinalCordPage();
 	String getSpinalCordPageLayoutSection();
 	String getMainTractPage();
+	String getMainTractLocationSection();
 	String getMainTractPageListSection();
 	String getMainTractPageNeuronsSection();
 	String getMainNervePage();
@@ -411,6 +412,7 @@ private:
 	void createTracts_addTractSetLinks( XmlBrainTractSet& ts , StringList& lines );
 	void createTracts_addTractLinks( int level , XmlBrainTract& tract , StringList& lines );
 
+	void createTractsHirarchy();
 	void createTracts_addTractTableLines( MapStringToClass<XmlBrainTractSet>& tractsets , StringList& lines );
 	void createTracts_addTractSetTableLines( XmlBrainTractSet& ts , StringList& lines );
 	void createTracts_addTractTableLines( int level , XmlBrainTract& tract , StringList& lines );
