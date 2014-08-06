@@ -21,6 +21,7 @@ void WikiTractsPages::execute() {
 
 	createNeurons();
 	createTractsMain();
+	createTractsHirarchy();
 }
 
 void WikiTractsPages::createTractsMain() {
@@ -39,6 +40,25 @@ void WikiTractsPages::createTractsMain() {
 	}
 
 	wm -> updateFileSection( wikiDir , wikiPage , sectionName , lines );
+}
+
+void WikiTractsPages::createTractsHirarchy() {
+
+	String wikiDir = wm -> getWikiPath();
+	String sectionName = wm -> getMainTractLocationSection();
+
+	// collect section lines
+	StringList lines;
+	XmlTracts *tm = wm -> hmindxml.getTracts();
+	MapStringToClass<XmlBrainTractSet>& tractsets = tm -> getTracts();
+
+	for( int k = 0; k < tractsets.count(); k++ ) {
+		XmlBrainTractSet& one = tractsets.getClassRefByIndex( k );
+		createTracts_addTractSetLines( one , lines );
+		String  wikiPage = wm -> getTractPageLink( one.id );
+		wm -> updateFileSection( wikiDir , wikiPage , sectionName , lines );
+		lines.clear();
+	}
 }
 
 void WikiTractsPages::createTracts_addTractSetLinks( XmlBrainTractSet& ts , StringList& lines ) {

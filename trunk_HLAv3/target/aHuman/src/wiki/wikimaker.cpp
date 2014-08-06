@@ -505,6 +505,10 @@ String WikiMaker::getMainTractPage() {
 	return( "MindTracts" );
 }
 
+String WikiMaker::getMainTractLocationSection() {
+	return( "Tract Details" );
+}
+
 String WikiMaker::getMainTractPageListSection() {
 	return( "Tracts Hierarchy" );
 }
