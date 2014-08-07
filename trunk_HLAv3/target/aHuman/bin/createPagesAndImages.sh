@@ -11,6 +11,7 @@ F_CURDIR=`pwd`
 
 F_NAME=cmdCreateWikiPages.xml
 F_XNAME=$F_NAME.in
+F_IMAGE_PATH="../../../../images/dot/aHuman"
 
 if [ "$P_AREA" = "" ]; then
 	echo create wiki files ...
@@ -29,7 +30,6 @@ if [ "$P_IMG" = "yes" ]; then
 
 	cd $F_CURDIR
 	echo create images ...
-	F_IMAGE_PATH="../../../../images/dot/aHuman"
 
 	for x in `find dotfiles -name "*.dot"`; do
 		echo create image from dot file $x ...
