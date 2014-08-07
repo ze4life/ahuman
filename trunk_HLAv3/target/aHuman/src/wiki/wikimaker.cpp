@@ -470,7 +470,7 @@ String WikiMaker::getWikiPath() {
 }
 
 String WikiMaker::getWikiImagePath() {
-	return( "http://ahuman.googlecode.com/svn/images/dot/aHuman" );
+	return( wiki.getProperty( "wikiImagePath" ) );
 }
 
 String WikiMaker::getWikiDotPath() {
