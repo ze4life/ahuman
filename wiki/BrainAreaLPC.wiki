@@ -8,10 +8,250 @@
 (generated)
 
 
-== Auditory Sense ==
+== AVB - Vestibular Sensory and Motor ==
 
 
-http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_LAC.dot.png
+<img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_AVB.dot.png" alt="unavailable">
+
+|| *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
+|| [BrainRegionLPC_HP_IVBN LPC.HP.IVBN] || Inferior Vestibular Nuclei || nucleus || LSM || maintain balance, coordinating postural adjustments || to CR; to oculomotor, trochlear, abducens,<BR>accessory oculomotor ||
+|| [BrainRegionLPC_HP_LVBN LPC.HP.LVBN] || Lateral Vestibular Nuclei || nucleus || LSM || controlling body position || to sacral, ipsilateral - lateral vestibulospinal<BR>tract ||
+|| [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || Medial Vestibular Nucleus || nucleus || LSM || controlling head position, integrate head and eye movements; maintain balance,<BR>coordinating postural adjustments; coordination for horizontal eye movements || to thoracic, bilateral - medial vestibulospinal<BR>tract in MLF; to CR; to oculomotor, trochlear,<BR>abducens, accessory oculomotor ||
+|| [BrainRegionLPC_HP_SVBN LPC.HP.SVBN] || Superior Vestibular Nuclei || nucleus || LSM || conscious perception of movement and gravity || to oculomotor, trochlear, abducens, accessory<BR>oculomotor; to VPI ||
+|| [BrainRegionLPC_PN_SG_CVB LPC.PN.SG.CVB] || Vestibular Ganglion - Semicircular Canal Neurons || sensory ganglion || LSC || Relay head movements in 3D coords ||  ||
+|| [BrainRegionLPC_PN_SG_SVB LPC.PN.SG.SVB] || Vestibular Ganglion - Saccule Neurons || sensory ganglion || LSC || Relay vertical linear acceleration ||  ||
+|| [BrainRegionLPC_PN_SG_UVB LPC.PN.SG.UVB] || Vestibular Ganglion - Utricle Neurons || sensory ganglion || LSC || Relay horizontal linear acceleration ||  ||
+
+*Internal Region Connections:*
+
+|| *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionLPC_PN_SG_CVB LPC.PN.SG.CVB] || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || ganglion-nucleus || (unknown reference) ||
+||  || [BrainRegionLPC_HP_SVBN LPC.HP.SVBN] || ganglion-nucleus || (unknown reference) ||
+|| [BrainRegionLPC_PN_SG_SVB LPC.PN.SG.SVB] || [BrainRegionLPC_HP_IVBN LPC.HP.IVBN] || ganglion-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) (VestibularGanglion -> VestibularNuclei, abstract)] ||
+||  || [BrainRegionLPC_HP_LVBN LPC.HP.LVBN] || ganglion-nucleus || (unknown reference) ||
+|| [BrainRegionLPC_PN_SG_UVB LPC.PN.SG.UVB] || [BrainRegionLPC_HP_LVBN LPC.HP.LVBN] || ganglion-nucleus || (unknown reference) ||
+
+*External Inbound Region Connections:*
+
+|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaLCA LCA] || [BrainRegionLPC_HP_IVBN LPC.HP.IVBN] || [BrainRegionBMA_SC_IZ_CCV BMA.SC.IZ.CCV] || Central Cervical Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLPC_HP_LVBN LPC.HP.LVBN] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (CR -> Vestibular)] ||
+||  || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || Prepositus Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (NPRP -> MVSN)] ||
+|| [BrainAreaLRC LRC] || [BrainRegionLPC_HP_IVBN LPC.HP.IVBN] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionMBA_MM_SC_DEEP MBA.MM.SC.DEEP] || Deep Superior Colliculus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || [BrainRegionMBA_MM_SC_DEEP MBA.MM.SC.DEEP] || Deep Superior Colliculus || nucleus-nucleus || (unknown reference) ||
+|| <font color="red">Target</font> || || || || || ||
+|| [BrainAreaTSA TSA] || [BrainRegionLPC_PN_SG_CVB LPC.PN.SG.CVB] || [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || Ear || ear-semicircular-canals || (unknown reference) ||
+||  || [BrainRegionLPC_PN_SG_SVB LPC.PN.SG.SVB] || [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || Ear || ear-saccule || (unknown reference) ||
+||  || [BrainRegionLPC_PN_SG_UVB LPC.PN.SG.UVB] || [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || Ear || ear-utricle || (unknown reference) ||
+
+*External Outbound Region Connections:*
+
+|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaLCA LCA] || [BrainRegionLPC_HP_IVBN LPC.HP.IVBN] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || Prepositus Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (MVSN -> NPRP)] ||
+|| [BrainAreaLPC LPC] || [BrainRegionLPC_HP_LVBN LPC.HP.LVBN] || [BrainRegionLPC_SC_VH_PM LPC.SC.VH.PM] || Posteromedial Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLPC_SC_VH_VL LPC.SC.VH.VL] || Ventrolateral Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLPC_SC_VH_VM LPC.SC.VH.VM] || Ventromedial Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || [BrainRegionLPC_HP_ABD LPC.HP.ABD] || Abducens Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLPC_MM_OCN LPC.MM.OCN] || Oculomotor Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLPC_MM_TRH LPC.MM.TRH] || Trochlear Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLPC_SC_VH_SAN LPC.SC.VH.SAN] || Spinal Accessory Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLPC_HP_SVBN LPC.HP.SVBN] || [BrainRegionLPC_MM_OCN LPC.MM.OCN] || Oculomotor Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLPC_MM_TRH LPC.MM.TRH] || Trochlear Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLRC LRC] || [BrainRegionLPC_HP_IVBN LPC.HP.IVBN] || [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || Caudal Pontine Reticular Nucleus || nucleus-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) (VestibularNuclei -> PPRF, abstract)] ||
+||  || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || [BrainRegionBMA_MM_DSCH BMA.MM.DSCH] || Darkschewitsch Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLPC_HP_SVBN LPC.HP.SVBN] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || Suprageniculate Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
+
+== AVS - Vision Sensory and Motor ==
+
+
+<img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_AVS.dot.png" alt="unavailable">
+
+|| *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
+|| [BrainRegionLPC_FD_RT LPC.FD.RT] || Retina || nucleus || LSC || Spatial decorrelation through center surround inhibition || 100:1 cones/rods to ganglion cells aggregation,<BR>edge extraction ||
+|| [BrainRegionLPC_HP_ABD LPC.HP.ABD] || Abducens Nucleus || nucleus || LMD || Conjugated movements of both eyes || Motoneurons - to muscle, interneurons - to OCN ||
+|| [BrainRegionLPC_MM_OCN LPC.MM.OCN] || Oculomotor Nucleus || nucleus || LMD || Change Eye Direction || Muscle nucleus ||
+|| [BrainRegionLPC_MM_TRH LPC.MM.TRH] || Trochlear Nucleus || nucleus || LMD || Control superior oblique muscles of eyes || Muscle nucleus, change eye direction ||
+
+*Internal Region Connections:*
+
+|| *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionLPC_HP_ABD LPC.HP.ABD] || [BrainRegionLPC_MM_OCN LPC.MM.OCN] || nucleus-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) (Abducens -> Oculomotor)] ||
+
+*External Inbound Region Connections:*
+
+|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaLPC LPC] || [BrainRegionLPC_HP_ABD LPC.HP.ABD] || [BrainRegionLPC_HP_FCM LPC.HP.FCM] || Facial Motor Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Facial -> Abducens)] ||
+||  ||  || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || Medial Vestibular Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLPC_MM_OCN LPC.MM.OCN] || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || Spinal Trigeminal Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SpinalTrigeminal -> Oculomotor)] ||
+||  ||  || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || Medial Vestibular Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLPC_HP_SVBN LPC.HP.SVBN] || Superior Vestibular Nuclei || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLPC_MM_TRH LPC.MM.TRH] || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || Medial Vestibular Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLPC_HP_SVBN LPC.HP.SVBN] || Superior Vestibular Nuclei || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLRC LRC] || [BrainRegionLPC_HP_ABD LPC.HP.ABD] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) (PPRF -> Abducens, abstract)] ||
+||  ||  || [BrainRegionMBA_MM_SC_DEEP MBA.MM.SC.DEEP] || Deep Superior Colliculus || nucleus-nucleus || [http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html Retina and superior colliculus targets (SC -> Abducens, abstract)] ||
+||  || [BrainRegionLPC_MM_OCN LPC.MM.OCN] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (RF -> OPN, abstract)] ||
+||  ||  || [BrainRegionHMA_MM_CJ HMA.MM.CJ] || Cajal Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SupraOculomotor -> Oculomotor, abstract)] ||
+||  ||  || [BrainRegionHMA_MM_RIMLF HMA.MM.RIMLF] || Rostral Interstitial Nucleus of MLF || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SupraOculomotor -> Oculomotor, abstract)] ||
+||  ||  || [BrainRegionMBA_MM_SC_DEEP MBA.MM.SC.DEEP] || Deep Superior Colliculus || nucleus-nucleus || [http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html Retina and superior colliculus targets (SC -> Oculomotor, abstract)] ||
+||  ||  || [BrainRegionVBA_MM_PT_SL VBA.MM.PT.SL] || Sublentiform Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLPC_MM_TRH LPC.MM.TRH] || [BrainRegionHMA_MM_CJ HMA.MM.CJ] || Cajal Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionMBA_MM_SC_DEEP MBA.MM.SC.DEEP] || Deep Superior Colliculus || nucleus-nucleus || [http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html Retina and superior colliculus targets (SC -> Trochlear, abstract)] ||
+|| <font color="red">Target</font> || || || || || ||
+|| [BrainAreaTSA TSA] || [BrainRegionLPC_FD_RT LPC.FD.RT] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || eye-edge-output || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Vision Components (EYE -> RT)] ||
+
+*External Outbound Region Connections:*
+
+|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| <font color="red">Cortical</font> || || || || || ||
+|| [BrainAreaSAA SAA] || [BrainRegionLPC_FD_RT LPC.FD.RT] || [BrainRegionVBA_FD_LGN VBA.FD.LGN] || Lateral Geniculate Nucleus || ganglion-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (Retina -> LGN)] ||
+||  ||  || [BrainRegionVBA_FD_PV_MPV VBA.FD.PV.MPV] || Medial Pulvinar || ganglion-nucleus || [http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html Retina and superior colliculus targets (Retina -> Pulvinar, abstract)] ||
+|| <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaACA ACA] || [BrainRegionLPC_FD_RT LPC.FD.RT] || [BrainRegionHTA_FD_HT_SCN HTA.FD.HT.SCN] || Suprachiasmatic Nucleus || ganglion-nucleus || [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm Targets of retina neurons (Retina -> HT, abstract)] ||
+|| [BrainAreaLRC LRC] || [BrainRegionLPC_FD_RT LPC.FD.RT] || [BrainRegionVBA_MM_PT_NOT VBA.MM.PT.NOT] || Nucleus of Optic Tract || ganglion-nucleus || [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm Targets of retina neurons (Retina -> Pretectum, abstract)] ||
+||  ||  || [BrainRegionVBA_MM_PT_PON VBA.MM.PT.PON] || Pretectal Olivary Nucleus || ganglion-nucleus || [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm Targets of retina neurons (Retina -> Pretectum, abstract)] ||
+||  ||  || [BrainRegionVBA_MM_PT_SL VBA.MM.PT.SL] || Sublentiform Nucleus || ganglion-nucleus || [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm Targets of retina neurons (Retina -> Pretectum, abstract)] ||
+||  ||  || [BrainRegionVBA_MM_SC_SUP VBA.MM.SC.SUP] || Superficial Superior Colliculus || ganglion-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (Retina -> SC, abstract)] ||
+|| <font color="red">Target</font> || || || || || ||
+|| [BrainAreaTSA TSA] || [BrainRegionLPC_HP_ABD LPC.HP.ABD] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || eye-muscle-rotate-vestibular || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Abducens -> EYE)] ||
+||  || [BrainRegionLPC_MM_OCN LPC.MM.OCN] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || eye-muscle-rotate-major-inferior-oblique || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Oculomotor -> EYE)] ||
+||  || [BrainRegionLPC_MM_TRH LPC.MM.TRH] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || eye-muscle-rotate-minor || [http://what-when-how.com/neuroscience/the-cranial-nerves-organization-of-the-central-nervous-system-part-4 Extraocular eye muscles (TRC -> EYE)] ||
+
+== MBE - Control Body Extensors ==
+
+
+<img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_MBE.dot.png" alt="unavailable">
+
+|| *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
+|| [BrainRegionLPC_SC_VH_VL LPC.SC.VH.VL] || Ventrolateral Nucleus || nucleus || LMD || Innervation of limb muscles || Upper and lower ||
+|| [BrainRegionLPC_SC_VH_VM LPC.SC.VH.VM] || Ventromedial Nucleus || nucleus || LMD || Innervation of trunk muscles || Upper and lower ||
+
+*Internal Region Connections:*
+
+|| *Source Region* || *Target Region* || *Type* || *Reference* ||
+
+*External Inbound Region Connections:*
+
+|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaLPC LPC] || [BrainRegionLPC_SC_VH_VL LPC.SC.VH.VL] || [BrainRegionLPC_HP_LVBN LPC.HP.LVBN] || Lateral Vestibular Nuclei || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLPC_SC_VH_VM LPC.SC.VH.VM] || [BrainRegionLPC_HP_LVBN LPC.HP.LVBN] || Lateral Vestibular Nuclei || nucleus-nucleus || (unknown reference) ||
+
+*External Outbound Region Connections:*
+
+|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaACA ACA] || [BrainRegionLPC_SC_VH_VL LPC.SC.VH.VL] || [BrainRegionHMA_HM_TGM_PE5 HMA.HM.TGM.PE5] || Peritrigeminal Nucleus || nucleus-nucleus || (unknown reference) ||
+|| <font color="red">Target</font> || || || || || ||
+|| [BrainAreaTEA TEA] || [BrainRegionLPC_SC_VH_VL LPC.SC.VH.VL] || [BrainRegionTARGET_TEA_HAND TARGET.TEA.HAND] || Hand || abductor-pollicis-longus-muscle || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_LEG TARGET.TEA.LEG] || Leg || extensor-digitorum-brevis-muscle || (unknown reference) ||
+||  || [BrainRegionLPC_SC_VH_VM LPC.SC.VH.VM] || [BrainRegionTARGET_TEA_GENITALIA TARGET.TEA.GENITALIA] || Genitalia || pubococcygeus-muscle || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_HAND TARGET.TEA.HAND] || Hand || posteriolateral-deltoid-muscle || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_LEG TARGET.TEA.LEG] || Leg || gluteus-maximus-muscle || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_NECK TARGET.TEA.NECK] || Neck || neck-obliquus-capitis-inferior-muscle || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_RECTUM TARGET.TEA.RECTUM] || Rectum || coccygeus-muscle || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_SPEAKER TARGET.TEA.SPEAKER] || Mouth speaker || larynx-thyrohyoid-muscle || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_TRUNK TARGET.TEA.TRUNK] || Trunk || semispinalis-capitis-muscle || (unknown reference) ||
+
+== MBF - Control Body Flexors ==
+
+
+<img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_MBF.dot.png" alt="unavailable">
+
+|| *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
+|| [BrainRegionLPC_SC_VH_PHR LPC.SC.VH.PHR] || Phrenic Nucleus || nucleus || LMD || Innervation of diaphragm || Projections from Nucleus Solitarius ||
+|| [BrainRegionLPC_SC_VH_PL LPC.SC.VH.PL] || Posterolateral Nucleus || nucleus || LMD || Innervation of limb muscles || Upper and lower proximal muscles ||
+|| [BrainRegionLPC_SC_VH_PM LPC.SC.VH.PM] || Posteromedial Nucleus || nucleus || LMD || Innervation of trunk muscles || Upper and lower ||
+|| [BrainRegionLPC_SC_VH_RPL LPC.SC.VH.RPL] || Retroposterolateral Nucleus || nucleus || LMD || Innervation of limbs muscles || Fingers ||
+|| [BrainRegionLPC_SC_VH_SAN LPC.SC.VH.SAN] || Spinal Accessory Nucleus || nucleus || LMD || Control of neck || Rotate head, continuus from AMB ||
+
+*Internal Region Connections:*
+
+|| *Source Region* || *Target Region* || *Type* || *Reference* ||
+
+*External Inbound Region Connections:*
+
+|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| <font color="red">Cortical</font> || || || || || ||
+|| [BrainAreaMAA MAA] || [BrainRegionLPC_SC_VH_PL LPC.SC.VH.PL] || [BrainRegionMCA_NC_MC MCA.NC.MC] || Motor Cortex || neocortex-nucleus || (unknown reference) ||
+||  || [BrainRegionLPC_SC_VH_PM LPC.SC.VH.PM] || [BrainRegionMCA_NC_MC MCA.NC.MC] || Motor Cortex || neocortex-nucleus || (unknown reference) ||
+||  || [BrainRegionLPC_SC_VH_RPL LPC.SC.VH.RPL] || [BrainRegionMCA_NC_MC MCA.NC.MC] || Motor Cortex || neocortex-nucleus || (unknown reference) ||
+|| <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaLPC LPC] || [BrainRegionLPC_SC_VH_PM LPC.SC.VH.PM] || [BrainRegionLPC_HP_LVBN LPC.HP.LVBN] || Lateral Vestibular Nuclei || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLPC_SC_VH_SAN LPC.SC.VH.SAN] || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || Medial Vestibular Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLRC LRC] || [BrainRegionLPC_SC_VH_SAN LPC.SC.VH.SAN] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (RF -> SpinalCord, abstract)] ||
+||  ||  || [BrainRegionMBA_MM_SC_DEEP MBA.MM.SC.DEEP] || Deep Superior Colliculus || nucleus-nucleus || (unknown reference) ||
+
+*External Outbound Region Connections:*
+
+|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| <font color="red">Target</font> || || || || || ||
+|| [BrainAreaTEA TEA] || [BrainRegionLPC_SC_VH_PHR LPC.SC.VH.PHR] || [BrainRegionTARGET_TEA_LUNG TARGET.TEA.LUNG] || Lung || thoracic-diaphragm || (unknown reference) ||
+||  || [BrainRegionLPC_SC_VH_PL LPC.SC.VH.PL] || [BrainRegionTARGET_TEA_HAND TARGET.TEA.HAND] || Hand || biceps-muscle || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_LEG TARGET.TEA.LEG] || Leg || gastrocnemius-muscle || (unknown reference) ||
+||  || [BrainRegionLPC_SC_VH_PM LPC.SC.VH.PM] || [BrainRegionTARGET_TEA_GENITALIA TARGET.TEA.GENITALIA] || Genitalia || bulbospongiosus-muscle || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_HAND TARGET.TEA.HAND] || Hand || anterior-deltoid-muscle || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_LEG TARGET.TEA.LEG] || Leg || leg-adductor-brevis-muscle || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_RECTUM TARGET.TEA.RECTUM] || Rectum || corrugator-cutis-ani-muscle || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_TRUNK TARGET.TEA.TRUNK] || Trunk || trunk-abdominal-external-oblique-muscle || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_URETER TARGET.TEA.URETER] || Ureter || external-urethral-sphincter-female || (unknown reference) ||
+||  || [BrainRegionLPC_SC_VH_RPL LPC.SC.VH.RPL] || [BrainRegionTARGET_TEA_HAND TARGET.TEA.HAND] || Hand || abductor-digiti-minimi-muscle || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_LEG TARGET.TEA.LEG] || Leg || flexor-longus-digitorum-muscle || (unknown reference) ||
+||  || [BrainRegionLPC_SC_VH_SAN LPC.SC.VH.SAN] || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || Mouth feeder || geniohyoid-muscle || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_NECK TARGET.TEA.NECK] || Neck || neck-longus-capitis || (unknown reference) ||
+
+== MF - Control Face Muscles ==
+
+
+<img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_MF.dot.png" alt="unavailable">
+
+|| *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
+|| [BrainRegionLPC_HM_HYG LPC.HM.HYG] || Hypoglossal Motor Nucleus || nucleus || LMD || Control of tongue ||  ||
+|| [BrainRegionLPC_HP_FCM LPC.HP.FCM] || Facial Motor Nucleus || nucleus || LMD || Control of face || Pons ||
+|| [BrainRegionLPC_HP_PTP_TRM LPC.HP.PTP.TRM] || Trigeminal Motor Nucleus || nucleus || LMD || Muscles of first branchial arch || Pontine Nuclei, lower face and jaw control, Motor<BR>Nucleus of V n. ||
+
+*Internal Region Connections:*
+
+|| *Source Region* || *Target Region* || *Type* || *Reference* ||
+
+*External Inbound Region Connections:*
+
+|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaLCA LCA] || [BrainRegionLPC_HP_FCM LPC.HP.FCM] || [BrainRegionHMA_HP_PRF_PDT HMA.HP.PRF.PDT] || Pontine Reticulotegmental Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorVII, abstract)] ||
+|| [BrainAreaLPC LPC] || [BrainRegionLPC_HP_PTP_TRM LPC.HP.PTP.TRM] || [BrainRegionLPC_MM_MSTR LPC.MM.MSTR] || Mesencephalic Trigeminal Nucleus || ganglion-nucleus || (unknown reference) ||
+|| [BrainAreaLRC LRC] || [BrainRegionLPC_HM_HYG LPC.HM.HYG] || [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || Caudal Pontine Reticular Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> NucleusXII, abstract)] ||
+||  ||  || [BrainRegionHMA_HP_PRF_GCR HMA.HP.PRF.GCR] || Gigantocellular Reticular Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLPC_HP_FCM LPC.HP.FCM] || [BrainRegionBMA_HP_PRF_PVR BMA.HP.PRF.PVR] || Parvocellular Reticular Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorVII, abstract)] ||
+||  ||  || [BrainRegionHMA_HM_TGM_PA5 HMA.HM.TGM.PA5] || Paratrigeminal Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || Caudal Pontine Reticular Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorVII, abstract)] ||
+||  || [BrainRegionLPC_HP_PTP_TRM LPC.HP.PTP.TRM] || [BrainRegionBMA_HP_PRF_PVR BMA.HP.PRF.PVR] || Parvocellular Reticular Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorV, abstract)] ||
+||  ||  || [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || Caudal Pontine Reticular Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorV, abstract)] ||
+
+*External Outbound Region Connections:*
+
+|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaLPC LPC] || [BrainRegionLPC_HP_FCM LPC.HP.FCM] || [BrainRegionLPC_HP_ABD LPC.HP.ABD] || Abducens Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Facial -> Abducens)] ||
+|| <font color="red">Target</font> || || || || || ||
+|| [BrainAreaTEA TEA] || [BrainRegionLPC_HM_HYG LPC.HM.HYG] || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || Mouth feeder || chondroglossus-muscle || (unknown reference) ||
+||  || [BrainRegionLPC_HP_FCM LPC.HP.FCM] || [BrainRegionTARGET_TEA_FACE TARGET.TEA.FACE] || Face || depressor-anguli-oris-muscle || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || Mouth feeder || buccinator-muscle || (unknown reference) ||
+||  || [BrainRegionLPC_HP_PTP_TRM LPC.HP.PTP.TRM] || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || Mouth feeder || digastric-muscle-trigeminal || (unknown reference) ||
+|| [BrainAreaTSA TSA] || [BrainRegionLPC_HP_FCM LPC.HP.FCM] || [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || Ear || ear-anterior-auricular-muscle || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || eye-muscle-close-conscious-lacrimal || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TSA_NOSE TARGET.TSA.NOSE] || Nose || nose-depressor-septi-nasi || (unknown reference) ||
+||  || [BrainRegionLPC_HP_PTP_TRM LPC.HP.PTP.TRM] || [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || Ear || ear-tensor-tympani-muscle || (unknown reference) ||
+
+== SA - Auditory Sense ==
+
+
+<img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_SA.dot.png" alt="unavailable" height=height=400>
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
 || [BrainRegionLPC_HM_DCOCH LPC.HM.DCOCH] || Dorsal Cochlear Nucleus || nucleus || LSC || Analyzes quality of sound, picks apart tiny frequency differences between close<BR>sounds ||  ||
@@ -52,99 +292,15 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_LAC.dot.png
 || <font color="red">Cortical</font> || || || || || ||
 || [BrainAreaSAA SAA] || [BrainRegionLPC_MM_CIC LPC.MM.CIC] || [BrainRegionABA_FD_TH_MGB ABA.FD.TH.MGB] || Medial Geniculate Body || nucleus-nucleus || [http://www.benbest.com/science/anatmind/anatmd6.html Auditory System in Brain (IC -> MGB, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaMRA MRA] || [BrainRegionLPC_HM_VCOCH LPC.HM.VCOCH] || [BrainRegionHMA_MM_CJ HMA.MM.CJ] || Cajal Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLRC LRC] || [BrainRegionLPC_HM_VCOCH LPC.HM.VCOCH] || [BrainRegionHMA_MM_CJ HMA.MM.CJ] || Cajal Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionLPC_MM_CIC LPC.MM.CIC] || [BrainRegionABA_MM_EIC ABA.MM.EIC] || External Nucleus of Inferior Colliculus || nucleus-nucleus || [http://lifeboat.com/ex/law.of.accelerating.returns Five Parallel Auditory Pathways (ICC -> ICx, abstract)] ||
 || <font color="red">Target</font> || || || || || ||
 || [BrainAreaTSA TSA] || [BrainRegionLPC_MM_SOC LPC.MM.SOC] || [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || Ear || ear-outer-hair-cells || [http://lifeboat.com/ex/law.of.accelerating.returns Five Parallel Auditory Pathways (VNTB -> Cochlea)] ||
 
-== Control Body Extensors ==
+== SBL - Lower Body Conscious Sensations ==
 
 
-http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_LBE.dot.png
-
-|| *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionLPC_SC_VH_VL LPC.SC.VH.VL] || Ventrolateral Nucleus || nucleus || LMD || Innervation of limb muscles || Upper and lower ||
-|| [BrainRegionLPC_SC_VH_VM LPC.SC.VH.VM] || Ventromedial Nucleus || nucleus || LMD || Innervation of trunk muscles || Upper and lower ||
-
-*Internal Region Connections:*
-
-|| *Source Region* || *Target Region* || *Type* || *Reference* ||
-
-*External Inbound Region Connections:*
-
-|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
-|| <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaLPC LPC] || [BrainRegionLPC_SC_VH_VL LPC.SC.VH.VL] || [BrainRegionLPC_HP_LVBN LPC.HP.LVBN] || Lateral Vestibular Nuclei || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionLPC_SC_VH_VM LPC.SC.VH.VM] || [BrainRegionLPC_HP_LVBN LPC.HP.LVBN] || Lateral Vestibular Nuclei || nucleus-nucleus || (unknown reference) ||
-
-*External Outbound Region Connections:*
-
-|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
-|| <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaACA ACA] || [BrainRegionLPC_SC_VH_VL LPC.SC.VH.VL] || [BrainRegionHMA_HM_TGM_PE5 HMA.HM.TGM.PE5] || Peritrigeminal Nucleus || nucleus-nucleus || (unknown reference) ||
-|| <font color="red">Target</font> || || || || || ||
-|| [BrainAreaTEA TEA] || [BrainRegionLPC_SC_VH_VL LPC.SC.VH.VL] || [BrainRegionTARGET_TEA_HAND TARGET.TEA.HAND] || Hand || abductor-pollicis-longus-muscle || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_LEG TARGET.TEA.LEG] || Leg || extensor-digitorum-brevis-muscle || (unknown reference) ||
-||  || [BrainRegionLPC_SC_VH_VM LPC.SC.VH.VM] || [BrainRegionTARGET_TEA_GENITALIA TARGET.TEA.GENITALIA] || Genitalia || pubococcygeus-muscle || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_HAND TARGET.TEA.HAND] || Hand || posteriolateral-deltoid-muscle || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_LEG TARGET.TEA.LEG] || Leg || gluteus-maximus-muscle || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_NECK TARGET.TEA.NECK] || Neck || neck-obliquus-capitis-inferior-muscle || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_RECTUM TARGET.TEA.RECTUM] || Rectum || coccygeus-muscle || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_SPEAKER TARGET.TEA.SPEAKER] || Mouth speaker || larynx-thyrohyoid-muscle || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_TRUNK TARGET.TEA.TRUNK] || Trunk || semispinalis-capitis-muscle || (unknown reference) ||
-
-== Control Body Flexors ==
-
-
-http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_LBF.dot.png
-
-|| *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionLPC_SC_VH_PHR LPC.SC.VH.PHR] || Phrenic Nucleus || nucleus || LMD || Innervation of diaphragm || Projections from Nucleus Solitarius ||
-|| [BrainRegionLPC_SC_VH_PL LPC.SC.VH.PL] || Posterolateral Nucleus || nucleus || LMD || Innervation of limb muscles || Upper and lower proximal muscles ||
-|| [BrainRegionLPC_SC_VH_PM LPC.SC.VH.PM] || Posteromedial Nucleus || nucleus || LMD || Innervation of trunk muscles || Upper and lower ||
-|| [BrainRegionLPC_SC_VH_RPL LPC.SC.VH.RPL] || Retroposterolateral Nucleus || nucleus || LMD || Innervation of limbs muscles || Fingers ||
-|| [BrainRegionLPC_SC_VH_SAN LPC.SC.VH.SAN] || Spinal Accessory Nucleus || nucleus || LMD || Control of neck || Rotate head, continuus from AMB ||
-
-*Internal Region Connections:*
-
-|| *Source Region* || *Target Region* || *Type* || *Reference* ||
-
-*External Inbound Region Connections:*
-
-|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
-|| <font color="red">Cortical</font> || || || || || ||
-|| [BrainAreaMAA MAA] || [BrainRegionLPC_SC_VH_PL LPC.SC.VH.PL] || [BrainRegionMCA_NC_MC MCA.NC.MC] || Motor Cortex || neocortex-nucleus || (unknown reference) ||
-||  || [BrainRegionLPC_SC_VH_PM LPC.SC.VH.PM] || [BrainRegionMCA_NC_MC MCA.NC.MC] || Motor Cortex || neocortex-nucleus || (unknown reference) ||
-||  || [BrainRegionLPC_SC_VH_RPL LPC.SC.VH.RPL] || [BrainRegionMCA_NC_MC MCA.NC.MC] || Motor Cortex || neocortex-nucleus || (unknown reference) ||
-|| <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaLPC LPC] || [BrainRegionLPC_SC_VH_PM LPC.SC.VH.PM] || [BrainRegionLPC_HP_LVBN LPC.HP.LVBN] || Lateral Vestibular Nuclei || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionLPC_SC_VH_SAN LPC.SC.VH.SAN] || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || Medial Vestibular Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaMRA MRA] || [BrainRegionLPC_SC_VH_RPL LPC.SC.VH.RPL] || [BrainRegionHMA_HP_PRF_GCR HMA.HP.PRF.GCR] || Gigantocellular Reticular Nucleus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionLPC_SC_VH_SAN LPC.SC.VH.SAN] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (RF -> SpinalCord, abstract)] ||
-||  ||  || [BrainRegionMBA_MM_SC_DEEP MBA.MM.SC.DEEP] || Deep Superior Colliculus || nucleus-nucleus || (unknown reference) ||
-
-*External Outbound Region Connections:*
-
-|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
-|| <font color="red">Target</font> || || || || || ||
-|| [BrainAreaTEA TEA] || [BrainRegionLPC_SC_VH_PHR LPC.SC.VH.PHR] || [BrainRegionTARGET_TEA_LUNG TARGET.TEA.LUNG] || Lung || thoracic-diaphragm || (unknown reference) ||
-||  || [BrainRegionLPC_SC_VH_PL LPC.SC.VH.PL] || [BrainRegionTARGET_TEA_HAND TARGET.TEA.HAND] || Hand || biceps-muscle || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_LEG TARGET.TEA.LEG] || Leg || gastrocnemius-muscle || (unknown reference) ||
-||  || [BrainRegionLPC_SC_VH_PM LPC.SC.VH.PM] || [BrainRegionTARGET_TEA_GENITALIA TARGET.TEA.GENITALIA] || Genitalia || bulbospongiosus-muscle || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_HAND TARGET.TEA.HAND] || Hand || anterior-deltoid-muscle || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_LEG TARGET.TEA.LEG] || Leg || leg-adductor-brevis-muscle || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_RECTUM TARGET.TEA.RECTUM] || Rectum || corrugator-cutis-ani-muscle || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_TRUNK TARGET.TEA.TRUNK] || Trunk || trunk-abdominal-external-oblique-muscle || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_URETER TARGET.TEA.URETER] || Ureter || external-urethral-sphincter-female || (unknown reference) ||
-||  || [BrainRegionLPC_SC_VH_RPL LPC.SC.VH.RPL] || [BrainRegionTARGET_TEA_HAND TARGET.TEA.HAND] || Hand || abductor-digiti-minimi-muscle || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_LEG TARGET.TEA.LEG] || Leg || flexor-longus-digitorum-muscle || (unknown reference) ||
-||  || [BrainRegionLPC_SC_VH_SAN LPC.SC.VH.SAN] || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || Mouth feeder || geniohyoid-muscle || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_NECK TARGET.TEA.NECK] || Neck || neck-longus-capitis || (unknown reference) ||
-
-== Lower Body Conscious Sensations ==
-
-
-http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_LBL.dot.png
+<img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_SBL.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
 || [BrainRegionLPC_HM_GR LPC.HM.GR] || Gracile Nucleus || nucleus || LSM || Carry epicritic, kinesthetic, and conscious proprioceptive information from lower<BR>body ||  ||
@@ -185,10 +341,10 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_LBL.dot.png
 ||  ||  || [BrainRegionBMA_SC_PH_NP BMA.SC.PH.NP] || Proprius Nucleus || ganglion-nucleus || (unknown reference) ||
 || [BrainAreaMCA MCA] || [BrainRegionLPC_SC_PH_LMG LPC.SC.PH.LMG] || [BrainRegionPHA_FD_TH_LI PHA.FD.TH.LI] || Limitans Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
 
-== Upper Body Conscious Sensations ==
+== SBU - Upper Body Conscious Sensations ==
 
 
-http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_LBU.dot.png
+<img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_SBU.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
 || [BrainRegionLPC_HM_CU LPC.HM.CU] || Cuneate Nucleus || nucleus || LSM || Carry fine touch and proprioceptive information from upper body ||  ||
@@ -235,110 +391,10 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_LBU.dot.png
 || [BrainAreaLPC LPC] || [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG] || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || Spinal Trigeminal Nucleus || ganglion-nucleus || (unknown reference) ||
 || [BrainAreaMCA MCA] || [BrainRegionLPC_SC_PH_UMG LPC.SC.PH.UMG] || [BrainRegionPHA_FD_TH_LI PHA.FD.TH.LI] || Limitans Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
 
-== Vestibular ==
+== SF - Sensory Face ==
 
 
-http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_LEC.dot.png
-
-|| *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionLPC_HP_IVBN LPC.HP.IVBN] || Inferior Vestibular Nuclei || nucleus || LSM || maintain balance, coordinating postural adjustments || to CR; to oculomotor, trochlear, abducens,<BR>accessory oculomotor ||
-|| [BrainRegionLPC_HP_LVBN LPC.HP.LVBN] || Lateral Vestibular Nuclei || nucleus || LSM || controlling body position || to sacral, ipsilateral - lateral vestibulospinal<BR>tract ||
-|| [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || Medial Vestibular Nucleus || nucleus || LSM || controlling head position, integrate head and eye movements; maintain balance,<BR>coordinating postural adjustments; coordination for horizontal eye movements || to thoracic, bilateral - medial vestibulospinal<BR>tract in MLF; to CR; to oculomotor, trochlear,<BR>abducens, accessory oculomotor ||
-|| [BrainRegionLPC_HP_SVBN LPC.HP.SVBN] || Superior Vestibular Nuclei || nucleus || LSM || conscious perception of movement and gravity || to oculomotor, trochlear, abducens, accessory<BR>oculomotor; to VPI ||
-|| [BrainRegionLPC_PN_SG_CVB LPC.PN.SG.CVB] || Vestibular Ganglion - Semicircular Canal Neurons || sensory ganglion || LSC || Relay head movements in 3D coords ||  ||
-|| [BrainRegionLPC_PN_SG_SVB LPC.PN.SG.SVB] || Vestibular Ganglion - Saccule Neurons || sensory ganglion || LSC || Relay vertical linear acceleration ||  ||
-|| [BrainRegionLPC_PN_SG_UVB LPC.PN.SG.UVB] || Vestibular Ganglion - Utricle Neurons || sensory ganglion || LSC || Relay horizontal linear acceleration ||  ||
-
-*Internal Region Connections:*
-
-|| *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| [BrainRegionLPC_PN_SG_CVB LPC.PN.SG.CVB] || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || ganglion-nucleus || (unknown reference) ||
-||  || [BrainRegionLPC_HP_SVBN LPC.HP.SVBN] || ganglion-nucleus || (unknown reference) ||
-|| [BrainRegionLPC_PN_SG_SVB LPC.PN.SG.SVB] || [BrainRegionLPC_HP_IVBN LPC.HP.IVBN] || ganglion-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) (VestibularGanglion -> VestibularNuclei, abstract)] ||
-||  || [BrainRegionLPC_HP_LVBN LPC.HP.LVBN] || ganglion-nucleus || (unknown reference) ||
-|| [BrainRegionLPC_PN_SG_UVB LPC.PN.SG.UVB] || [BrainRegionLPC_HP_LVBN LPC.HP.LVBN] || ganglion-nucleus || (unknown reference) ||
-
-*External Inbound Region Connections:*
-
-|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
-|| <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaLCA LCA] || [BrainRegionLPC_HP_IVBN LPC.HP.IVBN] || [BrainRegionBMA_SC_IZ_CCV BMA.SC.IZ.CCV] || Central Cervical Nucleus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionLPC_HP_LVBN LPC.HP.LVBN] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (CR -> Vestibular)] ||
-||  || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || Prepositus Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (NPRP -> MVSN)] ||
-|| [BrainAreaMRA MRA] || [BrainRegionLPC_HP_IVBN LPC.HP.IVBN] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionMBA_MM_SC_DEEP MBA.MM.SC.DEEP] || Deep Superior Colliculus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || [BrainRegionMBA_MM_SC_DEEP MBA.MM.SC.DEEP] || Deep Superior Colliculus || nucleus-nucleus || (unknown reference) ||
-|| <font color="red">Target</font> || || || || || ||
-|| [BrainAreaTSA TSA] || [BrainRegionLPC_PN_SG_CVB LPC.PN.SG.CVB] || [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || Ear || ear-semicircular-canals || (unknown reference) ||
-||  || [BrainRegionLPC_PN_SG_SVB LPC.PN.SG.SVB] || [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || Ear || ear-saccule || (unknown reference) ||
-||  || [BrainRegionLPC_PN_SG_UVB LPC.PN.SG.UVB] || [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || Ear || ear-utricle || (unknown reference) ||
-
-*External Outbound Region Connections:*
-
-|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
-|| <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaLCA LCA] || [BrainRegionLPC_HP_IVBN LPC.HP.IVBN] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || Prepositus Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (MVSN -> NPRP)] ||
-|| [BrainAreaLPC LPC] || [BrainRegionLPC_HP_LVBN LPC.HP.LVBN] || [BrainRegionLPC_SC_VH_PM LPC.SC.VH.PM] || Posteromedial Nucleus || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionLPC_SC_VH_VL LPC.SC.VH.VL] || Ventrolateral Nucleus || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionLPC_SC_VH_VM LPC.SC.VH.VM] || Ventromedial Nucleus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || [BrainRegionLPC_HP_ABD LPC.HP.ABD] || Abducens Nucleus || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionLPC_MM_OCN LPC.MM.OCN] || Oculomotor Nucleus || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionLPC_MM_TRH LPC.MM.TRH] || Trochlear Nucleus || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionLPC_SC_VH_SAN LPC.SC.VH.SAN] || Spinal Accessory Nucleus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionLPC_HP_SVBN LPC.HP.SVBN] || [BrainRegionLPC_MM_OCN LPC.MM.OCN] || Oculomotor Nucleus || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionLPC_MM_TRH LPC.MM.TRH] || Trochlear Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaMRA MRA] || [BrainRegionLPC_HP_IVBN LPC.HP.IVBN] || [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || Caudal Pontine Reticular Nucleus || nucleus-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) (VestibularNuclei -> PPRF, abstract)] ||
-||  || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || [BrainRegionBMA_MM_DSCH BMA.MM.DSCH] || Darkschewitsch Nucleus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionLPC_HP_SVBN LPC.HP.SVBN] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || Suprageniculate Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
-
-== Control Face Muscles ==
-
-
-http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_LFM.dot.png
-
-|| *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionLPC_HM_HYG LPC.HM.HYG] || Hypoglossal Motor Nucleus || nucleus || LMD || Control of tongue ||  ||
-|| [BrainRegionLPC_HP_FCM LPC.HP.FCM] || Facial Motor Nucleus || nucleus || LMD || Control of face || Pons ||
-|| [BrainRegionLPC_HP_PTP_TRM LPC.HP.PTP.TRM] || Trigeminal Motor Nucleus || nucleus || LMD || Muscles of first branchial arch || Pontine Nuclei, lower face and jaw control, Motor<BR>Nucleus of V n. ||
-
-*Internal Region Connections:*
-
-|| *Source Region* || *Target Region* || *Type* || *Reference* ||
-
-*External Inbound Region Connections:*
-
-|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
-|| <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaLCA LCA] || [BrainRegionLPC_HP_FCM LPC.HP.FCM] || [BrainRegionHMA_HP_PRF_PDT HMA.HP.PRF.PDT] || Pontine Reticulotegmental Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorVII, abstract)] ||
-|| [BrainAreaLPC LPC] || [BrainRegionLPC_HP_PTP_TRM LPC.HP.PTP.TRM] || [BrainRegionLPC_MM_MSTR LPC.MM.MSTR] || Mesencephalic Trigeminal Nucleus || ganglion-nucleus || (unknown reference) ||
-|| [BrainAreaMRA MRA] || [BrainRegionLPC_HM_HYG LPC.HM.HYG] || [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || Caudal Pontine Reticular Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> NucleusXII, abstract)] ||
-||  || [BrainRegionLPC_HP_FCM LPC.HP.FCM] || [BrainRegionBMA_HP_PRF_PVR BMA.HP.PRF.PVR] || Parvocellular Reticular Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorVII, abstract)] ||
-||  ||  || [BrainRegionHMA_HM_TGM_PA5 HMA.HM.TGM.PA5] || Paratrigeminal Nucleus || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || Caudal Pontine Reticular Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorVII, abstract)] ||
-||  || [BrainRegionLPC_HP_PTP_TRM LPC.HP.PTP.TRM] || [BrainRegionBMA_HP_PRF_PVR BMA.HP.PRF.PVR] || Parvocellular Reticular Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorV, abstract)] ||
-||  ||  || [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || Caudal Pontine Reticular Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorV, abstract)] ||
-
-*External Outbound Region Connections:*
-
-|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
-|| <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaLPC LPC] || [BrainRegionLPC_HP_FCM LPC.HP.FCM] || [BrainRegionLPC_HP_ABD LPC.HP.ABD] || Abducens Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Facial -> Abducens)] ||
-|| <font color="red">Target</font> || || || || || ||
-|| [BrainAreaTEA TEA] || [BrainRegionLPC_HM_HYG LPC.HM.HYG] || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || Mouth feeder || chondroglossus-muscle || (unknown reference) ||
-||  || [BrainRegionLPC_HP_FCM LPC.HP.FCM] || [BrainRegionTARGET_TEA_FACE TARGET.TEA.FACE] || Face || depressor-anguli-oris-muscle || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || Mouth feeder || buccinator-muscle || (unknown reference) ||
-||  || [BrainRegionLPC_HP_PTP_TRM LPC.HP.PTP.TRM] || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || Mouth feeder || digastric-muscle-trigeminal || (unknown reference) ||
-|| [BrainAreaTSA TSA] || [BrainRegionLPC_HP_FCM LPC.HP.FCM] || [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || Ear || ear-anterior-auricular-muscle || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || eye-muscle-close-conscious-lacrimal || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TSA_NOSE TARGET.TSA.NOSE] || Nose || nose-depressor-septi-nasi || (unknown reference) ||
-||  || [BrainRegionLPC_HP_PTP_TRM LPC.HP.PTP.TRM] || [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || Ear || ear-tensor-tympani-muscle || (unknown reference) ||
-
-== Sensory Face ==
-
-
-http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_LFS.dot.png
+<img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_SF.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
 || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || Spinal Trigeminal Nucleus || nucleus || LSM || Discriminative sensation and light touch of face, conscious proprioception || Pontine Nuclei, part of cranial nerve nuclei, ear ||
@@ -380,12 +436,12 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_LFS.dot.png
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLPC LPC] || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || [BrainRegionLPC_MM_OCN LPC.MM.OCN] || Oculomotor Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SpinalTrigeminal -> Oculomotor)] ||
 ||  || [BrainRegionLPC_MM_MSTR LPC.MM.MSTR] || [BrainRegionLPC_HP_PTP_TRM LPC.HP.PTP.TRM] || Trigeminal Motor Nucleus || ganglion-nucleus || (unknown reference) ||
-|| [BrainAreaMRA MRA] || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || [BrainRegionHMA_HP_PRF_GCR HMA.HP.PRF.GCR] || Gigantocellular Reticular Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLRC LRC] || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || [BrainRegionHMA_HP_PRF_GCR HMA.HP.PRF.GCR] || Gigantocellular Reticular Nucleus || nucleus-nucleus || (unknown reference) ||
 
-== Taste and Smell Senses ==
+== STS - Taste and Smell Senses ==
 
 
-http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_LTC.dot.png
+<img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_STS.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
 || [BrainRegionLPC_FT_AON LPC.FT.AON] || Anterior Olfactory Nucleus || nucleus || LSM || Regulate odor information flow ||  ||
@@ -441,62 +497,6 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_LTC.dot.png
 ||  || [BrainRegionLPC_PN_SG_PET LPC.PN.SG.PET] || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || Spinal Trigeminal Nucleus || ganglion-nucleus || (unknown reference) ||
 || [BrainAreaMCA MCA] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || [BrainRegionBMA_HP_PB BMA.HP.PB] || Parabrachial Nucleus || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (SOL -> PB)] ||
 || [BrainAreaMMA MMA] || [BrainRegionLPC_FT_AON LPC.FT.AON] || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || Piriform Cortex || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S1571064507000243 KIV model of cortico-hippocampal formation with subcortical projections for motor actions (AON -> PC)] ||
-
-== Vision ==
-
-
-http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_LVC.dot.png
-
-|| *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionLPC_FD_RT LPC.FD.RT] || Retina || nucleus || LSC || Spatial decorrelation through center surround inhibition || 100:1 cones/rods to ganglion cells aggregation,<BR>edge extraction ||
-|| [BrainRegionLPC_HP_ABD LPC.HP.ABD] || Abducens Nucleus || nucleus || LMD || Conjugated movements of both eyes || Motoneurons - to muscle, interneurons - to OCN ||
-|| [BrainRegionLPC_MM_OCN LPC.MM.OCN] || Oculomotor Nucleus || nucleus || LMD || Change Eye Direction || Muscle nucleus ||
-|| [BrainRegionLPC_MM_TRH LPC.MM.TRH] || Trochlear Nucleus || nucleus || LMD || Control superior oblique muscles of eyes || Muscle nucleus, change eye direction ||
-
-*Internal Region Connections:*
-
-|| *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| [BrainRegionLPC_HP_ABD LPC.HP.ABD] || [BrainRegionLPC_MM_OCN LPC.MM.OCN] || nucleus-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) (Abducens -> Oculomotor)] ||
-
-*External Inbound Region Connections:*
-
-|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
-|| <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaLPC LPC] || [BrainRegionLPC_HP_ABD LPC.HP.ABD] || [BrainRegionLPC_HP_FCM LPC.HP.FCM] || Facial Motor Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Facial -> Abducens)] ||
-||  ||  || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || Medial Vestibular Nucleus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionLPC_MM_OCN LPC.MM.OCN] || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || Spinal Trigeminal Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SpinalTrigeminal -> Oculomotor)] ||
-||  ||  || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || Medial Vestibular Nucleus || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionLPC_HP_SVBN LPC.HP.SVBN] || Superior Vestibular Nuclei || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionLPC_MM_TRH LPC.MM.TRH] || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || Medial Vestibular Nucleus || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionLPC_HP_SVBN LPC.HP.SVBN] || Superior Vestibular Nuclei || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaMRA MRA] || [BrainRegionLPC_HP_ABD LPC.HP.ABD] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) (PPRF -> Abducens, abstract)] ||
-||  ||  || [BrainRegionMBA_MM_SC_DEEP MBA.MM.SC.DEEP] || Deep Superior Colliculus || nucleus-nucleus || [http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html Retina and superior colliculus targets (SC -> Abducens, abstract)] ||
-||  || [BrainRegionLPC_MM_OCN LPC.MM.OCN] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (RF -> OPN, abstract)] ||
-||  ||  || [BrainRegionHMA_MM_CJ HMA.MM.CJ] || Cajal Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SupraOculomotor -> Oculomotor, abstract)] ||
-||  ||  || [BrainRegionHMA_MM_RIMLF HMA.MM.RIMLF] || Rostral Interstitial Nucleus of MLF || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SupraOculomotor -> Oculomotor, abstract)] ||
-||  ||  || [BrainRegionMBA_MM_SC_DEEP MBA.MM.SC.DEEP] || Deep Superior Colliculus || nucleus-nucleus || [http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html Retina and superior colliculus targets (SC -> Oculomotor, abstract)] ||
-||  ||  || [BrainRegionVBA_MM_PT_SL VBA.MM.PT.SL] || Sublentiform Nucleus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionLPC_MM_TRH LPC.MM.TRH] || [BrainRegionHMA_MM_CJ HMA.MM.CJ] || Cajal Nucleus || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionMBA_MM_SC_DEEP MBA.MM.SC.DEEP] || Deep Superior Colliculus || nucleus-nucleus || [http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html Retina and superior colliculus targets (SC -> Trochlear, abstract)] ||
-|| <font color="red">Target</font> || || || || || ||
-|| [BrainAreaTSA TSA] || [BrainRegionLPC_FD_RT LPC.FD.RT] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || eye-edge-output || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Vision Components (EYE -> RT)] ||
-
-*External Outbound Region Connections:*
-
-|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
-|| <font color="red">Cortical</font> || || || || || ||
-|| [BrainAreaSAA SAA] || [BrainRegionLPC_FD_RT LPC.FD.RT] || [BrainRegionVBA_FD_LGN VBA.FD.LGN] || Lateral Geniculate Nucleus || ganglion-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (Retina -> LGN)] ||
-||  ||  || [BrainRegionVBA_FD_PV_MPV VBA.FD.PV.MPV] || Medial Pulvinar || ganglion-nucleus || [http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html Retina and superior colliculus targets (Retina -> Pulvinar, abstract)] ||
-|| <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaACA ACA] || [BrainRegionLPC_FD_RT LPC.FD.RT] || [BrainRegionHTA_FD_HT_SCN HTA.FD.HT.SCN] || Suprachiasmatic Nucleus || ganglion-nucleus || [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm Targets of retina neurons (Retina -> HT, abstract)] ||
-|| [BrainAreaMRA MRA] || [BrainRegionLPC_FD_RT LPC.FD.RT] || [BrainRegionVBA_MM_PT_NOT VBA.MM.PT.NOT] || Nucleus of Optic Tract || ganglion-nucleus || [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm Targets of retina neurons (Retina -> Pretectum, abstract)] ||
-||  ||  || [BrainRegionVBA_MM_PT_PON VBA.MM.PT.PON] || Pretectal Olivary Nucleus || ganglion-nucleus || [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm Targets of retina neurons (Retina -> Pretectum, abstract)] ||
-||  ||  || [BrainRegionVBA_MM_PT_SL VBA.MM.PT.SL] || Sublentiform Nucleus || ganglion-nucleus || [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm Targets of retina neurons (Retina -> Pretectum, abstract)] ||
-||  ||  || [BrainRegionVBA_MM_SC_SUP VBA.MM.SC.SUP] || Superficial Superior Colliculus || ganglion-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (Retina -> SC, abstract)] ||
-|| <font color="red">Target</font> || || || || || ||
-|| [BrainAreaTSA TSA] || [BrainRegionLPC_HP_ABD LPC.HP.ABD] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || eye-muscle-rotate-vestibular || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Abducens -> EYE)] ||
-||  || [BrainRegionLPC_MM_OCN LPC.MM.OCN] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || eye-muscle-rotate-major-inferior-oblique || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Oculomotor -> EYE)] ||
-||  || [BrainRegionLPC_MM_TRH LPC.MM.TRH] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || eye-muscle-rotate-minor || [http://what-when-how.com/neuroscience/the-cranial-nerves-organization-of-the-central-nervous-system-part-4 Extraocular eye muscles (TRC -> EYE)] ||
 
 = Thirdparty Circuits =
 (generated)
