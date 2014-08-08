@@ -1,0 +1,41 @@
+#summary Change Lifecycle Task Details
+@@[Home] -> [ProjectTasks] -> [ProjectTasksLifecycle]
+
+<wiki:toc max_depth="2" />
+----
+
+= Rework framework =
+
+*Establish clear program layers*:
+  * mind process
+  * mind model
+  * mind instance
+  * mind memory
+  * mind storage
+
+*Implement fundamental flows*
+  * enable both predefined model and programmatically constructed from target
+  * make running predefined model using the same code as created by target
+  * make clear states of undefined model, defined model and running model
+  * details see below
+
+= Create mind by model =
+
+  * (begin)
+  * *cmd*: launch
+  * create mind process
+  * load mind model
+  * create mind instance by model
+  * create mind memory
+  * run mind instance
+  * *cmd*: stop
+  * stop mind instance
+  * suspend mind image
+   * stop mind instance
+   * sync mind memory
+  * drop mind image
+   * drop mind memory
+   * drop mind instance
+   * drop mind model
+   * drop mind process
+  * (end)
