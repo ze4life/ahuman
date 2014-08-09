@@ -9,9 +9,6 @@ MindMap::MindMap() {
 }
 
 MindMap::~MindMap() {
-	if( sensorAreaInfo != NULL )
-		delete sensorAreaInfo;
-
 	regionTypeSet.destroy();
 	mindAreaSet.destroy();
 	connectionTypeSet.destroy();
@@ -202,8 +199,9 @@ void MindMap::createTargetMeta_defineCircuit( Xml xml , TargetAreaDef *areaDef ,
 
 		TargetCircuitDef *circuitInfo = regionTypeInfo -> getCircuitInfo();
 		mindLocalCircuitSet.add( circuitInfo );
-
 		regionInfo -> setCircuitDef( circuitInfo );
+
+		areaDef -> addCircuit( circuitInfo );
 	}
 }
 

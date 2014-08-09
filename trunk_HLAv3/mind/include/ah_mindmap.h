@@ -322,6 +322,8 @@ public:
 
 	String getId() { return( id ); };
 	String getName() { return( name ); };
+	String getImgHeight() { return( imgheight ); };
+
 	MindAreaDef *getAreaDef() { return( area ); };
 	MapStringToClass<MindRegionDef>& getRegions() { return( regionMap ); };
 	MapStringToClass<MindLocalCircuitConnectionDef>& getConnections() { return( connections ); };
@@ -334,6 +336,7 @@ protected:
 	String id;
 	String name;
 	bool enabled;
+	String imgheight;
 
 // references
 	MindAreaDef *area;
@@ -367,6 +370,7 @@ public:
 	MapStringToClass<MindLocalCircuitDef>& getCircuits() { return( circuitMap ); };
 
 	void addRegion( MindRegionDef *region );
+	void addCircuit( MindLocalCircuitDef *circuit );
 	void addConnection( MindLocalCircuitConnectionDef *connection );
 	MindRegionDef *findRegion( String region );
 
@@ -525,6 +529,7 @@ public:
 
 	void setCircuitDef( TargetCircuitDef *info ) { circuitInfo = info; };
 	TargetCircuitDef *getCircuitDef() { return( circuitInfo ); };
+	TargetAreaDef *getTargetArea() { return( areaInfo ); };
 
 private:
 // references
@@ -542,10 +547,10 @@ public:
 	virtual const char *getClass() { return( "TargetRegionTypeDef" ); };
 
 public:
-	void defineSensorRegionType( TargetAreaDef *areaInfo , Xml xml );
-	void defineEffectorRegionType( TargetAreaDef *areaInfo , Xml xml );
+	void defineSensorRegionType( TargetRegionDef *regionInfo , Xml xml );
+	void defineEffectorRegionType( TargetRegionDef *regionInfo , Xml xml );
 
-	void defineRegionType( TargetAreaDef *areaInfo , bool sensor , Xml xml );
+	void defineRegionType( TargetRegionDef *regionInfo , bool sensor , Xml xml );
 	void defineConnectorSet( Xml xml );
 
 	TargetCircuitDef *getCircuitInfo() { return( circuitInfo ); };
@@ -580,7 +585,7 @@ private:
 
 class TargetCircuitDef : public MindLocalCircuitDef {
 public:
-	TargetCircuitDef( MindAreaDef *areaDef );
+	TargetCircuitDef( TargetAreaDef *areaDef , TargetRegionDef *regionDef );
 	virtual ~TargetCircuitDef();
 	virtual const char *getClass() { return( "TargetCircuitDef" ); };
 
@@ -592,8 +597,12 @@ public:
 	bool isSensor() { return( isSensorOption ); };
 
 private:
+	// utilities
 	bool isSensorOption;
 	String actuatorId;
+
+	// references
+	TargetRegionDef *regionInfo;
 };
 
 /*#########################################################################*/

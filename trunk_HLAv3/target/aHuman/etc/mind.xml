@@ -117,82 +117,7 @@
 					<service id="LMD" name="Direct Motor Control"/>
 				</services>
 
-				<circuit id="LBU" name="Upper Body Conscious Sensations" enabled="true">
-					<region id="LPC.PN.SG.UDRG" type="ganglion" service="LSC" role="sensory"/>
-					<region id="LPC.HM.CU" type="nucleus" service="LSM" role="relay"/>
-					<region id="LPC.SC.PH.UMG" type="nucleus" service="LSM" role="relay"/>
-					<region id="LPC.SC.PH.USG" type="nucleus" service="LSM" role="relay"/>
-					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.UDRG" dst="LPC.HM.ACU"/>
-					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.UDRG" dst="LPC.HM.CU"/>
-					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.UDRG" dst="LPC.SC.PH.UMG"/>
-					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.UDRG" dst="LPC.SC.PH.USG"/>
-					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.UDRG" dst="LPC.HM.TGM.STR"/>
-					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.UDRG" dst="BMA.SC.PH.NP"/>
-					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.UDRG" dst="BMA.SC.IZ.CCV"/>
-					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.UDRG" dst="BMA.SC.IZ.CBS"/>
-					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.UDRG" dst="AVA.SC.IZ.IMM"/>
-					<connection type="nucleus-nucleus" primary="true" src="LPC.HM.CU" dst="SMA.FD.TH.VPL"/>
-					<connection type="nucleus-nucleus" primary="true" src="LPC.HM.CU" dst="MBA.HP.CR" notes="Cuneocerebellar tract"/>
-					<connection type="nucleus-nucleus" primary="true" src="LPC.SC.PH.UMG" dst="SMA.FD.TH.VPL"/>
-					<connection type="nucleus-nucleus" primary="true" src="LPC.SC.PH.UMG" dst="SMA.FD.TH.VPI"/>
-					<connection type="nucleus-nucleus" primary="true" src="LPC.SC.PH.UMG" dst="CGA.FD.TH.SM"/>
-					<connection type="nucleus-nucleus" primary="true" src="LPC.SC.PH.UMG" dst="PHA.FD.TH.LI"/>
-					<connection type="nucleus-nucleus" primary="true" src="LPC.SC.PH.USG" dst="SMA.FD.TH.VPI"/>
-				</circuit>
-
-				<circuit id="LBL" name="Lower Body Conscious Sensations" enabled="true">
-					<region id="LPC.PN.SG.LDRG" type="ganglion" service="LSC" role="sensory"/>
-					<region id="LPC.HM.GR" type="nucleus" service="LSM" role="relay"/>
-					<region id="LPC.SC.PH.LMG" type="nucleus" service="LSM" role="relay"/>
-					<region id="LPC.SC.PH.LSG" type="nucleus" service="LSM" role="relay"/>
-					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.LDRG" dst="LPC.HM.GR"/>
-					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.LDRG" dst="LPC.SC.PH.LMG"/>
-					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.LDRG" dst="LPC.SC.PH.LSG"/>
-					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.LDRG" dst="BMA.SC.PH.NP"/>
-					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.LDRG" dst="AVA.SC.IZ.IMM"/>
-					<connection type="nucleus-nucleus" primary="true" src="LPC.HM.GR" dst="SMA.FD.TH.VPL"/>
-					<connection type="nucleus-nucleus" primary="true" src="LPC.SC.PH.LMG" dst="SMA.FD.TH.VPL"/>
-					<connection type="nucleus-nucleus" primary="true" src="LPC.SC.PH.LMG" dst="SMA.FD.TH.VPI"/>
-					<connection type="nucleus-nucleus" primary="true" src="LPC.SC.PH.LMG" dst="CGA.FD.TH.SM"/>
-					<connection type="nucleus-nucleus" primary="true" src="LPC.SC.PH.LMG" dst="PHA.FD.TH.LI"/>
-					<connection type="nucleus-nucleus" primary="true" src="LPC.SC.PH.LSG" dst="SMA.FD.TH.VPI"/>
-				</circuit>
-
-				<circuit id="LBF" name="Control Body Flexors" enabled="true">
-					<region id="LPC.SC.VH.SAN" type="nucleus" service="LMD" role="relay"/>
-					<region id="LPC.SC.VH.RPL" type="nucleus" service="LMD" role="relay"/>
-					<region id="LPC.SC.VH.PM" type="nucleus" service="LMD" role="relay"/>
-					<region id="LPC.SC.VH.PL" type="nucleus" service="LMD" role="relay"/>
-					<region id="LPC.SC.VH.PHR" type="nucleus" service="LMD" role="relay"/>
-				</circuit>
-
-				<circuit id="LBE" name="Control Body Extensors" enabled="true">
-					<region id="LPC.SC.VH.VL" type="nucleus" service="LMD" role="relay"/>
-					<region id="LPC.SC.VH.VM" type="nucleus" service="LMD" role="relay"/>
-				</circuit>
-
-				<circuit id="LFS" name="Sensory Face" enabled="true">
-					<region id="LPC.PN.SG.TRG" type="ganglion" service="LSC" role="sensory"/>
-					<region id="LPC.MM.MSTR" type="ganglion" service="LSC" role="sensory"/>
-					<region id="LPC.HP.PTP.PTR" type="nucleus" service="LSM" role="relay"/>
-					<region id="LPC.HM.TGM.STR" type="nucleus" service="LSM" role="relay"/>
-					<connection type="ganglion-nucleus" primary="true" src="LPC.MM.MSTR" dst="LPC.HP.PTP.TRM"/>
-					<connection type="ganglion-nucleus" primary="true" src="LPC.MM.MSTR" dst="LPC.HP.PTP.PTR" notes="to VPM"/>
-					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.TRG" dst="LPC.HM.TGM.STR"/>
-					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.PTP.PTR" dst="SMA.FD.TH.VPM"/>
-					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.PTP.PTR" dst="LPC.HM.TGM.STR"/>
-					<connection type="nucleus-nucleus" primary="true" src="LPC.HM.TGM.STR" dst="HMA.HP.PRF.GCR"/>
-					<connection type="nucleus-nucleus" primary="true" src="LPC.HM.TGM.STR" dst="LPC.MM.OCN"/>
-				</circuit>
-
-				<circuit id="LFM" name="Control Face Muscles" enabled="true">
-					<region id="LPC.HP.FCM" type="nucleus" service="LMD" role="relay"/>
-					<region id="LPC.HM.HYG" type="nucleus" service="LMD" role="relay"/>
-					<region id="LPC.HP.PTP.TRM" type="nucleus" service="LMD" role="relay"/>
-					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.FCM" dst="LPC.HP.ABD"/>
-				</circuit>
-
-				<circuit id="LAC" name="Auditory Sense" enabled="true">
+				<circuit id="SA" name="Auditory Sense" enabled="true" imgheight="600">
 					<region id="LPC.PN.SG.SP" type="ganglion" service="LSC" role="sensory"/>
 					<region id="LPC.HM.DCOCH" type="nucleus" service="LSC" role="relay"/>
 					<region id="LPC.HM.VCOCH" type="nucleus" service="LSC" role="relay"/>
@@ -215,7 +140,7 @@
 					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.PN.LL" dst="LPC.MM.SOC"/>
 				</circuit>
 
-				<circuit id="LTC" name="Taste and Smell Senses" enabled="true">
+				<circuit id="STS" name="Taste and Smell Senses" enabled="true">
 					<region id="LPC.PN.SG.OLB" type="ganglion" service="LSC" role="sensory"/>
 					<region id="LPC.PN.SG.GNG" type="ganglion" service="LSC" role="sensory"/>
 					<region id="LPC.PN.SG.NOD" type="ganglion" service="LSC" role="sensory"/>
@@ -238,7 +163,82 @@
 					<connection type="nucleus-nucleus" primary="true" src="LPC.HM.SOL" dst="HTA.FD.HT.PV"/>
 				</circuit>
 
-				<circuit id="LVC" name="Vision" enabled="true">
+				<circuit id="SBU" name="Upper Body Conscious Sensations" enabled="true">
+					<region id="LPC.PN.SG.UDRG" type="ganglion" service="LSC" role="sensory"/>
+					<region id="LPC.HM.CU" type="nucleus" service="LSM" role="relay"/>
+					<region id="LPC.SC.PH.UMG" type="nucleus" service="LSM" role="relay"/>
+					<region id="LPC.SC.PH.USG" type="nucleus" service="LSM" role="relay"/>
+					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.UDRG" dst="LPC.HM.ACU"/>
+					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.UDRG" dst="LPC.HM.CU"/>
+					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.UDRG" dst="LPC.SC.PH.UMG"/>
+					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.UDRG" dst="LPC.SC.PH.USG"/>
+					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.UDRG" dst="LPC.HM.TGM.STR"/>
+					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.UDRG" dst="BMA.SC.PH.NP"/>
+					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.UDRG" dst="BMA.SC.IZ.CCV"/>
+					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.UDRG" dst="BMA.SC.IZ.CBS"/>
+					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.UDRG" dst="AVA.SC.IZ.IMM"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.HM.CU" dst="SMA.FD.TH.VPL"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.HM.CU" dst="MBA.HP.CR" notes="Cuneocerebellar tract"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.SC.PH.UMG" dst="SMA.FD.TH.VPL"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.SC.PH.UMG" dst="SMA.FD.TH.VPI"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.SC.PH.UMG" dst="CGA.FD.TH.SM"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.SC.PH.UMG" dst="PHA.FD.TH.LI"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.SC.PH.USG" dst="SMA.FD.TH.VPI"/>
+				</circuit>
+
+				<circuit id="SBL" name="Lower Body Conscious Sensations" enabled="true">
+					<region id="LPC.PN.SG.LDRG" type="ganglion" service="LSC" role="sensory"/>
+					<region id="LPC.HM.GR" type="nucleus" service="LSM" role="relay"/>
+					<region id="LPC.SC.PH.LMG" type="nucleus" service="LSM" role="relay"/>
+					<region id="LPC.SC.PH.LSG" type="nucleus" service="LSM" role="relay"/>
+					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.LDRG" dst="LPC.HM.GR"/>
+					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.LDRG" dst="LPC.SC.PH.LMG"/>
+					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.LDRG" dst="LPC.SC.PH.LSG"/>
+					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.LDRG" dst="BMA.SC.PH.NP"/>
+					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.LDRG" dst="AVA.SC.IZ.IMM"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.HM.GR" dst="SMA.FD.TH.VPL"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.SC.PH.LMG" dst="SMA.FD.TH.VPL"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.SC.PH.LMG" dst="SMA.FD.TH.VPI"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.SC.PH.LMG" dst="CGA.FD.TH.SM"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.SC.PH.LMG" dst="PHA.FD.TH.LI"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.SC.PH.LSG" dst="SMA.FD.TH.VPI"/>
+				</circuit>
+
+				<circuit id="SF" name="Sensory Face" enabled="true">
+					<region id="LPC.PN.SG.TRG" type="ganglion" service="LSC" role="sensory"/>
+					<region id="LPC.MM.MSTR" type="ganglion" service="LSC" role="sensory"/>
+					<region id="LPC.HP.PTP.PTR" type="nucleus" service="LSM" role="relay"/>
+					<region id="LPC.HM.TGM.STR" type="nucleus" service="LSM" role="relay"/>
+					<connection type="ganglion-nucleus" primary="true" src="LPC.MM.MSTR" dst="LPC.HP.PTP.TRM"/>
+					<connection type="ganglion-nucleus" primary="true" src="LPC.MM.MSTR" dst="LPC.HP.PTP.PTR" notes="to VPM"/>
+					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.TRG" dst="LPC.HM.TGM.STR"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.PTP.PTR" dst="SMA.FD.TH.VPM"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.PTP.PTR" dst="LPC.HM.TGM.STR"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.HM.TGM.STR" dst="HMA.HP.PRF.GCR"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.HM.TGM.STR" dst="LPC.MM.OCN"/>
+				</circuit>
+
+				<circuit id="MBF" name="Control Body Flexors" enabled="true">
+					<region id="LPC.SC.VH.SAN" type="nucleus" service="LMD" role="relay"/>
+					<region id="LPC.SC.VH.RPL" type="nucleus" service="LMD" role="relay"/>
+					<region id="LPC.SC.VH.PM" type="nucleus" service="LMD" role="relay"/>
+					<region id="LPC.SC.VH.PL" type="nucleus" service="LMD" role="relay"/>
+					<region id="LPC.SC.VH.PHR" type="nucleus" service="LMD" role="relay"/>
+				</circuit>
+
+				<circuit id="MBE" name="Control Body Extensors" enabled="true">
+					<region id="LPC.SC.VH.VL" type="nucleus" service="LMD" role="relay"/>
+					<region id="LPC.SC.VH.VM" type="nucleus" service="LMD" role="relay"/>
+				</circuit>
+
+				<circuit id="MF" name="Control Face Muscles" enabled="true">
+					<region id="LPC.HP.FCM" type="nucleus" service="LMD" role="relay"/>
+					<region id="LPC.HM.HYG" type="nucleus" service="LMD" role="relay"/>
+					<region id="LPC.HP.PTP.TRM" type="nucleus" service="LMD" role="relay"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.FCM" dst="LPC.HP.ABD"/>
+				</circuit>
+
+				<circuit id="AVS" name="Vision Sensory and Motor" enabled="true">
 					<region id="LPC.FD.RT" type="ganglion" service="LSC" role="relay"/>
 					<region id="LPC.MM.OCN" type="nucleus" service="LMD" role="relay"/>
 					<region id="LPC.HP.ABD" type="nucleus" service="LMD" role="relay"/>
@@ -253,7 +253,7 @@
 					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.ABD" dst="LPC.MM.OCN"/>
 				</circuit>
 
-				<circuit id="LEC" name="Vestibular" enabled="true">
+				<circuit id="AVB" name="Vestibular Sensory and Motor" enabled="true">
 					<region id="LPC.PN.SG.CVB" type="ganglion" service="LSC" role="sensory"/>
 					<region id="LPC.PN.SG.SVB" type="ganglion" service="LSC" role="sensory"/>
 					<region id="LPC.PN.SG.UVB" type="ganglion" service="LSC" role="sensory"/>
@@ -295,7 +295,6 @@
 					<region id="HMA.HM.RA" type="nucleus" service="LRM" role="relay"/>
 					<region id="HMA.HP.PN.KFN" type="nucleus" service="LRM" role="relay"/>
 					<region id="BMA.HP.PRF.PVR" type="nucleus" service="LRM" role="relay"/>
-					<region id="HMA.HM.TGM.PA5" type="nucleus" service="LRS" role="relay"/>
 					<region id="HMA.HM.INM" type="nucleus" service="LRC" role="relay"/>
 					<region id="HMA.HP.PN.SC" type="nucleus" service="LRM" role="relay"/>
 					<region id="HMA.HP.PRF.GCR" type="nucleus" service="LRM" role="relay"/>
@@ -304,7 +303,6 @@
 					<connection type="nucleus-nucleus" primary="true" src="BMA.HP.PRF.PVR" dst="LPC.HP.PTP.TRM"/>
 					<connection type="nucleus-nucleus" primary="true" src="BMA.HP.PRF.PVR" dst="LPC.HP.FCM"/>
 					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PRF.GCR" dst="LPC.HM.HYG"/>
-					<connection type="nucleus-nucleus" primary="true" src="HMA.HM.TGM.PA5" dst="LPC.HP.FCM"/>
 					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PRF.CRF" dst="LPC.HP.FCM"/>
 					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PRF.CRF" dst="LPC.HP.PTP.TRM"/>
 					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PRF.CRF" dst="HMA.HM.AMB"/>
@@ -317,6 +315,7 @@
 					<region id="VBA.MM.PT.SL" type="nucleus" service="LRS" role="relay"/>
 					<region id="VBA.MM.PT.NOT" type="nucleus" service="LRS" role="relay"/>
 					<region id="VBA.MM.PT.PON" type="nucleus" service="LRS" role="relay"/>
+					<region id="HMA.HM.TGM.PA5" type="nucleus" service="LRS" role="relay"/>
 					<connection type="nucleus-nucleus" primary="true" src="VBA.MM.SC.SUP" dst="VBA.FD.LGN"/>
 					<connection type="nucleus-nucleus" primary="true" src="VBA.MM.SC.SUP" dst="VBA.FD.PV.IPV"/>
 					<connection type="nucleus-nucleus" primary="true" src="VBA.MM.SC.SUP" dst="VBA.FD.PV.LPV"/>
@@ -332,6 +331,7 @@
 					<connection type="nucleus-nucleus" primary="true" src="VBA.MM.PT.NOT" dst="VBA.MM.SC.SUP"/>
 					<connection type="nucleus-nucleus" primary="true" src="VBA.MM.PT.PON" dst="VBA.FD.LGN"/>
 					<connection type="nucleus-nucleus" primary="true" src="VBA.MM.PT.PON" dst="VBA.MM.EWN"/>
+					<connection type="nucleus-nucleus" primary="true" src="HMA.HM.TGM.PA5" dst="LPC.HP.FCM"/>
 				</circuit>
 
 				<circuit id="LRF" name="Frontal Visual Reflexes" enabled="true">

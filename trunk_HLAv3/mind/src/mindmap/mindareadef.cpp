@@ -45,8 +45,7 @@ void MindAreaDef::createFromXml( Xml xml ) {
 		// construct MindArea from attributes
 		MindLocalCircuitDef *circuit = new MindLocalCircuitDef( this );
 		circuit -> createFromXml( xmlChild );
-		circuits.add( circuit );
-		circuitMap.add( circuit -> getId() , circuit );
+		addCircuit( circuit );
 	}
 }
 
@@ -66,4 +65,9 @@ void MindAreaDef::addRegion( MindRegionDef *region ) {
 
 void MindAreaDef::addConnection( MindLocalCircuitConnectionDef *connection ) {
 	connections.add( connection );
+}
+
+void MindAreaDef::addCircuit( MindLocalCircuitDef *circuit ) {
+	circuits.add( circuit );
+	circuitMap.add( circuit -> getId() , circuit );
 }

@@ -154,13 +154,8 @@ void WikiAreaPages::createAreaPages_getCircuitLines( XmlCircuitInfo& info , Stri
 
 	lines.add( "  * [" + info.image + " " + info.name + "] " + ref );
 	lines.add( "" );
-	String sizeInfo;
-	if( info.imageHeight > 0 )
-		sizeInfo += String( "height=" ) + info.imageHeight;
-	if( info.imageWidth > 0 )
-		sizeInfo += String( "width=" ) + info.imageWidth;
 
-	lines.add( "<img src=\"" + info.image + "\" alt=\"unavailable\"" + sizeInfo + ">" );
+	lines.add( wm -> getImageWikiLink( info.image , info.imageHeight , info.imageWidth ) );
 	lines.add( "" );
 }
 
@@ -174,7 +169,7 @@ void WikiAreaPages::createAreaPages_createRegionPages( String wikiDir , MindArea
 
 void WikiAreaPages::createAreaPages_createAreaCircuit( MindArea *area , MindLocalCircuitDef& circuit , StringList& lines ) {
 	lines.add( "" );
-	lines.add( "== " + circuit.getName() + " ==" );
+	lines.add( "== " + circuit.getId() + " - " + circuit.getName() + " ==" );
 	lines.add( "" );
 
 	lines.add( "" );
@@ -251,10 +246,8 @@ void WikiAreaPages::createAreaPages_createConnectivityTableSection( MindArea *ar
 	createAreaPages_getExternalConnections( area , circuit , connectionsOutputs , false );
 	createAreaPages_addExternalConnections( area , circuit , lines , connectionsOutputs , false );
 
-	if( !area -> isTargetArea() ) {
-		// create dot file
-		createDotFile( area , circuit , connections , connectionsInputs , connectionsOutputs );
-	}
+	// create dot file
+	createDotFile( area , circuit , connections , connectionsInputs , connectionsOutputs );
 }
 
 void WikiAreaPages::createAreaPages_addExternalConnections( MindArea *area , MindLocalCircuitDef& circuit , StringList& lines , MapStringToClass<MindLocalCircuitConnectionDef>& connections , bool p_inputs ) {
