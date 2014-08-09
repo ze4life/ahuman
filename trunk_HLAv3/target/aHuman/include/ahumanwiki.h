@@ -87,6 +87,7 @@ public:
 	const XmlHMindElementInfo& getComponentReferenceInfo( String comp );
 	String getMuscleReference( String name , String text );
 	String getImageWikiLink( String imgsrc , String height );
+	String getImageWikiLink( String imgsrc , int height , int width );
 	String getWikiLink( String link , String text );
 	String getWikiBold( String text );
 	String getTableCellAttribute( const char *id , const char *attribute , String value , bool required , int columnWidth );

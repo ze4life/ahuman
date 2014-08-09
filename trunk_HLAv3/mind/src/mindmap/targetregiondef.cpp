@@ -26,9 +26,10 @@ void TargetRegionDef::defineSensorRegion( Xml xml ) {
 
 	// region type for sensor is the same as region itself
 	TargetRegionTypeDef *regionTypeInfo = new TargetRegionTypeDef();
-	regionTypeInfo -> defineSensorRegionType( areaInfo , xml );
+	regionTypeInfo -> defineSensorRegionType( this , xml );
 	MindRegionDef::type = regionTypeInfo;
 	MindRegionDef::typeName = regionTypeInfo -> getName();
+	MindRegionDef::serviceName = xml.getAttribute( "service" );
 }
 
 void TargetRegionDef::defineEffectorRegion( Xml xml ) {
@@ -43,8 +44,9 @@ void TargetRegionDef::defineEffectorRegion( Xml xml ) {
 
 	// region type for effector is the same as region itself
 	TargetRegionTypeDef *regionTypeInfo = new TargetRegionTypeDef();
-	regionTypeInfo -> defineEffectorRegionType( areaInfo , xml );
+	regionTypeInfo -> defineEffectorRegionType( this , xml );
 	MindRegionDef::type = regionTypeInfo;
 	MindRegionDef::typeName = regionTypeInfo -> getName();
+	MindRegionDef::serviceName = xml.getAttribute( "service" );
 }
 

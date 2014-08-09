@@ -13,22 +13,22 @@ TargetRegionTypeDef::~TargetRegionTypeDef() {
 		delete circuitInfo;
 }
 
-void TargetRegionTypeDef::defineSensorRegionType( TargetAreaDef *areaInfo , Xml xml ) {
-	defineRegionType( areaInfo , true , xml );
+void TargetRegionTypeDef::defineSensorRegionType( TargetRegionDef *regionInfo , Xml xml ) {
+	defineRegionType( regionInfo , true , xml );
 }
 
-void TargetRegionTypeDef::defineEffectorRegionType( TargetAreaDef *areaInfo , Xml xml ) {
-	defineRegionType( areaInfo , false , xml );
+void TargetRegionTypeDef::defineEffectorRegionType( TargetRegionDef *regionInfo , Xml xml ) {
+	defineRegionType( regionInfo , false , xml );
 }
 
-void TargetRegionTypeDef::defineRegionType( TargetAreaDef *areaInfo , bool sensor , Xml xml ) {
+void TargetRegionTypeDef::defineRegionType( TargetRegionDef *regionInfo , bool sensor , Xml xml ) {
 	MindRegionTypeDef::name = xml.getAttribute( "id" );
 	Object::setInstance( MindRegionTypeDef::name );
 
 	MindRegionTypeDef::implementation = "normal";
 
 	// childs & actuator-aligned circuit and unique connection types
-	circuitInfo = new TargetCircuitDef( areaInfo );
+	circuitInfo = new TargetCircuitDef( regionInfo -> getTargetArea() , regionInfo );
 	circuitInfo -> defineCircuit( sensor , xml );
 	defineConnectorSet( xml );
 }

@@ -419,10 +419,22 @@ String WikiMaker::getTractPageLink( String location ) {
 }
 
 String WikiMaker::getImageWikiLink( String imgsrc , String height ) {
-	String s = "<img src=\"" + imgsrc + "\"";
+	String s = "<img src=\"" + imgsrc + "\" alt=\"unavailable\"";
 	if( !height.isEmpty() )
 		s += " height=" + height;
 	s += ">";
+	return( s );
+}
+
+String WikiMaker::getImageWikiLink( String imgsrc , int height , int width ) {
+	String s = "<img src=\"" + imgsrc + "\" alt=\"unavailable\"";
+
+	if( height > 0 )
+		s += String( "height=" ) + height;
+	if( width > 0 )
+		s += String( "width=" ) + width;
+	s += ">";
+
 	return( s );
 }
 
@@ -567,7 +579,8 @@ String WikiMaker::getCircuitDotPath( MindLocalCircuitDef& circuit ) {
 }
 
 String WikiMaker::getCircuitImageRef( MindLocalCircuitDef& circuit ) {
-	String line = getWikiImagePath() + "/" + circuit.getAreaDef() -> getAreaId() + "_" + circuit.getId() + ".dot.png";
+	String path = getWikiImagePath() + "/" + circuit.getAreaDef() -> getAreaId() + "_" + circuit.getId() + ".dot.png";
+	String line = getImageWikiLink( path , circuit.getImgHeight() );
 	return( line );
 }
 

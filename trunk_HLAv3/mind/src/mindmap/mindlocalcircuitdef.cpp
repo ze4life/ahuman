@@ -16,10 +16,12 @@ MindLocalCircuitDef::~MindLocalCircuitDef() {
 void MindLocalCircuitDef::createFromXml( Xml xml ) {
 	// attributes are properties
 	id = xml.getAttribute( "id" );
-	name = xml.getAttribute( "name" );
 	Object::setInstance( id );
 
+	name = xml.getAttribute( "name" );
+	imgheight = xml.getAttribute( "imgheight" , "" );
 	enabled = xml.getBooleanAttribute( "enabled" , true );
+
 	if( !enabled )
 		return;
 

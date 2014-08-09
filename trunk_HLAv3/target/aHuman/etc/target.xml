@@ -1,8 +1,14 @@
 <service>
 
+	<services>
+		<service id="sensor" name="Exteroception"/>
+		<service id="motor" name="External Motor"/>
+		<service id="visceral" name="Internal Sensimotor"/>
+	</services>
+
 	<sensors>
 
-		<sensor id="TARGET.TSA.EYE" run="true">
+		<sensor id="TARGET.TSA.EYE" run="true" service="sensor">
 			<connector entity="eye-edge-output" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="LPC.FD.RT" connector="ganglion.input" primary="true"/>
 			<connector entity="eye-somatic" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
@@ -55,7 +61,7 @@
 				region="AVA.PN.SYM.SCG" connector="ganglion.output" primary="true"/>
 		</sensor>
 
-		<sensor id="TARGET.TSA.EAR" run="true">
+		<sensor id="TARGET.TSA.EAR" run="true" service="sensor">
 			<connector entity="ear-inner-hair-cells" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="LPC.PN.SG.SP" connector="ganglion.input" primary="true"/>
 			<connector entity="ear-outer-hair-cells-feedback" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
@@ -100,7 +106,7 @@
 				region="LPC.HP.FCM" connector="nucleus.output" primary="true"/>
 		</sensor>
 
-		<sensor id="TARGET.TSA.NOSE" run="true">
+		<sensor id="TARGET.TSA.NOSE" run="true" service="sensor">
 			<connector entity="nose-olfactory-mucosa" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="LPC.PN.SG.OLB" connector="ganglion.input" primary="true"/>
 
@@ -129,7 +135,7 @@
 	</sensors>
 
 	<effectors>
-		<effector id="TARGET.TEA.HEART" run="true">
+		<effector id="TARGET.TEA.HEART" run="true" service="visceral">
 			<connector entity="heart-symp-control" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.SYM.SMG" connector="ganglion.output" primary="true"/>
 			<connector entity="heart-cardiac-upper-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
@@ -149,7 +155,7 @@
 				region="LPC.PN.SG.UDRG" connector="ganglion.input" primary="true"/>
 		</effector>
 
-		<effector id="TARGET.TEA.PROTECTOR" run="true">
+		<effector id="TARGET.TEA.PROTECTOR" run="true" service="visceral">
 			<connector entity="cranial-meninges" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="LPC.PN.SG.JUG" connector="ganglion.input" primary="true"/>
 			<connector entity="tentorium-cerebelli-dura-matter" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
@@ -168,7 +174,7 @@
 				region="AVA.PN.PSYM.SPG" connector="ganglion.output" primary="true"/>
 		</effector>
 
-		<effector id="TARGET.TEA.FEEDER" run="true">
+		<effector id="TARGET.TEA.FEEDER" run="true" service="motor">
 			<connector entity="parotid-gland" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.PSYM.OTG" connector="ganglion.output" primary="true"/>
 			<connector entity="submandibular-gland" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
@@ -243,7 +249,7 @@
 				region="LPC.HP.FCM" connector="nucleus.output" primary="true"/>
 		</effector>
 
-		<effector id="TARGET.TEA.SPEAKER" run="true">
+		<effector id="TARGET.TEA.SPEAKER" run="true" service="motor">
 			<connector entity="arytenoid-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="HMA.HM.AMB" connector="nucleus.output" primary="true"/>
 			<connector entity="lateral-cricoarytenoid-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
@@ -277,7 +283,7 @@
 				region="HMA.HM.AMB" connector="nucleus.output" primary="true"/>
 		</effector>
 
-		<effector id="TARGET.TEA.FACE" run="true">
+		<effector id="TARGET.TEA.FACE" run="true" service="motor">
 			<connector entity="face-corrugator-supercilii-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="LPC.HP.FCM" connector="nucleus.output" primary="true"/>
 			<connector entity="face-depressor-supercilii-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
@@ -321,7 +327,7 @@
 				region="LPC.HP.FCM" connector="nucleus.output" primary="true"/>
 		</effector>
 
-		<effector id="TARGET.TEA.NECK" run="true">
+		<effector id="TARGET.TEA.NECK" run="true" service="motor">
 			<connector entity="neck-low-cutaneous-receptors" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="LPC.PN.SG.UDRG" connector="ganglion.input" primary="true"/>
 
@@ -360,7 +366,7 @@
 				region="LPC.SC.VH.VM" connector="nucleus.output" primary="true"/>
 		</effector>
 
-		<effector id="TARGET.TEA.LIVER" run="true">
+		<effector id="TARGET.TEA.LIVER" run="true" service="visceral">
 			<connector entity="glucose-and-osmoreceptors" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="LPC.PN.SG.NOD" connector="ganglion.input" primary="true"/>
 			<connector entity="glands" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
@@ -369,7 +375,7 @@
 				region="LPC.PN.SG.LDRG" connector="ganglion.input" primary="true"/>
 		</effector>
 
-		<effector id="TARGET.TEA.STOMACH" run="true">
+		<effector id="TARGET.TEA.STOMACH" run="true" service="visceral">
 			<connector entity="stomach-wall" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.PSYM.PPG" connector="ganglion.output" primary="true"/>
 			<connector entity="stomach-mucosal-gastric-glands" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
@@ -394,7 +400,7 @@
 				region="LPC.PN.SG.LDRG" connector="ganglion.input" primary="true"/>
 		</effector>
 
-		<effector id="TARGET.TEA.LUNG" run="true">
+		<effector id="TARGET.TEA.LUNG" run="true" service="visceral">
 			<connector entity="pulmonary-neuroepithelial-bodies" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="LPC.PN.SG.NOD" connector="ganglion.input" primary="true"/>
 			<connector entity="pericardium-pleura-receptors" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
@@ -412,7 +418,7 @@
 				region="HMA.HM.AMB" connector="nucleus.output" primary="true"/>
 		</effector>
 
-		<effector id="TARGET.TEA.HAND" run="true">
+		<effector id="TARGET.TEA.HAND" run="true" service="motor">
 			<connector entity="flexor-pollicis-longus-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="LPC.SC.VH.RPL" connector="nucleus.output" primary="true"/>
 			<connector entity="flexor-pollicis-brevis-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
@@ -544,7 +550,7 @@
 				region="LPC.SC.VH.VM" connector="nucleus.output" primary="true"/>
 		</effector>
 
-		<effector id="TARGET.TEA.LEG" run="true">
+		<effector id="TARGET.TEA.LEG" run="true" service="motor">
 			<connector entity="flexor-longus-digitorum-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="LPC.SC.VH.RPL" connector="nucleus.output" primary="true"/>
 			<connector entity="flexor-longus-hallucis-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
@@ -675,7 +681,7 @@
 				region="LPC.SC.VH.VM" connector="nucleus.output" primary="true"/>
 		</effector>
 
-		<effector id="TARGET.TEA.TRUNK" run="true">
+		<effector id="TARGET.TEA.TRUNK" run="true" service="motor">
 			<connector entity="trunk-rectus-abdominis-muscle" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="LPC.SC.VH.PM" connector="nucleus.output" primary="true"/>
 			<connector entity="trunk-external-intercostal-muscles" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
@@ -733,14 +739,14 @@
 				region="LPC.SC.VH.PM" connector="nucleus.output" primary="true"/>
 		</effector>
 
-		<effector id="TARGET.TEA.BREAST" run="true">
+		<effector id="TARGET.TEA.BREAST" run="true" service="visceral">
 			<connector entity="breast-skin-receptors" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="LPC.PN.SG.UDRG" connector="ganglion.input" primary="true"/>
 			<connector entity="nipple-smooth-muscles" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.PSYM.PPG" connector="ganglion.output" primary="true"/>
 		</effector>
 
-		<effector id="TARGET.TEA.GENITALIA" run="true">
+		<effector id="TARGET.TEA.GENITALIA" run="true" service="visceral">
 			<connector entity="uterus-parasympathetic" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.PSYM.PPG" connector="ganglion.output" primary="true"/>
 			<connector entity="vagina-parasympathetic" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
@@ -791,7 +797,7 @@
 				region="AVA.PN.SYM.IMG" connector="ganglion.output" primary="true"/>
 		</effector>
 
-		<effector id="TARGET.TEA.URETER" run="true">
+		<effector id="TARGET.TEA.URETER" run="true" service="visceral">
 			<connector entity="detrusor-urinae-muscle-parasympathetic" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.PSYM.PPG" connector="ganglion.output" primary="true"/>
 			<connector entity="internal-urethral-sphincter-parasympathetic" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
@@ -810,7 +816,7 @@
 				region="LPC.SC.VH.PM" connector="nucleus.output" primary="true"/>
 		</effector>
 
-		<effector id="TARGET.TEA.RECTUM" run="true">
+		<effector id="TARGET.TEA.RECTUM" run="true" service="visceral">
 			<connector entity="large-intestine-visceral-receptors" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="LPC.PN.SG.LDRG" connector="ganglion.input" primary="true"/>
 			<connector entity="sphincter-ani-internus-muscle-parasympathetic" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
@@ -833,7 +839,7 @@
 				region="LPC.SC.VH.PM" connector="nucleus.output" primary="true"/>
 		</effector>
 
-		<effector id="TARGET.TEA.VESSELS" run="true">
+		<effector id="TARGET.TEA.VESSELS" run="true" service="visceral">
 			<connector entity="arterial-thoracic-vasoconstrictors" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.SYM.TG" connector="ganglion.output" primary="true"/>
 			<connector entity="brachial-artery-vasoconstrictors" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
@@ -861,7 +867,7 @@
 				region="AVA.PN.SYM.SCG" connector="ganglion.output" primary="true"/>
 		</effector>
 
-		<effector id="TARGET.TEA.ENDOCRINE" run="true">
+		<effector id="TARGET.TEA.ENDOCRINE" run="true" service="visceral">
 			<connector entity="endocrine-hypophysis" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="HTA.FD.HT.PV" connector="nucleus.output" primary="true"/>
 			<connector entity="endocrine-thyroid-gland" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
