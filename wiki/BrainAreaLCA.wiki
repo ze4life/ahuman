@@ -8,21 +8,23 @@
 (generated)
 
 
-== Locomotor Activity ==
+== LLM - Locomotor Activity ==
 
 
-http://ahuman.googlecode.com/svn/images/dot/aHuman/LCA_LLM.dot.png
+<img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LCA_LLM.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
 || [BrainRegionMBA_HM_RF_MED MBA.HM.RF.MED] || Medullary Reticular Formation || nucleus || LLE || Somatic motor control, cardiovascular control, pain modulation, sleep and<BR>consciousness, habituation || 100 small neural networks, habituation - sleep in<BR>load city but awake from crying baby ||
 || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus || LLC || Motor coordination || Deep Nuclei and cerebellum cortex ||
 || [BrainRegionMBA_MM_RD MBA.MM.RD] || Red Nucleus || nucleus || LLE || Motor coordination || Crawling of babies is controlled by RN ||
 || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || Prepositus Nucleus || nucleus || LLE || Integrate PPRF phasic signal to provide tonic signal of abducens || Part of horizontal gaze holding system ||
+|| [BrainRegionVBA_MM_PT_PR VBA.MM.PT.PR] || Principal Pretectal Nucleus || nucleus || LRM || Pupillary light reflex || Affected by visual cortex and projects to EWN ||
 
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionMBA_MM_RD MBA.MM.RD] || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionVBA_MM_PT_PR VBA.MM.PT.PR] || nucleus-nucleus || (unknown reference) ||
 
 *External Inbound Region Connections:*
 
@@ -42,9 +44,9 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/LCA_LLM.dot.png
 ||  ||  || [BrainRegionLPC_HP_IVBN LPC.HP.IVBN] || Inferior Vestibular Nuclei || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || Medial Vestibular Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || Medial Vestibular Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (MVSN -> NPRP)] ||
-|| [BrainAreaMCA MCA] || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (DTN -> NPRP)] ||
-|| [BrainAreaMRA MRA] || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (DLPN -> CR)] ||
+|| [BrainAreaLRC LRC] || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionHMA_HP_PRF_RPO HMA.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (DLPN -> CR)] ||
 ||  ||  || [BrainRegionMBA_MM_SC_DEEP MBA.MM.SC.DEEP] || Deep Superior Colliculus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (SCi -> CR, abstract)] ||
+|| [BrainAreaMCA MCA] || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (DTN -> NPRP)] ||
 
 *External Outbound Region Connections:*
 
@@ -54,20 +56,20 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/LCA_LLM.dot.png
 || [BrainAreaEPA EPA] || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || Dorsolateral Prefrontal Cortex || nucleus-neocortex || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (CR -> LPFC)] ||
 || [BrainAreaMAA MAA] || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionMCA_FD_TH_VL MCA.FD.TH.VL] || Ventral Lateral Nucleus || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s1VL -> VL)] ||
 || <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaACA ACA] || [BrainRegionVBA_MM_PT_PR VBA.MM.PT.PR] || [BrainRegionVBA_MM_EWN VBA.MM.EWN] || Edinger-Westphal Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Pretectum -> EWN, abstract)] ||
 || [BrainAreaLCA LCA] || [BrainRegionMBA_MM_RD MBA.MM.RD] || [BrainRegionBMA_HM_IO BMA.HM.IO] || Inferior Olivary Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLPC LPC] || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionLPC_HP_LVBN LPC.HP.LVBN] || Lateral Vestibular Nuclei || nucleus-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (CR -> Vestibular)] ||
 ||  || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || Medial Vestibular Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (NPRP -> MVSN)] ||
-|| [BrainAreaMCA MCA] || [BrainRegionMBA_HM_RF_MED MBA.HM.RF.MED] || [BrainRegionFBA_HP_LC FBA.HP.LC] || Locus Coeruleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaMRA MRA] || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionBMA_MM_DSCH BMA.MM.DSCH] || Darkschewitsch Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLRC LRC] || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionBMA_MM_DSCH BMA.MM.DSCH] || Darkschewitsch Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || Caudal Pontine Reticular Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (CR -> RF, abstract)] ||
-||  ||  || [BrainRegionVBA_MM_PT_PR VBA.MM.PT.PR] || Principal Pretectal Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || Suprageniculate Nucleus of Thalamus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (NPRP -> SUPGEN)] ||
 ||  ||  || [BrainRegionVBA_MM_PT_NOT VBA.MM.PT.NOT] || Nucleus of Optic Tract || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaMCA MCA] || [BrainRegionMBA_HM_RF_MED MBA.HM.RF.MED] || [BrainRegionFBA_HP_LC FBA.HP.LC] || Locus Coeruleus || nucleus-nucleus || (unknown reference) ||
 
-== Locomotor Sensory ==
+== LLS - Locomotor Sensory ==
 
 
-http://ahuman.googlecode.com/svn/images/dot/aHuman/LCA_LLS.dot.png
+<img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LCA_LLS.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
 || [BrainRegionAVA_SC_IZ_IMM AVA.SC.IZ.IMM] || Intermediomedial Nucleus || nucleus || LLI || Visceral sensory || ventral spinocerebellar tract ||
@@ -109,12 +111,12 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/LCA_LLS.dot.png
 ||  || [BrainRegionBMA_SC_PH_NP BMA.SC.PH.NP] || [BrainRegionLPC_PN_SG_LDRG LPC.PN.SG.LDRG] || Lower Dorsal Root Ganglion || ganglion-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG] || Upper Dorsal Root Ganglion || ganglion-nucleus || (unknown reference) ||
 ||  || [BrainRegionLPC_HM_ACU LPC.HM.ACU] || [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG] || Upper Dorsal Root Ganglion || ganglion-nucleus || (unknown reference) ||
+|| [BrainAreaLRC LRC] || [BrainRegionBMA_HM_IO BMA.HM.IO] || [BrainRegionBMA_MM_DSCH BMA.MM.DSCH] || Darkschewitsch Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionHMA_HP_PRF_PDT HMA.HP.PRF.PDT] || [BrainRegionVBA_MM_SC_SUP VBA.MM.SC.SUP] || Superficial Superior Colliculus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (SC -> RF, abstract)] ||
 || [BrainAreaMCA MCA] || [BrainRegionBMA_HM_IO BMA.HM.IO] || [BrainRegionFBA_FD_TH_SF FBA.FD.TH.SF] || Subfascicular Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaMMA MMA] || [BrainRegionHMA_HP_PRF_PDT HMA.HP.PRF.PDT] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || nucleus-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/mb.jpg Mammillary Body (MMB -> RTG)] ||
 ||  ||  || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || Lateral Mammillary Nucleus || nucleus-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/mb.jpg Mammillary Body (LMB -> RTG)] ||
 ||  || [BrainRegionMBA_HP_PN_RP MBA.HP.PN.RP] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaMRA MRA] || [BrainRegionBMA_HM_IO BMA.HM.IO] || [BrainRegionBMA_MM_DSCH BMA.MM.DSCH] || Darkschewitsch Nucleus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionHMA_HP_PRF_PDT HMA.HP.PRF.PDT] || [BrainRegionVBA_MM_SC_SUP VBA.MM.SC.SUP] || Superficial Superior Colliculus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (SC -> RF, abstract)] ||
 
 *External Outbound Region Connections:*
 
