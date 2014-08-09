@@ -18,13 +18,13 @@
 
 *External Inbound Region Connections:*
 
-|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Connector* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaACA ACA] || [BrainRegionTARGET_TEA_BREAST TARGET.TEA.BREAST] || [BrainRegionAVA_PN_PSYM_PPG AVA.PN.PSYM.PPG] || Pelvic Peripheral Ganglion || nipple-smooth-muscles || (unknown reference) ||
 
 *External Outbound Region Connections:*
 
-|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Connector* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLPC LPC] || [BrainRegionTARGET_TEA_BREAST TARGET.TEA.BREAST] || [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG] || Upper Dorsal Root Ganglion || breast-skin-receptors || (unknown reference) ||
 
@@ -38,12 +38,14 @@
 
 *External Inbound Region Connections:*
 
-|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Connector* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaACA ACA] || [BrainRegionTARGET_TEA_ENDOCRINE TARGET.TEA.ENDOCRINE] || [BrainRegionAVA_PN_PSYM_GUT AVA.PN.PSYM.GUT] || Parasympathetic Gut Brain || endocrine-pancreas-muscarinic || (unknown reference) ||
 ||  ||  || [BrainRegionAVA_PN_SYM_ARG AVA.PN.SYM.ARG] || Aorticorenal Ganglion || endocrine-ovary-gland || (unknown reference) ||
+|| || || || || endocrine-testicle-gland || ||
 ||  ||  || [BrainRegionAVA_PN_SYM_CEG AVA.PN.SYM.CEG] || Coelic Ganglion || endocrine-pancreas-adrenergic || (unknown reference) ||
 ||  ||  || [BrainRegionAVA_PN_SYM_MCG AVA.PN.SYM.MCG] || Middle Cervical Ganglion || endocrine-parathyroid-gland || (unknown reference) ||
+|| || || || || endocrine-thyroid-gland || ||
 ||  ||  || [BrainRegionAVA_PN_SYM_SMG AVA.PN.SYM.SMG] || Superior Mesenteric Ganglion || endocrine-adrenal-gland || (unknown reference) ||
 ||  ||  || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || Paraventricular Nucleus || endocrine-hypophysis || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (HT.PV -> PUT)] ||
 || [BrainAreaAMA AMA] || [BrainRegionTARGET_TEA_ENDOCRINE TARGET.TEA.ENDOCRINE] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || endocrine-pineal-gland || [http://www.scholarpedia.org/article/Habenula Habenula Connections (MHb -> PB)] ||
@@ -61,13 +63,29 @@
 
 *External Inbound Region Connections:*
 
-|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Connector* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLPC LPC] || [BrainRegionTARGET_TEA_FACE TARGET.TEA.FACE] || [BrainRegionLPC_HP_FCM LPC.HP.FCM] || Facial Motor Nucleus || depressor-anguli-oris-muscle || (unknown reference) ||
+|| || || || || depressor-labii-inferioris-muscle || ||
+|| || || || || face-corrugator-supercilii-muscle || ||
+|| || || || || face-depressor-supercilii-muscle || ||
+|| || || || || face-frontalis-muscle || ||
+|| || || || || face-levator-labii-superioris-muscle || ||
+|| || || || || face-occipitalis-muscle || ||
+|| || || || || face-platysma-muscle || ||
+|| || || || || face-procerus || ||
+|| || || || || levator-anguli-oris-muscle || ||
+|| || || || || mentalis-muscle || ||
+|| || || || || orbicularis-oris-muscle || ||
+|| || || || || risorius-muscle || ||
+|| || || || || transverse-chin-muscle || ||
+|| || || || || zygomaticus-major-muscle-buccal || ||
+|| || || || || zygomaticus-major-muscle-proper || ||
+|| || || || || zygomaticus-minor-muscle || ||
 
 *External Outbound Region Connections:*
 
-|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Connector* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLPC LPC] || [BrainRegionTARGET_TEA_FACE TARGET.TEA.FACE] || [BrainRegionLPC_PN_SG_TRG LPC.PN.SG.TRG] || Trigeminal Ganglion || face-skin || (unknown reference) ||
 ||  ||  || [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG] || Upper Dorsal Root Ganglion || face-parotid-skin || (unknown reference) ||
@@ -82,25 +100,47 @@
 
 *External Inbound Region Connections:*
 
-|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Connector* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaACA ACA] || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || [BrainRegionAVA_PN_PSYM_OTG AVA.PN.PSYM.OTG] || Otic Ganglion || parotid-gland || (unknown reference) ||
 ||  ||  || [BrainRegionAVA_PN_PSYM_SPG AVA.PN.PSYM.SPG] || Sphenopalatine Ganglion || uvulae-muscle || (unknown reference) ||
 ||  ||  || [BrainRegionAVA_PN_PSYM_SXG AVA.PN.PSYM.SXG] || Submandibular Ganglion || sublingual-gland || (unknown reference) ||
+|| || || || || submandibular-gland || ||
 || [BrainAreaLPC LPC] || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || [BrainRegionLPC_HM_HYG LPC.HM.HYG] || Hypoglossal Motor Nucleus || chondroglossus-muscle || (unknown reference) ||
+|| || || || || genioglossus-muscle || ||
+|| || || || || hyoglossus-muscle || ||
+|| || || || || styloglossus-muscle || ||
+|| || || || || superior-longitudinal-muscle-tongue || ||
+|| || || || || tongue-inferior-longitudinal-muscle || ||
+|| || || || || transverse-tongue-muscle || ||
+|| || || || || vertical-tongue-muscle || ||
 ||  ||  || [BrainRegionLPC_HP_FCM LPC.HP.FCM] || Facial Motor Nucleus || buccinator-muscle || (unknown reference) ||
+|| || || || || digastric-muscle-facial || ||
+|| || || || || stylohyoid-muscle || ||
 ||  ||  || [BrainRegionLPC_HP_PTP_TRM LPC.HP.PTP.TRM] || Trigeminal Motor Nucleus || digastric-muscle-trigeminal || (unknown reference) ||
+|| || || || || masticatory-lateral-pterygoid-muscle || ||
+|| || || || || masticatory-masseter-muscle || ||
+|| || || || || masticatory-medial-pterygoid-muscle || ||
+|| || || || || masticatory-temporal-muscle || ||
+|| || || || || mylohyoid-muscle || ||
+|| || || || || tensor-veli-palatini-muscle || ||
 ||  ||  || [BrainRegionLPC_SC_VH_SAN LPC.SC.VH.SAN] || Spinal Accessory Nucleus || geniohyoid-muscle || (unknown reference) ||
 || [BrainAreaLRC LRC] || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || [BrainRegionHMA_HM_AMB HMA.HM.AMB] || Ambiguus Nucleus || inferior-pharyngeal-constrictor-muscle || (unknown reference) ||
+|| || || || || levator-veli-palatini-muscle || ||
+|| || || || || middle-pharyngeal-constrictor-muscle || ||
+|| || || || || palatoglossus-muscle || ||
+|| || || || || superior-pharyngeal-constrictor-muscle || ||
 
 *External Outbound Region Connections:*
 
-|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Connector* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLPC LPC] || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || [BrainRegionLPC_MM_MSTR LPC.MM.MSTR] || Mesencephalic Trigeminal Nucleus || masticatory-unconscious-muscle-spindles || (unknown reference) ||
 ||  ||  || [BrainRegionLPC_PN_SG_GNG LPC.PN.SG.GNG] || Geniculate Ganglion || soft-palate-sparse-taste-receptors || (unknown reference) ||
 ||  ||  || [BrainRegionLPC_PN_SG_NOD LPC.PN.SG.NOD] || Nodose Ganglion || epiglottis-taste-buds || (unknown reference) ||
 ||  ||  || [BrainRegionLPC_PN_SG_TRG LPC.PN.SG.TRG] || Trigeminal Ganglion || teeth || (unknown reference) ||
+|| || || || || tongue-hair-cell || ||
+|| || || || || uvula-receptors || ||
 
 == TARGET.TEA.GENITALIA.CIRCUIT - TARGET.TEA.GENITALIA Circuit ==
 
@@ -112,18 +152,34 @@
 
 *External Inbound Region Connections:*
 
-|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Connector* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaACA ACA] || [BrainRegionTARGET_TEA_GENITALIA TARGET.TEA.GENITALIA] || [BrainRegionAVA_PN_PSYM_PPG AVA.PN.PSYM.PPG] || Pelvic Peripheral Ganglion || corpus-cavernosum-clitoridis || (unknown reference) ||
+|| || || || || corpus-cavernosum-penis || ||
+|| || || || || uterus-parasympathetic || ||
+|| || || || || vagina-parasympathetic || ||
 ||  ||  || [BrainRegionAVA_PN_SYM_IMG AVA.PN.SYM.IMG] || Inferior Mesenteric Ganglion || bartholin-gland || (unknown reference) ||
+|| || || || || cervix-gland || ||
+|| || || || || cowper-gland || ||
+|| || || || || cremaster-muscle || ||
+|| || || || || dartos-muscle || ||
+|| || || || || prostate-gland || ||
+|| || || || || skenes-gland || ||
+|| || || || || uterus-sympathetic || ||
+|| || || || || vagina-sympathetic || ||
+|| || || || || vas-deferens || ||
 || [BrainAreaLPC LPC] || [BrainRegionTARGET_TEA_GENITALIA TARGET.TEA.GENITALIA] || [BrainRegionLPC_SC_VH_PM LPC.SC.VH.PM] || Posteromedial Nucleus || bulbospongiosus-muscle || (unknown reference) ||
+|| || || || || deep-transverse-perineal-muscle-clitoris || ||
+|| || || || || deep-transverse-perineal-muscle-penis || ||
+|| || || || || ischiocavernosus-muscle || ||
 ||  ||  || [BrainRegionLPC_SC_VH_VM LPC.SC.VH.VM] || Ventromedial Nucleus || pubococcygeus-muscle || (unknown reference) ||
 
 *External Outbound Region Connections:*
 
-|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Connector* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLPC LPC] || [BrainRegionTARGET_TEA_GENITALIA TARGET.TEA.GENITALIA] || [BrainRegionLPC_PN_SG_LDRG LPC.PN.SG.LDRG] || Lower Dorsal Root Ganglion || utetovaginal-visceral-receptors || (unknown reference) ||
+|| || || || || visceral-sexual-receptors || ||
 
 == TARGET.TEA.HAND.CIRCUIT - TARGET.TEA.HAND Circuit ==
 
@@ -135,17 +191,72 @@
 
 *External Inbound Region Connections:*
 
-|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Connector* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLPC LPC] || [BrainRegionTARGET_TEA_HAND TARGET.TEA.HAND] || [BrainRegionLPC_SC_VH_PL LPC.SC.VH.PL] || Posterolateral Nucleus || biceps-muscle || (unknown reference) ||
+|| || || || || brachialis-muscle || ||
+|| || || || || coracobrachialis-muscle || ||
+|| || || || || levator-claviculae-muscle || ||
+|| || || || || levator-scapulae-muscle-roots || ||
+|| || || || || levator-scapulae-muscle-scapular || ||
+|| || || || || pectoralis-major-muscle || ||
+|| || || || || pronator-quadratus-muscle || ||
+|| || || || || pronator-teres-muscle || ||
 ||  ||  || [BrainRegionLPC_SC_VH_PM LPC.SC.VH.PM] || Posteromedial Nucleus || anterior-deltoid-muscle || (unknown reference) ||
+|| || || || || flexor-carpi-radialis-muscle || ||
+|| || || || || flexor-carpi-ulnaris-muscle || ||
+|| || || || || infraspinatus-muscle || ||
+|| || || || || rhomboid-major-muscle || ||
+|| || || || || rhomboid-minor-muscle || ||
+|| || || || || serratus-anterior-muscle || ||
+|| || || || || sternalis-muscle || ||
+|| || || || || supraspinatus-muscle || ||
 ||  ||  || [BrainRegionLPC_SC_VH_RPL LPC.SC.VH.RPL] || Retroposterolateral Nucleus || abductor-digiti-minimi-muscle || (unknown reference) ||
+|| || || || || abductor-pollicis-brevis-muscle || ||
+|| || || || || adductor-pollicis-muscle || ||
+|| || || || || dorsal-interossei-muscle-hand || ||
+|| || || || || flexor-digiti-minimi-brevis-muscle-hand || ||
+|| || || || || flexor-digitorum-profundus-muscle-interosseous || ||
+|| || || || || flexor-digitorum-profundus-muscle-ulnar || ||
+|| || || || || flexor-digitorum-superficialis-muscle || ||
+|| || || || || flexor-pollicis-brevis-muscle || ||
+|| || || || || flexor-pollicis-brevis-muscle-ulnar || ||
+|| || || || || flexor-pollicis-longus-muscle || ||
+|| || || || || lumbricals-hand-muscles-median || ||
+|| || || || || lumbricals-hand-muscles-ulnar || ||
+|| || || || || opponens-digiti-minimi-muscles || ||
+|| || || || || opponens-pollicis-muscle || ||
+|| || || || || palmar-interossei-muscles || ||
+|| || || || || palmaris-brevis-muscle || ||
+|| || || || || palmaris-longus-muscle || ||
 ||  ||  || [BrainRegionLPC_SC_VH_VL LPC.SC.VH.VL] || Ventrolateral Nucleus || abductor-pollicis-longus-muscle || (unknown reference) ||
+|| || || || || anconeus-muscle || ||
+|| || || || || articularis-cubiti-muscle || ||
+|| || || || || brachioradialis-muscle || ||
+|| || || || || extensor-carpi-radialis-brevis-muscle || ||
+|| || || || || extensor-carpi-radialis-longus-muscle || ||
+|| || || || || extensor-carpi-ulnaris-muscle || ||
+|| || || || || extensor-digiti-minimi-muscle || ||
+|| || || || || extensor-digitorum-muscle || ||
+|| || || || || extensor-indicis-muscle || ||
+|| || || || || extensor-pollicis-brevis-muscle || ||
+|| || || || || extensor-pollicis-longus-muscle || ||
+|| || || || || pectoralis-minor-muscle || ||
+|| || || || || supinator-muscle || ||
 ||  ||  || [BrainRegionLPC_SC_VH_VM LPC.SC.VH.VM] || Ventromedial Nucleus || posteriolateral-deltoid-muscle || (unknown reference) ||
+|| || || || || shoulder-latissimus-dorsi-muscle || ||
+|| || || || || shoulder-teres-major-muscle || ||
+|| || || || || subclavius-muscle || ||
+|| || || || || subscapularis-muscle-lower || ||
+|| || || || || subscapularis-muscle-upper || ||
+|| || || || || teres-minor-muscle || ||
+|| || || || || trapezius-muscle || ||
+|| || || || || triceps-brachii-muscle-axillary || ||
+|| || || || || triceps-brachii-muscle-radial || ||
 
 *External Outbound Region Connections:*
 
-|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Connector* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLPC LPC] || [BrainRegionTARGET_TEA_HAND TARGET.TEA.HAND] || [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG] || Upper Dorsal Root Ganglion || hand-somatic-receptors || (unknown reference) ||
 
@@ -159,7 +270,7 @@
 
 *External Inbound Region Connections:*
 
-|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Connector* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaACA ACA] || [BrainRegionTARGET_TEA_HEART TARGET.TEA.HEART] || [BrainRegionAVA_PN_PSYM_CRG AVA.PN.PSYM.CRG] || Cardiac Ganglion || heart-psymp-control || (unknown reference) ||
 ||  ||  || [BrainRegionAVA_PN_SYM_MCG AVA.PN.SYM.MCG] || Middle Cervical Ganglion || heart-cardiac-lower-muscle-middle || (unknown reference) ||
@@ -169,7 +280,7 @@
 
 *External Outbound Region Connections:*
 
-|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Connector* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLPC LPC] || [BrainRegionTARGET_TEA_HEART TARGET.TEA.HEART] || [BrainRegionLPC_PN_SG_NOD LPC.PN.SG.NOD] || Nodose Ganglion || heart-aorta-baroreceptors || (unknown reference) ||
 ||  ||  || [BrainRegionLPC_PN_SG_PET LPC.PN.SG.PET] || Petrosal Ganglion || heart-carotid-baroreceptors || (unknown reference) ||
@@ -185,17 +296,72 @@
 
 *External Inbound Region Connections:*
 
-|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Connector* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLPC LPC] || [BrainRegionTARGET_TEA_LEG TARGET.TEA.LEG] || [BrainRegionLPC_SC_VH_PL LPC.SC.VH.PL] || Posterolateral Nucleus || gastrocnemius-muscle || (unknown reference) ||
+|| || || || || leg-accessory-soleus-muscle || ||
+|| || || || || leg-biceps-femoris-muscle-peroneal || ||
+|| || || || || leg-biceps-femoris-muscle-tibial || ||
+|| || || || || leg-fibularis-brevis-muscle || ||
+|| || || || || leg-fibularis-longus-muscle || ||
+|| || || || || leg-gracilis-muscle || ||
+|| || || || || leg-soleus-muscle || ||
+|| || || || || plantaris-muscle || ||
+|| || || || || popliteus-muscle || ||
+|| || || || || tibialis-posterior-muscle || ||
 ||  ||  || [BrainRegionLPC_SC_VH_PM LPC.SC.VH.PM] || Posteromedial Nucleus || leg-adductor-brevis-muscle || (unknown reference) ||
+|| || || || || leg-adductor-longus-muscle || ||
+|| || || || || leg-adductor-magnus-muscle-obturator || ||
+|| || || || || leg-adductor-magnus-muscle-tibial || ||
+|| || || || || leg-adductor-minimus-muscle-obturator || ||
+|| || || || || leg-adductor-minimus-muscle-tibial || ||
+|| || || || || leg-gemellus-inferior-muscle || ||
+|| || || || || leg-gemellus-superior-muscle || ||
+|| || || || || leg-gluteus-medius-muscle || ||
+|| || || || || leg-gluteus-minimus-muscle || ||
+|| || || || || leg-iliacus-muscle || ||
+|| || || || || leg-obturator-externus-muscle || ||
+|| || || || || leg-obturator-internus-muscle || ||
+|| || || || || leg-pectineus-muscle-femoral || ||
+|| || || || || leg-pectineus-muscle-obturator || ||
+|| || || || || leg-psoas-major-muscle || ||
+|| || || || || leg-psoas-minor-muscle || ||
+|| || || || || leg-quadratus-femoris-muscle || ||
+|| || || || || leg-sartorius-muscle || ||
+|| || || || || leg-semimembranosus-muscle || ||
+|| || || || || leg-semitendinosus-muscle || ||
+|| || || || || leg-tensor-fasciae-latae-muscle || ||
+|| || || || || piriformis-muscle || ||
 ||  ||  || [BrainRegionLPC_SC_VH_RPL LPC.SC.VH.RPL] || Retroposterolateral Nucleus || flexor-longus-digitorum-muscle || (unknown reference) ||
+|| || || || || flexor-longus-hallucis-muscle || ||
+|| || || || || leg-abductor-digiti-minimi-muscle || ||
+|| || || || || leg-abductor-hallucis-muscle || ||
+|| || || || || leg-adductor-hallucis-muscle || ||
+|| || || || || leg-dorsal-interossei-muscles || ||
+|| || || || || leg-flexor-digiti-minimi-brevis-muscle || ||
+|| || || || || leg-flexor-digitorum-brevis-muscle || ||
+|| || || || || leg-flexor-hallucis-brevis-muscle || ||
+|| || || || || leg-lumbrical-muscle-lateral || ||
+|| || || || || leg-lumbrical-muscle-medial || ||
+|| || || || || leg-plantar-interossei-muscles || ||
+|| || || || || leg-quadratus-plantae-muscle || ||
 ||  ||  || [BrainRegionLPC_SC_VH_VL LPC.SC.VH.VL] || Ventrolateral Nucleus || extensor-digitorum-brevis-muscle || (unknown reference) ||
+|| || || || || extensor-digitorum-longus-muscle || ||
+|| || || || || extensor-hallucis-longus-muscle || ||
+|| || || || || fibularis-tertius-muscle || ||
+|| || || || || leg-articularis-genu-muscle || ||
+|| || || || || leg-extensor-hallucis-brevis-muscle || ||
+|| || || || || tibialis-anterior-muscle || ||
 ||  ||  || [BrainRegionLPC_SC_VH_VM LPC.SC.VH.VM] || Ventromedial Nucleus || gluteus-maximus-muscle || (unknown reference) ||
+|| || || || || leg-obliquus-genu-muscle || ||
+|| || || || || leg-rectus-femoris-muscle || ||
+|| || || || || leg-vastus-intermedius-muscle || ||
+|| || || || || leg-vastus-lateralis-muscle || ||
+|| || || || || leg-vastus-medialis-muscle || ||
 
 *External Outbound Region Connections:*
 
-|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Connector* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLPC LPC] || [BrainRegionTARGET_TEA_LEG TARGET.TEA.LEG] || [BrainRegionLPC_PN_SG_LDRG LPC.PN.SG.LDRG] || Lower Dorsal Root Ganglion || leg-somatic-receptors || (unknown reference) ||
 
@@ -209,13 +375,13 @@
 
 *External Inbound Region Connections:*
 
-|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Connector* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaACA ACA] || [BrainRegionTARGET_TEA_LIVER TARGET.TEA.LIVER] || [BrainRegionAVA_PN_PSYM_GUT AVA.PN.PSYM.GUT] || Parasympathetic Gut Brain || glands || (unknown reference) ||
 
 *External Outbound Region Connections:*
 
-|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Connector* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLPC LPC] || [BrainRegionTARGET_TEA_LIVER TARGET.TEA.LIVER] || [BrainRegionLPC_PN_SG_LDRG LPC.PN.SG.LDRG] || Lower Dorsal Root Ganglion || visceral-receptors || (unknown reference) ||
 ||  ||  || [BrainRegionLPC_PN_SG_NOD LPC.PN.SG.NOD] || Nodose Ganglion || glucose-and-osmoreceptors || (unknown reference) ||
@@ -230,15 +396,16 @@
 
 *External Inbound Region Connections:*
 
-|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Connector* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaACA ACA] || [BrainRegionTARGET_TEA_LUNG TARGET.TEA.LUNG] || [BrainRegionAVA_PN_PSYM_PUG AVA.PN.PSYM.PUG] || Pulmonary Peripheral Ganglion || smooth-muscles || (unknown reference) ||
+|| || || || || visceral-glands || ||
 || [BrainAreaLPC LPC] || [BrainRegionTARGET_TEA_LUNG TARGET.TEA.LUNG] || [BrainRegionLPC_SC_VH_PHR LPC.SC.VH.PHR] || Phrenic Nucleus || thoracic-diaphragm || (unknown reference) ||
 || [BrainAreaLRC LRC] || [BrainRegionTARGET_TEA_LUNG TARGET.TEA.LUNG] || [BrainRegionHMA_HM_AMB HMA.HM.AMB] || Ambiguus Nucleus || stylopharyngeus-muscle || (unknown reference) ||
 
 *External Outbound Region Connections:*
 
-|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Connector* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLPC LPC] || [BrainRegionTARGET_TEA_LUNG TARGET.TEA.LUNG] || [BrainRegionLPC_PN_SG_JUG LPC.PN.SG.JUG] || Jugular Ganglion || pulmonary-stretch-receptors || (unknown reference) ||
 ||  ||  || [BrainRegionLPC_PN_SG_NOD LPC.PN.SG.NOD] || Nodose Ganglion || pulmonary-neuroepithelial-bodies || (unknown reference) ||
@@ -254,14 +421,27 @@
 
 *External Inbound Region Connections:*
 
-|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Connector* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLPC LPC] || [BrainRegionTARGET_TEA_NECK TARGET.TEA.NECK] || [BrainRegionLPC_SC_VH_SAN LPC.SC.VH.SAN] || Spinal Accessory Nucleus || neck-longus-capitis || (unknown reference) ||
+|| || || || || neck-longus-colli || ||
+|| || || || || neck-rectus-capitis-anterior || ||
+|| || || || || neck-rectus-capitis-lateralis || ||
+|| || || || || neck-scalenus-anterior || ||
+|| || || || || neck-scalenus-medius || ||
+|| || || || || neck-scalenus-posterior || ||
 ||  ||  || [BrainRegionLPC_SC_VH_VM LPC.SC.VH.VM] || Ventromedial Nucleus || neck-obliquus-capitis-inferior-muscle || (unknown reference) ||
+|| || || || || neck-obliquus-capitis-superior-muscle || ||
+|| || || || || neck-rectus-capitis-posterior-major-muscle || ||
+|| || || || || neck-rectus-capitis-posterior-minor-muscle || ||
+|| || || || || neck-semispinalis-capitis || ||
+|| || || || || neck-splenius-capitis || ||
+|| || || || || neck-splenius-cervicis || ||
+|| || || || || neck-sternocleidomastoid || ||
 
 *External Outbound Region Connections:*
 
-|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Connector* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLPC LPC] || [BrainRegionTARGET_TEA_NECK TARGET.TEA.NECK] || [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG] || Upper Dorsal Root Ganglion || neck-low-cutaneous-receptors || (unknown reference) ||
 
@@ -275,16 +455,20 @@
 
 *External Inbound Region Connections:*
 
-|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Connector* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaACA ACA] || [BrainRegionTARGET_TEA_PROTECTOR TARGET.TEA.PROTECTOR] || [BrainRegionAVA_PN_PSYM_SPG AVA.PN.PSYM.SPG] || Sphenopalatine Ganglion || hard-palate-mucosal-gland || (unknown reference) ||
+|| || || || || pharyngeal-tonsils || ||
+|| || || || || soft-palate-mucosal-gland || ||
 
 *External Outbound Region Connections:*
 
-|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Connector* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLPC LPC] || [BrainRegionTARGET_TEA_PROTECTOR TARGET.TEA.PROTECTOR] || [BrainRegionLPC_PN_SG_JUG LPC.PN.SG.JUG] || Jugular Ganglion || cranial-meninges || (unknown reference) ||
 ||  ||  || [BrainRegionLPC_PN_SG_TRG LPC.PN.SG.TRG] || Trigeminal Ganglion || lingual-tonsil || (unknown reference) ||
+|| || || || || palatine-tonsil || ||
+|| || || || || tentorium-cerebelli-dura-matter || ||
 
 == TARGET.TEA.RECTUM.CIRCUIT - TARGET.TEA.RECTUM Circuit ==
 
@@ -296,16 +480,20 @@
 
 *External Inbound Region Connections:*
 
-|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Connector* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaACA ACA] || [BrainRegionTARGET_TEA_RECTUM TARGET.TEA.RECTUM] || [BrainRegionAVA_PN_PSYM_PPG AVA.PN.PSYM.PPG] || Pelvic Peripheral Ganglion || sphincter-ani-internus-muscle-parasympathetic || (unknown reference) ||
 ||  ||  || [BrainRegionAVA_PN_SYM_IMG AVA.PN.SYM.IMG] || Inferior Mesenteric Ganglion || sphincter-ani-internus-muscle-sympathetic || (unknown reference) ||
 || [BrainAreaLPC LPC] || [BrainRegionTARGET_TEA_RECTUM TARGET.TEA.RECTUM] || [BrainRegionLPC_SC_VH_PM LPC.SC.VH.PM] || Posteromedial Nucleus || corrugator-cutis-ani-muscle || (unknown reference) ||
+|| || || || || sphincter-ani-externus-muscle || ||
+|| || || || || superficial-transverse-perineal-muscle || ||
 ||  ||  || [BrainRegionLPC_SC_VH_VM LPC.SC.VH.VM] || Ventromedial Nucleus || coccygeus-muscle || (unknown reference) ||
+|| || || || || iliococcygeus-muscle || ||
+|| || || || || puborectalis-muscle || ||
 
 *External Outbound Region Connections:*
 
-|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Connector* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLPC LPC] || [BrainRegionTARGET_TEA_RECTUM TARGET.TEA.RECTUM] || [BrainRegionLPC_PN_SG_LDRG LPC.PN.SG.LDRG] || Lower Dorsal Root Ganglion || large-intestine-visceral-receptors || (unknown reference) ||
 
@@ -319,15 +507,26 @@
 
 *External Inbound Region Connections:*
 
-|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Connector* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaACA ACA] || [BrainRegionTARGET_TEA_SPEAKER TARGET.TEA.SPEAKER] || [BrainRegionAVA_PN_PSYM_ILG AVA.PN.PSYM.ILG] || Intralaryngeal Peripheral Ganglion || aryepiglottic-muscle || (unknown reference) ||
+|| || || || || lateral-cricoarytenoid-muscle || ||
+|| || || || || oblique-arytenoid-muscle || ||
+|| || || || || posterior-cricoarytenoid-muscle || ||
+|| || || || || thyroarytenoid-muscle || ||
+|| || || || || thyroepiglottic-muscle || ||
 || [BrainAreaLPC LPC] || [BrainRegionTARGET_TEA_SPEAKER TARGET.TEA.SPEAKER] || [BrainRegionLPC_SC_VH_VM LPC.SC.VH.VM] || Ventromedial Nucleus || larynx-thyrohyoid-muscle || (unknown reference) ||
+|| || || || || omohyoid-muscle || ||
+|| || || || || sternohyoid-muscle || ||
+|| || || || || sternothyroid-muscle || ||
 || [BrainAreaLRC LRC] || [BrainRegionTARGET_TEA_SPEAKER TARGET.TEA.SPEAKER] || [BrainRegionHMA_HM_AMB HMA.HM.AMB] || Ambiguus Nucleus || arytenoid-muscle || (unknown reference) ||
+|| || || || || cricothyroid-muscle || ||
+|| || || || || palatopharyngeus-muscle || ||
+|| || || || || thyroid-gland-levator-muscle || ||
 
 *External Outbound Region Connections:*
 
-|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Connector* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLPC LPC] || [BrainRegionTARGET_TEA_SPEAKER TARGET.TEA.SPEAKER] || [BrainRegionLPC_PN_SG_JUG LPC.PN.SG.JUG] || Jugular Ganglion || palatine-tonsil-receptors || (unknown reference) ||
 
@@ -341,17 +540,23 @@
 
 *External Inbound Region Connections:*
 
-|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Connector* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaACA ACA] || [BrainRegionTARGET_TEA_STOMACH TARGET.TEA.STOMACH] || [BrainRegionAVA_PN_PSYM_GUT AVA.PN.PSYM.GUT] || Parasympathetic Gut Brain || stomach-mucosal-gastric-glands || (unknown reference) ||
 ||  ||  || [BrainRegionAVA_PN_PSYM_PPG AVA.PN.PSYM.PPG] || Pelvic Peripheral Ganglion || stomach-wall || (unknown reference) ||
 
 *External Outbound Region Connections:*
 
-|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Connector* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLPC LPC] || [BrainRegionTARGET_TEA_STOMACH TARGET.TEA.STOMACH] || [BrainRegionLPC_PN_SG_LDRG LPC.PN.SG.LDRG] || Lower Dorsal Root Ganglion || stomach-nutrition-sensor || (unknown reference) ||
 ||  ||  || [BrainRegionLPC_PN_SG_NOD LPC.PN.SG.NOD] || Nodose Ganglion || colon || (unknown reference) ||
+|| || || || || duodentum || ||
+|| || || || || kidney || ||
+|| || || || || pancreas || ||
+|| || || || || small-intestine || ||
+|| || || || || spleen || ||
+|| || || || || stomach || ||
 
 == TARGET.TEA.TRUNK.CIRCUIT - TARGET.TEA.TRUNK Circuit ==
 
@@ -363,14 +568,35 @@
 
 *External Inbound Region Connections:*
 
-|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Connector* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLPC LPC] || [BrainRegionTARGET_TEA_TRUNK TARGET.TEA.TRUNK] || [BrainRegionLPC_SC_VH_PM LPC.SC.VH.PM] || Posteromedial Nucleus || trunk-abdominal-external-oblique-muscle || (unknown reference) ||
+|| || || || || trunk-external-intercostal-muscles || ||
+|| || || || || trunk-iliocostalis-muscle || ||
+|| || || || || trunk-internal-oblique-muscle || ||
+|| || || || || trunk-pyramidalis-muscle || ||
+|| || || || || trunk-quadratus-lumborum-muscle || ||
+|| || || || || trunk-rectus-abdominis-muscle || ||
+|| || || || || trunk-rotatores-muscles || ||
+|| || || || || trunk-semispinalis-cervicis-muscle || ||
+|| || || || || trunk-serratus-posterior-superior-muscle || ||
+|| || || || || trunk-spinalis-muscle || ||
 ||  ||  || [BrainRegionLPC_SC_VH_VM LPC.SC.VH.VM] || Ventromedial Nucleus || semispinalis-capitis-muscle || (unknown reference) ||
+|| || || || || trunk-internal-intercostal-muscles || ||
+|| || || || || trunk-interspinales-muscles || ||
+|| || || || || trunk-intertransversarii-muscle || ||
+|| || || || || trunk-levatores-costarum-muscles || ||
+|| || || || || trunk-longissimus-muscle || ||
+|| || || || || trunk-multifidus-muscle || ||
+|| || || || || trunk-semispinalis-dorsi-thoracis || ||
+|| || || || || trunk-serratus-posterior-inferior-muscle || ||
+|| || || || || trunk-subcostalis-muscle || ||
+|| || || || || trunk-transversus-abdominis || ||
+|| || || || || trunk-transversus-thoracis-muscle || ||
 
 *External Outbound Region Connections:*
 
-|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Connector* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLPC LPC] || [BrainRegionTARGET_TEA_TRUNK TARGET.TEA.TRUNK] || [BrainRegionLPC_PN_SG_LDRG LPC.PN.SG.LDRG] || Lower Dorsal Root Ganglion || trunk-lower-somatic-receptors || (unknown reference) ||
 ||  ||  || [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG] || Upper Dorsal Root Ganglion || trunk-upper-somatic-receptors || (unknown reference) ||
@@ -385,15 +611,18 @@
 
 *External Inbound Region Connections:*
 
-|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Connector* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaACA ACA] || [BrainRegionTARGET_TEA_URETER TARGET.TEA.URETER] || [BrainRegionAVA_PN_PSYM_PPG AVA.PN.PSYM.PPG] || Pelvic Peripheral Ganglion || detrusor-urinae-muscle-parasympathetic || (unknown reference) ||
+|| || || || || internal-urethral-sphincter-parasympathetic || ||
 ||  ||  || [BrainRegionAVA_PN_SYM_IMG AVA.PN.SYM.IMG] || Inferior Mesenteric Ganglion || detrusor-urinae-muscle-sympathetic || (unknown reference) ||
+|| || || || || internal-urethral-sphincter-sympathetic || ||
 || [BrainAreaLPC LPC] || [BrainRegionTARGET_TEA_URETER TARGET.TEA.URETER] || [BrainRegionLPC_SC_VH_PM LPC.SC.VH.PM] || Posteromedial Nucleus || external-urethral-sphincter-female || (unknown reference) ||
+|| || || || || external-urethral-sphincter-male || ||
 
 *External Outbound Region Connections:*
 
-|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Connector* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLPC LPC] || [BrainRegionTARGET_TEA_URETER TARGET.TEA.URETER] || [BrainRegionLPC_PN_SG_LDRG LPC.PN.SG.LDRG] || Lower Dorsal Root Ganglion || ureter-visceral-receptors || (unknown reference) ||
 
@@ -407,14 +636,20 @@
 
 *External Inbound Region Connections:*
 
-|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Connector* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaACA ACA] || [BrainRegionTARGET_TEA_VESSELS TARGET.TEA.VESSELS] || [BrainRegionAVA_PN_SYM_ARG AVA.PN.SYM.ARG] || Aorticorenal Ganglion || renal-blood-vessels || (unknown reference) ||
 ||  ||  || [BrainRegionAVA_PN_SYM_CEG AVA.PN.SYM.CEG] || Coelic Ganglion || liver-blood-vessels || (unknown reference) ||
+|| || || || || stomach-blood-vessels || ||
 ||  ||  || [BrainRegionAVA_PN_SYM_MCG AVA.PN.SYM.MCG] || Middle Cervical Ganglion || forearm-blood-vessels || (unknown reference) ||
 ||  ||  || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || Superior Cervical Ganglion || brachial-artery-vasoconstrictors || (unknown reference) ||
+|| || || || || heart-blood-vessels || ||
+|| || || || || parotid-gland-vasoconstrictors || ||
+|| || || || || sublingual-gland-vasoconstrictors || ||
+|| || || || || submandibular-gland-vasoconstrictors || ||
 ||  ||  || [BrainRegionAVA_PN_SYM_STG AVA.PN.SYM.STG] || Stellate Ganglion || arm-blood-vessels || (unknown reference) ||
 ||  ||  || [BrainRegionAVA_PN_SYM_TG AVA.PN.SYM.TG] || Sympathetic Thoracic Ganglia || arterial-thoracic-vasoconstrictors || (unknown reference) ||
+|| || || || || breast-blood-vessels || ||
 
 *External Outbound Region Connections:*
   * no connections
