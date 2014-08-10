@@ -1,5 +1,5 @@
 #summary Ambiguus Nucleus
-@@[Home] -> [BiologicalLifeResearch] -> [BrainAreaLRC] -> [BrainRegionHMA_HM_AMB]
+@@[Home] -> [BiologicalLifeResearch] -> [BrainAreaLPC] -> [BrainRegionHMA_HM_AMB]
 ----
 
 This page covers biological details of component Ambiguus Nucleus.
@@ -7,10 +7,10 @@ Region is part of aHuman target integrated biological model.
 
   * *Top-down path to region*: Hindbrain Myelencephalon -> Expiratory Center (HMA.HM.RC) -> Ambiguus Nucleus (HMA.HM.AMB) (see [OverallMindMaps Mind Maps])
   * *Type*: nucleus
-  * *Brain area*: [BrainAreaLRC Lower Brain - Motor Reflex Area]
+  * *Brain area*: [BrainAreaLPC Lower Brain - Peripheral Control Area]
   * *Role*: relay
-  * *Function*: Control muscles of pharynx
-  * *Notes to function*: On par with VGM, speech
+  * *Function*: Control muscles of the soft palate, pharynx, and larnyx
+  * *Notes to function*: On par with VGM, speech; speech and swallowing
 (generated)
 = Components =
 (generated)
@@ -27,12 +27,15 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/HMA.HM.AMB.dot.png
 *Inbound Region Connections:*
 
 || *Source Area* || *Source Region* || *Source Name* || *Type* || *Reference* ||
-|| [BrainAreaLRC LRC] || [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || Caudal Pontine Reticular Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> NucleusAmbiguus, abstract)] ||
+|| [BrainAreaLPC LPC] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || Solitary Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLRC LRC] || [BrainRegionHMA_HM_RA HMA.HM.RA] || Retroambigualis Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || Caudal Pontine Reticular Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> NucleusAmbiguus, abstract)] ||
+|| [BrainAreaMAA MAA] || [BrainRegionMCA_NC_MC MCA.NC.MC] || Motor Cortex || neocortex-nucleus || (unknown reference) ||
+|| [BrainAreaMCA MCA] || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || Periaqueductal Gray Matter || nucleus-nucleus || (unknown reference) ||
 
 *Outbound Region Connections:*
 
 || *Target Area* || *Target Region* || *Target Name* || *Type* || *Reference* ||
-|| [BrainAreaACA ACA] || [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || Intermediolateral Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaTEA TEA] || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || Mouth feeder || inferior-pharyngeal-constrictor-muscle || (unknown reference) ||
 ||  || [BrainRegionTARGET_TEA_LUNG TARGET.TEA.LUNG] || Lung || stylopharyngeus-muscle || (unknown reference) ||
 ||  || [BrainRegionTARGET_TEA_SPEAKER TARGET.TEA.SPEAKER] || Mouth speaker || arytenoid-muscle || (unknown reference) ||

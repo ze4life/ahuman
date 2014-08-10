@@ -15,17 +15,15 @@
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
 || [BrainRegionBMA_HP_PRF_PVR BMA.HP.PRF.PVR] || Parvocellular Reticular Nucleus || nucleus || LRM || Flow of respiratory current out of organism || Projects to facial nucleus, hypoglossal nucleus and<BR>parabrachial nucleus ||
-|| [BrainRegionHMA_HM_AMB HMA.HM.AMB] || Ambiguus Nucleus || nucleus || LRM || Control muscles of pharynx || On par with VGM, speech ||
 || [BrainRegionHMA_HM_INM HMA.HM.INM] || Intercalated Nucleus of Medulla || nucleus || LRC || Coordinate tongue movements, vestibuloocular reflex || Receives sensory inputs from neck region ||
 || [BrainRegionHMA_HM_RA HMA.HM.RA] || Retroambigualis Nucleus || nucleus || LRM || Groups of premotor interneurons producing detailed motor actions || Different combination of activation of these<BR>premotor neurons determines vocalization, vomiting,<BR>coughing, sneezing, mating posture, or child<BR>delivery ||
 || [BrainRegionHMA_HP_PN_KFN HMA.HP.PN.KFN] || Kolliker-Fuse Nucleus || nucleus || LRM || Control of protruder tongue muscles contraction to maintain respiration || To hypoglossal nucleus and phrenic nucleus ||
-|| [BrainRegionHMA_HP_PN_SC HMA.HP.PN.SC] || Nucleus Subceruleus || nucleus || LRM || Tongue control || To hypoglossal nucleus ||
+|| [BrainRegionHMA_HP_PN_SC HMA.HP.PN.SC] || Nucleus Subceruleus || nucleus || LRM || Tongue control || To hypoglossal nucleus; A7 group ||
 || [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || Caudal Pontine Reticular Nucleus || nucleus || LRM || Mediate head movements || Grinding of the teeth in sleep, projections from<BR>superior colliculus, to spinal cord, extends to<BR>facial ||
 
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || [BrainRegionHMA_HM_AMB HMA.HM.AMB] || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> NucleusAmbiguus, abstract)] ||
 
 *External Inbound Region Connections:*
 
@@ -36,23 +34,24 @@
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaECA ECA] || [BrainRegionBMA_HP_PRF_PVR BMA.HP.PRF.PVR] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || Substantia Nigra Pars Compacta || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLCA LCA] || [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (CR -> RF, abstract)] ||
-|| [BrainAreaLPC LPC] || [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || [BrainRegionLPC_HP_IVBN LPC.HP.IVBN] || Inferior Vestibular Nuclei || nucleus-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) (VestibularNuclei -> PPRF, abstract)] ||
+|| [BrainAreaLPC LPC] || [BrainRegionHMA_HM_RA HMA.HM.RA] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || Solitary Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || [BrainRegionLPC_HP_IVBN LPC.HP.IVBN] || Inferior Vestibular Nuclei || nucleus-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) (VestibularNuclei -> PPRF, abstract)] ||
+|| [BrainAreaMCA MCA] || [BrainRegionHMA_HM_RA HMA.HM.RA] || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || Periaqueductal Gray Matter || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionHMA_HP_PN_SC HMA.HP.PN.SC] || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || Periaqueductal Gray Matter || nucleus-nucleus || (unknown reference) ||
 
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaACA ACA] || [BrainRegionHMA_HM_AMB HMA.HM.AMB] || [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || Intermediolateral Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLPC LPC] || [BrainRegionBMA_HP_PRF_PVR BMA.HP.PRF.PVR] || [BrainRegionLPC_HP_FCM LPC.HP.FCM] || Facial Motor Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorVII, abstract)] ||
 ||  ||  || [BrainRegionLPC_HP_PTP_TRM LPC.HP.PTP.TRM] || Trigeminal Motor Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorV, abstract)] ||
-||  || [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || [BrainRegionLPC_HM_HYG LPC.HM.HYG] || Hypoglossal Motor Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> NucleusXII, abstract)] ||
+||  || [BrainRegionHMA_HM_RA HMA.HM.RA] || [BrainRegionHMA_HM_AMB HMA.HM.AMB] || Ambiguus Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionHMA_HP_PN_SC HMA.HP.PN.SC] || [BrainRegionLPC_HM_HYG LPC.HM.HYG] || Hypoglossal Motor Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || [BrainRegionHMA_HM_AMB HMA.HM.AMB] || Ambiguus Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> NucleusAmbiguus, abstract)] ||
+||  ||  || [BrainRegionLPC_HM_HYG LPC.HM.HYG] || Hypoglossal Motor Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> NucleusXII, abstract)] ||
 ||  ||  || [BrainRegionLPC_HP_FCM LPC.HP.FCM] || Facial Motor Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorVII, abstract)] ||
 ||  ||  || [BrainRegionLPC_HP_PTP_TRM LPC.HP.PTP.TRM] || Trigeminal Motor Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorV, abstract)] ||
-|| <font color="red">Target</font> || || || || || ||
-|| [BrainAreaTEA TEA] || [BrainRegionHMA_HM_AMB HMA.HM.AMB] || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || Mouth feeder || inferior-pharyngeal-constrictor-muscle || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_LUNG TARGET.TEA.LUNG] || Lung || stylopharyngeus-muscle || (unknown reference) ||
-||  ||  || [BrainRegionTARGET_TEA_SPEAKER TARGET.TEA.SPEAKER] || Mouth speaker || arytenoid-muscle || (unknown reference) ||
-|| [BrainAreaTSA TSA] || [BrainRegionHMA_HM_AMB HMA.HM.AMB] || [BrainRegionTARGET_TSA_NOSE TARGET.TSA.NOSE] || Nose || nose-salpingopharyngeus || (unknown reference) ||
+|| [BrainAreaMMA MMA] || [BrainRegionHMA_HP_PN_SC HMA.HP.PN.SC] || [BrainRegionHBA_FT_DG HBA.FT.DG] || Dentate Gyrus || nucleus-allocortex || (unknown reference) ||
 
 == LRF - Frontal Visual Reflexes ==
 
@@ -255,10 +254,6 @@
 
 <img src="http://www.cixip.com/Public/kindeditor/attached/image/20121030/20121030134649_52795.jpg" alt="unavailable">
 
-  * [http://c431376.r76.cf2.rackcdn.com/10053/fnana-05-00034-r1/image_m/fnana-05-00034-g002.jpg Vocal Control] - see [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Reference]
-
-<img src="http://c431376.r76.cf2.rackcdn.com/10053/fnana-05-00034-r1/image_m/fnana-05-00034-g002.jpg" alt="unavailable">
-
   * [http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png Head Direction Cell Circuit] - see [http://www.scholarpedia.org/article/Head_direction_cells Reference]
 
 <img src="http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png" alt="unavailable">
@@ -272,7 +267,6 @@
 (generated)
 
   * http://www.cixip.com/index.php/page/content/id/1190
-  * http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full
   * http://www.scholarpedia.org/article/Head_direction_cells
   * http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2010.00134/full
 

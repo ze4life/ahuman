@@ -229,7 +229,8 @@
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLCA LCA] || [BrainRegionLPC_HP_FCM LPC.HP.FCM] || [BrainRegionHMA_HP_PRF_PDT HMA.HP.PRF.PDT] || Pontine Reticulotegmental Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorVII, abstract)] ||
 || [BrainAreaLPC LPC] || [BrainRegionLPC_HP_PTP_TRM LPC.HP.PTP.TRM] || [BrainRegionLPC_MM_MSTR LPC.MM.MSTR] || Mesencephalic Trigeminal Nucleus || ganglion-nucleus || (unknown reference) ||
-|| [BrainAreaLRC LRC] || [BrainRegionLPC_HM_HYG LPC.HM.HYG] || [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || Caudal Pontine Reticular Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> NucleusXII, abstract)] ||
+|| [BrainAreaLRC LRC] || [BrainRegionLPC_HM_HYG LPC.HM.HYG] || [BrainRegionHMA_HP_PN_SC HMA.HP.PN.SC] || Nucleus Subceruleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || Caudal Pontine Reticular Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> NucleusXII, abstract)] ||
 ||  || [BrainRegionLPC_HP_FCM LPC.HP.FCM] || [BrainRegionBMA_HP_PRF_PVR BMA.HP.PRF.PVR] || Parvocellular Reticular Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorVII, abstract)] ||
 ||  ||  || [BrainRegionHMA_HM_TGM_PA5 HMA.HM.TGM.PA5] || Paratrigeminal Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || Caudal Pontine Reticular Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> MotorVII, abstract)] ||
@@ -441,12 +442,13 @@
 ||  || [BrainRegionLPC_MM_MSTR LPC.MM.MSTR] || [BrainRegionLPC_HP_PTP_TRM LPC.HP.PTP.TRM] || Trigeminal Motor Nucleus || ganglion-nucleus || (unknown reference) ||
 || [BrainAreaLRC LRC] || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || [BrainRegionHMA_HP_PRF_GCR HMA.HP.PRF.GCR] || Gigantocellular Reticular Nucleus || nucleus-nucleus || (unknown reference) ||
 
-== STS - Taste and Smell Senses ==
+== STS - Taste and Smell Senses and Swallowing ==
 
 
 <img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_STS.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
+|| [BrainRegionHMA_HM_AMB HMA.HM.AMB] || Ambiguus Nucleus || nucleus || LRM || Control muscles of the soft palate, pharynx, and larnyx || On par with VGM, speech; speech and swallowing ||
 || [BrainRegionLPC_FT_AON LPC.FT.AON] || Anterior Olfactory Nucleus || nucleus || LSM || Regulate odor information flow ||  ||
 || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || Solitary Nucleus || nucleus || LSM || Carry taste buds, thoracic and abdominal viscera || c.n. VII, IX, X ||
 || [BrainRegionLPC_PN_SG_GNG LPC.PN.SG.GNG] || Geniculate Ganglion || sensory ganglion || LSC || Trophic support for survival || Innervation taste buds, ear skin ||
@@ -458,6 +460,7 @@
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionLPC_HM_SOL LPC.HM.SOL] || [BrainRegionHMA_HM_AMB HMA.HM.AMB] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionLPC_PN_SG_GNG LPC.PN.SG.GNG] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || ganglion-nucleus || (unknown reference) ||
 || [BrainRegionLPC_PN_SG_JUG LPC.PN.SG.JUG] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || ganglion-nucleus || (unknown reference) ||
 || [BrainRegionLPC_PN_SG_NOD LPC.PN.SG.NOD] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || ganglion-nucleus || (unknown reference) ||
@@ -467,8 +470,13 @@
 *External Inbound Region Connections:*
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| <font color="red">Cortical</font> || || || || || ||
+|| [BrainAreaMAA MAA] || [BrainRegionHMA_HM_AMB HMA.HM.AMB] || [BrainRegionMCA_NC_MC MCA.NC.MC] || Motor Cortex || neocortex-nucleus || (unknown reference) ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaAMA AMA] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || [BrainRegionBFA_FT_IPAC BFA.FT.IPAC] || Interstitial Anterior Commissural Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLRC LRC] || [BrainRegionHMA_HM_AMB HMA.HM.AMB] || [BrainRegionHMA_HM_RA HMA.HM.RA] || Retroambigualis Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionHMA_HP_PRF_CRF HMA.HP.PRF.CRF] || Caudal Pontine Reticular Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> NucleusAmbiguus, abstract)] ||
+|| [BrainAreaMCA MCA] || [BrainRegionHMA_HM_AMB HMA.HM.AMB] || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || Periaqueductal Gray Matter || nucleus-nucleus || (unknown reference) ||
 || <font color="red">Target</font> || || || || || ||
 || [BrainAreaTEA TEA] || [BrainRegionLPC_PN_SG_GNG LPC.PN.SG.GNG] || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || Mouth feeder || soft-palate-sparse-taste-receptors || (unknown reference) ||
 ||  || [BrainRegionLPC_PN_SG_JUG LPC.PN.SG.JUG] || [BrainRegionTARGET_TEA_LUNG TARGET.TEA.LUNG] || Lung || pulmonary-stretch-receptors || (unknown reference) ||
@@ -498,8 +506,14 @@
 || [BrainAreaLPC LPC] || [BrainRegionLPC_PN_SG_GNG LPC.PN.SG.GNG] || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || Spinal Trigeminal Nucleus || ganglion-nucleus || (unknown reference) ||
 ||  || [BrainRegionLPC_PN_SG_JUG LPC.PN.SG.JUG] || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || Spinal Trigeminal Nucleus || ganglion-nucleus || (unknown reference) ||
 ||  || [BrainRegionLPC_PN_SG_PET LPC.PN.SG.PET] || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || Spinal Trigeminal Nucleus || ganglion-nucleus || (unknown reference) ||
+|| [BrainAreaLRC LRC] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || [BrainRegionHMA_HM_RA HMA.HM.RA] || Retroambigualis Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaMCA MCA] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || [BrainRegionBMA_HP_PB BMA.HP.PB] || Parabrachial Nucleus || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (SOL -> PB)] ||
 || [BrainAreaMMA MMA] || [BrainRegionLPC_FT_AON LPC.FT.AON] || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || Piriform Cortex || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S1571064507000243 KIV model of cortico-hippocampal formation with subcortical projections for motor actions (AON -> PC)] ||
+|| <font color="red">Target</font> || || || || || ||
+|| [BrainAreaTEA TEA] || [BrainRegionHMA_HM_AMB HMA.HM.AMB] || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || Mouth feeder || inferior-pharyngeal-constrictor-muscle || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_LUNG TARGET.TEA.LUNG] || Lung || stylopharyngeus-muscle || (unknown reference) ||
+||  ||  || [BrainRegionTARGET_TEA_SPEAKER TARGET.TEA.SPEAKER] || Mouth speaker || arytenoid-muscle || (unknown reference) ||
+|| [BrainAreaTSA TSA] || [BrainRegionHMA_HM_AMB HMA.HM.AMB] || [BrainRegionTARGET_TSA_NOSE TARGET.TSA.NOSE] || Nose || nose-salpingopharyngeus || (unknown reference) ||
 
 = Thirdparty Circuits =
 (generated)
@@ -516,6 +530,10 @@
 
 <img src="http://2.bp.blogspot.com/-mjoruMnWeaU/TVp_YcF7meI/AAAAAAAAAsQ/8oZIVJrZVnw/s1600/Gray722.png" alt="unavailable">
 
+  * [http://c431376.r76.cf2.rackcdn.com/10053/fnana-05-00034-r1/image_m/fnana-05-00034-g002.jpg Vocal Control] - see [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Reference]
+
+<img src="http://c431376.r76.cf2.rackcdn.com/10053/fnana-05-00034-r1/image_m/fnana-05-00034-g002.jpg" alt="unavailable">
+
   * [http://what-when-how.com/wp-content/uploads/2012/04/tmp15F38_thumb.jpg Extraocular eye muscles] - see [http://what-when-how.com/neuroscience/the-cranial-nerves-organization-of-the-central-nervous-system-part-4 Reference]
 
 <img src="http://what-when-how.com/wp-content/uploads/2012/04/tmp15F38_thumb.jpg" alt="unavailable"height=400width=400>
@@ -523,10 +541,6 @@
   * [http://www.neuroanatomy.wisc.edu/virtualbrain/Images/13R.jpg Vestibulo-ocular reflex (VOR)] - see [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Reference]
 
 <img src="http://www.neuroanatomy.wisc.edu/virtualbrain/Images/13R.jpg" alt="unavailable">
-
-  * [http://c431376.r76.cf2.rackcdn.com/10053/fnana-05-00034-r1/image_m/fnana-05-00034-g002.jpg Vocal Control] - see [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Reference]
-
-<img src="http://c431376.r76.cf2.rackcdn.com/10053/fnana-05-00034-r1/image_m/fnana-05-00034-g002.jpg" alt="unavailable">
 
   * [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/vision-subcortical.jpg Vision Components] - see [http://neuroscience.uth.tmc.edu/s3/chapter07.html Reference]
 
@@ -623,9 +637,9 @@
   * http://neuroscience.uth.tmc.edu/s3/chapter07.html
   * http://lifeboat.com/ex/law.of.accelerating.returns
   * http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html
+  * http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full
   * http://what-when-how.com/neuroscience/the-cranial-nerves-organization-of-the-central-nervous-system-part-4
   * http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html
-  * http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full
   * http://www.sciencedirect.com/science/article/pii/S1359644605035427
   * http://www.benbest.com/science/anatmind/anatmd6.html
   * http://www.lookfordiagnosis.com/mesh_info.php?term=Trigeminal+Nucleilang=1
