@@ -221,6 +221,7 @@ private:
 	void createDotFile_subgraph( MindArea *area , MindLocalCircuitDef& circuit , bool p_inputs , MapStringToClass<MindLocalCircuitConnectionDef>& connections , StringList& text , String& linkItem );
 	String createDotFile_getRegionLabel( MindRegionDef *region );
 	String getRegionColor( String regionId );
+	void getTargetLinkConnectors( MindRegion *targetRegion , MindRegion *linkRegion , MapStringToString& connectors );
 
 private:
 	WikiMaker *wm;

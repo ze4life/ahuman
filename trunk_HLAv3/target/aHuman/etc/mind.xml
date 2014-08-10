@@ -140,7 +140,7 @@
 					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.PN.LL" dst="LPC.MM.SOC"/>
 				</circuit>
 
-				<circuit id="STS" name="Taste and Smell Senses" enabled="true">
+				<circuit id="STS" name="Taste and Smell Senses and Swallowing" enabled="true">
 					<region id="LPC.PN.SG.OLB" type="ganglion" service="LSC" role="sensory"/>
 					<region id="LPC.PN.SG.GNG" type="ganglion" service="LSC" role="sensory"/>
 					<region id="LPC.PN.SG.NOD" type="ganglion" service="LSC" role="sensory"/>
@@ -148,6 +148,7 @@
 					<region id="LPC.PN.SG.JUG" type="ganglion" service="LSC" role="sensory"/>
 					<region id="LPC.FT.AON" type="nucleus" service="LSM" role="processor"/>
 					<region id="LPC.HM.SOL" type="nucleus" service="LSM" role="relay"/>
+					<region id="HMA.HM.AMB" type="nucleus" service="LRM" role="relay"/>
 					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.OLB" dst="LPC.FT.AON"/>
 					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.GNG" dst="LPC.HM.TGM.STR"/>
 					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.GNG" dst="LPC.HM.SOL"/>
@@ -158,6 +159,9 @@
 					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.JUG" dst="LPC.HM.SOL"/>
 					<connection type="nucleus-neocortex" primary="true" src="LPC.FT.AON" dst="PHA.NC.PH.PIR"/>
 					<connection type="nucleus-nucleus" primary="true" src="LPC.HM.SOL" dst="BMA.HP.PB"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.HM.SOL" dst="HMA.HM.AMB"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.HM.SOL" dst="HMA.HM.RA" notes="premotor of respiration"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.HM.SOL" dst="HMA.HP.PN.KFN"/>
 					<connection type="nucleus-nucleus" primary="true" src="LPC.HM.SOL" dst="SMA.FD.TH.VPM" notes="to VPMpc"/>
 					<connection type="nucleus-nucleus" primary="true" src="LPC.HM.SOL" dst="SMA.FD.TH.VPL" comment="Carotid Synus -> Inferior Ganglion IX -> SOL"/>
 					<connection type="nucleus-nucleus" primary="true" src="LPC.HM.SOL" dst="HTA.FD.HT.PV"/>
@@ -273,6 +277,7 @@
 					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.MVBN" dst="LPC.MM.TRH"/>
 					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.MVBN" dst="BMA.MM.DSCH"/>
 					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.MVBN" dst="VBA.HM.NPH"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.MVBN" dst="HMA.HM.INM"/>
 					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.IVBN" dst="MBA.HP.CR"/>
 					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.IVBN" dst="HMA.HP.PRF.CRF"/>
 					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.LVBN" dst="LPC.SC.VH.PM"/>
@@ -282,6 +287,7 @@
 					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.SVBN" dst="LPC.MM.TRH"/>
 					<connection type="nucleus-nucleus" primary="true" src="LPC.HP.SVBN" dst="ACA.FD.TH.SG" comment="to BA5"/>
 				</circuit>
+
 			</area>
 
 			<area id="LRC" type="Subcortical" name="Lower Brain - Motor Reflex Area" enabled="true" function="Reflexive Motor Behavior">
@@ -291,23 +297,38 @@
 					<service id="LRC" name="Reflex Coordinator"/>
 				</services>
 
-				<circuit id="LRB" name="Feeding and Breathing Reflexes" enabled="true">
+				<circuit id="LRB" name="Swallowing and Breathing Reflexes" enabled="true">
 					<region id="HMA.HM.RA" type="nucleus" service="LRM" role="relay"/>
 					<region id="HMA.HP.PN.KFN" type="nucleus" service="LRM" role="relay"/>
 					<region id="BMA.HP.PRF.PVR" type="nucleus" service="LRM" role="relay"/>
-					<region id="HMA.HM.INM" type="nucleus" service="LRC" role="relay"/>
 					<region id="HMA.HP.PN.SC" type="nucleus" service="LRM" role="relay"/>
-					<region id="HMA.HP.PRF.GCR" type="nucleus" service="LRM" role="relay"/>
 					<region id="HMA.HP.PRF.CRF" type="nucleus" service="LRM" role="relay"/>
-					<region id="HMA.HM.AMB" type="nucleus" service="LRM" role="relay"/>
 					<connection type="nucleus-nucleus" primary="true" src="BMA.HP.PRF.PVR" dst="LPC.HP.PTP.TRM"/>
 					<connection type="nucleus-nucleus" primary="true" src="BMA.HP.PRF.PVR" dst="LPC.HP.FCM"/>
-					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PRF.GCR" dst="LPC.HM.HYG"/>
 					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PRF.CRF" dst="LPC.HP.FCM"/>
 					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PRF.CRF" dst="LPC.HP.PTP.TRM"/>
 					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PRF.CRF" dst="HMA.HM.AMB"/>
 					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PRF.CRF" dst="LPC.HM.HYG"/>
-					<connection type="nucleus-nucleus" primary="true" src="HMA.HM.AMB" dst="AVA.SC.IZ.IML"/>
+					<connection type="nucleus-allocortex" primary="true" src="HMA.HP.PN.SC" dst="HBA.FT.DG"/>
+					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PN.SC" dst="LPC.HM.HYG"/>
+					<connection type="nucleus-nucleus" primary="true" src="HMA.HM.RA" dst="HMA.HM.AMB"/>
+					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PN.KFN" dst="HMA.HM.RA"/>
+					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PN.KFN" dst="LPC.HM.HYG"/>
+					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PN.KFN" dst="LPC.SC.VH.PHR"/>
+				</circuit>
+
+				<circuit id="LRP" name="Postural Control Reflexes" enabled="true">
+					<region id="HMA.HP.PRF.RPO" type="nucleus" service="LRM" role="relay"/>
+					<region id="HMA.HP.PRF.GCR" type="nucleus" service="LRM" role="relay"/>
+					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PRF.RPO" dst="LPC.SC.VH.VL"/>
+					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PRF.RPO" dst="LPC.SC.VH.VM"/>
+					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PRF.RPO" dst="LPC.SC.VH.SAN"/>
+					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PRF.RPO" dst="LPC.HP.ABD"/>
+					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PRF.RPO" dst="LPC.MM.OCN"/>
+					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PRF.RPO" dst="MBA.HP.CR"/>
+					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PRF.RPO" dst="LPC.HP.IVBN"/>
+					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PRF.GCR" dst="LPC.SC.VH.PL"/>
+					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PRF.GCR" dst="LPC.SC.VH.PM"/>
 				</circuit>
 
 				<circuit id="LRV" name="Direct Visual Reflexes" enabled="true">
@@ -347,7 +368,6 @@
 
 				<circuit id="LRM" name="Multisensory Reflexes" enabled="true">
 					<region id="MBA.MM.SC.DEEP" type="nucleus" service="LRC" role="relay"/>
-					<region id="HMA.HP.PRF.RPO" type="nucleus" service="LRM" role="relay"/>
 					<region id="ACA.FD.TH.SG" type="nucleus" service="LSM" role="processor"/>
 					<region id="ABA.MM.EIC" type="nucleus" service="LSC" role="relay"/>
 					<connection type="nucleus-nucleus" primary="true" src="ABA.MM.EIC" dst="MBA.MM.SC.DEEP"/>
@@ -365,11 +385,6 @@
 					<connection type="nucleus-nucleus" primary="true" src="MBA.MM.SC.DEEP" dst="MCA.FD.TH.VA"/>
 					<connection type="nucleus-nucleus" primary="true" src="MBA.MM.SC.DEEP" dst="CGA.FD.TH.AN"/>
 					<connection type="nucleus-nucleus" primary="true" src="MBA.MM.SC.DEEP" dst="ACA.FD.TH.SG"/>
-					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PRF.RPO" dst="LPC.HP.ABD"/>
-					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PRF.RPO" dst="LPC.MM.OCN"/>
-					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PRF.RPO" dst="LPC.SC.VH.SAN"/>
-					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PRF.RPO" dst="MBA.HP.CR"/>
-					<connection type="nucleus-nucleus" primary="true" src="HMA.HP.PRF.RPO" dst="LPC.HP.IVBN"/>
 					<connection type="nucleus-neocortex" primary="true" src="ACA.FD.TH.SG" dst="ACA.NC.A2" notes="to HFR region"/>
 					<connection type="nucleus-nucleus" primary="true" src="ACA.FD.TH.SG" dst="BFA.FT.AM"/>
 					<connection type="nucleus-nucleus" primary="true" src="ACA.FD.TH.SG" dst="MBA.MM.TG.LDT"/>
@@ -542,10 +557,13 @@
 					<region id="MBA.HM.RF.MED" type="nucleus" service="LLE" role="relay"/>
 					<region id="VBA.HM.NPH" type="nucleus" service="LLE" role="relay"/>
 					<region id="VBA.MM.PT.PR" type="nucleus" service="LRM" role="relay"/>
+					<region id="HMA.HM.INM" type="nucleus" service="LRC" role="relay"/>
+					<connection type="nucleus-nucleus" primary="true" src="HMA.HM.INM" dst="HTA.FD.HT.PN"/>
 					<connection type="nucleus-nucleus" primary="true" src="MBA.MM.RD" dst="BMA.HM.IO"/>
 					<connection type="nucleus-nucleus" primary="true" src="VBA.HM.NPH" dst="VBA.MM.PT.NOT"/>
 					<connection type="nucleus-nucleus" primary="true" src="VBA.HM.NPH" dst="ACA.FD.TH.SG"/>
 					<connection type="nucleus-nucleus" primary="true" src="VBA.HM.NPH" dst="LPC.HP.MVBN"/>
+					<connection type="nucleus-nucleus" primary="true" src="VBA.HM.NPH" dst="HMA.HM.INM"/>
 					<connection type="nucleus-neocortex" primary="true" src="MBA.HP.CR" dst="FCA.NC.LPFC"/>
 					<connection type="nucleus-nucleus" primary="true" src="MBA.HP.CR" dst="SMA.FD.TH.RIL"/>
 					<connection type="nucleus-nucleus" primary="true" src="MBA.HP.CR" dst="HMA.HP.PRF.CRF"/>
@@ -592,8 +610,11 @@
 					<connection type="nucleus-nucleus" primary="true" src="FBA.MM.VTA" dst="BFA.FT.AM"/>
 					<connection type="nucleus-nucleus" primary="true" src="FBA.MM.VTA" dst="BGA.FT.ACC"/>
 					<connection type="nucleus-nucleus" primary="true" src="FBA.MM.PAG" dst="MBA.HP.BR"/>
+					<connection type="nucleus-nucleus" primary="true" src="FBA.MM.PAG" dst="HMA.HP.PN.SC" comment="GABA, REM-off -> REM-on"/>
 					<connection type="nucleus-nucleus" primary="true" src="FBA.MM.PAG" dst="BFA.FD.TH.PV"/>
 					<connection type="nucleus-nucleus" primary="true" src="FBA.MM.PAG" dst="FBA.FD.TH.SF"/>
+					<connection type="nucleus-nucleus" primary="true" src="FBA.MM.PAG" dst="HMA.HM.AMB"/>
+					<connection type="nucleus-nucleus" primary="true" src="FBA.MM.PAG" dst="HMA.HM.RA"/>
 					<connection type="nucleus-nucleus" primary="true" src="FBA.MM.RP.DRN" dst="BFA.FD.TH.PV"/>
 					<connection type="nucleus-neocortex" primary="true" src="BMA.HP.PB" dst="PHA.NC.INS.PIC"/>
 					<connection type="nucleus-nucleus" primary="true" src="BMA.HP.PB" dst="SMA.FD.TH.VPI"/>
@@ -1099,12 +1120,14 @@
 					<connection type="neocortex-nucleus" primary="true" src="MCA.NC.MC" dst="LPC.SC.VH.PL"/>
 					<connection type="neocortex-nucleus" primary="true" src="MCA.NC.MC" dst="LPC.SC.VH.PM"/>
 					<connection type="neocortex-nucleus" primary="true" src="MCA.NC.MC" dst="LPC.SC.VH.RPL"/>
+					<connection type="neocortex-nucleus" primary="true" src="MCA.NC.MC" dst="HMA.HM.AMB" notes="conscious smallowing"/>
 					<connection type="neocortex-neocortex" primary="true" src="MCA.NC.SMC" dst="MCA.NC.PMC.FEF"/>
 					<connection type="neocortex-neocortex" primary="true" src="MCA.NC.SMC" dst="MCA.NC.PMC.F5"/>
 					<connection type="neocortex-neocortex" primary="true" src="MCA.NC.SMC" dst="MCA.NC.PMC.F2"/>
 					<connection type="neocortex-nucleus" primary="true" src="MCA.NC.SMC" dst="BGA.FT.PU"/>
 					<connection type="neocortex-nucleus" primary="true" src="MCA.NC.SMC" dst="HMA.HP.PRF.CRF"/>
 					<connection type="neocortex-nucleus" primary="true" src="MCA.NC.SMC" dst="HMA.HP.PRF.PDT"/>
+					<connection type="neocortex-nucleus" primary="true" src="MCA.NC.SMC" dst="HMA.HP.PRF.GCR"/>
 					<connection type="neocortex-nucleus" primary="true" src="MCA.NC.SMC" dst="VBA.MM.RP.RIP"/>
 					<connection type="neocortex-neocortex" primary="true" src="MCA.NC.PMC.F2" dst="MCA.NC.MC"/>
 					<connection type="neocortex-neocortex" primary="true" src="MCA.NC.PMC.F2" dst="MCA.NC.PMC.F7"/>

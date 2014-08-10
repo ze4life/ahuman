@@ -157,7 +157,7 @@ void WikiCircuitPages::createCircuitPage_getNodesRow( MindGlobalCircuitDef *cd ,
 
 void WikiCircuitPages::createCircuitPage_getDiagram( MindGlobalCircuitDef *cd , MapStringToClass<MindRegion>& nodes , MapStringToClass<MindLocalCircuitConnectionDef>& links , StringList& lines ) {
 	String dotImageWikiPath = wm -> getWikiImagePath();
-	String line = dotImageWikiPath + "/" + cd -> getId() + ".dot.jpg";
+	String line = dotImageWikiPath + "/" + cd -> getId() + ".dot.png";
 	lines.add( line );
 	lines.add( "" );
 
