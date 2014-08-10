@@ -367,10 +367,14 @@ void WikiAreaPages::createAreaPages_getExternalConnectionTableLine( MindArea *ar
 			// add heading
 			lines.add( "" );
 
+			String colName = "Type";
+			if( area -> isTargetArea() )
+				colName = "Connector";
+
 			if( isin )
-				line = "|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||";
+				line = "|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *" + colName + "* || *Reference* ||";
 			else
-				line = "|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||";
+				line = "|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *" + colName + "* || *Reference* ||";
 		}
 		else {
 			line = "|| <font color=\"red\">" + String( p_areatype ) + "</font> || || || || || ||";
@@ -387,26 +391,59 @@ void WikiAreaPages::createAreaPages_getExternalConnectionTableLine( MindArea *ar
 	String dstRegionId = link -> getDstRegion();
 
 	String reference = wm -> findReference( link );
+	String regionReference;
+	String regionName;
+	MindRegion *region;
 	if( isin ) {
 		const XmlHMindElementInfo& info = wm -> hmindxml.getElementInfo( srcRegionId );
-		MindRegion *region = ms -> getMindRegion( srcRegionId );
+		regionName = info.name;
+		region = ms -> getMindRegion( srcRegionId );
 		value1 = wm -> getAreaReference( region -> getArea() -> getAreaId() );
 		value2 = wm -> getRegionReference( dstRegionId );
 		wm -> clearRepeats2( value1 , value2 );
-		line = "|| " + value1 + " || " + value2 + " || " + 
-			wm -> getRegionReference( srcRegionId ) + " || " + info.name + " || " + link -> getTypeName() + " || " + reference + " ||";
+		regionReference = wm -> getRegionReference( srcRegionId );
 	}
 	else {
 		const XmlHMindElementInfo& info = wm -> hmindxml.getElementInfo( dstRegionId );
-		MindRegion *region = ms -> getMindRegion( dstRegionId );
+		regionName = info.name;
+		region = ms -> getMindRegion( dstRegionId );
 		value1 = wm -> getAreaReference( region -> getArea() -> getAreaId() );
 		value2 = wm -> getRegionReference( srcRegionId );
 		wm -> clearRepeats2( value1 , value2 );
-		line = "|| " + value1 + " || " + value2 + " || " + 
-			wm -> getRegionReference( dstRegionId ) + " || " + info.name + " || " + link -> getTypeName() + " || " + reference + " ||";
+		regionReference = wm -> getRegionReference( dstRegionId );
 	}
 
-	lines.add( line );
+	if( area -> isTargetArea() ) {
+		String targetRegionId = ( isin )? dstRegionId : srcRegionId;
+		MindRegion *targetRegion = ms -> getMindRegion( targetRegionId );
+
+		MapStringToString connectors;
+		getTargetLinkConnectors( targetRegion , region , connectors );
+		for( int k = 0; k < connectors.count(); k++ ) {
+			String connector = connectors.getKeyByIndex( k );
+			if( k == 0 )
+				line = "|| " + value1 + " || " + value2 + " || " + regionReference + " || " + regionName + " || " + connector + " || " + reference + " ||";
+			else
+				line = "|| || || || || " + connector + " || ||";
+			lines.add( line );
+		}
+	}
+	else {
+		line = "|| " + value1 + " || " + value2 + " || " + regionReference + " || " + regionName + " || " + link -> getTypeName() + " || " + reference + " ||";
+		lines.add( line );
+	}
+}
+
+void WikiAreaPages::getTargetLinkConnectors( MindRegion *targetRegion , MindRegion *linkRegion , MapStringToString& connectors ) {
+	MindRegionTypeDef *type = targetRegion -> getRegionType();
+	ClassList<MindRegionConnectorDef>& connectordefs = type -> getConnectors();
+
+	String linkedRegion = linkRegion -> getRegionId();
+	for( int k = 0; k < connectordefs.count(); k++ ) {
+		TargetRegionConnectorDef *connectordef = ( TargetRegionConnectorDef * )connectordefs.get( k );
+		if( linkedRegion.equals( connectordef -> getRegion() ) )
+			connectors.add( connectordef -> getId() , linkedRegion );
+	}
 }
 
 String WikiAreaPages::createDotFile_getRegionLabel( MindRegionDef *region ) {

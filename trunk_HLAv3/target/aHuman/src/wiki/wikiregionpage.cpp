@@ -205,7 +205,7 @@ void WikiRegionPage::createConnectivitySection() {
 	// image
 	lines.add( "" );
 	String dotImageWikiPath = wm -> getWikiImagePath();
-	String line = dotImageWikiPath + "/" + info.id + ".dot.jpg";
+	String line = dotImageWikiPath + "/" + info.id + ".dot.png";
 	lines.add( line );
 
 	// external connections - in
