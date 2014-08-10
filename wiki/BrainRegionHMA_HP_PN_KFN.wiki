@@ -10,7 +10,7 @@ Region is part of aHuman target integrated biological model.
   * *Brain area*: [BrainAreaLRC Lower Brain - Motor Reflex Area]
   * *Role*: relay
   * *Function*: Control of protruder tongue muscles contraction to maintain respiration
-  * *Notes to function*: To hypoglossal nucleus and phrenic nucleus
+  * *Notes to function*: To hypoglossal nucleus and phrenic nucleus; pontine respiratory group = KFN + Medial PBN
 (generated)
 = Components =
 (generated)
@@ -25,10 +25,16 @@ Region is part of aHuman target integrated biological model.
 http://ahuman.googlecode.com/svn/images/dot/aHuman/HMA.HP.PN.KFN.dot.png
 
 *Inbound Region Connections:*
-  * no connections
+
+|| *Source Area* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| [BrainAreaLPC LPC] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || Solitary Nucleus || nucleus-nucleus || (unknown reference) ||
 
 *Outbound Region Connections:*
-  * no connections
+
+|| *Target Area* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| [BrainAreaLPC LPC] || [BrainRegionLPC_HM_HYG LPC.HM.HYG] || Hypoglossal Motor Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLPC_SC_VH_PHR LPC.SC.VH.PHR] || Phrenic Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLRC LRC] || [BrainRegionHMA_HM_RA HMA.HM.RA] || Retroambigualis Nucleus || nucleus-nucleus || (unknown reference) ||
 
 = Thirdparty Circuits =
 (generated)
