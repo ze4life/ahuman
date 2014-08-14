@@ -74,8 +74,6 @@
 ||  || [BrainRegionLPC_HP_LVBN LPC.HP.LVBN] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (CR -> Vestibular)] ||
 ||  || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || Prepositus Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (NPRP -> MVSN)] ||
 || [BrainAreaLRC LRC] || [BrainRegionLPC_HP_IVBN LPC.HP.IVBN] || [BrainRegionLRC_HP_PRF_RPO LRC.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionLRC_MM_SC_DEEP LRC.MM.SC.DEEP] || Deep Superior Colliculus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || [BrainRegionLRC_MM_SC_DEEP LRC.MM.SC.DEEP] || Deep Superior Colliculus || nucleus-nucleus || (unknown reference) ||
 || <font color="red">Target</font> || || || || || ||
 || [BrainAreaTSA TSA] || [BrainRegionLPC_PN_SG_CVB LPC.PN.SG.CVB] || [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || Ear || ear-semicircular-canals || (unknown reference) ||
 ||  || [BrainRegionLPC_PN_SG_SVB LPC.PN.SG.SVB] || [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || Ear || ear-saccule || (unknown reference) ||
@@ -84,6 +82,8 @@
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| <font color="red">Cortical</font> || || || || || ||
+|| [BrainAreaSAA SAA] || [BrainRegionLPC_HP_SVBN LPC.HP.SVBN] || [BrainRegionLRC_FD_TH_SG LRC.FD.TH.SG] || Suprageniculate Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLCA LCA] || [BrainRegionLPC_HP_IVBN LPC.HP.IVBN] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || [BrainRegionHMA_HM_INM HMA.HM.INM] || Intercalated Nucleus of Medulla || nucleus-nucleus || (unknown reference) ||
@@ -98,7 +98,6 @@
 ||  ||  || [BrainRegionLPC_MM_TRH LPC.MM.TRH] || Trochlear Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLRC LRC] || [BrainRegionLPC_HP_IVBN LPC.HP.IVBN] || [BrainRegionLRC_HP_PRF_CRF LRC.HP.PRF.CRF] || Caudal Pontine Reticular Nucleus || nucleus-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) (VestibularNuclei -> PPRF, abstract)] ||
 ||  || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || [BrainRegionLRC_MM_DSCH LRC.MM.DSCH] || Darkschewitsch Nucleus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionLPC_HP_SVBN LPC.HP.SVBN] || [BrainRegionLRC_FD_TH_SG LRC.FD.TH.SG] || Suprageniculate Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
 
 == AVS - Vision Sensory and Motor ==
 
@@ -146,7 +145,7 @@
 || [BrainAreaSAA SAA] || [BrainRegionLPC_FD_RT LPC.FD.RT] || [BrainRegionVBA_FD_LGN VBA.FD.LGN] || Lateral Geniculate Nucleus || ganglion-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (Retina -> LGN)] ||
 ||  ||  || [BrainRegionVBA_FD_PV_MPV VBA.FD.PV.MPV] || Medial Pulvinar || ganglion-nucleus || [http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html Retina and superior colliculus targets (Retina -> Pulvinar, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaACA ACA] || [BrainRegionLPC_FD_RT LPC.FD.RT] || [BrainRegionHTA_FD_HT_SCN HTA.FD.HT.SCN] || Suprachiasmatic Nucleus || ganglion-nucleus || [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm Targets of retina neurons (Retina -> HT, abstract)] ||
+|| [BrainAreaLAC LAC] || [BrainRegionLPC_FD_RT LPC.FD.RT] || [BrainRegionHTA_FD_HT_SCN HTA.FD.HT.SCN] || Suprachiasmatic Nucleus || ganglion-nucleus || [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm Targets of retina neurons (Retina -> HT, abstract)] ||
 || [BrainAreaLRC LRC] || [BrainRegionLPC_FD_RT LPC.FD.RT] || [BrainRegionLRC_MM_PT_NOT LRC.MM.PT.NOT] || Nucleus of Optic Tract || ganglion-nucleus || [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm Targets of retina neurons (Retina -> Pretectum, abstract)] ||
 ||  ||  || [BrainRegionLRC_MM_PT_PON LRC.MM.PT.PON] || Pretectal Olivary Nucleus || ganglion-nucleus || [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm Targets of retina neurons (Retina -> Pretectum, abstract)] ||
 ||  ||  || [BrainRegionLRC_MM_PT_SL LRC.MM.PT.SL] || Sublentiform Nucleus || ganglion-nucleus || [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm Targets of retina neurons (Retina -> Pretectum, abstract)] ||
@@ -182,7 +181,7 @@
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaACA ACA] || [BrainRegionLPC_SC_VH_VL LPC.SC.VH.VL] || [BrainRegionHMA_HM_TGM_PE5 HMA.HM.TGM.PE5] || Peritrigeminal Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLAC LAC] || [BrainRegionLPC_SC_VH_VL LPC.SC.VH.VL] || [BrainRegionHMA_HM_TGM_PE5 HMA.HM.TGM.PE5] || Peritrigeminal Nucleus || nucleus-nucleus || (unknown reference) ||
 || <font color="red">Target</font> || || || || || ||
 || [BrainAreaTEA TEA] || [BrainRegionLPC_SC_VH_VL LPC.SC.VH.VL] || [BrainRegionTARGET_TEA_HAND TARGET.TEA.HAND] || Hand || abductor-pollicis-longus-muscle || (unknown reference) ||
 ||  ||  || [BrainRegionTARGET_TEA_LEG TARGET.TEA.LEG] || Leg || extensor-digitorum-brevis-muscle || (unknown reference) ||
@@ -527,7 +526,7 @@
 || [BrainAreaBAA BAA] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || [BrainRegionSMA_FD_TH_VPL SMA.FD.TH.VPL] || Ventral Posterolateral Nucleus || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (SOL -> TH, abstract)] ||
 ||  ||  || [BrainRegionSMA_FD_TH_VPM SMA.FD.TH.VPM] || Ventral Posteromedial Nucleus || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sVPM -> VPM)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaACA ACA] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || Paraventricular Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLAC LAC] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || Paraventricular Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLPC LPC] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || [BrainRegionHMA_HM_AMB HMA.HM.AMB] || Ambiguus Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionLPC_PN_SG_GNG LPC.PN.SG.GNG] || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || Spinal Trigeminal Nucleus || ganglion-nucleus || (unknown reference) ||
 ||  || [BrainRegionLPC_PN_SG_JUG LPC.PN.SG.JUG] || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || Spinal Trigeminal Nucleus || ganglion-nucleus || (unknown reference) ||
