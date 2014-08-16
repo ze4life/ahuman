@@ -102,6 +102,7 @@
 <img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LRC_LRM.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
+|| [BrainRegionLRC_FD_TH_SG LRC.FD.TH.SG] || Suprageniculate Nucleus of Thalamus || nucleus || LSM || Spatial coding of auditory information || From tectum, somatic sensations ||
 || [BrainRegionLRC_MM_EIC LRC.MM.EIC] || External Nucleus of Inferior Colliculus || nucleus || LSC || Middle ear reflex ||  ||
 || [BrainRegionLRC_MM_SC_DEEP LRC.MM.SC.DEEP] || Deep Superior Colliculus || nucleus || LRC || Head and eye attention to non-visual stimuli || Receive many types of input and project to numerous<BR>motor-related brain areas ||
 || [BrainRegionLRC_MM_SC_INT LRC.MM.SC.INT] || Intermediate Superior Colliculus || nucleus || LRC || Sensimotor integration for orienting || Receive GABA from SNpr to gate integration ||
@@ -110,7 +111,8 @@
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionLRC_MM_EIC LRC.MM.EIC] || [BrainRegionLRC_MM_SC_INT LRC.MM.SC.INT] || nucleus-nucleus || [http://lifeboat.com/ex/law.of.accelerating.returns Five Parallel Auditory Pathways (ICx -> SC, abstract)] ||
-|| [BrainRegionLRC_MM_SC_DEEP LRC.MM.SC.DEEP] || [BrainRegionLRC_MM_EIC LRC.MM.EIC] || nucleus-nucleus || [http://f1000research.com/articles/2-20/v1 Visual-Auditory Interactions in Tectum (SC -> IC, abstract)] ||
+|| [BrainRegionLRC_MM_SC_DEEP LRC.MM.SC.DEEP] || [BrainRegionLRC_FD_TH_SG LRC.FD.TH.SG] || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (SCi -> Thalamus, abstract)] ||
+||  || [BrainRegionLRC_MM_EIC LRC.MM.EIC] || nucleus-nucleus || [http://f1000research.com/articles/2-20/v1 Visual-Auditory Interactions in Tectum (SC -> IC, abstract)] ||
 || [BrainRegionLRC_MM_SC_INT LRC.MM.SC.INT] || [BrainRegionLRC_MM_SC_DEEP LRC.MM.SC.DEEP] || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCs -> SCi, abstract)] ||
 
 *External Inbound Region Connections:*
@@ -121,8 +123,14 @@
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaECA ECA] || [BrainRegionLRC_MM_SC_INT LRC.MM.SC.INT] || [BrainRegionBGA_FT_SN_PR BGA.FT.SN.PR] || Substantia Nigra Pars Reticulata || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SNr -> SCi, abstract)] ||
 ||  ||  || [BrainRegionBGA_HP_PPN BGA.HP.PPN] || Pedunculopontine Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (PPN -> SC, abstract)] ||
-|| [BrainAreaLPC LPC] || [BrainRegionLRC_MM_EIC LRC.MM.EIC] || [BrainRegionLPC_MM_CIC LPC.MM.CIC] || Central Nucleus of Inferior Colliculus || nucleus-nucleus || [http://lifeboat.com/ex/law.of.accelerating.returns Five Parallel Auditory Pathways (ICC -> ICx, abstract)] ||
+|| [BrainAreaLCA LCA] || [BrainRegionLRC_FD_TH_SG LRC.FD.TH.SG] || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || Prepositus Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (NPRP -> SUPGEN)] ||
+|| [BrainAreaLPC LPC] || [BrainRegionLRC_FD_TH_SG LRC.FD.TH.SG] || [BrainRegionLPC_HP_SVBN LPC.HP.SVBN] || Superior Vestibular Nuclei || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLRC_MM_EIC LRC.MM.EIC] || [BrainRegionLPC_MM_CIC LPC.MM.CIC] || Central Nucleus of Inferior Colliculus || nucleus-nucleus || [http://lifeboat.com/ex/law.of.accelerating.returns Five Parallel Auditory Pathways (ICC -> ICx, abstract)] ||
+||  || [BrainRegionLRC_MM_SC_INT LRC.MM.SC.INT] || [BrainRegionLPC_HM_CU LPC.HM.CU] || Cuneate Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLPC_HM_GR LPC.HM.GR] || Gracile Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || Spinal Trigeminal Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLRC LRC] || [BrainRegionLRC_MM_SC_INT LRC.MM.SC.INT] || [BrainRegionLRC_MM_SC_SUP LRC.MM.SC.SUP] || Superficial Superior Colliculus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCs -> SCi, abstract)] ||
+|| [BrainAreaMCA MCA] || [BrainRegionLRC_FD_TH_SG LRC.FD.TH.SG] || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (DTN -> SUPGEN)] ||
 
 *External Outbound Region Connections:*
 
@@ -130,7 +138,9 @@
 || <font color="red">Cortical</font> || || || || || ||
 || [BrainAreaEPA EPA] || [BrainRegionLRC_MM_SC_INT LRC.MM.SC.INT] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || Anterior Nucleus of Thalamus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCi -> ATH, abstract)] ||
 || [BrainAreaMAA MAA] || [BrainRegionLRC_MM_SC_INT LRC.MM.SC.INT] || [BrainRegionMCA_FD_TH_VA MCA.FD.TH.VA] || Ventral Anterior Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (SCi -> Thalamus, abstract)] ||
+|| [BrainAreaSAA SAA] || [BrainRegionLRC_FD_TH_SG LRC.FD.TH.SG] || [BrainRegionACA_NC_A2 ACA.NC.A2] || Auditory Association Area || nucleus-neocortex || (unknown reference) ||
 || <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaAMA AMA] || [BrainRegionLRC_FD_TH_SG LRC.FD.TH.SG] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (TH -> AM, abstract)] ||
 || [BrainAreaECA ECA] || [BrainRegionLRC_MM_SC_DEEP LRC.MM.SC.DEEP] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || Substantia Nigra Pars Compacta || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCi -> SNc, abstract)] ||
 || [BrainAreaLCA LCA] || [BrainRegionLRC_MM_SC_DEEP LRC.MM.SC.DEEP] || [BrainRegionHMA_HP_PRF_PDT HMA.HP.PRF.PDT] || Pontine Reticulotegmental Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (SC -> RF, abstract)] ||
 ||  ||  || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (SCi -> CR, abstract)] ||
@@ -140,7 +150,8 @@
 ||  ||  || [BrainRegionLPC_SC_VH_SAN LPC.SC.VH.SAN] || Spinal Accessory Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLRC LRC] || [BrainRegionLRC_MM_SC_DEEP LRC.MM.SC.DEEP] || [BrainRegionLRC_HP_PRF_RPO LRC.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (SC -> PPRF, abstract)] ||
 ||  ||  || [BrainRegionLRC_MM_CJ LRC.MM.CJ] || Cajal Nucleus || nucleus-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (SC -> riMLF, abstract)] ||
-|| [BrainAreaMCA MCA] || [BrainRegionLRC_MM_SC_INT LRC.MM.SC.INT] || [BrainRegionPHA_FD_TH_LI PHA.FD.TH.LI] || Limitans Nucleus of Thalamus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (SCi -> Thalamus, abstract)] ||
+|| [BrainAreaMCA MCA] || [BrainRegionLRC_FD_TH_SG LRC.FD.TH.SG] || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (SUPGEN -> DTN)] ||
+||  || [BrainRegionLRC_MM_SC_INT LRC.MM.SC.INT] || [BrainRegionPHA_FD_TH_LI PHA.FD.TH.LI] || Limitans Nucleus of Thalamus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (SCi -> Thalamus, abstract)] ||
 
 == LRP - Postural Control Reflexes ==
 
@@ -250,9 +261,19 @@
 
 <img src="http://www.cixip.com/Public/kindeditor/attached/image/20121030/20121030134649_52795.jpg" alt="unavailable">
 
+  * [http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png Head Direction Cell Circuit] - see [http://www.scholarpedia.org/article/Head_direction_cells Reference]
+
+<img src="http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png" alt="unavailable">
+
+  * [http://c431376.r76.cf2.rackcdn.com/1349/fnana-04-00134-HTML/image_m/fnana-04-00134-g001.jpg Echo-Location in Bats] - see [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2010.00134/full Reference]
+
+<img src="http://c431376.r76.cf2.rackcdn.com/1349/fnana-04-00134-HTML/image_m/fnana-04-00134-g001.jpg" alt="unavailable"height=200width=600>
+
 
 = References =
 (generated)
 
   * http://www.cixip.com/index.php/page/content/id/1190
+  * http://www.scholarpedia.org/article/Head_direction_cells
+  * http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2010.00134/full
 
