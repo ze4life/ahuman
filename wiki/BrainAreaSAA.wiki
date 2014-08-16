@@ -15,6 +15,7 @@
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
 || [BrainRegionABA_FD_TH_MGB ABA.FD.TH.MGB] || Medial Geniculate Body || nucleus || LSM || Detection of the relative intensity and duration of a sound, relay to Auditory<BR>Cortex || Thalamus ||
+|| [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || Suprageniculate Nucleus of Thalamus || nucleus || LSM || Spatial coding of auditory information || From tectum, somatic sensations ||
 || [BrainRegionACA_NC_A1 ACA.NC.A1] || Primary Auditory Cortex || cortex, BA 41 || NSU || Main topotonic map, extract phonemes || Core ||
 || [BrainRegionACA_NC_A2 ACA.NC.A2] || Auditory Association Area || cortex, BA 42 || NSU || Classify with respect to function || Belt ||
 || [BrainRegionACA_NC_A3 ACA.NC.A3] || Wernicke's area A3 || cortex, BA 22 || NSU || Classify with respect to content || 22a, Melody perception, sequences of tones ||
@@ -27,6 +28,7 @@
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionABA_FD_TH_MGB ABA.FD.TH.MGB] || [BrainRegionACA_NC_A1 ACA.NC.A1] || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (MGN -> pMGN)] ||
+|| [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || [BrainRegionACA_NC_A2 ACA.NC.A2] || nucleus-neocortex || (unknown reference) ||
 || [BrainRegionACA_NC_A1 ACA.NC.A1] || [BrainRegionACA_NC_A2 ACA.NC.A2] || neocortex-neocortex || [http://www.nature.com/neuro/journal/v12/n6/fig_tab/nn.2331_F5.html Cortical Auditory System (Core41 -> Belt42)] ||
 ||  || [BrainRegionACA_NC_A3 ACA.NC.A3] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1053810011000080 Cortico-Cortical Connectivity (A1 -> AA)] ||
 ||  || [BrainRegionACA_NC_A4 ACA.NC.A4] || neocortex-neocortex || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (A1 -> Wernike)] ||
@@ -51,8 +53,11 @@
 ||  ||  || [BrainRegionVCA_NC_IPS_VIP VCA.NC.IPS.VIP] || Ventral Intraparietal Sulcus || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (IPS -> IPL, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaAMA AMA] || [BrainRegionACA_NC_A1 ACA.NC.A1] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-neocortex || [http://f1000research.com/articles/2-20/v1 Visual-Auditory Interactions in Tectum (AM -> AC)] ||
+|| [BrainAreaLCA LCA] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || Prepositus Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (NPRP -> SUPGEN)] ||
 || [BrainAreaLPC LPC] || [BrainRegionABA_FD_TH_MGB ABA.FD.TH.MGB] || [BrainRegionLPC_MM_CIC LPC.MM.CIC] || Central Nucleus of Inferior Colliculus || nucleus-nucleus || [http://www.benbest.com/science/anatmind/anatmd6.html Auditory System in Brain (IC -> MGB, abstract)] ||
-|| [BrainAreaLRC LRC] || [BrainRegionACA_NC_A2 ACA.NC.A2] || [BrainRegionLRC_FD_TH_SG LRC.FD.TH.SG] || Suprageniculate Nucleus of Thalamus || nucleus-neocortex || (unknown reference) ||
+||  || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || [BrainRegionLPC_HP_SVBN LPC.HP.SVBN] || Superior Vestibular Nuclei || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLRC LRC] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || [BrainRegionLRC_MM_SC_INT LRC.MM.SC.INT] || Intermediate Superior Colliculus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (SCi -> Thalamus, abstract)] ||
+|| [BrainAreaMCA MCA] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (DTN -> SUPGEN)] ||
 || [BrainAreaMMA MMA] || [BrainRegionACA_NC_BRA ACA.NC.BRA] || [BrainRegionPHA_NC_TPC PHA.NC.TPC] || Temporopolar Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1364661312002823 Language-Related Regions (TC -> BA45)] ||
 
 *External Outbound Region Connections:*
@@ -67,9 +72,11 @@
 ||  || [BrainRegionACA_NC_IPL_SMW ACA.NC.IPL.SMW] || [BrainRegionMCA_NC_PMC_F2 MCA.NC.PMC.F2] || Dorsal Caudal Premotor Cortex || neocortex-neocortex || [http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2846110/ Dual Auditory Processing (PPC -> DLPFC, abstract)] ||
 ||  ||  || [BrainRegionMCA_NC_PMC_F4 MCA.NC.PMC.F4] || Ventral Caudal Premotor Cortex || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (IPL -> vPM, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaAMA AMA] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (TH -> AM, abstract)] ||
 || [BrainAreaLCA LCA] || [BrainRegionACA_NC_BRA ACA.NC.BRA] || [BrainRegionHMA_HP_PRF_PDT HMA.HP.PRF.PDT] || Pontine Reticulotegmental Nucleus || neocortex-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (Broca -> RF, abstract)] ||
 || [BrainAreaLPC LPC] || [BrainRegionACA_NC_A1 ACA.NC.A1] || [BrainRegionLPC_MM_CIC LPC.MM.CIC] || Central Nucleus of Inferior Colliculus || neocortex-nucleus || [http://f1000research.com/articles/2-20/v1 Visual-Auditory Interactions in Tectum (AC -> IC, abstract)] ||
 || [BrainAreaLRC LRC] || [BrainRegionACA_NC_BRA ACA.NC.BRA] || [BrainRegionLRC_HP_PRF_RPO LRC.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || neocortex-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (Broca -> RF, abstract)] ||
+|| [BrainAreaMCA MCA] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (SUPGEN -> DTN)] ||
 || [BrainAreaMMA MMA] || [BrainRegionACA_NC_A3 ACA.NC.A3] || [BrainRegionPHA_NC_TPC PHA.NC.TPC] || Temporopolar Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1364661312002823 Language-Related Regions (STG22a -> TC)] ||
 
 == NSV - Neocortical Vision Aggregation ==
@@ -182,7 +189,7 @@
 ||  || [BrainRegionVCA_NC_IPL_MST VCA.NC.IPL.MST] || [BrainRegionLRC_MM_SC_SUP LRC.MM.SC.SUP] || Superficial Superior Colliculus || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> SCi, abstract)] ||
 ||  || [BrainRegionVCA_NC_IPS_PEF VCA.NC.IPS.PEF] || [BrainRegionLRC_MM_CJ LRC.MM.CJ] || Cajal Nucleus || neocortex-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Vision Components (VAC -> SOA, abstract)] ||
 ||  ||  || [BrainRegionLRC_MM_RIMLF LRC.MM.RIMLF] || Rostral Interstitial Nucleus of MLF || neocortex-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Vision Components (VAC -> SOA, abstract)] ||
-||  ||  || [BrainRegionLRC_MM_SC_DEEP LRC.MM.SC.DEEP] || Deep Superior Colliculus || neocortex-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (PEF -> SC, abstract)] ||
+||  ||  || [BrainRegionLRC_MM_SC_SUP LRC.MM.SC.SUP] || Superficial Superior Colliculus || neocortex-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (PEF -> SC, abstract)] ||
 ||  || [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || [BrainRegionLRC_HP_PRF_RPO LRC.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || neocortex-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (TEF -> DLPN, abstract)] ||
 ||  || [BrainRegionVCA_NC_V1 VCA.NC.V1] || [BrainRegionLRC_MM_PT_SL LRC.MM.PT.SL] || Sublentiform Nucleus || neocortex-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLRC_MM_SC_SUP LRC.MM.SC.SUP] || Superficial Superior Colliculus || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (VisualCortex -> SCs, abstract)] ||
@@ -275,6 +282,10 @@
 
 <img src="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2846110/bin/nihms147975f1.jpg" alt="unavailable">
 
+  * [http://c431376.r76.cf2.rackcdn.com/1349/fnana-04-00134-HTML/image_m/fnana-04-00134-g001.jpg Echo-Location in Bats] - see [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2010.00134/full Reference]
+
+<img src="http://c431376.r76.cf2.rackcdn.com/1349/fnana-04-00134-HTML/image_m/fnana-04-00134-g001.jpg" alt="unavailable"height=200width=600>
+
   * [http://cdn.f1000r.com.s3.amazonaws.com/manuscripts/1181/d6e9eca8-bb85-4382-8286-723b00f8b36f_figure7.gif Visual-Auditory Interactions in Tectum] - see [http://f1000research.com/articles/2-20/v1 Reference]
 
 <img src="http://cdn.f1000r.com.s3.amazonaws.com/manuscripts/1181/d6e9eca8-bb85-4382-8286-723b00f8b36f_figure7.gif" alt="unavailable"height=400width=400>
@@ -351,9 +362,9 @@
 
 <img src="http://ars.els-cdn.com/content/image/1-s2.0-S0387760401003308-gr2.jpg" alt="unavailable">
 
-  * [http://c431376.r76.cf2.rackcdn.com/1349/fnana-04-00134-HTML/image_m/fnana-04-00134-g001.jpg Echo-Location in Bats] - see [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2010.00134/full Reference]
+  * [http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png Head Direction Cell Circuit] - see [http://www.scholarpedia.org/article/Head_direction_cells Reference]
 
-<img src="http://c431376.r76.cf2.rackcdn.com/1349/fnana-04-00134-HTML/image_m/fnana-04-00134-g001.jpg" alt="unavailable"height=200width=600>
+<img src="http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png" alt="unavailable">
 
 
 = References =
@@ -376,6 +387,7 @@
   * http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html
   * http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full
   * http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2846110/
+  * http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2010.00134/full
   * http://f1000research.com/articles/2-20/v1
   * http://lifeboat.com/ex/law.of.accelerating.returns
   * http://www.sciencedirect.com/science/article/pii/S1359644605035427
@@ -392,5 +404,5 @@
   * http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm
   * http://www.sciencedirect.com/science/article/pii/S0959438808001566
   * http://www.sciencedirect.com/science/article/pii/S0387760401003308
-  * http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2010.00134/full
+  * http://www.scholarpedia.org/article/Head_direction_cells
 
