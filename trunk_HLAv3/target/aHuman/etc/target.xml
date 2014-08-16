@@ -868,8 +868,12 @@
 		</effector>
 
 		<effector id="TARGET.TEA.ENDOCRINE" run="true" service="visceral">
-			<connector entity="endocrine-hypophysis" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+			<connector entity="endocrine-neurohypophysis-oxytocin" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="HTA.FD.HT.PV" connector="nucleus.output" primary="true"/>
+			<connector entity="endocrine-neurohypophysis-vasopressin" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HTA.FD.HT.SO" connector="nucleus.output" primary="true"/>
+			<connector entity="endocrine-adenohypophysis" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="HTA.FD.HT.AR" connector="nucleus.output" primary="true"/>
 			<connector entity="endocrine-thyroid-gland" type="target" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="AVA.PN.SYM.MCG" connector="ganglion.output" primary="true"/>
 			<connector entity="endocrine-parathyroid-gland" type="target" implementation="mock" nttype="excitatory" nt="GLU" 

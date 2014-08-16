@@ -164,6 +164,7 @@
 					<connection type="nucleus-nucleus" primary="true" src="LPC.HM.SOL" dst="SMA.FD.TH.VPM" notes="to VPMpc"/>
 					<connection type="nucleus-nucleus" primary="true" src="LPC.HM.SOL" dst="SMA.FD.TH.VPL" comment="Carotid Synus -> Inferior Ganglion IX -> SOL"/>
 					<connection type="nucleus-nucleus" primary="true" src="LPC.HM.SOL" dst="HTA.FD.HT.PV"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.HM.SOL" dst="HTA.FD.HT.SO"/>
 				</circuit>
 
 				<circuit id="SBU" name="Upper Body Conscious Sensations" enabled="true">
@@ -411,12 +412,17 @@
 					<region id="VBA.PN.PSYM.EPG" type="ganglion" service="LAG" role="parasympathetic"/>
 					<region id="AVA.PN.SYM.SCG" type="ganglion" service="LAG" role="sympathetic"/>
 					<region id="HTA.FD.HT.PN" type="nucleus" service="LAC" role="relay"/>
-					<region id="HTA.FD.HT.TBC" type="nucleus" service="LAC" role="relay"/>
 					<region id="HTA.FD.HT.SCN" type="nucleus" service="LAC" role="relay"/>
+					<region id="HTA.FD.HT.DM" type="nucleus" service="LAC" role="relay"/>
+					<connection type="nucleus-nucleus" primary="true" src="HTA.FD.HT.DM" dst="HTA.FD.HT.PO"/>
+					<connection type="nucleus-nucleus" primary="true" src="HTA.FD.HT.DM" dst="HTA.FD.HT.LT"/>
+					<connection type="nucleus-nucleus" primary="true" src="HTA.FD.HT.DM" dst="HTA.FD.HT.PV"/>
+					<connection type="nucleus-nucleus" primary="true" src="HTA.FD.HT.DM" dst="FBA.HP.LC"/>
 					<connection type="nucleus-ganglion" primary="true" src="VBA.MM.EWN" dst="VBA.PN.PSYM.CLG"/>
 					<connection type="nucleus-ganglion" primary="true" src="VBA.MM.EWN" dst="VBA.PN.PSYM.EPG"/>
 					<connection type="nucleus-ganglion" primary="true" src="HTA.FD.HT.SCN" dst="AVA.PN.SYM.SCG"/>
 					<connection type="nucleus-nucleus" primary="true" src="HTA.FD.HT.SCN" dst="LRC.MM.PT.NOT"/>
+					<connection type="nucleus-nucleus" primary="true" src="HTA.FD.HT.SCN" dst="HTA.FD.HT.DM"/>
 					<connection type="nucleus-nucleus" primary="true" src="HTA.FD.HT.SCN" dst="HTA.FD.HT.PV" notes="GABA"/>
 					<connection type="nucleus-ganglion" primary="true" src="VBA.SC.IZ.CSC" dst="AVA.PN.SYM.SCG"/>
 					<connection type="nucleus-nucleus" primary="true" src="HTA.FD.HT.PN" dst="VBA.SC.IZ.CSC"/>
@@ -444,10 +450,6 @@
 				<circuit id="LAS" name="Salivation and Tears Control" enabled="true">
 					<region id="AVA.HM.SAL.ISL" type="nucleus" service="LAM" role="parasympathetic"/>
 					<region id="AVA.HM.SAL.SSL" type="nucleus" service="LAM" role="parasympathetic"/>
-					<region id="HTA.FD.HT.VM" type="nucleus" service="LAC" role="relay"/>
-					<region id="HTA.FD.HT.PV" type="nucleus" service="LAC" role="relay"/>
-					<region id="HTA.FD.HT.LT" type="nucleus" service="LAC" role="relay"/>
-					<region id="HTA.FD.HT.AR" type="nucleus" service="LAC" role="relay"/>
 					<region id="AVA.PN.PSYM.OTG" type="ganglion" service="LAG" role="parasympathetic"/>
 					<region id="AVA.PN.PSYM.SXG" type="ganglion" service="LAG" role="parasympathetic"/>
 					<connection type="nucleus-ganglion" primary="true" src="AVA.HM.SAL.SSL" dst="AVA.PN.PSYM.SPG"/>
@@ -455,6 +457,13 @@
 					<connection type="nucleus-ganglion" primary="true" src="AVA.HM.SAL.ISL" dst="AVA.PN.PSYM.OTG"/>
 					<connection type="nucleus-ganglion" primary="true" src="AVA.HM.SAL.ISL" dst="AVA.PN.PSYM.GUT"/>
 					<connection type="nucleus-ganglion" primary="true" src="AVA.HM.SAL.ISL" dst="AVA.PN.PSYM.PUG"/>
+				</circuit>
+
+				<circuit id="LATH" name="Thirst and Hunger Control" enabled="true">
+					<region id="HTA.FD.HT.VM" type="nucleus" service="LAC" role="relay"/>
+					<region id="HTA.FD.HT.PV" type="nucleus" service="LAC" role="relay"/>
+					<region id="HTA.FD.HT.LT" type="nucleus" service="LAC" role="relay"/>
+					<region id="HTA.FD.HT.AR" type="nucleus" service="LAC" role="relay"/>
 					<connection type="nucleus-nucleus" primary="true" src="HTA.FD.HT.LT" dst="HBA.FD.MB.MMB"/>
 					<connection type="nucleus-nucleus" primary="true" src="HTA.FD.HT.LT" dst="PHA.FD.MB.LMB"/>
 					<connection type="nucleus-nucleus" primary="true" src="HTA.FD.HT.LT" dst="BFA.FD.HB"/>
@@ -491,7 +500,6 @@
 					<region id="AVA.PN.SYM.STG" type="ganglion" service="LAG" role="sympathetic"/>
 					<region id="AVA.SC.IZ.IML" type="nucleus" service="LAM" role="sympathetic"/>
 					<region id="HTA.FD.HT.SO" type="nucleus" service="LAC" role="relay"/>
-					<region id="HTA.FD.HT.DM" type="nucleus" service="LAC" role="relay"/>
 					<connection type="nucleus-ganglion" primary="true" src="AVA.SC.IZ.IML" dst="AVA.PN.SYM.SCG"/>
 					<connection type="nucleus-ganglion" primary="true" src="AVA.SC.IZ.IML" dst="AVA.PN.SYM.MCG"/>
 					<connection type="nucleus-ganglion" primary="true" src="AVA.SC.IZ.IML" dst="AVA.PN.SYM.ARG"/>

@@ -274,10 +274,6 @@
 			<element refs="NL:[http://neurolex.org/wiki/Category:Caudal_hypothalamus Caudal hypothalamus]" ignore="true" comment="secondary nuclei grouping"/>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Dorsal_hypothalamus Dorsal hypothalamus];NL:[http://neurolex.org/wiki/Category:Dorsal_hypothalamic_area Dorsal hypothalamic area]" ignore="true" comment="secondary nuclei grouping"/>
 			<element id="HTA.FD.HT.IM" name="Intermediate Hypothalamic Region" refs="NL:[http://neurolex.org/wiki/Category:Intermediate_hypothalamic_region Intermediate hypothalamic region]">
-				<element id="HTA.FD.HT.AR" name="Arcuate Nucleus of Hypothalamus" mapped="true" type="nucleus"
-					refs="NL:[http://neurolex.org/wiki/Category:Arcuate_nucleus_of_hypothalamus Arcuate nucleus of hypothalamus]"
-					function="Regulation of growth, appetite and body weight"
-					/>
 				<element id="HTA.FD.HT.DM" name="Dorsomedial Hypothalamic Nucleus" mapped="true" type="nucleus"
 					refs="NL:[http://neurolex.org/wiki/Category:Dorsomedial_nucleus_of_hypothalamus Dorsomedial nucleus of hypothalamus]"
 					function="Blood pressure, heart rate"
@@ -291,15 +287,23 @@
 					refs="NL:[http://neurolex.org/wiki/Category:Retrochiasmatic_area Retrochiasmatic area]"
 					function="Maintenance of normal hypothalamic-pituitary-adrenal function"
 					/>
-				<element id="HTA.FD.HT.TBC" name="Tuber Cinereum" mapped="true" type="nucleus"
+				<element id="HTA.FD.HT.TBC" name="Tuber Cinereum" type="nucleus"
 					refs="NL:[http://neurolex.org/wiki/Category:Tuber_cinereum Tuber cinereum]"
 					function="Regulate the circadian cycle"
 					notes="Sole source of histamine"
-					/>
-				<element id="HTA.FD.HT.VM" name="Ventromedial Nucleus" mapped="true" type="nucleus"
-					refs="NL:[http://neurolex.org/wiki/Category:Ventromedial_nucleus_of_hypothalamus Ventromedial nucleus of hypothalamus]"
-					function="Satiety"
-					/>
+					>
+					<element id="HTA.FD.HT.VM" name="Ventromedial Nucleus" mapped="true" type="nucleus"
+						refs="NL:[http://neurolex.org/wiki/Category:Ventromedial_nucleus_of_hypothalamus Ventromedial nucleus of hypothalamus]"
+						function="Satiety, control of eating"
+						notes="medial of tuberculum"
+						/>
+					<element id="HTA.FD.HT.AR" name="Arcuate Nucleus of Hypothalamus" mapped="true" type="nucleus"
+						synonyms="nfundibular nucleus, periventricular nucleus"
+						refs="NL:[http://neurolex.org/wiki/Category:Arcuate_nucleus_of_hypothalamus Arcuate nucleus of hypothalamus]"
+						function="Regulation of growth, appetite and body weight"
+						notes="lateral of tuberlulum"
+						/>
+				</element>
 			</element>
 			<element id="HTA.FD.HT.LT" name="Lateral Nucleus" mapped="true" type="nucleus"
 				refs="NL:[http://neurolex.org/wiki/Category:Lateral_hypothalamic_area Lateral hypothalamic area];NL:[http://neurolex.org/wiki/Category:Lateral_hypothalamic_region Lateral hypothalamic region]"

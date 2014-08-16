@@ -1282,25 +1282,34 @@
 				function="Secrete hormones directly into the circulatory system to be carried toward a distant target organ"
 				>
 				<element id="endocrine-head" name="Endocrine head">
-					<element id="endocrine-hypophysis" name="Endocrine - pituitary gland" type="connector"
+					<element name="Endocrine - pituitary gland"
 						refs="NL:[http://neurolex.org/wiki/Category:Hypophysis Hypophysis]"
 						function="release hormones by request from HT"
 						notes="secretes most of the hormones, also known as Hypophysis"
 						>
-						<element name="Adenohypophysis" refs="NL:[http://neurolex.org/wiki/Category:Adenohypophysis Adenohypophysis]">
+						<element id="endocrine-adenohypophysis" name="Adenohypophysis" type="connector" 
+							refs="NL:[http://neurolex.org/wiki/Category:Adenohypophysis Adenohypophysis]"
+							function="secrete releasing hormones into blood"
+							>
 							<element name="Distal Part of Hypophysis" refs="NL:[http://neurolex.org/wiki/Category:Distal_part_of_hypophysis Distal part of hypophysis]"/>
 							<element name="Intermediate Part of Hypophysis" refs="NL:[http://neurolex.org/wiki/Category:Intermediate_part_of_hypophysis Intermediate part of hypophysis]"/>
 							<element name="Tuberal Part of Hypophysis" refs="NL:[http://neurolex.org/wiki/Category:Tuberal_part_of_hypophysis Tuberal part of hypophysis]"/>
 						</element>
-						<element name="Lateral Eminence of Hypophysis" refs="NL:[http://neurolex.org/wiki/Category:Lateral_eminence_of_hypophysis Lateral eminence of hypophysis]"/>
-						<element name="Nucleus of Medial Eminence" refs="NL:[http://neurolex.org/wiki/Category:Median_eminence Median eminence];NL:[http://neurolex.org/wiki/Category:Nucleus_of_medial_eminence Nucleus of medial eminence]">
-							<element name="Anterior Median Eminence" refs="NL:[http://neurolex.org/wiki/Category:Anterior_median_eminence Anterior median eminence]"/>
-							<element name="Posterior Median Eminence" refs="NL:[http://neurolex.org/wiki/Category:Posterior_median_eminence Posterior median eminence]"/>
-						</element>
-						<element name="Neurohypophysis" refs="NL:[http://neurolex.org/wiki/Category:Neurohypophysis Neurohypophysis]">
+						<element id="endocrine-neurohypophysis-vasopressin" name="Neurohypophysis" type="connector" 
+							refs="NL:[http://neurolex.org/wiki/Category:Neurohypophysis Neurohypophysis]"
+							function="transport vasopressin secreted in hypothalamus to blood"
+							>
 							<element name="Infundibular Stem" refs="NL:[http://neurolex.org/wiki/Category:Infundibular_stem Infundibular stem]"/>
 							<element name="Pars Nervosa of Hypophysis" refs="NL:[http://neurolex.org/wiki/Category:Pars_nervosa_of_hypophysis Pars nervosa of hypophysis]"/>
 						</element>
+						<element id="endocrine-neurohypophysis-oxytocin" name="Nucleus of Medial Eminence" type="connector" 
+							refs="NL:[http://neurolex.org/wiki/Category:Median_eminence Median eminence];NL:[http://neurolex.org/wiki/Category:Nucleus_of_medial_eminence Nucleus of medial eminence]"
+							function="transport oxytocin secreted in hypothalamus to blood"
+							>
+							<element name="Anterior Median Eminence" refs="NL:[http://neurolex.org/wiki/Category:Anterior_median_eminence Anterior median eminence]"/>
+							<element name="Posterior Median Eminence" refs="NL:[http://neurolex.org/wiki/Category:Posterior_median_eminence Posterior median eminence]"/>
+						</element>
+						<element name="Lateral Eminence of Hypophysis" refs="NL:[http://neurolex.org/wiki/Category:Lateral_eminence_of_hypophysis Lateral eminence of hypophysis]"/>
 					</element>
 
 					<element id="endocrine-pineal-gland" name="Endocrine - pineal gland" mapped="true" type="gland" 
