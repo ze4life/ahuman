@@ -18,14 +18,14 @@ Region is part of aHuman target integrated biological model.
 *Component items*:
   * *Endocrine head* (*endocrine-head*)
    * *Endocrine - pituitary gland*: release hormones by request from HT
-    * Adenohypophysis ([BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] -> endocrine-adenohypophysis): secrete releasing hormones into blood
+    * Adenohypophysis ([BrainRegionHTA_FD_HT_AR HTA.FD.HT.AR] -> endocrine-adenohypophysis): secrete releasing hormones into blood
      * *Distal Part of Hypophysis*
      * *Intermediate Part of Hypophysis*
      * *Tuberal Part of Hypophysis*
-    * Neurohypophysis ([BrainRegionHTA_FD_HT_AR HTA.FD.HT.AR] -> endocrine-neurohypophysis): transport vasopressin secreted in hypothalamus to blood
+    * Neurohypophysis ([BrainRegionHTA_FD_HT_SO HTA.FD.HT.SO] -> endocrine-neurohypophysis-vasopressin): transport vasopressin secreted in hypothalamus to blood
      * *Infundibular Stem*
      * *Pars Nervosa of Hypophysis*
-    * *Nucleus of Medial Eminence*
+    * Nucleus of Medial Eminence ([BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] -> endocrine-neurohypophysis-oxytocin): transport oxytocin secreted in hypothalamus to blood
      * *Anterior Median Eminence*
      * *Posterior Median Eminence*
     * *Lateral Eminence of Hypophysis*
@@ -57,8 +57,9 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/TARGET.TEA.ENDOCRINE.dot.png
 ||  || [BrainRegionAVA_PN_SYM_CEG AVA.PN.SYM.CEG] || Coelic Ganglion || endocrine-pancreas-adrenergic || (unknown reference) ||
 ||  || [BrainRegionAVA_PN_SYM_MCG AVA.PN.SYM.MCG] || Middle Cervical Ganglion || endocrine-parathyroid-gland || (unknown reference) ||
 ||  || [BrainRegionAVA_PN_SYM_SMG AVA.PN.SYM.SMG] || Superior Mesenteric Ganglion || endocrine-adrenal-gland || (unknown reference) ||
-||  || [BrainRegionHTA_FD_HT_AR HTA.FD.HT.AR] || Arcuate Nucleus of Hypothalamus || endocrine-neurohypophysis || (unknown reference) ||
-||  || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || Paraventricular Nucleus || endocrine-adenohypophysis || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (HT.PV -> PUT)] ||
+||  || [BrainRegionHTA_FD_HT_AR HTA.FD.HT.AR] || Arcuate Nucleus of Hypothalamus || endocrine-adenohypophysis || (unknown reference) ||
+||  || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || Paraventricular Nucleus || endocrine-neurohypophysis-oxytocin || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (HT.PV -> PUT)] ||
+||  || [BrainRegionHTA_FD_HT_SO HTA.FD.HT.SO] || Supraoptic Nucleus || endocrine-neurohypophysis-vasopressin || (unknown reference) ||
 
 *Outbound Region Connections:*
   * no connections
