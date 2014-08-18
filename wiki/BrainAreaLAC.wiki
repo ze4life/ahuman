@@ -14,10 +14,10 @@
 <img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LAC_LAB.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionAVA_PN_PSYM_ILG AVA.PN.PSYM.ILG] || Intralaryngeal Peripheral Ganglion || parasympathetic ganglion || LAG || parasympathetic motor of larynx,  c.n. X || macroscopic ganglion on the human internal<BR>laryngeal nerve, with the distribution of its<BR>post-ganglionic fibres to the glands in the saccule<BR>and to the glands at the root of epiglottis in the<BR>vicinity of the opening of the saccule ||
-|| [BrainRegionAVA_PN_PSYM_PUG AVA.PN.PSYM.PUG] || Pulmonary Peripheral Ganglion || parasympathetic ganglion || LAG || Lung ||  ||
-|| [BrainRegionAVA_PN_PSYM_SPG AVA.PN.PSYM.SPG] || Sphenopalatine Ganglion || parasympathetic ganglion || LAG || Lacrimal, nasal and palatine glands || Head and neck region ||
-|| [BrainRegionAVA_PN_SYM_MCG AVA.PN.SYM.MCG] || Middle Cervical Ganglion || sympathetic ganglion || LAG || Eye, tear and salivatory glands ||  ||
+|| [BrainRegionLAC_PN_PSYM_ILG LAC.PN.PSYM.ILG] || Intralaryngeal Peripheral Ganglion || parasympathetic ganglion || LAG || parasympathetic motor of larynx,  c.n. X || macroscopic ganglion on the human internal<BR>laryngeal nerve, with the distribution of its<BR>post-ganglionic fibres to the glands in the saccule<BR>and to the glands at the root of epiglottis in the<BR>vicinity of the opening of the saccule ||
+|| [BrainRegionLAC_PN_PSYM_PUG LAC.PN.PSYM.PUG] || Pulmonary Peripheral Ganglion || parasympathetic ganglion || LAG || Lung ||  ||
+|| [BrainRegionLAC_PN_PSYM_SPG LAC.PN.PSYM.SPG] || Sphenopalatine Ganglion || parasympathetic ganglion || LAG || Lacrimal, nasal and palatine glands || Head and neck region ||
+|| [BrainRegionLAC_PN_SYM_MCG LAC.PN.SYM.MCG] || Middle Cervical Ganglion || sympathetic ganglion || LAG || Eye, tear and salivatory glands ||  ||
 
 *Internal Region Connections:*
 
@@ -27,24 +27,24 @@
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaLAC LAC] || [BrainRegionAVA_PN_PSYM_ILG AVA.PN.PSYM.ILG] || [BrainRegionAVA_HM_VGN AVA.HM.VGN] || Vagus Nucleus || nucleus-ganglion || (unknown reference) ||
-||  || [BrainRegionAVA_PN_PSYM_PUG AVA.PN.PSYM.PUG] || [BrainRegionAVA_HM_SAL_ISL AVA.HM.SAL.ISL] || Inferior Salivatory Nucleus || nucleus-ganglion || (unknown reference) ||
-||  ||  || [BrainRegionAVA_HM_VGN AVA.HM.VGN] || Vagus Nucleus || nucleus-ganglion || (unknown reference) ||
-||  || [BrainRegionAVA_PN_PSYM_SPG AVA.PN.PSYM.SPG] || [BrainRegionAVA_HM_SAL_SSL AVA.HM.SAL.SSL] || Superior Salivatory Nucleus || nucleus-ganglion || [http://www.neurophysiology.ws/autonomicns.htm Autonomic nervous system (SSL -> SPG)] ||
-||  || [BrainRegionAVA_PN_SYM_MCG AVA.PN.SYM.MCG] || [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || Intermediolateral Nucleus || nucleus-ganglion || (unknown reference) ||
+|| [BrainAreaLAC LAC] || [BrainRegionLAC_PN_PSYM_ILG LAC.PN.PSYM.ILG] || [BrainRegionLAC_HM_VGN LAC.HM.VGN] || Vagus Nucleus || nucleus-ganglion || (unknown reference) ||
+||  || [BrainRegionLAC_PN_PSYM_PUG LAC.PN.PSYM.PUG] || [BrainRegionLAC_HM_SAL_ISL LAC.HM.SAL.ISL] || Inferior Salivatory Nucleus || nucleus-ganglion || (unknown reference) ||
+||  ||  || [BrainRegionLAC_HM_VGN LAC.HM.VGN] || Vagus Nucleus || nucleus-ganglion || (unknown reference) ||
+||  || [BrainRegionLAC_PN_PSYM_SPG LAC.PN.PSYM.SPG] || [BrainRegionLAC_HM_SAL_SSL LAC.HM.SAL.SSL] || Superior Salivatory Nucleus || nucleus-ganglion || [http://www.neurophysiology.ws/autonomicns.htm Autonomic nervous system (SSL -> SPG)] ||
+||  || [BrainRegionLAC_PN_SYM_MCG LAC.PN.SYM.MCG] || [BrainRegionLAC_SC_IZ_IML LAC.SC.IZ.IML] || Intermediolateral Nucleus || nucleus-ganglion || (unknown reference) ||
 
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Target</font> || || || || || ||
-|| [BrainAreaTEA TEA] || [BrainRegionAVA_PN_PSYM_ILG AVA.PN.PSYM.ILG] || [BrainRegionTARGET_TEA_SPEAKER TARGET.TEA.SPEAKER] || Mouth speaker || aryepiglottic-muscle || (unknown reference) ||
-||  || [BrainRegionAVA_PN_PSYM_PUG AVA.PN.PSYM.PUG] || [BrainRegionTARGET_TEA_LUNG TARGET.TEA.LUNG] || Lung || smooth-muscles || (unknown reference) ||
-||  || [BrainRegionAVA_PN_PSYM_SPG AVA.PN.PSYM.SPG] || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || Mouth feeder || uvulae-muscle || (unknown reference) ||
+|| [BrainAreaTEA TEA] || [BrainRegionLAC_PN_PSYM_ILG LAC.PN.PSYM.ILG] || [BrainRegionTARGET_TEA_SPEAKER TARGET.TEA.SPEAKER] || Mouth speaker || aryepiglottic-muscle || (unknown reference) ||
+||  || [BrainRegionLAC_PN_PSYM_PUG LAC.PN.PSYM.PUG] || [BrainRegionTARGET_TEA_LUNG TARGET.TEA.LUNG] || Lung || smooth-muscles || (unknown reference) ||
+||  || [BrainRegionLAC_PN_PSYM_SPG LAC.PN.PSYM.SPG] || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || Mouth feeder || uvulae-muscle || (unknown reference) ||
 ||  ||  || [BrainRegionTARGET_TEA_PROTECTOR TARGET.TEA.PROTECTOR] || Immunity glands and meninges || hard-palate-mucosal-gland || (unknown reference) ||
-||  || [BrainRegionAVA_PN_SYM_MCG AVA.PN.SYM.MCG] || [BrainRegionTARGET_TEA_ENDOCRINE TARGET.TEA.ENDOCRINE] || Endocrine Glands || endocrine-parathyroid-gland || (unknown reference) ||
+||  || [BrainRegionLAC_PN_SYM_MCG LAC.PN.SYM.MCG] || [BrainRegionTARGET_TEA_ENDOCRINE TARGET.TEA.ENDOCRINE] || Endocrine Glands || endocrine-parathyroid-gland || (unknown reference) ||
 ||  ||  || [BrainRegionTARGET_TEA_HEART TARGET.TEA.HEART] || Heart || heart-cardiac-lower-muscle-middle || (unknown reference) ||
 ||  ||  || [BrainRegionTARGET_TEA_VESSELS TARGET.TEA.VESSELS] || Blood vessels || forearm-blood-vessels || (unknown reference) ||
-|| [BrainAreaTSA TSA] || [BrainRegionAVA_PN_PSYM_SPG AVA.PN.PSYM.SPG] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || eye-tears-gland || (unknown reference) ||
+|| [BrainAreaTSA TSA] || [BrainRegionLAC_PN_PSYM_SPG LAC.PN.PSYM.SPG] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || eye-tears-gland || (unknown reference) ||
 ||  ||  || [BrainRegionTARGET_TSA_NOSE TARGET.TSA.NOSE] || Nose || nose-nasal-glands || (unknown reference) ||
 
 == LAD - Lower Digestion Control ==
@@ -53,40 +53,40 @@
 <img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LAC_LAD.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionAVA_HM_VGN AVA.HM.VGN] || Vagus Nucleus || nucleus || LAM || Parasympathetic vagal functions in the gastrointestinal tract, lungs || Dorsal Motor Nucleus, Cardioinhibitory Center;<BR>preganglionic nucleus ||
-|| [BrainRegionAVA_PN_PSYM_CRG AVA.PN.PSYM.CRG] || Cardiac Ganglion || parasympathetic ganglion || LAG || Heart || Inside heart ||
-|| [BrainRegionAVA_PN_PSYM_GUT AVA.PN.PSYM.GUT] || Parasympathetic Gut Brain || parasympathetic ganglion || LAG || Autonomic control of stomach, liver ||  ||
-|| [BrainRegionAVA_PN_SYM_CEG AVA.PN.SYM.CEG] || Coelic Ganglion || sympathetic ganglion || LAG || Liver, stomach, pancreas, small intestine || T5-T9 ||
-|| [BrainRegionAVA_PN_SYM_SMG AVA.PN.SYM.SMG] || Superior Mesenteric Ganglion || sympathetic ganglion || LAG || Large intestine, rectum || T9-T11 ||
+|| [BrainRegionLAC_HM_VGN LAC.HM.VGN] || Vagus Nucleus || nucleus || LAM || Parasympathetic vagal functions in the gastrointestinal tract, lungs || Dorsal Motor Nucleus, Cardioinhibitory Center;<BR>preganglionic nucleus ||
+|| [BrainRegionLAC_PN_PSYM_CRG LAC.PN.PSYM.CRG] || Cardiac Ganglion || parasympathetic ganglion || LAG || Heart || Inside heart ||
+|| [BrainRegionLAC_PN_PSYM_GUT LAC.PN.PSYM.GUT] || Parasympathetic Gut Brain || parasympathetic ganglion || LAG || Autonomic control of stomach, liver ||  ||
+|| [BrainRegionLAC_PN_SYM_CEG LAC.PN.SYM.CEG] || Coelic Ganglion || sympathetic ganglion || LAG || Liver, stomach, pancreas, small intestine || T5-T9 ||
+|| [BrainRegionLAC_PN_SYM_SMG LAC.PN.SYM.SMG] || Superior Mesenteric Ganglion || sympathetic ganglion || LAG || Large intestine, rectum || T9-T11 ||
 
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| [BrainRegionAVA_HM_VGN AVA.HM.VGN] || [BrainRegionAVA_PN_PSYM_CRG AVA.PN.PSYM.CRG] || nucleus-ganglion || (unknown reference) ||
+|| [BrainRegionLAC_HM_VGN LAC.HM.VGN] || [BrainRegionLAC_PN_PSYM_CRG LAC.PN.PSYM.CRG] || nucleus-ganglion || (unknown reference) ||
 
 *External Inbound Region Connections:*
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaLAC LAC] || [BrainRegionAVA_PN_PSYM_GUT AVA.PN.PSYM.GUT] || [BrainRegionAVA_HM_SAL_ISL AVA.HM.SAL.ISL] || Inferior Salivatory Nucleus || nucleus-ganglion || (unknown reference) ||
-||  || [BrainRegionAVA_PN_SYM_CEG AVA.PN.SYM.CEG] || [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || Intermediolateral Nucleus || nucleus-ganglion || (unknown reference) ||
-||  || [BrainRegionAVA_PN_SYM_SMG AVA.PN.SYM.SMG] || [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || Intermediolateral Nucleus || nucleus-ganglion || (unknown reference) ||
-|| [BrainAreaMCA MCA] || [BrainRegionAVA_HM_VGN AVA.HM.VGN] || [BrainRegionBMA_HP_PB BMA.HP.PB] || Parabrachial Nucleus || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (PBN -> DVM)] ||
+|| [BrainAreaLAC LAC] || [BrainRegionLAC_PN_PSYM_GUT LAC.PN.PSYM.GUT] || [BrainRegionLAC_HM_SAL_ISL LAC.HM.SAL.ISL] || Inferior Salivatory Nucleus || nucleus-ganglion || (unknown reference) ||
+||  || [BrainRegionLAC_PN_SYM_CEG LAC.PN.SYM.CEG] || [BrainRegionLAC_SC_IZ_IML LAC.SC.IZ.IML] || Intermediolateral Nucleus || nucleus-ganglion || (unknown reference) ||
+||  || [BrainRegionLAC_PN_SYM_SMG LAC.PN.SYM.SMG] || [BrainRegionLAC_SC_IZ_IML LAC.SC.IZ.IML] || Intermediolateral Nucleus || nucleus-ganglion || (unknown reference) ||
+|| [BrainAreaMCA MCA] || [BrainRegionLAC_HM_VGN LAC.HM.VGN] || [BrainRegionBMA_HP_PB BMA.HP.PB] || Parabrachial Nucleus || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (PBN -> DVM)] ||
 
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaLAC LAC] || [BrainRegionAVA_HM_VGN AVA.HM.VGN] || [BrainRegionAVA_PN_PSYM_ILG AVA.PN.PSYM.ILG] || Intralaryngeal Peripheral Ganglion || nucleus-ganglion || (unknown reference) ||
-||  ||  || [BrainRegionAVA_PN_PSYM_PUG AVA.PN.PSYM.PUG] || Pulmonary Peripheral Ganglion || nucleus-ganglion || (unknown reference) ||
+|| [BrainAreaLAC LAC] || [BrainRegionLAC_HM_VGN LAC.HM.VGN] || [BrainRegionLAC_PN_PSYM_ILG LAC.PN.PSYM.ILG] || Intralaryngeal Peripheral Ganglion || nucleus-ganglion || (unknown reference) ||
+||  ||  || [BrainRegionLAC_PN_PSYM_PUG LAC.PN.PSYM.PUG] || Pulmonary Peripheral Ganglion || nucleus-ganglion || (unknown reference) ||
 || <font color="red">Target</font> || || || || || ||
-|| [BrainAreaTEA TEA] || [BrainRegionAVA_PN_PSYM_CRG AVA.PN.PSYM.CRG] || [BrainRegionTARGET_TEA_HEART TARGET.TEA.HEART] || Heart || heart-psymp-control || (unknown reference) ||
-||  || [BrainRegionAVA_PN_PSYM_GUT AVA.PN.PSYM.GUT] || [BrainRegionTARGET_TEA_ENDOCRINE TARGET.TEA.ENDOCRINE] || Endocrine Glands || endocrine-pancreas-muscarinic || (unknown reference) ||
+|| [BrainAreaTEA TEA] || [BrainRegionLAC_PN_PSYM_CRG LAC.PN.PSYM.CRG] || [BrainRegionTARGET_TEA_HEART TARGET.TEA.HEART] || Heart || heart-psymp-control || (unknown reference) ||
+||  || [BrainRegionLAC_PN_PSYM_GUT LAC.PN.PSYM.GUT] || [BrainRegionTARGET_TEA_ENDOCRINE TARGET.TEA.ENDOCRINE] || Endocrine Glands || endocrine-pancreas-muscarinic || (unknown reference) ||
 ||  ||  || [BrainRegionTARGET_TEA_LIVER TARGET.TEA.LIVER] || Liver || glands || (unknown reference) ||
 ||  ||  || [BrainRegionTARGET_TEA_STOMACH TARGET.TEA.STOMACH] || Stomach || stomach-mucosal-gastric-glands || (unknown reference) ||
-||  || [BrainRegionAVA_PN_SYM_CEG AVA.PN.SYM.CEG] || [BrainRegionTARGET_TEA_ENDOCRINE TARGET.TEA.ENDOCRINE] || Endocrine Glands || endocrine-pancreas-adrenergic || (unknown reference) ||
+||  || [BrainRegionLAC_PN_SYM_CEG LAC.PN.SYM.CEG] || [BrainRegionTARGET_TEA_ENDOCRINE TARGET.TEA.ENDOCRINE] || Endocrine Glands || endocrine-pancreas-adrenergic || (unknown reference) ||
 ||  ||  || [BrainRegionTARGET_TEA_VESSELS TARGET.TEA.VESSELS] || Blood vessels || liver-blood-vessels || (unknown reference) ||
-||  || [BrainRegionAVA_PN_SYM_SMG AVA.PN.SYM.SMG] || [BrainRegionTARGET_TEA_ENDOCRINE TARGET.TEA.ENDOCRINE] || Endocrine Glands || endocrine-adrenal-gland || (unknown reference) ||
+||  || [BrainRegionLAC_PN_SYM_SMG LAC.PN.SYM.SMG] || [BrainRegionTARGET_TEA_ENDOCRINE TARGET.TEA.ENDOCRINE] || Endocrine Glands || endocrine-adrenal-gland || (unknown reference) ||
 ||  ||  || [BrainRegionTARGET_TEA_HEART TARGET.TEA.HEART] || Heart || heart-symp-control || (unknown reference) ||
 
 == LADC - Daily Cycle Autonomic Control ==
@@ -95,8 +95,8 @@
 <img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LAC_LADC.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionHTA_FD_HT_SCN HTA.FD.HT.SCN] || Suprachiasmatic Nucleus || nucleus || LAC || Regulate the circadian cycle, 24-hour rhythms ||  ||
-|| [BrainRegionHTA_FD_HT_TBM HTA.FD.HT.TBM] || Tuberomammillary Nucleus || nucleus || LAC || sole source of histamine in the brain || regulate sleep, helps produce responses to sexual<BR>stimuli, and helps body respond to stressful<BR>situations ||
+|| [BrainRegionLAC_FD_HT_SCN LAC.FD.HT.SCN] || Suprachiasmatic Nucleus || nucleus || LAC || Regulate the circadian cycle, 24-hour rhythms ||  ||
+|| [BrainRegionLAC_FD_HT_TBM LAC.FD.HT.TBM] || Tuberomammillary Nucleus || nucleus || LAC || sole source of histamine in the brain || regulate sleep, helps produce responses to sexual<BR>stimuli, and helps body respond to stressful<BR>situations ||
 
 *Internal Region Connections:*
 
@@ -106,22 +106,22 @@
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaAMA AMA] || [BrainRegionHTA_FD_HT_SCN HTA.FD.HT.SCN] || [BrainRegionBFA_FD_TH_PV BFA.FD.TH.PV] || Paraventricular Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionHTA_FD_HT_TBM HTA.FD.HT.TBM] || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || Septal Nucleus || nucleus-nucleus || [http://www.thebrainlabs.com Cingulate Gyrus (SEP -> HT, abstract)] ||
-|| [BrainAreaLAC LAC] || [BrainRegionHTA_FD_HT_TBM HTA.FD.HT.TBM] || [BrainRegionHTA_FD_HT_PO HTA.FD.HT.PO] || Preoptic Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaLPC LPC] || [BrainRegionHTA_FD_HT_SCN HTA.FD.HT.SCN] || [BrainRegionLPC_FD_RT LPC.FD.RT] || Retina || ganglion-nucleus || [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm Targets of retina neurons (Retina -> HT, abstract)] ||
+|| [BrainAreaAMA AMA] || [BrainRegionLAC_FD_HT_SCN LAC.FD.HT.SCN] || [BrainRegionBFA_FD_TH_PV BFA.FD.TH.PV] || Paraventricular Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLAC_FD_HT_TBM LAC.FD.HT.TBM] || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || Septal Nucleus || nucleus-nucleus || [http://www.thebrainlabs.com Cingulate Gyrus (SEP -> HT, abstract)] ||
+|| [BrainAreaLAC LAC] || [BrainRegionLAC_FD_HT_TBM LAC.FD.HT.TBM] || [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO] || Preoptic Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLPC LPC] || [BrainRegionLAC_FD_HT_SCN LAC.FD.HT.SCN] || [BrainRegionLPC_FD_RT LPC.FD.RT] || Retina || ganglion-nucleus || [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm Targets of retina neurons (Retina -> HT, abstract)] ||
 
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaAMA AMA] || [BrainRegionHTA_FD_HT_TBM HTA.FD.HT.TBM] || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || Septal Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaLAC LAC] || [BrainRegionHTA_FD_HT_SCN HTA.FD.HT.SCN] || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || Superior Cervical Ganglion || nucleus-ganglion || (unknown reference) ||
-||  ||  || [BrainRegionHTA_FD_HT_DM HTA.FD.HT.DM] || Dorsomedial Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || Paraventricular Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaLPC LPC] || [BrainRegionHTA_FD_HT_TBM HTA.FD.HT.TBM] || [BrainRegionLPC_PN_SG_OLB LPC.PN.SG.OLB] || Olfactory Bulb || nucleus-ganglion || (unknown reference) ||
-|| [BrainAreaLRC LRC] || [BrainRegionHTA_FD_HT_SCN HTA.FD.HT.SCN] || [BrainRegionLRC_MM_PT_NOT LRC.MM.PT.NOT] || Nucleus of Optic Tract || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaMCA MCA] || [BrainRegionHTA_FD_HT_TBM HTA.FD.HT.TBM] || [BrainRegionFBA_HP_LC FBA.HP.LC] || Locus Coeruleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaAMA AMA] || [BrainRegionLAC_FD_HT_TBM LAC.FD.HT.TBM] || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || Septal Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLAC LAC] || [BrainRegionLAC_FD_HT_SCN LAC.FD.HT.SCN] || [BrainRegionLAC_FD_HT_DM LAC.FD.HT.DM] || Dorsomedial Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLAC_FD_HT_PV LAC.FD.HT.PV] || Paraventricular Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLAC_PN_SYM_SCG LAC.PN.SYM.SCG] || Superior Cervical Ganglion || nucleus-ganglion || (unknown reference) ||
+|| [BrainAreaLPC LPC] || [BrainRegionLAC_FD_HT_TBM LAC.FD.HT.TBM] || [BrainRegionLPC_PN_SG_OLB LPC.PN.SG.OLB] || Olfactory Bulb || nucleus-ganglion || (unknown reference) ||
+|| [BrainAreaLRC LRC] || [BrainRegionLAC_FD_HT_SCN LAC.FD.HT.SCN] || [BrainRegionLRC_MM_PT_NOT LRC.MM.PT.NOT] || Nucleus of Optic Tract || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaMCA MCA] || [BrainRegionLAC_FD_HT_TBM LAC.FD.HT.TBM] || [BrainRegionFBA_HP_LC FBA.HP.LC] || Locus Coeruleus || nucleus-nucleus || (unknown reference) ||
 
 == LAH - Heart and Blood Pressure Control ==
 
@@ -129,40 +129,40 @@
 <img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LAC_LAH.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionAVA_PN_SYM_STG AVA.PN.SYM.STG] || Stellate Ganglion || sympathetic ganglion || LAG || Heart, Lung || Inferior cervical ganglion ||
-|| [BrainRegionAVA_PN_SYM_TG AVA.PN.SYM.TG] || Sympathetic Thoracic Ganglia || sympathetic ganglion || LAG || Heart || T1-T4 ||
-|| [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || Intermediolateral Nucleus || nucleus || LAM || Mediate entire sympathetic innervation of body || from Lamina VII, visceral sensory ||
-|| [BrainRegionHTA_FD_HT_SO HTA.FD.HT.SO] || Supraoptic Nucleus || nucleus || LAC || Blood volume or blood pressure, vasopressin release ||  ||
+|| [BrainRegionLAC_FD_HT_SO LAC.FD.HT.SO] || Supraoptic Nucleus || nucleus || LAC || Blood volume or blood pressure, vasopressin release ||  ||
+|| [BrainRegionLAC_PN_SYM_STG LAC.PN.SYM.STG] || Stellate Ganglion || sympathetic ganglion || LAG || Heart, Lung || Inferior cervical ganglion ||
+|| [BrainRegionLAC_PN_SYM_TG LAC.PN.SYM.TG] || Sympathetic Thoracic Ganglia || sympathetic ganglion || LAG || Heart || T1-T4 ||
+|| [BrainRegionLAC_SC_IZ_IML LAC.SC.IZ.IML] || Intermediolateral Nucleus || nucleus || LAM || Mediate entire sympathetic innervation of body || from Lamina VII, visceral sensory ||
 
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || [BrainRegionAVA_PN_SYM_STG AVA.PN.SYM.STG] || nucleus-ganglion || (unknown reference) ||
-||  || [BrainRegionAVA_PN_SYM_TG AVA.PN.SYM.TG] || nucleus-ganglion || (unknown reference) ||
+|| [BrainRegionLAC_SC_IZ_IML LAC.SC.IZ.IML] || [BrainRegionLAC_PN_SYM_STG LAC.PN.SYM.STG] || nucleus-ganglion || (unknown reference) ||
+||  || [BrainRegionLAC_PN_SYM_TG LAC.PN.SYM.TG] || nucleus-ganglion || (unknown reference) ||
 
 *External Inbound Region Connections:*
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaLPC LPC] || [BrainRegionHTA_FD_HT_SO HTA.FD.HT.SO] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || Solitary Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaMCA MCA] || [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || [BrainRegionFBA_HP_LC FBA.HP.LC] || Locus Coeruleus || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (LC -> IML)] ||
+|| [BrainAreaLPC LPC] || [BrainRegionLAC_FD_HT_SO LAC.FD.HT.SO] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || Solitary Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaMCA MCA] || [BrainRegionLAC_SC_IZ_IML LAC.SC.IZ.IML] || [BrainRegionFBA_HP_LC FBA.HP.LC] || Locus Coeruleus || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (LC -> IML)] ||
 
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaLAC LAC] || [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || [BrainRegionAVA_PN_PSYM_PPG AVA.PN.PSYM.PPG] || Pelvic Peripheral Ganglion || nucleus-ganglion || [http://jp.physoc.org/content/557/1/287/F9.expansion.html Schematic overview of spinobulbospinal micturition reflex pathway (IML -> PEL)] ||
-||  ||  || [BrainRegionAVA_PN_SYM_ARG AVA.PN.SYM.ARG] || Aorticorenal Ganglion || nucleus-ganglion || (unknown reference) ||
-||  ||  || [BrainRegionAVA_PN_SYM_CEG AVA.PN.SYM.CEG] || Coelic Ganglion || nucleus-ganglion || (unknown reference) ||
-||  ||  || [BrainRegionAVA_PN_SYM_IMG AVA.PN.SYM.IMG] || Inferior Mesenteric Ganglion || nucleus-ganglion || (unknown reference) ||
-||  ||  || [BrainRegionAVA_PN_SYM_MCG AVA.PN.SYM.MCG] || Middle Cervical Ganglion || nucleus-ganglion || (unknown reference) ||
-||  ||  || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || Superior Cervical Ganglion || nucleus-ganglion || (unknown reference) ||
-||  ||  || [BrainRegionAVA_PN_SYM_SMG AVA.PN.SYM.SMG] || Superior Mesenteric Ganglion || nucleus-ganglion || (unknown reference) ||
+|| [BrainAreaLAC LAC] || [BrainRegionLAC_SC_IZ_IML LAC.SC.IZ.IML] || [BrainRegionLAC_PN_PSYM_PPG LAC.PN.PSYM.PPG] || Pelvic Peripheral Ganglion || nucleus-ganglion || [http://jp.physoc.org/content/557/1/287/F9.expansion.html Schematic overview of spinobulbospinal micturition reflex pathway (IML -> PEL)] ||
+||  ||  || [BrainRegionLAC_PN_SYM_ARG LAC.PN.SYM.ARG] || Aorticorenal Ganglion || nucleus-ganglion || (unknown reference) ||
+||  ||  || [BrainRegionLAC_PN_SYM_CEG LAC.PN.SYM.CEG] || Coelic Ganglion || nucleus-ganglion || (unknown reference) ||
+||  ||  || [BrainRegionLAC_PN_SYM_IMG LAC.PN.SYM.IMG] || Inferior Mesenteric Ganglion || nucleus-ganglion || (unknown reference) ||
+||  ||  || [BrainRegionLAC_PN_SYM_MCG LAC.PN.SYM.MCG] || Middle Cervical Ganglion || nucleus-ganglion || (unknown reference) ||
+||  ||  || [BrainRegionLAC_PN_SYM_SCG LAC.PN.SYM.SCG] || Superior Cervical Ganglion || nucleus-ganglion || (unknown reference) ||
+||  ||  || [BrainRegionLAC_PN_SYM_SMG LAC.PN.SYM.SMG] || Superior Mesenteric Ganglion || nucleus-ganglion || (unknown reference) ||
 || <font color="red">Target</font> || || || || || ||
-|| [BrainAreaTEA TEA] || [BrainRegionAVA_PN_SYM_STG AVA.PN.SYM.STG] || [BrainRegionTARGET_TEA_HEART TARGET.TEA.HEART] || Heart || heart-cardiac-lower-muscle-stellar || (unknown reference) ||
+|| [BrainAreaTEA TEA] || [BrainRegionLAC_FD_HT_SO LAC.FD.HT.SO] || [BrainRegionTARGET_TEA_ENDOCRINE TARGET.TEA.ENDOCRINE] || Endocrine Glands || endocrine-neurohypophysis-vasopressin || (unknown reference) ||
+||  || [BrainRegionLAC_PN_SYM_STG LAC.PN.SYM.STG] || [BrainRegionTARGET_TEA_HEART TARGET.TEA.HEART] || Heart || heart-cardiac-lower-muscle-stellar || (unknown reference) ||
 ||  ||  || [BrainRegionTARGET_TEA_VESSELS TARGET.TEA.VESSELS] || Blood vessels || arm-blood-vessels || (unknown reference) ||
-||  || [BrainRegionAVA_PN_SYM_TG AVA.PN.SYM.TG] || [BrainRegionTARGET_TEA_VESSELS TARGET.TEA.VESSELS] || Blood vessels || arterial-thoracic-vasoconstrictors || (unknown reference) ||
-||  || [BrainRegionHTA_FD_HT_SO HTA.FD.HT.SO] || [BrainRegionTARGET_TEA_ENDOCRINE TARGET.TEA.ENDOCRINE] || Endocrine Glands || endocrine-neurohypophysis-vasopressin || (unknown reference) ||
+||  || [BrainRegionLAC_PN_SYM_TG LAC.PN.SYM.TG] || [BrainRegionTARGET_TEA_VESSELS TARGET.TEA.VESSELS] || Blood vessels || arterial-thoracic-vasoconstrictors || (unknown reference) ||
 
 == LAM - Autonomic Motivations Control ==
 
@@ -170,8 +170,8 @@
 <img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LAC_LAM.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionBMA_SC_LH_LSN BMA.SC.LH.LSN] || Lateral Spinal Nucleus || nucleus || LAS || Integrate autonomic and homeostatic functions || Projects to HT and lateral globus pallidus;<BR>integrative nucleus for autonomic and homeostatic<BR>functions, and related motivational and affective<BR>responses to autonomic function ||
-|| [BrainRegionHTA_FD_HT_RCH HTA.FD.HT.RCH] || Retrochiasmatic Nucleus || nucleus || LAC || Maintenance of normal hypothalamic-pituitary-adrenal function ||  ||
+|| [BrainRegionLAC_FD_HT_RCH LAC.FD.HT.RCH] || Retrochiasmatic Nucleus || nucleus || LAC || Maintenance of normal hypothalamic-pituitary-adrenal function ||  ||
+|| [BrainRegionLAC_SC_LH_LSN LAC.SC.LH.LSN] || Lateral Spinal Nucleus || nucleus || LAS || Integrate autonomic and homeostatic functions || Projects to HT and lateral globus pallidus;<BR>integrative nucleus for autonomic and homeostatic<BR>functions, and related motivational and affective<BR>responses to autonomic function ||
 
 *Internal Region Connections:*
 
@@ -181,16 +181,16 @@
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
-|| [BrainAreaEPA EPA] || [BrainRegionHTA_FD_HT_RCH HTA.FD.HT.RCH] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || neocortex-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in emotional behavior (OPFC -> HT, abstract)] ||
+|| [BrainAreaEPA EPA] || [BrainRegionLAC_FD_HT_RCH LAC.FD.HT.RCH] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || neocortex-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in emotional behavior (OPFC -> HT, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaLAC LAC] || [BrainRegionBMA_SC_LH_LSN BMA.SC.LH.LSN] || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || Paraventricular Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLAC LAC] || [BrainRegionLAC_SC_LH_LSN LAC.SC.LH.LSN] || [BrainRegionLAC_FD_HT_PV LAC.FD.HT.PV] || Paraventricular Nucleus || nucleus-nucleus || (unknown reference) ||
 
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaLAC LAC] || [BrainRegionBMA_SC_LH_LSN BMA.SC.LH.LSN] || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || Superior Cervical Ganglion || nucleus-ganglion || (unknown reference) ||
-|| [BrainAreaLCA LCA] || [BrainRegionHTA_FD_HT_RCH HTA.FD.HT.RCH] || [BrainRegionMBA_HP_PN_RP MBA.HP.PN.RP] || Rostral Pontine Nucleus || nucleus-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in emotional behavior (HT -> PN, abstract)] ||
+|| [BrainAreaLAC LAC] || [BrainRegionLAC_SC_LH_LSN LAC.SC.LH.LSN] || [BrainRegionLAC_PN_SYM_SCG LAC.PN.SYM.SCG] || Superior Cervical Ganglion || nucleus-ganglion || (unknown reference) ||
+|| [BrainAreaLCA LCA] || [BrainRegionLAC_FD_HT_RCH LAC.FD.HT.RCH] || [BrainRegionMBA_HP_PN_RP MBA.HP.PN.RP] || Rostral Pontine Nucleus || nucleus-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in emotional behavior (HT -> PN, abstract)] ||
 
 == LAMM - Memory Autonomic Control ==
 
@@ -198,8 +198,8 @@
 <img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LAC_LAMM.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionHTA_FD_HT_PRM HTA.FD.HT.PRM] || Premammillary Nucleus || nucleus || LAC || expression of fear responses to environmental threats || integrate information involved in spatial working<BR>memory, which may result in attentional mechanisms<BR>on selection of appropriate escape strategies ||
-|| [BrainRegionHTA_FD_HT_SUM HTA.FD.HT.SUM] || Supramammillary Nucleus || nucleus || LAC || control hippocampal plasticity, determine frequency of hippocampal theta rhythm ||  ||
+|| [BrainRegionLAC_FD_HT_PRM LAC.FD.HT.PRM] || Premammillary Nucleus || nucleus || LAC || expression of fear responses to environmental threats || integrate information involved in spatial working<BR>memory, which may result in attentional mechanisms<BR>on selection of appropriate escape strategies ||
+|| [BrainRegionLAC_FD_HT_SUM LAC.FD.HT.SUM] || Supramammillary Nucleus || nucleus || LAC || control hippocampal plasticity, determine frequency of hippocampal theta rhythm ||  ||
 
 *Internal Region Connections:*
 
@@ -209,20 +209,20 @@
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaAMA AMA] || [BrainRegionHTA_FD_HT_PRM HTA.FD.HT.PRM] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> HT.L, abstract)] ||
-|| [BrainAreaECA ECA] || [BrainRegionHTA_FD_HT_SUM HTA.FD.HT.SUM] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || Substantia Nigra Pars Compacta || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaLAC LAC] || [BrainRegionHTA_FD_HT_PRM HTA.FD.HT.PRM] || [BrainRegionHTA_FD_HT_AH HTA.FD.HT.AH] || Anterior Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionHTA_FD_HT_SUM HTA.FD.HT.SUM] || [BrainRegionHTA_FD_HT_PO HTA.FD.HT.PO] || Preoptic Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaMCA MCA] || [BrainRegionHTA_FD_HT_PRM HTA.FD.HT.PRM] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || Ventral Tegmental Area || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaAMA AMA] || [BrainRegionLAC_FD_HT_PRM LAC.FD.HT.PRM] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> HT.L, abstract)] ||
+|| [BrainAreaECA ECA] || [BrainRegionLAC_FD_HT_SUM LAC.FD.HT.SUM] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || Substantia Nigra Pars Compacta || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLAC LAC] || [BrainRegionLAC_FD_HT_PRM LAC.FD.HT.PRM] || [BrainRegionLAC_FD_HT_AH LAC.FD.HT.AH] || Anterior Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLAC_FD_HT_SUM LAC.FD.HT.SUM] || [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO] || Preoptic Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaMCA MCA] || [BrainRegionLAC_FD_HT_PRM LAC.FD.HT.PRM] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || Ventral Tegmental Area || nucleus-nucleus || (unknown reference) ||
 
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaAMA AMA] || [BrainRegionHTA_FD_HT_SUM HTA.FD.HT.SUM] || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || Septal Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Medial mammillary nucleus and theta rhythm (SupraMM -> SEP)] ||
-|| [BrainAreaLAC LAC] || [BrainRegionHTA_FD_HT_PRM HTA.FD.HT.PRM] || [BrainRegionHTA_FD_HT_PO HTA.FD.HT.PO] || Preoptic Nucleus || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionHTA_FD_HT_VM HTA.FD.HT.VM] || Ventromedial Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaMMA MMA] || [BrainRegionHTA_FD_HT_SUM HTA.FD.HT.SUM] || [BrainRegionHBA_FT_DG HBA.FT.DG] || Dentate Gyrus || nucleus-allocortex || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Medial mammillary nucleus and theta rhythm (SupraMM -> HF, abstract)] ||
+|| [BrainAreaAMA AMA] || [BrainRegionLAC_FD_HT_SUM LAC.FD.HT.SUM] || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || Septal Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Medial mammillary nucleus and theta rhythm (SupraMM -> SEP)] ||
+|| [BrainAreaLAC LAC] || [BrainRegionLAC_FD_HT_PRM LAC.FD.HT.PRM] || [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO] || Preoptic Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLAC_FD_HT_VM LAC.FD.HT.VM] || Ventromedial Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaMMA MMA] || [BrainRegionLAC_FD_HT_SUM LAC.FD.HT.SUM] || [BrainRegionHBA_FT_DG HBA.FT.DG] || Dentate Gyrus || nucleus-allocortex || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Medial mammillary nucleus and theta rhythm (SupraMM -> HF, abstract)] ||
 ||  ||  || [BrainRegionHBA_FT_HC_CA2 HBA.FT.HC.CA2] || Dorsolateral Cornu Ammonis of Hippocampus || nucleus-allocortex || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Medial mammillary nucleus and theta rhythm (SupraMM -> HF, abstract)] ||
 ||  ||  || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || Dorsomedial Cornu Ammonis of Hippocampus || nucleus-allocortex || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Medial mammillary nucleus and theta rhythm (SupraMM -> HF, abstract)] ||
 
@@ -232,34 +232,34 @@
 <img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LAC_LAS.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionAVA_HM_SAL_ISL AVA.HM.SAL.ISL] || Inferior Salivatory Nucleus || nucleus || LAM || facilitate digestion - produce watery saliva || preganglionic parasympathetic nucleus; project to<BR>otic ganglion to parotid gland; to gut ganglia, to<BR>pulmonary ganglia ||
-|| [BrainRegionAVA_HM_SAL_SSL AVA.HM.SAL.SSL] || Superior Salivatory Nucleus || nucleus || LAM || facilitate respiration - produce thiker saliva || preganglionic parasympathetic nucleus; project to<BR>submaxillary (submandibular) ganglion to<BR>submandibular/sublingual gland; to sphenopalatine<BR>ganglion to superior maxillary nerve as vasodilator<BR>and secretory fibers to the mucous membrane of the<BR>nose, soft palate, tonsils, uvula, roof of the<BR>mouth, upper lips and gums, parotid and orbital<BR>glands ||
-|| [BrainRegionAVA_PN_PSYM_OTG AVA.PN.PSYM.OTG] || Otic Ganglion || parasympathetic ganglion || LAG || Parotid gland ||  ||
-|| [BrainRegionAVA_PN_PSYM_SXG AVA.PN.PSYM.SXG] || Submandibular Ganglion || parasympathetic ganglion || LAG || Submaxillary and sublingual salivary glands || Head and neck region, facilitate respiration ||
+|| [BrainRegionLAC_HM_SAL_ISL LAC.HM.SAL.ISL] || Inferior Salivatory Nucleus || nucleus || LAM || facilitate digestion - produce watery saliva || preganglionic parasympathetic nucleus; project to<BR>otic ganglion to parotid gland; to gut ganglia, to<BR>pulmonary ganglia ||
+|| [BrainRegionLAC_HM_SAL_SSL LAC.HM.SAL.SSL] || Superior Salivatory Nucleus || nucleus || LAM || facilitate respiration - produce thiker saliva || preganglionic parasympathetic nucleus; project to<BR>submaxillary (submandibular) ganglion to<BR>submandibular/sublingual gland; to sphenopalatine<BR>ganglion to superior maxillary nerve as vasodilator<BR>and secretory fibers to the mucous membrane of the<BR>nose, soft palate, tonsils, uvula, roof of the<BR>mouth, upper lips and gums, parotid and orbital<BR>glands ||
+|| [BrainRegionLAC_PN_PSYM_OTG LAC.PN.PSYM.OTG] || Otic Ganglion || parasympathetic ganglion || LAG || Parotid gland ||  ||
+|| [BrainRegionLAC_PN_PSYM_SXG LAC.PN.PSYM.SXG] || Submandibular Ganglion || parasympathetic ganglion || LAG || Submaxillary and sublingual salivary glands || Head and neck region, facilitate respiration ||
 
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| [BrainRegionAVA_HM_SAL_ISL AVA.HM.SAL.ISL] || [BrainRegionAVA_PN_PSYM_OTG AVA.PN.PSYM.OTG] || nucleus-ganglion || [http://www.neurophysiology.ws/autonomicns.htm Autonomic nervous system (ISL -> OTG)] ||
-|| [BrainRegionAVA_HM_SAL_SSL AVA.HM.SAL.SSL] || [BrainRegionAVA_PN_PSYM_SXG AVA.PN.PSYM.SXG] || nucleus-ganglion || [http://www.neurophysiology.ws/autonomicns.htm Autonomic nervous system (SSL -> SMG)] ||
+|| [BrainRegionLAC_HM_SAL_ISL LAC.HM.SAL.ISL] || [BrainRegionLAC_PN_PSYM_OTG LAC.PN.PSYM.OTG] || nucleus-ganglion || [http://www.neurophysiology.ws/autonomicns.htm Autonomic nervous system (ISL -> OTG)] ||
+|| [BrainRegionLAC_HM_SAL_SSL LAC.HM.SAL.SSL] || [BrainRegionLAC_PN_PSYM_SXG LAC.PN.PSYM.SXG] || nucleus-ganglion || [http://www.neurophysiology.ws/autonomicns.htm Autonomic nervous system (SSL -> SMG)] ||
 
 *External Inbound Region Connections:*
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaMCA MCA] || [BrainRegionAVA_HM_SAL_ISL AVA.HM.SAL.ISL] || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionAVA_HM_SAL_SSL AVA.HM.SAL.SSL] || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaMCA MCA] || [BrainRegionLAC_HM_SAL_ISL LAC.HM.SAL.ISL] || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLAC_HM_SAL_SSL LAC.HM.SAL.SSL] || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus || (unknown reference) ||
 
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaLAC LAC] || [BrainRegionAVA_HM_SAL_ISL AVA.HM.SAL.ISL] || [BrainRegionAVA_PN_PSYM_GUT AVA.PN.PSYM.GUT] || Parasympathetic Gut Brain || nucleus-ganglion || (unknown reference) ||
-||  ||  || [BrainRegionAVA_PN_PSYM_PUG AVA.PN.PSYM.PUG] || Pulmonary Peripheral Ganglion || nucleus-ganglion || (unknown reference) ||
-||  || [BrainRegionAVA_HM_SAL_SSL AVA.HM.SAL.SSL] || [BrainRegionAVA_PN_PSYM_SPG AVA.PN.PSYM.SPG] || Sphenopalatine Ganglion || nucleus-ganglion || [http://www.neurophysiology.ws/autonomicns.htm Autonomic nervous system (SSL -> SPG)] ||
+|| [BrainAreaLAC LAC] || [BrainRegionLAC_HM_SAL_ISL LAC.HM.SAL.ISL] || [BrainRegionLAC_PN_PSYM_GUT LAC.PN.PSYM.GUT] || Parasympathetic Gut Brain || nucleus-ganglion || (unknown reference) ||
+||  ||  || [BrainRegionLAC_PN_PSYM_PUG LAC.PN.PSYM.PUG] || Pulmonary Peripheral Ganglion || nucleus-ganglion || (unknown reference) ||
+||  || [BrainRegionLAC_HM_SAL_SSL LAC.HM.SAL.SSL] || [BrainRegionLAC_PN_PSYM_SPG LAC.PN.PSYM.SPG] || Sphenopalatine Ganglion || nucleus-ganglion || [http://www.neurophysiology.ws/autonomicns.htm Autonomic nervous system (SSL -> SPG)] ||
 || <font color="red">Target</font> || || || || || ||
-|| [BrainAreaTEA TEA] || [BrainRegionAVA_PN_PSYM_OTG AVA.PN.PSYM.OTG] || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || Mouth feeder || parotid-gland || (unknown reference) ||
-||  || [BrainRegionAVA_PN_PSYM_SXG AVA.PN.PSYM.SXG] || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || Mouth feeder || sublingual-gland || (unknown reference) ||
+|| [BrainAreaTEA TEA] || [BrainRegionLAC_PN_PSYM_OTG LAC.PN.PSYM.OTG] || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || Mouth feeder || parotid-gland || (unknown reference) ||
+||  || [BrainRegionLAC_PN_PSYM_SXG LAC.PN.PSYM.SXG] || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || Mouth feeder || sublingual-gland || (unknown reference) ||
 
 == LAT - Autonomic Thermoregulation ==
 
@@ -267,39 +267,39 @@
 <img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LAC_LAT.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionHMA_HM_TGM_PE5 HMA.HM.TGM.PE5] || Peritrigeminal Nucleus || nucleus || LAS || Thermoregulation || Project to thermosensitive neurons of medial<BR>preoptic area ||
-|| [BrainRegionHTA_FD_HT_AH HTA.FD.HT.AH] || Anterior Hypothalamic Nucleus || nucleus || LAC || Thermoregulation, panting, sweating ||  ||
-|| [BrainRegionHTA_FD_HT_PO HTA.FD.HT.PO] || Preoptic Nucleus || nucleus || LAC || Regulates release of gonadotropic hormones, sexual differentiation ||  ||
+|| [BrainRegionLAC_FD_HT_AH LAC.FD.HT.AH] || Anterior Hypothalamic Nucleus || nucleus || LAC || Thermoregulation, panting, sweating ||  ||
+|| [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO] || Preoptic Nucleus || nucleus || LAC || Regulates release of gonadotropic hormones, sexual differentiation ||  ||
+|| [BrainRegionLAC_HM_TGM_PE5 LAC.HM.TGM.PE5] || Peritrigeminal Nucleus || nucleus || LAS || Thermoregulation || Project to thermosensitive neurons of medial<BR>preoptic area ||
 
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| [BrainRegionHMA_HM_TGM_PE5 HMA.HM.TGM.PE5] || [BrainRegionHTA_FD_HT_PO HTA.FD.HT.PO] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionLAC_HM_TGM_PE5 LAC.HM.TGM.PE5] || [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO] || nucleus-nucleus || (unknown reference) ||
 
 *External Inbound Region Connections:*
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
-|| [BrainAreaEPA EPA] || [BrainRegionHTA_FD_HT_AH HTA.FD.HT.AH] || [BrainRegionCGA_NC_SGC CGA.NC.SGC] || Subgenual Cortex || neocortex-nucleus || (unknown reference) ||
+|| [BrainAreaEPA EPA] || [BrainRegionLAC_FD_HT_AH LAC.FD.HT.AH] || [BrainRegionCGA_NC_SGC CGA.NC.SGC] || Subgenual Cortex || neocortex-nucleus || (unknown reference) ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaAMA AMA] || [BrainRegionHTA_FD_HT_PO HTA.FD.HT.PO] || [BrainRegionBFA_FD_TH_PV BFA.FD.TH.PV] || Paraventricular Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaAMA AMA] || [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO] || [BrainRegionBFA_FD_TH_PV BFA.FD.TH.PV] || Paraventricular Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || Septal Nucleus || nucleus-nucleus || [http://www.thebrainlabs.com Cingulate Gyrus (SEP -> HT, abstract)] ||
-|| [BrainAreaLAC LAC] || [BrainRegionHTA_FD_HT_PO HTA.FD.HT.PO] || [BrainRegionHTA_FD_HT_DM HTA.FD.HT.DM] || Dorsomedial Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionHTA_FD_HT_PRM HTA.FD.HT.PRM] || Premammillary Nucleus || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionHTA_FD_HT_VM HTA.FD.HT.VM] || Ventromedial Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaLPC LPC] || [BrainRegionHMA_HM_TGM_PE5 HMA.HM.TGM.PE5] || [BrainRegionLPC_SC_VH_VL LPC.SC.VH.VL] || Ventrolateral Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaMCA MCA] || [BrainRegionHTA_FD_HT_PO HTA.FD.HT.PO] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || Ventral Tegmental Area || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (VTA -> MPOA)] ||
-|| [BrainAreaMMA MMA] || [BrainRegionHTA_FD_HT_AH HTA.FD.HT.AH] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || Ventrolateral Cornu Ammonis of Hippocampus || allocortex-nucleus || [http://www.nature.com/nrn/journal/v5/n7 Feeling (HC -> HT, abstract)] ||
-||  || [BrainRegionHTA_FD_HT_PO HTA.FD.HT.PO] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || Ventrolateral Cornu Ammonis of Hippocampus || allocortex-nucleus || [http://www.nature.com/nrn/journal/v5/n7 Feeling (HC -> HT, abstract)] ||
+|| [BrainAreaLAC LAC] || [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO] || [BrainRegionLAC_FD_HT_DM LAC.FD.HT.DM] || Dorsomedial Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLAC_FD_HT_PRM LAC.FD.HT.PRM] || Premammillary Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLAC_FD_HT_VM LAC.FD.HT.VM] || Ventromedial Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLPC LPC] || [BrainRegionLAC_HM_TGM_PE5 LAC.HM.TGM.PE5] || [BrainRegionLPC_SC_VH_VL LPC.SC.VH.VL] || Ventrolateral Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaMCA MCA] || [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || Ventral Tegmental Area || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (VTA -> MPOA)] ||
+|| [BrainAreaMMA MMA] || [BrainRegionLAC_FD_HT_AH LAC.FD.HT.AH] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || Ventrolateral Cornu Ammonis of Hippocampus || allocortex-nucleus || [http://www.nature.com/nrn/journal/v5/n7 Feeling (HC -> HT, abstract)] ||
+||  || [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || Ventrolateral Cornu Ammonis of Hippocampus || allocortex-nucleus || [http://www.nature.com/nrn/journal/v5/n7 Feeling (HC -> HT, abstract)] ||
 
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaAMA AMA] || [BrainRegionHTA_FD_HT_PO HTA.FD.HT.PO] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LPO -> LHb)] ||
-|| [BrainAreaLAC LAC] || [BrainRegionHTA_FD_HT_AH HTA.FD.HT.AH] || [BrainRegionHTA_FD_HT_PRM HTA.FD.HT.PRM] || Premammillary Nucleus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionHTA_FD_HT_PO HTA.FD.HT.PO] || [BrainRegionHTA_FD_HT_SUM HTA.FD.HT.SUM] || Supramammillary Nucleus || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionHTA_FD_HT_TBM HTA.FD.HT.TBM] || Tuberomammillary Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaAMA AMA] || [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LPO -> LHb)] ||
+|| [BrainAreaLAC LAC] || [BrainRegionLAC_FD_HT_AH LAC.FD.HT.AH] || [BrainRegionLAC_FD_HT_PRM LAC.FD.HT.PRM] || Premammillary Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO] || [BrainRegionLAC_FD_HT_SUM LAC.FD.HT.SUM] || Supramammillary Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLAC_FD_HT_TBM LAC.FD.HT.TBM] || Tuberomammillary Nucleus || nucleus-nucleus || (unknown reference) ||
 
 == LATH - Thirst and Hunger Control ==
 
@@ -307,57 +307,57 @@
 <img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LAC_LATH.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionHTA_FD_HT_AR HTA.FD.HT.AR] || Arcuate Nucleus of Hypothalamus || nucleus || LAC || Regulation of growth, appetite and body weight || lateral of tuberlulum, TIDA - releases dopamine to<BR>regulate secretion of prolactin hormone, GHRH -<BR>stimulate growth hormone secretion (ventrolateral) ||
-|| [BrainRegionHTA_FD_HT_DM HTA.FD.HT.DM] || Dorsomedial Hypothalamic Nucleus || nucleus || LAC || Blood pressure, heart rate ||  ||
-|| [BrainRegionHTA_FD_HT_LTN HTA.FD.HT.LTN] || Lateral Hypothalamic Nucleus || nucleus || LAC || feeding center || lesions - lack of appetite ||
-|| [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || Paraventricular Nucleus || nucleus || LAC || Regulate appetite and autonomic functions ||  ||
-|| [BrainRegionHTA_FD_HT_VM HTA.FD.HT.VM] || Ventromedial Hypothalamic Nucleus || nucleus || LAC || Satiety, control of eating || medial of tuberculum ||
+|| [BrainRegionLAC_FD_HT_AR LAC.FD.HT.AR] || Arcuate Nucleus of Hypothalamus || nucleus || LAC || Regulation of growth, appetite and body weight || lateral of tuberlulum, TIDA - releases dopamine to<BR>regulate secretion of prolactin hormone, GHRH -<BR>stimulate growth hormone secretion (ventrolateral) ||
+|| [BrainRegionLAC_FD_HT_DM LAC.FD.HT.DM] || Dorsomedial Hypothalamic Nucleus || nucleus || LAC || Blood pressure, heart rate ||  ||
+|| [BrainRegionLAC_FD_HT_LTN LAC.FD.HT.LTN] || Lateral Hypothalamic Nucleus || nucleus || LAC || feeding center || lesions - lack of appetite ||
+|| [BrainRegionLAC_FD_HT_PV LAC.FD.HT.PV] || Paraventricular Nucleus || nucleus || LAC || Regulate appetite and autonomic functions ||  ||
+|| [BrainRegionLAC_FD_HT_VM LAC.FD.HT.VM] || Ventromedial Hypothalamic Nucleus || nucleus || LAC || Satiety, control of eating || medial of tuberculum ||
 
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| [BrainRegionHTA_FD_HT_AR HTA.FD.HT.AR] || [BrainRegionHTA_FD_HT_DM HTA.FD.HT.DM] || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionHTA_FD_HT_LTN HTA.FD.HT.LTN] || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || nucleus-nucleus || (unknown reference) ||
-|| [BrainRegionHTA_FD_HT_DM HTA.FD.HT.DM] || [BrainRegionHTA_FD_HT_LTN HTA.FD.HT.LTN] || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || nucleus-nucleus || (unknown reference) ||
-|| [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || [BrainRegionHTA_FD_HT_VM HTA.FD.HT.VM] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionLAC_FD_HT_AR LAC.FD.HT.AR] || [BrainRegionLAC_FD_HT_DM LAC.FD.HT.DM] || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLAC_FD_HT_LTN LAC.FD.HT.LTN] || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLAC_FD_HT_PV LAC.FD.HT.PV] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionLAC_FD_HT_DM LAC.FD.HT.DM] || [BrainRegionLAC_FD_HT_LTN LAC.FD.HT.LTN] || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLAC_FD_HT_PV LAC.FD.HT.PV] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionLAC_FD_HT_PV LAC.FD.HT.PV] || [BrainRegionLAC_FD_HT_VM LAC.FD.HT.VM] || nucleus-nucleus || (unknown reference) ||
 
 *External Inbound Region Connections:*
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaAMA AMA] || [BrainRegionHTA_FD_HT_LTN HTA.FD.HT.LTN] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> HT.L, abstract)] ||
-||  || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> HT.PV)] ||
-|| [BrainAreaLAC LAC] || [BrainRegionHTA_FD_HT_DM HTA.FD.HT.DM] || [BrainRegionHTA_FD_HT_SCN HTA.FD.HT.SCN] || Suprachiasmatic Nucleus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || [BrainRegionHTA_FD_HT_SCN HTA.FD.HT.SCN] || Suprachiasmatic Nucleus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionHTA_FD_HT_VM HTA.FD.HT.VM] || [BrainRegionHTA_FD_HT_PRM HTA.FD.HT.PRM] || Premammillary Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaLPC LPC] || [BrainRegionHTA_FD_HT_AR HTA.FD.HT.AR] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || Solitary Nucleus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || Solitary Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaMCA MCA] || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || Ventral Tegmental Area || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (VTA -> PVN)] ||
-|| [BrainAreaMMA MMA] || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || Subiculum || allocortex-nucleus || (unknown reference) ||
+|| [BrainAreaAMA AMA] || [BrainRegionLAC_FD_HT_LTN LAC.FD.HT.LTN] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> HT.L, abstract)] ||
+||  || [BrainRegionLAC_FD_HT_PV LAC.FD.HT.PV] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> HT.PV)] ||
+|| [BrainAreaLAC LAC] || [BrainRegionLAC_FD_HT_DM LAC.FD.HT.DM] || [BrainRegionLAC_FD_HT_SCN LAC.FD.HT.SCN] || Suprachiasmatic Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLAC_FD_HT_PV LAC.FD.HT.PV] || [BrainRegionLAC_FD_HT_SCN LAC.FD.HT.SCN] || Suprachiasmatic Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLAC_FD_HT_VM LAC.FD.HT.VM] || [BrainRegionLAC_FD_HT_PRM LAC.FD.HT.PRM] || Premammillary Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLPC LPC] || [BrainRegionLAC_FD_HT_AR LAC.FD.HT.AR] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || Solitary Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLAC_FD_HT_PV LAC.FD.HT.PV] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || Solitary Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaMCA MCA] || [BrainRegionLAC_FD_HT_PV LAC.FD.HT.PV] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || Ventral Tegmental Area || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (VTA -> PVN)] ||
+|| [BrainAreaMMA MMA] || [BrainRegionLAC_FD_HT_PV LAC.FD.HT.PV] || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || Subiculum || allocortex-nucleus || (unknown reference) ||
 
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
-|| [BrainAreaEPA EPA] || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || Anterior Nucleus of Thalamus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n7 Feeling (HT -> AN, abstract)] ||
+|| [BrainAreaEPA EPA] || [BrainRegionLAC_FD_HT_PV LAC.FD.HT.PV] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || Anterior Nucleus of Thalamus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n7 Feeling (HT -> AN, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaAMA AMA] || [BrainRegionHTA_FD_HT_LTN HTA.FD.HT.LTN] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LH -> LHb, abstract)] ||
-||  || [BrainRegionHTA_FD_HT_VM HTA.FD.HT.VM] || [BrainRegionBFA_FT_BNST BFA.FT.BNST] || Bed Nucleus of Stria Terminalis || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaECA ECA] || [BrainRegionHTA_FD_HT_VM HTA.FD.HT.VM] || [BrainRegionBGA_FD_STN BGA.FD.STN] || Subthalamus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaLAC LAC] || [BrainRegionHTA_FD_HT_DM HTA.FD.HT.DM] || [BrainRegionHTA_FD_HT_PO HTA.FD.HT.PO] || Preoptic Nucleus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || [BrainRegionAVA_SC_CC_DCN AVA.SC.CC.DCN] || Dorsal Commissural Nucleus || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionAVA_SC_IZ_SPS AVA.SC.IZ.SPS] || Sacral Parasympathetic Nucleus || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionBMA_SC_LH_LSN BMA.SC.LH.LSN] || Lateral Spinal Nucleus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionHTA_FD_HT_VM HTA.FD.HT.VM] || [BrainRegionHTA_FD_HT_PO HTA.FD.HT.PO] || Preoptic Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaMCA MCA] || [BrainRegionHTA_FD_HT_DM HTA.FD.HT.DM] || [BrainRegionFBA_HP_LC FBA.HP.LC] || Locus Coeruleus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionHTA_FD_HT_VM HTA.FD.HT.VM] || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || Periaqueductal Gray Matter || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaMMA MMA] || [BrainRegionHTA_FD_HT_LTN HTA.FD.HT.LTN] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaAMA AMA] || [BrainRegionLAC_FD_HT_LTN LAC.FD.HT.LTN] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LH -> LHb, abstract)] ||
+||  || [BrainRegionLAC_FD_HT_VM LAC.FD.HT.VM] || [BrainRegionBFA_FT_BNST BFA.FT.BNST] || Bed Nucleus of Stria Terminalis || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaECA ECA] || [BrainRegionLAC_FD_HT_VM LAC.FD.HT.VM] || [BrainRegionBGA_FD_STN BGA.FD.STN] || Subthalamus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLAC LAC] || [BrainRegionLAC_FD_HT_DM LAC.FD.HT.DM] || [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO] || Preoptic Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLAC_FD_HT_PV LAC.FD.HT.PV] || [BrainRegionLAC_SC_CC_DCN LAC.SC.CC.DCN] || Dorsal Commissural Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLAC_SC_IZ_SPS LAC.SC.IZ.SPS] || Sacral Parasympathetic Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLAC_SC_LH_LSN LAC.SC.LH.LSN] || Lateral Spinal Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLAC_FD_HT_VM LAC.FD.HT.VM] || [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO] || Preoptic Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaMCA MCA] || [BrainRegionLAC_FD_HT_DM LAC.FD.HT.DM] || [BrainRegionFBA_HP_LC FBA.HP.LC] || Locus Coeruleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLAC_FD_HT_VM LAC.FD.HT.VM] || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || Periaqueductal Gray Matter || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaMMA MMA] || [BrainRegionLAC_FD_HT_LTN LAC.FD.HT.LTN] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || Lateral Mammillary Nucleus || nucleus-nucleus || (unknown reference) ||
 || <font color="red">Target</font> || || || || || ||
-|| [BrainAreaTEA TEA] || [BrainRegionHTA_FD_HT_AR HTA.FD.HT.AR] || [BrainRegionTARGET_TEA_ENDOCRINE TARGET.TEA.ENDOCRINE] || Endocrine Glands || endocrine-adenohypophysis || (unknown reference) ||
-||  || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || [BrainRegionTARGET_TEA_ENDOCRINE TARGET.TEA.ENDOCRINE] || Endocrine Glands || endocrine-neurohypophysis-oxytocin || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (HT.PV -> PUT)] ||
+|| [BrainAreaTEA TEA] || [BrainRegionLAC_FD_HT_AR LAC.FD.HT.AR] || [BrainRegionTARGET_TEA_ENDOCRINE TARGET.TEA.ENDOCRINE] || Endocrine Glands || endocrine-adenohypophysis || (unknown reference) ||
+||  || [BrainRegionLAC_FD_HT_PV LAC.FD.HT.PV] || [BrainRegionTARGET_TEA_ENDOCRINE TARGET.TEA.ENDOCRINE] || Endocrine Glands || endocrine-neurohypophysis-oxytocin || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (HT.PV -> PUT)] ||
 
 == LAV - Vision Autonomic Control ==
 
@@ -365,31 +365,31 @@
 <img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LAC_LAV.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || Superior Cervical Ganglion || sympathetic ganglion || LAG || Eye, tear and salivatory glands ||  ||
-|| [BrainRegionHTA_FD_HT_PN HTA.FD.HT.PN] || Posterior Hypothalamic Nucleus || nucleus || LAC || Blood pressure, pupillary dilation ||  ||
-|| [BrainRegionVBA_MM_EWN VBA.MM.EWN] || Edinger-Westphal Nucleus || nucleus || LAM || Change Eye Pupil || Parasympathetic nucleus, parvocellular extention of<BR>OCN ||
-|| [BrainRegionVBA_PN_PSYM_CLG VBA.PN.PSYM.CLG] || Ciliary Ganglion || parasympathetic ganglion || LAG || Control pupillary diameter || Sphincter muscles of the iris ||
-|| [BrainRegionVBA_PN_PSYM_EPG VBA.PN.PSYM.EPG] || Episcleral Ganglion || parasympathetic ganglion || LAG || Control curvature of lens || Sphincter muscles of the iris ||
-|| [BrainRegionVBA_SC_IZ_CSC VBA.SC.IZ.CSC] || Ciliospinal Center || nucleus || LAM || Control of iris dilator muscle || Budge's Center, intermediolateral cell column ||
+|| [BrainRegionLAC_FD_HT_PN LAC.FD.HT.PN] || Posterior Hypothalamic Nucleus || nucleus || LAC || Blood pressure, pupillary dilation ||  ||
+|| [BrainRegionLAC_MM_EWN LAC.MM.EWN] || Edinger-Westphal Nucleus || nucleus || LAM || Change Eye Pupil || Parasympathetic nucleus, parvocellular extention of<BR>OCN ||
+|| [BrainRegionLAC_PN_PSYM_CLG LAC.PN.PSYM.CLG] || Ciliary Ganglion || parasympathetic ganglion || LAG || Control pupillary diameter || Sphincter muscles of the iris ||
+|| [BrainRegionLAC_PN_PSYM_EPG LAC.PN.PSYM.EPG] || Episcleral Ganglion || parasympathetic ganglion || LAG || Control curvature of lens || Sphincter muscles of the iris ||
+|| [BrainRegionLAC_PN_SYM_SCG LAC.PN.SYM.SCG] || Superior Cervical Ganglion || sympathetic ganglion || LAG || Eye, tear and salivatory glands ||  ||
+|| [BrainRegionLAC_SC_IZ_CSC LAC.SC.IZ.CSC] || Ciliospinal Center || nucleus || LAM || Control of iris dilator muscle || Budge's Center, intermediolateral cell column ||
 
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| [BrainRegionHTA_FD_HT_PN HTA.FD.HT.PN] || [BrainRegionVBA_SC_IZ_CSC VBA.SC.IZ.CSC] || nucleus-nucleus || [http://www.nature.com/pr/journal/v71/n3/fig_tab/pr201138f1.html Sympathetic and parasympathetic eye pathways (PHT -> CC)] ||
-|| [BrainRegionVBA_MM_EWN VBA.MM.EWN] || [BrainRegionVBA_PN_PSYM_CLG VBA.PN.PSYM.CLG] || nucleus-ganglion || [http://www.neurophysiology.ws/autonomicns.htm Autonomic nervous system (EWN -> CLG)] ||
-||  || [BrainRegionVBA_PN_PSYM_EPG VBA.PN.PSYM.EPG] || nucleus-ganglion || [http://www.neurophysiology.ws/autonomicns.htm Autonomic nervous system (EWN -> EPG)] ||
-|| [BrainRegionVBA_SC_IZ_CSC VBA.SC.IZ.CSC] || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || nucleus-ganglion || [http://www.nature.com/pr/journal/v71/n3/fig_tab/pr201138f1.html Sympathetic and parasympathetic eye pathways (CC -> SCG)] ||
+|| [BrainRegionLAC_FD_HT_PN LAC.FD.HT.PN] || [BrainRegionLAC_SC_IZ_CSC LAC.SC.IZ.CSC] || nucleus-nucleus || [http://www.nature.com/pr/journal/v71/n3/fig_tab/pr201138f1.html Sympathetic and parasympathetic eye pathways (PHT -> CC)] ||
+|| [BrainRegionLAC_MM_EWN LAC.MM.EWN] || [BrainRegionLAC_PN_PSYM_CLG LAC.PN.PSYM.CLG] || nucleus-ganglion || [http://www.neurophysiology.ws/autonomicns.htm Autonomic nervous system (EWN -> CLG)] ||
+||  || [BrainRegionLAC_PN_PSYM_EPG LAC.PN.PSYM.EPG] || nucleus-ganglion || [http://www.neurophysiology.ws/autonomicns.htm Autonomic nervous system (EWN -> EPG)] ||
+|| [BrainRegionLAC_SC_IZ_CSC LAC.SC.IZ.CSC] || [BrainRegionLAC_PN_SYM_SCG LAC.PN.SYM.SCG] || nucleus-ganglion || [http://www.nature.com/pr/journal/v71/n3/fig_tab/pr201138f1.html Sympathetic and parasympathetic eye pathways (CC -> SCG)] ||
 
 *External Inbound Region Connections:*
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaLAC LAC] || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || Intermediolateral Nucleus || nucleus-ganglion || (unknown reference) ||
-||  ||  || [BrainRegionBMA_SC_LH_LSN BMA.SC.LH.LSN] || Lateral Spinal Nucleus || nucleus-ganglion || (unknown reference) ||
-||  ||  || [BrainRegionHTA_FD_HT_SCN HTA.FD.HT.SCN] || Suprachiasmatic Nucleus || nucleus-ganglion || (unknown reference) ||
-|| [BrainAreaLCA LCA] || [BrainRegionHTA_FD_HT_PN HTA.FD.HT.PN] || [BrainRegionHMA_HM_INM HMA.HM.INM] || Intercalated Nucleus of Medulla || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionVBA_MM_EWN VBA.MM.EWN] || [BrainRegionVBA_MM_PT_PR VBA.MM.PT.PR] || Principal Pretectal Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Pretectum -> EWN, abstract)] ||
-|| [BrainAreaLRC LRC] || [BrainRegionVBA_MM_EWN VBA.MM.EWN] || [BrainRegionLRC_MM_DSCH LRC.MM.DSCH] || Darkschewitsch Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SupraOculomotor -> EWN, abstract)] ||
+|| [BrainAreaLAC LAC] || [BrainRegionLAC_PN_SYM_SCG LAC.PN.SYM.SCG] || [BrainRegionLAC_FD_HT_SCN LAC.FD.HT.SCN] || Suprachiasmatic Nucleus || nucleus-ganglion || (unknown reference) ||
+||  ||  || [BrainRegionLAC_SC_IZ_IML LAC.SC.IZ.IML] || Intermediolateral Nucleus || nucleus-ganglion || (unknown reference) ||
+||  ||  || [BrainRegionLAC_SC_LH_LSN LAC.SC.LH.LSN] || Lateral Spinal Nucleus || nucleus-ganglion || (unknown reference) ||
+|| [BrainAreaLCA LCA] || [BrainRegionLAC_FD_HT_PN LAC.FD.HT.PN] || [BrainRegionHMA_HM_INM HMA.HM.INM] || Intercalated Nucleus of Medulla || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLAC_MM_EWN LAC.MM.EWN] || [BrainRegionVBA_MM_PT_PR VBA.MM.PT.PR] || Principal Pretectal Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Pretectum -> EWN, abstract)] ||
+|| [BrainAreaLRC LRC] || [BrainRegionLAC_MM_EWN LAC.MM.EWN] || [BrainRegionLRC_MM_DSCH LRC.MM.DSCH] || Darkschewitsch Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SupraOculomotor -> EWN, abstract)] ||
 ||  ||  || [BrainRegionLRC_MM_PT_PON LRC.MM.PT.PON] || Pretectal Olivary Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Pretectum -> EWN, abstract)] ||
 ||  ||  || [BrainRegionLRC_MM_PT_SL LRC.MM.PT.SL] || Sublentiform Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Pretectum -> EWN, abstract)] ||
 
@@ -397,17 +397,17 @@
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaAMA AMA] || [BrainRegionHTA_FD_HT_PN HTA.FD.HT.PN] || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || Septal Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaMMA MMA] || [BrainRegionHTA_FD_HT_PN HTA.FD.HT.PN] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaAMA AMA] || [BrainRegionLAC_FD_HT_PN LAC.FD.HT.PN] || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || Septal Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaMMA MMA] || [BrainRegionLAC_FD_HT_PN LAC.FD.HT.PN] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionHBA_FT_DG HBA.FT.DG] || Dentate Gyrus || nucleus-allocortex || (unknown reference) ||
 ||  ||  || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || Dorsomedial Cornu Ammonis of Hippocampus || nucleus-allocortex || (unknown reference) ||
 ||  ||  || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || Lateral Mammillary Nucleus || nucleus-nucleus || (unknown reference) ||
 || <font color="red">Target</font> || || || || || ||
-|| [BrainAreaTEA TEA] || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || [BrainRegionTARGET_TEA_HEART TARGET.TEA.HEART] || Heart || heart-cardiac-upper-muscle || (unknown reference) ||
+|| [BrainAreaTEA TEA] || [BrainRegionLAC_PN_SYM_SCG LAC.PN.SYM.SCG] || [BrainRegionTARGET_TEA_HEART TARGET.TEA.HEART] || Heart || heart-cardiac-upper-muscle || (unknown reference) ||
 ||  ||  || [BrainRegionTARGET_TEA_VESSELS TARGET.TEA.VESSELS] || Blood vessels || brachial-artery-vasoconstrictors || (unknown reference) ||
-|| [BrainAreaTSA TSA] || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || eye-muscle-curvature-sympathetic || [http://www.nature.com/pr/journal/v71/n3/fig_tab/pr201138f1.html Sympathetic and parasympathetic eye pathways (SCG -> EYE)] ||
-||  || [BrainRegionVBA_PN_PSYM_CLG VBA.PN.PSYM.CLG] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || eye-muscle-curvature-parasympathetic || [http://www.neurophysiology.ws/autonomicns.htm Autonomic nervous system (CLG -> EYE)] ||
-||  || [BrainRegionVBA_PN_PSYM_EPG VBA.PN.PSYM.EPG] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || eye-muscle-pupil-close || [http://www.neurophysiology.ws/autonomicns.htm Autonomic nervous system (EPG -> EYE)] ||
+|| [BrainAreaTSA TSA] || [BrainRegionLAC_PN_PSYM_CLG LAC.PN.PSYM.CLG] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || eye-muscle-curvature-parasympathetic || [http://www.neurophysiology.ws/autonomicns.htm Autonomic nervous system (CLG -> EYE)] ||
+||  || [BrainRegionLAC_PN_PSYM_EPG LAC.PN.PSYM.EPG] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || eye-muscle-pupil-close || [http://www.neurophysiology.ws/autonomicns.htm Autonomic nervous system (EPG -> EYE)] ||
+||  || [BrainRegionLAC_PN_SYM_SCG LAC.PN.SYM.SCG] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || eye-muscle-curvature-sympathetic || [http://www.nature.com/pr/journal/v71/n3/fig_tab/pr201138f1.html Sympathetic and parasympathetic eye pathways (SCG -> EYE)] ||
 
 == LAX - Sacral Autonomic Control ==
 
@@ -415,47 +415,47 @@
 <img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LAC_LAX.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionAVA_PN_PSYM_PPG AVA.PN.PSYM.PPG] || Pelvic Peripheral Ganglion || parasympathetic ganglion || LAG || Sigmoid, rectum, bladder, and external genitalia || Pelvic nerve fibers ||
-|| [BrainRegionAVA_PN_SYM_ARG AVA.PN.SYM.ARG] || Aorticorenal Ganglion || sympathetic ganglion || LAG || Kidney, Ureter || T12 ||
-|| [BrainRegionAVA_PN_SYM_IMG AVA.PN.SYM.IMG] || Inferior Mesenteric Ganglion || sympathetic ganglion || LAG || Bladder, rectum, reproductive organs || S1-S4, single - not paired, unpaired visceral<BR>arteries ||
-|| [BrainRegionAVA_SC_CC_DCN AVA.SC.CC.DCN] || Dorsal Commissural Nucleus || nucleus || LAS || Relay of sensory information from pelvic viscera || Includes nociception ||
-|| [BrainRegionAVA_SC_IZ_SPS AVA.SC.IZ.SPS] || Sacral Parasympathetic Nucleus || nucleus || LAM || parasympathetic impulses pass via postganglionic fibers to the urinary bladder,<BR>erectile tissues, and the smooth muscles and glands in the colon and rectum || from Lamina VII, visceral parasympathetic ||
-|| [BrainRegionMBA_HP_BR MBA.HP.BR] || Barrington's Nucleus || nucleus || LAC || Supraspinal regulation of urination || Sends projections to Sacral Precerebellar Nucleus ||
+|| [BrainRegionLAC_HP_BR LAC.HP.BR] || Barrington's Nucleus || nucleus || LAC || Supraspinal regulation of urination || Sends projections to Sacral Precerebellar Nucleus ||
+|| [BrainRegionLAC_PN_PSYM_PPG LAC.PN.PSYM.PPG] || Pelvic Peripheral Ganglion || parasympathetic ganglion || LAG || Sigmoid, rectum, bladder, and external genitalia || Pelvic nerve fibers ||
+|| [BrainRegionLAC_PN_SYM_ARG LAC.PN.SYM.ARG] || Aorticorenal Ganglion || sympathetic ganglion || LAG || Kidney, Ureter || T12 ||
+|| [BrainRegionLAC_PN_SYM_IMG LAC.PN.SYM.IMG] || Inferior Mesenteric Ganglion || sympathetic ganglion || LAG || Bladder, rectum, reproductive organs || S1-S4, single - not paired, unpaired visceral<BR>arteries ||
+|| [BrainRegionLAC_SC_CC_DCN LAC.SC.CC.DCN] || Dorsal Commissural Nucleus || nucleus || LAS || Relay of sensory information from pelvic viscera || Includes nociception ||
+|| [BrainRegionLAC_SC_IZ_SPS LAC.SC.IZ.SPS] || Sacral Parasympathetic Nucleus || nucleus || LAM || parasympathetic impulses pass via postganglionic fibers to the urinary bladder,<BR>erectile tissues, and the smooth muscles and glands in the colon and rectum || from Lamina VII, visceral parasympathetic ||
 
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| [BrainRegionAVA_PN_SYM_IMG AVA.PN.SYM.IMG] || [BrainRegionMBA_HP_BR MBA.HP.BR] || ganglion-nucleus || [http://jp.physoc.org/content/557/1/287/F9.expansion.html Schematic overview of spinobulbospinal micturition reflex pathway (IMG -> BAR)] ||
-|| [BrainRegionAVA_SC_CC_DCN AVA.SC.CC.DCN] || [BrainRegionMBA_HP_BR MBA.HP.BR] || nucleus-nucleus || (unknown reference) ||
-|| [BrainRegionAVA_SC_IZ_SPS AVA.SC.IZ.SPS] || [BrainRegionAVA_PN_PSYM_PPG AVA.PN.PSYM.PPG] || nucleus-ganglion || (unknown reference) ||
-|| [BrainRegionMBA_HP_BR MBA.HP.BR] || [BrainRegionAVA_SC_IZ_SPS AVA.SC.IZ.SPS] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionLAC_HP_BR LAC.HP.BR] || [BrainRegionLAC_SC_IZ_SPS LAC.SC.IZ.SPS] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionLAC_PN_SYM_IMG LAC.PN.SYM.IMG] || [BrainRegionLAC_HP_BR LAC.HP.BR] || ganglion-nucleus || [http://jp.physoc.org/content/557/1/287/F9.expansion.html Schematic overview of spinobulbospinal micturition reflex pathway (IMG -> BAR)] ||
+|| [BrainRegionLAC_SC_CC_DCN LAC.SC.CC.DCN] || [BrainRegionLAC_HP_BR LAC.HP.BR] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionLAC_SC_IZ_SPS LAC.SC.IZ.SPS] || [BrainRegionLAC_PN_PSYM_PPG LAC.PN.PSYM.PPG] || nucleus-ganglion || (unknown reference) ||
 
 *External Inbound Region Connections:*
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaLAC LAC] || [BrainRegionAVA_PN_PSYM_PPG AVA.PN.PSYM.PPG] || [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || Intermediolateral Nucleus || nucleus-ganglion || [http://jp.physoc.org/content/557/1/287/F9.expansion.html Schematic overview of spinobulbospinal micturition reflex pathway (IML -> PEL)] ||
-||  || [BrainRegionAVA_PN_SYM_ARG AVA.PN.SYM.ARG] || [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || Intermediolateral Nucleus || nucleus-ganglion || (unknown reference) ||
-||  || [BrainRegionAVA_PN_SYM_IMG AVA.PN.SYM.IMG] || [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || Intermediolateral Nucleus || nucleus-ganglion || (unknown reference) ||
-||  || [BrainRegionAVA_SC_CC_DCN AVA.SC.CC.DCN] || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || Paraventricular Nucleus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionAVA_SC_IZ_SPS AVA.SC.IZ.SPS] || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || Paraventricular Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaMCA MCA] || [BrainRegionMBA_HP_BR MBA.HP.BR] || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || Periaqueductal Gray Matter || nucleus-nucleus || [http://jp.physoc.org/content/557/1/287/F9.expansion.html Schematic overview of spinobulbospinal micturition reflex pathway (PAG -> BAR)] ||
+|| [BrainAreaLAC LAC] || [BrainRegionLAC_PN_PSYM_PPG LAC.PN.PSYM.PPG] || [BrainRegionLAC_SC_IZ_IML LAC.SC.IZ.IML] || Intermediolateral Nucleus || nucleus-ganglion || [http://jp.physoc.org/content/557/1/287/F9.expansion.html Schematic overview of spinobulbospinal micturition reflex pathway (IML -> PEL)] ||
+||  || [BrainRegionLAC_PN_SYM_ARG LAC.PN.SYM.ARG] || [BrainRegionLAC_SC_IZ_IML LAC.SC.IZ.IML] || Intermediolateral Nucleus || nucleus-ganglion || (unknown reference) ||
+||  || [BrainRegionLAC_PN_SYM_IMG LAC.PN.SYM.IMG] || [BrainRegionLAC_SC_IZ_IML LAC.SC.IZ.IML] || Intermediolateral Nucleus || nucleus-ganglion || (unknown reference) ||
+||  || [BrainRegionLAC_SC_CC_DCN LAC.SC.CC.DCN] || [BrainRegionLAC_FD_HT_PV LAC.FD.HT.PV] || Paraventricular Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLAC_SC_IZ_SPS LAC.SC.IZ.SPS] || [BrainRegionLAC_FD_HT_PV LAC.FD.HT.PV] || Paraventricular Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaMCA MCA] || [BrainRegionLAC_HP_BR LAC.HP.BR] || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || Periaqueductal Gray Matter || nucleus-nucleus || [http://jp.physoc.org/content/557/1/287/F9.expansion.html Schematic overview of spinobulbospinal micturition reflex pathway (PAG -> BAR)] ||
 
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaLPC LPC] || [BrainRegionMBA_HP_BR MBA.HP.BR] || [BrainRegionLPC_SC_VH_ONF LPC.SC.VH.ONF] || Onuf's Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaMCA MCA] || [BrainRegionAVA_PN_SYM_IMG AVA.PN.SYM.IMG] || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || Periaqueductal Gray Matter || ganglion-nucleus || [http://jp.physoc.org/content/557/1/287/F9.expansion.html Schematic overview of spinobulbospinal micturition reflex pathway (IMG -> PAG)] ||
+|| [BrainAreaLPC LPC] || [BrainRegionLAC_HP_BR LAC.HP.BR] || [BrainRegionLPC_SC_VH_ONF LPC.SC.VH.ONF] || Onuf's Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaMCA MCA] || [BrainRegionLAC_PN_SYM_IMG LAC.PN.SYM.IMG] || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || Periaqueductal Gray Matter || ganglion-nucleus || [http://jp.physoc.org/content/557/1/287/F9.expansion.html Schematic overview of spinobulbospinal micturition reflex pathway (IMG -> PAG)] ||
 || <font color="red">Target</font> || || || || || ||
-|| [BrainAreaTEA TEA] || [BrainRegionAVA_PN_PSYM_PPG AVA.PN.PSYM.PPG] || [BrainRegionTARGET_TEA_BREAST TARGET.TEA.BREAST] || Breast || nipple-smooth-muscles || (unknown reference) ||
+|| [BrainAreaTEA TEA] || [BrainRegionLAC_PN_PSYM_PPG LAC.PN.PSYM.PPG] || [BrainRegionTARGET_TEA_BREAST TARGET.TEA.BREAST] || Breast || nipple-smooth-muscles || (unknown reference) ||
 ||  ||  || [BrainRegionTARGET_TEA_GENITALIA TARGET.TEA.GENITALIA] || Genitalia || corpus-cavernosum-clitoridis || (unknown reference) ||
 ||  ||  || [BrainRegionTARGET_TEA_RECTUM TARGET.TEA.RECTUM] || Rectum || sphincter-ani-internus-muscle-parasympathetic || (unknown reference) ||
 ||  ||  || [BrainRegionTARGET_TEA_STOMACH TARGET.TEA.STOMACH] || Stomach || stomach-wall || (unknown reference) ||
 ||  ||  || [BrainRegionTARGET_TEA_URETER TARGET.TEA.URETER] || Ureter || detrusor-urinae-muscle-parasympathetic || (unknown reference) ||
-||  || [BrainRegionAVA_PN_SYM_ARG AVA.PN.SYM.ARG] || [BrainRegionTARGET_TEA_ENDOCRINE TARGET.TEA.ENDOCRINE] || Endocrine Glands || endocrine-ovary-gland || (unknown reference) ||
+||  || [BrainRegionLAC_PN_SYM_ARG LAC.PN.SYM.ARG] || [BrainRegionTARGET_TEA_ENDOCRINE TARGET.TEA.ENDOCRINE] || Endocrine Glands || endocrine-ovary-gland || (unknown reference) ||
 ||  ||  || [BrainRegionTARGET_TEA_VESSELS TARGET.TEA.VESSELS] || Blood vessels || renal-blood-vessels || (unknown reference) ||
-||  || [BrainRegionAVA_PN_SYM_IMG AVA.PN.SYM.IMG] || [BrainRegionTARGET_TEA_GENITALIA TARGET.TEA.GENITALIA] || Genitalia || bartholin-gland || (unknown reference) ||
+||  || [BrainRegionLAC_PN_SYM_IMG LAC.PN.SYM.IMG] || [BrainRegionTARGET_TEA_GENITALIA TARGET.TEA.GENITALIA] || Genitalia || bartholin-gland || (unknown reference) ||
 ||  ||  || [BrainRegionTARGET_TEA_RECTUM TARGET.TEA.RECTUM] || Rectum || sphincter-ani-internus-muscle-sympathetic || (unknown reference) ||
 ||  ||  || [BrainRegionTARGET_TEA_URETER TARGET.TEA.URETER] || Ureter || detrusor-urinae-muscle-sympathetic || (unknown reference) ||
 
@@ -474,13 +474,17 @@
 
 <img src="http://www.nature.com/pr/journal/v71/n3/images/pr201138f1.gif" alt="unavailable"height=400width=400>
 
+  * [http://lh6.ggpht.com/_oj6TkG186pI/S0_jLifQ2NI/AAAAAAAAA90/WWFumK1zOyw/s1600-h/image%5B7%5D.png Face muscles] - see [http://www.medicallecturenotes.com/trigeminal-nerve/ Reference]
+
+<img src="http://lh6.ggpht.com/_oj6TkG186pI/S0_jLifQ2NI/AAAAAAAAA90/WWFumK1zOyw/s1600-h/image%5B7%5D.png" alt="unavailable">
+
   * [http://jp.physoc.org/content/557/1/287/F9.large.jpg Schematic overview of spinobulbospinal micturition reflex pathway] - see [http://jp.physoc.org/content/557/1/287/F9.expansion.html Reference]
 
 <img src="http://jp.physoc.org/content/557/1/287/F9.large.jpg" alt="unavailable">
 
-  * [http://lh6.ggpht.com/_oj6TkG186pI/S0_jLifQ2NI/AAAAAAAAA90/WWFumK1zOyw/s1600-h/image%5B7%5D.png Face muscles] - see [http://www.medicallecturenotes.com/trigeminal-nerve/ Reference]
+  * [http://classconnection.s3.amazonaws.com/184/flashcards/1904184/jpg/21352652550369.jpg Face glands] - see [http://www.studyblue.com/notes/note/n/neuroanatomy-lecture-14-/deck/4433536 Reference]
 
-<img src="http://lh6.ggpht.com/_oj6TkG186pI/S0_jLifQ2NI/AAAAAAAAA90/WWFumK1zOyw/s1600-h/image%5B7%5D.png" alt="unavailable">
+<img src="http://classconnection.s3.amazonaws.com/184/flashcards/1904184/jpg/21352652550369.jpg" alt="unavailable"height=400width=400>
 
   * [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/vision-subcortical.jpg Vision Components] - see [http://neuroscience.uth.tmc.edu/s3/chapter07.html Reference]
 
@@ -490,9 +494,9 @@
 
 <img src="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/oculomotor.jpg" alt="unavailable">
 
-  * [http://classconnection.s3.amazonaws.com/184/flashcards/1904184/jpg/21352652550369.jpg Face glands] - see [http://www.studyblue.com/notes/note/n/neuroanatomy-lecture-14-/deck/4433536 Reference]
+  * [http://brmlab.cz/lib/exe/fetch.php?hash=fca48f&media=http%3A%2F%2Fars.els-cdn.com%2Fcontent%2Fimage%2F1-s2.0-S1364661308002490-gr2.jpg Regulation of Social Brain] - see [http://brmlab.cz/project/brain_hacking/tdcs/pfc Reference]
 
-<img src="http://classconnection.s3.amazonaws.com/184/flashcards/1904184/jpg/21352652550369.jpg" alt="unavailable"height=400width=400>
+<img src="http://brmlab.cz/lib/exe/fetch.php?hash=fca48f&media=http%3A%2F%2Fars.els-cdn.com%2Fcontent%2Fimage%2F1-s2.0-S1364661308002490-gr2.jpg" alt="unavailable">
 
   * [http://www.nature.com/nrn/journal/v5/n1/images/nrn1299-f4.jpg Medial mammillary nucleus and theta rhythm] - see [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Reference]
 
@@ -510,10 +514,6 @@
 
 <img src="http://www.scholarpedia.org/w/images/thumb/2/2d/Hb-connections-small.jpg/800px-Hb-connections-small.jpg" alt="unavailable">
 
-  * [http://brmlab.cz/lib/exe/fetch.php?hash=fca48f&media=http%3A%2F%2Fars.els-cdn.com%2Fcontent%2Fimage%2F1-s2.0-S1364661308002490-gr2.jpg Regulation of Social Brain] - see [http://brmlab.cz/project/brain_hacking/tdcs/pfc Reference]
-
-<img src="http://brmlab.cz/lib/exe/fetch.php?hash=fca48f&media=http%3A%2F%2Fars.els-cdn.com%2Fcontent%2Fimage%2F1-s2.0-S1364661308002490-gr2.jpg" alt="unavailable">
-
 
 = References =
 (generated)
@@ -521,13 +521,13 @@
   * http://www.neurophysiology.ws/autonomicns.htm
   * http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders
   * http://www.nature.com/pr/journal/v71/n3/fig_tab/pr201138f1.html
-  * http://jp.physoc.org/content/557/1/287/F9.expansion.html
   * http://www.medicallecturenotes.com/trigeminal-nerve/
-  * http://neuroscience.uth.tmc.edu/s3/chapter07.html
+  * http://jp.physoc.org/content/557/1/287/F9.expansion.html
   * http://www.studyblue.com/notes/note/n/neuroanatomy-lecture-14-/deck/4433536
+  * http://neuroscience.uth.tmc.edu/s3/chapter07.html
+  * http://brmlab.cz/project/brain_hacking/tdcs/pfc
   * http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html
   * http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html
   * http://neuropolitics.org/defaultmay10.asp
   * http://www.scholarpedia.org/article/Habenula
-  * http://brmlab.cz/project/brain_hacking/tdcs/pfc
 

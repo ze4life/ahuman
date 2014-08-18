@@ -17,9 +17,9 @@ Region is part of aHuman target integrated biological model.
 
 *Component items*:
   * *Feeder salivatory glands* (*feeder-salivation*)
-   * [http://en.wikipedia.org/wiki/Parotid_gland Feeder - parotid gland] ([BrainRegionAVA_PN_PSYM_OTG AVA.PN.PSYM.OTG] -> [HumanMusclesHead parotid-gland]): produces 25% of saliva in oral cavity, mostly serous
-   * [http://en.wikipedia.org/wiki/Submandibular_gland Feeder - submandibular gland] ([BrainRegionAVA_PN_PSYM_SXG AVA.PN.PSYM.SXG] -> [HumanMusclesHead submandibular-gland]): produces 70% of saliva in oral cavity, mixed serous (moisturing) and mucous (process food)
-   * [http://en.wikipedia.org/wiki/Sublingual_gland Feeder - sublingual gland] ([BrainRegionAVA_PN_PSYM_SXG AVA.PN.PSYM.SXG] -> [HumanMusclesHead sublingual-gland]): produces 5% of saliva in oral cavity, mostly mucous
+   * [http://en.wikipedia.org/wiki/Parotid_gland Feeder - parotid gland] ([BrainRegionLAC_PN_PSYM_OTG LAC.PN.PSYM.OTG] -> [HumanMusclesHead parotid-gland]): produces 25% of saliva in oral cavity, mostly serous
+   * [http://en.wikipedia.org/wiki/Submandibular_gland Feeder - submandibular gland] ([BrainRegionLAC_PN_PSYM_SXG LAC.PN.PSYM.SXG] -> [HumanMusclesHead submandibular-gland]): produces 70% of saliva in oral cavity, mixed serous (moisturing) and mucous (process food)
+   * [http://en.wikipedia.org/wiki/Sublingual_gland Feeder - sublingual gland] ([BrainRegionLAC_PN_PSYM_SXG LAC.PN.PSYM.SXG] -> [HumanMusclesHead sublingual-gland]): produces 5% of saliva in oral cavity, mostly mucous
   * *Feeder taste sensation* (*mouth-taste-sensation*)
    * Feeder - tongue gustatory hair cell (tongue-hair-cell -> [BrainRegionLPC_PN_SG_TRG LPC.PN.SG.TRG]): taste sensation
    * Feeder - epiglottis (epiglottis-taste-buds -> [BrainRegionLPC_PN_SG_NOD LPC.PN.SG.NOD]): taste sensation
@@ -44,7 +44,7 @@ Region is part of aHuman target integrated biological model.
    * [http://en.wikipedia.org/wiki/Middle_pharyngeal_constrictor_muscle Feeder - middle pharyngeal constrictor muscle] ([BrainRegionHMA_HM_AMB HMA.HM.AMB] -> [HumanMusclesNeck middle-pharyngeal-constrictor-muscle]): swallowing
    * [http://en.wikipedia.org/wiki/Superior_pharyngeal_constrictor_muscle Feeder - superior pharyngeal constrictor muscle] ([BrainRegionHMA_HM_AMB HMA.HM.AMB] -> [HumanMusclesNeck superior-pharyngeal-constrictor-muscle]): swallowing
    * Feeder - uvula receptors (uvula-receptors -> [BrainRegionLPC_PN_SG_TRG LPC.PN.SG.TRG]): preventing food from entering the nasal cavity
-   * [http://en.wikipedia.org/wiki/Musculus_uvulae Feeder - musculus uvulae muscle] ([BrainRegionAVA_PN_PSYM_SPG AVA.PN.PSYM.SPG] -> [HumanMusclesHead uvulae-muscle]): elevates and retracts the uvula, thickening the central part of the soft palate; shortens and broadens the uvula
+   * [http://en.wikipedia.org/wiki/Musculus_uvulae Feeder - musculus uvulae muscle] ([BrainRegionLAC_PN_PSYM_SPG LAC.PN.PSYM.SPG] -> [HumanMusclesHead uvulae-muscle]): elevates and retracts the uvula, thickening the central part of the soft palate; shortens and broadens the uvula
    * [http://en.wikipedia.org/wiki/Levator_veli_palatini Feeder - levator veli palatini muscle] ([BrainRegionHMA_HM_AMB HMA.HM.AMB] -> [HumanMusclesHead levator-veli-palatini-muscle]): elevates soft palate
    * [http://en.wikipedia.org/wiki/Tensor_veli_palatini_muscle Feeder - tensor veli palatini muscle] ([BrainRegionLPC_HP_PTP_TRM LPC.HP.PTP.TRM] -> [HumanMusclesHead tensor-veli-palatini-muscle]): tension of the soft palate
    * [http://en.wikipedia.org/wiki/Buccinator_muscle Feeder - buccinator muscle] ([BrainRegionLPC_HP_FCM LPC.HP.FCM] -> [HumanMusclesHead buccinator-muscle]): compress the cheeks against the teeth (blowing), mastication
@@ -65,9 +65,9 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/TARGET.TEA.FEEDER.dot.png
 *Inbound Region Connections:*
 
 || *Source Area* || *Source Region* || *Source Name* || *Type* || *Reference* ||
-|| [BrainAreaLAC LAC] || [BrainRegionAVA_PN_PSYM_OTG AVA.PN.PSYM.OTG] || Otic Ganglion || parotid-gland || (unknown reference) ||
-||  || [BrainRegionAVA_PN_PSYM_SPG AVA.PN.PSYM.SPG] || Sphenopalatine Ganglion || uvulae-muscle || (unknown reference) ||
-||  || [BrainRegionAVA_PN_PSYM_SXG AVA.PN.PSYM.SXG] || Submandibular Ganglion || sublingual-gland || (unknown reference) ||
+|| [BrainAreaLAC LAC] || [BrainRegionLAC_PN_PSYM_OTG LAC.PN.PSYM.OTG] || Otic Ganglion || parotid-gland || (unknown reference) ||
+||  || [BrainRegionLAC_PN_PSYM_SPG LAC.PN.PSYM.SPG] || Sphenopalatine Ganglion || uvulae-muscle || (unknown reference) ||
+||  || [BrainRegionLAC_PN_PSYM_SXG LAC.PN.PSYM.SXG] || Submandibular Ganglion || sublingual-gland || (unknown reference) ||
 || [BrainAreaLPC LPC] || [BrainRegionHMA_HM_AMB HMA.HM.AMB] || Ambiguus Nucleus || inferior-pharyngeal-constrictor-muscle || (unknown reference) ||
 ||  || [BrainRegionLPC_HM_HYG LPC.HM.HYG] || Hypoglossal Motor Nucleus || chondroglossus-muscle || (unknown reference) ||
 ||  || [BrainRegionLPC_HP_FCM LPC.HP.FCM] || Facial Motor Nucleus || buccinator-muscle || (unknown reference) ||
