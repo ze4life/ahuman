@@ -19,10 +19,10 @@ Region is part of aHuman target integrated biological model.
   * *Ureter sensory data* (*ureter-sensory-data*)
    * Ureter - ureter visceral receptors (ureter-visceral-receptors -> [BrainRegionLPC_PN_SG_LDRG LPC.PN.SG.LDRG]): respond to stretch and free nerve endings in the bladder mucosa that respond to pain and temperature
   * *Ureter autonomic* (*ureter-autonomic*)
-   * [http://en.wikipedia.org/wiki/Detrusor_urinae_muscle Ureter - detrusor urinae muscle, parasympathetic] ([BrainRegionAVA_PN_PSYM_PPG AVA.PN.PSYM.PPG] -> [HumanMusclesTorso detrusor-urinae-muscle-parasympathetic]): parasympathetic contracts, to urinate
-   * [http://en.wikipedia.org/wiki/Internal_sphincter_muscle_of_urethra Ureter - internal sphincter muscle of urethra, parasympathetic] ([BrainRegionAVA_PN_PSYM_PPG AVA.PN.PSYM.PPG] -> [HumanMusclesTorso internal-urethral-sphincter-parasympathetic]): parasympathetic relaxes the muscle
-   * [http://en.wikipedia.org/wiki/Detrusor_urinae_muscle Ureter - detrusor urinae muscle, sympathetic] ([BrainRegionAVA_PN_SYM_IMG AVA.PN.SYM.IMG] -> [HumanMusclesTorso detrusor-urinae-muscle-sympathetic]): sympathetic relaxes, to store urine
-   * [http://en.wikipedia.org/wiki/Internal_sphincter_muscle_of_urethra Ureter - internal sphincter muscle of urethra, sympathetic] ([BrainRegionAVA_PN_SYM_IMG AVA.PN.SYM.IMG] -> [HumanMusclesTorso internal-urethral-sphincter-sympathetic]): sympathetic contracts the muscle
+   * [http://en.wikipedia.org/wiki/Detrusor_urinae_muscle Ureter - detrusor urinae muscle, parasympathetic] ([BrainRegionLAC_PN_PSYM_PPG LAC.PN.PSYM.PPG] -> [HumanMusclesTorso detrusor-urinae-muscle-parasympathetic]): parasympathetic contracts, to urinate
+   * [http://en.wikipedia.org/wiki/Internal_sphincter_muscle_of_urethra Ureter - internal sphincter muscle of urethra, parasympathetic] ([BrainRegionLAC_PN_PSYM_PPG LAC.PN.PSYM.PPG] -> [HumanMusclesTorso internal-urethral-sphincter-parasympathetic]): parasympathetic relaxes the muscle
+   * [http://en.wikipedia.org/wiki/Detrusor_urinae_muscle Ureter - detrusor urinae muscle, sympathetic] ([BrainRegionLAC_PN_SYM_IMG LAC.PN.SYM.IMG] -> [HumanMusclesTorso detrusor-urinae-muscle-sympathetic]): sympathetic relaxes, to store urine
+   * [http://en.wikipedia.org/wiki/Internal_sphincter_muscle_of_urethra Ureter - internal sphincter muscle of urethra, sympathetic] ([BrainRegionLAC_PN_SYM_IMG LAC.PN.SYM.IMG] -> [HumanMusclesTorso internal-urethral-sphincter-sympathetic]): sympathetic contracts the muscle
   * *Ureter conscious* (*ureter-conscious*)
    * [http://en.wikipedia.org/wiki/External_sphincter_muscle_of_female_urethra Ureter - external sphincter muscle of female urethra] ([BrainRegionLPC_SC_VH_ONF LPC.SC.VH.ONF] -> [HumanMusclesTorso external-urethral-sphincter-female]): control urination, constricts urethra, maintain urinary continence
    * [http://en.wikipedia.org/wiki/External_sphincter_muscle_of_male_urethra Ureter - external sphincter muscle of male urethra] ([BrainRegionLPC_SC_VH_ONF LPC.SC.VH.ONF] -> [HumanMusclesTorso external-urethral-sphincter-male]): control urination, constricts urethra, maintain urinary continence
@@ -36,8 +36,8 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/TARGET.TEA.URETER.dot.png
 *Inbound Region Connections:*
 
 || *Source Area* || *Source Region* || *Source Name* || *Type* || *Reference* ||
-|| [BrainAreaLAC LAC] || [BrainRegionAVA_PN_PSYM_PPG AVA.PN.PSYM.PPG] || Pelvic Peripheral Ganglion || detrusor-urinae-muscle-parasympathetic || (unknown reference) ||
-||  || [BrainRegionAVA_PN_SYM_IMG AVA.PN.SYM.IMG] || Inferior Mesenteric Ganglion || detrusor-urinae-muscle-sympathetic || (unknown reference) ||
+|| [BrainAreaLAC LAC] || [BrainRegionLAC_PN_PSYM_PPG LAC.PN.PSYM.PPG] || Pelvic Peripheral Ganglion || detrusor-urinae-muscle-parasympathetic || (unknown reference) ||
+||  || [BrainRegionLAC_PN_SYM_IMG LAC.PN.SYM.IMG] || Inferior Mesenteric Ganglion || detrusor-urinae-muscle-sympathetic || (unknown reference) ||
 || [BrainAreaLPC LPC] || [BrainRegionLPC_SC_VH_ONF LPC.SC.VH.ONF] || Onuf's Nucleus || external-urethral-sphincter-female || (unknown reference) ||
 
 *Outbound Region Connections:*
