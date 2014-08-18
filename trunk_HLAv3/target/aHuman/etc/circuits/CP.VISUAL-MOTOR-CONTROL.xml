@@ -87,7 +87,7 @@
 	<circuit id="CP.VISION-COMPONENTS" name="Vision Components"
 		image="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/vision-subcortical.jpg"
 		reference="http://neuroscience.uth.tmc.edu/s3/chapter07.html"
-		components="RT=LPC.FD.RT CG=VBA.PN.PSYM.CLG OCN=LPC.MM.OCN SOA=VBA.MM.SOA LGN=VBA.FD.LGN EWN=VBA.MM.EWN VC=NC.LOBE.OCC VAC=VCA.NC.IPS.PEF EYE=TARGET.TSA.EYE STN=LPC.HM.TGM.STR"
+		components="RT=LPC.FD.RT CG=LAC.PN.PSYM.CLG OCN=LPC.MM.OCN SOA=VBA.MM.SOA LGN=VBA.FD.LGN EWN=LAC.MM.EWN VC=NC.LOBE.OCC VAC=VCA.NC.IPS.PEF EYE=TARGET.TSA.EYE STN=LPC.HM.TGM.STR"
 		>
 		<link src="OCN" dst="CG"/>
 		<link src="EWN" dst="CG"/>
@@ -122,7 +122,7 @@
 	<circuit id="CP.SACCADIC-MOTOR-CONTROL" name="Eye blink reflex and pupillary light reflex"
 		image="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/oculomotor.jpg"
 		reference="http://neuroscience.uth.tmc.edu/s3/chapter07.html"
-		components="EYE=TARGET.TSA.EYE SpinalTrigeminal=LPC.HM.TGM.STR Oculomotor=LPC.MM.OCN Abducens=LPC.HP.ABD Facial=LPC.HP.FCM RF=HP.PRF PrincipalTrigeminal=LPC.HP.PTP.PTR Ciliary=VBA.PN.PSYM.CLG EWN=VBA.MM.EWN Pretectum=MM.PT VAC=VCA.NC.V3 SupraOculomotor=VBA.MM.SOA"
+		components="EYE=TARGET.TSA.EYE SpinalTrigeminal=LPC.HM.TGM.STR Oculomotor=LPC.MM.OCN Abducens=LPC.HP.ABD Facial=LPC.HP.FCM RF=HP.PRF PrincipalTrigeminal=LPC.HP.PTP.PTR Ciliary=LAC.PN.PSYM.CLG EWN=LAC.MM.EWN Pretectum=MM.PT VAC=VCA.NC.V3 SupraOculomotor=VBA.MM.SOA"
 		>
 		<link src="Facial" dst="Abducens"/>
 		<link src="RF" dst="Facial"/>
@@ -228,7 +228,7 @@
 	<circuit id="CP.EYE-SYM-PATHWAYS" name="Sympathetic and parasympathetic eye pathways" 
 		image="http://www.nature.com/pr/journal/v71/n3/images/pr201138f1.gif" imageHeight="400" imageWidth="400"
 		reference="http://www.nature.com/pr/journal/v71/n3/fig_tab/pr201138f1.html"
-		components="EYE=TARGET.TSA.EYE EWN=VBA.MM.EWN CLG=VBA.PN.PSYM.CLG CC=VBA.SC.IZ.CSC PHT=HTA.FD.HT.PN SCG=AVA.PN.SYM.SCG"
+		components="EYE=TARGET.TSA.EYE EWN=LAC.MM.EWN CLG=LAC.PN.PSYM.CLG CC=LAC.SC.IZ.CSC PHT=LAC.FD.HT.PN SCG=LAC.PN.SYM.SCG"
 		>
 		<link src="EWN" dst="CLG"/>
 		<link src="CLG" dst="EYE"/>

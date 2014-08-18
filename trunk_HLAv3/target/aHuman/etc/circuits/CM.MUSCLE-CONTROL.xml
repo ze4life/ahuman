@@ -147,7 +147,7 @@
 	<circuit id="CM.ONUF" name="Physiology and pathophysiology of lower urinary tract"
 		image="http://www.intechopen.com/source/html/40109/media/image1.jpeg"
 		reference="http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders"
-		components="PVN=HTA.FD.HT.PV MPOA=HTA.FD.HT.PO.MED VTA=FBA.MM.VTA ZI=BGA.FD.STN.ZI SNC=BGA.FT.SN.PC MPFC=FCA.NC.OMPFC PU=BGA.FT.PU CN=BGA.FT.CN LC=FBA.HP.LC NBM=BFA.FT.NBM PBN=BMA.HP.PB DVM=AVA.HM.VGN PEL=AVA.PN.PSYM.PPG IML=AVA.SC.IZ.IML IMG=AVA.PN.SYM.IMG ONF=LPC.SC.VH.ONF"
+		components="PVN=LAC.FD.HT.PV MPOA=HTA.FD.HT.MPO VTA=FBA.MM.VTA ZI=BGA.FD.STN.ZI SNC=BGA.FT.SN.PC MPFC=FCA.NC.OMPFC PU=BGA.FT.PU CN=BGA.FT.CN LC=FBA.HP.LC NBM=BFA.FT.NBM PBN=BMA.HP.PB DVM=LAC.HM.VGN PEL=LAC.PN.PSYM.PPG IML=LAC.SC.IZ.IML IMG=LAC.PN.SYM.IMG ONF=LPC.SC.VH.ONF"
 		>
 		<link src="VTA" dst="PVN"/>
 		<link src="VTA" dst="MPOA"/>
@@ -164,7 +164,7 @@
 	<circuit id="CM.BARRINGTON" name="Schematic overview of spinobulbospinal micturition reflex pathway"
 		image="http://jp.physoc.org/content/557/1/287/F9.large.jpg"
 		reference="http://jp.physoc.org/content/557/1/287/F9.expansion.html"
-		components="PAG=FBA.MM.PAG BAR=MBA.HP.BR PEL=AVA.PN.PSYM.PPG IML=AVA.SC.IZ.IML IMG=AVA.PN.SYM.IMG ONF=LPC.SC.VH.ONF"
+		components="PAG=FBA.MM.PAG BAR=LAC.HP.BR PEL=LAC.PN.PSYM.PPG IML=LAC.SC.IZ.IML IMG=LAC.PN.SYM.IMG ONF=LPC.SC.VH.ONF"
 		>
 		<link src="PAG" dst="BAR"/>
 		<link src="BAR" dst="IML"/>
@@ -177,7 +177,7 @@
 	<circuit id="CM.AUTONOMIC-MUSCLES" name="Autonomic nervous system"
 		image="http://www.neurophysiology.ws/images/fig-4.gif"
 		reference="http://www.neurophysiology.ws/autonomicns.htm"
-		components="EWN=VBA.MM.EWN SSL=AVA.HM.SAL.SSL ISL=AVA.HM.SAL.ISL DM=AVA.HM.VGN CLG=VBA.PN.PSYM.CLG EPG=VBA.PN.PSYM.EPG SPG=AVA.PN.PSYM.SPG SMG=AVA.PN.PSYM.SXG OTG=AVA.PN.PSYM.OTG EYE=TARGET.TSA.EYE"
+		components="EWN=LAC.MM.EWN SSL=LAC.HM.SAL.SSL ISL=LAC.HM.SAL.ISL DM=LAC.HM.VGN CLG=LAC.PN.PSYM.CLG EPG=LAC.PN.PSYM.EPG SPG=LAC.PN.PSYM.SPG SMG=LAC.PN.PSYM.SXG OTG=LAC.PN.PSYM.OTG EYE=TARGET.TSA.EYE"
 		>
 		<link src="EWN" dst="CLG"/>
 		<link src="EWN" dst="EPG"/>
@@ -191,7 +191,7 @@
 	<circuit id="CM.FACE-MUSCLES" name="Face muscles"
 		image="http://lh6.ggpht.com/_oj6TkG186pI/S0_jLifQ2NI/AAAAAAAAA90/WWFumK1zOyw/s1600-h/image%5B7%5D.png"
 		reference="http://www.medicallecturenotes.com/trigeminal-nerve/"
-		components="CLG=VBA.PN.PSYM.CLG SPG=AVA.PN.PSYM.SPG SMG=AVA.PN.PSYM.SXG OTG=AVA.PN.PSYM.OTG"
+		components="CLG=LAC.PN.PSYM.CLG SPG=LAC.PN.PSYM.SPG SMG=LAC.PN.PSYM.SXG OTG=LAC.PN.PSYM.OTG"
 		>
 	</circuit>
 
@@ -205,7 +205,7 @@
 	<circuit id="CM.FACE-GLANDS" name="Face glands"
 		image="http://classconnection.s3.amazonaws.com/184/flashcards/1904184/jpg/21352652550369.jpg" imageHeight="400" imageWidth="400"
 		reference="http://www.studyblue.com/notes/note/n/neuroanatomy-lecture-14-/deck/4433536"
-		components="SMG=AVA.PN.PSYM.SXG PPG=AVA.PN.PSYM.PPG"
+		components="SMG=LAC.PN.PSYM.SXG PPG=LAC.PN.PSYM.PPG"
 		>
 	</circuit>
 
