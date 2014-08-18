@@ -233,6 +233,7 @@
 || [BrainAreaAMA AMA] || [BrainRegionHTA_FD_HT_PO HTA.FD.HT.PO] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LPO -> LHb)] ||
 || [BrainAreaLAC LAC] || [BrainRegionHTA_FD_HT_AH HTA.FD.HT.AH] || [BrainRegionHTA_FD_HT_PRM HTA.FD.HT.PRM] || Premammillary Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionHTA_FD_HT_PO HTA.FD.HT.PO] || [BrainRegionHTA_FD_HT_SUM HTA.FD.HT.SUM] || Supramammillary Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionHTA_FD_HT_TBM HTA.FD.HT.TBM] || Tuberomammillary Nucleus || nucleus-nucleus || (unknown reference) ||
 
 == LATH - Thirst and Hunger Control ==
 
@@ -240,7 +241,7 @@
 <img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LAC_LATH.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionHTA_FD_HT_AR HTA.FD.HT.AR] || Arcuate Nucleus of Hypothalamus || nucleus || LAC || Regulation of growth, appetite and body weight || lateral of tuberlulum ||
+|| [BrainRegionHTA_FD_HT_AR HTA.FD.HT.AR] || Arcuate Nucleus of Hypothalamus || nucleus || LAC || Regulation of growth, appetite and body weight || lateral of tuberlulum, TIDA - releases dopamine to<BR>regulate secretion of prolactin hormone, GHRH -<BR>stimulate growth hormone secretion (ventrolateral) ||
 || [BrainRegionHTA_FD_HT_DM HTA.FD.HT.DM] || Dorsomedial Hypothalamic Nucleus || nucleus || LAC || Blood pressure, heart rate ||  ||
 || [BrainRegionHTA_FD_HT_LTN HTA.FD.HT.LTN] || Lateral Hypothalamic Nucleus || nucleus || LAC || feeding center || lesions - lack of appetite ||
 || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || Paraventricular Nucleus || nucleus || LAC || Regulate appetite and autonomic functions ||  ||
@@ -249,7 +250,9 @@
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| [BrainRegionHTA_FD_HT_AR HTA.FD.HT.AR] || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionHTA_FD_HT_AR HTA.FD.HT.AR] || [BrainRegionHTA_FD_HT_DM HTA.FD.HT.DM] || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionHTA_FD_HT_LTN HTA.FD.HT.LTN] || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionHTA_FD_HT_DM HTA.FD.HT.DM] || [BrainRegionHTA_FD_HT_LTN HTA.FD.HT.LTN] || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || [BrainRegionHTA_FD_HT_VM HTA.FD.HT.VM] || nucleus-nucleus || (unknown reference) ||
@@ -263,7 +266,8 @@
 || [BrainAreaLAC LAC] || [BrainRegionHTA_FD_HT_DM HTA.FD.HT.DM] || [BrainRegionHTA_FD_HT_SCN HTA.FD.HT.SCN] || Suprachiasmatic Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || [BrainRegionHTA_FD_HT_SCN HTA.FD.HT.SCN] || Suprachiasmatic Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionHTA_FD_HT_VM HTA.FD.HT.VM] || [BrainRegionHTA_FD_HT_PRM HTA.FD.HT.PRM] || Premammillary Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaLPC LPC] || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || Solitary Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLPC LPC] || [BrainRegionHTA_FD_HT_AR HTA.FD.HT.AR] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || Solitary Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || Solitary Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaMCA MCA] || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || Ventral Tegmental Area || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (VTA -> PVN)] ||
 || [BrainAreaMMA MMA] || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || Subiculum || allocortex-nucleus || (unknown reference) ||
 
@@ -319,11 +323,13 @@
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaAMA AMA] || [BrainRegionHTA_FD_HT_PRM HTA.FD.HT.PRM] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> HT.L, abstract)] ||
 ||  || [BrainRegionHTA_FD_HT_SCN HTA.FD.HT.SCN] || [BrainRegionBFA_FD_TH_PV BFA.FD.TH.PV] || Paraventricular Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionHTA_FD_HT_TBM HTA.FD.HT.TBM] || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || Septal Nucleus || nucleus-nucleus || [http://www.thebrainlabs.com Cingulate Gyrus (SEP -> HT, abstract)] ||
 || [BrainAreaECA ECA] || [BrainRegionHTA_FD_HT_SUM HTA.FD.HT.SUM] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || Substantia Nigra Pars Compacta || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLAC LAC] || [BrainRegionAVA_PN_SYM_SCG AVA.PN.SYM.SCG] || [BrainRegionAVA_SC_IZ_IML AVA.SC.IZ.IML] || Intermediolateral Nucleus || nucleus-ganglion || (unknown reference) ||
 ||  ||  || [BrainRegionBMA_SC_LH_LSN BMA.SC.LH.LSN] || Lateral Spinal Nucleus || nucleus-ganglion || (unknown reference) ||
 ||  || [BrainRegionHTA_FD_HT_PRM HTA.FD.HT.PRM] || [BrainRegionHTA_FD_HT_AH HTA.FD.HT.AH] || Anterior Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionHTA_FD_HT_SUM HTA.FD.HT.SUM] || [BrainRegionHTA_FD_HT_PO HTA.FD.HT.PO] || Preoptic Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionHTA_FD_HT_TBM HTA.FD.HT.TBM] || [BrainRegionHTA_FD_HT_PO HTA.FD.HT.PO] || Preoptic Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLCA LCA] || [BrainRegionHTA_FD_HT_PN HTA.FD.HT.PN] || [BrainRegionHMA_HM_INM HMA.HM.INM] || Intercalated Nucleus of Medulla || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionVBA_MM_EWN VBA.MM.EWN] || [BrainRegionVBA_MM_PT_PR VBA.MM.PT.PR] || Principal Pretectal Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Pretectum -> EWN, abstract)] ||
 || [BrainAreaLPC LPC] || [BrainRegionHTA_FD_HT_SCN HTA.FD.HT.SCN] || [BrainRegionLPC_FD_RT LPC.FD.RT] || Retina || ganglion-nucleus || [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm Targets of retina neurons (Retina -> HT, abstract)] ||
@@ -338,11 +344,14 @@
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaAMA AMA] || [BrainRegionHTA_FD_HT_PN HTA.FD.HT.PN] || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || Septal Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionHTA_FD_HT_SUM HTA.FD.HT.SUM] || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || Septal Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Medial mammillary nucleus and theta rhythm (SupraMM -> SEP)] ||
+||  || [BrainRegionHTA_FD_HT_TBM HTA.FD.HT.TBM] || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || Septal Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLAC LAC] || [BrainRegionHTA_FD_HT_PRM HTA.FD.HT.PRM] || [BrainRegionHTA_FD_HT_PO HTA.FD.HT.PO] || Preoptic Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionHTA_FD_HT_VM HTA.FD.HT.VM] || Ventromedial Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionHTA_FD_HT_SCN HTA.FD.HT.SCN] || [BrainRegionHTA_FD_HT_DM HTA.FD.HT.DM] || Dorsomedial Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || Paraventricular Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLPC LPC] || [BrainRegionHTA_FD_HT_TBM HTA.FD.HT.TBM] || [BrainRegionLPC_PN_SG_OLB LPC.PN.SG.OLB] || Olfactory Bulb || nucleus-ganglion || (unknown reference) ||
 || [BrainAreaLRC LRC] || [BrainRegionHTA_FD_HT_SCN HTA.FD.HT.SCN] || [BrainRegionLRC_MM_PT_NOT LRC.MM.PT.NOT] || Nucleus of Optic Tract || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaMCA MCA] || [BrainRegionHTA_FD_HT_TBM HTA.FD.HT.TBM] || [BrainRegionFBA_HP_LC FBA.HP.LC] || Locus Coeruleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaMMA MMA] || [BrainRegionHTA_FD_HT_PN HTA.FD.HT.PN] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionHBA_FT_DG HBA.FT.DG] || Dentate Gyrus || nucleus-allocortex || (unknown reference) ||
 ||  ||  || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || Dorsomedial Cornu Ammonis of Hippocampus || nucleus-allocortex || (unknown reference) ||
