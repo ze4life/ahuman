@@ -10,7 +10,7 @@ Region is part of aHuman target integrated biological model.
   * *Brain area*: [BrainAreaLAC Lower Brain - Autonomous Control Area]
   * *Role*: relay
   * *Function*: Regulation of growth, appetite and body weight
-  * *Notes to function*: lateral of tuberlulum
+  * *Notes to function*: lateral of tuberlulum, TIDA - releases dopamine to regulate secretion of prolactin hormone, GHRH - stimulate growth hormone secretion (ventrolateral)
 (generated)
 = Components =
 (generated)
@@ -25,12 +25,16 @@ Region is part of aHuman target integrated biological model.
 http://ahuman.googlecode.com/svn/images/dot/aHuman/HTA.FD.HT.AR.dot.png
 
 *Inbound Region Connections:*
-  * no connections
+
+|| *Source Area* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| [BrainAreaLPC LPC] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || Solitary Nucleus || nucleus-nucleus || (unknown reference) ||
 
 *Outbound Region Connections:*
 
 || *Target Area* || *Target Region* || *Target Name* || *Type* || *Reference* ||
-|| [BrainAreaLAC LAC] || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || Paraventricular Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLAC LAC] || [BrainRegionHTA_FD_HT_DM HTA.FD.HT.DM] || Dorsomedial Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionHTA_FD_HT_LTN HTA.FD.HT.LTN] || Lateral Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionHTA_FD_HT_PV HTA.FD.HT.PV] || Paraventricular Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaTEA TEA] || [BrainRegionTARGET_TEA_ENDOCRINE TARGET.TEA.ENDOCRINE] || Endocrine Glands || endocrine-adenohypophysis || (unknown reference) ||
 
 = Thirdparty Circuits =
