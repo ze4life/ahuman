@@ -25,11 +25,13 @@
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaECA ECA] || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || Substantia Nigra Pars Compacta || nucleus-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (SN -> CR, abstract)] ||
-|| [BrainAreaLLC LLC] || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionBMA_HM_IO BMA.HM.IO] || Inferior Olivary Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLLC LLC] || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionBMA_HM_ARC BMA.HM.ARC] || Arcuate Nucleus of Medulla || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionBMA_HM_IO BMA.HM.IO] || Inferior Olivary Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionBMA_SC_IZ_CBS BMA.SC.IZ.CBS] || Centrobasalis Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionBMA_SC_LH_LCV BMA.SC.LH.LCV] || Lateral Cervical Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionBMA_SC_PH_CL BMA.SC.PH.CL] || Clarke Nucleus || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionLPC_HM_ACU LPC.HM.ACU] || Accessory Cuneate Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLLC_HM_ACU LLC.HM.ACU] || Accessory Cuneate Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLLC_HP_PRF_PDT LLC.HP.PRF.PDT] || Pontine Reticulotegmental Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionMBA_HP_PN_PBB MBA.HP.PN.PBB] || Pontobulbar Body || nucleus-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (PN -> CR, abstract)] ||
 ||  ||  || [BrainRegionMBA_HP_PN_RP MBA.HP.PN.RP] || Rostral Pontine Nucleus || nucleus-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (PN -> CR, abstract)] ||
 || [BrainAreaLPC LPC] || [BrainRegionMBA_HP_CR MBA.HP.CR] || [BrainRegionLPC_HM_CU LPC.HM.CU] || Cuneate Nucleus || nucleus-nucleus || (unknown reference) ||
@@ -96,30 +98,25 @@
 || [BrainAreaLRC LRC] || [BrainRegionVBA_HM_NPH VBA.HM.NPH] || [BrainRegionLRC_MM_PT_NOT LRC.MM.PT.NOT] || Nucleus of Optic Tract || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaMCA MCA] || [BrainRegionMBA_HM_RF_MED MBA.HM.RF.MED] || [BrainRegionFBA_HP_LC FBA.HP.LC] || Locus Coeruleus || nucleus-nucleus || (unknown reference) ||
 
-== LLS - Locomotor Sensory ==
+== LLP - Locomotion Proprioception ==
 
 
-<img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LLC_LLS.dot.png" alt="unavailable">
+<img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LLC_LLP.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionAVA_SC_IZ_IMM AVA.SC.IZ.IMM] || Intermediomedial Nucleus || nucleus || LLI || Visceral sensory || ventral spinocerebellar tract ||
-|| [BrainRegionBMA_HM_ARC BMA.HM.ARC] || Arcuate Nucleus of Medulla || nucleus || LLI || Controlling respiratory frequency || Receives fibers from spitothalamic tract and sends<BR>to CR ||
+|| [BrainRegionBMA_HM_ARC BMA.HM.ARC] || Arcuate Nucleus of Medulla || nucleus || LLI || Relay cardiorepriratory proprioception to cerebellum || Receives fibers from spinothalamic tract and sends<BR>to CR; controlling respiratory frequency ||
 || [BrainRegionBMA_HM_IO BMA.HM.IO] || Inferior Olivary Nucleus || nucleus || LLI || Proprioception Relay from Spinal Cord to Cerebellum ||  ||
-|| [BrainRegionBMA_MM_PT_PTA BMA.MM.PT.PTA] || Anterior Pretectum Nucleus || nucleus || LLI || Mediate somatosensory and nociceptive information || 3 parallel flows from MC, anterior interpositus<BR>nucleus of TH, GR to dorsal accessory IO ||
 || [BrainRegionBMA_SC_IZ_CBS BMA.SC.IZ.CBS] || Centrobasalis Nucleus || nucleus || LLI || Unconscious proprioception to CR || Upper extremity, relay motor feedback to CR, major<BR>site of termination for dorsal root fibers ||
 || [BrainRegionBMA_SC_IZ_CCV BMA.SC.IZ.CCV] || Central Cervical Nucleus || nucleus || LLI || Coordinate voluntary movements, maintain balance, and learn motor skills || Receive neck and vestibular input and project to CR<BR>and vestibular nuclei ||
-|| [BrainRegionBMA_SC_LH_LCV BMA.SC.LH.LCV] || Lateral Cervical Nucleus || nucleus || LLI || Relay Low-threshold Mechanoreceptors to CR || From Lamina V ||
 || [BrainRegionBMA_SC_PH_CL BMA.SC.PH.CL] || Clarke Nucleus || nucleus || LLI || Unconscious Proprioception || To CR ||
-|| [BrainRegionBMA_SC_PH_NP BMA.SC.PH.NP] || Proprius Nucleus || nucleus || LLI || Relay light touch, pain and temperature information || With Clarke's Nucleus sensing fine touch and<BR>proprioception ||
-|| [BrainRegionLPC_HM_ACU LPC.HM.ACU] || Accessory Cuneate Nucleus || nucleus || LSM || receives input from cervical spinal nerves and transmits that information to<BR>cerebellum || upper extremity equivalent of Clarke's column ||
-|| [BrainRegionMBA_HP_PN_PBB MBA.HP.PN.PBB] || Pontobulbar Body || nucleus || LLI || Control voluntary muscle activities || Walking, speaking, breathing, part of<BR>corticopontocerebellar pathway ||
-|| [BrainRegionMBA_HP_PN_RP MBA.HP.PN.RP] || Rostral Pontine Nucleus || nucleus || LLI || Part of learning, motivation, spatial memory pathway || Relay from mammillary body to CR ||
+|| [BrainRegionMBA_HP_PN_PBB MBA.HP.PN.PBB] || Pontobulbar Body || nucleus || LLI || Relay neck proprioception to cerebellum || Walking, speaking, breathing, part of<BR>corticopontocerebellar pathway ||
 
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionBMA_SC_IZ_CCV BMA.SC.IZ.CCV] || [BrainRegionBMA_HM_IO BMA.HM.IO] || nucleus-nucleus || (unknown reference) ||
-|| [BrainRegionBMA_SC_PH_NP BMA.SC.PH.NP] || [BrainRegionBMA_HM_IO BMA.HM.IO] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionBMA_SC_PH_CL BMA.SC.PH.CL] || [BrainRegionBMA_HM_ARC BMA.HM.ARC] || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionMBA_HP_PN_PBB MBA.HP.PN.PBB] || nucleus-nucleus || (unknown reference) ||
 
 *External Inbound Region Connections:*
 
@@ -127,40 +124,80 @@
 || <font color="red">Cortical</font> || || || || || ||
 || [BrainAreaMAA MAA] || [BrainRegionMBA_HP_PN_PBB MBA.HP.PN.PBB] || [BrainRegionMCA_NC_MC MCA.NC.MC] || Motor Cortex || neocortex-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (MC -> PN, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaLAC LAC] || [BrainRegionMBA_HP_PN_RP MBA.HP.PN.RP] || [BrainRegionLAC_FD_HT_RCH LAC.FD.HT.RCH] || Retrochiasmatic Nucleus || nucleus-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in emotional behavior (HT -> PN, abstract)] ||
-|| [BrainAreaLLC LLC] || [BrainRegionBMA_HM_IO BMA.HM.IO] || [BrainRegionMBA_MM_RD MBA.MM.RD] || Red Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaLPC LPC] || [BrainRegionAVA_SC_IZ_IMM AVA.SC.IZ.IMM] || [BrainRegionLPC_PN_SG_LDRG LPC.PN.SG.LDRG] || Lower Dorsal Root Ganglion || ganglion-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG] || Upper Dorsal Root Ganglion || ganglion-nucleus || (unknown reference) ||
-||  || [BrainRegionBMA_SC_IZ_CBS BMA.SC.IZ.CBS] || [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG] || Upper Dorsal Root Ganglion || ganglion-nucleus || (unknown reference) ||
+|| [BrainAreaLLC LLC] || [BrainRegionBMA_HM_IO BMA.HM.IO] || [BrainRegionBMA_SC_PH_NP BMA.SC.PH.NP] || Proprius Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionMBA_MM_RD MBA.MM.RD] || Red Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLPC LPC] || [BrainRegionBMA_SC_IZ_CBS BMA.SC.IZ.CBS] || [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG] || Upper Dorsal Root Ganglion || ganglion-nucleus || (unknown reference) ||
 ||  || [BrainRegionBMA_SC_IZ_CCV BMA.SC.IZ.CCV] || [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG] || Upper Dorsal Root Ganglion || ganglion-nucleus || (unknown reference) ||
-||  || [BrainRegionBMA_SC_PH_NP BMA.SC.PH.NP] || [BrainRegionLPC_PN_SG_LDRG LPC.PN.SG.LDRG] || Lower Dorsal Root Ganglion || ganglion-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG] || Upper Dorsal Root Ganglion || ganglion-nucleus || (unknown reference) ||
-||  || [BrainRegionLPC_HM_ACU LPC.HM.ACU] || [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG] || Upper Dorsal Root Ganglion || ganglion-nucleus || (unknown reference) ||
 || [BrainAreaLRC LRC] || [BrainRegionBMA_HM_IO BMA.HM.IO] || [BrainRegionLRC_MM_DSCH LRC.MM.DSCH] || Darkschewitsch Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaMCA MCA] || [BrainRegionBMA_HM_IO BMA.HM.IO] || [BrainRegionFBA_FD_TH_SF FBA.FD.TH.SF] || Subfascicular Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaMMA MMA] || [BrainRegionMBA_HP_PN_RP MBA.HP.PN.RP] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || nucleus-nucleus || (unknown reference) ||
 
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
-|| [BrainAreaBAA BAA] || [BrainRegionBMA_MM_PT_PTA BMA.MM.PT.PTA] || [BrainRegionSMA_FD_TH_LP SMA.FD.TH.LP] || Lateral Posterior Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionBMA_SC_IZ_CCV BMA.SC.IZ.CCV] || [BrainRegionSMA_FD_TH_RIL SMA.FD.TH.RIL] || Rostral Intralaminar Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaBAA BAA] || [BrainRegionBMA_SC_IZ_CCV BMA.SC.IZ.CCV] || [BrainRegionSMA_FD_TH_RIL SMA.FD.TH.RIL] || Rostral Intralaminar Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionSMA_FD_TH_VPL SMA.FD.TH.VPL] || Ventral Posterolateral Nucleus || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s1P -> P, abstract)] ||
-|| [BrainAreaSAA SAA] || [BrainRegionBMA_MM_PT_PTA BMA.MM.PT.PTA] || [BrainRegionVBA_FD_PV_MPV VBA.FD.PV.MPV] || Medial Pulvinar || nucleus-nucleus || (unknown reference) ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaECA ECA] || [BrainRegionBMA_MM_PT_PTA BMA.MM.PT.PTA] || [BrainRegionBGA_FD_STN BGA.FD.STN] || Subthalamus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaLLC LLC] || [BrainRegionBMA_HM_IO BMA.HM.IO] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLLC LLC] || [BrainRegionBMA_HM_ARC BMA.HM.ARC] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionBMA_HM_IO BMA.HM.IO] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionBMA_SC_IZ_CBS BMA.SC.IZ.CBS] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionBMA_SC_LH_LCV BMA.SC.LH.LCV] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionBMA_SC_PH_CL BMA.SC.PH.CL] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionLPC_HM_ACU LPC.HM.ACU] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionMBA_HP_PN_PBB MBA.HP.PN.PBB] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (PN -> CR, abstract)] ||
-||  || [BrainRegionMBA_HP_PN_RP MBA.HP.PN.RP] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (PN -> CR, abstract)] ||
 || [BrainAreaLPC LPC] || [BrainRegionBMA_SC_IZ_CCV BMA.SC.IZ.CCV] || [BrainRegionLPC_HP_IVBN LPC.HP.IVBN] || Inferior Vestibular Nuclei || nucleus-nucleus || (unknown reference) ||
+
+== LLS - Locomotion Exteroception and Interoception ==
+
+
+<img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LLC_LLS.dot.png" alt="unavailable">
+
+|| *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
+|| [BrainRegionAVA_SC_IZ_IMM AVA.SC.IZ.IMM] || Intermediomedial Nucleus || nucleus || LLI || Visceral sensory || ventral spinocerebellar tract ||
+|| [BrainRegionBMA_SC_LH_LCV BMA.SC.LH.LCV] || Lateral Cervical Nucleus || nucleus || LLI || Relay Low-threshold Mechanoreceptors to CR || From Lamina V ||
+|| [BrainRegionBMA_SC_PH_NP BMA.SC.PH.NP] || Proprius Nucleus || nucleus || LLI || Relay light touch, pain and temperature information || With Clarke's Nucleus sensing fine touch and<BR>proprioception ||
+|| [BrainRegionLLC_HM_ACU LLC.HM.ACU] || Accessory Cuneate Nucleus || nucleus || LSM || receives input from cervical spinal nerves and transmits that information to<BR>cerebellum || upper extremity equivalent of Clarke's column ||
+|| [BrainRegionLLC_HP_PRF_PDT LLC.HP.PRF.PDT] || Pontine Reticulotegmental Nucleus || nucleus || LLI || Mediate saccadic eye movements || Inactivation leads to deficit of expression, but<BR>not learning ||
+|| [BrainRegionMBA_HP_PN_RP MBA.HP.PN.RP] || Rostral Pontine Nucleus || nucleus || LLI || Part of learning, motivation, spatial memory pathway || Relay from mammillary body to CR ||
+
+*Internal Region Connections:*
+
+|| *Source Region* || *Target Region* || *Type* || *Reference* ||
+
+*External Inbound Region Connections:*
+
+|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| <font color="red">Cortical</font> || || || || || ||
+|| [BrainAreaEPA EPA] || [BrainRegionLLC_HP_PRF_PDT LLC.HP.PRF.PDT] || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || Ventral Anterior Cingulate Area || neocortex-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (Premotor24 -> RF, abstract)] ||
+|| [BrainAreaMAA MAA] || [BrainRegionLLC_HP_PRF_PDT LLC.HP.PRF.PDT] || [BrainRegionMCA_NC_MC MCA.NC.MC] || Motor Cortex || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> RF, abstract)] ||
+||  ||  || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || Supplementary Motor Cortex || neocortex-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (M2 -> RF, abstract)] ||
+|| [BrainAreaSAA SAA] || [BrainRegionLLC_HP_PRF_PDT LLC.HP.PRF.PDT] || [BrainRegionACA_NC_BRA ACA.NC.BRA] || Broca's Area || neocortex-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (Broca -> RF, abstract)] ||
+|| <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaLAC LAC] || [BrainRegionMBA_HP_PN_RP MBA.HP.PN.RP] || [BrainRegionLAC_FD_HT_RCH LAC.FD.HT.RCH] || Retrochiasmatic Nucleus || nucleus-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in emotional behavior (HT -> PN, abstract)] ||
+|| [BrainAreaLPC LPC] || [BrainRegionAVA_SC_IZ_IMM AVA.SC.IZ.IMM] || [BrainRegionLPC_PN_SG_LDRG LPC.PN.SG.LDRG] || Lower Dorsal Root Ganglion || ganglion-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG] || Upper Dorsal Root Ganglion || ganglion-nucleus || (unknown reference) ||
+||  || [BrainRegionBMA_SC_PH_NP BMA.SC.PH.NP] || [BrainRegionLPC_PN_SG_LDRG LPC.PN.SG.LDRG] || Lower Dorsal Root Ganglion || ganglion-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG] || Upper Dorsal Root Ganglion || ganglion-nucleus || (unknown reference) ||
+||  || [BrainRegionLLC_HM_ACU LLC.HM.ACU] || [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG] || Upper Dorsal Root Ganglion || ganglion-nucleus || (unknown reference) ||
+|| [BrainAreaLRC LRC] || [BrainRegionLLC_HP_PRF_PDT LLC.HP.PRF.PDT] || [BrainRegionLRC_MM_SC_DEEP LRC.MM.SC.DEEP] || Deep Superior Colliculus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (SC -> RF, abstract)] ||
+|| [BrainAreaMMA MMA] || [BrainRegionLLC_HP_PRF_PDT LLC.HP.PRF.PDT] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || nucleus-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/mb.jpg Mammillary Body (MMB -> RTG)] ||
+||  ||  || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || Lateral Mammillary Nucleus || nucleus-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/mb.jpg Mammillary Body (LMB -> RTG)] ||
+||  || [BrainRegionMBA_HP_PN_RP MBA.HP.PN.RP] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || nucleus-nucleus || (unknown reference) ||
+
+*External Outbound Region Connections:*
+
+|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaLLC LLC] || [BrainRegionBMA_SC_LH_LCV BMA.SC.LH.LCV] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionBMA_SC_PH_NP BMA.SC.PH.NP] || [BrainRegionBMA_HM_IO BMA.HM.IO] || Inferior Olivary Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLLC_HM_ACU LLC.HM.ACU] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLLC_HP_PRF_PDT LLC.HP.PRF.PDT] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionMBA_HP_PN_RP MBA.HP.PN.RP] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (PN -> CR, abstract)] ||
 
 = Thirdparty Circuits =
 (generated)
+
+  * [http://ars.els-cdn.com/content/image/1-s2.0-S0006899301025987-gr1.gif Horizontal saccades and smooth pursuit movements] - see [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Reference]
+
+<img src="http://ars.els-cdn.com/content/image/1-s2.0-S0006899301025987-gr1.gif" alt="unavailable">
 
   * [http://what-when-how.com/wp-content/uploads/2012/04/tmp3649_thumb1_thumb.jpg Thalamocortical relationships] - see [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Reference]
 
@@ -169,10 +206,6 @@
   * [http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png Head Direction Cell Circuit] - see [http://www.scholarpedia.org/article/Head_direction_cells Reference]
 
 <img src="http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png" alt="unavailable">
-
-  * [http://ars.els-cdn.com/content/image/1-s2.0-S0006899301025987-gr1.gif Horizontal saccades and smooth pursuit movements] - see [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Reference]
-
-<img src="http://ars.els-cdn.com/content/image/1-s2.0-S0006899301025987-gr1.gif" alt="unavailable">
 
   * [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements] (unknown reference)
 
@@ -186,13 +219,17 @@
 
 <img src="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/motor_top.jpg" alt="unavailable">
 
+  * [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/mb.jpg Mammillary Body] (unknown reference)
+
+<img src="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/mb.jpg" alt="unavailable">
+
 
 = References =
 (generated)
 
+  * http://www.sciencedirect.com/science/article/pii/S0006899301025987
   * http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/
   * http://www.scholarpedia.org/article/Head_direction_cells
-  * http://www.sciencedirect.com/science/article/pii/S0006899301025987
   * http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html
   * https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988
 
