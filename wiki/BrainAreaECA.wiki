@@ -26,6 +26,7 @@
 || [BrainRegionBGA_FT_SN_PR BGA.FT.SN.PR] || Substantia Nigra Pars Reticulata || nucleus || FEU || Convey final processed signals of basal ganglia to thalamus and superior<BR>colliculus || inhibitory nucleus ||
 || [BrainRegionBGA_FT_VP BGA.FT.VP] || Ventral Pallidum || nucleus || FEU || Distinguish _wanting_ versus _liking_ enhancements || Necessary for reward learning and performance;<BR>inhibitory nucleus ||
 || [BrainRegionBGA_HP_PPN BGA.HP.PPN] || Pedunculopontine Nucleus || nucleus || FEU || Provide sensory feedback to cerebral cortex; modulatory ||  ||
+|| [BrainRegionBMA_MM_PT_PTA BMA.MM.PT.PTA] || Anterior Pretectum Nucleus || nucleus || LLI || Mediate somatosensory and nociceptive information || 3 parallel flows from MC, anterior interpositus<BR>nucleus of TH, GR to dorsal accessory IO ||
 
 *Internal Region Connections:*
 
@@ -60,6 +61,7 @@
 || [BrainRegionBGA_FT_VP BGA.FT.VP] || [BrainRegionBGA_FT_SN_PR BGA.FT.SN.PR] || nucleus-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (VPAL -> SNr)] ||
 ||  || [BrainRegionBGA_HP_PPN BGA.HP.PPN] || nucleus-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning (VPAL -> PPTG)] ||
 || [BrainRegionBGA_HP_PPN BGA.HP.PPN] || [BrainRegionBGA_FD_STN BGA.FD.STN] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionBMA_MM_PT_PTA BMA.MM.PT.PTA] || [BrainRegionBGA_FD_STN BGA.FD.STN] || nucleus-nucleus || (unknown reference) ||
 
 *External Inbound Region Connections:*
 
@@ -88,7 +90,6 @@
 ||  || [BrainRegionBGA_FT_SN_PR BGA.FT.SN.PR] || [BrainRegionBFA_FT_IPAC BFA.FT.IPAC] || Interstitial Anterior Commissural Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionBGA_HP_PPN BGA.HP.PPN] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (MHb -> IP)] ||
 || [BrainAreaLAC LAC] || [BrainRegionBGA_FD_STN BGA.FD.STN] || [BrainRegionLAC_FD_HT_VM LAC.FD.HT.VM] || Ventromedial Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaLCA LCA] || [BrainRegionBGA_FD_STN BGA.FD.STN] || [BrainRegionBMA_MM_PT_PTA BMA.MM.PT.PTA] || Anterior Pretectum Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLRC LRC] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || [BrainRegionLRC_MM_SC_DEEP LRC.MM.SC.DEEP] || Deep Superior Colliculus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCi -> SNc, abstract)] ||
 || [BrainAreaMCA MCA] || [BrainRegionBGA_FT_ACC BGA.FT.ACC] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || Ventral Tegmental Area || nucleus-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (VTA -> NACC)] ||
 ||  || [BrainRegionBGA_FT_VP BGA.FT.VP] || [BrainRegionFBA_MM_VTA FBA.MM.VTA] || Ventral Tegmental Area || nucleus-nucleus || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (VTA -> VentPal)] ||
@@ -105,6 +106,7 @@
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
+|| [BrainAreaBAA BAA] || [BrainRegionBMA_MM_PT_PTA BMA.MM.PT.PTA] || [BrainRegionSMA_FD_TH_LP SMA.FD.TH.LP] || Lateral Posterior Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaEPA EPA] || [BrainRegionBGA_FT_ACC BGA.FT.ACC] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || nucleus-neocortex || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (NAC -> OFC)] ||
 ||  || [BrainRegionBGA_FT_PU BGA.FT.PU] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || Anterior Nucleus of Thalamus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (Striatum -> ATH, abstract)] ||
 || [BrainAreaMAA MAA] || [BrainRegionBGA_FT_GPI BGA.FT.GPI] || [BrainRegionMCA_FD_TH_VA MCA.FD.TH.VA] || Ventral Anterior Nucleus || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sVA -> VA, abstract)] ||
@@ -113,13 +115,14 @@
 ||  ||  || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || Supplementary Motor Cortex || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (BG -> F6, abstract)] ||
 ||  || [BrainRegionBGA_FT_SN_PR BGA.FT.SN.PR] || [BrainRegionMCA_FD_TH_VA MCA.FD.TH.VA] || Ventral Anterior Nucleus || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sVA -> VA, abstract)] ||
 || [BrainAreaSAA SAA] || [BrainRegionBGA_HP_PPN BGA.HP.PPN] || [BrainRegionVBA_FD_LGN VBA.FD.LGN] || Lateral Geniculate Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (PPN -> LGN)] ||
+||  || [BrainRegionBMA_MM_PT_PTA BMA.MM.PT.PTA] || [BrainRegionVBA_FD_PV_MPV VBA.FD.PV.MPV] || Medial Pulvinar || nucleus-nucleus || (unknown reference) ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaAMA AMA] || [BrainRegionBGA_FD_STN BGA.FD.STN] || [BrainRegionBFA_FT_NBM BFA.FT.NBM] || Basal Nucleus of Meynert || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionBGA_FT_ACC BGA.FT.ACC] || [BrainRegionBFA_FT_NBM BFA.FT.NBM] || Basal Nucleus of Meynert || nucleus-nucleus || [http://www.expertsmind.com/topic/emotion/affective-basal-ganglia-circuit-93570.aspx Affective basal ganglia circuit (NACC -> nBM)] ||
 ||  || [BrainRegionBGA_FT_GPI BGA.FT.GPI] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (GPi -> LHb)] ||
 ||  || [BrainRegionBGA_FT_VP BGA.FT.VP] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLAC LAC] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || [BrainRegionLAC_FD_HT_SUM LAC.FD.HT.SUM] || Supramammillary Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaLCA LCA] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || [BrainRegionMBA_HP_CR MBA.HP.CR] || Cerebellum || nucleus-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (SN -> CR, abstract)] ||
+|| [BrainAreaLLC LLC] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || [BrainRegionLLC_HP_CR LLC.HP.CR] || Cerebellum || nucleus-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (SN -> CR, abstract)] ||
 || [BrainAreaLRC LRC] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || [BrainRegionLRC_HP_PRF_PVR LRC.HP.PRF.PVR] || Parvocellular Reticular Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionBGA_FT_SN_PR BGA.FT.SN.PR] || [BrainRegionLRC_MM_SC_INT LRC.MM.SC.INT] || Intermediate Superior Colliculus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SNr -> SCi, abstract)] ||
 ||  || [BrainRegionBGA_HP_PPN BGA.HP.PPN] || [BrainRegionLRC_MM_SC_INT LRC.MM.SC.INT] || Intermediate Superior Colliculus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (PPN -> SC, abstract)] ||
