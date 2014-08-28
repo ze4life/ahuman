@@ -10,7 +10,8 @@
 || *ID* || *Name* || *Regions* ||
 || ABS || Breathing and Swallowing Motor || [BrainRegionLPC_HM_AMB LPC.HM.AMB], [BrainRegionLPC_SC_VH_PHR LPC.SC.VH.PHR] ||
 || AVB || Vestibular Sensory and Motor || [BrainRegionLPC_HP_IVBN LPC.HP.IVBN], [BrainRegionLPC_HP_LVBN LPC.HP.LVBN], [BrainRegionLPC_HP_MVBN LPC.HP.MVBN], [BrainRegionLPC_HP_SVBN LPC.HP.SVBN], [BrainRegionLPC_PN_SG_CVB LPC.PN.SG.CVB], [BrainRegionLPC_PN_SG_SVB LPC.PN.SG.SVB], [BrainRegionLPC_PN_SG_UVB LPC.PN.SG.UVB] ||
-|| AVS || Vision Sensory and Motor || [BrainRegionLPC_FD_RT LPC.FD.RT], [BrainRegionLPC_HP_ABD LPC.HP.ABD], [BrainRegionLPC_MM_OCN LPC.MM.OCN], [BrainRegionLPC_MM_TRH LPC.MM.TRH] ||
+|| AVM || Vision Motor || [BrainRegionLPC_HP_ABD LPC.HP.ABD], [BrainRegionLPC_MM_OCN LPC.MM.OCN], [BrainRegionLPC_MM_TRH LPC.MM.TRH] ||
+|| AVS || Vision Sensory || [BrainRegionLPC_FD_RT LPC.FD.RT] ||
 || MBE || Control Body Extensors || [BrainRegionLPC_SC_VH_VL LPC.SC.VH.VL], [BrainRegionLPC_SC_VH_VM LPC.SC.VH.VM] ||
 || MBFG || Control Body Generic Flexors || [BrainRegionLPC_SC_VH_PL LPC.SC.VH.PL], [BrainRegionLPC_SC_VH_PM LPC.SC.VH.PM] ||
 || MBFS || Control Body Special Flexors || [BrainRegionLPC_SC_VH_ONF LPC.SC.VH.ONF], [BrainRegionLPC_SC_VH_RPL LPC.SC.VH.RPL], [BrainRegionLPC_SC_VH_SAN LPC.SC.VH.SAN] ||
@@ -112,13 +113,12 @@
 || [BrainAreaLRC LRC] || [BrainRegionLPC_HP_IVBN LPC.HP.IVBN] || [BrainRegionLRC_HP_PRF_CRF LRC.HP.PRF.CRF] || Caudal Pontine Reticular Nucleus || nucleus-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) (VestibularNuclei -> PPRF, abstract)] ||
 ||  || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || [BrainRegionLRC_MM_DSCH LRC.MM.DSCH] || Darkschewitsch Nucleus || nucleus-nucleus || (unknown reference) ||
 
-== AVS - Vision Sensory and Motor ==
+== AVM - Vision Motor ==
 
 
-<img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_AVS.dot.png" alt="unavailable">
+<img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_AVM.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionLPC_FD_RT LPC.FD.RT] || Retina || nucleus || LSC || Spatial decorrelation through center surround inhibition || 100:1 cones/rods to ganglion cells aggregation,<BR>edge extraction ||
 || [BrainRegionLPC_HP_ABD LPC.HP.ABD] || Abducens Nucleus || nucleus || LMD || Conjugated movements of both eyes || Motoneurons - to muscle, interneurons - to OCN ||
 || [BrainRegionLPC_MM_OCN LPC.MM.OCN] || Oculomotor Nucleus || nucleus || LMD || Change Eye Direction || Muscle nucleus ||
 || [BrainRegionLPC_MM_TRH LPC.MM.TRH] || Trochlear Nucleus || nucleus || LMD || Control superior oblique muscles of eyes || Muscle nucleus, change eye direction ||
@@ -148,6 +148,29 @@
 ||  ||  || [BrainRegionLRC_MM_SC_DEEP LRC.MM.SC.DEEP] || Deep Superior Colliculus || nucleus-nucleus || [http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html Retina and superior colliculus targets (SC -> Oculomotor, abstract)] ||
 ||  || [BrainRegionLPC_MM_TRH LPC.MM.TRH] || [BrainRegionLRC_MM_CJ LRC.MM.CJ] || Cajal Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLRC_MM_SC_DEEP LRC.MM.SC.DEEP] || Deep Superior Colliculus || nucleus-nucleus || [http://unifiedtao-en.blogspot.ru/2011/03/what-we-see-of-tao.html Retina and superior colliculus targets (SC -> Trochlear, abstract)] ||
+
+*External Outbound Region Connections:*
+
+|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| <font color="red">Target</font> || || || || || ||
+|| [BrainAreaTSA TSA] || [BrainRegionLPC_HP_ABD LPC.HP.ABD] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || eye-muscle-rotate-vestibular || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Abducens -> EYE)] ||
+||  || [BrainRegionLPC_MM_OCN LPC.MM.OCN] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || eye-muscle-rotate-major-inferior-oblique || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Oculomotor -> EYE)] ||
+||  || [BrainRegionLPC_MM_TRH LPC.MM.TRH] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || eye-muscle-rotate-minor || [http://what-when-how.com/neuroscience/the-cranial-nerves-organization-of-the-central-nervous-system-part-4 Extraocular eye muscles (TRC -> EYE)] ||
+
+== AVS - Vision Sensory ==
+
+
+<img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_AVS.dot.png" alt="unavailable">
+
+|| *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
+|| [BrainRegionLPC_FD_RT LPC.FD.RT] || Retina || nucleus || LSC || Spatial decorrelation through center surround inhibition || 100:1 cones/rods to ganglion cells aggregation,<BR>edge extraction ||
+
+*Internal Region Connections:*
+  * no connections
+
+*External Inbound Region Connections:*
+
+|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Target</font> || || || || || ||
 || [BrainAreaTSA TSA] || [BrainRegionLPC_FD_RT LPC.FD.RT] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || eye-edge-output || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Vision Components (EYE -> RT)] ||
 
@@ -163,10 +186,6 @@
 ||  ||  || [BrainRegionLRC_MM_PT_PON LRC.MM.PT.PON] || Pretectal Olivary Nucleus || ganglion-nucleus || [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm Targets of retina neurons (Retina -> Pretectum, abstract)] ||
 ||  ||  || [BrainRegionLRC_MM_PT_SL LRC.MM.PT.SL] || Sublentiform Nucleus || ganglion-nucleus || [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm Targets of retina neurons (Retina -> Pretectum, abstract)] ||
 ||  ||  || [BrainRegionLRC_MM_SC_SUP LRC.MM.SC.SUP] || Superficial Superior Colliculus || ganglion-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (Retina -> SC, abstract)] ||
-|| <font color="red">Target</font> || || || || || ||
-|| [BrainAreaTSA TSA] || [BrainRegionLPC_HP_ABD LPC.HP.ABD] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || eye-muscle-rotate-vestibular || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Abducens -> EYE)] ||
-||  || [BrainRegionLPC_MM_OCN LPC.MM.OCN] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || eye-muscle-rotate-major-inferior-oblique || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Oculomotor -> EYE)] ||
-||  || [BrainRegionLPC_MM_TRH LPC.MM.TRH] || [BrainRegionTARGET_TSA_EYE TARGET.TSA.EYE] || Eye || eye-muscle-rotate-minor || [http://what-when-how.com/neuroscience/the-cranial-nerves-organization-of-the-central-nervous-system-part-4 Extraocular eye muscles (TRC -> EYE)] ||
 
 == MBE - Control Body Extensors ==
 
