@@ -206,6 +206,8 @@ private:
 	void createAreaPages_getCircuitLines( XmlCircuitInfo& info , StringList& lines );
 	void createAreaPages_createRegionPages( String wikiDir , MindArea *area );
 
+	void createAreaPages_createAreaCircuitTable( MapStringToClass<MindLocalCircuitDef>& circuits , StringList& lines );
+	void createAreaPages_createAreaCircuitTableLine( MindLocalCircuitDef *circuit , StringList& lines );
 	void createAreaPages_createAreaCircuit( MindArea *area , MindLocalCircuitDef& circuit , StringList& lines );
 
 	void createAreaPages_createRegionTableSection( MindArea *area , MindLocalCircuitDef& circuit , StringList& lines );
@@ -213,8 +215,9 @@ private:
 	String createAreaPages_getRegionTableRow( MindRegionDef *region );
 
 	void createAreaPages_getInternalConnections( MindArea *area , MindLocalCircuitDef& circuit , MapStringToClass<MindLocalCircuitConnectionDef>& connections );
+	void createAreaPages_addInternalConnections( MindArea *area , MindLocalCircuitDef& circuit , StringList& lines , MapStringToClass<MindLocalCircuitConnectionDef>& connections );
+	void createAreaPages_addInternalConnectionTableLine( MindArea *area , MindLocalCircuitDef& circuit , MindLocalCircuitConnectionDef *link , StringList& lines );
 	void createAreaPages_addExternalConnections( MindArea *area , MindLocalCircuitDef& circuit , StringList& lines , MapStringToClass<MindLocalCircuitConnectionDef>& connections , bool p_inputs );
-	void createAreaPages_getInternalConnectionTableLine( MindArea *area , MindLocalCircuitDef& circuit , MindLocalCircuitConnectionDef *link , StringList& lines );
 	void createAreaPages_getExternalConnections( MindArea *area , MindLocalCircuitDef& circuit , MapStringToClass<MindLocalCircuitConnectionDef>& connections , bool isin );
 	void createAreaPages_getExternalConnectionTableLine( MindArea *area , MindLocalCircuitDef& circuit , MindLocalCircuitConnectionDef *link , StringList& lines , bool isin , const char *areaType );
 	void createDotFile( MindArea *area , MindLocalCircuitDef& circuit , MapStringToClass<MindLocalCircuitConnectionDef>& internals , MapStringToClass<MindLocalCircuitConnectionDef>& inputs , MapStringToClass<MindLocalCircuitConnectionDef>& outputs );

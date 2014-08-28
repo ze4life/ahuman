@@ -46,7 +46,7 @@
 	<circuit id="CP.SACCADIC-VISION" name="Saccadic Vision"
 		image="http://www.nature.com/nrn/journal/v5/n3/images/nrn1345-i1.jpg"
 		reference="http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html"
-		components="FrontalCortex=NC.LOBE.ANT LIP=VCA.NC.IPS.LIP SCi=MM.SC SCs=MM.SC Thalamus=FD.TH BG=BGA.FT.BG CN=BGA.FT.CN GPe=BGA.FT.GPE STN=BGA.FD.STN SNpr=BGA.FT.SN.PR CR=MBA.HP.CR RF=HP.PRF Retina=LPC.FD.RT LGN=VBA.FD.LGN VisualCortex=NC.LOBE.OCC"
+		components="FrontalCortex=NC.LOBE.ANT LIP=VCA.NC.IPS.LIP SCi=MM.SC SCs=MM.SC Thalamus=FD.TH BG=BGA.FT.BG CN=BGA.FT.CN GPe=BGA.FT.GPE STN=BGA.FD.STN SNpr=BGA.FT.SN.PR CR=LLC.HP.CR RF=HP.PRF Retina=LPC.FD.RT LGN=VBA.FD.LGN VisualCortex=NC.LOBE.OCC"
 		>
 		<link src="Retina" dst="LGN"/>
 		<link src="Retina" dst="SCs"/>
@@ -101,7 +101,7 @@
 	<circuit id="CP.VISION-SACCADES" name="Horizontal saccades and smooth pursuit movements"
 		image="http://ars.els-cdn.com/content/image/1-s2.0-S0006899301025987-gr1.gif"
 		reference="http://www.sciencedirect.com/science/article/pii/S0006899301025987"
-		components="LGB=VBA.FD.LGN VisualAssociation=SMA.NC.SPL.PG PrimaryVisual=VCA.NC.V1 FEFSEF=NC.LOBE.ANT SC=MM.SC Striatum=BGA.FT.ST RIP=VBA.MM.RP.RIP Bechterew=LLC.HP.PRF.PDT CR=MBA.HP.CR PPRF=HP.PRF.PPRF Vestibular=LPC.HP.SVBN"
+		components="LGB=VBA.FD.LGN VisualAssociation=SMA.NC.SPL.PG PrimaryVisual=VCA.NC.V1 FEFSEF=NC.LOBE.ANT SC=MM.SC Striatum=BGA.FT.ST RIP=VBA.MM.RP.RIP Bechterew=LLC.HP.PRF.PDT CR=LLC.HP.CR PPRF=HP.PRF.PPRF Vestibular=LPC.HP.SVBN"
 		>
 		<link src="VisualAssociation" dst="FEFSEF"/>
 		<link src="LGB" dst="PrimaryVisual"/>
@@ -143,7 +143,7 @@
 	<circuit id="CP.SACCADIC-VOLUNTARY-AND-PURSUIT" name="Saccades and smooth movements"
 		image="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg"
 		reference="UNKNOWN"
-		components="FEF=MCA.NC.PMC.FEF PPC=VCA.NC.IPS.PEF CN=BGA.FT.CN SN=BGA.FT.SN VGC=LRC.MM.CJ SC=MM.SC PPRF=HP.PRF.PPRF TEF=VCA.NC.IT Extrastriate=VCA.NC.V3 Striate=VCA.NC.V1 CR=MBA.HP.CR Vestibular=LPC.HP.LVBN DLPN=LRC.HP.PRF.RPO"
+		components="FEF=MCA.NC.PMC.FEF PPC=VCA.NC.IPS.PEF CN=BGA.FT.CN SN=BGA.FT.SN VGC=LRC.MM.CJ SC=MM.SC PPRF=HP.PRF.PPRF TEF=VCA.NC.IT Extrastriate=VCA.NC.V3 Striate=VCA.NC.V1 CR=LLC.HP.CR Vestibular=LPC.HP.LVBN DLPN=LRC.HP.PRF.RPO"
 		>
 		<!-- voluntary saccades circuit -->
 		<link src="FEF" dst="SC"/>
