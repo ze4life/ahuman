@@ -11,8 +11,8 @@
 || LAB || Breathing Control || [BrainRegionLAC_PN_PSYM_ILG LAC.PN.PSYM.ILG], [BrainRegionLAC_PN_PSYM_PUG LAC.PN.PSYM.PUG] ||
 || LAD || Lower Digestion Control || [BrainRegionLAC_HM_VGN LAC.HM.VGN], [BrainRegionLAC_PN_PSYM_CRG LAC.PN.PSYM.CRG], [BrainRegionLAC_PN_PSYM_GUT LAC.PN.PSYM.GUT], [BrainRegionLAC_PN_SYM_CEG LAC.PN.SYM.CEG], [BrainRegionLAC_PN_SYM_SMG LAC.PN.SYM.SMG] ||
 || LADC || Daily Cycle Autonomic Control || [BrainRegionLAC_FD_HT_SCN LAC.FD.HT.SCN], [BrainRegionLAC_FD_HT_TBM LAC.FD.HT.TBM] ||
-|| LAH || Heart and Blood Pressure Control || [BrainRegionLAC_FD_HT_SO LAC.FD.HT.SO], [BrainRegionLAC_PN_SYM_STG LAC.PN.SYM.STG], [BrainRegionLAC_PN_SYM_TG LAC.PN.SYM.TG], [BrainRegionLAC_SC_IZ_IML LAC.SC.IZ.IML] ||
-|| LAM || Autonomic Motivations Control || [BrainRegionLAC_FD_HT_RCH LAC.FD.HT.RCH], [BrainRegionLAC_SC_LH_LSN LAC.SC.LH.LSN] ||
+|| LAH || Heart and Blood Pressure Control || [BrainRegionLAC_PN_SYM_STG LAC.PN.SYM.STG], [BrainRegionLAC_PN_SYM_TG LAC.PN.SYM.TG], [BrainRegionLAC_SC_IZ_IML LAC.SC.IZ.IML] ||
+|| LAM || Autonomic Motivations Control || [BrainRegionLAC_FD_HT_RCH LAC.FD.HT.RCH], [BrainRegionLAC_FD_HT_SO LAC.FD.HT.SO], [BrainRegionLAC_SC_LH_LSN LAC.SC.LH.LSN] ||
 || LAMM || Memory Autonomic Control || [BrainRegionLAC_FD_HT_PRM LAC.FD.HT.PRM], [BrainRegionLAC_FD_HT_SUM LAC.FD.HT.SUM] ||
 || LAS || Salivation and Tears Control || [BrainRegionLAC_HM_SAL_ISL LAC.HM.SAL.ISL], [BrainRegionLAC_HM_SAL_SSL LAC.HM.SAL.SSL], [BrainRegionLAC_PN_PSYM_OTG LAC.PN.PSYM.OTG], [BrainRegionLAC_PN_PSYM_SPG LAC.PN.PSYM.SPG], [BrainRegionLAC_PN_PSYM_SXG LAC.PN.PSYM.SXG], [BrainRegionLAC_PN_SYM_MCG LAC.PN.SYM.MCG] ||
 || LAT || Autonomic Thermoregulation || [BrainRegionLAC_FD_HT_AH LAC.FD.HT.AH], [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO], [BrainRegionLAC_HM_TGM_PE5 LAC.HM.TGM.PE5] ||
@@ -127,7 +127,6 @@
 <img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LAC_LAH.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionLAC_FD_HT_SO LAC.FD.HT.SO] || Supraoptic Nucleus || nucleus || LAC || Blood volume or blood pressure, vasopressin release ||  ||
 || [BrainRegionLAC_PN_SYM_STG LAC.PN.SYM.STG] || Stellate Ganglion || sympathetic ganglion || LAG || Heart, Lung || Inferior cervical ganglion ||
 || [BrainRegionLAC_PN_SYM_TG LAC.PN.SYM.TG] || Sympathetic Thoracic Ganglia || sympathetic ganglion || LAG || Heart || T1-T4 ||
 || [BrainRegionLAC_SC_IZ_IML LAC.SC.IZ.IML] || Intermediolateral Nucleus || nucleus || LAM || Mediate entire sympathetic innervation of body || from Lamina VII, visceral sensory ||
@@ -142,7 +141,6 @@
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaLPC LPC] || [BrainRegionLAC_FD_HT_SO LAC.FD.HT.SO] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || Solitary Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaMCA MCA] || [BrainRegionLAC_SC_IZ_IML LAC.SC.IZ.IML] || [BrainRegionFBA_HP_LC FBA.HP.LC] || Locus Coeruleus || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (LC -> IML)] ||
 
 *External Outbound Region Connections:*
@@ -156,8 +154,7 @@
 ||  ||  || [BrainRegionLAC_PN_SYM_SCG LAC.PN.SYM.SCG] || Superior Cervical Ganglion || nucleus-ganglion || (unknown reference) ||
 ||  ||  || [BrainRegionLAC_PN_SYM_SMG LAC.PN.SYM.SMG] || Superior Mesenteric Ganglion || nucleus-ganglion || (unknown reference) ||
 || <font color="red">Target</font> || || || || || ||
-|| [BrainAreaTEA TEA] || [BrainRegionLAC_FD_HT_SO LAC.FD.HT.SO] || [BrainRegionTARGET_TEA_ENDOCRINE TARGET.TEA.ENDOCRINE] || Endocrine Glands || endocrine-neurohypophysis-vasopressin || (unknown reference) ||
-||  || [BrainRegionLAC_PN_SYM_STG LAC.PN.SYM.STG] || [BrainRegionTARGET_TEA_HEART TARGET.TEA.HEART] || Heart || heart-cardiac-lower-muscle-stellar || (unknown reference) ||
+|| [BrainAreaTEA TEA] || [BrainRegionLAC_PN_SYM_STG LAC.PN.SYM.STG] || [BrainRegionTARGET_TEA_HEART TARGET.TEA.HEART] || Heart || heart-cardiac-lower-muscle-stellar || (unknown reference) ||
 ||  ||  || [BrainRegionTARGET_TEA_VESSELS TARGET.TEA.VESSELS] || Blood vessels || arm-blood-vessels || (unknown reference) ||
 ||  || [BrainRegionLAC_PN_SYM_TG LAC.PN.SYM.TG] || [BrainRegionTARGET_TEA_VESSELS TARGET.TEA.VESSELS] || Blood vessels || arterial-thoracic-vasoconstrictors || (unknown reference) ||
 
@@ -168,6 +165,7 @@
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
 || [BrainRegionLAC_FD_HT_RCH LAC.FD.HT.RCH] || Retrochiasmatic Nucleus || nucleus || LAC || Maintenance of normal hypothalamic-pituitary-adrenal function ||  ||
+|| [BrainRegionLAC_FD_HT_SO LAC.FD.HT.SO] || Supraoptic Nucleus || nucleus || LAC || Blood volume or blood pressure, vasopressin release ||  ||
 || [BrainRegionLAC_SC_LH_LSN LAC.SC.LH.LSN] || Lateral Spinal Nucleus || nucleus || LAS || Integrate autonomic and homeostatic functions || Projects to HT and lateral globus pallidus;<BR>integrative nucleus for autonomic and homeostatic<BR>functions, and related motivational and affective<BR>responses to autonomic function ||
 
 *Internal Region Connections:*
@@ -180,6 +178,7 @@
 || [BrainAreaEPA EPA] || [BrainRegionLAC_FD_HT_RCH LAC.FD.HT.RCH] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || neocortex-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in emotional behavior (OPFC -> HT, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLAC LAC] || [BrainRegionLAC_SC_LH_LSN LAC.SC.LH.LSN] || [BrainRegionLAC_FD_HT_PV LAC.FD.HT.PV] || Paraventricular Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLPC LPC] || [BrainRegionLAC_FD_HT_SO LAC.FD.HT.SO] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || Solitary Nucleus || nucleus-nucleus || (unknown reference) ||
 
 *External Outbound Region Connections:*
 
@@ -187,6 +186,8 @@
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLAC LAC] || [BrainRegionLAC_SC_LH_LSN LAC.SC.LH.LSN] || [BrainRegionLAC_PN_SYM_SCG LAC.PN.SYM.SCG] || Superior Cervical Ganglion || nucleus-ganglion || (unknown reference) ||
 || [BrainAreaLLC LLC] || [BrainRegionLAC_FD_HT_RCH LAC.FD.HT.RCH] || [BrainRegionLLC_HP_PN_RP LLC.HP.PN.RP] || Rostral Pontine Nucleus || nucleus-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in emotional behavior (HT -> PN, abstract)] ||
+|| <font color="red">Target</font> || || || || || ||
+|| [BrainAreaTEA TEA] || [BrainRegionLAC_FD_HT_SO LAC.FD.HT.SO] || [BrainRegionTARGET_TEA_ENDOCRINE TARGET.TEA.ENDOCRINE] || Endocrine Glands || endocrine-neurohypophysis-vasopressin || (unknown reference) ||
 
 == Memory Autonomic Control ==
 
