@@ -292,17 +292,17 @@
 					notes="thoracic-toward-contralateral and cervical slices"
 					>
 					<path id="SCVT" type="sensory" 
-						src="LPC.PN.SG.LDRG" mids="BMA.SC.PH.NP" dst="BMA.SC.LH.LCV" fibers="A-alpha,A-beta" endings="SRC"
+						src="LPC.PN.SG.LDRG" mids="LPC.SC.PH.NP" dst="LPC.SC.LH.LCV" fibers="A-alpha,A-beta" endings="SRC"
 						function="tactile/pressure pathway from the spinal cord to sensory cortex"
 						pathway="tactile/pressure to S1"
 						/>
 					<path id="SCVT.VPL" type="sensory" 
-						src="BMA.SC.LH.LCV" mids="SMA.FD.TH.VPL" dst="SMA.NC.PG.S1" fibers="A-alpha,A-beta" endings="SRC"
+						src="LPC.SC.LH.LCV" mids="SMA.FD.TH.VPL" dst="SMA.NC.PG.S1" fibers="A-alpha,A-beta" endings="SRC"
 						function="four-neuron, fast-conducting, tactile/pressure pathway from the spinal cord to sensory cortex"
 						pathway="tactile/pressure to S1"
 						/>
 					<path id="SCVT.PAG" type="sensory" 
-						src="BMA.SC.LH.LCV" dst="FBA.MM.PAG" fibers="A-alpha,A-beta" endings="SRC"
+						src="LPC.SC.LH.LCV" dst="FBA.MM.PAG" fibers="A-alpha,A-beta" endings="SRC"
 						function="alerts about presence of cutaneous stimuli that might represent danger, necessitating flight"
 						pathway="cutaneous stimuli to PAG"
 						/>
@@ -487,12 +487,12 @@
 						target="MRF, entire cortex"
 						>
 						<path id="SRT.MEDU" type="sensory" 
-							src="LPC.PN.SG.UDRG" mids="AVA.SC.IZ.IMM" dst="MBA.HM.RF.MED" fibers="A-delta-sensory" endings="SAD"
+							src="LPC.PN.SG.UDRG" mids="LLC.SC.IZ.IMM" dst="LLC.HM.RF.MED" fibers="A-delta-sensory" endings="SAD"
 							function="upper automatic responses to pain; attentional and alerting mechanisms"
 							pathway="upper viceral pain to spinal cord to medullary reticular formation; visceral and somatic pain to MRF"
 							/>
 						<path id="SRT.MEDL" type="sensory" 
-							src="LPC.PN.SG.LDRG" mids="AVA.SC.IZ.IMM" dst="MBA.HM.RF.MED" fibers="A-delta-sensory" endings="SAD"
+							src="LPC.PN.SG.LDRG" mids="LLC.SC.IZ.IMM" dst="LLC.HM.RF.MED" fibers="A-delta-sensory" endings="SAD"
 							function="lower automatic responses to pain; attentional and alerting mechanisms"
 							pathway="lower viceral pain to spinal cord to medullary reticular formation; visceral and somatic pain to MRF"
 							/>
@@ -505,12 +505,12 @@
 						target="MRF, entire cortex"
 						>
 						<path id="SRT.UVA" type="sensory" 
-							src="LPC.PN.SG.LDRG" mids="AVA.SC.IZ.IMM,HP.PRF.MPRF" dst="MCA.FD.TH.VA" fibers="A-delta-sensory" endings="SPC"
+							src="LPC.PN.SG.LDRG" mids="LLC.SC.IZ.IMM,HP.PRF.MPRF" dst="MCA.FD.TH.VA" fibers="A-delta-sensory" endings="SPC"
 							function="exerts excitatory influence predominantly on pontine reticular nuclei to facilitate contraction of extensor muscles of limb and trunk"
 							pathway="upper crude touch/vibration to spinal cord to pontine reticular formation to thalamus; utilizes four levels of neurons"
 							/>
 						<path id="SRT.LVA" type="sensory" 
-							src="LPC.PN.SG.UDRG" mids="AVA.SC.IZ.IMM,HP.PRF.MPRF" dst="MCA.FD.TH.VA" fibers="A-delta-sensory" endings="SPC"
+							src="LPC.PN.SG.UDRG" mids="LLC.SC.IZ.IMM,HP.PRF.MPRF" dst="MCA.FD.TH.VA" fibers="A-delta-sensory" endings="SPC"
 							function="exerts excitatory influence predominantly on pontine reticular nuclei to facilitate contraction of extensor muscles of limb and trunk"
 							pathway="lower crude touch/vibration to spinal cord to pontine reticular formation to thalamus; utilizes four levels of neurons"
 							/>
@@ -523,7 +523,7 @@
 						target="inferior and superior colliculi"
 						>
 						<path id="STCT" type="sensory" 
-							src="LPC.PN.SG.UDRG" mids="BMA.SC.PH.NP" dst="LRC.MM.SC.DEEP" fibers="C-sensory" endings="SFN"
+							src="LPC.PN.SG.UDRG" mids="LPC.SC.PH.NP" dst="LRC.MM.SC.DEEP" fibers="C-sensory" endings="SFN"
 							function="Head and eye attention to non-visual stimuli"
 							pathway="crude touch to nucleus proprius to superior colliculus"
 							/>
@@ -639,12 +639,12 @@
 						target="cerebellum"
 						>
 						<path id="SOT.CCV" type="sensory" 
-							src="LPC.PN.SG.UDRG" mids="BMA.SC.IZ.CCV,BMA.HM.IO" dst="MBA.HP.CR" fibers="A-alpha-Ia-sensory" endings="SMC,SMD"
+							src="LPC.PN.SG.UDRG" mids="LLC.SC.IZ.CCV,LLC.HM.IO" dst="LLC.HP.CR" fibers="A-alpha-Ia-sensory" endings="SMC,SMD"
 							function="cutaneous information to cerebellum"
 							pathway="skin mechanoreceptors to inferior olivary nucleus to cerebellum"
 							/>
 						<path id="SOT.NPR" type="sensory" 
-							src="LPC.PN.SG.UDRG" mids="BMA.SC.PH.NP,BMA.HM.IO" dst="MBA.HP.CR" fibers="A-alpha-Ib-sensory" endings="SGT,SMS"
+							src="LPC.PN.SG.UDRG" mids="LPC.SC.PH.NP,LLC.HM.IO" dst="LLC.HP.CR" fibers="A-alpha-Ib-sensory" endings="SGT,SMS"
 							function="proprioception to cerebellum"
 							pathway="muscle spindles and Golgi tendons to inferior olivary nucleus to cerebellum"
 							/>
@@ -656,7 +656,7 @@
 						target="cerebellum"
 						>
 						<path id="SVT.CCV" type="sensory" 
-							src="LPC.PN.SG.UDRG" mids="BMA.SC.IZ.CCV,LPC.HP.IVBN" dst="MBA.HP.CR" fibers="A-alpha-Ia-sensory" endings="SMC,SMD"
+							src="LPC.PN.SG.UDRG" mids="LLC.SC.IZ.CCV,LPC.HP.IVBN" dst="LLC.HP.CR" fibers="A-alpha-Ia-sensory" endings="SMC,SMD"
 							function="cutaneous information to cerebellum"
 							pathway="skin mechanoreceptors to vestibular nucleus to cerebellum; C1-C4"
 							/>
@@ -677,7 +677,7 @@
 						target="cerebellum, vermis and paravermis of the ipsilateral posterior lobe"
 						>
 						<path id="CSCT" type="sensory" 
-							src="LPC.PN.SG.UDRG" mids="LLC.HM.ACU" dst="MBA.HP.CR" fibers="A-alpha-Ib-sensory,A-beta-sensory" endings="SMS,SGT,SRC,SMD"
+							src="LPC.PN.SG.UDRG" mids="LLC.HM.ACU" dst="LLC.HP.CR" fibers="A-alpha-Ib-sensory,A-beta-sensory" endings="SMS,SGT,SRC,SMD"
 							function="proprioceptive and exteroceptive information"
 							pathway="upper limb muscles to accessory cuneate nucleus to cerebellum"
 							/>
@@ -691,12 +691,12 @@
 						target="cerebellum, mainly ipsilateral anterior lobe"
 						>
 						<path id="DSCTU" type="sensory" 
-							src="LPC.PN.SG.UDRG" mids="BMA.SC.PH.CL" dst="MBA.HP.CR" fibers="A-alpha-Ib-sensory,A-beta-sensory" endings="SMS,SGT,SRC,SMD"
+							src="LPC.PN.SG.UDRG" mids="LLC.SC.PH.CL" dst="LLC.HP.CR" fibers="A-alpha-Ib-sensory,A-beta-sensory" endings="SMS,SGT,SRC,SMD"
 							function="proprioceptive and exteroceptive information"
 							pathway="lower limb muscles to clarkes nucleus to cerebellum"
 							/>
 						<path id="DSCTL" type="sensory" 
-							src="LPC.PN.SG.LDRG" mids="BMA.SC.PH.CL" dst="MBA.HP.CR" fibers="A-alpha-Ib-sensory,A-beta-sensory" endings="SMS,SGT,SRC,SMD"
+							src="LPC.PN.SG.LDRG" mids="LLC.SC.PH.CL" dst="LLC.HP.CR" fibers="A-alpha-Ib-sensory,A-beta-sensory" endings="SMS,SGT,SRC,SMD"
 							function="proprioceptive and exteroceptive information"
 							pathway="lower limb muscles to clarkes nucleus to cerebellum"
 							/>
@@ -710,7 +710,7 @@
 						target="cerebellum, anterior lobe"
 						>
 						<path id="RSCT" type="sensory" 
-							src="LPC.PN.SG.UDRG" mids="BMA.SC.IZ.CCV" dst="MBA.HP.CR" fibers="A-alpha-Ib-sensory" endings="SGT"
+							src="LPC.PN.SG.UDRG" mids="LLC.SC.IZ.CCV" dst="LLC.HP.CR" fibers="A-alpha-Ib-sensory" endings="SGT"
 							function="proprioceptive information"
 							pathway="upper limb muscles to centrobasalis nucleus to cerebellum"
 							/>
@@ -720,17 +720,17 @@
 						synonyms="anterior spinocerebellar tract, Gowers tract"
 						function="conveys information about postural stability of the lower limbs to cerebellum"
 						imgsrc="http://what-when-how.com/wp-content/uploads/2012/04/tmp14101_thumb.jpg" imgheight="500"
-						notes="bilaterally, double cross, proprioceptive/fine touch/vibration"
+						notes="bilaterally, double cross, proprioceptive/fine touch/vibration; from nucleus proprius"
 						source="neuromuscular spindles and Golgi tendon organs, trunk, C8-L3"
 						target="cerebellum"
 						>
 						<path id="VSCTU" type="sensory" 
-							src="LPC.PN.SG.UDRG" mids="AVA.SC.IZ.IMM" dst="MBA.HP.CR" fibers="A-alpha-Ib-sensory" endings="SMS,SGT"
+							src="LPC.PN.SG.UDRG" mids="LLC.SC.IZ.IMM" dst="LLC.HP.CR" fibers="A-alpha-Ib-sensory" endings="SMS,SGT"
 							function="proprioceptive information"
 							pathway="body muscles to intermediomedial nucleus to cerebellum"
 							/>
 						<path id="VSCTL" type="sensory" 
-							src="LPC.PN.SG.LDRG" mids="AVA.SC.IZ.IMM" dst="MBA.HP.CR" fibers="A-alpha-Ib-sensory" endings="SMS,SGT"
+							src="LPC.PN.SG.LDRG" mids="LLC.SC.IZ.IMM" dst="LLC.HP.CR" fibers="A-alpha-Ib-sensory" endings="SMS,SGT"
 							function="proprioceptive information"
 							pathway="body muscles to intermediomedial nucleus to cerebellum"
 							/>
@@ -798,7 +798,7 @@
 						pathway="cortex to neck muscles"
 						/>
 					<path id="CBT.THROAT" type="motor" 
-						src="MCA.NC.MC" mids="" dst="HMA.HM.AMB" fibers="MA,MG" endings="A-alpha-Ia-motor,A-beta-motor"
+						src="MCA.NC.MC" mids="" dst="LPC.HM.AMB" fibers="MA,MG" endings="A-alpha-Ia-motor,A-beta-motor"
 						function="conscious pharynx/larynx move"
 						pathway="cortex to throat muscles"
 						/>
@@ -810,27 +810,27 @@
 					notes="extrapyramidal; activates flexors, inhibits extensors; pattern locomotion, inhibit reflex activity in spinal cord"
 					>
 					<path id="RBST.CR" type="motor" 
-						src="MBA.HP.CR" mids="" dst="MBA.MM.RD" fibers="MA,MG" endings="A-alpha-Ia-motor,A-beta-motor"
+						src="LLC.HP.CR" mids="" dst="LLC.MM.RD" fibers="MA,MG" endings="A-alpha-Ia-motor,A-beta-motor"
 						function="automatic control of flexors"
 						pathway="cerebellum to red nucleus"
 						/>
 					<path id="RBST.MC" type="motor" 
-						src="MCA.NC.MC" mids="" dst="MBA.MM.RD" fibers="MA,MG" endings="A-alpha-Ia-motor,A-beta-motor"
+						src="MCA.NC.MC" mids="" dst="LLC.MM.RD" fibers="MA,MG" endings="A-alpha-Ia-motor,A-beta-motor"
 						function="conscious modulation of automatic flexors activity"
 						pathway="cortex to red nucleus"
 						/>
 					<path id="RBST.PM" type="motor" 
-						src="MBA.MM.RD" mids="" dst="LPC.SC.VH.PM" fibers="MA,MG" endings="A-alpha-Ia-motor,A-beta-motor"
+						src="LLC.MM.RD" mids="" dst="LPC.SC.VH.PM" fibers="MA,MG" endings="A-alpha-Ia-motor,A-beta-motor"
 						function="automatic control of axial flexors"
 						pathway="red nucleus to spinal cord PM"
 						/>
 					<path id="RBST.PL" type="motor" 
-						src="MBA.MM.RD" mids="" dst="LPC.SC.VH.PL" fibers="MA,MG" endings="A-alpha-Ia-motor,A-beta-motor"
+						src="LLC.MM.RD" mids="" dst="LPC.SC.VH.PL" fibers="MA,MG" endings="A-alpha-Ia-motor,A-beta-motor"
 						function="automatic control of proximal flexors"
 						pathway="red nucleus to spinal cord PL"
 						/>
 					<path id="RBST.RPL" type="motor" 
-						src="MBA.MM.RD" mids="" dst="LPC.SC.VH.RPL" fibers="MA,MG" endings="A-alpha-Ia-motor,A-beta-motor"
+						src="LLC.MM.RD" mids="" dst="LPC.SC.VH.RPL" fibers="MA,MG" endings="A-alpha-Ia-motor,A-beta-motor"
 						function="automatic control of distal flexors"
 						pathway="red nucleus to spinal cord RPL"
 						/>

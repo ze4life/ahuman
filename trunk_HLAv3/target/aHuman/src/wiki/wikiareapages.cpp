@@ -44,6 +44,8 @@ void WikiAreaPages::createAreaPages_createArea( String wikiDir , MindArea *area 
 	MapStringToClass<MindLocalCircuitDef>& circuits = def -> getCircuits();
 	
 	StringList lines;
+	createAreaPages_createAreaCircuitTable( circuits , lines );
+
 	for( int k = 0; k < circuits.count(); k++ ) {
 		MindLocalCircuitDef& circuit = circuits.getClassRefByIndex( k );
 		createAreaPages_createAreaCircuit( area , circuit , lines );
@@ -58,6 +60,41 @@ void WikiAreaPages::createAreaPages_createArea( String wikiDir , MindArea *area 
 	bool createRegionPages = wm -> checkCreateRegionPages();
 	if( createRegionPages )
 		createAreaPages_createRegionPages( wikiDir , area );
+}
+
+void WikiAreaPages::createAreaPages_createAreaCircuitTable( MapStringToClass<MindLocalCircuitDef>& circuits , StringList& lines ) {
+	createAreaPages_createAreaCircuitTableLine( NULL , lines );
+
+	for( int k = 0; k < circuits.count(); k++ ) {
+		MindLocalCircuitDef *circuit = circuits.getClassByIndex( k );
+		createAreaPages_createAreaCircuitTableLine( circuit , lines );
+	}
+}
+
+void WikiAreaPages::createAreaPages_createAreaCircuitTableLine( MindLocalCircuitDef *circuit , StringList& lines ) {
+	String line;
+	if( circuit == NULL ) {
+		line = "|| *ID* || *Name* || *Regions* ||";
+		lines.add( line );
+		return;
+	}
+
+	line = "|| " + circuit -> getId() + " || " + circuit -> getName() + " || ";
+	MapStringToClass<MindRegionDef>& regions = circuit -> getRegions();
+
+	String id;
+	String list;
+	for( int k = 0; k < regions.count(); k++ ) {
+		id = regions.getKeyByIndex( k );
+
+		if( k > 0 )
+			list += ", ";
+
+		list += wm -> getRegionReference( id );
+	}
+
+	line += list + " ||";
+	lines.add( line );
 }
 
 void WikiAreaPages::createAreaPages_createCircuitsAndReferencesTableSection( String wikiDir , MindArea *area ) {
@@ -169,7 +206,7 @@ void WikiAreaPages::createAreaPages_createRegionPages( String wikiDir , MindArea
 
 void WikiAreaPages::createAreaPages_createAreaCircuit( MindArea *area , MindLocalCircuitDef& circuit , StringList& lines ) {
 	lines.add( "" );
-	lines.add( "== " + circuit.getId() + " - " + circuit.getName() + " ==" );
+	lines.add( "== " + circuit.getName() + " ==" );
 	lines.add( "" );
 
 	lines.add( "" );
@@ -224,12 +261,10 @@ void WikiAreaPages::createAreaPages_createConnectivityTableSection( MindArea *ar
 
 	if( !area -> isTargetArea() ) {
 		// internal connections
+		lines.add( "" );
+		lines.add( "*Internal Region Connections:*" );
 		createAreaPages_getInternalConnections( area , circuit , connections );
-		createAreaPages_getInternalConnectionTableLine( area , circuit , NULL , lines );
-		for( int k = 0; k < connections.count(); k++ ) {
-			MindLocalCircuitConnectionDef *c = connections.getClassByIndex( k );
-			createAreaPages_getInternalConnectionTableLine( area , circuit , c , lines );
-		}
+		createAreaPages_addInternalConnections( area , circuit , lines , connections );
 	}
 
 	// external connections - in
@@ -248,6 +283,19 @@ void WikiAreaPages::createAreaPages_createConnectivityTableSection( MindArea *ar
 
 	// create dot file
 	createDotFile( area , circuit , connections , connectionsInputs , connectionsOutputs );
+}
+
+void WikiAreaPages::createAreaPages_addInternalConnections( MindArea *area , MindLocalCircuitDef& circuit , StringList& lines , MapStringToClass<MindLocalCircuitConnectionDef>& connections ) {
+	if( connections.count() == 0 ) {
+		lines.add( "  * no connections" );
+		return;
+	}
+
+	createAreaPages_addInternalConnectionTableLine( area , circuit , NULL , lines );
+	for( int k = 0; k < connections.count(); k++ ) {
+		MindLocalCircuitConnectionDef *c = connections.getClassByIndex( k );
+		createAreaPages_addInternalConnectionTableLine( area , circuit , c , lines );
+	}
 }
 
 void WikiAreaPages::createAreaPages_addExternalConnections( MindArea *area , MindLocalCircuitDef& circuit , StringList& lines , MapStringToClass<MindLocalCircuitConnectionDef>& connections , bool p_inputs ) {
@@ -334,14 +382,11 @@ void WikiAreaPages::createAreaPages_getExternalConnections( MindArea *area , Min
 	}
 }
 
-void WikiAreaPages::createAreaPages_getInternalConnectionTableLine( MindArea *area , MindLocalCircuitDef& circuit , MindLocalCircuitConnectionDef *link , StringList& lines ) {
+void WikiAreaPages::createAreaPages_addInternalConnectionTableLine( MindArea *area , MindLocalCircuitDef& circuit , MindLocalCircuitConnectionDef *link , StringList& lines ) {
 	String line;
 	String value1;
 	if( link == NULL ) {
 		// add heading
-		lines.add( "" );
-		line = "*Internal Region Connections:*";
-		lines.add( line );
 		lines.add( "" );
 		line = "|| *Source Region* || *Target Region* || *Type* || *Reference* ||";
 		lines.add( line );
