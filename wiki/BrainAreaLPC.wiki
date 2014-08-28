@@ -21,7 +21,8 @@
 || SBL || Lower Body Conscious Sensations || [BrainRegionLPC_HM_GR LPC.HM.GR], [BrainRegionLPC_PN_SG_LDRG LPC.PN.SG.LDRG], [BrainRegionLPC_SC_PH_LMG LPC.SC.PH.LMG], [BrainRegionLPC_SC_PH_LSG LPC.SC.PH.LSG] ||
 || SBU || Upper Body Conscious Sensations || [BrainRegionLPC_HM_CU LPC.HM.CU], [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG], [BrainRegionLPC_SC_PH_UMG LPC.SC.PH.UMG], [BrainRegionLPC_SC_PH_USG LPC.SC.PH.USG] ||
 || SF || Sensory Face || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR], [BrainRegionLPC_HP_PTP_PTR LPC.HP.PTP.PTR], [BrainRegionLPC_MM_MSTR LPC.MM.MSTR], [BrainRegionLPC_PN_SG_TRG LPC.PN.SG.TRG] ||
-|| STS || Taste and Smell Senses || [BrainRegionLPC_FT_AON LPC.FT.AON], [BrainRegionLPC_HM_SOL LPC.HM.SOL], [BrainRegionLPC_PN_SG_GNG LPC.PN.SG.GNG], [BrainRegionLPC_PN_SG_JUG LPC.PN.SG.JUG], [BrainRegionLPC_PN_SG_NOD LPC.PN.SG.NOD], [BrainRegionLPC_PN_SG_OLB LPC.PN.SG.OLB], [BrainRegionLPC_PN_SG_PET LPC.PN.SG.PET] ||
+|| SSS || Smell Senses || [BrainRegionLPC_FT_AON LPC.FT.AON], [BrainRegionLPC_PN_SG_OLB LPC.PN.SG.OLB] ||
+|| STS || Taste Senses || [BrainRegionLPC_HM_SOL LPC.HM.SOL], [BrainRegionLPC_PN_SG_GNG LPC.PN.SG.GNG], [BrainRegionLPC_PN_SG_JUG LPC.PN.SG.JUG], [BrainRegionLPC_PN_SG_NOD LPC.PN.SG.NOD], [BrainRegionLPC_PN_SG_PET LPC.PN.SG.PET] ||
 
 == ABS - Breathing and Swallowing Motor ==
 
@@ -566,18 +567,44 @@
 || [BrainAreaLRC LRC] || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || [BrainRegionLRC_HP_PRF_GCR LRC.HP.PRF.GCR] || Gigantocellular Reticular Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLRC_MM_SC_INT LRC.MM.SC.INT] || Intermediate Superior Colliculus || nucleus-nucleus || (unknown reference) ||
 
-== STS - Taste and Smell Senses ==
+== SSS - Smell Senses ==
+
+
+<img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_SSS.dot.png" alt="unavailable">
+
+|| *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
+|| [BrainRegionLPC_FT_AON LPC.FT.AON] || Anterior Olfactory Nucleus || nucleus || LSM || Regulate odor information flow ||  ||
+|| [BrainRegionLPC_PN_SG_OLB LPC.PN.SG.OLB] || Olfactory Bulb || sensory ganglion || LSC || Olfaction patterns || in=glomeruli -> 1000x1 -> out=mitral ||
+
+*Internal Region Connections:*
+
+|| *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionLPC_PN_SG_OLB LPC.PN.SG.OLB] || [BrainRegionLPC_FT_AON LPC.FT.AON] || ganglion-nucleus || (unknown reference) ||
+
+*External Inbound Region Connections:*
+
+|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaLAC LAC] || [BrainRegionLPC_PN_SG_OLB LPC.PN.SG.OLB] || [BrainRegionLAC_FD_HT_TBM LAC.FD.HT.TBM] || Tuberomammillary Nucleus || nucleus-ganglion || (unknown reference) ||
+|| <font color="red">Target</font> || || || || || ||
+|| [BrainAreaTSA TSA] || [BrainRegionLPC_PN_SG_OLB LPC.PN.SG.OLB] || [BrainRegionTARGET_TSA_NOSE TARGET.TSA.NOSE] || Nose || nose-olfactory-mucosa || (unknown reference) ||
+
+*External Outbound Region Connections:*
+
+|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaMMA MMA] || [BrainRegionLPC_FT_AON LPC.FT.AON] || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || Piriform Cortex || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S1571064507000243 KIV model of cortico-hippocampal formation with subcortical projections for motor actions (AON -> PC)] ||
+
+== STS - Taste Senses ==
 
 
 <img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_STS.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionLPC_FT_AON LPC.FT.AON] || Anterior Olfactory Nucleus || nucleus || LSM || Regulate odor information flow ||  ||
 || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || Solitary Nucleus || nucleus || LSM || Carry taste buds, thoracic and abdominal viscera || c.n. VII, IX, X ||
 || [BrainRegionLPC_PN_SG_GNG LPC.PN.SG.GNG] || Geniculate Ganglion || sensory ganglion || LSC || Trophic support for survival || Innervation taste buds, ear skin ||
 || [BrainRegionLPC_PN_SG_JUG LPC.PN.SG.JUG] || Jugular Ganglion || sensory ganglion || LSC || Integration of external auditory meatus (auricular branch), cranial meninges<BR>(meningeal branch), and external surface of tympanic membrane || to Sensory Trigeminal Nucleus ||
 || [BrainRegionLPC_PN_SG_NOD LPC.PN.SG.NOD] || Nodose Ganglion || sensory ganglion || LSC || Integration of afferent signaling from viscera || caudal SOL - larynx, trachea, gut, and aortic arch<BR>receptors; rostral SOL - taste receptors of<BR>posterior oral cavity ||
-|| [BrainRegionLPC_PN_SG_OLB LPC.PN.SG.OLB] || Olfactory Bulb || sensory ganglion || LSC || Olfaction patterns || in=glomeruli -> 1000x1 -> out=mitral ||
 || [BrainRegionLPC_PN_SG_PET LPC.PN.SG.PET] || Petrosal Ganglion || sensory ganglion || LSC || Integration of afferent signaling from viscera || mucous membranes of pharynx, middle ear, carotid<BR>body and sinus, taste sensor on the posterior third<BR>of tongue to SOL ||
 
 *Internal Region Connections:*
@@ -586,7 +613,6 @@
 || [BrainRegionLPC_PN_SG_GNG LPC.PN.SG.GNG] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || ganglion-nucleus || (unknown reference) ||
 || [BrainRegionLPC_PN_SG_JUG LPC.PN.SG.JUG] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || ganglion-nucleus || (unknown reference) ||
 || [BrainRegionLPC_PN_SG_NOD LPC.PN.SG.NOD] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || ganglion-nucleus || (unknown reference) ||
-|| [BrainRegionLPC_PN_SG_OLB LPC.PN.SG.OLB] || [BrainRegionLPC_FT_AON LPC.FT.AON] || ganglion-nucleus || (unknown reference) ||
 || [BrainRegionLPC_PN_SG_PET LPC.PN.SG.PET] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || ganglion-nucleus || (unknown reference) ||
 
 *External Inbound Region Connections:*
@@ -594,7 +620,6 @@
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaAMA AMA] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || [BrainRegionBFA_FT_IPAC BFA.FT.IPAC] || Interstitial Anterior Commissural Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaLAC LAC] || [BrainRegionLPC_PN_SG_OLB LPC.PN.SG.OLB] || [BrainRegionLAC_FD_HT_TBM LAC.FD.HT.TBM] || Tuberomammillary Nucleus || nucleus-ganglion || (unknown reference) ||
 || <font color="red">Target</font> || || || || || ||
 || [BrainAreaTEA TEA] || [BrainRegionLPC_PN_SG_GNG LPC.PN.SG.GNG] || [BrainRegionTARGET_TEA_FEEDER TARGET.TEA.FEEDER] || Mouth feeder || soft-palate-sparse-taste-receptors || (unknown reference) ||
 ||  || [BrainRegionLPC_PN_SG_JUG LPC.PN.SG.JUG] || [BrainRegionTARGET_TEA_LUNG TARGET.TEA.LUNG] || Lung || pulmonary-stretch-receptors || (unknown reference) ||
@@ -609,7 +634,6 @@
 || [BrainAreaTSA TSA] || [BrainRegionLPC_PN_SG_GNG LPC.PN.SG.GNG] || [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || Ear || ear-somatic || (unknown reference) ||
 ||  || [BrainRegionLPC_PN_SG_JUG LPC.PN.SG.JUG] || [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || Ear || ear-visceral || (unknown reference) ||
 ||  || [BrainRegionLPC_PN_SG_NOD LPC.PN.SG.NOD] || [BrainRegionTARGET_TSA_NOSE TARGET.TSA.NOSE] || Nose || nose-visceral-vagus || (unknown reference) ||
-||  || [BrainRegionLPC_PN_SG_OLB LPC.PN.SG.OLB] || [BrainRegionTARGET_TSA_NOSE TARGET.TSA.NOSE] || Nose || nose-olfactory-mucosa || (unknown reference) ||
 ||  || [BrainRegionLPC_PN_SG_PET LPC.PN.SG.PET] || [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || Ear || ear-timpanic-cavity || (unknown reference) ||
 ||  ||  || [BrainRegionTARGET_TSA_NOSE TARGET.TSA.NOSE] || Nose || nose-visceral-pharynx || (unknown reference) ||
 
@@ -630,7 +654,6 @@
 || [BrainAreaLRC LRC] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || [BrainRegionLRC_HM_RA LRC.HM.RA] || Retroambigualis Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLRC_HP_PN_KFN LRC.HP.PN.KFN] || Kolliker-Fuse Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaMCA MCA] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || [BrainRegionBMA_HP_PB BMA.HP.PB] || Parabrachial Nucleus || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (SOL -> PB)] ||
-|| [BrainAreaMMA MMA] || [BrainRegionLPC_FT_AON LPC.FT.AON] || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || Piriform Cortex || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S1571064507000243 KIV model of cortico-hippocampal formation with subcortical projections for motor actions (AON -> PC)] ||
 
 = Thirdparty Circuits =
 (generated)
