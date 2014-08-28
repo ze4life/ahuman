@@ -8,11 +8,11 @@
 (generated)
 
 || *ID* || *Name* || *Regions* ||
-|| LRB || Breathing and Swallowing Reflexes || [BrainRegionLRC_HM_RA LRC.HM.RA], [BrainRegionLRC_HP_PN_KFN LRC.HP.PN.KFN], [BrainRegionLRC_HP_PN_SC LRC.HP.PN.SC], [BrainRegionLRC_HP_PRF_CRF LRC.HP.PRF.CRF], [BrainRegionLRC_HP_PRF_PVR LRC.HP.PRF.PVR] ||
+|| LRB || Breathing and Swallowing Reflexes || [BrainRegionLRC_HM_RA LRC.HM.RA], [BrainRegionLRC_HM_TGM_PA5 LRC.HM.TGM.PA5], [BrainRegionLRC_HP_PN_KFN LRC.HP.PN.KFN], [BrainRegionLRC_HP_PN_SC LRC.HP.PN.SC], [BrainRegionLRC_HP_PRF_CRF LRC.HP.PRF.CRF], [BrainRegionLRC_HP_PRF_PVR LRC.HP.PRF.PVR] ||
 || LRF || Frontal Visual Reflexes || [BrainRegionLRC_MM_CJ LRC.MM.CJ], [BrainRegionLRC_MM_DSCH LRC.MM.DSCH], [BrainRegionLRC_MM_RIMLF LRC.MM.RIMLF] ||
 || LRM || Multisensory Orienting Reflexes || [BrainRegionLRC_MM_EIC LRC.MM.EIC], [BrainRegionLRC_MM_SC_DEEP LRC.MM.SC.DEEP], [BrainRegionLRC_MM_SC_INT LRC.MM.SC.INT] ||
 || LRP || Postural Control Reflexes || [BrainRegionLRC_HP_PRF_GCR LRC.HP.PRF.GCR], [BrainRegionLRC_HP_PRF_RPO LRC.HP.PRF.RPO] ||
-|| LRV || Direct Visual Reflexes || [BrainRegionLRC_HM_TGM_PA5 LRC.HM.TGM.PA5], [BrainRegionLRC_MM_PT_NOT LRC.MM.PT.NOT], [BrainRegionLRC_MM_PT_PON LRC.MM.PT.PON], [BrainRegionLRC_MM_PT_SL LRC.MM.PT.SL], [BrainRegionLRC_MM_SC_SUP LRC.MM.SC.SUP] ||
+|| LRV || Direct Visual Reflexes || [BrainRegionLRC_MM_PT_NOT LRC.MM.PT.NOT], [BrainRegionLRC_MM_PT_PON LRC.MM.PT.PON], [BrainRegionLRC_MM_PT_SL LRC.MM.PT.SL], [BrainRegionLRC_MM_SC_SUP LRC.MM.SC.SUP] ||
 
 == Breathing and Swallowing Reflexes ==
 
@@ -21,6 +21,7 @@
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
 || [BrainRegionLRC_HM_RA LRC.HM.RA] || Retroambigualis Nucleus || nucleus || LRM || Groups of premotor interneurons producing detailed motor actions || Different combination of activation of these<BR>premotor neurons determines vocalization, vomiting,<BR>coughing, sneezing, mating posture, or child<BR>delivery; ventral respiratory group ||
+|| [BrainRegionLRC_HM_TGM_PA5 LRC.HM.TGM.PA5] || Paratrigeminal Nucleus || nucleus || LRS || Orofacial nociceptive sensory processing || Somatosensory reflex, site for nociceptive inputs<BR>from sciatic innervation field ||
 || [BrainRegionLRC_HP_PN_KFN LRC.HP.PN.KFN] || Kolliker-Fuse Nucleus || nucleus || LRM || Control of protruder tongue muscles contraction to maintain respiration || To hypoglossal nucleus and phrenic nucleus; pontine<BR>respiratory group = KFN + Medial PBN ||
 || [BrainRegionLRC_HP_PN_SC LRC.HP.PN.SC] || Nucleus Subceruleus || nucleus || LRM || Tongue control || To hypoglossal nucleus; A7 group ||
 || [BrainRegionLRC_HP_PRF_CRF LRC.HP.PRF.CRF] || Caudal Pontine Reticular Nucleus || nucleus || LRM || Mediate head movements || Grinding of the teeth in sleep, projections from<BR>superior colliculus, to spinal cord, extends to<BR>facial ||
@@ -35,6 +36,7 @@
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
+|| [BrainAreaBAA BAA] || [BrainRegionLRC_HM_TGM_PA5 LRC.HM.TGM.PA5] || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || Somatosensory Cortex || neocortex-nucleus || (unknown reference) ||
 || [BrainAreaMAA MAA] || [BrainRegionLRC_HP_PRF_CRF LRC.HP.PRF.CRF] || [BrainRegionMCA_NC_MC MCA.NC.MC] || Motor Cortex || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> RF, abstract)] ||
 ||  ||  || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || Supplementary Motor Cortex || neocortex-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (M2 -> RF, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
@@ -53,6 +55,7 @@
 || [BrainAreaLPC LPC] || [BrainRegionLRC_HM_RA LRC.HM.RA] || [BrainRegionLPC_HM_AMB LPC.HM.AMB] || Ambiguus Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLPC_SC_VH_ONF LPC.SC.VH.ONF] || Onuf's Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLPC_SC_VH_PHR LPC.SC.VH.PHR] || Phrenic Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLRC_HM_TGM_PA5 LRC.HM.TGM.PA5] || [BrainRegionLPC_HP_FCM LPC.HP.FCM] || Facial Motor Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionLRC_HP_PN_KFN LRC.HP.PN.KFN] || [BrainRegionLPC_HM_HYG LPC.HM.HYG] || Hypoglossal Motor Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionLRC_HP_PN_SC LRC.HP.PN.SC] || [BrainRegionLPC_HM_HYG LPC.HM.HYG] || Hypoglossal Motor Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionLRC_HP_PRF_CRF LRC.HP.PRF.CRF] || [BrainRegionLPC_HM_AMB LPC.HM.AMB] || Ambiguus Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> NucleusAmbiguus, abstract)] ||
@@ -199,7 +202,6 @@
 <img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LRC_LRV.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionLRC_HM_TGM_PA5 LRC.HM.TGM.PA5] || Paratrigeminal Nucleus || nucleus || LRS || Orofacial nociceptive sensory processing || Somatosensory reflex, site for nociceptive inputs<BR>from sciatic innervation field ||
 || [BrainRegionLRC_MM_PT_NOT LRC.MM.PT.NOT] || Nucleus of Optic Tract || nucleus || LRS || Encode retinal error information during smooth pursuit eye movements || Guide motor learning during horizontal SP;<BR>ipsilateral horizontal ocular pursuit ||
 || [BrainRegionLRC_MM_PT_PON LRC.MM.PT.PON] || Pretectal Olivary Nucleus || nucleus || LRS || Pupillary light reflex and modulating subcortical nuclei involved in circadian<BR>rhythms || Primary visual centre, involved in the pupillary<BR>light reflex, receives retinal input ||
 || [BrainRegionLRC_MM_PT_SL LRC.MM.PT.SL] || Sublentiform Nucleus || nucleus || LRS || Accomodation reflex || Combines visual cortex and retinal input to project<BR>to OCN, receives retinal input ||
@@ -215,7 +217,6 @@
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
-|| [BrainAreaBAA BAA] || [BrainRegionLRC_HM_TGM_PA5 LRC.HM.TGM.PA5] || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || Somatosensory Cortex || neocortex-nucleus || (unknown reference) ||
 || [BrainAreaSAA SAA] || [BrainRegionLRC_MM_PT_NOT LRC.MM.PT.NOT] || [BrainRegionVBA_FD_LGN VBA.FD.LGN] || Lateral Geniculate Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionLRC_MM_PT_SL LRC.MM.PT.SL] || [BrainRegionVCA_NC_V1 VCA.NC.V1] || Primary Visual Cortex || neocortex-nucleus || (unknown reference) ||
 ||  || [BrainRegionLRC_MM_SC_SUP LRC.MM.SC.SUP] || [BrainRegionVCA_NC_IPL_MST VCA.NC.IPL.MST] || Medial Superior Temporal Area || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> SCi, abstract)] ||
@@ -244,8 +245,7 @@
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLAC LAC] || [BrainRegionLRC_MM_PT_PON LRC.MM.PT.PON] || [BrainRegionLAC_MM_EWN LAC.MM.EWN] || Edinger-Westphal Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Pretectum -> EWN, abstract)] ||
 ||  || [BrainRegionLRC_MM_PT_SL LRC.MM.PT.SL] || [BrainRegionLAC_MM_EWN LAC.MM.EWN] || Edinger-Westphal Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Pretectum -> EWN, abstract)] ||
-|| [BrainAreaLPC LPC] || [BrainRegionLRC_HM_TGM_PA5 LRC.HM.TGM.PA5] || [BrainRegionLPC_HP_FCM LPC.HP.FCM] || Facial Motor Nucleus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionLRC_MM_PT_SL LRC.MM.PT.SL] || [BrainRegionLPC_MM_OCN LPC.MM.OCN] || Oculomotor Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLPC LPC] || [BrainRegionLRC_MM_PT_SL LRC.MM.PT.SL] || [BrainRegionLPC_MM_OCN LPC.MM.OCN] || Oculomotor Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLRC LRC] || [BrainRegionLRC_MM_SC_SUP LRC.MM.SC.SUP] || [BrainRegionLRC_MM_SC_INT LRC.MM.SC.INT] || Intermediate Superior Colliculus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCs -> SCi, abstract)] ||
 || [BrainAreaMCA MCA] || [BrainRegionLRC_MM_SC_SUP LRC.MM.SC.SUP] || [BrainRegionVBA_MM_RP_RIP VBA.MM.RP.RIP] || Raphe Interpositus Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (SC -> RIP, abstract)] ||
 
