@@ -43,32 +43,39 @@
 				/>
 		</element>
 
-		<element id="MM.MRF" name="Mesencephalic Reticular Formation" category="midbrain"
+		<element id="MM.RF" name="Mesencephalic Reticular Formation" category="midbrain"
 			notes="Saccades, fixation, gaze holding and vergence. Space-time coordinated rapid eye movements"
 			>
-			<element id="FBA.MM.CNF" name="Cuneiform Nucleus" mapped="true" type="nucleus"
-				refs="NL:[http://neurolex.org/wiki/Category:Cuneiform_nucleus Cuneiform nucleus]"
-				function="Passive coping strategy to novel, painful or threatening stimuli"
-				notes="modulatory nucleus; medial part of midbrain RF"
+
+			<element id="MM.RF.MED" name="Mesencephalic Reticular Formation, Medial Column" category="midbrain"
+				fgroup="medial column"
 				>
-				<element name="Subcuneiform Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Subcuneiform_nucleus Subcuneiform nucleus]"/>
+				<element id="LLC.MM.CNF" name="Cuneiform Nucleus" mapped="true" type="nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Cuneiform_nucleus Cuneiform nucleus]"
+					function="Passive coping strategy to novel, painful or threatening stimuli"
+					notes="modulatory nucleus; medial part of midbrain RF"
+					/>
+				<element id="LLC.MM.SCNF" name="Subcuneiform Nucleus" mapped="true" type="nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Subcuneiform_nucleus Subcuneiform nucleus]"
+					function="Initiation of gait, feedback control of saccade accuracy"
+					notes="contributes to generation of estimate of target or eye position coded in craniotopic coordinates"
+					/>
 			</element>
 
-			<element id="FBA.MM.RP.MB" name="Raphe Nuclei of Midbrain" category="midbrain"
-				fgroup="menian column"
+			<element id="MM.RF.MID" name="Mesencephalic Reticular Formation, Midline Column" category="midbrain"
+				fgroup="midline column"
 				refs="NL:[http://neurolex.org/wiki/Category:Midbrain_raphe_nuclei Midbrain raphe nuclei]"
 				>
-				<element id="FBA.MM.RP.MRN" name="Median Raphe Nucleus" mapped="true" type="nucleus" 
+				<element id="FBA.MM.RF.SC" name="Superior Central Nucleus" mapped="true" type="nucleus" 
 					refs="NL:[http://neurolex.org/wiki/Category:Superior_central_nucleus Superior central nucleus]"
 					function="Block or temporarily suspend mnemonic processes in the hippocampus"
-					notes="Directs HC to disregard insignificant events; inhibitory nucleus"
+					notes="Directs HC to disregard insignificant events; inhibitory nucleus; B6,B8"
 					/>
 				<element id="FBA.MM.RP.DRN" name="Dorsal Raphe Nucleus" mapped="true" type="nucleus" 
 					refs="NL:[http://neurolex.org/wiki/Category:Dorsal_raphe_nucleus Dorsal raphe nucleus]"
 					function="Regulation of sleep and mood"
 					notes="Major source of 5HT; inhibitory nucleus"
 					>
-					<element name="Serotonergic cell group B6"/>
 					<element name="Serotonergic cell group B7" refs="NL:[http://neurolex.org/wiki/Category:Serotonergic_cell_group_B7 Serotonergic cell group B7]"/>
 				</element>
 				<element id="VBA.MM.RP.RIP" name="Raphe Interpositus Nucleus" mapped="true" type="nucleus" 
@@ -308,24 +315,89 @@
 			</element>
 		</element>
 
-		<element id="FBA.HP.LC" name="Locus Coeruleus" mapped="true" type="nucleus" category="midbrain"
-			refs="NL:[http://neurolex.org/wiki/Category:Locus_ceruleus Locus ceruleus]"
-			function="Regulate the intensity of responses to salient stimuli"
-			notes="NE Source, enhance signal-to-noise ratio, suppressing irrelevant stimuli (lateral inhibition); inhibitory nucleus"
-			/>
-
-		<element id="BMA.HP.PB" name="Parabrachial Nucleus" mapped="true" type="nucleus" category="midbrain"
-			refs="NL:[http://neurolex.org/wiki/Category:Parabrachial_nucleus Parabrachial nucleus]"
-			function="Source of short-latency nociceptive input"
+		<element id="HP.RF" name="Pontine Reticular Formation" category="midbrain"
+			refs="NL:[http://neurolex.org/wiki/Category:Pontine_reticular_formation Pontine reticular formation]"
 			>
-			<element name="Subbrachial Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Subbrachial_nucleus Subbrachial nucleus]"/>
-			<element name="Lateral Parabrachial Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_parabrachial_nucleus Lateral parabrachial nucleus]">
-				<element name="External Lateral Parabrachial Nucleus" refs="NL:[http://neurolex.org/wiki/Category:External_lateral_parabrachial_nucleus External lateral parabrachial nucleus]"/>
+
+			<element id="HP.RF.MID" name="Pontine Reticular Formation, Midline Column" category="midbrain"
+				fgroup="midline column"
+				>
+				<element id="FBA.HP.RP" name="Raphe Nuclei of Pons" category="midbrain"
+					comment="Paramedian Reticular Nucleus"
+					>
+					<element id="FBA.HP.RP.PRN" name="Pontine Raphe Nucleus" mapped="true" type="nucleus" 
+						refs="NL:[http://neurolex.org/wiki/Category:Pontine_raphe_nucleus Pontine raphe nucleus]"
+						function="Regulation of sleep cycle"
+						notes="Projects to CR, forebrain; inhibitory nucleus"
+					/>
+					<element id="FBA.HP.RP.MRN" name="Superior Central Raphe Nucleus" mapped="true" type="nucleus"
+						refs="NL:[http://neurolex.org/wiki/Category:Superior_central_nucleus Superior central nucleus]"
+						function="Hallucinations"
+						notes="Insomnia; inhibitory nucleus"
+						/>
+					<element id="FBA.HP.RP.LI" name="Nucleus Linearis" mapped="true" type="nucleus"
+						refs="NL:[http://neurolex.org/wiki/Category:Inferior_central_nucleus Inferior central nucleus]"
+						function="Release of 5-HT was only obtained on stimulation of this nucleus"
+						notes="Does not project to CR, but to forebrain"
+						/>
+				</element>
 			</element>
-			<element name="Medial Parabrachial Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_parabrachial_nucleus Medial parabrachial nucleus]"/>
+
+			<element id="HP.RF.MED" name="Pontine Reticular Formation, Medial Column" category="midbrain"
+				refs="NL:[http://neurolex.org/wiki/Category:Medial_pontine_reticular_formation Medial pontine reticular formation]"
+				fgroup="medial column"
+				>
+				<element id="HP.PRF.PPRF" name="Paramedian Pontine Reticular Formation"
+					>
+					<element id="LRC.HP.PRF.RPO" name="Oral Pontine Reticular Nucleus" mapped="true" type="nucleus"
+						refs="NL:[http://neurolex.org/wiki/Category:Oral_pontine_reticular_nucleus Oral pontine reticular nucleus]"
+						function="Mediation of changing to and from REM sleep"
+						notes="Part of horizontal gaze center, projects to spinal cord and abducens; excites spinal extensors, inhibit flexors"
+						/>
+					<element id="LRC.HP.PRF.CRF" name="Caudal Pontine Reticular Nucleus" mapped="true" type="nucleus"
+						refs="NL:[http://neurolex.org/wiki/Category:Caudal_pontine_reticular_nucleus Caudal pontine reticular nucleus]"
+						function="Mediate head movements"
+						notes="Grinding of the teeth in sleep, projections from superior colliculus, to spinal cord, extends to facial"
+						/>
+				</element>
+				<element id="FBA.HP.LC" name="Locus Coeruleus" mapped="true" type="nucleus" category="midbrain"
+					refs="NL:[http://neurolex.org/wiki/Category:Locus_ceruleus Locus ceruleus]"
+					function="Regulate the intensity of responses to salient stimuli"
+					notes="NE Source, enhance signal-to-noise ratio, suppressing irrelevant stimuli (lateral inhibition); inhibitory nucleus"
+					/>
+				<element id="LRC.HP.PRF.PVR" name="Parvocellular Reticular Nucleus" mapped="true" type="nucleus"
+					function="Flow of respiratory current out of organism"
+					notes="Projects to facial nucleus, hypoglossal nucleus and parabrachial nucleus"
+					>
+					<element name="Serotonergic Cell Group B8" refs="NL:[http://neurolex.org/wiki/Category:Serotonergic_cell_group_B8 Serotonergic cell group B8]"/>
+					<element name="Serotonergic Cell Group B9" refs="NL:[http://neurolex.org/wiki/Category:Serotonergic_cell_group_B9 Serotonergic cell group B9]"/>
+				</element>
+			</element>
+
+			<element id="HP.RF.LAT" name="Pontine Reticular Formation, Lateral Column" category="midbrain"
+				fgroup="lateral column"
+				>
+				<element id="LLC.HP.PRF.PDT" name="Pontine Reticulotegmental Nucleus" mapped="true" type="nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Reticulotegmental_nucleus Reticulotegmental nucleus]"
+					function="Mediate saccadic eye movements"
+					notes="Inactivation leads to deficit of expression, but not learning"
+					comments="Nucleus of Bechterew, tegmentopontine reticular nucleus, projections from superior colliculus to vermis of CR"
+					/>
+				<element id="BMA.HP.PB" name="Parabrachial Nucleus" mapped="true" type="nucleus" category="midbrain"
+					refs="NL:[http://neurolex.org/wiki/Category:Parabrachial_nucleus Parabrachial nucleus]"
+					function="Source of short-latency nociceptive input"
+					>
+					<element name="Subbrachial Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Subbrachial_nucleus Subbrachial nucleus]"/>
+					<element name="Lateral Parabrachial Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_parabrachial_nucleus Lateral parabrachial nucleus]">
+						<element name="External Lateral Parabrachial Nucleus" refs="NL:[http://neurolex.org/wiki/Category:External_lateral_parabrachial_nucleus External lateral parabrachial nucleus]"/>
+					</element>
+					<element name="Medial Parabrachial Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_parabrachial_nucleus Medial parabrachial nucleus]"/>
+				</element>
+			</element>
+
 		</element>
 
-		<element id="BGA.HP.PPN" name="Pedunculopontine Nucleus" mapped="true" type="nucleus" category="midbrain"
+		<element id="LLC.HP.PPN" name="Pedunculopontine Nucleus" mapped="true" type="nucleus" category="midbrain"
 			refs="NL:[http://neurolex.org/wiki/Category:Pedunculopontine_tegmental_nucleus Pedunculopontine tegmental nucleus]"
 			function="Provide sensory feedback to cerebral cortex; modulatory"
 			>
@@ -367,58 +439,6 @@
 				refs="NL:[http://neurolex.org/wiki/Category:Nucleus_subceruleus Nucleus subceruleus]"
 				function="Tongue control"
 				notes="To hypoglossal nucleus; A7 group"
-				/>
-		</element>
-
-		<element id="HP.PRF" name="Pontine Reticular Formation" category="midbrain" 
-			refs="NL:[http://neurolex.org/wiki/Category:Pontine_reticular_formation Pontine reticular formation]"
-			>
-			<element id="HP.PRF.MPRF" name="Medial Pontine Reticular Formation" refs="NL:[http://neurolex.org/wiki/Category:Medial_pontine_reticular_formation Medial pontine reticular formation]">
-				<element id="HP.PRF.PPRF" name="Paramedian Pontine Reticular Formation">
-					<element id="LRC.HP.PRF.RPO" name="Oral Pontine Reticular Nucleus" mapped="true" type="nucleus"
-						refs="NL:[http://neurolex.org/wiki/Category:Oral_pontine_reticular_nucleus Oral pontine reticular nucleus]"
-						function="Mediation of changing to and from REM sleep"
-						notes="Part of horizontal gaze center, projects to spinal cord and abducens; excites spinal extensors, inhibit flexors"
-						/>
-					<element id="LRC.HP.PRF.CRF" name="Caudal Pontine Reticular Nucleus" mapped="true" type="nucleus"
-						refs="NL:[http://neurolex.org/wiki/Category:Caudal_pontine_reticular_nucleus Caudal pontine reticular nucleus]"
-						function="Mediate head movements"
-						notes="Grinding of the teeth in sleep, projections from superior colliculus, to spinal cord, extends to facial"
-						/>
-				</element>
-				<element id="LLC.HP.PRF.PDT" name="Pontine Reticulotegmental Nucleus" mapped="true" type="nucleus"
-					refs="NL:[http://neurolex.org/wiki/Category:Reticulotegmental_nucleus Reticulotegmental nucleus]"
-					function="Mediate saccadic eye movements"
-					notes="Inactivation leads to deficit of expression, but not learning"
-					comments="Nucleus of Bechterew, tegmentopontine reticular nucleus, projections from superior colliculus to vermis of CR"
-					/>
-			</element>
-			<element id="LRC.HP.PRF.PVR" name="Parvocellular Reticular Nucleus" mapped="true" type="nucleus"
-				function="Flow of respiratory current out of organism"
-				notes="Projects to facial nucleus, hypoglossal nucleus and parabrachial nucleus"
-				>
-				<element name="Serotonergic Cell Group B8" refs="NL:[http://neurolex.org/wiki/Category:Serotonergic_cell_group_B8 Serotonergic cell group B8]"/>
-				<element name="Serotonergic Cell Group B9" refs="NL:[http://neurolex.org/wiki/Category:Serotonergic_cell_group_B9 Serotonergic cell group B9]"/>
-			</element>
-		</element>
-
-		<element id="FBA.HP.RP" name="Raphe Nuclei of Pons" category="midbrain"
-			comment="Paramedian Reticular Nucleus"
-			>
-			<element id="FBA.HP.RP.PRN" name="Pontine Raphe Nucleus" mapped="true" type="nucleus" 
-				refs="NL:[http://neurolex.org/wiki/Category:Pontine_raphe_nucleus Pontine raphe nucleus]"
-				function="Regulation of sleep cycle"
-				notes="Projects to CR, forebrain; inhibitory nucleus"
-			/>
-			<element id="FBA.HP.RP.LI" name="Nucleus Linearis" mapped="true" type="nucleus"
-				refs="NL:[http://neurolex.org/wiki/Category:Inferior_central_nucleus Inferior central nucleus]"
-				function="Release of 5-HT was only obtained on stimulation of this nucleus"
-				notes="Does not project to CR, but to forebrain"
-				/>
-			<element id="FBA.HP.RP.MRN" name="Superior Central Raphe Nucleus" mapped="true" type="nucleus"
-				refs="NL:[http://neurolex.org/wiki/Category:Superior_central_nucleus Superior central nucleus]"
-				function="Hallucinations"
-				notes="Insomnia; inhibitory nucleus"
 				/>
 		</element>
 
@@ -564,38 +584,54 @@
 			notes="Receives sensory inputs from neck region"
 			/>
 
-		<element id="LLC.HM.RF.MED" name="Medullary Reticular Formation" mapped="true" type="nucleus" category="midbrain"
+		<element id="HM.RF" name="Medullary Reticular Formation" category="midbrain"
 			refs="NL:[http://neurolex.org/wiki/Category:Medullary_reticular_formation Medullary reticular formation]"
-			function="Somatic motor control, cardiovascular control, pain modulation, sleep and consciousness, habituation"
 			notes="100 small neural networks, habituation - sleep in load city but awake from crying baby"
 			>
-			<element name="Central Medullary Reticular Nucleus"/>
-			<element name="Lateral Reticular Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_reticular_nucleus Lateral reticular nucleus]"/>
-		</element>
 
-		<element id="LRC.HP.PRF.GCR" name="Gigantocellular Reticular Nucleus" mapped="true" type="nucleus" category="midbrain"
-			refs="NL:[http://neurolex.org/wiki/Category:Lateral_paragigantocellular_nucleus Lateral paragigantocellular nucleus]"
-			function="Vasodepressor center"
-			notes="Projects to hypoglossal nucleus, abducens; medullary (lateral) reticulospinal tract; excite trunk flexors, inhibit extensors; stimulation induces inspiration"
-			/>
+			<element id="HM.RF.MID" name="Medullary Reticular Formation, Midline Column" 
+				>
+				<element id="FBA.HM.RP" name="Raphe Nucleus of Medulla" mapped="true" type="nucleus" category="midbrain"
+					refs="NL:[http://neurolex.org/wiki/Category:Medullary_raphe_nuclear_complex Medullary raphe nuclear complex]"
+					function="Regulate moods, temper anxiety, and relieve depression"
+					notes="Releases 5HT (serotonin) hormone (happiness); inhibitory nucleus"
+					>
+					<element name="Raphe Magnus Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Nucleus_raphe_magnus Nucleus raphe magnus]"/>
+					<element name="Raphe Obscurus Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Nucleus_raphe_obscurus Nucleus raphe obscurus]">
+						<element name="Caudal Nucleus Raphe Obscurus" refs="NL:[http://neurolex.org/wiki/Category:Caudal_nucleus_raphe_obscurus Caudal nucleus raphe obscurus]"/>
+					</element>
+					<element name="Raphe Pallidus Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Nucleus_raphe_pallidus Nucleus raphe pallidus]"/>
+				</element>
+			</element>
+
+			<element id="HM.RF.MED" name="Medullary Reticular Formation, Medial Column" 
+				>
+				<element id="LLC.HM.RF.MED" name="Central Medullary Reticular Nucleus" mapped="true" type="nucleus" category="midbrain"
+					function="Somatic motor control, cardiovascular control, pain modulation, sleep and consciousness, habituation"
+					/>
+				<element id="LRC.HP.PRF.GCR" name="Gigantocellular Reticular Nucleus" mapped="true" type="nucleus" category="midbrain"
+					refs="NL:[http://neurolex.org/wiki/Category:Lateral_paragigantocellular_nucleus Lateral paragigantocellular nucleus]"
+					function="Vasodepressor center"
+					notes="Projects to hypoglossal nucleus, abducens; medullary (lateral) reticulospinal tract; excite trunk flexors, inhibit extensors; stimulation induces inspiration"
+					/>
+			</element>
+
+			<element id="HM.RF.LAT" name="Medullary Reticular Formation, Lateral Column" 
+				function="Somatic motor control, cardiovascular control, pain modulation, sleep and consciousness, habituation"
+				>
+				<element id="LLC.HM.RF.LAT" name="Lateral Reticular Nucleus" mapped="true" type="nucleus" category="midbrain"
+					refs="NL:[http://neurolex.org/wiki/Category:Lateral_reticular_nucleus Lateral reticular nucleus]"
+					function="provide cerebellum with segregated information from several spinal systems controlling posture, reaching, grasping, locomotion, scratching and respiration"
+					/>
+			</element>
+
+		</element>
 
 		<element id="LLC.HM.NPH" name="Prepositus Nucleus" mapped="true" type="nucleus" category="midbrain"
 			refs="NL:[http://neurolex.org/wiki/Category:Nucleus_prepositus Nucleus prepositus]"
 			function="Integrate PPRF phasic signal to provide tonic signal of abducens"
 			notes="Part of horizontal gaze holding system"
 			/>
-
-		<element id="FBA.HM.RP" name="Raphe Nucleus of Medulla" mapped="true" type="nucleus" category="midbrain"
-			refs="NL:[http://neurolex.org/wiki/Category:Medullary_raphe_nuclear_complex Medullary raphe nuclear complex]"
-			function="Regulate moods, temper anxiety, and relieve depression"
-			notes="Releases 5HT (serotonin) hormone (happiness); inhibitory nucleus"
-			>
-			<element name="Raphe Magnus Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Nucleus_raphe_magnus Nucleus raphe magnus]"/>
-			<element name="Raphe Obscurus Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Nucleus_raphe_obscurus Nucleus raphe obscurus]">
-				<element name="Caudal Nucleus Raphe Obscurus" refs="NL:[http://neurolex.org/wiki/Category:Caudal_nucleus_raphe_obscurus Caudal nucleus raphe obscurus]"/>
-			</element>
-			<element name="Raphe Pallidus Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Nucleus_raphe_pallidus Nucleus raphe pallidus]"/>
-		</element>
 
 		<element id="AVA.HM.SAL" name="Salivatory Nucleus" category="peripheral"
 			>

@@ -46,7 +46,7 @@
 	<circuit id="CP.SACCADIC-VISION" name="Saccadic Vision"
 		image="http://www.nature.com/nrn/journal/v5/n3/images/nrn1345-i1.jpg"
 		reference="http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html"
-		components="FrontalCortex=NC.LOBE.ANT LIP=VCA.NC.IPS.LIP SCi=MM.SC SCs=MM.SC Thalamus=FD.TH BG=BGA.FT.BG CN=BGA.FT.CN GPe=BGA.FT.GPE STN=BGA.FD.STN SNpr=BGA.FT.SN.PR CR=LLC.HP.CR RF=HP.PRF Retina=LPC.FD.RT LGN=VBA.FD.LGN VisualCortex=NC.LOBE.OCC"
+		components="FrontalCortex=NC.LOBE.ANT LIP=VCA.NC.IPS.LIP SCi=MM.SC SCs=MM.SC Thalamus=FD.TH BG=BGA.FT.BG CN=BGA.FT.CN GPe=BGA.FT.GPE STN=BGA.FD.STN SNpr=BGA.FT.SN.PR CR=LLC.HP.CR RF=HP.RF Retina=LPC.FD.RT LGN=VBA.FD.LGN VisualCortex=NC.LOBE.OCC"
 		>
 		<link src="Retina" dst="LGN"/>
 		<link src="Retina" dst="SCs"/>
@@ -74,7 +74,7 @@
 	<circuit id="CP.GENICULATE-PATHS" name="Geniculate and Extyrageniculate Paths"
 		image="http://ars.els-cdn.com/content/image/1-s2.0-S0387760401003308-gr2.jpg"
 		reference="http://www.sciencedirect.com/science/article/pii/S0387760401003308"
-		components="Retina=LPC.FD.RT SC=MM.SC LGN=VBA.FD.LGN PPN=BGA.HP.PPN RF=HP.PRF VC=NC.LOBE.OCC"
+		components="Retina=LPC.FD.RT SC=MM.SC LGN=VBA.FD.LGN PPN=LLC.HP.PPN RF=HP.RF VC=NC.LOBE.OCC"
 		>
 		<link src="Retina" dst="LGN"/>
 		<link src="Retina" dst="SC"/>
@@ -122,7 +122,7 @@
 	<circuit id="CP.SACCADIC-MOTOR-CONTROL" name="Eye blink reflex and pupillary light reflex"
 		image="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/oculomotor.jpg"
 		reference="http://neuroscience.uth.tmc.edu/s3/chapter07.html"
-		components="EYE=TARGET.TSA.EYE SpinalTrigeminal=LPC.HM.TGM.STR Oculomotor=LPC.MM.OCN Abducens=LPC.HP.ABD Facial=LPC.HP.FCM RF=HP.PRF PrincipalTrigeminal=LPC.HP.PTP.PTR Ciliary=LAC.PN.PSYM.CLG EWN=LAC.MM.EWN Pretectum=MM.PT VAC=VCA.NC.V3 SupraOculomotor=VBA.MM.SOA"
+		components="EYE=TARGET.TSA.EYE SpinalTrigeminal=LPC.HM.TGM.STR Oculomotor=LPC.MM.OCN Abducens=LPC.HP.ABD Facial=LPC.HP.FCM RF=HP.RF PrincipalTrigeminal=LPC.HP.PTP.PTR Ciliary=LAC.PN.PSYM.CLG EWN=LAC.MM.EWN Pretectum=MM.PT VAC=VCA.NC.V3 SupraOculomotor=VBA.MM.SOA"
 		>
 		<link src="Facial" dst="Abducens"/>
 		<link src="RF" dst="Facial"/>
