@@ -8,10 +8,43 @@
 (generated)
 
 || *ID* || *Name* || *Regions* ||
+|| LGP || Gait and Posture Control || [BrainRegionBGA_HP_PPN BGA.HP.PPN], [BrainRegionFBA_MM_CNF FBA.MM.CNF], [BrainRegionFBA_MM_SCNF FBA.MM.SCNF] ||
 || LLC || Locomotion Control || [BrainRegionLLC_HP_CR LLC.HP.CR] ||
 || LLM || Locomotor Activity || [BrainRegionLLC_HM_INM LLC.HM.INM], [BrainRegionLLC_HM_NPH LLC.HM.NPH], [BrainRegionLLC_HM_RF_MED LLC.HM.RF.MED], [BrainRegionLLC_MM_PT_PR LLC.MM.PT.PR], [BrainRegionLLC_MM_RD LLC.MM.RD] ||
 || LLP || Locomotion Proprioception || [BrainRegionLLC_HM_ARC LLC.HM.ARC], [BrainRegionLLC_HM_IO LLC.HM.IO], [BrainRegionLLC_HP_PN_PBB LLC.HP.PN.PBB], [BrainRegionLLC_SC_IZ_CBS LLC.SC.IZ.CBS], [BrainRegionLLC_SC_IZ_CCV LLC.SC.IZ.CCV], [BrainRegionLLC_SC_PH_CL LLC.SC.PH.CL] ||
-|| LLS || Locomotion Exteroception and Interoception || [BrainRegionLLC_HM_ACU LLC.HM.ACU], [BrainRegionLLC_HP_PN_RP LLC.HP.PN.RP], [BrainRegionLLC_HP_PRF_PDT LLC.HP.PRF.PDT], [BrainRegionLLC_SC_IZ_IMM LLC.SC.IZ.IMM] ||
+|| LLS || Locomotion Exteroception and Interoception || [BrainRegionLLC_HM_ACU LLC.HM.ACU], [BrainRegionLLC_HM_RF_LAT LLC.HM.RF.LAT], [BrainRegionLLC_HP_PN_RP LLC.HP.PN.RP], [BrainRegionLLC_HP_PRF_PDT LLC.HP.PRF.PDT], [BrainRegionLLC_SC_IZ_IMM LLC.SC.IZ.IMM] ||
+
+== Gait and Posture Control ==
+
+
+<img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LLC_LGP.dot.png" alt="unavailable">
+
+|| *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
+|| [BrainRegionBGA_HP_PPN BGA.HP.PPN] || Pedunculopontine Nucleus || nucleus || FEU || Provide sensory feedback to cerebral cortex; modulatory ||  ||
+|| [BrainRegionFBA_MM_CNF FBA.MM.CNF] || Cuneiform Nucleus || nucleus || LLE || Passive coping strategy to novel, painful or threatening stimuli || modulatory nucleus; medial part of midbrain RF ||
+|| [BrainRegionFBA_MM_SCNF FBA.MM.SCNF] || Subcuneiform Nucleus || nucleus || LLE || Initiation of gait ||  ||
+
+*Internal Region Connections:*
+  * no connections
+
+*External Inbound Region Connections:*
+
+|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaAMA AMA] || [BrainRegionBGA_HP_PPN BGA.HP.PPN] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (MHb -> IP)] ||
+|| [BrainAreaECA ECA] || [BrainRegionBGA_HP_PPN BGA.HP.PPN] || [BrainRegionBGA_FD_STN BGA.FD.STN] || Subthalamus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionBGA_FT_VP BGA.FT.VP] || Ventral Pallidum || nucleus-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning (VPAL -> PPTG)] ||
+|| [BrainAreaMCA MCA] || [BrainRegionBGA_HP_PPN BGA.HP.PPN] || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (DTN -> IPD)] ||
+
+*External Outbound Region Connections:*
+
+|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| <font color="red">Cortical</font> || || || || || ||
+|| [BrainAreaSAA SAA] || [BrainRegionBGA_HP_PPN BGA.HP.PPN] || [BrainRegionVBA_FD_LGN VBA.FD.LGN] || Lateral Geniculate Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (PPN -> LGN)] ||
+|| <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaECA ECA] || [BrainRegionBGA_HP_PPN BGA.HP.PPN] || [BrainRegionBGA_FD_STN BGA.FD.STN] || Subthalamus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLRC LRC] || [BrainRegionBGA_HP_PPN BGA.HP.PPN] || [BrainRegionLRC_MM_SC_INT LRC.MM.SC.INT] || Intermediate Superior Colliculus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (PPN -> SC, abstract)] ||
+|| [BrainAreaMCA MCA] || [BrainRegionBGA_HP_PPN BGA.HP.PPN] || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (IPD -> DTN)] ||
 
 == Locomotion Control ==
 
@@ -32,6 +65,7 @@
 || [BrainAreaLLC LLC] || [BrainRegionLLC_HP_CR LLC.HP.CR] || [BrainRegionLLC_HM_ACU LLC.HM.ACU] || Accessory Cuneate Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLLC_HM_ARC LLC.HM.ARC] || Arcuate Nucleus of Medulla || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLLC_HM_IO LLC.HM.IO] || Inferior Olivary Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLLC_HM_RF_LAT LLC.HM.RF.LAT] || Lateral Reticular Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLLC_HP_PN_PBB LLC.HP.PN.PBB] || Pontobulbar Body || nucleus-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (PN -> CR, abstract)] ||
 ||  ||  || [BrainRegionLLC_HP_PN_RP LLC.HP.PN.RP] || Rostral Pontine Nucleus || nucleus-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (PN -> CR, abstract)] ||
 ||  ||  || [BrainRegionLLC_HP_PRF_PDT LLC.HP.PRF.PDT] || Pontine Reticulotegmental Nucleus || nucleus-nucleus || (unknown reference) ||
@@ -67,7 +101,7 @@
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
 || [BrainRegionLLC_HM_INM LLC.HM.INM] || Intercalated Nucleus of Medulla || nucleus || LRC || Coordinate tongue movements, vestibuloocular reflex || Receives sensory inputs from neck region ||
 || [BrainRegionLLC_HM_NPH LLC.HM.NPH] || Prepositus Nucleus || nucleus || LLE || Integrate PPRF phasic signal to provide tonic signal of abducens || Part of horizontal gaze holding system ||
-|| [BrainRegionLLC_HM_RF_MED LLC.HM.RF.MED] || Medullary Reticular Formation || nucleus || LLE || Somatic motor control, cardiovascular control, pain modulation, sleep and<BR>consciousness, habituation || 100 small neural networks, habituation - sleep in<BR>load city but awake from crying baby ||
+|| [BrainRegionLLC_HM_RF_MED LLC.HM.RF.MED] || Central Medullary Reticular Nucleus || nucleus || LLE || Somatic motor control, cardiovascular control, pain modulation, sleep and<BR>consciousness, habituation ||  ||
 || [BrainRegionLLC_MM_PT_PR LLC.MM.PT.PR] || Principal Pretectal Nucleus || nucleus || LRM || Pupillary light reflex || Affected by visual cortex and projects to EWN ||
 || [BrainRegionLLC_MM_RD LLC.MM.RD] || Red Nucleus || nucleus || LLE || Motor coordination || Crawling of babies is controlled by RN ||
 
@@ -158,12 +192,15 @@
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
 || [BrainRegionLLC_HM_ACU LLC.HM.ACU] || Accessory Cuneate Nucleus || nucleus || LSM || receives input from cervical spinal nerves and transmits that information to<BR>cerebellum || upper extremity equivalent of Clarke's column ||
+|| [BrainRegionLLC_HM_RF_LAT LLC.HM.RF.LAT] || Lateral Reticular Nucleus || nucleus || LLI || provide cerebellum with segregated information from several spinal systems<BR>controlling posture, reaching, grasping, locomotion, scratching and respiration ||  ||
 || [BrainRegionLLC_HP_PN_RP LLC.HP.PN.RP] || Rostral Pontine Nucleus || nucleus || LLI || Part of learning, motivation, spatial memory pathway || Relay from mammillary body to CR ||
 || [BrainRegionLLC_HP_PRF_PDT LLC.HP.PRF.PDT] || Pontine Reticulotegmental Nucleus || nucleus || LLI || Mediate saccadic eye movements || Inactivation leads to deficit of expression, but<BR>not learning ||
 || [BrainRegionLLC_SC_IZ_IMM LLC.SC.IZ.IMM] || Intermediomedial Nucleus || nucleus || LLI || Visceral sensory || ventral spinocerebellar tract; to vermis ||
 
 *Internal Region Connections:*
-  * no connections
+
+|| *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionLLC_SC_IZ_IMM LLC.SC.IZ.IMM] || [BrainRegionLLC_HM_RF_LAT LLC.HM.RF.LAT] || nucleus-nucleus || (unknown reference) ||
 
 *External Inbound Region Connections:*
 
@@ -188,6 +225,7 @@
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLLC LLC] || [BrainRegionLLC_HM_ACU LLC.HM.ACU] || [BrainRegionLLC_HP_CR LLC.HP.CR] || Cerebellum || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLLC_HM_RF_LAT LLC.HM.RF.LAT] || [BrainRegionLLC_HP_CR LLC.HP.CR] || Cerebellum || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionLLC_HP_PN_RP LLC.HP.PN.RP] || [BrainRegionLLC_HP_CR LLC.HP.CR] || Cerebellum || nucleus-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (PN -> CR, abstract)] ||
 ||  || [BrainRegionLLC_HP_PRF_PDT LLC.HP.PRF.PDT] || [BrainRegionLLC_HP_CR LLC.HP.CR] || Cerebellum || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionLLC_SC_IZ_IMM LLC.SC.IZ.IMM] || [BrainRegionLLC_HP_CR LLC.HP.CR] || Cerebellum || nucleus-nucleus || (unknown reference) ||
@@ -202,6 +240,10 @@
   * [http://ars.els-cdn.com/content/image/1-s2.0-S0006899301025987-gr1.gif Horizontal saccades and smooth pursuit movements] - see [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Reference]
 
 <img src="http://ars.els-cdn.com/content/image/1-s2.0-S0006899301025987-gr1.gif" alt="unavailable">
+
+  * [http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png Head Direction Cell Circuit] - see [http://www.scholarpedia.org/article/Head_direction_cells Reference]
+
+<img src="http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png" alt="unavailable">
 
   * [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/mb.jpg Mammillary Body] (unknown reference)
 
@@ -219,9 +261,17 @@
 
 <img src="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/motor_top.jpg" alt="unavailable">
 
-  * [http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png Head Direction Cell Circuit] - see [http://www.scholarpedia.org/article/Head_direction_cells Reference]
+  * [http://www.impulsecontroldisorders.org/images/6-HippocampalVTA.jpg Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning] - see [http://www.impulsecontroldisorders.org/html/cravings.html Reference]
 
-<img src="http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png" alt="unavailable">
+<img src="http://www.impulsecontroldisorders.org/images/6-HippocampalVTA.jpg" alt="unavailable">
+
+  * [http://ars.els-cdn.com/content/image/1-s2.0-S0387760401003308-gr2.jpg Geniculate and Extyrageniculate Paths] - see [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Reference]
+
+<img src="http://ars.els-cdn.com/content/image/1-s2.0-S0387760401003308-gr2.jpg" alt="unavailable">
+
+  * [http://www.scholarpedia.org/w/images/thumb/2/2d/Hb-connections-small.jpg/800px-Hb-connections-small.jpg Habenula Connections] - see [http://www.scholarpedia.org/article/Habenula Reference]
+
+<img src="http://www.scholarpedia.org/w/images/thumb/2/2d/Hb-connections-small.jpg/800px-Hb-connections-small.jpg" alt="unavailable">
 
 
 = References =
@@ -229,7 +279,10 @@
 
   * http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/
   * http://www.sciencedirect.com/science/article/pii/S0006899301025987
+  * http://www.scholarpedia.org/article/Head_direction_cells
   * http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html
   * https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988
-  * http://www.scholarpedia.org/article/Head_direction_cells
+  * http://www.impulsecontroldisorders.org/html/cravings.html
+  * http://www.sciencedirect.com/science/article/pii/S0387760401003308
+  * http://www.scholarpedia.org/article/Habenula
 
