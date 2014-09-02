@@ -11,7 +11,7 @@
 || LRB || Breathing and Swallowing Reflexes || [BrainRegionLRC_HM_RA LRC.HM.RA], [BrainRegionLRC_HM_TGM_PA5 LRC.HM.TGM.PA5], [BrainRegionLRC_HP_PN_KFN LRC.HP.PN.KFN], [BrainRegionLRC_HP_PN_SC LRC.HP.PN.SC], [BrainRegionLRC_HP_PRF_CRF LRC.HP.PRF.CRF], [BrainRegionLRC_HP_PRF_PVR LRC.HP.PRF.PVR] ||
 || LRF || Frontal Visual Reflexes || [BrainRegionLRC_MM_CJ LRC.MM.CJ], [BrainRegionLRC_MM_DSCH LRC.MM.DSCH], [BrainRegionLRC_MM_RIMLF LRC.MM.RIMLF] ||
 || LRM || Multisensory Orienting Reflexes || [BrainRegionLRC_MM_EIC LRC.MM.EIC], [BrainRegionLRC_MM_SC_DEEP LRC.MM.SC.DEEP], [BrainRegionLRC_MM_SC_INT LRC.MM.SC.INT] ||
-|| LRP || Postural Control Reflexes || [BrainRegionLRC_HP_PRF_GCR LRC.HP.PRF.GCR], [BrainRegionLRC_HP_PRF_RPO LRC.HP.PRF.RPO] ||
+|| LRP || Postural Control Reflexes || [BrainRegionLLC_HM_INM LLC.HM.INM], [BrainRegionLLC_HM_NPH LLC.HM.NPH], [BrainRegionLLC_MM_PT_PR LLC.MM.PT.PR], [BrainRegionLRC_HM_RF_MED LRC.HM.RF.MED], [BrainRegionLRC_HP_PRF_GCR LRC.HP.PRF.GCR], [BrainRegionLRC_HP_PRF_RPO LRC.HP.PRF.RPO] ||
 || LRV || Direct Visual Reflexes || [BrainRegionLRC_MM_PT_NOT LRC.MM.PT.NOT], [BrainRegionLRC_MM_PT_PON LRC.MM.PT.PON], [BrainRegionLRC_MM_PT_SL LRC.MM.PT.SL], [BrainRegionLRC_MM_SC_SUP LRC.MM.SC.SUP] ||
 
 == Breathing and Swallowing Reflexes ==
@@ -163,11 +163,18 @@
 <img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LRC_LRP.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
+|| [BrainRegionLLC_HM_INM LLC.HM.INM] || Intercalated Nucleus of Medulla || nucleus || LRC || Coordinate tongue movements, vestibuloocular reflex || Receives sensory inputs from neck region ||
+|| [BrainRegionLLC_HM_NPH LLC.HM.NPH] || Prepositus Nucleus || nucleus || LLE || Integrate PPRF phasic signal to provide tonic signal of abducens || Part of horizontal gaze holding system ||
+|| [BrainRegionLLC_MM_PT_PR LLC.MM.PT.PR] || Principal Pretectal Nucleus || nucleus || LRM || Pupillary light reflex || Affected by visual cortex and projects to EWN ||
+|| [BrainRegionLRC_HM_RF_MED LRC.HM.RF.MED] || Central Medullary Reticular Nucleus || nucleus || LLE || Somatic motor control, cardiovascular control, pain modulation, sleep and<BR>consciousness, habituation ||  ||
 || [BrainRegionLRC_HP_PRF_GCR LRC.HP.PRF.GCR] || Gigantocellular Reticular Nucleus || nucleus || LRM || Vasodepressor center || Projects to hypoglossal nucleus, abducens;<BR>medullary (lateral) reticulospinal tract; excite<BR>trunk flexors, inhibit extensors; stimulation<BR>induces inspiration ||
 || [BrainRegionLRC_HP_PRF_RPO LRC.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus || LRM || Mediation of changing to and from REM sleep || Part of horizontal gaze center, projects to spinal<BR>cord and abducens; excites spinal extensors,<BR>inhibit flexors ||
 
 *Internal Region Connections:*
-  * no connections
+
+|| *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionLLC_HM_NPH LLC.HM.NPH] || [BrainRegionLLC_HM_INM LLC.HM.INM] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionLRC_HP_PRF_GCR LRC.HP.PRF.GCR] || [BrainRegionLRC_HM_RF_MED LRC.HM.RF.MED] || nucleus-nucleus || (unknown reference) ||
 
 *External Inbound Region Connections:*
 
@@ -179,19 +186,29 @@
 || [BrainAreaSAA SAA] || [BrainRegionLRC_HP_PRF_RPO LRC.HP.PRF.RPO] || [BrainRegionACA_NC_BRA ACA.NC.BRA] || Broca's Area || neocortex-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (Broca -> RF, abstract)] ||
 ||  ||  || [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || Inferotemporal Cortex || neocortex-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (TEF -> DLPN, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaLLC LLC] || [BrainRegionLRC_HP_PRF_GCR LRC.HP.PRF.GCR] || [BrainRegionLLC_MM_CNF LLC.MM.CNF] || Cuneiform Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaLPC LPC] || [BrainRegionLRC_HP_PRF_GCR LRC.HP.PRF.GCR] || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || Spinal Trigeminal Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLLC LLC] || [BrainRegionLLC_MM_PT_PR LLC.MM.PT.PR] || [BrainRegionLLC_HP_CR_FN LLC.HP.CR.FN] || Fastigual Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLRC_HP_PRF_GCR LRC.HP.PRF.GCR] || [BrainRegionLLC_MM_CNF LLC.MM.CNF] || Cuneiform Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLPC LPC] || [BrainRegionLLC_HM_INM LLC.HM.INM] || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || Medial Vestibular Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLLC_HM_NPH LLC.HM.NPH] || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || Medial Vestibular Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (MVSN -> NPRP)] ||
+||  || [BrainRegionLRC_HP_PRF_GCR LRC.HP.PRF.GCR] || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || Spinal Trigeminal Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLRC LRC] || [BrainRegionLRC_HP_PRF_RPO LRC.HP.PRF.RPO] || [BrainRegionLRC_MM_SC_DEEP LRC.MM.SC.DEEP] || Deep Superior Colliculus || nucleus-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (SC -> PPRF, abstract)] ||
-|| [BrainAreaMCA MCA] || [BrainRegionLRC_HP_PRF_RPO LRC.HP.PRF.RPO] || [BrainRegionVBA_MM_RP_RIP VBA.MM.RP.RIP] || Raphe Interpositus Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (RIP -> PPRF, abstract)] ||
+|| [BrainAreaMCA MCA] || [BrainRegionLLC_HM_NPH LLC.HM.NPH] || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (DTN -> NPRP)] ||
+||  || [BrainRegionLRC_HP_PRF_RPO LRC.HP.PRF.RPO] || [BrainRegionVBA_MM_RP_RIP VBA.MM.RP.RIP] || Raphe Interpositus Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (RIP -> PPRF, abstract)] ||
 
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| <font color="red">Cortical</font> || || || || || ||
+|| [BrainAreaSAA SAA] || [BrainRegionLLC_HM_NPH LLC.HM.NPH] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || Suprageniculate Nucleus of Thalamus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (NPRP -> SUPGEN)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaLLC LLC] || [BrainRegionLRC_HP_PRF_GCR LRC.HP.PRF.GCR] || [BrainRegionLLC_HM_RF_MED LLC.HM.RF.MED] || Central Medullary Reticular Nucleus || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionLLC_MM_SCNF LLC.MM.SCNF] || Subcuneiform Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLAC LAC] || [BrainRegionLLC_HM_INM LLC.HM.INM] || [BrainRegionLAC_FD_HT_PN LAC.FD.HT.PN] || Posterior Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLLC_MM_PT_PR LLC.MM.PT.PR] || [BrainRegionLAC_MM_EWN LAC.MM.EWN] || Edinger-Westphal Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Pretectum -> EWN, abstract)] ||
+|| [BrainAreaLLC LLC] || [BrainRegionLLC_HM_NPH LLC.HM.NPH] || [BrainRegionLLC_MM_SCNF LLC.MM.SCNF] || Subcuneiform Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLRC_HP_PRF_GCR LRC.HP.PRF.GCR] || [BrainRegionLLC_MM_SCNF LLC.MM.SCNF] || Subcuneiform Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionLRC_HP_PRF_RPO LRC.HP.PRF.RPO] || [BrainRegionLLC_HP_CR_CC LLC.HP.CR.CC] || Cerebrocerebellum || nucleus-allocortex || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (DLPN -> CR, abstract)] ||
-|| [BrainAreaLPC LPC] || [BrainRegionLRC_HP_PRF_GCR LRC.HP.PRF.GCR] || [BrainRegionLPC_SC_VH_PL LPC.SC.VH.PL] || Posterolateral Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLPC LPC] || [BrainRegionLLC_HM_NPH LLC.HM.NPH] || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || Medial Vestibular Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (NPRP -> MVSN)] ||
+||  || [BrainRegionLRC_HM_RF_MED LRC.HM.RF.MED] || [BrainRegionLPC_SC_VH_VM LPC.SC.VH.VM] || Ventromedial Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLRC_HP_PRF_GCR LRC.HP.PRF.GCR] || [BrainRegionLPC_SC_VH_PL LPC.SC.VH.PL] || Posterolateral Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLPC_SC_VH_PM LPC.SC.VH.PM] || Posteromedial Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionLRC_HP_PRF_RPO LRC.HP.PRF.RPO] || [BrainRegionLPC_HP_ABD LPC.HP.ABD] || Abducens Nucleus || nucleus-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) (PPRF -> Abducens, abstract)] ||
 ||  ||  || [BrainRegionLPC_HP_IVBN LPC.HP.IVBN] || Inferior Vestibular Nuclei || nucleus-nucleus || (unknown reference) ||
@@ -199,6 +216,8 @@
 ||  ||  || [BrainRegionLPC_SC_VH_SAN LPC.SC.VH.SAN] || Spinal Accessory Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (RF -> SpinalCord, abstract)] ||
 ||  ||  || [BrainRegionLPC_SC_VH_VL LPC.SC.VH.VL] || Ventrolateral Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (RF -> SpinalCord, abstract)] ||
 ||  ||  || [BrainRegionLPC_SC_VH_VM LPC.SC.VH.VM] || Ventromedial Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLRC LRC] || [BrainRegionLLC_HM_NPH LLC.HM.NPH] || [BrainRegionLRC_MM_PT_NOT LRC.MM.PT.NOT] || Nucleus of Optic Tract || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaMCA MCA] || [BrainRegionLRC_HM_RF_MED LRC.HM.RF.MED] || [BrainRegionFBA_HP_LC FBA.HP.LC] || Locus Coeruleus || nucleus-nucleus || (unknown reference) ||
 
 == Direct Visual Reflexes ==
 
@@ -229,11 +248,11 @@
 ||  ||  || [BrainRegionVCA_NC_V2 VCA.NC.V2] || Secondary Visual Cortex || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (VisualCortex -> SCs, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLAC LAC] || [BrainRegionLRC_MM_PT_NOT LRC.MM.PT.NOT] || [BrainRegionLAC_FD_HT_SCN LAC.FD.HT.SCN] || Suprachiasmatic Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaLLC LLC] || [BrainRegionLRC_MM_PT_NOT LRC.MM.PT.NOT] || [BrainRegionLLC_HM_NPH LLC.HM.NPH] || Prepositus Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLPC LPC] || [BrainRegionLRC_MM_PT_NOT LRC.MM.PT.NOT] || [BrainRegionLPC_FD_RT LPC.FD.RT] || Retina || ganglion-nucleus || [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm Targets of retina neurons (Retina -> Pretectum, abstract)] ||
 ||  || [BrainRegionLRC_MM_PT_PON LRC.MM.PT.PON] || [BrainRegionLPC_FD_RT LPC.FD.RT] || Retina || ganglion-nucleus || [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm Targets of retina neurons (Retina -> Pretectum, abstract)] ||
 ||  || [BrainRegionLRC_MM_PT_SL LRC.MM.PT.SL] || [BrainRegionLPC_FD_RT LPC.FD.RT] || Retina || ganglion-nucleus || [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm Targets of retina neurons (Retina -> Pretectum, abstract)] ||
 ||  || [BrainRegionLRC_MM_SC_SUP LRC.MM.SC.SUP] || [BrainRegionLPC_FD_RT LPC.FD.RT] || Retina || ganglion-nucleus || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (Retina -> SC, abstract)] ||
+|| [BrainAreaLRC LRC] || [BrainRegionLRC_MM_PT_NOT LRC.MM.PT.NOT] || [BrainRegionLLC_HM_NPH LLC.HM.NPH] || Prepositus Nucleus || nucleus-nucleus || (unknown reference) ||
 
 *External Outbound Region Connections:*
 
@@ -264,9 +283,14 @@
 
 <img src="http://www.cixip.com/Public/kindeditor/attached/image/20121030/20121030134649_52795.jpg" alt="unavailable">
 
+  * [http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png Head Direction Cell Circuit] - see [http://www.scholarpedia.org/article/Head_direction_cells Reference]
+
+<img src="http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png" alt="unavailable">
+
 
 = References =
 (generated)
 
   * http://www.cixip.com/index.php/page/content/id/1190
+  * http://www.scholarpedia.org/article/Head_direction_cells
 
