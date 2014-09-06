@@ -11,7 +11,7 @@
 || LGP || Gait and Posture Control || [BrainRegionLLC_HP_PPN LLC.HP.PPN], [BrainRegionLLC_MM_CNF LLC.MM.CNF], [BrainRegionLLC_MM_SCNF LLC.MM.SCNF] ||
 || LLC || Cerebrocerebellar Locomotion || [BrainRegionLLC_HP_CR_CC LLC.HP.CR.CC], [BrainRegionLLC_HP_CR_DN LLC.HP.CR.DN], [BrainRegionLLC_HP_PN_RP LLC.HP.PN.RP], [BrainRegionLLC_HP_PRF_PDT LLC.HP.PRF.PDT] ||
 || LLP || Vestibulocerebellar Locomotion || [BrainRegionLLC_HP_CR_FN LLC.HP.CR.FN], [BrainRegionLLC_HP_CR_VC LLC.HP.CR.VC], [BrainRegionLLC_SC_IZ_CCV LLC.SC.IZ.CCV] ||
-|| LLS || Spinocerebellar Locomotion || [BrainRegionLLC_HM_ACU LLC.HM.ACU], [BrainRegionLLC_HM_ARC LLC.HM.ARC], [BrainRegionLLC_HM_IO LLC.HM.IO], [BrainRegionLLC_HM_RF_LAT LLC.HM.RF.LAT], [BrainRegionLLC_HP_CR_EN LLC.HP.CR.EN], [BrainRegionLLC_HP_CR_GN LLC.HP.CR.GN], [BrainRegionLLC_HP_CR_SC LLC.HP.CR.SC], [BrainRegionLLC_HP_PN_PBB LLC.HP.PN.PBB], [BrainRegionLLC_MM_RD LLC.MM.RD], [BrainRegionLLC_SC_IZ_CBS LLC.SC.IZ.CBS], [BrainRegionLLC_SC_IZ_IMM LLC.SC.IZ.IMM], [BrainRegionLLC_SC_PH_CL LLC.SC.PH.CL] ||
+|| LLS || Spinocerebellar Locomotion || [BrainRegionLLC_HM_ARC LLC.HM.ARC], [BrainRegionLLC_HM_IO LLC.HM.IO], [BrainRegionLLC_HM_RF_LAT LLC.HM.RF.LAT], [BrainRegionLLC_HP_CR_EN LLC.HP.CR.EN], [BrainRegionLLC_HP_CR_GN LLC.HP.CR.GN], [BrainRegionLLC_HP_CR_SC LLC.HP.CR.SC], [BrainRegionLLC_HP_PN_PBB LLC.HP.PN.PBB], [BrainRegionLLC_MM_RD LLC.MM.RD] ||
 
 == Gait and Posture Control ==
 
@@ -33,7 +33,7 @@
 || [BrainAreaAMA AMA] || [BrainRegionLLC_HP_PPN LLC.HP.PPN] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (MHb -> IP)] ||
 || [BrainAreaECA ECA] || [BrainRegionLLC_HP_PPN LLC.HP.PPN] || [BrainRegionBGA_FD_STN BGA.FD.STN] || Subthalamus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionBGA_FT_VP BGA.FT.VP] || Ventral Pallidum || nucleus-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning (VPAL -> PPTG)] ||
-|| [BrainAreaLLC LLC] || [BrainRegionLLC_MM_CNF LLC.MM.CNF] || [BrainRegionLLC_SC_PH_CL LLC.SC.PH.CL] || Clarke Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLPC LPC] || [BrainRegionLLC_MM_CNF LLC.MM.CNF] || [BrainRegionLPC_SC_PH_CL LPC.SC.PH.CL] || Clarke Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLRC LRC] || [BrainRegionLLC_MM_SCNF LLC.MM.SCNF] || [BrainRegionLRC_HM_NPH LRC.HM.NPH] || Prepositus Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLRC_HP_PRF_GCR LRC.HP.PRF.GCR] || Gigantocellular Reticular Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaMCA MCA] || [BrainRegionLLC_HP_PPN LLC.HP.PPN] || [BrainRegionMBA_MM_TG_LDT MBA.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (DTN -> IPD)] ||
@@ -142,7 +142,6 @@
 <img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LLC_LLS.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionLLC_HM_ACU LLC.HM.ACU] || Accessory Cuneate Nucleus || nucleus || LSM || receives input from cervical spinal nerves and transmits that information to<BR>cerebellum || upper extremity equivalent of Clarke's column ||
 || [BrainRegionLLC_HM_ARC LLC.HM.ARC] || Arcuate Nucleus of Medulla || nucleus || LLI || Relay cardiorepriratory proprioception to cerebellum || Receives fibers from spinothalamic tract and sends<BR>to CR; controlling respiratory frequency;<BR>chemosensitivity and cardiorespiratory activity ||
 || [BrainRegionLLC_HM_IO LLC.HM.IO] || Inferior Olivary Nucleus || nucleus || LLI || Proprioception Relay from Spinal Cord to Cerebellum ||  ||
 || [BrainRegionLLC_HM_RF_LAT LLC.HM.RF.LAT] || Lateral Reticular Nucleus || nucleus || LLI || provide cerebellum with segregated information from several spinal systems<BR>controlling posture, reaching, grasping, locomotion, scratching and respiration ||  ||
@@ -151,14 +150,10 @@
 || [BrainRegionLLC_HP_CR_SC LLC.HP.CR.SC] || Spinocerebellum || cortex || LLC || fine-tune body and limb movements || medial zone of anterior and posterior lobes;<BR>fastigial and interpositus nuclei; tunes and<BR>adjusts ongoing movements and muscle tone ||
 || [BrainRegionLLC_HP_PN_PBB LLC.HP.PN.PBB] || Pontobulbar Body || nucleus || LLI || Relay neck proprioception to cerebellum || Walking, speaking, breathing, part of<BR>corticopontocerebellar pathway ||
 || [BrainRegionLLC_MM_RD LLC.MM.RD] || Red Nucleus || nucleus || LLE || Motor coordination || Crawling of babies is controlled by RN ||
-|| [BrainRegionLLC_SC_IZ_CBS LLC.SC.IZ.CBS] || Centrobasalis Nucleus || nucleus || LLI || Unconscious proprioception to CR || Upper extremity, relay motor feedback to CR, major<BR>site of termination for dorsal root fibers ||
-|| [BrainRegionLLC_SC_IZ_IMM LLC.SC.IZ.IMM] || Intermediomedial Nucleus || nucleus || LLI || Visceral sensory || ventral spinocerebellar tract; to vermis ||
-|| [BrainRegionLLC_SC_PH_CL LLC.SC.PH.CL] || Clarke Nucleus || nucleus || LLI || Unconscious Proprioception || To CR ||
 
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| [BrainRegionLLC_HM_ACU LLC.HM.ACU] || [BrainRegionLLC_HP_CR_SC LLC.HP.CR.SC] || nucleus-allocortex || (unknown reference) ||
 || [BrainRegionLLC_HM_ARC LLC.HM.ARC] || [BrainRegionLLC_HP_CR_SC LLC.HP.CR.SC] || nucleus-allocortex || (unknown reference) ||
 || [BrainRegionLLC_HM_IO LLC.HM.IO] || [BrainRegionLLC_HP_CR_GN LLC.HP.CR.GN] || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionLLC_HP_CR_SC LLC.HP.CR.SC] || nucleus-allocortex || (unknown reference) ||
@@ -170,12 +165,6 @@
 ||  || [BrainRegionLLC_HP_CR_GN LLC.HP.CR.GN] || allocortex-nucleus || (unknown reference) ||
 || [BrainRegionLLC_HP_PN_PBB LLC.HP.PN.PBB] || [BrainRegionLLC_HP_CR_SC LLC.HP.CR.SC] || nucleus-allocortex || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (PN -> CR, abstract)] ||
 || [BrainRegionLLC_MM_RD LLC.MM.RD] || [BrainRegionLLC_HM_IO LLC.HM.IO] || nucleus-nucleus || (unknown reference) ||
-|| [BrainRegionLLC_SC_IZ_CBS LLC.SC.IZ.CBS] || [BrainRegionLLC_HP_CR_SC LLC.HP.CR.SC] || nucleus-allocortex || (unknown reference) ||
-|| [BrainRegionLLC_SC_IZ_IMM LLC.SC.IZ.IMM] || [BrainRegionLLC_HM_RF_LAT LLC.HM.RF.LAT] || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionLLC_HP_CR_SC LLC.HP.CR.SC] || nucleus-allocortex || (unknown reference) ||
-|| [BrainRegionLLC_SC_PH_CL LLC.SC.PH.CL] || [BrainRegionLLC_HM_ARC LLC.HM.ARC] || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionLLC_HP_CR_SC LLC.HP.CR.SC] || nucleus-allocortex || (unknown reference) ||
-||  || [BrainRegionLLC_HP_PN_PBB LLC.HP.PN.PBB] || nucleus-nucleus || (unknown reference) ||
 
 *External Inbound Region Connections:*
 
@@ -187,14 +176,15 @@
 || [BrainAreaECA ECA] || [BrainRegionLLC_MM_RD LLC.MM.RD] || [BrainRegionBGA_FT_SN_PC BGA.FT.SN.PC] || Substantia Nigra Pars Compacta || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLLC LLC] || [BrainRegionLLC_HM_IO LLC.HM.IO] || [BrainRegionLLC_SC_IZ_CCV LLC.SC.IZ.CCV] || Central Cervical Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionLLC_HP_CR_GN LLC.HP.CR.GN] || [BrainRegionLLC_HP_CR_DN LLC.HP.CR.DN] || Dentate Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaLPC LPC] || [BrainRegionLLC_HM_ACU LLC.HM.ACU] || [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG] || Upper Dorsal Root Ganglion || ganglion-nucleus || (unknown reference) ||
+|| [BrainAreaLPC LPC] || [BrainRegionLLC_HM_ARC LLC.HM.ARC] || [BrainRegionLPC_SC_PH_CL LPC.SC.PH.CL] || Clarke Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionLLC_HM_IO LLC.HM.IO] || [BrainRegionLPC_SC_PH_NP LPC.SC.PH.NP] || Proprius Nucleus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionLLC_HP_CR_SC LLC.HP.CR.SC] || [BrainRegionLPC_HM_CU LPC.HM.CU] || Cuneate Nucleus || nucleus-allocortex || (unknown reference) ||
-||  || [BrainRegionLLC_SC_IZ_CBS LLC.SC.IZ.CBS] || [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG] || Upper Dorsal Root Ganglion || ganglion-nucleus || (unknown reference) ||
-||  || [BrainRegionLLC_SC_IZ_IMM LLC.SC.IZ.IMM] || [BrainRegionLPC_PN_SG_LDRG LPC.PN.SG.LDRG] || Lower Dorsal Root Ganglion || ganglion-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG] || Upper Dorsal Root Ganglion || ganglion-nucleus || (unknown reference) ||
-||  || [BrainRegionLLC_SC_PH_CL LLC.SC.PH.CL] || [BrainRegionLPC_PN_SG_LDRG LPC.PN.SG.LDRG] || Lower Dorsal Root Ganglion || ganglion-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG] || Upper Dorsal Root Ganglion || ganglion-nucleus || (unknown reference) ||
+||  || [BrainRegionLLC_HM_RF_LAT LLC.HM.RF.LAT] || [BrainRegionLPC_SC_IZ_IMM LPC.SC.IZ.IMM] || Intermediomedial Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLLC_HP_CR_SC LLC.HP.CR.SC] || [BrainRegionLPC_HM_ACU LPC.HM.ACU] || Accessory Cuneate Nucleus || nucleus-allocortex || (unknown reference) ||
+||  ||  || [BrainRegionLPC_HM_CU LPC.HM.CU] || Cuneate Nucleus || nucleus-allocortex || (unknown reference) ||
+||  ||  || [BrainRegionLPC_SC_IZ_CBS LPC.SC.IZ.CBS] || Centrobasalis Nucleus || nucleus-allocortex || (unknown reference) ||
+||  ||  || [BrainRegionLPC_SC_IZ_IMM LPC.SC.IZ.IMM] || Intermediomedial Nucleus || nucleus-allocortex || (unknown reference) ||
+||  ||  || [BrainRegionLPC_SC_PH_CL LPC.SC.PH.CL] || Clarke Nucleus || nucleus-allocortex || (unknown reference) ||
+||  || [BrainRegionLLC_HP_PN_PBB LLC.HP.PN.PBB] || [BrainRegionLPC_SC_PH_CL LPC.SC.PH.CL] || Clarke Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLRC LRC] || [BrainRegionLLC_HM_IO LLC.HM.IO] || [BrainRegionLRC_MM_DSCH LRC.MM.DSCH] || Darkschewitsch Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaMCA MCA] || [BrainRegionLLC_HM_IO LLC.HM.IO] || [BrainRegionFBA_FD_TH_SF FBA.FD.TH.SF] || Subfascicular Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
 
@@ -203,7 +193,6 @@
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLLC LLC] || [BrainRegionLLC_HM_RF_LAT LLC.HM.RF.LAT] || [BrainRegionLLC_HP_CR_VC LLC.HP.CR.VC] || Vestibulocerebellum || nucleus-allocortex || (unknown reference) ||
-||  || [BrainRegionLLC_SC_PH_CL LLC.SC.PH.CL] || [BrainRegionLLC_MM_CNF LLC.MM.CNF] || Cuneiform Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLPC LPC] || [BrainRegionLLC_MM_RD LLC.MM.RD] || [BrainRegionLPC_SC_VH_PL LPC.SC.VH.PL] || Posterolateral Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLPC_SC_VH_PM LPC.SC.VH.PM] || Posteromedial Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLRC LRC] || [BrainRegionLLC_HP_CR_GN LLC.HP.CR.GN] || [BrainRegionLRC_MM_DSCH LRC.MM.DSCH] || Darkschewitsch Nucleus || nucleus-nucleus || (unknown reference) ||
