@@ -23,6 +23,7 @@
 || SF || Sensory Face || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR], [BrainRegionLPC_HP_PTP_PTR LPC.HP.PTP.PTR], [BrainRegionLPC_MM_MSTR LPC.MM.MSTR], [BrainRegionLPC_PN_SG_TRG LPC.PN.SG.TRG] ||
 || SSS || Smell Senses || [BrainRegionLPC_FT_AON LPC.FT.AON], [BrainRegionLPC_PN_SG_OLB LPC.PN.SG.OLB] ||
 || STS || Taste Senses || [BrainRegionLPC_HM_SOL LPC.HM.SOL], [BrainRegionLPC_PN_SG_GNG LPC.PN.SG.GNG], [BrainRegionLPC_PN_SG_JUG LPC.PN.SG.JUG], [BrainRegionLPC_PN_SG_NOD LPC.PN.SG.NOD], [BrainRegionLPC_PN_SG_PET LPC.PN.SG.PET] ||
+|| SU || Unconscious Cerebellar Sensations || [BrainRegionLPC_HM_ACU LPC.HM.ACU], [BrainRegionLPC_SC_IZ_CBS LPC.SC.IZ.CBS], [BrainRegionLPC_SC_IZ_IMM LPC.SC.IZ.IMM], [BrainRegionLPC_SC_PH_CL LPC.SC.PH.CL] ||
 
 == Breathing and Swallowing Motor ==
 
@@ -87,8 +88,8 @@
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLLC LLC] || [BrainRegionLPC_HP_IVBN LPC.HP.IVBN] || [BrainRegionLLC_SC_IZ_CCV LLC.SC.IZ.CCV] || Central Cervical Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionLPC_HP_LVBN LPC.HP.LVBN] || [BrainRegionLLC_HP_CR_FN LLC.HP.CR.FN] || Fastigual Nucleus || nucleus-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (CR -> Vestibular, abstract)] ||
-||  || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || [BrainRegionLLC_HM_NPH LLC.HM.NPH] || Prepositus Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (NPRP -> MVSN)] ||
 || [BrainAreaLRC LRC] || [BrainRegionLPC_HP_IVBN LPC.HP.IVBN] || [BrainRegionLRC_HP_PRF_RPO LRC.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || [BrainRegionLRC_HM_NPH LRC.HM.NPH] || Prepositus Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (NPRP -> MVSN)] ||
 || <font color="red">Target</font> || || || || || ||
 || [BrainAreaTSA TSA] || [BrainRegionLPC_PN_SG_CVB LPC.PN.SG.CVB] || [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || Ear || ear-semicircular-canals || (unknown reference) ||
 ||  || [BrainRegionLPC_PN_SG_SVB LPC.PN.SG.SVB] || [BrainRegionTARGET_TSA_EAR TARGET.TSA.EAR] || Ear || ear-saccule || (unknown reference) ||
@@ -101,9 +102,7 @@
 || [BrainAreaSAA SAA] || [BrainRegionLPC_HP_SVBN LPC.HP.SVBN] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || Suprageniculate Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLLC LLC] || [BrainRegionLPC_HP_IVBN LPC.HP.IVBN] || [BrainRegionLLC_HP_CR_VC LLC.HP.CR.VC] || Vestibulocerebellum || nucleus-allocortex || (unknown reference) ||
-||  || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || [BrainRegionLLC_HM_INM LLC.HM.INM] || Intercalated Nucleus of Medulla || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionLLC_HM_NPH LLC.HM.NPH] || Prepositus Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (MVSN -> NPRP)] ||
-||  ||  || [BrainRegionLLC_HP_CR_VC LLC.HP.CR.VC] || Vestibulocerebellum || nucleus-allocortex || (unknown reference) ||
+||  || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || [BrainRegionLLC_HP_CR_VC LLC.HP.CR.VC] || Vestibulocerebellum || nucleus-allocortex || (unknown reference) ||
 || [BrainAreaLPC LPC] || [BrainRegionLPC_HP_LVBN LPC.HP.LVBN] || [BrainRegionLPC_SC_VH_VL LPC.SC.VH.VL] || Ventrolateral Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || [BrainRegionLPC_HP_ABD LPC.HP.ABD] || Abducens Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLPC_MM_OCN LPC.MM.OCN] || Oculomotor Nucleus || nucleus-nucleus || (unknown reference) ||
@@ -112,7 +111,9 @@
 ||  || [BrainRegionLPC_HP_SVBN LPC.HP.SVBN] || [BrainRegionLPC_MM_OCN LPC.MM.OCN] || Oculomotor Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLPC_MM_TRH LPC.MM.TRH] || Trochlear Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLRC LRC] || [BrainRegionLPC_HP_IVBN LPC.HP.IVBN] || [BrainRegionLRC_HP_PRF_CRF LRC.HP.PRF.CRF] || Caudal Pontine Reticular Nucleus || nucleus-nucleus || [http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html Vestibulo-ocular reflex (VOR) (VestibularNuclei -> PPRF, abstract)] ||
-||  || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || [BrainRegionLRC_MM_DSCH LRC.MM.DSCH] || Darkschewitsch Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || [BrainRegionLRC_HM_INM LRC.HM.INM] || Intercalated Nucleus of Medulla || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLRC_HM_NPH LRC.HM.NPH] || Prepositus Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (MVSN -> NPRP)] ||
+||  ||  || [BrainRegionLRC_MM_DSCH LRC.MM.DSCH] || Darkschewitsch Nucleus || nucleus-nucleus || (unknown reference) ||
 
 == Vision Motor ==
 
@@ -204,10 +205,10 @@
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaLLC LLC] || [BrainRegionLPC_SC_VH_VM LPC.SC.VH.VM] || [BrainRegionLLC_HM_RF_MED LLC.HM.RF.MED] || Central Medullary Reticular Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLPC LPC] || [BrainRegionLPC_SC_VH_VL LPC.SC.VH.VL] || [BrainRegionLPC_HP_LVBN LPC.HP.LVBN] || Lateral Vestibular Nuclei || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLRC LRC] || [BrainRegionLPC_SC_VH_VL LPC.SC.VH.VL] || [BrainRegionLRC_HP_PRF_RPO LRC.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (RF -> SpinalCord, abstract)] ||
-||  || [BrainRegionLPC_SC_VH_VM LPC.SC.VH.VM] || [BrainRegionLRC_HP_PRF_RPO LRC.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLPC_SC_VH_VM LPC.SC.VH.VM] || [BrainRegionLRC_HM_RF_MED LRC.HM.RF.MED] || Central Medullary Reticular Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLRC_HP_PRF_RPO LRC.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus-nucleus || (unknown reference) ||
 
 *External Outbound Region Connections:*
 
@@ -244,6 +245,8 @@
 || [BrainAreaMAA MAA] || [BrainRegionLPC_SC_VH_PL LPC.SC.VH.PL] || [BrainRegionMCA_NC_MC MCA.NC.MC] || Motor Cortex || neocortex-nucleus || (unknown reference) ||
 ||  || [BrainRegionLPC_SC_VH_PM LPC.SC.VH.PM] || [BrainRegionMCA_NC_MC MCA.NC.MC] || Motor Cortex || neocortex-nucleus || (unknown reference) ||
 || <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaLLC LLC] || [BrainRegionLPC_SC_VH_PL LPC.SC.VH.PL] || [BrainRegionLLC_MM_RD LLC.MM.RD] || Red Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLPC_SC_VH_PM LPC.SC.VH.PM] || [BrainRegionLLC_MM_RD LLC.MM.RD] || Red Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLRC LRC] || [BrainRegionLPC_SC_VH_PL LPC.SC.VH.PL] || [BrainRegionLRC_HP_PRF_GCR LRC.HP.PRF.GCR] || Gigantocellular Reticular Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionLPC_SC_VH_PM LPC.SC.VH.PM] || [BrainRegionLRC_HP_PRF_GCR LRC.HP.PRF.GCR] || Gigantocellular Reticular Nucleus || nucleus-nucleus || (unknown reference) ||
 
@@ -459,9 +462,9 @@
 ||  || [BrainRegionLPC_SC_PH_LSG LPC.SC.PH.LSG] || [BrainRegionSMA_FD_TH_VPI SMA.FD.TH.VPI] || Ventral Posteroinferior Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaEPA EPA] || [BrainRegionLPC_SC_PH_LMG LPC.SC.PH.LMG] || [BrainRegionCGA_FD_TH_SM CGA.FD.TH.SM] || Submedial Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaLLC LLC] || [BrainRegionLPC_PN_SG_LDRG LPC.PN.SG.LDRG] || [BrainRegionLLC_SC_IZ_IMM LLC.SC.IZ.IMM] || Intermediomedial Nucleus || ganglion-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionLLC_SC_PH_CL LLC.SC.PH.CL] || Clarke Nucleus || ganglion-nucleus || (unknown reference) ||
-|| [BrainAreaLPC LPC] || [BrainRegionLPC_PN_SG_LDRG LPC.PN.SG.LDRG] || [BrainRegionLPC_SC_PH_NP LPC.SC.PH.NP] || Proprius Nucleus || ganglion-nucleus || (unknown reference) ||
+|| [BrainAreaLPC LPC] || [BrainRegionLPC_PN_SG_LDRG LPC.PN.SG.LDRG] || [BrainRegionLPC_SC_IZ_IMM LPC.SC.IZ.IMM] || Intermediomedial Nucleus || ganglion-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLPC_SC_PH_CL LPC.SC.PH.CL] || Clarke Nucleus || ganglion-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLPC_SC_PH_NP LPC.SC.PH.NP] || Proprius Nucleus || ganglion-nucleus || (unknown reference) ||
 ||  || [BrainRegionLPC_SC_PH_LSG LPC.SC.PH.LSG] || [BrainRegionLPC_SC_PH_NP LPC.SC.PH.NP] || Proprius Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLRC LRC] || [BrainRegionLPC_HM_GR LPC.HM.GR] || [BrainRegionLRC_MM_SC_INT LRC.MM.SC.INT] || Intermediate Superior Colliculus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaMCA MCA] || [BrainRegionLPC_SC_PH_LMG LPC.SC.PH.LMG] || [BrainRegionPHA_FD_TH_LI PHA.FD.TH.LI] || Limitans Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
@@ -508,12 +511,12 @@
 || [BrainAreaEPA EPA] || [BrainRegionLPC_SC_PH_UMG LPC.SC.PH.UMG] || [BrainRegionCGA_FD_TH_SM CGA.FD.TH.SM] || Submedial Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLLC LLC] || [BrainRegionLPC_HM_CU LPC.HM.CU] || [BrainRegionLLC_HP_CR_SC LLC.HP.CR.SC] || Spinocerebellum || nucleus-allocortex || (unknown reference) ||
-||  || [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG] || [BrainRegionLLC_HM_ACU LLC.HM.ACU] || Accessory Cuneate Nucleus || ganglion-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionLLC_SC_IZ_CBS LLC.SC.IZ.CBS] || Centrobasalis Nucleus || ganglion-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionLLC_SC_IZ_CCV LLC.SC.IZ.CCV] || Central Cervical Nucleus || ganglion-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionLLC_SC_IZ_IMM LLC.SC.IZ.IMM] || Intermediomedial Nucleus || ganglion-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionLLC_SC_PH_CL LLC.SC.PH.CL] || Clarke Nucleus || ganglion-nucleus || (unknown reference) ||
-|| [BrainAreaLPC LPC] || [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG] || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || Spinal Trigeminal Nucleus || ganglion-nucleus || (unknown reference) ||
+||  || [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG] || [BrainRegionLLC_SC_IZ_CCV LLC.SC.IZ.CCV] || Central Cervical Nucleus || ganglion-nucleus || (unknown reference) ||
+|| [BrainAreaLPC LPC] || [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG] || [BrainRegionLPC_HM_ACU LPC.HM.ACU] || Accessory Cuneate Nucleus || ganglion-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || Spinal Trigeminal Nucleus || ganglion-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLPC_SC_IZ_CBS LPC.SC.IZ.CBS] || Centrobasalis Nucleus || ganglion-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLPC_SC_IZ_IMM LPC.SC.IZ.IMM] || Intermediomedial Nucleus || ganglion-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLPC_SC_PH_CL LPC.SC.PH.CL] || Clarke Nucleus || ganglion-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLPC_SC_PH_NP LPC.SC.PH.NP] || Proprius Nucleus || ganglion-nucleus || (unknown reference) ||
 ||  || [BrainRegionLPC_SC_PH_USG LPC.SC.PH.USG] || [BrainRegionLPC_SC_PH_NP LPC.SC.PH.NP] || Proprius Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLRC LRC] || [BrainRegionLPC_HM_CU LPC.HM.CU] || [BrainRegionLRC_MM_SC_INT LRC.MM.SC.INT] || Intermediate Superior Colliculus || nucleus-nucleus || (unknown reference) ||
@@ -654,6 +657,44 @@
 || [BrainAreaLRC LRC] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || [BrainRegionLRC_HM_RA LRC.HM.RA] || Retroambigualis Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLRC_HP_PN_KFN LRC.HP.PN.KFN] || Kolliker-Fuse Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaMCA MCA] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || [BrainRegionBMA_HP_PB BMA.HP.PB] || Parabrachial Nucleus || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (SOL -> PB)] ||
+
+== Unconscious Cerebellar Sensations ==
+
+
+<img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_SU.dot.png" alt="unavailable">
+
+|| *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
+|| [BrainRegionLPC_HM_ACU LPC.HM.ACU] || Accessory Cuneate Nucleus || nucleus || LSM || receives input from cervical spinal nerves and transmits that information to<BR>cerebellum || upper extremity equivalent of Clarke's column ||
+|| [BrainRegionLPC_SC_IZ_CBS LPC.SC.IZ.CBS] || Centrobasalis Nucleus || nucleus || LLI || Unconscious proprioception to CR || Upper extremity, relay motor feedback to CR, major<BR>site of termination for dorsal root fibers ||
+|| [BrainRegionLPC_SC_IZ_IMM LPC.SC.IZ.IMM] || Intermediomedial Nucleus || nucleus || LLI || Visceral sensory || ventral spinocerebellar tract; to vermis ||
+|| [BrainRegionLPC_SC_PH_CL LPC.SC.PH.CL] || Clarke Nucleus || nucleus || LLI || Unconscious Proprioception || To CR ||
+
+*Internal Region Connections:*
+  * no connections
+
+*External Inbound Region Connections:*
+
+|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaLPC LPC] || [BrainRegionLPC_HM_ACU LPC.HM.ACU] || [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG] || Upper Dorsal Root Ganglion || ganglion-nucleus || (unknown reference) ||
+||  || [BrainRegionLPC_SC_IZ_CBS LPC.SC.IZ.CBS] || [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG] || Upper Dorsal Root Ganglion || ganglion-nucleus || (unknown reference) ||
+||  || [BrainRegionLPC_SC_IZ_IMM LPC.SC.IZ.IMM] || [BrainRegionLPC_PN_SG_LDRG LPC.PN.SG.LDRG] || Lower Dorsal Root Ganglion || ganglion-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG] || Upper Dorsal Root Ganglion || ganglion-nucleus || (unknown reference) ||
+||  || [BrainRegionLPC_SC_PH_CL LPC.SC.PH.CL] || [BrainRegionLPC_PN_SG_LDRG LPC.PN.SG.LDRG] || Lower Dorsal Root Ganglion || ganglion-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG] || Upper Dorsal Root Ganglion || ganglion-nucleus || (unknown reference) ||
+
+*External Outbound Region Connections:*
+
+|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaLLC LLC] || [BrainRegionLPC_HM_ACU LPC.HM.ACU] || [BrainRegionLLC_HP_CR_SC LLC.HP.CR.SC] || Spinocerebellum || nucleus-allocortex || (unknown reference) ||
+||  || [BrainRegionLPC_SC_IZ_CBS LPC.SC.IZ.CBS] || [BrainRegionLLC_HP_CR_SC LLC.HP.CR.SC] || Spinocerebellum || nucleus-allocortex || (unknown reference) ||
+||  || [BrainRegionLPC_SC_IZ_IMM LPC.SC.IZ.IMM] || [BrainRegionLLC_HM_RF_LAT LLC.HM.RF.LAT] || Lateral Reticular Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLLC_HP_CR_SC LLC.HP.CR.SC] || Spinocerebellum || nucleus-allocortex || (unknown reference) ||
+||  || [BrainRegionLPC_SC_PH_CL LPC.SC.PH.CL] || [BrainRegionLLC_HM_ARC LLC.HM.ARC] || Arcuate Nucleus of Medulla || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLLC_HP_CR_SC LLC.HP.CR.SC] || Spinocerebellum || nucleus-allocortex || (unknown reference) ||
+||  ||  || [BrainRegionLLC_HP_PN_PBB LLC.HP.PN.PBB] || Pontobulbar Body || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLLC_MM_CNF LLC.MM.CNF] || Cuneiform Nucleus || nucleus-nucleus || (unknown reference) ||
 
 = Thirdparty Circuits =
 (generated)
