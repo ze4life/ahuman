@@ -302,7 +302,7 @@
 						pathway="tactile/pressure to S1"
 						/>
 					<path id="SCVT.PAG" type="sensory" 
-						src="LPC.SC.LH.LCV" dst="FBA.MM.PAG" fibers="A-alpha,A-beta" endings="SRC"
+						src="LPC.SC.LH.LCV" dst="LMC.MM.PAG" fibers="A-alpha,A-beta" endings="SRC"
 						function="alerts about presence of cutaneous stimuli that might represent danger, necessitating flight"
 						pathway="cutaneous stimuli to PAG"
 						/>
@@ -487,12 +487,12 @@
 						target="MRF, entire cortex"
 						>
 						<path id="SRT.MEDU" type="sensory" 
-							src="LPC.PN.SG.UDRG" mids="LLC.SC.IZ.IMM" dst="LLC.HM.RF.MED" fibers="A-delta-sensory" endings="SAD"
+							src="LPC.PN.SG.UDRG" mids="LPC.SC.IZ.IMM" dst="LRC.HM.RF.MED" fibers="A-delta-sensory" endings="SAD"
 							function="upper automatic responses to pain; attentional and alerting mechanisms"
 							pathway="upper viceral pain to spinal cord to medullary reticular formation; visceral and somatic pain to MRF"
 							/>
 						<path id="SRT.MEDL" type="sensory" 
-							src="LPC.PN.SG.LDRG" mids="LLC.SC.IZ.IMM" dst="LLC.HM.RF.MED" fibers="A-delta-sensory" endings="SAD"
+							src="LPC.PN.SG.LDRG" mids="LPC.SC.IZ.IMM" dst="LRC.HM.RF.MED" fibers="A-delta-sensory" endings="SAD"
 							function="lower automatic responses to pain; attentional and alerting mechanisms"
 							pathway="lower viceral pain to spinal cord to medullary reticular formation; visceral and somatic pain to MRF"
 							/>
@@ -505,12 +505,12 @@
 						target="MRF, entire cortex"
 						>
 						<path id="SRT.UVA" type="sensory" 
-							src="LPC.PN.SG.LDRG" mids="LLC.SC.IZ.IMM,HP.RF.MED" dst="MCA.FD.TH.VA" fibers="A-delta-sensory" endings="SPC"
+							src="LPC.PN.SG.LDRG" mids="LPC.SC.IZ.IMM,HP.RF.MED" dst="MCA.FD.TH.VA" fibers="A-delta-sensory" endings="SPC"
 							function="exerts excitatory influence predominantly on pontine reticular nuclei to facilitate contraction of extensor muscles of limb and trunk"
 							pathway="upper crude touch/vibration to spinal cord to pontine reticular formation to thalamus; utilizes four levels of neurons"
 							/>
 						<path id="SRT.LVA" type="sensory" 
-							src="LPC.PN.SG.UDRG" mids="LLC.SC.IZ.IMM,HP.RF.MED" dst="MCA.FD.TH.VA" fibers="A-delta-sensory" endings="SPC"
+							src="LPC.PN.SG.UDRG" mids="LPC.SC.IZ.IMM,HP.RF.MED" dst="MCA.FD.TH.VA" fibers="A-delta-sensory" endings="SPC"
 							function="exerts excitatory influence predominantly on pontine reticular nuclei to facilitate contraction of extensor muscles of limb and trunk"
 							pathway="lower crude touch/vibration to spinal cord to pontine reticular formation to thalamus; utilizes four levels of neurons"
 							/>
@@ -596,7 +596,7 @@
 							pathway="pain fibers to spinal integrator LSN"
 							/>
 						<path id="SST" type="sensory" 
-							src="LAC.SC.LH.LSN" mids="LPC.HM.SOL" dst="BMA.HP.PB" fibers="C-sensory" endings="SFN"
+							src="LAC.SC.LH.LSN" mids="LPC.HM.SOL" dst="LPC.HP.PB" fibers="C-sensory" endings="SFN"
 							function="autonomic regulation of of stress response to painful visceral stimuli"
 							pathway="pain fibers to solitary nucleus to parabrachial nucleus"
 							/>
@@ -609,12 +609,12 @@
 						target="PAG, MRF"
 						>
 						<path id="SMT.UPAG" type="sensory" 
-							src="LPC.PN.SG.UDRG" mids="LPC.SC.PH.UMG" dst="FBA.MM.PAG" fibers="A-delta-sensory" endings="SAD"
+							src="LPC.PN.SG.UDRG" mids="LPC.SC.PH.UMG" dst="LMC.MM.PAG" fibers="A-delta-sensory" endings="SAD"
 							function="initiates pain inhibition"
 							pathway="activates enkephalin-releasing neurons that project to raphe nuclei, descending to inhibitory interneurons located in Laminae II"
 							/>
 						<path id="SMT.LPAG" type="sensory" 
-							src="LPC.PN.SG.LDRG" mids="LPC.SC.PH.LMG" dst="FBA.MM.PAG" fibers="A-delta-sensory" endings="SAD"
+							src="LPC.PN.SG.LDRG" mids="LPC.SC.PH.LMG" dst="LMC.MM.PAG" fibers="A-delta-sensory" endings="SAD"
 							function="initiates pain inhibition"
 							pathway="activates enkephalin-releasing neurons that project to raphe nuclei, descending to inhibitory interneurons located in Laminae II"
 							/>
@@ -677,7 +677,7 @@
 						target="cerebellum, vermis and paravermis of the ipsilateral posterior lobe"
 						>
 						<path id="CSCT" type="sensory" 
-							src="LPC.PN.SG.UDRG" mids="LLC.HM.ACU" dst="LLC.HP.CR" fibers="A-alpha-Ib-sensory,A-beta-sensory" endings="SMS,SGT,SRC,SMD"
+							src="LPC.PN.SG.UDRG" mids="LPC.HM.ACU" dst="LLC.HP.CR" fibers="A-alpha-Ib-sensory,A-beta-sensory" endings="SMS,SGT,SRC,SMD"
 							function="proprioceptive and exteroceptive information"
 							pathway="upper limb muscles to accessory cuneate nucleus to cerebellum"
 							/>
@@ -691,12 +691,12 @@
 						target="cerebellum, mainly ipsilateral anterior lobe"
 						>
 						<path id="DSCTU" type="sensory" 
-							src="LPC.PN.SG.UDRG" mids="LLC.SC.PH.CL" dst="LLC.HP.CR" fibers="A-alpha-Ib-sensory,A-beta-sensory" endings="SMS,SGT,SRC,SMD"
+							src="LPC.PN.SG.UDRG" mids="LPC.SC.PH.CL" dst="LLC.HP.CR" fibers="A-alpha-Ib-sensory,A-beta-sensory" endings="SMS,SGT,SRC,SMD"
 							function="proprioceptive and exteroceptive information"
 							pathway="lower limb muscles to clarkes nucleus to cerebellum"
 							/>
 						<path id="DSCTL" type="sensory" 
-							src="LPC.PN.SG.LDRG" mids="LLC.SC.PH.CL" dst="LLC.HP.CR" fibers="A-alpha-Ib-sensory,A-beta-sensory" endings="SMS,SGT,SRC,SMD"
+							src="LPC.PN.SG.LDRG" mids="LPC.SC.PH.CL" dst="LLC.HP.CR" fibers="A-alpha-Ib-sensory,A-beta-sensory" endings="SMS,SGT,SRC,SMD"
 							function="proprioceptive and exteroceptive information"
 							pathway="lower limb muscles to clarkes nucleus to cerebellum"
 							/>
@@ -725,12 +725,12 @@
 						target="cerebellum"
 						>
 						<path id="VSCTU" type="sensory" 
-							src="LPC.PN.SG.UDRG" mids="LLC.SC.IZ.IMM" dst="LLC.HP.CR" fibers="A-alpha-Ib-sensory" endings="SMS,SGT"
+							src="LPC.PN.SG.UDRG" mids="LPC.SC.IZ.IMM" dst="LLC.HP.CR" fibers="A-alpha-Ib-sensory" endings="SMS,SGT"
 							function="proprioceptive information"
 							pathway="body muscles to intermediomedial nucleus to cerebellum"
 							/>
 						<path id="VSCTL" type="sensory" 
-							src="LPC.PN.SG.LDRG" mids="LLC.SC.IZ.IMM" dst="LLC.HP.CR" fibers="A-alpha-Ib-sensory" endings="SMS,SGT"
+							src="LPC.PN.SG.LDRG" mids="LPC.SC.IZ.IMM" dst="LLC.HP.CR" fibers="A-alpha-Ib-sensory" endings="SMS,SGT"
 							function="proprioceptive information"
 							pathway="body muscles to intermediomedial nucleus to cerebellum"
 							/>

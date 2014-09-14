@@ -66,19 +66,19 @@
 				fgroup="midline column"
 				refs="NL:[http://neurolex.org/wiki/Category:Midbrain_raphe_nuclei Midbrain raphe nuclei]"
 				>
-				<element id="FBA.MM.RF.SC" name="Superior Central Nucleus" mapped="true" type="nucleus" 
+				<element id="LMC.MM.RF.SC" name="Superior Central Nucleus" mapped="true" type="nucleus" 
 					refs="NL:[http://neurolex.org/wiki/Category:Superior_central_nucleus Superior central nucleus]"
 					function="Block or temporarily suspend mnemonic processes in the hippocampus"
 					notes="Directs HC to disregard insignificant events; inhibitory nucleus; B6,B8"
 					/>
-				<element id="FBA.MM.RP.DRN" name="Dorsal Raphe Nucleus" mapped="true" type="nucleus" 
+				<element id="LMC.MM.RP.DRN" name="Dorsal Raphe Nucleus" mapped="true" type="nucleus" 
 					refs="NL:[http://neurolex.org/wiki/Category:Dorsal_raphe_nucleus Dorsal raphe nucleus]"
 					function="Regulation of sleep and mood"
 					notes="Major source of 5HT; inhibitory nucleus"
 					>
 					<element name="Serotonergic cell group B7" refs="NL:[http://neurolex.org/wiki/Category:Serotonergic_cell_group_B7 Serotonergic cell group B7]"/>
 				</element>
-				<element id="VBA.MM.RP.RIP" name="Raphe Interpositus Nucleus" mapped="true" type="nucleus" 
+				<element id="LMC.MM.RP.RIP" name="Raphe Interpositus Nucleus" mapped="true" type="nucleus" 
 					refs="NL:[http://neurolex.org/wiki/Category:Raphe_interpositus_nucleus_of_PHT00 Raphe interpositus nucleus]"
 					function="Premotor network for saccades"
 					notes="Gate activity of burst neurons for vertical and horizontal saccades"
@@ -208,7 +208,7 @@
 						function="Pupillary light reflex and modulating subcortical nuclei involved in circadian rhythms"
 						notes="Primary visual centre, involved in the pupillary light reflex, receives retinal input"
 						/>
-					<element id="LLC.MM.PT.PR" name="Principal Pretectal Nucleus" mapped="true" type="nucleus"
+					<element id="LRC.MM.PT.PR" name="Principal Pretectal Nucleus" mapped="true" type="nucleus"
 						refs="NL:[http://neurolex.org/wiki/Category:Principal_pretectal_nucleus Principal pretectal nucleus]"
 						function="Pupillary light reflex"
 						comments="Medial pretectal nucleus"
@@ -233,13 +233,13 @@
 			<element name="Parvocellular Part of Red Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Parvocellular_part_of_red_nucleus Parvocellular part of red nucleus]"/>
 		</element>
 
-		<element id="FBA.MM.PAG" name="Periaqueductal Gray Matter" mapped="true" type="nucleus" category="midbrain"
+		<element id="LMC.MM.PAG" name="Periaqueductal Gray Matter" mapped="true" type="nucleus" category="midbrain"
 			refs="NL:[http://neurolex.org/wiki/Category:Ventral_periaqueductal_gray Ventral periaqueductal gray]"
 			function="Descending modulation of pain and in defensive behaviour"
 			notes="if there is a lesion in the PAG, then consciousness is lost; electrical stimulation of the PAG results in immediate and profound analgesia; modulatory nucleus"
 			/>
 
-		<element id="FBA.MM.VTA" name="Ventral Tegmental Area" mapped="true" type="nucleus" category="midbrain"
+		<element id="LMC.MM.VTA" name="Ventral Tegmental Area" mapped="true" type="nucleus" category="midbrain"
 			refs="NL:[http://neurolex.org/wiki/Category:Ventral_tegmental_nucleus Ventral tegmental nucleus];NL:[http://neurolex.org/wiki/Category:Ventral_tegmental_area Ventral tegmental area]"
 			function="Respond to novel stimuli, unexpected rewards, and reward predictive sensory cues"
 			>
@@ -267,29 +267,82 @@
 			comments="M-region, pontine micturition center (PMC)"
 			/>
 
-		<element id="LLC.HP.CR" name="Cerebellum" mapped="true" type="nucleus" category="midbrain"
+		<element id="LLC.HP.CR" name="Cerebellum" category="midbrain"
 			refs="[BrainComponentCerebellum Cerebellum]"
 			function="Motor coordination"
 			notes="Deep Nuclei and cerebellum cortex"
 			>
-			<element name="Cerebellar Cortex" refs="NL:[http://neurolex.org/wiki/Category:Cerebellar_cortex Cerebellar cortex]">
-				<element name="Anterior Lobe of Cerebellum" refs="NL:[http://neurolex.org/wiki/Category:Anterior_lobe_of_the_cerebellum Anterior lobe of the cerebellum]"/>
-				<element name="Flocculonodular Lobe of Cerebellum" refs="NL:[http://neurolex.org/wiki/Category:Flocculonodular_lobe Flocculonodular lobe]"/>
-				<element name="Posterior Lobe of Cerebellum" refs="NL:[http://neurolex.org/wiki/Category:Posterior_lobe_of_the_cerebellum Posterior lobe of the cerebellum]"/>
+			<element id="LLC.HP.CR.CTX" name="Cerebellar Cortex" 
+				refs="NL:[http://neurolex.org/wiki/Category:Cerebellar_cortex Cerebellar cortex]"
+				>
+				<element id="LLC.HP.CR.AC" name="Anterior Lobe of Cerebellum" ignore="true"
+					refs="NL:[http://neurolex.org/wiki/Category:Anterior_lobe_of_the_cerebellum Anterior lobe of the cerebellum]"
+					notes="surface division, not functional"
+					/>
+				<element id="LLC.HP.CR.PC" name="Posterior Lobe of Cerebellum" ignore="true"
+					refs="NL:[http://neurolex.org/wiki/Category:Posterior_lobe_of_the_cerebellum Posterior lobe of the cerebellum]"
+					notes="surface division, not functional"
+					/>
+
+				<element id="LLC.HP.CR.CC" name="Cerebrocerebellum" mapped="true" type="cortex" 
+					synonyms="Neocerebellum"
+					refs="NL:[http://neurolex.org/wiki/Category:Flocculonodular_lobe Flocculonodular lobe]"
+					function="planning movement that is about to occur, evaluating sensory information for action, handles intentions"
+					notes="lateral zone of anterior and posterior lobes; dentate nucleus; receives input exclusively from cerebral cortex (especially parietal lobe) via pontine nuclei (forming cortico-ponto-cerebellar pathways), and sends output mainly to ventrolateral thalamus and to red nucleus; add skill to movements"
+					/>
+				<element id="LLC.HP.CR.SC" name="Spinocerebellum" mapped="true" type="cortex" 
+					synonyms="Paleocerebellum, Vermis"
+					refs="NL:[http://neurolex.org/wiki/Category:Flocculonodular_lobe Flocculonodular lobe]"
+					function="fine-tune body and limb movements"
+					notes="medial zone of anterior and posterior lobes; fastigial and interpositus nuclei; tunes and adjusts ongoing movements and muscle tone"
+					/>
+				<element id="LLC.HP.CR.VC" name="Vestibulocerebellum" mapped="true" type="cortex"
+					synonyms="Archicerebellum, Flocculonodular Lobe of Cerebellum"
+					refs="NL:[http://neurolex.org/wiki/Category:Flocculonodular_lobe Flocculonodular lobe]"
+					function="balance and spatial orientation, gait"
+					notes="projects to vestibular nuclei only; equilibrium; tunes balance (stance and gait) and VOR"
+					/>
 			</element>
-			<element name="Dentate Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Dentate_nucleus Dentate nucleus]">
-				<element name="Amiculum of Dentate Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Amiculum_of_dentate_nucleus Amiculum of dentate nucleus]"/>
-				<element name="Hilum of Dentate Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Hilum_of_dentate_nucleus Hilum of dentate nucleus]"/>
-				<element name="Neodentate Part of Dentate Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Neodentate_part_of_dentate_nucleus Neodentate part of dentate nucleus]"/>
-				<element name="Paleodentate of Dentate Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Paleodentate_of_dentate_nucleus Paleodentate of dentate nucleus]"/>
+
+			<element id="LLC.HP.CR.DCN" name="Deep Cerebellar Nuclei">
+				<element id="LLC.HP.CR.DN" name="Dentate Nucleus" mapped="true" type="nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Dentate_nucleus Dentate nucleus]"
+					function="planning, initiation and control of voluntary movements"
+					notes="dorsal - movement of skeletal muscle, ventral - conscious thought and visuospatial function"
+					>
+					<element name="Amiculum of Dentate Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Amiculum_of_dentate_nucleus Amiculum of dentate nucleus]"/>
+					<element name="Hilum of Dentate Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Hilum_of_dentate_nucleus Hilum of dentate nucleus]"/>
+					<element name="Neodentate Part of Dentate Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Neodentate_part_of_dentate_nucleus Neodentate part of dentate nucleus]"/>
+					<element name="Paleodentate of Dentate Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Paleodentate_of_dentate_nucleus Paleodentate of dentate nucleus]"/>
+				</element>
+	
+				<element id="LLC.HP.CR.IP" name="Interposed Nucleus"
+					function="coordinating agonist/antagonist muscle pairs"
+					notes="origin for rubrospinal tract that mainly influences limb (arm, hand) flexor muscles"
+					>
+					<element id="LLC.HP.CR.EN" name="Emboliform Nucleus" mapped="true" type="nucleus"
+						synonyms="Nucleus Interpositus Anterior"
+						refs="NL:[http://neurolex.org/wiki/Category:Emboliform_nucleus Emboliform nucleus]"
+						function="Modulate motor functions of Red Nucleus"
+						notes="Trigeminocerebellar tract"
+						>
+						<element name="Lateral Part of Anterior Interposed Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_part_of_the_anterior_interposed_nucleus Lateral part of the anterior interposed nucleus]"/>
+					</element>
+					<element id="LLC.HP.CR.GN" name="Globose Nucleus" mapped="true" type="nucleus"
+						synonyms="Nucleus Interpositus Posterior"
+						refs="NL:[http://neurolex.org/wiki/Category:Globose_nucleus Globose nucleus]"
+						function="Modulate motor functions of Red Nucleus"
+						>
+						<element name="Infracerebellar Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Infracerebellar_nucleus Infracerebellar nucleus]"/>
+					</element>
+				</element>
+
+				<element id="LLC.HP.CR.FN" name="Fastigual Nucleus" mapped="true" type="nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Fastigial_nucleus Fastigial nucleus]"
+					function="rostral - interprets body motion and places it on spatial planes to estimate movement of body through space; caudal - saccadic eye movements"
+					/>
 			</element>
-			<element name="Fastigual Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Fastigial_nucleus Fastigial nucleus]"/>
-			<element name="Emboliform Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Emboliform_nucleus Emboliform nucleus]">
-				<element name="Lateral Part of Anterior Interposed Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_part_of_the_anterior_interposed_nucleus Lateral part of the anterior interposed nucleus]"/>
-			</element>
-			<element name="Globose Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Globose_nucleus Globose nucleus]">
-				<element name="Infracerebellar Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Infracerebellar_nucleus Infracerebellar nucleus]"/>
-			</element>
+
 		</element>
 
 		<element id="LPC.HP.FCM" name="Facial Motor Nucleus" mapped="true" type="nucleus" index="FCM" category="peripheral"
@@ -298,13 +351,13 @@
 			function="Control of face"
 			notes="Pons"
 			/>
-		<element id="FBA.HP.NI" name="Incertus Nucleus" mapped="true" type="nucleus" category="forebrain"
+		<element id="LMC.HP.NI" name="Incertus Nucleus" mapped="true" type="nucleus" category="forebrain"
 			refs="NL:[http://neurolex.org/wiki/Category:Nucleus_incertus Nucleus incertus]"
 			function="Behavioural activation and the response to stress"
-			notes="Modulating influences on prefrontal and hippocampal cortical activity, midline behavior control; modulatory nucleus"
+			notes="Modulating influences on prefrontal and hippocampal cortical activity, midline behavior control; modulatory nucleus; relay from reticularis pontis oralis nucleus to septo-hippocampal system"
 			/>
 
-		<element id="MBA.MM.TG.LDT" name="Laterodorsal Tegmental Nucleus" mapped="true" type="nucleus" category="midbrain"
+		<element id="LMC.MM.TG.LDT" name="Laterodorsal Tegmental Nucleus" mapped="true" type="nucleus" category="midbrain"
 			refs="NL:[http://neurolex.org/wiki/Category:Laterodorsal_tegmental_nucleus Laterodorsal tegmental nucleus]"
 			function="Modulating sustained attention or in mediating alerting responses"
 			>
@@ -325,17 +378,17 @@
 				<element id="FBA.HP.RP" name="Raphe Nuclei of Pons" category="midbrain"
 					comment="Paramedian Reticular Nucleus"
 					>
-					<element id="FBA.HP.RP.PRN" name="Pontine Raphe Nucleus" mapped="true" type="nucleus" 
+					<element id="LMC.HP.RP.PRN" name="Pontine Raphe Nucleus" mapped="true" type="nucleus" 
 						refs="NL:[http://neurolex.org/wiki/Category:Pontine_raphe_nucleus Pontine raphe nucleus]"
 						function="Regulation of sleep cycle"
 						notes="Projects to CR, forebrain; inhibitory nucleus"
 					/>
-					<element id="FBA.HP.RP.MRN" name="Superior Central Raphe Nucleus" mapped="true" type="nucleus"
+					<element id="LMC.HP.RP.MRN" name="Superior Central Raphe Nucleus" mapped="true" type="nucleus"
 						refs="NL:[http://neurolex.org/wiki/Category:Superior_central_nucleus Superior central nucleus]"
 						function="Hallucinations"
 						notes="Insomnia; inhibitory nucleus"
 						/>
-					<element id="FBA.HP.RP.LI" name="Nucleus Linearis" mapped="true" type="nucleus"
+					<element id="LMC.HP.RP.LI" name="Nucleus Linearis" mapped="true" type="nucleus"
 						refs="NL:[http://neurolex.org/wiki/Category:Inferior_central_nucleus Inferior central nucleus]"
 						function="Release of 5-HT was only obtained on stimulation of this nucleus"
 						notes="Does not project to CR, but to forebrain"
@@ -360,7 +413,7 @@
 						notes="Grinding of the teeth in sleep, projections from superior colliculus, to spinal cord, extends to facial"
 						/>
 				</element>
-				<element id="FBA.HP.LC" name="Locus Coeruleus" mapped="true" type="nucleus" category="midbrain"
+				<element id="LMC.HP.LC" name="Locus Coeruleus" mapped="true" type="nucleus" category="midbrain"
 					refs="NL:[http://neurolex.org/wiki/Category:Locus_ceruleus Locus ceruleus]"
 					function="Regulate the intensity of responses to salient stimuli"
 					notes="NE Source, enhance signal-to-noise ratio, suppressing irrelevant stimuli (lateral inhibition); inhibitory nucleus"
@@ -383,9 +436,10 @@
 					notes="Inactivation leads to deficit of expression, but not learning"
 					comments="Nucleus of Bechterew, tegmentopontine reticular nucleus, projections from superior colliculus to vermis of CR"
 					/>
-				<element id="BMA.HP.PB" name="Parabrachial Nucleus" mapped="true" type="nucleus" category="midbrain"
+				<element id="LPC.HP.PB" name="Parabrachial Nucleus" mapped="true" type="nucleus" category="midbrain"
 					refs="NL:[http://neurolex.org/wiki/Category:Parabrachial_nucleus Parabrachial nucleus]"
-					function="Source of short-latency nociceptive input"
+					function="Source of short-latency nociceptive input; sense of physiological condition of body well-being or interoception"
+					notes="major relay site for visceral afferents ascending through ventrobasal thalamus and terminating in insular cortex"
 					>
 					<element name="Subbrachial Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Subbrachial_nucleus Subbrachial nucleus]"/>
 					<element name="Lateral Parabrachial Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_parabrachial_nucleus Lateral parabrachial nucleus]">
@@ -496,7 +550,7 @@
 		dotdef="color=peachpuff1"
 		>
 
-		<element id="LLC.HM.ACU" name="Accessory Cuneate Nucleus" mapped="true" type="nucleus" index="ACN" category="peripheral"
+		<element id="LPC.HM.ACU" name="Accessory Cuneate Nucleus" mapped="true" type="nucleus" index="ACN" category="peripheral"
 			refs="NL:[http://neurolex.org/wiki/Category:Accessory_cuneate_nucleus Accessory cuneate nucleus]"
 			fgroup="Spinal Mechanoreception and Proprioception"
 			function="receives input from cervical spinal nerves and transmits that information to cerebellum"
@@ -523,7 +577,7 @@
 		<element id="LLC.HM.ARC" name="Arcuate Nucleus of Medulla" mapped="true" type="nucleus" category="midbrain"
 			refs="NL:[http://neurolex.org/wiki/Category:Arcuate_nucleus_of_medulla Arcuate nucleus of medulla]"
 			function="Relay cardiorepriratory proprioception to cerebellum"
-			notes="Receives fibers from spinothalamic tract and sends to CR; controlling respiratory frequency"
+			notes="Receives fibers from spinothalamic tract and sends to CR; controlling respiratory frequency; chemosensitivity and cardiorespiratory activity"
 			/>
 
 		<element id="ABA.HM.COCH" name="Cochlear Nucleus" index="CON" category="peripheral"
@@ -577,7 +631,7 @@
 			<element name="Rostral Portion of Medial Accessory Olive" refs="NL:[http://neurolex.org/wiki/Category:Rostral_portion_of_the_medial_accessory_olive Rostral portion of the medial accessory olive]"/>
 		</element>
 
-		<element id="LLC.HM.INM" name="Intercalated Nucleus of Medulla" mapped="true" type="nucleus" category="midbrain"
+		<element id="LRC.HM.INM" name="Intercalated Nucleus of Medulla" mapped="true" type="nucleus" category="midbrain"
 			synonyms="Staderini nucleus"
 			refs="NL:[http://neurolex.org/wiki/Category:Nucleus_intercalatus Nucleus intercalatus]"
 			function="Coordinate tongue movements, vestibuloocular reflex"
@@ -591,7 +645,7 @@
 
 			<element id="HM.RF.MID" name="Medullary Reticular Formation, Midline Column" 
 				>
-				<element id="FBA.HM.RP" name="Raphe Nucleus of Medulla" mapped="true" type="nucleus" category="midbrain"
+				<element id="LMC.HM.RP" name="Raphe Nucleus of Medulla" mapped="true" type="nucleus" category="midbrain"
 					refs="NL:[http://neurolex.org/wiki/Category:Medullary_raphe_nuclear_complex Medullary raphe nuclear complex]"
 					function="Regulate moods, temper anxiety, and relieve depression"
 					notes="Releases 5HT (serotonin) hormone (happiness); inhibitory nucleus"
@@ -606,7 +660,7 @@
 
 			<element id="HM.RF.MED" name="Medullary Reticular Formation, Medial Column" 
 				>
-				<element id="LLC.HM.RF.MED" name="Central Medullary Reticular Nucleus" mapped="true" type="nucleus" category="midbrain"
+				<element id="LRC.HM.RF.MED" name="Central Medullary Reticular Nucleus" mapped="true" type="nucleus" category="midbrain"
 					function="Somatic motor control, cardiovascular control, pain modulation, sleep and consciousness, habituation"
 					/>
 				<element id="LRC.HP.PRF.GCR" name="Gigantocellular Reticular Nucleus" mapped="true" type="nucleus" category="midbrain"
@@ -619,15 +673,28 @@
 			<element id="HM.RF.LAT" name="Medullary Reticular Formation, Lateral Column" 
 				function="Somatic motor control, cardiovascular control, pain modulation, sleep and consciousness, habituation"
 				>
-				<element id="LLC.HM.RF.LAT" name="Lateral Reticular Nucleus" mapped="true" type="nucleus" category="midbrain"
+				<element id="LLC.HM.RF.LAT" name="Lateral Reticular Nucleus"
 					refs="NL:[http://neurolex.org/wiki/Category:Lateral_reticular_nucleus Lateral reticular nucleus]"
 					function="provide cerebellum with segregated information from several spinal systems controlling posture, reaching, grasping, locomotion, scratching and respiration"
-					/>
+					>
+					<element id="LLC.HM.RF.PLRN" name="Lateral Reticular Nucleus, Parvocellular" mapped="true" type="nucleus" category="midbrain"
+						function="spinal cord projections to cerebellum, thoracolumbar"
+						notes="from RD; lateral, parvocellular portion of LRN send most their projections to vermis of cerebellum"
+						/>
+					<element id="LLC.HM.RF.MLRN" name="Lateral Reticular Nucleus, Magnocellular" mapped="true" type="nucleus" category="midbrain"
+						function="spinal cord projections to cerebellum, cervical"
+						notes="from RD; medial, magnocellular portion, immediately adjacent to lateral - to vermis; rest of magnocellular subnucleus sends its projections to hemisphere regions of cerebellum"
+						/>
+					<element id="LLC.HM.RF.SLRN" name="Lateral Reticular Nucleus, Subtrigeminal" mapped="true" type="nucleus" category="midbrain"
+						function="vestibular input"
+						notes="from lateral vestibular nucleus to vestibulocerebellum"
+						/>
+				</element>
 			</element>
 
 		</element>
 
-		<element id="LLC.HM.NPH" name="Prepositus Nucleus" mapped="true" type="nucleus" category="midbrain"
+		<element id="LRC.HM.NPH" name="Prepositus Nucleus" mapped="true" type="nucleus" category="midbrain"
 			refs="NL:[http://neurolex.org/wiki/Category:Nucleus_prepositus Nucleus prepositus]"
 			function="Integrate PPRF phasic signal to provide tonic signal of abducens"
 			notes="Part of horizontal gaze holding system"

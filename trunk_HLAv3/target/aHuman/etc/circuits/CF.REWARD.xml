@@ -66,7 +66,7 @@
 	<circuit id="CF.REWARD-CIRCUIT" name="Reward circuit of human brain"
 		image="http://neurowiki2012.wikispaces.com/file/view/Reward_circuit.jpg/315908202/Reward_circuit.jpg"
 		reference="http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity"
-		components="PFC=FCA.NC.OMPFC HC=HBA.FT.HC NACC=BGA.FT.ACC VPAL=BGA.FT.VP AM=BFA.FT.AM VTA=FBA.MM.VTA"
+		components="PFC=FCA.NC.OMPFC HC=HBA.FT.HC NACC=BGA.FT.ACC VPAL=BGA.FT.VP AM=BFA.FT.AM VTA=LMC.MM.VTA"
 		>
 		<link src="PFC" dst="NACC"/>
 		<link src="NACC" dst="VPAL"/>
@@ -82,7 +82,7 @@
 	<circuit id="CF.CRAVING" name="Craving"
 		image="http://www.impulsecontroldisorders.org/images/8-Urges9proof.jpg"
 		reference="http://www.impulsecontroldisorders.org/html/cravings.html"
-		components="OMPFC=FCA.NC.OMPFC NACC=BGA.FT.ACC SNr=BGA.FT.SN.PR VPAL=BGA.FT.VP VTA=FBA.MM.VTA"
+		components="OMPFC=FCA.NC.OMPFC NACC=BGA.FT.ACC SNr=BGA.FT.SN.PR VPAL=BGA.FT.VP VTA=LMC.MM.VTA"
 		>
 		<link src="OMPFC" dst="VTA"/>
 		<link src="OMPFC" dst="SNr"/>
@@ -96,7 +96,7 @@
 	<circuit id="CF.HB-CONNECTIONS" name="Habenula Connections"
 		image="http://www.scholarpedia.org/w/images/thumb/2/2d/Hb-connections-small.jpg/800px-Hb-connections-small.jpg"
 		reference="http://www.scholarpedia.org/article/Habenula"
-		components="S=BFA.FT.SEP DBB=BFA.FT.SEP.DBB LPO=LAC.FD.HT.PO LH=HTA.FD.HT.LT LHb=BFA.FD.LHB MHb=BFA.FD.MHB PB=TARGET.TEA.ENDOCRINE DR=FBA.MM.RP.DRN MR=FBA.MM.RF.SC IP=BGA.HP.PPN.IPD SNc=BGA.FT.SN.PC VTA=FBA.MM.VTA CPu=BGA.FT.ST GPi=BGA.FT.GPI"
+		components="S=BFA.FT.SEP DBB=BFA.FT.SEP.DBB LPO=LAC.FD.HT.PO LH=HTA.FD.HT.LT LHb=BFA.FD.LHB MHb=BFA.FD.MHB PB=TARGET.TEA.ENDOCRINE DR=LMC.MM.RP.DRN MR=LMC.MM.RF.SC IP=BGA.HP.PPN.IPD SNc=BGA.FT.SN.PC VTA=LMC.MM.VTA CPu=BGA.FT.ST GPi=BGA.FT.GPI"
 		>
 		<link src="S" dst="MHb"/>
 		<link src="DBB" dst="MHb"/>
@@ -115,7 +115,7 @@
 	<circuit id="CF.AFFECTIVE-BG" name="Affective basal ganglia circuit"
 		image="http://www.expertsmind.com/CMSImages/250_Affective%20basal%20ganglia%20circuit.png"
 		reference="http://www.expertsmind.com/topic/emotion/affective-basal-ganglia-circuit-93570.aspx"
-		components="OMPFC=FCA.NC.OMPFC NACC=BGA.FT.ACC nBM=BFA.FT.NBM"
+		components="OMPFC=FCA.NC.OMPFC NACC=BGA.FT.ACC nBM=LMC.FT.NBM"
 		>
 		<link src="NACC" dst="nBM"/>
 		<link src="OMPFC" dst="NACC"/>
@@ -124,7 +124,7 @@
 	<circuit id="CF.AM-DISRUPTION" name="Amygdalar disruption of prefrontal cortex"
 		image="http://neuropolitics.org/connect-amygdala.jpg"
 		reference="http://neuropolitics.org/defaultmay10.asp"
-		components="AM=BFA.FT.AM HC=HBA.FT.HC TH=FD.TH PB=BMA.HP.PB SOL=LPC.HM.SOL HT.PV=LAC.FD.HT.PV HT.L=HTA.FD.HT.LT PUT=TARGET.TEA.ENDOCRINE LC=FBA.HP.LC PAG=FBA.MM.PAG INS=PHA.NC.INS MPFC=FCA.NC.OMPFC ACG=CGA.NC.ACG"
+		components="AM=BFA.FT.AM HC=HBA.FT.HC TH=FD.TH PB=LPC.HP.PB SOL=LPC.HM.SOL HT.PV=LAC.FD.HT.PV HT.L=HTA.FD.HT.LT PUT=TARGET.TEA.ENDOCRINE LC=LMC.HP.LC PAG=LMC.MM.PAG INS=PHA.NC.INS MPFC=FCA.NC.OMPFC ACG=CGA.NC.ACG"
 		>
 		<link src="AM" dst="MPFC"/>
 		<link src="AM" dst="ACG"/>
@@ -153,7 +153,7 @@
 	<circuit id="CF.PAIN-MATRIX" name="Pain matrix"
 		image="http://www.springerimages.com/img/Images/Springer/JOU=10194/VOL=2006.7/ISU=4/ART=2006_307/MediaObjects/MEDIUM_10194_2006_Article_307_Fig1.jpg"
 		reference="http://www.springerimages.com/Images/MedicineAndPublicHealth/1-10.1007_s10194-006-0307-1-0"
-		components="PFC=FCA.NC.OMPFC ACC=CGA.NC.ACG SMA=MCA.NC.SMC S1=SMA.NC.PG.S1 TH=FD.TH AM=BFA.FT.AM PPC=NC.SPL INS=PHA.NC.INS PAG=FBA.MM.PAG"
+		components="PFC=FCA.NC.OMPFC ACC=CGA.NC.ACG SMA=MCA.NC.SMC S1=SMA.NC.PG.S1 TH=FD.TH AM=BFA.FT.AM PPC=NC.SPL INS=PHA.NC.INS PAG=LMC.MM.PAG"
 		>
 	</circuit>
 
@@ -183,7 +183,7 @@
 	<circuit id="CF.MEYNERT" name="Basal Nucleus of Meynert"
 		image="http://ahuman.googlecode.com/svn/images/wiki/research/human/22-reticular-formation-and-limbic-system/F22-2.png"
 		reference="article:Biological/2005-The-Human-Nervous-System.pdf"
-		components="AM=BFA.FT.AM CA1=HBA.FT.HC.CA1 EC=PHA.NC.PH.ET PRR=PHA.NC.PH.PRR BMN=BFA.FT.NBM"
+		components="AM=BFA.FT.AM CA1=HBA.FT.HC.CA1 EC=PHA.NC.PH.ET PRR=PHA.NC.PH.PRR BMN=LMC.FT.NBM"
 		>
 	</circuit>
 
