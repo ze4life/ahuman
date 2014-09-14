@@ -21,6 +21,7 @@
 || SBL || Lower Body Conscious Sensations || [BrainRegionLPC_HM_GR LPC.HM.GR], [BrainRegionLPC_PN_SG_LDRG LPC.PN.SG.LDRG], [BrainRegionLPC_SC_PH_LMG LPC.SC.PH.LMG], [BrainRegionLPC_SC_PH_LSG LPC.SC.PH.LSG] ||
 || SBU || Upper Body Conscious Sensations || [BrainRegionLPC_HM_CU LPC.HM.CU], [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG], [BrainRegionLPC_SC_PH_UMG LPC.SC.PH.UMG], [BrainRegionLPC_SC_PH_USG LPC.SC.PH.USG] ||
 || SF || Sensory Face || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR], [BrainRegionLPC_HP_PTP_PTR LPC.HP.PTP.PTR], [BrainRegionLPC_MM_MSTR LPC.MM.MSTR], [BrainRegionLPC_PN_SG_TRG LPC.PN.SG.TRG] ||
+|| SP || Pain Sensations || [BrainRegionLPC_HP_PB LPC.HP.PB] ||
 || SSS || Smell Senses || [BrainRegionLPC_FT_AON LPC.FT.AON], [BrainRegionLPC_PN_SG_OLB LPC.PN.SG.OLB] ||
 || STS || Taste Senses || [BrainRegionLPC_HM_SOL LPC.HM.SOL], [BrainRegionLPC_PN_SG_GNG LPC.PN.SG.GNG], [BrainRegionLPC_PN_SG_JUG LPC.PN.SG.JUG], [BrainRegionLPC_PN_SG_NOD LPC.PN.SG.NOD], [BrainRegionLPC_PN_SG_PET LPC.PN.SG.PET] ||
 || SU || Unconscious Cerebellar Sensations || [BrainRegionLPC_HM_ACU LPC.HM.ACU], [BrainRegionLPC_SC_IZ_CBS LPC.SC.IZ.CBS], [BrainRegionLPC_SC_IZ_IMM LPC.SC.IZ.IMM], [BrainRegionLPC_SC_PH_CL LPC.SC.PH.CL] ||
@@ -43,11 +44,11 @@
 || <font color="red">Cortical</font> || || || || || ||
 || [BrainAreaMAA MAA] || [BrainRegionLPC_HM_AMB LPC.HM.AMB] || [BrainRegionMCA_NC_MC MCA.NC.MC] || Motor Cortex || neocortex-nucleus || (unknown reference) ||
 || <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaLMC LMC] || [BrainRegionLPC_HM_AMB LPC.HM.AMB] || [BrainRegionLMC_MM_PAG LMC.MM.PAG] || Periaqueductal Gray Matter || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLPC LPC] || [BrainRegionLPC_HM_AMB LPC.HM.AMB] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || Solitary Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLRC LRC] || [BrainRegionLPC_HM_AMB LPC.HM.AMB] || [BrainRegionLRC_HM_RA LRC.HM.RA] || Retroambigualis Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLRC_HP_PRF_CRF LRC.HP.PRF.CRF] || Caudal Pontine Reticular Nucleus || nucleus-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (RF -> NucleusAmbiguus, abstract)] ||
 ||  || [BrainRegionLPC_SC_VH_PHR LPC.SC.VH.PHR] || [BrainRegionLRC_HM_RA LRC.HM.RA] || Retroambigualis Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaMCA MCA] || [BrainRegionLPC_HM_AMB LPC.HM.AMB] || [BrainRegionFBA_MM_PAG FBA.MM.PAG] || Periaqueductal Gray Matter || nucleus-nucleus || (unknown reference) ||
 
 *External Outbound Region Connections:*
 
@@ -463,12 +464,12 @@
 ||  || [BrainRegionLPC_SC_PH_LSG LPC.SC.PH.LSG] || [BrainRegionSMA_FD_TH_VPI SMA.FD.TH.VPI] || Ventral Posteroinferior Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaEPA EPA] || [BrainRegionLPC_SC_PH_LMG LPC.SC.PH.LMG] || [BrainRegionCGA_FD_TH_SM CGA.FD.TH.SM] || Submedial Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
 || <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaLMC LMC] || [BrainRegionLPC_SC_PH_LMG LPC.SC.PH.LMG] || [BrainRegionLMC_FD_TH_LI LMC.FD.TH.LI] || Limitans Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLPC LPC] || [BrainRegionLPC_PN_SG_LDRG LPC.PN.SG.LDRG] || [BrainRegionLPC_SC_IZ_IMM LPC.SC.IZ.IMM] || Intermediomedial Nucleus || ganglion-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLPC_SC_PH_CL LPC.SC.PH.CL] || Clarke Nucleus || ganglion-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLPC_SC_PH_NP LPC.SC.PH.NP] || Proprius Nucleus || ganglion-nucleus || (unknown reference) ||
 ||  || [BrainRegionLPC_SC_PH_LSG LPC.SC.PH.LSG] || [BrainRegionLPC_SC_PH_NP LPC.SC.PH.NP] || Proprius Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLRC LRC] || [BrainRegionLPC_HM_GR LPC.HM.GR] || [BrainRegionLRC_MM_SC_INT LRC.MM.SC.INT] || Intermediate Superior Colliculus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaMCA MCA] || [BrainRegionLPC_SC_PH_LMG LPC.SC.PH.LMG] || [BrainRegionPHA_FD_TH_LI PHA.FD.TH.LI] || Limitans Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
 
 == Upper Body Conscious Sensations ==
 
@@ -513,6 +514,7 @@
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLLC LLC] || [BrainRegionLPC_HM_CU LPC.HM.CU] || [BrainRegionLLC_HP_CR_SC LLC.HP.CR.SC] || Spinocerebellum || nucleus-allocortex || (unknown reference) ||
 ||  || [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG] || [BrainRegionLLC_SC_IZ_CCV LLC.SC.IZ.CCV] || Central Cervical Nucleus || ganglion-nucleus || (unknown reference) ||
+|| [BrainAreaLMC LMC] || [BrainRegionLPC_SC_PH_UMG LPC.SC.PH.UMG] || [BrainRegionLMC_FD_TH_LI LMC.FD.TH.LI] || Limitans Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLPC LPC] || [BrainRegionLPC_PN_SG_UDRG LPC.PN.SG.UDRG] || [BrainRegionLPC_HM_ACU LPC.HM.ACU] || Accessory Cuneate Nucleus || ganglion-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || Spinal Trigeminal Nucleus || ganglion-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLPC_SC_IZ_CBS LPC.SC.IZ.CBS] || Centrobasalis Nucleus || ganglion-nucleus || (unknown reference) ||
@@ -521,7 +523,6 @@
 ||  ||  || [BrainRegionLPC_SC_PH_NP LPC.SC.PH.NP] || Proprius Nucleus || ganglion-nucleus || (unknown reference) ||
 ||  || [BrainRegionLPC_SC_PH_USG LPC.SC.PH.USG] || [BrainRegionLPC_SC_PH_NP LPC.SC.PH.NP] || Proprius Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLRC LRC] || [BrainRegionLPC_HM_CU LPC.HM.CU] || [BrainRegionLRC_MM_SC_INT LRC.MM.SC.INT] || Intermediate Superior Colliculus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaMCA MCA] || [BrainRegionLPC_SC_PH_UMG LPC.SC.PH.UMG] || [BrainRegionPHA_FD_TH_LI PHA.FD.TH.LI] || Limitans Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
 
 == Sensory Face ==
 
@@ -570,6 +571,38 @@
 ||  || [BrainRegionLPC_MM_MSTR LPC.MM.MSTR] || [BrainRegionLPC_HP_PTP_TRM LPC.HP.PTP.TRM] || Trigeminal Motor Nucleus || ganglion-nucleus || (unknown reference) ||
 || [BrainAreaLRC LRC] || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || [BrainRegionLRC_HP_PRF_GCR LRC.HP.PRF.GCR] || Gigantocellular Reticular Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLRC_MM_SC_INT LRC.MM.SC.INT] || Intermediate Superior Colliculus || nucleus-nucleus || (unknown reference) ||
+
+== Pain Sensations ==
+
+
+<img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LPC_SP.dot.png" alt="unavailable">
+
+|| *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
+|| [BrainRegionLPC_HP_PB LPC.HP.PB] || Parabrachial Nucleus || nucleus || LUS || Source of short-latency nociceptive input; sense of physiological condition of<BR>body well-being or interoception || major relay site for visceral afferents ascending<BR>through ventrobasal thalamus and terminating in<BR>insular cortex ||
+
+*Internal Region Connections:*
+  * no connections
+
+*External Inbound Region Connections:*
+
+|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| <font color="red">Cortical</font> || || || || || ||
+|| [BrainAreaEPA EPA] || [BrainRegionLPC_HP_PB LPC.HP.PB] || [BrainRegionCGA_NC_SGC CGA.NC.SGC] || Subgenual Cortex || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> RF, abstract)] ||
+|| <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaAMA AMA] || [BrainRegionLPC_HP_PB LPC.HP.PB] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> PB)] ||
+||  ||  || [BrainRegionBFA_FT_IPAC BFA.FT.IPAC] || Interstitial Anterior Commissural Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLPC LPC] || [BrainRegionLPC_HP_PB LPC.HP.PB] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || Solitary Nucleus || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (SOL -> PB)] ||
+
+*External Outbound Region Connections:*
+
+|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| <font color="red">Cortical</font> || || || || || ||
+|| [BrainAreaBAA BAA] || [BrainRegionLPC_HP_PB LPC.HP.PB] || [BrainRegionSMA_FD_TH_VPI SMA.FD.TH.VPI] || Ventral Posteroinferior Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionSMA_FD_TH_VPM SMA.FD.TH.VPM] || Ventral Posteromedial Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PB -> VPMpc)] ||
+|| <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaAMA AMA] || [BrainRegionLPC_HP_PB LPC.HP.PB] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (PB -> AM)] ||
+|| [BrainAreaLAC LAC] || [BrainRegionLPC_HP_PB LPC.HP.PB] || [BrainRegionLAC_HM_VGN LAC.HM.VGN] || Vagus Nucleus || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (PBN -> DVM)] ||
+|| [BrainAreaMMA MMA] || [BrainRegionLPC_HP_PB LPC.HP.PB] || [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || Posterior Insular Cortex || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PB -> Gud, abstract)] ||
 
 == Smell Senses ==
 
@@ -652,12 +685,12 @@
 ||  ||  || [BrainRegionLAC_FD_HT_PV LAC.FD.HT.PV] || Paraventricular Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLAC_FD_HT_SO LAC.FD.HT.SO] || Supraoptic Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLPC LPC] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || [BrainRegionLPC_HM_AMB LPC.HM.AMB] || Ambiguus Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLPC_HP_PB LPC.HP.PB] || Parabrachial Nucleus || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (SOL -> PB)] ||
 ||  || [BrainRegionLPC_PN_SG_GNG LPC.PN.SG.GNG] || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || Spinal Trigeminal Nucleus || ganglion-nucleus || (unknown reference) ||
 ||  || [BrainRegionLPC_PN_SG_JUG LPC.PN.SG.JUG] || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || Spinal Trigeminal Nucleus || ganglion-nucleus || (unknown reference) ||
 ||  || [BrainRegionLPC_PN_SG_PET LPC.PN.SG.PET] || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || Spinal Trigeminal Nucleus || ganglion-nucleus || (unknown reference) ||
 || [BrainAreaLRC LRC] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || [BrainRegionLRC_HM_RA LRC.HM.RA] || Retroambigualis Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLRC_HP_PN_KFN LRC.HP.PN.KFN] || Kolliker-Fuse Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaMCA MCA] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || [BrainRegionBMA_HP_PB BMA.HP.PB] || Parabrachial Nucleus || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (SOL -> PB)] ||
 
 == Unconscious Cerebellar Sensations ==
 
@@ -736,6 +769,10 @@
 
 <img src="http://www.benbest.com/science/anatmind/FigVI1.gif" alt="unavailable">
 
+  * [http://www.intechopen.com/source/html/40109/media/image1.jpeg Physiology and pathophysiology of lower urinary tract] - see [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Reference]
+
+<img src="http://www.intechopen.com/source/html/40109/media/image1.jpeg" alt="unavailable">
+
   * [http://www.dartmouth.edu/~rswenson/NeuroSci/figures/Figure_16_files/image002.jpg Trigeminal Nuclei] - see [http://www.lookfordiagnosis.com/mesh_info.php?term=Trigeminal+Nucleilang=1 Reference]
 
 <img src="http://www.dartmouth.edu/~rswenson/NeuroSci/figures/Figure_16_files/image002.jpg" alt="unavailable">
@@ -744,13 +781,17 @@
 
 <img src="http://what-when-how.com/wp-content/uploads/2012/04/tmp3649_thumb1_thumb.jpg" alt="unavailable"height=400width=400>
 
+  * [http://ars.els-cdn.com/content/image/1-s2.0-S0149763401000215-gr4a.gif Gustatory sensory system of rat and macaque] - see [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Reference]
+
+<img src="http://ars.els-cdn.com/content/image/1-s2.0-S0149763401000215-gr4a.gif" alt="unavailable">
+
+  * [http://neuropolitics.org/connect-amygdala.jpg Amygdalar disruption of prefrontal cortex] - see [http://neuropolitics.org/defaultmay10.asp Reference]
+
+<img src="http://neuropolitics.org/connect-amygdala.jpg" alt="unavailable">
+
   * [http://ars.els-cdn.com/content/image/1-s2.0-S0959438808001566-gr1.jpg Global visual system] - see [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Reference]
 
 <img src="http://ars.els-cdn.com/content/image/1-s2.0-S0959438808001566-gr1.jpg" alt="unavailable">
-
-  * [http://www.intechopen.com/source/html/40109/media/image1.jpeg Physiology and pathophysiology of lower urinary tract] - see [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Reference]
-
-<img src="http://www.intechopen.com/source/html/40109/media/image1.jpeg" alt="unavailable">
 
   * [http://jp.physoc.org/content/557/1/287/F9.large.jpg Schematic overview of spinobulbospinal micturition reflex pathway] - see [http://jp.physoc.org/content/557/1/287/F9.expansion.html Reference]
 
@@ -771,14 +812,6 @@
   * [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements] (unknown reference)
 
 <img src="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg" alt="unavailable">
-
-  * [http://ars.els-cdn.com/content/image/1-s2.0-S0149763401000215-gr4a.gif Gustatory sensory system of rat and macaque] - see [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Reference]
-
-<img src="http://ars.els-cdn.com/content/image/1-s2.0-S0149763401000215-gr4a.gif" alt="unavailable">
-
-  * [http://neuropolitics.org/connect-amygdala.jpg Amygdalar disruption of prefrontal cortex] - see [http://neuropolitics.org/defaultmay10.asp Reference]
-
-<img src="http://neuropolitics.org/connect-amygdala.jpg" alt="unavailable">
 
   * [http://ars.els-cdn.com/content/image/1-s2.0-S1571064507000243-gr008.jpg KIV model of cortico-hippocampal formation with subcortical projections for motor actions] - see [http://www.sciencedirect.com/science/article/pii/S1571064507000243 Reference]
 
@@ -832,16 +865,16 @@
   * http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html
   * http://www.sciencedirect.com/science/article/pii/S1359644605035427
   * http://www.benbest.com/science/anatmind/anatmd6.html
+  * http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders
   * http://www.lookfordiagnosis.com/mesh_info.php?term=Trigeminal+Nucleilang=1
   * http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/
+  * http://www.sciencedirect.com/science/article/pii/S0149763401000215
+  * http://neuropolitics.org/defaultmay10.asp
   * http://www.sciencedirect.com/science/article/pii/S0959438808001566
-  * http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders
   * http://jp.physoc.org/content/557/1/287/F9.expansion.html
   * http://f1000research.com/articles/2-20/v1
   * http://www.sciencedirect.com/science/article/pii/S0006899301025987
   * http://www.scholarpedia.org/article/Head_direction_cells
-  * http://www.sciencedirect.com/science/article/pii/S0149763401000215
-  * http://neuropolitics.org/defaultmay10.asp
   * http://www.sciencedirect.com/science/article/pii/S1571064507000243
   * http://asweknowit.ca/evcult/NatIntel/nat_intel.shtml
   * http://www.hindawi.com/journals/nri/2012/719056
