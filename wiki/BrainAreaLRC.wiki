@@ -9,7 +9,7 @@
 
 || *ID* || *Name* || *Regions* ||
 || LRB || Breathing and Swallowing Reflexes || [BrainRegionLRC_HM_RA LRC.HM.RA], [BrainRegionLRC_HM_TGM_PA5 LRC.HM.TGM.PA5], [BrainRegionLRC_HP_PN_KFN LRC.HP.PN.KFN], [BrainRegionLRC_HP_PN_SC LRC.HP.PN.SC], [BrainRegionLRC_HP_PRF_CRF LRC.HP.PRF.CRF], [BrainRegionLRC_HP_PRF_PVR LRC.HP.PRF.PVR] ||
-|| LRF || Frontal Visual Reflexes || [BrainRegionLRC_MM_CJ LRC.MM.CJ], [BrainRegionLRC_MM_DSCH LRC.MM.DSCH], [BrainRegionLRC_MM_RIMLF LRC.MM.RIMLF] ||
+|| LRF || Frontal Visual Reflexes || [BrainRegionLRC_MM_CJ LRC.MM.CJ], [BrainRegionLRC_MM_DSCH LRC.MM.DSCH], [BrainRegionLRC_MM_RIMLF LRC.MM.RIMLF], [BrainRegionLRC_MM_RP_RIP LRC.MM.RP.RIP] ||
 || LRM || Multisensory Orienting Reflexes || [BrainRegionLRC_MM_EIC LRC.MM.EIC], [BrainRegionLRC_MM_SC_DEEP LRC.MM.SC.DEEP], [BrainRegionLRC_MM_SC_INT LRC.MM.SC.INT] ||
 || LRP || Postural Control Reflexes || [BrainRegionLRC_HM_INM LRC.HM.INM], [BrainRegionLRC_HM_NPH LRC.HM.NPH], [BrainRegionLRC_HM_RF_MED LRC.HM.RF.MED], [BrainRegionLRC_HP_PRF_GCR LRC.HP.PRF.GCR], [BrainRegionLRC_HP_PRF_RPO LRC.HP.PRF.RPO], [BrainRegionLRC_MM_PT_PR LRC.MM.PT.PR] ||
 || LRV || Direct Visual Reflexes || [BrainRegionLRC_MM_PT_NOT LRC.MM.PT.NOT], [BrainRegionLRC_MM_PT_PON LRC.MM.PT.PON], [BrainRegionLRC_MM_PT_SL LRC.MM.PT.SL], [BrainRegionLRC_MM_SC_SUP LRC.MM.SC.SUP] ||
@@ -76,6 +76,7 @@
 || [BrainRegionLRC_MM_CJ LRC.MM.CJ] || Cajal Nucleus || nucleus || LRM || Integration of head and eye movements, controls downward vertical gaze || Projects to CN3, CN4 nuclei, rotation of body about<BR>its long axis, Project to vestibular nuclei ||
 || [BrainRegionLRC_MM_DSCH LRC.MM.DSCH] || Darkschewitsch Nucleus || nucleus || LRM || Mediate the consensual pupillary light reflex || Light in one eye results in pupil changes in<BR>another eye ||
 || [BrainRegionLRC_MM_RIMLF LRC.MM.RIMLF] || Rostral Interstitial Nucleus of MLF || nucleus || LRM || Integration of head and eye movements, controls upward vertical gaze ||  ||
+|| [BrainRegionLRC_MM_RP_RIP LRC.MM.RP.RIP] || Raphe Interpositus Nucleus || nucleus || LUS || Premotor network for saccades || Gate activity of burst neurons for vertical and<BR>horizontal saccades; omnipause neurons, part of<BR>PPRF ||
 
 *Internal Region Connections:*
   * no connections
@@ -86,6 +87,7 @@
 || <font color="red">Cortical</font> || || || || || ||
 || [BrainAreaMAA MAA] || [BrainRegionLRC_MM_CJ LRC.MM.CJ] || [BrainRegionMCA_NC_PMC_FEF MCA.NC.PMC.FEF] || Frontal Eye Field || neocortex-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (FEF -> riMLF)] ||
 ||  || [BrainRegionLRC_MM_DSCH LRC.MM.DSCH] || [BrainRegionMCA_NC_PMC_FEF MCA.NC.PMC.FEF] || Frontal Eye Field || neocortex-nucleus || (unknown reference) ||
+||  || [BrainRegionLRC_MM_RP_RIP LRC.MM.RP.RIP] || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || Supplementary Motor Cortex || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (FEFSEF -> RIP, abstract)] ||
 || [BrainAreaSAA SAA] || [BrainRegionLRC_MM_CJ LRC.MM.CJ] || [BrainRegionVCA_NC_IPS_PEF VCA.NC.IPS.PEF] || Posterior Eye Field || neocortex-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Vision Components (VAC -> SOA, abstract)] ||
 ||  ||  || [BrainRegionVCA_NC_V3 VCA.NC.V3] || Associative Visual Cortex || neocortex-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (VAC -> SupraOculomotor, abstract)] ||
 ||  || [BrainRegionLRC_MM_RIMLF LRC.MM.RIMLF] || [BrainRegionVCA_NC_IPS_PEF VCA.NC.IPS.PEF] || Posterior Eye Field || neocortex-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Vision Components (VAC -> SOA, abstract)] ||
@@ -95,6 +97,7 @@
 || [BrainAreaLPC LPC] || [BrainRegionLRC_MM_CJ LRC.MM.CJ] || [BrainRegionLPC_HM_VCOCH LPC.HM.VCOCH] || Ventral Cochlear Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionLRC_MM_DSCH LRC.MM.DSCH] || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || Medial Vestibular Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLRC LRC] || [BrainRegionLRC_MM_CJ LRC.MM.CJ] || [BrainRegionLRC_MM_SC_DEEP LRC.MM.SC.DEEP] || Deep Superior Colliculus || nucleus-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (SC -> riMLF, abstract)] ||
+||  || [BrainRegionLRC_MM_RP_RIP LRC.MM.RP.RIP] || [BrainRegionLRC_MM_SC_SUP LRC.MM.SC.SUP] || Superficial Superior Colliculus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (SC -> RIP, abstract)] ||
 
 *External Outbound Region Connections:*
 
@@ -102,9 +105,11 @@
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLAC LAC] || [BrainRegionLRC_MM_DSCH LRC.MM.DSCH] || [BrainRegionLAC_MM_EWN LAC.MM.EWN] || Edinger-Westphal Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SupraOculomotor -> EWN, abstract)] ||
 || [BrainAreaLLC LLC] || [BrainRegionLRC_MM_DSCH LRC.MM.DSCH] || [BrainRegionLLC_HM_IO LLC.HM.IO] || Inferior Olivary Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLRC_MM_RP_RIP LRC.MM.RP.RIP] || [BrainRegionLLC_MM_SCNF LLC.MM.SCNF] || Subcuneiform Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLPC LPC] || [BrainRegionLRC_MM_CJ LRC.MM.CJ] || [BrainRegionLPC_MM_OCN LPC.MM.OCN] || Oculomotor Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SupraOculomotor -> Oculomotor, abstract)] ||
 ||  ||  || [BrainRegionLPC_MM_TRH LPC.MM.TRH] || Trochlear Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionLRC_MM_RIMLF LRC.MM.RIMLF] || [BrainRegionLPC_MM_OCN LPC.MM.OCN] || Oculomotor Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SupraOculomotor -> Oculomotor, abstract)] ||
+|| [BrainAreaLRC LRC] || [BrainRegionLRC_MM_RP_RIP LRC.MM.RP.RIP] || [BrainRegionLRC_HP_PRF_RPO LRC.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (RIP -> PPRF, abstract)] ||
 
 == Multisensory Orienting Reflexes ==
 
@@ -189,11 +194,11 @@
 || [BrainAreaLLC LLC] || [BrainRegionLRC_HP_PRF_GCR LRC.HP.PRF.GCR] || [BrainRegionLLC_MM_CNF LLC.MM.CNF] || Cuneiform Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionLRC_MM_PT_PR LRC.MM.PT.PR] || [BrainRegionLLC_HP_CR_FN LLC.HP.CR.FN] || Fastigual Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLMC LMC] || [BrainRegionLRC_HM_NPH LRC.HM.NPH] || [BrainRegionLMC_MM_TG_LDT LMC.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (DTN -> NPRP)] ||
-||  || [BrainRegionLRC_HP_PRF_RPO LRC.HP.PRF.RPO] || [BrainRegionLMC_MM_RP_RIP LMC.MM.RP.RIP] || Raphe Interpositus Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (RIP -> PPRF, abstract)] ||
 || [BrainAreaLPC LPC] || [BrainRegionLRC_HM_INM LRC.HM.INM] || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || Medial Vestibular Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionLRC_HM_NPH LRC.HM.NPH] || [BrainRegionLPC_HP_MVBN LPC.HP.MVBN] || Medial Vestibular Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (MVSN -> NPRP)] ||
 ||  || [BrainRegionLRC_HP_PRF_GCR LRC.HP.PRF.GCR] || [BrainRegionLPC_HM_TGM_STR LPC.HM.TGM.STR] || Spinal Trigeminal Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaLRC LRC] || [BrainRegionLRC_HP_PRF_RPO LRC.HP.PRF.RPO] || [BrainRegionLRC_MM_SC_DEEP LRC.MM.SC.DEEP] || Deep Superior Colliculus || nucleus-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (SC -> PPRF, abstract)] ||
+|| [BrainAreaLRC LRC] || [BrainRegionLRC_HP_PRF_RPO LRC.HP.PRF.RPO] || [BrainRegionLRC_MM_RP_RIP LRC.MM.RP.RIP] || Raphe Interpositus Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (RIP -> PPRF, abstract)] ||
+||  ||  || [BrainRegionLRC_MM_SC_DEEP LRC.MM.SC.DEEP] || Deep Superior Colliculus || nucleus-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (SC -> PPRF, abstract)] ||
 
 *External Outbound Region Connections:*
 
@@ -269,9 +274,9 @@
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLAC LAC] || [BrainRegionLRC_MM_PT_PON LRC.MM.PT.PON] || [BrainRegionLAC_MM_EWN LAC.MM.EWN] || Edinger-Westphal Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Pretectum -> EWN, abstract)] ||
 ||  || [BrainRegionLRC_MM_PT_SL LRC.MM.PT.SL] || [BrainRegionLAC_MM_EWN LAC.MM.EWN] || Edinger-Westphal Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Pretectum -> EWN, abstract)] ||
-|| [BrainAreaLMC LMC] || [BrainRegionLRC_MM_SC_SUP LRC.MM.SC.SUP] || [BrainRegionLMC_MM_RP_RIP LMC.MM.RP.RIP] || Raphe Interpositus Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (SC -> RIP, abstract)] ||
 || [BrainAreaLPC LPC] || [BrainRegionLRC_MM_PT_SL LRC.MM.PT.SL] || [BrainRegionLPC_MM_OCN LPC.MM.OCN] || Oculomotor Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaLRC LRC] || [BrainRegionLRC_MM_SC_SUP LRC.MM.SC.SUP] || [BrainRegionLRC_MM_SC_INT LRC.MM.SC.INT] || Intermediate Superior Colliculus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCs -> SCi, abstract)] ||
+|| [BrainAreaLRC LRC] || [BrainRegionLRC_MM_SC_SUP LRC.MM.SC.SUP] || [BrainRegionLRC_MM_RP_RIP LRC.MM.RP.RIP] || Raphe Interpositus Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (SC -> RIP, abstract)] ||
+||  ||  || [BrainRegionLRC_MM_SC_INT LRC.MM.SC.INT] || Intermediate Superior Colliculus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCs -> SCi, abstract)] ||
 
 = Thirdparty Circuits =
 (generated)
@@ -279,6 +284,10 @@
   * [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements] (unknown reference)
 
 <img src="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg" alt="unavailable">
+
+  * [http://ars.els-cdn.com/content/image/1-s2.0-S0006899301025987-gr1.gif Horizontal saccades and smooth pursuit movements] - see [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Reference]
+
+<img src="http://ars.els-cdn.com/content/image/1-s2.0-S0006899301025987-gr1.gif" alt="unavailable">
 
   * [http://www.cixip.com/Public/kindeditor/attached/image/20121030/20121030134649_52795.jpg Summary of eye movement control] - see [http://www.cixip.com/index.php/page/content/id/1190 Reference]
 
@@ -292,6 +301,7 @@
 = References =
 (generated)
 
+  * http://www.sciencedirect.com/science/article/pii/S0006899301025987
   * http://www.cixip.com/index.php/page/content/id/1190
   * http://www.scholarpedia.org/article/Head_direction_cells
 
