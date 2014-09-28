@@ -413,7 +413,7 @@
 					<connection type="nucleus-nucleus" primary="true" src="LRC.MM.SC.SUP" dst="VBA.FD.PV.IPV"/>
 					<connection type="nucleus-nucleus" primary="true" src="LRC.MM.SC.SUP" dst="VBA.FD.PV.LPV"/>
 					<connection type="nucleus-nucleus" primary="true" src="LRC.MM.SC.SUP" dst="LRC.MM.PT.NOT"/>
-					<connection type="nucleus-nucleus" primary="true" src="LRC.MM.SC.SUP" dst="LMC.MM.RP.RIP"/>
+					<connection type="nucleus-nucleus" primary="true" src="LRC.MM.SC.SUP" dst="LRC.MM.RP.RIP"/>
 					<connection type="nucleus-nucleus" primary="true" src="LRC.MM.SC.SUP" dst="SMA.FD.TH.LP"/>
 					<connection type="nucleus-nucleus" primary="true" src="LRC.MM.SC.SUP" dst="LRC.MM.SC.INT"/>
 					<connection type="nucleus-nucleus" primary="true" src="LRC.MM.PT.SL" dst="VBA.FD.PV.MPV"/>
@@ -429,6 +429,9 @@
 					<region id="LRC.MM.CJ" type="nucleus" service="LRM" role="relay"/>
 					<region id="LRC.MM.RIMLF" type="nucleus" service="LRM" role="relay"/>
 					<region id="LRC.MM.DSCH" type="nucleus" service="LRM" role="relay"/>
+					<region id="LRC.MM.RP.RIP" type="nucleus" service="LUS" role="relay"/>
+					<connection type="nucleus-nucleus" primary="true" src="LRC.MM.RP.RIP" dst="LRC.HP.PRF.RPO"/>
+					<connection type="nucleus-nucleus" primary="true" src="LRC.MM.RP.RIP" dst="LLC.MM.SCNF"/>
 					<connection type="nucleus-nucleus" primary="true" src="LRC.MM.CJ" dst="LPC.MM.OCN"/>
 					<connection type="nucleus-nucleus" primary="true" src="LRC.MM.CJ" dst="LPC.MM.TRH"/>
 					<connection type="nucleus-nucleus" primary="true" src="LRC.MM.RIMLF" dst="LPC.MM.OCN"/>
@@ -552,12 +555,14 @@
 					<connection type="nucleus-nucleus" primary="true" src="LAC.FD.HT.LTN" dst="HBA.FD.MB.MMB"/>
 					<connection type="nucleus-nucleus" primary="true" src="LAC.FD.HT.LTN" dst="PHA.FD.MB.LMB"/>
 					<connection type="nucleus-nucleus" primary="true" src="LAC.FD.HT.LTN" dst="BFA.FD.HB"/>
+					<connection type="nucleus-nucleus" primary="true" src="LAC.FD.HT.LTN" dst="LMC.HM.RP.MG"/>
 					<connection type="nucleus-nucleus" primary="true" src="LAC.FD.HT.PV" dst="CGA.FD.TH.AN"/>
 					<connection type="nucleus-nucleus" primary="true" src="LAC.FD.HT.PV" dst="LAC.SC.LH.LSN"/>
 					<connection type="nucleus-nucleus" primary="true" src="LAC.FD.HT.PV" dst="LAC.FD.HT.VM"/>
 					<connection type="nucleus-nucleus" primary="true" src="LAC.FD.HT.PV" dst="LAC.SC.IZ.SPS"/>
 					<connection type="nucleus-nucleus" primary="true" src="LAC.FD.HT.PV" dst="LPC.SC.VH.ONF"/>
 					<connection type="nucleus-nucleus" primary="true" src="LAC.FD.HT.PV" dst="LAC.SC.CC.DCN"/>
+					<connection type="nucleus-nucleus" primary="true" src="LAC.FD.HT.PV" dst="LMC.HM.RP.MG"/>
 					<connection type="nucleus-nucleus" primary="true" src="LAC.FD.HT.AR" dst="LAC.FD.HT.PV"/>
 					<connection type="nucleus-nucleus" primary="true" src="LAC.FD.HT.AR" dst="LAC.FD.HT.DM"/>
 					<connection type="nucleus-nucleus" primary="true" src="LAC.FD.HT.AR" dst="LAC.FD.HT.LTN"/>
@@ -608,6 +613,7 @@
 					<connection type="nucleus-nucleus" primary="true" src="LAC.FD.HT.PO" dst="BFA.FD.HB"/>
 					<connection type="nucleus-nucleus" primary="true" src="LAC.FD.HT.PO" dst="LAC.FD.HT.SUM"/>
 					<connection type="nucleus-nucleus" primary="true" src="LAC.FD.HT.PO" dst="LAC.FD.HT.TBM"/>
+					<connection type="nucleus-nucleus" primary="true" src="LAC.FD.HT.PO" dst="LMC.HM.RP.OB"/>
 					<connection type="nucleus-nucleus" primary="true" src="LAC.FD.HT.AH" dst="LAC.FD.HT.PRM"/>
 				</circuit>
 			</area>
@@ -695,7 +701,7 @@
 					<connection type="nucleus-nucleus" primary="true" src="LLC.MM.CNF" dst="LAC.HM.VGN"/>
 					<connection type="nucleus-nucleus" primary="true" src="LLC.MM.CNF" dst="LRC.HP.PN.KFN"/>
 					<connection type="nucleus-nucleus" primary="true" src="LLC.MM.SCNF" dst="LMC.HP.RP.PRN"/>
-					<connection type="nucleus-nucleus" primary="true" src="LLC.MM.SCNF" dst="LMC.HM.RP"/>
+					<connection type="nucleus-nucleus" primary="true" src="LLC.MM.SCNF" dst="LMC.HM.RP.MG"/>
 				</circuit>
 			</area>
 
@@ -742,23 +748,27 @@
 				<circuit id="5HT" name="Serotonin - Feelings of Well-Being and Happiness" enabled="true"
 					notes="also - sympathetic ganglions, adrenal medulla"
 					>
-					<region id="LMC.HM.RP" type="nucleus" service="LUS" role="relay"/>
+					<region id="LMC.HM.RP.OB" type="nucleus" service="LUS" role="relay"/>
+					<region id="LMC.HM.RP.MG" type="nucleus" service="LUS" role="relay"/>
+					<region id="LMC.HM.RP.PL" type="nucleus" service="LUS" role="relay"/>
 					<region id="LMC.MM.RF.SC" type="nucleus" service="LUS" role="relay"/>
 					<region id="LMC.MM.RP.DRN" type="nucleus" service="LUS" role="relay"/>
-					<region id="LMC.MM.RP.RIP" type="nucleus" service="LUS" role="relay"/>
 					<region id="LMC.HP.RP.PRN" type="nucleus" service="LUS" role="relay"/>
-					<region id="LMC.HP.RP.MRN" type="nucleus" service="LUS" role="relay"/>
 					<region id="LMC.HP.RP.LI" type="nucleus" service="LUS" role="relay"/>
-					<connection type="nucleus-nucleus" primary="true" src="LMC.MM.RP.RIP" dst="LRC.HP.PRF.RPO"/>
-					<connection type="nucleus-nucleus" primary="true" src="LMC.MM.RP.RIP" dst="LLC.MM.SCNF"/>
 					<connection type="nucleus-nucleus" primary="true" src="LMC.MM.RP.DRN" dst="BFA.FD.TH.PV"/>
-					<connection type="nucleus-nucleus" primary="true" src="LMC.HP.RP.MRN" dst="HBA.FD.MB.MMB"/>
-					<connection type="nucleus-nucleus" primary="true" src="LMC.HP.RP.MRN" dst="LAC.FD.HT.SUM"/>
-					<connection type="nucleus-nucleus" primary="true" src="LMC.HP.RP.MRN" dst="LAC.FD.HT.PN"/>
-					<connection type="nucleus-nucleus" primary="true" src="LMC.HP.RP.MRN" dst="BGA.FD.STN" notes="to BGA.FD.STN.ZI"/>
-					<connection type="nucleus-nucleus" primary="true" src="LMC.HP.RP.MRN" dst="BFA.FD.HB" note="lateral"/>
-					<connection type="nucleus-nucleus" primary="true" src="LMC.HP.RP.MRN" dst="BFA.FT.SEP"/>
+					<connection type="nucleus-nucleus" primary="true" src="LMC.MM.RF.SC" dst="HBA.FD.MB.MMB"/>
+					<connection type="nucleus-nucleus" primary="true" src="LMC.MM.RF.SC" dst="LAC.FD.HT.SUM"/>
+					<connection type="nucleus-nucleus" primary="true" src="LMC.MM.RF.SC" dst="LAC.FD.HT.PN"/>
+					<connection type="nucleus-nucleus" primary="true" src="LMC.MM.RF.SC" dst="BGA.FD.STN" notes="to BGA.FD.STN.ZI"/>
+					<connection type="nucleus-nucleus" primary="true" src="LMC.MM.RF.SC" dst="BFA.FD.HB" note="lateral"/>
+					<connection type="nucleus-nucleus" primary="true" src="LMC.MM.RF.SC" dst="BFA.FT.SEP"/>
 					<connection type="nucleus-allocortex" primary="true" src="LMC.HP.RP.PRN" dst="LLC.HP.CR.SC"/>
+					<connection type="nucleus-allocortex" primary="true" src="LMC.HM.RP.OB" dst="LLC.HP.CR.SC"/>
+					<connection type="nucleus-nucleus" primary="true" src="LMC.HM.RP.PL" dst="LPC.SC.PH.UMG"/>
+					<connection type="nucleus-nucleus" primary="true" src="LMC.HM.RP.PL" dst="LPC.SC.PH.LMG"/>
+					<connection type="nucleus-nucleus" primary="true" src="LMC.HM.RP.MG" dst="LPC.SC.PH.USG"/>
+					<connection type="nucleus-nucleus" primary="true" src="LMC.HM.RP.MG" dst="LPC.SC.PH.LSG"/>
+					<connection type="nucleus-nucleus" primary="true" src="LMC.HM.RP.OB" dst="LPC.SC.IZ.IMM"/>
 				</circuit>
 
 				<ignorecircuit id="NH" name="Histamine - Inflammatory Response" enabled="true"
@@ -776,6 +786,8 @@
 					<connection type="nucleus-nucleus" primary="true" src="LMC.MM.PAG" dst="LMC.FD.TH.SF"/>
 					<connection type="nucleus-nucleus" primary="true" src="LMC.MM.PAG" dst="LPC.HM.AMB"/>
 					<connection type="nucleus-nucleus" primary="true" src="LMC.MM.PAG" dst="LRC.HM.RA"/>
+					<connection type="nucleus-nucleus" primary="true" src="LMC.MM.PAG" dst="LMC.HM.RP.PL"/>
+					<connection type="nucleus-nucleus" primary="true" src="LMC.MM.PAG" dst="LMC.HM.RP.MG"/>
 				</circuit>
 
 				<circuit id="GABA" name="GABA - Inhibitory Projections" enabled="true"
@@ -1305,7 +1317,7 @@
 					<connection type="neocortex-nucleus" primary="true" src="MCA.NC.SMC" dst="LRC.HP.PRF.CRF"/>
 					<connection type="neocortex-nucleus" primary="true" src="MCA.NC.SMC" dst="LLC.HP.PRF.PDT"/>
 					<connection type="neocortex-nucleus" primary="true" src="MCA.NC.SMC" dst="LRC.HP.PRF.GCR"/>
-					<connection type="neocortex-nucleus" primary="true" src="MCA.NC.SMC" dst="LMC.MM.RP.RIP"/>
+					<connection type="neocortex-nucleus" primary="true" src="MCA.NC.SMC" dst="LRC.MM.RP.RIP"/>
 					<connection type="neocortex-neocortex" primary="true" src="MCA.NC.PMC.F2" dst="MCA.NC.MC"/>
 					<connection type="neocortex-neocortex" primary="true" src="MCA.NC.PMC.F2" dst="MCA.NC.PMC.F7"/>
 					<connection type="neocortex-neocortex" primary="true" src="MCA.NC.PMC.F2" dst="MCA.NC.SMC" notes="to F3"/>
