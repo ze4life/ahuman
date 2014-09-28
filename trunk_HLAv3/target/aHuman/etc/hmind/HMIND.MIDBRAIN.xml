@@ -66,10 +66,11 @@
 				fgroup="midline column"
 				refs="NL:[http://neurolex.org/wiki/Category:Midbrain_raphe_nuclei Midbrain raphe nuclei]"
 				>
-				<element id="LMC.MM.RF.SC" name="Superior Central Nucleus" mapped="true" type="nucleus" 
+				<element id="LMC.MM.RF.SC" name="Superior Central Raphe Nucleus" mapped="true" type="nucleus" 
+					synonyms="Median raphe nucleus"
 					refs="NL:[http://neurolex.org/wiki/Category:Superior_central_nucleus Superior central nucleus]"
-					function="Block or temporarily suspend mnemonic processes in the hippocampus"
-					notes="Directs HC to disregard insignificant events; inhibitory nucleus; B6,B8"
+					function="Block or temporarily suspend mnemonic processes in the hippocampus; Hallucinations"
+					notes="Directs HC to disregard insignificant events; inhibitory nucleus; B6,B8; Insomnia; inhibitory nucleus"
 					/>
 				<element id="LMC.MM.RP.DRN" name="Dorsal Raphe Nucleus" mapped="true" type="nucleus" 
 					refs="NL:[http://neurolex.org/wiki/Category:Dorsal_raphe_nucleus Dorsal raphe nucleus]"
@@ -78,10 +79,10 @@
 					>
 					<element name="Serotonergic cell group B7" refs="NL:[http://neurolex.org/wiki/Category:Serotonergic_cell_group_B7 Serotonergic cell group B7]"/>
 				</element>
-				<element id="LMC.MM.RP.RIP" name="Raphe Interpositus Nucleus" mapped="true" type="nucleus" 
+				<element id="LRC.MM.RP.RIP" name="Raphe Interpositus Nucleus" mapped="true" type="nucleus" 
 					refs="NL:[http://neurolex.org/wiki/Category:Raphe_interpositus_nucleus_of_PHT00 Raphe interpositus nucleus]"
 					function="Premotor network for saccades"
-					notes="Gate activity of burst neurons for vertical and horizontal saccades"
+					notes="Gate activity of burst neurons for vertical and horizontal saccades; omnipause neurons, part of PPRF"
 					/>
 			</element>
 
@@ -383,16 +384,13 @@
 						function="Regulation of sleep cycle"
 						notes="Projects to CR, forebrain; inhibitory nucleus"
 					/>
-					<element id="LMC.HP.RP.MRN" name="Superior Central Raphe Nucleus" mapped="true" type="nucleus"
-						refs="NL:[http://neurolex.org/wiki/Category:Superior_central_nucleus Superior central nucleus]"
-						function="Hallucinations"
-						notes="Insomnia; inhibitory nucleus"
-						/>
-					<element id="LMC.HP.RP.LI" name="Nucleus Linearis" mapped="true" type="nucleus"
+					<element id="LMC.HP.RP.LI" name="Raphe Nucleus Linearis" mapped="true" type="nucleus"
 						refs="NL:[http://neurolex.org/wiki/Category:Inferior_central_nucleus Inferior central nucleus]"
 						function="Release of 5-HT was only obtained on stimulation of this nucleus"
 						notes="Does not project to CR, but to forebrain"
 						/>
+					<element name="Serotonergic Cell Group B8" refs="NL:[http://neurolex.org/wiki/Category:Serotonergic_cell_group_B8 Serotonergic cell group B8]" ignore="true"/>
+					<element name="Serotonergic Cell Group B9" refs="NL:[http://neurolex.org/wiki/Category:Serotonergic_cell_group_B9 Serotonergic cell group B9]" ignore="true"/>
 				</element>
 			</element>
 
@@ -421,10 +419,7 @@
 				<element id="LRC.HP.PRF.PVR" name="Parvocellular Reticular Nucleus" mapped="true" type="nucleus"
 					function="Flow of respiratory current out of organism"
 					notes="Projects to facial nucleus, hypoglossal nucleus and parabrachial nucleus"
-					>
-					<element name="Serotonergic Cell Group B8" refs="NL:[http://neurolex.org/wiki/Category:Serotonergic_cell_group_B8 Serotonergic cell group B8]"/>
-					<element name="Serotonergic Cell Group B9" refs="NL:[http://neurolex.org/wiki/Category:Serotonergic_cell_group_B9 Serotonergic cell group B9]"/>
-				</element>
+					/>
 			</element>
 
 			<element id="HP.RF.LAT" name="Pontine Reticular Formation, Lateral Column" category="midbrain"
@@ -645,16 +640,28 @@
 
 			<element id="HM.RF.MID" name="Medullary Reticular Formation, Midline Column" 
 				>
-				<element id="LMC.HM.RP" name="Raphe Nucleus of Medulla" mapped="true" type="nucleus" category="midbrain"
+				<element id="LMC.HM.RP" name="Raphe Nuclei of Medulla"
 					refs="NL:[http://neurolex.org/wiki/Category:Medullary_raphe_nuclear_complex Medullary raphe nuclear complex]"
 					function="Regulate moods, temper anxiety, and relieve depression"
 					notes="Releases 5HT (serotonin) hormone (happiness); inhibitory nucleus"
 					>
-					<element name="Raphe Magnus Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Nucleus_raphe_magnus Nucleus raphe magnus]"/>
-					<element name="Raphe Obscurus Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Nucleus_raphe_obscurus Nucleus raphe obscurus]">
+					<element id="LMC.HM.RP.PL" name="Raphe Pallidus Nucleus" mapped="true" type="nucleus" category="midbrain"
+						refs="NL:[http://neurolex.org/wiki/Category:Nucleus_raphe_pallidus Nucleus raphe pallidus]"
+						function="Spinal pain control"
+						notes="B1"
+						/>
+					<element id="LMC.HM.RP.OB" name="Raphe Obscurus Nucleus" mapped="true" type="nucleus" category="midbrain"
+						refs="NL:[http://neurolex.org/wiki/Category:Nucleus_raphe_obscurus Nucleus raphe obscurus]"
+						function="Regulate cardiovascular function via sympathetic spinal column"
+						notes="B2"
+						>
 						<element name="Caudal Nucleus Raphe Obscurus" refs="NL:[http://neurolex.org/wiki/Category:Caudal_nucleus_raphe_obscurus Caudal nucleus raphe obscurus]"/>
 					</element>
-					<element name="Raphe Pallidus Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Nucleus_raphe_pallidus Nucleus raphe pallidus]"/>
+					<element id="LMC.HM.RP.MG" name="Raphe Magnus Nucleus" mapped="true" type="nucleus" category="midbrain"
+						refs="NL:[http://neurolex.org/wiki/Category:Nucleus_raphe_magnus Nucleus raphe magnus]"
+						function="Inhubit head and spinal pain"
+						notes="B3, contacts with enkephalenic neurons in substantia gelatinosa"
+						/>
 				</element>
 			</element>
 
