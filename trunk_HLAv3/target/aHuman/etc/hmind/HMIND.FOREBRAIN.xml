@@ -38,15 +38,6 @@
 				<element name="Intercalated Amygdaloid Nuclei" refs="NL:[http://neurolex.org/wiki/Category:Intercalated_amygdaloid_nuclei Intercalated amygdaloid nuclei]"/>
 				<element name="Medial Amygdala" refs="NL:[http://neurolex.org/wiki/Category:Medial_amygdala Medial amygdala]"/>
 			</element>
-			<element id="BGA.FT.ACC" name="Accumbens Nucleus" mapped="true" type="nucleus"
-				refs="NL:[http://neurolex.org/wiki/Category:Nucleus_accumbens Nucleus accumbens]"
-				function="Activate motor functions under attention"
-				notes="inhibitory nucleus"
-				>
-				<element name="Nucleus Accumbens Core" refs="NL:[http://neurolex.org/wiki/Category:Core_of_nucleus_accumbens Core of nucleus accumbens]"/>
-				<element name="Nucleus Accumbens Shell" refs="NL:[http://neurolex.org/wiki/Category:Shell_of_nucleus_accumbens Shell of nucleus accumbens]"/>
-				<element name="Medial Nucleus Accumbens" refs="NL:[http://neurolex.org/wiki/Category:Medial_nucleus_accumbens Medial nucleus accumbens]"/>
-			</element>
 			<element id="FT.SIN" name="Substantia innominata">
 				<element id="LMC.FT.NBM" name="Basal Nucleus of Meynert" mapped="true" type="nucleus"
 					refs="NL:[http://neurolex.org/wiki/Category:Basal_nucleus Basal nucleus];NL:[http://neurolex.org/wiki/Category:Substantia_innominata Substantia innominata]"
@@ -68,55 +59,164 @@
 		<element id="BGA.FT.BG" name="Basal Ganglia">
 			<element id="BGA.FT.ST" name="Striatum"
 				>
-				<element id="BGA.FT.CN" name="Caudate Nucleus" mapped="true" type="nucleus"
-					refs="NL:[http://neurolex.org/wiki/Category:Caudate_nucleus Caudate nucleus]"
-					function="Excitation of correct action schemas and selection of appropriate sub-goals based on evaluation of action-outcomes"
-					notes="One of neural correlates of romantic love; inhibitory nucleus"
-					/>
-				<element id="BGA.FT.PU" name="Putamen" mapped="true" type="nucleus"
-					refs="NL:[http://neurolex.org/wiki/Category:Putamen Putamen]"
-					function="Stimulus-response, or habit, learning"
-					notes="Regulate movements and influence various types of learning; inhibitory nucleus"
+				<element id="BGA.FT.VST" name="Ventral Striatum"
+					notes="NACC (OMPFC, ACC), NACC/PU-ventral (Rostral cortex, IT, PH cortex)"
 					>
-					<element name="Caudal Putamen" refs="NL:[http://neurolex.org/wiki/Category:Caudal_putamen Caudal putamen]"/>
-					<element name="Matrix Compartment of Putamen" refs="NL:[http://neurolex.org/wiki/Category:Matrix_compartment_of_putamen Matrix compartment of putamen]"/>
-					<element name="Rostral Putamen" refs="NL:[http://neurolex.org/wiki/Category:Rostral_putamen Rostral putamen]"/>
-					<element name="Striosomal Putamen" refs="NL:[http://neurolex.org/wiki/Category:Striosomal_part_of_putamen Striosomal part of putamen]"/>
-					<element name="Ventral Putamen" refs="NL:[http://neurolex.org/wiki/Category:Ventral_putamen Ventral putamen]"/>
+					<element id="BGA.FT.ACC" name="Accumbens Nucleus" mapped="true" type="nucleus"
+						synonyms="Ventral Striatum"
+						refs="NL:[http://neurolex.org/wiki/Category:Nucleus_accumbens Nucleus accumbens]"
+						function="Activate motor functions under attention, expectation of pleasure; rhythmic timing"
+						notes="inhibitory nucleus"
+						>
+						<element id="BGA.FT.ACC.CORE" name="Nucleus Accumbens Core" 
+							refs="NL:[http://neurolex.org/wiki/Category:Core_of_nucleus_accumbens Core of nucleus accumbens]"
+							function="cognitive processing of motor function related to reward and reinforcement; encodes new motor programs which facilitate acquisition of given reward in future"
+							/>
+						<element id="BGA.FT.ACC.SH" name="Nucleus Accumbens Shell" 
+							refs="NL:[http://neurolex.org/wiki/Category:Shell_of_nucleus_accumbens Shell of nucleus accumbens]"
+							function="cognitive processing of motivational salience (wanting) as well as reward and reinforcement effects"
+							/>
+						<element name="Medial Nucleus Accumbens" refs="NL:[http://neurolex.org/wiki/Category:Medial_nucleus_accumbens Medial nucleus accumbens]" ignore="true" comment="the same as core"/>
+					</element>
+					<element id="BGA.FT.PU.VT" name="Ventral Putamen" mapped="true" type="nucleus"
+						refs="NL:[http://neurolex.org/wiki/Category:Ventral_putamen Ventral putamen]"
+						function="Evaluation of flavors, taste"
+						/>
+				</element>
+
+				<element id="BGA.FT.DST" name="Dorsal Striatum"
+					synonyms="Neostriatum"
+					notes="PU-dorsal (sensorimotor cortex, partietal cortex), CN-dorsal (prefrontal, PPC, STC)"
+					>
+					<element id="BGA.FT.CN" name="Caudate Nucleus"
+						refs="NL:[http://neurolex.org/wiki/Category:Caudate_nucleus Caudate nucleus]"
+						function="Excitation of correct action schemas and selection of appropriate sub-goals based on evaluation of action-outcomes"
+						notes="One of neural correlates of romantic love; inhibitory nucleus"
+						>
+						<element id="BGA.FT.CN.HD" name="Caudate Nucleus Head" mapped="true" type="nucleus"
+							function="Feedback processing, result of incorrect categorization"
+							notes="LPFC, BA 9"
+							/>
+						<element id="BGA.FT.CN.BD" name="Caudate Nucleus Body" mapped="true" type="nucleus"
+							function="Oculomotor learning"
+							notes="FEF, SEF"
+							/>
+						<element id="BGA.FT.CN.TL" name="Caudate Nucleus Tail" mapped="true" type="nucleus"
+							function="Successful classification learning, correct categorization"
+							notes="ITC, STC"
+							/>
+					</element>
+					<element id="BGA.FT.DPU" name="Dorsal Putamen" 
+						refs="NL:[http://neurolex.org/wiki/Category:Putamen Putamen]"
+						function="Stimulus-response, or habit, learning"
+						notes="Regulate movements and influence various types of learning; inhibitory nucleus"
+						>
+						<element id="BGA.FT.PU.CD" name="Dorsal Putamen Caudal" mapped="true" type="nucleus"
+							refs="NL:[http://neurolex.org/wiki/Category:Caudal_putamen Caudal putamen]"
+							function="Flexor motor initiation"
+							notes="ventrolateral, D1 receptor, MC and S1 - overlap, TH/CM from GPi; DL-leg, RL-face, VM-arms"
+							>
+						<element id="BGA.FT.PU.RS" name="Dorsal Putamen Rostral" mapped="true" type="nucleus"
+							refs="NL:[http://neurolex.org/wiki/Category:Rostral_putamen Rostral putamen]"
+							function="Extensor motor initiation"
+							notes="dorsomedial, SMC and PMC - overlap, BA 6,46"
+							/>
+						<element name="Matrix Compartment of Putamen" refs="NL:[http://neurolex.org/wiki/Category:Matrix_compartment_of_putamen Matrix compartment of putamen]" ignored="true" comment="secondary nuclei grouping"/>
+						<element name="Striosomal Putamen" refs="NL:[http://neurolex.org/wiki/Category:Striosomal_part_of_putamen Striosomal part of putamen]" ignored="true" comment="secondary nuclei grouping"/>
+					</element>
 				</element>
 			</element>
-			<element id="BGA.FT.GP" name="Globus Pallidus" refs="NL:[http://neurolex.org/wiki/Category:Globus_pallidus Globus pallidus]">
-				<element refs="NL:[http://neurolex.org/wiki/Category:Caudal_globus_pallidus Caudal globus pallidus]" ignore="true" comment="secondary nuclei grouping"/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Dorsal_globus_pallidus Dorsal globus pallidus]" ignore="true" comment="secondary nuclei grouping"/>
-				<element id="BGA.FT.GPE" name="Globus Pallidus External" mapped="true" type="nucleus"
-					refs="NL:[http://neurolex.org/wiki/Category:Globus_pallidus_external_segment Globus pallidus external segment]"
-					function="Regulate and focus activity patterns in striatum, STN, GPi, and SNpr"
-					notes="inhibitory nucleus"
-					/>
-				<element id="BGA.FT.GPI" name="Globus Pallidus Internal" mapped="true" type="nucleus"
-					refs="NL:[http://neurolex.org/wiki/Category:Globus_pallidus_internal_segment Globus pallidus internal segment]"
-					function="Output nuclei of basal ganglia to neocortex"
-					notes="Balance of direct and indirect paths, GPM; inhibitory nucleus"
-					/>
-				<element refs="NL:[http://neurolex.org/wiki/Category:Rostral_globus_pallidus Rostral globus pallidus]" ignore="true" comment="no nuclei"/>
+
+			<element id="BGA.FT.GP" name="Globus Pallidus" 
+				refs="NL:[http://neurolex.org/wiki/Category:Globus_pallidus Globus pallidus]"
+				>
+				<element id="BGA.FT.DP" name="Dorsal Pallidum"
+					refs="NL:[http://neurolex.org/wiki/Category:Dorsal_globus_pallidus Dorsal globus pallidus]"
+					>
+					<element id="BGA.FT.GPE" name="Globus Pallidus External"
+						synonyms="lateral globus pallidus"
+						refs="NL:[http://neurolex.org/wiki/Category:Globus_pallidus_external_segment Globus pallidus external segment]"
+						function="Regulate and focus activity patterns in striatum, STN, GPi, and SNpr"
+						notes="inhibitory nucleus"
+						>
+						<element id="BGA.FT.GPE.VL" name="Globus Pallidus External Ventrolateral" mapped="true" type="nucleus"
+							function="Body extensor movements, trunk and girdles"
+	 						/>
+						<element id="BGA.FT.GPE.DM" name="Globus Pallidus External Dorsomedial" mapped="true" type="nucleus"
+							function="Face extensor movements"
+	 						/>
+					</element>
+					<element id="BGA.FT.GPI" name="Globus Pallidus Internal"
+						synonyms="medial globus pallidus"
+						refs="NL:[http://neurolex.org/wiki/Category:Globus_pallidus_internal_segment Globus pallidus internal segment]"
+						function="Output nuclei of basal ganglia to neocortex"
+						notes="Balance of direct and indirect paths, GPM; inhibitory nucleus"
+						>
+						<element id="BGA.FT.GPI.VL" name="Globus Pallidus Internal Ventrolateral" mapped="true" type="nucleus"
+							function="Motor loop"
+							notes="output nuclei of basal ganglia to neocortex, leg, arm, face; lateral - leg, medial - arm, ventral - face"
+							/>
+						<element id="BGA.FT.GPI.LDM" name="Globus Pallidus Internal Lateral Dorsomedial" mapped="true" type="nucleus"
+							function="Executive loop"
+							notes="output nucleus for caudate nucleus"
+							/>
+						<element id="BGA.FT.GPI.RM" name="Globus Pallidus Internal Rostromedial" mapped="true" type="nucleus"
+							refs="NL:[http://neurolex.org/wiki/Category:Rostral_globus_pallidus Rostral globus pallidus]"
+							function="Motivational loop"
+							/>
+						<element id="BGA.FT.GPI.CDM" name="Globus Pallidus Internal Caudal Dorsomedial" mapped="true" type="nucleus"
+							refs="NL:[http://neurolex.org/wiki/Category:Caudal_globus_pallidus Caudal globus pallidus]"
+							function="Oculomotor loop"
+							/>
+					</element>
+				</element>
+
+				<element id="BGA.FT.VP" name="Ventral Pallidum" mapped="true" type="nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Ventral_pallidum Ventral pallidum]"
+					function="Distinguish wanting versus liking enhancements"
+					notes="Necessary for reward learning and performance; inhibitory nucleus"
+					>
+					<element id="BGA.FT.VP.DM" name="Ventral Pallidum Dorsomedial"
+						function="motivational loop, NAcc-core"
+						/>
+					<element id="BGA.FT.VP.VL" name="Ventral Pallidum Ventrolateral"
+						function="motivational loop, NAcc-shell"
+						/>
+				</element>
 			</element>
+
 			<element id="BGA.FT.SN" name="Substantia Nigra" refs="NL:[http://neurolex.org/wiki/Category:Substantia_nigra Substantia nigra]">
-				<element id="LMC.FT.SN.PC" name="Substantia Nigra Pars Compacta" mapped="true" type="nucleus"
+				<element id="LMC.FT.SN.CLT" name="Substantia Nigra Pars Compacta" 
 					refs="NL:[http://neurolex.org/wiki/Category:Substantia_nigra_pars_compacta Substantia nigra pars compacta]"
 					function="Fine motor control, temporal processing"
 					notes="Supply striatum with dopamine, input to Basal Ganglia"
 					>
-					<element name="Lateral Substantia Nigra Pars Compacta" refs="NL:[http://neurolex.org/wiki/Category:Lateral_substantia_nigra_pars_compacta Lateral substantia nigra pars compacta]"/>
-					<element name="Medial Substantia Nigra Pars Compacta" refs="NL:[http://neurolex.org/wiki/Category:Medial_substantia_nigra_pars_compacta Medial substantia nigra pars compacta]"/>
+					<element id="LMC.FT.SN.CLT" name="Substantia Nigra Pars Compacta Lateral" mapped="true" type="nucleus"
+						refs="NL:[http://neurolex.org/wiki/Category:Lateral_substantia_nigra_pars_compacta Lateral substantia nigra pars compacta]"
+						/>
+					<element id="LMC.FT.SN.CMD" name="Medial Substantia Nigra Pars Compacta" mapped="true" type="nucleus"
+						refs="NL:[http://neurolex.org/wiki/Category:Medial_substantia_nigra_pars_compacta Medial substantia nigra pars compacta]"
+						/>
 				</element>
-				<element id="LMC.FT.SN.PR" name="Substantia Nigra Pars Reticulata" mapped="true" type="nucleus"
+
+				<element id="LMC.FT.SN.RCL" name="Substantia Nigra Pars Reticulata"
 					refs="NL:[http://neurolex.org/wiki/Category:Substantia_nigra_pars_reticulata Substantia nigra pars reticulata]"
 					function="Convey final processed signals of basal ganglia to thalamus and superior colliculus"
 					notes="inhibitory nucleus"
 					>
-					<element name="Substantia Nigra Pars Lateralis" refs="NL:[http://neurolex.org/wiki/Category:Substantia_nigra_pars_lateralis Substantia nigra pars lateralis]"/>
+					<element id="LMC.FT.SN.RCL" name="Substantia Nigra Pars Reticulata Caudolateral" mapped="true" type="nucleus"
+						function="Motor loop"
+						/>
+					<element id="LMC.FT.SN.RRL" name="Substantia Nigra Pars Reticulata Rostrolateral" mapped="true" type="nucleus"
+						function="Executive loop"
+						/>
+					<element id="LMC.FT.SN.RVL" name="Substantia Nigra Pars Reticulata Ventrolateral" mapped="true" type="nucleus"
+						function="Oculomotor loop"
+						/>
+					<element name="Substantia Nigra Pars Lateralis" refs="NL:[http://neurolex.org/wiki/Category:Substantia_nigra_pars_lateralis Substantia nigra pars lateralis]" ignore="true"/>
 				</element>
 			</element>
+
 		</element>
 
 		<element id="PHA.FT.EPF" name="Endopiriform Nucleus" mapped="true" type="nucleus" 
@@ -182,12 +282,6 @@
 			<element name="Septohippocampal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Septohippocampal_nucleus Septohippocampal nucleus]"/>
 			<element name="Triangular Septal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Triangular_septal_nucleus Triangular septal nucleus]"/>
 		</element>
-
-		<element id="BGA.FT.VP" name="Ventral Pallidum" mapped="true" type="nucleus"
-			refs="NL:[http://neurolex.org/wiki/Category:Ventral_pallidum Ventral pallidum]"
-			function="Distinguish _wanting_ versus _liking_ enhancements"
-			notes="Necessary for reward learning and performance; inhibitory nucleus"
-			/>
 
 	</division>
 
@@ -436,14 +530,27 @@
 			notes="100:1 cones/rods to ganglion cells aggregation, edge extraction"
 			/>
 
-		<element id="BGA.FD.STN" name="Subthalamus" mapped="true" type="nucleus"
+		<element id="BGA.FD.STA" name="Subthalamus Area" 
 			refs="NL:[http://neurolex.org/wiki/Category:Subthalamus Subthalamus]"
 			function="Perform action selection"
 			notes="Dysfunction increases impulsivity in case of two equally rewarded stimuli"
 			>
-			<element name="Subthalamic Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Subthalamic_nucleus Subthalamic nucleus]"/>
-			<element id="BGA.FD.STN.FR" name="Nucleus of Forel Field" refs="NL:[http://neurolex.org/wiki/Category:Nucleus_of_field_H_of_Forel Nucleus of field H of Forel]"/>
-			<element id="BGA.FD.STN.ZI" name="Zona Incerta" refs="NL:[http://neurolex.org/wiki/Category:Zona_incerta Zona incerta]"/>
+			<element id="BGA.FD.STN" name="Subthalamic Nucleus"
+				refs="NL:[http://neurolex.org/wiki/Category:Subthalamic_nucleus Subthalamic nucleus]"
+				>
+				<element id="BGA.FD.STN.CD" name="Subthalamic Nucleus Caudal" mapped="true" type="nucleus"
+					function="Executive loop"
+					/>
+				<element id="BGA.FD.STN.DS" name="Subthalamic Nucleus Dorsal" mapped="true" type="nucleus"
+					function="Motor loop"
+					/>
+				<element id="BGA.FD.STN.LT" name="Subthalamic Nucleus Lateral" mapped="true" type="nucleus"
+					function="Oculomotor loop"
+					/>
+			</element>
+
+			<element id="BGA.FD.STN.FR" name="Nucleus of Forel Field" refs="NL:[http://neurolex.org/wiki/Category:Nucleus_of_field_H_of_Forel Nucleus of field H of Forel]" ignore="true"/>
+			<element id="BGA.FD.STN.ZI" name="Zona Incerta" refs="NL:[http://neurolex.org/wiki/Category:Zona_incerta Zona incerta]" ignore="true"/>
 		</element>
 
 		<element id="FD.TH" name="Thalamus" refs="NL:[http://neurolex.org/wiki/Category:Thalamus Thalamus];NL:[http://neurolex.org/wiki/Category:Nuclei_of_the_thalamus Nuclei of the thalamus]">
