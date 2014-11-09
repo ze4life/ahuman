@@ -245,8 +245,16 @@
 			function="Respond to novel stimuli, unexpected rewards, and reward predictive sensory cues"
 			>
 			<element name="Medial Ventral Tegmental Area" refs="NL:[http://neurolex.org/wiki/Category:Medial_ventral_tegmental_area Medial ventral tegmental area]"/>
-			<element name="Parabrachial Pigmented Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Parabrachial_pigmented_nucleus Parabrachial pigmented nucleus]"/>
-			<element name="Rostral Linear Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Rostral_linear_nucleus Rostral linear nucleus]"/>
+			<element name="Parabrachial Pigmented Area" synonyms="Nucleus Parabrachialis Pigmentosus, Parabrachial Pigmented Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Parabrachial_pigmented_nucleus Parabrachial pigmented nucleus]"/>
+			<element name="Paranigral Nucleus" synonyms="Nucleus Paranigralis" refs="wiki:[http://en.wikipedia.org/wiki/Ventral_tegmental_area]"/>
+			<element name="Parafasciculus Retroflexus Area" synonyms="Nucleus Interfascicularis" refs="wiki:[http://en.wikipedia.org/wiki/Ventral_tegmental_area]"/>
+			<element id="LMC.HP.RP.LI" name="Raphe Nucleus Linearis" synonyms="Nucleus Linearis Caudalis and Rostralis"
+				refs="NL:[http://neurolex.org/wiki/Category:Inferior_central_nucleus Inferior central nucleus]"
+				function="Release of 5-HT was only obtained on stimulation of this nucleus"
+				notes="Does not project to CR, but to forebrain, to dorsal raphe nucleus"
+				>
+				<element name="Rostral Linear Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Rostral_linear_nucleus Rostral linear nucleus]"/>
+			</element>
 		</element>
 
 	</division>
@@ -384,11 +392,6 @@
 						function="Regulation of sleep cycle"
 						notes="Projects to CR, forebrain; inhibitory nucleus"
 					/>
-					<element id="LMC.HP.RP.LI" name="Raphe Nucleus Linearis" mapped="true" type="nucleus"
-						refs="NL:[http://neurolex.org/wiki/Category:Inferior_central_nucleus Inferior central nucleus]"
-						function="Release of 5-HT was only obtained on stimulation of this nucleus"
-						notes="Does not project to CR, but to forebrain"
-						/>
 					<element name="Serotonergic Cell Group B8" refs="NL:[http://neurolex.org/wiki/Category:Serotonergic_cell_group_B8 Serotonergic cell group B8]" ignore="true"/>
 					<element name="Serotonergic Cell Group B9" refs="NL:[http://neurolex.org/wiki/Category:Serotonergic_cell_group_B9 Serotonergic cell group B9]" ignore="true"/>
 				</element>
@@ -446,15 +449,21 @@
 
 		</element>
 
-		<element id="LLC.HP.PPN" name="Pedunculopontine Nucleus" mapped="true" type="nucleus" category="midbrain"
+		<element id="LLC.HP.PPN" name="Pedunculopontine Nucleus" category="midbrain"
 			refs="NL:[http://neurolex.org/wiki/Category:Pedunculopontine_tegmental_nucleus Pedunculopontine tegmental nucleus]"
 			function="Provide sensory feedback to cerebral cortex; modulatory"
 			>
-			<element name="Entopeduncular Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Entopeduncular_nucleus Entopeduncular nucleus]"/>
-			<element id="BGA.HP.PPN.IPD" name="Interpeduncular Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Interpeduncular_nucleus Interpeduncular nucleus]"/>
-			<element name="Peripeduncular Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Peripeduncular_nucleus Peripeduncular nucleus]"/>
-			<element name="Compact Subnucleus"/>
-			<element name="Dissipated Subnucleus"/>
+			<element id="LLC.HP.PPN.RS" name="Pedunculopontine Nucleus Rostral" mapped="true" type="nucleus" 
+				function="locomotion - walking, running"
+				notes="Anterior, dissipated subnucleus"
+				/>
+			<element id="LLC.HP.PPN.CD" name="Pedunculopontine Nucleus Caudal" mapped="true" type="nucleus" 
+				function="postural control, voluntary arm and eye movements"
+				notes="Anterior, compact subnucleus"
+				/>
+			<element name="Entopeduncular Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Entopeduncular_nucleus Entopeduncular nucleus]" ignore="true" notes="non-primate"/>
+			<element id="BGA.HP.PPN.IPD" name="Interpeduncular Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Interpeduncular_nucleus Interpeduncular nucleus]" ignore="true" notes="unpaired"/>
+			<element name="Peripeduncular Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Peripeduncular_nucleus Peripeduncular nucleus]" ignore="true" />
 		</element>
 
 		<element id="MBA.HP.PN" name="Pontine Nuclear Complex" category="midbrain"
