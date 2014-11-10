@@ -1,43 +1,45 @@
 #summary Ventral Pallidum
-@@[Home] -> [BiologicalLifeResearch] -> [BrainAreaECA] -> [BrainRegionBGA_FT_VP]
+@@[Home] -> [BiologicalLifeResearch] -> [BrainAreaFEC] -> [BrainRegionFEC_FT_VP]
 ----
 
 This page covers biological details of component Ventral Pallidum.
 Region is part of aHuman target integrated biological model.
 
-  * *Top-down path to region*: Forebrain Telencephalon -> Ventral Pallidum (BGA.FT.VP) (see [OverallMindMaps Mind Maps])
+  * *Top-down path to region*: Forebrain Telencephalon -> Basal Ganglia (BGA.FT.BG) -> Globus Pallidus (BGA.FT.GP) -> Ventral Pallidum (FEC.FT.VP) (see [OverallMindMaps Mind Maps])
   * *Type*: nucleus
-  * *Brain area*: [BrainAreaECA Forebrain - Execution Control Area]
+  * *Brain area*: [BrainAreaFEC Forebrain - Execution Control Area]
   * *Role*: relay
-  * *Function*: Distinguish _wanting_ versus _liking_ enhancements
+  * *Function*: Distinguish wanting versus liking enhancements
   * *Notes to function*: Necessary for reward learning and performance; inhibitory nucleus
 (generated)
 = Components =
 (generated)
 
 
-  * no child items defined
+*Component items*:
+  * *Ventral Pallidum Dorsomedial* (*BGA.FT.VP.DM*): motivational loop, NAcc-core
+  * *Ventral Pallidum Ventrolateral* (*BGA.FT.VP.VL*): motivational loop, NAcc-shell
 
 = Connectivity =
 (generated)
 
 
-http://ahuman.googlecode.com/svn/images/dot/aHuman/BGA.FT.VP.dot.png
+http://ahuman.googlecode.com/svn/images/dot/aHuman/FEC.FT.VP.dot.png
 
 *Inbound Region Connections:*
 
 || *Source Area* || *Source Region* || *Source Name* || *Type* || *Reference* ||
-|| [BrainAreaECA ECA] || [BrainRegionBGA_FT_ACC BGA.FT.ACC] || Accumbens Nucleus || nucleus-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (NACC -> VPAL)] ||
-||  || [BrainRegionBGA_FT_GPI BGA.FT.GPI] || Globus Pallidus Internal || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaEPA EPA] || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || Mediodorsal Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaFEC FEC] || [BrainRegionFEC_FT_ACC FEC.FT.ACC] || Accumbens Nucleus || nucleus-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (NACC -> VPAL)] ||
+||  || [BrainRegionFEC_FT_GPI_LDM FEC.FT.GPI.LDM] || Globus Pallidus Internal Lateral Dorsomedial || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLMC LMC] || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || Ventral Tegmental Area || nucleus-nucleus || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (VTA -> VentPal)] ||
 
 *Outbound Region Connections:*
 
 || *Target Area* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || [BrainAreaAMA AMA] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaLLC LLC] || [BrainRegionLLC_HP_PPN LLC.HP.PPN] || Pedunculopontine Nucleus || nucleus-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning (VPAL -> PPTG)] ||
-|| [BrainAreaLMC LMC] || [BrainRegionLMC_FT_SN_PR LMC.FT.SN.PR] || Substantia Nigra Pars Reticulata || nucleus-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (VPAL -> SNr)] ||
+|| [BrainAreaLLC LLC] || [BrainRegionLLC_HP_PPN_CD LLC.HP.PPN.CD] || Pedunculopontine Nucleus Caudal || nucleus-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning (VPAL -> PPTG, abstract)] ||
+|| [BrainAreaLMC LMC] || [BrainRegionLMC_FT_SN_RCL LMC.FT.SN.RCL] || Substantia Nigra Pars Reticulata Caudolateral || nucleus-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (VPAL -> SNr)] ||
 ||  || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || Ventral Tegmental Area || nucleus-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (VPAL -> VTA)] ||
 
 = Thirdparty Circuits =
