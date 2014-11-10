@@ -1,15 +1,15 @@
 #summary Accumbens Nucleus
-@@[Home] -> [BiologicalLifeResearch] -> [BrainAreaECA] -> [BrainRegionBGA_FT_ACC]
+@@[Home] -> [BiologicalLifeResearch] -> [BrainAreaFEC] -> [BrainRegionFEC_FT_ACC]
 ----
 
 This page covers biological details of component Accumbens Nucleus.
 Region is part of aHuman target integrated biological model.
 
-  * *Top-down path to region*: Forebrain Telencephalon -> Extended Amygdala (BFA.FT.EXTAM) -> Accumbens Nucleus (BGA.FT.ACC) (see [OverallMindMaps Mind Maps])
+  * *Top-down path to region*: Forebrain Telencephalon -> Basal Ganglia (BGA.FT.BG) -> Striatum (BGA.FT.ST) -> Ventral Striatum (BGA.FT.VST) -> Accumbens Nucleus (FEC.FT.ACC) (see [OverallMindMaps Mind Maps])
   * *Type*: nucleus
-  * *Brain area*: [BrainAreaECA Forebrain - Execution Control Area]
+  * *Brain area*: [BrainAreaFEC Forebrain - Execution Control Area]
   * *Role*: relay
-  * *Function*: Activate motor functions under attention
+  * *Function*: Activate motor functions under attention, expectation of pleasure; rhythmic timing
   * *Notes to function*: inhibitory nucleus
 (generated)
 = Components =
@@ -17,15 +17,15 @@ Region is part of aHuman target integrated biological model.
 
 
 *Component items*:
-  * *Nucleus Accumbens Core*
-  * *Nucleus Accumbens Shell*
+  * *Nucleus Accumbens Core* (*BGA.FT.ACC.CORE*): cognitive processing of motor function related to reward and reinforcement; encodes new motor programs which facilitate acquisition of given reward in future
+  * *Nucleus Accumbens Shell* (*BGA.FT.ACC.SH*): cognitive processing of motivational salience (wanting) as well as reward and reinforcement effects
   * *Medial Nucleus Accumbens*
 
 = Connectivity =
 (generated)
 
 
-http://ahuman.googlecode.com/svn/images/dot/aHuman/BGA.FT.ACC.dot.png
+http://ahuman.googlecode.com/svn/images/dot/aHuman/FEC.FT.ACC.dot.png
 
 *Inbound Region Connections:*
 
@@ -33,8 +33,10 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/BGA.FT.ACC.dot.png
 || [BrainAreaAMA AMA] || [BrainRegionBFA_FD_TH_PT BFA.FD.TH.PT] || Paratenial Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionBFA_FD_TH_PV BFA.FD.TH.PV] || Paraventricular Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-nucleus || [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reward circuit of human brain (AM -> NACC)] ||
-|| [BrainAreaEPA EPA] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || neocortex-nucleus || [http://www.expertsmind.com/topic/emotion/affective-basal-ganglia-circuit-93570.aspx Affective basal ganglia circuit (OMPFC -> NACC)] ||
-|| [BrainAreaLMC LMC] || [BrainRegionLMC_FT_SN_PC LMC.FT.SN.PC] || Substantia Nigra Pars Compacta || nucleus-nucleus || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (SNc -> NAC)] ||
+|| [BrainAreaEPA EPA] || [BrainRegionCGA_NC_MPL_PCG CGA.NC.MPL.PCG] || Posterior Cingulate Cortex || neocortex-nucleus || (unknown reference) ||
+||  || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || Ventral Anterior Cingulate Area || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> BGA, abstract)] ||
+||  || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || neocortex-nucleus || [http://www.expertsmind.com/topic/emotion/affective-basal-ganglia-circuit-93570.aspx Affective basal ganglia circuit (OMPFC -> NACC)] ||
+|| [BrainAreaLMC LMC] || [BrainRegionLMC_FT_SN_CLT LMC.FT.SN.CLT] || Substantia Nigra Pars Compacta Lateral || nucleus-nucleus || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (SNc -> NAC)] ||
 ||  || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || Ventral Tegmental Area || nucleus-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (VTA -> NACC)] ||
 || [BrainAreaMMA MMA] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || Ventrolateral Cornu Ammonis of Hippocampus || allocortex-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/nucleus-accumbens.jpg Nucleus Accumbens (CA1 -> NACC)] ||
 ||  || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || Dorsomedial Cornu Ammonis of Hippocampus || allocortex-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/nucleus-accumbens.jpg Nucleus Accumbens (CA3 -> NACC)] ||
@@ -46,11 +48,10 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/BGA.FT.ACC.dot.png
 *Outbound Region Connections:*
 
 || *Target Area* || *Target Region* || *Target Name* || *Type* || *Reference* ||
-|| [BrainAreaECA ECA] || [BrainRegionBGA_FT_CN BGA.FT.CN] || Caudate Nucleus || nucleus-nucleus || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (NAC -> Caudate)] ||
-||  || [BrainRegionBGA_FT_VP BGA.FT.VP] || Ventral Pallidum || nucleus-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (NACC -> VPAL)] ||
 || [BrainAreaEPA EPA] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || nucleus-neocortex || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (NAC -> OFC)] ||
+|| [BrainAreaFEC FEC] || [BrainRegionFEC_FT_VP FEC.FT.VP] || Ventral Pallidum || nucleus-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (NACC -> VPAL)] ||
 || [BrainAreaLMC LMC] || [BrainRegionLMC_FT_NBM LMC.FT.NBM] || Basal Nucleus of Meynert || nucleus-nucleus || [http://www.expertsmind.com/topic/emotion/affective-basal-ganglia-circuit-93570.aspx Affective basal ganglia circuit (NACC -> nBM)] ||
-||  || [BrainRegionLMC_FT_SN_PR LMC.FT.SN.PR] || Substantia Nigra Pars Reticulata || nucleus-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (NACC -> SNr)] ||
+||  || [BrainRegionLMC_FT_SN_RCL LMC.FT.SN.RCL] || Substantia Nigra Pars Reticulata Caudolateral || nucleus-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (NACC -> SNr)] ||
 ||  || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || Ventral Tegmental Area || nucleus-nucleus || [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reward circuit of human brain (NACC -> VTA)] ||
 
 = Thirdparty Circuits =
