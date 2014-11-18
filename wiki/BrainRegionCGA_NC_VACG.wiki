@@ -28,24 +28,24 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/CGA.NC.VACG.dot.png
 *Inbound Region Connections:*
 
 || *Source Area* || *Source Region* || *Source Name* || *Type* || *Reference* ||
-|| [BrainAreaAMA AMA] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (AM -> vACC)] ||
-|| [BrainAreaEPA EPA] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || Anterior Nucleus of Thalamus || nucleus-neocortex || [http://highered.mcgraw-hill.com/sites/dl/free/0071402357/156721/figure350_1.html Principal Connections of Hippocampus (AN -> VentralCingulate)] ||
-||  || [BrainRegionCGA_NC_DACG CGA.NC.DACG] || Dorsal Anterior Cingulate Area || neocortex-neocortex || [http://highered.mcgraw-hill.com/sites/dl/free/0071402357/156721/figure350_1.html Principal Connections of Hippocampus (DorsalCingulate -> VentralCingulate)] ||
-||  || [BrainRegionCGA_NC_SGC CGA.NC.SGC] || Subgenual Cortex || neocortex-neocortex || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (SGC -> VACC)] ||
-||  || [BrainRegionFCA_NC_IPG FCA.NC.IPG] || Inferior Prefrontal Gyrus || neocortex-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (fPole -> vACC)] ||
-||  || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || neocortex-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (OPFC -> vACC)] ||
-|| [BrainAreaMMA MMA] || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || Anterior Insular Cortex || neocortex-neocortex || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (INS -> ACG, abstract)] ||
+|| [BrainAreaAMA AMA] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || primary-input || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (AM -> vACC)] ||
+|| [BrainAreaEPA EPA] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || Anterior Nucleus of Thalamus || primary-input || [http://highered.mcgraw-hill.com/sites/dl/free/0071402357/156721/figure350_1.html Principal Connections of Hippocampus (AN -> VentralCingulate)] ||
+||  || [BrainRegionCGA_NC_DACG CGA.NC.DACG] || Dorsal Anterior Cingulate Area || cortex-forward || [http://highered.mcgraw-hill.com/sites/dl/free/0071402357/156721/figure350_1.html Principal Connections of Hippocampus (DorsalCingulate -> VentralCingulate)] ||
+||  || [BrainRegionCGA_NC_SGC CGA.NC.SGC] || Subgenual Cortex || cortex-forward || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (SGC -> VACC)] ||
+||  || [BrainRegionFCA_NC_IPG FCA.NC.IPG] || Inferior Prefrontal Gyrus || cortex-forward || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (fPole -> vACC)] ||
+||  || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || cortex-forward || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (OPFC -> vACC)] ||
+|| [BrainAreaMMA MMA] || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || Anterior Insular Cortex || cortex-forward || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (INS -> ACG, abstract)] ||
 
 *Outbound Region Connections:*
 
 || *Target Area* || *Target Region* || *Target Name* || *Type* || *Reference* ||
-|| [BrainAreaEPA EPA] || [BrainRegionCGA_NC_MPL_PCG CGA.NC.MPL.PCG] || Posterior Cingulate Cortex || neocortex-neocortex || [http://highered.mcgraw-hill.com/sites/dl/free/0071402357/156721/figure350_1.html Principal Connections of Hippocampus (VentralCingulate -> PosteriorCingulate)] ||
-||  || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || Dorsolateral Prefrontal Cortex || neocortex-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (vACC -> DLPFC)] ||
-|| [BrainAreaFEC FEC] || [BrainRegionFEC_FT_ACC FEC.FT.ACC] || Accumbens Nucleus || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> BGA, abstract)] ||
-||  || [BrainRegionFEC_FT_CN_BD FEC.FT.CN.BD] || Caudate Nucleus Body || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> BGA, abstract)] ||
-|| [BrainAreaLLC LLC] || [BrainRegionLLC_HP_PRF_PDT LLC.HP.PRF.PDT] || Pontine Reticulotegmental Nucleus || neocortex-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (Premotor24 -> RF, abstract)] ||
-||  || [BrainRegionLLC_MM_RD LLC.MM.RD] || Red Nucleus || neocortex-nucleus || (unknown reference) ||
-|| [BrainAreaLMC LMC] || [BrainRegionLMC_HP_LC LMC.HP.LC] || Locus Coeruleus || neocortex-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (Premotor24 -> RF, abstract)] ||
+|| [BrainAreaEPA EPA] || [BrainRegionCGA_NC_MPL_PCG CGA.NC.MPL.PCG] || Posterior Cingulate Cortex || cortex-forward || [http://highered.mcgraw-hill.com/sites/dl/free/0071402357/156721/figure350_1.html Principal Connections of Hippocampus (VentralCingulate -> PosteriorCingulate)] ||
+||  || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || Dorsolateral Prefrontal Cortex || cortex-forward || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (vACC -> DLPFC)] ||
+|| [BrainAreaFEC FEC] || [BrainRegionFEC_FT_ACC FEC.FT.ACC] || Accumbens Nucleus || primary-input || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> BGA, abstract)] ||
+||  || [BrainRegionFEC_FT_CN_BD FEC.FT.CN.BD] || Caudate Nucleus Body || primary-input || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> BGA, abstract)] ||
+|| [BrainAreaLLC LLC] || [BrainRegionLLC_HP_PRF_PDT LLC.HP.PRF.PDT] || Pontine Reticulotegmental Nucleus || primary-input || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (Premotor24 -> RF, abstract)] ||
+||  || [BrainRegionLLC_MM_RD LLC.MM.RD] || Red Nucleus || primary-input || (unknown reference) ||
+|| [BrainAreaLMC LMC] || [BrainRegionLMC_HP_LC LMC.HP.LC] || Locus Coeruleus || primary-input || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (Premotor24 -> RF, abstract)] ||
 
 = Thirdparty Circuits =
 (generated)

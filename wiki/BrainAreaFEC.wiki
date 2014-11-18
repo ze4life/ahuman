@@ -27,7 +27,7 @@
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| [BrainRegionFEC_FT_ACC FEC.FT.ACC] || [BrainRegionFEC_FT_VP FEC.FT.VP] || nucleus-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (NACC -> VPAL)] ||
+|| [BrainRegionFEC_FT_ACC FEC.FT.ACC] || [BrainRegionFEC_FT_VP FEC.FT.VP] || nucleus-nucleus-gaba || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (NACC -> VPAL)] ||
 
 *External Inbound Region Connections:*
 
@@ -38,7 +38,7 @@
 ||  ||  || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || neocortex-nucleus || [http://www.expertsmind.com/topic/emotion/affective-basal-ganglia-circuit-93570.aspx Affective basal ganglia circuit (OMPFC -> NACC)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaAMA AMA] || [BrainRegionFEC_FT_ACC FEC.FT.ACC] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-nucleus || [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reward circuit of human brain (AM -> NACC)] ||
-|| [BrainAreaFEC FEC] || [BrainRegionFEC_FT_VP FEC.FT.VP] || [BrainRegionFEC_FT_GPI_LDM FEC.FT.GPI.LDM] || Globus Pallidus Internal Lateral Dorsomedial || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaFEC FEC] || [BrainRegionFEC_FT_VP FEC.FT.VP] || [BrainRegionFEC_FT_GPI_LDM FEC.FT.GPI.LDM] || Globus Pallidus Internal Lateral Dorsomedial || nucleus-nucleus-gaba || (unknown reference) ||
 || [BrainAreaLMC LMC] || [BrainRegionFEC_FT_ACC FEC.FT.ACC] || [BrainRegionLMC_FT_SN_CLT LMC.FT.SN.CLT] || Substantia Nigra Pars Compacta Lateral || nucleus-nucleus || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (SNc -> NAC)] ||
 ||  ||  || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || Ventral Tegmental Area || nucleus-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (VTA -> NACC)] ||
 ||  || [BrainRegionFEC_FT_VP FEC.FT.VP] || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || Ventral Tegmental Area || nucleus-nucleus || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (VTA -> VentPal)] ||
@@ -49,14 +49,14 @@
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaAMA AMA] || [BrainRegionFEC_FT_VP FEC.FT.VP] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaLAC LAC] || [BrainRegionFEC_FT_ACC FEC.FT.ACC] || [BrainRegionLAC_FD_HT_LTN LAC.FD.HT.LTN] || Lateral Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaLLC LLC] || [BrainRegionFEC_FT_VP FEC.FT.VP] || [BrainRegionLLC_HP_PPN_CD LLC.HP.PPN.CD] || Pedunculopontine Nucleus Caudal || nucleus-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning (VPAL -> PPTG, abstract)] ||
-|| [BrainAreaLMC LMC] || [BrainRegionFEC_FT_ACC FEC.FT.ACC] || [BrainRegionLMC_FT_NBM LMC.FT.NBM] || Basal Nucleus of Meynert || nucleus-nucleus || [http://www.expertsmind.com/topic/emotion/affective-basal-ganglia-circuit-93570.aspx Affective basal ganglia circuit (NACC -> nBM)] ||
-||  ||  || [BrainRegionLMC_FT_SN_RCL LMC.FT.SN.RCL] || Substantia Nigra Pars Reticulata Caudolateral || nucleus-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (NACC -> SNr)] ||
-||  ||  || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || Ventral Tegmental Area || nucleus-nucleus || [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reward circuit of human brain (NACC -> VTA)] ||
-||  || [BrainRegionFEC_FT_VP FEC.FT.VP] || [BrainRegionLMC_FT_SN_RCL LMC.FT.SN.RCL] || Substantia Nigra Pars Reticulata Caudolateral || nucleus-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (VPAL -> SNr)] ||
-||  ||  || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || Ventral Tegmental Area || nucleus-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (VPAL -> VTA)] ||
+|| [BrainAreaAMA AMA] || [BrainRegionFEC_FT_VP FEC.FT.VP] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus-gaba || (unknown reference) ||
+|| [BrainAreaLAC LAC] || [BrainRegionFEC_FT_ACC FEC.FT.ACC] || [BrainRegionLAC_FD_HT_LTN LAC.FD.HT.LTN] || Lateral Hypothalamic Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
+|| [BrainAreaLLC LLC] || [BrainRegionFEC_FT_VP FEC.FT.VP] || [BrainRegionLLC_HP_PPN_CD LLC.HP.PPN.CD] || Pedunculopontine Nucleus Caudal || nucleus-nucleus-gaba || [http://www.impulsecontroldisorders.org/html/cravings.html Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning (VPAL -> PPTG, abstract)] ||
+|| [BrainAreaLMC LMC] || [BrainRegionFEC_FT_ACC FEC.FT.ACC] || [BrainRegionLMC_FT_NBM LMC.FT.NBM] || Basal Nucleus of Meynert || nucleus-nucleus-gaba || [http://www.expertsmind.com/topic/emotion/affective-basal-ganglia-circuit-93570.aspx Affective basal ganglia circuit (NACC -> nBM)] ||
+||  ||  || [BrainRegionLMC_FT_SN_RCL LMC.FT.SN.RCL] || Substantia Nigra Pars Reticulata Caudolateral || nucleus-nucleus-gaba || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (NACC -> SNr)] ||
+||  ||  || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || Ventral Tegmental Area || nucleus-nucleus-gaba || [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reward circuit of human brain (NACC -> VTA)] ||
+||  || [BrainRegionFEC_FT_VP FEC.FT.VP] || [BrainRegionLMC_FT_SN_RCL LMC.FT.SN.RCL] || Substantia Nigra Pars Reticulata Caudolateral || nucleus-nucleus-gaba || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (VPAL -> SNr)] ||
+||  ||  || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || Ventral Tegmental Area || nucleus-nucleus-gaba || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (VPAL -> VTA)] ||
 
 == Associative Loop ==
 
@@ -70,7 +70,7 @@
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| [BrainRegionFEC_FT_CN_BD FEC.FT.CN.BD] || [BrainRegionFEC_FT_GPI_RM FEC.FT.GPI.RM] || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (CPu -> GPi, abstract)] ||
+|| [BrainRegionFEC_FT_CN_BD FEC.FT.CN.BD] || [BrainRegionFEC_FT_GPI_RM FEC.FT.GPI.RM] || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (CPu -> GPi, abstract)] ||
 
 *External Inbound Region Connections:*
 
@@ -84,7 +84,7 @@
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
-|| [BrainAreaEPA EPA] || [BrainRegionFEC_FT_GPI_RM FEC.FT.GPI.RM] || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || Mediodorsal Nucleus of Thalamus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (BG -> Thalamus, abstract)] ||
+|| [BrainAreaEPA EPA] || [BrainRegionFEC_FT_GPI_RM FEC.FT.GPI.RM] || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || Mediodorsal Nucleus of Thalamus || nucleus-nucleus-gaba || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (BG -> Thalamus, abstract)] ||
 
 == Executive Loop ==
 
@@ -100,7 +100,7 @@
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionFEC_FD_STN_CD FEC.FD.STN.CD] || [BrainRegionFEC_FT_GPI_LDM FEC.FT.GPI.LDM] || nucleus-nucleus || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (STN -> GPi, abstract)] ||
-|| [BrainRegionFEC_FT_CN_HD FEC.FT.CN.HD] || [BrainRegionFEC_FT_GPI_LDM FEC.FT.GPI.LDM] || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (CPu -> GPi, abstract)] ||
+|| [BrainRegionFEC_FT_CN_HD FEC.FT.CN.HD] || [BrainRegionFEC_FT_GPI_LDM FEC.FT.GPI.LDM] || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (CPu -> GPi, abstract)] ||
 
 *External Inbound Region Connections:*
 
@@ -117,11 +117,11 @@
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaAMA AMA] || [BrainRegionFEC_FT_GPI_LDM FEC.FT.GPI.LDM] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (GPi -> LHb, abstract)] ||
-|| [BrainAreaFEC FEC] || [BrainRegionFEC_FT_GPI_LDM FEC.FT.GPI.LDM] || [BrainRegionFEC_FT_VP FEC.FT.VP] || Ventral Pallidum || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaAMA AMA] || [BrainRegionFEC_FT_GPI_LDM FEC.FT.GPI.LDM] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (GPi -> LHb, abstract)] ||
+|| [BrainAreaFEC FEC] || [BrainRegionFEC_FT_GPI_LDM FEC.FT.GPI.LDM] || [BrainRegionFEC_FT_VP FEC.FT.VP] || Ventral Pallidum || nucleus-nucleus-gaba || (unknown reference) ||
 || [BrainAreaLMC LMC] || [BrainRegionFEC_FD_STN_CD FEC.FD.STN.CD] || [BrainRegionLMC_FT_NBM LMC.FT.NBM] || Basal Nucleus of Meynert || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLMC_FT_SN_CLT LMC.FT.SN.CLT] || Substantia Nigra Pars Compacta Lateral || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionFEC_FT_CN_HD FEC.FT.CN.HD] || [BrainRegionLMC_FT_SN_RRL LMC.FT.SN.RRL] || Substantia Nigra Pars Reticulata Rostrolateral || nucleus-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (CN -> SN, abstract)] ||
+||  || [BrainRegionFEC_FT_CN_HD FEC.FT.CN.HD] || [BrainRegionLMC_FT_SN_RRL LMC.FT.SN.RRL] || Substantia Nigra Pars Reticulata Rostrolateral || nucleus-nucleus-gaba || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (CN -> SN, abstract)] ||
 
 == Motor Extensor Loop ==
 
@@ -138,7 +138,7 @@
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionFEC_FD_TH_PF FEC.FD.TH.PF] || [BrainRegionFEC_FT_PU_RS FEC.FT.PU.RS] || nucleus-nucleus || (unknown reference) ||
-|| [BrainRegionFEC_FT_PU_RS FEC.FT.PU.RS] || [BrainRegionFEC_FT_GPE_DM FEC.FT.GPE.DM] || nucleus-nucleus || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (PU -> GPo, abstract)] ||
+|| [BrainRegionFEC_FT_PU_RS FEC.FT.PU.RS] || [BrainRegionFEC_FT_GPE_DM FEC.FT.GPE.DM] || nucleus-nucleus-gaba || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (PU -> GPo, abstract)] ||
 
 *External Inbound Region Connections:*
 
@@ -161,12 +161,12 @@
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaFEC FEC] || [BrainRegionFEC_FD_TH_PF FEC.FD.TH.PF] || [BrainRegionFEC_FD_STN_CD FEC.FD.STN.CD] || Subthalamic Nucleus Caudal || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionFEC_FT_CN_HD FEC.FT.CN.HD] || Caudate Nucleus Head || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionFEC_FT_GPE_DM FEC.FT.GPE.DM] || [BrainRegionFEC_FD_STN_DS FEC.FD.STN.DS] || Subthalamic Nucleus Dorsal || nucleus-nucleus || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (GPo -> STN, abstract)] ||
-||  ||  || [BrainRegionFEC_FT_GPI_VL FEC.FT.GPI.VL] || Globus Pallidus Internal Ventrolateral || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionFEC_FT_GPE_VL FEC.FT.GPE.VL] || [BrainRegionFEC_FD_STN_DS FEC.FD.STN.DS] || Subthalamic Nucleus Dorsal || nucleus-nucleus || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (GPo -> STN, abstract)] ||
-||  ||  || [BrainRegionFEC_FT_GPI_VL FEC.FT.GPI.VL] || Globus Pallidus Internal Ventrolateral || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionFEC_FT_PU_RS FEC.FT.PU.RS] || [BrainRegionFEC_FT_GPI_VL FEC.FT.GPI.VL] || Globus Pallidus Internal Ventrolateral || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (CPu -> GPi, abstract)] ||
-|| [BrainAreaLMC LMC] || [BrainRegionFEC_FT_PU_RS FEC.FT.PU.RS] || [BrainRegionLMC_FT_SN_RCL LMC.FT.SN.RCL] || Substantia Nigra Pars Reticulata Caudolateral || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (Striatum -> SNr, abstract)] ||
+||  || [BrainRegionFEC_FT_GPE_DM FEC.FT.GPE.DM] || [BrainRegionFEC_FD_STN_DS FEC.FD.STN.DS] || Subthalamic Nucleus Dorsal || nucleus-nucleus-gaba || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (GPo -> STN, abstract)] ||
+||  ||  || [BrainRegionFEC_FT_GPI_VL FEC.FT.GPI.VL] || Globus Pallidus Internal Ventrolateral || nucleus-nucleus-gaba || (unknown reference) ||
+||  || [BrainRegionFEC_FT_GPE_VL FEC.FT.GPE.VL] || [BrainRegionFEC_FD_STN_DS FEC.FD.STN.DS] || Subthalamic Nucleus Dorsal || nucleus-nucleus-gaba || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (GPo -> STN, abstract)] ||
+||  ||  || [BrainRegionFEC_FT_GPI_VL FEC.FT.GPI.VL] || Globus Pallidus Internal Ventrolateral || nucleus-nucleus-gaba || (unknown reference) ||
+||  || [BrainRegionFEC_FT_PU_RS FEC.FT.PU.RS] || [BrainRegionFEC_FT_GPI_VL FEC.FT.GPI.VL] || Globus Pallidus Internal Ventrolateral || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (CPu -> GPi, abstract)] ||
+|| [BrainAreaLMC LMC] || [BrainRegionFEC_FT_PU_RS FEC.FT.PU.RS] || [BrainRegionLMC_FT_SN_RCL LMC.FT.SN.RCL] || Substantia Nigra Pars Reticulata Caudolateral || nucleus-nucleus-gaba || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (Striatum -> SNr, abstract)] ||
 
 == Motor Flexor Loop ==
 
@@ -184,8 +184,8 @@
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionFEC_FD_STN_DS FEC.FD.STN.DS] || [BrainRegionFEC_FT_GPI_VL FEC.FT.GPI.VL] || nucleus-nucleus || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (STN -> GPi, abstract)] ||
 || [BrainRegionFEC_FD_TH_CM FEC.FD.TH.CM] || [BrainRegionFEC_FT_PU_CD FEC.FT.PU.CD] || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (CM -> pCM, abstract)] ||
-|| [BrainRegionFEC_FT_GPI_VL FEC.FT.GPI.VL] || [BrainRegionFEC_FD_TH_CM FEC.FD.TH.CM] || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sCM -> CM, abstract)] ||
-|| [BrainRegionFEC_FT_PU_CD FEC.FT.PU.CD] || [BrainRegionFEC_FT_GPI_VL FEC.FT.GPI.VL] || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (CPu -> GPi, abstract)] ||
+|| [BrainRegionFEC_FT_GPI_VL FEC.FT.GPI.VL] || [BrainRegionFEC_FD_TH_CM FEC.FD.TH.CM] || nucleus-nucleus-gaba || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sCM -> CM, abstract)] ||
+|| [BrainRegionFEC_FT_PU_CD FEC.FT.PU.CD] || [BrainRegionFEC_FT_GPI_VL FEC.FT.GPI.VL] || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (CPu -> GPi, abstract)] ||
 
 *External Inbound Region Connections:*
 
@@ -194,11 +194,11 @@
 || [BrainAreaMAA MAA] || [BrainRegionFEC_FD_STN_DS FEC.FD.STN.DS] || [BrainRegionMCA_NC_MC MCA.NC.MC] || Motor Cortex || neocortex-nucleus || (unknown reference) ||
 ||  || [BrainRegionFEC_FT_PU_CD FEC.FT.PU.CD] || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || Supplementary Motor Cortex || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (F6 -> BG, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFEC FEC] || [BrainRegionFEC_FD_STN_DS FEC.FD.STN.DS] || [BrainRegionFEC_FT_GPE_DM FEC.FT.GPE.DM] || Globus Pallidus External Dorsomedial || nucleus-nucleus || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (GPo -> STN, abstract)] ||
-||  ||  || [BrainRegionFEC_FT_GPE_VL FEC.FT.GPE.VL] || Globus Pallidus External Ventrolateral || nucleus-nucleus || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (GPo -> STN, abstract)] ||
-||  || [BrainRegionFEC_FT_GPI_VL FEC.FT.GPI.VL] || [BrainRegionFEC_FT_GPE_DM FEC.FT.GPE.DM] || Globus Pallidus External Dorsomedial || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionFEC_FT_GPE_VL FEC.FT.GPE.VL] || Globus Pallidus External Ventrolateral || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionFEC_FT_PU_RS FEC.FT.PU.RS] || Dorsal Putamen Rostral || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (CPu -> GPi, abstract)] ||
+|| [BrainAreaFEC FEC] || [BrainRegionFEC_FD_STN_DS FEC.FD.STN.DS] || [BrainRegionFEC_FT_GPE_DM FEC.FT.GPE.DM] || Globus Pallidus External Dorsomedial || nucleus-nucleus-gaba || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (GPo -> STN, abstract)] ||
+||  ||  || [BrainRegionFEC_FT_GPE_VL FEC.FT.GPE.VL] || Globus Pallidus External Ventrolateral || nucleus-nucleus-gaba || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (GPo -> STN, abstract)] ||
+||  || [BrainRegionFEC_FT_GPI_VL FEC.FT.GPI.VL] || [BrainRegionFEC_FT_GPE_DM FEC.FT.GPE.DM] || Globus Pallidus External Dorsomedial || nucleus-nucleus-gaba || (unknown reference) ||
+||  ||  || [BrainRegionFEC_FT_GPE_VL FEC.FT.GPE.VL] || Globus Pallidus External Ventrolateral || nucleus-nucleus-gaba || (unknown reference) ||
+||  ||  || [BrainRegionFEC_FT_PU_RS FEC.FT.PU.RS] || Dorsal Putamen Rostral || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (CPu -> GPi, abstract)] ||
 || [BrainAreaLLC LLC] || [BrainRegionFEC_FD_STN_DS FEC.FD.STN.DS] || [BrainRegionLLC_HP_PPN_RS LLC.HP.PPN.RS] || Pedunculopontine Nucleus Rostral || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLMC LMC] || [BrainRegionFEC_FT_PU_CD FEC.FT.PU.CD] || [BrainRegionLMC_FT_SN_CLT LMC.FT.SN.CLT] || Substantia Nigra Pars Compacta Lateral || nucleus-nucleus || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (SNC -> PU)] ||
 
@@ -206,7 +206,7 @@
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
-|| [BrainAreaMAA MAA] || [BrainRegionFEC_FT_GPI_VL FEC.FT.GPI.VL] || [BrainRegionMCA_FD_TH_VL MCA.FD.TH.VL] || Ventral Lateral Nucleus || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s2VL -> VL, abstract)] ||
+|| [BrainAreaMAA MAA] || [BrainRegionFEC_FT_GPI_VL FEC.FT.GPI.VL] || [BrainRegionMCA_FD_TH_VL MCA.FD.TH.VL] || Ventral Lateral Nucleus || nucleus-nucleus-gaba || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s2VL -> VL, abstract)] ||
 ||  ||  || [BrainRegionMCA_NC_PMC_F5 MCA.NC.PMC.F5] || Ventral Rostral Premotor Cortex || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (BG -> F5, abstract)] ||
 ||  ||  || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || Supplementary Motor Cortex || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (BG -> F6, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
@@ -214,7 +214,7 @@
 ||  ||  || [BrainRegionFEC_FT_GPE_VL FEC.FT.GPE.VL] || Globus Pallidus External Ventrolateral || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLLC LLC] || [BrainRegionFEC_FD_STN_DS FEC.FD.STN.DS] || [BrainRegionLLC_HP_PPN_RS LLC.HP.PPN.RS] || Pedunculopontine Nucleus Rostral || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLMC LMC] || [BrainRegionFEC_FD_STN_DS FEC.FD.STN.DS] || [BrainRegionLMC_FT_SN_RCL LMC.FT.SN.RCL] || Substantia Nigra Pars Reticulata Caudolateral || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (STN -> SNpr, abstract)] ||
-||  || [BrainRegionFEC_FT_GPI_VL FEC.FT.GPI.VL] || [BrainRegionLMC_FT_SN_RCL LMC.FT.SN.RCL] || Substantia Nigra Pars Reticulata Caudolateral || nucleus-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (GP -> SN, abstract)] ||
+||  || [BrainRegionFEC_FT_GPI_VL FEC.FT.GPI.VL] || [BrainRegionLMC_FT_SN_RCL LMC.FT.SN.RCL] || Substantia Nigra Pars Reticulata Caudolateral || nucleus-nucleus-gaba || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (GP -> SN, abstract)] ||
 || [BrainAreaMMA MMA] || [BrainRegionFEC_FD_TH_CM FEC.FD.TH.CM] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || Ventrolateral Cornu Ammonis of Hippocampus || nucleus-allocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (CM -> HC, abstract)] ||
 ||  ||  || [BrainRegionHBA_FT_SC_SUB HBA.FT.SC.SUB] || Subiculum || nucleus-allocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (CM -> SubPrePara)] ||
 ||  ||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || nucleus-neocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (CM -> EC)] ||
@@ -234,7 +234,7 @@
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionFEC_FD_STN_LT FEC.FD.STN.LT] || [BrainRegionFEC_FT_GPI_CDM FEC.FT.GPI.CDM] || nucleus-nucleus || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (STN -> GPi, abstract)] ||
-|| [BrainRegionFEC_FT_CN_TL FEC.FT.CN.TL] || [BrainRegionFEC_FT_GPI_CDM FEC.FT.GPI.CDM] || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (CPu -> GPi, abstract)] ||
+|| [BrainRegionFEC_FT_CN_TL FEC.FT.CN.TL] || [BrainRegionFEC_FT_GPI_CDM FEC.FT.GPI.CDM] || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (CPu -> GPi, abstract)] ||
 || [BrainRegionFEC_MM_PT_PTA FEC.MM.PT.PTA] || [BrainRegionFEC_FD_STN_LT FEC.FD.STN.LT] || nucleus-nucleus || (unknown reference) ||
 
 *External Inbound Region Connections:*
@@ -253,7 +253,7 @@
 || [BrainAreaSAA SAA] || [BrainRegionFEC_MM_PT_PTA FEC.MM.PT.PTA] || [BrainRegionVBA_FD_PV_MPV VBA.FD.PV.MPV] || Medial Pulvinar || nucleus-nucleus || (unknown reference) ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLLC LLC] || [BrainRegionFEC_FD_STN_LT FEC.FD.STN.LT] || [BrainRegionLLC_HP_PPN_CD LLC.HP.PPN.CD] || Pedunculopontine Nucleus Caudal || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaLMC LMC] || [BrainRegionFEC_FT_CN_TL FEC.FT.CN.TL] || [BrainRegionLMC_FT_SN_RVL LMC.FT.SN.RVL] || Substantia Nigra Pars Reticulata Ventrolateral || nucleus-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (CN -> SN, abstract)] ||
+|| [BrainAreaLMC LMC] || [BrainRegionFEC_FT_CN_TL FEC.FT.CN.TL] || [BrainRegionLMC_FT_SN_RVL LMC.FT.SN.RVL] || Substantia Nigra Pars Reticulata Ventrolateral || nucleus-nucleus-gaba || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (CN -> SN, abstract)] ||
 
 = Thirdparty Circuits =
 (generated)
