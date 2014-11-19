@@ -8,7 +8,7 @@
 (generated)
 
 || *ID* || *Name* || *Regions* ||
-|| FECAF || Motivational Loop || [BrainRegionFEC_FT_ACC FEC.FT.ACC], [BrainRegionFEC_FT_VP FEC.FT.VP] ||
+|| FECAF || Motivational Loop || [BrainRegionFEC_FD_STN_RS FEC.FD.STN.RS], [BrainRegionFEC_FT_ACC FEC.FT.ACC], [BrainRegionFEC_FT_VP FEC.FT.VP] ||
 || FECAS || Associative Loop || [BrainRegionFEC_FT_CN_BD FEC.FT.CN.BD], [BrainRegionFEC_FT_GPI_RM FEC.FT.GPI.RM] ||
 || FECEXE || Executive Loop || [BrainRegionFEC_FD_STN_CD FEC.FD.STN.CD], [BrainRegionFEC_FD_TH_PF FEC.FD.TH.PF], [BrainRegionFEC_FT_CN_HD FEC.FT.CN.HD], [BrainRegionFEC_FT_GPI_LDM FEC.FT.GPI.LDM], [BrainRegionFEC_FT_SN_RRL FEC.FT.SN.RRL] ||
 || FECME || Motor Extensor Loop || [BrainRegionFEC_FT_GPE_DM FEC.FT.GPE.DM], [BrainRegionFEC_FT_GPE_VL FEC.FT.GPE.VL], [BrainRegionFEC_FT_PU_RS FEC.FT.PU.RS], [BrainRegionFEC_FT_SN_RCL FEC.FT.SN.RCL] ||
@@ -21,12 +21,14 @@
 <img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/FEC_FECAF.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
+|| [BrainRegionFEC_FD_STN_RS FEC.FD.STN.RS] || Subthalamic Nucleus Rostrocaudal || nucleus || FEU || Motivational loop ||  ||
 || [BrainRegionFEC_FT_ACC FEC.FT.ACC] || Accumbens Nucleus || nucleus || FEU || Activate motor functions under attention, expectation of pleasure; rhythmic<BR>timing || inhibitory nucleus ||
 || [BrainRegionFEC_FT_VP FEC.FT.VP] || Ventral Pallidum || nucleus || FEU || Distinguish wanting versus liking enhancements || Necessary for reward learning and performance;<BR>inhibitory nucleus ||
 
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionFEC_FD_STN_RS FEC.FD.STN.RS] || [BrainRegionFEC_FT_VP FEC.FT.VP] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionFEC_FT_ACC FEC.FT.ACC] || [BrainRegionFEC_FT_VP FEC.FT.VP] || nucleus-nucleus-gaba || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (NACC -> VPAL)] ||
 
 *External Inbound Region Connections:*
