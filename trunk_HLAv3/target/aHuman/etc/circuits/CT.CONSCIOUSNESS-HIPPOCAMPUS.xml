@@ -37,7 +37,7 @@
 	<circuit id="CT.HIPPOCAMPAL-FORMATION" name="Hippocampal Formation"
 		image="http://ahuman.googlecode.com/svn/images/wiki/research/brain/HF.jpg"
 		reference="article:2009-Hippocampus-Thesis.pdf"
-		components="EC=PHA.NC.PH.ET DG=HBA.FT.DG CA3=HBA.FT.HC.CA3 CA1=HBA.FT.HC.CA1 Sub=HBA.FT.SC.SUB Rsp=CGA.NC.MPL.RSC PoS=PHA.NC.PSS ATN=CGA.FD.TH.AN LDN=CGA.FD.TH.LD LMam=PHA.FD.MB.LMB DTN=LMC.MM.TG.LDT"
+		components="EC=PHA.NC.PH.ET DG=HBA.FT.DG CA3=HBA.FT.HC.CA3 CA1=HBA.FT.HC.CA1 Sub=HBA.FT.HF.SUB Rsp=CGA.NC.MPL.RSC PoS=PHA.NC.PSS ATN=CGA.FD.TH.AN LDN=CGA.FD.TH.LD LMam=PHA.FD.MB.LMB DTN=LMC.MM.TG.LDT"
 		>
 		<link src="EC" dst="DG"/>
 		<link src="DG" dst="CA3"/>
@@ -117,7 +117,7 @@
 	<circuit id="CT.RECOGNITION-MEMORY" name="Contributions of Diencephalon to Recognition Memory"
 		image="http://learnmem.cshlp.org/content/18/6/384/F1.large.jpg"
 		reference="http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html"
-		components="PostCingulate=CGA.NC.MPL Sub=HBA.FT.SC.SUB Presub=PHA.NC.PRS Parasub=PHA.NC.PAS EC=PHA.NC.PH.ET Perirhinal=PHA.NC.PH.PRR MDmc=FCA.FD.TH.MD mPULV=VBA.FD.PV.MPV LD=CGA.FD.TH.LD AN=CGA.FD.TH.AN AV=CGA.FD.TH.AV AD=CGA.FD.TH.AD AM=CGA.FD.TH.AM MID=FD.TH.MTH MB=HBA.FD.MB.MMB MPFC=FCA.NC.OMPFC DLPFC=FCA.NC.LPFC OFC=FCA.NC.OMPFC CM=FEC.FD.TH.CM HC=HBA.FT.HC SubPrePara=HBA.FT.SC.SUB"
+		components="PostCingulate=CGA.NC.MPL Sub=HBA.FT.HF.SUB Presub=PHA.NC.PRS Parasub=PHA.NC.PAS EC=PHA.NC.PH.ET Perirhinal=PHA.NC.PH.PRR MDmc=FCA.FD.TH.MD mPULV=VBA.FD.PV.MPV LD=CGA.FD.TH.LD AN=CGA.FD.TH.AN AV=CGA.FD.TH.AV AD=CGA.FD.TH.AD AM=CGA.FD.TH.AM MID=FD.TH.MTH MB=HBA.FD.MB.MMB MPFC=FCA.NC.OMPFC DLPFC=FCA.NC.LPFC OFC=FCA.NC.OMPFC CM=FEC.FD.TH.CM HC=HBA.FT.HC SubPrePara=HBA.FT.HF.SUB"
 		>
 		<link src="CM" dst="HC"/>
 		<link src="CM" dst="SubPrePara"/>
@@ -164,7 +164,7 @@
 	<circuit id="CT.ATTRACTOR-NETWORK" name="Attractor Network in Hippocampus"
 		image="http://learnmem.cshlp.org/content/14/11/714/F1.large.jpg"
 		reference="http://learnmem.cshlp.org/content/14/11/714/F1.expansion"
-		components="EC=PHA.NC.PH.ET DG=HBA.FT.DG CA3=HBA.FT.HC.CA3 CA1=HBA.FT.HC.CA1 SUB=HBA.FT.SC.SUB PERI=PHA.NC.PH.PRR SEP=BFA.FT.SEP NACC=FEC.FT.ACC PRESUB=PHA.NC.PRS AN=CGA.FD.TH.AN MBIN=HBA.FD.MB.MMB MBOUT=PHA.FD.MB.LMB"
+		components="EC=PHA.NC.PH.ET DG=HBA.FT.DG CA3=HBA.FT.HC.CA3 CA1=HBA.FT.HC.CA1 SUB=HBA.FT.HF.SUB PERI=PHA.NC.PH.PRR SEP=BFA.FT.SEP NACC=FEC.FT.ACC PRESUB=PHA.NC.PRS AN=CGA.FD.TH.AN MBIN=HBA.FD.MB.MMB MBOUT=PHA.FD.MB.LMB"
 		>
 		<link src="PERI" dst="EC"/>
 		<link src="EC" dst="DG"/>
@@ -193,7 +193,7 @@
 	<circuit id="CT.CA2" name="Flow of impulses in hippocampal region"
 		image="http://ars.els-cdn.com/content/image/1-s2.0-S030645220600755X-gr1.jpg"
 		reference="http://www.sciencedirect.com/science/article/pii/S030645220600755X"
-		components="ENT=PHA.NC.PH.ET CA1=HBA.FT.HC.CA1 CA2=HBA.FT.HC.CA2 CA3=HBA.FT.HC.CA3 DG=HBA.FT.DG SUB=HBA.FT.SC.SUB PRES=PHA.NC.PRS"
+		components="ENT=PHA.NC.PH.ET CA1=HBA.FT.HC.CA1 CA2=HBA.FT.HC.CA2 CA3=HBA.FT.HC.CA3 DG=HBA.FT.DG SUB=HBA.FT.HF.SUB PRES=PHA.NC.PRS"
 		>
 		<link src="PRES" dst="ENT"/>
 		<link src="ENT" dst="DG"/>
@@ -208,7 +208,7 @@
 	<circuit id="CT.OPERATING-MODEL" name="Simplified model of hippocampal formation anatomy"
 		image="http://ars.els-cdn.com/content/image/1-s2.0-S030100820900183X-gr4.jpg"
 		reference="http://www.sciencedirect.com/science/article/pii/S030100820900183X"
-		components="EC=PHA.NC.PH.ET CA1=HBA.FT.HC.CA1 CA3=HBA.FT.HC.CA3 DG=HBA.FT.DG SUB=HBA.FT.SC.SUB mPFC=FCA.NC.OMPFC NACC=FEC.FT.ACC Amyg=BFA.FT.AM"
+		components="EC=PHA.NC.PH.ET CA1=HBA.FT.HC.CA1 CA3=HBA.FT.HC.CA3 DG=HBA.FT.DG SUB=HBA.FT.HF.SUB mPFC=FCA.NC.OMPFC NACC=FEC.FT.ACC Amyg=BFA.FT.AM"
 		>
 		<link src="EC" dst="DG"/>
 		<link src="EC" dst="CA3"/>
@@ -248,7 +248,7 @@
 	<circuit id="CT.LONG-TERM-MEMORY-VTA" name="Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning"
 		image="http://www.impulsecontroldisorders.org/images/6-HippocampalVTA.jpg"
 		reference="http://www.impulsecontroldisorders.org/html/cravings.html"
-		components="EC=PHA.NC.PH.ET DG=HBA.FT.DG CA1=HBA.FT.HC.CA1 CA3=HBA.FT.HC.CA3 SUB=HBA.FT.SC.SUB ACC=FEC.FT.ACC VPAL=FEC.FT.VP VTA=LMC.MM.VTA PPTG=LLC.HP.PPN PFC=FCA.NC.OMPFC"
+		components="EC=PHA.NC.PH.ET DG=HBA.FT.DG CA1=HBA.FT.HC.CA1 CA3=HBA.FT.HC.CA3 SUB=HBA.FT.HF.SUB ACC=FEC.FT.ACC VPAL=FEC.FT.VP VTA=LMC.MM.VTA PPTG=LLC.HP.PPN PFC=FCA.NC.OMPFC"
 		>
 		<link src="VTA" dst="EC"/>
 		<link src="EC" dst="DG"/>
@@ -305,7 +305,7 @@
 	<circuit id="CT.MB-MEMORY" name="Mammillary bodies: two memory systems in one"
 		image="http://www.nature.com/nrn/journal/v5/n1/images/nrn1299-f2.jpg"
 		reference="http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html"
-		components="MMB=HBA.FD.MB.MMB LMB=PHA.FD.MB.LMB AMTH=CGA.FD.TH.AM AVTH=CGA.FD.TH.AV ADTH=CGA.FD.TH.AD PRS=PHA.NC.PRS POS=PHA.NC.PSS PAS=PHA.NC.PAS SEP=BFA.FT.SEP SupraMM=LAC.FD.HT.SUM TuberoMM=HTA.FD.HT.TUB DTN=LMC.MM.TG.LDT VTN=LMC.MM.VTA MedialEC=PHA.NC.PH.ET SUB=HBA.FT.SC.SUB"
+		components="MMB=HBA.FD.MB.MMB LMB=PHA.FD.MB.LMB AMTH=CGA.FD.TH.AM AVTH=CGA.FD.TH.AV ADTH=CGA.FD.TH.AD PRS=PHA.NC.PRS POS=PHA.NC.PSS PAS=PHA.NC.PAS SEP=BFA.FT.SEP SupraMM=LAC.FD.HT.SUM TuberoMM=HTA.FD.HT.TUB DTN=LMC.MM.TG.LDT VTN=LMC.MM.VTA MedialEC=PHA.NC.PH.ET SUB=HBA.FT.HF.SUB"
 		>
 		<link src="MMB" dst="AMTH"/>
 		<link src="MMB" dst="AVTH"/>
