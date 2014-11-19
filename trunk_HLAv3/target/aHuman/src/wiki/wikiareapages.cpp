@@ -541,7 +541,10 @@ void WikiAreaPages::createDotFile( MindArea *area , MindLocalCircuitDef& circuit
 	text.add( "" );
 	for( int k = 0; k < internals.count(); k++ ) {
 		MindLocalCircuitConnectionDef *c = internals.getClassByIndex( k );
-		String linkline = "\t\"" + c -> getSrcRegion() + "\" -> \"" + c -> getDstRegion() + "\";";
+		MindConnectionLinkTypeDef *linkDef = c -> getPrimaryLinkType();
+		String props = wm -> getLinkProps( linkDef );
+
+		String linkline = "\t\"" + c -> getSrcRegion() + "\" -> \"" + c -> getDstRegion() + "\"" + props + ";";
 		text.add( linkline );
 	}
 
@@ -660,6 +663,9 @@ void WikiAreaPages::createDotFile_subgraph( MindArea *area , MindLocalCircuitDef
 		ClassList<MindLocalCircuitConnectionDef> *typeConnectivity = areaTypeConnectivityMap.get( areaType );
 		for( int a = 0; a < typeConnectivity -> count(); a++ ) {
 			MindLocalCircuitConnectionDef *c = typeConnectivity -> get( a );
+			MindConnectionLinkTypeDef *linkDef = c -> getPrimaryLinkType();
+			String props = wm -> getLinkProps( linkDef );
+
 			String srcId;
 			String dstId;
 			if( p_inputs ) {
@@ -671,7 +677,7 @@ void WikiAreaPages::createDotFile_subgraph( MindArea *area , MindLocalCircuitDef
 				dstId = "\"" + areaType + "." + postfix + "\":\"" + c -> getDstRegion() + "\"";
 			}
 
-			text.add( "\t" + srcId + " -> " + dstId + ";" );
+			text.add( "\t" + srcId + " -> " + dstId + props + ";" );
 		}
 
 		text.add( "" );
