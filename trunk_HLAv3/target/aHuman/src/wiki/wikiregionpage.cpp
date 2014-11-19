@@ -477,6 +477,8 @@ void WikiRegionPage::createDotFile( MapStringToClass<MindRegion>& regions , MapS
 	// list connections
 	for( int k = 0; k < connectionsTotal.count(); k++ ) {
 		MindRegionLink *c = connectionsTotal.getClassByIndex( k );
+		MindConnectionLinkTypeDef *linkDef = c -> getConnectionType();
+		String props = wm -> getLinkProps( linkDef );
 
 		String src = c -> getSrcRegion() -> getRegionId();
 		String dst = c -> getDstRegion() -> getRegionId();
@@ -491,7 +493,8 @@ void WikiRegionPage::createDotFile( MapStringToClass<MindRegion>& regions , MapS
 			dst = "\"" + dst + "\"";
 		}
 
-		String linkline = "\t" + src + " -> " + dst + ";";
+		String linkline = "\t" + src + " -> " + dst + props + ";";
+
 		text.add( linkline );
 	}
 

@@ -386,6 +386,19 @@ String WikiMaker::getDotColor( String dotdef ) {
 	return( color );
 }
 
+String WikiMaker::getLinkProps( MindConnectionLinkTypeDef *linkDef ) {
+	String connProps;
+	String nt = linkDef -> getNeurotransmitter();
+	if( !nt.equals( "GLU" ) ) {
+		if( nt.equals( "GABA" ) )
+			connProps = " [color=red]";
+		else
+			connProps = " [label=\"" + nt + "\"]";
+	}
+
+	return( connProps );
+}
+
 void WikiMaker::clearRepeats1( String& value1 ) {
 	if( saveRepeats1.equals( value1 ) )
 		value1.clear();

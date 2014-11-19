@@ -39,6 +39,7 @@ public:
 	String findReference( MindLocalCircuitConnectionDef *link );
 	String findReference( String srcRegion , String dstRegion );
 	String getDotColor( String dotdef );
+	String getLinkProps( MindConnectionLinkTypeDef *linkDef );
 
 	bool checkCreateMainPages();
 	bool checkCreateNervePages();
