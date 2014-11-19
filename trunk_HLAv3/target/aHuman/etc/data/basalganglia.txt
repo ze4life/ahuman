@@ -23,17 +23,46 @@ basal ganglia internals
 
 ===============
 
+sensorimotor loop: BG-dorsolateral, MC - selecting motor acts
 motor loop: 
 	PU, GPi-ventrolateral, SNr-caudolateral, TH-VL-oral,medial; motor disturbances
-executive loop: 
-	DLPFC, PPC, CN-head,dorsolateral, GPi-lateral-dorsomedial, SNr-rostrolateral, TH-VA-parvicellular, TH-MD-parvicellular; cognitive loss
+
+===============
+
+limbic loop: BG-ventral, OMPFC - selecting goals and contents with high biological valence to regulate DA system
+Orbitofrontal lateral circuit: OMPFC,ITC,STC,RF -> CN-ventromedial -> GPi-mediodorsal,SNr-rostromedial -> MD-magnocellular,VA -> OMPC
+	- inhibition of inappropriate behavioural responses and in the evaluation of risk
 motivational loop: 
 	OMPFC, ACG, AM, HC, CN-ventromedial, ventral striatum, GPi-rostromedial, NAcc, VTA, HT-lateral-preoptic, TH-VA-magnocellular, TH-MD-magnocellular,posteromedial; 
 	drive, pleasure, wanting, emotions
+motivational loop: 
+	OMPFC, AM, CN-ventromedial, ventral striatum, GPi-rostromedial, NAcc, VTA, HT-lateral-preoptic, TH-MD-magnocellular,posteromedial; 
+	pleasure, emotions
+
+===============
+
+Dorsolateral prefrontal circuit: DLPFC,PPC,PMC -> CN-dorsolateral -> GP-dorsolateral,SNr-rostral -> MD-parvocellular,VA -> DLPFC
+	- selecting objectives, planning and sequencing the generation of an answer set, and memory of verbal and spatial tasks
+executive loop: 
+	DLPFC, PPC, CN-head,dorsolateral, GPi-lateral-dorsomedial, SNr-rostrolateral, TH-VA-parvicellular, TH-MD-parvicellular; cognitive loss
+associative loop: BG-medial, temporal, parietal, prefrontal - select perceptual and high-level cogition contents
+
+===============
+
+Anterior cingulate circuit: ACG,anterior temporal cortex,ET,HC,AM -> accumbens nucleus,olfactory tubercle (ventral striatum) -> VP,SNr-rostrodorsal,MD-rostrodorsal -> ACG
+	- monitoring behaviour and correcting errors
+cognitive loop: 
+	ACG, HC, CN-ventromedial, ventral striatum, GPi-rostromedial, NAcc, VTA, TH-VA-magnocellular
+	drive, wanting
+
+===============
+
 visuomotor loop: 
 	IT, FEF, CN-body,tail, GPi-caudodorsomedial, SNr-ventrolateral, TH-VA-magnocellular, TH-MD-parvicellular, SC
 
-PU: DPU-VL=BGA.FT.PU.CD, DPU-DM=BGA.FT.PU.RS (motor), VPU=BGA.FT.PU.VT (motivational)
+===============
+
+PU: DPU-VL=BGA.FT.PU.CD, DPU-DM=BGA.FT.PU.RS (motor), (delete VPU=BGA.FT.PU.VT) (motivational)
 CN: (CN-HD, CN-DL)=BGA.FT.CN.HD (executive), CN-VM=BGA.FT.CN.BD (motivational), CN-TL=BGA.FT.CN.TL (visuomotor)
 GPi: GPi-VL=BGA.FT.GPI.VL (motor), GPi-LDM=BGA.FT.GPI.LDM (executive), GPi-RM=BGA.FT.GPI.RM (motivational), GPi-CDM=BGA.FT.GPI.CDM (visuomotor)
 GPe: GPe-DM=BGA.FT.GPE.DM (face-ext), GPe-VL=BGA.FT.GPE.VL (body-ext) (motor)
@@ -53,13 +82,13 @@ VENTRAL STRIATUM - NACC (OMPFC, ACC), NACC/PU-ventral (Rostral cortex, IT, PH co
 DORSAL STRIATUM - PU-dorsal (sensorimotor cortex, partietal cortex), CN-dorsal (prefrontal, PPC, STC)
 
 PUTAMEN (PMC overlaps with SMC, not with MC)
-	- PU/ventrolateral (caudal,D1,CM)
+	- PU/ventrolateral (caudal,D1,CM,flexors)
 		- PU/dorsolateral <- MC (sensimotor loop) (leg), S1 (associative loop)
 		- PU/rostrolateral <- MC (sensimotor loop) (face), (hand), S1 (associative loop)
 		- PU/ventromedial <- MC (sensimotor loop) (arms), S1 (associative loop)
 		- PU/caudal <- MC (sensimotor loop), SNc/lateral (sensorimotor loop)
 		- PU/ventral (anterior) <- SNc/lateral (sensorimotor loop), CM (from GPi)
-	- PU/dorsomedial (rostral,D2,PF)
+	- PU/dorsomedial (rostral,D2,PF,extensors)
 		- PU/medial <- PMC (limbic loop), SMC
 		- PU/dorsomedial <- PMC (limbic loop)
 
@@ -131,9 +160,6 @@ associative/sensorimotor circuits -> converge in SNr
 central striatum
 corticospinal tract collaterals to STN
 
-GPi -> CM -> MC, PU
-CM -> caudal putamen
-PF -> rostral putamen, caudate nucleus
 Pallidum -> CM/PF -> Striatum,STN
 Pallidum -> SNc -> Striatum
 
@@ -142,8 +168,9 @@ AM -> NAcc/core -> VTA/lateral
 MPFC -> striatum/dorsomedial -> SNr/ventral
 MC/S1 -> striatum/dorsolateral -> SNc/dorsal
 
+GPi -> CM -> MC, PU-caudal
 SNr,SC -> PF -> FEF, CN, NAcc
-PPN -> PF
+PPN -> PF -> PU-rostral, CN
 PPN -> Subcoeruleus -> HC
 PPN -> GPi, SNc, STN, pontine/medullary RF
 RD, deep CR nuclei -> PPN
@@ -160,6 +187,12 @@ SNr <-> PPN
 SNr -> PPN -> SNc
 SNr -> SNc (inhibit)
 STN <-> PPN
+STN <- GPe, MC, CM (to rostral)
+STN -> GPe, GPi, PU, SNr, PPN
+STN/dorsolateral <- MC
+STN/ventral <- FEF
+NACC-shell <- VTA
+NACC-core <- SNc
 
 SNc - activated by novel, unexpected stimuli, by primary rewards in the absence of predictive stimuli and during learning, required for repeating identical movements
 fire in a very regular, pacemaker-like mode, Poisson-like distribution
@@ -169,3 +202,14 @@ patches and matrix
 maintain interconnections with the DA neurons in the substantia nigra
 - matrix also receives projections from the cingulate gyrus, the motor thalamus, and from throughout the neocortex and 
 maintains interconnections with GABA and DA neurons in the substantia nigra
+
+==================
+
+Prepiriform cortex -> MD-central -> ventral agranular insula
+
+Prepiriform cortex,ET,AM -> MD-magnocellular -> OMPFC
+SNr,VBN-medial,LMC.MM.TG.LDT -> MD-parvocellular -> DLPFC
+SC -> MD-multiform -> FEF
+
+
+

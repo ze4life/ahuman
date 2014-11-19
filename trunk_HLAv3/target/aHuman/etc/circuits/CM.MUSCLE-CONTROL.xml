@@ -122,7 +122,7 @@
 	<circuit id="CM.BASAL-GANGLIA-ACTIVITY" name="Basal Ganglia Activity"
 		image="http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou_2b.jpg"
 		reference="http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html"
-		components="S1=SMA.NC.PG.S1 M1=MCA.NC.MC SMC=MCA.NC.SMC VLo=MCA.FD.TH.VL GPi=BGA.FT.GPI GPo=BGA.FT.GPE STN=BGA.FD.STN SN=BGA.FT.SN PU=BGA.FT.PU PMC=NC.PMC"
+		components="S1=SMA.NC.PG.S1 M1=MCA.NC.MC SMC=MCA.NC.SMC VLo=MCA.FD.TH.VL GPi=BGA.FT.GPI GPo=BGA.FT.GPE STN=BGA.FD.STN SN=BGA.FT.SN PU=BGA.FT.DPU PMC=NC.PMC"
 		>
 		<link src="S1" dst="PU"/>
 		<link src="M1" dst="PU"/>
@@ -140,14 +140,14 @@
 	<circuit id="CM.BG-HUMAN-INSECT" name="Basal Ganglia in Human and Insect"
 		image="http://www.sciencemag.org/content/340/6129/157/F2.large.jpg" imageHeight="400" imageWidth="400"
 		reference="http://www.sciencemag.org/content/340/6129/157/F2.expansion.html"
-		components="GPi=BGA.FT.GPI GPo=BGA.FT.GPE STN=BGA.FD.STN SN=BGA.FT.SN PU=BGA.FT.PU PMC=NC.PMC"
+		components="GPi=BGA.FT.GPI GPo=BGA.FT.GPE STN=BGA.FD.STN SN=BGA.FT.SN PU=BGA.FT.DPU PMC=NC.PMC"
 		>
 	</circuit>
 
 	<circuit id="CM.ONUF" name="Physiology and pathophysiology of lower urinary tract"
 		image="http://www.intechopen.com/source/html/40109/media/image1.jpeg"
 		reference="http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders"
-		components="PVN=LAC.FD.HT.PV MPOA=HTA.FD.HT.MPO VTA=LMC.MM.VTA ZI=BGA.FD.STN.ZI SNC=LMC.FT.SN.CLT MPFC=FCA.NC.OMPFC PU=BGA.FT.PU CN=BGA.FT.CN LC=LMC.HP.LC NBM=LMC.FT.NBM PBN=LPC.HP.PB DVM=LAC.HM.VGN PEL=LAC.PN.PSYM.PPG SPS=LAC.SC.IZ.SPS IML=LAC.SC.IZ.IML IMG=LAC.PN.SYM.IMG ONF=LPC.SC.VH.ONF"
+		components="PVN=LAC.FD.HT.PV MPOA=HTA.FD.HT.MPO VTA=LMC.MM.VTA ZI=BGA.FD.STN.ZI SNC=LMC.FT.SN.CLT MPFC=FCA.NC.OMPFC PU=FEC.FT.PU.CD CN=BGA.FT.CN LC=LMC.HP.LC NBM=LMC.FT.NBM PBN=LPC.HP.PB DVM=LAC.HM.VGN PEL=LAC.PN.PSYM.PPG SPS=LAC.SC.IZ.SPS IML=LAC.SC.IZ.IML IMG=LAC.PN.SYM.IMG ONF=LPC.SC.VH.ONF"
 		>
 		<link src="VTA" dst="PVN"/>
 		<link src="VTA" dst="MPOA"/>
