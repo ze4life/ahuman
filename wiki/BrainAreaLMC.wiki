@@ -10,7 +10,7 @@
 || *ID* || *Name* || *Regions* ||
 || 5HT || Serotonin - Feelings of Well-Being and Happiness || [BrainRegionLMC_HM_RP_MG LMC.HM.RP.MG], [BrainRegionLMC_HM_RP_OB LMC.HM.RP.OB], [BrainRegionLMC_HM_RP_PL LMC.HM.RP.PL], [BrainRegionLMC_HP_RP_PRN LMC.HP.RP.PRN], [BrainRegionLMC_MM_RF_SC LMC.MM.RF.SC], [BrainRegionLMC_MM_RP_DRN LMC.MM.RP.DRN] ||
 || ACH || Acetylcholine - PNS Actions and CNS plasticity, arousal and reward || [BrainRegionLMC_FT_NBM LMC.FT.NBM], [BrainRegionLMC_MM_TG_LDT LMC.MM.TG.LDT] ||
-|| DA || Dopamine - Reward-Motivated Behavior, Cognitive Alertness || [BrainRegionLMC_FT_SN_CLT LMC.FT.SN.CLT], [BrainRegionLMC_FT_SN_CMD LMC.FT.SN.CMD], [BrainRegionLMC_MM_VTA LMC.MM.VTA] ||
+|| DA || Dopamine - Reward-Motivated Behavior, Cognitive Alertness || [BrainRegionLMC_MM_VTA LMC.MM.VTA] ||
 || ENK || Enkephalin -  Regulating Nociception in Body || [BrainRegionLMC_MM_PAG LMC.MM.PAG] ||
 || GABA || GABA - Inhibitory Projections || [BrainRegionLMC_FD_TH_LI LMC.FD.TH.LI], [BrainRegionLMC_FD_TH_SF LMC.FD.TH.SF], [BrainRegionLMC_HP_NI LMC.HP.NI] ||
 || NE || Norepinephrine - Vigilant Concentration, Stress Hormone, Fight-or-Flight Response || [BrainRegionLMC_HP_LC LMC.HP.LC] ||
@@ -110,8 +110,6 @@
 <img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LMC_DA.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionLMC_FT_SN_CLT LMC.FT.SN.CLT] || Substantia Nigra Pars Compacta Lateral || nucleus || FEU || executive loop ||  ||
-|| [BrainRegionLMC_FT_SN_CMD LMC.FT.SN.CMD] || Medial Substantia Nigra Pars Compacta || nucleus || FEU || motivational loop ||  ||
 || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || Ventral Tegmental Area || nucleus || LUS || Respond to novel stimuli, unexpected rewards, and reward predictive sensory cues ||  ||
 
 *Internal Region Connections:*
@@ -123,13 +121,9 @@
 || <font color="red">Cortical</font> || || || || || ||
 || [BrainAreaEPA EPA] || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || neocortex-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (OMPFC -> VTA)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaAMA AMA] || [BrainRegionLMC_FT_SN_CLT LMC.FT.SN.CLT] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> SNc)] ||
-||  || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> VTA)] ||
-|| [BrainAreaFEC FEC] || [BrainRegionLMC_FT_SN_CLT LMC.FT.SN.CLT] || [BrainRegionFEC_FD_STN_CD FEC.FD.STN.CD] || Subthalamic Nucleus Caudal || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionFEC_FT_SN_RCL FEC.FT.SN.RCL] || Substantia Nigra Pars Reticulata Caudolateral || nucleus-nucleus || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (SNr -> SNc)] ||
-||  || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || [BrainRegionFEC_FT_ACC FEC.FT.ACC] || Accumbens Nucleus || nucleus-nucleus-gaba || [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reward circuit of human brain (NACC -> VTA)] ||
+|| [BrainAreaAMA AMA] || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> VTA)] ||
+|| [BrainAreaFEC FEC] || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || [BrainRegionFEC_FT_ACC FEC.FT.ACC] || Accumbens Nucleus || nucleus-nucleus-gaba || [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reward circuit of human brain (NACC -> VTA)] ||
 ||  ||  || [BrainRegionFEC_FT_VP FEC.FT.VP] || Ventral Pallidum || nucleus-nucleus-gaba || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (VPAL -> VTA)] ||
-|| [BrainAreaLRC LRC] || [BrainRegionLMC_FT_SN_CLT LMC.FT.SN.CLT] || [BrainRegionLRC_MM_SC_DEEP LRC.MM.SC.DEEP] || Deep Superior Colliculus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SCi -> SNc, abstract)] ||
 || [BrainAreaMMA MMA] || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Medial mammillary nucleus and theta rhythm (MMB -> VTN)] ||
 
 *External Outbound Region Connections:*
@@ -140,17 +134,11 @@
 ||  ||  || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || nucleus-neocortex-DA || [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reward circuit of human brain (VTA -> PFC)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaAMA AMA] || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-nucleus-DA || [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reward circuit of human brain (VTA -> AM)] ||
-|| [BrainAreaFEC FEC] || [BrainRegionLMC_FT_SN_CLT LMC.FT.SN.CLT] || [BrainRegionFEC_FT_ACC FEC.FT.ACC] || Accumbens Nucleus || nucleus-nucleus-DA || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (SNc -> NAC)] ||
-||  ||  || [BrainRegionFEC_FT_PU_CD FEC.FT.PU.CD] || Dorsal Putamen Caudal || nucleus-nucleus-DA || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (SNC -> PU)] ||
-||  ||  || [BrainRegionFEC_FT_PU_RS FEC.FT.PU.RS] || Dorsal Putamen Rostral || nucleus-nucleus-DA || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (SN -> PU, abstract)] ||
-||  || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || [BrainRegionFEC_FT_ACC FEC.FT.ACC] || Accumbens Nucleus || nucleus-nucleus-DA || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (VTA -> NACC)] ||
+|| [BrainAreaFEC FEC] || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || [BrainRegionFEC_FT_ACC FEC.FT.ACC] || Accumbens Nucleus || nucleus-nucleus-DA || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (VTA -> NACC)] ||
 ||  ||  || [BrainRegionFEC_FT_VP FEC.FT.VP] || Ventral Pallidum || nucleus-nucleus-DA || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (VTA -> VentPal)] ||
-|| [BrainAreaLAC LAC] || [BrainRegionLMC_FT_SN_CLT LMC.FT.SN.CLT] || [BrainRegionLAC_FD_HT_SUM LAC.FD.HT.SUM] || Supramammillary Nucleus || nucleus-nucleus-DA || (unknown reference) ||
-||  || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO] || Preoptic Nucleus || nucleus-nucleus-DA || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (VTA -> MPOA)] ||
+|| [BrainAreaLAC LAC] || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO] || Preoptic Nucleus || nucleus-nucleus-DA || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (VTA -> MPOA)] ||
 ||  ||  || [BrainRegionLAC_FD_HT_PRM LAC.FD.HT.PRM] || Premammillary Nucleus || nucleus-nucleus-DA || (unknown reference) ||
 ||  ||  || [BrainRegionLAC_FD_HT_PV LAC.FD.HT.PV] || Paraventricular Nucleus || nucleus-nucleus-DA || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (VTA -> PVN)] ||
-|| [BrainAreaLLC LLC] || [BrainRegionLMC_FT_SN_CLT LMC.FT.SN.CLT] || [BrainRegionLLC_MM_RD LLC.MM.RD] || Red Nucleus || nucleus-nucleus-DA || (unknown reference) ||
-|| [BrainAreaLRC LRC] || [BrainRegionLMC_FT_SN_CLT LMC.FT.SN.CLT] || [BrainRegionLRC_HP_PRF_PVR LRC.HP.PRF.PVR] || Parvocellular Reticular Nucleus || nucleus-nucleus-DA || (unknown reference) ||
 || [BrainAreaMMA MMA] || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || nucleus-nucleus-DA || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Mammillary bodies: two memory systems in one (VTN -> MMB)] ||
 ||  ||  || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || Ventrolateral Cornu Ammonis of Hippocampus || nucleus-allocortex-DA || [http://www.impulsecontroldisorders.org/html/cravings.html Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning (VTA -> CA1)] ||
 ||  ||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || nucleus-neocortex-DA || [http://www.impulsecontroldisorders.org/html/cravings.html Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning (VTA -> EC)] ||
@@ -274,10 +262,6 @@
 
 <img src="http://neuropolitics.org/connect-amygdala.jpg" alt="unavailable">
 
-  * [http://img.springerimages.com/Images/Springer/PUB=Springer-Verlag-Berlin-Heidelberg/JOU=00359/VOL=2005.191/ISU=3/ART=2004_565/MediaObjects/WATER_s00359-004-0565-9fhc1.jpg Oculomotor decision-making] - see [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Reference]
-
-<img src="http://img.springerimages.com/Images/Springer/PUB=Springer-Verlag-Berlin-Heidelberg/JOU=00359/VOL=2005.191/ISU=3/ART=2004_565/MediaObjects/WATER_s00359-004-0565-9fhc1.jpg" alt="unavailable">
-
   * [http://brmlab.cz/lib/exe/fetch.php?hash=fca48f&media=http%3A%2F%2Fars.els-cdn.com%2Fcontent%2Fimage%2F1-s2.0-S1364661308002490-gr2.jpg Regulation of Social Brain] - see [http://brmlab.cz/project/brain_hacking/tdcs/pfc Reference]
 
 <img src="http://brmlab.cz/lib/exe/fetch.php?hash=fca48f&media=http%3A%2F%2Fars.els-cdn.com%2Fcontent%2Fimage%2F1-s2.0-S1364661308002490-gr2.jpg" alt="unavailable">
@@ -289,6 +273,10 @@
   * [http://www.impulsecontroldisorders.org/images/6-HippocampalVTA.jpg Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning] - see [http://www.impulsecontroldisorders.org/html/cravings.html Reference]
 
 <img src="http://www.impulsecontroldisorders.org/images/6-HippocampalVTA.jpg" alt="unavailable">
+
+  * [http://img.springerimages.com/Images/Springer/PUB=Springer-Verlag-Berlin-Heidelberg/JOU=00359/VOL=2005.191/ISU=3/ART=2004_565/MediaObjects/WATER_s00359-004-0565-9fhc1.jpg Oculomotor decision-making] - see [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Reference]
+
+<img src="http://img.springerimages.com/Images/Springer/PUB=Springer-Verlag-Berlin-Heidelberg/JOU=00359/VOL=2005.191/ISU=3/ART=2004_565/MediaObjects/WATER_s00359-004-0565-9fhc1.jpg" alt="unavailable">
 
   * [http://neurowiki2012.wikispaces.com/file/view/Reward_circuit.jpg/315908202/Reward_circuit.jpg Reward circuit of human brain] - see [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reference]
 
@@ -314,14 +302,6 @@
 
 <img src="http://www.springerimages.com/img/Images/Springer/JOU=10194/VOL=2006.7/ISU=4/ART=2006_307/MediaObjects/MEDIUM_10194_2006_Article_307_Fig1.jpg" alt="unavailable">
 
-  * [http://ars.els-cdn.com/content/image/1-s2.0-S0959438808001566-gr1.jpg Global visual system] - see [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Reference]
-
-<img src="http://ars.els-cdn.com/content/image/1-s2.0-S0959438808001566-gr1.jpg" alt="unavailable">
-
-  * [http://www.mdvu.org/images/par_path2.jpg Normal Functional Anatomy of Basal Ganglia] - see [http://www.mdvu.org/library/disease/pd/par_path.asp Reference]
-
-<img src="http://www.mdvu.org/images/par_path2.jpg" alt="unavailable">
-
   * [http://ahuman.googlecode.com/svn/images/wiki/research/human/22-reticular-formation-and-limbic-system/F22-2.png Basal Nucleus of Meynert] - see [article:Biological/2005-The-Human-Nervous-System.pdf Reference]
 
 <img src="http://ahuman.googlecode.com/svn/images/wiki/research/human/22-reticular-formation-and-limbic-system/F22-2.png" alt="unavailable">
@@ -338,17 +318,15 @@
   * http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders
   * http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html
   * http://neuropolitics.org/defaultmay10.asp
-  * http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0
   * http://brmlab.cz/project/brain_hacking/tdcs/pfc
   * http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html
   * http://www.impulsecontroldisorders.org/html/cravings.html
+  * http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0
   * http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity
   * article:2009-Hippocampus-Thesis.pdf
   * http://www.scholarpedia.org/article/Head_direction_cells
   * http://jp.physoc.org/content/557/1/287/F9.expansion.html
   * http://www.springerimages.com/Images/MedicineAndPublicHealth/1-10.1007_s10194-006-0307-1-0
-  * http://www.sciencedirect.com/science/article/pii/S0959438808001566
-  * http://www.mdvu.org/library/disease/pd/par_path.asp
   * article:Biological/2005-The-Human-Nervous-System.pdf
   * http://www.expertsmind.com/topic/emotion/affective-basal-ganglia-circuit-93570.aspx
 
