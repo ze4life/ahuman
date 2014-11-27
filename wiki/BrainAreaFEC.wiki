@@ -8,9 +8,9 @@
 (generated)
 
 || *ID* || *Name* || *Regions* ||
-|| FECAF || Motivational Loop || [BrainRegionFEC_FD_STN_RS FEC.FD.STN.RS], [BrainRegionFEC_FT_ACC FEC.FT.ACC], [BrainRegionFEC_FT_VP FEC.FT.VP] ||
+|| FECAF || Motivational Loop || [BrainRegionFEC_FD_STN_RS FEC.FD.STN.RS], [BrainRegionFEC_FT_ACC FEC.FT.ACC], [BrainRegionFEC_FT_SN_RCL FEC.FT.SN.RCL], [BrainRegionFEC_FT_VP FEC.FT.VP] ||
 || FECEXE || Executive Loop || [BrainRegionFEC_FD_STN_CD FEC.FD.STN.CD], [BrainRegionFEC_FD_TH_PF FEC.FD.TH.PF], [BrainRegionFEC_FT_CN_HD FEC.FT.CN.HD], [BrainRegionFEC_FT_GPI_LDM FEC.FT.GPI.LDM], [BrainRegionFEC_FT_SN_CLT FEC.FT.SN.CLT], [BrainRegionFEC_FT_SN_CMD FEC.FT.SN.CMD], [BrainRegionFEC_FT_SN_RRL FEC.FT.SN.RRL] ||
-|| FECME || Motor Extensor Loop || [BrainRegionFEC_FT_GPE_DM FEC.FT.GPE.DM], [BrainRegionFEC_FT_GPE_VL FEC.FT.GPE.VL], [BrainRegionFEC_FT_PU_RS FEC.FT.PU.RS], [BrainRegionFEC_FT_SN_RCL FEC.FT.SN.RCL] ||
+|| FECME || Motor Extensor Loop || [BrainRegionFEC_FT_GPE_DM FEC.FT.GPE.DM], [BrainRegionFEC_FT_GPE_VL FEC.FT.GPE.VL], [BrainRegionFEC_FT_PU_RS FEC.FT.PU.RS] ||
 || FECMF || Motor Flexor Loop || [BrainRegionFEC_FD_STN_DS FEC.FD.STN.DS], [BrainRegionFEC_FD_TH_CM FEC.FD.TH.CM], [BrainRegionFEC_FT_GPI_VL FEC.FT.GPI.VL], [BrainRegionFEC_FT_PU_CD FEC.FT.PU.CD] ||
 || FECOM || Oculomotor and Auditory Loop || [BrainRegionFEC_FD_STN_LT FEC.FD.STN.LT], [BrainRegionFEC_FT_CN_BD FEC.FT.CN.BD], [BrainRegionFEC_FT_CN_TL FEC.FT.CN.TL], [BrainRegionFEC_FT_GPI_CDM FEC.FT.GPI.CDM], [BrainRegionFEC_FT_GPI_RM FEC.FT.GPI.RM], [BrainRegionFEC_FT_SN_RVL FEC.FT.SN.RVL], [BrainRegionFEC_MM_PT_PTA FEC.MM.PT.PTA] ||
 
@@ -22,13 +22,16 @@
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
 || [BrainRegionFEC_FD_STN_RS FEC.FD.STN.RS] || Subthalamic Nucleus Rostrocaudal || nucleus || FEU || Motivational loop ||  ||
 || [BrainRegionFEC_FT_ACC FEC.FT.ACC] || Accumbens Nucleus || nucleus || FEU || Activate motor functions under attention, expectation of pleasure; rhythmic<BR>timing || inhibitory nucleus ||
+|| [BrainRegionFEC_FT_SN_RCL FEC.FT.SN.RCL] || Substantia Nigra Pars Reticulata Caudolateral || nucleus || FEU || Motor loop ||  ||
 || [BrainRegionFEC_FT_VP FEC.FT.VP] || Ventral Pallidum || nucleus || FEU || Distinguish wanting versus liking enhancements || Necessary for reward learning and performance;<BR>inhibitory nucleus ||
 
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionFEC_FD_STN_RS FEC.FD.STN.RS] || [BrainRegionFEC_FT_VP FEC.FT.VP] || nucleus-nucleus || (unknown reference) ||
-|| [BrainRegionFEC_FT_ACC FEC.FT.ACC] || [BrainRegionFEC_FT_VP FEC.FT.VP] || nucleus-nucleus-gaba || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (NACC -> VPAL)] ||
+|| [BrainRegionFEC_FT_ACC FEC.FT.ACC] || [BrainRegionFEC_FT_SN_RCL FEC.FT.SN.RCL] || nucleus-nucleus-gaba || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (NACC -> SNr)] ||
+||  || [BrainRegionFEC_FT_VP FEC.FT.VP] || nucleus-nucleus-gaba || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (NACC -> VPAL)] ||
+|| [BrainRegionFEC_FT_VP FEC.FT.VP] || [BrainRegionFEC_FT_SN_RCL FEC.FT.SN.RCL] || nucleus-nucleus-gaba || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (VPAL -> SNr)] ||
 
 *External Inbound Region Connections:*
 
@@ -38,8 +41,13 @@
 ||  || [BrainRegionFEC_FT_ACC FEC.FT.ACC] || [BrainRegionCGA_NC_MPL_PCG CGA.NC.MPL.PCG] || Posterior Cingulate Cortex || neocortex-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || Ventral Anterior Cingulate Area || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> BGA, abstract)] ||
 ||  ||  || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || neocortex-nucleus || [http://www.expertsmind.com/topic/emotion/affective-basal-ganglia-circuit-93570.aspx Affective basal ganglia circuit (OMPFC -> NACC)] ||
+||  || [BrainRegionFEC_FT_SN_RCL FEC.FT.SN.RCL] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || neocortex-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (OMPFC -> SNr)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaAMA AMA] || [BrainRegionFEC_FT_ACC FEC.FT.ACC] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-nucleus || [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reward circuit of human brain (AM -> NACC)] ||
+||  || [BrainRegionFEC_FT_SN_RCL FEC.FT.SN.RCL] || [BrainRegionBFA_FT_IPAC BFA.FT.IPAC] || Interstitial Anterior Commissural Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaFEC FEC] || [BrainRegionFEC_FT_SN_RCL FEC.FT.SN.RCL] || [BrainRegionFEC_FD_STN_DS FEC.FD.STN.DS] || Subthalamic Nucleus Dorsal || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (STN -> SNpr, abstract)] ||
+||  ||  || [BrainRegionFEC_FT_GPI_VL FEC.FT.GPI.VL] || Globus Pallidus Internal Ventrolateral || nucleus-nucleus-gaba || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (GP -> SN, abstract)] ||
+||  ||  || [BrainRegionFEC_FT_PU_RS FEC.FT.PU.RS] || Dorsal Putamen Rostral || nucleus-nucleus-gaba || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (Striatum -> SNr, abstract)] ||
 || [BrainAreaLMC LMC] || [BrainRegionFEC_FT_ACC FEC.FT.ACC] || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || Ventral Tegmental Area || nucleus-nucleus-DA || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (VTA -> NACC)] ||
 ||  || [BrainRegionFEC_FT_VP FEC.FT.VP] || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || Ventral Tegmental Area || nucleus-nucleus-DA || [http://brmlab.cz/project/brain_hacking/tdcs/pfc Regulation of Social Brain (VTA -> VentPal)] ||
 || [BrainAreaMMA MMA] || [BrainRegionFEC_FT_ACC FEC.FT.ACC] || [BrainRegionHBA_FT_HF_SUB HBA.FT.HF.SUB] || Subiculum || allocortex-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/nucleus-accumbens.jpg Nucleus Accumbens (SUB -> NACC)] ||
@@ -48,15 +56,17 @@
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| <font color="red">Cortical</font> || || || || || ||
+|| [BrainAreaMAA MAA] || [BrainRegionFEC_FT_SN_RCL FEC.FT.SN.RCL] || [BrainRegionMCA_FD_TH_VA MCA.FD.TH.VA] || Ventral Anterior Nucleus || nucleus-nucleus-gaba || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sVA -> VA, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaAMA AMA] || [BrainRegionFEC_FT_VP FEC.FT.VP] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus-gaba || (unknown reference) ||
-|| [BrainAreaFEC FEC] || [BrainRegionFEC_FT_ACC FEC.FT.ACC] || [BrainRegionFEC_FT_SN_RCL FEC.FT.SN.RCL] || Substantia Nigra Pars Reticulata Caudolateral || nucleus-nucleus-gaba || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (NACC -> SNr)] ||
-||  || [BrainRegionFEC_FT_VP FEC.FT.VP] || [BrainRegionFEC_FT_SN_RCL FEC.FT.SN.RCL] || Substantia Nigra Pars Reticulata Caudolateral || nucleus-nucleus-gaba || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (VPAL -> SNr)] ||
+|| [BrainAreaFEC FEC] || [BrainRegionFEC_FT_SN_RCL FEC.FT.SN.RCL] || [BrainRegionFEC_FD_TH_PF FEC.FD.TH.PF] || Parafascicular Nucleus of Thalamus || nucleus-nucleus-gaba || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (BG -> Thalamus, abstract)] ||
 || [BrainAreaLAC LAC] || [BrainRegionFEC_FT_ACC FEC.FT.ACC] || [BrainRegionLAC_FD_HT_LTN LAC.FD.HT.LTN] || Lateral Hypothalamic Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
 || [BrainAreaLLC LLC] || [BrainRegionFEC_FT_VP FEC.FT.VP] || [BrainRegionLLC_HP_PPN_CD LLC.HP.PPN.CD] || Pedunculopontine Nucleus Caudal || nucleus-nucleus-gaba || [http://www.impulsecontroldisorders.org/html/cravings.html Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning (VPAL -> PPTG, abstract)] ||
 || [BrainAreaLMC LMC] || [BrainRegionFEC_FT_ACC FEC.FT.ACC] || [BrainRegionLMC_FT_NBM LMC.FT.NBM] || Basal Nucleus of Meynert || nucleus-nucleus-gaba || [http://www.expertsmind.com/topic/emotion/affective-basal-ganglia-circuit-93570.aspx Affective basal ganglia circuit (NACC -> nBM)] ||
 ||  ||  || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || Ventral Tegmental Area || nucleus-nucleus-gaba || [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reward circuit of human brain (NACC -> VTA)] ||
 ||  || [BrainRegionFEC_FT_VP FEC.FT.VP] || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || Ventral Tegmental Area || nucleus-nucleus-gaba || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (VPAL -> VTA)] ||
+|| [BrainAreaLRC LRC] || [BrainRegionFEC_FT_SN_RCL FEC.FT.SN.RCL] || [BrainRegionLRC_MM_SC_INT LRC.MM.SC.INT] || Intermediate Superior Colliculus || nucleus-nucleus-gaba || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SNr -> SCi, abstract)] ||
 
 == Executive Loop ==
 
@@ -121,47 +131,36 @@
 || [BrainRegionFEC_FT_GPE_DM FEC.FT.GPE.DM] || Globus Pallidus External Dorsomedial || nucleus || FEU || Face extensor movements ||  ||
 || [BrainRegionFEC_FT_GPE_VL FEC.FT.GPE.VL] || Globus Pallidus External Ventrolateral || nucleus || FEU || Body extensor movements, trunk and girdles ||  ||
 || [BrainRegionFEC_FT_PU_RS FEC.FT.PU.RS] || Dorsal Putamen Rostral || nucleus || FEU || Extensor motor initiation || dorsomedial, SMC and PMC - overlap, BA 6,46 ||
-|| [BrainRegionFEC_FT_SN_RCL FEC.FT.SN.RCL] || Substantia Nigra Pars Reticulata Caudolateral || nucleus || FEU || Motor loop ||  ||
 
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionFEC_FT_PU_RS FEC.FT.PU.RS] || [BrainRegionFEC_FT_GPE_DM FEC.FT.GPE.DM] || nucleus-nucleus-gaba || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (PU -> GPo, abstract)] ||
-||  || [BrainRegionFEC_FT_SN_RCL FEC.FT.SN.RCL] || nucleus-nucleus-gaba || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (Striatum -> SNr, abstract)] ||
 
 *External Inbound Region Connections:*
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
 || [BrainAreaBAA BAA] || [BrainRegionFEC_FT_PU_RS FEC.FT.PU.RS] || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || Somatosensory Cortex || neocortex-nucleus || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (S1 -> PU, abstract)] ||
-|| [BrainAreaEPA EPA] || [BrainRegionFEC_FT_SN_RCL FEC.FT.SN.RCL] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || neocortex-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (OMPFC -> SNr)] ||
 || [BrainAreaMAA MAA] || [BrainRegionFEC_FT_PU_RS FEC.FT.PU.RS] || [BrainRegionMCA_NC_MC MCA.NC.MC] || Motor Cortex || neocortex-nucleus || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (M1 -> PU, abstract)] ||
 ||  ||  || [BrainRegionMCA_NC_PMC_F2 MCA.NC.PMC.F2] || Dorsal Caudal Premotor Cortex || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> BGA, abstract)] ||
 ||  ||  || [BrainRegionMCA_NC_PMC_F5 MCA.NC.PMC.F5] || Ventral Rostral Premotor Cortex || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (F5 -> BG, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaAMA AMA] || [BrainRegionFEC_FT_SN_RCL FEC.FT.SN.RCL] || [BrainRegionBFA_FT_IPAC BFA.FT.IPAC] || Interstitial Anterior Commissural Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaFEC FEC] || [BrainRegionFEC_FT_GPE_DM FEC.FT.GPE.DM] || [BrainRegionFEC_FD_STN_DS FEC.FD.STN.DS] || Subthalamic Nucleus Dorsal || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionFEC_FT_GPE_VL FEC.FT.GPE.VL] || [BrainRegionFEC_FD_STN_DS FEC.FD.STN.DS] || Subthalamic Nucleus Dorsal || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionFEC_FT_PU_RS FEC.FT.PU.RS] || [BrainRegionFEC_FD_TH_PF FEC.FD.TH.PF] || Parafascicular Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionFEC_FT_SN_CMD FEC.FT.SN.CMD] || Medial Substantia Nigra Pars Compacta || nucleus-nucleus-DA || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (SN -> PU, abstract)] ||
-||  || [BrainRegionFEC_FT_SN_RCL FEC.FT.SN.RCL] || [BrainRegionFEC_FD_STN_DS FEC.FD.STN.DS] || Subthalamic Nucleus Dorsal || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (STN -> SNpr, abstract)] ||
-||  ||  || [BrainRegionFEC_FT_ACC FEC.FT.ACC] || Accumbens Nucleus || nucleus-nucleus-gaba || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (NACC -> SNr)] ||
-||  ||  || [BrainRegionFEC_FT_GPI_VL FEC.FT.GPI.VL] || Globus Pallidus Internal Ventrolateral || nucleus-nucleus-gaba || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (GP -> SN, abstract)] ||
-||  ||  || [BrainRegionFEC_FT_VP FEC.FT.VP] || Ventral Pallidum || nucleus-nucleus-gaba || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (VPAL -> SNr)] ||
 
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
-|| <font color="red">Cortical</font> || || || || || ||
-|| [BrainAreaMAA MAA] || [BrainRegionFEC_FT_SN_RCL FEC.FT.SN.RCL] || [BrainRegionMCA_FD_TH_VA MCA.FD.TH.VA] || Ventral Anterior Nucleus || nucleus-nucleus-gaba || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sVA -> VA, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaFEC FEC] || [BrainRegionFEC_FT_GPE_DM FEC.FT.GPE.DM] || [BrainRegionFEC_FD_STN_DS FEC.FD.STN.DS] || Subthalamic Nucleus Dorsal || nucleus-nucleus-gaba || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (GPo -> STN, abstract)] ||
 ||  ||  || [BrainRegionFEC_FT_GPI_VL FEC.FT.GPI.VL] || Globus Pallidus Internal Ventrolateral || nucleus-nucleus-gaba || (unknown reference) ||
 ||  || [BrainRegionFEC_FT_GPE_VL FEC.FT.GPE.VL] || [BrainRegionFEC_FD_STN_DS FEC.FD.STN.DS] || Subthalamic Nucleus Dorsal || nucleus-nucleus-gaba || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (GPo -> STN, abstract)] ||
 ||  ||  || [BrainRegionFEC_FT_GPI_VL FEC.FT.GPI.VL] || Globus Pallidus Internal Ventrolateral || nucleus-nucleus-gaba || (unknown reference) ||
 ||  || [BrainRegionFEC_FT_PU_RS FEC.FT.PU.RS] || [BrainRegionFEC_FT_GPI_VL FEC.FT.GPI.VL] || Globus Pallidus Internal Ventrolateral || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (CPu -> GPi, abstract)] ||
-||  || [BrainRegionFEC_FT_SN_RCL FEC.FT.SN.RCL] || [BrainRegionFEC_FD_TH_PF FEC.FD.TH.PF] || Parafascicular Nucleus of Thalamus || nucleus-nucleus-gaba || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (BG -> Thalamus, abstract)] ||
-|| [BrainAreaLRC LRC] || [BrainRegionFEC_FT_SN_RCL FEC.FT.SN.RCL] || [BrainRegionLRC_MM_SC_INT LRC.MM.SC.INT] || Intermediate Superior Colliculus || nucleus-nucleus-gaba || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (SNr -> SCi, abstract)] ||
+||  ||  || [BrainRegionFEC_FT_SN_RCL FEC.FT.SN.RCL] || Substantia Nigra Pars Reticulata Caudolateral || nucleus-nucleus-gaba || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (Striatum -> SNr, abstract)] ||
 
 == Motor Flexor Loop ==
 
