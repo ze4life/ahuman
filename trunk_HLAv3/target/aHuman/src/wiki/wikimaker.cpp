@@ -393,7 +393,7 @@ String WikiMaker::getLinkProps( MindConnectionLinkTypeDef *linkDef ) {
 		if( nt.equals( "GABA" ) )
 			connProps = " [color=red]";
 		else
-			connProps = " [label=\"" + nt + "\"]";
+			connProps = " [color=blue, label=\"" + nt + "\"]";
 	}
 
 	return( connProps );

@@ -68,9 +68,9 @@ GPi: GPi-VL=BGA.FT.GPI.VL (motor), GPi-LDM=BGA.FT.GPI.LDM (executive), GPi-RM=BG
 GPe: GPe-DM=BGA.FT.GPE.DM (face-ext), GPe-VL=BGA.FT.GPE.VL (body-ext) (motor)
 NACC: NACC-CORE=BGA.FT.ACC.CORE, NACC-SH=BGA.FT.ACC.SH (motivational)
 VP: VP-DM=BGA.FT.VP.DM (NAcc-core), VP-VL=BGA.FT.VP.VL (NAcc-shell)
-SNr: SNr-CL=LMC.FT.SN.RCL (motor), SNr-RL=LMC.FT.SN.RRL (executive), SNr-VL=LMC.FT.SN.RVL (visuomotor)
+SNr: SNr-CL=LMC.FT.SN.RCL (motor), SNr-RL=LMC.FT.SN.RRL (executive), SNr-VL=LMC.FT.SN.RVL (visuomotor - CD–SNr–SC mechanism promotes saccades oriented to reward)
 SNc: SNc-LT=LMC.FT.SN.CLT (CN, GPi, STN), SNc-MD=LMC.FT.SN.CMD (NAcc, PPN, AM, superior colliculus)
-STN: STN-CD=BGA.FD.STN.CD (executive), STN-DS=BGA.FD.STN.DS (motor), STN-LT=BGA.FD.STN.LT (visuomotor)
+STN: STN-CD=BGA.FD.STN.CD (executive), STN-DS=BGA.FD.STN.DS (motor), STN-LT=BGA.FD.STN.LT (visuomotor), BGA.FD.STN.RS (motivational)
 PPN: PPN-VL=LLC.HP.PPN.CD (dorsal, caudal, compacta, postural, voluntary arm and eye movements), PPN-DS=LLC.HP.PPN.RS (anterior, ventral, rostral, dissipatus, walking, running)
 TH-VL: TH-VL-oral,medial (motor)
 TH-VA: TH-VA-parvicellular (executive), TH-VA-magnocellular (motivational, visuomotor)
@@ -188,11 +188,12 @@ SNr -> PPN -> SNc
 SNr -> SNc (inhibit)
 STN <-> PPN
 STN <- GPe, MC, CM (to rostral)
-STN -> GPe, GPi, PU, SNr, PPN
+STN -> GPe, GPi, PU, SNr, PPN, VP
 STN/dorsolateral <- MC
 STN/ventral <- FEF
 NACC-shell <- VTA
 NACC-core <- SNc
+VP-rostral -> VTA
 
 SNc - activated by novel, unexpected stimuli, by primary rewards in the absence of predictive stimuli and during learning, required for repeating identical movements
 fire in a very regular, pacemaker-like mode, Poisson-like distribution
@@ -211,5 +212,11 @@ Prepiriform cortex,ET,AM -> MD-magnocellular -> OMPFC
 SNr,VBN-medial,LMC.MM.TG.LDT -> MD-parvocellular -> DLPFC
 SC -> MD-multiform -> FEF
 
-
-
+CR -> DN -> VL-p -> DLPFC,PMC,MC
+NAcc-core -> SNr-d -> MD
+SNr-rl -> SC
+SNr -> MD-p -> DLPFC
+VP -> MD-a -> OMPFC
+GPi-d -> VA -> DLPFC
+GPi-m -> VL-a-a -> PMC
+GPI-v -> VL-a-p -> MC
