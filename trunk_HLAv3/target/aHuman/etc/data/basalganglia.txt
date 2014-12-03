@@ -1,3 +1,45 @@
+flexors:
+	BG-dorsolateral, MC - selecting motor acts
+	motor thalamus - separate projection areas from GPi, SNr, CR
+
+	MC, S1 -> PU
+	STN-DS(posterior)=BGA.FD.STN.DS (motor)
+	TH-VL-oral,medial (motor)
+	DPU-VL=BGA.FT.PU.CD, DPU-DM=BGA.FT.PU.RS (motor)
+	PU/ventrolateral (caudal,D1,CM,flexors)
+	PU/dorsolateral <- MC (sensimotor loop) (leg)
+	PU/rostrolateral <- MC (sensimotor loop) (face)
+	PU/ventromedial <- MC (sensimotor loop) (arms)
+	PU/caudal <- MC (sensimotor loop)
+	PU/ventral (anterior) <- SNc/lateral (sensorimotor loop), CM (from GPi)
+	PU/D1 <- SNc (excite) - flexors
+	PU, GPi-ventrolateral, SNr-caudolateral, TH-VL-oral,medial; motor disturbances, STN-posterior
+	CR -> DN -> VL-p -> DLPFC,PMC,MC
+	GPI/ventral -> VL-a-p -> MC -> . <- PU/anterior, PU/caudal (face)
+	GPi-VL=BGA.FT.GPI.VL (motor)
+	GPI/lateral <- PU/lateral (leg)
+	GPI/medial <- PU/medial (arm)
+	STN/dorsal <- MC, GPe (to GPi, motor)
+	STN/dorsolateral <- MC
+	SNc-LT=LMC.FT.SN.CLT (CN, GPi, STN)
+	SNc/lateral <- STN
+	SNr-CL=LMC.FT.SN.RCL (motor)
+	GPe (GABA) -> STN
+
+extensors:
+	PMC, SMC -> CN-head
+	(CN-HD, CN-DL)=BGA.FT.CN.HD (executive)
+	GPe: GPe-DM=BGA.FT.GPE.DM (face-ext), GPe-VL=BGA.FT.GPE.VL (body-ext) (motor)
+	PU/dorsomedial (rostral,D2,PF,extensors)
+	PU/medial <- PMC (limbic loop), SMC
+	PU/dorsomedial <- PMC (limbic loop)
+	PU/D2 <- SNc (inhibit) - extensors
+	CN/head (dorsolateral) <- LPFC (CN/anterior <- DLPFC)
+	GPI/dorsal <- CN-head-middle, CN-head-medial, STN
+	GPi-m -> VL-a-a -> PMC
+
+===============
+
 basal ganglia inputs
 	parietal, occipital lobes -> caudate body
 	temporal lobe -> caudate tail
@@ -25,11 +67,11 @@ basal ganglia internals
 
 sensorimotor loop: BG-dorsolateral, MC - selecting motor acts
 motor loop: 
-	PU, GPi-ventrolateral, SNr-caudolateral, TH-VL-oral,medial; motor disturbances
+	PU, GPi-ventrolateral, SNr-caudolateral, TH-VL-oral,medial; motor disturbances, STN-posterior
 
 ===============
 
-limbic loop: BG-ventral, OMPFC - selecting goals and contents with high biological valence to regulate DA system
+limbic loop: BG-ventral, OMPFC - selecting goals and contents with high biological valence to regulate DA system, STN-anterior
 Orbitofrontal lateral circuit: OMPFC,ITC,STC,RF -> CN-ventromedial -> GPi-mediodorsal,SNr-rostromedial -> MD-magnocellular,VA -> OMPC
 	- inhibition of inappropriate behavioural responses and in the evaluation of risk
 motivational loop: 
@@ -45,7 +87,7 @@ Dorsolateral prefrontal circuit: DLPFC,PPC,PMC -> CN-dorsolateral -> GP-dorsolat
 	- selecting objectives, planning and sequencing the generation of an answer set, and memory of verbal and spatial tasks
 executive loop: 
 	DLPFC, PPC, CN-head,dorsolateral, GPi-lateral-dorsomedial, SNr-rostrolateral, TH-VA-parvicellular, TH-MD-parvicellular; cognitive loss
-associative loop: BG-medial, temporal, parietal, prefrontal - select perceptual and high-level cogition contents
+associative loop: BG-medial, temporal, parietal, prefrontal - select perceptual and high-level cogition contents, STN-medial
 
 ===============
 
@@ -70,7 +112,7 @@ NACC: NACC-CORE=BGA.FT.ACC.CORE, NACC-SH=BGA.FT.ACC.SH (motivational)
 VP: VP-DM=BGA.FT.VP.DM (NAcc-core), VP-VL=BGA.FT.VP.VL (NAcc-shell)
 SNr: SNr-CL=LMC.FT.SN.RCL (motor), SNr-RL=LMC.FT.SN.RRL (executive), SNr-VL=LMC.FT.SN.RVL (visuomotor - CD–SNr–SC mechanism promotes saccades oriented to reward)
 SNc: SNc-LT=LMC.FT.SN.CLT (CN, GPi, STN), SNc-MD=LMC.FT.SN.CMD (NAcc, PPN, AM, superior colliculus)
-STN: STN-CD=BGA.FD.STN.CD (executive), STN-DS=BGA.FD.STN.DS (motor), STN-LT=BGA.FD.STN.LT (visuomotor), BGA.FD.STN.RS (motivational)
+STN: STN-CD=BGA.FD.STN.CD (executive), STN-DS(posterior)=BGA.FD.STN.DS (motor), STN-LT=BGA.FD.STN.LT (visuomotor), BGA.FD.STN.RS (motivational)
 PPN: PPN-VL=LLC.HP.PPN.CD (dorsal, caudal, compacta, postural, voluntary arm and eye movements), PPN-DS=LLC.HP.PPN.RS (anterior, ventral, rostral, dissipatus, walking, running)
 TH-VL: TH-VL-oral,medial (motor)
 TH-VA: TH-VA-parvicellular (executive), TH-VA-magnocellular (motivational, visuomotor)
@@ -88,14 +130,23 @@ PUTAMEN (PMC overlaps with SMC, not with MC)
 		- PU/ventromedial <- MC (sensimotor loop) (arms), S1 (associative loop)
 		- PU/caudal <- MC (sensimotor loop), SNc/lateral (sensorimotor loop)
 		- PU/ventral (anterior) <- SNc/lateral (sensorimotor loop), CM (from GPi)
+		- PU/D1 <- SNc (excite) - flexors
 	- PU/dorsomedial (rostral,D2,PF,extensors)
 		- PU/medial <- PMC (limbic loop), SMC
 		- PU/dorsomedial <- PMC (limbic loop)
+		- PU/D2 <- SNc (inhibit) - extensors
 
 CAUDATE NUCLEUS (PFC overlaps with CG1, M1 overlaps with CG2)
-	- CN/head (dorsolateral) <- LPFC (CN/anterior <- DLPFC), PF (associative loop)
-	- CN/body <- FEF/SEF, ITC (visual), STC (auditory) (associative loop)
-	- CN/tail (ventromedial) <- OMPFC (limbic loop), AM-lateral
+	- CN <- medial parietal cortex, SPL/caudal, IPL/caudal,middle
+	- CN/head (rostral,dorsolateral) <- LPFC (CN/anterior <- DLPFC), PF (associative loop)
+		- CN/head,body/dorsal,central <- PFC/medial,dorsal
+		- CN/head,body/ventral,central <- PFC/orbital,inferior
+		- CN/head,body/medial <- OMPFC
+		- CN/head,body/lateral <- arcuate/dorsal,ventral
+		- CN/head,body/intermediate <- prefrontal/principal
+	- CN/body <- FEF/SEF, ITC (visual), STC (auditory) (associative loop), A2
+	- CN/tail (ventromedial) <- OMPFC (limbic loop), AM-lateral, A1, A2
+		- CN/tail/rostral <- TE
 
 NUCLEUS ACCUMBENS (ventral striatum) (limbic loop) - centrol role in reward circuit (DA-promotes desire, 5HT-satiety and inhibition)
 	- NACC <- CG, AM
@@ -110,8 +161,6 @@ GLOBAL PALLIDUS INTERNAL
 		- GPI/lateral <- PU/lateral (leg)
 		- GPI/medial <- PU/medial (arm)
 	- GPI/dorsal <- CN-head-middle, CN-head-medial, STN
-	- GPI/D1 <- SNc (excite) - flexors
-	- GPI/D2 <- SNc (inhibit) - extensors
 	- GPI/anterior.D1, GPI/anterior.D2
 
 GLOBAL PALLIDUS EXTERNAL <- dorsal striatum
@@ -124,6 +173,7 @@ VENTRAL PALLIDUM
 
 SUBSTANTIA NIGRA PARS RETICULATA
 	- SNr <- NACC/core-D1, PU/Lateral, VP, GPi/medial (arm), CN/body, STN, CN/tail
+	- SNr/vm <- CN/head
 
 SUBTHALAMUS (connections http://www.neurology.org/content/70/21/1991/F2.large.jpg)
 	- STN <- VTA, PPN (Ach), MC, GPE/ventral, CM (from GPi/ventrolateral), PF
@@ -149,6 +199,12 @@ SUBSTANTIA NIGRA PARS COMPACTA
 
 --------------------------------------
 
+GPE -> VA
+GPI -> VL/1
+CR/DN -> VL/2
+
+-------------
+
 substantia innominata: ventral pallidum + basal nucleus of meynert
 motor thalamus - separate projection areas from GPi, SNr, CR
 associative striatum - caudate nucleus, ventromedial putamen
@@ -168,6 +224,7 @@ AM -> NAcc/core -> VTA/lateral
 MPFC -> striatum/dorsomedial -> SNr/ventral
 MC/S1 -> striatum/dorsolateral -> SNc/dorsal
 
+CN/head/dorsolateral -> entopeduncular nucleus
 GPi -> CM -> MC, PU-caudal
 SNr,SC -> PF -> FEF, CN, NAcc
 PPN -> PF -> PU-rostral, CN
@@ -186,6 +243,8 @@ SNr -> PPN -> TH/PF -> PU/CN
 SNr <-> PPN
 SNr -> PPN -> SNc
 SNr -> SNc (inhibit)
+SNc <- AM, STN, PPTg
+SNc,STN,GPm <- PPN
 STN <-> PPN
 STN <- GPe, MC, CM (to rostral)
 STN -> GPe, GPi, PU, SNr, PPN, VP
