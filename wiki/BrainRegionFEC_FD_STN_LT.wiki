@@ -9,7 +9,7 @@ Region is part of aHuman target integrated biological model.
   * *Type*: nucleus
   * *Brain area*: [BrainAreaFEC Forebrain - Execution Control Area]
   * *Role*: relay
-  * *Function*: Oculomotor loop
+  * *Function*: Motor Flexor loop
 (generated)
 = Components =
 (generated)
@@ -26,14 +26,18 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/FEC.FD.STN.LT.dot.png
 *Inbound Region Connections:*
 
 || *Source Area* || *Source Region* || *Source Name* || *Type* || *Reference* ||
-|| [BrainAreaFEC FEC] || [BrainRegionFEC_MM_PT_PTA FEC.MM.PT.PTA] || Anterior Pretectum Nucleus || positive || (unknown reference) ||
-|| [BrainAreaLMC LMC] || [BrainRegionLMC_MM_RF_SC LMC.MM.RF.SC] || Superior Central Raphe Nucleus || positive || (unknown reference) ||
+|| [BrainAreaFEC FEC] || [BrainRegionFEC_FT_GPE_DM FEC.FT.GPE.DM] || Globus Pallidus External Dorsomedial || positive || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (GPo -> STN, abstract)] ||
+||  || [BrainRegionFEC_FT_GPE_VL FEC.FT.GPE.VL] || Globus Pallidus External Ventrolateral || positive || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (GPo -> STN, abstract)] ||
+|| [BrainAreaLLC LLC] || [BrainRegionLLC_HP_PPN_RS LLC.HP.PPN.RS] || Pedunculopontine Nucleus Rostral || positive || (unknown reference) ||
+|| [BrainAreaMAA MAA] || [BrainRegionMCA_NC_MC MCA.NC.MC] || Motor Cortex || primary-input || (unknown reference) ||
 
 *Outbound Region Connections:*
 
 || *Target Area* || *Target Region* || *Target Name* || *Type* || *Reference* ||
-|| [BrainAreaFEC FEC] || [BrainRegionFEC_FT_GPI_CDM FEC.FT.GPI.CDM] || Globus Pallidus Internal Caudal Dorsomedial || positive || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (STN -> GPi, abstract)] ||
-|| [BrainAreaLLC LLC] || [BrainRegionLLC_HP_PPN_CD LLC.HP.PPN.CD] || Pedunculopontine Nucleus Caudal || positive || (unknown reference) ||
+|| [BrainAreaFEC FEC] || [BrainRegionFEC_FT_GPE_DM FEC.FT.GPE.DM] || Globus Pallidus External Dorsomedial || positive || (unknown reference) ||
+||  || [BrainRegionFEC_FT_GPE_VL FEC.FT.GPE.VL] || Globus Pallidus External Ventrolateral || positive || (unknown reference) ||
+||  || [BrainRegionFEC_FT_GPI_VL FEC.FT.GPI.VL] || Globus Pallidus Internal Ventrolateral || positive || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (STN -> GPi, abstract)] ||
+|| [BrainAreaLLC LLC] || [BrainRegionLLC_HP_PPN_RS LLC.HP.PPN.RS] || Pedunculopontine Nucleus Rostral || positive || (unknown reference) ||
 
 = Thirdparty Circuits =
 (generated)
