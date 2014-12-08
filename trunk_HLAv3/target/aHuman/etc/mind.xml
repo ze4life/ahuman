@@ -879,14 +879,14 @@
 					<region id="FEC.FT.GPE.LT" type="nucleus" service="FEU" role="relay"/>
 					<region id="FEC.FD.TH.CM" type="nucleus" service="FEU" role="relay"/>
 					<region id="FEC.FT.SN.RCL" type="nucleus" service="FEU" role="relay"/>
-					<connection type="nucleus-nucleus" primary="true" src="FEC.FD.STN.LT" dst="FEC.FT.GPE.MED"/>
+					<connection type="nucleus-nucleus" primary="true" src="FEC.FD.STN.LT" dst="FEC.FT.GPE.LT"/>
 					<connection type="nucleus-nucleus" primary="true" src="FEC.FD.STN.LT" dst="FEC.FT.GPI.LT"/>
 					<connection type="nucleus-nucleus" primary="true" src="FEC.FD.STN.LT" dst="LLC.HP.PPN.RS"/>
 					<connection type="nucleus-nucleus-gaba" primary="true" src="FEC.FT.PU.LT" dst="FEC.FT.GPI.LT"/>
 					<connection type="nucleus-nucleus-gaba" primary="true" src="FEC.FT.GPE.LT" dst="FEC.FT.GPI.LT"/>
 					<connection type="nucleus-nucleus-gaba" primary="true" src="FEC.FT.GPE.LT" dst="FEC.FD.STN.LT"/>
 					<connection type="nucleus-nucleus-gaba" primary="true" src="FEC.FT.SN.RCL" dst="MCA.FD.TH.VL"/>
-					<connection type="nucleus-nucleus-gaba" primary="true" src="FEC.FT.SN.RCL" dst="FEC.FD.TH.PF"/>
+					<connection type="nucleus-nucleus-gaba" primary="true" src="FEC.FT.SN.RCL" dst="FEC.FD.TH.CM"/>
 					<connection type="nucleus-nucleus-gaba" primary="true" src="FEC.FT.GPI.LT" dst="FEC.FT.SN.RCL"/>
 					<connection type="nucleus-nucleus-gaba" primary="true" src="FEC.FT.GPI.LT" dst="FEC.FD.TH.CM"/>
 					<connection type="nucleus-nucleus" primary="true" src="FEC.FD.TH.CM" dst="FEC.FT.PU.LT"/>
@@ -897,8 +897,8 @@
 					<region id="FEC.FT.GPI.MED" type="nucleus" service="FEU" role="relay"/>
 					<region id="FEC.FT.GPE.MED" type="nucleus" service="FEU" role="relay"/>
 					<region id="FEC.FD.TH.PF" type="nucleus" service="FEU" role="relay"/>
-					<connection type="nucleus-nucleus" primary="true" src="FEC.FD.STN.MED" dst="FEC.FT.GPE.LT"/>
-					<connection type="nucleus-nucleus-gaba" primary="true" src="FEC.FT.PU.MED" dst="FEC.FT.GPE.LT"/>
+					<connection type="nucleus-nucleus" primary="true" src="FEC.FD.STN.MED" dst="FEC.FT.GPE.MED"/>
+					<connection type="nucleus-nucleus-gaba" primary="true" src="FEC.FT.PU.MED" dst="FEC.FT.GPE.MED"/>
 					<connection type="nucleus-nucleus-gaba" primary="true" src="FEC.FT.PU.MED" dst="FEC.FT.GPI.MED"/>
 					<connection type="nucleus-nucleus-gaba" primary="true" src="FEC.FT.PU.MED" dst="FEC.FT.SN.RCL"/>
 					<connection type="nucleus-nucleus-gaba" primary="true" src="FEC.FT.GPI.MED" dst="MCA.FD.TH.VA" notes="to MCA.NC.SMC/F6, MCA.NC.PMC.F5"/>
@@ -964,6 +964,7 @@
 					<region id="FEC.FT.SN.RVL" type="nucleus" service="FEU" role="relay"/>
 					<region id="FEC.FT.SN.CLT" type="nucleus" service="FEU" role="relay"/>
 					<connection type="nucleus-nucleus" primary="true" src="FEC.FD.STN.ICD" dst="FEC.FT.GPI.DL"/>
+					<connection type="nucleus-nucleus" primary="true" src="FEC.FD.STN.ICD" dst="FEC.FT.GPE.DL"/>
 					<connection type="nucleus-nucleus" primary="true" src="FEC.FD.STN.ICD" dst="LLC.HP.PPN.CD"/>
 					<connection type="nucleus-nucleus-gaba" primary="true" src="FEC.FT.CN.TL" dst="FEC.FT.GPI.DL"/>
 					<connection type="nucleus-nucleus-gaba" primary="true" src="FEC.FT.CN.TL" dst="FEC.FT.SN.RVL"/>
