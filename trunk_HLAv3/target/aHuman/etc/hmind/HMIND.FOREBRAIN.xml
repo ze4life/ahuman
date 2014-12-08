@@ -78,9 +78,9 @@
 							/>
 						<element name="Medial Nucleus Accumbens" refs="NL:[http://neurolex.org/wiki/Category:Medial_nucleus_accumbens Medial nucleus accumbens]" ignore="true" comment="the same as core"/>
 					</element>
-					<element id="FEC.FT.PU.VT" name="Ventral Putamen" ignore="true" notes="grouping"
+					<element id="FEC.FT.PU.VT" name="Ventral Putamen" mapped="true" type="nucleus"
 						refs="NL:[http://neurolex.org/wiki/Category:Ventral_putamen Ventral putamen]"
-						function="Evaluation of flavors, taste"
+						function="Evaluation of flavors, taste, motivation loop"
 						/>
 				</element>
 
@@ -111,15 +111,22 @@
 						function="Stimulus-response, or habit, learning"
 						notes="Regulate movements and influence various types of learning; inhibitory nucleus"
 						>
-						<element id="FEC.FT.PU.CD" name="Dorsal Putamen Caudal" mapped="true" type="nucleus"
+						<element name="Dorsal Putamen Caudal"
 							refs="NL:[http://neurolex.org/wiki/Category:Caudal_putamen Caudal putamen]"
-							function="Flexor motor initiation"
-							notes="ventrolateral, D1 receptor, MC and S1 - overlap, TH/CM from GPi; DL-leg, RL-face, VM-arms"
-							/>
+							>
+							<element id="FEC.FT.PU.LT" name="Dorsal Putamen Lateral" mapped="true" type="nucleus"
+								function="Flexor motor initiation"
+								notes="ventrolateral, D1 receptor, MC and S1 - overlap, TH/CM from GPi; DL-leg, RL-face, VM-arms"
+								/>
+							<element id="FEC.FT.PU.MED" name="Dorsal Putamen Medial" mapped="true" type="nucleus"
+								function="Extensor motor initiation"
+								notes="dorsomedial, SMC and PMC - overlap, BA 6,46"
+								/>
+						</element>
 						<element id="FEC.FT.PU.RS" name="Dorsal Putamen Rostral" mapped="true" type="nucleus"
 							refs="NL:[http://neurolex.org/wiki/Category:Rostral_putamen Rostral putamen]"
-							function="Extensor motor initiation"
-							notes="dorsomedial, SMC and PMC - overlap, BA 6,46"
+							function="Planning initiation, execution loop"
+							notes="ventrolateral, D1 receptor, MC and S1 - overlap, TH/CM from GPi; DL-leg, RL-face, VM-arms"
 							/>
 						<element name="Matrix Compartment of Putamen" refs="NL:[http://neurolex.org/wiki/Category:Matrix_compartment_of_putamen Matrix compartment of putamen]" ignored="true" comment="secondary nuclei grouping"/>
 						<element name="Striosomal Putamen" refs="NL:[http://neurolex.org/wiki/Category:Striosomal_part_of_putamen Striosomal part of putamen]" ignored="true" comment="secondary nuclei grouping"/>
@@ -139,11 +146,21 @@
 						function="Regulate and focus activity patterns in striatum, STN, GPi, and SNpr"
 						notes="inhibitory nucleus"
 						>
-						<element id="FEC.FT.GPE.VL" name="Globus Pallidus External Ventrolateral" mapped="true" type="nucleus"
-							function="Body extensor movements, trunk and girdles"
+						<element id="FEC.FT.GPE.LT" name="Globus Pallidus External Lateral" mapped="true" type="nucleus"
+							function="Flexor loop"
 	 						/>
-						<element id="FEC.FT.GPE.DM" name="Globus Pallidus External Dorsomedial" mapped="true" type="nucleus"
-							function="Face extensor movements"
+						<element id="FEC.FT.GPE.MED" name="Globus Pallidus External Medial" mapped="true" type="nucleus"
+							function="Flexor loop"
+							notes="Body extensor movements, trunk and girdles"
+	 						/>
+						<element id="FEC.FT.GPE.DS" name="Globus Pallidus External Dorsal" mapped="true" type="nucleus"
+							function="Executive loop"
+	 						/>
+						<element id="FEC.FT.GPE.RM" name="Globus Pallidus External Rostromedial" mapped="true" type="nucleus"
+							function="Motovational loop"
+	 						/>
+						<element id="FEC.FT.GPE.DL" name="Globus Pallidus External Dorsolateral" mapped="true" type="nucleus"
+							function="Oculomotor loop"
 	 						/>
 					</element>
 					<element id="BGA.FT.GPI" name="Globus Pallidus Internal"
@@ -152,20 +169,24 @@
 						function="Output nuclei of basal ganglia to neocortex"
 						notes="Balance of direct and indirect paths, GPM; inhibitory nucleus"
 						>
-						<element id="FEC.FT.GPI.VL" name="Globus Pallidus Internal Ventrolateral" mapped="true" type="nucleus"
-							function="Motor loop"
+						<element id="FEC.FT.GPI.LT" name="Globus Pallidus Internal Lateral" mapped="true" type="nucleus"
+							refs="NL:[http://neurolex.org/wiki/Category:Caudal_globus_pallidus Caudal globus pallidus]"
+							function="Motor flexor loop"
 							notes="output nuclei of basal ganglia to neocortex, leg, arm, face; lateral - leg, medial - arm, ventral - face"
 							/>
-						<element id="FEC.FT.GPI.LDM" name="Globus Pallidus Internal Lateral Dorsomedial" mapped="true" type="nucleus"
+						<element id="FEC.FT.GPI.MED" name="Globus Pallidus Internal Medial" mapped="true" type="nucleus"
+							refs="NL:[http://neurolex.org/wiki/Category:Rostral_globus_pallidus Rostral globus pallidus]"
+							function="Motor extensor loop"
+							notes="indirect path"
+							/>
+						<element id="FEC.FT.GPI.DS" name="Globus Pallidus Internal Dorsal" mapped="true" type="nucleus"
 							function="Executive loop"
 							notes="output nucleus for caudate nucleus"
 							/>
 						<element id="FEC.FT.GPI.RM" name="Globus Pallidus Internal Rostromedial" mapped="true" type="nucleus"
-							refs="NL:[http://neurolex.org/wiki/Category:Rostral_globus_pallidus Rostral globus pallidus]"
 							function="Motivational loop"
 							/>
-						<element id="FEC.FT.GPI.CDM" name="Globus Pallidus Internal Caudal Dorsomedial" mapped="true" type="nucleus"
-							refs="NL:[http://neurolex.org/wiki/Category:Caudal_globus_pallidus Caudal globus pallidus]"
+						<element id="FEC.FT.GPI.DL" name="Globus Pallidus Internal Dorsolateral" mapped="true" type="nucleus"
 							function="Oculomotor loop"
 							/>
 					</element>
@@ -547,14 +568,17 @@
 					>
 					<element id="BGA.FD.STN.ZI" name="Zona Incerta" refs="NL:[http://neurolex.org/wiki/Category:Zona_incerta Zona incerta]"/>
 				</element>
-				<element id="FEC.FD.STN.DS" name="Subthalamic Nucleus Dorsal" mapped="true" type="nucleus"
-					function="Motor loop"
-					/>
-				<element id="FEC.FD.STN.LT" name="Subthalamic Nucleus Lateral" mapped="true" type="nucleus"
+				<element id="FEC.FD.STN.ICD" name="Subthalamic Nucleus Internal Caudal" mapped="true" type="nucleus"
 					function="Oculomotor loop"
 					/>
-				<element id="FEC.FD.STN.RS" name="Subthalamic Nucleus Rostrocaudal" mapped="true" type="nucleus"
+				<element id="FEC.FD.STN.DL" name="Subthalamic Nucleus Dorsolateral" mapped="true" type="nucleus"
 					function="Motivational loop"
+					/>
+				<element id="FEC.FD.STN.LT" name="Subthalamic Nucleus Lateral" mapped="true" type="nucleus"
+					function="Motor Flexor loop"
+					/>
+				<element id="FEC.FD.STN.MED" name="Subthalamic Nucleus Medial" mapped="true" type="nucleus"
+					function="Motor Extensor loop"
 					/>
 			</element>
 
