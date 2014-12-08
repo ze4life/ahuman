@@ -134,10 +134,12 @@
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionFEC_FD_STN_MED FEC.FD.STN.MED] || [BrainRegionFEC_FT_GPE_MED FEC.FT.GPE.MED] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionFEC_FD_TH_PF FEC.FD.TH.PF] || [BrainRegionFEC_FT_PU_MED FEC.FT.PU.MED] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionFEC_FT_GPE_MED FEC.FT.GPE.MED] || [BrainRegionFEC_FD_STN_MED FEC.FD.STN.MED] || nucleus-nucleus-gaba || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (GPo -> STN, abstract)] ||
 ||  || [BrainRegionFEC_FT_GPI_MED FEC.FT.GPI.MED] || nucleus-nucleus-gaba || (unknown reference) ||
-|| [BrainRegionFEC_FT_PU_MED FEC.FT.PU.MED] || [BrainRegionFEC_FT_GPI_MED FEC.FT.GPI.MED] || nucleus-nucleus-gaba || (unknown reference) ||
+|| [BrainRegionFEC_FT_PU_MED FEC.FT.PU.MED] || [BrainRegionFEC_FT_GPE_MED FEC.FT.GPE.MED] || nucleus-nucleus-gaba || (unknown reference) ||
+||  || [BrainRegionFEC_FT_GPI_MED FEC.FT.GPI.MED] || nucleus-nucleus-gaba || (unknown reference) ||
 
 *External Inbound Region Connections:*
 
@@ -148,9 +150,7 @@
 ||  ||  || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || Supplementary Motor Cortex || neocortex-nucleus || (unknown reference) ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaAMA AMA] || [BrainRegionFEC_FD_TH_PF FEC.FD.TH.PF] || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || Septal Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaFEC FEC] || [BrainRegionFEC_FD_TH_PF FEC.FD.TH.PF] || [BrainRegionFEC_FT_SN_RCL FEC.FT.SN.RCL] || Substantia Nigra Pars Reticulata Caudolateral || nucleus-nucleus-gaba || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (BG -> Thalamus, abstract)] ||
-||  || [BrainRegionFEC_FT_GPE_MED FEC.FT.GPE.MED] || [BrainRegionFEC_FD_STN_LT FEC.FD.STN.LT] || Subthalamic Nucleus Lateral || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionFEC_FT_PU_MED FEC.FT.PU.MED] || [BrainRegionFEC_FT_SN_CMD FEC.FT.SN.CMD] || Medial Substantia Nigra Pars Compacta || nucleus-nucleus-DA || (unknown reference) ||
+|| [BrainAreaFEC FEC] || [BrainRegionFEC_FT_PU_MED FEC.FT.PU.MED] || [BrainRegionFEC_FT_SN_CMD FEC.FT.SN.CMD] || Medial Substantia Nigra Pars Compacta || nucleus-nucleus-DA || (unknown reference) ||
 
 *External Outbound Region Connections:*
 
@@ -158,9 +158,7 @@
 || <font color="red">Cortical</font> || || || || || ||
 || [BrainAreaMAA MAA] || [BrainRegionFEC_FT_GPI_MED FEC.FT.GPI.MED] || [BrainRegionMCA_FD_TH_VA MCA.FD.TH.VA] || Ventral Anterior Nucleus || nucleus-nucleus-gaba || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sVA -> VA, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFEC FEC] || [BrainRegionFEC_FD_STN_MED FEC.FD.STN.MED] || [BrainRegionFEC_FT_GPE_LT FEC.FT.GPE.LT] || Globus Pallidus External Lateral || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionFEC_FT_PU_MED FEC.FT.PU.MED] || [BrainRegionFEC_FT_GPE_LT FEC.FT.GPE.LT] || Globus Pallidus External Lateral || nucleus-nucleus-gaba || (unknown reference) ||
-||  ||  || [BrainRegionFEC_FT_SN_RCL FEC.FT.SN.RCL] || Substantia Nigra Pars Reticulata Caudolateral || nucleus-nucleus-gaba || (unknown reference) ||
+|| [BrainAreaFEC FEC] || [BrainRegionFEC_FT_PU_MED FEC.FT.PU.MED] || [BrainRegionFEC_FT_SN_RCL FEC.FT.SN.RCL] || Substantia Nigra Pars Reticulata Caudolateral || nucleus-nucleus-gaba || (unknown reference) ||
 
 == Motor Flexor Loop ==
 
@@ -178,13 +176,15 @@
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| [BrainRegionFEC_FD_STN_LT FEC.FD.STN.LT] || [BrainRegionFEC_FT_GPI_LT FEC.FT.GPI.LT] || nucleus-nucleus || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (STN -> GPi, abstract)] ||
+|| [BrainRegionFEC_FD_STN_LT FEC.FD.STN.LT] || [BrainRegionFEC_FT_GPE_LT FEC.FT.GPE.LT] || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionFEC_FT_GPI_LT FEC.FT.GPI.LT] || nucleus-nucleus || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (STN -> GPi, abstract)] ||
 || [BrainRegionFEC_FD_TH_CM FEC.FD.TH.CM] || [BrainRegionFEC_FT_PU_LT FEC.FT.PU.LT] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionFEC_FT_GPE_LT FEC.FT.GPE.LT] || [BrainRegionFEC_FD_STN_LT FEC.FD.STN.LT] || nucleus-nucleus-gaba || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (GPo -> STN, abstract)] ||
 ||  || [BrainRegionFEC_FT_GPI_LT FEC.FT.GPI.LT] || nucleus-nucleus-gaba || (unknown reference) ||
 || [BrainRegionFEC_FT_GPI_LT FEC.FT.GPI.LT] || [BrainRegionFEC_FD_TH_CM FEC.FD.TH.CM] || nucleus-nucleus-gaba || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sCM -> CM, abstract)] ||
 ||  || [BrainRegionFEC_FT_SN_RCL FEC.FT.SN.RCL] || nucleus-nucleus-gaba || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (GP -> SN, abstract)] ||
 || [BrainRegionFEC_FT_PU_LT FEC.FT.PU.LT] || [BrainRegionFEC_FT_GPI_LT FEC.FT.GPI.LT] || nucleus-nucleus-gaba || (unknown reference) ||
+|| [BrainRegionFEC_FT_SN_RCL FEC.FT.SN.RCL] || [BrainRegionFEC_FD_TH_CM FEC.FD.TH.CM] || nucleus-nucleus-gaba || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (BG -> Thalamus, abstract)] ||
 
 *External Inbound Region Connections:*
 
@@ -196,9 +196,7 @@
 ||  || [BrainRegionFEC_FT_PU_LT FEC.FT.PU.LT] || [BrainRegionMCA_NC_MC MCA.NC.MC] || Motor Cortex || neocortex-nucleus || (unknown reference) ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaAMA AMA] || [BrainRegionFEC_FT_SN_RCL FEC.FT.SN.RCL] || [BrainRegionBFA_FT_IPAC BFA.FT.IPAC] || Interstitial Anterior Commissural Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaFEC FEC] || [BrainRegionFEC_FT_GPE_LT FEC.FT.GPE.LT] || [BrainRegionFEC_FD_STN_MED FEC.FD.STN.MED] || Subthalamic Nucleus Medial || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionFEC_FT_PU_MED FEC.FT.PU.MED] || Dorsal Putamen Medial || nucleus-nucleus-gaba || (unknown reference) ||
-||  || [BrainRegionFEC_FT_PU_LT FEC.FT.PU.LT] || [BrainRegionFEC_FT_SN_CMD FEC.FT.SN.CMD] || Medial Substantia Nigra Pars Compacta || nucleus-nucleus-DA || (unknown reference) ||
+|| [BrainAreaFEC FEC] || [BrainRegionFEC_FT_PU_LT FEC.FT.PU.LT] || [BrainRegionFEC_FT_SN_CMD FEC.FT.SN.CMD] || Medial Substantia Nigra Pars Compacta || nucleus-nucleus-DA || (unknown reference) ||
 ||  || [BrainRegionFEC_FT_SN_RCL FEC.FT.SN.RCL] || [BrainRegionFEC_FT_PU_MED FEC.FT.PU.MED] || Dorsal Putamen Medial || nucleus-nucleus-gaba || (unknown reference) ||
 || [BrainAreaLLC LLC] || [BrainRegionFEC_FD_STN_LT FEC.FD.STN.LT] || [BrainRegionLLC_HP_PPN_RS LLC.HP.PPN.RS] || Pedunculopontine Nucleus Rostral || nucleus-nucleus-ACh || (unknown reference) ||
 
@@ -208,8 +206,6 @@
 || <font color="red">Cortical</font> || || || || || ||
 || [BrainAreaMAA MAA] || [BrainRegionFEC_FT_SN_RCL FEC.FT.SN.RCL] || [BrainRegionMCA_FD_TH_VL MCA.FD.TH.VL] || Ventral Lateral Nucleus || nucleus-nucleus-gaba || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s2VL -> VL, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFEC FEC] || [BrainRegionFEC_FD_STN_LT FEC.FD.STN.LT] || [BrainRegionFEC_FT_GPE_MED FEC.FT.GPE.MED] || Globus Pallidus External Medial || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionFEC_FT_SN_RCL FEC.FT.SN.RCL] || [BrainRegionFEC_FD_TH_PF FEC.FD.TH.PF] || Parafascicular Nucleus of Thalamus || nucleus-nucleus-gaba || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (BG -> Thalamus, abstract)] ||
 || [BrainAreaLLC LLC] || [BrainRegionFEC_FD_STN_LT FEC.FD.STN.LT] || [BrainRegionLLC_HP_PPN_RS LLC.HP.PPN.RS] || Pedunculopontine Nucleus Rostral || nucleus-nucleus || (unknown reference) ||
 
 == Oculomotor and Auditory/Association Loop ==
