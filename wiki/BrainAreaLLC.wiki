@@ -20,13 +20,15 @@
 <img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LLC_LGP.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionLLC_HP_PPN_CD LLC.HP.PPN.CD] || Pedunculopontine Nucleus Caudal || nucleus || FEU || postural control, voluntary arm and eye movements || Anterior, compact subnucleus ||
-|| [BrainRegionLLC_HP_PPN_RS LLC.HP.PPN.RS] || Pedunculopontine Nucleus Rostral || nucleus || FEU || locomotion - walking, running || Anterior, dissipated subnucleus ||
+|| [BrainRegionLLC_HP_PPN_CD LLC.HP.PPN.CD] || Pedunculopontine Nucleus Caudal || nucleus || FEU || postural control, voluntary arm and eye movements || Pars compacta, anterior, compact subnucleus, ACh ||
+|| [BrainRegionLLC_HP_PPN_RS LLC.HP.PPN.RS] || Pedunculopontine Nucleus Rostral || nucleus || FEU || locomotion - walking, running || Pars dissipata, anterior, dissipated subnucleus,<BR>GABA ||
 || [BrainRegionLLC_MM_CNF LLC.MM.CNF] || Cuneiform Nucleus || nucleus || LLE || Passive coping strategy to novel, painful or threatening stimuli || modulatory nucleus; medial part of midbrain RF ||
 || [BrainRegionLLC_MM_SCNF LLC.MM.SCNF] || Subcuneiform Nucleus || nucleus || LLE || Initiation of gait, feedback control of saccade accuracy || contributes to generation of estimate of target or<BR>eye position coded in craniotopic coordinates ||
 
 *Internal Region Connections:*
-  * no connections
+
+|| *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionLLC_HP_PPN_RS LLC.HP.PPN.RS] || [BrainRegionLLC_HP_PPN_CD LLC.HP.PPN.CD] || nucleus-nucleus-gaba || (unknown reference) ||
 
 *External Inbound Region Connections:*
 
@@ -46,14 +48,15 @@
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
-|| [BrainAreaSAA SAA] || [BrainRegionLLC_HP_PPN_RS LLC.HP.PPN.RS] || [BrainRegionVBA_FD_LGN VBA.FD.LGN] || Lateral Geniculate Nucleus || nucleus-nucleus-ACh || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (PPN -> LGN, abstract)] ||
+|| [BrainAreaSAA SAA] || [BrainRegionLLC_HP_PPN_CD LLC.HP.PPN.CD] || [BrainRegionVBA_FD_LGN VBA.FD.LGN] || Lateral Geniculate Nucleus || nucleus-nucleus-ACh || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (PPN -> LGN, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFEC FEC] || [BrainRegionLLC_HP_PPN_RS LLC.HP.PPN.RS] || [BrainRegionFEC_FD_STN_LT FEC.FD.STN.LT] || Subthalamic Nucleus Lateral || nucleus-nucleus-ACh || (unknown reference) ||
+|| [BrainAreaFEC FEC] || [BrainRegionLLC_HP_PPN_CD LLC.HP.PPN.CD] || [BrainRegionFEC_FD_STN_LT FEC.FD.STN.LT] || Subthalamic Nucleus Lateral || nucleus-nucleus-ACh || (unknown reference) ||
+||  ||  || [BrainRegionFEC_FT_SNC_MED FEC.FT.SNC.MED] || Substantia Nigra Pars Compacta Medial || nucleus-nucleus-ACh || (unknown reference) ||
 || [BrainAreaLAC LAC] || [BrainRegionLLC_MM_CNF LLC.MM.CNF] || [BrainRegionLAC_HM_VGN LAC.HM.VGN] || Vagus Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaLMC LMC] || [BrainRegionLLC_HP_PPN_RS LLC.HP.PPN.RS] || [BrainRegionLMC_MM_TG_LDT LMC.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus-ACh || (unknown reference) ||
+|| [BrainAreaLMC LMC] || [BrainRegionLLC_HP_PPN_RS LLC.HP.PPN.RS] || [BrainRegionLMC_MM_TG_LDT LMC.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
 ||  || [BrainRegionLLC_MM_SCNF LLC.MM.SCNF] || [BrainRegionLMC_HM_RP_MG LMC.HM.RP.MG] || Raphe Magnus Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLMC_HP_RP_PRN LMC.HP.RP.PRN] || Pontine Raphe Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaLRC LRC] || [BrainRegionLLC_HP_PPN_RS LLC.HP.PPN.RS] || [BrainRegionLRC_MM_SC_INT LRC.MM.SC.INT] || Intermediate Superior Colliculus || nucleus-nucleus-ACh || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (PPN -> SC, abstract)] ||
+|| [BrainAreaLRC LRC] || [BrainRegionLLC_HP_PPN_CD LLC.HP.PPN.CD] || [BrainRegionLRC_MM_SC_INT LRC.MM.SC.INT] || Intermediate Superior Colliculus || nucleus-nucleus-ACh || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (PPN -> SC, abstract)] ||
 ||  || [BrainRegionLLC_MM_CNF LLC.MM.CNF] || [BrainRegionLRC_HP_PN_KFN LRC.HP.PN.KFN] || Kolliker-Fuse Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLRC_HP_PRF_GCR LRC.HP.PRF.GCR] || Gigantocellular Reticular Nucleus || nucleus-nucleus || (unknown reference) ||
 
