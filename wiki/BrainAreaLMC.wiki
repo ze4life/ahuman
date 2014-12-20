@@ -12,7 +12,7 @@
 || ACH || Acetylcholine - PNS Actions and CNS plasticity, arousal and reward || [BrainRegionLMC_FT_NBM LMC.FT.NBM], [BrainRegionLMC_MM_TG_LDT LMC.MM.TG.LDT] ||
 || DA || Dopamine - Reward-Motivated Behavior, Cognitive Alertness || [BrainRegionLMC_MM_VTA LMC.MM.VTA] ||
 || ENK || Enkephalin -  Regulating Nociception in Body || [BrainRegionLMC_MM_PAG LMC.MM.PAG] ||
-|| GABA || GABA - Inhibitory Projections || [BrainRegionLMC_FD_TH_LI LMC.FD.TH.LI], [BrainRegionLMC_FD_TH_SF LMC.FD.TH.SF], [BrainRegionLMC_HP_NI LMC.HP.NI] ||
+|| GABA || GABA - Inhibitory Projections || [BrainRegionLMC_FD_TH_SF LMC.FD.TH.SF], [BrainRegionLMC_HP_NI LMC.HP.NI] ||
 || NE || Norepinephrine - Vigilant Concentration, Stress Hormone, Fight-or-Flight Response || [BrainRegionLMC_HP_LC LMC.HP.LC] ||
 
 == Serotonin - Feelings of Well-Being and Happiness ==
@@ -184,7 +184,6 @@
 <img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LMC_GABA.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionLMC_FD_TH_LI LMC.FD.TH.LI] || Limitans Nucleus of Thalamus || nucleus || LUS || Multisensory projection to striatum || From SC, trigeminal nucleus, superior and inferior<BR>colliculus ||
 || [BrainRegionLMC_FD_TH_SF LMC.FD.TH.SF] || Subfascicular Nucleus of Thalamus || nucleus || LUS || Relays from PAG to Rhape nuclei, Inferior olive nucleus ||  ||
 || [BrainRegionLMC_HP_NI LMC.HP.NI] || Incertus Nucleus || nucleus || LUS || Behavioural activation and the response to stress || Modulating influences on prefrontal and hippocampal<BR>cortical activity, midline behavior control;<BR>modulatory nucleus; relay from reticularis pontis<BR>oralis nucleus to septo-hippocampal system ||
 
@@ -196,24 +195,18 @@
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLMC LMC] || [BrainRegionLMC_FD_TH_SF LMC.FD.TH.SF] || [BrainRegionLMC_MM_PAG LMC.MM.PAG] || Periaqueductal Gray Matter || nucleus-nucleus-ENK || (unknown reference) ||
-|| [BrainAreaLPC LPC] || [BrainRegionLMC_FD_TH_LI LMC.FD.TH.LI] || [BrainRegionLPC_SC_PH_LMG LPC.SC.PH.LMG] || Lower Marginal Nucleus || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionLPC_SC_PH_UMG LPC.SC.PH.UMG] || Upper Marginal Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaLRC LRC] || [BrainRegionLMC_FD_TH_LI LMC.FD.TH.LI] || [BrainRegionLRC_MM_SC_INT LRC.MM.SC.INT] || Intermediate Superior Colliculus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (SCi -> Thalamus, abstract)] ||
-||  || [BrainRegionLMC_HP_NI LMC.HP.NI] || [BrainRegionLRC_HP_PRF_RPO LRC.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLRC LRC] || [BrainRegionLMC_HP_NI LMC.HP.NI] || [BrainRegionLRC_HP_PRF_RPO LRC.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus-nucleus || (unknown reference) ||
 
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
-|| <font color="red">Cortical</font> || || || || || ||
-|| [BrainAreaEPA EPA] || [BrainRegionLMC_FD_TH_LI LMC.FD.TH.LI] || [BrainRegionCGA_NC_DACG CGA.NC.DACG] || Dorsal Anterior Cingulate Area || nucleus-neocortex-gaba || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (Thalamus -> FrontalCortex, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaAMA AMA] || [BrainRegionLMC_HP_NI LMC.HP.NI] || [BrainRegionBFA_FD_HB BFA.FD.HB] || Habenula || nucleus-nucleus-gaba || (unknown reference) ||
 ||  ||  || [BrainRegionBFA_FT_SEP BFA.FT.SEP] || Septal Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
 ||  ||  || [BrainRegionPHA_FT_EPF PHA.FT.EPF] || Endopiriform Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
 || [BrainAreaLLC LLC] || [BrainRegionLMC_FD_TH_SF LMC.FD.TH.SF] || [BrainRegionLLC_HM_IO LLC.HM.IO] || Inferior Olivary Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
 || [BrainAreaLMC LMC] || [BrainRegionLMC_FD_TH_SF LMC.FD.TH.SF] || [BrainRegionLMC_MM_RP_DRN LMC.MM.RP.DRN] || Dorsal Raphe Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
-|| [BrainAreaMMA MMA] || [BrainRegionLMC_FD_TH_LI LMC.FD.TH.LI] || [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || Peripaleocortical Claustral || nucleus-neocortex-gaba || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (TH -> INS, abstract)] ||
-||  || [BrainRegionLMC_HP_NI LMC.HP.NI] || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || Perirhinal Cortex || nucleus-neocortex-gaba || (unknown reference) ||
+|| [BrainAreaMMA MMA] || [BrainRegionLMC_HP_NI LMC.HP.NI] || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || Perirhinal Cortex || nucleus-neocortex-gaba || (unknown reference) ||
 
 == Norepinephrine - Vigilant Concentration, Stress Hormone, Fight-or-Flight Response ==
 

@@ -8,7 +8,7 @@
 (generated)
 
 || *ID* || *Name* || *Regions* ||
-|| BAAALL || TBD || [BrainRegionSMA_FD_PV_OPV SMA.FD.PV.OPV], [BrainRegionSMA_FD_TH_LP SMA.FD.TH.LP], [BrainRegionSMA_FD_TH_RIL SMA.FD.TH.RIL], [BrainRegionSMA_FD_TH_VPI SMA.FD.TH.VPI], [BrainRegionSMA_FD_TH_VPL SMA.FD.TH.VPL], [BrainRegionSMA_FD_TH_VPM SMA.FD.TH.VPM], [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1], [BrainRegionSMA_NC_PO_PCC SMA.NC.PO.PCC], [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG], [BrainRegionSMA_NC_SPL_SA SMA.NC.SPL.SA] ||
+|| BAAALL || TBD || [BrainRegionSMA_FD_PV_OPV SMA.FD.PV.OPV], [BrainRegionSMA_FD_TH_LP SMA.FD.TH.LP], [BrainRegionSMA_FD_TH_VPI SMA.FD.TH.VPI], [BrainRegionSMA_FD_TH_VPL SMA.FD.TH.VPL], [BrainRegionSMA_FD_TH_VPM SMA.FD.TH.VPM], [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1], [BrainRegionSMA_NC_PO_PCC SMA.NC.PO.PCC], [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG], [BrainRegionSMA_NC_SPL_SA SMA.NC.SPL.SA] ||
 
 == TBD ==
 
@@ -18,7 +18,6 @@
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
 || [BrainRegionSMA_FD_PV_OPV SMA.FD.PV.OPV] || Oral Pulvinar || nucleus || NBU || Somatosensory functions || Thalamus, connected with parietal cortex, anterior<BR>pulvinar ||
 || [BrainRegionSMA_FD_TH_LP SMA.FD.TH.LP] || Lateral Posterior Nucleus of Thalamus || nucleus || NBU || Visual association cortex || From superior colliculus, pretectum ||
-|| [BrainRegionSMA_FD_TH_RIL SMA.FD.TH.RIL] || Rostral Intralaminar Nucleus of Thalamus || nucleus || NBU || Stimulate memory-guided response || from brainstem to SPL.SA, CM, CL, CeM, PC ||
 || [BrainRegionSMA_FD_TH_VPI SMA.FD.TH.VPI] || Ventral Posteroinferior Nucleus || nucleus || NBU || Relays pain and temperature from body to insula ||  ||
 || [BrainRegionSMA_FD_TH_VPL SMA.FD.TH.VPL] || Ventral Posterolateral Nucleus || nucleus || NBU || Relays somatic information from body to S1 ||  ||
 || [BrainRegionSMA_FD_TH_VPM SMA.FD.TH.VPM] || Ventral Posteromedial Nucleus || nucleus || NBU || Relays somatic information from face to S1 ||  ||
@@ -32,7 +31,6 @@
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionSMA_FD_PV_OPV SMA.FD.PV.OPV] || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (Pulvinar -> ParietalCortex, abstract)] ||
 || [BrainRegionSMA_FD_TH_LP SMA.FD.TH.LP] || [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (LP -> pLP, abstract)] ||
-|| [BrainRegionSMA_FD_TH_RIL SMA.FD.TH.RIL] || [BrainRegionSMA_NC_SPL_SA SMA.NC.SPL.SA] || nucleus-neocortex || (unknown reference) ||
 || [BrainRegionSMA_FD_TH_VPL SMA.FD.TH.VPL] || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || nucleus-neocortex || [http://users.atw.hu/blp6/BLP6/HTML/C0079780323045827.htm Pain matrix (TH.VPL -> S1)] ||
 ||  || [BrainRegionSMA_NC_PO_PCC SMA.NC.PO.PCC] || nucleus-neocortex || (unknown reference) ||
 || [BrainRegionSMA_FD_TH_VPM SMA.FD.TH.VPM] || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || nucleus-neocortex || [http://users.atw.hu/blp6/BLP6/HTML/C0079780323045827.htm Pain matrix (TH.VPM -> S1)] ||
@@ -57,10 +55,8 @@
 ||  ||  || [BrainRegionVCA_NC_PO VCA.NC.PO] || Parietooccipital Area || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0166223697010679 Parietal Association Cortex (V6 -> 7a)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaFEC FEC] || [BrainRegionSMA_FD_TH_LP SMA.FD.TH.LP] || [BrainRegionFEC_FT_GPI_DL FEC.FT.GPI.DL] || Globus Pallidus Internal Dorsolateral || nucleus-nucleus-gaba || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (BG -> Thalamus, abstract)] ||
-||  ||  || [BrainRegionFEC_MM_PT_PTA FEC.MM.PT.PTA] || Anterior Pretectum Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaLLC LLC] || [BrainRegionSMA_FD_TH_RIL SMA.FD.TH.RIL] || [BrainRegionLLC_HP_CR_DN LLC.HP.CR.DN] || Dentate Nucleus || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionLLC_SC_IZ_CCV LLC.SC.IZ.CCV] || Central Cervical Nucleus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionSMA_FD_TH_VPL SMA.FD.TH.VPL] || [BrainRegionLLC_SC_IZ_CCV LLC.SC.IZ.CCV] || Central Cervical Nucleus || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s1P -> P, abstract)] ||
+||  || [BrainRegionSMA_NC_SPL_SA SMA.NC.SPL.SA] || [BrainRegionFEC_FD_TH_RIL FEC.FD.TH.RIL] || Rostral Intralaminar Nuclear Group of Thalamus || nucleus-neocortex || (unknown reference) ||
+|| [BrainAreaLLC LLC] || [BrainRegionSMA_FD_TH_VPL SMA.FD.TH.VPL] || [BrainRegionLLC_SC_IZ_CCV LLC.SC.IZ.CCV] || Central Cervical Nucleus || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s1P -> P, abstract)] ||
 || [BrainAreaLPC LPC] || [BrainRegionSMA_FD_TH_VPI SMA.FD.TH.VPI] || [BrainRegionLPC_HP_PB LPC.HP.PB] || Parabrachial Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLPC_SC_PH_LMG LPC.SC.PH.LMG] || Lower Marginal Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLPC_SC_PH_LSG LPC.SC.PH.LSG] || Lower Substantia Gelatinosa || nucleus-nucleus || (unknown reference) ||
@@ -76,7 +72,8 @@
 ||  || [BrainRegionSMA_FD_TH_VPM SMA.FD.TH.VPM] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || Solitary Nucleus || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sVPM -> VPM)] ||
 ||  ||  || [BrainRegionLPC_HP_PB LPC.HP.PB] || Parabrachial Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PB -> VPMpc)] ||
 ||  ||  || [BrainRegionLPC_HP_PTP_PTR LPC.HP.PTP.PTR] || Principal Trigeminal Nucleus || nucleus-nucleus || [http://www.lookfordiagnosis.com/mesh_info.php?term=Trigeminal+Nucleilang=1 Trigeminal Nuclei (CSN -> VPM)] ||
-|| [BrainAreaLRC LRC] || [BrainRegionSMA_FD_TH_LP SMA.FD.TH.LP] || [BrainRegionLRC_MM_PT_SL LRC.MM.PT.SL] || Sublentiform Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLRC LRC] || [BrainRegionSMA_FD_TH_LP SMA.FD.TH.LP] || [BrainRegionLRC_MM_PT_PTA LRC.MM.PT.PTA] || Anterior Pretectum Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLRC_MM_PT_SL LRC.MM.PT.SL] || Sublentiform Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLRC_MM_SC_SUP LRC.MM.SC.SUP] || Superficial Superior Colliculus || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (sLP -> LP, abstract)] ||
 
 *External Outbound Region Connections:*
