@@ -8,12 +8,12 @@
 (generated)
 
 || *ID* || *Name* || *Regions* ||
-|| FECAF || Limbic Loop || [BrainRegionFEC_FD_STN_DL FEC.FD.STN.DL], [BrainRegionFEC_FT_CN_BD FEC.FT.CN.BD], [BrainRegionFEC_FT_GPE_RM FEC.FT.GPE.RM], [BrainRegionFEC_FT_GPI_RM FEC.FT.GPI.RM], [BrainRegionFEC_FT_PU_VT FEC.FT.PU.VT], [BrainRegionFEC_FT_SNR_MED FEC.FT.SNR.MED] ||
+|| FECAF || Limbic Loop || [BrainRegionFEC_FD_STN_DL FEC.FD.STN.DL], [BrainRegionFEC_FT_CN_TL FEC.FT.CN.TL], [BrainRegionFEC_FT_GPE_RM FEC.FT.GPE.RM], [BrainRegionFEC_FT_GPI_RM FEC.FT.GPI.RM], [BrainRegionFEC_FT_PU_VT FEC.FT.PU.VT], [BrainRegionFEC_FT_SNR_MED FEC.FT.SNR.MED] ||
 || FECEXE || Executive/Cognitive Loop || [BrainRegionFEC_FD_STN_CD FEC.FD.STN.CD], [BrainRegionFEC_FT_CN_HD FEC.FT.CN.HD], [BrainRegionFEC_FT_GPE_DS FEC.FT.GPE.DS], [BrainRegionFEC_FT_GPI_DS FEC.FT.GPI.DS], [BrainRegionFEC_FT_PU_RS FEC.FT.PU.RS], [BrainRegionFEC_FT_SNC_LT FEC.FT.SNC.LT], [BrainRegionFEC_FT_SNR_RM FEC.FT.SNR.RM] ||
 || FECLM || Motivational Loop || [BrainRegionFEC_FT_ACC_CORE FEC.FT.ACC.CORE], [BrainRegionFEC_FT_ACC_SH FEC.FT.ACC.SH], [BrainRegionFEC_FT_SNC_MED FEC.FT.SNC.MED], [BrainRegionFEC_FT_VP_DL FEC.FT.VP.DL], [BrainRegionFEC_FT_VP_VM FEC.FT.VP.VM] ||
 || FECME || Motor Extensor Loop || [BrainRegionFEC_FD_STN_MED FEC.FD.STN.MED], [BrainRegionFEC_FD_TH_PF FEC.FD.TH.PF], [BrainRegionFEC_FT_GPE_MED FEC.FT.GPE.MED], [BrainRegionFEC_FT_GPI_MED FEC.FT.GPI.MED], [BrainRegionFEC_FT_PU_MED FEC.FT.PU.MED], [BrainRegionFEC_FT_SNR_DL FEC.FT.SNR.DL] ||
 || FECMF || Motor Flexor Loop || [BrainRegionFEC_FD_STN_LT FEC.FD.STN.LT], [BrainRegionFEC_FD_TH_CM FEC.FD.TH.CM], [BrainRegionFEC_FT_GPE_LT FEC.FT.GPE.LT], [BrainRegionFEC_FT_GPI_LT FEC.FT.GPI.LT], [BrainRegionFEC_FT_PU_LT FEC.FT.PU.LT] ||
-|| FECOM || Oculomotor and Auditory/Association Loop || [BrainRegionFEC_FD_STN_ICD FEC.FD.STN.ICD], [BrainRegionFEC_FT_CN_TL FEC.FT.CN.TL], [BrainRegionFEC_FT_GPE_DL FEC.FT.GPE.DL], [BrainRegionFEC_FT_GPI_DL FEC.FT.GPI.DL], [BrainRegionFEC_FT_SNR_VL FEC.FT.SNR.VL], [BrainRegionFEC_MM_PT_PTA FEC.MM.PT.PTA] ||
+|| FECOM || Oculomotor and Auditory/Association Loop || [BrainRegionFEC_FD_STN_ICD FEC.FD.STN.ICD], [BrainRegionFEC_FT_CN_BD FEC.FT.CN.BD], [BrainRegionFEC_FT_GPE_DL FEC.FT.GPE.DL], [BrainRegionFEC_FT_GPI_DL FEC.FT.GPI.DL], [BrainRegionFEC_FT_SNR_VL FEC.FT.SNR.VL], [BrainRegionFEC_MM_PT_PTA FEC.MM.PT.PTA] ||
 
 == Limbic Loop ==
 
@@ -22,7 +22,7 @@
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
 || [BrainRegionFEC_FD_STN_DL FEC.FD.STN.DL] || Subthalamic Nucleus Dorsolateral || nucleus || FEU || Motivational loop ||  ||
-|| [BrainRegionFEC_FT_CN_BD FEC.FT.CN.BD] || Caudate Nucleus Body || nucleus || FEU || Oculomotor learning || FEF, SEF ||
+|| [BrainRegionFEC_FT_CN_TL FEC.FT.CN.TL] || Caudate Nucleus Tail || nucleus || FEU || Successful classification learning, correct categorization || ITC, STC ||
 || [BrainRegionFEC_FT_GPE_RM FEC.FT.GPE.RM] || Globus Pallidus External Rostromedial || nucleus || FEU || Motivational loop ||  ||
 || [BrainRegionFEC_FT_GPI_RM FEC.FT.GPI.RM] || Globus Pallidus Internal Rostromedial || nucleus || FEU || Motivational loop ||  ||
 || [BrainRegionFEC_FT_PU_VT FEC.FT.PU.VT] || Ventral Putamen || nucleus || FEU || Evaluation of flavors, taste, motivation loop ||  ||
@@ -35,7 +35,8 @@
 ||  || [BrainRegionFEC_FT_GPI_RM FEC.FT.GPI.RM] || nucleus-nucleus || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (STN -> GPi, abstract)] ||
 ||  || [BrainRegionFEC_FT_PU_VT FEC.FT.PU.VT] || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionFEC_FT_SNR_MED FEC.FT.SNR.MED] || nucleus-nucleus || (unknown reference) ||
-|| [BrainRegionFEC_FT_CN_BD FEC.FT.CN.BD] || [BrainRegionFEC_FT_GPI_RM FEC.FT.GPI.RM] || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (CPu -> GPi, abstract)] ||
+|| [BrainRegionFEC_FT_CN_TL FEC.FT.CN.TL] || [BrainRegionFEC_FT_GPI_RM FEC.FT.GPI.RM] || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (CPu -> GPi, abstract)] ||
+||  || [BrainRegionFEC_FT_SNR_MED FEC.FT.SNR.MED] || nucleus-nucleus-gaba || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (CN -> SN, abstract)] ||
 || [BrainRegionFEC_FT_GPE_RM FEC.FT.GPE.RM] || [BrainRegionFEC_FD_STN_DL FEC.FD.STN.DL] || nucleus-nucleus-gaba || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (GPo -> STN, abstract)] ||
 ||  || [BrainRegionFEC_FT_GPI_RM FEC.FT.GPI.RM] || nucleus-nucleus-gaba || (unknown reference) ||
 ||  || [BrainRegionFEC_FT_SNR_MED FEC.FT.SNR.MED] || nucleus-nucleus-gaba || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (GP -> SN, abstract)] ||
@@ -46,8 +47,10 @@
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
 || [BrainAreaEPA EPA] || [BrainRegionFEC_FD_STN_DL FEC.FD.STN.DL] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || neocortex-nucleus || (unknown reference) ||
-||  || [BrainRegionFEC_FT_CN_BD FEC.FT.CN.BD] || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || Ventral Anterior Cingulate Area || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> BGA, abstract)] ||
+||  || [BrainRegionFEC_FT_CN_TL FEC.FT.CN.TL] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> BGA, abstract)] ||
 ||  || [BrainRegionFEC_FT_PU_VT FEC.FT.PU.VT] || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || Ventral Anterior Cingulate Area || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> BGA, abstract)] ||
+|| <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaAMA AMA] || [BrainRegionFEC_FT_CN_TL FEC.FT.CN.TL] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || nucleus-nucleus || (unknown reference) ||
 
 *External Outbound Region Connections:*
 
@@ -265,7 +268,7 @@
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
 || [BrainRegionFEC_FD_STN_ICD FEC.FD.STN.ICD] || Subthalamic Nucleus Internal Caudal || nucleus || FEU || Oculomotor loop ||  ||
-|| [BrainRegionFEC_FT_CN_TL FEC.FT.CN.TL] || Caudate Nucleus Tail || nucleus || FEU || Successful classification learning, correct categorization || ITC, STC ||
+|| [BrainRegionFEC_FT_CN_BD FEC.FT.CN.BD] || Caudate Nucleus Body || nucleus || FEU || Oculomotor learning || FEF, SEF ||
 || [BrainRegionFEC_FT_GPE_DL FEC.FT.GPE.DL] || Globus Pallidus External Dorsolateral || nucleus || FEU || Oculomotor loop ||  ||
 || [BrainRegionFEC_FT_GPI_DL FEC.FT.GPI.DL] || Globus Pallidus Internal Dorsolateral || nucleus || FEU || Oculomotor loop ||  ||
 || [BrainRegionFEC_FT_SNR_VL FEC.FT.SNR.VL] || Substantia Nigra Pars Reticulata Ventrolateral || nucleus || FEU || Oculomotor loop ||  ||
@@ -277,8 +280,7 @@
 || [BrainRegionFEC_FD_STN_ICD FEC.FD.STN.ICD] || [BrainRegionFEC_FT_GPE_DL FEC.FT.GPE.DL] || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionFEC_FT_GPI_DL FEC.FT.GPI.DL] || nucleus-nucleus || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (STN -> GPi, abstract)] ||
 ||  || [BrainRegionFEC_FT_SNR_VL FEC.FT.SNR.VL] || nucleus-nucleus || (unknown reference) ||
-|| [BrainRegionFEC_FT_CN_TL FEC.FT.CN.TL] || [BrainRegionFEC_FT_GPI_DL FEC.FT.GPI.DL] || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (CPu -> GPi, abstract)] ||
-||  || [BrainRegionFEC_FT_SNR_VL FEC.FT.SNR.VL] || nucleus-nucleus-gaba || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (CN -> SN, abstract)] ||
+|| [BrainRegionFEC_FT_CN_BD FEC.FT.CN.BD] || [BrainRegionFEC_FT_GPI_DL FEC.FT.GPI.DL] || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (CPu -> GPi, abstract)] ||
 || [BrainRegionFEC_FT_GPE_DL FEC.FT.GPE.DL] || [BrainRegionFEC_FD_STN_ICD FEC.FD.STN.ICD] || nucleus-nucleus-gaba || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (GPo -> STN, abstract)] ||
 ||  || [BrainRegionFEC_FT_GPI_DL FEC.FT.GPI.DL] || nucleus-nucleus-gaba || (unknown reference) ||
 || [BrainRegionFEC_MM_PT_PTA FEC.MM.PT.PTA] || [BrainRegionFEC_FD_STN_ICD FEC.FD.STN.ICD] || nucleus-nucleus || (unknown reference) ||
@@ -287,8 +289,9 @@
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
-|| [BrainAreaMAA MAA] || [BrainRegionFEC_FT_CN_TL FEC.FT.CN.TL] || [BrainRegionMCA_NC_PMC_FEF MCA.NC.PMC.FEF] || Frontal Eye Field || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> BGA, abstract)] ||
-|| [BrainAreaSAA SAA] || [BrainRegionFEC_FT_CN_TL FEC.FT.CN.TL] || [BrainRegionACA_NC_A2 ACA.NC.A2] || Auditory Association Area || neocortex-nucleus || (unknown reference) ||
+|| [BrainAreaEPA EPA] || [BrainRegionFEC_FT_CN_BD FEC.FT.CN.BD] || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || Ventral Anterior Cingulate Area || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> BGA, abstract)] ||
+|| [BrainAreaMAA MAA] || [BrainRegionFEC_FT_CN_BD FEC.FT.CN.BD] || [BrainRegionMCA_NC_PMC_FEF MCA.NC.PMC.FEF] || Frontal Eye Field || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> BGA, abstract)] ||
+|| [BrainAreaSAA SAA] || [BrainRegionFEC_FT_CN_BD FEC.FT.CN.BD] || [BrainRegionACA_NC_A2 ACA.NC.A2] || Auditory Association Area || neocortex-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || Inferotemporal Cortex || neocortex-nucleus || (unknown reference) ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLMC LMC] || [BrainRegionFEC_FD_STN_ICD FEC.FD.STN.ICD] || [BrainRegionLMC_MM_RF_SC LMC.MM.RF.SC] || Superior Central Raphe Nucleus || nucleus-nucleus-5HT || (unknown reference) ||
