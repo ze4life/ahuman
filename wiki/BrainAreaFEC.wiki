@@ -12,7 +12,7 @@
 || FECEXE || Executive/Cognitive Loop || [BrainRegionFEC_FD_STN_CD FEC.FD.STN.CD], [BrainRegionFEC_FT_CN_HD FEC.FT.CN.HD], [BrainRegionFEC_FT_GPE_DS FEC.FT.GPE.DS], [BrainRegionFEC_FT_GPI_DS FEC.FT.GPI.DS], [BrainRegionFEC_FT_SNC_LT FEC.FT.SNC.LT], [BrainRegionFEC_FT_SNR_RM FEC.FT.SNR.RM] ||
 || FECLM || Motivational Loop || [BrainRegionFEC_FT_ACC_CORE FEC.FT.ACC.CORE], [BrainRegionFEC_FT_ACC_SH FEC.FT.ACC.SH], [BrainRegionFEC_FT_SNC_MED FEC.FT.SNC.MED], [BrainRegionFEC_FT_VP_DL FEC.FT.VP.DL], [BrainRegionFEC_FT_VP_VM FEC.FT.VP.VM] ||
 || FECME || Motor Extensor Loop || [BrainRegionFEC_FD_STN_MED FEC.FD.STN.MED], [BrainRegionFEC_FD_TH_PF FEC.FD.TH.PF], [BrainRegionFEC_FT_GPE_MED FEC.FT.GPE.MED], [BrainRegionFEC_FT_GPI_MED FEC.FT.GPI.MED], [BrainRegionFEC_FT_PU_MED FEC.FT.PU.MED], [BrainRegionFEC_FT_SNR_DL FEC.FT.SNR.DL] ||
-|| FECMF || Motor Flexor Loop || [BrainRegionFEC_FD_STN_LT FEC.FD.STN.LT], [BrainRegionFEC_FD_TH_CM FEC.FD.TH.CM], [BrainRegionFEC_FT_GPE_LT FEC.FT.GPE.LT], [BrainRegionFEC_FT_GPI_LT FEC.FT.GPI.LT], [BrainRegionFEC_FT_PU_LT FEC.FT.PU.LT] ||
+|| FECMF || Motor Flexor Loop || [BrainRegionFEC_FD_STN_LT FEC.FD.STN.LT], [BrainRegionFEC_FD_TH_CM FEC.FD.TH.CM], [BrainRegionFEC_FD_TH_RIL FEC.FD.TH.RIL], [BrainRegionFEC_FT_GPE_LT FEC.FT.GPE.LT], [BrainRegionFEC_FT_GPI_LT FEC.FT.GPI.LT], [BrainRegionFEC_FT_PU_LT FEC.FT.PU.LT] ||
 || FECOM || Oculomotor and Auditory/Association Loop || [BrainRegionFEC_FD_STN_ICD FEC.FD.STN.ICD], [BrainRegionFEC_FT_CN_BD FEC.FT.CN.BD], [BrainRegionFEC_FT_GPE_DL FEC.FT.GPE.DL], [BrainRegionFEC_FT_GPI_DL FEC.FT.GPI.DL], [BrainRegionFEC_FT_SNR_VL FEC.FT.SNR.VL], [BrainRegionLMC_FD_TH_LI LMC.FD.TH.LI] ||
 
 == Limbic Loop ==
@@ -224,6 +224,7 @@
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
 || [BrainRegionFEC_FD_STN_LT FEC.FD.STN.LT] || Subthalamic Nucleus Lateral || nucleus || FEU || Motor Flexor loop ||  ||
 || [BrainRegionFEC_FD_TH_CM FEC.FD.TH.CM] || Centromedian Nucleus of Thalamus || nucleus || FEU || Control of level of cortical activity || Lesions lead to persistent vegetative state ||
+|| [BrainRegionFEC_FD_TH_RIL FEC.FD.TH.RIL] || Rostral Intralaminar Nuclear Group of Thalamus || nucleus || NBU || cognitive functions || from SC LVII,LVIII/CR nuclei to striatum ||
 || [BrainRegionFEC_FT_GPE_LT FEC.FT.GPE.LT] || Globus Pallidus External Lateral || nucleus || FEU || Flexor loop ||  ||
 || [BrainRegionFEC_FT_GPI_LT FEC.FT.GPI.LT] || Globus Pallidus Internal Lateral || nucleus || FEU || Motor flexor loop || output nuclei of basal ganglia to neocortex, leg,<BR>arm, face; lateral - leg, medial - arm, ventral -<BR>face ||
 || [BrainRegionFEC_FT_PU_LT FEC.FT.PU.LT] || Dorsal Putamen Lateral || nucleus || FEU || Flexor motor initiation || ventrolateral, D1 receptor, MC and S1 - overlap,<BR>TH/CM from GPi; DL-leg, RL-face, VM-arms ||
@@ -250,11 +251,14 @@
 || [BrainAreaFEC FEC] || [BrainRegionFEC_FT_PU_LT FEC.FT.PU.LT] || [BrainRegionFEC_FT_SNC_LT FEC.FT.SNC.LT] || Substantia Nigra Pars Compacta Lateral || nucleus-nucleus-DA || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (SNC -> PU)] ||
 || [BrainAreaLLC LLC] || [BrainRegionFEC_FD_STN_LT FEC.FD.STN.LT] || [BrainRegionLLC_HP_PPN_CD LLC.HP.PPN.CD] || Pedunculopontine Nucleus Caudal || nucleus-nucleus-ACh || (unknown reference) ||
 ||  || [BrainRegionFEC_FD_TH_CM FEC.FD.TH.CM] || [BrainRegionLLC_HP_CR_EN LLC.HP.CR.EN] || Emboliform Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionFEC_FD_TH_RIL FEC.FD.TH.RIL] || [BrainRegionLLC_HP_CR_DN LLC.HP.CR.DN] || Dentate Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLLC_SC_IZ_CCV LLC.SC.IZ.CCV] || Central Cervical Nucleus || nucleus-nucleus || (unknown reference) ||
 
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
+|| [BrainAreaBAA BAA] || [BrainRegionFEC_FD_TH_RIL FEC.FD.TH.RIL] || [BrainRegionSMA_NC_SPL_SA SMA.NC.SPL.SA] || Somatosensory Association Cortex || nucleus-neocortex || (unknown reference) ||
 || [BrainAreaMAA MAA] || [BrainRegionFEC_FT_GPI_LT FEC.FT.GPI.LT] || [BrainRegionMCA_FD_TH_VL MCA.FD.TH.VL] || Ventral Lateral Nucleus || nucleus-nucleus-gaba || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s2VL -> VL, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLLC LLC] || [BrainRegionFEC_FD_STN_LT FEC.FD.STN.LT] || [BrainRegionLLC_HP_PPN_RS LLC.HP.PPN.RS] || Pedunculopontine Nucleus Rostral || nucleus-nucleus || (unknown reference) ||
