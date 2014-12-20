@@ -13,7 +13,7 @@
 || FECLM || Motivational Loop || [BrainRegionFEC_FT_ACC_CORE FEC.FT.ACC.CORE], [BrainRegionFEC_FT_ACC_SH FEC.FT.ACC.SH], [BrainRegionFEC_FT_SNC_MED FEC.FT.SNC.MED], [BrainRegionFEC_FT_VP_DL FEC.FT.VP.DL], [BrainRegionFEC_FT_VP_VM FEC.FT.VP.VM] ||
 || FECME || Motor Extensor Loop || [BrainRegionFEC_FD_STN_MED FEC.FD.STN.MED], [BrainRegionFEC_FD_TH_PF FEC.FD.TH.PF], [BrainRegionFEC_FT_GPE_MED FEC.FT.GPE.MED], [BrainRegionFEC_FT_GPI_MED FEC.FT.GPI.MED], [BrainRegionFEC_FT_PU_MED FEC.FT.PU.MED], [BrainRegionFEC_FT_SNR_DL FEC.FT.SNR.DL] ||
 || FECMF || Motor Flexor Loop || [BrainRegionFEC_FD_STN_LT FEC.FD.STN.LT], [BrainRegionFEC_FD_TH_CM FEC.FD.TH.CM], [BrainRegionFEC_FT_GPE_LT FEC.FT.GPE.LT], [BrainRegionFEC_FT_GPI_LT FEC.FT.GPI.LT], [BrainRegionFEC_FT_PU_LT FEC.FT.PU.LT] ||
-|| FECOM || Oculomotor and Auditory/Association Loop || [BrainRegionFEC_FD_STN_ICD FEC.FD.STN.ICD], [BrainRegionFEC_FT_CN_BD FEC.FT.CN.BD], [BrainRegionFEC_FT_GPE_DL FEC.FT.GPE.DL], [BrainRegionFEC_FT_GPI_DL FEC.FT.GPI.DL], [BrainRegionFEC_FT_SNR_VL FEC.FT.SNR.VL], [BrainRegionFEC_MM_PT_PTA FEC.MM.PT.PTA], [BrainRegionLMC_FD_TH_LI LMC.FD.TH.LI] ||
+|| FECOM || Oculomotor and Auditory/Association Loop || [BrainRegionFEC_FD_STN_ICD FEC.FD.STN.ICD], [BrainRegionFEC_FT_CN_BD FEC.FT.CN.BD], [BrainRegionFEC_FT_GPE_DL FEC.FT.GPE.DL], [BrainRegionFEC_FT_GPI_DL FEC.FT.GPI.DL], [BrainRegionFEC_FT_SNR_VL FEC.FT.SNR.VL], [BrainRegionLMC_FD_TH_LI LMC.FD.TH.LI] ||
 
 == Limbic Loop ==
 
@@ -270,7 +270,6 @@
 || [BrainRegionFEC_FT_GPE_DL FEC.FT.GPE.DL] || Globus Pallidus External Dorsolateral || nucleus || FEU || Oculomotor loop ||  ||
 || [BrainRegionFEC_FT_GPI_DL FEC.FT.GPI.DL] || Globus Pallidus Internal Dorsolateral || nucleus || FEU || Oculomotor loop ||  ||
 || [BrainRegionFEC_FT_SNR_VL FEC.FT.SNR.VL] || Substantia Nigra Pars Reticulata Ventrolateral || nucleus || FEU || Oculomotor loop ||  ||
-|| [BrainRegionFEC_MM_PT_PTA FEC.MM.PT.PTA] || Anterior Pretectum Nucleus || nucleus || LLI || Mediate somatosensory and nociceptive information || 3 parallel flows from MC, anterior interpositus<BR>nucleus of TH, GR to dorsal accessory IO ||
 || [BrainRegionLMC_FD_TH_LI LMC.FD.TH.LI] || Limitans Nucleus of Thalamus || nucleus || LUS || Multisensory projection to striatum || From SC, trigeminal nucleus, superior and inferior<BR>colliculus ||
 
 *Internal Region Connections:*
@@ -280,9 +279,9 @@
 ||  || [BrainRegionFEC_FT_GPI_DL FEC.FT.GPI.DL] || nucleus-nucleus || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (STN -> GPi, abstract)] ||
 ||  || [BrainRegionFEC_FT_SNR_VL FEC.FT.SNR.VL] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionFEC_FT_CN_BD FEC.FT.CN.BD] || [BrainRegionFEC_FT_GPI_DL FEC.FT.GPI.DL] || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (CPu -> GPi, abstract)] ||
+||  || [BrainRegionFEC_FT_SNR_VL FEC.FT.SNR.VL] || nucleus-nucleus-gaba || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements (CN -> SN, abstract)] ||
 || [BrainRegionFEC_FT_GPE_DL FEC.FT.GPE.DL] || [BrainRegionFEC_FD_STN_ICD FEC.FD.STN.ICD] || nucleus-nucleus-gaba || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (GPo -> STN, abstract)] ||
 ||  || [BrainRegionFEC_FT_GPI_DL FEC.FT.GPI.DL] || nucleus-nucleus-gaba || (unknown reference) ||
-|| [BrainRegionFEC_MM_PT_PTA FEC.MM.PT.PTA] || [BrainRegionFEC_FD_STN_ICD FEC.FD.STN.ICD] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionLMC_FD_TH_LI LMC.FD.TH.LI] || [BrainRegionFEC_FT_CN_BD FEC.FT.CN.BD] || nucleus-nucleus || (unknown reference) ||
 
 *External Inbound Region Connections:*
@@ -297,16 +296,15 @@
 || [BrainAreaLMC LMC] || [BrainRegionFEC_FD_STN_ICD FEC.FD.STN.ICD] || [BrainRegionLMC_MM_RF_SC LMC.MM.RF.SC] || Superior Central Raphe Nucleus || nucleus-nucleus-5HT || (unknown reference) ||
 || [BrainAreaLPC LPC] || [BrainRegionLMC_FD_TH_LI LMC.FD.TH.LI] || [BrainRegionLPC_SC_PH_LMG LPC.SC.PH.LMG] || Lower Marginal Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLPC_SC_PH_UMG LPC.SC.PH.UMG] || Upper Marginal Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaLRC LRC] || [BrainRegionLMC_FD_TH_LI LMC.FD.TH.LI] || [BrainRegionLRC_MM_SC_INT LRC.MM.SC.INT] || Intermediate Superior Colliculus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (SCi -> Thalamus, abstract)] ||
+|| [BrainAreaLRC LRC] || [BrainRegionFEC_FD_STN_ICD FEC.FD.STN.ICD] || [BrainRegionLRC_MM_PT_PTA LRC.MM.PT.PTA] || Anterior Pretectum Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLMC_FD_TH_LI LMC.FD.TH.LI] || [BrainRegionLRC_MM_SC_INT LRC.MM.SC.INT] || Intermediate Superior Colliculus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (SCi -> Thalamus, abstract)] ||
 
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
 || [BrainAreaBAA BAA] || [BrainRegionFEC_FT_GPI_DL FEC.FT.GPI.DL] || [BrainRegionSMA_FD_TH_LP SMA.FD.TH.LP] || Lateral Posterior Nucleus of Thalamus || nucleus-nucleus-gaba || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (BG -> Thalamus, abstract)] ||
-||  || [BrainRegionFEC_MM_PT_PTA FEC.MM.PT.PTA] || [BrainRegionSMA_FD_TH_LP SMA.FD.TH.LP] || Lateral Posterior Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaEPA EPA] || [BrainRegionLMC_FD_TH_LI LMC.FD.TH.LI] || [BrainRegionCGA_NC_DACG CGA.NC.DACG] || Dorsal Anterior Cingulate Area || nucleus-neocortex || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (Thalamus -> FrontalCortex, abstract)] ||
-|| [BrainAreaSAA SAA] || [BrainRegionFEC_MM_PT_PTA FEC.MM.PT.PTA] || [BrainRegionVBA_FD_PV_MPV VBA.FD.PV.MPV] || Medial Pulvinar || nucleus-nucleus || (unknown reference) ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLLC LLC] || [BrainRegionFEC_FD_STN_ICD FEC.FD.STN.ICD] || [BrainRegionLLC_HP_PPN_CD LLC.HP.PPN.CD] || Pedunculopontine Nucleus Caudal || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLRC LRC] || [BrainRegionFEC_FT_SNR_VL FEC.FT.SNR.VL] || [BrainRegionLRC_MM_SC_INT LRC.MM.SC.INT] || Intermediate Superior Colliculus || nucleus-nucleus-gaba || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (BG -> SCi, abstract)] ||
