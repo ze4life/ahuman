@@ -123,13 +123,12 @@
 								notes="dorsomedial, SMC and PMC - overlap, BA 6,46"
 								/>
 						</element>
-						<element id="FEC.FT.PU.RS" name="Dorsal Putamen Rostral" mapped="true" type="nucleus"
+						<element id="FEC.FT.PU.RS" name="Dorsal Putamen Rostral" ignore="true"
 							refs="NL:[http://neurolex.org/wiki/Category:Rostral_putamen Rostral putamen]"
 							function="Planning initiation, execution loop"
-							notes="ventrolateral, D1 receptor, MC and S1 - overlap, TH/CM from GPi; DL-leg, RL-face, VM-arms"
 							/>
-						<element name="Matrix Compartment of Putamen" refs="NL:[http://neurolex.org/wiki/Category:Matrix_compartment_of_putamen Matrix compartment of putamen]" ignored="true" comment="secondary nuclei grouping"/>
-						<element name="Striosomal Putamen" refs="NL:[http://neurolex.org/wiki/Category:Striosomal_part_of_putamen Striosomal part of putamen]" ignored="true" comment="secondary nuclei grouping"/>
+						<element name="Matrix Compartment of Putamen" refs="NL:[http://neurolex.org/wiki/Category:Matrix_compartment_of_putamen Matrix compartment of putamen]" ignored="true" comment="secondary nuclei grouping" ignore="true"/>
+						<element name="Striosomal Putamen" refs="NL:[http://neurolex.org/wiki/Category:Striosomal_part_of_putamen Striosomal part of putamen]" ignored="true" comment="secondary nuclei grouping" ignore="true"/>
 					</element>
 				</element>
 			</element>
@@ -601,32 +600,88 @@
 					/>
 			</element>
 			<element refs="NL:[http://neurolex.org/wiki/Category:Caudal_thalamus Caudal thalamus]" ignore="true" comment="no nuclei"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Interanterodorsal_nucleus_of_the_thalamus Interanterodorsal nucleus of the thalamus]" ignore="true" comment="left and right integration"/>
-			<element refs="NL:[http://neurolex.org/wiki/Category:Intermediodorsal_nucleus_of_the_thalamus Intermediodorsal nucleus of the thalamus]" ignore="true" comment="left and right integration"/>
-			<element id="BGA.FD.TH.IL" name="Intralaminar Nuclear Group of Thalamus" refs="NL:[http://neurolex.org/wiki/Category:Intralaminar_nuclear_group Intralaminar nuclear group]">
-				<element id="FEC.FD.TH.CM" name="Centromedian Nucleus of Thalamus" mapped="true" type="nucleus"
-					refs="NL:[http://neurolex.org/wiki/Category:Centromedian_nucleus Centromedian nucleus]"
-					function="Control of level of cortical activity"
-					notes="Lesions lead to persistent vegetative state"
-					/>
-				<element id="FEC.FD.TH.PF" name="Parafascicular Nucleus of Thalamus" mapped="true" type="nucleus"
-					refs="NL:[http://neurolex.org/wiki/Category:Parafascicular_nucleus Parafascicular nucleus]"
-					function="Stimulation of acetylcholine release in dorsal striata"
-					notes="Part of ascending activating system"
+
+			<element id="BGA.FD.TH.IML" name="Intralaminar and Midline Nuclei of Thalamus">
+				<element id="BGA.FD.TH.IL" name="Intralaminar Nuclear Group of Thalamus" 
+					refs="NL:[http://neurolex.org/wiki/Category:Intralaminar_nuclear_group Intralaminar nuclear group]"
+					function="Projects from SC LVII,LVIII and Spinal Trigeminal Nucleus to striatum"
 					>
-					<element name="Lateral Parafascicular Thalamic Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_part_of_the_parafascicular_thalamic_nucleus Lateral part of the parafascicular thalamic nucleus]"/>
+					<element id="FEC.FD.TH.RIL" name="Rostral Intralaminar Nuclear Group of Thalamus" mapped="true" type="nucleus"
+						synonyms="anterior group, lateral group"
+						function="cognitive functions"
+						notes="from SC LVII,LVIII/CR nuclei to striatum"
+						>
+						<element name="Central Medial Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Central_medial_nucleus Central medial nucleus]"/>
+						<element name="Paracentral Nucleus" 
+							refs="NL:[http://neurolex.org/wiki/Category:Paracentral_nucleus Paracentral nucleus]"
+							/>
+						<element name="Central Lateral Nucleus" 
+							refs="NL:[http://neurolex.org/wiki/Category:Central_lateral_nucleus Central lateral nucleus]"
+							/>
+					</element>
+					<element id="FEC.FD.TH.CIL" name="Caudal Intralaminar Nucleus of Thalamus"
+						synonyms="posterior group"
+						refs="NL:[http://neurolex.org/wiki/Category:Rostral_intralaminar_nuclei Rostral intralaminar nuclei]"
+						function="Stimulate memory-guided response"
+						notes="from brainstem to SPL.SA, CM, CL, CeM, PC; from GPi, Spinal Trigeminal Nucleus to striatum"
+						>
+						<element id="FEC.FD.TH.CM" name="Centromedian Nucleus of Thalamus" mapped="true" type="nucleus"
+							refs="NL:[http://neurolex.org/wiki/Category:Centromedian_nucleus Centromedian nucleus]"
+							function="Control of level of cortical activity"
+							notes="Lesions lead to persistent vegetative state"
+							/>
+						<element id="FEC.FD.TH.PF" name="Parafascicular Nucleus of Thalamus" mapped="true" type="nucleus"
+							refs="NL:[http://neurolex.org/wiki/Category:Parafascicular_nucleus Parafascicular nucleus]"
+							function="Stimulation of acetylcholine release in dorsal striata"
+							notes="Part of ascending activating system"
+							>
+							<element name="Lateral Parafascicular Thalamic Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_part_of_the_parafascicular_thalamic_nucleus Lateral part of the parafascicular thalamic nucleus]"/>
+						</element>
+					</element>
 				</element>
-				<element id="SMA.FD.TH.RIL" name="Rostral Intralaminar Nucleus of Thalamus" mapped="true" type="nucleus"
-					refs="NL:[http://neurolex.org/wiki/Category:Rostral_intralaminar_nuclei Rostral intralaminar nuclei]"
-					function="Stimulate memory-guided response"
-					notes="from brainstem to SPL.SA, CM, CL, CeM, PC"
+				<element id="FD.TH.MTH" name="Midline Nuclear Group of Thalamus" 
+					refs="NL:[http://neurolex.org/wiki/Category:Midline_nuclear_group Midline nuclear group]"
 					>
-					<element name="Central Dorsal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Central_dorsal_nucleus Central dorsal nucleus]"/>
-					<element name="Central Lateral Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Central_lateral_nucleus Central lateral nucleus]"/>
-					<element name="Central Medial Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Central_medial_nucleus Central medial nucleus]"/>
-					<element name="Paracentral Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Paracentral_nucleus Paracentral nucleus]"/>
+					<element id="FD.TH.MDT" name="Dorsal Midline Nuclear Group of Thalamus" 
+						refs="NL:[http://neurolex.org/wiki/Category:Central_dorsal_nucleus Central dorsal nucleus]"
+						function="viscero-limbic functions"
+						>
+						<element id="BFA.FD.TH.PT" name="Paratenial Nucleus of Thalamus" mapped="true" type="nucleus"
+							refs="NL:[http://neurolex.org/wiki/Category:Paratenial_nucleus Paratenial nucleus]"
+							function="Direct behavior toward a particular outcome over a range of outcomes"
+							notes="Projects to BNST, AM, OMPFC, ET"
+							/>
+						<element id="BFA.FD.TH.PV" name="Paraventricular Nucleus of Thalamus" mapped="true" type="nucleus"
+							refs="NL:[http://neurolex.org/wiki/Category:Paraventricular_nucleus_of_thalamus Paraventricular nucleus of thalamus]"
+							function="Direct behavior toward a particular outcome over a range of outcomes"
+							notes="Projects like PT, but more to BNST, AM"
+							/>
+						<element refs="NL:[http://neurolex.org/wiki/Category:Interanterodorsal_nucleus_of_the_thalamus Interanterodorsal nucleus of the thalamus]" ignore="true" comment="left and right integration"/>
+						<element refs="NL:[http://neurolex.org/wiki/Category:Intermediodorsal_nucleus_of_the_thalamus Intermediodorsal nucleus of the thalamus]" ignore="true" comment="left and right integration"/>
+					</element>
+					<element id="FD.TH.MVT" name="Ventral Midline Nuclear Group of Thalamus" 
+						function="multimodal sensory processing functions"
+						>
+						<element id="HBA.FD.TH.RE" name="Reuniens Nucleus of Thalamus" mapped="true" type="nucleus"
+							refs="NL:[http://neurolex.org/wiki/Category:Reuniens_nucleus Reuniens nucleus]"
+							function="Gate information between OMPFC and HC dependent upon attentive/arousal states"
+							notes="Regulate amount of neural traffic with changes in attentiveness"
+							/>
+						<element id="HBA.FD.TH.RH" name="Rhomboidal Nucleus of Thalamus" mapped="true" type="nucleus"
+							refs="NL:[http://neurolex.org/wiki/Category:Rhomboidal_nucleus Rhomboidal nucleus]"
+							function="Communication of information across memory delays to guide memory responses"
+							notes="like RE, return projection from PFC to HC, spatial working memory"
+							/>
+						<element id="LMC.FD.TH.SF" name="Subfascicular Nucleus of Thalamus" mapped="true" type="nucleus"
+							refs="NL:[http://neurolex.org/wiki/Category:Subfascicular_nucleus Subfascicular nucleus]"
+							function="Relays from PAG to Rhape nuclei, Inferior olive nucleus"
+							/>
+					</element>
 				</element>
+
+				<element refs="NL:[http://neurolex.org/wiki/Category:Nucleus_rotundus_of_thalamus Nucleus rotundus of thalamus]" ignore="true" comment="birds-only equivalent of Pulvinar for motion processing"/>
 			</element>
+
 			<element id="FD.TH.LTH" name="Lateral Thalamus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_nuclear_group Lateral nuclear group];NL:[http://neurolex.org/wiki/Category:Lateral_thalamus Lateral thalamus]">
 				<element id="CGA.FD.TH.LD" name="Lateral Dorsal Nucleus of Thalamus" mapped="true" type="nucleus"
 					refs="NL:[http://neurolex.org/wiki/Category:Lateral_dorsal_nucleus Lateral dorsal nucleus]"
@@ -650,35 +705,8 @@
 				<element name="Paralaminar Part of Medial Dorsal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Paralaminar_part_of_medial_dorsal_nucleus Paralaminar part of medial dorsal nucleus]"/>
 				<element name="Parvicellular Part of Medial Dorsal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Parvicellular_part_of_medial_dorsal_nucleus Parvicellular part of medial dorsal nucleus]"/>
 			</element>
-			<element id="FD.TH.MTH" name="Midline Nuclear Group of Thalamus" refs="NL:[http://neurolex.org/wiki/Category:Midline_nuclear_group Midline nuclear group]">
-				<element refs="NL:[http://neurolex.org/wiki/Category:Nucleus_rotundus_of_thalamus Nucleus rotundus of thalamus]" ignore="true" comment="birds-only equivalent of Pulvinar for motion processing"/>
-				<element id="BFA.FD.TH.PT" name="Paratenial Nucleus of Thalamus" mapped="true" type="nucleus"
-					refs="NL:[http://neurolex.org/wiki/Category:Paratenial_nucleus Paratenial nucleus]"
-					function="Direct behavior toward a particular outcome over a range of outcomes"
-					notes="Projects to BNST, AM, OMPFC, ET"
-					/>
-				<element id="BFA.FD.TH.PV" name="Paraventricular Nucleus of Thalamus" mapped="true" type="nucleus"
-					refs="NL:[http://neurolex.org/wiki/Category:Paraventricular_nucleus_of_thalamus Paraventricular nucleus of thalamus]"
-					function="Direct behavior toward a particular outcome over a range of outcomes"
-					notes="Projects like PT, but more to BNST, AM"
-					/>
-				<element id="HBA.FD.TH.RE" name="Reuniens Nucleus of Thalamus" mapped="true" type="nucleus"
-					refs="NL:[http://neurolex.org/wiki/Category:Reuniens_nucleus Reuniens nucleus]"
-					function="Gate information between OMPFC and HC dependent upon attentive/arousal states"
-					notes="Regulate amount of neural traffic with changes in attentiveness"
-					/>
-				<element id="HBA.FD.TH.RH" name="Rhomboidal Nucleus of Thalamus" mapped="true" type="nucleus"
-					refs="NL:[http://neurolex.org/wiki/Category:Rhomboidal_nucleus Rhomboidal nucleus]"
-					function="Communication of information across memory delays to guide memory responses"
-					notes="like RE, return projection from PFC to HC, spatial working memory"
-					/>
-				<element id="LMC.FD.TH.SF" name="Subfascicular Nucleus of Thalamus" mapped="true" type="nucleus"
-					refs="NL:[http://neurolex.org/wiki/Category:Subfascicular_nucleus Subfascicular nucleus]"
-					function="Relays from PAG to Rhape nuclei, Inferior olive nucleus"
-					/>
-			</element>
 			<element id="FD.TH.PTH" name="Posterior Thalamus" refs="NL:[http://neurolex.org/wiki/Category:Posterior_nuclear_complex Posterior nuclear complex];NL:[http://neurolex.org/wiki/Category:Posterior_thalamus Posterior thalamus]">
-				<element id="LMC.FD.TH.LI" name="Limitans Nucleus of Thalamus" mapped="true" type="nucleus"
+				<element id="FEC.FD.TH.LI" name="Limitans Nucleus of Thalamus" mapped="true" type="nucleus"
 					refs="NL:[http://neurolex.org/wiki/Category:Limitans_nucleus Limitans nucleus]"
 					function="Multisensory projection to striatum"
 					notes="From SC, trigeminal nucleus, superior and inferior colliculus"
