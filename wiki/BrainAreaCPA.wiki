@@ -5,10 +5,93 @@
 <wiki:toc max_depth="2" />
 
 = Local Circuits =
+(generated)
+
+|| *ID* || *Name* || *Regions* ||
+|| CPAALL || TBD || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC], [BrainRegionPHA_NC_INS_HR PHA.NC.INS.HR], [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC], [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC], [BrainRegionPHA_NC_TPC PHA.NC.TPC] ||
+
+== TBD ==
+
+
+<img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/CPA_CPAALL.dot.png" alt="unavailable">
+
+|| *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
+|| [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || Anterior Insular Cortex || cortex, BA 14 || FMU || Risky and moral decision making, articulation ||  ||
+|| [BrainRegionPHA_NC_INS_HR PHA.NC.INS.HR] || Anterior Temporal Lobe || cortex, BA 15 || FMU || Relaying blood pressure and blood chemistry information to brain || Cortical target of information coming through<BR>Hering's nerves, active during panic attacks ||
+|| [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || Posterior Insular Cortex || cortex, BA 13 || FMU || Awareness and sensation of pain ||  ||
+|| [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || Peripaleocortical Claustral || cortex, BA 16 || FMU || Relays proprioception || Dentate gyrus -> lateropolaris magnoceflularis -><BR>this, agranular orbital, lateral ||
+|| [BrainRegionPHA_NC_TPC PHA.NC.TPC] || Temporopolar Cortex || cortex, BA 38 || FMU || Self representation, semantic (left) and autobiographic (right) ||  ||
+
+*Internal Region Connections:*
+
+|| *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (Iav -> IadIap, abstract)] ||
+||  || [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (Iav -> IadIap, abstract)] ||
+|| [BrainRegionPHA_NC_TPC PHA.NC.TPC] || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || neocortex-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (tPole -> Insula, abstract)] ||
+
+*External Inbound Region Connections:*
+
+|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| <font color="red">Cortical</font> || || || || || ||
+|| [BrainAreaBAA BAA] || [BrainRegionPHA_NC_INS_HR PHA.NC.INS.HR] || [BrainRegionSMA_FD_TH_VPL SMA.FD.TH.VPL] || Ventral Posterolateral Nucleus || nucleus-neocortex || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (TH -> INS, abstract)] ||
+||  || [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || [BrainRegionSMA_FD_TH_VPI SMA.FD.TH.VPI] || Ventral Posteroinferior Nucleus || nucleus-neocortex || [http://users.atw.hu/blp6/BLP6/HTML/C0079780323045827.htm Pain matrix (TH.VPI -> INS)] ||
+||  ||  || [BrainRegionSMA_FD_TH_VPM SMA.FD.TH.VPM] || Ventral Posteromedial Nucleus || nucleus-neocortex || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (TH -> INS, abstract)] ||
+||  ||  || [BrainRegionSMA_NC_SPL_SA SMA.NC.SPL.SA] || Somatosensory Association Cortex || neocortex-neocortex || (unknown reference) ||
+|| [BrainAreaSAA SAA] || [BrainRegionPHA_NC_TPC PHA.NC.TPC] || [BrainRegionACA_NC_A3 ACA.NC.A3] || Wernicke's area A3 || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1364661312002823 Language-Related Regions (STG22a -> TC)] ||
+||  ||  || [BrainRegionVCA_NC_IT_TEO VCA.NC.IT.TEO] || Preoccipital Inferotemporal Area || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1364661312002823 Language-Related Regions (MTG21 -> TC)] ||
+|| <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaAMA AMA] || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || [BrainRegionPHA_FT_EPF PHA.FT.EPF] || Endopiriform Nucleus || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (EnP -> Iav, abstract)] ||
+|| [BrainAreaFEC FEC] || [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || [BrainRegionFEC_FD_TH_LI FEC.FD.TH.LI] || Limitans Nucleus of Thalamus || nucleus-neocortex || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (TH -> INS, abstract)] ||
+|| [BrainAreaLPC LPC] || [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || [BrainRegionLPC_HP_PB LPC.HP.PB] || Parabrachial Nucleus || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PB -> Gud, abstract)] ||
+|| [BrainAreaMMA MMA] || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || Piriform Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PiR -> Iav, abstract)] ||
+
+*External Outbound Region Connections:*
+
+|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| <font color="red">Cortical</font> || || || || || ||
+|| [BrainAreaEPA EPA] || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || Ventral Anterior Cingulate Area || neocortex-neocortex || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (INS -> ACG, abstract)] ||
+||  ||  || [BrainRegionFCA_NC_IPG FCA.NC.IPG] || Inferior Prefrontal Gyrus || neocortex-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (Insula -> fPole, abstract)] ||
+||  || [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || [BrainRegionCGA_NC_DACG CGA.NC.DACG] || Dorsal Anterior Cingulate Area || neocortex-neocortex || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (INS -> ACG, abstract)] ||
+||  ||  || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || neocortex-neocortex || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (INS -> MPFC, abstract)] ||
+||  || [BrainRegionPHA_NC_TPC PHA.NC.TPC] || [BrainRegionFCA_NC_IPG FCA.NC.IPG] || Inferior Prefrontal Gyrus || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1364661312002823 Language-Related Regions (TC -> vIFC)] ||
+|| [BrainAreaSAA SAA] || [BrainRegionPHA_NC_TPC PHA.NC.TPC] || [BrainRegionACA_NC_BRA ACA.NC.BRA] || Broca's Area || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1364661312002823 Language-Related Regions (TC -> BA45)] ||
+|| <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaAMA AMA] || [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || [BrainRegionBFA_FT_AM BFA.FT.AM] || Amygdala || neocortex-nucleus || (unknown reference) ||
+|| [BrainAreaMMA MMA] || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || Perirhinal Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (Iav -> PrC, abstract)] ||
+||  || [BrainRegionPHA_NC_INS_HR PHA.NC.INS.HR] || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || Perirhinal Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763409002061 Contribution of hippocampal region CA3 to consciousness (AnteriorTemporal -> PRCortex)] ||
+||  || [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || Piriform Cortex || neocortex-neocortex || (unknown reference) ||
+||  ||  || [BrainRegionPHA_NC_PRS PHA.NC.PRS] || Presubiculum || neocortex-neocortex || (unknown reference) ||
 
 = Thirdparty Circuits =
 (generated)
 
+  * [http://c431376.r76.cf2.rackcdn.com/18691/fnhum-06-00184-HTML/image_m/fnhum-06-00184-g001.jpg Directed Effort Network] - see [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Reference]
+
+<img src="http://c431376.r76.cf2.rackcdn.com/18691/fnhum-06-00184-HTML/image_m/fnhum-06-00184-g001.jpg" alt="unavailable">
+
+  * [http://ars.els-cdn.com/content/image/1-s2.0-S1364661312002823-gr2.jpg Language-Related Regions] - see [http://www.sciencedirect.com/science/article/pii/S1364661312002823 Reference]
+
+<img src="http://ars.els-cdn.com/content/image/1-s2.0-S1364661312002823-gr2.jpg" alt="unavailable">
+
+  * [http://www.nature.com/npp/journal/v35/n1/images/npp2009104f10.jpg Medial prefrontal network] - see [http://www.nature.com/npp/journal/v35/n1/fig_tab/npp2009104f10.html Reference]
+
+<img src="http://www.nature.com/npp/journal/v35/n1/images/npp2009104f10.jpg" alt="unavailable">
+
+  * [http://users.atw.hu/blp6/BLP6/HTML/common/M9780323045827-007-f005.jpg Pain matrix] - see [http://users.atw.hu/blp6/BLP6/HTML/C0079780323045827.htm Reference]
+
+<img src="http://users.atw.hu/blp6/BLP6/HTML/common/M9780323045827-007-f005.jpg" alt="unavailable">
+
+  * [http://ars.els-cdn.com/content/image/1-s2.0-S0149763409002061-gr1.jpg Contribution of hippocampal region CA3 to consciousness] - see [http://www.sciencedirect.com/science/article/pii/S0149763409002061 Reference]
+
+<img src="http://ars.els-cdn.com/content/image/1-s2.0-S0149763409002061-gr1.jpg" alt="unavailable">
+
+
 = References =
 (generated)
+
+  * http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full
+  * http://www.sciencedirect.com/science/article/pii/S1364661312002823
+  * http://www.nature.com/npp/journal/v35/n1/fig_tab/npp2009104f10.html
+  * http://users.atw.hu/blp6/BLP6/HTML/C0079780323045827.htm
+  * http://www.sciencedirect.com/science/article/pii/S0149763409002061
 
