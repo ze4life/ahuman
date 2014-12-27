@@ -324,7 +324,25 @@
 			<element id="BFA.FD.MHB" name="Medial Habenula" refs="NL:[http://neurolex.org/wiki/Category:Medial_habenular_nucleus Medial habenular nucleus]"/>
 		</element>
 
-		<element id="HTA.FD.HT" name="Hypothalamus" refs="NL:[http://neurolex.org/wiki/Category:Hypothalamus Hypothalamus]">
+		<element id="HTA.FD.HT" name="Hypothalamus" 
+			refs="NL:[http://neurolex.org/wiki/Category:Hypothalamus Hypothalamus]"
+			>
+			<element id="FD.MB" name="Mammillary Body" refs="NL:[http://neurolex.org/wiki/Category:Mammillary_body Mammillary body]">
+				<element id="PHA.FD.MB.LMB" name="Lateral Mammillary Nucleus" mapped="true" type="nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Lateral_mammillary_nucleus Lateral mammillary nucleus]"
+					function="Generate theta rythm and relay to HC"
+					notes="Memory, recognition, spatial awareness, and interpreting the context of events"
+					/>
+				<element id="HBA.FD.MB.MMB" name="Medial Mammillary Nucleus" mapped="true" type="nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Medial_mammillary_nucleus Medial mammillary nucleus]"
+					function="Relay for impulses coming from AM and HC"
+					notes="Memory, recognition, spatial awareness, and interpreting the context of events"
+					>
+					<element name="Mediolateral Mammillary Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_part_of_medial_mammillary_nucleus Lateral part of medial mammillary nucleus]"/>
+					<element name="Medial Part of Medial Mammillary Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_part_of_medial_mammillary_nucleus Medial part of medial mammillary nucleus]"/>
+				</element>
+			</element>
+
 			<element id="HTA.FD.HT.AHT" name="Anterior Hypothalamus Area" 
 				refs="NL:[http://neurolex.org/wiki/Category:Anterior_hypothalamus Anterior hypothalamus];NL:[http://neurolex.org/wiki/Category:Anterior_hypothalamic_region Anterior hypothalamic region]"
 				>
@@ -487,71 +505,6 @@
 			</element>
 		</element>
 		
-		<element id="VBA.FD.LGN" name="Lateral Geniculate Nucleus" mapped="true" type="nucleus"
-			refs="NL:[http://neurolex.org/wiki/Category:Lateral_geniculate_body Lateral geniculate body]"
-			function="Temporal decorrelation"
-			notes="Only 10% of inputs to LGN come from the retina. 90% are modulatory inputs from cortex and the brainstem"
-			>
-			<element name="Dorsolateral Geniculate Body" refs="NL:[http://neurolex.org/wiki/Category:Dorsal_nucleus_of_lateral_geniculate_body Dorsal nucleus of lateral geniculate body]"/>
-			<element name="Intergeniculate Leaflet of Lateral Geniculate Complex" refs="NL:[http://neurolex.org/wiki/Category:Intergeniculate_leaflet_of_the_lateral_geniculate_complex Intergeniculate leaflet of the lateral geniculate complex]"/>
-			<element name="Ventrolateral Geniculate Body" refs="NL:[http://neurolex.org/wiki/Category:Ventral_nucleus_of_lateral_geniculate_body Ventral nucleus of lateral geniculate body]"/>
-		</element>
-
-		<element id="FD.MB" name="Mammillary Body" refs="NL:[http://neurolex.org/wiki/Category:Mammillary_body Mammillary body]">
-			<element id="PHA.FD.MB.LMB" name="Lateral Mammillary Nucleus" mapped="true" type="nucleus"
-				refs="NL:[http://neurolex.org/wiki/Category:Lateral_mammillary_nucleus Lateral mammillary nucleus]"
-				function="Generate theta rythm and relay to HC"
-				notes="Memory, recognition, spatial awareness, and interpreting the context of events"
-				/>
-			<element id="HBA.FD.MB.MMB" name="Medial Mammillary Nucleus" mapped="true" type="nucleus"
-				refs="NL:[http://neurolex.org/wiki/Category:Medial_mammillary_nucleus Medial mammillary nucleus]"
-				function="Relay for impulses coming from AM and HC"
-				notes="Memory, recognition, spatial awareness, and interpreting the context of events"
-				>
-				<element name="Mediolateral Mammillary Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_part_of_medial_mammillary_nucleus Lateral part of medial mammillary nucleus]"/>
-				<element name="Medial Part of Medial Mammillary Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_part_of_medial_mammillary_nucleus Medial part of medial mammillary nucleus]"/>
-			</element>
-		</element>
-
-		<element id="ABA.FD.TH.MGB" name="Medial Geniculate Body" mapped="true" type="nucleus"
-			refs="NL:[http://neurolex.org/wiki/Category:Medial_geniculate_body Medial geniculate body]"
-				function="Detection of the relative intensity and duration of a sound, relay to Auditory Cortex"
-				notes="Thalamus"
-			>
-			<element name="Anterodorsal Nucleus of Medial Geniculate Body" refs="NL:[http://neurolex.org/wiki/Category:Anterodorsal_nucleus_of_medial_geniculate_body Anterodorsal nucleus of medial geniculate body]"/>
-			<element name="Dorsal Nucleus of Medial Geniculate Body" refs="NL:[http://neurolex.org/wiki/Category:Dorsal_nucleus_of_medial_geniculate_body Dorsal nucleus of medial geniculate body]"/>
-			<element name="Magnocellular Nucleus of Medial Geniculate Body" refs="NL:[http://neurolex.org/wiki/Category:Magnocellular_nucleus_of_medial_geniculate_body Magnocellular nucleus of medial geniculate body]"/>
-			<element name="Medial Nucleus of Medial Geniculate Body" refs="NL:[http://neurolex.org/wiki/Category:Medial_nucleus_of_medial_geniculate_body Medial nucleus of medial geniculate body]"/>
-			<element name="Posterodorsal Nucleus of Medial Geniculate Body" refs="NL:[http://neurolex.org/wiki/Category:Posterodorsal_nucleus_of_medial_geniculate_body Posterodorsal nucleus of medial geniculate body]"/>
-			<element name="Ventral Nucleus of Medial Geniculate Body" refs="NL:[http://neurolex.org/wiki/Category:Ventral_nucleus_of_medial_geniculate_body Ventral nucleus of medial geniculate body]">
-				<element name="Medial Geniculate Body Lateral Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_geniculate_body_lateral_nucleus Medial geniculate body lateral nucleus]"/>
-				<element name="Medial Geniculate Body Ovoid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_geniculate_body_ovoid_nucleus Medial geniculate body ovoid nucleus]"/>
-			</element>
-		</element>
-
-		<element id="FD.PV" name="Pulvinar" refs="NL:[http://neurolex.org/wiki/Category:Pulvinar Pulvinar]">
-			<element id="VBA.FD.PV.IPV" name="Inferior Pulvinar" mapped="true" type="nucleus"
-				refs="NL:[http://neurolex.org/wiki/Category:Inferior_pulvinar_nucleus Inferior pulvinar nucleus]"
-				function="Dorsal =Where= Stream"
-				notes="Thalamus"
-				/>
-			<element id="VBA.FD.PV.LPV" name="Lateral Pulvinar" mapped="true" type="nucleus"
-				refs="NL:[http://neurolex.org/wiki/Category:Lateral_pulvinar_nucleus Lateral pulvinar nucleus]"
-				function="Ventral =What= Stream"
-				notes="Thalamus"
-				/>
-			<element id="VBA.FD.PV.MPV" name="Medial Pulvinar" mapped="true" type="nucleus"
-				refs="NL:[http://neurolex.org/wiki/Category:Medial_pulvinar Medial pulvinar];NL:[http://neurolex.org/wiki/Category:Medial_pulvinar_nucleus Medial pulvinar nucleus]"
-				function="Integration of associative cortical information and projects to visuomotor-related cortex"
-				notes="CG, PMC, PFC connections"
-				/>
-			<element id="SMA.FD.PV.OPV" name="Oral Pulvinar" mapped="true" type="nucleus"
-				refs="NL:[http://neurolex.org/wiki/Category:Oral_pulvinar_nucleus Oral pulvinar nucleus]"
-				function="Somatosensory functions"
-				notes="Thalamus, connected with parietal cortex, anterior pulvinar"
-				/>
-		</element>
-
 		<element id="LPC.FD.RT" name="Retina" mapped="true" type="nucleus"
 			function="Spatial decorrelation through center surround inhibition"
 			notes="100:1 cones/rods to ganglion cells aggregation, edge extraction"
@@ -588,6 +541,55 @@
 		</element>
 
 		<element id="FD.TH" name="Thalamus" refs="NL:[http://neurolex.org/wiki/Category:Thalamus Thalamus];NL:[http://neurolex.org/wiki/Category:Nuclei_of_the_thalamus Nuclei of the thalamus]">
+			<element id="VBA.FD.LGN" name="Lateral Geniculate Nucleus" mapped="true" type="nucleus"
+				refs="NL:[http://neurolex.org/wiki/Category:Lateral_geniculate_body Lateral geniculate body]"
+				function="Temporal decorrelation"
+				notes="Only 10% of inputs to LGN come from the retina. 90% are modulatory inputs from cortex and the brainstem"
+				>
+				<element name="Dorsolateral Geniculate Body" refs="NL:[http://neurolex.org/wiki/Category:Dorsal_nucleus_of_lateral_geniculate_body Dorsal nucleus of lateral geniculate body]"/>
+				<element name="Intergeniculate Leaflet of Lateral Geniculate Complex" refs="NL:[http://neurolex.org/wiki/Category:Intergeniculate_leaflet_of_the_lateral_geniculate_complex Intergeniculate leaflet of the lateral geniculate complex]"/>
+				<element name="Ventrolateral Geniculate Body" refs="NL:[http://neurolex.org/wiki/Category:Ventral_nucleus_of_lateral_geniculate_body Ventral nucleus of lateral geniculate body]"/>
+			</element>
+
+			<element id="ABA.FD.TH.MGB" name="Medial Geniculate Body" mapped="true" type="nucleus"
+				refs="NL:[http://neurolex.org/wiki/Category:Medial_geniculate_body Medial geniculate body]"
+					function="Detection of the relative intensity and duration of a sound, relay to Auditory Cortex"
+					notes="Thalamus"
+				>
+				<element name="Anterodorsal Nucleus of Medial Geniculate Body" refs="NL:[http://neurolex.org/wiki/Category:Anterodorsal_nucleus_of_medial_geniculate_body Anterodorsal nucleus of medial geniculate body]"/>
+				<element name="Dorsal Nucleus of Medial Geniculate Body" refs="NL:[http://neurolex.org/wiki/Category:Dorsal_nucleus_of_medial_geniculate_body Dorsal nucleus of medial geniculate body]"/>
+				<element name="Magnocellular Nucleus of Medial Geniculate Body" refs="NL:[http://neurolex.org/wiki/Category:Magnocellular_nucleus_of_medial_geniculate_body Magnocellular nucleus of medial geniculate body]"/>
+				<element name="Medial Nucleus of Medial Geniculate Body" refs="NL:[http://neurolex.org/wiki/Category:Medial_nucleus_of_medial_geniculate_body Medial nucleus of medial geniculate body]"/>
+				<element name="Posterodorsal Nucleus of Medial Geniculate Body" refs="NL:[http://neurolex.org/wiki/Category:Posterodorsal_nucleus_of_medial_geniculate_body Posterodorsal nucleus of medial geniculate body]"/>
+				<element name="Ventral Nucleus of Medial Geniculate Body" refs="NL:[http://neurolex.org/wiki/Category:Ventral_nucleus_of_medial_geniculate_body Ventral nucleus of medial geniculate body]">
+					<element name="Medial Geniculate Body Lateral Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_geniculate_body_lateral_nucleus Medial geniculate body lateral nucleus]"/>
+					<element name="Medial Geniculate Body Ovoid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_geniculate_body_ovoid_nucleus Medial geniculate body ovoid nucleus]"/>
+				</element>
+			</element>
+
+			<element id="FD.PV" name="Pulvinar" refs="NL:[http://neurolex.org/wiki/Category:Pulvinar Pulvinar]">
+				<element id="VBA.FD.PV.IPV" name="Inferior Pulvinar" mapped="true" type="nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Inferior_pulvinar_nucleus Inferior pulvinar nucleus]"
+					function="Dorsal =Where= Stream"
+					notes="Thalamus"
+					/>
+				<element id="VBA.FD.PV.LPV" name="Lateral Pulvinar" mapped="true" type="nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Lateral_pulvinar_nucleus Lateral pulvinar nucleus]"
+					function="Ventral =What= Stream"
+					notes="Thalamus"
+					/>
+				<element id="VBA.FD.PV.MPV" name="Medial Pulvinar" mapped="true" type="nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Medial_pulvinar Medial pulvinar];NL:[http://neurolex.org/wiki/Category:Medial_pulvinar_nucleus Medial pulvinar nucleus]"
+					function="Integration of associative cortical information and projects to visuomotor-related cortex"
+					notes="CG, PMC, PFC connections"
+					/>
+				<element id="SMA.FD.PV.OPV" name="Oral Pulvinar" mapped="true" type="nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Oral_pulvinar_nucleus Oral pulvinar nucleus]"
+					function="Somatosensory functions"
+					notes="Thalamus, connected with parietal cortex, anterior pulvinar"
+					/>
+			</element>
+
 			<element id="CGA.FD.TH.AN" name="Anterior Nucleus of Thalamus" mapped="true" type="nucleus"
 				refs="NL:[http://neurolex.org/wiki/Category:Anterior_nuclear_group Anterior nuclear group]"
 				function="Extended hippocampal system"
