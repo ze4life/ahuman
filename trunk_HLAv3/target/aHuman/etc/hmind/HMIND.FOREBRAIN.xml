@@ -8,44 +8,84 @@
 				refs="wiki:[https://en.wikipedia.org/wiki/Anterior_olfactory_nucleus Anterior olfactory nucleus]"
 				function="Regulate odor information flow"/>
 
-		<element id="BFA.FT.EXTAM" name="Extended Amygdala">
-			<element id="BFA.FT.AM" name="Amygdala" mapped="true" type="nucleus"
+		<element id="FAM.FT.EXTAM" name="Extended Amygdala"
+			refs="NA:[http://physrev.physiology.org/content/83/3/803 Amygdaloid complex]"
+			>
+			<element id="FAM.FT.AM" name="Amygdala" 
 				refs="NL:[http://neurolex.org/wiki/Category:Amygdala Amygdala]"
 				function="Experiencing and recognizing emotions"
 				>
-				<element name="Basolateral Nuclear Complex" refs="NL:[http://neurolex.org/wiki/Category:Basolateral_nuclear_complex Basolateral nuclear complex]">
-					<element name="Accessory Basal Amygdaloid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Accessory_basal_amygdaloid_nucleus Accessory basal amygdaloid nucleus]"/>
-					<element name="Basal Amygdaloid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Basal_amygdaloid_nucleus Basal amygdaloid nucleus]">
-						<element name="Basolateral Amygdaloid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_part_of_basal_amygdaloid_nucleus Lateral part of basal amygdaloid nucleus]"/>
-						<element name="Mediolateral Amygdaloid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_part_of_basal_amygdaloid_nucleus Medial part of basal amygdaloid nucleus]"/>
-					</element>
-					<element name="Lateral Amygdaloid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_amygdaloid_nucleus Lateral amygdaloid nucleus]">
+				<element id="FAM.FT.AM.BL" name="Basolateral Nuclear Complex" 
+					synonyms="frontotemporal group, deep group"
+					refs="NL:[http://neurolex.org/wiki/Category:Basolateral_nuclear_complex Basolateral nuclear complex]; NL:[http://neurolex.org/wiki/Category:Anterior_amygdaloid_area Anterior amygdaloid area]"
+					function="stimulating emotional response"
+					>
+					<element id="FAM.FT.AM.LA" name="Lateral Amygdaloid Nucleus" mapped="true" type="nucleus"
+						refs="NL:[http://neurolex.org/wiki/Category:Lateral_amygdaloid_nucleus Lateral amygdaloid nucleus]"
+						function="plasticity, conditional (neutral stimulus) to specific (taste, smell, visceral) unconditional (positive or negative stimulus) association"
+						notes="sensory interface of amygdala during emotional learning; inferior cells retain memory"
+						>
 						<element name="Dorsolateral Amygdaloid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_amygdaloid_nucleus,_dorsolateral_part Lateral amygdaloid nucleus, dorsolateral part]"/>
 						<element name="Ventrolateral Amygdaloid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_amygdaloid_nucleus,_ventrolateral_part Lateral amygdaloid nucleus, ventrolateral part]"/>
 						<element name="Ventromedial Amygdaloid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_amygdaloid_nucleus,_ventromedial_part Lateral amygdaloid nucleus, ventromedial part]"/>
 					</element>
+					<element id="FAM.FT.AM.B" name="Basal Amygdaloid Nucleus" mapped="true" type="nucleus"
+						refs="NL:[http://neurolex.org/wiki/Category:Basal_amygdaloid_nucleus Basal amygdaloid nucleus]"
+						function="enhance explicit memories in hippocampus about emotional situations"
+						notes="conditioned fear expression and extinction"
+						>
+						<element name="Basolateral Amygdaloid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_part_of_basal_amygdaloid_nucleus Lateral part of basal amygdaloid nucleus]"/>
+						<element name="Mediolateral Amygdaloid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_part_of_basal_amygdaloid_nucleus Medial part of basal amygdaloid nucleus]"/>
+					</element>
+					<element id="FAM.FT.AM.AB" name="Accessory Basal Amygdaloid Nucleus" mapped="true" type="nucleus"
+						refs="NL:[http://neurolex.org/wiki/Category:Accessory_basal_amygdaloid_nucleus Accessory basal amygdaloid nucleus]"
+						function="proections to maxrix of core of NACC"
+						/>
 				</element>
-				<element name="Central Amygdaloid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Central_amygdaloid_nucleus Central amygdaloid nucleus]">
-					<element name="Lateral Central Amygdaloid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_central_nucleus_of_the_amygdala Lateral central nucleus of the amygdala]"/>
-					<element name="Medial Central Amygdaloid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_central_nucleus_of_the_amygdala Medial central nucleus of the amygdala]"/>
+				<element id="FAM.FT.AM.CTM" name="Corticomedial Nuclear Complex" 
+					refs="NL:[http://neurolex.org/wiki/Category:Corticomedial_nuclear_complex Corticomedial nuclear complex]"
+					>
+					<element id="FAM.FT.AM.CT" name="Cortical Amygdaloid Nucleus" mapped="true" type="nucleus"
+						refs="NL:[http://neurolex.org/wiki/Category:Cortical_amygdaloid_nucleus Cortical amygdaloid nucleus]; NL:[http://neurolex.org/wiki/Category:Periamygdaloid_cortex Periamygdaloid cortex]"
+						function="olfactory processing"
+						/>
+					<element id="FAM.FT.AM.CM" name="Centromedial Nuclei"
+						synonyms="autonomic group"
+						function="attention and arousal"
+						notes="evolutionarily primitive division"
+						>
+						<element id="FAM.FT.AM.CEA" name="Central Amygdala" mapped="true" type="nucleus"
+							synonyms="CeA"
+							refs="NL:[http://neurolex.org/wiki/Category:Central_amygdaloid_nucleus Central amygdaloid nucleus]"
+							function="mediate behavioral responses, link to general aspects of reinforcement"
+							notes="controls emotional reactions and physiological responses via connections to brainstem"
+							>
+							<element name="Central Amygdaloid Nucleus, capsular subdivision" 
+								synonyms="CeC" 
+								refs="NL:[http://neurolex.org/wiki/Category:Lateral_central_nucleus_of_the_amygdala Lateral central nucleus of the amygdala]"
+								notes="gustatory, somatosensory, visual, auditory, frontal cortex, perirhinal cortex, ET, SUB -> X -> HT-dl/cl, CeM"
+								/>
+							<element name="Central Amygdaloid Nucleus, lateral subdivision" 
+								refs="NL:[http://neurolex.org/wiki/Category:Lateral_central_nucleus_of_the_amygdala Lateral central nucleus of the amygdala]"
+								/>
+							<element name="Medial Central Amygdaloid Nucleus" 
+								refs="NL:[http://neurolex.org/wiki/Category:Medial_central_nucleus_of_the_amygdala Medial central nucleus of the amygdala]"
+								/>
+						</element>
+						<element id="FAM.FT.AM.M" name="Medial Amygdala" mapped="true" type="nucleus"
+							refs="NL:[http://neurolex.org/wiki/Category:Medial_amygdala Medial amygdala]; NL:[http://neurolex.org/wiki/Category:Medial_amygdaloid_nucleus Medial amygdaloid nucleus]"
+							function="sense of smell and pheromone-processing"
+							/>
+					</element>
 				</element>
-				<element name="Corticomedial Nuclear Complex" refs="NL:[http://neurolex.org/wiki/Category:Corticomedial_nuclear_complex Corticomedial nuclear complex]">
-					<element name="Anterior Amygdaloid Area" refs="NL:[http://neurolex.org/wiki/Category:Anterior_amygdaloid_area Anterior amygdaloid area]"/>
-					<element name="Cortical Amygdaloid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Cortical_amygdaloid_nucleus Cortical amygdaloid nucleus]"/>
-					<element name="Medial Amygdaloid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_amygdaloid_nucleus Medial amygdaloid nucleus]"/>
-					<element name="Periamygdaloid Cortex" refs="NL:[http://neurolex.org/wiki/Category:Periamygdaloid_cortex Periamygdaloid cortex]"/>
-				</element>
-				<element name="Intercalated Amygdaloid Nuclei" refs="NL:[http://neurolex.org/wiki/Category:Intercalated_amygdaloid_nuclei Intercalated amygdaloid nuclei]"/>
-				<element name="Medial Amygdala" refs="NL:[http://neurolex.org/wiki/Category:Medial_amygdala Medial amygdala]"/>
-			</element>
-			<element id="FT.SIN" name="Substantia innominata">
-				<element id="LMC.FT.NBM" name="Basal Nucleus of Meynert" mapped="true" type="nucleus"
-					refs="NL:[http://neurolex.org/wiki/Category:Basal_nucleus Basal nucleus];NL:[http://neurolex.org/wiki/Category:Substantia_innominata Substantia innominata]"
-					function="Control imagination vs perception"
-					notes="ACh source, attention; modulatory nucleus"
+				<element id="FAM.FT.AM.ITC" name="Intercalated Amygdaloid Nuclei" mapped="true" type="nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Intercalated_amygdaloid_nuclei Intercalated amygdaloid nuclei]"
+					function="inhibit excessive emotional behavior"
+					notes="inhibitory"
 					/>
 			</element>
-			<element id="BFA.FT.BNST" name="Bed Nucleus of Stria Terminalis" mapped="true" type="nucleus"
+
+			<element id="FAM.FT.BNST" name="Bed Nucleus of Stria Terminalis" mapped="true" type="nucleus"
 				refs="NL:[http://neurolex.org/wiki/Category:Bed_nucleus_of_stria_terminalis Bed nucleus of stria terminalis]"
 				function="Mediate slow longer-lasting responses that accompany sustained threats"
 				notes="Major output from AM to HT, part of extended amygdala"
@@ -54,6 +94,40 @@
 				<element name="Lateral Bed Nucleus of Stria Terminalis" refs="NL:[http://neurolex.org/wiki/Category:Lateral_nucleus_of_stria_terminalis Lateral nucleus of stria terminalis]"/>
 				<element name="Medial Bed Nucleus of Stria Terminalis" refs="NL:[http://neurolex.org/wiki/Category:Medial_nucleus_of_stria_terminalis Medial nucleus of stria terminalis]"/>
 			</element>
+
+			<element id="FT.SIN" name="Substantia innominata">
+				<element id="LMC.FT.NBM" name="Basal Nucleus of Meynert" mapped="true" type="nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Basal_nucleus Basal nucleus];NL:[http://neurolex.org/wiki/Category:Substantia_innominata Substantia innominata]"
+					function="Control imagination vs perception"
+					notes="ACh source, attention; modulatory nucleus"
+					/>
+			</element>
+
+			<element id="FAM.FT.IPAC" name="Interstitial Anterior Commissural Nucleus" mapped="true" type="nucleus" 
+				refs="NL:[http://neurolex.org/wiki/Category:Interstitial_nucleus_of_the_posterior_limb_of_the_anterior_commissure Interstitial nucleus of the posterior limb of the anterior commissure]"
+				function="Sharp, acute pain sensation"
+				notes="Related to the central extended amygdala"
+				/>
+
+			<element id="FAM.FT.EPF" name="Endopiriform Nucleus" mapped="true" type="nucleus" 
+				refs="NL:[http://neurolex.org/wiki/Category:Endopiriform_nucleus Endopiriform nucleus]"
+				function="Putative relay of limbic-associated cortical-like areas subserving affective information"
+				/>
+
+			<element id="FAM.FT.SEP" name="Septal Nucleus" mapped="true" type="nucleus"
+				refs="NL:[http://neurolex.org/wiki/Category:Septal_nuclear_complex Septal nuclear complex]"
+				function="Inhibition of fear and expression of pleasurable responses"
+				>
+				<element id="FAM.FT.SEP.DBB" name="Diagonal Band of Broca" refs="NL:[http://neurolex.org/wiki/Category:Nuclei_of_the_diagonal_band Nuclei of the diagonal band]"/>
+				<element name="Medial Septal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_septal_nucleus Medial septal nucleus]"/>
+				<element name="Dorsal Septal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Dorsal_septal_nucleus Dorsal septal nucleus]"/>
+				<element name="Lateral Septal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_septal_nuclei Lateral septal nuclei];NL:[http://neurolex.org/wiki/Category:Lateral_septal_nucleus Lateral septal nucleus]"/>
+				<element name="Nucleus of Anterior Commissure" refs="NL:[http://neurolex.org/wiki/Category:Nucleus_of_anterior_commissure Nucleus of anterior commissure]"/>
+				<element name="Septofimbrial Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Septofimbrial_nucleus Septofimbrial nucleus]"/>
+				<element name="Septohippocampal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Septohippocampal_nucleus Septohippocampal nucleus]"/>
+				<element name="Triangular Septal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Triangular_septal_nucleus Triangular septal nucleus]"/>
+			</element>
+
 		</element>
 
 		<element id="BGA.FT.BG" name="Basal Ganglia">
@@ -246,11 +320,6 @@
 
 		</element>
 
-		<element id="PHA.FT.EPF" name="Endopiriform Nucleus" mapped="true" type="nucleus" 
-			refs="NL:[http://neurolex.org/wiki/Category:Endopiriform_nucleus Endopiriform nucleus]"
-			function="Putative relay of limbic-associated cortical-like areas subserving affective information"
-			/>
-
 		<element id="HBA.FT.HF" name="Hippocampal Formation"
 			notes="allocortex"
 			>
@@ -290,33 +359,13 @@
 			</element>
 		</element>
 
-		<element id="BFA.FT.IPAC" name="Interstitial Anterior Commissural Nucleus" mapped="true" type="nucleus" 
-			refs="NL:[http://neurolex.org/wiki/Category:Interstitial_nucleus_of_the_posterior_limb_of_the_anterior_commissure Interstitial nucleus of the posterior limb of the anterior commissure]"
-			function="Sharp, acute pain sensation"
-			notes="Related to the central extended amygdala"
-			/>
-
-		<element id="BFA.FT.SEP" name="Septal Nucleus" mapped="true" type="nucleus"
-			refs="NL:[http://neurolex.org/wiki/Category:Septal_nuclear_complex Septal nuclear complex]"
-			function="Inhibition of fear and expression of pleasurable responses"
-			>
-			<element id="BFA.FT.SEP.DBB" name="Diagonal Band of Broca" refs="NL:[http://neurolex.org/wiki/Category:Nuclei_of_the_diagonal_band Nuclei of the diagonal band]"/>
-			<element name="Medial Septal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_septal_nucleus Medial septal nucleus]"/>
-			<element name="Dorsal Septal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Dorsal_septal_nucleus Dorsal septal nucleus]"/>
-			<element name="Lateral Septal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_septal_nuclei Lateral septal nuclei];NL:[http://neurolex.org/wiki/Category:Lateral_septal_nucleus Lateral septal nucleus]"/>
-			<element name="Nucleus of Anterior Commissure" refs="NL:[http://neurolex.org/wiki/Category:Nucleus_of_anterior_commissure Nucleus of anterior commissure]"/>
-			<element name="Septofimbrial Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Septofimbrial_nucleus Septofimbrial nucleus]"/>
-			<element name="Septohippocampal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Septohippocampal_nucleus Septohippocampal nucleus]"/>
-			<element name="Triangular Septal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Triangular_septal_nucleus Triangular septal nucleus]"/>
-		</element>
-
 	</division>
 
 	<division id="FDC" name="Forebrain Diencephalon" category="forebrain"
 		dotdef="color=yellow"
 		>
 
-		<element id="BFA.FD.HB" name="Habenula" mapped="true" type="nucleus" 
+		<element id="FAM.FD.HB" name="Habenula" mapped="true" type="nucleus" 
 			refs="NL:[http://neurolex.org/wiki/Category:Habenula Habenula]"
 			function="Encoding negative feedback"
 			>
@@ -648,12 +697,12 @@
 						refs="NL:[http://neurolex.org/wiki/Category:Central_dorsal_nucleus Central dorsal nucleus]"
 						function="viscero-limbic functions"
 						>
-						<element id="BFA.FD.TH.PT" name="Paratenial Nucleus of Thalamus" mapped="true" type="nucleus"
+						<element id="FAM.FD.TH.PT" name="Paratenial Nucleus of Thalamus" mapped="true" type="nucleus"
 							refs="NL:[http://neurolex.org/wiki/Category:Paratenial_nucleus Paratenial nucleus]"
 							function="Direct behavior toward a particular outcome over a range of outcomes"
 							notes="Projects to BNST, AM, OMPFC, ET"
 							/>
-						<element id="BFA.FD.TH.PV" name="Paraventricular Nucleus of Thalamus" mapped="true" type="nucleus"
+						<element id="FAM.FD.TH.PV" name="Paraventricular Nucleus of Thalamus" mapped="true" type="nucleus"
 							refs="NL:[http://neurolex.org/wiki/Category:Paraventricular_nucleus_of_thalamus Paraventricular nucleus of thalamus]"
 							function="Direct behavior toward a particular outcome over a range of outcomes"
 							notes="Projects like PT, but more to BNST, AM"
