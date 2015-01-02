@@ -8,7 +8,7 @@
 (generated)
 
 || *ID* || *Name* || *Regions* ||
-|| MMAALL || TBD || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB], [BrainRegionHBA_FD_TH_RE HBA.FD.TH.RE], [BrainRegionHBA_FD_TH_RH HBA.FD.TH.RH], [BrainRegionHBA_FT_DG HBA.FT.DG], [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1], [BrainRegionHBA_FT_HC_CA2 HBA.FT.HC.CA2], [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3], [BrainRegionHBA_FT_HC_CA4 HBA.FT.HC.CA4], [BrainRegionHBA_FT_HF_SUB HBA.FT.HF.SUB], [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB], [BrainRegionPHA_NC_PAS PHA.NC.PAS], [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET], [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR], [BrainRegionPHA_NC_PH_PPG PHA.NC.PH.PPG], [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR], [BrainRegionPHA_NC_PH_TFTH PHA.NC.PH.TFTH], [BrainRegionPHA_NC_PRS PHA.NC.PRS], [BrainRegionPHA_NC_PSS PHA.NC.PSS] ||
+|| MMAALL || TBD || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB], [BrainRegionHBA_FD_TH_RE HBA.FD.TH.RE], [BrainRegionHBA_FD_TH_RH HBA.FD.TH.RH], [BrainRegionHBA_FT_DG HBA.FT.DG], [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1], [BrainRegionHBA_FT_HC_CA2 HBA.FT.HC.CA2], [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3], [BrainRegionHBA_FT_HC_CA4 HBA.FT.HC.CA4], [BrainRegionHBA_FT_HF_SUB HBA.FT.HF.SUB], [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB], [BrainRegionPHA_FT_EPF PHA.FT.EPF], [BrainRegionPHA_NC_PAS PHA.NC.PAS], [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET], [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR], [BrainRegionPHA_NC_PH_PPG PHA.NC.PH.PPG], [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR], [BrainRegionPHA_NC_PH_TFTH PHA.NC.PH.TFTH], [BrainRegionPHA_NC_PRS PHA.NC.PRS], [BrainRegionPHA_NC_PSS PHA.NC.PSS] ||
 
 == TBD ==
 
@@ -26,6 +26,7 @@
 || [BrainRegionHBA_FT_HC_CA4 HBA.FT.HC.CA4] || Ventromedial Cornu Ammonis of Hippocampus || cortex || FMU || Mediate dynamic regulation of pattern separation in the dentate gyrus || Hippocampus ||
 || [BrainRegionHBA_FT_HF_SUB HBA.FT.HF.SUB] || Subiculum || cortex || FMU || Spatial navigation and mnemonic processing ||  ||
 || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || Lateral Mammillary Nucleus || nucleus || FMU || Generate theta rythm and relay to HC || Memory, recognition, spatial awareness, and<BR>interpreting the context of events ||
+|| [BrainRegionPHA_FT_EPF PHA.FT.EPF] || Endopiriform Nucleus || nucleus || FAU || Putative relay of limbic-associated cortical-like areas subserving affective<BR>information ||  ||
 || [BrainRegionPHA_NC_PAS PHA.NC.PAS] || Parasubiculum || cortex, BA 49 || FMU || Spatial navigation and the integration of head-directional information || Major projects to ET, from CA1,AM ||
 || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || cortex, BA 28 || FMU || Memory consolidation || Parahippocampal gyrus ||
 || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || Piriform Cortex || cortex, BA 34 || FMU || Perception of smells || Olfaction ||
@@ -69,7 +70,8 @@
 ||  || [BrainRegionHBA_FT_HC_CA2 HBA.FT.HC.CA2] || neocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S030645220600755X Flow of impulses in hippocampal region (ENT -> CA2)] ||
 ||  || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || neocortex-allocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (EC -> CA3)] ||
 ||  || [BrainRegionHBA_FT_HF_SUB HBA.FT.HF.SUB] || neocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S030100820900183X Simplified model of hippocampal formation anatomy (EC -> SUB)] ||
-|| [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1571064507000243 KIV model of cortico-hippocampal formation with subcortical projections for motor actions (PC -> EC)] ||
+|| [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || [BrainRegionPHA_FT_EPF PHA.FT.EPF] || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PiR -> EnP)] ||
+||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1571064507000243 KIV model of cortico-hippocampal formation with subcortical projections for motor actions (PC -> EC)] ||
 || [BrainRegionPHA_NC_PH_PPG PHA.NC.PH.PPG] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || neocortex-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (PRHC -> EC)] ||
 || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || [BrainRegionHBA_FT_DG HBA.FT.DG] || neocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PrC -> HF, abstract)] ||
 ||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || neocortex-neocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (PRPH -> ER)] ||
@@ -131,6 +133,7 @@
 ||  ||  || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || Ventral Tegmental Area || nucleus-nucleus-DA || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Mammillary bodies: two memory systems in one (VTN -> MMB)] ||
 ||  || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || Ventral Tegmental Area || nucleus-allocortex-DA || [http://www.impulsecontroldisorders.org/html/cravings.html Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning (VTA -> CA1)] ||
 ||  || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || [BrainRegionLMC_MM_TG_LDT LMC.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus-ACh || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (DTN -> LMam)] ||
+||  || [BrainRegionPHA_FT_EPF PHA.FT.EPF] || [BrainRegionLMC_HP_NI LMC.HP.NI] || Incertus Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
 ||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || Ventral Tegmental Area || nucleus-neocortex-DA || [http://www.impulsecontroldisorders.org/html/cravings.html Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning (VTA -> EC)] ||
 ||  || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || [BrainRegionLMC_HP_NI LMC.HP.NI] || Incertus Nucleus || nucleus-neocortex-gaba || (unknown reference) ||
 || [BrainAreaLPC LPC] || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || [BrainRegionLPC_FT_AON LPC.FT.AON] || Anterior Olfactory Nucleus || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S1571064507000243 KIV model of cortico-hippocampal formation with subcortical projections for motor actions (AON -> PC)] ||
@@ -140,7 +143,8 @@
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
-|| [BrainAreaCPA CPA] || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || Anterior Insular Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PiR -> Iav, abstract)] ||
+|| [BrainAreaCPA CPA] || [BrainRegionPHA_FT_EPF PHA.FT.EPF] || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || Anterior Insular Cortex || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (EnP -> Iav, abstract)] ||
+||  || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || Anterior Insular Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PiR -> Iav, abstract)] ||
 || [BrainAreaEPA EPA] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || Anterior Nucleus of Thalamus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Mammillary bodies: two memory systems in one (MMB -> AMTH)] ||
 ||  || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || allocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S030100820900183X Simplified model of hippocampal formation anatomy (CA1 -> mPFC)] ||
 ||  || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || Anterior Nucleus of Thalamus || allocortex-nucleus || [http://highered.mcgraw-hill.com/sites/dl/free/0071402357/156721/figure350_1.html Principal Connections of Hippocampus (HC -> AN)] ||
@@ -170,8 +174,7 @@
 ||  || [BrainRegionHBA_FT_HF_SUB HBA.FT.HF.SUB] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || Accessory Basal Amygdaloid Nucleus || allocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S030100820900183X Simplified model of hippocampal formation anatomy (SUB -> Amyg, abstract)] ||
 ||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionFAM_FD_TH_PT FAM.FD.TH.PT] || Paratenial Nucleus of Thalamus || neocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (EC -> MID, abstract)] ||
 ||  ||  || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || Accessory Basal Amygdaloid Nucleus || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S030100820900183X Simplified model of hippocampal formation anatomy (EC -> Amyg, abstract)] ||
-||  || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || [BrainRegionFAM_FT_EPF FAM.FT.EPF] || Endopiriform Nucleus || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PiR -> EnP)] ||
-||  ||  || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || Interstitial Anterior Commissural Nucleus || neocortex-nucleus || (unknown reference) ||
+||  || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || Interstitial Anterior Commissural Nucleus || neocortex-nucleus || (unknown reference) ||
 || [BrainAreaFEC FEC] || [BrainRegionHBA_FT_HF_SUB HBA.FT.HF.SUB] || [BrainRegionFEC_FT_ACC_CORE FEC.FT.ACC.CORE] || Nucleus Accumbens Core || allocortex-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/nucleus-accumbens.jpg Nucleus Accumbens (SUB -> NACC, abstract)] ||
 ||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || [BrainRegionFEC_FT_ACC_CORE FEC.FT.ACC.CORE] || Nucleus Accumbens Core || neocortex-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/nucleus-accumbens.jpg Nucleus Accumbens (EC -> NACC, abstract)] ||
 || [BrainAreaLAC LAC] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || [BrainRegionLAC_FD_HT_AH LAC.FD.HT.AH] || Anterior Hypothalamic Nucleus || allocortex-nucleus || [http://www.nature.com/nrn/journal/v5/n7 Feeling (HC -> HT, abstract)] ||
@@ -238,6 +241,10 @@
 
 <img src="http://what-when-how.com/wp-content/uploads/2012/04/tmp3637_thumb.jpg" alt="unavailable">
 
+  * [http://ars.els-cdn.com/content/image/1-s2.0-S0149763401000215-gr4a.gif Gustatory sensory system of rat and macaque] - see [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Reference]
+
+<img src="http://ars.els-cdn.com/content/image/1-s2.0-S0149763401000215-gr4a.gif" alt="unavailable">
+
   * [http://media.wiley.com/mrw_images/compphys/articles/cp010508/image_n/ncp01050839.jpg Entorhinal Cortex Inputs and Outputs] - see [http://www.sciencedirect.com/science/article/pii/S0149763411001722 Reference]
 
 <img src="http://media.wiley.com/mrw_images/compphys/articles/cp010508/image_n/ncp01050839.jpg" alt="unavailable">
@@ -245,10 +252,6 @@
   * [http://ahuman.googlecode.com/svn/images/wiki/research/human/22-reticular-formation-and-limbic-system/F22-2.png Basal Nucleus of Meynert] - see [article:Biological/2005-The-Human-Nervous-System.pdf Reference]
 
 <img src="http://ahuman.googlecode.com/svn/images/wiki/research/human/22-reticular-formation-and-limbic-system/F22-2.png" alt="unavailable">
-
-  * [http://ars.els-cdn.com/content/image/1-s2.0-S0149763401000215-gr4a.gif Gustatory sensory system of rat and macaque] - see [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Reference]
-
-<img src="http://ars.els-cdn.com/content/image/1-s2.0-S0149763401000215-gr4a.gif" alt="unavailable">
 
   * [http://www.scholarpedia.org/w/images/thumb/f/f2/ITCortex_pathway.jpg/400px-ITCortex_pathway.jpg Visual Path to Hippocampus] - see [http://www.scholarpedia.org/article/Inferior_temporal_cortex Reference]
 
@@ -298,9 +301,9 @@
   * http://www.scholarpedia.org/article/Head_direction_cells
   * http://www.sciencedirect.com/science/article/pii/S0149763409002061
   * http://what-when-how.com/neuroscience/the-limbic-system-integrative-systems-part-1/
+  * http://www.sciencedirect.com/science/article/pii/S0149763401000215
   * http://www.sciencedirect.com/science/article/pii/S0149763411001722
   * article:Biological/2005-The-Human-Nervous-System.pdf
-  * http://www.sciencedirect.com/science/article/pii/S0149763401000215
   * http://www.scholarpedia.org/article/Inferior_temporal_cortex
   * http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/
   * http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html
