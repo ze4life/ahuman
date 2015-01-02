@@ -285,7 +285,7 @@ NeuroLink *MindService::createNeuroLink( MindConnectionTypeDef *connectionTypeDe
 		return( NULL );
 
 	// create forward region link - as specified in network connection, though neurolink can be of backward direction
-	MindRegionLink *regionLink = createRegionLink( connectionTypeDef , srcRegion , dstRegion , primary );
+	MindRegionLink *regionLink = createRegionLink( linkDef , srcRegion , dstRegion , primary );
 
 	// check neurolink exists - by neurolink type and region pair, note that different connection types can produce the same link and duplicates will be avoided
 	String linkType = linkDef -> getName();
@@ -319,7 +319,7 @@ NeuroLink *MindService::createNeuroLink( MindConnectionTypeDef *connectionTypeDe
 	return( neurolink );
 }
 
-MindRegionLink *MindService::createRegionLink( MindConnectionTypeDef *connectionType , MindRegion *srcRegion , MindRegion *dstRegion , bool primary ) {
+MindRegionLink *MindService::createRegionLink( MindConnectionLinkTypeDef *connectionType , MindRegion *srcRegion , MindRegion *dstRegion , bool primary ) {
 	// create area link if areas are different
 	MindArea *linkSrcArea = srcRegion -> getArea();
 	MindArea *linkDstArea = dstRegion -> getArea();

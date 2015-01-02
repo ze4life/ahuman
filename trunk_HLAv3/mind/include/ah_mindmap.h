@@ -412,6 +412,7 @@ public:
 	String getSrcRegionType() { return( srcRegionType ); };
 	String getDstRegionType() { return( dstRegionType ); };
 	ClassList<MindConnectionLinkTypeDef>& getLinks() { return( links ); };
+	MindConnectionLinkTypeDef *getPrimaryLink() { return( links.get( 0 ) ); };
 
 protected:
 // utilities
@@ -483,6 +484,7 @@ public:
 
 	MindLocalCircuitDef *getCircuitDef() { return( circuitDef ); };
 	MindConnectionTypeDef *getType() { return( type ); };
+	MindConnectionLinkTypeDef *getPrimaryLinkType();
 	String getId();
 
 // data

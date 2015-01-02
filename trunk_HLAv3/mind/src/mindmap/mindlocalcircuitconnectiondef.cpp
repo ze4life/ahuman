@@ -26,6 +26,10 @@ String MindLocalCircuitConnectionDef::getId() {
 	return( Object::instance );
 }
 
+MindConnectionLinkTypeDef *MindLocalCircuitConnectionDef::getPrimaryLinkType() {
+	return( type -> getPrimaryLink() );
+}
+
 void MindLocalCircuitConnectionDef::resolveReferences( MindMap *map ) {
 	type = map -> getConnectionTypeDefByName( typeName );
 	ASSERTMSG( type != NULL , "connection type=" + typeName + " not found in circuit connection src=" + srcRegion + ", dst=" + dstRegion );
