@@ -10,7 +10,6 @@
 || *ID* || *Name* || *Regions* ||
 || FAMEXE || Executive Circuit || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB], [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] ||
 || FAMHT || Emotional Behavior || [BrainRegionFAM_FD_HB FAM.FD.HB], [BrainRegionFAM_FT_AM_CEA FAM.FT.AM.CEA], [BrainRegionFAM_FT_AM_ITC FAM.FT.AM.ITC], [BrainRegionFAM_FT_BNST FAM.FT.BNST], [BrainRegionFAM_FT_SEP FAM.FT.SEP] ||
-|| FAMOLF || Olfactory Sensory Inputs || [BrainRegionFAM_FT_AM_CT FAM.FT.AM.CT], [BrainRegionFAM_FT_EPF FAM.FT.EPF] ||
 || FAMPS || Polysensory Inputs || [BrainRegionFAM_FT_AM_B FAM.FT.AM.B] ||
 || FAMUS || Unimodal Sensory Inputs || [BrainRegionFAM_FD_TH_PT FAM.FD.TH.PT], [BrainRegionFAM_FD_TH_PV FAM.FD.TH.PV], [BrainRegionFAM_FT_AM_LA FAM.FT.AM.LA], [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] ||
 
@@ -129,31 +128,6 @@
 ||  ||  || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || Lateral Mammillary Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Mammillary bodies: two memory systems in one (SEP -> LMB)] ||
 || <font color="red">Target</font> || || || || || ||
 || [BrainAreaTEA TEA] || [BrainRegionFAM_FD_HB FAM.FD.HB] || [BrainRegionTARGET_TEA_ENDOCRINE TARGET.TEA.ENDOCRINE] || Endocrine Glands || endocrine-pineal-gland || [http://www.scholarpedia.org/article/Habenula Habenula Connections (MHb -> PB)] ||
-
-== Olfactory Sensory Inputs ==
-
-
-<img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/FAM_FAMOLF.dot.png" alt="unavailable">
-
-|| *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionFAM_FT_AM_CT FAM.FT.AM.CT] || Cortical Amygdaloid Nucleus || nucleus || FAU || olfactory processing ||  ||
-|| [BrainRegionFAM_FT_EPF FAM.FT.EPF] || Endopiriform Nucleus || nucleus || FAU || Putative relay of limbic-associated cortical-like areas subserving affective<BR>information ||  ||
-
-*Internal Region Connections:*
-  * no connections
-
-*External Inbound Region Connections:*
-
-|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
-|| <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaLMC LMC] || [BrainRegionFAM_FT_EPF FAM.FT.EPF] || [BrainRegionLMC_HP_NI LMC.HP.NI] || Incertus Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
-|| [BrainAreaMMA MMA] || [BrainRegionFAM_FT_EPF FAM.FT.EPF] || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || Piriform Cortex || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PiR -> EnP)] ||
-
-*External Outbound Region Connections:*
-
-|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
-|| <font color="red">Cortical</font> || || || || || ||
-|| [BrainAreaCPA CPA] || [BrainRegionFAM_FT_EPF FAM.FT.EPF] || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || Anterior Insular Cortex || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (EnP -> Iav, abstract)] ||
 
 == Polysensory Inputs ==
 
@@ -294,10 +268,6 @@
 
 <img src="http://what-when-how.com/wp-content/uploads/2012/04/tmp3649_thumb1_thumb.jpg" alt="unavailable"height=400width=400>
 
-  * [http://ars.els-cdn.com/content/image/1-s2.0-S0149763401000215-gr4a.gif Gustatory sensory system of rat and macaque] - see [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Reference]
-
-<img src="http://ars.els-cdn.com/content/image/1-s2.0-S0149763401000215-gr4a.gif" alt="unavailable">
-
   * [http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png Head Direction Cell Circuit] - see [http://www.scholarpedia.org/article/Head_direction_cells Reference]
 
 <img src="http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png" alt="unavailable">
@@ -315,6 +285,5 @@
   * http://www.thebrainlabs.com
   * http://learnmem.cshlp.org/content/14/11/714/F1.expansion
   * http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/
-  * http://www.sciencedirect.com/science/article/pii/S0149763401000215
   * http://www.scholarpedia.org/article/Head_direction_cells
 
