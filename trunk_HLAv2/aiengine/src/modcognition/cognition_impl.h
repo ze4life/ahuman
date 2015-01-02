@@ -47,7 +47,7 @@ private:
 	const char *getClass() { return( "CognitiveProcessor" ); };
 
 public:
-	CognitiveProcessor() {};
+	CognitiveProcessor( String name );
 	virtual ~CognitiveProcessor() {};
 
 public:

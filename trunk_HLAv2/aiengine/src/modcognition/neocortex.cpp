@@ -44,7 +44,7 @@ public:
 
 		// create processor if does not exists
 		if( processor == NULL ) {
-			processor = new CognitiveProcessor();
+			processor = new CognitiveProcessor( source -> getId() );
 			processor -> createCortexProcessor( this , source );
 			cortexMap.add( source -> getId() , processor );
 		}

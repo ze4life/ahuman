@@ -1,5 +1,10 @@
 #include "../cognition_impl.h"
 
+CognitiveProcessor::CognitiveProcessor( String name )
+{
+	Object::setInstance( name );
+}
+
 void CognitiveProcessor::createCortexProcessor( MindArea *area , Cortex *inputs )
 {
 	inputsCortex = inputs;
