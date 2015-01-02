@@ -8,8 +8,8 @@
 (generated)
 
 || *ID* || *Name* || *Regions* ||
-|| FAMEXE || Executive Circuit || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB], [BrainRegionFAM_FT_AM_M FAM.FT.AM.M], [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] ||
-|| FAMHT || Emotional Behavior || [BrainRegionFAM_FT_AM_CEA FAM.FT.AM.CEA], [BrainRegionFAM_FT_AM_ITC FAM.FT.AM.ITC], [BrainRegionFAM_FT_BNST FAM.FT.BNST] ||
+|| FAMEXE || Executive Circuit || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB], [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] ||
+|| FAMHT || Emotional Behavior || [BrainRegionFAM_FT_AM_CEA FAM.FT.AM.CEA], [BrainRegionFAM_FT_AM_ITC FAM.FT.AM.ITC], [BrainRegionFAM_FT_BNST FAM.FT.BNST], [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] ||
 || FAMMEM || Emotional Memory || [BrainRegionFAM_FD_HB FAM.FD.HB], [BrainRegionFAM_FT_SEP FAM.FT.SEP] ||
 || FAMPS || Polysensory Inputs || [BrainRegionFAM_FT_AM_B FAM.FT.AM.B] ||
 || FAMUS || Unimodal Sensory Inputs || [BrainRegionFAM_FD_TH_PT FAM.FD.TH.PT], [BrainRegionFAM_FD_TH_PV FAM.FD.TH.PV], [BrainRegionFAM_FT_AM_LA FAM.FT.AM.LA] ||
@@ -22,13 +22,11 @@
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
 || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || Accessory Basal Amygdaloid Nucleus || nucleus || FAU || proections to maxrix of core of NACC ||  ||
 || [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || Medial Amygdala || nucleus || FAU || sense of smell and pheromone-processing ||  ||
-|| [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || Interstitial Anterior Commissural Nucleus || nucleus || FAU || Sharp, acute pain sensation || Related to the central extended amygdala ||
 
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || nucleus-nucleus || (unknown reference) ||
-|| [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || nucleus-nucleus-gaba || (unknown reference) ||
 
 *External Inbound Region Connections:*
 
@@ -36,11 +34,9 @@
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaFAM FAM] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || [BrainRegionFAM_FT_AM_B FAM.FT.AM.B] || Basal Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionFAM_FT_AM_LA FAM.FT.AM.LA] || Lateral Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || [BrainRegionFAM_FT_BNST FAM.FT.BNST] || Bed Nucleus of Stria Terminalis || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaMMA MMA] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || Ventrolateral Cornu Ammonis of Hippocampus || allocortex-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in emotional behavior (HCA -> AM, abstract)] ||
 ||  ||  || [BrainRegionHBA_FT_HF_SUB HBA.FT.HF.SUB] || Subiculum || allocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S030100820900183X Simplified model of hippocampal formation anatomy (SUB -> Amyg, abstract)] ||
 ||  ||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S030100820900183X Simplified model of hippocampal formation anatomy (EC -> Amyg, abstract)] ||
-||  || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || Piriform Cortex || neocortex-nucleus || (unknown reference) ||
 
 *External Outbound Region Connections:*
 
@@ -52,12 +48,9 @@
 ||  ||  || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || nucleus-neocortex || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> MPFC, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaFAM FAM] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || [BrainRegionFAM_FT_AM_CEA FAM.FT.AM.CEA] || Central Amygdala || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || [BrainRegionFAM_FT_AM_LA FAM.FT.AM.LA] || Lateral Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaFEC FEC] || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || [BrainRegionFEC_FT_SNR_DL FEC.FT.SNR.DL] || Substantia Nigra Pars Reticulata Dorsolateral || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || Interstitial Anterior Commissural Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
 || [BrainAreaLAC LAC] || [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || [BrainRegionLAC_FD_HT_PRM LAC.FD.HT.PRM] || Premammillary Nucleus || nucleus-nucleus-gaba || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> HT.L, abstract)] ||
 ||  ||  || [BrainRegionLAC_FD_HT_PV LAC.FD.HT.PV] || Paraventricular Nucleus || nucleus-nucleus-gaba || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> HT.PV, abstract)] ||
-|| [BrainAreaLPC LPC] || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || Solitary Nucleus || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionLPC_HP_PB LPC.HP.PB] || Parabrachial Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaMMA MMA] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || [BrainRegionPHA_NC_PAS PHA.NC.PAS] || Parasubiculum || nucleus-neocortex || (unknown reference) ||
 
 == Emotional Behavior ==
@@ -69,11 +62,14 @@
 || [BrainRegionFAM_FT_AM_CEA FAM.FT.AM.CEA] || Central Amygdala || nucleus || FAU || mediate behavioral responses, link to general aspects of reinforcement || controls emotional reactions and physiological<BR>responses via connections to brainstem ||
 || [BrainRegionFAM_FT_AM_ITC FAM.FT.AM.ITC] || Intercalated Amygdaloid Nuclei || nucleus || FAU || inhibit excessive emotional behavior || inhibitory ||
 || [BrainRegionFAM_FT_BNST FAM.FT.BNST] || Bed Nucleus of Stria Terminalis || nucleus || FAU || Mediate slow longer-lasting responses that accompany sustained threats || Major output from AM to HT, part of extended<BR>amygdala ||
+|| [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || Interstitial Anterior Commissural Nucleus || nucleus || FAU || Sharp, acute pain sensation || Related to the central extended amygdala ||
 
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionFAM_FT_AM_CEA FAM.FT.AM.CEA] || [BrainRegionFAM_FT_BNST FAM.FT.BNST] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionFAM_FT_AM_ITC FAM.FT.AM.ITC] || [BrainRegionFAM_FT_AM_CEA FAM.FT.AM.CEA] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionFAM_FT_BNST FAM.FT.BNST] || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || nucleus-nucleus || (unknown reference) ||
 
 *External Inbound Region Connections:*
 
@@ -88,20 +84,25 @@
 ||  ||  || [BrainRegionFAM_FT_AM_LA FAM.FT.AM.LA] || Lateral Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionFAM_FT_BNST FAM.FT.BNST] || [BrainRegionFAM_FD_TH_PT FAM.FD.TH.PT] || Paratenial Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionFAM_FD_TH_PV FAM.FD.TH.PV] || Paraventricular Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || Medial Amygdala || nucleus-nucleus-gaba || (unknown reference) ||
 || [BrainAreaFEC FEC] || [BrainRegionFAM_FT_AM_CEA FAM.FT.AM.CEA] || [BrainRegionFEC_FT_SNC_MED FEC.FT.SNC.MED] || Substantia Nigra Pars Compacta Medial || nucleus-nucleus-DA || (unknown reference) ||
 || [BrainAreaLAC LAC] || [BrainRegionFAM_FT_BNST FAM.FT.BNST] || [BrainRegionLAC_FD_HT_VM LAC.FD.HT.VM] || Ventromedial Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLMC LMC] || [BrainRegionFAM_FT_AM_CEA FAM.FT.AM.CEA] || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || Ventral Tegmental Area || nucleus-nucleus-DA || [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reward circuit of human brain (VTA -> AM, abstract)] ||
 || [BrainAreaLPC LPC] || [BrainRegionFAM_FT_AM_CEA FAM.FT.AM.CEA] || [BrainRegionLPC_HP_PB LPC.HP.PB] || Parabrachial Nucleus || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (PB -> AM, abstract)] ||
+|| [BrainAreaMMA MMA] || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || Piriform Cortex || neocortex-nucleus || (unknown reference) ||
 
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFAM FAM] || [BrainRegionFAM_FT_BNST FAM.FT.BNST] || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || Interstitial Anterior Commissural Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaFAM FAM] || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || [BrainRegionFAM_FT_AM_LA FAM.FT.AM.LA] || Lateral Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaFEC FEC] || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || [BrainRegionFEC_FT_SNR_DL FEC.FT.SNR.DL] || Substantia Nigra Pars Reticulata Dorsolateral || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLAC LAC] || [BrainRegionFAM_FT_AM_CEA FAM.FT.AM.CEA] || [BrainRegionLAC_FD_HT_LTN LAC.FD.HT.LTN] || Lateral Hypothalamic Nucleus || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> HT.L, abstract)] ||
 || [BrainAreaLMC LMC] || [BrainRegionFAM_FT_AM_CEA FAM.FT.AM.CEA] || [BrainRegionLMC_HP_LC LMC.HP.LC] || Locus Coeruleus || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> LC, abstract)] ||
 ||  ||  || [BrainRegionLMC_MM_PAG LMC.MM.PAG] || Periaqueductal Gray Matter || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> PAG, abstract)] ||
 || [BrainAreaLPC LPC] || [BrainRegionFAM_FT_AM_CEA FAM.FT.AM.CEA] || [BrainRegionLPC_HP_PB LPC.HP.PB] || Parabrachial Nucleus || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> PB, abstract)] ||
+||  || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || Solitary Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLPC_HP_PB LPC.HP.PB] || Parabrachial Nucleus || nucleus-nucleus || (unknown reference) ||
 
 == Emotional Memory ==
 
