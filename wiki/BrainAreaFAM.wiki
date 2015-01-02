@@ -9,9 +9,9 @@
 
 || *ID* || *Name* || *Regions* ||
 || FAMEXE || Executive Circuit || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB], [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] ||
-|| FAMHT || Emotional Behavior || [BrainRegionFAM_FT_AM_CEA FAM.FT.AM.CEA], [BrainRegionFAM_FT_AM_ITC FAM.FT.AM.ITC], [BrainRegionFAM_FT_BNST FAM.FT.BNST], [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] ||
+|| FAMHT || Emotional Behavior || [BrainRegionFAM_FT_AM_CEA FAM.FT.AM.CEA], [BrainRegionFAM_FT_BNST FAM.FT.BNST], [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] ||
 || FAMMEM || Emotional Memory || [BrainRegionFAM_FD_HB FAM.FD.HB], [BrainRegionFAM_FT_SEP FAM.FT.SEP] ||
-|| FAMPS || Polysensory Inputs || [BrainRegionFAM_FT_AM_B FAM.FT.AM.B] ||
+|| FAMPS || Polysensory Inputs || [BrainRegionFAM_FT_AM_B FAM.FT.AM.B], [BrainRegionFAM_FT_AM_ITC FAM.FT.AM.ITC] ||
 || FAMUS || Unimodal Sensory Inputs || [BrainRegionFAM_FD_TH_PT FAM.FD.TH.PT], [BrainRegionFAM_FD_TH_PV FAM.FD.TH.PV], [BrainRegionFAM_FT_AM_LA FAM.FT.AM.LA] ||
 
 == Executive Circuit ==
@@ -62,7 +62,6 @@
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
 || [BrainRegionFAM_FT_AM_CEA FAM.FT.AM.CEA] || Central Amygdala || nucleus || FAU || mediate behavioral responses, link to general aspects of reinforcement || controls emotional reactions and physiological<BR>responses via connections to brainstem ||
-|| [BrainRegionFAM_FT_AM_ITC FAM.FT.AM.ITC] || Intercalated Amygdaloid Nuclei || nucleus || FAU || inhibit excessive emotional behavior || inhibitory ||
 || [BrainRegionFAM_FT_BNST FAM.FT.BNST] || Bed Nucleus of Stria Terminalis || nucleus || FAU || Mediate slow longer-lasting responses that accompany sustained threats || Major output from AM to HT, part of extended<BR>amygdala ||
 || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || Interstitial Anterior Commissural Nucleus || nucleus || FAU || Sharp, acute pain sensation || Related to the central extended amygdala ||
 
@@ -70,7 +69,6 @@
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionFAM_FT_AM_CEA FAM.FT.AM.CEA] || [BrainRegionFAM_FT_BNST FAM.FT.BNST] || nucleus-nucleus || (unknown reference) ||
-|| [BrainRegionFAM_FT_AM_ITC FAM.FT.AM.ITC] || [BrainRegionFAM_FT_AM_CEA FAM.FT.AM.CEA] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionFAM_FT_BNST FAM.FT.BNST] || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || nucleus-nucleus || (unknown reference) ||
 
 *External Inbound Region Connections:*
@@ -81,10 +79,9 @@
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaFAM FAM] || [BrainRegionFAM_FT_AM_CEA FAM.FT.AM.CEA] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || Accessory Basal Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionFAM_FT_AM_B FAM.FT.AM.B] || Basal Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionFAM_FT_AM_ITC FAM.FT.AM.ITC] || Intercalated Amygdaloid Nuclei || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionFAM_FT_AM_LA FAM.FT.AM.LA] || Lateral Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || Medial Amygdala || nucleus-nucleus-gaba || (unknown reference) ||
-||  || [BrainRegionFAM_FT_AM_ITC FAM.FT.AM.ITC] || [BrainRegionFAM_FT_AM_B FAM.FT.AM.B] || Basal Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionFAM_FT_AM_LA FAM.FT.AM.LA] || Lateral Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionFAM_FT_BNST FAM.FT.BNST] || [BrainRegionFAM_FD_TH_PT FAM.FD.TH.PT] || Paratenial Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionFAM_FD_TH_PV FAM.FD.TH.PV] || Paraventricular Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || Medial Amygdala || nucleus-nucleus-gaba || (unknown reference) ||
@@ -171,9 +168,12 @@
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
 || [BrainRegionFAM_FT_AM_B FAM.FT.AM.B] || Basal Amygdaloid Nucleus || nucleus || FAU || enhance explicit memories in hippocampus about emotional situations || conditioned fear expression and extinction ||
+|| [BrainRegionFAM_FT_AM_ITC FAM.FT.AM.ITC] || Intercalated Amygdaloid Nuclei || nucleus || FAU || inhibit excessive emotional behavior || inhibitory ||
 
 *Internal Region Connections:*
-  * no connections
+
+|| *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionFAM_FT_AM_B FAM.FT.AM.B] || [BrainRegionFAM_FT_AM_ITC FAM.FT.AM.ITC] || nucleus-nucleus || (unknown reference) ||
 
 *External Inbound Region Connections:*
 
@@ -187,6 +187,7 @@
 ||  ||  || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || neocortex-nucleus || (unknown reference) ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaFAM FAM] || [BrainRegionFAM_FT_AM_B FAM.FT.AM.B] || [BrainRegionFAM_FT_AM_LA FAM.FT.AM.LA] || Lateral Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionFAM_FT_AM_ITC FAM.FT.AM.ITC] || [BrainRegionFAM_FT_AM_LA FAM.FT.AM.LA] || Lateral Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
 
 *External Outbound Region Connections:*
 
@@ -197,7 +198,7 @@
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaFAM FAM] || [BrainRegionFAM_FT_AM_B FAM.FT.AM.B] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || Accessory Basal Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionFAM_FT_AM_CEA FAM.FT.AM.CEA] || Central Amygdala || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionFAM_FT_AM_ITC FAM.FT.AM.ITC] || Intercalated Amygdaloid Nuclei || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionFAM_FT_AM_ITC FAM.FT.AM.ITC] || [BrainRegionFAM_FT_AM_CEA FAM.FT.AM.CEA] || Central Amygdala || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaFEC FEC] || [BrainRegionFAM_FT_AM_B FAM.FT.AM.B] || [BrainRegionFEC_FT_ACC_CORE FEC.FT.ACC.CORE] || Nucleus Accumbens Core || nucleus-nucleus || [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reward circuit of human brain (AM -> NACC, abstract)] ||
 ||  ||  || [BrainRegionFEC_FT_CN_TL FEC.FT.CN.TL] || Caudate Nucleus Tail || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLMC LMC] || [BrainRegionFAM_FT_AM_B FAM.FT.AM.B] || [BrainRegionLMC_FT_NBM LMC.FT.NBM] || Basal Nucleus of Meynert || nucleus-nucleus || (unknown reference) ||
