@@ -195,7 +195,6 @@ rfc_ustring
 rfc_ustring
 	rfc_ustr_extract_right( const rfc_uchar *p_s , int p_count )
 {
-	int l_size;
 	int l_size_count;
 	int l_len;
 	rfc_ustring l_s;
@@ -203,7 +202,6 @@ rfc_ustring
 	if( p_s == NULL || p_count <= 0 || *p_s == 0 )
 		return( NULL );
 
-	l_size = strlen( ( char * )p_s );
 	l_len = rfc_ustr_len( p_s );
 	if( p_count >= l_len )
 		return( rfc_ustr_create( p_s , -1 , 0 ) );
@@ -340,31 +338,30 @@ short
 			return( 1 );
 		}
 
-	for( ; l_c = *p_v; p_v++ )
-		{
-			if( l_c <= 0x7F )
-				{
-					/* equal to ASCII */
-					*p_s++ = ( rfc_uchar )l_c;
-				}
-			else
-			if( l_c <= 0x7FF )
-				{
-					/* 1 byte */
-					*p_s++ = 0xC0 | ( l_c >> 6 );
-					/* 2 byte */
-					*p_s++ = 0x80 | ( l_c & 0x3F );
-				}
-			else
-				{
-					/* 1 byte */
-					*p_s++ = 0xE0 | ( l_c >> 12 );
-					/* 2 byte */
-					*p_s++ = 0x80 | ( ( l_c >> 6 ) & 0x3F );
-					/* 3 byte */
-					*p_s++ = 0x80 | ( l_c & 0x3F );
-				}
+	for( ;; ) {
+		l_c = *p_v++;
+		if( !l_c )
+			break;
+
+		if( l_c <= 0x7F ) {
+			/* equal to ASCII */
+			*p_s++ = ( rfc_uchar )l_c;
 		}
+		else if( l_c <= 0x7FF ) {
+			/* 1 byte */
+			*p_s++ = 0xC0 | ( l_c >> 6 );
+			/* 2 byte */
+			*p_s++ = 0x80 | ( l_c & 0x3F );
+		}
+		else {
+			/* 1 byte */
+			*p_s++ = 0xE0 | ( l_c >> 12 );
+			/* 2 byte */
+			*p_s++ = 0x80 | ( ( l_c >> 6 ) & 0x3F );
+			/* 3 byte */
+			*p_s++ = 0x80 | ( l_c & 0x3F );
+		}
+	}
 	*p_s++ = 0;
 
 	return( 1 );
@@ -381,15 +378,18 @@ int
 		return( 0 );
 
 	l_size = 0;
-	for( ; l_c = *p_v; p_v++ )
-		{
-			if( l_c <= 0x7F )
-				l_size++;
-			else
-			if( l_c <= 0x7FF )
-				l_size += 2;
-			else
-				l_size += 3;
-		}
+	for( ;; ) {
+		l_c = *p_v++;
+		if( !l_c )
+			break;
+
+		if( l_c <= 0x7F )
+			l_size++;
+		else
+		if( l_c <= 0x7FF )
+			l_size += 2;
+		else
+			l_size += 3;
+	}
 	return( l_size );			
 }
