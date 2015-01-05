@@ -57,7 +57,7 @@ void
 	else
 		{
 			/* not found - inform failed */
-			fprintf( stderr , "free: invalid pointer - 0x%8.8X\n" , p_addr );
+			fprintf( stderr , "free: invalid pointer - 0x%8.8X\n" , ( unsigned )p_addr );
 		}
 }
 
@@ -70,7 +70,7 @@ char *
 			return( NULL );
 		}
 
-	return( ( char * )( g_memcheck_items[ g_memcheck_count++ ] = _strdup( p_src ) ) );
+	return( ( char * )( g_memcheck_items[ g_memcheck_count++ ] = rfc_xstrdup( p_src ) ) );
 }
 
 void *
@@ -91,7 +91,7 @@ void *
 			return( g_memcheck_items[ k ] = realloc( p_src , p_count ) );
 
 	/* not found - inform failed */
-	fprintf( stderr , "realloc: invalid pointer - 0x%8.8X\n" , p_src );
+	fprintf( stderr , "realloc: invalid pointer - 0x%8.8X\n" , ( unsigned )p_src );
 	return( NULL );
 }
 
@@ -103,6 +103,6 @@ void
 
 	for( k = 0; k < g_memcheck_count; k++ )
 		if( g_memcheck_items[ k ] != NULL )
-			fprintf( stderr , "report: non-freed pointer 0x%8.8X [%d]\n" , g_memcheck_items[ k ] , k );
+			fprintf( stderr , "report: non-freed pointer 0x%8.8X [%d]\n" , ( unsigned )g_memcheck_items[ k ] , k );
 }
 

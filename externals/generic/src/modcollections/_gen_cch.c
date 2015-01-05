@@ -100,7 +100,7 @@ void
 	item -> s_nxt = p_cache -> s_head;
 
 	item -> s_data = p_obj;
-	item -> s_key.u_s = _strdup( p_key );
+	item -> s_key.u_s = rfc_xstrdup( p_key );
 	if( p_cache -> s_head )
 		p_cache -> s_head -> s_prv = item;
 	p_cache -> s_head = item;
