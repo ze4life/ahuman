@@ -4,6 +4,8 @@
 /* std headers */
 #include "__gen.h"
 
+#include <time.h>
+
 /*#######################################################*/
 /*#######################################################*/
 
@@ -43,7 +45,7 @@ rfc_moment
 void 
 	_rfc_dtm_stm2string( struct tm * p_tm , rfc_fmt_date * p_fmt , char * p_tmstr )
 {
-	const char * l_dtdiv = "  ";/* ðàçäåëèòåëü ìåæäó äàòîé è âðåìåíåì */
+	const char * l_dtdiv = "  ";
 	int		year, month, day ,
 			hour, min  , sec ,
 			i ;
@@ -144,6 +146,7 @@ void
 					if ( i < 3 )
 						strcat( l_str , l_dtdiv ); 
 				}
+				break;
 		}
 	}
 
@@ -152,28 +155,27 @@ void
 
 /* convert time_t date/time to formated string */
 void 
-	rfc_dtm_time2string( time_t p_time , const rfc_fmt_date * p_fmt , char * p_tmstr )
-{
+	rfc_dtm_time2string( time_t p_time , const rfc_fmt_date *p_fmt , char *p_tmstr ) {
 
 	struct tm		l_s_tm;
 	rfc_fmt_date	l_fmt;
 
 	if ( p_fmt == NULL ) {
-		l_fmt . s_el[ 0 ] . s_type	= 'D';
-		l_fmt . s_el[ 0 ] . s_fmt	= RFC_FMT_DAY_LONGDIG;
-		l_fmt . s_el[ 1 ] . s_type	= 'M';
-		l_fmt . s_el[ 1 ] . s_fmt	= RFC_FMT_MONTH_LONGDIG;
-		l_fmt . s_el[ 2 ] . s_type	= 'Y';
-		l_fmt . s_el[ 2 ] . s_fmt	= RFC_FMT_YEAR_LONGDIG;
-		l_fmt . s_el[ 3 ] . s_type	= 'T';
-		l_fmt . s_el[ 3 ] . s_fmt	= RFC_FMT_TIME_SHORTDIG;
-		strcpy( l_fmt . s_ddiv , "." );
-		strcpy( l_fmt . s_tdiv , ":" );
+		l_fmt.s_el[ 0 ].s_type	= 'D';
+		l_fmt.s_el[ 0 ].s_fmt	= RFC_FMT_DAY_LONGDIG;
+		l_fmt.s_el[ 1 ].s_type	= 'M';
+		l_fmt.s_el[ 1 ].s_fmt	= RFC_FMT_MONTH_LONGDIG;
+		l_fmt.s_el[ 2 ].s_type	= 'Y';
+		l_fmt.s_el[ 2 ].s_fmt	= RFC_FMT_YEAR_LONGDIG;
+		l_fmt.s_el[ 3 ].s_type	= 'T';
+		l_fmt.s_el[ 3 ].s_fmt	= RFC_FMT_TIME_SHORTDIG;
+		strcpy( l_fmt.s_ddiv , "." );
+		strcpy( l_fmt.s_tdiv , ":" );
 	}
 	else
 		memcpy( &l_fmt , p_fmt , sizeof( rfc_fmt_date ) );
 
-	localtime_s( &l_s_tm , &p_time );
+	localtime_r( &p_time , &l_s_tm );
 	_rfc_dtm_stm2string( &l_s_tm , &l_fmt , p_tmstr );
 }
 
@@ -185,7 +187,7 @@ rfc_moment rfc_dtm_moment( short p_prec )
 	char l_buf[9+1];
 	int l_min = 0;
 
-	localtime_s( &l_tms , &t );
+	localtime_r( &t, &l_tms );
 	switch( p_prec ) {
 		case 0:	l_min = 95;	break;
 		case 1:	l_min = ( l_tms.tm_min + 60 * l_tms.tm_hour ) / 15 ; break;

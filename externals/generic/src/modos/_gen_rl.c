@@ -588,11 +588,12 @@ RFC_PROC
 
 	/* try load library */
 	l_load = 0;
-	if( l_lib -> s_lib == ( RFC_HND )NULL )
+	if( l_lib -> s_lib == ( RFC_HND )NULL ) {
 		if( !_rfc_dlp_lib_load( p_dlp -> s_path , l_lib ) )
 			return( NULL );
 		else
 			l_load = 1;
+	}
 
 	/* find proc handle */
 	l_h = rfc_lib_getfunc( l_lib -> s_lib , l_name );

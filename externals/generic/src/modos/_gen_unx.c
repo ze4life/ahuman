@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <errno.h>
 #include <pthread.h>
+#include <semaphore.h>
 
 #include "__gen.h"
 
@@ -16,121 +17,94 @@
 #define pthread_mutexattr_default NULL
 #endif
 
+typedef struct {
+	pthread_cond_t cond;
+	pthread_mutex_t mutex;
+	int value;
+} RFC_UNIX_EVDATA;
+
 /*#######################################################*/
 /*#######################################################*/
 /* semaphore & event operations */
 
 /* lock semaphore */
-int rfc_hnd_semlock( RFC_HND p_hnd )
-{
-	struct sembuf l_sop;
-
-	/* decrement semaphore by 1 */
-	l_sop.sem_num = 0;
-	l_sop.sem_op = -1;
-	l_sop.sem_flg = 0;
-	if( semop( ( int )p_hnd , &l_sop , 1 ) < 0 )
-		return( -1 );
-
-	return( 0 );
+int rfc_hnd_semlock( RFC_HND p_hnd ) {
+	return( sem_wait( ( sem_t * )p_hnd ) );
 }
 
 /* release semaphore */
-void rfc_hnd_semunlock( RFC_HND p_hnd )
-{
-	struct sembuf l_sop;
-
-	/* increment semaphore by 1 */
-	l_sop.sem_num = 0;
-	l_sop.sem_op = 1;
-	l_sop.sem_flg = 0;
-	if( semop( ( int )p_hnd , &l_sop , 1 ) < 0 )
-		return;
+void rfc_hnd_semunlock( RFC_HND p_hnd ) {
+	sem_post( ( sem_t * )p_hnd );
 }
 
 /* create semaphore */
-RFC_HND rfc_hnd_semcreate()
-{
+RFC_HND rfc_hnd_semcreate() {
 	RFC_HND l_hnd;
-	int l_sem;
-
-	l_sem = semget( IPC_PRIVATE , 1 , IPC_CREAT | 0600 );
-	if( l_sem < 0 )
-		return( NULL );
-
-	/* set semaphore to 1 */
-	l_hnd = ( RFC_HND )l_sem;
-	rfc_hnd_semunlock( l_hnd );
-
+	l_hnd = ( RFC_HND )malloc( sizeof( sem_t ) );
+	sem_init( ( sem_t * )l_hnd , 0 , 1 );
 	return( l_hnd );
 }
 
 /* destroy semaphore */
-void rfc_hnd_semdestroy( RFC_HND p_hnd )
-{
-	if( semctl( ( int )p_hnd , 0 , IPC_RMID ) < 0 )
-		return;
+void rfc_hnd_semdestroy( RFC_HND p_hnd ) {
+	sem_destroy( ( sem_t * )p_hnd );
+	free( ( sem_t * )p_hnd );
 }
 
 /* wait event signaled */
-int rfc_hnd_waitevent( RFC_HND p_hnd )
-{
-	struct sembuf l_sop;
+short rfc_hnd_waitevent( RFC_HND p_hnd , int p_timeout_ms ) {
+	RFC_UNIX_EVDATA *l_ev;
+	short l_res;
+	l_ev = ( RFC_UNIX_EVDATA * )p_hnd;
+	pthread_mutex_lock( &l_ev -> mutex );
+	pthread_cond_wait( &l_ev -> cond , &l_ev -> mutex );
+	l_res = l_ev -> value;
+	pthread_mutex_unlock( &l_ev -> mutex );
 
-	/* decrement semaphore by 1 */
-	l_sop.sem_num = 0;
-	l_sop.sem_op = -1;
-	l_sop.sem_flg = 0;
-	if( semop( ( int )p_hnd , &l_sop , 1 ) < 0 )
-		return( -1 );
-
-	return( 0 );
+	if( l_res > 0 )
+		return( 0 );
+	return( -1 );
 }
 
 /* create event */
-RFC_HND rfc_hnd_evcreate()
-{
-	RFC_HND l_hnd;
-	int l_sem;
+RFC_HND rfc_hnd_evcreate() {
+	RFC_UNIX_EVDATA *l_ev;
 
-	l_sem = semget( IPC_PRIVATE , 1 , IPC_CREAT | 0600 );
-	if( l_sem < 0 )
-		return( NULL );
-
-	l_hnd = ( RFC_HND )l_sem;
-	return( l_hnd );
+	l_ev = ( RFC_UNIX_EVDATA * )malloc( sizeof( RFC_UNIX_EVDATA ) );
+	pthread_cond_init( &l_ev -> cond , NULL );
+	pthread_mutex_init( &l_ev -> mutex , NULL );
+	l_ev -> value = 0;
+	return( ( RFC_HND )l_ev );
 }
 
 /* destroy event */
-void rfc_hnd_evdestroy( RFC_HND p_hnd )
-{
-	if( semctl( ( int )p_hnd , 0 , IPC_RMID ) >= 0 )
-		return;
+void rfc_hnd_evdestroy( RFC_HND p_hnd ) {
+	RFC_UNIX_EVDATA *l_ev;
+	l_ev = ( RFC_UNIX_EVDATA * )p_hnd;
+	free( l_ev );
 }
 
 /* set signaled state to event */
-void rfc_hnd_evsignal( RFC_HND p_hnd )
-{
-	struct sembuf l_sop;
-
-	/* increment semaphore by 1 */
-	l_sop.sem_num = 0;
-	l_sop.sem_op = 1;
-	l_sop.sem_flg = 0;
-	if( semop( ( int )p_hnd , &l_sop , 1 ) >= 0 )
-		return;
+void rfc_hnd_evsignal( RFC_HND p_hnd ) {
+	RFC_UNIX_EVDATA *l_ev;
+	l_ev = ( RFC_UNIX_EVDATA * )p_hnd;
+	pthread_mutex_lock( &l_ev -> mutex );
+	l_ev -> value = 1;
+	pthread_mutex_unlock( &l_ev -> mutex );
+	pthread_cond_broadcast( &l_ev -> cond );
 }
 
 /* clear signaled state of event */
-void rfc_hnd_evreset( RFC_HND p_hnd )
-{
-	if( semctl( ( int )p_hnd , 0 , SETVAL , 0 ) >= 0 )
-		return;
+void rfc_hnd_evreset( RFC_HND p_hnd ) {
+	RFC_UNIX_EVDATA *l_ev;
+	l_ev = ( RFC_UNIX_EVDATA * )p_hnd;
+	pthread_mutex_lock( &l_ev -> mutex );
+	l_ev -> value = 0;
+	pthread_mutex_unlock( &l_ev -> mutex );
 }
 
 /* create mutex */
-RFC_HND		rfc_hnd_mutcreate( void )
-{
+RFC_HND		rfc_hnd_mutcreate( void ) {
 	pthread_mutex_t *l_m;
 
 	/* create mutex */
@@ -141,8 +115,7 @@ RFC_HND		rfc_hnd_mutcreate( void )
 }
 
 /* destroy mutex */
-void		rfc_hnd_mutdestroy( RFC_HND p_hnd )
-{
+void		rfc_hnd_mutdestroy( RFC_HND p_hnd ) {
 	pthread_mutex_t *l_m;
 
 	/* destroy mutex */
@@ -152,14 +125,12 @@ void		rfc_hnd_mutdestroy( RFC_HND p_hnd )
 }
 
 /* lock mutex */
-void		rfc_hnd_mutlock( RFC_HND p_hnd )
-{
+void		rfc_hnd_mutlock( RFC_HND p_hnd ) {
 	pthread_mutex_lock( ( pthread_mutex_t * )p_hnd );
 }
 
 /* unlock mutex */
-void		rfc_hnd_mutunlock( RFC_HND p_hnd )
-{
+void		rfc_hnd_mutunlock( RFC_HND p_hnd ) {
 	pthread_mutex_unlock( ( pthread_mutex_t * )p_hnd );
 }
 

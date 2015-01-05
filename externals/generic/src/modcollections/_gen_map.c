@@ -342,11 +342,12 @@ short
 		return( 0 );
 
 	/* get current value */
-	if( p_value != NULL )
+	if( p_value != NULL ) {
 		if( p_map -> s_type == RFC_EXT_TYPESTRING )
 			p_value -> u_s = p_map -> s_p[ p_pos ] -> s_value.u_s;
 		else
 			rfc_type_set( p_map -> s_type , p_value , &p_map -> s_p[ p_pos ] -> s_value , NULL );
+	}
 
 	/* remove by position */
 	free( p_map -> s_p[ p_pos ] );
@@ -547,11 +548,12 @@ int
 		return( -1 );
 
 	/* get data by position */
-	if( p_value != NULL )
+	if( p_value != NULL )  {
 		if( p_map -> s_type != RFC_EXT_TYPESTRING )
 			rfc_type_set( p_map -> s_type , p_value , &p_map -> s_p[ l_pos ] -> s_value , NULL );
 		else
 			p_value -> u_c = p_map -> s_p[ l_pos ] -> s_value.u_s;
+	}
 
 	return( l_pos );
 }

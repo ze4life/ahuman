@@ -1249,11 +1249,12 @@ void
 								if( p_regtype & RFC_SET_MAXINC )
 									{
 										/* check next */
-										if( l_b < ( p_set -> s_n - 1 ) )
+										if( l_b < ( p_set -> s_n - 1 ) ) {
 											if( rfc_type_cmp( p_set -> s_type , &l_item[ 1 ].s_data , p_vto ) )
 												l_item -> s_regtype = RFC_SET_MAXINC;
 											else
 												l_b -=2;
+										}
 									}
 								break;
 						}

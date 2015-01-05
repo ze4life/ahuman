@@ -308,6 +308,7 @@ rfc_wstring
 	l_max = 0;
 
 	/* make a guess at the maximum length of the resulting string */
+	RFC_TYPE x;
 	for( ; *l_format; l_format++ )
 		{
 			/* handle '%' character, but watch out for '%%' */
@@ -340,7 +341,7 @@ rfc_wstring
 						*l_format == L'+' || 
 						*l_format == L'0' ||
 						*l_format == L' ')
-						;
+						x.u_l = 0;
 					else /* hit non-flag character */
 						break;
 				}
@@ -411,7 +412,7 @@ rfc_wstring
 					/* single characters */
 					case L'c':
 						l_len = 2;
-						va_arg( l_va , int /*unsigned short*/ );
+						x.u_l = va_arg( l_va , int /*unsigned short*/ );
 						break;
 
 					/* strings */
@@ -446,9 +447,9 @@ rfc_wstring
 							case L'X':
 							case L'o':
 								if( l_mod == 1 )
-									va_arg( l_va , RFC_INT64 );
+									x.u_m = va_arg( l_va , RFC_INT64 );
 								else
-									va_arg( l_va , int );
+									x.u_l = va_arg( l_va , int );
 								l_len = 32;
 								l_len = max( l_len , l_width + l_prec );
 								break;
@@ -456,13 +457,13 @@ rfc_wstring
 							case L'e':
 							case L'g':
 							case L'G':
-								va_arg( l_va , double );
+								x.u_f = va_arg( l_va , double );
 								l_len = 128;
 								l_len = max( l_len , l_width + l_prec );
 								break;
 
 							case L'f':
-								va_arg( l_va , double );
+								x.u_f = va_arg( l_va , double );
 								l_len = 128; /* width isn't truncated */
 								/* 312 == rfc_wstr_len("-1+(309 zeroes).") */
 								/* 309 zeroes == max precision of a double */
@@ -471,7 +472,7 @@ rfc_wstring
 
 							// no output
 							case L'n':
-								va_arg( l_va , int * );
+								x.u_p = va_arg( l_va , int * );
 								break;
 
 							default:
@@ -566,6 +567,7 @@ int
 	char l_buf[ 512 ];
 	char *l_fmtp;
 	char *l_copy;
+	RFC_TYPE x;
 
 	l_format = p_fmt;
 	l_va = p_va;
@@ -600,7 +602,7 @@ int
 						*l_format == L'+' || 
 						*l_format == L'0' ||
 						*l_format == L' ')
-						;
+						x.u_l = 0;
 					else /* hit non-flag character */
 						break;
 				}
@@ -733,7 +735,7 @@ int
 
 					// no output
 					case L'n':
-						va_arg( l_va , int * );
+						x.u_p = va_arg( l_va , int * );
 						continue;
 
 					default:
@@ -853,7 +855,7 @@ short
 			return( 1 );
 		}
 
-	while( l_c = *p_v++ )
+	while( ( l_c = *p_v++ ) )
 		{
 			/* check byte number */
 			if( l_c <= 0x7F )
