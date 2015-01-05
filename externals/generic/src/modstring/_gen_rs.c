@@ -308,6 +308,7 @@ rfc_string
 	l_max = 0;
 
 	/* make a guess at the maximum length of the resulting string */
+	RFC_TYPE x;
 	for( ; *l_format != '\0'; l_format++ )
 		{
 			/* handle '%' character, but watch out for '%%' */
@@ -340,7 +341,7 @@ rfc_string
 						*l_format == '+' || 
 						*l_format == '0' ||
 						*l_format == ' ')
-						;
+						x.u_d = 0;
 					else /* hit non-flag character */
 						break;
 				}
@@ -411,7 +412,7 @@ rfc_string
 					/* single characters */
 					case 'c':
 						l_len = 2;
-						va_arg( l_va , int /*char*/ );
+						x.u_l = va_arg( l_va , int /*char*/ );
 						break;
 
 					/* strings */
@@ -446,9 +447,9 @@ rfc_string
 							case 'X':
 							case 'o':
 								if( l_mod == 1 )
-									va_arg( l_va , RFC_INT64 );
+									x.u_m = va_arg( l_va , RFC_INT64 );
 								else
-									va_arg( l_va , int );
+									x.u_l = va_arg( l_va , int );
 								l_len = 32;
 								l_len = max( l_len , l_width + l_prec );
 								break;
@@ -456,13 +457,13 @@ rfc_string
 							case 'e':
 							case 'g':
 							case 'G':
-								va_arg( l_va , double );
+								x.u_f = va_arg( l_va , double );
 								l_len = 128;
 								l_len = max( l_len , l_width + l_prec );
 								break;
 
 							case 'f':
-								va_arg( l_va , double );
+								x.u_f = va_arg( l_va , double );
 								l_len = 128; /* width isn't truncated */
 								/* 312 == strlen("-1+(309 zeroes).") */
 								/* 309 zeroes == max precision of a double */
@@ -470,14 +471,14 @@ rfc_string
 								break;
 
 							case 'p':
-								va_arg( l_va , void * );
+								x.u_p = va_arg( l_va , void * );
 								l_len = 32;
 								l_len = max( l_len , l_width + l_prec );
 								break;
 
 							// no output
 							case 'n':
-								va_arg( l_va , int * );
+								x.u_p = va_arg( l_va , int * );
 								break;
 
 							default:
@@ -524,6 +525,7 @@ void
 	l_fi -> s_from = 0;
 
 	/* make a guess at the maximum length of the resulting string */
+	RFC_TYPE x;
 	for( ; *l_format; l_format++ )
 		{
 			/* handle '%' character, but watch out for '%%' */
@@ -573,7 +575,7 @@ void
 						*l_format == '+' || 
 						*l_format == '0' ||
 						*l_format == ' ')
-						;
+						x.u_d = 0;
 					else /* hit non-flag character */
 						break;
 				}

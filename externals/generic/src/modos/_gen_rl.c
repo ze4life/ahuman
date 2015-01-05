@@ -110,10 +110,6 @@ void
 	free( p_dlp );
 }
 
-/* get library pool start path */
-extern const char *
-	rfc_dlp_start_path( rfc_dllpool *p_dlp );
-
 /*#######################################################*/
 /*#######################################################*/
 /* operations */
