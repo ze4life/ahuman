@@ -4,22 +4,6 @@
 
 /*#######################################################*/
 /*#######################################################*/
-/* force includes */
-
-#if !defined(_VA_LIST_DEFINED) && !defined(__VARARGS_H) && !defined(__STDARG_H)
-#include <stdarg.h>
-#endif
-
-#include <stdio.h>
-#include <stddef.h>
-#include <string.h>
-#include <memory.h>
-#include <malloc.h>
-#include <stdlib.h>
-#include <time.h>
-
-/*#######################################################*/
-/*#######################################################*/
 
 /* codepages */
 #define RFC_CODEPAGE_UNKNOWN	-1
@@ -50,6 +34,18 @@ typedef void				( *RFC_PROC )();
 /* windows definitions */
 #ifdef _WIN32
 
+#if !defined(_VA_LIST_DEFINED) && !defined(__VARARGS_H) && !defined(__STDARG_H)
+#include <stdarg.h>
+#endif
+
+#include <stdio.h>
+#include <stddef.h>
+#include <string.h>
+#include <memory.h>
+#include <malloc.h>
+#include <stdlib.h>
+#include <time.h>
+
 	typedef long long int			RFC_INT64;
 	typedef struct { RFC_HND s_ih; unsigned s_ip; }
 							RFC_THREAD;
@@ -66,16 +62,22 @@ typedef void				( *RFC_PROC )();
 #define RFC_WDIRSLASH		L'\\'
 #define RFC_WDIRSLASHS		L"\\"
 
+#define rfc_xstrdup			_strdup
+
 /* POSIX definitions */
 #else
 
+#include <pthread.h>
+#include <stdarg.h>
+#include <stdio.h>
+#include <string.h>
+#include <memory.h>
+#include <malloc.h>
+#include <stdlib.h>
+#include <time.h>
+
 	/* money type */
 	typedef long long		RFC_INT64;
-
-#if !defined( PTHREAD ) && !defined( _PTHREAD_DESCR_DEFINED ) && !defined( _POSIX_C_SOURCE_ )
-	typedef struct { int s_i1; int s_i2; }
-							pthread_t;
-#endif
 
 	typedef pthread_t		RFC_THREAD;
 	typedef void *			( *RFC_THRFUNC )( void *p_arg );
@@ -86,10 +88,12 @@ typedef void				( *RFC_PROC )();
 #define RFC_INT64FMT		"%lld"
 #define RFC_DIRSLASH		'/'
 #define RFC_DIRSLASHS		"/"
-#define RFC_INT64FMTBASE	L"ll"
-#define RFC_INT64FMT		L"%lld"
-#define RFC_DIRSLASH		L'/'
-#define RFC_DIRSLASHS		L"/"
+#define RFC_WINT64FMTBASE	L"ll"
+#define RFC_WINT64FMT		L"%lld"
+#define RFC_WDIRSLASH		L'/'
+#define RFC_WDIRSLASHS		L"/"
+
+#define rfc_xstrdup( x )	strdup( x )
 
 #endif
 
@@ -260,7 +264,7 @@ extern char *
 	rfc_strdup( const char *p_src );
 extern void *
 	rfc_realloc( void *p_src , size_t p_count );
-/* report inconsistancies */
+/* report inconsistencies */
 extern void
 	rfc_memcheck_report( void );
 #endif
