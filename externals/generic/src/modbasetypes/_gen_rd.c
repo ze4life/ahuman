@@ -175,7 +175,12 @@ void
 	else
 		memcpy( &l_fmt , p_fmt , sizeof( rfc_fmt_date ) );
 
+#ifdef _WIN32
+	localtime_s( &l_s_tm , &p_time );
+#else
 	localtime_r( &p_time , &l_s_tm );
+#endif
+
 	_rfc_dtm_stm2string( &l_s_tm , &l_fmt , p_tmstr );
 }
 
@@ -187,7 +192,12 @@ rfc_moment rfc_dtm_moment( short p_prec )
 	char l_buf[9+1];
 	int l_min = 0;
 
-	localtime_r( &t, &l_tms );
+#ifdef _WIN32
+	localtime_s( &l_tms , &t );
+#else
+	localtime_r( &t , &l_tms );
+#endif
+
 	switch( p_prec ) {
 		case 0:	l_min = 95;	break;
 		case 1:	l_min = ( l_tms.tm_min + 60 * l_tms.tm_hour ) / 15 ; break;
