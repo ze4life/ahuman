@@ -27,6 +27,7 @@
 
 typedef void *				RFC_HND;
 typedef void				( *RFC_PROC )();
+typedef	void				( *RFC_EXCEPTION_TRANSLATOR )( /* RFC_THREADDATA */ void *p_data , int p_code , void *p_address );
 
 /*#######################################################*/
 /*#######################################################*/
@@ -64,6 +65,17 @@ typedef void				( *RFC_PROC )();
 
 #define rfc_xstrdup			_strdup
 
+#define RFC_STDCALL			__stdcall
+#define RFC_THRRETTYPE		unsigned
+#define RFC_THRRETERROR		-1
+
+	typedef struct {
+		void *userdata;
+		unsigned long threadId;
+		RFC_EXCEPTION_TRANSLATOR exception_translator;
+		void (*oldhandler)( unsigned int exceptionCode , struct _EXCEPTION_POINTERS *exceptionInfo );
+	} RFC_THREADDATA;
+
 /* POSIX definitions */
 #else
 
@@ -94,6 +106,16 @@ typedef void				( *RFC_PROC )();
 #define RFC_WDIRSLASHS		L"/"
 
 #define rfc_xstrdup( x )	strdup( x )
+
+#define RFC_STDCALL
+#define RFC_THRRETTYPE		void *
+#define RFC_THRRETERROR		NULL
+
+	typedef struct {
+		void *userdata;
+		unsigned long threadId;
+		RFC_EXCEPTION_TRANSLATOR exception_translator;
+	} RFC_THREADDATA;
 
 #endif
 
