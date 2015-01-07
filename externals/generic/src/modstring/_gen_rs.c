@@ -302,13 +302,13 @@ rfc_string
 	int l_prec;
 	int l_mod;
 	const char *l_next_arg;
+	RFC_TYPE x;
 
 	l_format = p_format;
 	l_va = p_va;
 	l_max = 0;
 
 	/* make a guess at the maximum length of the resulting string */
-	RFC_TYPE x;
 	for( ; *l_format != '\0'; l_format++ )
 		{
 			/* handle '%' character, but watch out for '%%' */
@@ -510,6 +510,7 @@ void
 	const char *l_next_arg;
 	const unsigned short *l_next_arg_w;
 	rfc_string_format_el *l_fi;
+	RFC_TYPE x;
 
 	p_fi -> s_n = 0;
 	l_fi = p_fi -> s_parts;
@@ -525,7 +526,6 @@ void
 	l_fi -> s_from = 0;
 
 	/* make a guess at the maximum length of the resulting string */
-	RFC_TYPE x;
 	for( ; *l_format; l_format++ )
 		{
 			/* handle '%' character, but watch out for '%%' */

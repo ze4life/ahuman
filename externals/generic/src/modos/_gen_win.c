@@ -3,10 +3,14 @@
 /* windows operations */
 
 /* standard headers */
+#include <stdio.h>
 #include <windows.h>
 #include <process.h>
 #include <signal.h>
 #include "__gen.h"
+
+typedef void (__cdecl *_se_translator_function)(unsigned int, struct _EXCEPTION_POINTERS*);
+_CRTIMP _se_translator_function __cdecl _set_se_translator(_In_opt_ _se_translator_function _NewPtFunc);
 
 #define MIN_CPU_LOAD_TICKS 100
 
@@ -121,7 +125,8 @@ void rfc_thr_initmain() {
 }
 
 static void UnhandledExceptionTranslator( unsigned int exceptionCode , struct _EXCEPTION_POINTERS *exceptionInfo ) {
-	throw RuntimeException( exceptionCode , 1 , exceptionInfo -> ExceptionRecord -> ExceptionAddress );
+	RFC_THREADDATA *td = rfc_thr_getdata();
+	( *td -> exception_translator )( td , exceptionCode , exceptionInfo -> ExceptionRecord -> ExceptionAddress );
 }
 
 void rfc_thr_initthread( RFC_THREADDATA *rd )

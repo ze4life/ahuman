@@ -92,7 +92,6 @@ RFC_SEM rfc_int_semcreate() {
 	RFC_SEM sem;
 	sem.sem = CreateSemaphore( NULL , 1 , 1 , NULL );
 	sem.ie = CreateEvent( NULL , TRUE , FALSE , NULL );
-	sem.value = 0;
 	return( sem );
 #else
 	RFC_SEM sem;
