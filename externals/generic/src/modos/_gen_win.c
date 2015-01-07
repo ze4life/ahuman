@@ -5,9 +5,13 @@
 /* standard headers */
 #include <windows.h>
 #include <process.h>
+#include <signal.h>
 #include "__gen.h"
 
 #define MIN_CPU_LOAD_TICKS 100
+
+static RFC_THREADDATA *main_thread = NULL;
+static unsigned long tlsIndex = 0;
 
 /*#######################################################*/
 /*#######################################################*/
@@ -110,6 +114,33 @@ void		rfc_hnd_mutunlock( RFC_HND p_hnd )
 /*#######################################################*/
 /*#######################################################*/
 /* threads */
+
+void rfc_thr_initmain() {
+	rfc_thr_initstackhandle();
+	tlsIndex = TlsAlloc();
+}
+
+static void UnhandledExceptionTranslator( unsigned int exceptionCode , struct _EXCEPTION_POINTERS *exceptionInfo ) {
+	throw RuntimeException( exceptionCode , 1 , exceptionInfo -> ExceptionRecord -> ExceptionAddress );
+}
+
+void rfc_thr_initthread( RFC_THREADDATA *rd )
+{
+	TlsSetValue( tlsIndex , rd );
+	rd -> threadId = GetCurrentThreadId();
+	rd -> oldhandler = _set_se_translator( UnhandledExceptionTranslator );
+}
+
+RFC_THREADDATA *rfc_thr_getdata()
+{
+	return( ( RFC_THREADDATA * )TlsGetValue( tlsIndex ) );
+}
+
+void rfc_thr_exitthread()
+{
+	// to be no more used
+	TlsSetValue( tlsIndex , NULL );
+}
 
 /* wait to exit thread */
 int rfc_thr_waitexit( RFC_THREAD *p_hnd )
