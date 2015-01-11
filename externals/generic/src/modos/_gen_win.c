@@ -107,6 +107,13 @@ static void on_exit( int p_sig ) {
 	if( main_thread != NULL )
 		if( main_thread -> signal_translator != NULL )
 			main_thread -> signal_translator( main_thread , p_sig );
+
+	signal( SIGABRT , on_exit );
+	signal( SIGINT , on_exit );
+	signal( SIGTERM , on_exit );
+	signal( SIGFPE , on_exit );
+	signal( SIGILL , on_exit );
+	signal( SIGSEGV , on_exit );
 }
 
 void rfc_thr_initmain( RFC_THREADDATA *p_data ) {
@@ -123,6 +130,9 @@ void rfc_thr_initmain( RFC_THREADDATA *p_data ) {
 		signal( SIGILL , on_exit );
 		signal( SIGSEGV , on_exit );
 	}
+}
+
+void rfc_thr_setsignals( RFC_THREADDATA *p_data ) {
 }
 
 void rfc_thr_initthread( RFC_THREADDATA *rd ) {
