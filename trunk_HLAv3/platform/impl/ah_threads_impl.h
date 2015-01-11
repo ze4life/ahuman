@@ -16,16 +16,22 @@ class ThreadPoolTask;
 /*#########################################################################*/
 /*#########################################################################*/
 
+typedef	void				( *THREAD_EXCEPTION_TRANSLATOR )( /* RFC_THREADDATA */ void *p_data , int p_code , void *p_address );
+
 // thread data
 class ThreadData {
 public:
-	RFC_THREAD threadExtId;
+	RFC_THREADDATA data;
 	String name;
-	unsigned long threadId;
 	Object *object;
 	void ( Object::*objectFunction )( void *p_arg );
 	void *objectFunctionArg;
 	bool stopped;
+
+#ifdef _WIN32
+	void (*oldhandler)( unsigned int exceptionCode , struct _EXCEPTION_POINTERS *exceptionInfo );
+#else
+#endif
 
 	RFC_HND sleepEvent;
 	MapStringToClass<ThreadObject> map;
@@ -34,6 +40,7 @@ public:
 	ThreadData();
 	~ThreadData();
 
+	void setHandleExceptions();
 	void stopThread();
 	bool checkStopped();
 };

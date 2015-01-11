@@ -1,16 +1,11 @@
 #include <ah_platform.h>
 #include <ah_threads_impl.h>
 
-#include <windows.h>
-#include <signal.h>
-
-unsigned long tlsIndex = 0;
-
 /*#########################################################################*/
 /*#########################################################################*/
 
 /* if termination signal catched */
-static void on_exit( int p_sig ) {
+void on_exit( RFC_THREADDATA *p_data , int p_sig ) {
 	ThreadService *ts = ThreadService::getService();
 	if( ts != NULL )
 		ts -> stopServicesBySignal( p_sig );
@@ -30,10 +25,6 @@ static unsigned __stdcall threadMainFunction( void *p_arg ) {
 	return( -1 );
 }
 
-static void UnhandledExceptionTranslator( unsigned int exceptionCode , struct _EXCEPTION_POINTERS *exceptionInfo ) {
-	throw RuntimeException( exceptionCode , 3 , exceptionInfo -> ExceptionRecord -> ExceptionAddress );
-}
-
 /*#########################################################################*/
 /*#########################################################################*/
 
@@ -42,12 +33,13 @@ Service *ThreadService::newService() {
 }
 
 void ThreadService::createService() {
+	// cover main thread
+	addMainThread();
+
 	workerStatus = 0;
 	lockExit = rfc_hnd_semcreate();
 	eventExit = rfc_hnd_evcreate();
 	countExit = 0;
-
-	tlsIndex = TlsAlloc();
 
 	Timer::startAdjustment();
 	rfc_thr_sleep( 1 );
@@ -55,9 +47,6 @@ void ThreadService::createService() {
 
 	// initialize event
 	rfc_hnd_evreset( eventExit );
-
-	// cover main thread
-	addMainThread();
 }
 
 void ThreadService::stopService() {
@@ -86,13 +75,15 @@ void ThreadService::destroyService() {
 }
 
 void ThreadService::addMainThread() {
+	ThreadData *td = new ThreadData;
+	td -> data.signal_translator = ( RFC_SIGFUNC )on_exit;
+
+	rfc_thr_initmain( &td -> data );
+
 	// register main thread
 	workerCreated();
-
-	ThreadData *td = new ThreadData;
 	td -> name = "main";
-	td -> threadExtId.s_ih = ::OpenThread( THREAD_ALL_ACCESS , FALSE , ::GetCurrentThreadId() );
-	td -> threadExtId.s_ip = NULL;
+	rfc_thr_register( &td -> data );
 	workerStarted( td );
 
 	// reset signal handlers
@@ -103,14 +94,14 @@ int ThreadService::getThreadId() {
 	ThreadData *threadData = getThreadData();
 	if( threadData == NULL )
 		return( 0 );
-	return( threadData -> threadId );
+	return( threadData -> data.threadId );
 }
 
 RFC_HND ThreadService::getThreadHandle() {
 	ThreadData *threadData = getThreadData();
 	if( threadData == NULL )
 		return( ( RFC_HND )NULL );
-	return( threadData -> threadExtId.s_ih );
+	return( threadData -> data.threadExtId.s_ih );
 }
 
 unsigned ThreadService::threadFunction( ThreadData *td ) {
@@ -152,13 +143,13 @@ RFC_HND ThreadService::runThread( String p_name , Object *object , void (Object:
 	td -> objectFunctionArg = p_arg;
 	td -> name = p_name;
 
-	if( rfc_thr_process( &td -> threadExtId , ( void * )td , threadMainFunction ) ) {
+	if( rfc_thr_process( &td -> data.threadExtId , ( void * )td , threadMainFunction ) ) {
 		logger.logError( "runThread: cannot start thread name=" + td -> name );
 		workerExited( td , -10 );
 		return( NULL );
 	}
 
-	return( td -> threadExtId.s_ih );
+	return( td -> data.threadExtId.s_ih );
 }
 
 void ThreadService::workerCreated() {
@@ -174,15 +165,14 @@ void ThreadService::workerStarted( ThreadData *threadData ) {
 		String name = threadData -> name;
 
 		// thread-allocated data
-		TlsSetValue( tlsIndex , threadData );
-		threadData -> threadId = ::GetCurrentThreadId();
+		rfc_thr_initthread( &threadData -> data );
+		threadData -> setHandleExceptions();
 
 		// init logging
 		ThreadHelper *to = new ThreadHelper;
 		to -> addThreadObject();
-		manageThreadCallStack();
 
-		logger.logInfo( "workerStarted: thread started name=" + name + ", threadId=0x" + String::toHex( ( int )threadData -> threadId ) );
+		logger.logInfo( "workerStarted: thread started name=" + name + ", threadId=0x" + String::toHex( ( int )threadData -> data.threadId ) );
 
 		// add worker to managed list
 		if( threads.get( name ) != NULL )
@@ -205,7 +195,7 @@ void ThreadService::workerExited( ThreadData *threadData , int status ) {
 
 	// drop from thread list
 	String name = threadData -> name;
-	int threadId = ( int )threadData -> threadId;
+	int threadId = ( int )threadData -> data.threadId;
 	threads.remove( name );
 
 	threadData -> map.destroy();
@@ -217,10 +207,12 @@ void ThreadService::workerExited( ThreadData *threadData , int status ) {
 	if( countExit == 1 )
 		rfc_hnd_evsignal( eventExit );
 
-	logger.logInfo( "workerExited: thread stopped name=" + name + ", threadId=0x" + String::toHex( ( int )threadData -> threadId ) );
+	logger.logInfo( "workerExited: thread stopped name=" + name + ", threadId=0x" + String::toHex( ( int )threadData -> data.threadId ) );
 	delete threadData;
 
 	rfc_hnd_semunlock( lockExit );
+
+	rfc_thr_exitthread();
 }
 
 void ThreadService::workerExited( int status ) {
@@ -229,9 +221,6 @@ void ThreadService::workerExited( int status ) {
 
 	// run common
 	workerExited( threadData , status );
-
-	// to be no more used
-	TlsSetValue( tlsIndex , NULL );
 }
 
 bool ThreadService::waitThreadExited( RFC_HND threadId ) {
@@ -274,7 +263,11 @@ void ThreadService::addThreadObject( const char *key , ThreadObject *to ) {
 }
 
 ThreadData *ThreadService::getThreadData() {
-	return( ( ThreadData * )TlsGetValue( tlsIndex ) );
+	RFC_THREADDATA *td = rfc_thr_getdata();
+	if( td == NULL )
+		return( NULL );
+
+	return( ( ThreadData * )td -> userdata );
 }
 
 ThreadObject *ThreadService::getThreadObject( const char *key ) {
@@ -282,11 +275,6 @@ ThreadObject *ThreadService::getThreadObject( const char *key ) {
 	if( threadData == NULL )
 		return( NULL );
 	return( threadData -> map.get( key ) );
-}
-
-void ThreadService::manageThreadCallStack() {
-	ThreadHelper *to = ThreadHelper::getThreadObject();
-	to -> oldAIUnhandledExceptionTranslator = ( void (*)() )::_set_se_translator( UnhandledExceptionTranslator );
 }
 
 void ThreadService::threadDumpAll( bool showStackTrace ) {
@@ -297,7 +285,7 @@ void ThreadService::threadDumpAll( bool showStackTrace ) {
 	for( int k = 0; k < threads.count(); k++ ) {
 		ThreadData *td = threads.getClassByIndex( k );
 
-		String threadInfo = String( "threadDumpAll: THREAD DUMP: thread index=" ) + k + ", name=" + td -> name + ", threadId=0x" + String::toHex( ( int )td -> threadId );
+		String threadInfo = String( "threadDumpAll: THREAD DUMP: thread index=" ) + k + ", name=" + td -> name + ", threadId=0x" + String::toHex( ( int )td -> data.threadId );
 		if( showStackTrace )
 			 threadInfo += ":";
 		logger.logInfo( threadInfo , Logger::LogLine );
@@ -314,7 +302,7 @@ void ThreadService::threadDumpByName( String name , bool showStackTrace ) {
 	rfc_hnd_semlock( lockExit );
 	ThreadData *td = threads.get( name );
 	if( td != NULL ) {
-		String threadInfo = String( "threadDumpByName: THREAD DUMP: thread name=" ) + td -> name + ", threadId=0x" + String::toHex( ( int )td -> threadId );
+		String threadInfo = String( "threadDumpByName: THREAD DUMP: thread name=" ) + td -> name + ", threadId=0x" + String::toHex( ( int )td -> data.threadId );
 		if( showStackTrace )
 			 threadInfo += ":";
 		logger.logInfo( threadInfo );
@@ -329,22 +317,20 @@ void ThreadService::threadDumpByName( String name , bool showStackTrace ) {
 
 void ThreadService::printThreadStackTrace( ThreadData *td ) {
 	// suspend if not the same thread
-	DWORD currentThread = ::GetCurrentThreadId();
-	bool sameThread = ( currentThread == td -> threadId )? true : false;
+	bool sameThread = ( rfc_thr_getcurrentid() == td -> data.threadId )? true : false;
 	rfc_threadstack *stack;
 
 	if( sameThread )
 		stack = rfc_thr_stackget( 0 );
 	else {
 		// suspend thread
-		HANDLE handle = td -> threadExtId.s_ih;
-		::SuspendThread( handle );
+		rfc_thr_suspend( &td -> data.threadExtId );
 
 		// get stack
-		stack = rfc_thr_stackgetforthread( ( RFC_HND )handle , 0 );
+		stack = rfc_thr_stackgetforthread( &td -> data.threadExtId , 0 );
 
 		// resume thread
-		::ResumeThread( handle );
+		rfc_thr_resume( &td -> data.threadExtId );
 	}
 
 	// print stack
@@ -353,12 +339,6 @@ void ThreadService::printThreadStackTrace( ThreadData *td ) {
 
 // services
 void ThreadService::setSignalHandlers() {
-	signal( SIGABRT , on_exit );
-	signal( SIGINT , on_exit );
-	signal( SIGTERM , on_exit );
-	signal( SIGFPE , on_exit );
-	signal( SIGILL , on_exit );
-	signal( SIGSEGV , on_exit );
 }
 
 void ThreadService::stopServicesBySignal( int status ) {

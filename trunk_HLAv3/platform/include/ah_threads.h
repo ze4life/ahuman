@@ -32,7 +32,6 @@ public:
 	int getThreadId();
 	void addThreadObject( const char *key , ThreadObject *to );
 	ThreadObject *getThreadObject( const char *key );
-	void manageThreadCallStack();
 	void setSignalHandlers();
 
 	// thread pool operations
