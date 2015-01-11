@@ -9,9 +9,6 @@
 #include <signal.h>
 #include "__gen.h"
 
-typedef void (__cdecl *_se_translator_function)(unsigned int, struct _EXCEPTION_POINTERS*);
-_CRTIMP _se_translator_function __cdecl _set_se_translator(_In_opt_ _se_translator_function _NewPtFunc);
-
 #define MIN_CPU_LOAD_TICKS 100
 
 static RFC_THREADDATA *main_thread = NULL;
@@ -128,15 +125,9 @@ void rfc_thr_initmain( RFC_THREADDATA *p_data ) {
 	}
 }
 
-static void UnhandledExceptionTranslator( unsigned int exceptionCode , struct _EXCEPTION_POINTERS *exceptionInfo ) {
-	RFC_THREADDATA *td = rfc_thr_getdata();
-	( *td -> exception_translator )( td , exceptionCode , exceptionInfo -> ExceptionRecord -> ExceptionAddress );
-}
-
 void rfc_thr_initthread( RFC_THREADDATA *rd ) {
 	TlsSetValue( tlsIndex , rd );
 	rd -> threadId = GetCurrentThreadId();
-	rd -> oldhandler = _set_se_translator( UnhandledExceptionTranslator );
 }
 
 RFC_THREADDATA *rfc_thr_getdata() {
