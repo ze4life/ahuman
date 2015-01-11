@@ -71,6 +71,7 @@ typedef	void				( *RFC_EXCEPTION_TRANSLATOR )( /* RFC_THREADDATA */ void *p_data
 
 	typedef struct {
 		void *userdata;
+		RFC_THREAD threadExtId;
 		unsigned long threadId;
 		RFC_EXCEPTION_TRANSLATOR exception_translator;
 		void (*oldhandler)( unsigned int exceptionCode , struct _EXCEPTION_POINTERS *exceptionInfo );
@@ -113,6 +114,7 @@ typedef	void				( *RFC_EXCEPTION_TRANSLATOR )( /* RFC_THREADDATA */ void *p_data
 
 	typedef struct {
 		void *userdata;
+		RFC_THREAD threadExtId;
 		unsigned long threadId;
 		RFC_EXCEPTION_TRANSLATOR exception_translator;
 	} RFC_THREADDATA;

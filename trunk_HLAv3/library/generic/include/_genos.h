@@ -258,22 +258,14 @@ extern void			rfc_lock_escalate( rfc_lock *p_lock );
 /*#######################################################*/
 /* threads */
 
-extern int			rfc_thr_waitexit( RFC_THREAD *p_hnd );
-extern void			rfc_thr_closehandle( RFC_THREAD *p_hnd );
-extern int			rfc_thr_process( RFC_THREAD *p_thread , void *p_arg , RFC_THRFUNC p_action );
-extern void			rfc_thr_threxit( int p_exitcode );
-extern void			rfc_thr_sleep( int p_sec );
-
 /* call stack structures */
-typedef struct _rfc_threadstack
-{
+typedef struct _rfc_threadstack {
 	rfc_list levels;
 	int extraLevels; /* call stack items added to levels, but ignored  in reporting */
 	short brokenStack; /* 1 if stack filled partially because of error while getting stack */
 } rfc_threadstack;
 
-typedef struct _rfc_threadstacklevel
-{
+typedef struct _rfc_threadstacklevel {
 	const char *moduleName;
 	const char *className;
 	const char *functionName;
@@ -281,18 +273,36 @@ typedef struct _rfc_threadstacklevel
 	const char *message;
 } rfc_threadstacklevel;
 
-extern void rfc_thr_initmain();
-extern void rfc_thr_initthread( RFC_THREADDATA *rd );
-extern void rfc_thr_initstackhandle();
-extern void rfc_thr_exitstackhandle();
-extern RFC_THREADDATA *rfc_thr_getdata();
-extern void rfc_thr_exitthread();
-extern rfc_threadstack *rfc_thr_stackget( int skipLevels );
-extern rfc_threadstack *rfc_thr_stackgetforthread( RFC_HND thread , int skipLevels );
+extern void			rfc_thr_initmain();
+
+extern int			rfc_thr_waitexit( RFC_THREAD *p_hnd );
+extern void			rfc_thr_closehandle( RFC_THREAD *p_hnd );
+extern int			rfc_thr_process( RFC_THREAD *p_thread , void *p_arg , RFC_THRFUNC p_action );
+extern void			rfc_thr_threxit( int p_exitcode );
+extern void			rfc_thr_sleep( int p_sec );
+
+extern void			rfc_thr_register( RFC_THREADDATA *p_data );
+extern void			rfc_thr_initthread( RFC_THREADDATA *rd );
+extern RFC_THREADDATA *
+					rfc_thr_getdata();
+extern unsigned long
+					rfc_thr_getcurrentid();
+
+extern void			rfc_thr_initstackhandle();
+extern void			rfc_thr_exitstackhandle();
+extern void			rfc_thr_exitthread();
+extern void 		rfc_thr_suspend( RFC_THREAD *p_hnd );
+extern void 		rfc_thr_resume( RFC_THREAD *p_hnd );
+
+extern rfc_threadstack *
+					rfc_thr_stackget( int skipLevels );
+extern rfc_threadstack *
+					rfc_thr_stackgetforthread( RFC_THREAD *p_hnd , int skipLevels );
 
 extern int			rfc_thr_stackfulldepth( rfc_threadstack *stack );
 extern int			rfc_thr_stackdepth( rfc_threadstack *stack );
-extern rfc_threadstacklevel *rfc_thr_stacklevel( rfc_threadstack *stack , int level );
+extern rfc_threadstacklevel *
+					rfc_thr_stacklevel( rfc_threadstack *stack , int level );
 extern void			rfc_thr_stackfree( rfc_threadstack *stack );
 extern short		rfc_thr_stacknamebyaddr( void *p_addr , char *p_class , char *p_func );
 extern int			rfc_thr_increment( int *pv );
