@@ -273,16 +273,17 @@ typedef struct _rfc_threadstacklevel {
 	const char *message;
 } rfc_threadstacklevel;
 
-extern void			rfc_thr_initmain();
+extern void			rfc_thr_initmain( RFC_THREADDATA *p_data );
 
+extern int			rfc_thr_process( RFC_THREAD *p_thread , void *p_arg , RFC_THRFUNC p_action );
 extern int			rfc_thr_waitexit( RFC_THREAD *p_hnd );
 extern void			rfc_thr_closehandle( RFC_THREAD *p_hnd );
-extern int			rfc_thr_process( RFC_THREAD *p_thread , void *p_arg , RFC_THRFUNC p_action );
 extern void			rfc_thr_threxit( int p_exitcode );
 extern void			rfc_thr_sleep( int p_sec );
 
 extern void			rfc_thr_register( RFC_THREADDATA *p_data );
 extern void			rfc_thr_initthread( RFC_THREADDATA *rd );
+
 extern RFC_THREADDATA *
 					rfc_thr_getdata();
 extern unsigned long
