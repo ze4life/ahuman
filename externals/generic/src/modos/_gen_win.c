@@ -106,9 +106,26 @@ void		rfc_hnd_mutunlock( RFC_HND p_hnd ) {
 /*#######################################################*/
 /* threads */
 
-void rfc_thr_initmain() {
+static void on_exit( int p_sig ) {
+	if( main_thread != NULL )
+		if( main_thread -> signal_translator != NULL )
+			main_thread -> signal_translator( main_thread , p_sig );
+}
+
+void rfc_thr_initmain( RFC_THREADDATA *p_data ) {
+	main_thread = p_data;
+
 	rfc_thr_initstackhandle();
 	tlsIndex = TlsAlloc();
+
+	if( p_data -> signal_translator != NULL ) {
+		signal( SIGABRT , on_exit );
+		signal( SIGINT , on_exit );
+		signal( SIGTERM , on_exit );
+		signal( SIGFPE , on_exit );
+		signal( SIGILL , on_exit );
+		signal( SIGSEGV , on_exit );
+	}
 }
 
 static void UnhandledExceptionTranslator( unsigned int exceptionCode , struct _EXCEPTION_POINTERS *exceptionInfo ) {
