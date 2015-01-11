@@ -101,12 +101,15 @@ rfc_threadstack *rfc_thr_stackget( int skipLevels )
 	return( rfc_thr_stackgetforthread( NULL , skipLevels ) );
 }
 
-rfc_threadstack *rfc_thr_stackgetforthread( RFC_HND thread , int skipLevels )
+rfc_threadstack *rfc_thr_stackgetforthread( RFC_THREAD *p_td , int skipLevels )
 {
 	char modname[ 500 ];
 	void *module;
+	RFC_HND thread;
+	rfc_threadstack *stack;
 
-	rfc_threadstack *stack = ( rfc_threadstack * )calloc( 1 , sizeof( rfc_threadstack ) );
+	thread = p_td -> s_ih;
+	stack = ( rfc_threadstack * )calloc( 1 , sizeof( rfc_threadstack ) );
 	stack -> levels.s_type = RFC_EXT_TYPEPTR;
 	stack -> extraLevels = skipLevels;
 
