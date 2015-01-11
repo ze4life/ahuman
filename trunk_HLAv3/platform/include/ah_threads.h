@@ -32,7 +32,6 @@ public:
 	int getThreadId();
 	void addThreadObject( const char *key , ThreadObject *to );
 	ThreadObject *getThreadObject( const char *key );
-	void setSignalHandlers();
 
 	// thread pool operations
 	void createThreadPool( String name , Xml configuration , ClassList<ThreadPoolTask>& tasks );
@@ -59,7 +58,7 @@ protected:
 
 // engine helpers
 protected:
-	ThreadService() {};
+	ThreadService();
 public:
 	static Service *newService();
 	static ThreadService *getService() { return( ( ThreadService * )ServiceManager::getInstance().getService( "ThreadService" ) ); };
@@ -90,6 +89,7 @@ private:
 	MapStringToClass<ThreadPool> threadpools;
 
 	// threads
+	bool ignoreSignals;
 	int workerStatus;
 	RFC_HND lockExit;
 	RFC_HND eventExit;
@@ -116,7 +116,6 @@ public:
 	static ThreadHelper *getThreadObject();
 
 public:
-	void ( *oldAIUnhandledExceptionTranslator )(); // _se_translator_function
 	String lastMsg;
 	bool remains;
 };

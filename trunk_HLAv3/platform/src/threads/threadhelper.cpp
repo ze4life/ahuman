@@ -6,7 +6,6 @@
 
 ThreadHelper::ThreadHelper()
 { 
-	oldAIUnhandledExceptionTranslator = NULL;
 	remains = false; 
 }
 
