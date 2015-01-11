@@ -28,6 +28,7 @@
 typedef void *				RFC_HND;
 typedef void				( *RFC_PROC )();
 typedef	void				( *RFC_EXCEPTION_TRANSLATOR )( /* RFC_THREADDATA */ void *p_data , int p_code , void *p_address );
+typedef void				( *RFC_SIGFUNC )( /* RFC_THREADDATA */ void *p_data , int p_signal );
 
 /*#######################################################*/
 /*#######################################################*/
@@ -74,6 +75,7 @@ typedef	void				( *RFC_EXCEPTION_TRANSLATOR )( /* RFC_THREADDATA */ void *p_data
 		RFC_THREAD threadExtId;
 		unsigned long threadId;
 		RFC_EXCEPTION_TRANSLATOR exception_translator;
+		RFC_SIGFUNC signal_translator;
 		void (*oldhandler)( unsigned int exceptionCode , struct _EXCEPTION_POINTERS *exceptionInfo );
 	} RFC_THREADDATA;
 
@@ -94,6 +96,7 @@ typedef	void				( *RFC_EXCEPTION_TRANSLATOR )( /* RFC_THREADDATA */ void *p_data
 
 	typedef pthread_t		RFC_THREAD;
 	typedef void *			( *RFC_THRFUNC )( void *p_arg );
+	typedef void			( *RFC_SIGFUNC )( /* RFC_THREADDATA */ void *p_arg , int p_signal );
 
 	typedef int				RFC_FD_SET;
 
@@ -117,6 +120,7 @@ typedef	void				( *RFC_EXCEPTION_TRANSLATOR )( /* RFC_THREADDATA */ void *p_data
 		RFC_THREAD threadExtId;
 		unsigned long threadId;
 		RFC_EXCEPTION_TRANSLATOR exception_translator;
+		RFC_SIGFUNC signal_translator;
 	} RFC_THREADDATA;
 
 #endif
