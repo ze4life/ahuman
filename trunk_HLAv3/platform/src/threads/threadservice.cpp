@@ -28,6 +28,14 @@ static unsigned __stdcall threadMainFunction( void *p_arg ) {
 /*#########################################################################*/
 /*#########################################################################*/
 
+ThreadService::ThreadService() {
+	ignoreSignals = true;
+	workerStatus = 0;
+	lockExit = ( RFC_HND )NULL;
+	eventExit = ( RFC_HND )NULL;
+	countExit = 0;
+}
+
 Service *ThreadService::newService() {
 	return( new ThreadService() );
 }
@@ -36,10 +44,8 @@ void ThreadService::createService() {
 	// cover main thread
 	addMainThread();
 
-	workerStatus = 0;
 	lockExit = rfc_hnd_semcreate();
 	eventExit = rfc_hnd_evcreate();
-	countExit = 0;
 
 	Timer::startAdjustment();
 	rfc_thr_sleep( 1 );
@@ -47,6 +53,8 @@ void ThreadService::createService() {
 
 	// initialize event
 	rfc_hnd_evreset( eventExit );
+
+	ignoreSignals = false;
 }
 
 void ThreadService::stopService() {
@@ -85,9 +93,6 @@ void ThreadService::addMainThread() {
 	td -> name = "main";
 	rfc_thr_register( &td -> data );
 	workerStarted( td );
-
-	// reset signal handlers
-	setSignalHandlers();
 }
 
 int ThreadService::getThreadId() {
@@ -338,14 +343,12 @@ void ThreadService::printThreadStackTrace( ThreadData *td ) {
 }
 
 // services
-void ThreadService::setSignalHandlers() {
-}
-
 void ThreadService::stopServicesBySignal( int status ) {
-	logger.logInfo( "stopServices: Stop by signal" );
+	if( ignoreSignals )
+		return;
 
-	// reset signal handlers
-	setSignalHandlers();
+	ignoreSignals = true;
+	logger.logInfo( "stopServices: Stop by signal" );
 
 	// process again
 	workerCreated();
