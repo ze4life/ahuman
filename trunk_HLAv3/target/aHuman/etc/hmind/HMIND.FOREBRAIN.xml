@@ -29,15 +29,24 @@
 						<element name="Ventrolateral Amygdaloid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_amygdaloid_nucleus,_ventrolateral_part Lateral amygdaloid nucleus, ventrolateral part]"/>
 						<element name="Ventromedial Amygdaloid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_amygdaloid_nucleus,_ventromedial_part Lateral amygdaloid nucleus, ventromedial part]"/>
 					</element>
-					<element id="FAM.FT.AM.B" name="Basal Amygdaloid Nucleus" mapped="true" type="nucleus"
+					<element id="FAM.FT.AM.B" name="Basal Amygdaloid Nucleus" 
 						refs="NL:[http://neurolex.org/wiki/Category:Basal_amygdaloid_nucleus Basal amygdaloid nucleus]"
 						function="enhance explicit memories in hippocampus about emotional situations"
 						notes="conditioned fear expression and extinction"
 						>
-						<element name="Basolateral Amygdaloid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_part_of_basal_amygdaloid_nucleus Lateral part of basal amygdaloid nucleus]"/>
-						<element name="Mediolateral Amygdaloid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_part_of_basal_amygdaloid_nucleus Medial part of basal amygdaloid nucleus]"/>
+						<element id="FAM.FT.AM.BP" name="Parvicellular Basal Amygdaloid Nucleus" mapped="true" type="nucleus"
+							synonyms="Basolateral Amygdaloid Nucleus, rostral, lateral" 
+							refs="NL:[http://neurolex.org/wiki/Category:Lateral_part_of_basal_amygdaloid_nucleus Lateral part of basal amygdaloid nucleus]"
+							function="enhance explicit memories in hippocampus about emotional situations"
+							/>
+						<element id="FAM.FT.AM.BM" name="Magnocellular Basal Amygdaloid Nucleus" mapped="true" type="nucleus"
+							synonyms="Mediolateral Amygdaloid Nucleus, caudal, medial" 
+							refs="NL:[http://neurolex.org/wiki/Category:Medial_part_of_basal_amygdaloid_nucleus Medial part of basal amygdaloid nucleus]"
+							function="enhance emotional memories memories in medial prefrontal cortex"
+							/>
 					</element>
 					<element id="FAM.FT.AM.AB" name="Accessory Basal Amygdaloid Nucleus" mapped="true" type="nucleus"
+						synonyms="basomedial"
 						refs="NL:[http://neurolex.org/wiki/Category:Accessory_basal_amygdaloid_nucleus Accessory basal amygdaloid nucleus]"
 						function="proections to maxrix of core of NACC"
 						/>
@@ -45,7 +54,7 @@
 				<element id="FAM.FT.AM.CTM" name="Corticomedial Nuclear Complex" 
 					refs="NL:[http://neurolex.org/wiki/Category:Corticomedial_nuclear_complex Corticomedial nuclear complex]"
 					>
-					<element id="LAM.FT.AM.CT" name="Cortical Amygdaloid Nucleus" mapped="true" type="nucleus"
+					<element id="FAM.FT.AM.CO" name="Cortical Amygdaloid Nucleus" mapped="true" type="nucleus"
 						refs="NL:[http://neurolex.org/wiki/Category:Cortical_amygdaloid_nucleus Cortical amygdaloid nucleus]; NL:[http://neurolex.org/wiki/Category:Periamygdaloid_cortex Periamygdaloid cortex]"
 						function="olfactory processing"
 						/>
@@ -114,18 +123,50 @@
 				function="Putative relay of limbic-associated cortical-like areas subserving affective information"
 				/>
 
-			<element id="FAM.FT.SEP" name="Septal Nucleus" mapped="true" type="nucleus"
+			<element id="FAM.FT.SEP" name="Septal Nucleus" 
 				refs="NL:[http://neurolex.org/wiki/Category:Septal_nuclear_complex Septal nuclear complex]"
 				function="Inhibition of fear and expression of pleasurable responses"
 				>
-				<element id="FAM.FT.SEP.DBB" name="Diagonal Band of Broca" refs="NL:[http://neurolex.org/wiki/Category:Nuclei_of_the_diagonal_band Nuclei of the diagonal band]"/>
-				<element name="Medial Septal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_septal_nucleus Medial septal nucleus]"/>
-				<element name="Dorsal Septal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Dorsal_septal_nucleus Dorsal septal nucleus]"/>
-				<element name="Lateral Septal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_septal_nuclei Lateral septal nuclei];NL:[http://neurolex.org/wiki/Category:Lateral_septal_nucleus Lateral septal nucleus]"/>
-				<element name="Nucleus of Anterior Commissure" refs="NL:[http://neurolex.org/wiki/Category:Nucleus_of_anterior_commissure Nucleus of anterior commissure]"/>
-				<element name="Septofimbrial Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Septofimbrial_nucleus Septofimbrial nucleus]"/>
-				<element name="Septohippocampal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Septohippocampal_nucleus Septohippocampal nucleus]"/>
-				<element name="Triangular Septal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Triangular_septal_nucleus Triangular septal nucleus]"/>
+				<element id="FAM.FT.SEP.DS" name="Dorsal Septal Nucleus" 
+					refs="NL:[http://neurolex.org/wiki/Category:Dorsal_septal_nucleus Dorsal septal nucleus]"
+					>
+					<element id="FAM.FT.SEP.LG" name="Lateral Septal Group"
+						notes="from precommissural fornix to/from MFB"
+						refs="NL:[http://neurolex.org/wiki/Category:Lateral_septal_nuclei Lateral septal nuclei]"
+						>
+						<element id="FAM.FT.SEP.LT" name="Lateral Septal Nucleus" 
+							refs="NL:[http://neurolex.org/wiki/Category:Lateral_septal_nucleus Lateral septal nucleus]"
+							/>
+						<element id="FAM.FT.SEP.SH" name="Septohippocampal Nucleus" 
+							refs="NL:[http://neurolex.org/wiki/Category:Septohippocampal_nucleus Septohippocampal nucleus]"
+							/>
+					</element>
+					<element id="FAM.FT.SEP.MG" name="Medial Septal Group"
+						notes="cholinergic neurons; from/to MFB to fornix fimbria"
+						>
+						<element id="FAM.FT.SEP.MED" name="Medial Septal Nucleus" mapped="true" type="nucleus"
+							refs="NL:[http://neurolex.org/wiki/Category:Medial_septal_nucleus Medial septal nucleus]"
+							/>
+					</element>
+				</element>
+				<element id="FAM.FT.SEP.VG" name="Ventral Septal Group"
+					notes="some assign only BNST here; from stria terminalis to/from MFB"
+					>
+					<element id="FAM.FT.SEP.DBB" name="Diagonal Band of Broca" mapped="true" type="nucleus"
+						refs="NL:[http://neurolex.org/wiki/Category:Nuclei_of_the_diagonal_band Nuclei of the diagonal band]"
+						/>
+				</element>
+				<element id="FAM.FT.SEP.PG" name="Posterior Septal Group"
+					notes="from MFB to stria medullaris"
+					>
+					<element id="FAM.FT.SEP.NAC" name="Nucleus of Anterior Commissure" 
+						refs="NL:[http://neurolex.org/wiki/Category:Nucleus_of_anterior_commissure Nucleus of anterior commissure]"
+						/>
+					<element id="FAM.FT.SEP.SF" name="Septofimbrial Nucleus" 
+						refs="NL:[http://neurolex.org/wiki/Category:Septofimbrial_nucleus Septofimbrial nucleus]"
+						/>
+					<element id="FAM.FT.SEP.TR" name="Triangular Septal Nucleus" 
+						refs="NL:[http://neurolex.org/wiki/Category:Triangular_septal_nucleus Triangular septal nucleus]"/>
 			</element>
 
 		</element>
@@ -365,12 +406,19 @@
 		dotdef="color=yellow"
 		>
 
-		<element id="FAM.FD.HB" name="Habenula" mapped="true" type="nucleus" 
+		<element id="FAM.FD.HB" name="Habenula" 
 			refs="NL:[http://neurolex.org/wiki/Category:Habenula Habenula]"
 			function="Encoding negative feedback"
 			>
-			<element id="BFA.FD.LHB" name="Lateral Habenula" refs="NL:[http://neurolex.org/wiki/Category:Lateral_habenular_nucleus Lateral habenular nucleus]"/>
-			<element id="BFA.FD.MHB" name="Medial Habenula" refs="NL:[http://neurolex.org/wiki/Category:Medial_habenular_nucleus Medial habenular nucleus]"/>
+			<element id="FAM.FD.LHB" name="Lateral Habenula" mapped="true" type="nucleus" 
+				refs="NL:[http://neurolex.org/wiki/Category:Lateral_habenular_nucleus Lateral habenular nucleus]"
+				function="Encoding negative feedback, direct"
+				/>
+			<element id="FAM.FD.MHB" name="Medial Habenula" mapped="true" type="nucleus" 
+				refs="NL:[http://neurolex.org/wiki/Category:Medial_habenular_nucleus Medial habenular nucleus]"
+				function="Encoding negative feedback, indirect"
+				notes="affects VTA, dorsal raphe but via interpeduncular nucleus"
+				/>
 		</element>
 
 		<element id="HTA.FD.HT" name="Hypothalamus" 
