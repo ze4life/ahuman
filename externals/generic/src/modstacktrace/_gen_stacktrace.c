@@ -108,7 +108,11 @@ rfc_threadstack *rfc_thr_stackgetforthread( RFC_THREAD *p_td , int skipLevels )
 	RFC_HND thread;
 	rfc_threadstack *stack;
 
-	thread = p_td -> s_ih;
+	if( p_td == NULL )
+		thread = NULL;
+	else
+		thread = p_td -> s_ih;
+
 	stack = ( rfc_threadstack * )calloc( 1 , sizeof( rfc_threadstack ) );
 	stack -> levels.s_type = RFC_EXT_TYPEPTR;
 	stack -> extraLevels = skipLevels;
