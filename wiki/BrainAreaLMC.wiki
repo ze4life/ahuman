@@ -35,8 +35,8 @@
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFAM FAM] || [BrainRegionLMC_MM_RF_SC LMC.MM.RF.SC] || [BrainRegionFAM_FD_HB FAM.FD.HB] || Habenula || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> MR)] ||
-||  || [BrainRegionLMC_MM_RP_DRN LMC.MM.RP.DRN] || [BrainRegionFAM_FD_HB FAM.FD.HB] || Habenula || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> DR)] ||
+|| [BrainAreaFAM FAM] || [BrainRegionLMC_MM_RF_SC LMC.MM.RF.SC] || [BrainRegionFAM_FD_LHB FAM.FD.LHB] || Lateral Habenula || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> MR)] ||
+||  || [BrainRegionLMC_MM_RP_DRN LMC.MM.RP.DRN] || [BrainRegionFAM_FD_LHB FAM.FD.LHB] || Lateral Habenula || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> DR)] ||
 || [BrainAreaLAC LAC] || [BrainRegionLMC_HM_RP_MG LMC.HM.RP.MG] || [BrainRegionLAC_FD_HT_LTN LAC.FD.HT.LTN] || Lateral Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLAC_FD_HT_PV LAC.FD.HT.PV] || Paraventricular Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionLMC_HM_RP_OB LMC.HM.RP.OB] || [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO] || Preoptic Nucleus || nucleus-nucleus || (unknown reference) ||
@@ -50,7 +50,7 @@
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFAM FAM] || [BrainRegionLMC_MM_RF_SC LMC.MM.RF.SC] || [BrainRegionFAM_FD_HB FAM.FD.HB] || Habenula || nucleus-nucleus-5HT || (unknown reference) ||
+|| [BrainAreaFAM FAM] || [BrainRegionLMC_MM_RF_SC LMC.MM.RF.SC] || [BrainRegionFAM_FD_LHB FAM.FD.LHB] || Lateral Habenula || nucleus-nucleus-5HT || (unknown reference) ||
 ||  ||  || [BrainRegionFAM_FT_SEP FAM.FT.SEP] || Septal Nucleus || nucleus-nucleus-5HT || (unknown reference) ||
 ||  || [BrainRegionLMC_MM_RP_DRN LMC.MM.RP.DRN] || [BrainRegionFAM_FD_TH_PV FAM.FD.TH.PV] || Paraventricular Nucleus of Thalamus || nucleus-nucleus-5HT || (unknown reference) ||
 || [BrainAreaFEC FEC] || [BrainRegionLMC_MM_RF_SC LMC.MM.RF.SC] || [BrainRegionFEC_FD_STN_ICD FEC.FD.STN.ICD] || Subthalamic Nucleus Internal Caudal || nucleus-nucleus-5HT || (unknown reference) ||
@@ -83,8 +83,10 @@
 || <font color="red">Cortical</font> || || || || || ||
 || [BrainAreaSAA SAA] || [BrainRegionLMC_MM_TG_LDT LMC.MM.TG.LDT] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || Suprageniculate Nucleus of Thalamus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (SUPGEN -> DTN)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFAM FAM] || [BrainRegionLMC_FT_NBM LMC.FT.NBM] || [BrainRegionFAM_FT_AM_B FAM.FT.AM.B] || Basal Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionLMC_MM_TG_LDT LMC.MM.TG.LDT] || [BrainRegionFAM_FD_HB FAM.FD.HB] || Habenula || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LHAB -> DTN)] ||
+|| [BrainAreaFAM FAM] || [BrainRegionLMC_FT_NBM LMC.FT.NBM] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || Accessory Basal Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionFAM_FT_AM_BP FAM.FT.AM.BP] || Parvicellular Basal Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionFAM_FT_BNST FAM.FT.BNST] || Bed Nucleus of Stria Terminalis || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLMC_MM_TG_LDT LMC.MM.TG.LDT] || [BrainRegionFAM_FD_LHB FAM.FD.LHB] || Lateral Habenula || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LHAB -> DTN, abstract)] ||
 || [BrainAreaFEC FEC] || [BrainRegionLMC_FT_NBM LMC.FT.NBM] || [BrainRegionFEC_FD_STN_CD FEC.FD.STN.CD] || Subthalamic Nucleus Caudal || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionFEC_FT_ACC_SH FEC.FT.ACC.SH] || Nucleus Accumbens Shell || nucleus-nucleus-gaba || [http://www.expertsmind.com/topic/emotion/affective-basal-ganglia-circuit-93570.aspx Affective basal ganglia circuit (NACC -> nBM, abstract)] ||
 || [BrainAreaLLC LLC] || [BrainRegionLMC_MM_TG_LDT LMC.MM.TG.LDT] || [BrainRegionLLC_HP_PPN_RS LLC.HP.PPN.RS] || Pedunculopontine Nucleus Rostral || nucleus-nucleus-gaba || (unknown reference) ||
@@ -98,6 +100,7 @@
 || [BrainAreaSAA SAA] || [BrainRegionLMC_FT_NBM LMC.FT.NBM] || [BrainRegionVCA_NC_V1 VCA.NC.V1] || Primary Visual Cortex || nucleus-neocortex-ACh || (unknown reference) ||
 ||  || [BrainRegionLMC_MM_TG_LDT LMC.MM.TG.LDT] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || Suprageniculate Nucleus of Thalamus || nucleus-nucleus-ACh || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (DTN -> SUPGEN)] ||
 || <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaFAM FAM] || [BrainRegionLMC_FT_NBM LMC.FT.NBM] || [BrainRegionFAM_FT_AM_BM FAM.FT.AM.BM] || Magnocellular Basal Amygdaloid Nucleus || nucleus-nucleus-ACh || (unknown reference) ||
 || [BrainAreaLAC LAC] || [BrainRegionLMC_MM_TG_LDT LMC.MM.TG.LDT] || [BrainRegionLAC_HM_SAL_ISL LAC.HM.SAL.ISL] || Inferior Salivatory Nucleus || nucleus-nucleus-ACh || (unknown reference) ||
 ||  ||  || [BrainRegionLAC_HM_SAL_SSL LAC.HM.SAL.SSL] || Superior Salivatory Nucleus || nucleus-nucleus-ACh || (unknown reference) ||
 || [BrainAreaLLC LLC] || [BrainRegionLMC_MM_TG_LDT LMC.MM.TG.LDT] || [BrainRegionLLC_HP_PPN_CD LLC.HP.PPN.CD] || Pedunculopontine Nucleus Caudal || nucleus-nucleus-ACh || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (DTN -> IPD)] ||
@@ -121,7 +124,8 @@
 || <font color="red">Cortical</font> || || || || || ||
 || [BrainAreaEPA EPA] || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || neocortex-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (OMPFC -> VTA)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFAM FAM] || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || [BrainRegionFAM_FD_HB FAM.FD.HB] || Habenula || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> VTA)] ||
+|| [BrainAreaFAM FAM] || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || [BrainRegionFAM_FD_LHB FAM.FD.LHB] || Lateral Habenula || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> VTA)] ||
+||  ||  || [BrainRegionFAM_FT_BNST FAM.FT.BNST] || Bed Nucleus of Stria Terminalis || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaFEC FEC] || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || [BrainRegionFEC_FT_ACC_CORE FEC.FT.ACC.CORE] || Nucleus Accumbens Core || nucleus-nucleus-gaba || [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reward circuit of human brain (NACC -> VTA, abstract)] ||
 ||  ||  || [BrainRegionFEC_FT_ACC_SH FEC.FT.ACC.SH] || Nucleus Accumbens Shell || nucleus-nucleus-gaba || [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reward circuit of human brain (NACC -> VTA, abstract)] ||
 ||  ||  || [BrainRegionFEC_FT_VP_DL FEC.FT.VP.DL] || Ventral Pallidum Dorsolateral || nucleus-nucleus-gaba || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (VPAL -> VTA, abstract)] ||
@@ -201,7 +205,7 @@
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFAM FAM] || [BrainRegionLMC_HP_NI LMC.HP.NI] || [BrainRegionFAM_FD_HB FAM.FD.HB] || Habenula || nucleus-nucleus-gaba || (unknown reference) ||
+|| [BrainAreaFAM FAM] || [BrainRegionLMC_HP_NI LMC.HP.NI] || [BrainRegionFAM_FD_LHB FAM.FD.LHB] || Lateral Habenula || nucleus-nucleus-gaba || (unknown reference) ||
 ||  ||  || [BrainRegionFAM_FT_SEP FAM.FT.SEP] || Septal Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
 || [BrainAreaLLC LLC] || [BrainRegionLMC_FD_TH_SF LMC.FD.TH.SF] || [BrainRegionLLC_HM_IO LLC.HM.IO] || Inferior Olivary Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
 || [BrainAreaLMC LMC] || [BrainRegionLMC_FD_TH_SF LMC.FD.TH.SF] || [BrainRegionLMC_MM_RP_DRN LMC.MM.RP.DRN] || Dorsal Raphe Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
@@ -226,7 +230,7 @@
 || [BrainAreaEPA EPA] || [BrainRegionLMC_HP_LC LMC.HP.LC] || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || Ventral Anterior Cingulate Area || neocortex-nucleus || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (Premotor24 -> RF, abstract)] ||
 ||  ||  || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> RF, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFAM FAM] || [BrainRegionLMC_HP_LC LMC.HP.LC] || [BrainRegionFAM_FT_AM_CEA FAM.FT.AM.CEA] || Central Amygdala || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> LC, abstract)] ||
+|| [BrainAreaFAM FAM] || [BrainRegionLMC_HP_LC LMC.HP.LC] || [BrainRegionFAM_FT_BNST FAM.FT.BNST] || Bed Nucleus of Stria Terminalis || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLAC LAC] || [BrainRegionLMC_HP_LC LMC.HP.LC] || [BrainRegionLAC_FD_HT_DM LAC.FD.HT.DM] || Dorsomedial Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLAC_FD_HT_TBM LAC.FD.HT.TBM] || Tuberomammillary Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLRC LRC] || [BrainRegionLMC_HP_LC LMC.HP.LC] || [BrainRegionLRC_HM_RF_MED LRC.HM.RF.MED] || Central Medullary Reticular Nucleus || nucleus-nucleus || (unknown reference) ||
@@ -235,7 +239,7 @@
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFAM FAM] || [BrainRegionLMC_HP_LC LMC.HP.LC] || [BrainRegionFAM_FD_HB FAM.FD.HB] || Habenula || nucleus-nucleus-NE || (unknown reference) ||
+|| [BrainAreaFAM FAM] || [BrainRegionLMC_HP_LC LMC.HP.LC] || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || Medial Habenula || nucleus-nucleus-NE || (unknown reference) ||
 || [BrainAreaFEC FEC] || [BrainRegionLMC_HP_LC LMC.HP.LC] || [BrainRegionFEC_FT_SNC_MED FEC.FT.SNC.MED] || Substantia Nigra Pars Compacta Medial || nucleus-nucleus-NE || (unknown reference) ||
 || [BrainAreaLAC LAC] || [BrainRegionLMC_HP_LC LMC.HP.LC] || [BrainRegionLAC_SC_IZ_IML LAC.SC.IZ.IML] || Intermediolateral Nucleus || nucleus-nucleus-NE || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (LC -> IML)] ||
 

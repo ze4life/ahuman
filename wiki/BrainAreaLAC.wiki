@@ -12,7 +12,7 @@
 || LAD || Lower Digestion Control || [BrainRegionLAC_HM_VGN LAC.HM.VGN], [BrainRegionLAC_PN_PSYM_CRG LAC.PN.PSYM.CRG], [BrainRegionLAC_PN_PSYM_GUT LAC.PN.PSYM.GUT], [BrainRegionLAC_PN_SYM_CEG LAC.PN.SYM.CEG], [BrainRegionLAC_PN_SYM_SMG LAC.PN.SYM.SMG] ||
 || LADC || Daily Cycle Autonomic Control || [BrainRegionLAC_FD_HT_SCN LAC.FD.HT.SCN], [BrainRegionLAC_FD_HT_TBM LAC.FD.HT.TBM] ||
 || LAH || Heart and Blood Pressure Control || [BrainRegionLAC_PN_SYM_STG LAC.PN.SYM.STG], [BrainRegionLAC_PN_SYM_TG LAC.PN.SYM.TG], [BrainRegionLAC_SC_IZ_IML LAC.SC.IZ.IML] ||
-|| LAM || Autonomic Motivations Control || [BrainRegionLAC_FD_HT_RCH LAC.FD.HT.RCH], [BrainRegionLAC_FD_HT_SO LAC.FD.HT.SO], [BrainRegionLAC_SC_LH_LSN LAC.SC.LH.LSN], [BrainRegionLAM_FT_AM_CT LAM.FT.AM.CT] ||
+|| LAM || Autonomic Motivations Control || [BrainRegionFAM_FT_AM_CO FAM.FT.AM.CO], [BrainRegionLAC_FD_HT_RCH LAC.FD.HT.RCH], [BrainRegionLAC_FD_HT_SO LAC.FD.HT.SO], [BrainRegionLAC_SC_LH_LSN LAC.SC.LH.LSN] ||
 || LAMM || Memory Autonomic Control || [BrainRegionLAC_FD_HT_PRM LAC.FD.HT.PRM], [BrainRegionLAC_FD_HT_SUM LAC.FD.HT.SUM] ||
 || LAS || Salivation and Tears Control || [BrainRegionLAC_HM_SAL_ISL LAC.HM.SAL.ISL], [BrainRegionLAC_HM_SAL_SSL LAC.HM.SAL.SSL], [BrainRegionLAC_PN_PSYM_OTG LAC.PN.PSYM.OTG], [BrainRegionLAC_PN_PSYM_SPG LAC.PN.PSYM.SPG], [BrainRegionLAC_PN_PSYM_SXG LAC.PN.PSYM.SXG], [BrainRegionLAC_PN_SYM_MCG LAC.PN.SYM.MCG] ||
 || LAT || Autonomic Thermoregulation || [BrainRegionLAC_FD_HT_AH LAC.FD.HT.AH], [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO], [BrainRegionLAC_HM_TGM_PE5 LAC.HM.TGM.PE5] ||
@@ -165,15 +165,15 @@
 <img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LAC_LAM.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
+|| [BrainRegionFAM_FT_AM_CO FAM.FT.AM.CO] || Cortical Amygdaloid Nucleus || nucleus || FAU || olfactory processing ||  ||
 || [BrainRegionLAC_FD_HT_RCH LAC.FD.HT.RCH] || Retrochiasmatic Nucleus || nucleus || LAC || Maintenance of normal hypothalamic-pituitary-adrenal function ||  ||
 || [BrainRegionLAC_FD_HT_SO LAC.FD.HT.SO] || Supraoptic Nucleus || nucleus || LAC || Blood volume or blood pressure, vasopressin release ||  ||
 || [BrainRegionLAC_SC_LH_LSN LAC.SC.LH.LSN] || Lateral Spinal Nucleus || nucleus || LAS || Integrate autonomic and homeostatic functions || Projects to HT and lateral globus pallidus;<BR>integrative nucleus for autonomic and homeostatic<BR>functions, and related motivational and affective<BR>responses to autonomic function ||
-|| [BrainRegionLAM_FT_AM_CT LAM.FT.AM.CT] || Cortical Amygdaloid Nucleus || nucleus || FAU || olfactory processing ||  ||
 
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| [BrainRegionLAM_FT_AM_CT LAM.FT.AM.CT] || [BrainRegionLAC_FD_HT_SO LAC.FD.HT.SO] || nucleus-nucleus || [http://www.pnas.org/content/107/40/17071/F1.expansion.html Role for serotonin in moral behavior (AMY -> HYP, abstract)] ||
+|| [BrainRegionFAM_FT_AM_CO FAM.FT.AM.CO] || [BrainRegionLAC_FD_HT_SO LAC.FD.HT.SO] || nucleus-nucleus || [http://www.pnas.org/content/107/40/17071/F1.expansion.html Role for serotonin in moral behavior (AMY -> HYP, abstract)] ||
 
 *External Inbound Region Connections:*
 
@@ -306,7 +306,7 @@
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFAM FAM] || [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO] || [BrainRegionFAM_FD_HB FAM.FD.HB] || Habenula || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LPO -> LHb)] ||
+|| [BrainAreaFAM FAM] || [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO] || [BrainRegionFAM_FD_LHB FAM.FD.LHB] || Lateral Habenula || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LPO -> LHb)] ||
 || [BrainAreaLAC LAC] || [BrainRegionLAC_FD_HT_AH LAC.FD.HT.AH] || [BrainRegionLAC_FD_HT_PRM LAC.FD.HT.PRM] || Premammillary Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO] || [BrainRegionLAC_FD_HT_SUM LAC.FD.HT.SUM] || Supramammillary Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLAC_FD_HT_TBM LAC.FD.HT.TBM] || Tuberomammillary Nucleus || nucleus-nucleus || (unknown reference) ||
@@ -355,7 +355,7 @@
 || <font color="red">Cortical</font> || || || || || ||
 || [BrainAreaEPA EPA] || [BrainRegionLAC_FD_HT_PV LAC.FD.HT.PV] || [BrainRegionCGA_FD_TH_AN CGA.FD.TH.AN] || Anterior Nucleus of Thalamus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n7 Feeling (HT -> AN, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFAM FAM] || [BrainRegionLAC_FD_HT_LTN LAC.FD.HT.LTN] || [BrainRegionFAM_FD_HB FAM.FD.HB] || Habenula || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LH -> LHb, abstract)] ||
+|| [BrainAreaFAM FAM] || [BrainRegionLAC_FD_HT_LTN LAC.FD.HT.LTN] || [BrainRegionFAM_FD_LHB FAM.FD.LHB] || Lateral Habenula || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LH -> LHb, abstract)] ||
 ||  || [BrainRegionLAC_FD_HT_VM LAC.FD.HT.VM] || [BrainRegionFAM_FT_BNST FAM.FT.BNST] || Bed Nucleus of Stria Terminalis || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaFEC FEC] || [BrainRegionLAC_FD_HT_VM LAC.FD.HT.VM] || [BrainRegionFEC_FD_STN_CD FEC.FD.STN.CD] || Subthalamic Nucleus Caudal || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLAC LAC] || [BrainRegionLAC_FD_HT_DM LAC.FD.HT.DM] || [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO] || Preoptic Nucleus || nucleus-nucleus || (unknown reference) ||

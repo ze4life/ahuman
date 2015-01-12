@@ -10,7 +10,7 @@
 || *ID* || *Name* || *Regions* ||
 || FAMEXE || Executive Circuit || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB], [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] ||
 || FAMHT || Emotional Behavior || [BrainRegionFAM_FT_AM_CEA FAM.FT.AM.CEA], [BrainRegionFAM_FT_BNST FAM.FT.BNST], [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] ||
-|| FAMMEM || Emotional Memory || [BrainRegionFAM_FD_HB FAM.FD.HB], [BrainRegionFAM_FT_SEP FAM.FT.SEP] ||
+|| FAMMEM || Acquisition of Avoidance Responses || [BrainRegionFAM_FD_LHB FAM.FD.LHB], [BrainRegionFAM_FD_MHB FAM.FD.MHB], [BrainRegionFAM_FT_SEP FAM.FT.SEP] ||
 || FAMPS || Polysensory Inputs || [BrainRegionFAM_FT_AM_BM FAM.FT.AM.BM], [BrainRegionFAM_FT_AM_BP FAM.FT.AM.BP], [BrainRegionFAM_FT_AM_ITC FAM.FT.AM.ITC] ||
 || FAMUS || Unimodal Sensory Inputs || [BrainRegionFAM_FD_TH_PT FAM.FD.TH.PT], [BrainRegionFAM_FD_TH_PV FAM.FD.TH.PV], [BrainRegionFAM_FT_AM_LA FAM.FT.AM.LA] ||
 
@@ -110,34 +110,35 @@
 ||  || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || Solitary Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLPC_HP_PB LPC.HP.PB] || Parabrachial Nucleus || nucleus-nucleus || (unknown reference) ||
 
-== Emotional Memory ==
+== Acquisition of Avoidance Responses ==
 
 
 <img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/FAM_FAMMEM.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionFAM_FD_HB FAM.FD.HB] || Habenula || nucleus || FAU || Encoding negative feedback ||  ||
+|| [BrainRegionFAM_FD_LHB FAM.FD.LHB] || Lateral Habenula || nucleus || FAU || Encoding negative feedback, direct ||  ||
+|| [BrainRegionFAM_FD_MHB FAM.FD.MHB] || Medial Habenula || nucleus || FAU || Encoding negative feedback, indirect || affects VTA, dorsal raphe but via interpeduncular<BR>nucleus ||
 || [BrainRegionFAM_FT_SEP FAM.FT.SEP] || Septal Nucleus || nucleus || FAU || Inhibition of fear and expression of pleasurable responses ||  ||
 
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| [BrainRegionFAM_FT_SEP FAM.FT.SEP] || [BrainRegionFAM_FD_HB FAM.FD.HB] || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (S -> MHb)] ||
+|| [BrainRegionFAM_FT_SEP FAM.FT.SEP] || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (S -> MHb)] ||
 
 *External Inbound Region Connections:*
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFEC FEC] || [BrainRegionFAM_FD_HB FAM.FD.HB] || [BrainRegionFEC_FT_GPI_DS FEC.FT.GPI.DS] || Globus Pallidus Internal Dorsal || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (GPi -> LHb, abstract)] ||
+|| [BrainAreaFEC FEC] || [BrainRegionFAM_FD_LHB FAM.FD.LHB] || [BrainRegionFEC_FT_GPI_DS FEC.FT.GPI.DS] || Globus Pallidus Internal Dorsal || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (GPi -> LHb, abstract)] ||
 ||  ||  || [BrainRegionFEC_FT_VP_VM FEC.FT.VP.VM] || Ventral Pallidum Ventromedial || nucleus-nucleus-gaba || (unknown reference) ||
-|| [BrainAreaLAC LAC] || [BrainRegionFAM_FD_HB FAM.FD.HB] || [BrainRegionLAC_FD_HT_LTN LAC.FD.HT.LTN] || Lateral Hypothalamic Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LH -> LHb, abstract)] ||
+|| [BrainAreaLAC LAC] || [BrainRegionFAM_FD_LHB FAM.FD.LHB] || [BrainRegionLAC_FD_HT_LTN LAC.FD.HT.LTN] || Lateral Hypothalamic Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LH -> LHb, abstract)] ||
 ||  ||  || [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO] || Preoptic Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LPO -> LHb)] ||
 ||  || [BrainRegionFAM_FT_SEP FAM.FT.SEP] || [BrainRegionLAC_FD_HT_PN LAC.FD.HT.PN] || Posterior Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLAC_FD_HT_SUM LAC.FD.HT.SUM] || Supramammillary Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Medial mammillary nucleus and theta rhythm (SupraMM -> SEP)] ||
 ||  ||  || [BrainRegionLAC_FD_HT_TBM LAC.FD.HT.TBM] || Tuberomammillary Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaLMC LMC] || [BrainRegionFAM_FD_HB FAM.FD.HB] || [BrainRegionLMC_HP_LC LMC.HP.LC] || Locus Coeruleus || nucleus-nucleus-NE || (unknown reference) ||
-||  ||  || [BrainRegionLMC_HP_NI LMC.HP.NI] || Incertus Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
+|| [BrainAreaLMC LMC] || [BrainRegionFAM_FD_LHB FAM.FD.LHB] || [BrainRegionLMC_HP_NI LMC.HP.NI] || Incertus Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
 ||  ||  || [BrainRegionLMC_MM_RF_SC LMC.MM.RF.SC] || Superior Central Raphe Nucleus || nucleus-nucleus-5HT || (unknown reference) ||
+||  || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || [BrainRegionLMC_HP_LC LMC.HP.LC] || Locus Coeruleus || nucleus-nucleus-NE || (unknown reference) ||
 ||  || [BrainRegionFAM_FT_SEP FAM.FT.SEP] || [BrainRegionLMC_HP_NI LMC.HP.NI] || Incertus Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
 ||  ||  || [BrainRegionLMC_MM_RF_SC LMC.MM.RF.SC] || Superior Central Raphe Nucleus || nucleus-nucleus-5HT || (unknown reference) ||
 || [BrainAreaMMA MMA] || [BrainRegionFAM_FT_SEP FAM.FT.SEP] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || Ventrolateral Cornu Ammonis of Hippocampus || allocortex-nucleus || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (CA1 -> SEP)] ||
@@ -152,20 +153,20 @@
 ||  ||  || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || Mediodorsal Nucleus of Thalamus || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s1MD -> MD)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaFAM FAM] || [BrainRegionFAM_FT_SEP FAM.FT.SEP] || [BrainRegionFAM_FD_TH_PV FAM.FD.TH.PV] || Paraventricular Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaFEC FEC] || [BrainRegionFAM_FD_HB FAM.FD.HB] || [BrainRegionFEC_FT_SNC_LT FEC.FT.SNC.LT] || Substantia Nigra Pars Compacta Lateral || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> SNc)] ||
+|| [BrainAreaFEC FEC] || [BrainRegionFAM_FD_LHB FAM.FD.LHB] || [BrainRegionFEC_FT_SNC_LT FEC.FT.SNC.LT] || Substantia Nigra Pars Compacta Lateral || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> SNc)] ||
 ||  || [BrainRegionFAM_FT_SEP FAM.FT.SEP] || [BrainRegionFEC_FD_TH_PF FEC.FD.TH.PF] || Parafascicular Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLAC LAC] || [BrainRegionFAM_FT_SEP FAM.FT.SEP] || [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO] || Preoptic Nucleus || nucleus-nucleus || [http://www.thebrainlabs.com Cingulate Gyrus (SEP -> HT, abstract)] ||
 ||  ||  || [BrainRegionLAC_FD_HT_TBM LAC.FD.HT.TBM] || Tuberomammillary Nucleus || nucleus-nucleus || [http://www.thebrainlabs.com Cingulate Gyrus (SEP -> HT, abstract)] ||
-|| [BrainAreaLLC LLC] || [BrainRegionFAM_FD_HB FAM.FD.HB] || [BrainRegionLLC_HP_PPN_CD LLC.HP.PPN.CD] || Pedunculopontine Nucleus Caudal || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (MHb -> IP)] ||
-|| [BrainAreaLMC LMC] || [BrainRegionFAM_FD_HB FAM.FD.HB] || [BrainRegionLMC_MM_RF_SC LMC.MM.RF.SC] || Superior Central Raphe Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> MR)] ||
-||  ||  || [BrainRegionLMC_MM_RP_DRN LMC.MM.RP.DRN] || Dorsal Raphe Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> DR)] ||
-||  ||  || [BrainRegionLMC_MM_TG_LDT LMC.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LHAB -> DTN)] ||
-||  ||  || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || Ventral Tegmental Area || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> VTA)] ||
+|| [BrainAreaLLC LLC] || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || [BrainRegionLLC_HP_PPN_CD LLC.HP.PPN.CD] || Pedunculopontine Nucleus Caudal || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (MHb -> IP)] ||
+|| [BrainAreaLMC LMC] || [BrainRegionFAM_FD_LHB FAM.FD.LHB] || [BrainRegionLMC_MM_RF_SC LMC.MM.RF.SC] || Superior Central Raphe Nucleus || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> MR)] ||
+||  ||  || [BrainRegionLMC_MM_RP_DRN LMC.MM.RP.DRN] || Dorsal Raphe Nucleus || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> DR)] ||
+||  ||  || [BrainRegionLMC_MM_TG_LDT LMC.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LHAB -> DTN, abstract)] ||
+||  ||  || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || Ventral Tegmental Area || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> VTA)] ||
 || [BrainAreaMMA MMA] || [BrainRegionFAM_FT_SEP FAM.FT.SEP] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Mammillary bodies: two memory systems in one (SEP -> MMB)] ||
 ||  ||  || [BrainRegionHBA_FT_HC_CA2 HBA.FT.HC.CA2] || Dorsolateral Cornu Ammonis of Hippocampus || nucleus-allocortex || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Medial mammillary nucleus and theta rhythm (SEP -> HF, abstract)] ||
 ||  ||  || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || Lateral Mammillary Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Mammillary bodies: two memory systems in one (SEP -> LMB)] ||
 || <font color="red">Target</font> || || || || || ||
-|| [BrainAreaTEA TEA] || [BrainRegionFAM_FD_HB FAM.FD.HB] || [BrainRegionTARGET_TEA_ENDOCRINE TARGET.TEA.ENDOCRINE] || Endocrine Glands || endocrine-pineal-gland || [http://www.scholarpedia.org/article/Habenula Habenula Connections (MHb -> PB)] ||
+|| [BrainAreaTEA TEA] || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || [BrainRegionTARGET_TEA_ENDOCRINE TARGET.TEA.ENDOCRINE] || Endocrine Glands || endocrine-pineal-gland || [http://www.scholarpedia.org/article/Habenula Habenula Connections (MHb -> PB)] ||
 
 == Polysensory Inputs ==
 
@@ -306,10 +307,6 @@
 
 <img src="http://what-when-how.com/wp-content/uploads/2012/04/tmp3649_thumb1_thumb.jpg" alt="unavailable"height=400width=400>
 
-  * [http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png Head Direction Cell Circuit] - see [http://www.scholarpedia.org/article/Head_direction_cells Reference]
-
-<img src="http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png" alt="unavailable">
-
 
 = References =
 (generated)
@@ -323,5 +320,4 @@
   * http://www.thebrainlabs.com
   * http://learnmem.cshlp.org/content/14/11/714/F1.expansion
   * http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/
-  * http://www.scholarpedia.org/article/Head_direction_cells
 
