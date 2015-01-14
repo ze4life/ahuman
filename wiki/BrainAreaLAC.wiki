@@ -106,7 +106,7 @@
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaFAM FAM] || [BrainRegionLAC_FD_HT_SCN LAC.FD.HT.SCN] || [BrainRegionFAM_FD_TH_PV FAM.FD.TH.PV] || Paraventricular Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionLAC_FD_HT_TBM LAC.FD.HT.TBM] || [BrainRegionFAM_FT_SEP FAM.FT.SEP] || Septal Nucleus || nucleus-nucleus || [http://www.thebrainlabs.com Cingulate Gyrus (SEP -> HT, abstract)] ||
+||  || [BrainRegionLAC_FD_HT_TBM LAC.FD.HT.TBM] || [BrainRegionFAM_FT_SEP_LT FAM.FT.SEP.LT] || Lateral Septal Nucleus || nucleus-nucleus-gaba || [http://www.thebrainlabs.com Cingulate Gyrus (SEP -> HT, abstract)] ||
 || [BrainAreaLAC LAC] || [BrainRegionLAC_FD_HT_TBM LAC.FD.HT.TBM] || [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO] || Preoptic Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLPC LPC] || [BrainRegionLAC_FD_HT_SCN LAC.FD.HT.SCN] || [BrainRegionLPC_FD_RT LPC.FD.RT] || Retina || ganglion-nucleus || [http://www.rci.rutgers.edu/~uzwiak/AnatPhys/Vision.htm Targets of retina neurons (Retina -> HT, abstract)] ||
 
@@ -114,7 +114,7 @@
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFAM FAM] || [BrainRegionLAC_FD_HT_TBM LAC.FD.HT.TBM] || [BrainRegionFAM_FT_SEP FAM.FT.SEP] || Septal Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaFAM FAM] || [BrainRegionLAC_FD_HT_TBM LAC.FD.HT.TBM] || [BrainRegionFAM_FT_SEP_LT FAM.FT.SEP.LT] || Lateral Septal Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLAC LAC] || [BrainRegionLAC_FD_HT_SCN LAC.FD.HT.SCN] || [BrainRegionLAC_FD_HT_DM LAC.FD.HT.DM] || Dorsomedial Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLAC_FD_HT_PV LAC.FD.HT.PV] || Paraventricular Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLAC_PN_SYM_SCG LAC.PN.SYM.SCG] || Superior Cervical Ganglion || nucleus-ganglion || (unknown reference) ||
@@ -214,13 +214,14 @@
 || [BrainAreaLAC LAC] || [BrainRegionLAC_FD_HT_PRM LAC.FD.HT.PRM] || [BrainRegionLAC_FD_HT_AH LAC.FD.HT.AH] || Anterior Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionLAC_FD_HT_SUM LAC.FD.HT.SUM] || [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO] || Preoptic Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLMC LMC] || [BrainRegionLAC_FD_HT_PRM LAC.FD.HT.PRM] || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || Ventral Tegmental Area || nucleus-nucleus-DA || (unknown reference) ||
-||  || [BrainRegionLAC_FD_HT_SUM LAC.FD.HT.SUM] || [BrainRegionLMC_MM_RF_SC LMC.MM.RF.SC] || Superior Central Raphe Nucleus || nucleus-nucleus-5HT || (unknown reference) ||
+||  || [BrainRegionLAC_FD_HT_SUM LAC.FD.HT.SUM] || [BrainRegionLMC_MM_RF_SUC LMC.MM.RF.SUC] || Superior Central Raphe Nucleus || nucleus-nucleus-5HT || (unknown reference) ||
 
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFAM FAM] || [BrainRegionLAC_FD_HT_SUM LAC.FD.HT.SUM] || [BrainRegionFAM_FT_SEP FAM.FT.SEP] || Septal Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Medial mammillary nucleus and theta rhythm (SupraMM -> SEP)] ||
+|| [BrainAreaFAM FAM] || [BrainRegionLAC_FD_HT_SUM LAC.FD.HT.SUM] || [BrainRegionFAM_FT_SEP_DBB FAM.FT.SEP.DBB] || Diagonal Band of Broca || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Medial mammillary nucleus and theta rhythm (SupraMM -> SEP, abstract)] ||
+||  ||  || [BrainRegionFAM_FT_SEP_MED FAM.FT.SEP.MED] || Medial Septal Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Medial mammillary nucleus and theta rhythm (SupraMM -> SEP, abstract)] ||
 || [BrainAreaLAC LAC] || [BrainRegionLAC_FD_HT_PRM LAC.FD.HT.PRM] || [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO] || Preoptic Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLAC_FD_HT_VM LAC.FD.HT.VM] || Ventromedial Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaMMA MMA] || [BrainRegionLAC_FD_HT_SUM LAC.FD.HT.SUM] || [BrainRegionHBA_FT_DG HBA.FT.DG] || Dentate Gyrus || nucleus-allocortex || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Medial mammillary nucleus and theta rhythm (SupraMM -> HF, abstract)] ||
@@ -293,7 +294,7 @@
 || [BrainAreaEPA EPA] || [BrainRegionLAC_FD_HT_AH LAC.FD.HT.AH] || [BrainRegionCGA_NC_SGC CGA.NC.SGC] || Subgenual Cortex || neocortex-nucleus || (unknown reference) ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaFAM FAM] || [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO] || [BrainRegionFAM_FD_TH_PV FAM.FD.TH.PV] || Paraventricular Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionFAM_FT_SEP FAM.FT.SEP] || Septal Nucleus || nucleus-nucleus || [http://www.thebrainlabs.com Cingulate Gyrus (SEP -> HT, abstract)] ||
+||  ||  || [BrainRegionFAM_FT_SEP_LT FAM.FT.SEP.LT] || Lateral Septal Nucleus || nucleus-nucleus-gaba || [http://www.thebrainlabs.com Cingulate Gyrus (SEP -> HT, abstract)] ||
 || [BrainAreaLAC LAC] || [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO] || [BrainRegionLAC_FD_HT_DM LAC.FD.HT.DM] || Dorsomedial Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLAC_FD_HT_PRM LAC.FD.HT.PRM] || Premammillary Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLAC_FD_HT_VM LAC.FD.HT.VM] || Ventromedial Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
@@ -402,7 +403,7 @@
 || [BrainAreaLAC LAC] || [BrainRegionLAC_PN_SYM_SCG LAC.PN.SYM.SCG] || [BrainRegionLAC_FD_HT_SCN LAC.FD.HT.SCN] || Suprachiasmatic Nucleus || nucleus-ganglion || (unknown reference) ||
 ||  ||  || [BrainRegionLAC_SC_IZ_IML LAC.SC.IZ.IML] || Intermediolateral Nucleus || nucleus-ganglion || (unknown reference) ||
 ||  ||  || [BrainRegionLAC_SC_LH_LSN LAC.SC.LH.LSN] || Lateral Spinal Nucleus || nucleus-ganglion || (unknown reference) ||
-|| [BrainAreaLMC LMC] || [BrainRegionLAC_FD_HT_PN LAC.FD.HT.PN] || [BrainRegionLMC_MM_RF_SC LMC.MM.RF.SC] || Superior Central Raphe Nucleus || nucleus-nucleus-5HT || (unknown reference) ||
+|| [BrainAreaLMC LMC] || [BrainRegionLAC_FD_HT_PN LAC.FD.HT.PN] || [BrainRegionLMC_MM_RF_SUC LMC.MM.RF.SUC] || Superior Central Raphe Nucleus || nucleus-nucleus-5HT || (unknown reference) ||
 || [BrainAreaLRC LRC] || [BrainRegionLAC_FD_HT_PN LAC.FD.HT.PN] || [BrainRegionLRC_HM_INM LRC.HM.INM] || Intercalated Nucleus of Medulla || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionLAC_MM_EWN LAC.MM.EWN] || [BrainRegionLRC_MM_DSCH LRC.MM.DSCH] || Darkschewitsch Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (SupraOculomotor -> EWN, abstract)] ||
 ||  ||  || [BrainRegionLRC_MM_PT_PON LRC.MM.PT.PON] || Pretectal Olivary Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Pretectum -> EWN, abstract)] ||
@@ -413,7 +414,7 @@
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFAM FAM] || [BrainRegionLAC_FD_HT_PN LAC.FD.HT.PN] || [BrainRegionFAM_FT_SEP FAM.FT.SEP] || Septal Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaFAM FAM] || [BrainRegionLAC_FD_HT_PN LAC.FD.HT.PN] || [BrainRegionFAM_FT_SEP_LT FAM.FT.SEP.LT] || Lateral Septal Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaMMA MMA] || [BrainRegionLAC_FD_HT_PN LAC.FD.HT.PN] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionHBA_FT_DG HBA.FT.DG] || Dentate Gyrus || nucleus-allocortex || (unknown reference) ||
 ||  ||  || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || Dorsomedial Cornu Ammonis of Hippocampus || nucleus-allocortex || (unknown reference) ||
