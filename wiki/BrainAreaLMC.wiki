@@ -8,7 +8,7 @@
 (generated)
 
 || *ID* || *Name* || *Regions* ||
-|| 5HT || Serotonin - Feelings of Well-Being and Happiness || [BrainRegionLMC_HM_RP_MG LMC.HM.RP.MG], [BrainRegionLMC_HM_RP_OB LMC.HM.RP.OB], [BrainRegionLMC_HM_RP_PL LMC.HM.RP.PL], [BrainRegionLMC_HP_RP_PRN LMC.HP.RP.PRN], [BrainRegionLMC_MM_RF_SC LMC.MM.RF.SC], [BrainRegionLMC_MM_RP_DRN LMC.MM.RP.DRN] ||
+|| 5HT || Serotonin - Feelings of Well-Being and Happiness || [BrainRegionLMC_HM_RP_MG LMC.HM.RP.MG], [BrainRegionLMC_HM_RP_OB LMC.HM.RP.OB], [BrainRegionLMC_HM_RP_PL LMC.HM.RP.PL], [BrainRegionLMC_HP_RP_PRN LMC.HP.RP.PRN], [BrainRegionLMC_MM_RF_SUC LMC.MM.RF.SUC], [BrainRegionLMC_MM_RP_DRN LMC.MM.RP.DRN] ||
 || ACH || Acetylcholine - PNS Actions and CNS plasticity, arousal and reward || [BrainRegionLMC_FT_NBM LMC.FT.NBM], [BrainRegionLMC_MM_TG_LDT LMC.MM.TG.LDT] ||
 || DA || Dopamine - Reward-Motivated Behavior, Cognitive Alertness || [BrainRegionLMC_MM_VTA LMC.MM.VTA] ||
 || ENK || Enkephalin -  Regulating Nociception in Body || [BrainRegionLMC_MM_PAG LMC.MM.PAG] ||
@@ -25,7 +25,7 @@
 || [BrainRegionLMC_HM_RP_OB LMC.HM.RP.OB] || Raphe Obscurus Nucleus || nucleus || LUS || Regulate cardiovascular function via sympathetic spinal column || B2 ||
 || [BrainRegionLMC_HM_RP_PL LMC.HM.RP.PL] || Raphe Pallidus Nucleus || nucleus || LUS || Spinal pain control || B1 ||
 || [BrainRegionLMC_HP_RP_PRN LMC.HP.RP.PRN] || Pontine Raphe Nucleus || nucleus || LUS || Regulation of sleep cycle || Projects to CR, forebrain; inhibitory nucleus ||
-|| [BrainRegionLMC_MM_RF_SC LMC.MM.RF.SC] || Superior Central Raphe Nucleus || nucleus || LUS || Block or temporarily suspend mnemonic processes in the hippocampus;<BR>Hallucinations || Directs HC to disregard insignificant events;<BR>inhibitory nucleus; B6,B8; Insomnia; inhibitory<BR>nucleus ||
+|| [BrainRegionLMC_MM_RF_SUC LMC.MM.RF.SUC] || Superior Central Raphe Nucleus || nucleus || LUS || Block or temporarily suspend mnemonic processes in the hippocampus;<BR>Hallucinations || Directs HC to disregard insignificant events;<BR>inhibitory nucleus; B6,B8; Insomnia; inhibitory<BR>nucleus ||
 || [BrainRegionLMC_MM_RP_DRN LMC.MM.RP.DRN] || Dorsal Raphe Nucleus || nucleus || LUS || Regulation of sleep and mood || Major source of 5HT; inhibitory nucleus ||
 
 *Internal Region Connections:*
@@ -35,7 +35,7 @@
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFAM FAM] || [BrainRegionLMC_MM_RF_SC LMC.MM.RF.SC] || [BrainRegionFAM_FD_LHB FAM.FD.LHB] || Lateral Habenula || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> MR)] ||
+|| [BrainAreaFAM FAM] || [BrainRegionLMC_MM_RF_SUC LMC.MM.RF.SUC] || [BrainRegionFAM_FD_LHB FAM.FD.LHB] || Lateral Habenula || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> MR)] ||
 ||  || [BrainRegionLMC_MM_RP_DRN LMC.MM.RP.DRN] || [BrainRegionFAM_FD_LHB FAM.FD.LHB] || Lateral Habenula || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> DR)] ||
 || [BrainAreaLAC LAC] || [BrainRegionLMC_HM_RP_MG LMC.HM.RP.MG] || [BrainRegionLAC_FD_HT_LTN LAC.FD.HT.LTN] || Lateral Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLAC_FD_HT_PV LAC.FD.HT.PV] || Paraventricular Nucleus || nucleus-nucleus || (unknown reference) ||
@@ -50,11 +50,11 @@
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFAM FAM] || [BrainRegionLMC_MM_RF_SC LMC.MM.RF.SC] || [BrainRegionFAM_FD_LHB FAM.FD.LHB] || Lateral Habenula || nucleus-nucleus-5HT || (unknown reference) ||
-||  ||  || [BrainRegionFAM_FT_SEP FAM.FT.SEP] || Septal Nucleus || nucleus-nucleus-5HT || (unknown reference) ||
+|| [BrainAreaFAM FAM] || [BrainRegionLMC_MM_RF_SUC LMC.MM.RF.SUC] || [BrainRegionFAM_FD_LHB FAM.FD.LHB] || Lateral Habenula || nucleus-nucleus-5HT || (unknown reference) ||
+||  ||  || [BrainRegionFAM_FT_SEP_LT FAM.FT.SEP.LT] || Lateral Septal Nucleus || nucleus-nucleus-5HT || (unknown reference) ||
 ||  || [BrainRegionLMC_MM_RP_DRN LMC.MM.RP.DRN] || [BrainRegionFAM_FD_TH_PV FAM.FD.TH.PV] || Paraventricular Nucleus of Thalamus || nucleus-nucleus-5HT || (unknown reference) ||
-|| [BrainAreaFEC FEC] || [BrainRegionLMC_MM_RF_SC LMC.MM.RF.SC] || [BrainRegionFEC_FD_STN_ICD FEC.FD.STN.ICD] || Subthalamic Nucleus Internal Caudal || nucleus-nucleus-5HT || (unknown reference) ||
-|| [BrainAreaLAC LAC] || [BrainRegionLMC_MM_RF_SC LMC.MM.RF.SC] || [BrainRegionLAC_FD_HT_PN LAC.FD.HT.PN] || Posterior Hypothalamic Nucleus || nucleus-nucleus-5HT || (unknown reference) ||
+|| [BrainAreaFEC FEC] || [BrainRegionLMC_MM_RF_SUC LMC.MM.RF.SUC] || [BrainRegionFEC_FD_STN_ICD FEC.FD.STN.ICD] || Subthalamic Nucleus Internal Caudal || nucleus-nucleus-5HT || (unknown reference) ||
+|| [BrainAreaLAC LAC] || [BrainRegionLMC_MM_RF_SUC LMC.MM.RF.SUC] || [BrainRegionLAC_FD_HT_PN LAC.FD.HT.PN] || Posterior Hypothalamic Nucleus || nucleus-nucleus-5HT || (unknown reference) ||
 ||  ||  || [BrainRegionLAC_FD_HT_SUM LAC.FD.HT.SUM] || Supramammillary Nucleus || nucleus-nucleus-5HT || (unknown reference) ||
 || [BrainAreaLLC LLC] || [BrainRegionLMC_HM_RP_OB LMC.HM.RP.OB] || [BrainRegionLLC_HP_CR_SC LLC.HP.CR.SC] || Spinocerebellum || nucleus-allocortex-5HT || (unknown reference) ||
 ||  || [BrainRegionLMC_HP_RP_PRN LMC.HP.RP.PRN] || [BrainRegionLLC_HP_CR_SC LLC.HP.CR.SC] || Spinocerebellum || nucleus-allocortex-5HT || (unknown reference) ||
@@ -63,7 +63,7 @@
 ||  || [BrainRegionLMC_HM_RP_OB LMC.HM.RP.OB] || [BrainRegionLPC_SC_IZ_IMM LPC.SC.IZ.IMM] || Intermediomedial Nucleus || nucleus-nucleus-5HT || (unknown reference) ||
 ||  || [BrainRegionLMC_HM_RP_PL LMC.HM.RP.PL] || [BrainRegionLPC_SC_PH_LMG LPC.SC.PH.LMG] || Lower Marginal Nucleus || nucleus-nucleus-5HT || (unknown reference) ||
 ||  ||  || [BrainRegionLPC_SC_PH_UMG LPC.SC.PH.UMG] || Upper Marginal Nucleus || nucleus-nucleus-5HT || (unknown reference) ||
-|| [BrainAreaMMA MMA] || [BrainRegionLMC_MM_RF_SC LMC.MM.RF.SC] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || nucleus-nucleus-5HT || (unknown reference) ||
+|| [BrainAreaMMA MMA] || [BrainRegionLMC_MM_RF_SUC LMC.MM.RF.SUC] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || nucleus-nucleus-5HT || (unknown reference) ||
 
 == Acetylcholine - PNS Actions and CNS plasticity, arousal and reward ==
 
@@ -206,7 +206,8 @@
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaFAM FAM] || [BrainRegionLMC_HP_NI LMC.HP.NI] || [BrainRegionFAM_FD_LHB FAM.FD.LHB] || Lateral Habenula || nucleus-nucleus-gaba || (unknown reference) ||
-||  ||  || [BrainRegionFAM_FT_SEP FAM.FT.SEP] || Septal Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
+||  ||  || [BrainRegionFAM_FT_SEP_SF FAM.FT.SEP.SF] || Septofimbrial Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
+||  ||  || [BrainRegionFAM_FT_SEP_TR FAM.FT.SEP.TR] || Triangular Septal Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
 || [BrainAreaLLC LLC] || [BrainRegionLMC_FD_TH_SF LMC.FD.TH.SF] || [BrainRegionLLC_HM_IO LLC.HM.IO] || Inferior Olivary Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
 || [BrainAreaLMC LMC] || [BrainRegionLMC_FD_TH_SF LMC.FD.TH.SF] || [BrainRegionLMC_MM_RP_DRN LMC.MM.RP.DRN] || Dorsal Raphe Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
 || [BrainAreaMMA MMA] || [BrainRegionLMC_HP_NI LMC.HP.NI] || [BrainRegionPHA_FT_EPF PHA.FT.EPF] || Endopiriform Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
