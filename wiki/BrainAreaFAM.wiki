@@ -13,6 +13,7 @@
 || FAMMEM || Acquisition of Avoidance Responses || [BrainRegionFAM_FT_SEP_DBB FAM.FT.SEP.DBB], [BrainRegionFAM_FT_SEP_LT FAM.FT.SEP.LT], [BrainRegionFAM_FT_SEP_MED FAM.FT.SEP.MED], [BrainRegionFAM_FT_SEP_NAC FAM.FT.SEP.NAC], [BrainRegionFAM_FT_SEP_SH FAM.FT.SEP.SH] ||
 || FAMPS || Polysensory Inputs || [BrainRegionFAM_FT_AM_BM FAM.FT.AM.BM], [BrainRegionFAM_FT_AM_BP FAM.FT.AM.BP], [BrainRegionFAM_FT_AM_ITC FAM.FT.AM.ITC] ||
 || FAMUS || Unimodal Sensory Inputs || [BrainRegionFAM_FD_TH_PT FAM.FD.TH.PT], [BrainRegionFAM_FD_TH_PV FAM.FD.TH.PV], [BrainRegionFAM_FT_AM_LA FAM.FT.AM.LA] ||
+|| FAR || Acquisition of Avoidance Responses || [BrainRegionFAM_FD_LHB_MED FAM.FD.LHB.MED], [BrainRegionFAM_FD_MHB FAM.FD.MHB], [BrainRegionFAM_FT_SEP_SF FAM.FT.SEP.SF], [BrainRegionFAM_FT_SEP_TR FAM.FT.SEP.TR], [BrainRegionFAM_HP_NI FAM.HP.NI] ||
 
 == Executive Circuit ==
 
@@ -145,10 +146,10 @@
 ||  || [BrainRegionFAM_FT_SEP_MED FAM.FT.SEP.MED] || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || Retrosplenial Cortex || nucleus-neocortex-ACh || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Medial mammillary nucleus and theta rhythm (SEP -> RSP, abstract)] ||
 ||  ||  || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || Mediodorsal Nucleus of Thalamus || nucleus-nucleus-ACh || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s1MD -> MD, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFAM FAM] || [BrainRegionFAM_FT_SEP_LT FAM.FT.SEP.LT] || [BrainRegionFAM_FD_TH_PV FAM.FD.TH.PV] || Paraventricular Nucleus of Thalamus || nucleus-nucleus-gaba || (unknown reference) ||
+|| [BrainAreaFAM FAM] || [BrainRegionFAM_FT_SEP_DBB FAM.FT.SEP.DBB] || [BrainRegionFAM_FD_LHB_MED FAM.FD.LHB.MED] || Lateral Habenula Medial Part || nucleus-nucleus-gaba || (unknown reference) ||
+||  || [BrainRegionFAM_FT_SEP_LT FAM.FT.SEP.LT] || [BrainRegionFAM_FD_TH_PV FAM.FD.TH.PV] || Paraventricular Nucleus of Thalamus || nucleus-nucleus-gaba || (unknown reference) ||
 || [BrainAreaFEC FEC] || [BrainRegionFAM_FT_SEP_MED FAM.FT.SEP.MED] || [BrainRegionFEC_FD_TH_PF FEC.FD.TH.PF] || Parafascicular Nucleus of Thalamus || nucleus-nucleus-ACh || (unknown reference) ||
-|| [BrainAreaLAC LAC] || [BrainRegionFAM_FT_SEP_DBB FAM.FT.SEP.DBB] || [BrainRegionLAC_FD_LHB_MED LAC.FD.LHB.MED] || Lateral Habenula Medial Part || nucleus-nucleus-gaba || (unknown reference) ||
-||  || [BrainRegionFAM_FT_SEP_LT FAM.FT.SEP.LT] || [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO] || Preoptic Nucleus || nucleus-nucleus-gaba || [http://www.thebrainlabs.com Cingulate Gyrus (SEP -> HT, abstract)] ||
+|| [BrainAreaLAC LAC] || [BrainRegionFAM_FT_SEP_LT FAM.FT.SEP.LT] || [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO] || Preoptic Nucleus || nucleus-nucleus-gaba || [http://www.thebrainlabs.com Cingulate Gyrus (SEP -> HT, abstract)] ||
 ||  ||  || [BrainRegionLAC_FD_HT_TBM LAC.FD.HT.TBM] || Tuberomammillary Nucleus || nucleus-nucleus-gaba || [http://www.thebrainlabs.com Cingulate Gyrus (SEP -> HT, abstract)] ||
 || [BrainAreaMMA MMA] || [BrainRegionFAM_FT_SEP_DBB FAM.FT.SEP.DBB] || [BrainRegionHBA_FT_HC_CA2 HBA.FT.HC.CA2] || Dorsolateral Cornu Ammonis of Hippocampus || nucleus-allocortex-gaba || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Medial mammillary nucleus and theta rhythm (SEP -> HF, abstract)] ||
 ||  || [BrainRegionFAM_FT_SEP_MED FAM.FT.SEP.MED] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || nucleus-nucleus-ACh || [http://www.thebrainlabs.com Cingulate Gyrus (SEP -> HT, abstract)] ||
@@ -254,6 +255,50 @@
 ||  || [BrainRegionFAM_FD_TH_PV FAM.FD.TH.PV] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || nucleus-neocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (MID -> EC, abstract)] ||
 ||  ||  || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || Perirhinal Cortex || nucleus-neocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (MID -> Perirhinal, abstract)] ||
 
+== Acquisition of Avoidance Responses ==
+
+
+<img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/FAM_FAR.dot.png" alt="unavailable">
+
+|| *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
+|| [BrainRegionFAM_FD_LHB_MED FAM.FD.LHB.MED] || Lateral Habenula Medial Part || nucleus || FAU || Encoding negative feedback, direct, Septal ||  ||
+|| [BrainRegionFAM_FD_MHB FAM.FD.MHB] || Medial Habenula || nucleus || FAU || Encoding negative feedback, indirect || affects VTA, dorsal raphe but via interpeduncular<BR>nucleus ||
+|| [BrainRegionFAM_FT_SEP_SF FAM.FT.SEP.SF] || Septofimbrial Nucleus || nucleus || FAU || afferent to medial habenula, primary input to indirect encoding negative feedback ||  ||
+|| [BrainRegionFAM_FT_SEP_TR FAM.FT.SEP.TR] || Triangular Septal Nucleus || nucleus || FAU || afferent to medial habenula, interpeduncular nucleus ||  ||
+|| [BrainRegionFAM_HP_NI FAM.HP.NI] || Incertus Nucleus || nucleus || LUS || Behavioural activation and the response to stress || Modulating influences on prefrontal and hippocampal<BR>cortical activity, midline behavior control;<BR>modulatory nucleus; relay from reticularis pontis<BR>oralis nucleus to septo-hippocampal system ||
+
+*Internal Region Connections:*
+
+|| *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionFAM_FD_MHB FAM.FD.MHB] || [BrainRegionFAM_FD_LHB_MED FAM.FD.LHB.MED] || nucleus-nucleus-gaba || (unknown reference) ||
+|| [BrainRegionFAM_FT_SEP_SF FAM.FT.SEP.SF] || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (S -> MHb, abstract)] ||
+|| [BrainRegionFAM_FT_SEP_TR FAM.FT.SEP.TR] || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (S -> MHb, abstract)] ||
+|| [BrainRegionFAM_HP_NI FAM.HP.NI] || [BrainRegionFAM_FD_LHB_MED FAM.FD.LHB.MED] || nucleus-nucleus-gaba || (unknown reference) ||
+||  || [BrainRegionFAM_FT_SEP_SF FAM.FT.SEP.SF] || nucleus-nucleus-gaba || (unknown reference) ||
+||  || [BrainRegionFAM_FT_SEP_TR FAM.FT.SEP.TR] || nucleus-nucleus-gaba || (unknown reference) ||
+
+*External Inbound Region Connections:*
+
+|| *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaFAM FAM] || [BrainRegionFAM_FD_LHB_MED FAM.FD.LHB.MED] || [BrainRegionFAM_FT_SEP_DBB FAM.FT.SEP.DBB] || Diagonal Band of Broca || nucleus-nucleus-gaba || (unknown reference) ||
+|| [BrainAreaLMC LMC] || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || [BrainRegionLMC_HP_LC LMC.HP.LC] || Locus Coeruleus || nucleus-nucleus-NE || (unknown reference) ||
+|| [BrainAreaLRC LRC] || [BrainRegionFAM_HP_NI FAM.HP.NI] || [BrainRegionLRC_HP_PRF_RPO LRC.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus-nucleus || (unknown reference) ||
+
+*External Outbound Region Connections:*
+
+|| *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaFEC FEC] || [BrainRegionFAM_FD_LHB_MED FAM.FD.LHB.MED] || [BrainRegionFEC_FT_SNC_LT FEC.FT.SNC.LT] || Substantia Nigra Pars Compacta Lateral || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> SNc, abstract)] ||
+|| [BrainAreaLLC LLC] || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || [BrainRegionLLC_HP_PPN_CD LLC.HP.PPN.CD] || Pedunculopontine Nucleus Caudal || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (MHb -> IP)] ||
+|| [BrainAreaLMC LMC] || [BrainRegionFAM_FD_LHB_MED FAM.FD.LHB.MED] || [BrainRegionLMC_MM_RF_SUC LMC.MM.RF.SUC] || Superior Central Raphe Nucleus || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> MR, abstract)] ||
+||  ||  || [BrainRegionLMC_MM_RP_DRN LMC.MM.RP.DRN] || Dorsal Raphe Nucleus || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> DR, abstract)] ||
+||  ||  || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || Ventral Tegmental Area || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> VTA, abstract)] ||
+|| [BrainAreaMMA MMA] || [BrainRegionFAM_HP_NI FAM.HP.NI] || [BrainRegionPHA_FT_EPF PHA.FT.EPF] || Endopiriform Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
+||  ||  || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || Perirhinal Cortex || nucleus-neocortex-gaba || (unknown reference) ||
+|| <font color="red">Target</font> || || || || || ||
+|| [BrainAreaTEA TEA] || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || [BrainRegionTARGET_TEA_ENDOCRINE TARGET.TEA.ENDOCRINE] || Endocrine Glands || endocrine-pineal-gland || [http://www.scholarpedia.org/article/Habenula Habenula Connections (MHb -> PB)] ||
+
 = Thirdparty Circuits =
 (generated)
 
@@ -265,10 +310,25 @@
 
 <img src="http://www.scholarpedia.org/w/images/thumb/2/2d/Hb-connections-small.jpg/800px-Hb-connections-small.jpg" alt="unavailable">
 
+  * [http://dgr.brain.riken.jp/files/Connectivity_hab_eng.jpg Exploring role of habenula in emotional behaviors] - see [http://dgr.brain.riken.jp/AsymmetryE.html Reference]
+
+<img src="http://dgr.brain.riken.jp/files/Connectivity_hab_eng.jpg" alt="unavailable">
+
+  * [http://www.nature.com/neuro/journal/v17/n9/images_article/nn.3779-F2.jpg Control dopaminergic and serotonergic systems] - see [http://www.nature.com/neuro/journal/v17/n9/full/nn.3779.html Reference]
+
+<img src="http://www.nature.com/neuro/journal/v17/n9/images_article/nn.3779-F2.jpg" alt="unavailable">
+
+  * [http://rstb.royalsocietypublishing.org/content/royptb/364/1519/1005/F1.large.jpg Connectivity of dorsal diencephalic conduction system] - see [http://rstb.royalsocietypublishing.org/content/364/1519/1005 Reference]
+
+<img src="http://rstb.royalsocietypublishing.org/content/royptb/364/1519/1005/F1.large.jpg" alt="unavailable"height=400width=400>
+
 
 = References =
 (generated)
 
   * http://www.nature.com/npp/journal/v35/n1/fig_tab/npp2009104f10.html
   * http://www.scholarpedia.org/article/Habenula
+  * http://dgr.brain.riken.jp/AsymmetryE.html
+  * http://www.nature.com/neuro/journal/v17/n9/full/nn.3779.html
+  * http://rstb.royalsocietypublishing.org/content/364/1519/1005
 
