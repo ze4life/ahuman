@@ -10,7 +10,7 @@
 || *ID* || *Name* || *Regions* ||
 || LGP || Gait and Posture Control || [BrainRegionLLC_HP_PPN_CD LLC.HP.PPN.CD], [BrainRegionLLC_HP_PPN_RS LLC.HP.PPN.RS], [BrainRegionLLC_MM_CNF LLC.MM.CNF], [BrainRegionLLC_MM_SCNF LLC.MM.SCNF] ||
 || LLC || Cerebrocerebellar Locomotion || [BrainRegionLLC_HP_CR_CC LLC.HP.CR.CC], [BrainRegionLLC_HP_CR_DN LLC.HP.CR.DN], [BrainRegionLLC_HP_PN_RP LLC.HP.PN.RP], [BrainRegionLLC_HP_PRF_PDT LLC.HP.PRF.PDT] ||
-|| LLL || Spinocerebellar Learning || [BrainRegionLLC_HM_ARC LLC.HM.ARC], [BrainRegionLLC_HM_IO LLC.HM.IO], [BrainRegionLLC_HM_RF_MLRN LLC.HM.RF.MLRN], [BrainRegionLLC_HM_RF_PLRN LLC.HM.RF.PLRN], [BrainRegionLLC_HP_PN_PBB LLC.HP.PN.PBB] ||
+|| LLL || Spinocerebellar Learning || [BrainRegionLLC_FD_TH_SF LLC.FD.TH.SF], [BrainRegionLLC_HM_ARC LLC.HM.ARC], [BrainRegionLLC_HM_IO LLC.HM.IO], [BrainRegionLLC_HM_RF_MLRN LLC.HM.RF.MLRN], [BrainRegionLLC_HM_RF_PLRN LLC.HM.RF.PLRN], [BrainRegionLLC_HP_PN_PBB LLC.HP.PN.PBB] ||
 || LLP || Vestibulocerebellar Locomotion || [BrainRegionLLC_HM_RF_SLRN LLC.HM.RF.SLRN], [BrainRegionLLC_HP_CR_FN LLC.HP.CR.FN], [BrainRegionLLC_HP_CR_VC LLC.HP.CR.VC], [BrainRegionLLC_SC_IZ_CCV LLC.SC.IZ.CCV] ||
 || LLS || Spinocerebellar Locomotion || [BrainRegionLLC_HP_CR_EN LLC.HP.CR.EN], [BrainRegionLLC_HP_CR_GN LLC.HP.CR.GN], [BrainRegionLLC_HP_CR_SC LLC.HP.CR.SC], [BrainRegionLLC_MM_RD LLC.MM.RD] ||
 
@@ -110,6 +110,7 @@
 <img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LLC_LLL.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
+|| [BrainRegionLLC_FD_TH_SF LLC.FD.TH.SF] || Subfascicular Nucleus of Thalamus || nucleus || LUS || Relays from PAG to Rhape nuclei, Inferior olive nucleus ||  ||
 || [BrainRegionLLC_HM_ARC LLC.HM.ARC] || Arcuate Nucleus of Medulla || nucleus || LLI || Relay cardiorepriratory proprioception to cerebellum || Receives fibers from spinothalamic tract and sends<BR>to CR; controlling respiratory frequency;<BR>chemosensitivity and cardiorespiratory activity ||
 || [BrainRegionLLC_HM_IO LLC.HM.IO] || Inferior Olivary Nucleus || nucleus || LLI || Proprioception Relay from Spinal Cord to Cerebellum ||  ||
 || [BrainRegionLLC_HM_RF_MLRN LLC.HM.RF.MLRN] || Lateral Reticular Nucleus, Magnocellular || nucleus || LLI || spinal cord projections to cerebellum, cervical || from RD; medial, magnocellular portion, immediately<BR>adjacent to lateral - to vermis; rest of<BR>magnocellular subnucleus sends its projections to<BR>hemisphere regions of cerebellum ||
@@ -117,7 +118,9 @@
 || [BrainRegionLLC_HP_PN_PBB LLC.HP.PN.PBB] || Pontobulbar Body || nucleus || LLI || Relay neck proprioception to cerebellum || Walking, speaking, breathing, part of<BR>corticopontocerebellar pathway ||
 
 *Internal Region Connections:*
-  * no connections
+
+|| *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionLLC_FD_TH_SF LLC.FD.TH.SF] || [BrainRegionLLC_HM_IO LLC.HM.IO] || nucleus-nucleus-gaba || (unknown reference) ||
 
 *External Inbound Region Connections:*
 
@@ -125,11 +128,11 @@
 || <font color="red">Cortical</font> || || || || || ||
 || [BrainAreaMAA MAA] || [BrainRegionLLC_HP_PN_PBB LLC.HP.PN.PBB] || [BrainRegionMCA_NC_MC MCA.NC.MC] || Motor Cortex || neocortex-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (MC -> PN, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaLAC LAC] || [BrainRegionLLC_HM_IO LLC.HM.IO] || [BrainRegionLAC_FD_TH_SF LAC.FD.TH.SF] || Subfascicular Nucleus of Thalamus || nucleus-nucleus-gaba || (unknown reference) ||
 || [BrainAreaLLC LLC] || [BrainRegionLLC_HM_IO LLC.HM.IO] || [BrainRegionLLC_MM_RD LLC.MM.RD] || Red Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLLC_SC_IZ_CCV LLC.SC.IZ.CCV] || Central Cervical Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionLLC_HM_RF_MLRN LLC.HM.RF.MLRN] || [BrainRegionLLC_MM_RD LLC.MM.RD] || Red Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionLLC_HM_RF_PLRN LLC.HM.RF.PLRN] || [BrainRegionLLC_MM_RD LLC.MM.RD] || Red Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLMC LMC] || [BrainRegionLLC_FD_TH_SF LLC.FD.TH.SF] || [BrainRegionLMC_MM_PAG LMC.MM.PAG] || Periaqueductal Gray Matter || nucleus-nucleus-ENK || (unknown reference) ||
 || [BrainAreaLPC LPC] || [BrainRegionLLC_HM_ARC LLC.HM.ARC] || [BrainRegionLPC_SC_PH_CL LPC.SC.PH.CL] || Clarke Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionLLC_HM_IO LLC.HM.IO] || [BrainRegionLPC_SC_PH_NP LPC.SC.PH.NP] || Proprius Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionLLC_HM_RF_PLRN LLC.HM.RF.PLRN] || [BrainRegionLPC_SC_IZ_IMM LPC.SC.IZ.IMM] || Intermediomedial Nucleus || nucleus-nucleus || (unknown reference) ||
@@ -146,6 +149,7 @@
 ||  || [BrainRegionLLC_HM_RF_MLRN LLC.HM.RF.MLRN] || [BrainRegionLLC_HP_CR_SC LLC.HP.CR.SC] || Spinocerebellum || nucleus-allocortex || (unknown reference) ||
 ||  || [BrainRegionLLC_HM_RF_PLRN LLC.HM.RF.PLRN] || [BrainRegionLLC_HP_CR_SC LLC.HP.CR.SC] || Spinocerebellum || nucleus-allocortex || (unknown reference) ||
 ||  || [BrainRegionLLC_HP_PN_PBB LLC.HP.PN.PBB] || [BrainRegionLLC_HP_CR_SC LLC.HP.CR.SC] || Spinocerebellum || nucleus-allocortex || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (PN -> CR, abstract)] ||
+|| [BrainAreaLMC LMC] || [BrainRegionLLC_FD_TH_SF LLC.FD.TH.SF] || [BrainRegionLMC_MM_RP_DRN LMC.MM.RP.DRN] || Dorsal Raphe Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
 
 == Vestibulocerebellar Locomotion ==
 
@@ -261,7 +265,7 @@
 
 <img src="http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png" alt="unavailable">
 
-  * [http://www.nature.com/neuro/journal/v17/n9/images_article/nn.3779-F2.jpg Ñontrol dopaminergic and serotonergic systems] - see [http://www.nature.com/neuro/journal/v17/n9/full/nn.3779.html Reference]
+  * [http://www.nature.com/neuro/journal/v17/n9/images_article/nn.3779-F2.jpg Control dopaminergic and serotonergic systems] - see [http://www.nature.com/neuro/journal/v17/n9/full/nn.3779.html Reference]
 
 <img src="http://www.nature.com/neuro/journal/v17/n9/images_article/nn.3779-F2.jpg" alt="unavailable">
 
