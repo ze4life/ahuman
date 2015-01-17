@@ -10,7 +10,7 @@
 || *ID* || *Name* || *Regions* ||
 || FAMEXE || Executive Circuit || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB], [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] ||
 || FAMHT || Emotional Behavior || [BrainRegionFAM_FT_AM_CEA FAM.FT.AM.CEA], [BrainRegionFAM_FT_BNST FAM.FT.BNST], [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] ||
-|| FAMMEM || Acquisition of Avoidance Responses || [BrainRegionFAM_FD_LHB FAM.FD.LHB], [BrainRegionFAM_FD_MHB FAM.FD.MHB], [BrainRegionFAM_FT_SEP_DBB FAM.FT.SEP.DBB], [BrainRegionFAM_FT_SEP_LT FAM.FT.SEP.LT], [BrainRegionFAM_FT_SEP_MED FAM.FT.SEP.MED], [BrainRegionFAM_FT_SEP_NAC FAM.FT.SEP.NAC], [BrainRegionFAM_FT_SEP_SF FAM.FT.SEP.SF], [BrainRegionFAM_FT_SEP_SH FAM.FT.SEP.SH], [BrainRegionFAM_FT_SEP_TR FAM.FT.SEP.TR] ||
+|| FAMMEM || Acquisition of Avoidance Responses || [BrainRegionFAM_FD_MHB FAM.FD.MHB], [BrainRegionFAM_FT_SEP_DBB FAM.FT.SEP.DBB], [BrainRegionFAM_FT_SEP_LT FAM.FT.SEP.LT], [BrainRegionFAM_FT_SEP_MED FAM.FT.SEP.MED], [BrainRegionFAM_FT_SEP_NAC FAM.FT.SEP.NAC], [BrainRegionFAM_FT_SEP_SF FAM.FT.SEP.SF], [BrainRegionFAM_FT_SEP_SH FAM.FT.SEP.SH], [BrainRegionFAM_FT_SEP_TR FAM.FT.SEP.TR] ||
 || FAMPS || Polysensory Inputs || [BrainRegionFAM_FT_AM_BM FAM.FT.AM.BM], [BrainRegionFAM_FT_AM_BP FAM.FT.AM.BP], [BrainRegionFAM_FT_AM_ITC FAM.FT.AM.ITC] ||
 || FAMUS || Unimodal Sensory Inputs || [BrainRegionFAM_FD_TH_PT FAM.FD.TH.PT], [BrainRegionFAM_FD_TH_PV FAM.FD.TH.PV], [BrainRegionFAM_FT_AM_LA FAM.FT.AM.LA] ||
 
@@ -116,7 +116,6 @@
 <img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/FAM_FAMMEM.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionFAM_FD_LHB FAM.FD.LHB] || Lateral Habenula || nucleus || FAU || Encoding negative feedback, direct ||  ||
 || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || Medial Habenula || nucleus || FAU || Encoding negative feedback, indirect || affects VTA, dorsal raphe but via interpeduncular<BR>nucleus ||
 || [BrainRegionFAM_FT_SEP_DBB FAM.FT.SEP.DBB] || Diagonal Band of Broca || nucleus || FAU || involved in generation of theta waves in hippocampus || ACh and GABA; ventral group - from stria terminalis<BR>to/from MFB ||
 || [BrainRegionFAM_FT_SEP_LT FAM.FT.SEP.LT] || Lateral Septal Nucleus || nucleus || FAU || promote active stress coping behavior ||  ||
@@ -136,17 +135,11 @@
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFEC FEC] || [BrainRegionFAM_FD_LHB FAM.FD.LHB] || [BrainRegionFEC_FT_GPI_DS FEC.FT.GPI.DS] || Globus Pallidus Internal Dorsal || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (GPi -> LHb, abstract)] ||
-||  ||  || [BrainRegionFEC_FT_VP_VM FEC.FT.VP.VM] || Ventral Pallidum Ventromedial || nucleus-nucleus-gaba || (unknown reference) ||
-|| [BrainAreaLAC LAC] || [BrainRegionFAM_FD_LHB FAM.FD.LHB] || [BrainRegionLAC_FD_HT_LTN LAC.FD.HT.LTN] || Lateral Hypothalamic Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LH -> LHb, abstract)] ||
-||  ||  || [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO] || Preoptic Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LPO -> LHb)] ||
-||  || [BrainRegionFAM_FT_SEP_DBB FAM.FT.SEP.DBB] || [BrainRegionLAC_FD_HT_SUM LAC.FD.HT.SUM] || Supramammillary Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Medial mammillary nucleus and theta rhythm (SupraMM -> SEP, abstract)] ||
+|| [BrainAreaLAC LAC] || [BrainRegionFAM_FT_SEP_DBB FAM.FT.SEP.DBB] || [BrainRegionLAC_FD_HT_SUM LAC.FD.HT.SUM] || Supramammillary Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Medial mammillary nucleus and theta rhythm (SupraMM -> SEP, abstract)] ||
 ||  || [BrainRegionFAM_FT_SEP_LT FAM.FT.SEP.LT] || [BrainRegionLAC_FD_HT_PN LAC.FD.HT.PN] || Posterior Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLAC_FD_HT_TBM LAC.FD.HT.TBM] || Tuberomammillary Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionFAM_FT_SEP_MED FAM.FT.SEP.MED] || [BrainRegionLAC_FD_HT_SUM LAC.FD.HT.SUM] || Supramammillary Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Medial mammillary nucleus and theta rhythm (SupraMM -> SEP, abstract)] ||
-|| [BrainAreaLMC LMC] || [BrainRegionFAM_FD_LHB FAM.FD.LHB] || [BrainRegionLMC_HP_NI LMC.HP.NI] || Incertus Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
-||  ||  || [BrainRegionLMC_MM_RF_SUC LMC.MM.RF.SUC] || Superior Central Raphe Nucleus || nucleus-nucleus-5HT || (unknown reference) ||
-||  || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || [BrainRegionLMC_HP_LC LMC.HP.LC] || Locus Coeruleus || nucleus-nucleus-NE || (unknown reference) ||
+|| [BrainAreaLMC LMC] || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || [BrainRegionLMC_HP_LC LMC.HP.LC] || Locus Coeruleus || nucleus-nucleus-NE || (unknown reference) ||
 ||  || [BrainRegionFAM_FT_SEP_LT FAM.FT.SEP.LT] || [BrainRegionLMC_MM_RF_SUC LMC.MM.RF.SUC] || Superior Central Raphe Nucleus || nucleus-nucleus-5HT || (unknown reference) ||
 ||  || [BrainRegionFAM_FT_SEP_SF FAM.FT.SEP.SF] || [BrainRegionLMC_HP_NI LMC.HP.NI] || Incertus Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
 ||  || [BrainRegionFAM_FT_SEP_TR FAM.FT.SEP.TR] || [BrainRegionLMC_HP_NI LMC.HP.NI] || Incertus Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
@@ -162,15 +155,10 @@
 ||  ||  || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || Mediodorsal Nucleus of Thalamus || nucleus-nucleus-ACh || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s1MD -> MD, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaFAM FAM] || [BrainRegionFAM_FT_SEP_LT FAM.FT.SEP.LT] || [BrainRegionFAM_FD_TH_PV FAM.FD.TH.PV] || Paraventricular Nucleus of Thalamus || nucleus-nucleus-gaba || (unknown reference) ||
-|| [BrainAreaFEC FEC] || [BrainRegionFAM_FD_LHB FAM.FD.LHB] || [BrainRegionFEC_FT_SNC_LT FEC.FT.SNC.LT] || Substantia Nigra Pars Compacta Lateral || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> SNc)] ||
-||  || [BrainRegionFAM_FT_SEP_MED FAM.FT.SEP.MED] || [BrainRegionFEC_FD_TH_PF FEC.FD.TH.PF] || Parafascicular Nucleus of Thalamus || nucleus-nucleus-ACh || (unknown reference) ||
+|| [BrainAreaFEC FEC] || [BrainRegionFAM_FT_SEP_MED FAM.FT.SEP.MED] || [BrainRegionFEC_FD_TH_PF FEC.FD.TH.PF] || Parafascicular Nucleus of Thalamus || nucleus-nucleus-ACh || (unknown reference) ||
 || [BrainAreaLAC LAC] || [BrainRegionFAM_FT_SEP_LT FAM.FT.SEP.LT] || [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO] || Preoptic Nucleus || nucleus-nucleus-gaba || [http://www.thebrainlabs.com Cingulate Gyrus (SEP -> HT, abstract)] ||
 ||  ||  || [BrainRegionLAC_FD_HT_TBM LAC.FD.HT.TBM] || Tuberomammillary Nucleus || nucleus-nucleus-gaba || [http://www.thebrainlabs.com Cingulate Gyrus (SEP -> HT, abstract)] ||
 || [BrainAreaLLC LLC] || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || [BrainRegionLLC_HP_PPN_CD LLC.HP.PPN.CD] || Pedunculopontine Nucleus Caudal || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (MHb -> IP)] ||
-|| [BrainAreaLMC LMC] || [BrainRegionFAM_FD_LHB FAM.FD.LHB] || [BrainRegionLMC_MM_RF_SUC LMC.MM.RF.SUC] || Superior Central Raphe Nucleus || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> MR)] ||
-||  ||  || [BrainRegionLMC_MM_RP_DRN LMC.MM.RP.DRN] || Dorsal Raphe Nucleus || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> DR)] ||
-||  ||  || [BrainRegionLMC_MM_TG_LDT LMC.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LHAB -> DTN, abstract)] ||
-||  ||  || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || Ventral Tegmental Area || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> VTA)] ||
 || [BrainAreaMMA MMA] || [BrainRegionFAM_FT_SEP_DBB FAM.FT.SEP.DBB] || [BrainRegionHBA_FT_HC_CA2 HBA.FT.HC.CA2] || Dorsolateral Cornu Ammonis of Hippocampus || nucleus-allocortex-gaba || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Medial mammillary nucleus and theta rhythm (SEP -> HF, abstract)] ||
 ||  || [BrainRegionFAM_FT_SEP_MED FAM.FT.SEP.MED] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || nucleus-nucleus-ACh || [http://www.thebrainlabs.com Cingulate Gyrus (SEP -> HT, abstract)] ||
 ||  ||  || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || Lateral Mammillary Nucleus || nucleus-nucleus-ACh || [http://www.thebrainlabs.com Cingulate Gyrus (SEP -> HT, abstract)] ||
@@ -280,18 +268,18 @@
 = Thirdparty Circuits =
 (generated)
 
-  * [http://www.scholarpedia.org/w/images/thumb/2/2d/Hb-connections-small.jpg/800px-Hb-connections-small.jpg Habenula Connections] - see [http://www.scholarpedia.org/article/Habenula Reference]
-
-<img src="http://www.scholarpedia.org/w/images/thumb/2/2d/Hb-connections-small.jpg/800px-Hb-connections-small.jpg" alt="unavailable">
-
   * [http://www.nature.com/npp/journal/v35/n1/images/npp2009104f10.jpg Medial prefrontal network] - see [http://www.nature.com/npp/journal/v35/n1/fig_tab/npp2009104f10.html Reference]
 
 <img src="http://www.nature.com/npp/journal/v35/n1/images/npp2009104f10.jpg" alt="unavailable">
+
+  * [http://www.scholarpedia.org/w/images/thumb/2/2d/Hb-connections-small.jpg/800px-Hb-connections-small.jpg Habenula Connections] - see [http://www.scholarpedia.org/article/Habenula Reference]
+
+<img src="http://www.scholarpedia.org/w/images/thumb/2/2d/Hb-connections-small.jpg/800px-Hb-connections-small.jpg" alt="unavailable">
 
 
 = References =
 (generated)
 
-  * http://www.scholarpedia.org/article/Habenula
   * http://www.nature.com/npp/journal/v35/n1/fig_tab/npp2009104f10.html
+  * http://www.scholarpedia.org/article/Habenula
 
