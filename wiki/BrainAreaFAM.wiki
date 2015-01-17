@@ -10,7 +10,7 @@
 || *ID* || *Name* || *Regions* ||
 || FAMEXE || Executive Circuit || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB], [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] ||
 || FAMHT || Emotional Behavior || [BrainRegionFAM_FT_AM_CEA FAM.FT.AM.CEA], [BrainRegionFAM_FT_BNST FAM.FT.BNST], [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] ||
-|| FAMMEM || Acquisition of Avoidance Responses || [BrainRegionFAM_FD_MHB FAM.FD.MHB], [BrainRegionFAM_FT_SEP_DBB FAM.FT.SEP.DBB], [BrainRegionFAM_FT_SEP_LT FAM.FT.SEP.LT], [BrainRegionFAM_FT_SEP_MED FAM.FT.SEP.MED], [BrainRegionFAM_FT_SEP_NAC FAM.FT.SEP.NAC], [BrainRegionFAM_FT_SEP_SF FAM.FT.SEP.SF], [BrainRegionFAM_FT_SEP_SH FAM.FT.SEP.SH], [BrainRegionFAM_FT_SEP_TR FAM.FT.SEP.TR] ||
+|| FAMMEM || Acquisition of Avoidance Responses || [BrainRegionFAM_FT_SEP_DBB FAM.FT.SEP.DBB], [BrainRegionFAM_FT_SEP_LT FAM.FT.SEP.LT], [BrainRegionFAM_FT_SEP_MED FAM.FT.SEP.MED], [BrainRegionFAM_FT_SEP_NAC FAM.FT.SEP.NAC], [BrainRegionFAM_FT_SEP_SH FAM.FT.SEP.SH] ||
 || FAMPS || Polysensory Inputs || [BrainRegionFAM_FT_AM_BM FAM.FT.AM.BM], [BrainRegionFAM_FT_AM_BP FAM.FT.AM.BP], [BrainRegionFAM_FT_AM_ITC FAM.FT.AM.ITC] ||
 || FAMUS || Unimodal Sensory Inputs || [BrainRegionFAM_FD_TH_PT FAM.FD.TH.PT], [BrainRegionFAM_FD_TH_PV FAM.FD.TH.PV], [BrainRegionFAM_FT_AM_LA FAM.FT.AM.LA] ||
 
@@ -116,20 +116,14 @@
 <img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/FAM_FAMMEM.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionFAM_FD_MHB FAM.FD.MHB] || Medial Habenula || nucleus || FAU || Encoding negative feedback, indirect || affects VTA, dorsal raphe but via interpeduncular<BR>nucleus ||
 || [BrainRegionFAM_FT_SEP_DBB FAM.FT.SEP.DBB] || Diagonal Band of Broca || nucleus || FAU || involved in generation of theta waves in hippocampus || ACh and GABA; ventral group - from stria terminalis<BR>to/from MFB ||
 || [BrainRegionFAM_FT_SEP_LT FAM.FT.SEP.LT] || Lateral Septal Nucleus || nucleus || FAU || promote active stress coping behavior ||  ||
 || [BrainRegionFAM_FT_SEP_MED FAM.FT.SEP.MED] || Medial Septal Nucleus || nucleus || FAU || affect HC for spatial learning, generation of theta waves || output nucleus; projections from AM and HC overlap;<BR>control theta rythm and exprolatory behavior;<BR>from/to MFB to fornix fimbria ||
 || [BrainRegionFAM_FT_SEP_NAC FAM.FT.SEP.NAC] || Septal Nucleus of Anterior Commissure || nucleus || FAU || projection to contralateral HC ||  ||
-|| [BrainRegionFAM_FT_SEP_SF FAM.FT.SEP.SF] || Septofimbrial Nucleus || nucleus || FAU || afferent to medial habenula, primary input to indirect encoding negative feedback ||  ||
 || [BrainRegionFAM_FT_SEP_SH FAM.FT.SEP.SH] || Septohippocampal Nucleus || nucleus || FAU || participate in solving conflict between two or more competing goals, defensive<BR>circuit ||  ||
-|| [BrainRegionFAM_FT_SEP_TR FAM.FT.SEP.TR] || Triangular Septal Nucleus || nucleus || FAU || afferent to medial habenula, interpeduncular nucleus ||  ||
 
 *Internal Region Connections:*
-
-|| *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| [BrainRegionFAM_FT_SEP_SF FAM.FT.SEP.SF] || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (S -> MHb, abstract)] ||
-|| [BrainRegionFAM_FT_SEP_TR FAM.FT.SEP.TR] || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (S -> MHb, abstract)] ||
+  * no connections
 
 *External Inbound Region Connections:*
 
@@ -139,10 +133,7 @@
 ||  || [BrainRegionFAM_FT_SEP_LT FAM.FT.SEP.LT] || [BrainRegionLAC_FD_HT_PN LAC.FD.HT.PN] || Posterior Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLAC_FD_HT_TBM LAC.FD.HT.TBM] || Tuberomammillary Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionFAM_FT_SEP_MED FAM.FT.SEP.MED] || [BrainRegionLAC_FD_HT_SUM LAC.FD.HT.SUM] || Supramammillary Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Medial mammillary nucleus and theta rhythm (SupraMM -> SEP, abstract)] ||
-|| [BrainAreaLMC LMC] || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || [BrainRegionLMC_HP_LC LMC.HP.LC] || Locus Coeruleus || nucleus-nucleus-NE || (unknown reference) ||
-||  || [BrainRegionFAM_FT_SEP_LT FAM.FT.SEP.LT] || [BrainRegionLMC_MM_RF_SUC LMC.MM.RF.SUC] || Superior Central Raphe Nucleus || nucleus-nucleus-5HT || (unknown reference) ||
-||  || [BrainRegionFAM_FT_SEP_SF FAM.FT.SEP.SF] || [BrainRegionLMC_HP_NI LMC.HP.NI] || Incertus Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
-||  || [BrainRegionFAM_FT_SEP_TR FAM.FT.SEP.TR] || [BrainRegionLMC_HP_NI LMC.HP.NI] || Incertus Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
+|| [BrainAreaLMC LMC] || [BrainRegionFAM_FT_SEP_LT FAM.FT.SEP.LT] || [BrainRegionLMC_MM_RF_SUC LMC.MM.RF.SUC] || Superior Central Raphe Nucleus || nucleus-nucleus-5HT || (unknown reference) ||
 || [BrainAreaMMA MMA] || [BrainRegionFAM_FT_SEP_MED FAM.FT.SEP.MED] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || Ventrolateral Cornu Ammonis of Hippocampus || allocortex-nucleus || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (CA1 -> SEP, abstract)] ||
 ||  ||  || [BrainRegionHBA_FT_HC_CA3 HBA.FT.HC.CA3] || Dorsomedial Cornu Ammonis of Hippocampus || allocortex-nucleus || [http://www.thebrainlabs.com Cingulate Gyrus (HC -> SEP, abstract)] ||
 
@@ -158,12 +149,9 @@
 || [BrainAreaFEC FEC] || [BrainRegionFAM_FT_SEP_MED FAM.FT.SEP.MED] || [BrainRegionFEC_FD_TH_PF FEC.FD.TH.PF] || Parafascicular Nucleus of Thalamus || nucleus-nucleus-ACh || (unknown reference) ||
 || [BrainAreaLAC LAC] || [BrainRegionFAM_FT_SEP_LT FAM.FT.SEP.LT] || [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO] || Preoptic Nucleus || nucleus-nucleus-gaba || [http://www.thebrainlabs.com Cingulate Gyrus (SEP -> HT, abstract)] ||
 ||  ||  || [BrainRegionLAC_FD_HT_TBM LAC.FD.HT.TBM] || Tuberomammillary Nucleus || nucleus-nucleus-gaba || [http://www.thebrainlabs.com Cingulate Gyrus (SEP -> HT, abstract)] ||
-|| [BrainAreaLLC LLC] || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || [BrainRegionLLC_HP_PPN_CD LLC.HP.PPN.CD] || Pedunculopontine Nucleus Caudal || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (MHb -> IP)] ||
 || [BrainAreaMMA MMA] || [BrainRegionFAM_FT_SEP_DBB FAM.FT.SEP.DBB] || [BrainRegionHBA_FT_HC_CA2 HBA.FT.HC.CA2] || Dorsolateral Cornu Ammonis of Hippocampus || nucleus-allocortex-gaba || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Medial mammillary nucleus and theta rhythm (SEP -> HF, abstract)] ||
 ||  || [BrainRegionFAM_FT_SEP_MED FAM.FT.SEP.MED] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || nucleus-nucleus-ACh || [http://www.thebrainlabs.com Cingulate Gyrus (SEP -> HT, abstract)] ||
 ||  ||  || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || Lateral Mammillary Nucleus || nucleus-nucleus-ACh || [http://www.thebrainlabs.com Cingulate Gyrus (SEP -> HT, abstract)] ||
-|| <font color="red">Target</font> || || || || || ||
-|| [BrainAreaTEA TEA] || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || [BrainRegionTARGET_TEA_ENDOCRINE TARGET.TEA.ENDOCRINE] || Endocrine Glands || endocrine-pineal-gland || [http://www.scholarpedia.org/article/Habenula Habenula Connections (MHb -> PB)] ||
 
 == Polysensory Inputs ==
 
