@@ -54,7 +54,7 @@
 				<element id="FAM.FT.AM.CTM" name="Corticomedial Nuclear Complex" 
 					refs="NL:[http://neurolex.org/wiki/Category:Corticomedial_nuclear_complex Corticomedial nuclear complex]"
 					>
-					<element id="FAM.FT.AM.CO" name="Cortical Amygdaloid Nucleus" mapped="true" type="nucleus"
+					<element id="LAC.FT.AM.CO" name="Cortical Amygdaloid Nucleus" mapped="true" type="nucleus"
 						refs="NL:[http://neurolex.org/wiki/Category:Cortical_amygdaloid_nucleus Cortical amygdaloid nucleus]; NL:[http://neurolex.org/wiki/Category:Periamygdaloid_cortex Periamygdaloid cortex]"
 						function="olfactory processing"
 						/>
@@ -134,39 +134,46 @@
 						notes="from precommissural fornix to/from MFB"
 						refs="NL:[http://neurolex.org/wiki/Category:Lateral_septal_nuclei Lateral septal nuclei]"
 						>
-						<element id="FAM.FT.SEP.LT" name="Lateral Septal Nucleus" 
+						<element id="FAM.FT.SEP.LT" name="Lateral Septal Nucleus" mapped="true" type="nucleus"
 							refs="NL:[http://neurolex.org/wiki/Category:Lateral_septal_nucleus Lateral septal nucleus]"
+							function="promote active stress coping behavior"
 							/>
-						<element id="FAM.FT.SEP.SH" name="Septohippocampal Nucleus" 
+						<element id="FAM.FT.SEP.SH" name="Septohippocampal Nucleus" mapped="true" type="nucleus"
 							refs="NL:[http://neurolex.org/wiki/Category:Septohippocampal_nucleus Septohippocampal nucleus]"
+							function="participate in solving conflict between two or more competing goals, defensive circuit"
 							/>
 					</element>
 					<element id="FAM.FT.SEP.MG" name="Medial Septal Group"
-						notes="cholinergic neurons; from/to MFB to fornix fimbria"
+						notes="ACh and GABA; major cholinergic input to HC"
 						>
 						<element id="FAM.FT.SEP.MED" name="Medial Septal Nucleus" mapped="true" type="nucleus"
 							refs="NL:[http://neurolex.org/wiki/Category:Medial_septal_nucleus Medial septal nucleus]"
+							function="affect HC for spatial learning, generation of theta waves"
+							notes="output nucleus; projections from AM and HC overlap; control theta rythm and exprolatory behavior; from/to MFB to fornix fimbria"
+							/>
+						<element id="FAM.FT.SEP.DBB" name="Diagonal Band of Broca" mapped="true" type="nucleus"
+							refs="NL:[http://neurolex.org/wiki/Category:Nuclei_of_the_diagonal_band Nuclei of the diagonal band]"
+							function="involved in generation of theta waves in hippocampus"
+							notes="ACh and GABA; ventral group - from stria terminalis to/from MFB"
 							/>
 					</element>
-				</element>
-				<element id="FAM.FT.SEP.VG" name="Ventral Septal Group"
-					notes="some assign only BNST here; from stria terminalis to/from MFB"
-					>
-					<element id="FAM.FT.SEP.DBB" name="Diagonal Band of Broca" mapped="true" type="nucleus"
-						refs="NL:[http://neurolex.org/wiki/Category:Nuclei_of_the_diagonal_band Nuclei of the diagonal band]"
-						/>
 				</element>
 				<element id="FAM.FT.SEP.PG" name="Posterior Septal Group"
 					notes="from MFB to stria medullaris"
 					>
-					<element id="FAM.FT.SEP.NAC" name="Nucleus of Anterior Commissure" 
+					<element id="FAM.FT.SEP.NAC" name="Septal Nucleus of Anterior Commissure" mapped="true" type="nucleus"
 						refs="NL:[http://neurolex.org/wiki/Category:Nucleus_of_anterior_commissure Nucleus of anterior commissure]"
+						function="projection to contralateral HC"
 						/>
-					<element id="FAM.FT.SEP.SF" name="Septofimbrial Nucleus" 
+					<element id="FAM.FT.SEP.SF" name="Septofimbrial Nucleus" mapped="true" type="nucleus"
 						refs="NL:[http://neurolex.org/wiki/Category:Septofimbrial_nucleus Septofimbrial nucleus]"
+						function="afferent to medial habenula, primary input to indirect encoding negative feedback"
 						/>
-					<element id="FAM.FT.SEP.TR" name="Triangular Septal Nucleus" 
-						refs="NL:[http://neurolex.org/wiki/Category:Triangular_septal_nucleus Triangular septal nucleus]"/>
+					<element id="FAM.FT.SEP.TR" name="Triangular Septal Nucleus" mapped="true" type="nucleus"
+						refs="NL:[http://neurolex.org/wiki/Category:Triangular_septal_nucleus Triangular septal nucleus]"
+						function="afferent to medial habenula, interpeduncular nucleus"
+						/>
+				</element>
 			</element>
 
 		</element>
@@ -410,10 +417,17 @@
 			refs="NL:[http://neurolex.org/wiki/Category:Habenula Habenula]"
 			function="Encoding negative feedback"
 			>
-			<element id="FAM.FD.LHB" name="Lateral Habenula" mapped="true" type="nucleus" 
+			<element id="LAC.FD.LHB" name="Lateral Habenula"
 				refs="NL:[http://neurolex.org/wiki/Category:Lateral_habenular_nucleus Lateral habenular nucleus]"
 				function="Encoding negative feedback, direct"
-				/>
+				>
+				<element id="FAM.FD.LHB.MED" name="Lateral Habenula Medial Part" mapped="true" type="nucleus" 
+					function="Encoding negative feedback, direct, Septal"
+					/>
+				<element id="LAC.FD.LHB.LT" name="Lateral Habenula Lateral Part" mapped="true" type="nucleus" 
+					function="Encoding negative feedback, direct, Pallidal"
+					/>
+			</element>
 			<element id="FAM.FD.MHB" name="Medial Habenula" mapped="true" type="nucleus" 
 				refs="NL:[http://neurolex.org/wiki/Category:Medial_habenular_nucleus Medial habenular nucleus]"
 				function="Encoding negative feedback, indirect"
@@ -745,7 +759,7 @@
 						refs="NL:[http://neurolex.org/wiki/Category:Central_dorsal_nucleus Central dorsal nucleus]"
 						function="viscero-limbic functions"
 						>
-						<element id="FAM.FD.TH.PT" name="Paratenial Nucleus of Thalamus" mapped="true" type="nucleus"
+						<element id="PHA.FD.TH.PT" name="Paratenial Nucleus of Thalamus" mapped="true" type="nucleus"
 							refs="NL:[http://neurolex.org/wiki/Category:Paratenial_nucleus Paratenial nucleus]"
 							function="Direct behavior toward a particular outcome over a range of outcomes"
 							notes="Projects to BNST, AM, OMPFC, ET"
@@ -771,7 +785,7 @@
 							function="Communication of information across memory delays to guide memory responses"
 							notes="like RE, return projection from PFC to HC, spatial working memory"
 							/>
-						<element id="LMC.FD.TH.SF" name="Subfascicular Nucleus of Thalamus" mapped="true" type="nucleus"
+						<element id="LLC.FD.TH.SF" name="Subfascicular Nucleus of Thalamus" mapped="true" type="nucleus"
 							refs="NL:[http://neurolex.org/wiki/Category:Subfascicular_nucleus Subfascicular nucleus]"
 							function="Relays from PAG to Rhape nuclei, Inferior olive nucleus"
 							/>
