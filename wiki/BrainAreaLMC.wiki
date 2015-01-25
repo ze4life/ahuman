@@ -9,7 +9,7 @@
 
 || *ID* || *Name* || *Regions* ||
 || 5HT || Serotonin - Feelings of Well-Being and Happiness || [BrainRegionLMC_HM_RP_MG LMC.HM.RP.MG], [BrainRegionLMC_HM_RP_OB LMC.HM.RP.OB], [BrainRegionLMC_HM_RP_PL LMC.HM.RP.PL], [BrainRegionLMC_HP_RP_PRN LMC.HP.RP.PRN], [BrainRegionLMC_MM_RF_SUC LMC.MM.RF.SUC], [BrainRegionLMC_MM_RP_DRN LMC.MM.RP.DRN] ||
-|| ACH || Acetylcholine - PNS Actions and CNS plasticity, arousal and reward || [BrainRegionLMC_FT_NBM LMC.FT.NBM], [BrainRegionLMC_MM_TG_LDT LMC.MM.TG.LDT] ||
+|| ACH || Acetylcholine - PNS Actions and CNS plasticity, arousal and reward || [BrainRegionLMC_FT_NBM LMC.FT.NBM], [BrainRegionLMC_HP_TG_LDT LMC.HP.TG.LDT], [BrainRegionLMC_HP_TG_VTG LMC.HP.TG.VTG] ||
 || DA || Dopamine - Reward-Motivated Behavior, Cognitive Alertness || [BrainRegionLMC_MM_VTA LMC.MM.VTA] ||
 || ENK || Enkephalin -  Regulating Nociception in Body || [BrainRegionLMC_MM_PAG LMC.MM.PAG] ||
 || NE || Norepinephrine - Vigilant Concentration, Stress Hormone, Fight-or-Flight Response || [BrainRegionLMC_HP_LC LMC.HP.LC] ||
@@ -34,8 +34,8 @@
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFAM FAM] || [BrainRegionLMC_MM_RF_SUC LMC.MM.RF.SUC] || [BrainRegionFAM_FD_LHB_MED FAM.FD.LHB.MED] || Lateral Habenula Medial Part || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> MR, abstract)] ||
-||  || [BrainRegionLMC_MM_RP_DRN LMC.MM.RP.DRN] || [BrainRegionFAM_FD_LHB_MED FAM.FD.LHB.MED] || Lateral Habenula Medial Part || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> DR, abstract)] ||
+|| [BrainAreaFAM FAM] || [BrainRegionLMC_MM_RF_SUC LMC.MM.RF.SUC] || [BrainRegionFAM_FD_LHB_MED FAM.FD.LHB.MED] || Lateral Habenula Medial Part || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> MR, abstract)] ||
+||  || [BrainRegionLMC_MM_RP_DRN LMC.MM.RP.DRN] || [BrainRegionFAM_FD_LHB_MED FAM.FD.LHB.MED] || Lateral Habenula Medial Part || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> DR, abstract)] ||
 || [BrainAreaLAC LAC] || [BrainRegionLMC_HM_RP_MG LMC.HM.RP.MG] || [BrainRegionLAC_FD_HT_LTN LAC.FD.HT.LTN] || Lateral Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLAC_FD_HT_PV LAC.FD.HT.PV] || Paraventricular Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionLMC_HM_RP_OB LMC.HM.RP.OB] || [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO] || Preoptic Nucleus || nucleus-nucleus || (unknown reference) ||
@@ -49,12 +49,12 @@
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFAM FAM] || [BrainRegionLMC_MM_RF_SUC LMC.MM.RF.SUC] || [BrainRegionFAM_FT_SEP_LT FAM.FT.SEP.LT] || Lateral Septal Nucleus || nucleus-nucleus-5HT || (unknown reference) ||
+|| [BrainAreaFAM FAM] || [BrainRegionLMC_MM_RF_SUC LMC.MM.RF.SUC] || [BrainRegionFAM_FD_LHB_LT FAM.FD.LHB.LT] || Lateral Habenula Lateral Part || nucleus-nucleus-5HT || (unknown reference) ||
+||  ||  || [BrainRegionFAM_FT_SEP_LT FAM.FT.SEP.LT] || Lateral Septal Nucleus || nucleus-nucleus-5HT || (unknown reference) ||
 ||  || [BrainRegionLMC_MM_RP_DRN LMC.MM.RP.DRN] || [BrainRegionFAM_FD_TH_PV FAM.FD.TH.PV] || Paraventricular Nucleus of Thalamus || nucleus-nucleus-5HT || (unknown reference) ||
 || [BrainAreaFEC FEC] || [BrainRegionLMC_MM_RF_SUC LMC.MM.RF.SUC] || [BrainRegionFEC_FD_STN_ICD FEC.FD.STN.ICD] || Subthalamic Nucleus Internal Caudal || nucleus-nucleus-5HT || (unknown reference) ||
 || [BrainAreaLAC LAC] || [BrainRegionLMC_MM_RF_SUC LMC.MM.RF.SUC] || [BrainRegionLAC_FD_HT_PN LAC.FD.HT.PN] || Posterior Hypothalamic Nucleus || nucleus-nucleus-5HT || (unknown reference) ||
 ||  ||  || [BrainRegionLAC_FD_HT_SUM LAC.FD.HT.SUM] || Supramammillary Nucleus || nucleus-nucleus-5HT || (unknown reference) ||
-||  ||  || [BrainRegionLAC_FD_LHB_LT LAC.FD.LHB.LT] || Lateral Habenula Lateral Part || nucleus-nucleus-5HT || (unknown reference) ||
 || [BrainAreaLLC LLC] || [BrainRegionLMC_HM_RP_OB LMC.HM.RP.OB] || [BrainRegionLLC_HP_CR_SC LLC.HP.CR.SC] || Spinocerebellum || nucleus-allocortex-5HT || (unknown reference) ||
 ||  || [BrainRegionLMC_HP_RP_PRN LMC.HP.RP.PRN] || [BrainRegionLLC_HP_CR_SC LLC.HP.CR.SC] || Spinocerebellum || nucleus-allocortex-5HT || (unknown reference) ||
 || [BrainAreaLPC LPC] || [BrainRegionLMC_HM_RP_MG LMC.HM.RP.MG] || [BrainRegionLPC_SC_PH_LSG LPC.SC.PH.LSG] || Lower Substantia Gelatinosa || nucleus-nucleus-5HT || (unknown reference) ||
@@ -71,7 +71,8 @@
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
 || [BrainRegionLMC_FT_NBM LMC.FT.NBM] || Basal Nucleus of Meynert || nucleus || FAU || Control imagination vs perception || ACh source, attention; modulatory nucleus ||
-|| [BrainRegionLMC_MM_TG_LDT LMC.MM.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus || LUS || Modulating sustained attention or in mediating alerting responses || sleep, waking, motor function, learning and reward ||
+|| [BrainRegionLMC_HP_TG_LDT LMC.HP.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus || LUS || Modulating sustained attention or in mediating alerting responses || sleep, waking, motor function, learning and reward ||
+|| [BrainRegionLMC_HP_TG_VTG LMC.HP.TG.VTG] || Ventral Tegmental Nucleus || nucleus || LUS || moderates hippocampal-driven rhythmic firing frequency in medial mammillary || contribute to episodic memory and new learning in<BR>humans as well as spatial memory ||
 
 *Internal Region Connections:*
   * no connections
@@ -80,16 +81,17 @@
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
-|| [BrainAreaSAA SAA] || [BrainRegionLMC_MM_TG_LDT LMC.MM.TG.LDT] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || Suprageniculate Nucleus of Thalamus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (SUPGEN -> DTN)] ||
+|| [BrainAreaSAA SAA] || [BrainRegionLMC_HP_TG_LDT LMC.HP.TG.LDT] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || Suprageniculate Nucleus of Thalamus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (SUPGEN -> DTN)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaFAM FAM] || [BrainRegionLMC_FT_NBM LMC.FT.NBM] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || Accessory Basal Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionFAM_FT_AM_BP FAM.FT.AM.BP] || Parvicellular Basal Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionFAM_FT_BNST FAM.FT.BNST] || Bed Nucleus of Stria Terminalis || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLMC_HP_TG_LDT LMC.HP.TG.LDT] || [BrainRegionFAM_FD_LHB_LT FAM.FD.LHB.LT] || Lateral Habenula Lateral Part || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LHAB -> DTN, abstract)] ||
+||  || [BrainRegionLMC_HP_TG_VTG LMC.HP.TG.VTG] || [BrainRegionFAM_FD_LHB_MED FAM.FD.LHB.MED] || Lateral Habenula Medial Part || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaFEC FEC] || [BrainRegionLMC_FT_NBM LMC.FT.NBM] || [BrainRegionFEC_FD_STN_CD FEC.FD.STN.CD] || Subthalamic Nucleus Caudal || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionFEC_FT_ACC_SH FEC.FT.ACC.SH] || Nucleus Accumbens Shell || nucleus-nucleus-gaba || [http://www.expertsmind.com/topic/emotion/affective-basal-ganglia-circuit-93570.aspx Affective basal ganglia circuit (NACC -> nBM, abstract)] ||
-|| [BrainAreaLAC LAC] || [BrainRegionLMC_MM_TG_LDT LMC.MM.TG.LDT] || [BrainRegionLAC_FD_LHB_LT LAC.FD.LHB.LT] || Lateral Habenula Lateral Part || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LHAB -> DTN, abstract)] ||
-|| [BrainAreaLLC LLC] || [BrainRegionLMC_MM_TG_LDT LMC.MM.TG.LDT] || [BrainRegionLLC_HP_PPN_RS LLC.HP.PPN.RS] || Pedunculopontine Nucleus Rostral || nucleus-nucleus-gaba || (unknown reference) ||
-|| [BrainAreaMMA MMA] || [BrainRegionLMC_MM_TG_LDT LMC.MM.TG.LDT] || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || Lateral Mammillary Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LMB -> DTN)] ||
+|| [BrainAreaLLC LLC] || [BrainRegionLMC_HP_TG_LDT LMC.HP.TG.LDT] || [BrainRegionLLC_HP_PPN_RS LLC.HP.PPN.RS] || Pedunculopontine Nucleus Rostral || nucleus-nucleus-gaba || (unknown reference) ||
+|| [BrainAreaMMA MMA] || [BrainRegionLMC_HP_TG_LDT LMC.HP.TG.LDT] || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || Lateral Mammillary Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LMB -> DTN)] ||
 
 *External Outbound Region Connections:*
 
@@ -97,14 +99,16 @@
 || <font color="red">Cortical</font> || || || || || ||
 || [BrainAreaEPA EPA] || [BrainRegionLMC_FT_NBM LMC.FT.NBM] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || nucleus-neocortex-ACh || [http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders Physiology and pathophysiology of lower urinary tract (NBM -> MPFC)] ||
 || [BrainAreaSAA SAA] || [BrainRegionLMC_FT_NBM LMC.FT.NBM] || [BrainRegionVCA_NC_V1 VCA.NC.V1] || Primary Visual Cortex || nucleus-neocortex-ACh || (unknown reference) ||
-||  || [BrainRegionLMC_MM_TG_LDT LMC.MM.TG.LDT] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || Suprageniculate Nucleus of Thalamus || nucleus-nucleus-ACh || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (DTN -> SUPGEN)] ||
+||  || [BrainRegionLMC_HP_TG_LDT LMC.HP.TG.LDT] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || Suprageniculate Nucleus of Thalamus || nucleus-nucleus-ACh || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (DTN -> SUPGEN)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaFAM FAM] || [BrainRegionLMC_FT_NBM LMC.FT.NBM] || [BrainRegionFAM_FT_AM_BM FAM.FT.AM.BM] || Magnocellular Basal Amygdaloid Nucleus || nucleus-nucleus-ACh || (unknown reference) ||
-|| [BrainAreaLAC LAC] || [BrainRegionLMC_MM_TG_LDT LMC.MM.TG.LDT] || [BrainRegionLAC_HM_SAL_ISL LAC.HM.SAL.ISL] || Inferior Salivatory Nucleus || nucleus-nucleus-ACh || (unknown reference) ||
+|| [BrainAreaLAC LAC] || [BrainRegionLMC_HP_TG_LDT LMC.HP.TG.LDT] || [BrainRegionLAC_HM_SAL_ISL LAC.HM.SAL.ISL] || Inferior Salivatory Nucleus || nucleus-nucleus-ACh || (unknown reference) ||
 ||  ||  || [BrainRegionLAC_HM_SAL_SSL LAC.HM.SAL.SSL] || Superior Salivatory Nucleus || nucleus-nucleus-ACh || (unknown reference) ||
-|| [BrainAreaLLC LLC] || [BrainRegionLMC_MM_TG_LDT LMC.MM.TG.LDT] || [BrainRegionLLC_HP_PPN_CD LLC.HP.PPN.CD] || Pedunculopontine Nucleus Caudal || nucleus-nucleus-ACh || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (DTN -> IPD)] ||
-|| [BrainAreaLRC LRC] || [BrainRegionLMC_MM_TG_LDT LMC.MM.TG.LDT] || [BrainRegionLRC_HM_NPH LRC.HM.NPH] || Prepositus Nucleus || nucleus-nucleus-ACh || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (DTN -> NPRP)] ||
-|| [BrainAreaMMA MMA] || [BrainRegionLMC_MM_TG_LDT LMC.MM.TG.LDT] || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || Lateral Mammillary Nucleus || nucleus-nucleus-ACh || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (DTN -> LMam)] ||
+|| [BrainAreaLLC LLC] || [BrainRegionLMC_HP_TG_LDT LMC.HP.TG.LDT] || [BrainRegionLLC_HP_PPN_CD LLC.HP.PPN.CD] || Pedunculopontine Nucleus Caudal || nucleus-nucleus-ACh || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (DTN -> IPD)] ||
+|| [BrainAreaLMC LMC] || [BrainRegionLMC_HP_TG_VTG LMC.HP.TG.VTG] || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || Ventral Tegmental Area || nucleus-nucleus-ACh || (unknown reference) ||
+|| [BrainAreaLRC LRC] || [BrainRegionLMC_HP_TG_LDT LMC.HP.TG.LDT] || [BrainRegionLRC_HM_NPH LRC.HM.NPH] || Prepositus Nucleus || nucleus-nucleus-ACh || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (DTN -> NPRP)] ||
+|| [BrainAreaMMA MMA] || [BrainRegionLMC_HP_TG_LDT LMC.HP.TG.LDT] || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || Lateral Mammillary Nucleus || nucleus-nucleus-ACh || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (DTN -> LMam)] ||
+||  || [BrainRegionLMC_HP_TG_VTG LMC.HP.TG.VTG] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || nucleus-nucleus-ACh || (unknown reference) ||
 
 == Dopamine - Reward-Motivated Behavior, Cognitive Alertness ==
 
@@ -123,12 +127,12 @@
 || <font color="red">Cortical</font> || || || || || ||
 || [BrainAreaEPA EPA] || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || neocortex-nucleus || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (OMPFC -> VTA)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFAM FAM] || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || [BrainRegionFAM_FD_LHB_MED FAM.FD.LHB.MED] || Lateral Habenula Medial Part || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> VTA, abstract)] ||
-||  ||  || [BrainRegionFAM_FT_BNST FAM.FT.BNST] || Bed Nucleus of Stria Terminalis || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaFAM FAM] || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || [BrainRegionFAM_FT_BNST FAM.FT.BNST] || Bed Nucleus of Stria Terminalis || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaFEC FEC] || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || [BrainRegionFEC_FT_ACC_CORE FEC.FT.ACC.CORE] || Nucleus Accumbens Core || nucleus-nucleus-gaba || [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reward circuit of human brain (NACC -> VTA, abstract)] ||
 ||  ||  || [BrainRegionFEC_FT_ACC_SH FEC.FT.ACC.SH] || Nucleus Accumbens Shell || nucleus-nucleus-gaba || [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reward circuit of human brain (NACC -> VTA, abstract)] ||
 ||  ||  || [BrainRegionFEC_FT_VP_DL FEC.FT.VP.DL] || Ventral Pallidum Dorsolateral || nucleus-nucleus-gaba || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (VPAL -> VTA, abstract)] ||
 ||  ||  || [BrainRegionFEC_FT_VP_VM FEC.FT.VP.VM] || Ventral Pallidum Ventromedial || nucleus-nucleus-gaba || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (VPAL -> VTA, abstract)] ||
+|| [BrainAreaLMC LMC] || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || [BrainRegionLMC_HP_TG_VTG LMC.HP.TG.VTG] || Ventral Tegmental Nucleus || nucleus-nucleus-ACh || (unknown reference) ||
 || [BrainAreaMMA MMA] || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Medial mammillary nucleus and theta rhythm (MMB -> VTN)] ||
 
 *External Outbound Region Connections:*
@@ -255,14 +259,6 @@
 
 <img src="http://www.impulsecontroldisorders.org/images/8-Urges9proof.jpg" alt="unavailable">
 
-  * [http://ahuman.googlecode.com/svn/images/wiki/research/brain/HF.jpg Hippocampal Formation] - see [article:2009-Hippocampus-Thesis.pdf Reference]
-
-<img src="http://ahuman.googlecode.com/svn/images/wiki/research/brain/HF.jpg" alt="unavailable">
-
-  * [http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png Head Direction Cell Circuit] - see [http://www.scholarpedia.org/article/Head_direction_cells Reference]
-
-<img src="http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png" alt="unavailable">
-
   * [http://jp.physoc.org/content/557/1/287/F9.large.jpg Schematic overview of spinobulbospinal micturition reflex pathway] - see [http://jp.physoc.org/content/557/1/287/F9.expansion.html Reference]
 
 <img src="http://jp.physoc.org/content/557/1/287/F9.large.jpg" alt="unavailable">
@@ -270,6 +266,14 @@
   * [http://www.springerimages.com/img/Images/Springer/JOU=10194/VOL=2006.7/ISU=4/ART=2006_307/MediaObjects/MEDIUM_10194_2006_Article_307_Fig1.jpg Pain matrix] - see [http://www.springerimages.com/Images/MedicineAndPublicHealth/1-10.1007_s10194-006-0307-1-0 Reference]
 
 <img src="http://www.springerimages.com/img/Images/Springer/JOU=10194/VOL=2006.7/ISU=4/ART=2006_307/MediaObjects/MEDIUM_10194_2006_Article_307_Fig1.jpg" alt="unavailable">
+
+  * [http://ahuman.googlecode.com/svn/images/wiki/research/brain/HF.jpg Hippocampal Formation] - see [article:2009-Hippocampus-Thesis.pdf Reference]
+
+<img src="http://ahuman.googlecode.com/svn/images/wiki/research/brain/HF.jpg" alt="unavailable">
+
+  * [http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png Head Direction Cell Circuit] - see [http://www.scholarpedia.org/article/Head_direction_cells Reference]
+
+<img src="http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png" alt="unavailable">
 
   * [http://ahuman.googlecode.com/svn/images/wiki/research/human/22-reticular-formation-and-limbic-system/F22-2.png Basal Nucleus of Meynert] - see [article:Biological/2005-The-Human-Nervous-System.pdf Reference]
 
@@ -292,10 +296,10 @@
   * http://www.impulsecontroldisorders.org/html/cravings.html
   * http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0
   * http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity
-  * article:2009-Hippocampus-Thesis.pdf
-  * http://www.scholarpedia.org/article/Head_direction_cells
   * http://jp.physoc.org/content/557/1/287/F9.expansion.html
   * http://www.springerimages.com/Images/MedicineAndPublicHealth/1-10.1007_s10194-006-0307-1-0
+  * article:2009-Hippocampus-Thesis.pdf
+  * http://www.scholarpedia.org/article/Head_direction_cells
   * article:Biological/2005-The-Human-Nervous-System.pdf
   * http://www.expertsmind.com/topic/emotion/affective-basal-ganglia-circuit-93570.aspx
 
