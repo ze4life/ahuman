@@ -11,7 +11,7 @@
 || LRB || Breathing and Swallowing Reflexes || [BrainRegionLRC_HM_RA LRC.HM.RA], [BrainRegionLRC_HM_TGM_PA5 LRC.HM.TGM.PA5], [BrainRegionLRC_HP_PN_KFN LRC.HP.PN.KFN], [BrainRegionLRC_HP_PN_SC LRC.HP.PN.SC], [BrainRegionLRC_HP_PRF_CRF LRC.HP.PRF.CRF], [BrainRegionLRC_HP_PRF_PVR LRC.HP.PRF.PVR] ||
 || LRF || Frontal Visual Reflexes || [BrainRegionLRC_MM_CJ LRC.MM.CJ], [BrainRegionLRC_MM_DSCH LRC.MM.DSCH], [BrainRegionLRC_MM_RIMLF LRC.MM.RIMLF], [BrainRegionLRC_MM_RP_RIP LRC.MM.RP.RIP] ||
 || LRM || Multisensory Orienting Reflexes || [BrainRegionLRC_MM_EIC LRC.MM.EIC], [BrainRegionLRC_MM_SC_DEEP LRC.MM.SC.DEEP], [BrainRegionLRC_MM_SC_INT LRC.MM.SC.INT] ||
-|| LRP || Postural Control Reflexes || [BrainRegionLRC_HM_INM LRC.HM.INM], [BrainRegionLRC_HM_NPH LRC.HM.NPH], [BrainRegionLRC_HM_RF_MED LRC.HM.RF.MED], [BrainRegionLRC_HP_PRF_GCR LRC.HP.PRF.GCR], [BrainRegionLRC_HP_PRF_RPO LRC.HP.PRF.RPO], [BrainRegionLRC_MM_PT_PR LRC.MM.PT.PR] ||
+|| LRP || Postural Control Reflexes || [BrainRegionLRC_HM_INM LRC.HM.INM], [BrainRegionLRC_HM_NPH LRC.HM.NPH], [BrainRegionLRC_HM_RF_MED LRC.HM.RF.MED], [BrainRegionLRC_HP_NI LRC.HP.NI], [BrainRegionLRC_HP_PRF_GCR LRC.HP.PRF.GCR], [BrainRegionLRC_HP_PRF_RPO LRC.HP.PRF.RPO], [BrainRegionLRC_MM_PT_PR LRC.MM.PT.PR] ||
 || LRV || Direct Visual Reflexes || [BrainRegionLRC_MM_PT_NOT LRC.MM.PT.NOT], [BrainRegionLRC_MM_PT_PON LRC.MM.PT.PON], [BrainRegionLRC_MM_PT_PTA LRC.MM.PT.PTA], [BrainRegionLRC_MM_PT_SL LRC.MM.PT.SL], [BrainRegionLRC_MM_SC_SUP LRC.MM.SC.SUP] ||
 
 == Breathing and Swallowing Reflexes ==
@@ -171,6 +171,7 @@
 || [BrainRegionLRC_HM_INM LRC.HM.INM] || Intercalated Nucleus of Medulla || nucleus || LRC || Coordinate tongue movements, vestibuloocular reflex || Receives sensory inputs from neck region ||
 || [BrainRegionLRC_HM_NPH LRC.HM.NPH] || Prepositus Nucleus || nucleus || LLE || Integrate PPRF phasic signal to provide tonic signal of abducens || Part of horizontal gaze holding system ||
 || [BrainRegionLRC_HM_RF_MED LRC.HM.RF.MED] || Central Medullary Reticular Nucleus || nucleus || LLE || Somatic motor control, cardiovascular control, pain modulation, sleep and<BR>consciousness, habituation ||  ||
+|| [BrainRegionLRC_HP_NI LRC.HP.NI] || Incertus Nucleus || nucleus || LUS || Behavioural activation and the response to stress || Modulating influences on prefrontal and hippocampal<BR>cortical activity, midline behavior control;<BR>modulatory nucleus; relay from reticularis pontis<BR>oralis nucleus to septo-hippocampal system ||
 || [BrainRegionLRC_HP_PRF_GCR LRC.HP.PRF.GCR] || Gigantocellular Reticular Nucleus || nucleus || LRM || Vasodepressor center || Projects to hypoglossal nucleus, abducens;<BR>medullary (lateral) reticulospinal tract; excite<BR>trunk flexors, inhibit extensors; stimulation<BR>induces inspiration ||
 || [BrainRegionLRC_HP_PRF_RPO LRC.HP.PRF.RPO] || Oral Pontine Reticular Nucleus || nucleus || LRM || Mediation of changing to and from REM sleep || Part of horizontal gaze center, projects to spinal<BR>cord and abducens; excites spinal extensors,<BR>inhibit flexors ||
 || [BrainRegionLRC_MM_PT_PR LRC.MM.PT.PR] || Principal Pretectal Nucleus || nucleus || LRM || Pupillary light reflex || Affected by visual cortex and projects to EWN ||
@@ -180,6 +181,7 @@
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionLRC_HM_NPH LRC.HM.NPH] || [BrainRegionLRC_HM_INM LRC.HM.INM] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionLRC_HP_PRF_GCR LRC.HP.PRF.GCR] || [BrainRegionLRC_HM_RF_MED LRC.HM.RF.MED] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionLRC_HP_PRF_RPO LRC.HP.PRF.RPO] || [BrainRegionLRC_HP_NI LRC.HP.NI] || nucleus-nucleus || (unknown reference) ||
 
 *External Inbound Region Connections:*
 
@@ -206,7 +208,9 @@
 || <font color="red">Cortical</font> || || || || || ||
 || [BrainAreaSAA SAA] || [BrainRegionLRC_HM_NPH LRC.HM.NPH] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || Suprageniculate Nucleus of Thalamus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (NPRP -> SUPGEN)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFAM FAM] || [BrainRegionLRC_HP_PRF_RPO LRC.HP.PRF.RPO] || [BrainRegionFAM_HP_NI FAM.HP.NI] || Incertus Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaFAM FAM] || [BrainRegionLRC_HP_NI LRC.HP.NI] || [BrainRegionFAM_FD_LHB_MED FAM.FD.LHB.MED] || Lateral Habenula Medial Part || nucleus-nucleus-gaba || (unknown reference) ||
+||  ||  || [BrainRegionFAM_FT_SEP_SF FAM.FT.SEP.SF] || Septofimbrial Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
+||  ||  || [BrainRegionFAM_FT_SEP_TR FAM.FT.SEP.TR] || Triangular Septal Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
 || [BrainAreaLAC LAC] || [BrainRegionLRC_HM_INM LRC.HM.INM] || [BrainRegionLAC_FD_HT_PN LAC.FD.HT.PN] || Posterior Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionLRC_MM_PT_PR LRC.MM.PT.PR] || [BrainRegionLAC_MM_EWN LAC.MM.EWN] || Edinger-Westphal Nucleus || nucleus-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (Pretectum -> EWN, abstract)] ||
 || [BrainAreaLLC LLC] || [BrainRegionLRC_HM_NPH LRC.HM.NPH] || [BrainRegionLLC_MM_SCNF LLC.MM.SCNF] || Subcuneiform Nucleus || nucleus-nucleus || (unknown reference) ||
@@ -224,6 +228,8 @@
 ||  ||  || [BrainRegionLPC_SC_VH_VL LPC.SC.VH.VL] || Ventrolateral Nucleus || nucleus-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (RF -> SpinalCord, abstract)] ||
 ||  ||  || [BrainRegionLPC_SC_VH_VM LPC.SC.VH.VM] || Ventromedial Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLRC LRC] || [BrainRegionLRC_HM_NPH LRC.HM.NPH] || [BrainRegionLRC_MM_PT_NOT LRC.MM.PT.NOT] || Nucleus of Optic Tract || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaMMA MMA] || [BrainRegionLRC_HP_NI LRC.HP.NI] || [BrainRegionPHA_FT_EPF PHA.FT.EPF] || Endopiriform Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
+||  ||  || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || Perirhinal Cortex || nucleus-neocortex-gaba || (unknown reference) ||
 
 == Direct Visual Reflexes ==
 
