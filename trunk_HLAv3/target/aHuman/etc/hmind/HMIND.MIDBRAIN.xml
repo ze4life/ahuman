@@ -360,22 +360,52 @@
 			function="Control of face"
 			notes="Pons"
 			/>
-		<element id="FAM.HP.NI" name="Incertus Nucleus" mapped="true" type="nucleus" category="forebrain"
+		<element id="LRC.HP.NI" name="Incertus Nucleus" mapped="true" type="nucleus" category="forebrain"
 			refs="NL:[http://neurolex.org/wiki/Category:Nucleus_incertus Nucleus incertus]"
 			function="Behavioural activation and the response to stress"
 			notes="Modulating influences on prefrontal and hippocampal cortical activity, midline behavior control; modulatory nucleus; relay from reticularis pontis oralis nucleus to septo-hippocampal system"
 			/>
 
-		<element id="LMC.MM.TG.LDT" name="Laterodorsal Tegmental Nucleus" mapped="true" type="nucleus" category="midbrain"
-			refs="NL:[http://neurolex.org/wiki/Category:Laterodorsal_tegmental_nucleus Laterodorsal tegmental nucleus]"
-			function="Modulating sustained attention or in mediating alerting responses"
-			notes="sleep, waking, motor function, learning and reward"
+		<element id="HP.TG" name="Pontine Tegmental Nuclei" category="midbrain"
 			>
-			<element name="Lateral Tegmental Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_tegmental_nucleus Lateral tegmental nucleus]"/>
-			<element name="Dorsal Tegmental Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Dorsal_tegmental_nucleus Dorsal tegmental nucleus]">
-				<element name="Dorsal Tegmental Nucleus Pars Dorsalis" refs="NL:[http://neurolex.org/wiki/Category:Dorsal_tegmental_nucleus_pars_dorsalis Dorsal tegmental nucleus pars dorsalis]"/>
-				<element name="Dorsal Tegmental Nucleus Pars Ventralis" refs="NL:[http://neurolex.org/wiki/Category:Dorsal_tegmental_nucleus_pars_ventralis Dorsal tegmental nucleus pars ventralis]"/>
+			<element id="LMC.HP.TG.LDT" name="Laterodorsal Tegmental Nucleus" mapped="true" type="nucleus" category="midbrain"
+				synonyms="Dorsal Nucleus of Gudden"
+				refs="NL:[http://neurolex.org/wiki/Category:Laterodorsal_tegmental_nucleus Laterodorsal tegmental nucleus]"
+				function="Modulating sustained attention or in mediating alerting responses"
+				notes="sleep, waking, motor function, learning and reward"
+				>
+				<element name="Lateral Tegmental Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_tegmental_nucleus Lateral tegmental nucleus]"/>
+				<element name="Dorsal Tegmental Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Dorsal_tegmental_nucleus Dorsal tegmental nucleus]">
+					<element name="Dorsal Tegmental Nucleus Pars Dorsalis" refs="NL:[http://neurolex.org/wiki/Category:Dorsal_tegmental_nucleus_pars_dorsalis Dorsal tegmental nucleus pars dorsalis]"/>
+					<element name="Dorsal Tegmental Nucleus Pars Ventralis" refs="NL:[http://neurolex.org/wiki/Category:Dorsal_tegmental_nucleus_pars_ventralis Dorsal tegmental nucleus pars ventralis]"/>
+				</element>
 			</element>
+
+			<element id="LMC.HP.TG.VTG" name="Ventral Tegmental Nucleus" mapped="true" type="nucleus" category="midbrain"
+				synonyms="Ventral Nucleus of Gudden"
+				refs="NL:[http://neurolex.org/wiki/Birnlex_1421 Ventral tegmental nucleus]"
+				function="moderates hippocampal-driven rhythmic firing frequency in medial mammillary"
+				notes="contribute to episodic memory and new learning in humans as well as spatial memory"
+				/>
+
+			<element id="LLC.HP.PPN" name="Pedunculopontine Tegmental Nuclei" category="midbrain"
+				refs="NL:[http://neurolex.org/wiki/Category:Pedunculopontine_tegmental_nucleus Pedunculopontine tegmental nucleus]"
+				function="Provide sensory feedback to cerebral cortex; modulatory"
+				>
+				<element id="LLC.HP.PPN.RS" name="Pedunculopontine Nucleus Rostral" mapped="true" type="nucleus" 
+					function="locomotion - walking, running"
+					notes="Pars dissipata, anterior, dissipated subnucleus, GABA"
+					/>
+				<element id="LLC.HP.PPN.CD" name="Pedunculopontine Nucleus Caudal" mapped="true" type="nucleus" 
+					function="postural control, voluntary arm and eye movements"
+					notes="Pars compacta, anterior, compact subnucleus, ACh"
+					>
+					<element id="BGA.HP.PPN.IPD" name="Interpeduncular Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Interpeduncular_nucleus Interpeduncular nucleus]" notes="unpaired"/>
+				</element>
+				<element name="Entopeduncular Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Entopeduncular_nucleus Entopeduncular nucleus]" ignore="true" notes="non-primate"/>
+				<element name="Peripeduncular Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Peripeduncular_nucleus Peripeduncular nucleus]" ignore="true" />
+			</element>
+
 		</element>
 
 		<element id="HP.RF" name="Pontine Reticular Formation" category="midbrain"
@@ -448,24 +478,6 @@
 				</element>
 			</element>
 
-		</element>
-
-		<element id="LLC.HP.PPN" name="Pedunculopontine Nucleus" category="midbrain"
-			refs="NL:[http://neurolex.org/wiki/Category:Pedunculopontine_tegmental_nucleus Pedunculopontine tegmental nucleus]"
-			function="Provide sensory feedback to cerebral cortex; modulatory"
-			>
-			<element id="LLC.HP.PPN.RS" name="Pedunculopontine Nucleus Rostral" mapped="true" type="nucleus" 
-				function="locomotion - walking, running"
-				notes="Pars dissipata, anterior, dissipated subnucleus, GABA"
-				/>
-			<element id="LLC.HP.PPN.CD" name="Pedunculopontine Nucleus Caudal" mapped="true" type="nucleus" 
-				function="postural control, voluntary arm and eye movements"
-				notes="Pars compacta, anterior, compact subnucleus, ACh"
-				>
-				<element id="BGA.HP.PPN.IPD" name="Interpeduncular Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Interpeduncular_nucleus Interpeduncular nucleus]" notes="unpaired"/>
-			</element>
-			<element name="Entopeduncular Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Entopeduncular_nucleus Entopeduncular nucleus]" ignore="true" notes="non-primate"/>
-			<element name="Peripeduncular Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Peripeduncular_nucleus Peripeduncular nucleus]" ignore="true" />
 		</element>
 
 		<element id="MBA.HP.PN" name="Pontine Nuclear Complex" category="midbrain"
