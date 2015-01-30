@@ -8,7 +8,7 @@
 (generated)
 
 || *ID* || *Name* || *Regions* ||
-|| FAMEXE || Executive Circuit || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB], [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] ||
+|| FAMEXE || Executive Circuit || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB], [BrainRegionFAM_FT_AM_CO FAM.FT.AM.CO], [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] ||
 || FAMHT || Enforce Neuroendocrine and Immunological Responses to Stress || [BrainRegionFAM_FT_AM_CEA FAM.FT.AM.CEA], [BrainRegionFAM_FT_BNST FAM.FT.BNST], [BrainRegionFAM_FT_IPAC FAM.FT.IPAC], [BrainRegionFAM_FT_SEP_BAC FAM.FT.SEP.BAC] ||
 || FAMMEM || Inhibit Neuroendocrine and Immunological Responses to Stress || [BrainRegionFAM_FT_SEP_DBB FAM.FT.SEP.DBB], [BrainRegionFAM_FT_SEP_LT FAM.FT.SEP.LT], [BrainRegionFAM_FT_SEP_MED FAM.FT.SEP.MED], [BrainRegionFAM_FT_SEP_SH FAM.FT.SEP.SH] ||
 || FAMPS || Polysensory Inputs || [BrainRegionFAM_FT_AM_BM FAM.FT.AM.BM], [BrainRegionFAM_FT_AM_BP FAM.FT.AM.BP], [BrainRegionFAM_FT_AM_ITC FAM.FT.AM.ITC] ||
@@ -22,12 +22,14 @@
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
 || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || Accessory Basal Amygdaloid Nucleus || nucleus || FAU || proections to maxrix of core of NACC ||  ||
+|| [BrainRegionFAM_FT_AM_CO FAM.FT.AM.CO] || Cortical Amygdaloid Nucleus || nucleus || FAU || olfactory processing ||  ||
 || [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || Medial Amygdala || nucleus || FAU || sense of smell and pheromone-processing ||  ||
 
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionFAM_FT_AM_CO FAM.FT.AM.CO] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || nucleus-nucleus || (unknown reference) ||
 
 *External Inbound Region Connections:*
 
@@ -47,13 +49,13 @@
 || [BrainAreaEPA EPA] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || [BrainRegionCGA_NC_PACG CGA.NC.PACG] || Pregenual Area || nucleus-neocortex || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> ACG, abstract)] ||
 ||  ||  || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || Ventral Anterior Cingulate Area || nucleus-neocortex || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> ACG, abstract)] ||
 ||  ||  || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || Mediodorsal Nucleus of Thalamus || nucleus-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in emotional behavior (AM -> TH, abstract)] ||
-||  ||  || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || nucleus-neocortex || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> MPFC, abstract)] ||
+||  ||  || [BrainRegionFCA_NC_OPFC FCA.NC.OPFC] || Orbitofrontal Cortex || nucleus-neocortex || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> MPFC, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFAM FAM] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || [BrainRegionFAM_FT_AM_CEA FAM.FT.AM.CEA] || Central Amygdala || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || [BrainRegionFAM_FT_AM_CEA FAM.FT.AM.CEA] || Central Amygdala || nucleus-nucleus-gaba || (unknown reference) ||
+|| [BrainAreaFAM FAM] || [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || [BrainRegionFAM_FT_AM_CEA FAM.FT.AM.CEA] || Central Amygdala || nucleus-nucleus-gaba || (unknown reference) ||
 ||  ||  || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || Interstitial Anterior Commissural Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
 || [BrainAreaFEC FEC] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || [BrainRegionFEC_FT_CN_TL FEC.FT.CN.TL] || Caudate Nucleus Tail || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaLAC LAC] || [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || [BrainRegionLAC_FD_HT_PRM LAC.FD.HT.PRM] || Premammillary Nucleus || nucleus-nucleus-gaba || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> HT.L, abstract)] ||
+|| [BrainAreaLAC LAC] || [BrainRegionFAM_FT_AM_CO FAM.FT.AM.CO] || [BrainRegionLAC_FD_HT_SO LAC.FD.HT.SO] || Supraoptic Nucleus || nucleus-nucleus || [http://www.pnas.org/content/107/40/17071/F1.expansion.html Role for serotonin in moral behavior (AMY -> HYP, abstract)] ||
+||  || [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || [BrainRegionLAC_FD_HT_PRM LAC.FD.HT.PRM] || Premammillary Nucleus || nucleus-nucleus-gaba || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> HT.L, abstract)] ||
 ||  ||  || [BrainRegionLAC_FD_HT_PV LAC.FD.HT.PV] || Paraventricular Nucleus || nucleus-nucleus-gaba || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> HT.PV, abstract)] ||
 || [BrainAreaLMC LMC] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || [BrainRegionLMC_FT_NBM LMC.FT.NBM] || Basal Nucleus of Meynert || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaMMA MMA] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || [BrainRegionPHA_NC_PAS PHA.NC.PAS] || Parasubiculum || nucleus-neocortex || (unknown reference) ||
@@ -82,8 +84,7 @@
 || <font color="red">Cortical</font> || || || || || ||
 || [BrainAreaEPA EPA] || [BrainRegionFAM_FT_BNST FAM.FT.BNST] || [BrainRegionCGA_NC_SGC CGA.NC.SGC] || Subgenual Cortex || neocortex-nucleus || (unknown reference) ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFAM FAM] || [BrainRegionFAM_FT_AM_CEA FAM.FT.AM.CEA] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || Accessory Basal Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionFAM_FT_AM_BP FAM.FT.AM.BP] || Parvicellular Basal Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaFAM FAM] || [BrainRegionFAM_FT_AM_CEA FAM.FT.AM.CEA] || [BrainRegionFAM_FT_AM_BP FAM.FT.AM.BP] || Parvicellular Basal Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionFAM_FT_AM_ITC FAM.FT.AM.ITC] || Intercalated Amygdaloid Nuclei || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionFAM_FT_AM_LA FAM.FT.AM.LA] || Lateral Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || Medial Amygdala || nucleus-nucleus-gaba || (unknown reference) ||
@@ -132,7 +133,7 @@
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
-|| [BrainAreaEPA EPA] || [BrainRegionFAM_FT_SEP_SH FAM.FT.SEP.SH] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || neocortex-nucleus || (unknown reference) ||
+|| [BrainAreaEPA EPA] || [BrainRegionFAM_FT_SEP_SH FAM.FT.SEP.SH] || [BrainRegionFCA_NC_OPFC FCA.NC.OPFC] || Orbitofrontal Cortex || neocortex-nucleus || (unknown reference) ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLAC LAC] || [BrainRegionFAM_FT_SEP_DBB FAM.FT.SEP.DBB] || [BrainRegionLAC_FD_HT_SUM LAC.FD.HT.SUM] || Supramammillary Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Medial mammillary nucleus and theta rhythm (SupraMM -> SEP, abstract)] ||
 ||  || [BrainRegionFAM_FT_SEP_LT FAM.FT.SEP.LT] || [BrainRegionLAC_FD_HT_PN LAC.FD.HT.PN] || Posterior Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
@@ -180,7 +181,7 @@
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
 || [BrainAreaCPA CPA] || [BrainRegionFAM_FT_AM_BM FAM.FT.AM.BM] || [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || Posterior Insular Cortex || neocortex-nucleus || (unknown reference) ||
-|| [BrainAreaEPA EPA] || [BrainRegionFAM_FT_AM_BM FAM.FT.AM.BM] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || neocortex-nucleus || (unknown reference) ||
+|| [BrainAreaEPA EPA] || [BrainRegionFAM_FT_AM_BM FAM.FT.AM.BM] || [BrainRegionFCA_NC_OPFC FCA.NC.OPFC] || Orbitofrontal Cortex || neocortex-nucleus || (unknown reference) ||
 ||  || [BrainRegionFAM_FT_AM_BP FAM.FT.AM.BP] || [BrainRegionCGA_NC_DACG CGA.NC.DACG] || Dorsal Anterior Cingulate Area || neocortex-nucleus || [http://www.pnas.org/content/107/40/17071/F1.expansion.html Role for serotonin in moral behavior (ACG -> AMY, abstract)] ||
 ||  ||  || [BrainRegionCGA_NC_PACG CGA.NC.PACG] || Pregenual Area || neocortex-nucleus || [http://www.pnas.org/content/107/40/17071/F1.expansion.html Role for serotonin in moral behavior (ACG -> AMY, abstract)] ||
 ||  ||  || [BrainRegionCGA_NC_SGC CGA.NC.SGC] || Subgenual Cortex || neocortex-nucleus || [http://www.pnas.org/content/107/40/17071/F1.expansion.html Role for serotonin in moral behavior (ACG -> AMY, abstract)] ||
