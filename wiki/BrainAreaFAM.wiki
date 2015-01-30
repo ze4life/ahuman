@@ -9,11 +9,11 @@
 
 || *ID* || *Name* || *Regions* ||
 || FAMEXE || Executive Circuit || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB], [BrainRegionFAM_FT_AM_CO FAM.FT.AM.CO], [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] ||
-|| FAMHT || Enforce Neuroendocrine and Immunological Responses to Stress || [BrainRegionFAM_FT_AM_CEA FAM.FT.AM.CEA], [BrainRegionFAM_FT_BNST FAM.FT.BNST], [BrainRegionFAM_FT_IPAC FAM.FT.IPAC], [BrainRegionFAM_FT_SEP_BAC FAM.FT.SEP.BAC] ||
+|| FAMHT || Enforce Neuroendocrine and Immunological Responses to Stress || [BrainRegionFAM_FT_AM_CEA FAM.FT.AM.CEA], [BrainRegionFAM_FT_BNST FAM.FT.BNST], [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] ||
 || FAMMEM || Inhibit Neuroendocrine and Immunological Responses to Stress || [BrainRegionFAM_FT_SEP_DBB FAM.FT.SEP.DBB], [BrainRegionFAM_FT_SEP_LT FAM.FT.SEP.LT], [BrainRegionFAM_FT_SEP_MED FAM.FT.SEP.MED], [BrainRegionFAM_FT_SEP_SH FAM.FT.SEP.SH] ||
 || FAMPS || Polysensory Inputs || [BrainRegionFAM_FT_AM_BM FAM.FT.AM.BM], [BrainRegionFAM_FT_AM_BP FAM.FT.AM.BP], [BrainRegionFAM_FT_AM_ITC FAM.FT.AM.ITC] ||
 || FAMUS || Unimodal Sensory Inputs || [BrainRegionFAM_FD_TH_PV FAM.FD.TH.PV], [BrainRegionFAM_FT_AM_LA FAM.FT.AM.LA] ||
-|| FAR || Acquisition of Avoidance Responses || [BrainRegionFAM_FD_LHB_LT FAM.FD.LHB.LT], [BrainRegionFAM_FD_LHB_MED FAM.FD.LHB.MED], [BrainRegionFAM_FD_MHB FAM.FD.MHB], [BrainRegionFAM_FT_SEP_SF FAM.FT.SEP.SF], [BrainRegionFAM_FT_SEP_TR FAM.FT.SEP.TR] ||
+|| FAR || Acquisition of Avoidance Responses || [BrainRegionFAM_FD_LHB_LT FAM.FD.LHB.LT], [BrainRegionFAM_FD_LHB_MED FAM.FD.LHB.MED], [BrainRegionFAM_FD_MHB FAM.FD.MHB], [BrainRegionFAM_FT_SEP_BAC FAM.FT.SEP.BAC], [BrainRegionFAM_FT_SEP_SF FAM.FT.SEP.SF], [BrainRegionFAM_FT_SEP_TR FAM.FT.SEP.TR] ||
 
 == Executive Circuit ==
 
@@ -70,14 +70,12 @@
 || [BrainRegionFAM_FT_AM_CEA FAM.FT.AM.CEA] || Central Amygdala || nucleus || FAU || mediate behavioral responses, link to general aspects of reinforcement || controls emotional reactions and physiological<BR>responses via connections to brainstem ||
 || [BrainRegionFAM_FT_BNST FAM.FT.BNST] || Bed Nucleus of Stria Terminalis || nucleus || FAU || Mediate slow longer-lasting responses that accompany sustained threats || Major output from AM to HT, part of extended<BR>amygdala ||
 || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || Interstitial Anterior Commissural Nucleus || nucleus || FAU || Sharp, acute pain sensation || Related to the central extended amygdala ||
-|| [BrainRegionFAM_FT_SEP_BAC FAM.FT.SEP.BAC] || Septal Nucleus of Anterior Commissure || nucleus || FAU || projection to contralateral HC ||  ||
 
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionFAM_FT_AM_CEA FAM.FT.AM.CEA] || [BrainRegionFAM_FT_BNST FAM.FT.BNST] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionFAM_FT_BNST FAM.FT.BNST] || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionFAM_FT_SEP_BAC FAM.FT.SEP.BAC] || nucleus-nucleus || (unknown reference) ||
 
 *External Inbound Region Connections:*
 
@@ -102,8 +100,8 @@
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFAM FAM] || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || [BrainRegionFAM_FT_AM_LA FAM.FT.AM.LA] || Lateral Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionFAM_FT_SEP_BAC FAM.FT.SEP.BAC] || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || Medial Habenula || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (S -> MHb, abstract)] ||
+|| [BrainAreaFAM FAM] || [BrainRegionFAM_FT_BNST FAM.FT.BNST] || [BrainRegionFAM_FT_SEP_BAC FAM.FT.SEP.BAC] || Septal Nucleus of Anterior Commissure || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || [BrainRegionFAM_FT_AM_LA FAM.FT.AM.LA] || Lateral Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaFEC FEC] || [BrainRegionFAM_FT_BNST FAM.FT.BNST] || [BrainRegionFEC_FT_SNC_MED FEC.FT.SNC.MED] || Substantia Nigra Pars Compacta Medial || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || [BrainRegionFEC_FT_SNR_DL FEC.FT.SNR.DL] || Substantia Nigra Pars Reticulata Dorsolateral || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLAC LAC] || [BrainRegionFAM_FT_AM_CEA FAM.FT.AM.CEA] || [BrainRegionLAC_FD_HT_LTN LAC.FD.HT.LTN] || Lateral Hypothalamic Nucleus || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> HT.L, abstract)] ||
@@ -263,6 +261,7 @@
 || [BrainRegionFAM_FD_LHB_LT FAM.FD.LHB.LT] || Lateral Habenula Lateral Part || nucleus || FAU || Encoding negative feedback, direct, Pallidal ||  ||
 || [BrainRegionFAM_FD_LHB_MED FAM.FD.LHB.MED] || Lateral Habenula Medial Part || nucleus || FAU || Encoding negative feedback, direct, Septal ||  ||
 || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || Medial Habenula || nucleus || FAU || Encoding negative feedback, indirect || affects VTA, dorsal raphe but via interpeduncular<BR>nucleus ||
+|| [BrainRegionFAM_FT_SEP_BAC FAM.FT.SEP.BAC] || Septal Nucleus of Anterior Commissure || nucleus || FAU || projection to contralateral HC ||  ||
 || [BrainRegionFAM_FT_SEP_SF FAM.FT.SEP.SF] || Septofimbrial Nucleus || nucleus || FAU || afferent to medial habenula, primary input to indirect encoding negative feedback ||  ||
 || [BrainRegionFAM_FT_SEP_TR FAM.FT.SEP.TR] || Triangular Septal Nucleus || nucleus || FAU || afferent to medial habenula, interpeduncular nucleus ||  ||
 
@@ -270,6 +269,7 @@
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || [BrainRegionFAM_FD_LHB_MED FAM.FD.LHB.MED] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionFAM_FT_SEP_BAC FAM.FT.SEP.BAC] || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (S -> MHb, abstract)] ||
 || [BrainRegionFAM_FT_SEP_SF FAM.FT.SEP.SF] || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (S -> MHb, abstract)] ||
 || [BrainRegionFAM_FT_SEP_TR FAM.FT.SEP.TR] || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (S -> MHb, abstract)] ||
 
@@ -277,7 +277,7 @@
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFAM FAM] || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || [BrainRegionFAM_FT_SEP_BAC FAM.FT.SEP.BAC] || Septal Nucleus of Anterior Commissure || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (S -> MHb, abstract)] ||
+|| [BrainAreaFAM FAM] || [BrainRegionFAM_FT_SEP_BAC FAM.FT.SEP.BAC] || [BrainRegionFAM_FT_BNST FAM.FT.BNST] || Bed Nucleus of Stria Terminalis || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaFEC FEC] || [BrainRegionFAM_FD_LHB_LT FAM.FD.LHB.LT] || [BrainRegionFEC_FT_GPI_DS FEC.FT.GPI.DS] || Globus Pallidus Internal Dorsal || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (GPi -> LHb, abstract)] ||
 ||  || [BrainRegionFAM_FD_LHB_MED FAM.FD.LHB.MED] || [BrainRegionFEC_FT_VP_VM FEC.FT.VP.VM] || Ventral Pallidum Ventromedial || nucleus-nucleus-gaba || (unknown reference) ||
 || [BrainAreaLAC LAC] || [BrainRegionFAM_FD_LHB_LT FAM.FD.LHB.LT] || [BrainRegionLAC_FD_HT_LTN LAC.FD.HT.LTN] || Lateral Hypothalamic Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LH -> LHb, abstract)] ||
