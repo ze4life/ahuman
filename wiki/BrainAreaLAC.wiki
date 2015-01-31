@@ -12,7 +12,7 @@
 || LAD || Lower Digestion Control || [BrainRegionLAC_HM_VGN LAC.HM.VGN], [BrainRegionLAC_PN_PSYM_CRG LAC.PN.PSYM.CRG], [BrainRegionLAC_PN_PSYM_GUT LAC.PN.PSYM.GUT], [BrainRegionLAC_PN_SYM_CEG LAC.PN.SYM.CEG], [BrainRegionLAC_PN_SYM_SMG LAC.PN.SYM.SMG] ||
 || LADC || Daily Cycle Autonomic Control || [BrainRegionLAC_FD_HT_SCN LAC.FD.HT.SCN], [BrainRegionLAC_FD_HT_TBM LAC.FD.HT.TBM] ||
 || LAH || Heart and Blood Pressure Control || [BrainRegionLAC_PN_SYM_STG LAC.PN.SYM.STG], [BrainRegionLAC_PN_SYM_TG LAC.PN.SYM.TG], [BrainRegionLAC_SC_IZ_IML LAC.SC.IZ.IML] ||
-|| LAM || Autonomic Motivations Control || [BrainRegionLAC_FD_HT_RCH LAC.FD.HT.RCH], [BrainRegionLAC_FD_HT_SO LAC.FD.HT.SO], [BrainRegionLAC_FT_AM_CO LAC.FT.AM.CO], [BrainRegionLAC_SC_LH_LSN LAC.SC.LH.LSN] ||
+|| LAM || Autonomic Motivations Control || [BrainRegionLAC_FD_HT_RCH LAC.FD.HT.RCH], [BrainRegionLAC_FD_HT_SO LAC.FD.HT.SO], [BrainRegionLAC_SC_LH_LSN LAC.SC.LH.LSN] ||
 || LAMM || Memory Autonomic Control || [BrainRegionLAC_FD_HT_AH LAC.FD.HT.AH], [BrainRegionLAC_FD_HT_PRM LAC.FD.HT.PRM], [BrainRegionLAC_FD_HT_SUM LAC.FD.HT.SUM] ||
 || LAS || Salivation and Tears Control || [BrainRegionLAC_HM_SAL_ISL LAC.HM.SAL.ISL], [BrainRegionLAC_HM_SAL_SSL LAC.HM.SAL.SSL], [BrainRegionLAC_PN_PSYM_OTG LAC.PN.PSYM.OTG], [BrainRegionLAC_PN_PSYM_SPG LAC.PN.PSYM.SPG], [BrainRegionLAC_PN_PSYM_SXG LAC.PN.PSYM.SXG], [BrainRegionLAC_PN_SYM_MCG LAC.PN.SYM.MCG] ||
 || LAT || Autonomic Thermoregulation || [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO], [BrainRegionLAC_HM_TGM_PE5 LAC.HM.TGM.PE5] ||
@@ -167,20 +167,18 @@
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
 || [BrainRegionLAC_FD_HT_RCH LAC.FD.HT.RCH] || Retrochiasmatic Nucleus || nucleus || LAC || Maintenance of normal hypothalamic-pituitary-adrenal function ||  ||
 || [BrainRegionLAC_FD_HT_SO LAC.FD.HT.SO] || Supraoptic Nucleus || nucleus || LAC || Blood volume or blood pressure, vasopressin release ||  ||
-|| [BrainRegionLAC_FT_AM_CO LAC.FT.AM.CO] || Cortical Amygdaloid Nucleus || nucleus || FAU || olfactory processing ||  ||
 || [BrainRegionLAC_SC_LH_LSN LAC.SC.LH.LSN] || Lateral Spinal Nucleus || nucleus || LAS || Integrate autonomic and homeostatic functions || Projects to HT and lateral globus pallidus;<BR>integrative nucleus for autonomic and homeostatic<BR>functions, and related motivational and affective<BR>responses to autonomic function ||
 
 *Internal Region Connections:*
-
-|| *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| [BrainRegionLAC_FT_AM_CO LAC.FT.AM.CO] || [BrainRegionLAC_FD_HT_SO LAC.FD.HT.SO] || nucleus-nucleus || [http://www.pnas.org/content/107/40/17071/F1.expansion.html Role for serotonin in moral behavior (AMY -> HYP, abstract)] ||
+  * no connections
 
 *External Inbound Region Connections:*
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
-|| [BrainAreaEPA EPA] || [BrainRegionLAC_FD_HT_RCH LAC.FD.HT.RCH] || [BrainRegionFCA_NC_OMPFC FCA.NC.OMPFC] || Orbitomedial Prefrontal Cortex || neocortex-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in emotional behavior (OPFC -> HT, abstract)] ||
+|| [BrainAreaEPA EPA] || [BrainRegionLAC_FD_HT_RCH LAC.FD.HT.RCH] || [BrainRegionFCA_NC_OPFC FCA.NC.OPFC] || Orbitofrontal Cortex || neocortex-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in emotional behavior (OPFC -> HT, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaFAM FAM] || [BrainRegionLAC_FD_HT_SO LAC.FD.HT.SO] || [BrainRegionFAM_FT_AM_CO FAM.FT.AM.CO] || Cortical Amygdaloid Nucleus || nucleus-nucleus || [http://www.pnas.org/content/107/40/17071/F1.expansion.html Role for serotonin in moral behavior (AMY -> HYP, abstract)] ||
 || [BrainAreaLAC LAC] || [BrainRegionLAC_SC_LH_LSN LAC.SC.LH.LSN] || [BrainRegionLAC_FD_HT_PV LAC.FD.HT.PV] || Paraventricular Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLPC LPC] || [BrainRegionLAC_FD_HT_SO LAC.FD.HT.SO] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || Solitary Nucleus || nucleus-nucleus || (unknown reference) ||
 
