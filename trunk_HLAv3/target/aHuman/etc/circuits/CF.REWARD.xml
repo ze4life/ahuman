@@ -28,7 +28,7 @@
 	<circuit id="CF.PFC-EMOTIONS" name="Prefrontal Cortex (PFC) in emotional behavior"
 		image="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/emotional_top.jpg"
 		reference="https://www.google.ru/search?hl=ru&tbo=p&tbm=bks&q=isbn:0080887988"
-		components="LPFC=FCA.NC.LPFC OPFC=FCA.NC.OMPFC ACG=CGA.NC.ACG PCA=CGA.NC.MPL HCA=HBA.FT.HC AM=FAM.FT.AM TH=FCA.FD.TH.MD HT=HTA.FD.HT PN=MBA.HP.PN"
+		components="LPFC=FCA.NC.LPFC OPFC=FCA.NC.OPFC ACG=CGA.NC.ACG PCA=CGA.NC.MPL HCA=HBA.FT.HC AM=FAM.FT.AM TH=FCA.FD.TH.MD HT=HTA.FD.HT PN=MBA.HP.PN"
 		>
 		<link src="PCA" dst="OPFC"/>
 		<link src="PCA" dst="LPFC"/>
@@ -46,14 +46,14 @@
 	<circuit id="CF.PFC-CONNECTIVITY" name="Prefrontal cortex connectivity"
 		image="http://www.nature.com/nrn/journal/v4/n2/images/nrn1033-f1.jpg"
 		reference="http://www.nature.com/nrn/journal/v4/n2/fig_tab/nrn1033_F1.html"
-		components="LPFC=FCA.NC.LPFC OPFC=FCA.NC.OMPFC"
+		components="LPFC=FCA.NC.LPFC OPFC=FCA.NC.OPFC"
 		>
 	</circuit>
 
 	<circuit id="CF.EMOTIONAL-MODULATION" name="Role for serotonin in moral behavior"
 		image="http://www.pnas.org/content/107/40/17071/F1.medium.gif"
 		reference="http://www.pnas.org/content/107/40/17071/F1.expansion.html"
-		components="LPFC=FCA.NC.LPFC OMPFC=FCA.NC.OMPFC HYP=HTA.FD.HT ACG=CGA.NC.ACG AMY=FAM.FT.AM"
+		components="LPFC=FCA.NC.LPFC OMPFC=FCA.NC.OPFC HYP=HTA.FD.HT ACG=CGA.NC.ACG AMY=FAM.FT.AM"
 		>
 		<link src="AMY" dst="HYP"/>
 		<link src="AMY" dst="ACG"/>
@@ -66,7 +66,7 @@
 	<circuit id="CF.REWARD-CIRCUIT" name="Reward circuit of human brain"
 		image="http://neurowiki2012.wikispaces.com/file/view/Reward_circuit.jpg/315908202/Reward_circuit.jpg"
 		reference="http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity"
-		components="PFC=FCA.NC.OMPFC HC=HBA.FT.HC NACC=FEC.FT.ACC VPAL=FEC.FT.VP AM=FAM.FT.AM VTA=LMC.MM.VTA"
+		components="PFC=FCA.NC.OPFC HC=HBA.FT.HC NACC=FEC.FT.ACC VPAL=FEC.FT.VP AM=FAM.FT.AM VTA=LMC.MM.VTA"
 		>
 		<link src="PFC" dst="NACC"/>
 		<link src="NACC" dst="VPAL"/>
@@ -82,7 +82,7 @@
 	<circuit id="CF.CRAVING" name="Craving"
 		image="http://www.impulsecontroldisorders.org/images/8-Urges9proof.jpg"
 		reference="http://www.impulsecontroldisorders.org/html/cravings.html"
-		components="OMPFC=FCA.NC.OMPFC NACC=FEC.FT.ACC SNr=FEC.FT.SNR.DL VPAL=FEC.FT.VP VTA=LMC.MM.VTA"
+		components="OMPFC=FCA.NC.OPFC NACC=FEC.FT.ACC SNr=FEC.FT.SNR.DL VPAL=FEC.FT.VP VTA=LMC.MM.VTA"
 		>
 		<link src="OMPFC" dst="VTA"/>
 		<link src="OMPFC" dst="SNr"/>
@@ -115,7 +115,7 @@
 	<circuit id="CF.AFFECTIVE-BG" name="Affective basal ganglia circuit"
 		image="http://www.expertsmind.com/CMSImages/250_Affective%20basal%20ganglia%20circuit.png"
 		reference="http://www.expertsmind.com/topic/emotion/affective-basal-ganglia-circuit-93570.aspx"
-		components="OMPFC=FCA.NC.OMPFC NACC=FEC.FT.ACC nBM=LMC.FT.NBM"
+		components="OMPFC=FCA.NC.OPFC NACC=FEC.FT.ACC nBM=LMC.FT.NBM"
 		>
 		<link src="NACC" dst="nBM"/>
 		<link src="OMPFC" dst="NACC"/>
@@ -124,7 +124,7 @@
 	<circuit id="CF.AM-DISRUPTION" name="Amygdalar disruption of prefrontal cortex"
 		image="http://neuropolitics.org/connect-amygdala.jpg"
 		reference="http://neuropolitics.org/defaultmay10.asp"
-		components="AM=FAM.FT.AM HC=HBA.FT.HC TH=FD.TH PB=LPC.HP.PB SOL=LPC.HM.SOL HT.PV=LAC.FD.HT.PV HT.L=HTA.FD.HT.LT PUT=TARGET.TEA.ENDOCRINE LC=LMC.HP.LC PAG=LMC.MM.PAG INS=PHA.NC.INS MPFC=FCA.NC.OMPFC ACG=CGA.NC.ACG"
+		components="AM=FAM.FT.AM HC=HBA.FT.HC TH=FD.TH PB=LPC.HP.PB SOL=LPC.HM.SOL HT.PV=LAC.FD.HT.PV HT.L=HTA.FD.HT.LT PUT=TARGET.TEA.ENDOCRINE LC=LMC.HP.LC PAG=LMC.MM.PAG INS=PHA.NC.INS MPFC=FCA.NC.OPFC ACG=CGA.NC.ACG"
 		>
 		<link src="AM" dst="MPFC"/>
 		<link src="AM" dst="ACG"/>
@@ -153,7 +153,7 @@
 	<circuit id="CF.PAIN-MATRIX" name="Pain matrix"
 		image="http://www.springerimages.com/img/Images/Springer/JOU=10194/VOL=2006.7/ISU=4/ART=2006_307/MediaObjects/MEDIUM_10194_2006_Article_307_Fig1.jpg"
 		reference="http://www.springerimages.com/Images/MedicineAndPublicHealth/1-10.1007_s10194-006-0307-1-0"
-		components="PFC=FCA.NC.OMPFC ACC=CGA.NC.ACG SMA=MCA.NC.SMC S1=SMA.NC.PG.S1 TH=FD.TH AM=FAM.FT.AM PPC=NC.SPL INS=PHA.NC.INS PAG=LMC.MM.PAG"
+		components="PFC=FCA.NC.OPFC ACC=CGA.NC.ACG SMA=MCA.NC.SMC S1=SMA.NC.PG.S1 TH=FD.TH AM=FAM.FT.AM PPC=NC.SPL INS=PHA.NC.INS PAG=LMC.MM.PAG"
 		>
 	</circuit>
 
@@ -190,7 +190,7 @@
 	<circuit id="CF.DEFAULT-SYSTEM" name="Medial prefrontal network"
 		image="http://www.nature.com/npp/journal/v35/n1/images/npp2009104f10.jpg"
 		reference="http://www.nature.com/npp/journal/v35/n1/fig_tab/npp2009104f10.html"
-		components="RostralCtx=PHA.NC.TPC PH=NC.LOBE.PH RSP=CGA.NC.MPL.RSC PCG=CGA.NC.MPL.PCG MPFC=FCA.NC.OMPFC TH.PV=FAM.FD.TH.PV VPAL=FEC.FT.VP TH.MD=FCA.FD.TH.MD NACC=FEC.FT.ACC BNST=FAM.FT.BNST"
+		components="RostralCtx=PHA.NC.TPC PH=NC.LOBE.PH RSP=CGA.NC.MPL.RSC PCG=CGA.NC.MPL.PCG MPFC=FCA.NC.OPFC TH.PV=FAM.FD.TH.PV VPAL=FEC.FT.VP TH.MD=FCA.FD.TH.MD NACC=FEC.FT.ACC BNST=FAM.FT.BNST"
 		>
 	</circuit>
 
@@ -212,6 +212,41 @@
 		image="http://www.nature.com/neuro/journal/v17/n9/images_article/nn.3779-F2.jpg"
 		reference="http://www.nature.com/neuro/journal/v17/n9/full/nn.3779.html"
 		components="LHb=LAC.FD.LHB MHb=FAM.FD.MHB IPN=BGA.HP.PPN.IPD"
+		>
+	</circuit>
+
+	<circuit id="CF.FEAR-REG" name="Fear regulation"
+		image="http://www.nature.com/npp/journal/v35/n1/images/npp2009121f1.jpg"
+		reference="https://brmlab.cz/project/brain_hacking/tdcs/pfc"
+		components="dlPFC=FCA.NC.DLPFC vmPFC=FCA.NC.IPG Hippocampus=HBA.FT.HC CE=FAM.FT.AM.CEA LA=FAM.FT.AM.LA ITC=FAM.FT.AM.ITC B=FAM.FT.AM.B Hypothalamus=HTA.FD.HT Striatum=BGA.FT.ST"
+		>
+		<link src="dlPFC" dst="vmPFC"/>
+		<link src="Hippocampus" dst="vmPFC"/>
+		<link src="Hippocampus" dst="LA"/>
+		<link src="Hippocampus" dst="B"/>
+		<link src="LA" dst="CE"/>
+		<link src="LA" dst="B"/>
+		<link src="B" dst="CE"/>
+		<link src="B" dst="Striatum"/>
+		<link src="Hypothalamus" dst="CE"/>
+	</circuit>
+
+	<circuit id="CF.BODY-ALARM" name="Body alarm system"
+		image="http://thebrain.mcgill.ca/flash/i/i_04/i_04_cl/i_04_cl_peu/i_04_cl_peu_1a.jpg"
+		reference="http://thebrain.mcgill.ca/flash/i/i_04/i_04_cl/i_04_cl_peu/i_04_cl_peu.html"
+		components="MED=FAM.FT.AM.M CE=FAM.FT.AM.CEA AB=FAM.FT.AM.AB BM=FAM.FT.AM.BM BP=FAM.FT.AM.BP LA=FAM.FT.AM.LA"
+		>
+		<link src="LA" dst="MED"/>
+		<link src="LA" dst="BP"/>
+		<link src="LA" dst="AB"/>
+		<link src="AB" dst="CE"/>
+		<link src="MED" dst="CE"/>
+	</circuit>
+
+	<circuit id="CF.RAT-CE" name="Organization of intra-amygdaloid circuitries in rat"
+		image="http://www.cell.com/cms/attachment/526760/3595061/gr6.jpg"
+		reference="http://www.sciencedirect.com/science/article/pii/S0166223697011259"
+		components=""
 		>
 	</circuit>
 

@@ -17,7 +17,8 @@
 					function="Sensation of Emotion" 
 					notes="Storage of emotional memory, emotions, mood and autonomic functions"
 					/>
-				<element id="CGA.NC.MPFC" name="Medial Prefrontal Cortex">
+				<element id="CGA.NC.MPFC" name="Medial Prefrontal Cortex"
+					>
 					<element id="CGA.NC.DACG" name="Dorsal Anterior Cingulate Area" mapped="true" brodmannid="32" type="cortex"
 						function="Rational Thought Processes" 
 						notes="Anticipate and detect targets, indicate novelty, influence motor responses, encode reward values, and signal errors, motor, attentional and cognitive functions"
@@ -57,17 +58,6 @@
 						notes="Mirror neurons - both sensory and motor; arm"
 						/>
 				</element>
-				<element id="MCA.NC.PMC.FEF" name="Frontal Eye Field" type="cortex" mapped="true" brodmannid="08"
-					function="Initiation of eye movements"
-					notes="Voluntary saccades and pursuit eye movements"
-					>
-					<element id="MCA.NC.PMC.CFEF" name="Caudal Frontal Eye Field"
-						function="Head and eye movements toward visual stimuli"
-						/>
-					<element id="MCA.NC.PMC.AFEF" name="Anterior Frontal Eye Field"
-						function="Head and eye movements toward auditory stimuli"
-						/>
-				</element>
 			</element>
 
 			<element id="MCA.NC.SMC" name="Supplementary Motor Cortex" mapped="true" brodmannid="06" type="cortex"
@@ -88,35 +78,35 @@
 			</element>
 
 			<element id="NC.PFC" name="Prefrontal Cortex"
+				refs="NA:[http://en.wikipedia.org/wiki/Prefrontal_cortex Prefrontal Cortex]"
 				function="High-level Mental Functions" 
 				>
-				<element id="FCA.NC.LPFC" name="Dorsolateral Prefrontal Cortex" mapped="true" brodmannid="09,46" type="cortex"
-					function="Temporal Integration" 
-					notes="FEF is in PMC"
-					/>
-				<element id="FCA.NC.OMPFC" name="Orbitomedial Prefrontal Cortex" mapped="true" brodmannid="10,11,12" type="cortex"
-					function="Personality" 
-					comments="BAs 11, 12 and 14 are commonly referred to as orbitofrontal cortex"
+				<element id="FCA.NC.DLPFC" name="Dorsolateral Prefrontal Cortex"
 					>
-					<element name="Anterior Prefrontal Cortex" brodmannid="10" type="cortex"
-						function="Emotion Regulation" 
-						notes="Frontopolar area, contains ILC - infralimbic cortex"
-						refs="wiki:[http://en.wikipedia.org/wiki/Ventromedial_prefrontal_cortex]"
+					<element id="FCA.NC.LPFC" name="Lateral Prefrontal Cortex" mapped="true" brodmannid="09,46" type="cortex"
+						function="Temporal Integration" 
+						notes="FEF is in PMC"
 						/>
-					<element name="Ventromedial Prefrontal Cortex" brodmannid="11" type="cortex"
-						function="Reward mediated behaviours" 
-						refs="wiki:[http://en.wikipedia.org/wiki/Brodmann_area_11]"
-						/>
-					<element name="Rostral Prefrontal Cortex" brodmannid="12" type="cortex"
-						function="Prefrontal associational integration" 
-						refs="wiki:[http://www.sylvius.com/index/b/brodmann_s_area_12.html]"
-						/>
+					<element id="MCA.NC.PMC.FEF" name="Frontal Eye Field" type="cortex" mapped="true" brodmannid="08"
+						function="Initiation of eye movements"
+						notes="Voluntary saccades and pursuit eye movements"
+						>
+						<element id="MCA.NC.PMC.CFEF" name="Caudal Frontal Eye Field"
+							function="Head and eye movements toward visual stimuli"
+							/>
+						<element id="MCA.NC.PMC.AFEF" name="Anterior Frontal Eye Field"
+							function="Head and eye movements toward auditory stimuli"
+							/>
+					</element>
 				</element>
-				<element id="NC.VLPFC" name="Ventrolateral Prefrontal Cortex">
+
+				<element id="NC.VLPFC" name="Ventrolateral Prefrontal Cortex"
+					>
 					<element id="FCA.NC.IPG" name="Inferior Prefrontal Gyrus" mapped="true" brodmannid="47" type="cortex"
 						function="Processing of syntax in oral and sign languages"
 						notes="Personality, endurance"
 						/>
+
 					<element id="ACA.NC.BRA" name="Broca's Area" mapped="true" brodmannid="44,45" type="cortex"
 						function="Speech Engine" 
 						>
@@ -129,6 +119,27 @@
 							notes="Triangular Inferior Frontal Gyrus, switching between semantic sub-categories in word retrieval"
 							/>
 					</element>
+				</element>
+
+				<element id="FCA.NC.OPFC" name="Orbitofrontal Cortex" mapped="true" brodmannid="10,11,12" type="cortex"
+					synonyms="Ventromedial Cortex"
+					function="Personality" 
+					comments="BAs 11, 12 and 14 are commonly referred to as orbitofrontal cortex"
+					>
+					<element name="Anterior Prefrontal Cortex" brodmannid="10" type="cortex"
+						synonyms="Lateral Frontopolar Cortex"
+						function="Emotion Regulation" 
+						notes="Frontopolar area, contains ILC - infralimbic cortex"
+						refs="wiki:[http://en.wikipedia.org/wiki/Ventromedial_prefrontal_cortex]"
+						/>
+					<element name="Ventromedial Prefrontal Cortex" brodmannid="11" type="cortex"
+						function="Reward mediated behaviours" 
+						refs="wiki:[http://en.wikipedia.org/wiki/Brodmann_area_11]"
+						/>
+					<element name="Rostral Prefrontal Cortex" brodmannid="12" type="cortex"
+						function="Prefrontal associational integration" 
+						refs="wiki:[http://www.sylvius.com/index/b/brodmann_s_area_12.html]"
+						/>
 				</element>
 			</element>
 
