@@ -246,8 +246,35 @@
 	<circuit id="CF.RAT-CE" name="Organization of intra-amygdaloid circuitries in rat"
 		image="http://www.cell.com/cms/attachment/526760/3595061/gr6.jpg"
 		reference="http://www.sciencedirect.com/science/article/pii/S0166223697011259"
-		components=""
+		components="CE=FAM.FT.AM.CEA"
 		>
+	</circuit>
+
+	<circuit id="CF.AM-NET" name="Amygdala and its network"
+		image="http://www.surgicalneurologyint.com/articles/2012/3/2/images/SurgNeurolInt_2012_3_2_40_91609_u1.jpg"
+		reference="http://www.surgicalneurologyint.com/article.asp?issn=2152-7806;year=2012;volume=3;issue=2;spage=40;epage=46;aulast=Langevin"
+		components="ITC=VCA.NC.IT.TE STC=ACA.NC.A3 LA=FAM.FT.AM.LA CEA=FAM.FT.AM.CEA BLN=FAM.FT.AM.BP EC=PHA.NC.PH.ET HC=HBA.FT.HC MPFC=CGA.NC.MPFC NACC=FEC.FT.ACC VTA=LMC.MM.VTA RMTG=LLC.HP.PPN.RMTG LHB=LAC.FD.LHB HTS=HTA.FD.HT.POS VGDM=LAC.HM.VGN PAG=LMC.MM.PAG MD=FCA.FD.TH.MD"
+		>
+		<link src="ITC" dst="LA"/>
+		<link src="STC" dst="LA"/>
+		<link src="LA" dst="BLN"/>
+		<link src="LA" dst="CEA"/>
+		<link src="BLN" dst="CEA"/>
+		<link src="BLN" dst="MD"/>
+		<link src="BLN" dst="NACC"/>
+		<link src="BLN" dst="HTS"/>
+		<link src="MD" dst="MPFC"/>
+		<link src="MPFC" dst="BLN"/>
+		<link src="MPFC" dst="EC"/>
+		<link src="EC" dst="HC"/>
+		<link src="HC" dst="BLN"/>
+		<link src="CEA" dst="PAG"/>
+		<link src="CEA" dst="VGDM"/>
+		<link src="CEA" dst="HTS"/>
+		<link src="HTS" dst="LHB"/>
+		<link src="LHB" dst="RMTG"/>
+		<link src="RMTG" dst="VTA"/>
+		<link src="VTA" dst="MPFC"/>
 	</circuit>
 
 </circuits>
