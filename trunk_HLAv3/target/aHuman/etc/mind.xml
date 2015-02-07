@@ -225,11 +225,19 @@
 				</circuit>
 
 				<circuit id="SSS" name="Smell Senses" enabled="true">
-					<region id="LPC.PN.SG.OLB" type="ganglion" service="LSC" role="sensory"/>
+					<region id="LPC.PN.SG.MOE" type="ganglion" service="LSC" role="sensory"/>
+					<region id="LPC.PN.SG.VNO" type="ganglion" service="LSC" role="sensory"/>
+					<region id="LPC.FT.MOB" type="nucleus" service="LSM" role="sensory"/>
+					<region id="LPC.FT.AOB" type="nucleus" service="LSM" role="sensory"/>
 					<region id="LPC.FT.AON" type="nucleus" service="LSM" role="processor"/>
-					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.OLB" dst="LPC.FT.AON"/>
-					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.OLB" dst="FAM.FT.AM.CO"/>
+					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.MOE" dst="LPC.FT.MOB"/>
+					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.MOE" dst="LPC.FT.AOB"/>
+					<connection type="ganglion-nucleus" primary="true" src="LPC.PN.SG.VNO" dst="LPC.FT.AOB"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.FT.MOB" dst="LPC.FT.AON"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.FT.MOB" dst="FAM.FT.AM.CO"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.FT.AOB" dst="FAM.FT.AM.M"/>
 					<connection type="nucleus-neocortex" primary="true" src="LPC.FT.AON" dst="PHA.NC.PH.PIR"/>
+					<connection type="nucleus-nucleus" primary="true" src="LPC.FT.AON" dst="LPC.FT.MOB"/>
 				</circuit>
 
 				<circuit id="SBC" name="Common Body Sensations" enabled="true">
@@ -577,7 +585,7 @@
 					<region id="LAC.FD.HT.TBM" type="nucleus" service="LAC" role="relay"/>
 					<connection type="nucleus-nucleus" primary="true" src="LAC.FD.HT.TBM" dst="FAM.FT.SEP.LT"/>
 					<connection type="nucleus-nucleus" primary="true" src="LAC.FD.HT.TBM" dst="LMC.HP.LC"/>
-					<connection type="nucleus-ganglion" primary="true" src="LAC.FD.HT.TBM" dst="LPC.PN.SG.OLB"/>
+					<connection type="nucleus-nucleus" primary="true" src="LAC.FD.HT.TBM" dst="LPC.FT.MOB"/>
 					<connection type="nucleus-ganglion" primary="true" src="LAC.FD.HT.SCN" dst="LAC.PN.SYM.SCG"/>
 					<connection type="nucleus-nucleus" primary="true" src="LAC.FD.HT.SCN" dst="LRC.MM.PT.NOT"/>
 					<connection type="nucleus-nucleus" primary="true" src="LAC.FD.HT.SCN" dst="LAC.FD.HT.DM"/>
@@ -1047,6 +1055,14 @@
 					<region id="FAM.FT.AM.BP" type="nucleus" service="FAU" role="relay"/>
 					<region id="FAM.FT.AM.BM" type="nucleus" service="FAU" role="relay"/>
 					<region id="FAM.FT.AM.ITC" type="nucleus" service="FAU" role="relay"/>
+					<region id="FAM.FT.AM.AB" type="nucleus" service="FAU" role="relay"/>
+					<connection type="nucleus-neocortex" primary="true" src="FAM.FT.AM.AB" dst="CGA.NC.VACG"/>
+					<connection type="nucleus-neocortex" primary="true" src="FAM.FT.AM.AB" dst="CGA.NC.PACG"/>
+					<connection type="nucleus-neocortex" primary="true" src="FAM.FT.AM.AB" dst="PHA.NC.PAS"/>
+					<connection type="nucleus-nucleus" primary="true" src="FAM.FT.AM.AB" dst="FEC.FT.CN.TL"/>
+					<connection type="nucleus-nucleus" primary="true" src="FAM.FT.AM.AB" dst="FCA.FD.TH.MD"/>
+					<connection type="nucleus-nucleus" primary="true" src="FAM.FT.AM.AB" dst="LMC.FT.NBM"/>
+					<connection type="nucleus-nucleus" primary="true" src="FAM.FT.AM.AB" dst="FAM.FT.AM.CEA"/>
 					<connection type="nucleus-nucleus" primary="true" src="FAM.FT.AM.ITC" dst="FAM.FT.AM.CEA"/>
 					<connection type="nucleus-neocortex" primary="true" src="FAM.FT.AM.BM" dst="ACA.NC.A1"/>
 					<connection type="nucleus-neocortex" primary="true" src="FAM.FT.AM.BM" dst="CGA.NC.MPL.PCG"/>
@@ -1058,20 +1074,12 @@
 					<connection type="nucleus-nucleus" primary="true" src="FAM.FT.AM.BP" dst="FAM.FT.AM.CEA"/>
 				</circuit>
 
-				<circuit id="FAMEXE" name="Executive Circuit" enabled="true">
-					<region id="FAM.FT.AM.AB" type="nucleus" service="FAU" role="relay"/>
-					<region id="FAM.FT.AM.M" type="nucleus" service="FAU" role="relay"/>
+				<circuit id="FAMEXE" name="Olfactory Signaling Circuit" enabled="true">
 					<region id="FAM.FT.AM.CO" type="nucleus" service="FAU" role="relay"/>
+					<region id="FAM.FT.AM.M" type="nucleus" service="FAU" role="relay"/>
 					<connection type="nucleus-nucleus" primary="true" src="FAM.FT.AM.CO" dst="LAC.FD.HT.SO"/>
 					<connection type="nucleus-nucleus" primary="true" src="FAM.FT.AM.CO" dst="FAM.FT.AM.AB"/>
 					<connection type="nucleus-nucleus" primary="true" src="FAM.FT.AM.CO" dst="FAM.FT.AM.M"/>
-					<connection type="nucleus-neocortex" primary="true" src="FAM.FT.AM.AB" dst="CGA.NC.VACG"/>
-					<connection type="nucleus-neocortex" primary="true" src="FAM.FT.AM.AB" dst="CGA.NC.PACG"/>
-					<connection type="nucleus-neocortex" primary="true" src="FAM.FT.AM.AB" dst="PHA.NC.PAS"/>
-					<connection type="nucleus-nucleus" primary="true" src="FAM.FT.AM.AB" dst="FEC.FT.CN.TL"/>
-					<connection type="nucleus-nucleus" primary="true" src="FAM.FT.AM.AB" dst="FCA.FD.TH.MD"/>
-					<connection type="nucleus-nucleus" primary="true" src="FAM.FT.AM.AB" dst="LMC.FT.NBM"/>
-					<connection type="nucleus-nucleus" primary="true" src="FAM.FT.AM.AB" dst="FAM.FT.AM.CEA"/>
 					<connection type="nucleus-nucleus-gaba" primary="true" src="FAM.FT.AM.M" dst="LAC.FD.HT.PV"/>
 					<connection type="nucleus-nucleus-gaba" primary="true" src="FAM.FT.AM.M" dst="FAM.FT.IPAC"/>
 					<connection type="nucleus-nucleus-gaba" primary="true" src="FAM.FT.AM.M" dst="LAC.FD.HT.PRM" notes="medial AM to ventral PRM"/>

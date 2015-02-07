@@ -107,8 +107,10 @@
 		</sensor>
 
 		<sensor id="TARGET.TSA.NOSE" run="true" service="sensor">
-			<connector entity="nose-olfactory-mucosa" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
-				region="LPC.PN.SG.OLB" connector="ganglion.input" primary="true"/>
+			<connector entity="nose-volatile" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="LPC.PN.SG.MOE" connector="ganglion.input" primary="true"/>
+			<connector entity="nose-nonvolatile" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
+				region="LPC.PN.SG.VNO" connector="ganglion.input" primary="true"/>
 
 			<connector entity="nose-proprioceptors" type="source" implementation="mock" nttype="excitatory" nt="GLU" 
 				region="LPC.MM.MSTR" connector="ganglion.input" primary="true"/>
