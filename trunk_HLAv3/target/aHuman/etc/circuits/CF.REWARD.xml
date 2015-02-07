@@ -277,4 +277,20 @@
 		<link src="VTA" dst="MPFC"/>
 	</circuit>
 
+	<circuit id="CF.AM-HC" name="Neuronal projections in the hippocampus"
+		image="http://www.frontiersin.org/files/Articles/46459/fpsyt-04-00061-HTML/image_m/fpsyt-04-00061-g002.jpg"
+		reference="http://journal.frontiersin.org/Journal/10.3389/fpsyt.2013.00061/full"
+		components="ET=PHA.NC.PH.ET BLA=FAM.FT.AM.BL DG=HBA.FT.DG CA1=HBA.FT.HC.CA1 CA3=HBA.FT.HC.CA3"
+		>
+		<link src="ET" dst="CA1"/>
+		<link src="ET" dst="CA3"/>
+		<link src="ET" dst="DG"/>
+		<link src="DG" dst="CA3"/>
+		<link src="CA3" dst="CA1"/>
+		<link src="CA1" dst="DG"/>
+		<link src="CA1" dst="BLA"/>
+		<link src="BLA" dst="CA3"/>
+		<link src="BLA" dst="CA1"/>
+	</circuit>
+
 </circuits>

@@ -4,9 +4,19 @@
 		dotdef="color=slateblue"
 		>
 
-		<element id="LPC.FT.AON" name="Anterior Olfactory Nucleus" mapped="true" type="nucleus"
-				refs="wiki:[https://en.wikipedia.org/wiki/Anterior_olfactory_nucleus Anterior olfactory nucleus]"
-				function="Regulate odor information flow"/>
+		<element id="FT.OLF" name="Olfactory System"
+			>
+			<element id="LPC.FT.MOB" name="Main Olfactory Bulb" mapped="true" type="nucleus"
+				function="Volatile odor patterns"
+				notes="generate spatiotemporal neural code, in=glomeruli -> 1000x1 -> out=mitral"
+				/>
+			<element id="LPC.FT.AOB" name="Accessory Olfactory Bulb" mapped="true" type="nucleus"
+				function="Pheromones sampling"
+				/>
+			<element id="LPC.FT.AON" name="Anterior Olfactory Nucleus" mapped="true" type="nucleus"
+					refs="wiki:[https://en.wikipedia.org/wiki/Anterior_olfactory_nucleus Anterior olfactory nucleus]"
+					function="Regulate odor information flow"/>
+		</element>
 
 		<element id="FAM.FT.EXTAM" name="Extended Amygdala"
 			refs="NA:[http://physrev.physiology.org/content/83/3/803 Amygdaloid complex]"
