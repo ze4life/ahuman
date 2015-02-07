@@ -139,7 +139,8 @@ Adult Sources of Neurons:
      * *Ear - temporoparietalis muscle (ear-temporoparietalis-muscle)*
    * [BrainRegionTARGET_TSA_NOSE Nose] * (TARGET.TSA.NOSE, unknown)*
     * *Nose sensory data (nose-sensory-data)*
-     * *Nose - olfactory mucosa (nose-olfactory-mucosa)*
+     * *Nose - volatile (nose-volatile)*
+     * *Nose - nonvolatile (nose-nonvolatile)*
      * *Nose - proprioceptors (nose-proprioceptors)*
      * *Nose - touch receptors (nose-somatic)*
      * *Nose - visceral nodose receptors (nose-visceral-vagus)*
@@ -664,7 +665,10 @@ Coverage verified by:
 == Forebrain Telencephalon ==
 (generated)
 
-  * [BrainRegionLPC_FT_AON Anterior Olfactory Nucleus] * (LPC.FT.AON, processor)* = wiki:[https://en.wikipedia.org/wiki/Anterior_olfactory_nucleus Anterior olfactory nucleus] -> [BrainAreaLPC]
+  * *Olfactory System (FT.OLF)* -> [BrainAreaLPC]
+   * [BrainRegionLPC_FT_MOB Main Olfactory Bulb] * (LPC.FT.MOB, sensory)*
+   * [BrainRegionLPC_FT_AOB Accessory Olfactory Bulb] * (LPC.FT.AOB, sensory)*
+   * [BrainRegionLPC_FT_AON Anterior Olfactory Nucleus] * (LPC.FT.AON, processor)* = wiki:[https://en.wikipedia.org/wiki/Anterior_olfactory_nucleus Anterior olfactory nucleus]
   * *Extended Amygdala (FAM.FT.EXTAM)* = NA:[http://physrev.physiology.org/content/83/3/803 Amygdaloid complex]
    * *Amygdala (FAM.FT.AM, relay)* = NL:[http://neurolex.org/wiki/Category:Amygdala Amygdala] -> [BrainAreaFAM]
     * *Basolateral Nuclear Complex (FAM.FT.AM.BL)* = NL:[http://neurolex.org/wiki/Category:Basolateral_nuclear_complex Basolateral nuclear complex] = NL:[http://neurolex.org/wiki/Category:Anterior_amygdaloid_area Anterior amygdaloid area]
@@ -1050,7 +1054,8 @@ Coverage verified by:
    * [BrainRegionLPC_PN_SG_JUG Jugular Ganglion] * (LPC.PN.SG.JUG, sensory)*
    * [BrainRegionLPC_PN_SG_PET Petrosal Ganglion] * (LPC.PN.SG.PET, sensory)*
    * [BrainRegionLPC_PN_SG_NOD Nodose Ganglion] * (LPC.PN.SG.NOD, sensory)*
-   * [BrainRegionLPC_PN_SG_OLB Olfactory Bulb] * (LPC.PN.SG.OLB, sensory)*
+   * [BrainRegionLPC_PN_SG_MOE Main Olfactory Epithelium] * (LPC.PN.SG.MOE, sensory)*
+   * [BrainRegionLPC_PN_SG_VNO Vomeronasal Organ] * (LPC.PN.SG.VNO, sensory)*
    * [BrainRegionLPC_PN_SG_SP Spiral Ganglion] * (LPC.PN.SG.SP, sensory)*
    * *Vestibular Ganglion (LPC.PN.SG.VB)* = NL:[http://neurolex.org/wiki/Category:Vestibular_ganglion Vestibular ganglion]
     * [BrainRegionLPC_PN_SG_CVB Vestibular Ganglion - Semicircular Canal Neurons] * (LPC.PN.SG.CVB, sensory)*
