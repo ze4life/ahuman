@@ -9,10 +9,10 @@
 
 || *ID* || *Name* || *Regions* ||
 || FAMAN || Control of Autonomic and Neuroendocrine Function || [BrainRegionFAM_FT_BNST FAM.FT.BNST], [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] ||
-|| FAMEXE || Olfactory and Gustatory Signaling || [BrainRegionFAM_FT_AM_CEL FAM.FT.AM.CEL], [BrainRegionFAM_FT_AM_CO FAM.FT.AM.CO], [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] ||
+|| FAMEXE || Olfactory and Gustatory Signaling || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB], [BrainRegionFAM_FT_AM_CEL FAM.FT.AM.CEL], [BrainRegionFAM_FT_AM_CO FAM.FT.AM.CO], [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] ||
 || FAMHT || Enforce Neuroendocrine and Immunological Responses to Stress || [BrainRegionFAM_FT_AM_CEC FAM.FT.AM.CEC], [BrainRegionFAM_FT_AM_CEM FAM.FT.AM.CEM], [BrainRegionFAM_FT_AM_ITC FAM.FT.AM.ITC] ||
 || FAMMEM || Inhibit Neuroendocrine and Immunological Responses to Stress || [BrainRegionFAM_FT_SEP_DBB FAM.FT.SEP.DBB], [BrainRegionFAM_FT_SEP_LT FAM.FT.SEP.LT], [BrainRegionFAM_FT_SEP_MED FAM.FT.SEP.MED], [BrainRegionFAM_FT_SEP_SH FAM.FT.SEP.SH] ||
-|| FAMPS || Polysensory Inputs || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB], [BrainRegionFAM_FT_AM_BM FAM.FT.AM.BM], [BrainRegionFAM_FT_AM_BP FAM.FT.AM.BP] ||
+|| FAMPS || Polysensory Inputs || [BrainRegionFAM_FT_AM_BM FAM.FT.AM.BM], [BrainRegionFAM_FT_AM_BP FAM.FT.AM.BP] ||
 || FAMUS || Unimodal Sensory Inputs || [BrainRegionFAM_FD_TH_PV FAM.FD.TH.PV], [BrainRegionFAM_FT_AM_LA FAM.FT.AM.LA] ||
 || FAR || Acquisition of Avoidance Responses || [BrainRegionFAM_FD_LHB_LT FAM.FD.LHB.LT], [BrainRegionFAM_FD_LHB_MED FAM.FD.LHB.MED], [BrainRegionFAM_FD_MHB FAM.FD.MHB], [BrainRegionFAM_FT_SEP_BAC FAM.FT.SEP.BAC], [BrainRegionFAM_FT_SEP_SF FAM.FT.SEP.SF], [BrainRegionFAM_FT_SEP_TR FAM.FT.SEP.TR] ||
 
@@ -64,6 +64,7 @@
 <img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/FAM_FAMEXE.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
+|| [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || Accessory Basal Amygdaloid Nucleus || nucleus || FAU || proections to maxrix of core of NACC ||  ||
 || [BrainRegionFAM_FT_AM_CEL FAM.FT.AM.CEL] || Central Amygdaloid Nucleus, lateral subdivision || nucleus || FAU || mediate behavioral responses, link to gustatory and visceral aspects of<BR>reinforcement || contributions of food prediction and food<BR>presentation ||
 || [BrainRegionFAM_FT_AM_CO FAM.FT.AM.CO] || Cortical Amygdaloid Nucleus || nucleus || FAU || olfactory processing ||  ||
 || [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || Medial Amygdala || nucleus || FAU || sense of smell and pheromone-processing || olfactory processing and innate emotions ||
@@ -71,7 +72,9 @@
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| [BrainRegionFAM_FT_AM_CO FAM.FT.AM.CO] || [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || nucleus-nucleus || (unknown reference) ||
+|| [BrainRegionFAM_FT_AM_CO FAM.FT.AM.CO] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || nucleus-nucleus || (unknown reference) ||
 
 *External Inbound Region Connections:*
 
@@ -79,25 +82,36 @@
 || <font color="red">Cortical</font> || || || || || ||
 || [BrainAreaBAA BAA] || [BrainRegionFAM_FT_AM_CEL FAM.FT.AM.CEL] || [BrainRegionSMA_NC_PO_PCC SMA.NC.PO.PCC] || Precentral Cortex || neocortex-nucleus || (unknown reference) ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFAM FAM] || [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || [BrainRegionFAM_FT_AM_LA FAM.FT.AM.LA] || Lateral Amygdaloid Nucleus || nucleus-nucleus || [http://thebrain.mcgill.ca/flash/i/i_04/i_04_cl/i_04_cl_peu/i_04_cl_peu.html Body alarm system (LA -> MED)] ||
+|| [BrainAreaFAM FAM] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || [BrainRegionFAM_FT_AM_LA FAM.FT.AM.LA] || Lateral Amygdaloid Nucleus || nucleus-nucleus || [http://thebrain.mcgill.ca/flash/i/i_04/i_04_cl/i_04_cl_peu/i_04_cl_peu.html Body alarm system (LA -> AB)] ||
+||  || [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || [BrainRegionFAM_FT_AM_LA FAM.FT.AM.LA] || Lateral Amygdaloid Nucleus || nucleus-nucleus || [http://thebrain.mcgill.ca/flash/i/i_04/i_04_cl/i_04_cl_peu/i_04_cl_peu.html Body alarm system (LA -> MED)] ||
 || [BrainAreaLPC LPC] || [BrainRegionFAM_FT_AM_CEL FAM.FT.AM.CEL] || [BrainRegionLPC_HP_PB LPC.HP.PB] || Parabrachial Nucleus || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (PB -> AM, abstract)] ||
 ||  || [BrainRegionFAM_FT_AM_CO FAM.FT.AM.CO] || [BrainRegionLPC_FT_MOB LPC.FT.MOB] || Main Olfactory Bulb || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || [BrainRegionLPC_FT_AOB LPC.FT.AOB] || Accessory Olfactory Bulb || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaMMA MMA] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || Ventrolateral Cornu Ammonis of Hippocampus || allocortex-nucleus || [http://journal.frontiersin.org/Journal/10.3389/fpsyt.2013.00061/full Neuronal projections in the hippocampus (CA1 -> BLA, abstract)] ||
+||  ||  || [BrainRegionHBA_FT_HF_SUB HBA.FT.HF.SUB] || Subiculum || allocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S030100820900183X Simplified model of hippocampal formation anatomy (SUB -> Amyg, abstract)] ||
+||  ||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S030100820900183X Simplified model of hippocampal formation anatomy (EC -> Amyg, abstract)] ||
 
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
+|| <font color="red">Cortical</font> || || || || || ||
+|| [BrainAreaEPA EPA] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || [BrainRegionCGA_NC_PACG CGA.NC.PACG] || Pregenual Area || nucleus-neocortex || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> ACG, abstract)] ||
+||  ||  || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || Ventral Anterior Cingulate Area || nucleus-neocortex || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> ACG, abstract)] ||
+||  ||  || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || Mediodorsal Nucleus of Thalamus || nucleus-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in emotional behavior (AM -> TH, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFAM FAM] || [BrainRegionFAM_FT_AM_CEL FAM.FT.AM.CEL] || [BrainRegionFAM_FT_AM_CEM FAM.FT.AM.CEM] || Medial Central Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaFAM FAM] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || [BrainRegionFAM_FT_AM_CEM FAM.FT.AM.CEM] || Medial Central Amygdaloid Nucleus || nucleus-nucleus || [http://thebrain.mcgill.ca/flash/i/i_04/i_04_cl/i_04_cl_peu/i_04_cl_peu.html Body alarm system (AB -> CE, abstract)] ||
+||  || [BrainRegionFAM_FT_AM_CEL FAM.FT.AM.CEL] || [BrainRegionFAM_FT_AM_CEM FAM.FT.AM.CEM] || Medial Central Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionFAM_FT_BNST FAM.FT.BNST] || Bed Nucleus of Stria Terminalis || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionFAM_FT_AM_CO FAM.FT.AM.CO] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || Accessory Basal Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || [BrainRegionFAM_FT_AM_CEM FAM.FT.AM.CEM] || Medial Central Amygdaloid Nucleus || nucleus-nucleus-gaba || [http://thebrain.mcgill.ca/flash/i/i_04/i_04_cl/i_04_cl_peu/i_04_cl_peu.html Body alarm system (MED -> CE, abstract)] ||
 ||  ||  || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || Interstitial Anterior Commissural Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
+|| [BrainAreaFEC FEC] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || [BrainRegionFEC_FT_CN_TL FEC.FT.CN.TL] || Caudate Nucleus Tail || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLAC LAC] || [BrainRegionFAM_FT_AM_CO FAM.FT.AM.CO] || [BrainRegionLAC_FD_HT_SO LAC.FD.HT.SO] || Supraoptic Nucleus || nucleus-nucleus || [http://www.pnas.org/content/107/40/17071/F1.expansion.html Role for serotonin in moral behavior (AMY -> HYP, abstract)] ||
 ||  || [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || [BrainRegionLAC_FD_HT_PRM LAC.FD.HT.PRM] || Premammillary Nucleus || nucleus-nucleus-gaba || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> HT.L, abstract)] ||
 ||  ||  || [BrainRegionLAC_FD_HT_PV LAC.FD.HT.PV] || Paraventricular Nucleus || nucleus-nucleus-gaba || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> HT.PV, abstract)] ||
+|| [BrainAreaLMC LMC] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || [BrainRegionLMC_FT_NBM LMC.FT.NBM] || Basal Nucleus of Meynert || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLPC LPC] || [BrainRegionFAM_FT_AM_CEL FAM.FT.AM.CEL] || [BrainRegionLPC_HM_SOL LPC.HM.SOL] || Solitary Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLPC_HP_PB LPC.HP.PB] || Parabrachial Nucleus || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> PB, abstract)] ||
+|| [BrainAreaMMA MMA] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || [BrainRegionPHA_NC_PAS PHA.NC.PAS] || Parasubiculum || nucleus-neocortex || (unknown reference) ||
 
 == Enforce Neuroendocrine and Immunological Responses to Stress ==
 
@@ -193,7 +207,6 @@
 <img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/FAM_FAMPS.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || Accessory Basal Amygdaloid Nucleus || nucleus || FAU || proections to maxrix of core of NACC ||  ||
 || [BrainRegionFAM_FT_AM_BM FAM.FT.AM.BM] || Magnocellular Basal Amygdaloid Nucleus || nucleus || FAU || enhance emotional memories memories in medial prefrontal cortex ||  ||
 || [BrainRegionFAM_FT_AM_BP FAM.FT.AM.BP] || Parvicellular Basal Amygdaloid Nucleus || nucleus || FAU || enhance explicit memories in hippocampus about emotional situations ||  ||
 
@@ -213,33 +226,21 @@
 ||  ||  || [BrainRegionCGA_NC_SGC CGA.NC.SGC] || Subgenual Cortex || neocortex-nucleus || [http://www.surgicalneurologyint.com/article.asp?issn=2152-7806;year=2012;volume=3;issue=2;spage=40;epage=46;aulast=Langevin Amygdala and its network (MPFC -> BLN, abstract)] ||
 ||  ||  || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || Ventral Anterior Cingulate Area || neocortex-nucleus || [http://www.pnas.org/content/107/40/17071/F1.expansion.html Role for serotonin in moral behavior (ACG -> AMY, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFAM FAM] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || [BrainRegionFAM_FT_AM_CO FAM.FT.AM.CO] || Cortical Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionFAM_FT_AM_LA FAM.FT.AM.LA] || Lateral Amygdaloid Nucleus || nucleus-nucleus || [http://thebrain.mcgill.ca/flash/i/i_04/i_04_cl/i_04_cl_peu/i_04_cl_peu.html Body alarm system (LA -> AB)] ||
-||  || [BrainRegionFAM_FT_AM_BP FAM.FT.AM.BP] || [BrainRegionFAM_FT_AM_LA FAM.FT.AM.LA] || Lateral Amygdaloid Nucleus || nucleus-nucleus || [http://www.surgicalneurologyint.com/article.asp?issn=2152-7806;year=2012;volume=3;issue=2;spage=40;epage=46;aulast=Langevin Amygdala and its network (LA -> BLN)] ||
+|| [BrainAreaFAM FAM] || [BrainRegionFAM_FT_AM_BP FAM.FT.AM.BP] || [BrainRegionFAM_FT_AM_LA FAM.FT.AM.LA] || Lateral Amygdaloid Nucleus || nucleus-nucleus || [http://www.surgicalneurologyint.com/article.asp?issn=2152-7806;year=2012;volume=3;issue=2;spage=40;epage=46;aulast=Langevin Amygdala and its network (LA -> BLN)] ||
 || [BrainAreaLMC LMC] || [BrainRegionFAM_FT_AM_BM FAM.FT.AM.BM] || [BrainRegionLMC_FT_NBM LMC.FT.NBM] || Basal Nucleus of Meynert || nucleus-nucleus-ACh || (unknown reference) ||
-|| [BrainAreaMMA MMA] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || Ventrolateral Cornu Ammonis of Hippocampus || allocortex-nucleus || [http://journal.frontiersin.org/Journal/10.3389/fpsyt.2013.00061/full Neuronal projections in the hippocampus (CA1 -> BLA, abstract)] ||
-||  ||  || [BrainRegionHBA_FT_HF_SUB HBA.FT.HF.SUB] || Subiculum || allocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S030100820900183X Simplified model of hippocampal formation anatomy (SUB -> Amyg, abstract)] ||
-||  ||  || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S030100820900183X Simplified model of hippocampal formation anatomy (EC -> Amyg, abstract)] ||
 
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
-|| [BrainAreaEPA EPA] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || [BrainRegionCGA_NC_PACG CGA.NC.PACG] || Pregenual Area || nucleus-neocortex || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> ACG, abstract)] ||
-||  ||  || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || Ventral Anterior Cingulate Area || nucleus-neocortex || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> ACG, abstract)] ||
-||  ||  || [BrainRegionFCA_FD_TH_MD FCA.FD.TH.MD] || Mediodorsal Nucleus of Thalamus || nucleus-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in emotional behavior (AM -> TH, abstract)] ||
-||  || [BrainRegionFAM_FT_AM_BM FAM.FT.AM.BM] || [BrainRegionCGA_NC_MPL_PCG CGA.NC.MPL.PCG] || Posterior Cingulate Cortex || nucleus-neocortex || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (AMYG -> CGp, abstract)] ||
+|| [BrainAreaEPA EPA] || [BrainRegionFAM_FT_AM_BM FAM.FT.AM.BM] || [BrainRegionCGA_NC_MPL_PCG CGA.NC.MPL.PCG] || Posterior Cingulate Cortex || nucleus-neocortex || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (AMYG -> CGp, abstract)] ||
 || [BrainAreaSAA SAA] || [BrainRegionFAM_FT_AM_BM FAM.FT.AM.BM] || [BrainRegionACA_NC_A1 ACA.NC.A1] || Primary Auditory Cortex || nucleus-neocortex || [http://f1000research.com/articles/2-20/v1 Visual-Auditory Interactions in Tectum (AM -> AC, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFAM FAM] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || [BrainRegionFAM_FT_AM_CEM FAM.FT.AM.CEM] || Medial Central Amygdaloid Nucleus || nucleus-nucleus || [http://thebrain.mcgill.ca/flash/i/i_04/i_04_cl/i_04_cl_peu/i_04_cl_peu.html Body alarm system (AB -> CE, abstract)] ||
-||  || [BrainRegionFAM_FT_AM_BM FAM.FT.AM.BM] || [BrainRegionFAM_FT_AM_ITC FAM.FT.AM.ITC] || Intercalated Amygdaloid Nuclei || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaFAM FAM] || [BrainRegionFAM_FT_AM_BM FAM.FT.AM.BM] || [BrainRegionFAM_FT_AM_ITC FAM.FT.AM.ITC] || Intercalated Amygdaloid Nuclei || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionFAM_FT_AM_BP FAM.FT.AM.BP] || [BrainRegionFAM_FT_AM_CEM FAM.FT.AM.CEM] || Medial Central Amygdaloid Nucleus || nucleus-nucleus || [http://www.surgicalneurologyint.com/article.asp?issn=2152-7806;year=2012;volume=3;issue=2;spage=40;epage=46;aulast=Langevin Amygdala and its network (BLN -> CEA, abstract)] ||
-|| [BrainAreaFEC FEC] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || [BrainRegionFEC_FT_CN_TL FEC.FT.CN.TL] || Caudate Nucleus Tail || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionFAM_FT_AM_BP FAM.FT.AM.BP] || [BrainRegionFEC_FT_ACC_CORE FEC.FT.ACC.CORE] || Nucleus Accumbens Core || nucleus-nucleus || [http://www.surgicalneurologyint.com/article.asp?issn=2152-7806;year=2012;volume=3;issue=2;spage=40;epage=46;aulast=Langevin Amygdala and its network (BLN -> NACC, abstract)] ||
-|| [BrainAreaLMC LMC] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || [BrainRegionLMC_FT_NBM LMC.FT.NBM] || Basal Nucleus of Meynert || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionFAM_FT_AM_BP FAM.FT.AM.BP] || [BrainRegionLMC_FT_NBM LMC.FT.NBM] || Basal Nucleus of Meynert || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaMMA MMA] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || [BrainRegionPHA_NC_PAS PHA.NC.PAS] || Parasubiculum || nucleus-neocortex || (unknown reference) ||
-||  || [BrainRegionFAM_FT_AM_BP FAM.FT.AM.BP] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || nucleus-neocortex || [http://highered.mcgraw-hill.com/sites/dl/free/0071402357/156721/figure350_1.html Principal Connections of Hippocampus (AM -> EC, abstract)] ||
+|| [BrainAreaFEC FEC] || [BrainRegionFAM_FT_AM_BP FAM.FT.AM.BP] || [BrainRegionFEC_FT_ACC_CORE FEC.FT.ACC.CORE] || Nucleus Accumbens Core || nucleus-nucleus || [http://www.surgicalneurologyint.com/article.asp?issn=2152-7806;year=2012;volume=3;issue=2;spage=40;epage=46;aulast=Langevin Amygdala and its network (BLN -> NACC, abstract)] ||
+|| [BrainAreaLMC LMC] || [BrainRegionFAM_FT_AM_BP FAM.FT.AM.BP] || [BrainRegionLMC_FT_NBM LMC.FT.NBM] || Basal Nucleus of Meynert || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaMMA MMA] || [BrainRegionFAM_FT_AM_BP FAM.FT.AM.BP] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || nucleus-neocortex || [http://highered.mcgraw-hill.com/sites/dl/free/0071402357/156721/figure350_1.html Principal Connections of Hippocampus (AM -> EC, abstract)] ||
 
 == Unimodal Sensory Inputs ==
 
