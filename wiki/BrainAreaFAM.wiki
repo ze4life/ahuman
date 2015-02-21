@@ -10,7 +10,7 @@
 || *ID* || *Name* || *Regions* ||
 || FAMAN || Control of Autonomic and Neuroendocrine Function || [BrainRegionFAM_FT_BNST FAM.FT.BNST], [BrainRegionFAM_FT_IPAC FAM.FT.IPAC], [BrainRegionFAM_FT_SEP_BAC FAM.FT.SEP.BAC] ||
 || FAMEXE || Emotional Behavior Formation || [BrainRegionFAM_FT_AM_BP FAM.FT.AM.BP], [BrainRegionFAM_FT_AM_ITC FAM.FT.AM.ITC] ||
-|| FAMHT || Enforce Neuroendocrine and Immunological Responses to Stress || [BrainRegionFAM_FT_AM_CEM FAM.FT.AM.CEM], [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] ||
+|| FAMHT || Enforce Neuroendocrine and Immunological Responses to Stress || [BrainRegionFAM_FT_AM_CEM FAM.FT.AM.CEM], [BrainRegionFAM_FT_AM_MEA FAM.FT.AM.MEA], [BrainRegionFAM_FT_AM_MPD FAM.FT.AM.MPD], [BrainRegionFAM_FT_AM_MPV FAM.FT.AM.MPV] ||
 || FAMMEM || Inhibit Neuroendocrine and Immunological Responses to Stress || [BrainRegionFAM_FT_SEP_DBB FAM.FT.SEP.DBB], [BrainRegionFAM_FT_SEP_LT FAM.FT.SEP.LT], [BrainRegionFAM_FT_SEP_MED FAM.FT.SEP.MED], [BrainRegionFAM_FT_SEP_SH FAM.FT.SEP.SH] ||
 || FAMPS || Fast Unconditional Sensory Data and Association Memory || [BrainRegionFAM_FD_TH_PV FAM.FD.TH.PV], [BrainRegionFAM_FT_AM_CEC FAM.FT.AM.CEC], [BrainRegionFAM_FT_AM_CEL FAM.FT.AM.CEL], [BrainRegionFAM_FT_AM_COP FAM.FT.AM.COP], [BrainRegionFAM_FT_AM_LAVL FAM.FT.AM.LAVL], [BrainRegionFAM_FT_AM_LAVM FAM.FT.AM.LAVM] ||
 || FAMUS || Conditional Context Sensory Data and Memory Attention || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB], [BrainRegionFAM_FT_AM_BM FAM.FT.AM.BM], [BrainRegionFAM_FT_AM_COA FAM.FT.AM.COA], [BrainRegionFAM_FT_AM_LADL FAM.FT.AM.LADL] ||
@@ -41,7 +41,7 @@
 || [BrainAreaFAM FAM] || [BrainRegionFAM_FT_BNST FAM.FT.BNST] || [BrainRegionFAM_FD_TH_PV FAM.FD.TH.PV] || Paraventricular Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionFAM_FT_AM_CEL FAM.FT.AM.CEL] || Central Amygdaloid Nucleus, lateral subdivision || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionFAM_FT_AM_CEM FAM.FT.AM.CEM] || Medial Central Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || Medial Amygdala || nucleus-nucleus-gaba || (unknown reference) ||
+||  || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || [BrainRegionFAM_FT_AM_MEA FAM.FT.AM.MEA] || Medial Anterior Amygdaloid Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
 || [BrainAreaLAC LAC] || [BrainRegionFAM_FT_BNST FAM.FT.BNST] || [BrainRegionLAC_FD_HT_VM LAC.FD.HT.VM] || Ventromedial Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaMMA MMA] || [BrainRegionFAM_FT_BNST FAM.FT.BNST] || [BrainRegionPHA_FD_TH_PT PHA.FD.TH.PT] || Paratenial Nucleus of Thalamus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || Piriform Cortex || neocortex-nucleus || (unknown reference) ||
@@ -106,12 +106,14 @@
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
 || [BrainRegionFAM_FT_AM_CEM FAM.FT.AM.CEM] || Medial Central Amygdaloid Nucleus || nucleus || FAU || mediate behavioral responses, output projections ||  ||
-|| [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || Medial Amygdala || nucleus || FAU || sense of smell and pheromone-processing || olfactory processing and innate emotions ||
+|| [BrainRegionFAM_FT_AM_MEA FAM.FT.AM.MEA] || Medial Anterior Amygdaloid Nucleus || nucleus || FAU || olfactory processing ||  ||
+|| [BrainRegionFAM_FT_AM_MPD FAM.FT.AM.MPD] || Medial Posteror Dorsal Amygdaloid Nucleus || nucleus || FAU || reproductive behavior || MePD -> HT-MPN ||
+|| [BrainRegionFAM_FT_AM_MPV FAM.FT.AM.MPV] || Medial Posteror Ventral Amygdaloid Nucleus || nucleus || FAU || defensive behavior || MePV -> LAC.FD.HT.VM (reproductive+defensive),<BR>LAC.FD.HT.AH (defensive) ||
 
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || [BrainRegionFAM_FT_AM_CEM FAM.FT.AM.CEM] || nucleus-nucleus-gaba || [http://thebrain.mcgill.ca/flash/i/i_04/i_04_cl/i_04_cl_peu/i_04_cl_peu.html Body alarm system (MED -> CE, abstract)] ||
+|| [BrainRegionFAM_FT_AM_MEA FAM.FT.AM.MEA] || [BrainRegionFAM_FT_AM_CEM FAM.FT.AM.CEM] || nucleus-nucleus-gaba || [http://thebrain.mcgill.ca/flash/i/i_04/i_04_cl/i_04_cl_peu/i_04_cl_peu.html Body alarm system (MED -> CE, abstract)] ||
 
 *External Inbound Region Connections:*
 
@@ -122,10 +124,10 @@
 ||  ||  || [BrainRegionFAM_FT_AM_CEC FAM.FT.AM.CEC] || Central Amygdaloid Nucleus, capsular subdivision || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionFAM_FT_AM_CEL FAM.FT.AM.CEL] || Central Amygdaloid Nucleus, lateral subdivision || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionFAM_FT_AM_ITC FAM.FT.AM.ITC] || Intercalated Amygdaloid Nuclei || nucleus-nucleus-gaba || (unknown reference) ||
-||  || [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || Accessory Basal Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionFAM_FT_AM_COP FAM.FT.AM.COP] || Posterior Cortical Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionFAM_FT_AM_MEA FAM.FT.AM.MEA] || [BrainRegionFAM_FT_AM_COP FAM.FT.AM.COP] || Posterior Cortical Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionFAM_FT_AM_MPD FAM.FT.AM.MPD] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || Accessory Basal Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaFEC FEC] || [BrainRegionFAM_FT_AM_CEM FAM.FT.AM.CEM] || [BrainRegionFEC_FT_SNC_MED FEC.FT.SNC.MED] || Substantia Nigra Pars Compacta Medial || nucleus-nucleus-DA || (unknown reference) ||
-|| [BrainAreaLPC LPC] || [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || [BrainRegionLPC_FT_AOB LPC.FT.AOB] || Accessory Olfactory Bulb || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLPC LPC] || [BrainRegionFAM_FT_AM_MEA FAM.FT.AM.MEA] || [BrainRegionLPC_FT_AOB LPC.FT.AOB] || Accessory Olfactory Bulb || nucleus-nucleus || (unknown reference) ||
 
 *External Outbound Region Connections:*
 
@@ -133,13 +135,13 @@
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaFAM FAM] || [BrainRegionFAM_FT_AM_CEM FAM.FT.AM.CEM] || [BrainRegionFAM_FT_BNST FAM.FT.BNST] || Bed Nucleus of Stria Terminalis || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionFAM_FT_SEP_LT FAM.FT.SEP.LT] || Lateral Septal Nucleus || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || Interstitial Anterior Commissural Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
+||  || [BrainRegionFAM_FT_AM_MEA FAM.FT.AM.MEA] || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || Interstitial Anterior Commissural Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
 || [BrainAreaLAC LAC] || [BrainRegionFAM_FT_AM_CEM FAM.FT.AM.CEM] || [BrainRegionLAC_FD_HT_LTN LAC.FD.HT.LTN] || Lateral Hypothalamic Nucleus || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> HT.L, abstract)] ||
-||  || [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || [BrainRegionLAC_FD_HT_PRM LAC.FD.HT.PRM] || Premammillary Nucleus || nucleus-nucleus-gaba || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> HT.L, abstract)] ||
-||  ||  || [BrainRegionLAC_FD_HT_PV LAC.FD.HT.PV] || Paraventricular Nucleus || nucleus-nucleus-gaba || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> HT.PV, abstract)] ||
+||  || [BrainRegionFAM_FT_AM_MPD FAM.FT.AM.MPD] || [BrainRegionLAC_FD_HT_PV LAC.FD.HT.PV] || Paraventricular Nucleus || nucleus-nucleus-gaba || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> HT.PV, abstract)] ||
+||  || [BrainRegionFAM_FT_AM_MPV FAM.FT.AM.MPV] || [BrainRegionLAC_FD_HT_PRM LAC.FD.HT.PRM] || Premammillary Nucleus || nucleus-nucleus-gaba || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> HT.L, abstract)] ||
 || [BrainAreaLMC LMC] || [BrainRegionFAM_FT_AM_CEM FAM.FT.AM.CEM] || [BrainRegionLMC_FT_NBM LMC.FT.NBM] || Basal Nucleus of Meynert || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLMC_MM_PAG LMC.MM.PAG] || Periaqueductal Gray Matter || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> PAG, abstract)] ||
-|| [BrainAreaMMA MMA] || [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || [BrainRegionHBA_FD_TH_RE HBA.FD.TH.RE] || Reuniens Nucleus of Thalamus || nucleus-nucleus-gaba || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (AMYG -> Thalamus, abstract)] ||
+|| [BrainAreaMMA MMA] || [BrainRegionFAM_FT_AM_MPV FAM.FT.AM.MPV] || [BrainRegionHBA_FD_TH_RE HBA.FD.TH.RE] || Reuniens Nucleus of Thalamus || nucleus-nucleus-gaba || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (AMYG -> Thalamus, abstract)] ||
 
 == Inhibit Neuroendocrine and Immunological Responses to Stress ==
 
@@ -232,7 +234,7 @@
 ||  || [BrainRegionFAM_FT_AM_CEC FAM.FT.AM.CEC] || [BrainRegionFAM_FT_AM_CEM FAM.FT.AM.CEM] || Medial Central Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionFAM_FT_AM_CEL FAM.FT.AM.CEL] || [BrainRegionFAM_FT_AM_CEM FAM.FT.AM.CEM] || Medial Central Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionFAM_FT_BNST FAM.FT.BNST] || Bed Nucleus of Stria Terminalis || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionFAM_FT_AM_COP FAM.FT.AM.COP] || [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || Medial Amygdala || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionFAM_FT_AM_COP FAM.FT.AM.COP] || [BrainRegionFAM_FT_AM_MEA FAM.FT.AM.MEA] || Medial Anterior Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionFAM_FT_AM_LAVL FAM.FT.AM.LAVL] || [BrainRegionFAM_FT_AM_BP FAM.FT.AM.BP] || Parvicellular Basal Amygdaloid Nucleus || nucleus-nucleus || [http://www.surgicalneurologyint.com/article.asp?issn=2152-7806;year=2012;volume=3;issue=2;spage=40;epage=46;aulast=Langevin Amygdala and its network (LA -> BLN, abstract)] ||
 ||  || [BrainRegionFAM_FT_AM_LAVM FAM.FT.AM.LAVM] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || Accessory Basal Amygdaloid Nucleus || nucleus-nucleus || [http://thebrain.mcgill.ca/flash/i/i_04/i_04_cl/i_04_cl_peu/i_04_cl_peu.html Body alarm system (LA -> AB, abstract)] ||
 || [BrainAreaLAC LAC] || [BrainRegionFAM_FD_TH_PV FAM.FD.TH.PV] || [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO] || Preoptic Nucleus || nucleus-nucleus || (unknown reference) ||
@@ -290,7 +292,7 @@
 || [BrainAreaSAA SAA] || [BrainRegionFAM_FT_AM_BM FAM.FT.AM.BM] || [BrainRegionACA_NC_A1 ACA.NC.A1] || Primary Auditory Cortex || nucleus-neocortex || [http://f1000research.com/articles/2-20/v1 Visual-Auditory Interactions in Tectum (AM -> AC, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaFAM FAM] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || [BrainRegionFAM_FT_AM_CEM FAM.FT.AM.CEM] || Medial Central Amygdaloid Nucleus || nucleus-nucleus || [http://thebrain.mcgill.ca/flash/i/i_04/i_04_cl/i_04_cl_peu/i_04_cl_peu.html Body alarm system (AB -> CE, abstract)] ||
-||  ||  || [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || Medial Amygdala || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionFAM_FT_AM_MPD FAM.FT.AM.MPD] || Medial Posteror Dorsal Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionFAM_FT_AM_BM FAM.FT.AM.BM] || [BrainRegionFAM_FT_AM_BP FAM.FT.AM.BP] || Parvicellular Basal Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionFAM_FT_AM_ITC FAM.FT.AM.ITC] || Intercalated Amygdaloid Nuclei || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionFAM_FT_AM_LADL FAM.FT.AM.LADL] || [BrainRegionFAM_FT_AM_BP FAM.FT.AM.BP] || Parvicellular Basal Amygdaloid Nucleus || nucleus-nucleus || [http://www.surgicalneurologyint.com/article.asp?issn=2152-7806;year=2012;volume=3;issue=2;spage=40;epage=46;aulast=Langevin Amygdala and its network (LA -> BLN, abstract)] ||
