@@ -8,13 +8,13 @@
 (generated)
 
 || *ID* || *Name* || *Regions* ||
-|| FAMAN || Control of Autonomic and Neuroendocrine Function || [BrainRegionFAM_FT_BNST FAM.FT.BNST], [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] ||
+|| FAMAN || Control of Autonomic and Neuroendocrine Function || [BrainRegionFAM_FT_BNST FAM.FT.BNST], [BrainRegionFAM_FT_IPAC FAM.FT.IPAC], [BrainRegionFAM_FT_SEP_BAC FAM.FT.SEP.BAC] ||
 || FAMEXE || Emotional Behavior Formation || [BrainRegionFAM_FT_AM_BP FAM.FT.AM.BP], [BrainRegionFAM_FT_AM_ITC FAM.FT.AM.ITC] ||
 || FAMHT || Enforce Neuroendocrine and Immunological Responses to Stress || [BrainRegionFAM_FT_AM_CEM FAM.FT.AM.CEM], [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] ||
 || FAMMEM || Inhibit Neuroendocrine and Immunological Responses to Stress || [BrainRegionFAM_FT_SEP_DBB FAM.FT.SEP.DBB], [BrainRegionFAM_FT_SEP_LT FAM.FT.SEP.LT], [BrainRegionFAM_FT_SEP_MED FAM.FT.SEP.MED], [BrainRegionFAM_FT_SEP_SH FAM.FT.SEP.SH] ||
 || FAMPS || Fast Unconditional Sensory Data and Association Memory || [BrainRegionFAM_FD_TH_PV FAM.FD.TH.PV], [BrainRegionFAM_FT_AM_CEC FAM.FT.AM.CEC], [BrainRegionFAM_FT_AM_CEL FAM.FT.AM.CEL], [BrainRegionFAM_FT_AM_COP FAM.FT.AM.COP], [BrainRegionFAM_FT_AM_LAVL FAM.FT.AM.LAVL], [BrainRegionFAM_FT_AM_LAVM FAM.FT.AM.LAVM] ||
 || FAMUS || Conditional Context Sensory Data and Memory Attention || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB], [BrainRegionFAM_FT_AM_BM FAM.FT.AM.BM], [BrainRegionFAM_FT_AM_COA FAM.FT.AM.COA], [BrainRegionFAM_FT_AM_LADL FAM.FT.AM.LADL] ||
-|| FAR || Acquisition of Avoidance Responses || [BrainRegionFAM_FD_LHB_LT FAM.FD.LHB.LT], [BrainRegionFAM_FD_LHB_MED FAM.FD.LHB.MED], [BrainRegionFAM_FD_MHB FAM.FD.MHB], [BrainRegionFAM_FT_SEP_BAC FAM.FT.SEP.BAC], [BrainRegionFAM_FT_SEP_SF FAM.FT.SEP.SF], [BrainRegionFAM_FT_SEP_TR FAM.FT.SEP.TR] ||
+|| FAR || Acquisition of Avoidance Responses || [BrainRegionFAM_FD_LHB_LT FAM.FD.LHB.LT], [BrainRegionFAM_FD_LHB_MED FAM.FD.LHB.MED], [BrainRegionFAM_FD_MHB FAM.FD.MHB], [BrainRegionFAM_FT_SEP_SF FAM.FT.SEP.SF], [BrainRegionFAM_FT_SEP_TR FAM.FT.SEP.TR] ||
 
 == Control of Autonomic and Neuroendocrine Function ==
 
@@ -24,11 +24,13 @@
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
 || [BrainRegionFAM_FT_BNST FAM.FT.BNST] || Bed Nucleus of Stria Terminalis || nucleus || FAU || Mediate slow longer-lasting responses that accompany sustained threats || Major output from AM to HT, part of extended<BR>amygdala; medial part continues to medial AM,<BR>central part continues to central AM ||
 || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || Interstitial Anterior Commissural Nucleus || nucleus || FAU || Sharp, acute pain sensation || Related to the central extended amygdala ||
+|| [BrainRegionFAM_FT_SEP_BAC FAM.FT.SEP.BAC] || Septal Nucleus of Anterior Commissure || nucleus || FAU || projection to contralateral HC ||  ||
 
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionFAM_FT_BNST FAM.FT.BNST] || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionFAM_FT_SEP_BAC FAM.FT.SEP.BAC] || nucleus-nucleus || (unknown reference) ||
 
 *External Inbound Region Connections:*
 
@@ -48,8 +50,8 @@
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFAM FAM] || [BrainRegionFAM_FT_BNST FAM.FT.BNST] || [BrainRegionFAM_FT_SEP_BAC FAM.FT.SEP.BAC] || Septal Nucleus of Anterior Commissure || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || [BrainRegionFAM_FT_AM_LADL FAM.FT.AM.LADL] || Dorsolateral Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaFAM FAM] || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || [BrainRegionFAM_FT_AM_LADL FAM.FT.AM.LADL] || Dorsolateral Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionFAM_FT_SEP_BAC FAM.FT.SEP.BAC] || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || Medial Habenula || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (S -> MHb, abstract)] ||
 || [BrainAreaFEC FEC] || [BrainRegionFAM_FT_BNST FAM.FT.BNST] || [BrainRegionFEC_FT_SNC_MED FEC.FT.SNC.MED] || Substantia Nigra Pars Compacta Medial || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || [BrainRegionFEC_FT_SNR_DL FEC.FT.SNR.DL] || Substantia Nigra Pars Reticulata Dorsolateral || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLMC LMC] || [BrainRegionFAM_FT_BNST FAM.FT.BNST] || [BrainRegionLMC_FT_NBM LMC.FT.NBM] || Basal Nucleus of Meynert || nucleus-nucleus || (unknown reference) ||
@@ -80,7 +82,8 @@
 ||  ||  || [BrainRegionCGA_NC_VACG CGA.NC.VACG] || Ventral Anterior Cingulate Area || neocortex-nucleus || [http://www.pnas.org/content/107/40/17071/F1.expansion.html Role for serotonin in moral behavior (ACG -> AMY, abstract)] ||
 ||  || [BrainRegionFAM_FT_AM_ITC FAM.FT.AM.ITC] || [BrainRegionCGA_NC_SGC CGA.NC.SGC] || Subgenual Cortex || neocortex-nucleus || [http://www.pnas.org/content/107/40/17071/F1.expansion.html Role for serotonin in moral behavior (ACG -> AMY, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFAM FAM] || [BrainRegionFAM_FT_AM_BP FAM.FT.AM.BP] || [BrainRegionFAM_FT_AM_LADL FAM.FT.AM.LADL] || Dorsolateral Amygdaloid Nucleus || nucleus-nucleus || [http://www.surgicalneurologyint.com/article.asp?issn=2152-7806;year=2012;volume=3;issue=2;spage=40;epage=46;aulast=Langevin Amygdala and its network (LA -> BLN, abstract)] ||
+|| [BrainAreaFAM FAM] || [BrainRegionFAM_FT_AM_BP FAM.FT.AM.BP] || [BrainRegionFAM_FT_AM_BM FAM.FT.AM.BM] || Magnocellular Basal Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionFAM_FT_AM_LADL FAM.FT.AM.LADL] || Dorsolateral Amygdaloid Nucleus || nucleus-nucleus || [http://www.surgicalneurologyint.com/article.asp?issn=2152-7806;year=2012;volume=3;issue=2;spage=40;epage=46;aulast=Langevin Amygdala and its network (LA -> BLN, abstract)] ||
 ||  ||  || [BrainRegionFAM_FT_AM_LAVL FAM.FT.AM.LAVL] || Ventrolateral Amygdaloid Nucleus || nucleus-nucleus || [http://www.surgicalneurologyint.com/article.asp?issn=2152-7806;year=2012;volume=3;issue=2;spage=40;epage=46;aulast=Langevin Amygdala and its network (LA -> BLN, abstract)] ||
 ||  || [BrainRegionFAM_FT_AM_ITC FAM.FT.AM.ITC] || [BrainRegionFAM_FT_AM_BM FAM.FT.AM.BM] || Magnocellular Basal Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionFAM_FT_AM_LADL FAM.FT.AM.LADL] || Dorsolateral Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
@@ -134,7 +137,9 @@
 || [BrainAreaLAC LAC] || [BrainRegionFAM_FT_AM_CEM FAM.FT.AM.CEM] || [BrainRegionLAC_FD_HT_LTN LAC.FD.HT.LTN] || Lateral Hypothalamic Nucleus || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> HT.L, abstract)] ||
 ||  || [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || [BrainRegionLAC_FD_HT_PRM LAC.FD.HT.PRM] || Premammillary Nucleus || nucleus-nucleus-gaba || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> HT.L, abstract)] ||
 ||  ||  || [BrainRegionLAC_FD_HT_PV LAC.FD.HT.PV] || Paraventricular Nucleus || nucleus-nucleus-gaba || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> HT.PV, abstract)] ||
-|| [BrainAreaLMC LMC] || [BrainRegionFAM_FT_AM_CEM FAM.FT.AM.CEM] || [BrainRegionLMC_MM_PAG LMC.MM.PAG] || Periaqueductal Gray Matter || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> PAG, abstract)] ||
+|| [BrainAreaLMC LMC] || [BrainRegionFAM_FT_AM_CEM FAM.FT.AM.CEM] || [BrainRegionLMC_FT_NBM LMC.FT.NBM] || Basal Nucleus of Meynert || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionLMC_MM_PAG LMC.MM.PAG] || Periaqueductal Gray Matter || nucleus-nucleus || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (AM -> PAG, abstract)] ||
+|| [BrainAreaMMA MMA] || [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || [BrainRegionHBA_FD_TH_RE HBA.FD.TH.RE] || Reuniens Nucleus of Thalamus || nucleus-nucleus-gaba || [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Oculomotor decision-making (AMYG -> Thalamus, abstract)] ||
 
 == Inhibit Neuroendocrine and Immunological Responses to Stress ==
 
@@ -161,7 +166,8 @@
 ||  || [BrainRegionFAM_FT_SEP_LT FAM.FT.SEP.LT] || [BrainRegionLAC_FD_HT_PN LAC.FD.HT.PN] || Posterior Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLAC_FD_HT_TBM LAC.FD.HT.TBM] || Tuberomammillary Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionFAM_FT_SEP_MED FAM.FT.SEP.MED] || [BrainRegionLAC_FD_HT_SUM LAC.FD.HT.SUM] || Supramammillary Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Medial mammillary nucleus and theta rhythm (SupraMM -> SEP, abstract)] ||
-|| [BrainAreaLMC LMC] || [BrainRegionFAM_FT_SEP_LT FAM.FT.SEP.LT] || [BrainRegionLMC_MM_RF_SUC LMC.MM.RF.SUC] || Superior Central Raphe Nucleus || nucleus-nucleus-5HT || (unknown reference) ||
+|| [BrainAreaLMC LMC] || [BrainRegionFAM_FT_SEP_DBB FAM.FT.SEP.DBB] || [BrainRegionLMC_HP_LC LMC.HP.LC] || Locus Coeruleus || nucleus-nucleus-NE || (unknown reference) ||
+||  || [BrainRegionFAM_FT_SEP_LT FAM.FT.SEP.LT] || [BrainRegionLMC_MM_RF_SUC LMC.MM.RF.SUC] || Superior Central Raphe Nucleus || nucleus-nucleus-5HT || (unknown reference) ||
 || [BrainAreaMMA MMA] || [BrainRegionFAM_FT_SEP_MED FAM.FT.SEP.MED] || [BrainRegionHBA_FT_HC_CA1 HBA.FT.HC.CA1] || Ventrolateral Cornu Ammonis of Hippocampus || allocortex-nucleus || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (CA1 -> SEP, abstract)] ||
 
 *External Outbound Region Connections:*
@@ -285,7 +291,8 @@
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaFAM FAM] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || [BrainRegionFAM_FT_AM_CEM FAM.FT.AM.CEM] || Medial Central Amygdaloid Nucleus || nucleus-nucleus || [http://thebrain.mcgill.ca/flash/i/i_04/i_04_cl/i_04_cl_peu/i_04_cl_peu.html Body alarm system (AB -> CE, abstract)] ||
 ||  ||  || [BrainRegionFAM_FT_AM_M FAM.FT.AM.M] || Medial Amygdala || nucleus-nucleus || (unknown reference) ||
-||  || [BrainRegionFAM_FT_AM_BM FAM.FT.AM.BM] || [BrainRegionFAM_FT_AM_ITC FAM.FT.AM.ITC] || Intercalated Amygdaloid Nuclei || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionFAM_FT_AM_BM FAM.FT.AM.BM] || [BrainRegionFAM_FT_AM_BP FAM.FT.AM.BP] || Parvicellular Basal Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
+||  ||  || [BrainRegionFAM_FT_AM_ITC FAM.FT.AM.ITC] || Intercalated Amygdaloid Nuclei || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionFAM_FT_AM_LADL FAM.FT.AM.LADL] || [BrainRegionFAM_FT_AM_BP FAM.FT.AM.BP] || Parvicellular Basal Amygdaloid Nucleus || nucleus-nucleus || [http://www.surgicalneurologyint.com/article.asp?issn=2152-7806;year=2012;volume=3;issue=2;spage=40;epage=46;aulast=Langevin Amygdala and its network (LA -> BLN, abstract)] ||
 ||  ||  || [BrainRegionFAM_FT_AM_CEC FAM.FT.AM.CEC] || Central Amygdaloid Nucleus, capsular subdivision || nucleus-nucleus || [http://www.surgicalneurologyint.com/article.asp?issn=2152-7806;year=2012;volume=3;issue=2;spage=40;epage=46;aulast=Langevin Amygdala and its network (LA -> CEA, abstract)] ||
 ||  ||  || [BrainRegionFAM_FT_AM_ITC FAM.FT.AM.ITC] || Intercalated Amygdaloid Nuclei || nucleus-nucleus || (unknown reference) ||
@@ -302,7 +309,6 @@
 || [BrainRegionFAM_FD_LHB_LT FAM.FD.LHB.LT] || Lateral Habenula Lateral Part || nucleus || FAU || Encoding negative feedback, direct, Pallidal ||  ||
 || [BrainRegionFAM_FD_LHB_MED FAM.FD.LHB.MED] || Lateral Habenula Medial Part || nucleus || FAU || Encoding negative feedback, direct, Septal ||  ||
 || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || Medial Habenula || nucleus || FAU || Encoding negative feedback, indirect || affects VTA, dorsal raphe but via interpeduncular<BR>nucleus ||
-|| [BrainRegionFAM_FT_SEP_BAC FAM.FT.SEP.BAC] || Septal Nucleus of Anterior Commissure || nucleus || FAU || projection to contralateral HC ||  ||
 || [BrainRegionFAM_FT_SEP_SF FAM.FT.SEP.SF] || Septofimbrial Nucleus || nucleus || FAU || afferent to medial habenula, primary input to indirect encoding negative feedback ||  ||
 || [BrainRegionFAM_FT_SEP_TR FAM.FT.SEP.TR] || Triangular Septal Nucleus || nucleus || FAU || afferent to medial habenula, interpeduncular nucleus ||  ||
 
@@ -310,7 +316,6 @@
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || [BrainRegionFAM_FD_LHB_MED FAM.FD.LHB.MED] || nucleus-nucleus || (unknown reference) ||
-|| [BrainRegionFAM_FT_SEP_BAC FAM.FT.SEP.BAC] || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (S -> MHb, abstract)] ||
 || [BrainRegionFAM_FT_SEP_SF FAM.FT.SEP.SF] || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (S -> MHb, abstract)] ||
 || [BrainRegionFAM_FT_SEP_TR FAM.FT.SEP.TR] || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (S -> MHb, abstract)] ||
 
@@ -318,7 +323,7 @@
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFAM FAM] || [BrainRegionFAM_FT_SEP_BAC FAM.FT.SEP.BAC] || [BrainRegionFAM_FT_BNST FAM.FT.BNST] || Bed Nucleus of Stria Terminalis || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaFAM FAM] || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || [BrainRegionFAM_FT_SEP_BAC FAM.FT.SEP.BAC] || Septal Nucleus of Anterior Commissure || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (S -> MHb, abstract)] ||
 || [BrainAreaFEC FEC] || [BrainRegionFAM_FD_LHB_LT FAM.FD.LHB.LT] || [BrainRegionFEC_FT_GPI_DS FEC.FT.GPI.DS] || Globus Pallidus Internal Dorsal || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (GPi -> LHb, abstract)] ||
 ||  || [BrainRegionFAM_FD_LHB_MED FAM.FD.LHB.MED] || [BrainRegionFEC_FT_VP_VM FEC.FT.VP.VM] || Ventral Pallidum Ventromedial || nucleus-nucleus-gaba || (unknown reference) ||
 || [BrainAreaLAC LAC] || [BrainRegionFAM_FD_LHB_LT FAM.FD.LHB.LT] || [BrainRegionLAC_FD_HT_LTN LAC.FD.HT.LTN] || Lateral Hypothalamic Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LH -> LHb, abstract)] ||
