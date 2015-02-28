@@ -30,14 +30,26 @@
 					refs="NL:[http://neurolex.org/wiki/Category:Basolateral_nuclear_complex Basolateral nuclear complex]; NL:[http://neurolex.org/wiki/Category:Anterior_amygdaloid_area Anterior amygdaloid area]"
 					function="stimulating emotional response"
 					>
-					<element id="FAM.FT.AM.LA" name="Lateral Amygdaloid Nucleus" mapped="true" type="nucleus"
+					<element id="FAM.FT.AM.LA" name="Lateral Amygdaloid Nucleus" 
 						refs="NL:[http://neurolex.org/wiki/Category:Lateral_amygdaloid_nucleus Lateral amygdaloid nucleus]"
 						function="plasticity, conditional (neutral stimulus) to specific (taste, smell, visceral) unconditional (positive or negative stimulus) association"
 						notes="sensory interface of amygdala during emotional learning; inferior cells retain memory"
 						>
-						<element name="Dorsolateral Amygdaloid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_amygdaloid_nucleus,_dorsolateral_part Lateral amygdaloid nucleus, dorsolateral part]"/>
-						<element name="Ventrolateral Amygdaloid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_amygdaloid_nucleus,_ventrolateral_part Lateral amygdaloid nucleus, ventrolateral part]"/>
-						<element name="Ventromedial Amygdaloid Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Lateral_amygdaloid_nucleus,_ventromedial_part Lateral amygdaloid nucleus, ventromedial part]"/>
+						<element id="FAM.FT.AM.LADL" name="Dorsolateral Amygdaloid Nucleus" mapped="true" type="nucleus"
+							refs="NL:[http://neurolex.org/wiki/Category:Lateral_amygdaloid_nucleus,_dorsolateral_part Lateral amygdaloid nucleus, dorsolateral part]"
+							function="conditional stimulus input - high-aggregated visual, auditory and somatic, patterns of perception"
+							notes="LA2"
+							/>
+						<element id="FAM.FT.AM.LAVL" name="Ventrolateral Amygdaloid Nucleus" mapped="true" type="nucleus"
+							refs="NL:[http://neurolex.org/wiki/Category:Lateral_amygdaloid_nucleus,_ventrolateral_part Lateral amygdaloid nucleus, ventrolateral part]"
+							function="unconditional stimulus input - visual, auditory and somatic, convergence from thalamus"
+							notes="LA1; LGN, MGBm, PIL"
+							/>
+						<element id="FAM.FT.AM.LAVM" name="Ventromedial Amygdaloid Nucleus" mapped="true" type="nucleus"
+							refs="NL:[http://neurolex.org/wiki/Category:Lateral_amygdaloid_nucleus,_ventromedial_part Lateral amygdaloid nucleus, ventromedial part]"
+							function="conditional and unconditional convergence to affect polymodal memory formation"
+							notes="LA3; projects to ET"
+							/>
 					</element>
 					<element id="FAM.FT.AM.B" name="Basal Amygdaloid Nucleus" 
 						refs="NL:[http://neurolex.org/wiki/Category:Basal_amygdaloid_nucleus Basal amygdaloid nucleus]"
@@ -58,43 +70,68 @@
 					<element id="FAM.FT.AM.AB" name="Accessory Basal Amygdaloid Nucleus" mapped="true" type="nucleus"
 						synonyms="basomedial"
 						refs="NL:[http://neurolex.org/wiki/Category:Accessory_basal_amygdaloid_nucleus Accessory basal amygdaloid nucleus]"
-						function="proections to maxrix of core of NACC"
+						function="enhance assotiative memory formation"
+						notes="proections to matrix of core of NACC"
 						/>
 				</element>
 				<element id="FAM.FT.AM.CTM" name="Corticomedial Nuclear Complex" 
 					refs="NL:[http://neurolex.org/wiki/Category:Corticomedial_nuclear_complex Corticomedial nuclear complex]"
 					>
-					<element id="FAM.FT.AM.CO" name="Cortical Amygdaloid Nucleus" mapped="true" type="nucleus"
+					<element id="FAM.FT.AM.CO" name="Cortical Amygdaloid Nucleus"
 						refs="NL:[http://neurolex.org/wiki/Category:Cortical_amygdaloid_nucleus Cortical amygdaloid nucleus]; NL:[http://neurolex.org/wiki/Category:Periamygdaloid_cortex Periamygdaloid cortex]"
 						function="olfactory processing"
-						/>
+						>
+						<element id="FAM.FT.AM.COA" name="Anterior Cortical Amygdaloid Nucleus" mapped="true" type="nucleus"
+							function="olfactory processing - conditional contextual signaling"
+							/>
+						<element id="FAM.FT.AM.COP" name="Posterior Cortical Amygdaloid Nucleus" mapped="true" type="nucleus"
+							function="olfactory processing - unconditional signaling"
+							/>
+					</element>
 					<element id="FAM.FT.AM.CM" name="Centromedial Nuclei"
 						synonyms="autonomic group"
 						function="attention and arousal"
 						notes="evolutionarily primitive division"
 						>
-						<element id="FAM.FT.AM.CEA" name="Central Amygdala" mapped="true" type="nucleus"
+						<element id="FAM.FT.AM.CEA" name="Central Amygdala" 
 							synonyms="CeA"
 							refs="NL:[http://neurolex.org/wiki/Category:Central_amygdaloid_nucleus Central amygdaloid nucleus]"
-							function="mediate behavioral responses, link to general aspects of reinforcement"
+							function="mediate behavioral responses, link to general aspects of reinforcement; responses to fear stimuli; directing attention and behaviors when salience of competing stimuli is in flux"
 							notes="controls emotional reactions and physiological responses via connections to brainstem"
 							>
-							<element name="Central Amygdaloid Nucleus, capsular subdivision" 
-								synonyms="CeC" 
+							<element id="FAM.FT.AM.CEC" name="Central Amygdaloid Nucleus, capsular subdivision" mapped="true" type="nucleus"
+								synonyms="CeC, Area X of Hall" 
 								refs="NL:[http://neurolex.org/wiki/Category:Lateral_central_nucleus_of_the_amygdala Lateral central nucleus of the amygdala]"
+								function="mediate behavioral responses, link to striatal effect"
 								notes="gustatory, somatosensory, visual, auditory, frontal cortex, perirhinal cortex, ET, SUB -> X -> HT-dl/cl, CeM"
 								/>
-							<element name="Central Amygdaloid Nucleus, lateral subdivision" 
+							<element id="FAM.FT.AM.CEL" name="Central Amygdaloid Nucleus, lateral subdivision" mapped="true" type="nucleus"
 								refs="NL:[http://neurolex.org/wiki/Category:Lateral_central_nucleus_of_the_amygdala Lateral central nucleus of the amygdala]"
+								function="mediate behavioral responses, link to gustatory and visceral aspects of reinforcement"
+								notes="contributions of food prediction and food presentation"
 								/>
-							<element name="Medial Central Amygdaloid Nucleus" 
+							<element id="FAM.FT.AM.CEM" name="Medial Central Amygdaloid Nucleus" mapped="true" type="nucleus"
 								refs="NL:[http://neurolex.org/wiki/Category:Medial_central_nucleus_of_the_amygdala Medial central nucleus of the amygdala]"
+								function="mediate behavioral responses, output projections"
 								/>
 						</element>
-						<element id="FAM.FT.AM.M" name="Medial Amygdala" mapped="true" type="nucleus"
+						<element id="FAM.FT.AM.M" name="Medial Amygdala"
 							refs="NL:[http://neurolex.org/wiki/Category:Medial_amygdala Medial amygdala]; NL:[http://neurolex.org/wiki/Category:Medial_amygdaloid_nucleus Medial amygdaloid nucleus]"
 							function="sense of smell and pheromone-processing"
-							/>
+							notes="olfactory processing and innate emotions"
+							>
+							<element id="FAM.FT.AM.MEA" name="Medial Anterior Amygdaloid Nucleus" mapped="true" type="nucleus"
+								function="olfactory processing"
+								/>
+							<element id="FAM.FT.AM.MPD" name="Medial Posteror Dorsal Amygdaloid Nucleus" mapped="true" type="nucleus"
+								function="reproductive behavior"
+								notes="MePD -> HT-MPN"
+								/>
+							<element id="FAM.FT.AM.MPV" name="Medial Posteror Ventral Amygdaloid Nucleus" mapped="true" type="nucleus"
+								function="defensive behavior"
+								notes="MePV -> LAC.FD.HT.VM (reproductive+defensive), LAC.FD.HT.AH (defensive)"
+								/>
+						</element>
 					</element>
 				</element>
 				<element id="FAM.FT.AM.ITC" name="Intercalated Amygdaloid Nuclei" mapped="true" type="nucleus"
@@ -107,7 +144,7 @@
 			<element id="FAM.FT.BNST" name="Bed Nucleus of Stria Terminalis" mapped="true" type="nucleus"
 				refs="NL:[http://neurolex.org/wiki/Category:Bed_nucleus_of_stria_terminalis Bed nucleus of stria terminalis]"
 				function="Mediate slow longer-lasting responses that accompany sustained threats"
-				notes="Major output from AM to HT, part of extended amygdala"
+				notes="Major output from AM to HT, part of extended amygdala; medial part continues to medial AM, central part continues to central AM"
 				>
 				<element name="Oval Bed Nucleus of Stria Terminalis" refs="NL:[http://neurolex.org/wiki/Category:Bed_nuclei_of_the_stria_terminalis_oval_nucleus Bed nuclei of the stria terminalis oval nucleus]"/>
 				<element name="Lateral Bed Nucleus of Stria Terminalis" refs="NL:[http://neurolex.org/wiki/Category:Lateral_nucleus_of_stria_terminalis Lateral nucleus of stria terminalis]"/>
@@ -171,7 +208,8 @@
 				<element id="FAM.FT.SEP.PG" name="Posterior Septal Group"
 					notes="from MFB to stria medullaris"
 					>
-					<element id="FAM.FT.SEP.BAC" name="Septal Nucleus of Anterior Commissure" mapped="true" type="nucleus"
+					<element id="FAM.FT.SEP.BAC" name="Bed Nucleus of Anterior Commissure" mapped="true" type="nucleus"
+						synonyms="Septal Nucleus of Anterior Commissure"
 						refs="NL:[http://neurolex.org/wiki/Category:Nucleus_of_anterior_commissure Nucleus of anterior commissure]"
 						function="projection to contralateral HC"
 						/>
@@ -772,8 +810,8 @@
 						>
 						<element id="PHA.FD.TH.PT" name="Paratenial Nucleus of Thalamus" mapped="true" type="nucleus"
 							refs="NL:[http://neurolex.org/wiki/Category:Paratenial_nucleus Paratenial nucleus]"
-							function="Direct behavior toward a particular outcome over a range of outcomes"
-							notes="Projects to BNST, AM, OMPFC, ET"
+							function="Gateway for multimodal information to limbic system used in selecting appropriate responses"
+							notes="Projects to BNST, AM, OMPFC, ET; Direct behavior toward a particular outcome over a range of outcomes"
 							/>
 						<element id="FAM.FD.TH.PV" name="Paraventricular Nucleus of Thalamus" mapped="true" type="nucleus"
 							refs="NL:[http://neurolex.org/wiki/Category:Paraventricular_nucleus_of_thalamus Paraventricular nucleus of thalamus]"
@@ -818,16 +856,29 @@
 					notes="From superior colliculus, pretectum"
 					/>
 			</element>
-			<element id="FCA.FD.TH.MD" name="Mediodorsal Nucleus of Thalamus" mapped="true" type="nucleus"
+			<element id="FCA.FD.TH.MD" name="Mediodorsal Nucleus of Thalamus"
 				refs="NL:[http://neurolex.org/wiki/Category:Medial_dorsal_nucleus Medial dorsal nucleus];NL:[http://neurolex.org/wiki/Category:Mediodorsal_thalamus Mediodorsal thalamus]"
 				function="Attention, planning, organization, abstract thinking, multi-tasking, and active memory"
 				notes="Relay AM to FCA.LPFC, FCA.OMPFC"
 				>
-				<element name="Densocellular Part of Mediodorsal Nucleus of Thalamus" refs="NL:[http://neurolex.org/wiki/Category:Densocellular_part_of_medial_dorsal_nucleus Densocellular part of medial dorsal nucleus]"/>
-				<element name="Magnocellular Part of Mediodorsal Nucleus of Thalamus" refs="NL:[http://neurolex.org/wiki/Category:Magnocellular_part_of_medial_dorsal_nucleus Magnocellular part of medial dorsal nucleus]"/>
-				<element name="Medial Mediodorsal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Medial_mediodorsal_nucleus Medial mediodorsal nucleus]"/>
-				<element name="Paralaminar Part of Medial Dorsal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Paralaminar_part_of_medial_dorsal_nucleus Paralaminar part of medial dorsal nucleus]"/>
-				<element name="Parvicellular Part of Medial Dorsal Nucleus" refs="NL:[http://neurolex.org/wiki/Category:Parvicellular_part_of_medial_dorsal_nucleus Parvicellular part of medial dorsal nucleus]"/>
+				<element id="FCA.FD.TH.MDM" name="Medial Mediodorsal Nucleus of Thalamus" mapped="true" type="nucleus"
+					synonyms="Magnocellular Part of Mediodorsal Nucleus of Thalamus"
+					function="relay emotional attention to orbitofrontal cortex"
+					refs="NL:[http://neurolex.org/wiki/Category:Medial_mediodorsal_nucleus Medial mediodorsal nucleus]; NL:[http://neurolex.org/wiki/Category:Magnocellular_part_of_medial_dorsal_nucleus Magnocellular part of medial dorsal nucleus]"
+					notes="orbitofrontal cortex (BA12,13) defined by MDm projection; relay AM-Bp to OFC; OFCm - subjective pleasantness, OFCl - subjective unpleasantness"
+					/>
+				<element id="FCA.FD.TH.MDC" name="Central Mediodorsal Nucleus of Thalamus" mapped="true" type="nucleus"
+					synonyms="Densocellular Part of Mediodorsal Nucleus of Thalamus, Paralaminar Part of Medial Dorsal Nucleus, Paralamellar Part of Medial Dorsal Nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Paralaminar_part_of_medial_dorsal_nucleus Paralaminar part of medial dorsal nucleus]; NL:[http://neurolex.org/wiki/Category:Densocellular_part_of_medial_dorsal_nucleus Densocellular part of medial dorsal nucleus]; "
+					function="relay olfactory neocortex to insular integrated neocortex"
+					notes="Relay piriform cortex (BA34) to AIC (BA14)"
+					/>
+				<element id="FCA.FD.TH.MDL" name="Lateral Mediodorsal Nucleus of Thalamus" mapped="true" type="nucleus"
+					synonyms="Parvicellular Part of Medial Dorsal Nucleus"
+					refs="NL:[http://neurolex.org/wiki/Category:Parvicellular_part_of_medial_dorsal_nucleus Parvicellular part of medial dorsal nucleus]"
+					function="relay tegmentum to dorsal cingulate cortex"
+					notes="Relay Superior Colliculus, TH-LD, LDTG, IPD to ACCdl"
+					/>
 			</element>
 			<element id="FD.TH.PTH" name="Posterior Thalamus" refs="NL:[http://neurolex.org/wiki/Category:Posterior_nuclear_complex Posterior nuclear complex];NL:[http://neurolex.org/wiki/Category:Posterior_thalamus Posterior thalamus]">
 				<element id="FEC.FD.TH.LI" name="Limitans Nucleus of Thalamus" mapped="true" type="nucleus"
