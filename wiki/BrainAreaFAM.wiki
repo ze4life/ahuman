@@ -14,7 +14,7 @@
 || FAMMEM || Inhibit Neuroendocrine and Immunological Responses to Stress || [BrainRegionFAM_FT_SEP_DBB FAM.FT.SEP.DBB], [BrainRegionFAM_FT_SEP_LT FAM.FT.SEP.LT], [BrainRegionFAM_FT_SEP_MED FAM.FT.SEP.MED], [BrainRegionFAM_FT_SEP_SH FAM.FT.SEP.SH] ||
 || FAMPS || Fast Unconditional Sensory Data and Association Memory || [BrainRegionFAM_FD_TH_PV FAM.FD.TH.PV], [BrainRegionFAM_FT_AM_CEC FAM.FT.AM.CEC], [BrainRegionFAM_FT_AM_CEL FAM.FT.AM.CEL], [BrainRegionFAM_FT_AM_COP FAM.FT.AM.COP], [BrainRegionFAM_FT_AM_LAVL FAM.FT.AM.LAVL], [BrainRegionFAM_FT_AM_LAVM FAM.FT.AM.LAVM] ||
 || FAMUS || Conditional Context Sensory Data and Memory Attention || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB], [BrainRegionFAM_FT_AM_BM FAM.FT.AM.BM], [BrainRegionFAM_FT_AM_COA FAM.FT.AM.COA], [BrainRegionFAM_FT_AM_LADL FAM.FT.AM.LADL] ||
-|| FAR || Acquisition of Avoidance Responses || [BrainRegionFAM_FD_LHB_LT FAM.FD.LHB.LT], [BrainRegionFAM_FD_LHB_MED FAM.FD.LHB.MED], [BrainRegionFAM_FD_MHB FAM.FD.MHB], [BrainRegionFAM_FT_SEP_SF FAM.FT.SEP.SF], [BrainRegionFAM_FT_SEP_TR FAM.FT.SEP.TR] ||
+|| FAR || Acquisition of Avoidance Responses || [BrainRegionFAM_FD_LHB_LT FAM.FD.LHB.LT], [BrainRegionFAM_FD_LHB_MED FAM.FD.LHB.MED], [BrainRegionFAM_FD_MHB FAM.FD.MHB], [BrainRegionFAM_FT_SEP_SF FAM.FT.SEP.SF], [BrainRegionFAM_FT_SEP_TR FAM.FT.SEP.TR], [BrainRegionFAM_HP_PPN_RMTG FAM.HP.PPN.RMTG] ||
 
 == Control of Autonomic and Neuroendocrine Function ==
 
@@ -323,10 +323,12 @@
 || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || Medial Habenula || nucleus || FAU || Encoding negative feedback, indirect || affects VTA, dorsal raphe but via interpeduncular<BR>nucleus ||
 || [BrainRegionFAM_FT_SEP_SF FAM.FT.SEP.SF] || Septofimbrial Nucleus || nucleus || FAU || afferent to medial habenula, primary input to indirect encoding negative feedback ||  ||
 || [BrainRegionFAM_FT_SEP_TR FAM.FT.SEP.TR] || Triangular Septal Nucleus || nucleus || FAU || afferent to medial habenula, interpeduncular nucleus ||  ||
+|| [BrainRegionFAM_HP_PPN_RMTG FAM.HP.PPN.RMTG] || Rostromedial Tegmental Nucleus || nucleus || FEU || locomotion - walking, running || Pars dissipata, anterior, dissipated subnucleus,<BR>GABA ||
 
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionFAM_FD_LHB_LT FAM.FD.LHB.LT] || [BrainRegionFAM_HP_PPN_RMTG FAM.HP.PPN.RMTG] || nucleus-nucleus || [http://www.surgicalneurologyint.com/article.asp?issn=2152-7806;year=2012;volume=3;issue=2;spage=40;epage=46;aulast=Langevin Amygdala and its network (LHB -> RMTG, abstract)] ||
 || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || [BrainRegionFAM_FD_LHB_MED FAM.FD.LHB.MED] || nucleus-nucleus || (unknown reference) ||
 || [BrainRegionFAM_FT_SEP_SF FAM.FT.SEP.SF] || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (S -> MHb, abstract)] ||
 || [BrainRegionFAM_FT_SEP_TR FAM.FT.SEP.TR] || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (S -> MHb, abstract)] ||
@@ -338,6 +340,7 @@
 || [BrainAreaFAM FAM] || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || [BrainRegionFAM_FT_SEP_BAC FAM.FT.SEP.BAC] || Bed Nucleus of Anterior Commissure || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (S -> MHb, abstract)] ||
 || [BrainAreaFEC FEC] || [BrainRegionFAM_FD_LHB_LT FAM.FD.LHB.LT] || [BrainRegionFEC_FT_GPI_DS FEC.FT.GPI.DS] || Globus Pallidus Internal Dorsal || nucleus-nucleus-gaba || [http://www.scholarpedia.org/article/Habenula Habenula Connections (GPi -> LHb, abstract)] ||
 ||  || [BrainRegionFAM_FD_LHB_MED FAM.FD.LHB.MED] || [BrainRegionFEC_FT_VP_VM FEC.FT.VP.VM] || Ventral Pallidum Ventromedial || nucleus-nucleus-gaba || (unknown reference) ||
+||  || [BrainRegionFAM_HP_PPN_RMTG FAM.HP.PPN.RMTG] || [BrainRegionFEC_FD_STN_LT FEC.FD.STN.LT] || Subthalamic Nucleus Lateral || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLAC LAC] || [BrainRegionFAM_FD_LHB_LT FAM.FD.LHB.LT] || [BrainRegionLAC_FD_HT_LTN LAC.FD.HT.LTN] || Lateral Hypothalamic Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LH -> LHb, abstract)] ||
 ||  ||  || [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO] || Preoptic Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LPO -> LHb, abstract)] ||
 || [BrainAreaLMC LMC] || [BrainRegionFAM_FD_LHB_LT FAM.FD.LHB.LT] || [BrainRegionLMC_MM_RF_SUC LMC.MM.RF.SUC] || Superior Central Raphe Nucleus || nucleus-nucleus-5HT || (unknown reference) ||
@@ -354,10 +357,11 @@
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaFEC FEC] || [BrainRegionFAM_FD_LHB_MED FAM.FD.LHB.MED] || [BrainRegionFEC_FT_SNC_LT FEC.FT.SNC.LT] || Substantia Nigra Pars Compacta Lateral || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> SNc, abstract)] ||
 || [BrainAreaLLC LLC] || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || [BrainRegionBGA_HP_PPN_IPD BGA.HP.PPN.IPD] || Interpeduncular Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (MHb -> IP)] ||
-|| [BrainAreaLMC LMC] || [BrainRegionFAM_FD_LHB_LT FAM.FD.LHB.LT] || [BrainRegionLMC_HP_TG_LDT LMC.HP.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LHAB -> DTN, abstract)] ||
-||  || [BrainRegionFAM_FD_LHB_MED FAM.FD.LHB.MED] || [BrainRegionLMC_HP_TG_VTG LMC.HP.TG.VTG] || Ventral Tegmental Nucleus || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionFAM_HP_PPN_RMTG FAM.HP.PPN.RMTG] || [BrainRegionBGA_HP_PPN_IPD BGA.HP.PPN.IPD] || Interpeduncular Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
+|| [BrainAreaLMC LMC] || [BrainRegionFAM_FD_LHB_MED FAM.FD.LHB.MED] || [BrainRegionLMC_HP_TG_VTG LMC.HP.TG.VTG] || Ventral Tegmental Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLMC_MM_RF_SUC LMC.MM.RF.SUC] || Superior Central Raphe Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> MR, abstract)] ||
 ||  ||  || [BrainRegionLMC_MM_RP_DRN LMC.MM.RP.DRN] || Dorsal Raphe Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (LHb -> DR, abstract)] ||
+||  || [BrainRegionFAM_HP_PPN_RMTG FAM.HP.PPN.RMTG] || [BrainRegionLMC_HP_TG_LDT LMC.HP.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
 || <font color="red">Target</font> || || || || || ||
 || [BrainAreaTEA TEA] || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || [BrainRegionTARGET_TEA_ENDOCRINE TARGET.TEA.ENDOCRINE] || Endocrine Glands || endocrine-pineal-gland || [http://www.scholarpedia.org/article/Habenula Habenula Connections (MHb -> PB)] ||
 
@@ -367,6 +371,10 @@
   * [http://thebrain.mcgill.ca/flash/i/i_04/i_04_cl/i_04_cl_peu/i_04_cl_peu_1a.jpg Body alarm system] - see [http://thebrain.mcgill.ca/flash/i/i_04/i_04_cl/i_04_cl_peu/i_04_cl_peu.html Reference]
 
 <img src="http://thebrain.mcgill.ca/flash/i/i_04/i_04_cl/i_04_cl_peu/i_04_cl_peu_1a.jpg" alt="unavailable">
+
+  * [http://www.surgicalneurologyint.com/articles/2012/3/2/images/SurgNeurolInt_2012_3_2_40_91609_u1.jpg Amygdala and its network] - see [http://www.surgicalneurologyint.com/article.asp?issn=2152-7806;year=2012;volume=3;issue=2;spage=40;epage=46;aulast=Langevin Reference]
+
+<img src="http://www.surgicalneurologyint.com/articles/2012/3/2/images/SurgNeurolInt_2012_3_2_40_91609_u1.jpg" alt="unavailable">
 
   * [http://www.nature.com/npp/journal/v35/n1/images/npp2009104f10.jpg Medial prefrontal network] - see [http://www.nature.com/npp/journal/v35/n1/fig_tab/npp2009104f10.html Reference]
 
@@ -379,10 +387,6 @@
   * [http://www.nature.com/npp/journal/v35/n1/images/npp2009121f1.jpg Fear regulation] - see [https://brmlab.cz/project/brain_hacking/tdcs/pfc Reference]
 
 <img src="http://www.nature.com/npp/journal/v35/n1/images/npp2009121f1.jpg" alt="unavailable">
-
-  * [http://www.surgicalneurologyint.com/articles/2012/3/2/images/SurgNeurolInt_2012_3_2_40_91609_u1.jpg Amygdala and its network] - see [http://www.surgicalneurologyint.com/article.asp?issn=2152-7806;year=2012;volume=3;issue=2;spage=40;epage=46;aulast=Langevin Reference]
-
-<img src="http://www.surgicalneurologyint.com/articles/2012/3/2/images/SurgNeurolInt_2012_3_2_40_91609_u1.jpg" alt="unavailable">
 
   * [http://dgr.brain.riken.jp/files/Connectivity_hab_eng.jpg Exploring role of habenula in emotional behaviors] - see [http://dgr.brain.riken.jp/AsymmetryE.html Reference]
 
@@ -401,10 +405,10 @@
 (generated)
 
   * http://thebrain.mcgill.ca/flash/i/i_04/i_04_cl/i_04_cl_peu/i_04_cl_peu.html
+  * http://www.surgicalneurologyint.com/article.asp?issn=2152-7806;year=2012;volume=3;issue=2;spage=40;epage=46;aulast=Langevin
   * http://www.nature.com/npp/journal/v35/n1/fig_tab/npp2009104f10.html
   * http://www.scholarpedia.org/article/Habenula
   * https://brmlab.cz/project/brain_hacking/tdcs/pfc
-  * http://www.surgicalneurologyint.com/article.asp?issn=2152-7806;year=2012;volume=3;issue=2;spage=40;epage=46;aulast=Langevin
   * http://dgr.brain.riken.jp/AsymmetryE.html
   * http://www.nature.com/neuro/journal/v17/n9/full/nn.3779.html
   * http://rstb.royalsocietypublishing.org/content/364/1519/1005
