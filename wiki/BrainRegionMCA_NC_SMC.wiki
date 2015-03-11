@@ -30,26 +30,26 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/MCA.NC.SMC.dot.png
 *Inbound Region Connections:*
 
 || *Source Area* || *Source Region* || *Source Name* || *Type* || *Reference* ||
-|| [BrainAreaBAA BAA] || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || Somatosensory Cortex || cortex-forward || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> FrontalCortex, abstract)] ||
-||  || [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || Caudal Precuneus || cortex-forward || [http://thebrainlabs.com/brain.shtml Movement Planning (PPC -> SMC, abstract)] ||
-|| [BrainAreaEPA EPA] || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || Lateral Prefrontal Cortex || cortex-forward || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (46 -> F6)] ||
-|| [BrainAreaMAA MAA] || [BrainRegionMCA_FD_TH_VA MCA.FD.TH.VA] || Ventral Anterior Nucleus || excitatory || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (VA -> pVA)] ||
-||  || [BrainRegionMCA_FD_TH_VL MCA.FD.TH.VL] || Ventral Lateral Nucleus || excitatory || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (VLo -> SMC)] ||
-||  || [BrainRegionMCA_NC_PMC_F2 MCA.NC.PMC.F2] || Dorsal Caudal Premotor Cortex || cortex-forward || (unknown reference) ||
-||  || [BrainRegionMCA_NC_PMC_F4 MCA.NC.PMC.F4] || Ventral Caudal Premotor Cortex || cortex-forward || (unknown reference) ||
+|| [BrainAreaBAA BAA] || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || Somatosensory Cortex || feedforward-glu || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> FrontalCortex, abstract)] ||
+||  || [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || Caudal Precuneus || feedforward-glu || [http://thebrainlabs.com/brain.shtml Movement Planning (PPC -> SMC, abstract)] ||
+|| [BrainAreaEPA EPA] || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || Lateral Prefrontal Cortex || feedforward-glu || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (46 -> F6)] ||
+|| [BrainAreaMAA MAA] || [BrainRegionMCA_FD_TH_VA MCA.FD.TH.VA] || Ventral Anterior Nucleus || excitatory-glu || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (VA -> pVA)] ||
+||  || [BrainRegionMCA_FD_TH_VL MCA.FD.TH.VL] || Ventral Lateral Nucleus || excitatory-glu || [http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html Basal Ganglia Activity (VLo -> SMC)] ||
+||  || [BrainRegionMCA_NC_PMC_F2 MCA.NC.PMC.F2] || Dorsal Caudal Premotor Cortex || feedforward-glu || (unknown reference) ||
+||  || [BrainRegionMCA_NC_PMC_F4 MCA.NC.PMC.F4] || Ventral Caudal Premotor Cortex || feedforward-glu || (unknown reference) ||
 
 *Outbound Region Connections:*
 
 || *Target Area* || *Target Region* || *Target Name* || *Type* || *Reference* ||
-|| [BrainAreaFEC FEC] || [BrainRegionFEC_FD_STN_MED FEC.FD.STN.MED] || Subthalamic Nucleus Medial || excitatory || (unknown reference) ||
-||  || [BrainRegionFEC_FT_PU_MED FEC.FT.PU.MED] || Dorsal Putamen Medial || excitatory || (unknown reference) ||
-|| [BrainAreaLLC LLC] || [BrainRegionLLC_HP_PRF_PDT LLC.HP.PRF.PDT] || Pontine Reticulotegmental Nucleus || excitatory || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (M2 -> RF, abstract)] ||
-|| [BrainAreaLRC LRC] || [BrainRegionLRC_HP_PRF_CRF LRC.HP.PRF.CRF] || Caudal Pontine Reticular Nucleus || excitatory || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (M2 -> RF, abstract)] ||
-||  || [BrainRegionLRC_HP_PRF_GCR LRC.HP.PRF.GCR] || Gigantocellular Reticular Nucleus || excitatory || (unknown reference) ||
-||  || [BrainRegionLRC_MM_RP_RIP LRC.MM.RP.RIP] || Raphe Interpositus Nucleus || excitatory || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (FEFSEF -> RIP, abstract)] ||
-|| [BrainAreaMAA MAA] || [BrainRegionMCA_NC_PMC_F2 MCA.NC.PMC.F2] || Dorsal Caudal Premotor Cortex || cortex-forward || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (pre-SMA -> dPM, abstract)] ||
-||  || [BrainRegionMCA_NC_PMC_F5 MCA.NC.PMC.F5] || Ventral Rostral Premotor Cortex || cortex-forward || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (F6 -> F5)] ||
-||  || [BrainRegionMCA_NC_PMC_FEF MCA.NC.PMC.FEF] || Frontal Eye Field || cortex-forward || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (SEF -> FEF)] ||
+|| [BrainAreaFEC FEC] || [BrainRegionFEC_FD_STN_MED FEC.FD.STN.MED] || Subthalamic Nucleus Medial || excitatory-glu || (unknown reference) ||
+||  || [BrainRegionFEC_FT_PU_MED FEC.FT.PU.MED] || Dorsal Putamen Medial || excitatory-glu || (unknown reference) ||
+|| [BrainAreaLLC LLC] || [BrainRegionLLC_HP_PRF_PDT LLC.HP.PRF.PDT] || Pontine Reticulotegmental Nucleus || excitatory-glu || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (M2 -> RF, abstract)] ||
+|| [BrainAreaLRC LRC] || [BrainRegionLRC_HP_PRF_CRF LRC.HP.PRF.CRF] || Caudal Pontine Reticular Nucleus || excitatory-glu || [http://www.frontiersin.org/neuroanatomy/10.3389/fnana.2011.00034/full Vocal Control (M2 -> RF, abstract)] ||
+||  || [BrainRegionLRC_HP_PRF_GCR LRC.HP.PRF.GCR] || Gigantocellular Reticular Nucleus || excitatory-glu || (unknown reference) ||
+||  || [BrainRegionLRC_MM_RP_RIP LRC.MM.RP.RIP] || Raphe Interpositus Nucleus || excitatory-glu || [http://www.sciencedirect.com/science/article/pii/S0006899301025987 Horizontal saccades and smooth pursuit movements (FEFSEF -> RIP, abstract)] ||
+|| [BrainAreaMAA MAA] || [BrainRegionMCA_NC_PMC_F2 MCA.NC.PMC.F2] || Dorsal Caudal Premotor Cortex || feedforward-glu || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (pre-SMA -> dPM, abstract)] ||
+||  || [BrainRegionMCA_NC_PMC_F5 MCA.NC.PMC.F5] || Ventral Rostral Premotor Cortex || feedforward-glu || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (F6 -> F5)] ||
+||  || [BrainRegionMCA_NC_PMC_FEF MCA.NC.PMC.FEF] || Frontal Eye Field || feedforward-glu || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (SEF -> FEF)] ||
 
 = Thirdparty Circuits =
 (generated)
