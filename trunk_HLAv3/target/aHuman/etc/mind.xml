@@ -57,112 +57,104 @@
 		<connection-type-set>
 
 			<connection-type name="nucleus-nucleus" regionsrc="nucleus" regiondst="nucleus">
-				<link-type name="positive" implementation="mock" nttype="excitatory" nt="GLU" src="nucleus.output" dst="nucleus.input"/>
+				<link-type name="excitatory-glu" implementation="mock" nttype="excitatory" nt="GLU" src="nucleus.output" dst="nucleus.input"/>
 			</connection-type>
 
 			<connection-type name="nucleus-nucleus-gaba" regionsrc="nucleus" regiondst="nucleus">
-				<link-type name="positive" implementation="mock" nttype="inhibitory" nt="GABA" src="nucleus.output" dst="nucleus.input"/>
-			</connection-type>
-
-			<connection-type name="nucleus-nucleus-ACh" regionsrc="nucleus" regiondst="nucleus">
-				<link-type name="positive" implementation="mock" nttype="modulatory" nt="ACh" src="nucleus.output" dst="nucleus.input"/>
-			</connection-type>
-
-			<connection-type name="nucleus-nucleus-5HT" regionsrc="nucleus" regiondst="nucleus">
-				<link-type name="positive" implementation="mock" nttype="modulatory" nt="5HT" src="nucleus.output" dst="nucleus.input"/>
-			</connection-type>
-
-			<connection-type name="nucleus-nucleus-DA" regionsrc="nucleus" regiondst="nucleus">
-				<link-type name="positive" implementation="mock" nttype="modulatory" nt="DA" src="nucleus.output" dst="nucleus.input"/>
-			</connection-type>
-
-			<connection-type name="nucleus-nucleus-NE" regionsrc="nucleus" regiondst="nucleus">
-				<link-type name="positive" implementation="mock" nttype="modulatory" nt="NE" src="nucleus.output" dst="nucleus.input"/>
-			</connection-type>
-
-			<connection-type name="nucleus-nucleus-ENK" regionsrc="nucleus" regiondst="nucleus">
-				<link-type name="positive" implementation="mock" nttype="modulatory" nt="ENK" src="nucleus.output" dst="nucleus.input"/>
+				<link-type name="inhibitory-gaba" implementation="mock" nttype="inhibitory" nt="GABA" src="nucleus.output" dst="nucleus.input"/>
 			</connection-type>
 
 			<connection-type name="nucleus-neocortex" regionsrc="nucleus" regiondst="neocortex">
-				<link-type name="primary-input" implementation="mock" nttype="excitatory" nt="GLU" src="nucleus.output" dst="neocortex.ffin"/>
+				<link-type name="excitatory-glu" implementation="mock" nttype="excitatory" nt="GLU" src="nucleus.output" dst="neocortex.ffin"/>
 			</connection-type>
 
 			<connection-type name="nucleus-neocortex-gaba" regionsrc="nucleus" regiondst="neocortex">
-				<link-type name="primary-input" implementation="mock" nttype="inhibitory" nt="GABA" src="nucleus.output" dst="neocortex.ffin"/>
-			</connection-type>
-
-			<connection-type name="nucleus-neocortex-ACh" regionsrc="nucleus" regiondst="neocortex">
-				<link-type name="primary-input" implementation="mock" nttype="modulatory" nt="ACh" src="nucleus.output" dst="neocortex.ffin"/>
-			</connection-type>
-
-			<connection-type name="nucleus-allocortex-gaba" regionsrc="nucleus" regiondst="allocortex">
-				<link-type name="primary-input" implementation="mock" nttype="modulatory" nt="GABA" src="nucleus.output" dst="allocortex.input.indirect"/>
-			</connection-type>
-
-			<connection-type name="nucleus-allocortex-ACh" regionsrc="nucleus" regiondst="allocortex">
-				<link-type name="primary-input" implementation="mock" nttype="modulatory" nt="ACh" src="nucleus.output" dst="allocortex.input.indirect"/>
-			</connection-type>
-
-			<connection-type name="nucleus-neocortex-DA" regionsrc="nucleus" regiondst="neocortex">
-				<link-type name="primary-input" implementation="mock" nttype="modulatory" nt="DA" src="nucleus.output" dst="neocortex.ffin"/>
-			</connection-type>
-
-			<connection-type name="neocortex-nucleus" regionsrc="neocortex" regiondst="nucleus">
-				<link-type name="primary-input" implementation="mock" nttype="excitatory" nt="GLU" src="neocortex.ffout" dst="nucleus.input"/>
-			</connection-type>
-
-			<connection-type name="neocortex-neocortex" regionsrc="neocortex" regiondst="neocortex" >
-				<link-type name="cortex-forward" implementation="mock" nttype="excitatory" nt="GLU" src="neocortex.ffout" dst="neocortex.ffin"/>
-				<link-type name="cortex-feedback" implementation="mock" nttype="excitatory" nt="GLU" src="neocortex.fbout" dst="neocortex.fbin" back="true"/>
-			</connection-type>
-
-			<connection-type name="neocortex-allocortex" regionsrc="neocortex" regiondst="allocortex">
-				<link-type name="light" implementation="mock" nttype="excitatory" nt="GLU" src="neocortex.ffout" dst="allocortex.input.indirect"/>
-			</connection-type>
-
-			<connection-type name="allocortex-neocortex" regionsrc="allocortex" regiondst="neocortex">
-				<link-type name="light" implementation="mock" nttype="excitatory" nt="GLU" src="allocortex.output" dst="neocortex.ffin"/>
-			</connection-type>
-
-			<connection-type name="allocortex-nucleus" regionsrc="allocortex" regiondst="nucleus">
-				<link-type name="light" implementation="mock" nttype="excitatory" nt="GLU" src="allocortex.output" dst="nucleus.input"/>
-			</connection-type>
-
-			<connection-type name="allocortex-nucleus-5HT" regionsrc="allocortex" regiondst="nucleus">
-				<link-type name="light" implementation="mock" nttype="modulatory" nt="5HT" src="allocortex.output" dst="nucleus.input"/>
-			</connection-type>
-
-			<connection-type name="allocortex-nucleus-gaba" regionsrc="allocortex" regiondst="nucleus">
-				<link-type name="light" implementation="mock" nttype="inhibitory" nt="GABA" src="allocortex.output" dst="nucleus.input"/>
-			</connection-type>
-
-			<connection-type name="nucleus-ganglion" regionsrc="nucleus" regiondst="ganglion">
-				<link-type name="primary-input" implementation="mock" nttype="excitatory" nt="GLU" src="nucleus.output" dst="ganglion.input"/>
-			</connection-type>
-
-			<connection-type name="ganglion-ganglion" regionsrc="ganglion" regiondst="ganglion">
-				<link-type name="primary-input" implementation="mock" nttype="excitatory" nt="GLU" src="ganglion.output" dst="ganglion.input"/>
-			</connection-type>
-
-			<connection-type name="ganglion-nucleus" regionsrc="ganglion" regiondst="nucleus">
-				<link-type name="primary-input" implementation="mock" nttype="excitatory" nt="GLU" src="ganglion.output" dst="nucleus.input"/>
+				<link-type name="inhibitory-gaba" implementation="mock" nttype="inhibitory" nt="GABA" src="nucleus.output" dst="neocortex.ffin"/>
 			</connection-type>
 
 			<connection-type name="nucleus-allocortex" regionsrc="nucleus" regiondst="allocortex">
-				<link-type name="primary-input" implementation="mock" nttype="excitatory" nt="GLU" src="nucleus.output" dst="allocortex.input.direct"/>
+				<link-type name="excitatory-glu" implementation="mock" nttype="excitatory" nt="GLU" src="nucleus.output" dst="allocortex.input.direct"/>
 			</connection-type>
 
-			<connection-type name="nucleus-allocortex-5HT" regionsrc="nucleus" regiondst="allocortex">
-				<link-type name="primary-input" implementation="mock" nttype="modulatory" nt="5HT" src="nucleus.output" dst="allocortex.input.direct"/>
+			<connection-type name="nucleus-allocortex-gaba" regionsrc="nucleus" regiondst="allocortex">
+				<link-type name="inhibitory-gaba" implementation="mock" nttype="inhibitory" nt="GABA" src="nucleus.output" dst="allocortex.input.indirect"/>
 			</connection-type>
 
-			<connection-type name="nucleus-allocortex-DA" regionsrc="nucleus" regiondst="allocortex">
-				<link-type name="primary-input" implementation="mock" nttype="modulatory" nt="DA" src="nucleus.output" dst="allocortex.input.direct"/>
+			<connection-type name="nucleus-ganglion" regionsrc="nucleus" regiondst="ganglion">
+				<link-type name="excitatory-glu" implementation="mock" nttype="excitatory" nt="GLU" src="nucleus.output" dst="ganglion.input"/>
+			</connection-type>
+
+			<connection-type name="neocortex-nucleus" regionsrc="neocortex" regiondst="nucleus">
+				<link-type name="excitatory-glu" implementation="mock" nttype="excitatory" nt="GLU" src="neocortex.ffout" dst="nucleus.input"/>
+			</connection-type>
+
+			<connection-type name="neocortex-neocortex" regionsrc="neocortex" regiondst="neocortex" >
+				<link-type name="feedforward-glu" implementation="mock" nttype="excitatory" nt="GLU" src="neocortex.ffout" dst="neocortex.ffin"/>
+				<link-type name="feedback-glu" implementation="mock" nttype="excitatory" nt="GLU" src="neocortex.fbout" dst="neocortex.fbin" back="true"/>
+			</connection-type>
+
+			<connection-type name="neocortex-allocortex" regionsrc="neocortex" regiondst="allocortex">
+				<link-type name="excitatory-glu" implementation="mock" nttype="excitatory" nt="GLU" src="neocortex.ffout" dst="allocortex.input.indirect"/>
+			</connection-type>
+
+			<connection-type name="allocortex-neocortex" regionsrc="allocortex" regiondst="neocortex">
+				<link-type name="excitatory-glu" implementation="mock" nttype="excitatory" nt="GLU" src="allocortex.output" dst="neocortex.ffin"/>
+			</connection-type>
+
+			<connection-type name="allocortex-nucleus" regionsrc="allocortex" regiondst="nucleus">
+				<link-type name="excitatory-glu" implementation="mock" nttype="excitatory" nt="GLU" src="allocortex.output" dst="nucleus.input"/>
+			</connection-type>
+
+			<connection-type name="allocortex-nucleus-gaba" regionsrc="allocortex" regiondst="nucleus">
+				<link-type name="inhibitory-gaba" implementation="mock" nttype="inhibitory" nt="GABA" src="allocortex.output" dst="nucleus.input"/>
 			</connection-type>
 
 			<connection-type name="allocortex-allocortex" regionsrc="allocortex" regiondst="allocortex">
-				<link-type name="light" implementation="mock" nttype="excitatory" nt="GLU" src="allocortex.output" dst="allocortex.input.direct"/>
+				<link-type name="excitatory-glu" implementation="mock" nttype="excitatory" nt="GLU" src="allocortex.output" dst="allocortex.input.direct"/>
+			</connection-type>
+
+			<connection-type name="ganglion-nucleus" regionsrc="ganglion" regiondst="nucleus">
+				<link-type name="excitatory-glu" implementation="mock" nttype="excitatory" nt="GLU" src="ganglion.output" dst="nucleus.input"/>
+			</connection-type>
+
+			<connection-type name="nucleus-nucleus-ACh" regionsrc="nucleus" regiondst="nucleus">
+				<link-type name="modulatory-ach" implementation="mock" nttype="modulatory" nt="ACh" src="nucleus.output" dst="nucleus.input"/>
+			</connection-type>
+
+			<connection-type name="nucleus-nucleus-5HT" regionsrc="nucleus" regiondst="nucleus">
+				<link-type name="modulatory-5ht" implementation="mock" nttype="modulatory" nt="5HT" src="nucleus.output" dst="nucleus.input"/>
+			</connection-type>
+
+			<connection-type name="nucleus-nucleus-DA" regionsrc="nucleus" regiondst="nucleus">
+				<link-type name="modulatory-da" implementation="mock" nttype="modulatory" nt="DA" src="nucleus.output" dst="nucleus.input"/>
+			</connection-type>
+
+			<connection-type name="nucleus-nucleus-NE" regionsrc="nucleus" regiondst="nucleus">
+				<link-type name="modulatory-ne" implementation="mock" nttype="modulatory" nt="NE" src="nucleus.output" dst="nucleus.input"/>
+			</connection-type>
+
+			<connection-type name="nucleus-nucleus-ENK" regionsrc="nucleus" regiondst="nucleus">
+				<link-type name="modulatory-enk" implementation="mock" nttype="modulatory" nt="ENK" src="nucleus.output" dst="nucleus.input"/>
+			</connection-type>
+
+			<connection-type name="nucleus-neocortex-ACh" regionsrc="nucleus" regiondst="neocortex">
+				<link-type name="modulatory-ach" implementation="mock" nttype="modulatory" nt="ACh" src="nucleus.output" dst="neocortex.ffin"/>
+			</connection-type>
+
+			<connection-type name="nucleus-neocortex-DA" regionsrc="nucleus" regiondst="neocortex">
+				<link-type name="modulatory-da" implementation="mock" nttype="modulatory" nt="DA" src="nucleus.output" dst="neocortex.ffin"/>
+			</connection-type>
+
+			<connection-type name="nucleus-allocortex-ACh" regionsrc="nucleus" regiondst="allocortex">
+				<link-type name="modulatory-ach" implementation="mock" nttype="modulatory" nt="ACh" src="nucleus.output" dst="allocortex.input.indirect"/>
+			</connection-type>
+
+			<connection-type name="nucleus-allocortex-5HT" regionsrc="nucleus" regiondst="allocortex">
+				<link-type name="modulatory-5ht" implementation="mock" nttype="modulatory" nt="5HT" src="nucleus.output" dst="allocortex.input.direct"/>
+			</connection-type>
+
+			<connection-type name="nucleus-allocortex-DA" regionsrc="nucleus" regiondst="allocortex">
+				<link-type name="modulatory-da" implementation="mock" nttype="modulatory" nt="DA" src="nucleus.output" dst="allocortex.input.direct"/>
 			</connection-type>
 
 		</connection-type-set>
@@ -451,11 +443,6 @@
 					<region id="LRC.HM.NPH" type="nucleus" service="LLE" role="relay"/>
 					<region id="LRC.MM.PT.PR" type="nucleus" service="LRM" role="relay"/>
 					<region id="LRC.HM.INM" type="nucleus" service="LRC" role="relay"/>
-					<region id="LRC.HP.NI" type="nucleus" service="LUS" role="relay"/>
-					<connection type="nucleus-nucleus-gaba" primary="true" src="LRC.HP.NI" dst="PHA.FT.EPF"/>
-					<connection type="nucleus-nucleus-gaba" primary="true" src="LRC.HP.NI" dst="FAM.FT.SEP.SF"/>
-					<connection type="nucleus-nucleus-gaba" primary="true" src="LRC.HP.NI" dst="FAM.FT.SEP.TR"/>
-					<connection type="nucleus-nucleus-gaba" primary="true" src="LRC.HP.NI" dst="FAM.FD.LHB.MED"/>
 					<connection type="nucleus-nucleus" primary="true" src="LRC.HM.INM" dst="LAC.FD.HT.PN"/>
 					<connection type="nucleus-nucleus" primary="true" src="LRC.HM.NPH" dst="LRC.MM.PT.NOT"/>
 					<connection type="nucleus-nucleus" primary="true" src="LRC.HM.NPH" dst="ACA.FD.TH.SG"/>
@@ -472,7 +459,7 @@
 					<connection type="nucleus-nucleus" primary="true" src="LRC.HP.PRF.RPO" dst="LPC.MM.OCN"/>
 					<connection type="nucleus-allocortex" primary="true" src="LRC.HP.PRF.RPO" dst="LLC.HP.CR.CC"/>
 					<connection type="nucleus-nucleus" primary="true" src="LRC.HP.PRF.RPO" dst="LPC.HP.IVBN"/>
-					<connection type="nucleus-nucleus" primary="true" src="LRC.HP.PRF.RPO" dst="LRC.HP.NI"/>
+					<connection type="nucleus-nucleus" primary="true" src="LRC.HP.PRF.RPO" dst="FAM.HP.NI"/>
 					<connection type="nucleus-nucleus" primary="true" src="LRC.HP.PRF.GCR" dst="LPC.SC.VH.PL"/>
 					<connection type="nucleus-nucleus" primary="true" src="LRC.HP.PRF.GCR" dst="LPC.SC.VH.PM"/>
 					<connection type="nucleus-nucleus" primary="true" src="LRC.HP.PRF.GCR" dst="LLC.MM.SCNF"/>
@@ -777,10 +764,7 @@
 				<circuit id="LGP" name="Gait and Posture Control" enabled="true">
 					<region id="LLC.MM.CNF" type="nucleus" service="LLE" role="relay"/>
 					<region id="LLC.MM.SCNF" type="nucleus" service="LLE" role="relay"/>
-					<region id="LLC.HP.PPN.RMTG" type="nucleus" service="FEU" role="relay"/>
 					<region id="BGA.HP.PPN.IPD" type="nucleus" service="FEU" role="relay"/>
-					<connection type="nucleus-nucleus-gaba" primary="true" src="LLC.HP.PPN.RMTG" dst="LMC.HP.TG.LDT"/>
-					<connection type="nucleus-nucleus-gaba" primary="true" src="LLC.HP.PPN.RMTG" dst="BGA.HP.PPN.IPD"/>
 					<connection type="nucleus-nucleus-ACh" primary="true" src="BGA.HP.PPN.IPD" dst="FEC.FT.SNC.LT"/>
 					<connection type="nucleus-nucleus-ACh" primary="true" src="BGA.HP.PPN.IPD" dst="FEC.FD.STN.LT"/>
 					<connection type="nucleus-nucleus-ACh" primary="true" src="BGA.HP.PPN.IPD" dst="VBA.FD.LGN"/>
@@ -906,7 +890,7 @@
 					<region id="FEC.FD.TH.RIL" type="nucleus" service="NBU" role="processor"/>
 					<connection type="nucleus-nucleus" primary="true" src="FEC.FD.STN.LT" dst="FEC.FT.GPE.LT"/>
 					<connection type="nucleus-nucleus" primary="true" src="FEC.FD.STN.LT" dst="FEC.FT.GPI.LT"/>
-					<connection type="nucleus-nucleus" primary="true" src="FEC.FD.STN.LT" dst="LLC.HP.PPN.RMTG"/>
+					<connection type="nucleus-nucleus" primary="true" src="FEC.FD.STN.LT" dst="FAM.HP.PPN.RMTG"/>
 					<connection type="nucleus-nucleus-gaba" primary="true" src="FEC.FT.PU.LT" dst="FEC.FT.GPI.LT"/>
 					<connection type="nucleus-nucleus-gaba" primary="true" src="FEC.FT.GPE.LT" dst="FEC.FT.GPI.LT"/>
 					<connection type="nucleus-nucleus-gaba" primary="true" src="FEC.FT.GPE.LT" dst="FEC.FD.STN.LT"/>
@@ -1162,8 +1146,16 @@
 					<region id="FAM.FT.SEP.SF" type="nucleus" service="FAU" role="relay"/>
 					<region id="FAM.FT.SEP.TR" type="nucleus" service="FAU" role="relay"/>
 					<region id="FAM.FD.LHB.LT" type="nucleus" service="FAU" role="relay"/>
-					<connection type="nucleus-nucleus" primary="true" src="FAM.FD.LHB.LT" dst="LMC.HP.TG.LDT"/>
-					<connection type="nucleus-neocortex-gaba" primary="true" src="LRC.HP.NI" dst="PHA.NC.PH.PRR"/>
+					<region id="FAM.HP.PPN.RMTG" type="nucleus" service="FEU" role="relay"/>
+					<region id="FAM.HP.NI" type="nucleus" service="LUS" role="relay"/>
+					<connection type="nucleus-nucleus-gaba" primary="true" src="FAM.HP.NI" dst="PHA.FT.EPF"/>
+					<connection type="nucleus-nucleus-gaba" primary="true" src="FAM.HP.NI" dst="FAM.FT.SEP.SF"/>
+					<connection type="nucleus-nucleus-gaba" primary="true" src="FAM.HP.NI" dst="FAM.FT.SEP.TR"/>
+					<connection type="nucleus-nucleus-gaba" primary="true" src="FAM.HP.NI" dst="FAM.FD.LHB.MED"/>
+					<connection type="nucleus-nucleus-gaba" primary="true" src="FAM.HP.PPN.RMTG" dst="LMC.HP.TG.LDT"/>
+					<connection type="nucleus-nucleus-gaba" primary="true" src="FAM.HP.PPN.RMTG" dst="BGA.HP.PPN.IPD"/>
+					<connection type="nucleus-nucleus" primary="true" src="FAM.FD.LHB.LT" dst="FAM.HP.PPN.RMTG"/>
+					<connection type="nucleus-neocortex-gaba" primary="true" src="FAM.HP.NI" dst="PHA.NC.PH.PRR"/>
 					<connection type="nucleus-nucleus" primary="true" src="FAM.FD.MHB" dst="BGA.HP.PPN.IPD"/>
 					<connection type="nucleus-nucleus" primary="true" src="FAM.FD.MHB" dst="FAM.FD.LHB.MED"/>
 					<connection type="nucleus-nucleus" primary="true" src="FAM.FD.LHB.MED" dst="FEC.FT.SNC.LT"/>
