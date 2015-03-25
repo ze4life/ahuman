@@ -164,11 +164,20 @@
 					/>
 			</element>
 
-			<element id="FAM.FT.IPAC" name="Interstitial Anterior Commissural Nucleus" mapped="true" type="nucleus" 
+			<element id="FAM.FT.IPAC" name="Interstitial Anterior Commissural Nucleus"
 				refs="NL:[http://neurolex.org/wiki/Category:Interstitial_nucleus_of_the_posterior_limb_of_the_anterior_commissure Interstitial nucleus of the posterior limb of the anterior commissure]"
 				function="Sharp, acute pain sensation"
-				notes="Related to the central extended amygdala"
-				/>
+				notes="Related to the central extended amygdala, no connections between MED and LT; both medial and lateral divisions innervate retrorubral field"
+				>
+				<element id="FAM.FT.IPAC.MED" name="Medial Interstitial Anterior Commissural Nucleus" mapped="true" type="nucleus" 
+					function="Sharp, acute pain sensation"
+					notes="reciprocate its afferent connections, similar to medial part of central amygdaloid nucleus; projections to AM-Ce/BNST components, PB, and SOL originate chiefly from medial division; strong ACh projections from caudal IPACm to AM-BL-posterior and amygdalopiriform transition area"
+					/>
+				<element id="FEC.FT.IPAC.LT" name="Lateral Interstitial Anterior Commissural Nucleus" mapped="true" type="nucleus" 
+					function="Striatal territory"
+					notes="innervates the pallidal complex, substantia nigra and retrorubral field"
+					/>
+			</element>
 
 			<element id="FAM.FT.SEP" name="Septal Nucleus" 
 				refs="NL:[http://neurolex.org/wiki/Category:Septal_nuclear_complex Septal nuclear complex]"
@@ -808,7 +817,7 @@
 						refs="NL:[http://neurolex.org/wiki/Category:Central_dorsal_nucleus Central dorsal nucleus]"
 						function="viscero-limbic functions"
 						>
-						<element id="PHA.FD.TH.PT" name="Paratenial Nucleus of Thalamus" mapped="true" type="nucleus"
+						<element id="FAM.FD.TH.PT" name="Paratenial Nucleus of Thalamus" mapped="true" type="nucleus"
 							refs="NL:[http://neurolex.org/wiki/Category:Paratenial_nucleus Paratenial nucleus]"
 							function="Gateway for multimodal information to limbic system used in selecting appropriate responses"
 							notes="Projects to BNST, AM, OMPFC, ET; Direct behavior toward a particular outcome over a range of outcomes"
