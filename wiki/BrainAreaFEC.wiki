@@ -10,7 +10,7 @@
 || *ID* || *Name* || *Regions* ||
 || FECAF || Limbic Loop || [BrainRegionFEC_FD_STN_DL FEC.FD.STN.DL], [BrainRegionFEC_FT_CN_TL FEC.FT.CN.TL], [BrainRegionFEC_FT_GPE_RM FEC.FT.GPE.RM], [BrainRegionFEC_FT_GPI_RM FEC.FT.GPI.RM], [BrainRegionFEC_FT_PU_VT FEC.FT.PU.VT], [BrainRegionFEC_FT_SNR_MED FEC.FT.SNR.MED] ||
 || FECEXE || Executive/Cognitive Loop || [BrainRegionFEC_FD_STN_CD FEC.FD.STN.CD], [BrainRegionFEC_FT_CN_HD FEC.FT.CN.HD], [BrainRegionFEC_FT_GPE_DS FEC.FT.GPE.DS], [BrainRegionFEC_FT_GPI_DS FEC.FT.GPI.DS], [BrainRegionFEC_FT_SNC_LT FEC.FT.SNC.LT], [BrainRegionFEC_FT_SNR_RM FEC.FT.SNR.RM] ||
-|| FECLM || Motivational Loop || [BrainRegionFEC_FT_ACC_CORE FEC.FT.ACC.CORE], [BrainRegionFEC_FT_ACC_SH FEC.FT.ACC.SH], [BrainRegionFEC_FT_SNC_MED FEC.FT.SNC.MED], [BrainRegionFEC_FT_VP_DL FEC.FT.VP.DL], [BrainRegionFEC_FT_VP_VM FEC.FT.VP.VM] ||
+|| FECLM || Motivational Loop || [BrainRegionFEC_FT_ACC_CORE FEC.FT.ACC.CORE], [BrainRegionFEC_FT_ACC_SH FEC.FT.ACC.SH], [BrainRegionFEC_FT_IPAC_LT FEC.FT.IPAC.LT], [BrainRegionFEC_FT_SNC_MED FEC.FT.SNC.MED], [BrainRegionFEC_FT_VP_DL FEC.FT.VP.DL], [BrainRegionFEC_FT_VP_VM FEC.FT.VP.VM] ||
 || FECME || Motor Extensor Loop || [BrainRegionFEC_FD_STN_MED FEC.FD.STN.MED], [BrainRegionFEC_FD_TH_PF FEC.FD.TH.PF], [BrainRegionFEC_FT_GPE_MED FEC.FT.GPE.MED], [BrainRegionFEC_FT_GPI_MED FEC.FT.GPI.MED], [BrainRegionFEC_FT_PU_MED FEC.FT.PU.MED], [BrainRegionFEC_FT_SNR_DL FEC.FT.SNR.DL] ||
 || FECMF || Motor Flexor Loop || [BrainRegionFEC_FD_STN_LT FEC.FD.STN.LT], [BrainRegionFEC_FD_TH_CM FEC.FD.TH.CM], [BrainRegionFEC_FD_TH_RIL FEC.FD.TH.RIL], [BrainRegionFEC_FT_GPE_LT FEC.FT.GPE.LT], [BrainRegionFEC_FT_GPI_LT FEC.FT.GPI.LT], [BrainRegionFEC_FT_PU_LT FEC.FT.PU.LT] ||
 || FECOM || Oculomotor and Auditory/Association Loop || [BrainRegionFEC_FD_STN_ICD FEC.FD.STN.ICD], [BrainRegionFEC_FD_TH_LI FEC.FD.TH.LI], [BrainRegionFEC_FT_CN_BD FEC.FT.CN.BD], [BrainRegionFEC_FT_GPE_DL FEC.FT.GPE.DL], [BrainRegionFEC_FT_GPI_DL FEC.FT.GPI.DL], [BrainRegionFEC_FT_SNR_VL FEC.FT.SNR.VL] ||
@@ -124,6 +124,7 @@
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
 || [BrainRegionFEC_FT_ACC_CORE FEC.FT.ACC.CORE] || Nucleus Accumbens Core || nucleus || FEU || cognitive processing of motor function related to reward and reinforcement;<BR>encodes new motor programs which facilitate acquisition of given reward in future ||  ||
 || [BrainRegionFEC_FT_ACC_SH FEC.FT.ACC.SH] || Nucleus Accumbens Shell || nucleus || FEU || cognitive processing of motivational salience (wanting) as well as reward and<BR>reinforcement effects ||  ||
+|| [BrainRegionFEC_FT_IPAC_LT FEC.FT.IPAC.LT] || Lateral Interstitial Anterior Commissural Nucleus || nucleus || FAU || Striatal territory || innervates the pallidal complex, substantia nigra<BR>and retrorubral field ||
 || [BrainRegionFEC_FT_SNC_MED FEC.FT.SNC.MED] || Substantia Nigra Pars Compacta Medial || nucleus || FEU || motivational loop ||  ||
 || [BrainRegionFEC_FT_VP_DL FEC.FT.VP.DL] || Ventral Pallidum Dorsolateral || nucleus || FEU || motivational loop, NAcc-core ||  ||
 || [BrainRegionFEC_FT_VP_VM FEC.FT.VP.VM] || Ventral Pallidum Ventromedial || nucleus || FEU || motivational loop, NAcc-shell ||  ||
@@ -133,7 +134,9 @@
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionFEC_FT_ACC_CORE FEC.FT.ACC.CORE] || [BrainRegionFEC_FT_SNC_MED FEC.FT.SNC.MED] || nucleus-nucleus-gaba || (unknown reference) ||
 ||  || [BrainRegionFEC_FT_VP_DL FEC.FT.VP.DL] || nucleus-nucleus-gaba || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (NACC -> VPAL, abstract)] ||
-|| [BrainRegionFEC_FT_ACC_SH FEC.FT.ACC.SH] || [BrainRegionFEC_FT_VP_VM FEC.FT.VP.VM] || nucleus-nucleus-gaba || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (NACC -> VPAL, abstract)] ||
+|| [BrainRegionFEC_FT_ACC_SH FEC.FT.ACC.SH] || [BrainRegionFEC_FT_IPAC_LT FEC.FT.IPAC.LT] || nucleus-nucleus-gaba || (unknown reference) ||
+||  || [BrainRegionFEC_FT_VP_VM FEC.FT.VP.VM] || nucleus-nucleus-gaba || [http://www.impulsecontroldisorders.org/html/cravings.html Craving (NACC -> VPAL, abstract)] ||
+|| [BrainRegionFEC_FT_IPAC_LT FEC.FT.IPAC.LT] || [BrainRegionFEC_FT_VP_VM FEC.FT.VP.VM] || nucleus-nucleus-gaba || (unknown reference) ||
 || [BrainRegionFEC_FT_SNC_MED FEC.FT.SNC.MED] || [BrainRegionFEC_FT_ACC_SH FEC.FT.ACC.SH] || nucleus-nucleus-DA || (unknown reference) ||
 
 *External Inbound Region Connections:*
@@ -160,6 +163,7 @@
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaFAM FAM] || [BrainRegionFEC_FT_SNC_MED FEC.FT.SNC.MED] || [BrainRegionFAM_FT_AM_CEM FAM.FT.AM.CEM] || Medial Central Amygdaloid Nucleus || nucleus-nucleus-DA || (unknown reference) ||
 ||  || [BrainRegionFEC_FT_VP_VM FEC.FT.VP.VM] || [BrainRegionFAM_FD_LHB_MED FAM.FD.LHB.MED] || Lateral Habenula Medial Part || nucleus-nucleus-gaba || (unknown reference) ||
+|| [BrainAreaFEC FEC] || [BrainRegionFEC_FT_IPAC_LT FEC.FT.IPAC.LT] || [BrainRegionFEC_FT_SNR_DL FEC.FT.SNR.DL] || Substantia Nigra Pars Reticulata Dorsolateral || nucleus-nucleus-gaba || (unknown reference) ||
 || [BrainAreaLAC LAC] || [BrainRegionFEC_FT_ACC_SH FEC.FT.ACC.SH] || [BrainRegionLAC_FD_HT_LTN LAC.FD.HT.LTN] || Lateral Hypothalamic Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
 ||  || [BrainRegionFEC_FT_SNC_MED FEC.FT.SNC.MED] || [BrainRegionLAC_FD_HT_SUM LAC.FD.HT.SUM] || Supramammillary Nucleus || nucleus-nucleus-DA || (unknown reference) ||
 || [BrainAreaLMC LMC] || [BrainRegionFEC_FT_ACC_CORE FEC.FT.ACC.CORE] || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || Ventral Tegmental Area || nucleus-nucleus-gaba || [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reward circuit of human brain (NACC -> VTA, abstract)] ||
@@ -207,8 +211,8 @@
 ||  ||  || [BrainRegionMCA_NC_SMC MCA.NC.SMC] || Supplementary Motor Cortex || neocortex-nucleus || (unknown reference) ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaFAM FAM] || [BrainRegionFEC_FD_TH_PF FEC.FD.TH.PF] || [BrainRegionFAM_FT_SEP_MED FAM.FT.SEP.MED] || Medial Septal Nucleus || nucleus-nucleus-ACh || (unknown reference) ||
-||  || [BrainRegionFEC_FT_SNR_DL FEC.FT.SNR.DL] || [BrainRegionFAM_FT_IPAC FAM.FT.IPAC] || Interstitial Anterior Commissural Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaFEC FEC] || [BrainRegionFEC_FT_PU_MED FEC.FT.PU.MED] || [BrainRegionFEC_FT_SNC_LT FEC.FT.SNC.LT] || Substantia Nigra Pars Compacta Lateral || nucleus-nucleus-DA || (unknown reference) ||
+||  || [BrainRegionFEC_FT_SNR_DL FEC.FT.SNR.DL] || [BrainRegionFEC_FT_IPAC_LT FEC.FT.IPAC.LT] || Lateral Interstitial Anterior Commissural Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
 
 *External Outbound Region Connections:*
 
