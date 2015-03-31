@@ -8,7 +8,7 @@
 (generated)
 
 || *ID* || *Name* || *Regions* ||
-|| LGP || Gait and Posture Control || [BrainRegionBGA_HP_PPN_IPD BGA.HP.PPN.IPD], [BrainRegionLLC_MM_CNF LLC.MM.CNF], [BrainRegionLLC_MM_SCNF LLC.MM.SCNF] ||
+|| LGP || Gait and Posture Control || [BrainRegionLLC_MM_CNF LLC.MM.CNF], [BrainRegionLLC_MM_SCNF LLC.MM.SCNF] ||
 || LLC || Cerebrocerebellar Locomotion || [BrainRegionLLC_HP_CR_CC LLC.HP.CR.CC], [BrainRegionLLC_HP_CR_DN LLC.HP.CR.DN], [BrainRegionLLC_HP_PN_RP LLC.HP.PN.RP], [BrainRegionLLC_HP_PRF_PDT LLC.HP.PRF.PDT] ||
 || LLL || Spinocerebellar Learning || [BrainRegionLLC_FD_TH_SF LLC.FD.TH.SF], [BrainRegionLLC_HM_ARC LLC.HM.ARC], [BrainRegionLLC_HM_IO LLC.HM.IO], [BrainRegionLLC_HM_RF_MLRN LLC.HM.RF.MLRN], [BrainRegionLLC_HM_RF_PLRN LLC.HM.RF.PLRN], [BrainRegionLLC_HP_PN_PBB LLC.HP.PN.PBB] ||
 || LLP || Vestibulocerebellar Locomotion || [BrainRegionLLC_HM_RF_SLRN LLC.HM.RF.SLRN], [BrainRegionLLC_HP_CR_FN LLC.HP.CR.FN], [BrainRegionLLC_HP_CR_VC LLC.HP.CR.VC], [BrainRegionLLC_SC_IZ_CCV LLC.SC.IZ.CCV] ||
@@ -20,7 +20,6 @@
 <img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/LLC_LGP.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionBGA_HP_PPN_IPD BGA.HP.PPN.IPD] || Interpeduncular Nucleus || nucleus || FEU || postural control, voluntary arm and eye movements || Pars compacta, anterior, compact subnucleus, ACh;<BR>unpaired ||
 || [BrainRegionLLC_MM_CNF LLC.MM.CNF] || Cuneiform Nucleus || nucleus || LLE || Passive coping strategy to novel, painful or threatening stimuli || modulatory nucleus; medial part of midbrain RF ||
 || [BrainRegionLLC_MM_SCNF LLC.MM.SCNF] || Subcuneiform Nucleus || nucleus || LLE || Initiation of gait, feedback control of saccade accuracy || contributes to generation of estimate of target or<BR>eye position coded in craniotopic coordinates ||
 
@@ -31,11 +30,6 @@
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFAM FAM] || [BrainRegionBGA_HP_PPN_IPD BGA.HP.PPN.IPD] || [BrainRegionFAM_FD_MHB FAM.FD.MHB] || Medial Habenula || nucleus-nucleus || [http://www.scholarpedia.org/article/Habenula Habenula Connections (MHb -> IP)] ||
-||  ||  || [BrainRegionFAM_HP_PPN_RMTG FAM.HP.PPN.RMTG] || Rostromedial Tegmental Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
-|| [BrainAreaFEC FEC] || [BrainRegionBGA_HP_PPN_IPD BGA.HP.PPN.IPD] || [BrainRegionFEC_FD_STN_ICD FEC.FD.STN.ICD] || Subthalamic Nucleus Internal Caudal || nucleus-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionFEC_FT_SNR_MED FEC.FT.SNR.MED] || Substantia Nigra Pars Reticulata Medial || nucleus-nucleus-gaba || (unknown reference) ||
-|| [BrainAreaLMC LMC] || [BrainRegionBGA_HP_PPN_IPD BGA.HP.PPN.IPD] || [BrainRegionLMC_HP_TG_LDT LMC.HP.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus-ACh || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (DTN -> IPD)] ||
 || [BrainAreaLPC LPC] || [BrainRegionLLC_MM_CNF LLC.MM.CNF] || [BrainRegionLPC_SC_PH_CL LPC.SC.PH.CL] || Clarke Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLRC LRC] || [BrainRegionLLC_MM_SCNF LLC.MM.SCNF] || [BrainRegionLRC_HM_NPH LRC.HM.NPH] || Prepositus Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLRC_HP_PRF_GCR LRC.HP.PRF.GCR] || Gigantocellular Reticular Nucleus || nucleus-nucleus || (unknown reference) ||
@@ -44,16 +38,11 @@
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
-|| <font color="red">Cortical</font> || || || || || ||
-|| [BrainAreaSAA SAA] || [BrainRegionBGA_HP_PPN_IPD BGA.HP.PPN.IPD] || [BrainRegionVBA_FD_LGN VBA.FD.LGN] || Lateral Geniculate Nucleus || nucleus-nucleus-ACh || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (PPN -> LGN, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFEC FEC] || [BrainRegionBGA_HP_PPN_IPD BGA.HP.PPN.IPD] || [BrainRegionFEC_FD_STN_LT FEC.FD.STN.LT] || Subthalamic Nucleus Lateral || nucleus-nucleus-ACh || (unknown reference) ||
-||  ||  || [BrainRegionFEC_FT_SNC_LT FEC.FT.SNC.LT] || Substantia Nigra Pars Compacta Lateral || nucleus-nucleus-ACh || (unknown reference) ||
 || [BrainAreaLAC LAC] || [BrainRegionLLC_MM_CNF LLC.MM.CNF] || [BrainRegionLAC_HM_VGN LAC.HM.VGN] || Vagus Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLMC LMC] || [BrainRegionLLC_MM_SCNF LLC.MM.SCNF] || [BrainRegionLMC_HM_RP_MG LMC.HM.RP.MG] || Raphe Magnus Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLMC_HP_RP_PRN LMC.HP.RP.PRN] || Pontine Raphe Nucleus || nucleus-nucleus || (unknown reference) ||
-|| [BrainAreaLRC LRC] || [BrainRegionBGA_HP_PPN_IPD BGA.HP.PPN.IPD] || [BrainRegionLRC_MM_SC_INT LRC.MM.SC.INT] || Intermediate Superior Colliculus || nucleus-nucleus-ACh || [http://www.sciencedirect.com/science/article/pii/S0387760401003308 Geniculate and Extyrageniculate Paths (PPN -> SC, abstract)] ||
-||  || [BrainRegionLLC_MM_CNF LLC.MM.CNF] || [BrainRegionLRC_HP_PN_KFN LRC.HP.PN.KFN] || Kolliker-Fuse Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLRC LRC] || [BrainRegionLLC_MM_CNF LLC.MM.CNF] || [BrainRegionLRC_HP_PN_KFN LRC.HP.PN.KFN] || Kolliker-Fuse Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLRC_HP_PRF_GCR LRC.HP.PRF.GCR] || Gigantocellular Reticular Nucleus || nucleus-nucleus || (unknown reference) ||
 
 == Cerebrocerebellar Locomotion ==
@@ -257,30 +246,10 @@
 
 <img src="http://ars.els-cdn.com/content/image/1-s2.0-S0006899301025987-gr1.gif" alt="unavailable">
 
-  * [http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png Head Direction Cell Circuit] - see [http://www.scholarpedia.org/article/Head_direction_cells Reference]
-
-<img src="http://www.scholarpedia.org/w/images/6/63/Taube_Figure_5a.png" alt="unavailable">
-
-  * [http://www.nature.com/neuro/journal/v17/n9/images_article/nn.3779-F2.jpg Control dopaminergic and serotonergic systems] - see [http://www.nature.com/neuro/journal/v17/n9/full/nn.3779.html Reference]
-
-<img src="http://www.nature.com/neuro/journal/v17/n9/images_article/nn.3779-F2.jpg" alt="unavailable">
-
-  * [http://www.scholarpedia.org/w/images/thumb/2/2d/Hb-connections-small.jpg/800px-Hb-connections-small.jpg Habenula Connections] - see [http://www.scholarpedia.org/article/Habenula Reference]
-
-<img src="http://www.scholarpedia.org/w/images/thumb/2/2d/Hb-connections-small.jpg/800px-Hb-connections-small.jpg" alt="unavailable">
-
-  * [http://rstb.royalsocietypublishing.org/content/royptb/364/1519/1005/F1.large.jpg Connectivity of dorsal diencephalic conduction system] - see [http://rstb.royalsocietypublishing.org/content/364/1519/1005 Reference]
-
-<img src="http://rstb.royalsocietypublishing.org/content/royptb/364/1519/1005/F1.large.jpg" alt="unavailable"height=400width=400>
-
 
 = References =
 (generated)
 
   * http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/
   * http://www.sciencedirect.com/science/article/pii/S0006899301025987
-  * http://www.scholarpedia.org/article/Head_direction_cells
-  * http://www.nature.com/neuro/journal/v17/n9/full/nn.3779.html
-  * http://www.scholarpedia.org/article/Habenula
-  * http://rstb.royalsocietypublishing.org/content/364/1519/1005
 

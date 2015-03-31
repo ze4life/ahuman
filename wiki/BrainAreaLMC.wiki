@@ -9,7 +9,7 @@
 
 || *ID* || *Name* || *Regions* ||
 || 5HT || Serotonin - Feelings of Well-Being and Happiness || [BrainRegionLMC_HM_RP_MG LMC.HM.RP.MG], [BrainRegionLMC_HM_RP_OB LMC.HM.RP.OB], [BrainRegionLMC_HM_RP_PL LMC.HM.RP.PL], [BrainRegionLMC_HP_RP_PRN LMC.HP.RP.PRN], [BrainRegionLMC_MM_RF_SUC LMC.MM.RF.SUC], [BrainRegionLMC_MM_RP_DRN LMC.MM.RP.DRN] ||
-|| ACH || Acetylcholine - PNS Actions and CNS plasticity, arousal and reward || [BrainRegionLMC_FT_NBM LMC.FT.NBM], [BrainRegionLMC_HP_TG_LDT LMC.HP.TG.LDT], [BrainRegionLMC_HP_TG_VTG LMC.HP.TG.VTG] ||
+|| ACH || Acetylcholine - PNS Actions and CNS plasticity, arousal and reward || [BrainRegionLMC_FT_NBM LMC.FT.NBM], [BrainRegionLMC_HP_TG_DTG LMC.HP.TG.DTG], [BrainRegionLMC_HP_TG_LDT LMC.HP.TG.LDT], [BrainRegionLMC_HP_TG_VTG LMC.HP.TG.VTG] ||
 || DA || Dopamine - Reward-Motivated Behavior, Cognitive Alertness || [BrainRegionLMC_MM_VTA LMC.MM.VTA] ||
 || ENK || Enkephalin -  Regulating Nociception in Body || [BrainRegionLMC_MM_PAG LMC.MM.PAG] ||
 || NE || Norepinephrine - Vigilant Concentration, Stress Hormone, Fight-or-Flight Response || [BrainRegionLMC_HP_LC LMC.HP.LC] ||
@@ -71,6 +71,7 @@
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
 || [BrainRegionLMC_FT_NBM LMC.FT.NBM] || Basal Nucleus of Meynert || nucleus || FAU || Control imagination vs perception || ACh source, attention; modulatory nucleus ||
+|| [BrainRegionLMC_HP_TG_DTG LMC.HP.TG.DTG] || Dorsal Tegmental Nucleus || nucleus || LUS || accurate landmark navigation || vestibular sensory information to mammllary bodies<BR>for orientation ||
 || [BrainRegionLMC_HP_TG_LDT LMC.HP.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus || LUS || Modulating sustained attention or in mediating alerting responses || sleep, waking, motor function, learning and reward ||
 || [BrainRegionLMC_HP_TG_VTG LMC.HP.TG.VTG] || Ventral Tegmental Nucleus || nucleus || LUS || moderates hippocampal-driven rhythmic firing frequency in medial mammillary || contribute to episodic memory and new learning in<BR>humans as well as spatial memory ||
 
@@ -87,10 +88,12 @@
 ||  ||  || [BrainRegionFAM_FT_AM_BP FAM.FT.AM.BP] || Parvicellular Basal Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionFAM_FT_AM_CEM FAM.FT.AM.CEM] || Medial Central Amygdaloid Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionFAM_FT_BNST FAM.FT.BNST] || Bed Nucleus of Stria Terminalis || nucleus-nucleus || (unknown reference) ||
+||  || [BrainRegionLMC_HP_TG_DTG LMC.HP.TG.DTG] || [BrainRegionFAM_FD_LHB_MED FAM.FD.LHB.MED] || Lateral Habenula Medial Part || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionLMC_HP_TG_LDT LMC.HP.TG.LDT] || [BrainRegionFAM_HP_PPN_RMTG FAM.HP.PPN.RMTG] || Rostromedial Tegmental Nucleus || nucleus-nucleus-gaba || (unknown reference) ||
 ||  || [BrainRegionLMC_HP_TG_VTG LMC.HP.TG.VTG] || [BrainRegionFAM_FD_LHB_MED FAM.FD.LHB.MED] || Lateral Habenula Medial Part || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaFEC FEC] || [BrainRegionLMC_FT_NBM LMC.FT.NBM] || [BrainRegionFEC_FD_STN_CD FEC.FD.STN.CD] || Subthalamic Nucleus Caudal || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionFEC_FT_ACC_SH FEC.FT.ACC.SH] || Nucleus Accumbens Shell || nucleus-nucleus-gaba || [http://www.expertsmind.com/topic/emotion/affective-basal-ganglia-circuit-93570.aspx Affective basal ganglia circuit (NACC -> nBM, abstract)] ||
+|| [BrainAreaLRC LRC] || [BrainRegionLMC_HP_TG_DTG LMC.HP.TG.DTG] || [BrainRegionLRC_HM_NPH LRC.HM.NPH] || Prepositus Nucleus || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaMMA MMA] || [BrainRegionLMC_HP_TG_LDT LMC.HP.TG.LDT] || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || Lateral Mammillary Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LMB -> DTN)] ||
 
 *External Outbound Region Connections:*
@@ -102,12 +105,12 @@
 ||  || [BrainRegionLMC_HP_TG_LDT LMC.HP.TG.LDT] || [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG] || Suprageniculate Nucleus of Thalamus || nucleus-nucleus-ACh || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (DTN -> SUPGEN)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaFAM FAM] || [BrainRegionLMC_FT_NBM LMC.FT.NBM] || [BrainRegionFAM_FT_AM_BM FAM.FT.AM.BM] || Magnocellular Basal Amygdaloid Nucleus || nucleus-nucleus-ACh || (unknown reference) ||
+||  || [BrainRegionLMC_HP_TG_LDT LMC.HP.TG.LDT] || [BrainRegionFAM_HP_PPN_IPD FAM.HP.PPN.IPD] || Interpeduncular Nucleus || nucleus-nucleus-ACh || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (DTN -> IPD)] ||
 || [BrainAreaLAC LAC] || [BrainRegionLMC_HP_TG_LDT LMC.HP.TG.LDT] || [BrainRegionLAC_HM_SAL_ISL LAC.HM.SAL.ISL] || Inferior Salivatory Nucleus || nucleus-nucleus-ACh || (unknown reference) ||
 ||  ||  || [BrainRegionLAC_HM_SAL_SSL LAC.HM.SAL.SSL] || Superior Salivatory Nucleus || nucleus-nucleus-ACh || (unknown reference) ||
-|| [BrainAreaLLC LLC] || [BrainRegionLMC_HP_TG_LDT LMC.HP.TG.LDT] || [BrainRegionBGA_HP_PPN_IPD BGA.HP.PPN.IPD] || Interpeduncular Nucleus || nucleus-nucleus-ACh || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (DTN -> IPD)] ||
 || [BrainAreaLMC LMC] || [BrainRegionLMC_HP_TG_VTG LMC.HP.TG.VTG] || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || Ventral Tegmental Area || nucleus-nucleus || (unknown reference) ||
 || [BrainAreaLRC LRC] || [BrainRegionLMC_HP_TG_LDT LMC.HP.TG.LDT] || [BrainRegionLRC_HM_NPH LRC.HM.NPH] || Prepositus Nucleus || nucleus-nucleus-ACh || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (DTN -> NPRP)] ||
-|| [BrainAreaMMA MMA] || [BrainRegionLMC_HP_TG_LDT LMC.HP.TG.LDT] || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || Lateral Mammillary Nucleus || nucleus-nucleus-ACh || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (DTN -> LMam)] ||
+|| [BrainAreaMMA MMA] || [BrainRegionLMC_HP_TG_DTG LMC.HP.TG.DTG] || [BrainRegionPHA_FD_MB_LMB PHA.FD.MB.LMB] || Lateral Mammillary Nucleus || nucleus-nucleus-ACh || (unknown reference) ||
 ||  || [BrainRegionLMC_HP_TG_VTG LMC.HP.TG.VTG] || [BrainRegionHBA_FD_MB_MMB HBA.FD.MB.MMB] || Medial Mammillary Nucleus || nucleus-nucleus || (unknown reference) ||
 
 == Dopamine - Reward-Motivated Behavior, Cognitive Alertness ==
