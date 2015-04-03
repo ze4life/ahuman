@@ -8,7 +8,7 @@
 (generated)
 
 || *ID* || *Name* || *Regions* ||
-|| BAAALL || TBD || [BrainRegionSMA_FD_PV_OPV SMA.FD.PV.OPV], [BrainRegionSMA_FD_TH_LP SMA.FD.TH.LP], [BrainRegionSMA_FD_TH_VPI SMA.FD.TH.VPI], [BrainRegionSMA_FD_TH_VPL SMA.FD.TH.VPL], [BrainRegionSMA_FD_TH_VPM SMA.FD.TH.VPM], [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1], [BrainRegionSMA_NC_PO_PCC SMA.NC.PO.PCC], [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG], [BrainRegionSMA_NC_SPL_SA SMA.NC.SPL.SA] ||
+|| BAAALL || TBD || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR], [BrainRegionSMA_FD_PV_OPV SMA.FD.PV.OPV], [BrainRegionSMA_FD_TH_LP SMA.FD.TH.LP], [BrainRegionSMA_FD_TH_VPI SMA.FD.TH.VPI], [BrainRegionSMA_FD_TH_VPL SMA.FD.TH.VPL], [BrainRegionSMA_FD_TH_VPM SMA.FD.TH.VPM], [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1], [BrainRegionSMA_NC_PO_PCC SMA.NC.PO.PCC], [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG], [BrainRegionSMA_NC_SPL_SA SMA.NC.SPL.SA] ||
 
 == TBD ==
 
@@ -16,6 +16,7 @@
 <img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/BAA_BAAALL.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
+|| [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || Piriform Cortex || cortex, BA 34 || FMU || Perception of smells || Olfaction ||
 || [BrainRegionSMA_FD_PV_OPV SMA.FD.PV.OPV] || Oral Pulvinar || nucleus || NBU || Somatosensory functions || Thalamus, connected with parietal cortex, anterior<BR>pulvinar ||
 || [BrainRegionSMA_FD_TH_LP SMA.FD.TH.LP] || Lateral Posterior Nucleus of Thalamus || nucleus || NBU || Visual association cortex || From superior colliculus, pretectum ||
 || [BrainRegionSMA_FD_TH_VPI SMA.FD.TH.VPI] || Ventral Posteroinferior Nucleus || nucleus || NBU || Relays pain and temperature from body to insula ||  ||
@@ -44,6 +45,7 @@
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
+|| [BrainAreaCPA CPA] || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || [BrainRegionPHA_NC_INS_PPC PHA.NC.INS.PPC] || Peripaleocortical Claustral || neocortex-neocortex || (unknown reference) ||
 || [BrainAreaEPA EPA] || [BrainRegionSMA_NC_PO_PCC SMA.NC.PO.PCC] || [BrainRegionCGA_NC_SPL_PF CGA.NC.SPL.PF] || Rostral Precuneus || neocortex-neocortex || (unknown reference) ||
 || [BrainAreaMAA MAA] || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || [BrainRegionMCA_NC_MC MCA.NC.MC] || Motor Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> ParietalCortex, abstract)] ||
 ||  ||  || [BrainRegionMCA_NC_PMC_F5 MCA.NC.PMC.F5] || Ventral Rostral Premotor Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (F5 -> S2)] ||
@@ -57,7 +59,8 @@
 || [BrainAreaFEC FEC] || [BrainRegionSMA_FD_TH_LP SMA.FD.TH.LP] || [BrainRegionFEC_FT_GPI_DL FEC.FT.GPI.DL] || Globus Pallidus Internal Dorsolateral || nucleus-nucleus-gaba || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (BG -> Thalamus, abstract)] ||
 ||  || [BrainRegionSMA_NC_SPL_SA SMA.NC.SPL.SA] || [BrainRegionFEC_FD_TH_RIL FEC.FD.TH.RIL] || Rostral Intralaminar Nuclear Group of Thalamus || nucleus-neocortex || (unknown reference) ||
 || [BrainAreaLLC LLC] || [BrainRegionSMA_FD_TH_VPL SMA.FD.TH.VPL] || [BrainRegionLLC_SC_IZ_CCV LLC.SC.IZ.CCV] || Central Cervical Nucleus || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s1P -> P, abstract)] ||
-|| [BrainAreaLPC LPC] || [BrainRegionSMA_FD_TH_VPI SMA.FD.TH.VPI] || [BrainRegionLPC_HP_PB LPC.HP.PB] || Parabrachial Nucleus || nucleus-nucleus || (unknown reference) ||
+|| [BrainAreaLPC LPC] || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || [BrainRegionLPC_FT_AON LPC.FT.AON] || Anterior Olfactory Nucleus || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S1571064507000243 KIV model of cortico-hippocampal formation with subcortical projections for motor actions (AON -> PC)] ||
+||  || [BrainRegionSMA_FD_TH_VPI SMA.FD.TH.VPI] || [BrainRegionLPC_HP_PB LPC.HP.PB] || Parabrachial Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLPC_SC_PH_LMG LPC.SC.PH.LMG] || Lower Marginal Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLPC_SC_PH_LSG LPC.SC.PH.LSG] || Lower Substantia Gelatinosa || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLPC_SC_PH_UMG LPC.SC.PH.UMG] || Upper Marginal Nucleus || nucleus-nucleus || (unknown reference) ||
@@ -80,11 +83,13 @@
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
-|| [BrainAreaCPA CPA] || [BrainRegionSMA_FD_TH_VPI SMA.FD.TH.VPI] || [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || Posterior Insular Cortex || nucleus-neocortex || [http://users.atw.hu/blp6/BLP6/HTML/C0079780323045827.htm Pain matrix (TH.VPI -> INS)] ||
+|| [BrainAreaCPA CPA] || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || Anterior Insular Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PiR -> Iav, abstract)] ||
+||  || [BrainRegionSMA_FD_TH_VPI SMA.FD.TH.VPI] || [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || Posterior Insular Cortex || nucleus-neocortex || [http://users.atw.hu/blp6/BLP6/HTML/C0079780323045827.htm Pain matrix (TH.VPI -> INS)] ||
 ||  || [BrainRegionSMA_FD_TH_VPL SMA.FD.TH.VPL] || [BrainRegionPHA_NC_INS_HR PHA.NC.INS.HR] || Anterior Temporal Lobe || nucleus-neocortex || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (TH -> INS, abstract)] ||
 ||  || [BrainRegionSMA_FD_TH_VPM SMA.FD.TH.VPM] || [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || Posterior Insular Cortex || nucleus-neocortex || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (TH -> INS, abstract)] ||
 ||  || [BrainRegionSMA_NC_SPL_SA SMA.NC.SPL.SA] || [BrainRegionPHA_NC_INS_PIC PHA.NC.INS.PIC] || Posterior Insular Cortex || neocortex-neocortex || (unknown reference) ||
-|| [BrainAreaEPA EPA] || [BrainRegionSMA_FD_PV_OPV SMA.FD.PV.OPV] || [BrainRegionCGA_NC_SPL_PF CGA.NC.SPL.PF] || Rostral Precuneus || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (Pulvinar -> ParietalCortex, abstract)] ||
+|| [BrainAreaEPA EPA] || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || [BrainRegionFCA_FD_TH_MDC FCA.FD.TH.MDC] || Central Mediodorsal Nucleus of Thalamus || neocortex-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s2MD -> MD, abstract)] ||
+||  || [BrainRegionSMA_FD_PV_OPV SMA.FD.PV.OPV] || [BrainRegionCGA_NC_SPL_PF CGA.NC.SPL.PF] || Rostral Precuneus || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (Pulvinar -> ParietalCortex, abstract)] ||
 ||  || [BrainRegionSMA_NC_PO_PCC SMA.NC.PO.PCC] || [BrainRegionFCA_NC_OPFC FCA.NC.OPFC] || Orbitofrontal Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> FrontalCortex, abstract)] ||
 ||  || [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || Retrosplenial Cortex || neocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (PosteriorParietalCortex -> PCGRSP, abstract)] ||
 ||  || [BrainRegionSMA_NC_SPL_SA SMA.NC.SPL.SA] || [BrainRegionFCA_NC_OPFC FCA.NC.OPFC] || Orbitofrontal Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1053810011000080 Cortico-Cortical Connectivity (SA -> PFC, abstract)] ||
@@ -95,10 +100,13 @@
 || [BrainAreaSAA SAA] || [BrainRegionSMA_FD_TH_VPM SMA.FD.TH.VPM] || [BrainRegionACA_NC_PRI ACA.NC.PRI] || Parainsular Area || nucleus-neocortex || (unknown reference) ||
 ||  || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || [BrainRegionACA_NC_IPL_SMW ACA.NC.IPL.SMW] || Supramarginal Wernike Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1053810011000080 Cortico-Cortical Connectivity (S1 -> PTHA, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFAM FAM] || [BrainRegionSMA_NC_PO_PCC SMA.NC.PO.PCC] || [BrainRegionFAM_FT_AM_CEL FAM.FT.AM.CEL] || Central Amygdaloid Nucleus, lateral subdivision || neocortex-nucleus || (unknown reference) ||
+|| [BrainAreaFAM FAM] || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || [BrainRegionFAM_FT_EPF FAM.FT.EPF] || Endopiriform Nucleus || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PiR -> EnP)] ||
+||  ||  || [BrainRegionFAM_FT_IPAC_MED FAM.FT.IPAC.MED] || Medial Interstitial Anterior Commissural Nucleus || neocortex-nucleus || (unknown reference) ||
+||  || [BrainRegionSMA_NC_PO_PCC SMA.NC.PO.PCC] || [BrainRegionFAM_FT_AM_CEL FAM.FT.AM.CEL] || Central Amygdaloid Nucleus, lateral subdivision || neocortex-nucleus || (unknown reference) ||
 || [BrainAreaFEC FEC] || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || [BrainRegionFEC_FT_PU_LT FEC.FT.PU.LT] || Dorsal Putamen Lateral || neocortex-nucleus || (unknown reference) ||
+|| [BrainAreaFMM FMM] || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || [BrainRegionPHA_NC_PH_ET PHA.NC.PH.ET] || Enthorhinal Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1571064507000243 KIV model of cortico-hippocampal formation with subcortical projections for motor actions (PC -> EC)] ||
+||  || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || Perirhinal Cortex || neocortex-neocortex || (unknown reference) ||
 || [BrainAreaLRC LRC] || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || [BrainRegionLRC_HM_TGM_PA5 LRC.HM.TGM.PA5] || Paratrigeminal Nucleus || neocortex-nucleus || (unknown reference) ||
-|| [BrainAreaMMA MMA] || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || [BrainRegionPHA_NC_PH_PRR PHA.NC.PH.PRR] || Perirhinal Cortex || neocortex-neocortex || (unknown reference) ||
 
 = Thirdparty Circuits =
 (generated)
@@ -118,6 +126,10 @@
   * [http://www.nature.com/nrn/journal/v3/n2/images/nrn726-f3.jpg McNaughton Spatial Processing Network] - see [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html Reference]
 
 <img src="http://www.nature.com/nrn/journal/v3/n2/images/nrn726-f3.jpg" alt="unavailable">
+
+  * [http://ars.els-cdn.com/content/image/1-s2.0-S0149763401000215-gr4a.gif Gustatory sensory system of rat and macaque] - see [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Reference]
+
+<img src="http://ars.els-cdn.com/content/image/1-s2.0-S0149763401000215-gr4a.gif" alt="unavailable">
 
   * [http://ars.els-cdn.com/content/image/1-s2.0-S0166223697010679-gr6.gif Parietal Association Cortex] - see [http://www.sciencedirect.com/science/article/pii/S0166223697010679 Reference]
 
@@ -159,9 +171,9 @@
 
 <img src="http://www.dartmouth.edu/~rswenson/NeuroSci/figures/Figure_16_files/image002.jpg" alt="unavailable">
 
-  * [http://ars.els-cdn.com/content/image/1-s2.0-S0149763401000215-gr4a.gif Gustatory sensory system of rat and macaque] - see [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Reference]
+  * [http://ars.els-cdn.com/content/image/1-s2.0-S1571064507000243-gr008.jpg KIV model of cortico-hippocampal formation with subcortical projections for motor actions] - see [http://www.sciencedirect.com/science/article/pii/S1571064507000243 Reference]
 
-<img src="http://ars.els-cdn.com/content/image/1-s2.0-S0149763401000215-gr4a.gif" alt="unavailable">
+<img src="http://ars.els-cdn.com/content/image/1-s2.0-S1571064507000243-gr008.jpg" alt="unavailable">
 
 
 = References =
@@ -171,6 +183,7 @@
   * http://users.atw.hu/blp6/BLP6/HTML/C0079780323045827.htm
   * http://www.sciencedirect.com/science/article/pii/S1053810011000080
   * http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html
+  * http://www.sciencedirect.com/science/article/pii/S0149763401000215
   * http://www.sciencedirect.com/science/article/pii/S0166223697010679
   * http://www.sciencedirect.com/science/article/pii/S0006899301025987
   * http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html
@@ -181,5 +194,5 @@
   * http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html
   * http://www.springerimages.com/Images/MedicineAndPublicHealth/1-10.1007_s10194-006-0307-1-0
   * http://www.lookfordiagnosis.com/mesh_info.php?term=Trigeminal+Nucleilang=1
-  * http://www.sciencedirect.com/science/article/pii/S0149763401000215
+  * http://www.sciencedirect.com/science/article/pii/S1571064507000243
 
