@@ -10,7 +10,7 @@ Region is part of aHuman target integrated biological model.
   * *Brain area*: [BrainAreaFMM Forebrain - Memory Management Area]
   * *Role*: processor
   * *Function*: Gate controlled by the activity of the supramammillary nucleus to control signal propagation between HC lamines
-  * *Notes to function*: Hippocampus. Receives theta rithm input from Septum Nucleus
+  * *Notes to function*: Hippocampus. Receives theta rithm input from Septum Nucleus; the only SUM projection in rat, the only converge from ET L2 and L3; social memory
 (generated)
 = Components =
 (generated)
@@ -28,7 +28,9 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/FMM.FT.HC.CA2.dot.png
 
 || *Source Area* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || [BrainAreaFAM FAM] || [BrainRegionFAM_FT_SEP_DBB FAM.FT.SEP.DBB] || Diagonal Band of Broca || inhibitory-gaba || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Medial mammillary nucleus and theta rhythm (SEP -> HF, abstract)] ||
-|| [BrainAreaFMM FMM] || [BrainRegionFMM_FT_HC_CA3 FMM.FT.HC.CA3] || Dorsomedial Cornu Ammonis of Hippocampus || excitatory-glu || [http://www.sciencedirect.com/science/article/pii/S1571064507000243 KIV model of cortico-hippocampal formation with subcortical projections for motor actions (CA3 -> CA2)] ||
+|| [BrainAreaFMM FMM] || [BrainRegionFMM_FT_HC_CA3D FMM.FT.HC.CA3D] || Distal CA1 of Hippocampus || inhibitory-gaba || [http://www.sciencedirect.com/science/article/pii/S1571064507000243 KIV model of cortico-hippocampal formation with subcortical projections for motor actions (CA3 -> CA2, abstract)] ||
+||  || [BrainRegionFMM_FT_HC_CA3M FMM.FT.HC.CA3M] || Middle CA1 of Hippocampus || inhibitory-gaba || [http://www.sciencedirect.com/science/article/pii/S1571064507000243 KIV model of cortico-hippocampal formation with subcortical projections for motor actions (CA3 -> CA2, abstract)] ||
+||  || [BrainRegionFMM_FT_HC_CA3P FMM.FT.HC.CA3P] || Proximal CA1 of Hippocampus || inhibitory-gaba || [http://www.sciencedirect.com/science/article/pii/S1571064507000243 KIV model of cortico-hippocampal formation with subcortical projections for motor actions (CA3 -> CA2, abstract)] ||
 ||  || [BrainRegionFMM_NC_PH_LEC FMM.NC.PH.LEC] || Lateral Entorhinal Cortex || excitatory-glu || [http://www.surgicalneurologyint.com/article.asp?issn=2152-7806;year=2012;volume=3;issue=2;spage=40;epage=46;aulast=Langevin Amygdala and its network (EC -> HC, abstract)] ||
 ||  || [BrainRegionFMM_NC_PH_MEC FMM.NC.PH.MEC] || Medial Entorhinal Cortex || excitatory-glu || [http://www.surgicalneurologyint.com/article.asp?issn=2152-7806;year=2012;volume=3;issue=2;spage=40;epage=46;aulast=Langevin Amygdala and its network (EC -> HC, abstract)] ||
 || [BrainAreaLAC LAC] || [BrainRegionLAC_FD_HT_SUM LAC.FD.HT.SUM] || Supramammillary Nucleus || excitatory-glu || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Medial mammillary nucleus and theta rhythm (SupraMM -> HF, abstract)] ||
@@ -36,7 +38,9 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/FMM.FT.HC.CA2.dot.png
 *Outbound Region Connections:*
 
 || *Target Area* || *Target Region* || *Target Name* || *Type* || *Reference* ||
-|| [BrainAreaFMM FMM] || [BrainRegionFMM_FT_HC_CA1 FMM.FT.HC.CA1] || Ventrolateral Cornu Ammonis of Hippocampus || excitatory-glu || [http://www.sciencedirect.com/science/article/pii/S030645220600755X Flow of impulses in hippocampal region (CA2 -> CA1)] ||
+|| [BrainAreaFMM FMM] || [BrainRegionFMM_FT_HC_CA1D FMM.FT.HC.CA1D] || Distal CA1 of Hippocampus || excitatory-glu || [http://www.sciencedirect.com/science/article/pii/S030645220600755X Flow of impulses in hippocampal region (CA2 -> CA1, abstract)] ||
+||  || [BrainRegionFMM_FT_HC_CA1M FMM.FT.HC.CA1M] || Middle CA1 of Hippocampus || excitatory-glu || [http://www.sciencedirect.com/science/article/pii/S030645220600755X Flow of impulses in hippocampal region (CA2 -> CA1, abstract)] ||
+||  || [BrainRegionFMM_FT_HC_CA1P FMM.FT.HC.CA1P] || Proximal CA1 of Hippocampus || excitatory-glu || [http://www.sciencedirect.com/science/article/pii/S030645220600755X Flow of impulses in hippocampal region (CA2 -> CA1, abstract)] ||
 
 = Thirdparty Circuits =
 (generated)
