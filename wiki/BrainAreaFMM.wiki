@@ -8,7 +8,7 @@
 (generated)
 
 || *ID* || *Name* || *Regions* ||
-|| MMAENVCTX || Environmental Context || [BrainRegionFMM_NC_PH_PAS FMM.NC.PH.PAS], [BrainRegionFMM_NC_PH_POS FMM.NC.PH.POS], [BrainRegionFMM_NC_PH_PRP FMM.NC.PH.PRP] ||
+|| MMAENVCTX || Environmental Context || [BrainRegionFMM_NC_PH_PAS FMM.NC.PH.PAS], [BrainRegionFMM_NC_PH_POS FMM.NC.PH.POS] ||
 || MMAHCE || Emotional Hippocampus || [BrainRegionFMM_FT_HC_CA1D FMM.FT.HC.CA1D], [BrainRegionFMM_FT_HC_CA3P FMM.FT.HC.CA3P], [BrainRegionFMM_FT_HF_SUBP FMM.FT.HF.SUBP], [BrainRegionFMM_NC_PH_PER FMM.NC.PH.PER] ||
 || MMAHCF || Creating Fields || [BrainRegionFMM_FT_HC_CA2 FMM.FT.HC.CA2], [BrainRegionFMM_FT_HC_DG FMM.FT.HC.DG] ||
 || MMAHCS || Spatial Hippocampus || [BrainRegionFMM_FT_HC_CA1P FMM.FT.HC.CA1P], [BrainRegionFMM_FT_HC_CA3D FMM.FT.HC.CA3D], [BrainRegionFMM_FT_HF_SUBD FMM.FT.HF.SUBD], [BrainRegionFMM_NC_PH_POR FMM.NC.PH.POR] ||
@@ -25,7 +25,6 @@
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
 || [BrainRegionFMM_NC_PH_PAS FMM.NC.PH.PAS] || Parasubiculum || cortex, BA 49 || FMU || Spatial navigation and the integration of head-directional information || Major projects to ET, from CA1,AM ||
 || [BrainRegionFMM_NC_PH_POS FMM.NC.PH.POS] || Postsubiculum || cortex, BA 48 || FMU || Visual association || Detached dorsal part of presubiculum; Integrate<BR>visual landmarks with internal representations of<BR>environments ||
-|| [BrainRegionFMM_NC_PH_PRP FMM.NC.PH.PRP] || Prepyriform Cortex || cortex, BA 51 || FMU || Perception of smells, relay via MD to PFC ||  ||
 
 *Internal Region Connections:*
   * no connections
@@ -53,6 +52,7 @@
 ||  ||  || [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || Lateral Dorsal Nucleus of Thalamus || neocortex-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (PSUB -> LD)] ||
 ||  ||  || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || Retrosplenial Cortex || neocortex-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (PSUB -> RSP)] ||
 || <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaFEC FEC] || [BrainRegionFMM_NC_PH_PAS FMM.NC.PH.PAS] || [BrainRegionFEC_FT_ACC_CORE FEC.FT.ACC.CORE] || Nucleus Accumbens Core || neocortex-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/nucleus-accumbens.jpg Nucleus Accumbens (PAS -> NACC, abstract)] ||
 || [BrainAreaFMM FMM] || [BrainRegionFMM_NC_PH_PAS FMM.NC.PH.PAS] || [BrainRegionFMM_FD_MB_LMB FMM.FD.MB.LMB] || Lateral Mammillary Nucleus || neocortex-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Mammillary bodies: two memory systems in one (PAS -> LMB)] ||
 ||  ||  || [BrainRegionFMM_NC_PH_MEC FMM.NC.PH.MEC] || Medial Entorhinal Cortex || neocortex-neocortex || (unknown reference) ||
 ||  || [BrainRegionFMM_NC_PH_POS FMM.NC.PH.POS] || [BrainRegionFMM_FD_MB_LMB FMM.FD.MB.LMB] || Lateral Mammillary Nucleus || neocortex-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (PSUB -> LMB)] ||
@@ -107,6 +107,7 @@
 || [BrainAreaFAM FAM] || [BrainRegionFMM_FT_HC_CA1D FMM.FT.HC.CA1D] || [BrainRegionFAM_FT_SEP_MED FAM.FT.SEP.MED] || Medial Septal Nucleus || allocortex-nucleus || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (CA1 -> SEP, abstract)] ||
 ||  || [BrainRegionFMM_FT_HF_SUBP FMM.FT.HF.SUBP] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || Accessory Basal Amygdaloid Nucleus || allocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S030100820900183X Simplified model of hippocampal formation anatomy (SUB -> Amyg, abstract)] ||
 || [BrainAreaFEC FEC] || [BrainRegionFMM_FT_HF_SUBP FMM.FT.HF.SUBP] || [BrainRegionFEC_FT_ACC_CORE FEC.FT.ACC.CORE] || Nucleus Accumbens Core || allocortex-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/nucleus-accumbens.jpg Nucleus Accumbens (SUB -> NACC, abstract)] ||
+||  || [BrainRegionFMM_NC_PH_PER FMM.NC.PH.PER] || [BrainRegionFEC_FT_ACC_CORE FEC.FT.ACC.CORE] || Nucleus Accumbens Core || neocortex-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/nucleus-accumbens.jpg Nucleus Accumbens (PRR -> NACC, abstract)] ||
 || [BrainAreaFMM FMM] || [BrainRegionFMM_FT_HC_CA3P FMM.FT.HC.CA3P] || [BrainRegionFMM_FT_HC_CA2 FMM.FT.HC.CA2] || Dorsolateral Cornu Ammonis of Hippocampus || allocortex-allocortex-gaba || [http://www.sciencedirect.com/science/article/pii/S1571064507000243 KIV model of cortico-hippocampal formation with subcortical projections for motor actions (CA3 -> CA2, abstract)] ||
 ||  || [BrainRegionFMM_FT_HF_SUBP FMM.FT.HF.SUBP] || [BrainRegionFMM_FD_MB_MMB FMM.FD.MB.MMB] || Medial Mammillary Nucleus || allocortex-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Mammillary bodies: two memory systems in one (SUB -> MMB, abstract)] ||
 ||  || [BrainRegionFMM_NC_PH_PER FMM.NC.PH.PER] || [BrainRegionFMM_FT_HC_DG FMM.FT.HC.DG] || Dentate Gyrus || neocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PrC -> HF, abstract)] ||
@@ -267,6 +268,8 @@
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionFMM_FD_MB_LMB FMM.FD.MB.LMB] || [BrainRegionFMM_NC_PH_PRS FMM.NC.PH.PRS] || nucleus-neocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (MBOUT -> PRESUB)] ||
+|| [BrainRegionFMM_NC_PH_PRS FMM.NC.PH.PRS] || [BrainRegionFMM_FD_MB_LMB FMM.FD.MB.LMB] || neocortex-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Mammillary bodies: two memory systems in one (PRS -> LMB)] ||
+||  || [BrainRegionFMM_FD_MB_MMB FMM.FD.MB.MMB] || neocortex-nucleus || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (PRESUB -> MBIN)] ||
 
 *External Inbound Region Connections:*
 
