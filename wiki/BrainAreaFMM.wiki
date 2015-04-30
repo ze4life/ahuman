@@ -32,6 +32,7 @@
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionFMM_FD_TH_AD FMM.FD.TH.AD] || [BrainRegionFMM_NC_PH_POS FMM.NC.PH.POS] || nucleus-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (AD -> PSUB)] ||
+|| [BrainRegionFMM_FD_TH_AV FMM.FD.TH.AV] || [BrainRegionFMM_NC_PH_PAS FMM.NC.PH.PAS] || nucleus-neocortex || (unknown reference) ||
 
 *External Inbound Region Connections:*
 
@@ -47,7 +48,6 @@
 || [BrainAreaFMM FMM] || [BrainRegionFMM_FD_TH_AD FMM.FD.TH.AD] || [BrainRegionFMM_FD_MB_LMB FMM.FD.MB.LMB] || Lateral Mammillary Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LMB -> AD)] ||
 ||  || [BrainRegionFMM_FD_TH_AV FMM.FD.TH.AV] || [BrainRegionFMM_FD_MB_MMB FMM.FD.MB.MMB] || Medial Mammillary Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Mammillary bodies: two memory systems in one (MMB -> AVTH)] ||
 ||  ||  || [BrainRegionFMM_FT_HF_SUBD FMM.FT.HF.SUBD] || Distal CA1 of Hippocampus || allocortex-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s1A -> A, abstract)] ||
-||  ||  || [BrainRegionFMM_NC_PH_PRS FMM.NC.PH.PRS] || Presubiculum || neocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (Presub -> AV)] ||
 ||  || [BrainRegionFMM_NC_PH_PAS FMM.NC.PH.PAS] || [BrainRegionFMM_FT_HC_CA1P FMM.FT.HC.CA1P] || Proximal CA1 of Hippocampus || allocortex-neocortex || (unknown reference) ||
 ||  || [BrainRegionFMM_NC_PH_POS FMM.NC.PH.POS] || [BrainRegionFMM_FT_HF_SUBD FMM.FT.HF.SUBD] || Distal CA1 of Hippocampus || allocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (Sub -> PoS, abstract)] ||
 
@@ -61,6 +61,7 @@
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaFEC FEC] || [BrainRegionFMM_NC_PH_PAS FMM.NC.PH.PAS] || [BrainRegionFEC_FT_ACC_CORE FEC.FT.ACC.CORE] || Nucleus Accumbens Core || neocortex-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/nucleus-accumbens.jpg Nucleus Accumbens (PAS -> NACC, abstract)] ||
 || [BrainAreaFMM FMM] || [BrainRegionFMM_FD_TH_AV FMM.FD.TH.AV] || [BrainRegionFMM_FT_HC_CA1P FMM.FT.HC.CA1P] || Proximal CA1 of Hippocampus || nucleus-allocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (AN -> HC, abstract)] ||
+||  ||  || [BrainRegionFMM_NC_PH_PRS FMM.NC.PH.PRS] || Presubiculum || nucleus-neocortex || (unknown reference) ||
 ||  || [BrainRegionFMM_NC_PH_PAS FMM.NC.PH.PAS] || [BrainRegionFMM_FD_MB_LMB FMM.FD.MB.LMB] || Lateral Mammillary Nucleus || neocortex-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Mammillary bodies: two memory systems in one (PAS -> LMB)] ||
 ||  ||  || [BrainRegionFMM_NC_PH_MEC FMM.NC.PH.MEC] || Medial Entorhinal Cortex || neocortex-neocortex || (unknown reference) ||
 ||  || [BrainRegionFMM_NC_PH_POS FMM.NC.PH.POS] || [BrainRegionFMM_FD_MB_LMB FMM.FD.MB.LMB] || Lateral Mammillary Nucleus || neocortex-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (PSUB -> LMB)] ||
@@ -261,7 +262,6 @@
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| [BrainRegionFMM_FD_MB_LMB FMM.FD.MB.LMB] || [BrainRegionFMM_NC_PH_PRS FMM.NC.PH.PRS] || nucleus-neocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (MBOUT -> PRESUB)] ||
 || [BrainRegionFMM_NC_PH_PRS FMM.NC.PH.PRS] || [BrainRegionFMM_FD_MB_LMB FMM.FD.MB.LMB] || neocortex-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Mammillary bodies: two memory systems in one (PRS -> LMB)] ||
 ||  || [BrainRegionFMM_FD_MB_MMB FMM.FD.MB.MMB] || neocortex-nucleus || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (PRESUB -> MBIN)] ||
 
@@ -280,7 +280,8 @@
 ||  || [BrainRegionFMM_FD_MB_MMB FMM.FD.MB.MMB] || [BrainRegionFMM_FT_HF_SUBD FMM.FT.HF.SUBD] || Distal CA1 of Hippocampus || allocortex-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Mammillary bodies: two memory systems in one (SUB -> MMB, abstract)] ||
 ||  ||  || [BrainRegionFMM_FT_HF_SUBP FMM.FT.HF.SUBP] || Proximal CA1 of Hippocampus || allocortex-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Mammillary bodies: two memory systems in one (SUB -> MMB, abstract)] ||
 ||  ||  || [BrainRegionFMM_NC_PH_MEC FMM.NC.PH.MEC] || Medial Entorhinal Cortex || neocortex-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Mammillary bodies: two memory systems in one (MedialEC -> MMB, abstract)] ||
-||  || [BrainRegionFMM_NC_PH_PRS FMM.NC.PH.PRS] || [BrainRegionFMM_FT_HF_SUBD FMM.FT.HF.SUBD] || Distal CA1 of Hippocampus || allocortex-neocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (SUB -> PRESUB, abstract)] ||
+||  || [BrainRegionFMM_NC_PH_PRS FMM.NC.PH.PRS] || [BrainRegionFMM_FD_TH_AV FMM.FD.TH.AV] || Anteroventral Nucleus || nucleus-neocortex || (unknown reference) ||
+||  ||  || [BrainRegionFMM_FT_HF_SUBD FMM.FT.HF.SUBD] || Distal CA1 of Hippocampus || allocortex-neocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (SUB -> PRESUB, abstract)] ||
 || [BrainAreaLAC LAC] || [BrainRegionFMM_FD_MB_LMB FMM.FD.MB.LMB] || [BrainRegionLAC_FD_HT_LTN LAC.FD.HT.LTN] || Lateral Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLAC_FD_HT_PN LAC.FD.HT.PN] || Posterior Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
 ||  || [BrainRegionFMM_FD_MB_MMB FMM.FD.MB.MMB] || [BrainRegionLAC_FD_HT_LTN LAC.FD.HT.LTN] || Lateral Hypothalamic Nucleus || nucleus-nucleus || (unknown reference) ||
@@ -299,8 +300,7 @@
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaFMM FMM] || [BrainRegionFMM_FD_MB_LMB FMM.FD.MB.LMB] || [BrainRegionFMM_FD_TH_AD FMM.FD.TH.AD] || Anterodorsal Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LMB -> AD)] ||
 ||  || [BrainRegionFMM_FD_MB_MMB FMM.FD.MB.MMB] || [BrainRegionFMM_FD_TH_AV FMM.FD.TH.AV] || Anteroventral Nucleus || nucleus-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Mammillary bodies: two memory systems in one (MMB -> AVTH)] ||
-||  || [BrainRegionFMM_NC_PH_PRS FMM.NC.PH.PRS] || [BrainRegionFMM_FD_TH_AV FMM.FD.TH.AV] || Anteroventral Nucleus || neocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (Presub -> AV)] ||
-||  ||  || [BrainRegionFMM_NC_PH_MEC FMM.NC.PH.MEC] || Medial Entorhinal Cortex || neocortex-neocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (PRESUB -> EC, abstract)] ||
+||  || [BrainRegionFMM_NC_PH_PRS FMM.NC.PH.PRS] || [BrainRegionFMM_NC_PH_MEC FMM.NC.PH.MEC] || Medial Entorhinal Cortex || neocortex-neocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (PRESUB -> EC, abstract)] ||
 || [BrainAreaLLC LLC] || [BrainRegionFMM_FD_MB_LMB FMM.FD.MB.LMB] || [BrainRegionLLC_HP_PRF_PDT LLC.HP.PRF.PDT] || Pontine Reticulotegmental Nucleus || nucleus-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/mb.jpg Mammillary Body (LMB -> RTG)] ||
 ||  || [BrainRegionFMM_FD_MB_MMB FMM.FD.MB.MMB] || [BrainRegionLLC_HP_PN_RP LLC.HP.PN.RP] || Rostral Pontine Nucleus || nucleus-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in emotional behavior (HT -> PN, abstract)] ||
 ||  ||  || [BrainRegionLLC_HP_PRF_PDT LLC.HP.PRF.PDT] || Pontine Reticulotegmental Nucleus || nucleus-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/mb.jpg Mammillary Body (MMB -> RTG)] ||
