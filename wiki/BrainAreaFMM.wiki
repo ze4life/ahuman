@@ -13,8 +13,8 @@
 || MMAHCS || Spatial Hippocampus || [BrainRegionFMM_FT_HC_CA1P FMM.FT.HC.CA1P], [BrainRegionFMM_FT_HC_CA3D FMM.FT.HC.CA3D], [BrainRegionFMM_FT_HF_SUBD FMM.FT.HF.SUBD] ||
 || MMAHCT || Thalamic Hippocampus || [BrainRegionFMM_FD_TH_RE FMM.FD.TH.RE], [BrainRegionFMM_FT_HC_CA1M FMM.FT.HC.CA1M], [BrainRegionFMM_FT_HC_CA3M FMM.FT.HC.CA3M], [BrainRegionFMM_FT_HF_SUBM FMM.FT.HF.SUBM] ||
 || MMAORIENT || Orienting Control || [BrainRegionFMM_FD_MB_LMB FMM.FD.MB.LMB], [BrainRegionFMM_FD_TH_AD FMM.FD.TH.AD], [BrainRegionFMM_NC_PH_POS FMM.NC.PH.POS] ||
-|| MMASENSE || Sensory Emotional || [BrainRegionFMM_NC_PH_LEC FMM.NC.PH.LEC], [BrainRegionFMM_NC_PH_PER FMM.NC.PH.PER] ||
-|| MMASENSS || Spatial Sensory || [BrainRegionFMM_NC_PH_MEC FMM.NC.PH.MEC], [BrainRegionFMM_NC_PH_POR FMM.NC.PH.POR] ||
+|| MMASENSE || Emotional Sensory Input to Hippocampus || [BrainRegionFMM_NC_PH_LEC FMM.NC.PH.LEC], [BrainRegionFMM_NC_PH_PER FMM.NC.PH.PER] ||
+|| MMASENSS || Spatial Sensory Input to Hippocampus || [BrainRegionFMM_NC_PH_MEC FMM.NC.PH.MEC], [BrainRegionFMM_NC_PH_POR FMM.NC.PH.POR] ||
 || MMATHETA || Theta Waves Control || [BrainRegionFMM_FD_MB_MMB FMM.FD.MB.MMB], [BrainRegionFMM_FD_TH_AV FMM.FD.TH.AV], [BrainRegionFMM_NC_PH_PAS FMM.NC.PH.PAS], [BrainRegionFMM_NC_PH_PRS FMM.NC.PH.PRS] ||
 
 == Emotional Hippocampus ==
@@ -25,7 +25,7 @@
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
 || [BrainRegionFMM_FT_HC_CA1D FMM.FT.HC.CA1D] || Distal CA1 of Hippocampus || cortex || FMU || Long-term memory, motivational ||  ||
 || [BrainRegionFMM_FT_HC_CA3P FMM.FT.HC.CA3P] || Proximal CA1 of Hippocampus || cortex || FMU || Representing sequences of episodic memory, spatial ||  ||
-|| [BrainRegionFMM_FT_HF_SUBP FMM.FT.HF.SUBP] || Proximal Subiculum || cortex || FMU || Controlling hypothalamic–pituitary–adrenal (HPA) axis ||  ||
+|| [BrainRegionFMM_FT_HF_SUBP FMM.FT.HF.SUBP] || Proximal Subiculum || cortex || FMU || Controlling hypothalamic-pituitary-adrenal (HPA) axis ||  ||
 
 *Internal Region Connections:*
 
@@ -242,7 +242,7 @@
 || [BrainAreaLLC LLC] || [BrainRegionFMM_FD_MB_LMB FMM.FD.MB.LMB] || [BrainRegionLLC_HP_PRF_PDT LLC.HP.PRF.PDT] || Pontine Reticulotegmental Nucleus || nucleus-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/mb.jpg Mammillary Body (LMB -> RTG)] ||
 || [BrainAreaLMC LMC] || [BrainRegionFMM_FD_MB_LMB FMM.FD.MB.LMB] || [BrainRegionLMC_HP_TG_LDT LMC.HP.TG.LDT] || Laterodorsal Tegmental Nucleus || nucleus-nucleus || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (LMB -> DTN)] ||
 
-== Sensory Emotional ==
+== Emotional Sensory Input to Hippocampus ==
 
 
 <img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/FMM_MMASENSE.dot.png" alt="unavailable">
@@ -293,7 +293,7 @@
 ||  || [BrainRegionFMM_NC_PH_PER FMM.NC.PH.PER] || [BrainRegionFMM_FT_HC_DG FMM.FT.HC.DG] || Dentate Gyrus || neocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PrC -> HF, abstract)] ||
 ||  ||  || [BrainRegionFMM_FT_HF_SUBP FMM.FT.HF.SUBP] || Proximal Subiculum || neocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PrC -> HF, abstract)] ||
 
-== Spatial Sensory ==
+== Spatial Sensory Input to Hippocampus ==
 
 
 <img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/FMM_MMASENSS.dot.png" alt="unavailable">
