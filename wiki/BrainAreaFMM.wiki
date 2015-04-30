@@ -9,13 +9,13 @@
 
 || *ID* || *Name* || *Regions* ||
 || MMAENVCTX || Environmental Context || [BrainRegionFMM_FD_TH_AD FMM.FD.TH.AD], [BrainRegionFMM_FD_TH_AV FMM.FD.TH.AV], [BrainRegionFMM_NC_PH_PAS FMM.NC.PH.PAS], [BrainRegionFMM_NC_PH_POS FMM.NC.PH.POS] ||
-|| MMAHCE || Emotional Hippocampus || [BrainRegionFMM_FT_HC_CA1D FMM.FT.HC.CA1D], [BrainRegionFMM_FT_HC_CA3P FMM.FT.HC.CA3P], [BrainRegionFMM_FT_HF_SUBP FMM.FT.HF.SUBP], [BrainRegionFMM_NC_PH_PER FMM.NC.PH.PER] ||
+|| MMAHCE || Emotional Hippocampus || [BrainRegionFMM_FT_HC_CA1D FMM.FT.HC.CA1D], [BrainRegionFMM_FT_HC_CA3P FMM.FT.HC.CA3P], [BrainRegionFMM_FT_HF_SUBP FMM.FT.HF.SUBP] ||
 || MMAHCF || Creating Fields || [BrainRegionFMM_FT_HC_CA2 FMM.FT.HC.CA2], [BrainRegionFMM_FT_HC_DG FMM.FT.HC.DG] ||
-|| MMAHCS || Spatial Hippocampus || [BrainRegionFMM_FT_HC_CA1P FMM.FT.HC.CA1P], [BrainRegionFMM_FT_HC_CA3D FMM.FT.HC.CA3D], [BrainRegionFMM_FT_HF_SUBD FMM.FT.HF.SUBD], [BrainRegionFMM_NC_PH_POR FMM.NC.PH.POR] ||
+|| MMAHCS || Spatial Hippocampus || [BrainRegionFMM_FT_HC_CA1P FMM.FT.HC.CA1P], [BrainRegionFMM_FT_HC_CA3D FMM.FT.HC.CA3D], [BrainRegionFMM_FT_HF_SUBD FMM.FT.HF.SUBD] ||
 || MMAHCT || Thalamic Hippocampus || [BrainRegionFMM_FD_TH_RE FMM.FD.TH.RE], [BrainRegionFMM_FT_HC_CA1M FMM.FT.HC.CA1M], [BrainRegionFMM_FT_HC_CA3M FMM.FT.HC.CA3M], [BrainRegionFMM_FT_HF_SUBM FMM.FT.HF.SUBM] ||
 || MMAORIENT || Orientation Control || [BrainRegionFMM_FD_MB_LMB FMM.FD.MB.LMB], [BrainRegionFMM_FD_MB_MMB FMM.FD.MB.MMB], [BrainRegionFMM_NC_PH_PRS FMM.NC.PH.PRS] ||
-|| MMASENSE || Sensory Emotional || [BrainRegionFMM_NC_PH_LEC FMM.NC.PH.LEC] ||
-|| MMASENSS || Spatial Sensory || [BrainRegionFMM_NC_PH_MEC FMM.NC.PH.MEC] ||
+|| MMASENSE || Sensory Emotional || [BrainRegionFMM_NC_PH_LEC FMM.NC.PH.LEC], [BrainRegionFMM_NC_PH_PER FMM.NC.PH.PER] ||
+|| MMASENSS || Spatial Sensory || [BrainRegionFMM_NC_PH_MEC FMM.NC.PH.MEC], [BrainRegionFMM_NC_PH_POR FMM.NC.PH.POR] ||
 
 == Environmental Context ==
 
@@ -75,7 +75,6 @@
 || [BrainRegionFMM_FT_HC_CA1D FMM.FT.HC.CA1D] || Distal CA1 of Hippocampus || cortex || FMU || Long-term memory, motivational ||  ||
 || [BrainRegionFMM_FT_HC_CA3P FMM.FT.HC.CA3P] || Proximal CA1 of Hippocampus || cortex || FMU || Representing sequences of episodic memory, spatial ||  ||
 || [BrainRegionFMM_FT_HF_SUBP FMM.FT.HF.SUBP] || Proximal CA1 of Hippocampus || cortex || FMU || Representing sequences of episodic memory, spatial ||  ||
-|| [BrainRegionFMM_NC_PH_PER FMM.NC.PH.PER] || Perirhinal Cortex || cortex, BA 35,36 || FMU || Associate different visual views of objects and their various nonvisual<BR>attributes ||  ||
 
 *Internal Region Connections:*
 
@@ -86,40 +85,29 @@
 *External Inbound Region Connections:*
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
-|| <font color="red">Cortical</font> || || || || || ||
-|| [BrainAreaBAA BAA] || [BrainRegionFMM_NC_PH_PER FMM.NC.PH.PER] || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || Somatosensory Cortex || neocortex-neocortex || (unknown reference) ||
-|| [BrainAreaCPA CPA] || [BrainRegionFMM_NC_PH_PER FMM.NC.PH.PER] || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || Anterior Insular Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (Iav -> PrC, abstract)] ||
-||  ||  || [BrainRegionPHA_NC_INS_HR PHA.NC.INS.HR] || Anterior Temporal Lobe || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763409002061 Contribution of hippocampal region CA3 to consciousness (AnteriorTemporal -> PRCortex)] ||
-|| [BrainAreaSAA SAA] || [BrainRegionFMM_NC_PH_PER FMM.NC.PH.PER] || [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || Inferotemporal Cortex || neocortex-neocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (IT -> PRPH)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaFAM FAM] || [BrainRegionFMM_FT_HF_SUBP FMM.FT.HF.SUBP] || [BrainRegionFAM_FT_SEP_BAC FAM.FT.SEP.BAC] || Bed Nucleus of Anterior Commissure || nucleus-allocortex || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Medial mammillary nucleus and theta rhythm (SEP -> HF, abstract)] ||
-||  || [BrainRegionFMM_NC_PH_PER FMM.NC.PH.PER] || [BrainRegionFAM_HP_NI FAM.HP.NI] || Incertus Nucleus || nucleus-neocortex-gaba || (unknown reference) ||
 || [BrainAreaFEC FEC] || [BrainRegionFMM_FT_HF_SUBP FMM.FT.HF.SUBP] || [BrainRegionFEC_FD_TH_RH FEC.FD.TH.RH] || Rhomboidal Nucleus of Thalamus || nucleus-allocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (MID -> SubPrePara, abstract)] ||
 || [BrainAreaFMM FMM] || [BrainRegionFMM_FT_HC_CA1D FMM.FT.HC.CA1D] || [BrainRegionFMM_FT_HC_CA2 FMM.FT.HC.CA2] || Dorsolateral Cornu Ammonis of Hippocampus || allocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S030645220600755X Flow of impulses in hippocampal region (CA2 -> CA1, abstract)] ||
 ||  ||  || [BrainRegionFMM_NC_PH_LEC FMM.NC.PH.LEC] || Lateral Entorhinal Cortex || neocortex-allocortex || [http://journal.frontiersin.org/Journal/10.3389/fpsyt.2013.00061/full Neuronal projections in the hippocampus (ET -> CA1, abstract)] ||
 ||  || [BrainRegionFMM_FT_HC_CA3P FMM.FT.HC.CA3P] || [BrainRegionFMM_FT_HC_DG FMM.FT.HC.DG] || Dentate Gyrus || allocortex-allocortex || [http://journal.frontiersin.org/Journal/10.3389/fpsyt.2013.00061/full Neuronal projections in the hippocampus (DG -> CA3, abstract)] ||
 ||  || [BrainRegionFMM_FT_HF_SUBP FMM.FT.HF.SUBP] || [BrainRegionFMM_NC_PH_LEC FMM.NC.PH.LEC] || Lateral Entorhinal Cortex || neocortex-allocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (ER -> H, abstract)] ||
+||  ||  || [BrainRegionFMM_NC_PH_PER FMM.NC.PH.PER] || Perirhinal Cortex || neocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PrC -> HF, abstract)] ||
 || [BrainAreaLAC LAC] || [BrainRegionFMM_FT_HC_CA3P FMM.FT.HC.CA3P] || [BrainRegionLAC_FD_HT_PN LAC.FD.HT.PN] || Posterior Hypothalamic Nucleus || nucleus-allocortex || (unknown reference) ||
 ||  ||  || [BrainRegionLAC_FD_HT_SUM LAC.FD.HT.SUM] || Supramammillary Nucleus || nucleus-allocortex || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F4.html Medial mammillary nucleus and theta rhythm (SupraMM -> HF, abstract)] ||
 || [BrainAreaLMC LMC] || [BrainRegionFMM_FT_HC_CA1D FMM.FT.HC.CA1D] || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || Ventral Tegmental Area || nucleus-allocortex-DA || [http://neurowiki2012.wikispaces.com/Presynaptic+Mechanisms+of+Synaptic+Plasticity Reward circuit of human brain (VTA -> HC, abstract)] ||
-|| [BrainAreaLPC LPC] || [BrainRegionFMM_NC_PH_PER FMM.NC.PH.PER] || [BrainRegionLPC_FD_TH_PV LPC.FD.TH.PV] || Paraventricular Nucleus of Thalamus || nucleus-neocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (MID -> Perirhinal, abstract)] ||
 
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
 || [BrainAreaEPA EPA] || [BrainRegionFMM_FT_HC_CA1D FMM.FT.HC.CA1D] || [BrainRegionFCA_NC_OPFC FCA.NC.OPFC] || Orbitofrontal Cortex || allocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S030100820900183X Simplified model of hippocampal formation anatomy (CA1 -> mPFC, abstract)] ||
-||  || [BrainRegionFMM_NC_PH_PER FMM.NC.PH.PER] || [BrainRegionFCA_FD_TH_MDM FCA.FD.TH.MDM] || Medial Mediodorsal Nucleus of Thalamus || neocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (Perirhinal -> MDmc, abstract)] ||
-|| [BrainAreaSAA SAA] || [BrainRegionFMM_NC_PH_PER FMM.NC.PH.PER] || [BrainRegionVBA_FD_PV_MPV VBA.FD.PV.MPV] || Medial Pulvinar || neocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (Perirhinal -> mPULV)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaFAM FAM] || [BrainRegionFMM_FT_HC_CA1D FMM.FT.HC.CA1D] || [BrainRegionFAM_FT_SEP_MED FAM.FT.SEP.MED] || Medial Septal Nucleus || allocortex-nucleus || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (CA1 -> SEP, abstract)] ||
 ||  || [BrainRegionFMM_FT_HF_SUBP FMM.FT.HF.SUBP] || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || Accessory Basal Amygdaloid Nucleus || allocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S030100820900183X Simplified model of hippocampal formation anatomy (SUB -> Amyg, abstract)] ||
 || [BrainAreaFEC FEC] || [BrainRegionFMM_FT_HF_SUBP FMM.FT.HF.SUBP] || [BrainRegionFEC_FT_ACC_CORE FEC.FT.ACC.CORE] || Nucleus Accumbens Core || allocortex-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/nucleus-accumbens.jpg Nucleus Accumbens (SUB -> NACC, abstract)] ||
-||  || [BrainRegionFMM_NC_PH_PER FMM.NC.PH.PER] || [BrainRegionFEC_FT_ACC_CORE FEC.FT.ACC.CORE] || Nucleus Accumbens Core || neocortex-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/nucleus-accumbens.jpg Nucleus Accumbens (PRR -> NACC, abstract)] ||
 || [BrainAreaFMM FMM] || [BrainRegionFMM_FT_HC_CA3P FMM.FT.HC.CA3P] || [BrainRegionFMM_FT_HC_CA2 FMM.FT.HC.CA2] || Dorsolateral Cornu Ammonis of Hippocampus || allocortex-allocortex-gaba || [http://www.sciencedirect.com/science/article/pii/S1571064507000243 KIV model of cortico-hippocampal formation with subcortical projections for motor actions (CA3 -> CA2, abstract)] ||
 ||  || [BrainRegionFMM_FT_HF_SUBP FMM.FT.HF.SUBP] || [BrainRegionFMM_FD_MB_MMB FMM.FD.MB.MMB] || Medial Mammillary Nucleus || allocortex-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Mammillary bodies: two memory systems in one (SUB -> MMB, abstract)] ||
-||  || [BrainRegionFMM_NC_PH_PER FMM.NC.PH.PER] || [BrainRegionFMM_FT_HC_DG FMM.FT.HC.DG] || Dentate Gyrus || neocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PrC -> HF, abstract)] ||
-||  ||  || [BrainRegionFMM_NC_PH_LEC FMM.NC.PH.LEC] || Lateral Entorhinal Cortex || neocortex-neocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (PRPH -> ER, abstract)] ||
 || [BrainAreaLAC LAC] || [BrainRegionFMM_FT_HC_CA1D FMM.FT.HC.CA1D] || [BrainRegionLAC_FD_HT_PO LAC.FD.HT.PO] || Preoptic Nucleus || allocortex-nucleus || [http://www.nature.com/nrn/journal/v5/n7 Feeling (HC -> HT, abstract)] ||
 ||  || [BrainRegionFMM_FT_HF_SUBP FMM.FT.HF.SUBP] || [BrainRegionLAC_FD_HT_AH LAC.FD.HT.AH] || Anterior Hypothalamic Nucleus || allocortex-nucleus || (unknown reference) ||
 ||  ||  || [BrainRegionLAC_FD_HT_VM LAC.FD.HT.VM] || Ventromedial Hypothalamic Nucleus || allocortex-nucleus || (unknown reference) ||
@@ -174,13 +162,11 @@
 || [BrainRegionFMM_FT_HC_CA1P FMM.FT.HC.CA1P] || Proximal CA1 of Hippocampus || cortex || FMU || Long-term memory, spatial ||  ||
 || [BrainRegionFMM_FT_HC_CA3D FMM.FT.HC.CA3D] || Distal CA1 of Hippocampus || cortex || FMU || Representing sequences of episodic memory, motivational ||  ||
 || [BrainRegionFMM_FT_HF_SUBD FMM.FT.HF.SUBD] || Distal CA1 of Hippocampus || cortex || FMU || Representing sequences of episodic memory, motivational ||  ||
-|| [BrainRegionFMM_NC_PH_POR FMM.NC.PH.POR] || Postrhinal Cortex || cortex, BA 29,30 || FMU || Spatial declarative memory ||  ||
 
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionFMM_FT_HC_CA1P FMM.FT.HC.CA1P] || [BrainRegionFMM_FT_HF_SUBD FMM.FT.HF.SUBD] || allocortex-allocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (CA1 -> SUB, abstract)] ||
-||  || [BrainRegionFMM_NC_PH_POR FMM.NC.PH.POR] || allocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763411001722 Entorhinal Cortex Inputs and Outputs (CA1 -> TFTH, abstract)] ||
 || [BrainRegionFMM_FT_HC_CA3D FMM.FT.HC.CA3D] || [BrainRegionFMM_FT_HC_CA1P FMM.FT.HC.CA1P] || allocortex-allocortex || [http://journal.frontiersin.org/Journal/10.3389/fpsyt.2013.00061/full Neuronal projections in the hippocampus (CA3 -> CA1, abstract)] ||
 
 *External Inbound Region Connections:*
@@ -193,13 +179,13 @@
 ||  || [BrainRegionFMM_FT_HF_SUBD FMM.FT.HF.SUBD] || [BrainRegionCGA_FD_TH_LD CGA.FD.TH.LD] || Lateral Dorsal Nucleus of Thalamus || nucleus-allocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (LD -> SubPrePara, abstract)] ||
 ||  ||  || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || Retrosplenial Cortex || neocortex-allocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (PCGRSP -> SUB, abstract)] ||
 || [BrainAreaSAA SAA] || [BrainRegionFMM_FT_HC_CA3D FMM.FT.HC.CA3D] || [BrainRegionVCA_NC_IPL_MST VCA.NC.IPL.MST] || Medial Superior Temporal Area || neocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S0149763409002061 Contribution of hippocampal region CA3 to consciousness (IPL -> CA1, abstract)] ||
-||  || [BrainRegionFMM_NC_PH_POR FMM.NC.PH.POR] || [BrainRegionVCA_NC_IPL_MST VCA.NC.IPL.MST] || Medial Superior Temporal Area || neocortex-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (PC -> PRHC, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaFMM FMM] || [BrainRegionFMM_FT_HC_CA1P FMM.FT.HC.CA1P] || [BrainRegionFMM_FD_TH_AV FMM.FD.TH.AV] || Anteroventral Nucleus || nucleus-allocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (AN -> HC, abstract)] ||
 ||  ||  || [BrainRegionFMM_FT_HC_CA2 FMM.FT.HC.CA2] || Dorsolateral Cornu Ammonis of Hippocampus || allocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S030645220600755X Flow of impulses in hippocampal region (CA2 -> CA1, abstract)] ||
 ||  ||  || [BrainRegionFMM_NC_PH_MEC FMM.NC.PH.MEC] || Medial Entorhinal Cortex || neocortex-allocortex || [http://journal.frontiersin.org/Journal/10.3389/fpsyt.2013.00061/full Neuronal projections in the hippocampus (ET -> CA1, abstract)] ||
 ||  || [BrainRegionFMM_FT_HC_CA3D FMM.FT.HC.CA3D] || [BrainRegionFMM_FT_HC_DG FMM.FT.HC.DG] || Dentate Gyrus || allocortex-allocortex || [http://journal.frontiersin.org/Journal/10.3389/fpsyt.2013.00061/full Neuronal projections in the hippocampus (DG -> CA3, abstract)] ||
 ||  || [BrainRegionFMM_FT_HF_SUBD FMM.FT.HF.SUBD] || [BrainRegionFMM_NC_PH_MEC FMM.NC.PH.MEC] || Medial Entorhinal Cortex || neocortex-allocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (ER -> H, abstract)] ||
+||  ||  || [BrainRegionFMM_NC_PH_POR FMM.NC.PH.POR] || Postrhinal Cortex || neocortex-allocortex || (unknown reference) ||
 
 *External Outbound Region Connections:*
 
@@ -215,6 +201,7 @@
 || [BrainAreaFEC FEC] || [BrainRegionFMM_FT_HF_SUBD FMM.FT.HF.SUBD] || [BrainRegionFEC_FT_ACC_CORE FEC.FT.ACC.CORE] || Nucleus Accumbens Core || allocortex-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/nucleus-accumbens.jpg Nucleus Accumbens (SUB -> NACC, abstract)] ||
 || [BrainAreaFMM FMM] || [BrainRegionFMM_FT_HC_CA1P FMM.FT.HC.CA1P] || [BrainRegionFMM_NC_PH_MEC FMM.NC.PH.MEC] || Medial Entorhinal Cortex || allocortex-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (HC -> EC, abstract)] ||
 ||  ||  || [BrainRegionFMM_NC_PH_PAS FMM.NC.PH.PAS] || Parasubiculum || allocortex-neocortex || (unknown reference) ||
+||  ||  || [BrainRegionFMM_NC_PH_POR FMM.NC.PH.POR] || Postrhinal Cortex || allocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763411001722 Entorhinal Cortex Inputs and Outputs (CA1 -> TFTH, abstract)] ||
 ||  || [BrainRegionFMM_FT_HC_CA3D FMM.FT.HC.CA3D] || [BrainRegionFMM_FT_HC_CA2 FMM.FT.HC.CA2] || Dorsolateral Cornu Ammonis of Hippocampus || allocortex-allocortex-gaba || [http://www.sciencedirect.com/science/article/pii/S1571064507000243 KIV model of cortico-hippocampal formation with subcortical projections for motor actions (CA3 -> CA2, abstract)] ||
 ||  || [BrainRegionFMM_FT_HF_SUBD FMM.FT.HF.SUBD] || [BrainRegionFMM_FD_MB_MMB FMM.FD.MB.MMB] || Medial Mammillary Nucleus || allocortex-nucleus || [http://www.nature.com/nrn/journal/v5/n1/fig_tab/nrn1299_F2.html Mammillary bodies: two memory systems in one (SUB -> MMB, abstract)] ||
 ||  ||  || [BrainRegionFMM_FD_TH_AV FMM.FD.TH.AV] || Anteroventral Nucleus || allocortex-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s1A -> A, abstract)] ||
@@ -222,7 +209,6 @@
 ||  ||  || [BrainRegionFMM_NC_PH_MEC FMM.NC.PH.MEC] || Medial Entorhinal Cortex || allocortex-neocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (SUB -> EC, abstract)] ||
 ||  ||  || [BrainRegionFMM_NC_PH_POS FMM.NC.PH.POS] || Postsubiculum || allocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/2009-Hippocampus-Thesis.pdf Hippocampal Formation (Sub -> PoS, abstract)] ||
 ||  ||  || [BrainRegionFMM_NC_PH_PRS FMM.NC.PH.PRS] || Presubiculum || allocortex-neocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (SUB -> PRESUB, abstract)] ||
-||  || [BrainRegionFMM_NC_PH_POR FMM.NC.PH.POR] || [BrainRegionFMM_NC_PH_MEC FMM.NC.PH.MEC] || Medial Entorhinal Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763411001722 Entorhinal Cortex Inputs and Outputs (TFTH -> EC, abstract)] ||
 || [BrainAreaLAC LAC] || [BrainRegionFMM_FT_HF_SUBD FMM.FT.HF.SUBD] || [BrainRegionLAC_FD_HT_PV LAC.FD.HT.PV] || Paraventricular Nucleus || allocortex-nucleus || (unknown reference) ||
 
 == Thalamic Hippocampus ==
@@ -240,7 +226,6 @@
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionFMM_FD_TH_RE FMM.FD.TH.RE] || [BrainRegionFMM_FT_HC_CA1M FMM.FT.HC.CA1M] || nucleus-allocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (MID -> HC, abstract)] ||
-||  || [BrainRegionFMM_FT_HF_SUBM FMM.FT.HF.SUBM] || nucleus-allocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (MID -> SubPrePara, abstract)] ||
 || [BrainRegionFMM_FT_HC_CA1M FMM.FT.HC.CA1M] || [BrainRegionFMM_FT_HF_SUBM FMM.FT.HF.SUBM] || allocortex-allocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (CA1 -> SUB, abstract)] ||
 || [BrainRegionFMM_FT_HC_CA3M FMM.FT.HC.CA3M] || [BrainRegionFMM_FT_HC_CA1M FMM.FT.HC.CA1M] || allocortex-allocortex || [http://journal.frontiersin.org/Journal/10.3389/fpsyt.2013.00061/full Neuronal projections in the hippocampus (CA3 -> CA1, abstract)] ||
 || [BrainRegionFMM_FT_HF_SUBM FMM.FT.HF.SUBM] || [BrainRegionFMM_FD_TH_RE FMM.FD.TH.RE] || allocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (Sub -> MID, abstract)] ||
@@ -329,37 +314,50 @@
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
 || [BrainRegionFMM_NC_PH_LEC FMM.NC.PH.LEC] || Lateral Entorhinal Cortex || cortex, BA 28 || FMU || Memory consolidation, emotioncal aspects || non-spatial input to HC; process information about<BR>individual items and locations based on a local<BR>frame of reference, primarily using external<BR>sensory input; it provides the hippocampus with<BR>information about content of experience ||
+|| [BrainRegionFMM_NC_PH_PER FMM.NC.PH.PER] || Perirhinal Cortex || cortex, BA 35,36 || FMU || Associate different visual views of objects and their various nonvisual<BR>attributes ||  ||
 
 *Internal Region Connections:*
-  * no connections
+
+|| *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionFMM_NC_PH_PER FMM.NC.PH.PER] || [BrainRegionFMM_NC_PH_LEC FMM.NC.PH.LEC] || neocortex-neocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (PRPH -> ER, abstract)] ||
 
 *External Inbound Region Connections:*
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
 || [BrainAreaBAA BAA] || [BrainRegionFMM_NC_PH_LEC FMM.NC.PH.LEC] || [BrainRegionPHA_NC_PH_PIR PHA.NC.PH.PIR] || Piriform Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1571064507000243 KIV model of cortico-hippocampal formation with subcortical projections for motor actions (PC -> EC, abstract)] ||
+||  || [BrainRegionFMM_NC_PH_PER FMM.NC.PH.PER] || [BrainRegionSMA_NC_PG_S1 SMA.NC.PG.S1] || Somatosensory Cortex || neocortex-neocortex || (unknown reference) ||
+|| [BrainAreaCPA CPA] || [BrainRegionFMM_NC_PH_PER FMM.NC.PH.PER] || [BrainRegionPHA_NC_INS_AIC PHA.NC.INS.AIC] || Anterior Insular Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (Iav -> PrC, abstract)] ||
+||  ||  || [BrainRegionPHA_NC_INS_HR PHA.NC.INS.HR] || Anterior Temporal Lobe || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763409002061 Contribution of hippocampal region CA3 to consciousness (AnteriorTemporal -> PRCortex)] ||
 || [BrainAreaSAA SAA] || [BrainRegionFMM_NC_PH_LEC FMM.NC.PH.LEC] || [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || Inferotemporal Cortex || neocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (ITCortex -> EnthCortex, abstract)] ||
+||  || [BrainRegionFMM_NC_PH_PER FMM.NC.PH.PER] || [BrainRegionVCA_NC_IT_TE VCA.NC.IT.TE] || Inferotemporal Cortex || neocortex-neocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (IT -> PRPH)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaFAM FAM] || [BrainRegionFMM_NC_PH_LEC FMM.NC.PH.LEC] || [BrainRegionFAM_FD_TH_PT FAM.FD.TH.PT] || Paratenial Nucleus of Thalamus || nucleus-neocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (MID -> EC, abstract)] ||
 ||  ||  || [BrainRegionFAM_FT_AM_BP FAM.FT.AM.BP] || Parvicellular Basal Amygdaloid Nucleus || nucleus-neocortex || [http://highered.mcgraw-hill.com/sites/dl/free/0071402357/156721/figure350_1.html Principal Connections of Hippocampus (AM -> EC, abstract)] ||
+||  || [BrainRegionFMM_NC_PH_PER FMM.NC.PH.PER] || [BrainRegionFAM_HP_NI FAM.HP.NI] || Incertus Nucleus || nucleus-neocortex-gaba || (unknown reference) ||
 || [BrainAreaFMM FMM] || [BrainRegionFMM_NC_PH_LEC FMM.NC.PH.LEC] || [BrainRegionFMM_FT_HF_SUBD FMM.FT.HF.SUBD] || Distal CA1 of Hippocampus || allocortex-neocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (SUB -> EC, abstract)] ||
-||  ||  || [BrainRegionFMM_NC_PH_PER FMM.NC.PH.PER] || Perirhinal Cortex || neocortex-neocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (PRPH -> ER, abstract)] ||
 || [BrainAreaLMC LMC] || [BrainRegionFMM_NC_PH_LEC FMM.NC.PH.LEC] || [BrainRegionLMC_MM_VTA LMC.MM.VTA] || Ventral Tegmental Area || nucleus-neocortex-DA || [http://www.impulsecontroldisorders.org/html/cravings.html Combining Novelty, Motivational Salience, and Reward to Control Attention and Learning (VTA -> EC, abstract)] ||
 || [BrainAreaLPC LPC] || [BrainRegionFMM_NC_PH_LEC FMM.NC.PH.LEC] || [BrainRegionLPC_FD_TH_PV LPC.FD.TH.PV] || Paraventricular Nucleus of Thalamus || nucleus-neocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (MID -> EC, abstract)] ||
+||  || [BrainRegionFMM_NC_PH_PER FMM.NC.PH.PER] || [BrainRegionLPC_FD_TH_PV LPC.FD.TH.PV] || Paraventricular Nucleus of Thalamus || nucleus-neocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (MID -> Perirhinal, abstract)] ||
 
 *External Outbound Region Connections:*
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
 || [BrainAreaEPA EPA] || [BrainRegionFMM_NC_PH_LEC FMM.NC.PH.LEC] || [BrainRegionFCA_FD_TH_MDM FCA.FD.TH.MDM] || Medial Mediodorsal Nucleus of Thalamus || neocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (EC -> MDmc, abstract)] ||
+||  || [BrainRegionFMM_NC_PH_PER FMM.NC.PH.PER] || [BrainRegionFCA_FD_TH_MDM FCA.FD.TH.MDM] || Medial Mediodorsal Nucleus of Thalamus || neocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (Perirhinal -> MDmc, abstract)] ||
+|| [BrainAreaSAA SAA] || [BrainRegionFMM_NC_PH_PER FMM.NC.PH.PER] || [BrainRegionVBA_FD_PV_MPV VBA.FD.PV.MPV] || Medial Pulvinar || neocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (Perirhinal -> mPULV)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaFAM FAM] || [BrainRegionFMM_NC_PH_LEC FMM.NC.PH.LEC] || [BrainRegionFAM_FD_TH_PT FAM.FD.TH.PT] || Paratenial Nucleus of Thalamus || neocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (EC -> MID, abstract)] ||
 ||  ||  || [BrainRegionFAM_FT_AM_AB FAM.FT.AM.AB] || Accessory Basal Amygdaloid Nucleus || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S030100820900183X Simplified model of hippocampal formation anatomy (EC -> Amyg, abstract)] ||
 || [BrainAreaFEC FEC] || [BrainRegionFMM_NC_PH_LEC FMM.NC.PH.LEC] || [BrainRegionFEC_FT_ACC_CORE FEC.FT.ACC.CORE] || Nucleus Accumbens Core || neocortex-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/nucleus-accumbens.jpg Nucleus Accumbens (EC -> NACC, abstract)] ||
+||  || [BrainRegionFMM_NC_PH_PER FMM.NC.PH.PER] || [BrainRegionFEC_FT_ACC_CORE FEC.FT.ACC.CORE] || Nucleus Accumbens Core || neocortex-nucleus || [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/nucleus-accumbens.jpg Nucleus Accumbens (PRR -> NACC, abstract)] ||
 || [BrainAreaFMM FMM] || [BrainRegionFMM_NC_PH_LEC FMM.NC.PH.LEC] || [BrainRegionFMM_FT_HC_CA1D FMM.FT.HC.CA1D] || Distal CA1 of Hippocampus || neocortex-allocortex || [http://journal.frontiersin.org/Journal/10.3389/fpsyt.2013.00061/full Neuronal projections in the hippocampus (ET -> CA1, abstract)] ||
 ||  ||  || [BrainRegionFMM_FT_HC_CA2 FMM.FT.HC.CA2] || Dorsolateral Cornu Ammonis of Hippocampus || neocortex-allocortex || [http://www.surgicalneurologyint.com/article.asp?issn=2152-7806;year=2012;volume=3;issue=2;spage=40;epage=46;aulast=Langevin Amygdala and its network (EC -> HC, abstract)] ||
 ||  ||  || [BrainRegionFMM_FT_HC_DG FMM.FT.HC.DG] || Dentate Gyrus || neocortex-allocortex || [http://journal.frontiersin.org/Journal/10.3389/fpsyt.2013.00061/full Neuronal projections in the hippocampus (ET -> DG, abstract)] ||
 ||  ||  || [BrainRegionFMM_FT_HF_SUBP FMM.FT.HF.SUBP] || Proximal CA1 of Hippocampus || neocortex-allocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (ER -> H, abstract)] ||
+||  || [BrainRegionFMM_NC_PH_PER FMM.NC.PH.PER] || [BrainRegionFMM_FT_HC_DG FMM.FT.HC.DG] || Dentate Gyrus || neocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PrC -> HF, abstract)] ||
+||  ||  || [BrainRegionFMM_FT_HF_SUBP FMM.FT.HF.SUBP] || Proximal CA1 of Hippocampus || neocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S0149763401000215 Gustatory sensory system of rat and macaque (PrC -> HF, abstract)] ||
 
 == Spatial Sensory ==
 
@@ -368,9 +366,12 @@
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
 || [BrainRegionFMM_NC_PH_MEC FMM.NC.PH.MEC] || Medial Entorhinal Cortex || cortex, BA 28 || FMU || Memory consolidation, basic, view inpedepdent position || spatial input to HC; grid cells; path integration<BR>computations based on a global frame of reference,<BR>primarily using internally generated, self-motion<BR>cues and external input about environmental<BR>boundaries and scenes; provides hippocampus with<BR>coordinate system that underlies spatial context of<BR>experience ||
+|| [BrainRegionFMM_NC_PH_POR FMM.NC.PH.POR] || Postrhinal Cortex || cortex, BA 29,30 || FMU || Spatial declarative memory ||  ||
 
 *Internal Region Connections:*
-  * no connections
+
+|| *Source Region* || *Target Region* || *Type* || *Reference* ||
+|| [BrainRegionFMM_NC_PH_POR FMM.NC.PH.POR] || [BrainRegionFMM_NC_PH_MEC FMM.NC.PH.MEC] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763411001722 Entorhinal Cortex Inputs and Outputs (TFTH -> EC, abstract)] ||
 
 *External Inbound Region Connections:*
 
@@ -378,13 +379,14 @@
 || <font color="red">Cortical</font> || || || || || ||
 || [BrainAreaEPA EPA] || [BrainRegionFMM_NC_PH_MEC FMM.NC.PH.MEC] || [BrainRegionCGA_NC_MPL_PCG CGA.NC.MPL.PCG] || Posterior Cingulate Cortex || neocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (PCGRSP -> EnthCortex, abstract)] ||
 ||  ||  || [BrainRegionCGA_NC_MPL_RSC CGA.NC.MPL.RSC] || Retrosplenial Cortex || neocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (PCGRSP -> EnthCortex, abstract)] ||
+|| [BrainAreaSAA SAA] || [BrainRegionFMM_NC_PH_POR FMM.NC.PH.POR] || [BrainRegionVCA_NC_IPL_MST VCA.NC.IPL.MST] || Medial Superior Temporal Area || neocortex-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (PC -> PRHC, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaFMM FMM] || [BrainRegionFMM_NC_PH_MEC FMM.NC.PH.MEC] || [BrainRegionFMM_FT_HC_CA1P FMM.FT.HC.CA1P] || Proximal CA1 of Hippocampus || allocortex-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (HC -> EC, abstract)] ||
 ||  ||  || [BrainRegionFMM_FT_HF_SUBD FMM.FT.HF.SUBD] || Distal CA1 of Hippocampus || allocortex-neocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (SUB -> EC, abstract)] ||
 ||  ||  || [BrainRegionFMM_NC_PH_PAS FMM.NC.PH.PAS] || Parasubiculum || neocortex-neocortex || (unknown reference) ||
-||  ||  || [BrainRegionFMM_NC_PH_POR FMM.NC.PH.POR] || Postrhinal Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763411001722 Entorhinal Cortex Inputs and Outputs (TFTH -> EC, abstract)] ||
 ||  ||  || [BrainRegionFMM_NC_PH_POS FMM.NC.PH.POS] || Postsubiculum || neocortex-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (PSUB -> EC, abstract)] ||
 ||  ||  || [BrainRegionFMM_NC_PH_PRS FMM.NC.PH.PRS] || Presubiculum || neocortex-neocortex || [http://learnmem.cshlp.org/content/14/11/714/F1.expansion Attractor Network in Hippocampus (PRESUB -> EC, abstract)] ||
+||  || [BrainRegionFMM_NC_PH_POR FMM.NC.PH.POR] || [BrainRegionFMM_FT_HC_CA1P FMM.FT.HC.CA1P] || Proximal CA1 of Hippocampus || allocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763411001722 Entorhinal Cortex Inputs and Outputs (CA1 -> TFTH, abstract)] ||
 
 *External Outbound Region Connections:*
 
@@ -397,6 +399,7 @@
 ||  ||  || [BrainRegionFMM_FT_HC_CA2 FMM.FT.HC.CA2] || Dorsolateral Cornu Ammonis of Hippocampus || neocortex-allocortex || [http://www.surgicalneurologyint.com/article.asp?issn=2152-7806;year=2012;volume=3;issue=2;spage=40;epage=46;aulast=Langevin Amygdala and its network (EC -> HC, abstract)] ||
 ||  ||  || [BrainRegionFMM_FT_HC_DG FMM.FT.HC.DG] || Dentate Gyrus || neocortex-allocortex || [http://journal.frontiersin.org/Journal/10.3389/fpsyt.2013.00061/full Neuronal projections in the hippocampus (ET -> DG, abstract)] ||
 ||  ||  || [BrainRegionFMM_FT_HF_SUBD FMM.FT.HF.SUBD] || Distal CA1 of Hippocampus || neocortex-allocortex || [http://www.scholarpedia.org/article/Inferior_temporal_cortex Visual Path to Hippocampus (ER -> H, abstract)] ||
+||  || [BrainRegionFMM_NC_PH_POR FMM.NC.PH.POR] || [BrainRegionFMM_FT_HF_SUBD FMM.FT.HF.SUBD] || Distal CA1 of Hippocampus || neocortex-allocortex || (unknown reference) ||
 
 = Thirdparty Circuits =
 (generated)
