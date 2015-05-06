@@ -26,7 +26,7 @@
 	<circuit id="CP.PRIMARY-VISUAL-FORWARD-FLOWS" name="Paths from Retina to Parietal Cortex and IT"
 		image="http://thebrain.mcgill.ca/flash/a/a_02/a_02_cr/a_02_cr_vis/a_02_cr_vis_3a.jpg"
 		reference="http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html"
-		components="Retina=LPC.FD.RT LGN=VBA.FD.LGN V1=VCA.NC.V1 V2=VCA.NC.V2 V3=VCA.NC.V3 V4=VCA.NC.V4 MT=VCA.NC.MT PO=VCA.NC.PO VIP=VCA.NC.IPS.VIP MST=VCA.NC.IPL.MST LIP=VCA.NC.IPS.LIP 7a=SMA.NC.SPL.PG TEO=VCA.NC.IT.TEO TE=VCA.NC.IT.TE"
+		components="Retina=LPC.FD.RT LGN=NSA.FD.LGN V1=NSA.NC.OCC.V1 V2=NSA.NC.OCC.V2 V3=NSA.NC.OCC.V3 V4=NSA.NC.OCC.V4 MT=NSA.NC.OCC.MT PO=NSA.NC.OCC.PO VIP=NSA.NC.IPS.VIP MST=NSA.NC.IPL.MST LIP=VCA.NC.IPS.LIP 7a=SMA.NC.SPL.PG TEO=NSA.NC.IT.TEO TE=NSA.NC.IT.TE"
 		>
 		<link src="Retina" dst="LGN"/>
 		<link src="LGN" dst="V1"/>
@@ -56,7 +56,7 @@
 	<circuit id="CP.VISUAL-PATH-TO-HC" name="Visual Path to Hippocampus"
 		image="http://www.scholarpedia.org/w/images/thumb/f/f2/ITCortex_pathway.jpg/400px-ITCortex_pathway.jpg"
 		reference="http://www.scholarpedia.org/article/Inferior_temporal_cortex"
-		components="V1=VCA.NC.V1 V2=VCA.NC.V2 V4=VCA.NC.V4 TEO=VCA.NC.IT.TEO IT=VCA.NC.IT.TE PRPH=PHA.NC.PH.PRR ER=PHA.NC.PH.ET H=HBA.FT.HF A=FAM.FT.AM"
+		components="V1=NSA.NC.OCC.V1 V2=NSA.NC.OCC.V2 V4=NSA.NC.OCC.V4 TEO=NSA.NC.IT.TEO IT=NSA.NC.IT.TE PRPH=FMM.NC.PH.PER ER=FMM.NC.PH.ET H=HBA.FT.HF A=FAM.FT.AM"
 		>
 		<link src="V1" dst="V2"/>
 		<link src="V2" dst="V4"/>
@@ -72,7 +72,7 @@
 	<circuit id="CP.VISUAL-FUNCTIONAL-VIEW" name="Functional View of Visual Perception"
 		image="http://thebrain.mcgill.ca/flash/a/a_02/a_02_cr/a_02_cr_vis/a_02_cr_vis_3b.jpg"
 		reference="http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html"
-		components="LGN=VBA.FD.LGN V1=VCA.NC.V1 V2=VCA.NC.V2 V3=VCA.NC.V3 V4=VCA.NC.V4 V5=VCA.NC.MT PG=VCA.NC.IPS TE=VCA.NC.IT"
+		components="LGN=NSA.FD.LGN V1=NSA.NC.OCC.V1 V2=NSA.NC.OCC.V2 V3=NSA.NC.OCC.V3 V4=NSA.NC.OCC.V4 V5=NSA.NC.OCC.MT PG=VCA.NC.IPS TE=VCA.NC.IT"
 		>
 		<link src="LGN" dst="V1"/>
 		<link src="V1" dst="V2"/>
@@ -87,7 +87,7 @@
 	<circuit id="CP.VISUAL-DORSAL-PATHWAY" name="Visual Dorsal Pathway"
 		image="http://www.hindawi.com/journals/nri/2012/719056.fig.001.jpg"
 		reference="http://www.hindawi.com/journals/nri/2012/719056"
-		components="Retina=LPC.FD.RT LGN=VBA.FD.LGN V1=VCA.NC.V1 V2=VCA.NC.V2 V3=VCA.NC.V3 V4=VCA.NC.V4 V5=VCA.NC.MT MST=VCA.NC.IPL.MST IT=VCA.NC.IT V6=VCA.NC.PO IPL=NC.IPL SPL=NC.SPL"
+		components="Retina=LPC.FD.RT LGN=NSA.FD.LGN V1=NSA.NC.OCC.V1 V2=NSA.NC.OCC.V2 V3=NSA.NC.OCC.V3 V4=NSA.NC.OCC.V4 V5=NSA.NC.OCC.MT MST=NSA.NC.IPL.MST IT=VCA.NC.IT V6=NSA.NC.OCC.PO IPL=NC.IPL SPL=NC.SPL"
 		>
 		<link src="Retina" dst="LGN"/>
 		<link src="LGN" dst="V1"/>
@@ -103,7 +103,7 @@
 	<circuit id="CP.VISUAL-SPATIAL-PROCESSING" name="McNaughton Spatial Processing Network"
 		image="http://www.nature.com/nrn/journal/v3/n2/images/nrn726-f3.jpg"
 		reference="http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html"
-		components="SomSensCortex=SMA.NC.PG.S1 ParInsVestCortex=VCA.NC.IPS.VIP VisualCortex=NC.LOBE.OCC PosteriorParietalCortex=SMA.NC.SPL.PG ITCortex=VCA.NC.IT PCGRSP=CGA.NC.MPL SUB=HBA.FT.HF.SUB EnthCortex=PHA.NC.PH.ET HF=HBA.FT.HF"
+		components="SomSensCortex=SMA.NC.PG.S1 ParInsVestCortex=NSA.NC.IPS.VIP VisualCortex=NC.LOBE.OCC PosteriorParietalCortex=SMA.NC.SPL.PG ITCortex=VCA.NC.IT PCGRSP=CGA.NC.MPL SUB=FMM.FT.HF.SUB EnthCortex=FMM.NC.PH.ET HF=HBA.FT.HF"
 		>
 		<link src="SomSensCortex" dst="PosteriorParietalCortex"/>
 		<link src="ParInsVestCortex" dst="PosteriorParietalCortex"/>
@@ -123,7 +123,7 @@
 	<circuit id="CP.VISUAL-PARIETAL-ASSOCIATION-CORTEX" name="Parietal Association Cortex"
 		image="http://ars.els-cdn.com/content/image/1-s2.0-S0166223697010679-gr6.gif"
 		reference="http://www.sciencedirect.com/science/article/pii/S0166223697010679"
-		components="7b=CGA.NC.SPL.PF 7a=SMA.NC.SPL.PG LIP=VCA.NC.IPS.LIP AIP=VCA.NC.IPS.AIP TE=VCA.NC.IT.TE VIP=VCA.NC.IPS.VIP V5A=VCA.NC.MT V6=VCA.NC.PO cIPS=VCA.NC.IPS.PEF TEO=VCA.NC.IT.TEO V5=VCA.NC.MT V3A=VCA.NC.V3 V4=VCA.NC.V4 V3d=VCA.NC.V3 V3v=VCA.NC.V3 V2=VCA.NC.V2 V1=VCA.NC.V1 LGB=VBA.FD.LGN"
+		components="7b=CGA.NC.SPL.PF 7a=SMA.NC.SPL.PG LIP=VCA.NC.IPS.LIP AIP=NSA.NC.IPS.AIP TE=NSA.NC.IT.TE VIP=NSA.NC.IPS.VIP V5A=NSA.NC.OCC.MT V6=NSA.NC.OCC.PO cIPS=NSA.NC.IPS.PEF TEO=NSA.NC.IT.TEO V5=NSA.NC.OCC.MT V3A=NSA.NC.OCC.V3 V4=NSA.NC.OCC.V4 V3d=NSA.NC.OCC.V3 V3v=NSA.NC.OCC.V3 V2=NSA.NC.OCC.V2 V1=NSA.NC.OCC.V1 LGB=NSA.FD.LGN"
 		>
 		<link src="LGB" dst="V1"/>
 		<link src="V1" dst="V2"/>
@@ -151,7 +151,7 @@
 	<circuit id="CP.GLOBAL-VISUAL-SYSTEM" name="Global visual system"
 		image="http://ars.els-cdn.com/content/image/1-s2.0-S0959438808001566-gr1.jpg"
 		reference="http://www.sciencedirect.com/science/article/pii/S0959438808001566"
-		components="FrontalCortex=NC.LOBE.ANT BGA=BGA.FT.BG ParietalCortex=NC.LOBE.PAR VisualCortex=NC.LOBE.OCC LGN=VBA.FD.LGN Pulvinar=FD.PV ATH=CGA.FD.TH.AN Striatum=BGA.FT.ST SCs=MM.SC SCi=MM.SC SNr=FEC.FT.SNR.DL SNc=FEC.FT.SNC.LT RF=HP.RF SpinalCord=SC.VH.L9 Retina=LPC.FD.RT OPN=LPC.MM.OCN"
+		components="FrontalCortex=NC.LOBE.ANT BGA=BGA.FT.BG ParietalCortex=NC.LOBE.PAR VisualCortex=NC.LOBE.OCC LGN=NSA.FD.LGN Pulvinar=FD.PV ATH=FD.TH.AN Striatum=BGA.FT.ST SCs=MM.SC SCi=MM.SC SNr=FEC.FT.SNR.DL SNc=FEC.FT.SNC.LT RF=HP.RF SpinalCord=SC.VH.L9 Retina=LPC.FD.RT OPN=LPC.MM.OCN"
 		>
 		<link src="Retina" dst="LGN"/>
 		<link src="Retina" dst="SCs"/>
@@ -185,7 +185,7 @@
 	<circuit id="CP.VISUAL-PERCEPTION-ABSTRACTION" name="Visual perception abstraction"
 		image="http://asweknowit.ca/evcult/NatIntel/Fig12.GIF"
 		reference="http://asweknowit.ca/evcult/NatIntel/nat_intel.shtml"
-		components="FEF=MCA.NC.PMC.FEF IT=VCA.NC.IT Prestriate=VCA.NC.V3 OCC=NC.LOBE.OCC Pulvinar=FD.PV LGN=VBA.FD.LGN SC=MM.SC Retina=LPC.FD.RT"
+		components="FEF=MCA.NC.PMC.FEF IT=VCA.NC.IT Prestriate=NSA.NC.OCC.V3 OCC=NC.LOBE.OCC Pulvinar=FD.PV LGN=NSA.FD.LGN SC=MM.SC Retina=LPC.FD.RT"
 		>
 		<link src="Retina" dst="LGN"/>
 		<link src="Retina" dst="SC"/>
@@ -202,14 +202,14 @@
 	<circuit id="CP.VISUAL-PERCEPTION-V6" name="Similarities and differences between V6, V6Av, and V6Ad"
 		image="http://www.jneurosci.org/content/31/5/1790/F12.medium.gif"
 		reference="http://www.jneurosci.org/content/31/5/1790.full"
-		components="V6=VCA.NC.PO"
+		components="V6=NSA.NC.OCC.PO"
 		>
 	</circuit>
 
 	<circuit id="CP.VISUAL-PERCEPTION-V1" name="Similarities and differences between V6, V6Av, and V6Ad"
 		image="http://www.ib.cnea.gov.ar/~redneu/2013/BOOKS/Principles%20of%20Neural%20Science%20-%20Kandel/gateway.ut.ovid.com/fulltextservice/ct%7B06b9ee1beed594190674f1983457a7dd32af6a0d5a4c9892~34/da5c28ff2.gif.png"
 		reference="http://www.ib.cnea.gov.ar/~redneu/2013/BOOKS/Principles%20of%20Neural%20Science%20-%20Kandel/gateway.ut.ovid.com/gw2/ovidweb.cgisidnjhkoalgmeho00dbookimagebookdb_7c_2fc~34.htm"
-		components="V1=VCA.NC.V1"
+		components="V1=NSA.NC.OCC.V1"
 		>
 	</circuit>
 
