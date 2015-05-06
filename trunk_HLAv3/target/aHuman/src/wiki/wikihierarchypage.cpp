@@ -318,14 +318,28 @@ void WikiHierarchyPage::updateHierarchyPage_walkNeocortexBrodmannLine( String no
 		value = "ignored";
 		if( !info.comment.isEmpty() )
 			value += ", " + info.comment;
+		items.add( value );
 	}
-	else {
+	else
+	if( info.mapped ) {
 		MindService *ms = MindService::getService();
 		MindRegion *region = ms -> getMindRegion( info.id );
 		MindArea *area = region -> getArea();
 
 		value = "[" + wm -> getRegionPage( info.id ) + " " + info.name + " (" + info.id + ")]";
+		items.add( value );
 	}
+	else {
+		StringList elements;
+		wm -> hmindxml.getChildRegions( node , elements );
 
-	items.add( value );
+		// all regions under item
+		for( int k = 0; k < elements.count(); k++ ) {
+			String nodeChild = elements.get( k );
+			const XmlHMindElementInfo& infoChild = wm -> hmindxml.getElementInfo( nodeChild );
+
+			value = "[" + wm -> getRegionPage( infoChild.id ) + " " + infoChild.name + " (" + infoChild.id + ")]";
+			items.add( value );
+		}
+	}
 }

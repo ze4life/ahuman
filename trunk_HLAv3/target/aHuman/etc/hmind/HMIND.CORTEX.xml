@@ -154,7 +154,7 @@
 				<element id="VCA.NC.IPL.AG" name="Angular Gyrus"
 					notes="Surrounds Superior Temporal Sulcus (STS)"
 					>
-					<element id="VCA.NC.IPL.MST" name="Medial Superior Temporal Area" mapped="true" brodmannid="39" type="cortex"
+					<element id="NSA.NC.IPL.MST" name="Medial Superior Temporal Area" mapped="true" brodmannid="39" type="cortex"
 						function="Image stabilization, predictive target tracking" 
 						notes="PG, Ventro-dorsal stream"
 						/>
@@ -213,7 +213,7 @@
 				function="Perceptual-motor coordination and visual attention, eye movements and reaching" 
 				notes="PG, Control of saccadic eye movements, visual control of grasping"
 				>
-				<element id="VCA.NC.IPS.PEF" name="Posterior Eye Field" mapped="true" brodmannid="39" type="cortex"
+				<element id="NSA.NC.IPS.PEF" name="Posterior Eye Field" mapped="true" brodmannid="39" type="cortex"
 					function="Reflexive saccade triggering"
 					>
 					<element id="VCA.NC.IPS.MIP" name="Medial Intraparietal Sulcus" 
@@ -224,11 +224,11 @@
 						notes="Targeting eye movements"
 						/>
 				</element>
-				<element id="VCA.NC.IPS.VIP" name="Ventral Intraparietal Sulcus" mapped="true" brodmannid="39" type="cortex"
+				<element id="NSA.NC.IPS.VIP" name="Ventral Intraparietal Sulcus" mapped="true" brodmannid="39" type="cortex"
 					function="Merge visual, somatosensory, auditory, and vestibular senses"
 					notes="Represent space in head-centered reference frame"
 					/>
-				<element id="VCA.NC.IPS.AIP" name="Anterior Intraparietal Sulcus" mapped="true" brodmannid="39" type="cortex"
+				<element id="NSA.NC.IPS.AIP" name="Anterior Intraparietal Sulcus" mapped="true" brodmannid="39" type="cortex"
 					function="Represent shape, size, and orientation of objects to be grasped"
 					notes="Both to viewed and remembered stimuli, grasping and manipulating objects through motor and visual inputs"
 					/>
@@ -239,28 +239,49 @@
 		<element id="NC.LOBE.OCC" name="Occipital Lobe"
 			dotdef="color=darkolivegreen2"
 			>
-			<element id="VCA.NC.V1" name="Primary Visual Cortex" mapped="true" brodmannid="17" type="cortex"
+			<element id="NSA.NC.OCC.V1" name="Primary Visual Cortex" mapped="true" brodmannid="17" type="cortex"
+				synonyms="striate cortex, calcarine cortex"
 				function="Detect color, shape and movements" 
-				notes="Striate Cortex, phyletic memory"
+				notes="Striate Cortex, phyletic memory, not affected by attention"
 				/>
-			<element id="VCA.NC.V2" name="Secondary Visual Cortex" mapped="true" brodmannid="18" type="cortex"
+			<element id="NSA.NC.OCC.V2" name="Secondary Visual Cortex" brodmannid="18"
+				synonyms="prestriate cortex"
 				function="Storage of Object Recognition Memory" 
 				notes="Prestriate Cortex"
-				/>
-			<element id="VCA.NC.V3" name="Associative Visual Cortex" mapped="true" brodmannid="19" type="cortex"
-				function="Processing of global motion, dynamic shapes" 
+				>
+				<element id="NSA.NC.OCC.V2TN" name="Secondary Visual Cortex, Thin Stripe" mapped="true" type="cortex"
+					function="Extract luminance and color features" 
+					/>
+				<element id="NSA.NC.OCC.V2TK" name="Secondary Visual Cortex, Thick Stripe" mapped="true" type="cortex"
+					function="Extract binocular disparities and stimulus orientation features" 
+					/>
+				<element id="NSA.NC.OCC.V2PL" name="Secondary Visual Cortex, Pale Stripe" mapped="true" type="cortex"
+					function="Extract form features" 
+					/>
+			</element>
+			<element id="NSA.NC.OCC.V3" name="Associative Visual Cortex" mapped="true" brodmannid="19" type="cortex"
+				function="Processing of global motion, dynamic shapes, orientation" 
 				notes="Dorsal Extrastriate Cortex"
 				/>
-			<element id="VCA.NC.V4" name="Fusiform Gyrus" mapped="true" brodmannid="37" type="cortex"
+			<element id="NSA.NC.OCC.V4" name="Fusiform Gyrus" brodmannid="37"
 				function="Recognizing shapes and colors" 
-				notes="Ventral stream"
-				/>
-			<element id="VCA.NC.MT" name="Middle Temporal Area" mapped="true" brodmannid="19" type="cortex"
+				notes="Ventral stream, affected by attention"
+				>
+				<element id="NSA.NC.OCC.V4D" name="Dorsal Visual Area V4" mapped="true" type="cortex"
+					function="Recognizing shapes, kinetic motion"
+					notes="to TE" 
+					/>
+				<element id="NSA.NC.OCC.V4V" name="Ventral Visual Area V4" mapped="true" type="cortex"
+					function="Recognizing color" 
+					notes="to TEO" 
+					/>
+			</element>
+			<element id="NSA.NC.OCC.MT" name="Middle Temporal Area" mapped="true" brodmannid="19" type="cortex"
 				function="Integration of local motion signals into global percepts" 
 				notes="V5, Ventro-dorsal stream, inferior occipital gyrus"
 				/>
-			<element id="VCA.NC.PO" name="Parietooccipital Area" mapped="true" brodmannid="19" type="cortex"
-				function="Analyzing self-motion relative to the environment" 
+			<element id="NSA.NC.OCC.PO" name="Parietooccipital Area" mapped="true" brodmannid="19" type="cortex"
+				function="Analyzing self-motion relative to the environment, depth" 
 				notes="V6, DM, Dorsomedial Area, Dorsal stream"
 				/>
 		</element>
@@ -269,11 +290,11 @@
 			dotdef="color=salmon"
 			>
 			<element id="VCA.NC.IT" name="Inferotemporal Area">
-				<element id="VCA.NC.IT.TE" name="Inferotemporal Cortex" mapped="true" brodmannid="20" type="cortex"
+				<element id="NSA.NC.IT.TE" name="Inferotemporal Cortex" mapped="true" brodmannid="20" type="cortex"
 					function="Represent different views of objects" 
 					notes="Face recognition, high level visual processing"
 					/>
-				<element id="VCA.NC.IT.TEO" name="Preoccipital Inferotemporal Area" mapped="true" brodmannid="21" type="cortex"
+				<element id="NSA.NC.IT.TEO" name="Preoccipital Inferotemporal Area" mapped="true" brodmannid="21" type="cortex"
 					function="Represent different features of objects" 
 					notes="Part of IT Cortex"
 					/>
@@ -283,6 +304,7 @@
 				function="Main topotonic map, extract phonemes" 
 				notes="Core"
 				/>
+
 			<element id="ACA.NC.STS" name="Superior Temporal Sulcus">
 				<element id="ACA.NC.A2" name="Auditory Association Area" mapped="true" brodmannid="42" type="cortex"
 					function="Classify with respect to function" 
@@ -295,6 +317,12 @@
 				<element id="ACA.NC.A4" name="Wernicke's area A4" mapped="true" brodmannid="22" type="cortex"
 					function="Coordinate the activation or deactivation of grammar areas" 
 					notes="22b, Grammatical areas, phonemic sequences, word comprehension"
+					/>
+				<element id="ACA.NC.PRI" name="Parainsular Area" mapped="true" brodmannid="52" type="cortex" 
+					refs="NL:[http://neurolex.org/wiki/Category:Parainsular_area_of_PHT00 Parainsular area]"
+					comment="between insula and 41, supplementary auditory cortex, monkey only; superior bank of superior temporal gyrus, posterior margin of insula"
+					function="Medial auditory stream" 
+					notes="Major projects to PFC multi-modal associations, auditory to insula"
 					/>
 			</element>
 
@@ -329,52 +357,74 @@
 
 		<element id="NC.LOBE.PH" name="Parahippocampal Lobe"
 			dotdef="color=deepskyblue"
+			notes="Parahippocampal gyrus"
 			>
-			<element id="PHA.NC.PH.ET" name="Enthorhinal Cortex" mapped="true" brodmannid="28" type="cortex"
-				function="Memory consolidation" 
-				notes="Parahippocampal gyrus"
-				/>
-			<element id="ACA.NC.PRI" name="Parainsular Area" mapped="true" brodmannid="52" type="cortex" 
-				refs="NL:[http://neurolex.org/wiki/Category:Parainsular_area_of_PHT00 Parainsular area]"
-				comment="between insula and 41, supplementary auditory cortex, monkey only"
-				function="Medial auditory stream" 
-				notes="Major projects to PFC multi-modal associations, auditory to insula"
-				/>
-			<element id="PHA.NC.PH.PIR" name="Piriform Cortex" mapped="true" brodmannid="34" type="cortex"
-				refs="NL:[http://neurolex.org/wiki/Category:Piriform_cortex_frontal_area Piriform cortex frontal area]" 
-				function="Perception of smells" 
-				notes="Olfaction"
-				/>
-			<element id="PHA.NC.PH.PRR" name="Perirhinal Cortex" mapped="true" brodmannid="35" type="cortex"
-				function="Associate different visual views of objects and their various nonvisual attributes" 
-				notes="Parahippocampal gyrus"
-				/>
-			<element id="PHA.NC.PH.PPG" name="Ectorhinal Cortex" mapped="true" brodmannid="36" type="cortex"
+			<element id="FMM.NC.PHA" name="Anterior Parahippocampal Gyrus"
+				>
+				<element id="FMM.NC.PHA.RH" name="Rhinal Cortex"
+					>
+					<element id="FMM.NC.PH.ET" name="Entorhinal Cortex"
+						function="Memory consolidation" 
+						notes="28 - Posterior Entorhinal Cortex; 34 - Anterior Entorhinal Cortex"
+						>
+						<element id="FMM.NC.PH.LEC" name="Lateral Entorhinal Cortex" mapped="true" brodmannid="28" type="cortex"
+							synonyms="BA 28a"
+							function="Memory consolidation, emotioncal aspects" 
+							notes="non-spatial input to HC; process information about individual items and locations based on a local frame of reference, primarily using external sensory input; it provides the hippocampus with information about content of experience"
+							/>
+						<element id="FMM.NC.PH.MEC" name="Medial Entorhinal Cortex" mapped="true" brodmannid="28" type="cortex"
+							synonyms="BA 28b"
+							function="Memory consolidation, basic, view inpedepdent position" 
+							notes="spatial input to HC; grid cells; path integration computations based on a global frame of reference, primarily using internally generated, self-motion cues and external input about environmental boundaries and scenes; provides hippocampus with coordinate system that underlies spatial context of experience"
+							/>
+					</element>
+
+					<element id="FMM.NC.PH.PER" name="Perirhinal Cortex" mapped="true" brodmannid="35,36" type="cortex"
+						function="Associate different visual views of objects and their various nonvisual attributes" 
+						/>
+
+					<element id="PHA.NC.PH.PIR" name="Piriform Cortex" mapped="true" brodmannid="34" type="cortex"
+						refs="NL:[http://neurolex.org/wiki/Category:Piriform_cortex_frontal_area Piriform cortex frontal area]" 
+						function="Perception of smells, primary olfactory cortex" 
+						notes="Olfaction; dorsal entorhinal area"
+						/>
+					<element id="PHA.NC.PH.PRP" name="Prepyriform Cortex" mapped="true" brodmannid="51" type="cortex"
+						refs="NL:[http://neurolex.org/wiki/Category:Periamygdaloid_cortex Periamygdaloid cortex]; wiki:[http://en.wikipedia.org/wiki/Prepyriform_area Prepyriform area]" 
+						function="Perception of smells, relay via MD to PFC" 
+						/>
+				</element>
+
+				<element id="FMM.NC.PHA.RS" name="Retrosubicular Area"
+					>
+					<element id="FMM.NC.PH.PRS" name="Presubiculum" mapped="true" brodmannid="27" type="cortex"
+						refs="NL:[http://neurolex.org/wiki/Category:Presubiculum Presubiculum]" 
+						comment="close to Subicular Complex"
+						function="Path integration, head direction" 
+						notes="Major projects to ET, from TH.LD"
+						/>
+					<element id="FMM.NC.PH.POS" name="Postsubiculum" mapped="true" brodmannid="48" type="cortex"
+						function="Visual association"
+						refs="NL:[http://neurolex.org/wiki/Category:Postsubiculum Postsubiculum]"
+						notes="Detached dorsal part of presubiculum; Integrate visual landmarks with internal representations of environments"
+						comments="Retrosubicular Area, similar to BA-36, from perirhinal to presubiculum"
+						/>
+					<element id="FMM.NC.PH.PAS" name="Parasubiculum" mapped="true" brodmannid="49" type="cortex"
+						refs="NL:[http://neurolex.org/wiki/Category:Parasubiculum Parasubiculum]" 
+						comment="close to Subicular Complex"
+						function="Spatial navigation and the integration of head-directional information" 
+						notes="Major projects to ET, from CA1,AM"
+						/>
+				</element>
+			</element>
+
+			<element id="FMM.NC.PHP" name="Posterior Parahippocampal Gyrus"
 				function="Spatial declarative memory" 
-				notes="Postrhinal Cortex"
-				/>
-			<element id="PHA.NC.PSS" name="Postsubiculum" mapped="true" brodmannid="48" type="cortex"
-				function="Visual association"
-				refs="NL:[http://neurolex.org/wiki/Category:Postsubiculum Postsubiculum]"
-				notes="Integrate visual landmarks with internal representations of environments"
-				comments="Retrosubicular Area, similar to BA-36, from perirhinal to presubiculum"
-				/>
-			<element id="PHA.NC.PRS" name="Presubiculum" mapped="true" brodmannid="27" type="cortex"
-				refs="NL:[http://neurolex.org/wiki/Category:Presubiculum Presubiculum]" 
-				comment="close to Subicular Complex"
-				function="Path integration, head direction" 
-				notes="Major projects to ET, from TH.LD"
-				/>
-			<element id="PHA.NC.PAS" name="Parasubiculum" mapped="true" brodmannid="49" type="cortex"
-				refs="NL:[http://neurolex.org/wiki/Category:Parasubiculum Parasubiculum]" 
-				comment="close to Subicular Complex"
-				function="Spatial navigation and the integration of head-directional information" 
-				notes="Major projects to ET, from CA1,AM"
-				/>
-			<element id="PHA.NC.PH.TFTH" name="Posterior Parahippocampal Gyrus" mapped="true" brodmannid="99" type="cortex"
-				function="Spatial declarative memory" 
-				notes="No Brodmann ID assigned"
-				/>
+				>
+				<element id="FMM.NC.PH.POR" name="Postrhinal Cortex" mapped="true" brodmannid="29,30" type="cortex"
+					synonyms="Ectorhinal Cortex"
+					function="Spatial declarative memory" 
+					/>
+			</element>
 		</element>
 
 	</division>

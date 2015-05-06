@@ -17,7 +17,7 @@
 	<circuit id="CF.FEELING" name="Feeling"
 		image="http://www.nature.com/nrn/journal/v5/n7/images/nrn1432-f2.jpg"
 		reference="http://www.nature.com/nrn/journal/v5/n7"
-		components="HC=HBA.FT.HC CG=CGA.NC.MPL.PCG AN=CGA.FD.TH.AN HT=HTA.FD.HT"
+		components="HC=HBA.FT.HC CG=CGA.NC.MPL.PCG AN=FD.TH.AN HT=HTA.FD.HT"
 		>
 		<link src="HT" dst="AN"/>
 		<link src="AN" dst="CG"/>
@@ -170,7 +170,7 @@
 	<circuit id="CF.NUCLEUUS-ACCUMBENS" name="Nucleus Accumbens"
 		image="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/nucleus-accumbens.jpg"
 		reference="UNKNOWN"
-		components="NACC=FEC.FT.ACC SUB=HBA.FT.HF.SUB CA1=HBA.FT.HC.CA1 CA3=HBA.FT.HC.CA3 PAS=PHA.NC.PAS EC=PHA.NC.PH.ET PRR=PHA.NC.PH.PRR"
+		components="NACC=FEC.FT.ACC SUB=FMM.FT.HF.SUB CA1=FMM.FT.HC.CA1 CA3=FMM.FT.HC.CA3 PAS=FMM.NC.PH.PAS EC=FMM.NC.PH.ET PRR=FMM.NC.PH.PER"
 		>
 		<link src="SUB" dst="NACC"/>
 		<link src="CA1" dst="NACC"/>
@@ -183,7 +183,7 @@
 	<circuit id="CF.MEYNERT" name="Basal Nucleus of Meynert"
 		image="http://ahuman.googlecode.com/svn/images/wiki/research/human/22-reticular-formation-and-limbic-system/F22-2.png"
 		reference="article:Biological/2005-The-Human-Nervous-System.pdf"
-		components="AM=FAM.FT.AM CA1=HBA.FT.HC.CA1 EC=PHA.NC.PH.ET PRR=PHA.NC.PH.PRR BMN=LMC.FT.NBM"
+		components="AM=FAM.FT.AM CA1=FMM.FT.HC.CA1 EC=FMM.NC.PH.ET PRR=FMM.NC.PH.PER BMN=LMC.FT.NBM"
 		>
 	</circuit>
 
@@ -253,7 +253,7 @@
 	<circuit id="CF.AM-NET" name="Amygdala and its network"
 		image="http://www.surgicalneurologyint.com/articles/2012/3/2/images/SurgNeurolInt_2012_3_2_40_91609_u1.jpg"
 		reference="http://www.surgicalneurologyint.com/article.asp?issn=2152-7806;year=2012;volume=3;issue=2;spage=40;epage=46;aulast=Langevin"
-		components="ITC=VCA.NC.IT.TE STC=ACA.NC.A3 LA=FAM.FT.AM.LA CEA=FAM.FT.AM.CEA BLN=FAM.FT.AM.BP EC=PHA.NC.PH.ET HC=HBA.FT.HC MPFC=CGA.NC.MPFC NACC=FEC.FT.ACC VTA=LMC.MM.VTA RMTG=FAM.HP.PPN.RMTG LHB=LAC.FD.LHB HTS=HTA.FD.HT.POS VGDM=LAC.HM.VGN PAG=LMC.MM.PAG MD=FCA.FD.TH.MD"
+		components="ITC=NSA.NC.IT.TE STC=ACA.NC.A3 LA=FAM.FT.AM.LA CEA=FAM.FT.AM.CEA BLN=FAM.FT.AM.BP EC=FMM.NC.PH.ET HC=HBA.FT.HC MPFC=CGA.NC.MPFC NACC=FEC.FT.ACC VTA=LMC.MM.VTA RMTG=FAM.HP.PPN.RMTG LHB=LAC.FD.LHB HTS=HTA.FD.HT.POS VGDM=LAC.HM.VGN PAG=LMC.MM.PAG MD=FCA.FD.TH.MD"
 		>
 		<link src="ITC" dst="LA"/>
 		<link src="STC" dst="LA"/>
@@ -280,7 +280,7 @@
 	<circuit id="CF.AM-HC" name="Neuronal projections in the hippocampus"
 		image="http://www.frontiersin.org/files/Articles/46459/fpsyt-04-00061-HTML/image_m/fpsyt-04-00061-g002.jpg"
 		reference="http://journal.frontiersin.org/Journal/10.3389/fpsyt.2013.00061/full"
-		components="ET=PHA.NC.PH.ET BLA=FAM.FT.AM.BL DG=HBA.FT.DG CA1=HBA.FT.HC.CA1 CA3=HBA.FT.HC.CA3"
+		components="ET=FMM.NC.PH.ET BLA=FAM.FT.AM.BL DG=FMM.FT.HC.DG CA1=FMM.FT.HC.CA1 CA3=FMM.FT.HC.CA3"
 		>
 		<link src="ET" dst="CA1"/>
 		<link src="ET" dst="CA3"/>
