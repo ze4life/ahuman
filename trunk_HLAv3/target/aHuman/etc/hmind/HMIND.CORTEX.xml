@@ -107,7 +107,7 @@
 						notes="Personality, endurance"
 						/>
 
-					<element id="ACA.NC.BRA" name="Broca's Area" mapped="true" brodmannid="44,45" type="cortex"
+					<element id="NSA.NC.PFC.BRA" name="Broca's Area" mapped="true" brodmannid="44,45" type="cortex"
 						function="Speech Engine" 
 						>
 						<element id="ACA.NC.BRA.PO" name="Broca's Area Pars Opercularis" brodmannid="44" type="cortex"
@@ -160,7 +160,7 @@
 						/>
 				</element>
 				<element id="ACA.NC.IPL.SMG" name="Supramarginal Gyrus">
-					<element id="ACA.NC.IPL.SMW" name="Supramarginal Wernike Cortex" mapped="true" brodmannid="40" type="cortex"
+					<element id="NSA.NC.IPL.SMW" name="Supramarginal Wernike Cortex" mapped="true" brodmannid="40" type="cortex"
 						function="Phonological and articulatory processing of words" 
 						notes="PF, Computing sound of word, tactile learning and memory"
 						/>
@@ -209,17 +209,17 @@
 					/>
 			</element>
 
-			<element id="VCA.NC.IPS" name="Intraparietal Sulcus"
+			<element id="NSA.NC.IPS" name="Intraparietal Sulcus"
 				function="Perceptual-motor coordination and visual attention, eye movements and reaching" 
 				notes="PG, Control of saccadic eye movements, visual control of grasping"
 				>
 				<element id="NSA.NC.IPS.PEF" name="Posterior Eye Field" mapped="true" brodmannid="39" type="cortex"
 					function="Reflexive saccade triggering"
 					>
-					<element id="VCA.NC.IPS.MIP" name="Medial Intraparietal Sulcus" 
+					<element id="NSA.NC.IPS.MIP" name="Medial Intraparietal Sulcus" 
 						function="Encode location of reach target in nose-centered coordinates"
 						/>
-					<element id="VCA.NC.IPS.LIP" name="Lateral Intraparietal Sulcus"
+					<element id="NSA.NC.IPS.LIP" name="Lateral Intraparietal Sulcus"
 						function="Representing saliency of spatial locations, and attention to locations"
 						notes="Targeting eye movements"
 						/>
@@ -289,7 +289,7 @@
 		<element id="NC.LOBE.TEMP" name="Temporal Lobe"
 			dotdef="color=salmon"
 			>
-			<element id="VCA.NC.IT" name="Inferotemporal Area">
+			<element id="NSA.NC.IT" name="Inferotemporal Area">
 				<element id="NSA.NC.IT.TE" name="Inferotemporal Cortex" mapped="true" brodmannid="20" type="cortex"
 					function="Represent different views of objects" 
 					notes="Face recognition, high level visual processing"
@@ -300,36 +300,37 @@
 					/>
 			</element>
 
-			<element id="ACA.NC.A1" name="Primary Auditory Cortex" mapped="true" brodmannid="41" type="cortex"
-				function="Main topotonic map, extract phonemes" 
-				notes="Core"
-				/>
-
-			<element id="ACA.NC.STS" name="Superior Temporal Sulcus">
-				<element id="ACA.NC.A2" name="Auditory Association Area" mapped="true" brodmannid="42" type="cortex"
+			<element id="NSA.NC.TTG" name="Transverse Temporal Gyrus">
+				<element id="NSA.NC.TTG.A1" name="Primary Auditory Cortex" mapped="true" brodmannid="41" type="cortex"
+					function="Main topotonic map, extract phonemes" 
+					notes="Core"
+					/>
+				<element id="NSA.NC.TTG.A2" name="Auditory Association Area" mapped="true" brodmannid="42" type="cortex"
 					function="Classify with respect to function" 
 					notes="Belt"
 					/>
-				<element id="ACA.NC.A3" name="Wernicke's area A3" mapped="true" brodmannid="22" type="cortex"
+			</element>
+
+			<element id="NC.STG" name="Superior Temporal Gyrus">
+				<element id="NSA.NC.STG.A3" name="Wernicke's area A3" mapped="true" brodmannid="22" type="cortex"
 					function="Classify with respect to content" 
 					notes="22a, Melody perception, sequences of tones"
 					/>
-				<element id="ACA.NC.A4" name="Wernicke's area A4" mapped="true" brodmannid="22" type="cortex"
+				<element id="NSA.NC.STG.A4" name="Wernicke's area A4" mapped="true" brodmannid="22" type="cortex"
 					function="Coordinate the activation or deactivation of grammar areas" 
 					notes="22b, Grammatical areas, phonemic sequences, word comprehension"
 					/>
-				<element id="ACA.NC.PRI" name="Parainsular Area" mapped="true" brodmannid="52" type="cortex" 
+				<element id="NSA.NC.STG.PAI" name="Parainsular Area" mapped="true" brodmannid="52" type="cortex" 
 					refs="NL:[http://neurolex.org/wiki/Category:Parainsular_area_of_PHT00 Parainsular area]"
 					comment="between insula and 41, supplementary auditory cortex, monkey only; superior bank of superior temporal gyrus, posterior margin of insula"
 					function="Medial auditory stream" 
 					notes="Major projects to PFC multi-modal associations, auditory to insula"
 					/>
+				<element id="PHA.NC.TPC" name="Temporopolar Cortex" mapped="true" brodmannid="38" type="cortex"
+					function="Self representation, semantic (left) and autobiographic (right)" 
+					/>
 			</element>
 
-			<element id="PHA.NC.TPC" name="Temporopolar Cortex" mapped="true" brodmannid="38" type="cortex"
-				function="Self representation, semantic (left) and autobiographic (right)" 
-				>
-			</element>
 			<element id="PHA.NC.INS" name="Insular Cortex" type="cortex"
 				function="Visceral representation, pain, habits" 
 				notes="Interoception, merges tactile and auditory streams"
@@ -361,7 +362,7 @@
 			>
 			<element id="FMM.NC.PHA" name="Anterior Parahippocampal Gyrus"
 				>
-				<element id="FMM.NC.PHA.RH" name="Rhinal Cortex"
+				<element id="NC.PHA.RH" name="Rhinal Cortex"
 					>
 					<element id="FMM.NC.PH.ET" name="Entorhinal Cortex"
 						function="Memory consolidation" 
