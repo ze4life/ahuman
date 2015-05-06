@@ -8,12 +8,12 @@
 (generated)
 
 || *ID* || *Name* || *Regions* ||
-|| NPS || Non-planned Execution by Sensory Inputs || [BrainRegionNSA_FD_TH_MPV NSA.FD.TH.MPV] ||
+|| NPS || Non-planned Execution by Sensory Inputs || [BrainRegionNSA_FD_TH_MPV NSA.FD.TH.MPV], [BrainRegionNSA_NC_IPL_MST NSA.NC.IPL.MST] ||
 || NSA || Neocortical Audition Aggregation || [BrainRegionABA_FD_TH_MGB ABA.FD.TH.MGB], [BrainRegionACA_FD_TH_SG ACA.FD.TH.SG], [BrainRegionACA_NC_A1 ACA.NC.A1], [BrainRegionACA_NC_A2 ACA.NC.A2], [BrainRegionACA_NC_A3 ACA.NC.A3], [BrainRegionACA_NC_A4 ACA.NC.A4], [BrainRegionACA_NC_BRA ACA.NC.BRA], [BrainRegionACA_NC_IPL_SMW ACA.NC.IPL.SMW], [BrainRegionACA_NC_PRI ACA.NC.PRI] ||
 || VCC || Vision Capture Control || [BrainRegionNSA_NC_IPS_PEF NSA.NC.IPS.PEF], [BrainRegionNSA_NC_IPS_VIP NSA.NC.IPS.VIP], [BrainRegionNSA_NC_OCC_V2PL NSA.NC.OCC.V2PL], [BrainRegionNSA_NC_OCC_V3 NSA.NC.OCC.V3] ||
 || VCO || Vision Complex Objects || [BrainRegionNSA_NC_IPS_AIP NSA.NC.IPS.AIP], [BrainRegionNSA_NC_IT_TE NSA.NC.IT.TE] ||
 || VIN || Vision Primary Perception || [BrainRegionNSA_FD_LGN NSA.FD.LGN], [BrainRegionNSA_NC_OCC_V1 NSA.NC.OCC.V1] ||
-|| VMV || Vision Movement Perception || [BrainRegionNSA_FD_TH_IPV NSA.FD.TH.IPV], [BrainRegionNSA_NC_IPL_MST NSA.NC.IPL.MST], [BrainRegionNSA_NC_OCC_MT NSA.NC.OCC.MT], [BrainRegionNSA_NC_OCC_PO NSA.NC.OCC.PO], [BrainRegionNSA_NC_OCC_V2TK NSA.NC.OCC.V2TK], [BrainRegionNSA_NC_OCC_V4D NSA.NC.OCC.V4D] ||
+|| VMV || Vision Movement Perception || [BrainRegionNSA_FD_TH_IPV NSA.FD.TH.IPV], [BrainRegionNSA_NC_OCC_MT NSA.NC.OCC.MT], [BrainRegionNSA_NC_OCC_PO NSA.NC.OCC.PO], [BrainRegionNSA_NC_OCC_V2TK NSA.NC.OCC.V2TK], [BrainRegionNSA_NC_OCC_V4D NSA.NC.OCC.V4D] ||
 || VOB || Vision Object Perception || [BrainRegionNSA_FD_TH_LPV NSA.FD.TH.LPV], [BrainRegionNSA_NC_IT_TEO NSA.NC.IT.TEO], [BrainRegionNSA_NC_OCC_V2TN NSA.NC.OCC.V2TN], [BrainRegionNSA_NC_OCC_V4V NSA.NC.OCC.V4V] ||
 
 == Non-planned Execution by Sensory Inputs ==
@@ -23,6 +23,7 @@
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
 || [BrainRegionNSA_FD_TH_MPV NSA.FD.TH.MPV] || Medial Pulvinar || nucleus || NSU || Integration of associative cortical information and projects to<BR>visuomotor-related cortex || CG, PMC, PFC connections ||
+|| [BrainRegionNSA_NC_IPL_MST NSA.NC.IPL.MST] || Medial Superior Temporal Area || cortex, BA 39 || NSU || Image stabilization, predictive target tracking || PG, Ventro-dorsal stream ||
 
 *Internal Region Connections:*
   * no connections
@@ -30,6 +31,10 @@
 *External Inbound Region Connections:*
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| <font color="red">Cortical</font> || || || || || ||
+|| [BrainAreaNSA NSA] || [BrainRegionNSA_NC_IPL_MST NSA.NC.IPL.MST] || [BrainRegionNSA_FD_TH_IPV NSA.FD.TH.IPV] || Inferior Pulvinar || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (Pulvinar -> ParietalCortex, abstract)] ||
+||  ||  || [BrainRegionNSA_NC_OCC_MT NSA.NC.OCC.MT] || Middle Temporal Area || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (MT -> MST)] ||
+||  ||  || [BrainRegionNSA_NC_OCC_PO NSA.NC.OCC.PO] || Parietooccipital Area || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (PO -> MST)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaFAM FAM] || [BrainRegionNSA_FD_TH_MPV NSA.FD.TH.MPV] || [BrainRegionFAM_FD_TH_PT FAM.FD.TH.PT] || Paratenial Nucleus of Thalamus || nucleus-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (MID -> mPULV, abstract)] ||
 || [BrainAreaFMM FMM] || [BrainRegionNSA_FD_TH_MPV NSA.FD.TH.MPV] || [BrainRegionFMM_NC_PH_PER FMM.NC.PH.PER] || Perirhinal Cortex || neocortex-nucleus || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (Perirhinal -> mPULV)] ||
@@ -42,9 +47,19 @@
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
+|| [BrainAreaBAA BAA] || [BrainRegionNSA_NC_IPL_MST NSA.NC.IPL.MST] || [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || Caudal Precuneus || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (MST -> 7a)] ||
 || [BrainAreaEPA EPA] || [BrainRegionNSA_FD_TH_MPV NSA.FD.TH.MPV] || [BrainRegionCGA_NC_MPL_PCG CGA.NC.MPL.PCG] || Posterior Cingulate Cortex || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (Pulvinar -> ParietalCortex, abstract)] ||
 ||  ||  || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || Lateral Prefrontal Cortex || nucleus-neocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (mPULV -> DLPFC)] ||
 ||  ||  || [BrainRegionFCA_NC_OPFC FCA.NC.OPFC] || Orbitofrontal Cortex || nucleus-neocortex || [http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html Contributions of Diencephalon to Recognition Memory (mPULV -> MPFC)] ||
+||  || [BrainRegionNSA_NC_IPL_MST NSA.NC.IPL.MST] || [BrainRegionCGA_NC_DACG CGA.NC.DACG] || Dorsal Anterior Cingulate Area || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> FrontalCortex, abstract)] ||
+||  ||  || [BrainRegionCGA_NC_MPL_PCG CGA.NC.MPL.PCG] || Posterior Cingulate Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763409002061 Contribution of hippocampal region CA3 to consciousness (IPL -> PosteriorCingulate, abstract)] ||
+||  ||  || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || Lateral Prefrontal Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1053810011000080 Cortico-Cortical Connectivity (PTHA -> PFC, abstract)] ||
+|| [BrainAreaMAA MAA] || [BrainRegionNSA_NC_IPL_MST NSA.NC.IPL.MST] || [BrainRegionMCA_NC_PMC_F4 MCA.NC.PMC.F4] || Ventral Caudal Premotor Cortex || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (IPL -> vPM, abstract)] ||
+|| [BrainAreaNSA NSA] || [BrainRegionNSA_NC_IPL_MST NSA.NC.IPL.MST] || [BrainRegionACA_NC_IPL_SMW ACA.NC.IPL.SMW] || Supramarginal Wernike Cortex || neocortex-neocortex || [http://www.hindawi.com/journals/nri/2012/719056 Visual Dorsal Pathway (MST -> IPL, abstract)] ||
+|| <font color="red">Subcortical</font> || || || || || ||
+|| [BrainAreaFMM FMM] || [BrainRegionNSA_NC_IPL_MST NSA.NC.IPL.MST] || [BrainRegionFMM_FT_HC_CA3D FMM.FT.HC.CA3D] || Distal CA1 of Hippocampus || neocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S0149763409002061 Contribution of hippocampal region CA3 to consciousness (IPL -> CA1, abstract)] ||
+||  ||  || [BrainRegionFMM_NC_PH_POR FMM.NC.PH.POR] || Postrhinal Cortex || neocortex-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (PC -> PRHC, abstract)] ||
+|| [BrainAreaLRC LRC] || [BrainRegionNSA_NC_IPL_MST NSA.NC.IPL.MST] || [BrainRegionLRC_MM_SC_SUP LRC.MM.SC.SUP] || Superficial Superior Colliculus || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> SCi, abstract)] ||
 
 == Neocortical Audition Aggregation ==
 
@@ -252,7 +267,6 @@
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
 || [BrainRegionNSA_FD_TH_IPV NSA.FD.TH.IPV] || Inferior Pulvinar || nucleus || NSU || Dorsal =Where= Stream || Thalamus ||
-|| [BrainRegionNSA_NC_IPL_MST NSA.NC.IPL.MST] || Medial Superior Temporal Area || cortex, BA 39 || NSU || Image stabilization, predictive target tracking || PG, Ventro-dorsal stream ||
 || [BrainRegionNSA_NC_OCC_MT NSA.NC.OCC.MT] || Middle Temporal Area || cortex, BA 19 || NSU || Integration of local motion signals into global percepts || V5, Ventro-dorsal stream, inferior occipital gyrus ||
 || [BrainRegionNSA_NC_OCC_PO NSA.NC.OCC.PO] || Parietooccipital Area || cortex, BA 19 || NSU || Analyzing self-motion relative to the environment, depth || V6, DM, Dorsomedial Area, Dorsal stream ||
 || [BrainRegionNSA_NC_OCC_V2TK NSA.NC.OCC.V2TK] || Secondary Visual Cortex, Thick Stripe || cortex || NSU || Extract binocular disparities and stimulus orientation features ||  ||
@@ -261,9 +275,6 @@
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| [BrainRegionNSA_FD_TH_IPV NSA.FD.TH.IPV] || [BrainRegionNSA_NC_IPL_MST NSA.NC.IPL.MST] || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (Pulvinar -> ParietalCortex, abstract)] ||
-|| [BrainRegionNSA_NC_OCC_MT NSA.NC.OCC.MT] || [BrainRegionNSA_NC_IPL_MST NSA.NC.IPL.MST] || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (MT -> MST)] ||
-|| [BrainRegionNSA_NC_OCC_PO NSA.NC.OCC.PO] || [BrainRegionNSA_NC_IPL_MST NSA.NC.IPL.MST] || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (PO -> MST)] ||
 || [BrainRegionNSA_NC_OCC_V2TK NSA.NC.OCC.V2TK] || [BrainRegionNSA_NC_OCC_MT NSA.NC.OCC.MT] || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (V2 -> MT, abstract)] ||
 ||  || [BrainRegionNSA_NC_OCC_PO NSA.NC.OCC.PO] || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (V2 -> PO, abstract)] ||
 ||  || [BrainRegionNSA_NC_OCC_V4D NSA.NC.OCC.V4D] || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (V2 -> V4, abstract)] ||
@@ -285,24 +296,18 @@
 
 || *Target Area* || *Local Region* || *Target Region* || *Target Name* || *Type* || *Reference* ||
 || <font color="red">Cortical</font> || || || || || ||
-|| [BrainAreaBAA BAA] || [BrainRegionNSA_NC_IPL_MST NSA.NC.IPL.MST] || [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || Caudal Precuneus || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (MST -> 7a)] ||
-||  || [BrainRegionNSA_NC_OCC_MT NSA.NC.OCC.MT] || [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || Caudal Precuneus || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0166223697010679 Parietal Association Cortex (V5A -> 7a)] ||
+|| [BrainAreaBAA BAA] || [BrainRegionNSA_NC_OCC_MT NSA.NC.OCC.MT] || [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || Caudal Precuneus || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0166223697010679 Parietal Association Cortex (V5A -> 7a)] ||
 ||  || [BrainRegionNSA_NC_OCC_PO NSA.NC.OCC.PO] || [BrainRegionSMA_NC_SPL_PG SMA.NC.SPL.PG] || Caudal Precuneus || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0166223697010679 Parietal Association Cortex (V6 -> 7a)] ||
-|| [BrainAreaEPA EPA] || [BrainRegionNSA_NC_IPL_MST NSA.NC.IPL.MST] || [BrainRegionCGA_NC_DACG CGA.NC.DACG] || Dorsal Anterior Cingulate Area || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> FrontalCortex, abstract)] ||
-||  ||  || [BrainRegionCGA_NC_MPL_PCG CGA.NC.MPL.PCG] || Posterior Cingulate Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0149763409002061 Contribution of hippocampal region CA3 to consciousness (IPL -> PosteriorCingulate, abstract)] ||
-||  ||  || [BrainRegionFCA_NC_LPFC FCA.NC.LPFC] || Lateral Prefrontal Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1053810011000080 Cortico-Cortical Connectivity (PTHA -> PFC, abstract)] ||
-|| [BrainAreaMAA MAA] || [BrainRegionNSA_NC_IPL_MST NSA.NC.IPL.MST] || [BrainRegionMCA_NC_PMC_F4 MCA.NC.PMC.F4] || Ventral Caudal Premotor Cortex || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (IPL -> vPM, abstract)] ||
-|| [BrainAreaNSA NSA] || [BrainRegionNSA_NC_IPL_MST NSA.NC.IPL.MST] || [BrainRegionACA_NC_IPL_SMW ACA.NC.IPL.SMW] || Supramarginal Wernike Cortex || neocortex-neocortex || [http://www.hindawi.com/journals/nri/2012/719056 Visual Dorsal Pathway (MST -> IPL, abstract)] ||
-||  || [BrainRegionNSA_NC_OCC_MT NSA.NC.OCC.MT] || [BrainRegionNSA_NC_IPS_PEF NSA.NC.IPS.PEF] || Posterior Eye Field || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (MT -> LIP)] ||
+|| [BrainAreaNSA NSA] || [BrainRegionNSA_FD_TH_IPV NSA.FD.TH.IPV] || [BrainRegionNSA_NC_IPL_MST NSA.NC.IPL.MST] || Medial Superior Temporal Area || nucleus-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (Pulvinar -> ParietalCortex, abstract)] ||
+||  || [BrainRegionNSA_NC_OCC_MT NSA.NC.OCC.MT] || [BrainRegionNSA_NC_IPL_MST NSA.NC.IPL.MST] || Medial Superior Temporal Area || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (MT -> MST)] ||
+||  ||  || [BrainRegionNSA_NC_IPS_PEF NSA.NC.IPS.PEF] || Posterior Eye Field || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (MT -> LIP)] ||
 ||  ||  || [BrainRegionNSA_NC_IPS_VIP NSA.NC.IPS.VIP] || Ventral Intraparietal Sulcus || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (MT -> VIP)] ||
-||  || [BrainRegionNSA_NC_OCC_PO NSA.NC.OCC.PO] || [BrainRegionNSA_NC_IPS_PEF NSA.NC.IPS.PEF] || Posterior Eye Field || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0166223697010679 Parietal Association Cortex (V6 -> LIP)] ||
+||  || [BrainRegionNSA_NC_OCC_PO NSA.NC.OCC.PO] || [BrainRegionNSA_NC_IPL_MST NSA.NC.IPL.MST] || Medial Superior Temporal Area || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (PO -> MST)] ||
+||  ||  || [BrainRegionNSA_NC_IPS_PEF NSA.NC.IPS.PEF] || Posterior Eye Field || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0166223697010679 Parietal Association Cortex (V6 -> LIP)] ||
 ||  ||  || [BrainRegionNSA_NC_IPS_VIP NSA.NC.IPS.VIP] || Ventral Intraparietal Sulcus || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (PO -> VIP)] ||
 ||  || [BrainRegionNSA_NC_OCC_V4D NSA.NC.OCC.V4D] || [BrainRegionNSA_NC_IT_TE NSA.NC.IT.TE] || Inferotemporal Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (VC -> IT, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
-|| [BrainAreaFMM FMM] || [BrainRegionNSA_NC_IPL_MST NSA.NC.IPL.MST] || [BrainRegionFMM_FT_HC_CA3D FMM.FT.HC.CA3D] || Distal CA1 of Hippocampus || neocortex-allocortex || [http://www.sciencedirect.com/science/article/pii/S0149763409002061 Contribution of hippocampal region CA3 to consciousness (IPL -> CA1, abstract)] ||
-||  ||  || [BrainRegionFMM_NC_PH_POR FMM.NC.PH.POR] || Postrhinal Cortex || neocortex-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (PC -> PRHC, abstract)] ||
-||  || [BrainRegionNSA_NC_OCC_V2TK NSA.NC.OCC.V2TK] || [BrainRegionFMM_NC_PH_POS FMM.NC.PH.POS] || Postsubiculum || neocortex-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (VC -> PSUB, abstract)] ||
-|| [BrainAreaLRC LRC] || [BrainRegionNSA_NC_IPL_MST NSA.NC.IPL.MST] || [BrainRegionLRC_MM_SC_SUP LRC.MM.SC.SUP] || Superficial Superior Colliculus || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> SCi, abstract)] ||
+|| [BrainAreaFMM FMM] || [BrainRegionNSA_NC_OCC_V2TK NSA.NC.OCC.V2TK] || [BrainRegionFMM_NC_PH_POS FMM.NC.PH.POS] || Postsubiculum || neocortex-neocortex || [http://www.scholarpedia.org/article/Head_direction_cells Head Direction Cell Circuit (VC -> PSUB, abstract)] ||
 
 == Vision Object Perception ==
 
