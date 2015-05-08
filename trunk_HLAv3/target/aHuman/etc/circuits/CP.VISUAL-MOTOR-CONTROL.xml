@@ -3,7 +3,7 @@
 	<circuit id="CP.EYE-FIELDS" name="Summary of eye movement control"
 		image="http://www.cixip.com/Public/kindeditor/attached/image/20121030/20121030134649_52795.jpg"
 		reference="http://www.cixip.com/index.php/page/content/id/1190"
-		components="FEF=MCA.NC.PMC.FEF PEF=NSA.NC.IPS.PEF SEF=MCA.NC.SMC.SEF SC=MM.SC riMLF=LRC.MM.CJ PPRF=HP.PRF.PPRF DLPFC=FCA.NC.LPFC"
+		components="FEF=MCA.NC.PMC.FEF PEF=NPE.NC.IPS.PEF SEF=MCA.NC.SMC.SEF SC=MM.SC riMLF=LRC.MM.CJ PPRF=HP.PRF.PPRF DLPFC=FCA.NC.LPFC"
 		>
 		<link src="PEF" dst="SC"/>
 		<link src="PEF" dst="FEF"/>
@@ -87,7 +87,7 @@
 	<circuit id="CP.VISION-COMPONENTS" name="Vision Components"
 		image="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/vision-subcortical.jpg"
 		reference="http://neuroscience.uth.tmc.edu/s3/chapter07.html"
-		components="RT=LPC.FD.RT CG=LAC.PN.PSYM.CLG OCN=LPC.MM.OCN SOA=VBA.MM.SOA LGN=NSA.FD.LGN EWN=LAC.MM.EWN VC=NC.LOBE.OCC VAC=NSA.NC.IPS.PEF EYE=TARGET.TSA.EYE STN=LPC.HM.TGM.STR"
+		components="RT=LPC.FD.RT CG=LAC.PN.PSYM.CLG OCN=LPC.MM.OCN SOA=VBA.MM.SOA LGN=NSA.FD.LGN EWN=LAC.MM.EWN VC=NC.LOBE.OCC VAC=NPE.NC.IPS.PEF EYE=TARGET.TSA.EYE STN=LPC.HM.TGM.STR"
 		>
 		<link src="OCN" dst="CG"/>
 		<link src="EWN" dst="CG"/>
@@ -101,7 +101,7 @@
 	<circuit id="CP.VISION-SACCADES" name="Horizontal saccades and smooth pursuit movements"
 		image="http://ars.els-cdn.com/content/image/1-s2.0-S0006899301025987-gr1.gif"
 		reference="http://www.sciencedirect.com/science/article/pii/S0006899301025987"
-		components="LGB=NSA.FD.LGN VisualAssociation=SMA.NC.SPL.PG PrimaryVisual=NSA.NC.OCC.V1 FEFSEF=NC.LOBE.ANT SC=MM.SC Striatum=BGA.FT.ST RIP=LRC.MM.RP.RIP Bechterew=LLC.HP.PRF.PDT CR=LLC.HP.CR PPRF=HP.PRF.PPRF Vestibular=LPC.HP.SVBN"
+		components="LGB=NSA.FD.LGN VisualAssociation=NPE.NC.SPL.PG PrimaryVisual=NSA.NC.OCC.V1 FEFSEF=NC.LOBE.ANT SC=MM.SC Striatum=BGA.FT.ST RIP=LRC.MM.RP.RIP Bechterew=LLC.HP.PRF.PDT CR=LLC.HP.CR PPRF=HP.PRF.PPRF Vestibular=LPC.HP.SVBN"
 		>
 		<link src="VisualAssociation" dst="FEFSEF"/>
 		<link src="LGB" dst="PrimaryVisual"/>
@@ -122,7 +122,7 @@
 	<circuit id="CP.SACCADIC-MOTOR-CONTROL" name="Eye blink reflex and pupillary light reflex"
 		image="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/oculomotor.jpg"
 		reference="http://neuroscience.uth.tmc.edu/s3/chapter07.html"
-		components="EYE=TARGET.TSA.EYE SpinalTrigeminal=LPC.HM.TGM.STR Oculomotor=LPC.MM.OCN Abducens=LPC.HP.ABD Facial=LPC.HP.FCM RF=HP.RF PrincipalTrigeminal=LPC.HP.PTP.PTR Ciliary=LAC.PN.PSYM.CLG EWN=LAC.MM.EWN Pretectum=MM.PT VAC=NSA.NC.OCC.V3 SupraOculomotor=VBA.MM.SOA"
+		components="EYE=TARGET.TSA.EYE SpinalTrigeminal=LPC.HM.TGM.STR Oculomotor=LPC.MM.OCN Abducens=LPC.HP.ABD Facial=LPC.HP.FCM RF=HP.RF PrincipalTrigeminal=LPC.HP.PTP.PTR Ciliary=LAC.PN.PSYM.CLG EWN=LAC.MM.EWN Pretectum=MM.PT VAC=NPE.NC.OCC.V3 SupraOculomotor=VBA.MM.SOA"
 		>
 		<link src="Facial" dst="Abducens"/>
 		<link src="RF" dst="Facial"/>
@@ -143,7 +143,7 @@
 	<circuit id="CP.SACCADIC-VOLUNTARY-AND-PURSUIT" name="Saccades and smooth movements"
 		image="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg"
 		reference="UNKNOWN"
-		components="FEF=MCA.NC.PMC.FEF PPC=NSA.NC.IPS.PEF CN=BGA.FT.CN SN=BGA.FT.SN VGC=LRC.MM.CJ SC=MM.SC PPRF=HP.PRF.PPRF TEF=NSA.NC.IT Extrastriate=NSA.NC.OCC.V3 Striate=NSA.NC.OCC.V1 CR=LLC.HP.CR Vestibular=LPC.HP.LVBN DLPN=LRC.HP.PRF.RPO"
+		components="FEF=MCA.NC.PMC.FEF PPC=NPE.NC.IPS.PEF CN=BGA.FT.CN SN=BGA.FT.SN VGC=LRC.MM.CJ SC=MM.SC PPRF=HP.PRF.PPRF TEF=NSA.NC.IT Extrastriate=NPE.NC.OCC.V3 Striate=NSA.NC.OCC.V1 CR=LLC.HP.CR Vestibular=LPC.HP.LVBN DLPN=LRC.HP.PRF.RPO"
 		>
 		<!-- voluntary saccades circuit -->
 		<link src="FEF" dst="SC"/>
@@ -240,7 +240,7 @@
 	<circuit id="CP.TRIGEMINAL-NUCLEI" name="Trigeminal Nuclei" 
 		image="http://www.dartmouth.edu/~rswenson/NeuroSci/figures/Figure_16_files/image002.jpg"
 		reference="http://www.lookfordiagnosis.com/mesh_info.php?term=Trigeminal+Nuclei&lang=1"
-		components="EYE=TARGET.TSA.EYE CSN=LPC.HP.PTP.PTR VPM=SMA.FD.TH.VPM STR=LPC.HM.TGM.STR"
+		components="EYE=TARGET.TSA.EYE CSN=LPC.HP.PTP.PTR VPM=NSA.FD.TH.VPM STR=LPC.HM.TGM.STR"
 		>
 		<link src="EYE" dst="CSN"/>
 		<link src="EYE" dst="STR"/>

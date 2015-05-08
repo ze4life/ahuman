@@ -26,7 +26,7 @@
 	<circuit id="CP.PRIMARY-VISUAL-FORWARD-FLOWS" name="Paths from Retina to Parietal Cortex and IT"
 		image="http://thebrain.mcgill.ca/flash/a/a_02/a_02_cr/a_02_cr_vis/a_02_cr_vis_3a.jpg"
 		reference="http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html"
-		components="Retina=LPC.FD.RT LGN=NSA.FD.LGN V1=NSA.NC.OCC.V1 V2=NSA.NC.OCC.V2 V3=NSA.NC.OCC.V3 V4=NSA.NC.OCC.V4 MT=NSA.NC.OCC.MT PO=NSA.NC.OCC.PO VIP=NSA.NC.IPS.VIP MST=NSA.NC.IPL.MST LIP=NSA.NC.IPS.LIP 7a=SMA.NC.SPL.PG TEO=NSA.NC.IT.TEO TE=NSA.NC.IT.TE"
+		components="Retina=LPC.FD.RT LGN=NSA.FD.LGN V1=NSA.NC.OCC.V1 V2=NSA.NC.OCC.V2 V3=NPE.NC.OCC.V3 V4=NSA.NC.OCC.V4 MT=NSA.NC.OCC.MT PO=NSA.NC.OCC.PO VIP=NSA.NC.IPS.VIP MST=NPE.NC.IPL.MST LIP=NSA.NC.IPS.LIP 7a=NPE.NC.SPL.PG TEO=NSA.NC.IT.TEO TE=NSA.NC.IT.TE"
 		>
 		<link src="Retina" dst="LGN"/>
 		<link src="LGN" dst="V1"/>
@@ -72,7 +72,7 @@
 	<circuit id="CP.VISUAL-FUNCTIONAL-VIEW" name="Functional View of Visual Perception"
 		image="http://thebrain.mcgill.ca/flash/a/a_02/a_02_cr/a_02_cr_vis/a_02_cr_vis_3b.jpg"
 		reference="http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html"
-		components="LGN=NSA.FD.LGN V1=NSA.NC.OCC.V1 V2=NSA.NC.OCC.V2 V3=NSA.NC.OCC.V3 V4=NSA.NC.OCC.V4 V5=NSA.NC.OCC.MT PG=NSA.NC.IPS TE=NSA.NC.IT"
+		components="LGN=NSA.FD.LGN V1=NSA.NC.OCC.V1 V2=NSA.NC.OCC.V2 V3=NPE.NC.OCC.V3 V4=NSA.NC.OCC.V4 V5=NSA.NC.OCC.MT PG=NSA.NC.IPS TE=NSA.NC.IT"
 		>
 		<link src="LGN" dst="V1"/>
 		<link src="V1" dst="V2"/>
@@ -87,7 +87,7 @@
 	<circuit id="CP.VISUAL-DORSAL-PATHWAY" name="Visual Dorsal Pathway"
 		image="http://www.hindawi.com/journals/nri/2012/719056.fig.001.jpg"
 		reference="http://www.hindawi.com/journals/nri/2012/719056"
-		components="Retina=LPC.FD.RT LGN=NSA.FD.LGN V1=NSA.NC.OCC.V1 V2=NSA.NC.OCC.V2 V3=NSA.NC.OCC.V3 V4=NSA.NC.OCC.V4 V5=NSA.NC.OCC.MT MST=NSA.NC.IPL.MST IT=NSA.NC.IT V6=NSA.NC.OCC.PO IPL=NC.IPL SPL=NC.SPL"
+		components="Retina=LPC.FD.RT LGN=NSA.FD.LGN V1=NSA.NC.OCC.V1 V2=NSA.NC.OCC.V2 V3=NPE.NC.OCC.V3 V4=NSA.NC.OCC.V4 V5=NSA.NC.OCC.MT MST=NPE.NC.IPL.MST IT=NSA.NC.IT V6=NSA.NC.OCC.PO IPL=NC.IPL SPL=NC.SPL"
 		>
 		<link src="Retina" dst="LGN"/>
 		<link src="LGN" dst="V1"/>
@@ -103,7 +103,7 @@
 	<circuit id="CP.VISUAL-SPATIAL-PROCESSING" name="McNaughton Spatial Processing Network"
 		image="http://www.nature.com/nrn/journal/v3/n2/images/nrn726-f3.jpg"
 		reference="http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html"
-		components="SomSensCortex=SMA.NC.PG.S1 ParInsVestCortex=NSA.NC.IPS.VIP VisualCortex=NC.LOBE.OCC PosteriorParietalCortex=SMA.NC.SPL.PG ITCortex=NSA.NC.IT PCGRSP=CGA.NC.MPL SUB=FMM.FT.HF.SUB EnthCortex=FMM.NC.PH.ET HF=HBA.FT.HF"
+		components="SomSensCortex=NSA.NC.PG.S1 ParInsVestCortex=NSA.NC.IPS.VIP VisualCortex=NC.LOBE.OCC PosteriorParietalCortex=NPE.NC.SPL.PG ITCortex=NSA.NC.IT PCGRSP=CGA.NC.MPL SUB=FMM.FT.HF.SUB EnthCortex=FMM.NC.PH.ET HF=HBA.FT.HF"
 		>
 		<link src="SomSensCortex" dst="PosteriorParietalCortex"/>
 		<link src="ParInsVestCortex" dst="PosteriorParietalCortex"/>
@@ -123,7 +123,7 @@
 	<circuit id="CP.VISUAL-PARIETAL-ASSOCIATION-CORTEX" name="Parietal Association Cortex"
 		image="http://ars.els-cdn.com/content/image/1-s2.0-S0166223697010679-gr6.gif"
 		reference="http://www.sciencedirect.com/science/article/pii/S0166223697010679"
-		components="7b=CGA.NC.SPL.PF 7a=SMA.NC.SPL.PG LIP=NSA.NC.IPS.LIP AIP=NSA.NC.IPS.AIP TE=NSA.NC.IT.TE VIP=NSA.NC.IPS.VIP V5A=NSA.NC.OCC.MT V6=NSA.NC.OCC.PO cIPS=NSA.NC.IPS.PEF TEO=NSA.NC.IT.TEO V5=NSA.NC.OCC.MT V3A=NSA.NC.OCC.V3 V4=NSA.NC.OCC.V4 V3d=NSA.NC.OCC.V3 V3v=NSA.NC.OCC.V3 V2=NSA.NC.OCC.V2 V1=NSA.NC.OCC.V1 LGB=NSA.FD.LGN"
+		components="7b=NPE.NC.SPL.PF 7a=NPE.NC.SPL.PG LIP=NSA.NC.IPS.LIP AIP=NSA.NC.IPS.AIP TE=NSA.NC.IT.TE VIP=NSA.NC.IPS.VIP V5A=NSA.NC.OCC.MT V6=NSA.NC.OCC.PO cIPS=NPE.NC.IPS.PEF TEO=NSA.NC.IT.TEO V5=NSA.NC.OCC.MT V3A=NPE.NC.OCC.V3 V4=NSA.NC.OCC.V4 V3d=NPE.NC.OCC.V3 V3v=NPE.NC.OCC.V3 V2=NSA.NC.OCC.V2 V1=NSA.NC.OCC.V1 LGB=NSA.FD.LGN"
 		>
 		<link src="LGB" dst="V1"/>
 		<link src="V1" dst="V2"/>
@@ -185,7 +185,7 @@
 	<circuit id="CP.VISUAL-PERCEPTION-ABSTRACTION" name="Visual perception abstraction"
 		image="http://asweknowit.ca/evcult/NatIntel/Fig12.GIF"
 		reference="http://asweknowit.ca/evcult/NatIntel/nat_intel.shtml"
-		components="FEF=MCA.NC.PMC.FEF IT=NSA.NC.IT Prestriate=NSA.NC.OCC.V3 OCC=NC.LOBE.OCC Pulvinar=FD.PV LGN=NSA.FD.LGN SC=MM.SC Retina=LPC.FD.RT"
+		components="FEF=MCA.NC.PMC.FEF IT=NSA.NC.IT Prestriate=NPE.NC.OCC.V3 OCC=NC.LOBE.OCC Pulvinar=FD.PV LGN=NSA.FD.LGN SC=MM.SC Retina=LPC.FD.RT"
 		>
 		<link src="Retina" dst="LGN"/>
 		<link src="Retina" dst="SC"/>
