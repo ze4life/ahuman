@@ -3,21 +3,21 @@
 	<circuit id="CM.SENSIMOTOR-NERVES" name="Sensimotor Nerves"
 		image="http://aids.hallym.ac.kr/d/kns/tutor/ch2-nb3.jpg"
 		reference="http://aids.hallym.ac.kr/d/kns/tutor/chap2-bn.html"
-		components="MC=MCA.NC.MC"
+		components="MC=NMA.NC.MC"
 		>
 	</circuit>
 
 	<circuit id="CM.SENSIMOTOR-INTERACTIONS" name="Sensimotor Interactions"
 		image="http://aids.hallym.ac.kr/d/kns/tutor/pns49.jpg"
 		reference="http://aids.hallym.ac.kr/d/kns/tutor/chap2-bn.html"
-		components="MC=MCA.NC.MC"
+		components="MC=NMA.NC.MC"
 		>
 	</circuit>
 
 	<circuit id="CM.MOVEMENT-PLANNING" name="Movement Planning"
 		image="http://thebrainlabs.com/Images/primary_motor_cortex.gif"
 		reference="http://thebrainlabs.com/brain.shtml"
-		components="SMC=MCA.NC.SMC PPC=NC.SPL"
+		components="SMC=NMA.NC.SMC PPC=NC.SPL"
 		>
 		<link src="PPC" dst="SMC"/>
 	</circuit>
@@ -46,21 +46,21 @@
 	<circuit id="CM.MOTOR-CORTICES" name="Motor Cortices"
 		image="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/motor-cortex.jpg"
 		reference="UNKNOWN"
-		components="M1=MCA.NC.MC"
+		components="M1=NMA.NC.MC"
 		>
 	</circuit>
 
 	<circuit id="CM.CORTICOSPINAL-PATHWAY" name="Corticospinal pathway"
 		image="http://brainmind.com/images/Pyramidaltract.jpg"
 		reference="http://brainmind.com"
-		components="M1=MCA.NC.MC"
+		components="M1=NMA.NC.MC"
 		>
 	</circuit>
 
 	<circuit id="CM.GRASPING-CONTROL" name="Primate Control of Grasping"
 		image="http://ars.els-cdn.com/content/image/1-s2.0-S0893608098000471-gr6.gif"
 		reference="http://www.sciencedirect.com/science/article/pii/S0893608098000471"
-		components="S1=NSA.NC.PG.S1 F1=MCA.NC.MC S2=NSA.NC.PG.S1 F2=MCA.NC.PMC.F2 F5=MCA.NC.PMC.F5 46=FCA.NC.LPFC BG=BGA.FT.BG F6=MCA.NC.SMC.F6 F4=MCA.NC.PMC.F4 AIP=NSA.NC.IPS.AIP VIP=NSA.NC.IPS.VIP PIP=NPE.NC.IPS.PEF VC=NC.LOBE.OCC IT=NSA.NC.IT"
+		components="S1=NSA.NC.PG.S1 F1=NMA.NC.MC S2=NSA.NC.PG.S1 F2=NMA.NC.PMC.F2 F5=NMA.NC.PMC.F5 46=NDM.NC.AL.DLPFC BG=BGA.FT.BG F6=MCA.NC.SMC.F6 F4=NMA.NC.PMC.F4 AIP=NSA.NC.IPS.AIP VIP=NSA.NC.IPS.VIP PIP=NPE.NC.IPS.PEF VC=NC.LOBE.OCC IT=NSA.NC.IT"
 		>
 		<link src="S1" dst="F1"/>
 		<link src="S1" dst="S2"/>
@@ -89,14 +89,14 @@
 	<circuit id="CM.MOTOR-DIVISIONS" name="Divisions of Cortical Motor System"
 		image="http://ars.els-cdn.com/content/image/1-s2.0-S0896627307007118-gr4.jpg"
 		reference="http://www.sciencedirect.com/science/article/pii/S0896627307007118"
-		components="M1=MCA.NC.MC"
+		components="M1=NMA.NC.MC"
 		>
 	</circuit>
 
 	<circuit id="CM.PFC-MOTOR" name="Prefrontal Cortex (PFC) in motor behavior"
 		image="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/motor_top.jpg"
 		reference="https://www.google.ru/search?hl=ru&tbo=p&tbm=bks&q=isbn:0080887988"
-		components="LPFC=FCA.NC.LPFC PMC=NC.PMC MC=MCA.NC.MC TH=FD.TH.VTH CN.PU=BGA.FT.ST GP=BGA.FT.GP SN=BGA.FT.SN CR=LLC.HP.CR PN=MBA.HP.PN"
+		components="LPFC=NDM.NC.AL.DLPFC PMC=NC.PMC MC=NMA.NC.MC TH=FD.TH.VTH CN.PU=BGA.FT.ST GP=BGA.FT.GP SN=BGA.FT.SN CR=LLC.HP.CR PN=MBA.HP.PN"
 		>
 		<link src="LPFC" dst="PMC"/>
 		<link src="PMC" dst="MC"/>
@@ -115,14 +115,14 @@
 	<circuit id="CM.NORMAL-BG-ANATOMY" name="Normal Functional Anatomy of Basal Ganglia"
 		image="http://www.mdvu.org/images/par_path2.jpg"
 		reference="http://www.mdvu.org/library/disease/pd/par_path.asp"
-		components="STN=BGA.FD.STN GPe=BGA.FT.GPE SNc=FEC.FT.SNC.LT SNr=FEC.FT.SNR.DL GPi=BGA.FT.GPI VA=MCA.FD.TH.VA VL=MCA.FD.TH.VL"
+		components="STN=BGA.FD.STN GPe=BGA.FT.GPE SNc=FEC.FT.SNC.LT SNr=FEC.FT.SNR.DL GPi=BGA.FT.GPI VA=NMA.FD.TH.VA VL=NMA.FD.TH.VL"
 		>
 	</circuit>
 
 	<circuit id="CM.BASAL-GANGLIA-ACTIVITY" name="Basal Ganglia Activity"
 		image="http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou_2b.jpg"
 		reference="http://thebrain.mcgill.ca/flash/a/a_06/a_06_cr/a_06_cr_mou/a_06_cr_mou.html"
-		components="S1=NSA.NC.PG.S1 M1=MCA.NC.MC SMC=MCA.NC.SMC VLo=MCA.FD.TH.VL GPi=BGA.FT.GPI GPo=BGA.FT.GPE STN=BGA.FD.STN SN=BGA.FT.SN PU=BGA.FT.DPU PMC=NC.PMC"
+		components="S1=NSA.NC.PG.S1 M1=NMA.NC.MC SMC=NMA.NC.SMC VLo=NMA.FD.TH.VL GPi=BGA.FT.GPI GPo=BGA.FT.GPE STN=BGA.FD.STN SN=BGA.FT.SN PU=BGA.FT.DPU PMC=NC.PMC"
 		>
 		<link src="S1" dst="PU"/>
 		<link src="M1" dst="PU"/>
@@ -147,7 +147,7 @@
 	<circuit id="CM.ONUF" name="Physiology and pathophysiology of lower urinary tract"
 		image="http://www.intechopen.com/source/html/40109/media/image1.jpeg"
 		reference="http://www.intechopen.com/books/computational-intelligence-in-electromyography-analysis-a-perspective-on-current-applications-and-future-challenges/sphincter-emg-for-diagnosing-multiple-system-atrophy-and-related-disorders"
-		components="PVN=LAC.FD.HT.PV MPOA=HTA.FD.HT.MPO VTA=LMC.MM.VTA ZI=BGA.FD.STN.ZI SNC=FEC.FT.SNC.LT MPFC=FCA.NC.OPFC PU=FEC.FT.PU.LT CN=BGA.FT.CN LC=LMC.HP.LC NBM=LMC.FT.NBM PBN=LPC.HP.PB DVM=LAC.HM.VGN PEL=LAC.PN.PSYM.PPG SPS=LAC.SC.IZ.SPS IML=LAC.SC.IZ.IML IMG=LAC.PN.SYM.IMG ONF=LPC.SC.VH.ONF"
+		components="PVN=LAC.FD.HT.PV MPOA=HTA.FD.HT.MPO VTA=LMC.MM.VTA ZI=BGA.FD.STN.ZI SNC=FEC.FT.SNC.LT MPFC=NC.AL.OPFC PU=FEC.FT.PU.LT CN=BGA.FT.CN LC=LMC.HP.LC NBM=LMC.FT.NBM PBN=LPC.HP.PB DVM=LAC.HM.VGN PEL=LAC.PN.PSYM.PPG SPS=LAC.SC.IZ.SPS IML=LAC.SC.IZ.IML IMG=LAC.PN.SYM.IMG ONF=LPC.SC.VH.ONF"
 		>
 		<link src="VTA" dst="PVN"/>
 		<link src="VTA" dst="MPOA"/>

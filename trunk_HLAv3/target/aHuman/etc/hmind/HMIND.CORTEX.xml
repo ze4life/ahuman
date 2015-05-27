@@ -5,32 +5,111 @@
 		<element id="NC.LOBE.ANT" name="Anterior Lobe"
 			dotdef="color=skyblue"
 			>
-			<element id="CGA.NC.ACG" name="Anterior Cingulate Cortex" type="cortex"
-				function="Error Correction" 
-				notes="Part of limbic lobe"
+			<element id="NC.AL.PFC" name="Prefrontal Cortex"
+				refs="NA:[http://en.wikipedia.org/wiki/Prefrontal_cortex Prefrontal Cortex]"
+				function="High-level Mental Functions" 
 				>
-				<element id="CGA.NC.VACG" name="Ventral Anterior Cingulate Area" mapped="true" brodmannid="24" type="cortex"
-					function="Seat of Free Will" 
-					notes="motor, attentional and cognitive functions"
+				<element id="NDM.NC.AL.DLPFC" name="Dorsolateral Prefrontal Cortex" mapped="true" brodmannid="46" type="cortex"
+					function="Temporal Integration" 
 					/>
-				<element id="CGA.NC.PACG" name="Pregenual Area" mapped="true" brodmannid="33" type="cortex"
-					function="Sensation of Emotion" 
-					notes="Storage of emotional memory, emotions, mood and autonomic functions"
-					/>
-				<element id="CGA.NC.MPFC" name="Medial Prefrontal Cortex"
+
+				<element id="NC.AL.VLPFC" name="Ventrolateral Prefrontal Cortex"
 					>
-					<element id="CGA.NC.DACG" name="Dorsal Anterior Cingulate Area" mapped="true" brodmannid="32" type="cortex"
-						function="Rational Thought Processes" 
-						notes="Anticipate and detect targets, indicate novelty, influence motor responses, encode reward values, and signal errors, motor, attentional and cognitive functions"
+					<element id="NDM.NC.AL.IPG" name="Inferior Prefrontal Gyrus" mapped="true" brodmannid="47" type="cortex"
+						function="Processing of syntax in oral and sign languages"
+						notes="Personality, endurance"
 						/>
-					<element id="CGA.NC.SGC" name="Subgenual Cortex" mapped="true" brodmannid="25" type="cortex"
+
+					<element id="NPE.NC.PFC.BRA" name="Broca's Area" brodmannid="44,45"
+						function="Speech Engine" 
+						>
+						<element id="NPE.NC.BRA.PO" name="Broca's Area Pars Opercularis" mapped="true" brodmannid="44" type="cortex"
+							function="Speech Engine" 
+							notes="Orbital Inferior Frontal Gyrus"
+							/>
+						<element id="NPE.NC.BRA.PT" name="Broca's Area Pars Triangularis" mapped="true" brodmannid="45" type="cortex"
+							function="Language production and prefrontal associational integration, propositional language comprehension"
+							notes="Triangular Inferior Frontal Gyrus, switching between semantic sub-categories in word retrieval"
+							/>
+					</element>
+				</element>
+
+				<element id="NC.AL.OPFC" name="Orbitofrontal Cortex" brodmannid="10,12"
+					synonyms="Ventromedial Cortex"
+					function="Personality" 
+					>
+					<element id="NDM.NC.AL.FPC" name="Lateral Frontopolar Cortex" mapped="true" brodmannid="10" type="cortex"
+						synonyms="Anterior Prefrontal Cortex"
+						function="Emotion Regulation" 
+						notes="Frontopolar area, contains ILC - infralimbic cortex"
+						refs="wiki:[http://en.wikipedia.org/wiki/Ventromedial_prefrontal_cortex]"
+						/>
+					<element id="NDM.NC.AL.RPFC" name="Rostral Prefrontal Cortex" mapped="true" brodmannid="12" type="cortex"
+						function="Prefrontal associational integration" 
+						refs="wiki:[http://www.sylvius.com/index/b/brodmann_s_area_12.html]"
+						/>
+				</element>
+
+				<element id="NC.AL.MPFC" name="Medial Prefrontal Cortex"
+					function="Response Selection" 
+					>
+					<element id="NDM.NC.AL.DMPFC" name="Dorsomedial Prefrontal Cortex" mapped="true" brodmannid="09" type="cortex"
+						synonyms="PL, prelimbic cortex"
+						function="Ongoing Extroverted Attention to Select Appropriate Response" 
+						notes="upper MPFC, primary connections to the cingulate and the motor and premotor cortices"
+						/>
+					<element id="NDM.NC.AL.VMPFC" name="Ventromedial Prefrontal Cortex" mapped="true" brodmannid="11" type="cortex"
+						synonyms="IL, infralimbic cortex"
+						refs="wiki:[http://en.wikipedia.org/wiki/Brodmann_area_11]"
+						function="Ongoing Introverted Attention with Regard to Emotions and Feelings, Reward or Punishment" 
+						notes="lower MPFC, primary connections to limbic and sensory cortices; Reward mediated behaviours"
+						/>
+				</element>
+
+			</element>
+
+			<element id="NC.ACG" name="Anterior Cingulate Area" type="cortex"
+				notes="consists of anterior cingulate cortex and middle cingulate cortex"
+				>
+				<element id="NC.AL.ACG" name="Anterior Cingulate Cortex" type="cortex"
+					synonyms="Perigenual Cingulate Area"
+					function="Error Correction" 
+					notes="Part of limbic lobe"
+					>
+					<element id="NDM.NC.AL.VACG" name="Ventral Anterior Cingulate Area" mapped="true" brodmannid="24" type="cortex"
+						function="Seat of Free Will" 
+						notes="motor, attentional and cognitive functions; BA24-rostral"
+						/>
+					<element id="NDM.NC.AL.DACG" name="Dorsal Anterior Cingulate Area" mapped="true" brodmannid="32" type="cortex"
+						function="Rational Thought Processes" 
+						notes="Anticipate and detect targets, indicate novelty, influence motor responses, encode reward values, and signal errors, motor, attentional and cognitive functions; BA32-rostral"
+						/>
+					<element id="NCP.NC.AL.SGCG" name="Subgenual Cingulate Cortex" mapped="true" brodmannid="25" type="cortex"
 						function="Influences changes in appetite and sleep" 
-						notes="Subdivision of cytoarchitecturally defined cingulate region, emotions, mood and autonomic functions"
+						notes="Subdivision of cytoarchitecturally defined cingulate region, emotions, mood and autonomic functions; SOL, VGM"
+						/>
+				</element>
+
+				<element id="NC.AL.MCG" name="Medial Cingulate Cortex" type="cortex"
+					function="Error Correction" 
+					notes="Part of limbic lobe"
+					>
+					<element id="NDM.NC.AL.VMCG" name="Ventral Anterior Cingulate Area" mapped="true" brodmannid="24" type="cortex"
+						function="Response Selection" 
+						notes="BA24-caudal"
+						/>
+					<element id="NDM.NC.AL.DMCG" name="Dorsal Anterior Cingulate Area" mapped="true" brodmannid="32" type="cortex"
+						function="Rational Thought Processes" 
+						notes="Anticipate and detect targets, indicate novelty, influence motor responses, encode reward values, and signal errors, motor, attentional and cognitive functions; BA32-caudal"
+						/>
+					<element id="NDM.NC.AL.PGCG" name="Pregenual Cingulate Cortex" mapped="true" brodmannid="33" type="cortex"
+						function="Sensation of Emotion" 
+						notes="Storage of emotional memory, emotions, mood and autonomic functions"
 						/>
 				</element>
 			</element>
 
-			<element id="MCA.NC.MC" name="Motor Cortex" mapped="true" brodmannid="04" type="cortex"
+			<element id="NMA.NC.MC" name="Motor Cortex" mapped="true" brodmannid="04" type="cortex"
 				function="Execution of required voluntary movements" 
 				notes="Encode individual movements"
 				/>
@@ -38,29 +117,40 @@
 			<element id="NC.PMC" name="Premotor Cortex"
 				function="Selection of appropriate motor plans for voluntary movements" 
 				>
+				<element id="NMA.NC.PMC.FEF" name="Frontal Eye Field" type="cortex" mapped="true" brodmannid="08"
+					function="Initiation of eye movements"
+					notes="Voluntary saccades and pursuit eye movements"
+					>
+					<element id="MCA.NC.PMC.CFEF" name="Caudal Frontal Eye Field"
+						function="Head and eye movements toward visual stimuli"
+						/>
+					<element id="MCA.NC.PMC.AFEF" name="Anterior Frontal Eye Field"
+						function="Head and eye movements toward auditory stimuli"
+						/>
+				</element>
 				<element id="MCA.NC.DPMC" name="Dorsal Premotor Cortex">
-					<element id="MCA.NC.PMC.F2" name="Dorsal Caudal Premotor Cortex" mapped="true" brodmannid="06" type="cortex"
+					<element id="NMA.NC.PMC.F2" name="Dorsal Caudal Premotor Cortex" mapped="true" brodmannid="06" type="cortex"
 						function="Guiding reaching"
 						notes="Active during preparation for reach and also during reach itself; leg and arm; transform sensory information into motor representation"
 						/>
-					<element id="MCA.NC.PMC.F7" name="Dorsal Rostral Premotor Cortex" mapped="true" brodmannid="06" type="cortex"
+					<element id="NMA.NC.PMC.F7" name="Dorsal Rostral Premotor Cortex" mapped="true" brodmannid="06" type="cortex"
 						function="Associate arbitrary sensory stimuli with specific eye movements"
 						notes="Can evoke eye movements; strong afferents from DLPFC; convey inputs to caudal concerning motivation, long term plans, memory of past actions"
 						/>
 				</element>
 				<element id="MCA.NC.VPMC" name="Ventral Premotor Cortex">
-					<element id="MCA.NC.PMC.F4" name="Ventral Caudal Premotor Cortex" mapped="true" brodmannid="06" type="cortex"
+					<element id="NMA.NC.PMC.F4" name="Ventral Caudal Premotor Cortex" mapped="true" brodmannid="06" type="cortex"
 						function="Sensory guidance of movement"
 						notes="Neurons are especially sensitive to objects in space immediately surrounding body; move head, face and arm"
 						/>
-					<element id="MCA.NC.PMC.F5" name="Ventral Rostral Premotor Cortex" mapped="true" brodmannid="06" type="cortex"
+					<element id="NMA.NC.PMC.F5" name="Ventral Rostral Premotor Cortex" mapped="true" brodmannid="06" type="cortex"
 						function="Shaping hand during grasping"
 						notes="Mirror neurons - both sensory and motor; arm"
 						/>
 				</element>
 			</element>
 
-			<element id="MCA.NC.SMC" name="Supplementary Motor Cortex" mapped="true" brodmannid="06" type="cortex"
+			<element id="NMA.NC.SMC" name="Supplementary Motor Cortex" mapped="true" brodmannid="06" type="cortex"
 				function="Process sequences of movements and coordinate bilateral movements" 
 				>
 				<element id="MCA.NC.SMC.SEF" name="Supplementary Eye Field"
@@ -77,72 +167,6 @@
 					/>
 			</element>
 
-			<element id="NC.PFC" name="Prefrontal Cortex"
-				refs="NA:[http://en.wikipedia.org/wiki/Prefrontal_cortex Prefrontal Cortex]"
-				function="High-level Mental Functions" 
-				>
-				<element id="FCA.NC.DLPFC" name="Dorsolateral Prefrontal Cortex"
-					>
-					<element id="FCA.NC.LPFC" name="Lateral Prefrontal Cortex" mapped="true" brodmannid="09,46" type="cortex"
-						function="Temporal Integration" 
-						notes="FEF is in PMC"
-						/>
-					<element id="MCA.NC.PMC.FEF" name="Frontal Eye Field" type="cortex" mapped="true" brodmannid="08"
-						function="Initiation of eye movements"
-						notes="Voluntary saccades and pursuit eye movements"
-						>
-						<element id="MCA.NC.PMC.CFEF" name="Caudal Frontal Eye Field"
-							function="Head and eye movements toward visual stimuli"
-							/>
-						<element id="MCA.NC.PMC.AFEF" name="Anterior Frontal Eye Field"
-							function="Head and eye movements toward auditory stimuli"
-							/>
-					</element>
-				</element>
-
-				<element id="NC.VLPFC" name="Ventrolateral Prefrontal Cortex"
-					>
-					<element id="FCA.NC.IPG" name="Inferior Prefrontal Gyrus" mapped="true" brodmannid="47" type="cortex"
-						function="Processing of syntax in oral and sign languages"
-						notes="Personality, endurance"
-						/>
-
-					<element id="NPE.NC.PFC.BRA" name="Broca's Area" mapped="true" brodmannid="44,45" type="cortex"
-						function="Speech Engine" 
-						>
-						<element id="ACA.NC.BRA.PO" name="Broca's Area Pars Opercularis" brodmannid="44" type="cortex"
-							function="Speech Engine" 
-							notes="Orbital Inferior Frontal Gyrus"
-							/>
-						<element id="ACA.NC.BRA.PT" name="Broca's Area Pars Triangularis" brodmannid="45" type="cortex"
-							function="Language production and prefrontal associational integration, propositional language comprehension"
-							notes="Triangular Inferior Frontal Gyrus, switching between semantic sub-categories in word retrieval"
-							/>
-					</element>
-				</element>
-
-				<element id="FCA.NC.OPFC" name="Orbitofrontal Cortex" mapped="true" brodmannid="10,11,12" type="cortex"
-					synonyms="Ventromedial Cortex"
-					function="Personality" 
-					comments="BAs 11, 12 and 14 are commonly referred to as orbitofrontal cortex"
-					>
-					<element name="Anterior Prefrontal Cortex" brodmannid="10" type="cortex"
-						synonyms="Lateral Frontopolar Cortex"
-						function="Emotion Regulation" 
-						notes="Frontopolar area, contains ILC - infralimbic cortex"
-						refs="wiki:[http://en.wikipedia.org/wiki/Ventromedial_prefrontal_cortex]"
-						/>
-					<element name="Ventromedial Prefrontal Cortex" brodmannid="11" type="cortex"
-						function="Reward mediated behaviours" 
-						refs="wiki:[http://en.wikipedia.org/wiki/Brodmann_area_11]"
-						/>
-					<element name="Rostral Prefrontal Cortex" brodmannid="12" type="cortex"
-						function="Prefrontal associational integration" 
-						refs="wiki:[http://www.sylvius.com/index/b/brodmann_s_area_12.html]"
-						/>
-				</element>
-			</element>
-
 		</element>
 
 		<element id="NC.LOBE.PAR" name="Parietal Lobe"
@@ -151,7 +175,7 @@
 			<element id="NC.IPL" name="Inferior Parietal Lobule"
 				notes="in humans=BA39,40, in monkey=BA7"
 				>
-				<element id="VCA.NC.IPL.AG" name="Angular Gyrus"
+				<element id="NC.IPL.AG" name="Angular Gyrus"
 					notes="Surrounds Superior Temporal Sulcus (STS)"
 					>
 					<element id="NPE.NC.IPL.MST" name="Medial Superior Temporal Area" mapped="true" brodmannid="39" type="cortex"
@@ -159,7 +183,7 @@
 						notes="PG, Ventro-dorsal stream"
 						/>
 				</element>
-				<element id="ACA.NC.IPL.SMG" name="Supramarginal Gyrus">
+				<element id="NC.IPL.SMG" name="Supramarginal Gyrus">
 					<element id="NPE.NC.IPL.SMW" name="Supramarginal Wernike Cortex" mapped="true" brodmannid="40" type="cortex"
 						function="Phonological and articulatory processing of words" 
 						notes="PF, Computing sound of word, tactile learning and memory"
@@ -167,16 +191,21 @@
 				</element>
 			</element>
 
-			<element id="CGA.NC.MPL" name="Medial Parietal Lobule">
-				<element id="CGA.NC.MPL.RSC" name="Retrosplenial Cortex" mapped="true" brodmannid="26,29,30" type="cortex"
+			<element id="NC.MPL" name="Medial Parietal Lobule"
+				>
+				<element id="NCP.NC.MPL.RSC" name="Retrosplenial Cortex" mapped="true" brodmannid="29,30" type="cortex"
 					function="Processing of emotionally salient stimuli" 
 					/>
-				<element id="CGA.NC.MPL.PCG" name="Posterior Cingulate Cortex" mapped="true" brodmannid="23,31" type="cortex"
+				<element id="NCP.NC.MPL.PSCG" name="Posterior Cingulate Cortex" mapped="true" brodmannid="23,31" type="cortex"
 					function="Self-awareness, pain and episodic memory retrieval" 
+					/>
+				<element id="NCP.NC.MPL.SGCG" name="Subgenual Cingulate Cortex" mapped="true" brodmannid="26" type="cortex"
+					synonyms="caudomedial subgenual region, CMSR"
+					function="Control of of autonomic motor" 
 					/>
 			</element>
 
-			<element id="SMA.NC.PO" name="Parietal Operculum"
+			<element id="NC.PO" name="Parietal Operculum"
 				notes="Postcentral gyrus"
 				>
 				<element id="NSA.NC.PO.PCC" name="Precentral Cortex" mapped="true" brodmannid="43" type="cortex"
@@ -184,7 +213,7 @@
 					/>
 			</element>
 
-			<element id="SMA.NC.PG" name="Postcentral Gyrus">
+			<element id="NC.PG" name="Postcentral Gyrus">
 				<element id="NSA.NC.PG.S1" name="Somatosensory Cortex" mapped="true" brodmannid="01,02,03" type="cortex"
 					function="Muscle and skin receptors" 
 					/>
@@ -195,7 +224,7 @@
 				comments="in human=BA7, PPC - Posterior Parietal Cortex"
 				notes="SMG, Represent spoken words, tool use"
 				>
-				<element id="SMA.NC.SPL.SA" name="Somatosensory Association Cortex" mapped="true" brodmannid="05" type="cortex"
+				<element id="NPE.NC.SPL.SA" name="Somatosensory Association Cortex" mapped="true" brodmannid="05" type="cortex"
 					function="Locating objects in space" 
 					notes="PE, somatosensory, guiding movement by providing information about limb position"
 					/>
@@ -291,10 +320,12 @@
 			>
 			<element id="NSA.NC.IT" name="Inferotemporal Area">
 				<element id="NSA.NC.IT.TE" name="Inferotemporal Cortex" mapped="true" brodmannid="20" type="cortex"
+					synonyms="AIT, CIT"
 					function="Represent different views of objects" 
 					notes="Face recognition, high level visual processing"
 					/>
 				<element id="NSA.NC.IT.TEO" name="Preoccipital Inferotemporal Area" mapped="true" brodmannid="21" type="cortex"
+					synonyms="PIT"
 					function="Represent different features of objects" 
 					notes="Part of IT Cortex"
 					/>
@@ -326,29 +357,29 @@
 					function="Medial auditory stream" 
 					notes="Major projects to PFC multi-modal associations, auditory to insula"
 					/>
-				<element id="PHA.NC.TPC" name="Temporopolar Cortex" mapped="true" brodmannid="38" type="cortex"
+				<element id="NCP.NC.TPC" name="Temporopolar Cortex" mapped="true" brodmannid="38" type="cortex"
 					function="Self representation, semantic (left) and autobiographic (right)" 
 					/>
 			</element>
 
-			<element id="PHA.NC.INS" name="Insular Cortex" type="cortex"
+			<element id="NC.INS" name="Insular Cortex" type="cortex"
 				function="Visceral representation, pain, habits" 
 				notes="Interoception, merges tactile and auditory streams"
 				>
-				<element id="PHA.NC.INS.PIC" name="Posterior Insular Cortex" mapped="true" brodmannid="13" type="cortex"
+				<element id="NCP.NC.INS.PIC" name="Posterior Insular Cortex" mapped="true" brodmannid="13" type="cortex"
 					function="Awareness and sensation of pain" 
 					refs="web:[http://www.psych-it.com.au/Psychlopedia/article.asp?id=341]"
 					/>
-				<element id="PHA.NC.INS.AIC" name="Anterior Insular Cortex" mapped="true" brodmannid="14" type="cortex"
+				<element id="NCP.NC.INS.AIC" name="Anterior Insular Cortex" mapped="true" brodmannid="14" type="cortex"
 					function="Risky and moral decision making, articulation" 
 					refs="web:[http://www.psych-it.com.au/Psychlopedia/article.asp?id=341]"
 					/>
-				<element id="PHA.NC.INS.HR" name="Anterior Temporal Lobe" mapped="true" brodmannid="15" type="cortex"
+				<element id="NCP.NC.INS.HR" name="Anterior Temporal Lobe" mapped="true" brodmannid="15" type="cortex"
 					refs="NL:[http://neurolex.org/wiki/Birnlex_1746]"
 					function="Relaying blood pressure and blood chemistry information to brain" 
 					notes="Cortical target of information coming through Hering's nerves, active during panic attacks"
 					/>
-				<element id="PHA.NC.INS.PPC" name="Peripaleocortical Claustral" mapped="true" brodmannid="16" type="cortex"
+				<element id="NCP.NC.INS.PPC" name="Peripaleocortical Claustral" mapped="true" brodmannid="16" type="cortex"
 					refs="http://neurolex.org/wiki/Birnlex_1747"
 					function="Relays proprioception" 
 					notes="Dentate gyrus -> lateropolaris magnoceflularis -> this, agranular orbital, lateral"

@@ -3,7 +3,7 @@
 	<circuit id="CP.BASE-VISUAL-CORTEX-FLOWS" name="3 Visual Cortex Paths"
 		image="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/visual-streams.jpg"
 		reference="article:Biological/2008-dorsal-stream.pdf"
-		components="LPC=FCA.NC.LPFC pre-SMA=MCA.NC.SMC dPM=MCA.NC.DPMC vPM=MCA.NC.VPMC MI=MCA.NC.MC IPS=NSA.NC.IPS SPL=NC.SPL IPL=NC.IPL IT=NSA.NC.IT OCC=NC.LOBE.OCC"
+		components="LPC=NDM.NC.AL.DLPFC pre-SMA=NMA.NC.SMC dPM=MCA.NC.DPMC vPM=MCA.NC.VPMC MI=NMA.NC.MC IPS=NSA.NC.IPS SPL=NC.SPL IPL=NC.IPL IT=NSA.NC.IT OCC=NC.LOBE.OCC"
 		>
 		<link src="OCC" dst="IPS"/>
 		<link src="OCC" dst="IT" function="ventral stream"/>
@@ -103,7 +103,7 @@
 	<circuit id="CP.VISUAL-SPATIAL-PROCESSING" name="McNaughton Spatial Processing Network"
 		image="http://www.nature.com/nrn/journal/v3/n2/images/nrn726-f3.jpg"
 		reference="http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html"
-		components="SomSensCortex=NSA.NC.PG.S1 ParInsVestCortex=NSA.NC.IPS.VIP VisualCortex=NC.LOBE.OCC PosteriorParietalCortex=NPE.NC.SPL.PG ITCortex=NSA.NC.IT PCGRSP=CGA.NC.MPL SUB=FMM.FT.HF.SUB EnthCortex=FMM.NC.PH.ET HF=HBA.FT.HF"
+		components="SomSensCortex=NSA.NC.PG.S1 ParInsVestCortex=NSA.NC.IPS.VIP VisualCortex=NC.LOBE.OCC PosteriorParietalCortex=NPE.NC.SPL.PG ITCortex=NSA.NC.IT PCGRSP=NC.MPL SUB=FMM.FT.HF.SUB EnthCortex=FMM.NC.PH.ET HF=HBA.FT.HF"
 		>
 		<link src="SomSensCortex" dst="PosteriorParietalCortex"/>
 		<link src="ParInsVestCortex" dst="PosteriorParietalCortex"/>
@@ -185,7 +185,7 @@
 	<circuit id="CP.VISUAL-PERCEPTION-ABSTRACTION" name="Visual perception abstraction"
 		image="http://asweknowit.ca/evcult/NatIntel/Fig12.GIF"
 		reference="http://asweknowit.ca/evcult/NatIntel/nat_intel.shtml"
-		components="FEF=MCA.NC.PMC.FEF IT=NSA.NC.IT Prestriate=NPE.NC.OCC.V3 OCC=NC.LOBE.OCC Pulvinar=FD.PV LGN=NSA.FD.LGN SC=MM.SC Retina=LPC.FD.RT"
+		components="FEF=NMA.NC.PMC.FEF IT=NSA.NC.IT Prestriate=NPE.NC.OCC.V3 OCC=NC.LOBE.OCC Pulvinar=FD.PV LGN=NSA.FD.LGN SC=MM.SC Retina=LPC.FD.RT"
 		>
 		<link src="Retina" dst="LGN"/>
 		<link src="Retina" dst="SC"/>
