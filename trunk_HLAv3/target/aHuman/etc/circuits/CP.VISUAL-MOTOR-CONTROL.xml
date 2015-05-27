@@ -3,7 +3,7 @@
 	<circuit id="CP.EYE-FIELDS" name="Summary of eye movement control"
 		image="http://www.cixip.com/Public/kindeditor/attached/image/20121030/20121030134649_52795.jpg"
 		reference="http://www.cixip.com/index.php/page/content/id/1190"
-		components="FEF=MCA.NC.PMC.FEF PEF=NPE.NC.IPS.PEF SEF=MCA.NC.SMC.SEF SC=MM.SC riMLF=LRC.MM.CJ PPRF=HP.PRF.PPRF DLPFC=FCA.NC.LPFC"
+		components="FEF=NMA.NC.PMC.FEF PEF=NPE.NC.IPS.PEF SEF=MCA.NC.SMC.SEF SC=MM.SC riMLF=LRC.MM.CJ PPRF=HP.PRF.PPRF DLPFC=NDM.NC.AL.DLPFC"
 		>
 		<link src="PEF" dst="SC"/>
 		<link src="PEF" dst="FEF"/>
@@ -143,7 +143,7 @@
 	<circuit id="CP.SACCADIC-VOLUNTARY-AND-PURSUIT" name="Saccades and smooth movements"
 		image="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg"
 		reference="UNKNOWN"
-		components="FEF=MCA.NC.PMC.FEF PPC=NPE.NC.IPS.PEF CN=BGA.FT.CN SN=BGA.FT.SN VGC=LRC.MM.CJ SC=MM.SC PPRF=HP.PRF.PPRF TEF=NSA.NC.IT Extrastriate=NPE.NC.OCC.V3 Striate=NSA.NC.OCC.V1 CR=LLC.HP.CR Vestibular=LPC.HP.LVBN DLPN=LRC.HP.PRF.RPO"
+		components="FEF=NMA.NC.PMC.FEF PPC=NPE.NC.IPS.PEF CN=BGA.FT.CN SN=BGA.FT.SN VGC=LRC.MM.CJ SC=MM.SC PPRF=HP.PRF.PPRF TEF=NSA.NC.IT Extrastriate=NPE.NC.OCC.V3 Striate=NSA.NC.OCC.V1 CR=LLC.HP.CR Vestibular=LPC.HP.LVBN DLPN=LRC.HP.PRF.RPO"
 		>
 		<!-- voluntary saccades circuit -->
 		<link src="FEF" dst="SC"/>
@@ -167,7 +167,7 @@
 	<circuit id="CP.VESTIBULO-OCULAR-REFLEX" name="Vestibulo-ocular reflex (VOR)"
 		image="http://www.neuroanatomy.wisc.edu/virtualbrain/Images/13R.jpg"
 		reference="http://www.neuroanatomy.wisc.edu/virtualbrain/BrainStem/13VNAN.html"
-		components="VestibularGanglion=LPC.PN.SG.VB VestibularNuclei=LPC.HP.IVBN PPRF=HP.PRF.PPRF Abducens=LPC.HP.ABD Oculomotor=LPC.MM.OCN FEF=MCA.NC.PMC.FEF"
+		components="VestibularGanglion=LPC.PN.SG.VB VestibularNuclei=LPC.HP.IVBN PPRF=HP.PRF.PPRF Abducens=LPC.HP.ABD Oculomotor=LPC.MM.OCN FEF=NMA.NC.PMC.FEF"
 		>
 		<link src="VestibularGanglion" dst="VestibularNuclei"/>
 		<link src="VestibularNuclei" dst="PPRF"/>
@@ -197,7 +197,7 @@
 	<circuit id="CP.OCULOMOTOR-DECISION-MAKING" name="Oculomotor decision-making"
 		image="http://img.springerimages.com/Images/Springer/PUB=Springer-Verlag-Berlin-Heidelberg/JOU=00359/VOL=2005.191/ISU=3/ART=2004_565/MediaObjects/WATER_s00359-004-0565-9fhc1.jpg"
 		reference="http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0"
-		components="AMYG=FAM.FT.AM CGp=CGA.NC.MPL.PCG CGa=CGA.NC.ACG LIP=NSA.NC.IPS.LIP SEF=MCA.NC.SMC.SEF FEF=MCA.NC.PMC.FEF PFC=FCA.NC.LPFC OFC=FCA.NC.OPFC SC=MM.SC NAC=FEC.FT.ACC SNr=FEC.FT.SNR.DL SNc=FEC.FT.SNC.LT VTA=LMC.MM.VTA Thalamus=FD.TH Caudate=BGA.FT.CN"
+		components="AMYG=FAM.FT.AM CGp=NCP.NC.MPL.PSCG CGa=NC.AL.ACG LIP=NSA.NC.IPS.LIP SEF=MCA.NC.SMC.SEF FEF=NMA.NC.PMC.FEF PFC=NDM.NC.AL.DLPFC OFC=NC.AL.OPFC SC=MM.SC NAC=FEC.FT.ACC SNr=FEC.FT.SNR.DL SNc=FEC.FT.SNC.LT VTA=LMC.MM.VTA Thalamus=FD.TH Caudate=BGA.FT.CN"
 		>
 		<link src="AMYG" dst="CGp"/>
 		<link src="AMYG" dst="CGa"/>
