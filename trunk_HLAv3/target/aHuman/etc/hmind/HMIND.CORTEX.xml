@@ -9,9 +9,16 @@
 				refs="NA:[http://en.wikipedia.org/wiki/Prefrontal_cortex Prefrontal Cortex]"
 				function="High-level Mental Functions" 
 				>
-				<element id="NDM.NC.AL.DLPFC" name="Dorsolateral Prefrontal Cortex" mapped="true" brodmannid="46" type="cortex"
-					function="Temporal Integration" 
-					/>
+				<element id="NDM.NC.AL.DLPFC" name="Mid-Dorsolateral Prefrontal Cortex" brodmannid="46"
+					function="Temporal Integration and working memory" 
+					>
+					<element id="NDM.NC.AL.DLPFCR" name="Rostral Mid-Dorsolateral Prefrontal Cortex" mapped="true" brodmannid="46" type="cortex"
+						function="Cognitive control and monitoring to resolve conflict in information processing and competing response plans"
+						/>
+					<element id="NDM.NC.AL.DLPFCL" name="Lateral Mid-Dorsolateral Prefrontal Cortex" mapped="true" brodmannid="46" type="cortex"
+						function="Cognitive control related to stimulus processing and selection of relevant information for behavior" 
+						/>
+				</element>
 
 				<element id="NC.AL.VLPFC" name="Ventrolateral Prefrontal Cortex"
 					>
@@ -44,10 +51,27 @@
 						notes="Frontopolar area, contains ILC - infralimbic cortex"
 						refs="wiki:[http://en.wikipedia.org/wiki/Ventromedial_prefrontal_cortex]"
 						/>
-					<element id="NDM.NC.AL.RPFC" name="Rostral Prefrontal Cortex" mapped="true" brodmannid="12" type="cortex"
+					<element id="NDM.NC.AL.ROFC" name="Rostral Orbitofrontal Cortex" brodmannid="12"
 						function="Prefrontal associational integration" 
 						refs="wiki:[http://www.sylvius.com/index/b/brodmann_s_area_12.html]"
-						/>
+						>
+						<element id="NDM.NC.AL.ROFCR" name="Most Rostral Orbitofrontal Cortex" mapped="true" brodmannid="12" type="cortex"
+							function="Integral conscious selection of novelty" 
+							notes="12R"
+							/>
+						<element id="NDM.NC.AL.ROFCS" name="Sulcal Rostral Orbitofrontal Cortex" mapped="true" brodmannid="12" type="cortex"
+							function="Gustatory and auditory selection of novelty" 
+							notes="12S"
+							/>
+						<element id="NDM.NC.AL.ROFCM" name="Medial Rostral Orbitofrontal Cortex" mapped="true" brodmannid="12" type="cortex"
+							function="Somatosensory selection of novelty" 
+							notes="12M"
+							/>
+						<element id="NDM.NC.AL.ROFCL" name="Lateral Rostral Orbitofrontal Cortex" mapped="true" brodmannid="12" type="cortex"
+							function="Visual selection of novelty" 
+							notes="12L"
+							/>
+					</element>
 				</element>
 
 				<element id="NC.AL.MPFC" name="Medial Prefrontal Cortex"
@@ -111,59 +135,65 @@
 
 			<element id="NMA.NC.MC" name="Motor Cortex" mapped="true" brodmannid="04" type="cortex"
 				function="Execution of required voluntary movements" 
-				notes="Encode individual movements"
+				notes="F1; Encode individual movements"
 				/>
 
 			<element id="NC.PMC" name="Premotor Cortex"
 				function="Selection of appropriate motor plans for voluntary movements" 
 				>
-				<element id="NMA.NC.PMC.FEF" name="Frontal Eye Field" type="cortex" mapped="true" brodmannid="08"
+				<element id="NMA.NC.PMC.FEF" name="Frontal Eye Field" brodmannid="08"
 					function="Initiation of eye movements"
 					notes="Voluntary saccades and pursuit eye movements"
 					>
-					<element id="MCA.NC.PMC.CFEF" name="Caudal Frontal Eye Field"
+					<element id="NMA.NC.PMC.CFEF" name="Caudal Frontal Eye Field" type="cortex" brodmannid="08" mapped="true" 
+						synonyms="Lateral FEF"
 						function="Head and eye movements toward visual stimuli"
+						notes="shorter saccades"
 						/>
-					<element id="MCA.NC.PMC.AFEF" name="Anterior Frontal Eye Field"
+					<element id="NMA.NC.PMC.AFEF" name="Anterior Frontal Eye Field" type="cortex" brodmannid="08" mapped="true" 
+						synonyms="Medial FEF"
 						function="Head and eye movements toward auditory stimuli"
+						notes="longer saccades, dorsomedial - 8A (8Ac, 8Am), but not 8Ar; 8Ac - saccades"
 						/>
 				</element>
-				<element id="MCA.NC.DPMC" name="Dorsal Premotor Cortex">
+				<element id="MCA.NC.DPMC" name="Dorsal Premotor Cortex"
+					>
 					<element id="NMA.NC.PMC.F2" name="Dorsal Caudal Premotor Cortex" mapped="true" brodmannid="06" type="cortex"
 						function="Guiding reaching"
-						notes="Active during preparation for reach and also during reach itself; leg and arm; transform sensory information into motor representation"
+						notes="6DC; Active during preparation for reach and also during reach itself; leg and arm; transform sensory information into motor representation; preparation and execution of motor acts"
 						/>
 					<element id="NMA.NC.PMC.F7" name="Dorsal Rostral Premotor Cortex" mapped="true" brodmannid="06" type="cortex"
 						function="Associate arbitrary sensory stimuli with specific eye movements"
-						notes="Can evoke eye movements; strong afferents from DLPFC; convey inputs to caudal concerning motivation, long term plans, memory of past actions"
+						notes="6DR; Can evoke eye movements; strong afferents from DLPFC; convey inputs to caudal concerning motivation, long term plans, memory of past actions; integrates sensory and internally driven inputs for planning of goal-directed actions"
 						/>
 				</element>
-				<element id="MCA.NC.VPMC" name="Ventral Premotor Cortex">
+				<element id="MCA.NC.VPMC" name="Ventral Premotor Cortex"
+					>
 					<element id="NMA.NC.PMC.F4" name="Ventral Caudal Premotor Cortex" mapped="true" brodmannid="06" type="cortex"
 						function="Sensory guidance of movement"
-						notes="Neurons are especially sensitive to objects in space immediately surrounding body; move head, face and arm"
+						notes="6VC; Neurons are especially sensitive to objects in space immediately surrounding body; move head, face and arm"
 						/>
 					<element id="NMA.NC.PMC.F5" name="Ventral Rostral Premotor Cortex" mapped="true" brodmannid="06" type="cortex"
 						function="Shaping hand during grasping"
-						notes="Mirror neurons - both sensory and motor; arm"
+						notes="6VR; Mirror neurons - both sensory and motor; arm; F5c=convexity - F1/F4/F2VR/F6/F3/24d/24c, F5p=posterior - F3/F4/F1/24c/24a, F5a=anterior - F4/F6/24c/24d/24a/46v/12r/12l"
 						/>
 				</element>
 			</element>
 
-			<element id="NMA.NC.SMC" name="Supplementary Motor Cortex" mapped="true" brodmannid="06" type="cortex"
+			<element id="NMA.NC.SMC" name="Supplementary Motor Cortex" brodmannid="06"
 				function="Process sequences of movements and coordinate bilateral movements" 
 				>
-				<element id="MCA.NC.SMC.SEF" name="Supplementary Eye Field"
+				<element id="NMA.NC.SMC.SEF" name="Supplementary Eye Field" mapped="true" brodmannid="06" type="cortex"
 					function="high level aspects of saccade control"
 					notes="Complex spatial transformations, learned transformations, and executive cognitive functions; dorsorostral of F7"
 					/>
-				<element id="MCA.NC.SMC.F6" name="Pre-Supplementary Motor Area"
-					function="Numerical and verbal mental-operation tasks"
-					notes="from TH/VLpc, MD from caudate, CR"
+				<element id="NMA.NC.SMC.F6" name="Pre-Supplementary Motor Area" mapped="true" brodmannid="06" type="cortex"
+					function="High level motor functions; Numerical and verbal mental-operation tasks"
+					notes="from TH/VLpc, MD from caudate, CR; F5/24c/46; no connections with F1"
 					/>
-				<element id="MCA.NC.SMC.F3" name="Supplementary Motor Area"
-					function="Numerical and verbal mental-operation tasks"
-					notes="from TH/VLo from from putamen"
+				<element id="NMA.NC.SMC.F3" name="Supplementary Motor Area" mapped="true" brodmannid="06" type="cortex"
+					function="Movement execution; Numerical and verbal mental-operation tasks"
+					notes="from TH/VLo from from putamen; F1/F2/F4/24d - strong; F6/F7/F5/24c - modest; no input from the prefrontal lobe"
 					/>
 			</element>
 
@@ -201,7 +231,7 @@
 					/>
 				<element id="NCP.NC.MPL.SGCG" name="Subgenual Cingulate Cortex" mapped="true" brodmannid="26" type="cortex"
 					synonyms="caudomedial subgenual region, CMSR"
-					function="Control of of autonomic motor" 
+					function="Control of autonomic motor" 
 					/>
 			</element>
 
@@ -213,10 +243,25 @@
 					/>
 			</element>
 
-			<element id="NC.PG" name="Postcentral Gyrus">
-				<element id="NSA.NC.PG.S1" name="Somatosensory Cortex" mapped="true" brodmannid="01,02,03" type="cortex"
-					function="Muscle and skin receptors" 
-					/>
+			<element id="NC.PG" name="Postcentral Gyrus"
+				>
+				<element id="NC.PG.APC" name="Anterior Parietal Cortex"
+					>
+					<element id="NSA.NC.PG.S1" name="Primary Somatosensory Cortex" mapped="true" brodmannid="01,02,03" type="cortex"
+						function="Muscle and skin receptors" 
+						/>
+				</element>
+				<element id="NC.PG.LPC" name="Lateral Parietal Cortex"
+					>
+					<element id="NSA.NC.PG.S2" name="Secondary Somatosensory Cortex" mapped="true" brodmannid="40" type="cortex"
+						function="Sensorimotor integration, integration of information from two body halves" 
+						notes="BA 1/3b; projects to PV/7b/INS/AM/HC"
+						/>
+					<element id="NSA.NC.PG.PV" name="Parietal Ventral Cortex" mapped="true" brodmannid="40" type="cortex"
+						function="Ñreating somatosensory memory, attention, learning and memory" 
+						notes="BA5/PMC"
+						/>
+				</element>
 			</element>
 
 			<element id="NC.SPL" name="Superior Parietal Lobule">
@@ -242,13 +287,13 @@
 				function="Perceptual-motor coordination and visual attention, eye movements and reaching" 
 				notes="PG, Control of saccadic eye movements, visual control of grasping"
 				>
-				<element id="NPE.NC.IPS.PEF" name="Posterior Eye Field" mapped="true" brodmannid="39" type="cortex"
+				<element id="NPE.NC.IPS.PEF" name="Posterior Eye Field" brodmannid="39"
 					function="Reflexive saccade triggering"
 					>
-					<element id="NSA.NC.IPS.MIP" name="Medial Intraparietal Sulcus" 
+					<element id="NPE.NC.IPS.MIP" name="Medial Intraparietal Sulcus" mapped="true" brodmannid="39" type="cortex"
 						function="Encode location of reach target in nose-centered coordinates"
 						/>
-					<element id="NSA.NC.IPS.LIP" name="Lateral Intraparietal Sulcus"
+					<element id="NPE.NC.IPS.LIP" name="Lateral Intraparietal Sulcus" mapped="true" brodmannid="39" type="cortex"
 						function="Representing saliency of spatial locations, and attention to locations"
 						notes="Targeting eye movements"
 						/>
