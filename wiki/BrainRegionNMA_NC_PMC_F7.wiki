@@ -11,7 +11,7 @@ Region is part of aHuman target integrated biological model.
   * *Brodmann ID*: 06
   * *Role*: processor
   * *Function*: Associate arbitrary sensory stimuli with specific eye movements
-  * *Notes to function*: Can evoke eye movements; strong afferents from DLPFC; convey inputs to caudal concerning motivation, long term plans, memory of past actions
+  * *Notes to function*: 6DR; Can evoke eye movements; strong afferents from DLPFC; convey inputs to caudal concerning motivation, long term plans, memory of past actions; integrates sensory and internally driven inputs for planning of goal-directed actions
 (generated)
 = Components =
 (generated)
@@ -28,8 +28,10 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/NMA.NC.PMC.F7.dot.png
 *Inbound Region Connections:*
 
 || *Source Area* || *Source Region* || *Source Name* || *Type* || *Reference* ||
-|| [BrainAreaNDM NDM] || [BrainRegionNDM_NC_AL_DLPFCR NDM.NC.AL.DLPFCR] || Rostral Mid-Dorsolateral Prefrontal Cortex || feedforward-glu || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (LPFC -> PMC, abstract)] ||
-|| [BrainAreaNMA NMA] || [BrainRegionNMA_NC_PMC_FEF NMA.NC.PMC.FEF] || Frontal Eye Field || feedforward-glu || (unknown reference) ||
+|| [BrainAreaNDM NDM] || [BrainRegionNDM_NC_AL_DACG NDM.NC.AL.DACG] || Dorsal Anterior Cingulate Area || feedforward-glu || (unknown reference) ||
+||  || [BrainRegionNDM_NC_AL_DLPFCR NDM.NC.AL.DLPFCR] || Rostral Mid-Dorsolateral Prefrontal Cortex || feedforward-glu || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (LPFC -> PMC, abstract)] ||
+|| [BrainAreaNMA NMA] || [BrainRegionNMA_NC_PMC_AFEF NMA.NC.PMC.AFEF] || Anterior Frontal Eye Field || feedforward-glu || (unknown reference) ||
+|| [BrainAreaNPE NPE] || [BrainRegionNPE_NC_IPS_LIP NPE.NC.IPS.LIP] || Lateral Intraparietal Sulcus || feedforward-glu || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> FrontalCortex, abstract)] ||
 || [BrainAreaNSA NSA] || [BrainRegionNSA_NC_TTG_A1 NSA.NC.TTG.A1] || Primary Auditory Cortex || feedforward-glu || [http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2846110/ Dual Auditory Processing (A1 -> DLPFC, abstract)] ||
 
 *Outbound Region Connections:*

@@ -11,7 +11,7 @@ Region is part of aHuman target integrated biological model.
   * *Brodmann ID*: 06
   * *Role*: processor
   * *Function*: Guiding reaching
-  * *Notes to function*: Active during preparation for reach and also during reach itself; leg and arm; transform sensory information into motor representation
+  * *Notes to function*: 6DC; Active during preparation for reach and also during reach itself; leg and arm; transform sensory information into motor representation; preparation and execution of motor acts
 (generated)
 = Components =
 (generated)
@@ -28,13 +28,17 @@ http://ahuman.googlecode.com/svn/images/dot/aHuman/NMA.NC.PMC.F2.dot.png
 *Inbound Region Connections:*
 
 || *Source Area* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| [BrainAreaNDM NDM] || [BrainRegionNDM_NC_AL_VACG NDM.NC.AL.VACG] || Ventral Anterior Cingulate Area || feedforward-glu || (unknown reference) ||
 || [BrainAreaNMA NMA] || [BrainRegionNMA_FD_TH_VA NMA.FD.TH.VA] || Ventral Anterior Nucleus || excitatory-glu || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (TH -> PMC, abstract)] ||
 ||  || [BrainRegionNMA_NC_PMC_F4 NMA.NC.PMC.F4] || Ventral Caudal Premotor Cortex || feedforward-glu || (unknown reference) ||
 ||  || [BrainRegionNMA_NC_PMC_F5 NMA.NC.PMC.F5] || Ventral Rostral Premotor Cortex || feedforward-glu || (unknown reference) ||
 ||  || [BrainRegionNMA_NC_PMC_F7 NMA.NC.PMC.F7] || Dorsal Rostral Premotor Cortex || feedforward-glu || (unknown reference) ||
-||  || [BrainRegionNMA_NC_SMC NMA.NC.SMC] || Supplementary Motor Cortex || feedforward-glu || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (pre-SMA -> dPM, abstract)] ||
+||  || [BrainRegionNMA_NC_SMC_F3 NMA.NC.SMC.F3] || Supplementary Motor Area || feedforward-glu || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (pre-SMA -> dPM, abstract)] ||
 || [BrainAreaNPE NPE] || [BrainRegionNPE_NC_IPL_SMW NPE.NC.IPL.SMW] || Supramarginal Wernike Cortex || feedforward-glu || [http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2846110/ Dual Auditory Processing (PPC -> DLPFC, abstract)] ||
+||  || [BrainRegionNPE_NC_SPL_PF NPE.NC.SPL.PF] || Rostral Precuneus || feedforward-glu || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (SPL -> dPM, abstract)] ||
 ||  || [BrainRegionNPE_NC_SPL_PG NPE.NC.SPL.PG] || Caudal Precuneus || feedforward-glu || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (SPL -> dPM, abstract)] ||
+||  || [BrainRegionNPE_NC_SPL_SA NPE.NC.SPL.SA] || Somatosensory Association Cortex || feedforward-glu || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (SPL -> dPM, abstract)] ||
+|| [BrainAreaNSA NSA] || [BrainRegionNSA_NC_PG_S1 NSA.NC.PG.S1] || Somatosensory Cortex || feedforward-glu || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> FrontalCortex, abstract)] ||
 
 *Outbound Region Connections:*
 
