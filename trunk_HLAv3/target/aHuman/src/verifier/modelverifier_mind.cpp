@@ -8,15 +8,19 @@ void ModelVerifier::checkMindModel() {
 	logger.logInfo( "checkMindModel: CHECK MIND MODEL ..." );
 
 	// check all regions
-	bool regionsOkAll = true;
+	bool verifyOkAll = true;
 	for( int k = 0; k < regionMap.count(); k++ ) {
 		MindRegionDef *regionDef = regionMap.getClassByIndex( k );
 		bool regionOk = checkMindModel_verifyRegion( regionDef );
 		if( regionOk == false )
-			regionsOkAll = false;
+			verifyOkAll = false;
 	}
 
-	if( regionsOkAll )
+	// check region links
+	if ( !checkMindModel_verifyLinkDuplicates() )
+		verifyOkAll = false;
+
+	if( verifyOkAll )
 		logger.logInfo( "checkMindModel: MIND MODEL IS OK" );
 	else
 		logger.logInfo( "checkMindModel: MIND MODEL HAS ERRORS" );
@@ -127,3 +131,48 @@ bool ModelVerifier::checkMindModel_verifyRegionCircuits( MindRegionDef *regionDe
 	return( false );
 }
 
+bool ModelVerifier::checkMindModel_verifyLinkDuplicates() {
+	bool ok = true;
+
+	MindService *ms = MindService::getService();
+
+	// collect links
+	MapStringToClass<MindLocalCircuitConnectionDef> cm;
+	MindMap *mm = ms -> getMindMap();
+	ClassList<MindLocalCircuitDef>& ls = mm -> getMindLocalCircuits();
+	for( int k = 0; k < ls.count(); k++ ) {
+		MindLocalCircuitDef& ld = ls.getRef( k );
+		MapStringToClass<MindLocalCircuitConnectionDef>& ldcs = ld.getConnections();
+
+		for( int m = 0; m < ldcs.count(); m++ ) {
+			MindLocalCircuitConnectionDef *cd = ldcs.getClassByIndex( m );
+			String key = cd -> getSrcRegion() + "-" + cd -> getDstRegion();
+			MindLocalCircuitConnectionDef *cdOther = cm.get( key );
+			if( cdOther != NULL ) {
+				MindRegion *rs = ms -> getMindRegion( cd -> getSrcRegion() );
+				MindRegion *rd = ms -> getMindRegion( cd -> getDstRegion() );
+
+				if( rs -> getRegionInfo() -> isTarget() == false && rd -> getRegionInfo() -> isTarget() == false ) {
+					logger.logError( "checkMindModel_verifyRegionCircuits: region connection " + cd -> getSrcRegion() + " to " + cd -> getDstRegion() + " is duplicated (" +
+						cd -> getCircuitDef() -> getId() + "/" + cdOther -> getCircuitDef() -> getId() + ")" );
+					ok = false;
+				}
+			}
+			else
+				cm.add( key , cd );
+		}
+	}
+
+	// verify duplicates
+	for( int k = 0; k < cm.count(); k++ ) {
+		MindLocalCircuitConnectionDef *cd = cm.getClassByIndex( k );
+		String revKey = cd -> getDstRegion() + "-" + cd -> getSrcRegion();
+		if( cm.get( revKey ) != NULL ) {
+			ok = false;
+			logger.logError( "checkMindModel_verifyLinkDuplicates: regions " + cd -> getSrcRegion() + " and " + cd -> getDstRegion() + " are connected in both directions" );
+			cm.remove( revKey );
+		}
+	}
+
+	return( ok );
+}
