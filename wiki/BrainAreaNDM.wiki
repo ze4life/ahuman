@@ -64,10 +64,10 @@
 <img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/NDM_HLNM.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionNDM_NC_AL_ROFCL NDM.NC.AL.ROFCL] || Lateral Rostral Orbitofrontal Cortex || cortex || NPU || Visual selection of novelty ||  ||
-|| [BrainRegionNDM_NC_AL_ROFCM NDM.NC.AL.ROFCM] || Medial Rostral Orbitofrontal Cortex || cortex || NPU || Somatosensory selection of novelty ||  ||
-|| [BrainRegionNDM_NC_AL_ROFCR NDM.NC.AL.ROFCR] || Most Rostral Orbitofrontal Cortex || cortex || NPU || Integral conscious selection of novelty ||  ||
-|| [BrainRegionNDM_NC_AL_ROFCS NDM.NC.AL.ROFCS] || Sulcal Rostral Orbitofrontal Cortex || cortex || NPU || Gustatory and auditory selection of novelty ||  ||
+|| [BrainRegionNDM_NC_AL_ROFCL NDM.NC.AL.ROFCL] || Lateral Rostral Orbitofrontal Cortex || cortex, BA 12 || NPU || Visual selection of novelty || 12L ||
+|| [BrainRegionNDM_NC_AL_ROFCM NDM.NC.AL.ROFCM] || Medial Rostral Orbitofrontal Cortex || cortex, BA 12 || NPU || Somatosensory selection of novelty || 12M ||
+|| [BrainRegionNDM_NC_AL_ROFCR NDM.NC.AL.ROFCR] || Most Rostral Orbitofrontal Cortex || cortex, BA 12 || NPU || Integral conscious selection of novelty || 12R ||
+|| [BrainRegionNDM_NC_AL_ROFCS NDM.NC.AL.ROFCS] || Sulcal Rostral Orbitofrontal Cortex || cortex, BA 12 || NPU || Gustatory and auditory selection of novelty || 12S ||
 
 *Internal Region Connections:*
 
@@ -108,8 +108,8 @@
 <img src="http://ahuman.googlecode.com/svn/images/dot/aHuman/NDM_HWM.dot.png" alt="unavailable">
 
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
-|| [BrainRegionNDM_NC_AL_DLPFCL NDM.NC.AL.DLPFCL] || Lateral Mid-Dorsolateral Prefrontal Cortex || cortex || NPU || Cognitive control related to stimulus processing and selection of relevant<BR>information for behavior ||  ||
-|| [BrainRegionNDM_NC_AL_DLPFCR NDM.NC.AL.DLPFCR] || Rostral Mid-Dorsolateral Prefrontal Cortex || cortex || NPU || Cognitive control and monitoring to resolve conflict in information processing<BR>and competing response plans ||  ||
+|| [BrainRegionNDM_NC_AL_DLPFCL NDM.NC.AL.DLPFCL] || Lateral Mid-Dorsolateral Prefrontal Cortex || cortex, BA 46 || NPU || Cognitive control related to stimulus processing and selection of relevant<BR>information for behavior ||  ||
+|| [BrainRegionNDM_NC_AL_DLPFCR NDM.NC.AL.DLPFCR] || Rostral Mid-Dorsolateral Prefrontal Cortex || cortex, BA 46 || NPU || Cognitive control and monitoring to resolve conflict in information processing<BR>and competing response plans ||  ||
 
 *Internal Region Connections:*
   * no connections
@@ -122,10 +122,8 @@
 || [BrainAreaNDM NDM] || [BrainRegionNDM_NC_AL_DLPFCL NDM.NC.AL.DLPFCL] || [BrainRegionNDM_NC_AL_IPG NDM.NC.AL.IPG] || Inferior Prefrontal Gyrus || neocortex-neocortex || [http://www.frontiersin.org/Human_Neuroscience/10.3389/fnhum.2012.00184/full Directed Effort Network (fPole -> DLPFC, abstract)] ||
 ||  || [BrainRegionNDM_NC_AL_DLPFCR NDM.NC.AL.DLPFCR] || [BrainRegionNDM_FD_TH_MDM NDM.FD.TH.MDM] || Medial Mediodorsal Nucleus of Thalamus || nucleus-neocortex || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in emotional behavior (TH -> LPFC, abstract)] ||
 ||  ||  || [BrainRegionNDM_NC_AL_FPC NDM.NC.AL.FPC] || Lateral Frontopolar Cortex || neocortex-neocortex || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in emotional behavior (OPFC -> LPFC, abstract)] ||
-||  ||  || [BrainRegionNDM_NC_AL_VACG NDM.NC.AL.VACG] || Ventral Anterior Cingulate Area || neocortex-neocortex || [http://www.pnas.org/content/107/40/17071/F1.expansion.html Role for serotonin in moral behavior (ACG -> LPFC, abstract)] ||
 || [BrainAreaNMA NMA] || [BrainRegionNDM_NC_AL_DLPFCL NDM.NC.AL.DLPFCL] || [BrainRegionNMA_NC_PMC_F4 NMA.NC.PMC.F4] || Ventral Caudal Premotor Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1053810011000080 Cortico-Cortical Connectivity (MA -> PFC, abstract)] ||
 || [BrainAreaNPE NPE] || [BrainRegionNDM_NC_AL_DLPFCL NDM.NC.AL.DLPFCL] || [BrainRegionNPE_FD_TH_MPV NPE.FD.TH.MPV] || Medial Pulvinar || nucleus-neocortex || [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Saccadic Vision (Thalamus -> FrontalCortex, abstract)] ||
-||  ||  || [BrainRegionNPE_NC_IPS_PEF NPE.NC.IPS.PEF] || Posterior Eye Field || neocortex-neocortex || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (PEF -> DLPFC, abstract)] ||
 ||  || [BrainRegionNDM_NC_AL_DLPFCR NDM.NC.AL.DLPFCR] || [BrainRegionNPE_NC_IPL_MST NPE.NC.IPL.MST] || Medial Superior Temporal Area || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1053810011000080 Cortico-Cortical Connectivity (PTHA -> PFC, abstract)] ||
 || [BrainAreaNSA NSA] || [BrainRegionNDM_NC_AL_DLPFCL NDM.NC.AL.DLPFCL] || [BrainRegionNSA_NC_IT_TE NSA.NC.IT.TE] || Inferotemporal Cortex || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (IT -> LPC, abstract)] ||
 ||  ||  || [BrainRegionNSA_NC_OCC_V2TN NSA.NC.OCC.V2TN] || Secondary Visual Cortex, Thin Stripe || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1053810011000080 Cortico-Cortical Connectivity (VA -> PFC, abstract)] ||
@@ -138,10 +136,10 @@
 || <font color="red">Cortical</font> || || || || || ||
 || [BrainAreaNDM NDM] || [BrainRegionNDM_NC_AL_DLPFCR NDM.NC.AL.DLPFCR] || [BrainRegionNDM_NC_AL_DACG NDM.NC.AL.DACG] || Dorsal Anterior Cingulate Area || neocortex-neocortex || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in emotional behavior (LPFC -> ACG, abstract)] ||
 || [BrainAreaNMA NMA] || [BrainRegionNDM_NC_AL_DLPFCL NDM.NC.AL.DLPFCL] || [BrainRegionNMA_FD_TH_VA NMA.FD.TH.VA] || Ventral Anterior Nucleus || neocortex-nucleus || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (LPFC -> TH, abstract)] ||
+||  ||  || [BrainRegionNMA_NC_PMC_AFEF NMA.NC.PMC.AFEF] || Anterior Frontal Eye Field || neocortex-neocortex || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (LPFC -> PMC, abstract)] ||
 ||  ||  || [BrainRegionNMA_NC_PMC_F5 NMA.NC.PMC.F5] || Ventral Rostral Premotor Cortex || neocortex-neocortex || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (LPFC -> PMC, abstract)] ||
-||  ||  || [BrainRegionNMA_NC_PMC_FEF NMA.NC.PMC.FEF] || Frontal Eye Field || neocortex-neocortex || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (LPFC -> PMC, abstract)] ||
 ||  || [BrainRegionNDM_NC_AL_DLPFCR NDM.NC.AL.DLPFCR] || [BrainRegionNMA_NC_PMC_F7 NMA.NC.PMC.F7] || Dorsal Rostral Premotor Cortex || neocortex-neocortex || [https://www.google.ru/search?hl=rutbo=ptbm=bksq=isbn:0080887988 Prefrontal Cortex (PFC) in motor behavior (LPFC -> PMC, abstract)] ||
-||  ||  || [BrainRegionNMA_NC_SMC NMA.NC.SMC] || Supplementary Motor Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (46 -> F6, abstract)] ||
+||  ||  || [BrainRegionNMA_NC_SMC_SEF NMA.NC.SMC.SEF] || Supplementary Eye Field || neocortex-neocortex || [http://ahuman.googlecode.com/svn/research/articles/Biological/2008-dorsal-stream.pdf 3 Visual Cortex Paths (LPC -> pre-SMA, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaFEC FEC] || [BrainRegionNDM_NC_AL_DLPFCL NDM.NC.AL.DLPFCL] || [BrainRegionFEC_FT_CN_HD FEC.FT.CN.HD] || Caudate Nucleus Head || neocortex-nucleus || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> BGA, abstract)] ||
 
@@ -246,7 +244,8 @@
 || <font color="red">Cortical</font> || || || || || ||
 || [BrainAreaNCP NCP] || [BrainRegionNDM_NC_AL_DACG NDM.NC.AL.DACG] || [BrainRegionNCP_NC_MPL_PSCG NCP.NC.MPL.PSCG] || Posterior Cingulate Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (FrontalCortex -> ParietalCortex, abstract)] ||
 ||  || [BrainRegionNDM_NC_AL_VACG NDM.NC.AL.VACG] || [BrainRegionNCP_NC_MPL_PSCG NCP.NC.MPL.PSCG] || Posterior Cingulate Cortex || neocortex-neocortex || [http://highered.mcgraw-hill.com/sites/dl/free/0071402357/156721/figure350_1.html Principal Connections of Hippocampus (VentralCingulate -> PosteriorCingulate)] ||
-|| [BrainAreaNDM NDM] || [BrainRegionNDM_NC_AL_VACG NDM.NC.AL.VACG] || [BrainRegionNDM_NC_AL_DLPFCR NDM.NC.AL.DLPFCR] || Rostral Mid-Dorsolateral Prefrontal Cortex || neocortex-neocortex || [http://www.pnas.org/content/107/40/17071/F1.expansion.html Role for serotonin in moral behavior (ACG -> LPFC, abstract)] ||
+|| [BrainAreaNMA NMA] || [BrainRegionNDM_NC_AL_DACG NDM.NC.AL.DACG] || [BrainRegionNMA_NC_PMC_F7 NMA.NC.PMC.F7] || Dorsal Rostral Premotor Cortex || neocortex-neocortex || (unknown reference) ||
+||  || [BrainRegionNDM_NC_AL_VACG NDM.NC.AL.VACG] || [BrainRegionNMA_NC_PMC_F2 NMA.NC.PMC.F2] || Dorsal Caudal Premotor Cortex || neocortex-neocortex || (unknown reference) ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaFAM FAM] || [BrainRegionNDM_NC_AL_DACG NDM.NC.AL.DACG] || [BrainRegionFAM_FT_AM_BP FAM.FT.AM.BP] || Parvicellular Basal Amygdaloid Nucleus || neocortex-nucleus || [http://www.pnas.org/content/107/40/17071/F1.expansion.html Role for serotonin in moral behavior (ACG -> AMY, abstract)] ||
 ||  || [BrainRegionNDM_NC_AL_VACG NDM.NC.AL.VACG] || [BrainRegionFAM_FT_AM_BP FAM.FT.AM.BP] || Parvicellular Basal Amygdaloid Nucleus || neocortex-nucleus || [http://www.pnas.org/content/107/40/17071/F1.expansion.html Role for serotonin in moral behavior (ACG -> AMY, abstract)] ||
