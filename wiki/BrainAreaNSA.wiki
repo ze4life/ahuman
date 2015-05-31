@@ -10,7 +10,7 @@
 || *ID* || *Name* || *Regions* ||
 || NAA || Neocortical Audition Aggregation || [BrainRegionNSA_FD_TH_MGB NSA.FD.TH.MGB], [BrainRegionNSA_FD_TH_SG NSA.FD.TH.SG], [BrainRegionNSA_NC_STG_A3 NSA.NC.STG.A3], [BrainRegionNSA_NC_STG_A4 NSA.NC.STG.A4], [BrainRegionNSA_NC_TTG_A1 NSA.NC.TTG.A1], [BrainRegionNSA_NC_TTG_A2 NSA.NC.TTG.A2] ||
 || SMT || Neocortical Smell and Taste Aggregation || [BrainRegionNSA_NC_PH_PIR NSA.NC.PH.PIR], [BrainRegionNSA_NC_PH_PRP NSA.NC.PH.PRP], [BrainRegionNSA_NC_PO_PCC NSA.NC.PO.PCC] ||
-|| SOM || Neocortical Somatic Aggregation || [BrainRegionNSA_FD_TH_VPL NSA.FD.TH.VPL], [BrainRegionNSA_FD_TH_VPM NSA.FD.TH.VPM], [BrainRegionNSA_NC_PG_S1 NSA.NC.PG.S1] ||
+|| SOM || Neocortical Somatic Aggregation || [BrainRegionNSA_FD_TH_VPL NSA.FD.TH.VPL], [BrainRegionNSA_FD_TH_VPM NSA.FD.TH.VPM], [BrainRegionNSA_NC_PG_PV NSA.NC.PG.PV], [BrainRegionNSA_NC_PG_S1 NSA.NC.PG.S1], [BrainRegionNSA_NC_PG_S2 NSA.NC.PG.S2] ||
 || VCO || Vision Complex Objects || [BrainRegionNSA_NC_IPS_AIP NSA.NC.IPS.AIP], [BrainRegionNSA_NC_IT_TE NSA.NC.IT.TE] ||
 || VIN || Vision Primary Perception || [BrainRegionNSA_FD_LGN NSA.FD.LGN], [BrainRegionNSA_NC_OCC_V1 NSA.NC.OCC.V1] ||
 || VMV || Vision Movement Perception || [BrainRegionNSA_FD_TH_IPV NSA.FD.TH.IPV], [BrainRegionNSA_NC_IPS_VIP NSA.NC.IPS.VIP], [BrainRegionNSA_NC_OCC_MT NSA.NC.OCC.MT], [BrainRegionNSA_NC_OCC_PO NSA.NC.OCC.PO], [BrainRegionNSA_NC_OCC_V2TK NSA.NC.OCC.V2TK], [BrainRegionNSA_NC_OCC_V4D NSA.NC.OCC.V4D] ||
@@ -121,17 +121,27 @@
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
 || [BrainRegionNSA_FD_TH_VPL NSA.FD.TH.VPL] || Ventral Posterolateral Nucleus || nucleus || NSU || Relays somatic information from body to S1 ||  ||
 || [BrainRegionNSA_FD_TH_VPM NSA.FD.TH.VPM] || Ventral Posteromedial Nucleus || nucleus || NSU || Relays somatic information from face to S1 ||  ||
-|| [BrainRegionNSA_NC_PG_S1 NSA.NC.PG.S1] || Somatosensory Cortex || cortex, BA 01,02,03 || NSU || Muscle and skin receptors ||  ||
+|| [BrainRegionNSA_NC_PG_PV NSA.NC.PG.PV] || Parietal Ventral Cortex || cortex, BA 40 || NSU || Ñreating somatosensory memory, attention, learning and memory || BA5/PMC ||
+|| [BrainRegionNSA_NC_PG_S1 NSA.NC.PG.S1] || Primary Somatosensory Cortex || cortex, BA 01,02,03 || NSU || Muscle and skin receptors ||  ||
+|| [BrainRegionNSA_NC_PG_S2 NSA.NC.PG.S2] || Secondary Somatosensory Cortex || cortex, BA 40 || NSU || Sensorimotor integration, integration of information from two body halves || BA 1/3b; projects to PV/7b/INS/AM/HC ||
 
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
 || [BrainRegionNSA_FD_TH_VPL NSA.FD.TH.VPL] || [BrainRegionNSA_NC_PG_S1 NSA.NC.PG.S1] || nucleus-neocortex || [http://users.atw.hu/blp6/BLP6/HTML/C0079780323045827.htm Pain matrix (TH.VPL -> S1)] ||
+||  || [BrainRegionNSA_NC_PG_S2 NSA.NC.PG.S2] || nucleus-neocortex || (unknown reference) ||
 || [BrainRegionNSA_FD_TH_VPM NSA.FD.TH.VPM] || [BrainRegionNSA_NC_PG_S1 NSA.NC.PG.S1] || nucleus-neocortex || [http://users.atw.hu/blp6/BLP6/HTML/C0079780323045827.htm Pain matrix (TH.VPM -> S1)] ||
+||  || [BrainRegionNSA_NC_PG_S2 NSA.NC.PG.S2] || nucleus-neocortex || (unknown reference) ||
+|| [BrainRegionNSA_NC_PG_S1 NSA.NC.PG.S1] || [BrainRegionNSA_NC_PG_PV NSA.NC.PG.PV] || neocortex-neocortex || (unknown reference) ||
+||  || [BrainRegionNSA_NC_PG_S2 NSA.NC.PG.S2] || neocortex-neocortex || (unknown reference) ||
+|| [BrainRegionNSA_NC_PG_S2 NSA.NC.PG.S2] || [BrainRegionNSA_NC_PG_PV NSA.NC.PG.PV] || neocortex-neocortex || (unknown reference) ||
 
 *External Inbound Region Connections:*
 
 || *Source Area* || *Local Region* || *Source Region* || *Source Name* || *Type* || *Reference* ||
+|| <font color="red">Cortical</font> || || || || || ||
+|| [BrainAreaNCP NCP] || [BrainRegionNSA_NC_PG_PV NSA.NC.PG.PV] || [BrainRegionNCP_FD_TH_VPI NCP.FD.TH.VPI] || Ventral Posteroinferior Nucleus || nucleus-neocortex || (unknown reference) ||
+||  || [BrainRegionNSA_NC_PG_S2 NSA.NC.PG.S2] || [BrainRegionNCP_FD_TH_VPI NCP.FD.TH.VPI] || Ventral Posteroinferior Nucleus || nucleus-neocortex || (unknown reference) ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLLC LLC] || [BrainRegionNSA_FD_TH_VPL NSA.FD.TH.VPL] || [BrainRegionLLC_SC_IZ_CCV LLC.SC.IZ.CCV] || Central Cervical Nucleus || nucleus-nucleus || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (s1P -> P, abstract)] ||
 || [BrainAreaLPC LPC] || [BrainRegionNSA_FD_TH_VPL NSA.FD.TH.VPL] || [BrainRegionLPC_HM_CU LPC.HM.CU] || Cuneate Nucleus || nucleus-nucleus || (unknown reference) ||
@@ -151,18 +161,21 @@
 || <font color="red">Cortical</font> || || || || || ||
 || [BrainAreaNCP NCP] || [BrainRegionNSA_FD_TH_VPL NSA.FD.TH.VPL] || [BrainRegionNCP_NC_INS_HR NCP.NC.INS.HR] || Anterior Temporal Lobe || nucleus-neocortex || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (TH -> INS, abstract)] ||
 ||  || [BrainRegionNSA_FD_TH_VPM NSA.FD.TH.VPM] || [BrainRegionNCP_NC_INS_PIC NCP.NC.INS.PIC] || Posterior Insular Cortex || nucleus-neocortex || [http://neuropolitics.org/defaultmay10.asp Amygdalar disruption of prefrontal cortex (TH -> INS, abstract)] ||
-|| [BrainAreaNMA NMA] || [BrainRegionNSA_NC_PG_S1 NSA.NC.PG.S1] || [BrainRegionNMA_NC_PMC_F2 NMA.NC.PMC.F2] || Dorsal Caudal Premotor Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> FrontalCortex, abstract)] ||
+|| [BrainAreaNMA NMA] || [BrainRegionNSA_NC_PG_PV NSA.NC.PG.PV] || [BrainRegionNMA_NC_MC NMA.NC.MC] || Motor Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> FrontalCortex, abstract)] ||
+||  || [BrainRegionNSA_NC_PG_S1 NSA.NC.PG.S1] || [BrainRegionNMA_NC_PMC_F2 NMA.NC.PMC.F2] || Dorsal Caudal Premotor Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> FrontalCortex, abstract)] ||
 ||  ||  || [BrainRegionNMA_NC_PMC_F5 NMA.NC.PMC.F5] || Ventral Rostral Premotor Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (S2 -> F5)] ||
+||  || [BrainRegionNSA_NC_PG_S2 NSA.NC.PG.S2] || [BrainRegionNMA_NC_MC NMA.NC.MC] || Motor Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> FrontalCortex, abstract)] ||
 || [BrainAreaNPE NPE] || [BrainRegionNSA_FD_TH_VPM NSA.FD.TH.VPM] || [BrainRegionNPE_NC_STG_PAI NPE.NC.STG.PAI] || Parainsular Area || nucleus-neocortex || (unknown reference) ||
+||  || [BrainRegionNSA_NC_PG_PV NSA.NC.PG.PV] || [BrainRegionNPE_NC_SPL_SA NPE.NC.SPL.SA] || Somatosensory Association Cortex || neocortex-neocortex || (unknown reference) ||
 ||  || [BrainRegionNSA_NC_PG_S1 NSA.NC.PG.S1] || [BrainRegionNPE_FD_TH_OPV NPE.FD.TH.OPV] || Oral Pulvinar || neocortex-nucleus || (unknown reference) ||
-||  ||  || [BrainRegionNPE_NC_IPL_SMW NPE.NC.IPL.SMW] || Supramarginal Wernike Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1053810011000080 Cortico-Cortical Connectivity (S1 -> PTHA, abstract)] ||
 ||  ||  || [BrainRegionNPE_NC_SPL_PG NPE.NC.SPL.PG] || Caudal Precuneus || neocortex-neocortex || [http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html McNaughton Spatial Processing Network (SomSensCortex -> PosteriorParietalCortex)] ||
-||  ||  || [BrainRegionNPE_NC_SPL_SA NPE.NC.SPL.SA] || Somatosensory Association Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S1053810011000080 Cortico-Cortical Connectivity (S1 -> SA)] ||
+||  || [BrainRegionNSA_NC_PG_S2 NSA.NC.PG.S2] || [BrainRegionNPE_NC_IPL_SMW NPE.NC.IPL.SMW] || Supramarginal Wernike Cortex || neocortex-neocortex || (unknown reference) ||
+||  ||  || [BrainRegionNPE_NC_SPL_PF NPE.NC.SPL.PF] || Rostral Precuneus || neocortex-neocortex || (unknown reference) ||
 || [BrainAreaNSA NSA] || [BrainRegionNSA_FD_TH_VPL NSA.FD.TH.VPL] || [BrainRegionNSA_NC_PO_PCC NSA.NC.PO.PCC] || Precentral Cortex || nucleus-neocortex || (unknown reference) ||
 ||  || [BrainRegionNSA_FD_TH_VPM NSA.FD.TH.VPM] || [BrainRegionNSA_NC_PO_PCC NSA.NC.PO.PCC] || Precentral Cortex || nucleus-neocortex || [http://what-when-how.com/neuroscience/the-thalamus-and-cerebral-cortex-integrative-systems-part-2/ Thalamocortical relationships (VPM -> pVPM)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaFEC FEC] || [BrainRegionNSA_NC_PG_S1 NSA.NC.PG.S1] || [BrainRegionFEC_FT_PU_LT FEC.FT.PU.LT] || Dorsal Putamen Lateral || neocortex-nucleus || (unknown reference) ||
-|| [BrainAreaFMM FMM] || [BrainRegionNSA_NC_PG_S1 NSA.NC.PG.S1] || [BrainRegionFMM_NC_PH_PER FMM.NC.PH.PER] || Perirhinal Cortex || neocortex-neocortex || (unknown reference) ||
+|| [BrainAreaFMM FMM] || [BrainRegionNSA_NC_PG_PV NSA.NC.PG.PV] || [BrainRegionFMM_NC_PH_PER FMM.NC.PH.PER] || Perirhinal Cortex || neocortex-neocortex || (unknown reference) ||
 || [BrainAreaLRC LRC] || [BrainRegionNSA_NC_PG_S1 NSA.NC.PG.S1] || [BrainRegionLRC_HM_TGM_PA5 LRC.HM.TGM.PA5] || Paratrigeminal Nucleus || neocortex-nucleus || (unknown reference) ||
 
 == Vision Complex Objects ==
