@@ -11,7 +11,7 @@
 || AES || Execution by Auditory Inputs || [BrainRegionNPE_NC_BRA_PO NPE.NC.BRA.PO], [BrainRegionNPE_NC_BRA_PT NPE.NC.BRA.PT], [BrainRegionNPE_NC_IPL_SMW NPE.NC.IPL.SMW], [BrainRegionNPE_NC_STG_PAI NPE.NC.STG.PAI] ||
 || GRC || Grasping Control || [BrainRegionNPE_FD_TH_OPV NPE.FD.TH.OPV], [BrainRegionNPE_NC_IPS_MIP NPE.NC.IPS.MIP], [BrainRegionNPE_NC_SPL_PF NPE.NC.SPL.PF], [BrainRegionNPE_NC_SPL_SA NPE.NC.SPL.SA] ||
 || NPS || Execution by Motion Inputs || [BrainRegionNPE_FD_TH_MPV NPE.FD.TH.MPV], [BrainRegionNPE_NC_IPL_MST NPE.NC.IPL.MST] ||
-|| ORV || Orienting by Visual Stimuli || [BrainRegionNPE_NC_IPS_LIP NPE.NC.IPS.LIP], [BrainRegionNPE_NC_OCC_V2PL NPE.NC.OCC.V2PL], [BrainRegionNPE_NC_OCC_V3 NPE.NC.OCC.V3] ||
+|| ORV || Orienting by Visual Stimuli || [BrainRegionNPE_NC_IPS_LIP NPE.NC.IPS.LIP], [BrainRegionNPE_NC_OCC_V2PL NPE.NC.OCC.V2PL], [BrainRegionNPE_NC_OCC_V3D NPE.NC.OCC.V3D], [BrainRegionNPE_NC_OCC_V3V NPE.NC.OCC.V3V] ||
 || SEC || Subcortical Execution Control || [BrainRegionNPE_FD_TH_LP NPE.FD.TH.LP], [BrainRegionNPE_NC_SPL_PG NPE.NC.SPL.PG] ||
 
 == Execution by Auditory Inputs ==
@@ -156,13 +156,14 @@
 || *Component ID* || *Component Name* || *Type* || *Service* || *Function* || *Comments* ||
 || [BrainRegionNPE_NC_IPS_LIP NPE.NC.IPS.LIP] || Lateral Intraparietal Sulcus || cortex, BA 39 || NEU || Representing saliency of spatial locations, and attention to locations || Targeting eye movements ||
 || [BrainRegionNPE_NC_OCC_V2PL NPE.NC.OCC.V2PL] || Secondary Visual Cortex, Pale Stripe || cortex || NEU || Extract form features ||  ||
-|| [BrainRegionNPE_NC_OCC_V3 NPE.NC.OCC.V3] || Associative Visual Cortex || cortex, BA 19 || NEU || Processing of global motion, dynamic shapes, orientation || Dorsal Extrastriate Cortex ||
+|| [BrainRegionNPE_NC_OCC_V3D NPE.NC.OCC.V3D] || Dorsal Associative Visual Cortex || cortex || NEU || Processing of global motion, orientation ||  ||
+|| [BrainRegionNPE_NC_OCC_V3V NPE.NC.OCC.V3V] || Ventral Associative Visual Cortex || cortex || NEU || Processing of dynamic shapes ||  ||
 
 *Internal Region Connections:*
 
 || *Source Region* || *Target Region* || *Type* || *Reference* ||
-|| [BrainRegionNPE_NC_OCC_V2PL NPE.NC.OCC.V2PL] || [BrainRegionNPE_NC_OCC_V3 NPE.NC.OCC.V3] || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (V2 -> V3, abstract)] ||
-|| [BrainRegionNPE_NC_OCC_V3 NPE.NC.OCC.V3] || [BrainRegionNPE_NC_IPS_LIP NPE.NC.IPS.LIP] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0166223697010679 Parietal Association Cortex (V3A -> LIP)] ||
+|| [BrainRegionNPE_NC_OCC_V2PL NPE.NC.OCC.V2PL] || [BrainRegionNPE_NC_OCC_V3V NPE.NC.OCC.V3V] || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (V2 -> V3, abstract)] ||
+|| [BrainRegionNPE_NC_OCC_V3D NPE.NC.OCC.V3D] || [BrainRegionNPE_NC_IPS_LIP NPE.NC.IPS.LIP] || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (VC -> PIP, abstract)] ||
 
 *External Inbound Region Connections:*
 
@@ -179,14 +180,14 @@
 || [BrainAreaNMA NMA] || [BrainRegionNPE_NC_IPS_LIP NPE.NC.IPS.LIP] || [BrainRegionNMA_NC_PMC_CFEF NMA.NC.PMC.CFEF] || Caudal Frontal Eye Field || neocortex-neocortex || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (PEF -> FEF, abstract)] ||
 ||  ||  || [BrainRegionNMA_NC_PMC_F7 NMA.NC.PMC.F7] || Dorsal Rostral Premotor Cortex || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0959438808001566 Global visual system (ParietalCortex -> FrontalCortex, abstract)] ||
 || [BrainAreaNSA NSA] || [BrainRegionNPE_NC_IPS_LIP NPE.NC.IPS.LIP] || [BrainRegionNSA_NC_IPS_AIP NSA.NC.IPS.AIP] || Anterior Intraparietal Sulcus || neocortex-neocortex || [http://www.sciencedirect.com/science/article/pii/S0893608098000471 Primate Control of Grasping (PIP -> AIP, abstract)] ||
-||  || [BrainRegionNPE_NC_OCC_V3 NPE.NC.OCC.V3] || [BrainRegionNSA_NC_OCC_MT NSA.NC.OCC.MT] || Middle Temporal Area || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (V3 -> MT)] ||
-||  ||  || [BrainRegionNSA_NC_OCC_PO NSA.NC.OCC.PO] || Parietooccipital Area || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (V3 -> PO)] ||
-||  ||  || [BrainRegionNSA_NC_OCC_V4D NSA.NC.OCC.V4D] || Dorsal Visual Area V4 || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (V3 -> V4, abstract)] ||
+||  || [BrainRegionNPE_NC_OCC_V3D NPE.NC.OCC.V3D] || [BrainRegionNSA_NC_OCC_MT NSA.NC.OCC.MT] || Middle Temporal Area || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (V3 -> MT, abstract)] ||
+||  ||  || [BrainRegionNSA_NC_OCC_PO NSA.NC.OCC.PO] || Parietooccipital Area || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (V3 -> PO, abstract)] ||
+||  || [BrainRegionNPE_NC_OCC_V3V NPE.NC.OCC.V3V] || [BrainRegionNSA_NC_OCC_V4D NSA.NC.OCC.V4D] || Dorsal Visual Area V4 || neocortex-neocortex || [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Paths from Retina to Parietal Cortex and IT (V3 -> V4, abstract)] ||
 || <font color="red">Subcortical</font> || || || || || ||
 || [BrainAreaLRC LRC] || [BrainRegionNPE_NC_IPS_LIP NPE.NC.IPS.LIP] || [BrainRegionLRC_MM_CJ LRC.MM.CJ] || Cajal Nucleus || neocortex-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Vision Components (VAC -> SOA, abstract)] ||
 ||  ||  || [BrainRegionLRC_MM_RIMLF LRC.MM.RIMLF] || Rostral Interstitial Nucleus of MLF || neocortex-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Vision Components (VAC -> SOA, abstract)] ||
 ||  ||  || [BrainRegionLRC_MM_SC_SUP LRC.MM.SC.SUP] || Superficial Superior Colliculus || neocortex-nucleus || [http://www.cixip.com/index.php/page/content/id/1190 Summary of eye movement control (PEF -> SC, abstract)] ||
-||  || [BrainRegionNPE_NC_OCC_V3 NPE.NC.OCC.V3] || [BrainRegionLRC_MM_CJ LRC.MM.CJ] || Cajal Nucleus || neocortex-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (VAC -> SupraOculomotor, abstract)] ||
+||  || [BrainRegionNPE_NC_OCC_V3D NPE.NC.OCC.V3D] || [BrainRegionLRC_MM_CJ LRC.MM.CJ] || Cajal Nucleus || neocortex-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (VAC -> SupraOculomotor, abstract)] ||
 ||  ||  || [BrainRegionLRC_MM_RIMLF LRC.MM.RIMLF] || Rostral Interstitial Nucleus of MLF || neocortex-nucleus || [http://neuroscience.uth.tmc.edu/s3/chapter07.html Eye blink reflex and pupillary light reflex (VAC -> SupraOculomotor, abstract)] ||
 
 == Subcortical Execution Control ==
@@ -239,10 +240,6 @@
 
 <img src="http://thebrain.mcgill.ca/flash/a/a_02/a_02_cr/a_02_cr_vis/a_02_cr_vis_3a.jpg" alt="unavailable">
 
-  * [http://www.hindawi.com/journals/nri/2012/719056.fig.001.jpg Visual Dorsal Pathway] - see [http://www.hindawi.com/journals/nri/2012/719056 Reference]
-
-<img src="http://www.hindawi.com/journals/nri/2012/719056.fig.001.jpg" alt="unavailable">
-
   * [http://ars.els-cdn.com/content/image/1-s2.0-S1053810011000080-gr3.jpg Cortico-Cortical Connectivity] - see [http://www.sciencedirect.com/science/article/pii/S1053810011000080 Reference]
 
 <img src="http://ars.els-cdn.com/content/image/1-s2.0-S1053810011000080-gr3.jpg" alt="unavailable">
@@ -255,22 +252,6 @@
 
 <img src="http://ars.els-cdn.com/content/image/1-s2.0-S0006899301025987-gr1.gif" alt="unavailable">
 
-  * [http://asweknowit.ca/evcult/NatIntel/Fig12.GIF Visual perception abstraction] - see [http://asweknowit.ca/evcult/NatIntel/nat_intel.shtml Reference]
-
-<img src="http://asweknowit.ca/evcult/NatIntel/Fig12.GIF" alt="unavailable">
-
-  * [http://thebrain.mcgill.ca/flash/a/a_02/a_02_cr/a_02_cr_vis/a_02_cr_vis_3b.jpg Functional View of Visual Perception] - see [http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html Reference]
-
-<img src="http://thebrain.mcgill.ca/flash/a/a_02/a_02_cr/a_02_cr_vis/a_02_cr_vis_3b.jpg" alt="unavailable">
-
-  * [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg Saccades and smooth movements] (unknown reference)
-
-<img src="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/saccades.jpg" alt="unavailable">
-
-  * [http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/oculomotor.jpg Eye blink reflex and pupillary light reflex] - see [http://neuroscience.uth.tmc.edu/s3/chapter07.html Reference]
-
-<img src="http://ahuman.googlecode.com/svn/images/wiki/research/biomodel/oculomotor.jpg" alt="unavailable">
-
   * [http://www.nature.com/nrn/journal/v5/n3/images/nrn1345-i1.jpg Saccadic Vision] - see [http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html Reference]
 
 <img src="http://www.nature.com/nrn/journal/v5/n3/images/nrn1345-i1.jpg" alt="unavailable">
@@ -278,6 +259,10 @@
   * [http://img.springerimages.com/Images/Springer/PUB=Springer-Verlag-Berlin-Heidelberg/JOU=00359/VOL=2005.191/ISU=3/ART=2004_565/MediaObjects/WATER_s00359-004-0565-9fhc1.jpg Oculomotor decision-making] - see [http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0 Reference]
 
 <img src="http://img.springerimages.com/Images/Springer/PUB=Springer-Verlag-Berlin-Heidelberg/JOU=00359/VOL=2005.191/ISU=3/ART=2004_565/MediaObjects/WATER_s00359-004-0565-9fhc1.jpg" alt="unavailable">
+
+  * [http://www.hindawi.com/journals/nri/2012/719056.fig.001.jpg Visual Dorsal Pathway] - see [http://www.hindawi.com/journals/nri/2012/719056 Reference]
+
+<img src="http://www.hindawi.com/journals/nri/2012/719056.fig.001.jpg" alt="unavailable">
 
   * [http://ars.els-cdn.com/content/image/1-s2.0-S0028393205003568-gr1.jpg Postero-lateral and medial views of hemisphere of human] - see [http://www.sciencedirect.com/science/article/pii/S0028393205003568 Reference]
 
@@ -301,14 +286,12 @@
 
   * http://www.sciencedirect.com/science/article/pii/S0166223697010679
   * http://thebrain.mcgill.ca/flash/i/i_02/i_02_cr/i_02_cr_vis/i_02_cr_vis.html
-  * http://www.hindawi.com/journals/nri/2012/719056
   * http://www.sciencedirect.com/science/article/pii/S1053810011000080
   * http://www.nature.com/nrn/journal/v3/n2/fig_tab/nrn726_F3.html
   * http://www.sciencedirect.com/science/article/pii/S0006899301025987
-  * http://asweknowit.ca/evcult/NatIntel/nat_intel.shtml
-  * http://neuroscience.uth.tmc.edu/s3/chapter07.html
   * http://www.nature.com/nrn/journal/v5/n3/box/nrn1345_BX1.html
   * http://www.springerimages.com/Images/LifeSciences/1-10.1007_s00359-004-0565-9-0
+  * http://www.hindawi.com/journals/nri/2012/719056
   * http://www.sciencedirect.com/science/article/pii/S0028393205003568
   * http://cercor.oxfordjournals.org/content/early/2012/02/28/cercor.bhs048/F9.expansion.html
   * http://learnmem.cshlp.org/content/18/6/384/F1.expansion.html
