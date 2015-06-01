@@ -1505,11 +1505,28 @@
 					<connection type="neocortex-neocortex" primary="true" src="NPE.NC.IPL.SMW" dst="NMA.NC.PMC.F2"/>
 					<connection type="neocortex-neocortex" primary="true" src="NPE.NC.STG.PAI" dst="NPE.NC.IPL.SMW"/>
 				</circuit>
-				<circuit id="GRC" name="Grasping Control" enabled="true">
+				<circuit id="ORV" name="Orienting by Visual Stimuli" enabled="true">
 					<region id="NPE.NC.OCC.V2PL" type="neocortex" service="NEU" role="processor"/>
-					<region id="NPE.NC.OCC.V3" type="neocortex" service="NEU" role="processor"/>
-					<region id="NPE.NC.IPS.MIP" type="neocortex" service="NEU" role="processor"/>
+					<region id="NPE.NC.OCC.V3D" type="neocortex" service="NEU" role="processor"/>
+					<region id="NPE.NC.OCC.V3V" type="neocortex" service="NEU" role="processor"/>
 					<region id="NPE.NC.IPS.LIP" type="neocortex" service="NEU" role="processor"/>
+					<connection type="neocortex-neocortex" primary="true" src="NPE.NC.OCC.V2PL" dst="NPE.NC.OCC.V3V"/>
+					<connection type="neocortex-neocortex" primary="true" src="NPE.NC.OCC.V3V" dst="NSA.NC.OCC.V4D"/>
+					<connection type="neocortex-neocortex" primary="true" src="NPE.NC.OCC.V3V" dst="NSA.NC.OCC.V4V"/>
+					<connection type="neocortex-neocortex" primary="true" src="NPE.NC.OCC.V3D" dst="NSA.NC.OCC.MT"/>
+					<connection type="neocortex-neocortex" primary="true" src="NPE.NC.OCC.V3D" dst="NSA.NC.OCC.PO"/>
+					<connection type="neocortex-neocortex" primary="true" src="NPE.NC.OCC.V3D" dst="NPE.NC.IPS.LIP"/>
+					<connection type="neocortex-nucleus" primary="true" src="NPE.NC.OCC.V3D" dst="LRC.MM.CJ"/>
+					<connection type="neocortex-nucleus" primary="true" src="NPE.NC.OCC.V3D" dst="LRC.MM.RIMLF"/>
+					<connection type="neocortex-neocortex" primary="true" src="NPE.NC.IPS.LIP" dst="NMA.NC.PMC.CFEF"/>
+					<connection type="neocortex-neocortex" primary="true" src="NPE.NC.IPS.LIP" dst="NMA.NC.PMC.F7"/>
+					<connection type="neocortex-neocortex" primary="true" src="NPE.NC.IPS.LIP" dst="NSA.NC.IPS.AIP"/>
+					<connection type="neocortex-nucleus" primary="true" src="NPE.NC.IPS.LIP" dst="LRC.MM.SC.SUP"/>
+					<connection type="neocortex-nucleus" primary="true" src="NPE.NC.IPS.LIP" dst="LRC.MM.CJ"/>
+					<connection type="neocortex-nucleus" primary="true" src="NPE.NC.IPS.LIP" dst="LRC.MM.RIMLF"/>
+				</circuit>
+				<circuit id="GRC" name="Grasping Control" enabled="true">
+					<region id="NPE.NC.IPS.MIP" type="neocortex" service="NEU" role="processor"/>
 					<region id="NPE.FD.TH.OPV" type="nucleus" service="NEU" role="processor"/>
 					<region id="NPE.NC.SPL.PF" type="neocortex" service="NEU" role="processor"/>
 					<region id="NPE.NC.SPL.SA" type="neocortex" service="NPU" role="processor"/>
@@ -1522,21 +1539,8 @@
 					<connection type="neocortex-neocortex" primary="true" src="NPE.NC.SPL.SA" dst="NDM.NC.AL.ROFCM"/>
 					<connection type="neocortex-neocortex" primary="true" src="NPE.NC.SPL.SA" dst="NMA.NC.PMC.F2"/>
 					<connection type="nucleus-neocortex" primary="true" src="NPE.FD.TH.OPV" dst="NPE.NC.SPL.PF"/>
-					<connection type="neocortex-neocortex" primary="true" src="NPE.NC.OCC.V2PL" dst="NPE.NC.OCC.V3"/>
-					<connection type="neocortex-neocortex" primary="true" src="NPE.NC.OCC.V3" dst="NSA.NC.OCC.V4D"/>
-					<connection type="neocortex-neocortex" primary="true" src="NPE.NC.OCC.V3" dst="NSA.NC.OCC.MT"/>
-					<connection type="neocortex-neocortex" primary="true" src="NPE.NC.OCC.V3" dst="NSA.NC.OCC.PO"/>
-					<connection type="neocortex-neocortex" primary="true" src="NPE.NC.OCC.V3" dst="NPE.NC.IPS.LIP"/>
-					<connection type="neocortex-nucleus" primary="true" src="NPE.NC.OCC.V3" dst="LRC.MM.CJ"/>
-					<connection type="neocortex-nucleus" primary="true" src="NPE.NC.OCC.V3" dst="LRC.MM.RIMLF"/>
 					<connection type="neocortex-neocortex" primary="true" src="NPE.NC.IPS.MIP" dst="NPE.NC.SPL.PG"/>
-					<connection type="neocortex-neocortex" primary="true" src="NPE.NC.IPS.LIP" dst="NMA.NC.PMC.CFEF"/>
-					<connection type="neocortex-neocortex" primary="true" src="NPE.NC.IPS.LIP" dst="NMA.NC.PMC.F7"/>
 					<connection type="neocortex-neocortex" primary="true" src="NPE.NC.IPS.MIP" dst="NCP.NC.MPL.PSCG"/>
-					<connection type="neocortex-neocortex" primary="true" src="NPE.NC.IPS.LIP" dst="NSA.NC.IPS.AIP"/>
-					<connection type="neocortex-nucleus" primary="true" src="NPE.NC.IPS.LIP" dst="LRC.MM.SC.SUP"/>
-					<connection type="neocortex-nucleus" primary="true" src="NPE.NC.IPS.LIP" dst="LRC.MM.CJ"/>
-					<connection type="neocortex-nucleus" primary="true" src="NPE.NC.IPS.LIP" dst="LRC.MM.RIMLF"/>
 				</circuit>
 				<circuit id="SEC" name="Subcortical Execution Control" enabled="true">
 					<region id="NPE.FD.TH.LP" type="nucleus" service="NEU" role="processor"/>
