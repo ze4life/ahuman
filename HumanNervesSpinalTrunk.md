@@ -1,0 +1,37 @@
+[Home](Home.md) -> [BiologicalLifeResearch](BiologicalLifeResearch.md) -> [HumanNerves](HumanNerves.md) -> [HumanNervesSpinalTrunk](HumanNervesSpinalTrunk.md)
+
+---
+
+
+This page is intended to list thoracic spinal cord nerves of biological human, which connect mind to human limbs and visceral organs.
+
+
+
+Coverage verified by:
+  * http://medical-dictionary.thefreedictionary.com/nerve (name base)
+  * http://www.oluwoleogunranti.com/course/course1/nerves (MA reference)
+
+# CERVICAL, THORACIC, LUMBAR AND SACRAL - TRUNK MOTOR NERVES #
+(generated)
+
+**motor nuclei/ganglia**:
+  * [Posteromedial Nucleus,LPC.SC.VH.PM](BrainRegionLPC_SC_VH_PM.md); NERVES={first intercostal nerve; motor nerves of back, flexors; subcostal nerve, motor; thoracic and thoracicoabdominal intercostal nerves, flexors; thoracic intercostal nerves, extensors}
+  * [Ventromedial Nucleus,LPC.SC.VH.VM](BrainRegionLPC_SC_VH_VM.md); NERVES={motor nerves of back, extensors; thoracicoabdominal intercostal nerves, extensors}
+
+**sensory nuclei/ganglia**:
+
+**nerves**:
+  * **first intercostal nerve** (small branch); DISTRIBUTION={1st rib}; MODALITY={flexor motor}; FIBERS={GSE:[Posteromedial Nucleus,LPC.SC.VH.PM](BrainRegionLPC_SC_VH_PM.md) -> [Trunk,TARGET.TEA.TRUNK](BrainRegionTARGET_TEA_TRUNK.md)}
+    * <img src='http://dermatologic.com.ar/c1tt2.png' alt='unavailable'>
+</li></ul><ul><li><b>posterior ramus, motor</b>; MODALITY={flexor motor, extensor motor}<br>
+<ul><li><img src='http://classconnection.s3.amazonaws.com/1527/flashcards/688632/png/jskasdklaj.png' alt='unavailable'>
+</li><li><b>motor nerves of back, extensors</b>; DISTRIBUTION={longissimus muscle, multifidus muscle, semispinalis, levatores costarum muscles, interspinales muscles, intertransversarii muscle}; MODALITY={extensor motor}; MUSCLES={<a href='http://en.wikipedia.org/wiki/Interspinales_muscle'>Trunk - interspinales muscles</a> - aid in extension and rotation of vertebral column; <a href='http://en.wikipedia.org/wiki/Intertransversarii_muscle'>Trunk - intertransversarii muscle</a> - aid in lateral flexion of vertebral column; acting bilaterally, stabilize vertebral column; <a href='http://en.wikipedia.org/wiki/Levatores_costarum_muscles'>Trunk - levatores costarum muscles</a> - elevate ribs, assisting respiration; assist with lateral flexion of vertebral column; <a href='http://en.wikipedia.org/wiki/Longissimus'>Trunk - longissimus muscle</a> - extends spine; <a href='http://en.wikipedia.org/wiki/Multifidus_muscle'>Trunk - multifidus muscle</a> - stabilizes vertebrae in local movements of vertebral column; <a href='http://en.wikipedia.org/wiki/Semispinalis_cervicis'>Trunk - semispinalis cervicis</a> - extends and rotates the head to the contralateral side and also extends the ribs; <a href='http://en.wikipedia.org/wiki/Semispinalis_dorsi'>Trunk - semispinalis dorsi (thoracis)</a> - extends vertebral column}; FIBERS={GSE:<a href='BrainRegionLPC_SC_VH_VM.md'>Ventromedial Nucleus,LPC.SC.VH.VM</a> -> <a href='BrainRegionTARGET_TEA_TRUNK.md'>Trunk,TARGET.TEA.TRUNK</a>}<br>
+</li><li><b>motor nerves of back, flexors</b>; DISTRIBUTION={iliocostalis muscle, spinalis muscle, rotatores muscles}; MODALITY={flexor motor}; MUSCLES={<a href='http://en.wikipedia.org/wiki/Iliocostalis'>Trunk - iliocostalis muscle</a> - extends and lateral flexes spine; <a href='http://en.wikipedia.org/wiki/Rotatores_muscle'>Trunk - rotatores muscles</a> - facilitates the unilateral rotation and bilateral extension of the spine; <a href='http://en.wikipedia.org/wiki/Spinalis'>Trunk - spinalis muscle</a> - lateral flexion of spine}; FIBERS={GSE:<a href='BrainRegionLPC_SC_VH_PM.md'>Posteromedial Nucleus,LPC.SC.VH.PM</a> -> <a href='BrainRegionTARGET_TEA_TRUNK.md'>Trunk,TARGET.TEA.TRUNK</a>}<br>
+</li></ul></li><li><b>subcostal nerve, motor</b> (MA:<a href='http://www.oluwoleogunranti.com/course/course1/nerves/ne219.htm'>SUBCOSTAL NERVE</a>); MODALITY={flexor motor}; MUSCLES={<a href='http://en.wikipedia.org/wiki/Abdominal_internal_oblique_muscle'>Trunk - abdominal internal oblique muscle</a> - compresses abdomen and rotates vertebral column; <a href='http://en.wikipedia.org/wiki/Pyramidalis_muscle'>Trunk - pyramidalis muscle</a> - tensing the linea alba}; FIBERS={GSE:<a href='BrainRegionLPC_SC_VH_PM.md'>Posteromedial Nucleus,LPC.SC.VH.PM</a> -> <a href='BrainRegionTARGET_TEA_TRUNK.md'>Trunk,TARGET.TEA.TRUNK</a>}<br>
+<ul><li><img src='http://painmuse.org/images/pyramidalis.jpg' alt='unavailable'>
+</li></ul></li><li><b>thoracic and abdominal intercostal nerves</b>; MODALITY={flexor motor, extensor motor}<br>
+<ul><li><img src='http://www.rci.rutgers.edu/~uzwiak/AnatPhys/APFallLect10_files/image013.jpg' alt='unavailable'>
+</li><li><b>thoracic and thoracicoabdominal intercostal nerves, flexors</b>; DISTRIBUTION={rectus abdominis; external intercostal muscles; serratus posterior superior muscle}; MODALITY={flexor motor}; MUSCLES={<a href='http://en.wikipedia.org/wiki/Sternalis'>Hand - sternalis muscle</a> - protract and stabilize scapula, assists in upward rotation; <a href='http://en.wikipedia.org/wiki/Abdominal_external_oblique_muscle'>Trunk - abdominal external oblique muscle</a> - rotates torso; <a href='http://en.wikipedia.org/wiki/External_intercostal_muscles'>Trunk - external intercostal muscles</a> - aid in quiet and forced inhalation; <a href='http://en.wikipedia.org/wiki/Rectus_abdominis_muscle'>Trunk - rectus abdominis muscle</a> - flexion of trunk/lumbar vertebrae; <a href='http://en.wikipedia.org/wiki/Serratus_posterior_superior_muscle'>Trunk - serratus posterior superior muscle</a> - elevate the ribs which aids in inspiration}; FIBERS={GSE:<a href='BrainRegionLPC_SC_VH_PM.md'>Posteromedial Nucleus,LPC.SC.VH.PM</a> -> <a href='BrainRegionTARGET_TEA_TRUNK.md'>Trunk,TARGET.TEA.TRUNK</a>}<br>
+<ul><li><img src='http://www.cixip.com/Public/kindeditor/attached/image/20121122/20121122104412_41232.jpg' alt='unavailable'>
+</li></ul></li><li><b>thoracic intercostal nerves, extensors</b>; DISTRIBUTION={semispinalis dorsi (thoracis); transversus thoracis muscle; subcostalis muscle}; MODALITY={extensor motor}; FIBERS={GSE:<a href='BrainRegionLPC_SC_VH_PM.md'>Posteromedial Nucleus,LPC.SC.VH.PM</a> -> <a href='BrainRegionTARGET_TEA_TRUNK.md'>Trunk,TARGET.TEA.TRUNK</a>}<br>
+</li><li><b>thoracicoabdominal intercostal nerves, extensors</b>; ORIGIN={T7-T11}; DISTRIBUTION={internal intercostal muscles, serratus posterior inferior}; MODALITY={extensor motor}; MUSCLES={<a href='http://en.wikipedia.org/wiki/Internal_intercostal_muscles'>Trunk - internal intercostal muscles</a> - aid in forced expiration; <a href='http://en.wikipedia.org/wiki/Serratus_posterior_inferior_muscle'>Trunk - serratus posterior inferior muscle</a> - depress the lower ribs, aiding in expiration; <a href='http://en.wikipedia.org/wiki/Semispinalis_dorsi'>Trunk - subcostalis muscle</a> - synergist in aiding the internal intercostal muscles with forced exhalation; <a href='http://en.wikipedia.org/wiki/Transversus_abdominis_muscle'>Trunk - transversus abdominis muscle</a> - compress the ribs and viscera, providing thoracic and pelvic stability; <a href='http://en.wikipedia.org/wiki/Semispinalis_dorsi'>Trunk - transversus thoracis muscle</a> - depresses the ribs; aids in exertional expiration by decreasing the transverse diameter of the thoracic cage}; FIBERS={GSE:<a href='BrainRegionLPC_SC_VH_VM.md'>Ventromedial Nucleus,LPC.SC.VH.VM</a> -> <a href='BrainRegionTARGET_TEA_TRUNK.md'>Trunk,TARGET.TEA.TRUNK</a>}</li></ul></li></ul>

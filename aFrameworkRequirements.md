@@ -1,0 +1,92 @@
+@@[Home](Home.md) -> [ProjectPlanning](ProjectPlanning.md) -> [aFrameworkRequirements](aFrameworkRequirements.md)
+
+---
+
+
+**Framework goals are:**
+  * Setup stable and transparent (documented) development environment
+  * Freeze vision
+  * Create exact high-level design, which fits the vision
+  * Create component diagram, with one main function per component
+  * Choose AI technology set for each of the component
+  * Specify component interface
+
+## Setup development environment ##
+
+  * IDE - MS Visual C++ 2010 Express - see [DevelopmentEnvironment](DevelopmentEnvironment.md) (out of date, needs new IDE and project information)
+  * High Level Architecture has version, last is HLAv3 - it defines how code is split into build targets, codebase folders, and defines core set of classes. All classes, folders and build targets projects have been created and included into build
+  * Build is local from IDE, contains 3 separate build targets - platform, mind, aWee
+  * Platform services are ready for use - providing generic functions like startup/shutdown, logging, configuring, thread management and alike
+  * Mind is sole part of codebase, and is a long-term target for coding
+  * aHuman - is mind modeling tool using biological model
+  * aWee - is partial prototype of corresponding target from starting [aHuman](http://code.google.com/p/ahuman) page
+
+## Freeze Vision ##
+
+  * High-level features of aHuman are available at [ProjectVision](ProjectVision.md)
+  * Implementation vision is to use neurobiology data:
+    * high-level patterns - mind areas, their roles, connectivity and circuits
+    * middle-level design - copy from well-known building blocks of human mind - cortex region, nucleus, bundles of fibers
+    * low-level design - columnar design of cortex, temporal dynamics from action potentials, membrane potentials, firing spikes, fire delay
+
+## High-level design ##
+
+  * see [Architecture](Architecture.md) - as a whole view, including component diagram
+  * see [MindArchitecture](MindArchitecture.md) - for mind architecture
+
+## Choose AI technology set for each of the component ##
+
+  * finally decided to ignore findings in classical AI technology, because it is side-shifted, using old-fashion neural networks, crude models, aimed to build practical applications in the field of weak AI
+  * aHuman neural networks need time dimension, two-way connectivity and specific middle-level design, which will direct networks to be effective and useful
+
+## Specify component interface ##
+
+  * it appears to be quite naive to build exact interface from the very beginning
+  * still for the platform, mind area, mind region, neural links the certain interface was created
+  * now, after several years of reading and thinking about neurobiology, I can guess what is human mind and what are its services in computational terms:
+```
+Lower Brain: 
+- peripheral control
+- motor reflexes
+- autonomic control
+- locomotion
+- modulatory control
+
+Forebrain Mind: 
+- execution control
+- memory handling
+- motivations
+
+Neocortical Brain: 
+- sensory aggregation
+- body aggregation
+- motor aggregation
+- execution planning
+- personality
+```
+
+## Specify work plan to complete phase ##
+
+  * define aHuman tracts paths
+  * rework mind to resolve all model inconsistencies
+  * change mind interfaces and lifecycle
+  * refactor mind areas to services
+  * move links to mind areas/services
+  * create services prototypes
+  * create mind by services in aHuman programmatically
+  * ensure the same mind can be created
+  * group mind area items into circuit instances
+  * visualize circuit instances on area pages
+
+## 2015 book of work ##
+
+  * 01-apr: finish FAM - done
+  * 01-may: finish hippocampal formation model - done
+  * 01-jun: finish neocortial model
+  * 15-jun: migrate to ahuman.org
+  * 01-jul: add integral component pages
+  * 01-aug: add full-coverage of 3d-circuits
+  * 01-sep: finish tract information
+  * 01-nov: add integral circuits
+  * 01-dec: quick full review
+  * end of 2015: publish model overview, state complete

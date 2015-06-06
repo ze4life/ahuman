@@ -1,0 +1,70 @@
+@@[Home](Home.md) -> [ProjectTasks](ProjectTasks.md)
+
+
+
+---
+
+
+# Development Goals #
+
+**Project Planning:**
+
+  * see [ProjectPlanning](ProjectPlanning.md)
+
+**Tactical Goals:**
+
+  * create consistent and complete biological human model
+  * automated tracking of bio research and artificial research
+  * implement flexible and transparent top-level workflow
+  * define aHuman area services
+
+# Book of Work #
+
+## Build biological human model ##
+
+  * make sure all spinal nerves attached to roots (needs validator)
+  * make target region link type names consistent
+  * add reference as covered by PNS
+  * build formal spinal cord model
+    * consider every level separately
+    * ensure each nerve reaches its connectivity
+    * ensure input/output component coverage
+  * describe all tracts paths
+  * group target connectors to make circuits
+  * split mind areas into observable local circuits
+  * add service set to area page
+  * create cranial mind page
+  * create subcortical mind page
+  * use tract information in spinal cord, cranial, cortical and subcortical  pages
+
+## Improve mind engine ##
+
+  * [modify aHuman lifecycle](ProjectTasksLifecycle.md)
+
+# Book of Done #
+
+## Build biological human model ##
+
+  * make sure set of muscles and glands match target connectors (needs validator)
+  * make nervelist entries resolved, define connectors (needs validator)
+  * add mind connections to target pages
+  * split mindcover into dura sensor (meninges) and blood vessels effector
+  * make sure all muscles and glands are innervated (needs validator)
+  * make sure all nerves are connected to muscles and glands (needs validator)
+  * group connectors within target
+  * split mouth effector into speaker and feeder, move breath functions to lung
+  * replace glands defined as mind components with target connectors
+  * add links to external and internal muscle reference at target pages
+  * split hmind into parts
+  * add sympathetic/parasympathetic nerves to roots
+  * add mind connections to cover PNS
+  * generate tracts overview and tract set pages in wiki
+  * build formal spinal cord model
+    * generate spinal cord page
+    * generate spinal cord levels section
+    * generate spinal cord tracts section
+    * generate spinal cord connectivity section
+
+## Improve mind engine ##
+
+  * add support for local circuits

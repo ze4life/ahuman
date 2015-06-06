@@ -1,0 +1,104 @@
+@@[Home](Home.md) -> [ProjectTasks](ProjectTasks.md) -> [ProjectTasksLifecycle](ProjectTasksLifecycle.md)
+
+
+
+---
+
+
+# Rework framework #
+
+**Establish clear program layers**:
+  * mind process
+  * mind model
+  * mind instance
+  * mind memory
+  * mind storage
+
+**Implement fundamental flows**:
+  * enable both predefined model and programmatically constructed from target
+  * make running predefined model using the same code as created by target
+  * make clear states of undefined model, defined model and running model
+  * details see below
+
+# Implement flows #
+
+## Create wiki model ##
+
+  * (begin)
+  * **cmd**: launch norun
+  * create mind process
+  * load mind model
+  * create mind instance by model
+  * **cmd**: wiki operation
+  * load extra mind meta
+  * execute wiki operation
+  * drop extra mind meta
+  * **cmd**: stop
+  * drop mind image
+    * drop mind instance
+    * drop mind model
+    * drop mind process
+  * (end)
+
+## Create mind by model ##
+
+  * (begin)
+  * **cmd**: launch
+  * create mind process
+  * load mind model
+  * create mind instance by model
+  * create mind memory
+  * run mind instance
+  * **cmd**: stop
+  * stop mind instance
+  * suspend mind image
+    * stop mind instance
+    * sync mind memory
+  * drop mind image
+    * drop mind memory
+    * drop mind instance
+    * drop mind model
+  * drop mind process
+  * (end)
+
+## Create mind dynamically ##
+
+  * (begin)
+  * **cmd**: launch
+  * create mind process
+  * create mind model by target
+  * create mind instance by model
+  * create mind memory
+  * run mind instance
+  * **cmd**: stop
+  * stop mind instance
+  * suspend mind image
+    * stop mind instance
+    * sync mind memory
+  * drop mind image
+    * drop mind memory
+    * drop mind instance
+    * drop mind model
+  * drop mind process
+  * (end)
+
+## Start mind (awake) ##
+
+  * (begin)
+  * **cmd**: launch
+  * create mind process
+  * load mind model
+  * create mind instance by model
+  * load mind memory
+  * run mind instance
+  * **cmd**: stop
+  * stop mind instance
+  * suspend mind image
+    * stop mind instance
+    * sync mind memory
+  * drop mind image
+    * drop mind memory
+    * drop mind instance
+    * drop mind model
+  * drop mind process
+  * (end)
